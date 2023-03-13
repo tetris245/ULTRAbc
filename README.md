@@ -15,3 +15,11 @@ Inside Tampermonkey: Add new script / Utilities / Insert link to ULTRAbc loader 
 To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM will search for new version and install it)
 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
+
+**Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
+1. Download the ULTRAbc-version1.0.zip file on the Releases page
+2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
+3. Go to browser extensions. Enable developer mode.
+4. Load as Unpacked. Done. If the file can't be seen, see step 2.
+
+After installation, refresh your BC page and relog.
