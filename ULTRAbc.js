@@ -50,7 +50,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.0: Ready, type <b>/uhelp</b> for general menu.\n" +
                 "Note: NPC punishments are disabled.\n" +
                 "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
-                "Use <b>/help</b> to get the standard BC menu (+ FBC menu when enabled).\n" +
+                "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
                 "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a>\n" +
                 "For any inquiries, join <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>https://discord.gg/JUvYfSpCmN</a></p>"
             );
@@ -389,10 +389,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRAAppearanceRun() {
         modApi.hookFunction('AppearanceRun', 4, (args, next) => {
             if (CharacterAppearanceMode == "Wardrobe") {
-                DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full QAM Export");
+                DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
                 DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Clothing + Restraints");
                 DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Clothing + Restraints + Cosplay");
-                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full QAM Import");
+                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");
             }
             next(args);
         });
@@ -759,7 +759,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg1',
-        Description: "(number): uses a hidden platform background.",
+        Description: ": adds hidden backgrounds to the admin selection screen.",
         Action: () => {
             BackgroundsList.push({
                 Name: "Pandora/Ground/Entrance",
@@ -2033,7 +2033,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'ggts',
-        Description: "(minutes) (level:  enters ggts training in asylum for the specified time and level.",
+        Description: "(minutes) (level):  enters ggts training in asylum for the specified time and level.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
@@ -3826,6 +3826,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'poof',
         Description: "(action): leaves the club very fast.",
         Action: (args) => {
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
             if (args === "") {
                 var message = " poofs away."
             } else {
@@ -5565,7 +5570,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'superdice',
-        Description: "(sides: rolls a superdice. ",
+        Description: "(sides): rolls a superdice. ",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
