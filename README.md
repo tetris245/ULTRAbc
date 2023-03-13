@@ -11,6 +11,7 @@ ULTRAbc is a modSDK version of QAM, providing better compatibility with other ad
 You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, Dolphin, UC)
 
 Inside Tampermonkey: Add new script / Utilities / Insert link to ULTRAbc loader in last option / Click on "Instal
+
 To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM will search for new version and install it)
 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
