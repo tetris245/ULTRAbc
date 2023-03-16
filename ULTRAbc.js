@@ -4095,7 +4095,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         (Player.ActivePose != null) &&
                         ((CharacterCanChangeToPose(Player, null)) || (ChatRoomCanAttemptStand(Player) == true))) {
                         CharacterSetActivePose(Player, null);
+                        delete InventoryGet(Player, 'Emoticon').Property.OverrideHeight;
                         ChatRoomCharacterUpdate(Player);
+                        CharacterRefresh(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
                             Type: "Action",
@@ -4626,6 +4628,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 ((CharacterCanChangeToPose(target[0], null)) || (ChatRoomCanAttemptStand(target[0]) == true))) {
                                 CharacterSetActivePose(target[0], null);
                                 ChatRoomCharacterUpdate(target[0]);
+                                CharacterRefresh(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
                                     Type: "Action",
