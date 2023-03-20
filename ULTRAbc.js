@@ -97,8 +97,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ElementValue("InputChat", text1.replace(text1, text2));
                     event.preventDefault();
                     if (ChatRoomTargetMemberNumber == null) {
-		                ChatRoomSendChat();
-	                } else {
+		        ChatRoomSendChat();
+	            } else {
                         ServerSend("ChatRoomChat", {
                             "Content": text2,
                             "Type": "Whisper",
@@ -114,8 +114,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "LocalMessage",
                             Sender: Player.MemberNumber
                         });
-                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                     }
                     ElementValue("InputChat", "");
                 }
