@@ -5570,7 +5570,70 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ChatRoomClearAllElements();
         }
     }])
-
+    
+    CommandCombine([{
+        Tag: 'stutter',
+        Description: "(stuttermode): forces a specific stuttering mode.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The stutter command must be followed by a number between 0 and 4.\n" +
+                    " \n" +
+                    "Available stuttering modes:\n" +
+                    "0 no stuttering\n" +
+                    "1 light stuttering\n" +
+                    "2 normal stuttering\n" +
+                    "3 heavy stuttering\n" +
+                    "4 total stuttering</p>"
+                );
+            } else {
+                var stlevel = args;
+                ElementValue("InputChat", "");
+                if (stlevel == 0) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: No more stuttering.</p>"
+                    );
+                    Stutter1On = false;
+                    Stutter2On = false;
+                    Stutter3On = false;
+                    Stutter4On = false;
+                } else if (stlevel == 1) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in light stuttering mode.</p>"
+                    );
+                    Stutter1On = true;
+                    Stutter2On = false;
+                    Stutter3On = false;
+                    Stutter4On = false;
+                } else if (stlevel == 2) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal stuttering mode.</p>"
+                    );
+                    Stutter1On = false;
+                    Stutter2On = true;
+                    Stutter3On = false;
+                    Stutter4On = false;
+                } else if (stlevel == 3) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in heavy stuttering mode.</p>"
+                    );
+                    Stutter1On = false;
+                    Stutter2On = false;
+                    Stutter3On = true;
+                    Stutter4On = false;
+                } else if (stlevel == 4) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in total stuttering mode.</p>"
+                    );
+                    Stutter1On = false;
+                    Stutter2On = false;
+                    Stutter3On = false;
+                    Stutter4On = true;
+                }
+            }
+        }
+    }])
+    
     CommandCombine([{
         Tag: 'superdice',
         Description: "(sides): rolls a superdice. ",
