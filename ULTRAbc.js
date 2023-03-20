@@ -28,20 +28,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         repository: 'https://github.com/tetris245/ULTRAbc',
     });
 
-    //Variables
-    var BackgroundsTagList = [
-        BackgroundsTagNone,
-        BackgroundsTagIndoor,
-        BackgroundsTagOutdoor,
-        BackgroundsTagAquatic,
-        BackgroundsTagSpecial,
-        BackgroundsTagSciFiFantasy,
-        BackgroundsTagClub,
-        BackgroundsTagHouse,
-        BackgroundsTagDungeon,
-        BackgroundsTagAsylum
-    ];
-
     //Greeting message
     ChatCommandGreeting = function(data) {
         if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
@@ -1153,6 +1139,40 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 Name: "White",
                 Tag: [BackgroundsTagIndoor]
             });
+	    if (!window.BCX_Loaded == true) {
+                BackgroundsList.push({
+                    Name: "AsylumBedroom", 
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "AsylumEntrance",
+                    Tag: [BackgroundsTagIndoor]
+                });
+	           BackgroundsList.push({
+                    Name: "AsylumGGTSRoom",
+                    Tag: [BackgroundsTagIndoor]
+                }); 
+                BackgroundsList.push({
+                    Name: "AsylumMeeting",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "AsylumTherapy",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "OutsideCells",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "PaddedCell",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "PaddedCell2",
+                    Tag: [BackgroundsTagIndoor]
+                });
+            }	
             ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
             ChatRoomSendLocal(
                 "<p style='background-color:#5fbd7a'>ULTRAbc: You can use more backgrounds now.</p>"
