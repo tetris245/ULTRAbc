@@ -65,33 +65,33 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     
     //Chat Room
     async function ULTRAChatRoomKeyDown() {
-        modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => { 
+        modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             if (KeyPress == 13 && !event.shiftKey) {
                 var text1 = ElementValue("InputChat");
-		if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
-                   var text2 = text1;
-		} else if ((text1.startsWith("@")) && (window.MBCHC)) {
-                   var text2 = text1;
+                if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
+                    var text2 = text1;
+                } else if ((text1.startsWith("@")) && (window.MBCHC)) {
+                    var text2 = text1;
                 } else if (text1.startsWith("/")) {
-                   var text2 = text1;
+                    var text2 = text1;
                 } else {
                     if (this.Stutter1On == true) {
-                        var text2 = StutterTalk1(text1);             
+                        var text2 = StutterTalk1(text1);
                     } else if (this.Stutter2On == true) {
-                        var text2 = StutterTalk2(text1);             
+                        var text2 = StutterTalk2(text1);
                     } else if (this.Stutter3On == true) {
-                        var text2 = StutterTalk3(text1);             
+                        var text2 = StutterTalk3(text1);
                     } else if (this.Stutter4On == true) {
-                        var text2 = StutterTalk4(text1);             
+                        var text2 = StutterTalk4(text1);
                     } else {
                         var text2 = text1;
                     }
-		} 	
+                }
                 ElementValue("InputChat", text1.replace(text1, text2));
                 event.preventDefault();
                 if (ChatRoomTargetMemberNumber == null) {
-		    ChatRoomSendChat();
-	        } else {
+                    ChatRoomSendChat();
+                } else {
                     ServerSend("ChatRoomChat", {
                         "Content": text2,
                         "Type": "Whisper",
@@ -113,9 +113,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ElementValue("InputChat", "");
             }
             next(args);
-        });  
+        });
     }
-  
+
     //Chat Search (including Auto-Join)
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
