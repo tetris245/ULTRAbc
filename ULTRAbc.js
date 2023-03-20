@@ -79,13 +79,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var tsp = 1;
                 } else {
                     if (this.BabyTalkOn == true) {
-                       var text2 = SpeechBabyTalk({
-                    Effect: ["RegressedTalk"]
-                }, text1);  
+                        var text2 = SpeechBabyTalk({
+                            Effect: ["RegressedTalk"]
+                        }, text1);  
                         var tsp = 0;
                     } else if (this.GagTalkOn == true) {
-                       var text2 = SpeechGarbleByGagLevel(gl, text1); 
-                       var tsp = 0;   
+                        var text2 = SpeechGarbleByGagLevel(gl, text1); 
+                        var tsp = 0;   
                     } else {
                         var text2 = text1;
                         var tsp = 0;
