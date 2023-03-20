@@ -26,7 +26,7 @@ After installation, refresh your BC page and relog.
 
 ==========================================================================
 
-Changes for fu!ure version
+Changes for future version
 
 * New modSDK function: ULTRAChatRoomKeyDown
 * New command: stutter (stuttermode) to force a specific stuttering mode. The mode is specified by a number between 0 and 4.
