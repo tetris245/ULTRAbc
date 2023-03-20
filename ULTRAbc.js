@@ -70,30 +70,50 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var text1 = ElementValue("InputChat");
                 if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
                     var text2 = text1;
+                    var tsp = 1;
                 } else if ((text1.startsWith("@")) && (window.MBCHC)) {
                     var text2 = text1;
+                    var tsp = 1;
                 } else if (text1.startsWith("/")) {
                     var text2 = text1;
+                    var tsp = 1;
                 } else {
-                    if (this.Stutter1On == true) {
-                        var text2 = StutterTalk1(text1);
-                    } else if (this.Stutter2On == true) {
-                        var text2 = StutterTalk2(text1);
-                    } else if (this.Stutter3On == true) {
-                        var text2 = StutterTalk3(text1);
-                    } else if (this.Stutter4On == true) {
-                        var text2 = StutterTalk4(text1);
+                    if (this.BabyTalkOn == true) {
+                       var text2 = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, text1);  
+                        var tsp = 0;
+                    } else if (this.GagTalkOn == true) {
+                       var text2 = SpeechGarbleByGagLevel(gl, text1); 
+                       var tsp = 0;   
                     } else {
                         var text2 = text1;
+                        var tsp = 0;
                     }
                 }
                 ElementValue("InputChat", text1.replace(text1, text2));
+                if (tsp == 1) {   
+                    var text3 = text2;
+                } else {       
+                    if (this.Stutter1On == true) {
+                        var text3 = StutterTalk1(text2);
+                    } else if (this.Stutter2On == true) {
+                        var text3 = StutterTalk2(text2);
+                    } else if (this.Stutter3On == true) {
+                        var text3 = StutterTalk3(text2);
+                    } else if (this.Stutter4On == true) {
+                        var text3 = StutterTalk4(text2);
+                    } else {
+                        var text3 = text2;
+                    }
+                }
+                ElementValue("InputChat", text2.replace(text2, text3));
                 event.preventDefault();
                 if (ChatRoomTargetMemberNumber == null) {
                     ChatRoomSendChat();
                 } else {
                     ServerSend("ChatRoomChat", {
-                        "Content": text2,
+                        "Content": text3,
                         "Type": "Whisper",
                         "Target": ChatRoomTargetMemberNumber
                     });
@@ -103,7 +123,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             break;
                         }
                     ChatRoomMessage({
-                        Content: "Whisper to " + TargetName + ": " + text2,
+                        Content: "Whisper to " + TargetName + ": " + text3,
                         Type: "LocalMessage",
                         Sender: Player.MemberNumber
                     });
