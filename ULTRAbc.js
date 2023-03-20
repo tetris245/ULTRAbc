@@ -84,6 +84,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var text1 = ElementValue("InputChat");
 		if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
                    var text2 = text1;
+		} else if ((text1.startsWith("@")) && (window.MBCHC)) {
+                   var text2 = text1;
                 } else if (text1.startsWith("/")) {
                    var text2 = text1;
                 } else {
