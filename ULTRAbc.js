@@ -90,15 +90,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                    var text2 = text1;
                 } else {
                     if (this.Stutter1On == true) {
-                        text2 = StutterTalk1(text1);             
+                        var text2 = StutterTalk1(text1);             
                     } else if (this.Stutter2On == true) {
-                        text2 = StutterTalk2(text1);             
+                        var text2 = StutterTalk2(text1);             
                     } else if (this.Stutter3On == true) {
-                        text2 = StutterTalk3(text1);             
+                        var text2 = StutterTalk3(text1);             
                     } else if (this.Stutter4On == true) {
-                        text2 = StutterTalk4(text1);             
+                        var text2 = StutterTalk4(text1);             
                     } else {
-                        text2 = text1;
+                        var text2 = text1;
                     }
                     ElementValue("InputChat", text1.replace(text1, text2));
                     event.preventDefault();
@@ -146,7 +146,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     };
                     if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
                         var RoomName = ChatSearchResult[C].Name;
-
                         AutoJoin = function() {
                             this.AutoJoinOn = true;
                             setTimeout(function() {
