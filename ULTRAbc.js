@@ -66,6 +66,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAAppearanceRun();
     ULTRACellClick();
     ULTRACellLoad();
+    ULTRAChatRoomKeyDown();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
     ULTRACraftingItemListBuild();
@@ -75,7 +76,53 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
-
+    
+    //Chat Room
+    async function ULTRAChatRoomKeyDown() {
+        modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => { 
+            if (KeyPress == 13 && !event.shiftKey) {
+                var text1 = ElementValue("InputChat");
+                if (!text1.startsWith("/")) {
+                    if (this.Stutter1On == true) {
+                        text2 = StutterTalk1(text1);             
+                    } else if (this.Stutter2On == true) {
+                        text2 = StutterTalk2(text1);             
+                    } else if (this.Stutter3On == true) {
+                        text2 = StutterTalk3(text1);             
+                    } else if (this.Stutter4On == true) {
+                        text2 = StutterTalk4(text1);             
+                    } else {
+                        text2 = text1;
+                    }
+                    ElementValue("InputChat", text1.replace(text1, text2));
+                    event.preventDefault();
+                    if (ChatRoomTargetMemberNumber == null) {
+		                ChatRoomSendChat();
+	                } else {
+                        ServerSend("ChatRoomChat", {
+                            "Content": text2,
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                TargetName = ChatRoomCharacter[C].Name;
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + text2,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                    }
+                    ElementValue("InputChat", "");
+                }
+            }
+            next(args);
+        });
+    
     //Chat Search (including Auto-Join)
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
