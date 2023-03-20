@@ -23,3 +23,11 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
 
 After installation, refresh your BC page and relog.
+
+==========================================================================
+
+Changes for fu!ure version
+
+* New modSDK function: ULTRAChatRoomKeyDown
+* New command: stutter (stuttermode) to force a specific stuttering mode. The mode is specified by a number between 0 and 4.
+* Fixed stand option in pose2 command
