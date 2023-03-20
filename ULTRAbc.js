@@ -5737,6 +5737,114 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
+	
+    	CommandCombine([{
+        Tag: 'talk',
+        Description: "(talkmode): forces a specific talk mode",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The talk command must be followed by a number between -1 and 9.\n" +
+                    " \n" +
+                    "Available talk modes:\n" +
+                    "-1 baby talk\n" +
+                    "0 normal talk\n" +
+                    "1 very light gag talk\n" +
+                    "2 light gag talk\n" +
+                    "3 easy gag talk\n" +
+                    "4 normal gag talk\n" +
+                    "5 medium gag talk\n" +
+                    "6 heavy gag talk\n" +
+                    "7 very heavy gag talk\n" +
+                    "8 total gag talk\n" +
+                    "9 real baby/gag talk</p>"
+                );
+            } else {
+                var gaglevel = args;
+                ElementValue("InputChat", "");
+                if (gaglevel == -1) {
+                    if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in baby talk mode.</p>"
+                        );
+                        GagTalkOn = false;
+                        BabyTalkOn = true;
+                    }
+                }
+                if (gaglevel == 0) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
+                    );
+                    BabyTalkOn = false;
+                    GagTalkOn = false;
+                }
+                if ((gaglevel > 0) && (gaglevel < 9)) {
+                    if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
+                        BabyTalkOn = false;
+                        gl = gaglevel;
+                        GagTalkOn = true;
+                    } else {
+                        GagTalkOn = false;
+                        gl = gaglevel;
+                        GagTalkOn = true;
+                    }
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in gag talk mode.</p>"
+                    );
+                }
+                if (gaglevel == 9) {
+                    var bl = 0;
+                    if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
+                        bl = 1;
+                    }
+                    if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
+                        bl = 1;
+                    }
+                    if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
+                        bl = 1;
+                    }
+                    if (bl == 1) {
+                        if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real baby talk mode.</p>"
+                            );
+                            GagTalkOn = false;
+                            BabyTalkOn = true;
+                        }
+                    } else {
+                        if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
+                            BabyTalkOn = false;
+                            gl = SpeechGetTotalGagLevel(Player);
+                            if (gl == 0) {
+                                GagTalkOn = false;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
+                                );
+                            } else {
+                                GagTalkOn = true;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
+                                );
+                            }
+                        } else {
+                            GagTalkOn = false;
+                            gl = SpeechGetTotalGagLevel(Player);
+                            if (gl == 0) {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
+                                );
+                            } else {
+                                GagTalkOn = true;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }])
 
     CommandCombine([{
         Tag: 'theme',
