@@ -113,8 +113,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ElementValue("InputChat", "");
             }
             next(args);
-        });
-    
+        });  
+    }
+  
     //Chat Search (including Auto-Join)
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
