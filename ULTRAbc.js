@@ -82,7 +82,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => { 
             if (KeyPress == 13 && !event.shiftKey) {
                 var text1 = ElementValue("InputChat");
-                if (!text1.startsWith("/")) {
+		if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
+                   var text2 = text1;
+                } else if (text1.startsWith("/")) {
+                   var text2 = text1;
+                } else {
                     if (this.Stutter1On == true) {
                         text2 = StutterTalk1(text1);             
                     } else if (this.Stutter2On == true) {
