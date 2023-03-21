@@ -87,7 +87,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		} else if (text1.startsWith("(")) {
                     var text2 = text1;
                     var tsp = 1;
-		    ChatRoomSetTarget(null);
 		} else if (text1.startsWith(":")) {
                     var text2 = text1;
                     var tsp = 1;	
