@@ -71,6 +71,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
                     var text2 = text1;
                     var tsp = 1;
+		} else if ((text1.startsWith("!")) && (window.BCX_Loaded == true)) {
+                    var text2 = text1;
+                    var tsp = 1;
                 } else if ((text1.startsWith("@")) && (window.MBCHC)) {
                     var text2 = text1;
                     var tsp = 1;
@@ -78,17 +81,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var text2 = text1;
                     var tsp = 1;
                 } else {
+		    var tsp = 0;
                     if (this.BabyTalkOn == true) {
                         var text2 = SpeechBabyTalk({
                             Effect: ["RegressedTalk"]
                         }, text1);  
-                        var tsp = 0;
                     } else if (this.GagTalkOn == true) {
-                        var text2 = SpeechGarbleByGagLevel(gl, text1); 
-                        var tsp = 0;   
+                        var text2 = SpeechGarbleByGagLevel(gl, text1);   
                     } else {
                         var text2 = text1;
-                        var tsp = 0;
                     }
                 }
                 ElementValue("InputChat", text1.replace(text1, text2));
