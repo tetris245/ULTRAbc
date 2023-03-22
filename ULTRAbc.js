@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 1.0
+// @version 1.1
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -20,7 +20,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 //SDKstuff end
 
 (async function() {
-    const ver = "1.0";
+    const ver = "1.1";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -33,7 +33,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
             Player.RestrictionSettings.BypassNPCPunishments = true;
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.0: Ready, type <b>/uhelp</b> for general menu.\n" +
+                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.1: Ready, type <b>/uhelp</b> for general menu.\n" +
                 "Note: NPC punishments are disabled.\n" +
                 "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
                 "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
@@ -359,7 +359,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 120, 500, 60, "ULTRAbc 1.0 Ready!", "Pink", "Black", "");
+            DrawButton(750, 120, 500, 60, "ULTRAbc 1.1 Ready!", "Pink", "Black", "");
             next(args);
         });
     }
@@ -6485,6 +6485,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>Auto All Items Are Craftable</b> but limited using of the extra crafted items\n" +
                     "<b>Auto-Disable NPC Punishments</b> - can be changed with the /npcpunish command\n" +
                     "<b>Auto Easy Access To Chat Rooms</b> by extra buttons in Main Hall and Friendlist\n" +
+		    "<b>Auto Emergency Buttons In Chat Room</b>: FREE - OUT\n" +
                     "<b>Auto Extra Buttons In Wardrobe</b>: Export (usable only if you come from a chat room) - Import1 = outfit + restraints\n" +
                     "Import2 = outfit + cosplay items + restraints - Import3 = full import including body changes\n" +
                     "<b>Auto-Join</b> to enter a room as soon as possible</p>"
@@ -6526,9 +6527,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "new") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.0:\n" +
-                    "- First version of this modSDK version of QAM.</p>"
-                );
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.1:\n" +
+		    "- Added 2 emergency buttons in chat room: FREE and OUT.\n" +
+		    "- Added 2 commands: stutter (stuttermode) and talk (talkmode).\n" +
+		    "- Improved the bg1 command by adding the Asylum backgrounds when BCX is not detected.\n" +
+                    "- Fixed stand option in pose2 command.</p>"
+                ); 
             }
             if (args === "talking") {
                 ChatRoomSendLocal(
@@ -6540,6 +6544,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/s3</b> (stuffhere) = speaks once in heavy stuttering mode.\n" +
                     "<b>/s4</b> (stuffhere) = speaks once in total stuttering mode.\n" +
                     "<b>/stutter</b> (stuttermode) = forces a specific stuttering mode. *\n" +
+		    "<b>/talk</b> (talkmode) = forces a specific talk mode. *\n" +
                     "<b>/whisper</b> (target) = sets whisper target.</p>"
                 );
             }
