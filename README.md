@@ -30,11 +30,4 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-* Added 2 emergency buttons in chat room:
-  - FREE is equivalent to the totalrelease command, but only for yourself
-  - OUT is equivalent to the leave command
-* New command: stutter (stuttermode) to force a specific stuttering mode. The mode is specified by a number between 0 and 4.
-* New command: talk (talkmode) to force a specific talk mode. The mode is specified by a number between -1 and 9.
-* Improved the bg1 command by adding the Asylum backgrounds when BCX is not detected
-* Fixed stand option in pose2 command
-* Improved the patch for the CellClick function
+(...)
