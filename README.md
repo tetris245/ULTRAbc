@@ -33,3 +33,4 @@ Changes for future version
 * New command: talk (talkmode) to force a specific talk mode. The mode is specified by a number between -1 and 9.
 * Improved the bg1 command by adding the Asylum backgrounds when BCX is not detected
 * Fixed stand option in pose2 command
+* Updated the ULTRACellClick function
