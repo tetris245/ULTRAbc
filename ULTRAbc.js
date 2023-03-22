@@ -441,7 +441,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     async function ULTRACellClick() {
         modApi.hookFunction('CellClick', 4, (args, next) => {
-            if (MouseIn(1885, 25, 90, 90) && Player.CanKneel() && (CellOpenTimer > CurrentTime)) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
+	    if (MouseIn(1885, 25, 90, 90) && Player.CanKneel() && (CellOpenTimer > CurrentTime)) CharacterSetActivePose(Player, (Player.ActivePose.length === 0) ? "Kneel" : null, true);
             if (MouseIn(750, 0, 500, 1000)) CharacterSetCurrent(Player);
             if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
             if (CellOpenTimer < CurrentTime) {
