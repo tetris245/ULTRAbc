@@ -52,7 +52,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAAppearanceRun();
     ULTRACellClick();
     ULTRACellLoad();
+    ULTRAChatRoomClick();
     ULTRAChatRoomKeyDown();
+    ULTRAChatRoomMenuDraw();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
     ULTRACraftingItemListBuild();
@@ -64,6 +66,36 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAPandoraPrisonRun();
     
     //Chat Room
+    async function ULTRAChatRoomClick() {
+        modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
+            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
+                if (Player.Nickname == '') {
+                    var tmpname = Player.Name;
+                } else {
+                    var tmpname = Player.Nickname;
+                }
+                ServerSend("ChatRoomChat", {
+                    Content: "Beep",
+                    Type: "Action",
+                    Dictionary: [{
+                        Tag: "Beep",
+                        Text: "Magical lasers make disappear all bindings and toys on " + tmpname + " body."
+                    }]
+                });
+                CharacterReleaseTotal(Player);
+                ChatRoomCharacterUpdate(Player);
+            }
+            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
+                ChatRoomSetLastChatRoom("");
+                ServerSend("ChatRoomLeave", "");
+                CommonSetScreen("Online", "ChatSearch");
+                ChatRoomClearAllElements();
+                OnlineGameName = "";
+            }
+            next(args);
+        });
+    }
+	
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             if (KeyPress == 13 && !event.shiftKey) {
@@ -135,6 +167,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 ElementValue("InputChat", "");
             }
+            next(args);
+        });
+    }
+	
+    async function ULTRAChatRoomMenuDraw() {
+        modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
+            DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+            DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
             next(args);
         });
     }
