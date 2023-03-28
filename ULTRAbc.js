@@ -85,6 +85,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 });
                 CharacterReleaseTotal(Player);
                 ChatRoomCharacterUpdate(Player);
+		return;
             }
             if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
                 ChatRoomSetLastChatRoom("");
