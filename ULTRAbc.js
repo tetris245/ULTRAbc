@@ -784,6 +784,336 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
         return CD;
     }
+	
+    /////////////////////////////////////////////
+    //Moaner                                   //       
+    /////////////////////////////////////////////
+    //Moaner - Chat Room
+
+    var M_MOANER_scriptOn = true;
+    var M_MOANER_tempChatRoomData;
+
+    function M_MOANER_isCommande(msg) {
+        return msg.startsWith("/") && ChatRoomTargetMemberNumber == null;
+    }
+
+    function M_MOANER_isSimpleChat(msg) {
+        return msg.trim().length > 0 && !msg.startsWith("/") && !msg.startsWith("(") && !msg.startsWith("*") && ChatRoomTargetMemberNumber == null;
+    }
+
+    function M_MOANER_isInChatRoom() {
+        return window.CurrentScreen == "ChatRoom";
+    }
+
+    //MoanerCommands
+    //@moaner feature commande
+    //feature: talk, orgasm, startVibrator, spank
+    //commande On, OFF
+
+    //features
+    var M_MOANER_talkActive = true;
+    var M_MOANER_orgasmActive = true;
+    var M_MOANER_vibratorActive = true;
+    var M_MOANER_spankActive = true;
+    var M_MOANER_verboseActive = true;
+
+    var M_MOANER_scriptStatus = ["The moaner is active.", "The moaner is not active."];
+    var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.", "The orgasm moan is not active. You will not moan while cumming anymore."];
+    var M_MOANER_vibratorStatus = ["The vibes moan is active. If your vibrator's setting changes, you will moan.", "The vibes moan is not active. If your vibrator's setting changes, you will not moan."];
+    var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.", "The spank moan is not active. You will not moan while being spanked."];
+    var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.", "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
+    var M_MOANER_verboseStatus = ["Moaner is verbose.", "Moaner is not verbose."];
+    var M_MOANER_profileStatus = ["No custom profile loaded.", "Current moans profile: "];
+    var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
+
+    function M_MOANER_initControls() {
+        var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
+        if (datas == null || datas == undefined) {
+            M_MOANER_talkActive = true;
+            M_MOANER_orgasmActive = true;
+            M_MOANER_vibratorActive = true;
+            M_MOANER_spankActive = true;
+            M_MOANER_scriptOn = false;
+            profileName = "default";
+            //M_MOANER_saveControls();
+        } else {
+            M_MOANER_talkActive = datas.talkMoan;
+            M_MOANER_orgasmActive = datas.orgasmMoan;
+            M_MOANER_vibratorActive = datas.vibeMoan;
+            M_MOANER_spankActive = datas.spankMoan;
+            M_MOANER_scriptOn = datas.script;
+            profileName = datas.moanProfile;
+        }
+    }
+
+    function M_MOANER_saveControls() {
+        var controls = {
+            "talkMoan": M_MOANER_talkActive,
+            "orgasmMoan": M_MOANER_orgasmActive,
+            "vibeMoan": M_MOANER_vibratorActive,
+            "spankMoan": M_MOANER_spankActive,
+            "script": M_MOANER_scriptOn,
+            "moanProfile": profileName
+        };
+        localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
+    }
+
+    function M_MOANER_deleteControls() {
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
+                localStorage.removeItem(key);
+            }
+        }
+    }
+
+    //Full script control
+    function scriptControl(commande) {
+        if (commande == "on") {
+            M_MOANER_scriptOn = true;
+        } else if (commande == "off") {
+            M_MOANER_scriptOn = false;
+        }
+        showM_MOANER_scriptStatus();
+    }
+
+    //Verbose control
+    function verboseControl(commande) {
+        if (commande == "on") {
+            M_MOANER_verboseActive = true;
+        } else if (commande == "off") {
+            M_MOANER_verboseActive = false;
+        }
+        showM_MOANER_verboseStatus();
+    }
+
+    //Moans control when you talk
+    function talkControl(commande) {
+        if (commande == "on") {
+            M_MOANER_talkActive = true;
+        } else if (commande == "off") {
+            M_MOANER_talkActive = false;
+        }
+        showM_MOANER_talkStatus();
+    }
+
+    //Moans control when you have an orgasm
+    function orgasmControl(commande) {
+        if (commande == "on") {
+            M_MOANER_orgasmActive = true;
+        } else if (commande == "off") {
+            M_MOANER_orgasmActive = false;
+        }
+        showM_MOANER_orgasmStatus();
+    }
+
+    //Moans control when a vibrator starts
+    function vibeControl(commande) {
+        if (commande == "on") {
+            M_MOANER_vibratorActive = true;
+        } else if (commande == "off") {
+            M_MOANER_vibratorActive = false;
+        }
+        showM_MOANER_vibratorStatus();
+    }
+
+    //Moans control when you are spanked
+    function spankControl(commande) {
+        if (commande == "on") {
+            M_MOANER_spankActive = true;
+        } else if (commande == "off") {
+            M_MOANER_spankActive = false;
+        }
+        showM_MOANER_spankStatus();
+    }
+
+    function profilesList() {
+        let liste = M_MOANER_getKeys(M_MOANER_moansProfiles);
+        let msg = M_MOANER_profileListM_MOANER_intro + liste;
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //Status
+    function showStatus() {
+        showM_MOANER_scriptStatus();
+        showM_MOANER_profileStatus();
+        showM_MOANER_talkStatus();
+        showM_MOANER_orgasmStatus();
+        showM_MOANER_vibratorStatus();
+        showM_MOANER_spankStatus();
+        showM_MOANER_verboseStatus();
+    }
+
+    function showM_MOANER_profileStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (profileName == "default") {
+            msg = M_MOANER_profileStatus[0];
+        } else {
+            msg = M_MOANER_profileStatus[1] + profileName;
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showM_MOANER_verboseStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (M_MOANER_scriptOn) {
+            msg = M_MOANER_verboseStatus[0];
+        } else {
+            msg = M_MOANER_verboseStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showM_MOANER_scriptStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (M_MOANER_scriptOn) {
+            msg = M_MOANER_scriptStatus[0];
+        } else {
+            msg = M_MOANER_scriptStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showM_MOANER_talkStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (M_MOANER_talkActive) {
+            msg = M_MOANER_talkStatus[0];
+        } else {
+            msg = M_MOANER_talkStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showM_MOANER_orgasmStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (M_MOANER_orgasmActive) {
+            msg = M_MOANER_orgasmStatus[0];
+        } else {
+            msg = M_MOANER_orgasmStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showM_MOANER_vibratorStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (M_MOANER_vibratorActive) {
+            msg = M_MOANER_vibratorStatus[0];
+        } else {
+            msg = M_MOANER_vibratorStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showM_MOANER_spankStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (M_MOANER_spankActive) {
+            msg = M_MOANER_spankStatus[0];
+        } else {
+            msg = M_MOANER_spankStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //MoanerUtils
+
+    function M_MOANER_logDebug(msg) { }
+
+    function startDebug() {
+        M_MOANER_logDebug = (msg) => {
+            console.log("DEBUG: " + msg);
+        };
+    }
+
+    function stopDebug() {
+        M_MOANER_logDebug = (msg) => {
+            console.log("DEBUG: " + msg);
+        };
+    }
+
+    let MoanerIsLoaded;
+    MoanerLoginListener();
+
+    async function MoanerLoginListener() {
+        while (!MoanerIsLoaded) {
+            try {
+                while ((!window.CurrentScreen || window.CurrentScreen == "Login" || (typeof window.CursedStarter === "function" && window.cursedConfig === undefined)) && !MoanerIsLoaded) {
+                    //console.log("search isLoaded");
+                    //console.log("window.CurrentScreen="+window.CurrentScreen);
+                    await new Promise(r => setTimeout(r, 2000));
+                }
+                //console.log("window.CurrentScreen="+window.CurrentScreen);
+                //console.log("MoanerIsLoaded found");
+                MoanerIsLoaded = true;
+                M_MOANER_initControls();
+            } catch (err) {
+                console.log(err);
+            }
+            await new Promise(r => setTimeout(r, 2000));
+        }
+    }
+
+    function M_MOANER_getKeys(obj) {
+        var keys = [];
+        for (var key in obj) {
+            keys.push(key);
+        }
+        return keys;
+    }
+
+    function M_MOANER_shuffle(array, seed) {
+        var currentIndex = array.length,
+        temporaryValue, randomIndex;
+        // While there remain elements to M_MOANER_shuffle...
+        while (0 !== currentIndex) {
+            seed = M_MOANER_getRandomNumber(seed);
+            // Pick a remaining element...
+            randomIndex = seed % (array.length - 1);
+            currentIndex -= 1;
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    }
+
+    function M_MOANER_sendMessageToWearer(msg) {
+        ServerSend("ChatRoomChat", {
+            Type: "Action",
+            Content: "gag",
+            Target: Player.MemberNumber,
+            Dictionary: [{
+                Tag: "gag",
+                Text: msg
+            }],
+        });
+    }
+
+    function M_MOANER_getRandomNumber(seed) {
+        let number = Math.floor(Math.abs(Math.sin(seed) * 1000));
+        return number;
+    }
 
     //Commands
 
