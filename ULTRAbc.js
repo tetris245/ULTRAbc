@@ -1220,6 +1220,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if ((Player.ID==0) && (Player.ArousalSettings.OrgasmStage == 2)) {
                 var moan;
                 var backupChatRoomTargetMemberNumber = null;
+		//not in whisper mode
+                //not in /me mode
+                //only in normal chat mode
                 msg = ElementValue("InputChat");
                 if (M_MOANER_isSimpleChat(msg)) {
                     moan = msg + "... " + getOrgasmMoan();
@@ -1497,30 +1500,294 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return false;
     }
 	
-    
+    function M_MOANER_applyMoanToMsg(C, CD) {
+        //determine the number of moans
+        //calculate this based on the number of words
+        //proportion: PROPORTION_MAX*ArousingLevel
+        //PROPORTION_MAX=40%
+        var proportion = C.ArousalSettings.Progress * PROPORTION_MAX / 10000;
+        M_MOANER_logDebug("proportion: " + proportion);
+        var CDList = CD.split(" ");
+        var currentIndex = 0;
+        var stop = false;
+        var finalTextList = [];
+        //get the moans to apply
+        //data to generate the moans
+        var Factor = Math.floor(C.ArousalSettings.Progress / 20);
+        while (currentIndex < CDList.length) {
+            //if the next word contains a parenthesis, we stop the distribution of moans
+            var currentWord = CDList[currentIndex++];
+            var presenceParenthese = M_MOANER_detectParentheses(currentWord);
+            if (presenceParenthese == 1) {
+                stop = true;
+            }
+            if (stop) {
+                finalTextList.push(currentWord);
+            } else {
+                let random = Math.ceil(Math.random() * 100)
+                let result;
+                if (random <= proportion * 100) {
+                    if (random % 2 == 0) {
+                        result = currentWord + "..." + getMoan(Factor, true, CD.length);
+                    } else {
+                        result = getMoan(Factor, true, CD.length) + " " + currentWord;
+                    }
+                    finalTextList.push(result);
+                } else {
+                    finalTextList.push(currentWord);
+                }
+            }
+            if (presenceParenthese == 2) {
+                stop = false;
+            }
+        }
+        return finalTextList.join(" ");
+    }
 	
-
+    //return 1 if opening bracket, 2 of closing bracket, 0 otherwise
+    function M_MOANER_detectParentheses(CD) {
+        if (!CD.includes("(") && !CD.includes(")")) {
+            return 0;
+        }
+        for (i = CD.length; i >= 0; i--) {
+            if (CD.charAt(i) == ")") {
+                return 2;
+            }
+            if (CD.charAt(i) == "(") {
+                return 1;
+            }
+        }
+        return 0;
+    }
 	
+    function transformText(isStimulated, L, ArouseFactor, CD) {
+        if (isStimulated) {
+            return CD.substring(0, L) + CD.charAt(L) + getMoan(ArouseFactor, isStimulated) + CD.substring(L, CD.length);
+        } else {
+            return CD.substring(0, L) + CD.charAt(L) + "-" + CD.substring(L, CD.length);
+        }
+    }
+		
+    function getMoan(Factor, isStimulated, seed) {
+        //M_MOANER_logDebug("getMoan: factor="+Factor);
+        //M_MOANER_logDebug("getMoan: isStimulated="+isStimulated);
+        if (!isStimulated) return "";
+        //sÃƒÆ’Ã‚Â©lectionner un gÃƒÆ’Ã‚Â©missement
+        return " " + selectMoan(Factor, seed);
+    }
+
+    function getSpankMoan(Factor, seed) {
+        let gemissement;
+        //depending on spanking fetish level
+        let activity = getActivityTaste("Spank");
+        if (activity == undefined) return "";
+        let activityTaste = activity.Self;
+        let seuilDouleur = Math.min(10, (4 - activityTaste) * 25);
+        let seuilPlaisir = seuilDouleur + 40
+        let douleur = Player.ArousalSettings.Progress <= seuilDouleur;
+        let plaisir = Player.ArousalSettings.Progress > seuilPlaisir;
+        if (douleur) {
+            gemissement = getPainMoan();
+        } else if (plaisir) {
+            gemissement = "\u2665" + getMoan(Factor, true, 300) + "\u2665";
+        } else {
+            gemissement = getPainMoan() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
+        }
+        return gemissement;
+    }
 	
+    function getZoneTaste(data) {
+        let zone;
+        let taste;
+        for (index in data.Dictionary) {
+            var elem = data.Dictionary[index];
+            if (elem.Tag == "ActivityGroup") zone = getZone(elem.Text);
+        }
+        if (zone == undefined || zone == null || zone.Factor == undefined) {
+            return undefined;
+        }
+        taste = zone.Factor;
+        if (zone.Orgasm == true) {
+            taste *= 2;
+        }
+        return taste;
+    }
 	
+    function getZone(name) {
+        for (index in Player.ArousalSettings.Activity) {
+            var zone = Player.ArousalSettings.Zone[index];
+            if (zone.Name == name) return zone;
+        }
+    }
 
-
+    function getActivityTaste(name) {
+        for (index in Player.ArousalSettings.Activity) {
+            var activity = Player.ArousalSettings.Activity[index];
+            if (activity.Name == name) return activity;
+        }
+    }
 	
-
-
-
-
+    function resetMoans(seed) {
+        //M_MOANER_logDebug("resetMoans IN");
+        factor1Moans = M_MOANER_shuffle(basefactor1Moans.concat([]), seed);
+        M_MOANER_factor2Moans = M_MOANER_shuffle(factor1Moans.concat(baseM_MOANER_factor2Moans), seed);
+        M_MOANER_factor3Moans = M_MOANER_shuffle(M_MOANER_factor2Moans.concat(baseM_MOANER_factor3Moans), seed);
+        M_MOANER_factor4Moans = M_MOANER_shuffle(M_MOANER_factor3Moans.concat(baseM_MOANER_factor4Moans), seed);
+        //M_MOANER_logDebug("resetMoans OUT");
+    }
 	
-
-
-
-
-
-
-
+    function getPainMoanBACK() {
+        let index = Math.floor(Math.random() * basePainMoans.length);
+        return basePainMoans[index];
+    }
 	
+    function resetMoans(seed) {
+        //M_MOANER_logDebug("resetMoans IN");
+        moanProfile = M_MOANER_getMoans(profileName);
+        factor1Moans = M_MOANER_shuffle(moanProfile.low.concat([]), seed);
+        M_MOANER_factor2Moans = M_MOANER_shuffle(factor1Moans.concat(moanProfile.light), seed);
+        M_MOANER_factor3Moans = M_MOANER_shuffle(M_MOANER_factor2Moans.concat(moanProfile.medium), seed);
+        M_MOANER_factor4Moans = M_MOANER_shuffle(M_MOANER_factor3Moans.concat(moanProfile.hot), seed);
+        //M_MOANER_logDebug("resetMoans OUT");
+    }
 	
+    function getPainMoan() {
+        moanProfile = M_MOANER_getMoans(profileName);
+        let index = Math.floor(Math.random() * moanProfile.pain.length);
+        return moanProfile.pain[index];
+    }
 	
+    function getOrgasmMoan() {
+        var gemissement;
+        if (M_MOANER_orgasmMoans.length == 0) {
+            M_MOANER_logDebug("getOrgasmMoan: reset list");
+            let seed = 3000;
+            M_MOANER_logDebug("getOrgasmMoan: seed=" + seed);
+            moanProfile = M_MOANER_getMoans(profileName);
+            M_MOANER_orgasmMoans = M_MOANER_shuffle(moanProfile.orgasm.concat([]), seed);
+        }
+        gemissement = M_MOANER_orgasmMoans.shift();
+        return gemissement;
+    }
+	
+    function selectMoan(Factor, seed) {
+        if (Factor < 2) {
+            //M_MOANER_logDebug("factor1Moans.length="+factor1Moans.length);
+            if (factor1Moans.length <= 0) {
+                resetMoans(seed);
+                return selectMoan(Factor, seed);
+            } else {
+                return factor1Moans.shift();
+            }
+        } else if (Factor < 3) {
+            //M_MOANER_logDebug("M_MOANER_factor2Moans.length="+M_MOANER_factor2Moans.length);
+            if (M_MOANER_factor2Moans.length <= 0) {
+                resetMoans(seed);
+                return selectMoan(Factor, seed);
+            } else {
+                return M_MOANER_factor2Moans.shift();
+            }
+        } else if (Factor < 4) {
+            //M_MOANER_logDebug("M_MOANER_factor3Moans.length="+M_MOANER_factor3Moans.length);
+            if (M_MOANER_factor3Moans.length <= 0) {
+                resetMoans(seed);
+                return selectMoan(Factor, seed);
+            } else {
+                return M_MOANER_factor3Moans.shift();
+            }
+        } else if (Factor >= 4) {
+            //M_MOANER_logDebug("M_MOANER_factor4Moans.length="+M_MOANER_factor4Moans.length);
+            if (M_MOANER_factor4Moans.length <= 0) {
+                resetMoans(seed);
+                return selectMoan(Factor, seed);
+            } else {
+                return M_MOANER_factor4Moans.shift();
+            }
+        }
+    }
+	
+    function IsStimulated(C) {
+        if (C.IsEgged() && ((C.ArousalSettings == null) || (C.ArousalSettings.AffectStutter == null) || (C.ArousalSettings.AffectStutter == "Vibration") || (C.ArousalSettings.AffectStutter == "All")))
+            for (let A = 0; A < C.Appearance.length; A++) {
+                var Item = C.Appearance[A];
+                if (InventoryItemHasEffect(Item, "Vibrating", true))
+                    return true;
+            }
+        return false;
+    }
+	
+    //MoanerProfiles
+	
+    //dog
+    M_MOANER_dogMoans = {
+        "hot": ["w... Wouuuf\u2665", "aouuh\u2665"],
+        "medium": ["waaaf\u2665", "ky\u016b\u016b\n", "..wouf"],
+        "light": ["Ouaff\u2665", "Aouh!", "Oua\u2665af", "Ky\u016bn\u2665"],
+        "low": ["wou..", "ouah\u2665", "Wouf\u2665", "\u2665ky\u016bn\u2665", "ky\u016b\u2665"],
+        "orgasm": ["ouaf\u2665 O... Ouuw... Ouaaaa!!", "Mmmhnn... aaaa... Ouuuaaaaaf!!", "mmmh... Aouuuh.... Aouhhhh!"],
+        "pain": ["Ka\u00ef!", "Aoouch!", "Kaaa\u00ef!", "Ouch", "Aow"]
+    }
+    M_MOANER_addMoansProfile("dog", M_MOANER_dogMoans);  
+	
+    //fox
+    //base: wif, yif, aouh
+    //thanks to Noriko
+    M_MOANER_foxMoans = {
+        "hot": ["w... Wiiif\u2665", "Yiiif\u2665"],
+        "medium": ["wiiif\u2665", "Yiii", "..yif"],
+        "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif"],
+        "low": ["wif", "Wy\u2665", "if\u2665", "\u2665yi\u2665", "Yi\u2665"],
+        "orgasm": ["Wiff\u2665 W... Wiii... WIIF!!", "Mmmhnn... Wiiif... Yiiiif!!", "mmmh... Aouuuh.... Aouhhhh!"],
+        "pain": []
+    }
+    M_MOANER_addMoansProfile("fox", M_MOANER_foxMoans);
+	
+    //mouse
+    //base coui
+    M_MOANER_mouseMoans = {
+        "hot": ["Scouiiic\u2665", "couiiic\u2665"],
+        "medium": ["scouiii\u2665", "Couyk", "..scoui"],
+        "light": ["Scouii\u2665", "Coui!", "kouu\u2665ic", "Couic \u2665"],
+        "low": ["coui..", "scoui\u2665", "cou\u2665i", "Couic ", "koui\u2665"],
+        "orgasm": ["Couic\u2665 sc.. couIIIiic!!", "Mmmhnn... ooo... ouiiiic!!", "mmmh... Scouuu.... Scouiiic!"],
+        "pain": []
+    }
+    M_MOANER_addMoansProfile("mouse", M_MOANER_mouseMoans);
+	
+    //neko
+    M_MOANER_nekoMoans = {
+        "hot": ["n... Nyah\u2665", "NYyaaA\u2665"],
+        "medium": ["nyAh\u2665", "nyyy", "..yah"],
+        "light": ["nyah\u2665", "Yah!", "myuh", "mh\u2665"],
+        "low": ["myu", "ny\u2665", "mh", "\u2665yh\u2665", "ny\u2665"],
+        "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmhnn... Nyhmm... Nyah!", "mmmh... mmmeeeee.... meeeoooow!"],
+        "pain": []
+    }
+    M_MOANER_addMoansProfile("neko", M_MOANER_nekoMoans);
+	
+    //pig
+    M_MOANER_pigMoans = {
+        "hot": ["Gruiik\u2665", "gruik\u2665"],
+        "medium": ["gruiii\u2665", "Gruik", "..Grui.."],
+        "light": ["Grui\u2665", "Gruik!", "gruuiii\u2665ic", "gruik \u2665"],
+        "low": ["grui.. gruiik\u2665", "gruiik\u2665", "gru\u2665i", "Gruik ", "Groi\u2665"],
+        "orgasm": ["Gru\u2665 gr.. gruiIIIiick!!", "Mmmhnn... uii... gruiiik!!", "mmmh... Gruiik.... Gruiiiiik!"],
+        "pain": ["Gruuik!!", "Aoouch!", "Awo... gruik!", "Ouch", "Gruiiik"]
+    }
+    M_MOANER_addMoansProfile("pig", M_MOANER_pigMoans);
+	
+    //wildFox
+    M_MOANER_wildFoxMoans = {
+        "hot": ["w... Wiiif\u2665", "Yiiif\u2665", "Wa\u2665ouu"],
+        "medium": ["wiiif\u2665", "Yiii", "..yif", "waouuu"],
+        "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif", "waou"],
+        "low": ["wif", "Wy\u2665", "if\u2665", "\u2665yi\u2665", "Yi\u2665", "aou"],
+        "orgasm": ["WAAAAOUUUUUUUHHHHH!", "Mmmhnn... Wiiif... Yiiiif!!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!", "WAAAAOUUUUUUUHHHHH!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!"],
+        "pain": []
+    }
+    M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
+	
+    ///////////////////////////////////////////////
 
     //Commands
 
