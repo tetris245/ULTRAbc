@@ -33,7 +33,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
             Player.RestrictionSettings.BypassNPCPunishments = true;
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.1: Ready, type <b>/uhelp</b> for general menu.\n" +
+                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.2: Ready, type <b>/uhelp</b> for general menu.\n" +
+		"Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
                 "Note: NPC punishments are disabled.\n" +
                 "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
                 "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
@@ -144,12 +145,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
                 ElementValue("InputChat", text2.replace(text2, text3));
+		if (tsp == 1) {   
+                    var text4 = text3;
+                } else { 
+                    if (M_MOANER_talkActive && IsStimulated(Player)) {
+                        var text4 = M_MOANER_applyMoanToMsg(Player, text3);
+                    } else {
+                        var text4 = text3;
+                    }
+                }
+                ElementValue("InputChat", text3.replace(text3, text4));
                 event.preventDefault();
                 if (ChatRoomTargetMemberNumber == null) {
                     ChatRoomSendChat();
                 } else {
                     ServerSend("ChatRoomChat", {
-                        "Content": text3,
+                        "Content": text4,
                         "Type": "Whisper",
                         "Target": ChatRoomTargetMemberNumber
                     });
@@ -159,7 +170,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             break;
                         }
                     ChatRoomMessage({
-                        Content: "Whisper to " + TargetName + ": " + text3,
+                        Content: "Whisper to " + TargetName + ": " + text4,
                         Type: "LocalMessage",
                         Sender: Player.MemberNumber
                     });
@@ -4698,6 +4709,65 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             );
         }
     }])
+	
+    CommandCombine([{
+        Tag: 'moaner',
+        Description: "(options): moans when horny and stimulated.",
+        Action: (args) => {
+	    if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Several actions are possible with the moaner command:\n" +
+                    "<b>/moaner on</b> = starts the moaner\n" +
+                    "<b>/moaner off</b> = stops the moaner\n" +
+                    "<b>/moaner profile</b> (profilename) =  selects a moaner profile. Without profilename, access to moaner profile help\n" +
+                    "<b>/moaner status</b> = displays current moaner status\n" +
+                    "<b>/moaner verbose</b> (on/off) = enable/disable verbose mode\n" +
+                    " \n" +
+                    "You can also enable/disable parts of the Moaner with:\n" +
+                    "<b>/moaner orgasm</b> (on/off): moans when you cum\n" +
+                    "<b>/moaner spank</b> (on/off): moans when you are spanked\n" +
+                    "<b>/moaner talk</b> (on/off): moans when talking if vibed\n" +
+                    "<b>/moaner vibe</b> (on/off): moans when vibes settings changed</p>"
+                );
+            } else {
+                var stringMoan1 = args;
+                var stringMoan2 = stringMoan1.split(/[ ,]+/);
+                var feature = stringMoan2[0];
+                if ((feature == "on") || (feature == "off")) {
+                    scriptControl(feature);
+                    M_MOANER_saveControls();
+                } else {
+                    var commande = stringMoan2[1];
+                    if (feature == "orgasm") {
+                        orgasmControl(commande);
+                        M_MOANER_saveControls();
+                    } else if (feature == "profile") {
+                        if (commande == null) {
+                            profilesList();
+                        } else if (commande != null) {
+                            M_MOANER_activerProfile(commande);
+                            M_MOANER_saveControls();
+                        }
+                        showM_MOANER_profileStatus();
+                    } else if (feature == "spank") {
+                        spankControl(commande);
+                        M_MOANER_saveControls();
+                    } else if (feature == "status") {
+                        showStatus();
+                    } else if (feature == "talk") {
+                        talkControl(commande);
+                        M_MOANER_saveControls();
+                    } else if (feature == "verbose") {
+                        verboseControl(commande);
+                        M_MOANER_saveControls();
+                    } else if (feature == "vibe") {
+                        vibeControl(commande);
+                        M_MOANER_saveControls();
+                    }
+                }
+            }
+        }
+    }])
 
     CommandCombine([{
         Tag: 'money',
@@ -6953,7 +7023,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             CellLock(minutes);
         }
     }])
-
 
     CommandCombine([{
         Tag: 'title',
