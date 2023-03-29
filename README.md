@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 1.1
+Most recent version: 1.2
 
 ## Installation 
 
@@ -19,7 +19,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version1.1.zip file on the Releases page
+1. Download the ULTRAbc-version1.2.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -30,7 +30,4 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-* Integrated the Moaner script - thanks to Myrhanda and Kimei for their permissions :) - the integration is more advanced than in QAM, it means that BCX will no more complaint about incompatibilities
-* New command: sosbuttons to display + enable / hide + disable the emergency buttons in chat room - your setting is automatically saved locally
-* Fixed the bug with the FREE button (no more need to go back to chat room)
-* Improved the forced normal talk in chat rooms
+(...)
