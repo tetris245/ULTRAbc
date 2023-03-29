@@ -31,5 +31,6 @@ After installation, refresh your BC page and relog.
 Changes for future version
 
 * Integrated the Moaner script - thanks to Myrhanda and Kimei for their permissions :) - the integration is more advanced than in QAM, it means that BCX will no more complaint about incompatibilities
+* New command: sosbuttons to show /hide the emergency buttons in chat room
 * Fixed the bug with the FREE button (no more need to go back to chat room)
 * Improved the forced normal talk in chat rooms
