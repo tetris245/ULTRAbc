@@ -7649,6 +7649,7 @@ M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands:\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
+		    "<b>/moaner</b> = moans when horny and stimulated. More info when using.\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.</p>"
                 );
@@ -7673,19 +7674,20 @@ M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
             if (args === "misc") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands:\n" +
-                    "<b>/help</b> (category) = displays the ULTRAbc commands. Available categories: bondage, character, clothing, escape, features, fun, kd, misc, pleasure, talking, visual, zones.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
+		    "<b>/sosbuttons</b> = toggles emergency buttons in chat room.\n" +
+		    "<b>/uhelp</b> (category) = displays the ULTRAbc commands. Available categories: bondage, character, clothing, escape, features, fun, kd, misc, pleasure, talking, visual, zones.\n" +
                     "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft.</p>"
                 );
             }
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.2:\n" +
-		    "- Added 2 emergency buttons in chat room: FREE and OUT.\n" +
-		    "- Added 2 commands: stutter (stuttermode) and talk (talkmode).\n" +
-		    "- Improved the bg1 command by adding the Asylum backgrounds when BCX is not detected.\n" +
-                    "- Fixed stand option in pose2 command.</p>"
+		    "- Integrated the Moaner script with finally a full compatibility with BCX.\n" +
+		    "- New command: sosbuttons to toggle the emergency buttons in chat room, with local saving of your setting.\n" +
+		    "- Improved the forced normal talk in chat rooms.\n" +
+                    "- Fixed the bug with the FREE button.</p>"
                 ); 
             }
             if (args === "talking") {
@@ -7693,6 +7695,7 @@ M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Talking commands - * = more info when using\n" +
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
+		    "<b>/moaner</b> = moans when horny and stimulated. *\n" +
                     "<b>/s1</b> (stuffhere) = speaks once in light stuttering mode.\n" +
                     "<b>/s2</b> (stuffhere) = speaks once in normal stuttering mode.\n" +
                     "<b>/s3</b> (stuffhere) = speaks once in heavy stuttering mode.\n" +
