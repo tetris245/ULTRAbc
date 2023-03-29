@@ -67,9 +67,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
 	
-    //Variables
-    var SosbuttonsOn = false;
-    
     //Chat Room
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
@@ -869,6 +866,7 @@ function M_MOANER_initControls() {
         M_MOANER_spankActive = true;
         M_MOANER_scriptOn = false;
         profileName = "default";
+	SosbuttonsOn = false;
         //M_MOANER_saveControls();
     } else {
         M_MOANER_talkActive = datas.talkMoan;
@@ -877,6 +875,7 @@ function M_MOANER_initControls() {
         M_MOANER_spankActive = datas.spankMoan;
         M_MOANER_scriptOn = datas.script;
         profileName = datas.moanProfile;
+	SosbuttonsOn = datas.sosbuttons;
     }
 }
 
@@ -887,7 +886,8 @@ function M_MOANER_saveControls() {
         "vibeMoan": M_MOANER_vibratorActive,
         "spankMoan": M_MOANER_spankActive,
         "script": M_MOANER_scriptOn,
-        "moanProfile": profileName
+        "moanProfile": profileName,
+        "sosbuttons": SosbuttonsOn
     };
     localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
 }
@@ -6832,11 +6832,13 @@ M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
         Action: () => {
             if (SosbuttonsOn == true) {
                 SosbuttonsOn = false;
+		M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons hidden and disabled.</p>"
                 );
             } else {
                 SosbuttonsOn = true;
+		M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons displayed and enabled.</p>"
                 );
