@@ -817,7 +817,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 var M_MOANER_scriptOn = true;
 var M_MOANER_tempChatRoomData;
 
-
 function M_MOANER_isCommande(msg) {
     return msg.startsWith("/") && ChatRoomTargetMemberNumber == null;
 }
@@ -1240,11 +1239,9 @@ var M_MOANER_factor2Moans = [];
 var factor1Moans = [];
 var PROPORTION_MAX = 40;
 
-
 /******************************************************************/
 // Reactions in chat
 /******************************************************************/
-
 
 window.ChatRoomRegisterMessageHandler({ 
     Priority: 600, 
@@ -1258,11 +1255,11 @@ window.ChatRoomRegisterMessageHandler({
 function M_MOANER_reactionOrgasm(Player){
     if(M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen=="ChatRoom") {
         if ((Player.ID==0) && (Player.ArousalSettings.OrgasmStage == 2)) {
-	       var moan;
-		  var backupChatRoomTargetMemberNumber=null;
-		  msg=ElementValue("InputChat");
-		  if(M_MOANER_isSimpleChat(msg)) {			
-		      moan= msg + "... " + getOrgasmMoan();
+	    var moan;
+            var backupChatRoomTargetMemberNumber=null;
+            msg=ElementValue("InputChat");
+	    if(M_MOANER_isSimpleChat(msg)) {			
+		 moan= msg + "... " + getOrgasmMoan();
                  ElementValue("InputChat", moan);
                  if (this.BabyTalkOn == true) {
                      var moan2 = SpeechBabyTalk({
@@ -1291,12 +1288,10 @@ function M_MOANER_reactionOrgasm(Player){
                  Player.ArousalSettings.Progress = 0;
                  ActivityChatRoomArousalSync(Player);
 		      ChatRoomSendChat();
-		  }
-	       else {	
-		   
-backupChatRoomTargetMemberNumber=ChatRoomTargetMemberNumber;
-		      ChatRoomTargetMemberNumber=null;
-			 moan = "... " + getOrgasmMoan();
+             } else {	
+		 backupChatRoomTargetMemberNumber=ChatRoomTargetMemberNumber;
+		 ChatRoomTargetMemberNumber=null;
+	         moan = "... " + getOrgasmMoan();
                  ElementValue("InputChat", moan);
                  if (this.BabyTalkOn == true) {
                      var moan2 = SpeechBabyTalk({
@@ -1324,11 +1319,11 @@ backupChatRoomTargetMemberNumber=ChatRoomTargetMemberNumber;
                  Player.ArousalSettings.Progress = 0;
                  ActivityChatRoomArousalSync(Player);
                  ChatRoomSendChat();
-			  	ChatRoomTargetMemberNumber=backupChatRoomTargetMemberNumber;
-			ElementValue("InputChat",msg);
-                } 
-		} 
-	}
+		 ChatRoomTargetMemberNumber=backupChatRoomTargetMemberNumber;
+		 ElementValue("InputChat",msg);
+             } 
+        } 
+    }
 }
 
 window.ChatRoomRegisterMessageHandler({ 
@@ -1830,7 +1825,7 @@ M_MOANER_wildFoxMoans = {
 }
 M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
 
-
+///////////////////////////////////
     //Commands
 
     CommandCombine([{
