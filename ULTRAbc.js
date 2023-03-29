@@ -1228,7 +1228,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
        }});
 	
     function M_MOANER_reactionOrgasm(Player) {
-        if (M_MOANER_orgasmActive && M_MOANER_scriptOn && && window.CurrentScreen == "ChatRoom") {
+        if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
             if ((Player.ID==0) && (Player.ArousalSettings.OrgasmStage == 2)) {
                 var moan;
                 var backupChatRoomTargetMemberNumber = null;
