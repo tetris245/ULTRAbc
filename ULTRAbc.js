@@ -66,35 +66,40 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
+	
+    //Variables
+    var SosbuttonsOn = false;
     
     //Chat Room
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
-            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
+	    if (SosbuttonsOn == true) {
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
+                    if (Player.Nickname == '') {
+                        var tmpname = Player.Name;
+                    } else {
+                        var tmpname = Player.Nickname;
+                    }
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: "Magical lasers make disappear all bindings and toys on " + tmpname + " body."
+                        }]
+                    });
+                    CharacterReleaseTotal(Player);
+                    ChatRoomCharacterUpdate(Player);
+                    return;
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: "Magical lasers make disappear all bindings and toys on " + tmpname + " body."
-                    }]
-                });
-                CharacterReleaseTotal(Player);
-                ChatRoomCharacterUpdate(Player);
-                return;
-            }
-            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
-                ChatRoomSetLastChatRoom("");
-                ServerSend("ChatRoomLeave", "");
-                CommonSetScreen("Online", "ChatSearch");
-                ChatRoomClearAllElements();
-                OnlineGameName = "";
-            }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
+                    ChatRoomSetLastChatRoom("");
+                    ServerSend("ChatRoomLeave", "");
+                    CommonSetScreen("Online", "ChatSearch");
+                    ChatRoomClearAllElements();
+                    OnlineGameName = "";
+                }
+	    }    
             next(args);
         });
     }
@@ -187,8 +192,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
-            DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
-            DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+	    if (SosbuttonsOn == true) {
+                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+                DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+	    }    
             next(args);
         });
     }
@@ -6814,6 +6821,24 @@ M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
                 ServerPlayerInventorySync();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: The solidity of most current bindings has been changed.</p>"
+                );
+            }
+        }
+    }])
+	
+    CommandCombine([{
+        Tag: 'sosbuttons',
+        Description: ": toggles emergency buttons in chat room.",
+        Action: () => {
+            if (SosbuttonsOn == true) {
+                SosbuttonsOn = false;
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons hidden and disabled.</p>"
+                );
+            } else {
+                SosbuttonsOn = true;
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons displayed and enabled.</p>"
                 );
             }
         }
