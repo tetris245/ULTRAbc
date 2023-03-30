@@ -29,4 +29,4 @@ After installation, refresh your BC page and relog.
 ==========================================================================
 
 Changes for future version
-* Fixed a bug in the Moaner: the Moaner will no more activate features defined as ON when it is itself OFF
+* Fixed a bug in the Moaner: it will no more activate features defined as ON when it is itself OFF
