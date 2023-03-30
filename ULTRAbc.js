@@ -152,7 +152,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (tsp == 1) {   
                     var text4 = text3;
                 } else { 
-                    if (M_MOANER_talkActive && IsStimulated(Player)) {
+                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
                         var text4 = M_MOANER_applyMoanToMsg(Player, text3);
                     } else {
                         var text4 = text3;
@@ -1350,7 +1350,7 @@ window.ChatRoomRegisterMessageHandler({
     }});
 
 function M_MOANER_reactionSpankWithChat(data) {
-    if (M_MOANER_spankActive && M_MOANER_isSpank(data)) {
+    if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
         //get the moan type to apply
         //data to generate the moans
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
@@ -1387,7 +1387,7 @@ function M_MOANER_reactionSpankWithChat(data) {
 }
 
 function M_MOANER_reactionSpankWithoutChat(data) {
-    if (M_MOANER_spankActive && M_MOANER_isSpank(data)) {
+    if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
         //get the moan type to apply
         //data to generate the moans
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
@@ -1425,7 +1425,7 @@ function M_MOANER_reactionSpankWithoutChat(data) {
 }
 
 function M_MOANER_reactionVibeWithoutChat(data) {
-    if (M_MOANER_vibratorActive && M_MOANER_isVibes(data)) {
+    if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes(data)) {
         //get the moan type to apply
         //data to generate the moans
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
@@ -1463,7 +1463,7 @@ function M_MOANER_reactionVibeWithoutChat(data) {
 }
 
 function M_MOANER_reactionVibeWithChat(data) {
-    if (M_MOANER_vibratorActive && M_MOANER_isVibes(data)) {
+    if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes(data)) {
         //get the moan type to apply
         //data to generate the moans
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
