@@ -7609,7 +7609,6 @@ M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
                     "<b>Auto All Items Are Craftable</b> but limited using of the extra crafted items\n" +
                     "<b>Auto-Disable NPC Punishments</b> - can be changed with the /npcpunish command\n" +
                     "<b>Auto Easy Access To Chat Rooms</b> by extra buttons in Main Hall and Friendlist\n" +
-		    "<b>Auto Emergency Buttons In Chat Room</b>: FREE - OUT\n" +
                     "<b>Auto Extra Buttons In Wardrobe</b>: Export (usable only if you come from a chat room) - Import1 = outfit + restraints\n" +
                     "Import2 = outfit + cosplay items + restraints - Import3 = full import including body changes\n" +
                     "<b>Auto-Join</b> to enter a room as soon as possible</p>"
