@@ -3321,40 +3321,6 @@ M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
     }])
 
     CommandCombine([{
-        Tag: 'hear',
-        Description: "(hearmode): forces a specific hearing mode.",
-        Action: (args) => {
-            if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The hear command must be followed by a number between 0 and 4.\n" +
-                    " \n" +
-                    "Available hearing modes:\n" +
-                    "0 normal hearing\n" +
-                    "1 light deafness\n" +
-                    "2 normal deafness\n" +
-                    "3 heavy deafness\n" +
-                    "4 total deafness</p>"
-                );
-            } else {
-                var dl = args;
-                if (dl == 0) {
-                    DeafOn = false;
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Back to normal hearing mode.</p>"
-                    );
-                }
-                if ((dl > 0) && (dl < 5)) {
-                    DeafOn = true; 
-                    var dr = dl * 2;
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: You are now in deafness mode.</p>"
-                    );
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'hiddenmessages',
         Description: ": toggles on show hidden messages made by game.",
         Action: () => {
