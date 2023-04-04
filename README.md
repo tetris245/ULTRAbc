@@ -30,5 +30,6 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-* Added another case of forced normal talk in chat rooms (no whisper mode)
+* Added support for the FBC feature OOC with Ctrl+Enter
+* Added another case of forced normal talk in chat rooms (no whisper mode) when using : for * or /me
 * Fixed a bug in the Moaner: it will no more activate features defined as ON when it is itself OFF
