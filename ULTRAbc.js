@@ -28,8 +28,76 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         repository: 'https://github.com/tetris245/ULTRAbc',
     });
 	
-    //Variables
+    //Variables and settings
     var FBC_VERSION = ""; 
+    var M_MOANER_moanerKey = "bc_moaner_";
+	
+    function M_MOANER_initControls() {
+        var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
+        if (datas == null || datas == undefined) {
+            M_MOANER_talkActive = true;
+            M_MOANER_orgasmActive = true;
+            M_MOANER_vibratorActive = true;
+            M_MOANER_spankActive = true;
+            M_MOANER_scriptOn = false;
+            profileName = "default";
+	    SosbuttonsOn = false;
+            //M_MOANER_saveControls();
+        } else {
+            M_MOANER_talkActive = datas.talkMoan;
+            M_MOANER_orgasmActive = datas.orgasmMoan;
+            M_MOANER_vibratorActive = datas.vibeMoan;
+            M_MOANER_spankActive = datas.spankMoan;
+            M_MOANER_scriptOn = datas.script;
+            profileName = datas.moanProfile;
+	    SosbuttonsOn = datas.sosbuttons;
+        }
+    }
+	
+    function M_MOANER_saveControls() {
+        var controls = {
+            "talkMoan": M_MOANER_talkActive,
+            "orgasmMoan": M_MOANER_orgasmActive,
+            "vibeMoan": M_MOANER_vibratorActive,
+            "spankMoan": M_MOANER_spankActive,
+            "script": M_MOANER_scriptOn,
+            "moanProfile": profileName,
+            "sosbuttons": SosbuttonsOn
+        };
+        localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
+    }
+
+    function M_MOANER_deleteControls() {
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
+                localStorage.removeItem(key);
+            }
+        }
+    }
+    
+    let MoanerIsLoaded;
+
+    MoanerLoginListener();
+
+    async function MoanerLoginListener() {
+        while (!MoanerIsLoaded) {
+            try {
+                while ((!window.CurrentScreen || window.CurrentScreen == "Login" || (typeof window.CursedStarter === "function" && window.cursedConfig === undefined)) && !MoanerIsLoaded) {
+                    //console.log("cherche isLoaded");
+                    //console.log("window.CurrentScreen="+window.CurrentScreen);
+                    await new Promise(r => setTimeout(r, 2000));
+                }
+                //console.log("window.CurrentScreen="+window.CurrentScreen);
+                //console.log("MoanerIsLoaded trouvÃƒÂ©");
+                MoanerIsLoaded = true;
+                M_MOANER_initControls();
+            } catch (err) {
+                console.log(err);
+            }
+            await new Promise(r => setTimeout(r, 2000));
+        }
+    }
 
     //Greeting message
     ChatCommandGreeting = function(data) {
@@ -50,7 +118,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     setTimeout(function() {
         ServerSocket.on('ChatRoomMessage', ChatCommandGreeting);
     }, 5000);
-
  
     //ModSDK Functions
     ULTRAAppearanceClick();
@@ -852,8 +919,6 @@ function M_MOANER_isInChatRoom() {
 //feature: talk, orgasm, startVibrator, spank
 //commande On, OFF
 
-var M_MOANER_moanerKey = "bc_moaner_";
-
 //features
 var M_MOANER_talkActive = true;
 var M_MOANER_orgasmActive = true;
@@ -869,52 +934,7 @@ var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will m
 var M_MOANER_verboseStatus = ["Moaner is verbose.", "Moaner is not verbose."];
 var M_MOANER_profileStatus = ["No custom profile loaded.", "Current moans profile: "];
 var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
-
-function M_MOANER_initControls() {
-    var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
-
-    if (datas == null || datas == undefined) {
-        M_MOANER_talkActive = true;
-        M_MOANER_orgasmActive = true;
-        M_MOANER_vibratorActive = true;
-        M_MOANER_spankActive = true;
-        M_MOANER_scriptOn = false;
-        profileName = "default";
-	SosbuttonsOn = false;
-        //M_MOANER_saveControls();
-    } else {
-        M_MOANER_talkActive = datas.talkMoan;
-        M_MOANER_orgasmActive = datas.orgasmMoan;
-        M_MOANER_vibratorActive = datas.vibeMoan;
-        M_MOANER_spankActive = datas.spankMoan;
-        M_MOANER_scriptOn = datas.script;
-        profileName = datas.moanProfile;
-	SosbuttonsOn = datas.sosbuttons;
-    }
-}
-
-function M_MOANER_saveControls() {
-    var controls = {
-        "talkMoan": M_MOANER_talkActive,
-        "orgasmMoan": M_MOANER_orgasmActive,
-        "vibeMoan": M_MOANER_vibratorActive,
-        "spankMoan": M_MOANER_spankActive,
-        "script": M_MOANER_scriptOn,
-        "moanProfile": profileName,
-        "sosbuttons": SosbuttonsOn
-    };
-    localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
-}
-
-function M_MOANER_deleteControls() {
-    for (var i = 0; i < localStorage.length; i++) {
-        var key = localStorage.key(i);
-        if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
-            localStorage.removeItem(key);
-        }
-    }
-}
-
+	
 //controle sur le script entier
 function scriptControl(commande) {
     if (commande == "on") {
@@ -1097,30 +1117,6 @@ function stopDebug() {
     M_MOANER_logDebug = (msg) => {
         console.log("DEBUG: " + msg);
     };
-}
-
-let MoanerIsLoaded;
-
-MoanerLoginListener();
-
-async function MoanerLoginListener() {
-    while (!MoanerIsLoaded) {
-        try {
-            while ((!window.CurrentScreen || window.CurrentScreen == "Login" || (typeof window.CursedStarter === "function" && window.cursedConfig === undefined)) && !MoanerIsLoaded) {
-                console.log("cherche isLoaded");
-                console.log("window.CurrentScreen="+window.CurrentScreen);
-                await new Promise(r => setTimeout(r, 2000));
-            }
-            console.log("window.CurrentScreen="+window.CurrentScreen);
-            //console.log("MoanerIsLoaded trouvÃƒÂ©");
-            MoanerIsLoaded = true;
-            M_MOANER_initControls();
-
-        } catch (err) {
-            console.log(err);
-        }
-        await new Promise(r => setTimeout(r, 2000));
-    }
 }
 
 function M_MOANER_getKeys(obj) {
