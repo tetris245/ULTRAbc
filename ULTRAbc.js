@@ -1342,171 +1342,171 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
     }
 
-window.ChatRoomRegisterMessageHandler({ 
-    Priority: 600, 
-    Description: "Moaner Reactions", 
-    Callback: (data, sender, msg, metadata) => {
-        if (M_MOANER_isPlayerTarget(data)) {
-            var msg = ElementValue("InputChat");
-            if (M_MOANER_isSimpleChat(msg)) {
-                M_MOANER_reactionVibeWithChat(data);
-                M_MOANER_reactionSpankWithChat(data);
-            } else {
-                M_MOANER_reactionSpankWithoutChat(data);
-                M_MOANER_reactionVibeWithoutChat(data);
+    window.ChatRoomRegisterMessageHandler({ 
+        Priority: 600, 
+        Description: "Moaner Reactions", 
+        Callback: (data, sender, msg, metadata) => {
+            if (M_MOANER_isPlayerTarget(data)) {
+                var msg = ElementValue("InputChat");
+                if (M_MOANER_isSimpleChat(msg)) {
+                    M_MOANER_reactionVibeWithChat(data);
+                    M_MOANER_reactionSpankWithChat(data);
+                } else {
+                    M_MOANER_reactionSpankWithoutChat(data);
+                    M_MOANER_reactionVibeWithoutChat(data);
+                }
             }
-        }
-    }});
+        }});
 
-function M_MOANER_reactionSpankWithChat(data) {
-    if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
-        //get the moan type to apply
-        //data to generate the moans
-        var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
-        var moan = getSpankMoan(Factor, Math.random() * 300);
-        var msg = ElementValue("InputChat");
-        if (msg != "") {
-            moan = msg + "... " + moan;
+    function M_MOANER_reactionSpankWithChat(data) {
+        if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
+            //get the moan type to apply
+            //data to generate the moans
+            var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
+            var moan = getSpankMoan(Factor, Math.random() * 300);
+            var msg = ElementValue("InputChat");
+            if (msg != "") {
+                moan = msg + "... " + moan;
+            }
+            ElementValue("InputChat", moan);
+            if (this.BabyTalkOn == true) {
+                var moan2 = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, moan);  
+            } else if (this.GagTalkOn == true) {
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+            } else {
+                var moan2 = moan;
+            }
+            ElementValue("InputChat", moan.replace(moan, moan2));
+            if (this.Stutter1On == true) {
+                var moan3 = StutterTalk1(moan2);
+            } else if (this.Stutter2On == true) {
+                var moan3 = StutterTalk2(moan2);
+            } else if (this.Stutter3On == true) {
+                var moan3 = StutterTalk3(moan2);
+            } else if (this.Stutter4On == true) {
+                var moan3 = StutterTalk4(moan2);
+            } else {
+                var moan3 = moan2;
+            }
+            ElementValue("InputChat", moan2.replace(moan2, moan3));
+            ChatRoomSendChat();
         }
-        ElementValue("InputChat", moan);
-        if (this.BabyTalkOn == true) {
-            var moan2 = SpeechBabyTalk({
-                Effect: ["RegressedTalk"]
-            }, moan);  
-        } else if (this.GagTalkOn == true) {
-            var moan2 = SpeechGarbleByGagLevel(gl, moan);   
-        } else {
-            var moan2 = moan;
-        }
-        ElementValue("InputChat", moan.replace(moan, moan2));
-        if (this.Stutter1On == true) {
-            var moan3 = StutterTalk1(moan2);
-        } else if (this.Stutter2On == true) {
-            var moan3 = StutterTalk2(moan2);
-        } else if (this.Stutter3On == true) {
-            var moan3 = StutterTalk3(moan2);
-        } else if (this.Stutter4On == true) {
-            var moan3 = StutterTalk4(moan2);
-        } else {
-            var moan3 = moan2;
-        }
-        ElementValue("InputChat", moan2.replace(moan2, moan3));
-        ChatRoomSendChat();
     }
-}
 
-function M_MOANER_reactionSpankWithoutChat(data) {
-    if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
-        //get the moan type to apply
-        //data to generate the moans
-        var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
-        var moan = getSpankMoan(Factor, Math.random() * 300);
-        var msg = ElementValue("InputChat");
-        let backtarget = ChatRoomTargetMemberNumber;
-        ChatRoomTargetMemberNumber = null;
-        ElementValue("InputChat", moan);
-        if (this.BabyTalkOn == true) {
-            var moan2 = SpeechBabyTalk({
-                Effect: ["RegressedTalk"]
-            }, moan);  
-        } else if (this.GagTalkOn == true) {
-            var moan2 = SpeechGarbleByGagLevel(gl, moan);   
-        } else {
-            var moan2 = moan;
+    function M_MOANER_reactionSpankWithoutChat(data) {
+        if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
+            //get the moan type to apply
+            //data to generate the moans
+            var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
+            var moan = getSpankMoan(Factor, Math.random() * 300);
+            var msg = ElementValue("InputChat");
+            let backtarget = ChatRoomTargetMemberNumber;
+            ChatRoomTargetMemberNumber = null;
+            ElementValue("InputChat", moan);
+            if (this.BabyTalkOn == true) {
+                var moan2 = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, moan);  
+            } else if (this.GagTalkOn == true) {
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+            } else {
+                var moan2 = moan;
+            }
+            ElementValue("InputChat", moan.replace(moan, moan2));
+            if (this.Stutter1On == true) {
+                var moan3 = StutterTalk1(moan2);
+            } else if (this.Stutter2On == true) {
+                var moan3 = StutterTalk2(moan2);
+            } else if (this.Stutter3On == true) {
+                var moan3 = StutterTalk3(moan2);
+            } else if (this.Stutter4On == true) {
+                var moan3 = StutterTalk4(moan2);
+            } else {
+                var moan3 = moan2;
+            }
+            ElementValue("InputChat", moan2.replace(moan2, moan3));
+            ChatRoomSendChat();
+            ElementValue("InputChat", msg);
+            ChatRoomTargetMemberNumber = backtarget;
         }
-        ElementValue("InputChat", moan.replace(moan, moan2));
-        if (this.Stutter1On == true) {
-            var moan3 = StutterTalk1(moan2);
-        } else if (this.Stutter2On == true) {
-            var moan3 = StutterTalk2(moan2);
-        } else if (this.Stutter3On == true) {
-            var moan3 = StutterTalk3(moan2);
-        } else if (this.Stutter4On == true) {
-            var moan3 = StutterTalk4(moan2);
-        } else {
-            var moan3 = moan2;
-        }
-        ElementValue("InputChat", moan2.replace(moan2, moan3));
-        ChatRoomSendChat();
-        ElementValue("InputChat", msg);
-        ChatRoomTargetMemberNumber = backtarget;
     }
-}
 
-function M_MOANER_reactionVibeWithoutChat(data) {
-    if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes(data)) {
-        //get the moan type to apply
-        //data to generate the moans
-        var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
-        var moan = getMoan(Factor, true, Math.random() * 300);
-        var msg = ElementValue("InputChat");
-        let backtarget = ChatRoomTargetMemberNumber;
-        ChatRoomTargetMemberNumber = null;
-        ElementValue("InputChat", moan);
-        if (this.BabyTalkOn == true) {
-            var moan2 = SpeechBabyTalk({
-                Effect: ["RegressedTalk"]
-            }, moan);  
-        } else if (this.GagTalkOn == true) {
-            var moan2 = SpeechGarbleByGagLevel(gl, moan);   
-        } else {
-            var moan2 = moan;
+    function M_MOANER_reactionVibeWithoutChat(data) {
+        if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes(data)) {
+            //get the moan type to apply
+            //data to generate the moans
+            var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
+            var moan = getMoan(Factor, true, Math.random() * 300);
+            var msg = ElementValue("InputChat");
+            let backtarget = ChatRoomTargetMemberNumber;
+            ChatRoomTargetMemberNumber = null;
+            ElementValue("InputChat", moan);
+            if (this.BabyTalkOn == true) {
+                var moan2 = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, moan);  
+            } else if (this.GagTalkOn == true) {
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+            } else {
+                var moan2 = moan;
+            }
+            ElementValue("InputChat", moan.replace(moan, moan2));
+            if (this.Stutter1On == true) {
+                var moan3 = StutterTalk1(moan2);
+            } else if (this.Stutter2On == true) {
+                var moan3 = StutterTalk2(moan2);
+            } else if (this.Stutter3On == true) {
+                var moan3 = StutterTalk3(moan2);
+            } else if (this.Stutter4On == true) {
+                var moan3 = StutterTalk4(moan2);
+            } else {
+                var moan3 = moan2;
+            }
+            ElementValue("InputChat", moan2.replace(moan2, moan3));
+            ChatRoomSendChat();
+            ElementValue("InputChat", msg);
+            ChatRoomTargetMemberNumber = backtarget;
         }
-        ElementValue("InputChat", moan.replace(moan, moan2));
-        if (this.Stutter1On == true) {
-            var moan3 = StutterTalk1(moan2);
-        } else if (this.Stutter2On == true) {
-            var moan3 = StutterTalk2(moan2);
-        } else if (this.Stutter3On == true) {
-            var moan3 = StutterTalk3(moan2);
-        } else if (this.Stutter4On == true) {
-            var moan3 = StutterTalk4(moan2);
-        } else {
-            var moan3 = moan2;
-        }
-        ElementValue("InputChat", moan2.replace(moan2, moan3));
-        ChatRoomSendChat();
-        ElementValue("InputChat", msg);
-        ChatRoomTargetMemberNumber = backtarget;
     }
-}
 
-function M_MOANER_reactionVibeWithChat(data) {
-    if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes(data)) {
-        //get the moan type to apply
-        //data to generate the moans
-        var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
-        var moan = getMoan(Factor, true, Math.random() * 300);
-        var msg = ElementValue("InputChat");
-        if (msg != "") {
-            moan = msg + "... " + moan;
+    function M_MOANER_reactionVibeWithChat(data) {
+        if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes(data)) {
+            //get the moan type to apply
+            //data to generate the moans
+            var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
+            var moan = getMoan(Factor, true, Math.random() * 300);
+            var msg = ElementValue("InputChat");
+            if (msg != "") {
+                moan = msg + "... " + moan;
+            }
+            ElementValue("InputChat", moan);
+            if (this.BabyTalkOn == true) {
+                var moan2 = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, moan);  
+            } else if (this.GagTalkOn == true) {
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+            } else {
+                var moan2 = moan;
+            }
+            ElementValue("InputChat", moan.replace(moan, moan2));
+            if (this.Stutter1On == true) {
+                var moan3 = StutterTalk1(moan2);
+            } else if (this.Stutter2On == true) {
+                var moan3 = StutterTalk2(moan2);
+            } else if (this.Stutter3On == true) {
+                var moan3 = StutterTalk3(moan2);
+            } else if (this.Stutter4On == true) {
+                var moan3 = StutterTalk4(moan2);
+            } else {
+                var moan3 = moan2;
+            }
+            ElementValue("InputChat", moan2.replace(moan2, moan3));
+            ChatRoomSendChat();
         }
-        ElementValue("InputChat", moan);
-        if (this.BabyTalkOn == true) {
-            var moan2 = SpeechBabyTalk({
-                Effect: ["RegressedTalk"]
-            }, moan);  
-        } else if (this.GagTalkOn == true) {
-            var moan2 = SpeechGarbleByGagLevel(gl, moan);   
-        } else {
-            var moan2 = moan;
-        }
-        ElementValue("InputChat", moan.replace(moan, moan2));
-        if (this.Stutter1On == true) {
-            var moan3 = StutterTalk1(moan2);
-        } else if (this.Stutter2On == true) {
-            var moan3 = StutterTalk2(moan2);
-        } else if (this.Stutter3On == true) {
-            var moan3 = StutterTalk3(moan2);
-        } else if (this.Stutter4On == true) {
-            var moan3 = StutterTalk4(moan2);
-        } else {
-            var moan3 = moan2;
-        }
-        ElementValue("InputChat", moan2.replace(moan2, moan3));
-        ChatRoomSendChat();
     }
-}
 
     function M_MOANER_isSpank(data) {
         if (data.Content == "ActionActivitySpankItem") {
