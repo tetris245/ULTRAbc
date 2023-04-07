@@ -1161,184 +1161,186 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return number;
     }
  
-//MoanerManagement
+    //MoanerManagement
 
-/*const baseM_MOANER_factor4Moans=["n... Nyah\u2665","Oooh","mmmmmh!","NYyaaA\u2665"];
-const baseM_MOANER_factor3Moans=["mm","aaaah","nyAh\u2665"];
-const baseM_MOANER_factor2Moans=["nyah\u2665","Aah!","mh","oh!\u2665","mh\u2665"];
-const basefactor1Moans=["mh","\u2665oh\u2665","ah","...\u2665"];
-const baseM_MOANER_orgasmMoans=["Nya...Ny...NyaaAAaah!","Mmmmh... MMmh... Hhhmmmm...","Oooooh... Mmmmh... OooOOOOh!","Mmmhnn... Nyhmm... Nyah!"];
-const basePainMoans=["Aie!","Aoouch!","Eek","ouch","Aow"];*/
+    /*const baseM_MOANER_factor4Moans=["n... Nyah\u2665","Oooh","mmmmmh!","NYyaaA\u2665"];
+    const baseM_MOANER_factor3Moans=["mm","aaaah","nyAh\u2665"];
+    const baseM_MOANER_factor2Moans=["nyah\u2665","Aah!","mh","oh!\u2665","mh\u2665"];
+    const basefactor1Moans=["mh","\u2665oh\u2665","ah","...\u2665"];
+    const baseM_MOANER_orgasmMoans=["Nya...Ny...NyaaAAaah!","Mmmmh... MMmh... Hhhmmmm...","Oooooh... Mmmmh... OooOOOOh!","Mmmhnn... Nyhmm... Nyah!"];
+    const basePainMoans=["Aie!","Aoouch!","Eek","ouch","Aow"];*/
 
-var M_MOANER_profileName = "default";
+    var M_MOANER_profileName = "default";
 
-M_MOANER_defaultMoans = {
-    "hot": ["n... Nyah\u2665", "Oooh", "mmmmmh!", "NYyaaA\u2665"],
-    "medium": ["mm", "aaaah", "nyAh\u2665"],
-    "light": ["nyah\u2665", "Aah!", "mh", "oh!\u2665", "mh\u2665"],
-    "low": ["mh", "\u2665oh\u2665", "ah", "...\u2665"],
-    "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmmh... MMmh... Hhhmmmm...", "Oooooh... Mmmmh... OooOOOOh!", "Mmmhnn... Nyhmm... Nyah!"],
-    "pain": ["Aie!", "Aoouch!", "Aaaaie!", "Ouch", "Aow"]
-}
-
-M_MOANER_customMoans = {
-    "hot": [],
-    "medium": [],
-    "light": [],
-    "low": [],
-    "orgasm": [],
-    "pain": []
-}
-
-var M_MOANER_moansProfiles = [];
-
-function M_MOANER_activerProfile(name) {
-    if (M_MOANER_moansProfiles[name] == undefined) {
-        profileName = "default";
-        resetMoans(Math.random() * 300);
-    } else {
-        profileName = name;
-        resetMoans(Math.random() * 300);
+    M_MOANER_defaultMoans = {
+        "hot": ["n... Nyah\u2665", "Oooh", "mmmmmh!", "NYyaaA\u2665"],
+        "medium": ["mm", "aaaah", "nyAh\u2665"],
+        "light": ["nyah\u2665", "Aah!", "mh", "oh!\u2665", "mh\u2665"],
+        "low": ["mh", "\u2665oh\u2665", "ah", "...\u2665"],
+        "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmmh... MMmh... Hhhmmmm...", "Oooooh... Mmmmh... OooOOOOh!", "Mmmhnn... Nyhmm... Nyah!"],
+        "pain": ["Aie!", "Aoouch!", "Aaaaie!", "Ouch", "Aow"]
     }
-}
 
-function M_MOANER_getMoans(name) {
-    var pleasureMoans = M_MOANER_moansProfiles[name];
-    if (pleasureMoans == undefined) {
-        pleasureMoans = M_MOANER_defaultMoans;
+    M_MOANER_customMoans = {
+        "hot": [],
+        "medium": [],
+        "light": [],
+        "low": [],
+        "orgasm": [],
+        "pain": []
     }
-    return pleasureMoans;
-}
 
-function M_MOANER_addMoansProfile(name, pleasure) {
-    if (pleasure.hot == undefined || pleasure.hot.length == 0) {
-        pleasure.hot = M_MOANER_defaultMoans.hot;
-    }
-    if (pleasure.medium == undefined || pleasure.medium.length == 0) {
-        pleasure.medium = M_MOANER_defaultMoans.medium;
-    }
-    if (pleasure.light == undefined || pleasure.light.length == 0) {
-        pleasure.light = M_MOANER_defaultMoans.light;
-    }
-    if (pleasure.low == undefined || pleasure.low.length == 0) {
-        pleasure.low = M_MOANER_defaultMoans.low;
-    }
-    if (pleasure.orgasm == undefined || pleasure.orgasm.length == 0) {
-        pleasure.orgasm = M_MOANER_defaultMoans.orgasm;
-    }
-    if (pleasure.pain == undefined || pleasure.pain.length == 0) {
-        pleasure.pain = M_MOANER_defaultMoans.pain;
-    }
-    M_MOANER_moansProfiles[name] = pleasure;
-}
+    var M_MOANER_moansProfiles = [];
 
-function addLowMoans(name, pleasureList) {
-    var profile = M_MOANER_moansProfiles[name];
-    if (profile == undefined) {
-        profiledefaultPleasureMoans;
-    }
-    profile.low = pleasureList;
-    addMoansProfile(name, profile);
-}
-
-M_MOANER_addMoansProfile("default", M_MOANER_defaultMoans);
-
-//MoanerReactions
-
-var M_MOANER_orgasmMoans = [];
-
-var M_MOANER_factor4Moans = [];
-var M_MOANER_factor3Moans = [];
-var M_MOANER_factor2Moans = [];
-var factor1Moans = [];
-var PROPORTION_MAX = 40;
-
-/******************************************************************/
-// Reactions in chat
-/******************************************************************/
-
-window.ChatRoomRegisterMessageHandler({ 
-    Priority: 600, 
-    Description: "Moaner Orgasm", 
-    Callback: (data, sender, msg, metadata) => {
-        if (M_MOANER_scriptOn) {
-			M_MOANER_reactionOrgasm(Player);
+    function M_MOANER_activerProfile(name) {
+        if (M_MOANER_moansProfiles[name] == undefined) {
+            profileName = "default";
+            resetMoans(Math.random() * 300);
+        } else {
+            profileName = name;
+            resetMoans(Math.random() * 300);
         }
-    }});
-
-function M_MOANER_reactionOrgasm(Player){
-    if(M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen=="ChatRoom") {
-        if ((Player.ID==0) && (Player.ArousalSettings.OrgasmStage == 2)) {
-	    var moan;
-            var backupChatRoomTargetMemberNumber=null;
-            msg=ElementValue("InputChat");
-	    if(M_MOANER_isSimpleChat(msg)) {			
-		 moan= msg + "... " + getOrgasmMoan();
-                 ElementValue("InputChat", moan);
-                 if (this.BabyTalkOn == true) {
-                     var moan2 = SpeechBabyTalk({
-                         Effect: ["RegressedTalk"]
-                     }, moan);  
-                 } else if (this.GagTalkOn == true) {
-                     var moan2 = SpeechGarbleByGagLevel(gl, moan);   
-                 } else {
-                     var moan2 = moan;
-                 }
-                 ElementValue("InputChat", moan.replace(moan, moan2));
-                 if (this.Stutter1On == true) {
-                     var moan3 = StutterTalk1(moan2);
-                 } else if (this.Stutter2On == true) {
-                     var moan3 = StutterTalk2(moan2);
-                 } else if (this.Stutter3On == true) {
-                     var moan3 = StutterTalk3(moan2);
-                 } else if (this.Stutter4On == true) {
-                     var moan3 = StutterTalk4(moan2);
-                 } else {
-                     var moan3 = moan2;
-                 }
-                 ElementValue("InputChat", moan2.replace(moan2, moan3));
-                 msg="";
-                 Player.ArousalSettings.OrgasmStage = 0;
-                 Player.ArousalSettings.Progress = 0;
-                 ActivityChatRoomArousalSync(Player);
-		      ChatRoomSendChat();
-             } else {	
-		 backupChatRoomTargetMemberNumber=ChatRoomTargetMemberNumber;
-		 ChatRoomTargetMemberNumber=null;
-	         moan = "... " + getOrgasmMoan();
-                 ElementValue("InputChat", moan);
-                 if (this.BabyTalkOn == true) {
-                     var moan2 = SpeechBabyTalk({
-                         Effect: ["RegressedTalk"]
-                     }, moan);  
-                 } else if (this.GagTalkOn == true) {
-                     var moan2 = SpeechGarbleByGagLevel(gl, moan);   
-                 } else {
-                     var moan2 = moan;
-                 }
-                 ElementValue("InputChat", moan.replace(moan, moan2));
-                 if (this.Stutter1On == true) {
-                     var moan3 = StutterTalk1(moan2);
-                 } else if (this.Stutter2On == true) {
-                     var moan3 = StutterTalk2(moan2);
-                 } else if (this.Stutter3On == true) {
-                     var moan3 = StutterTalk3(moan2);
-                 } else if (this.Stutter4On == true) {
-                     var moan3 = StutterTalk4(moan2);
-                 } else {
-                     var moan3 = moan2;
-                 }
-                 ElementValue("InputChat", moan2.replace(moan2, moan3));
-                 Player.ArousalSettings.OrgasmStage = 0;
-                 Player.ArousalSettings.Progress = 0;
-                 ActivityChatRoomArousalSync(Player);
-                 ChatRoomSendChat();
-		 ChatRoomTargetMemberNumber=backupChatRoomTargetMemberNumber;
-		 ElementValue("InputChat",msg);
-             } 
-        } 
     }
-}
+
+    function M_MOANER_getMoans(name) {
+        var pleasureMoans = M_MOANER_moansProfiles[name];
+        if (pleasureMoans == undefined) {
+            pleasureMoans = M_MOANER_defaultMoans;
+        }
+        return pleasureMoans;
+    }
+
+    function M_MOANER_addMoansProfile(name, pleasure) {
+        if (pleasure.hot == undefined || pleasure.hot.length == 0) {
+            pleasure.hot = M_MOANER_defaultMoans.hot;
+        }
+        if (pleasure.medium == undefined || pleasure.medium.length == 0) {
+            pleasure.medium = M_MOANER_defaultMoans.medium;
+        }
+        if (pleasure.light == undefined || pleasure.light.length == 0) {
+            pleasure.light = M_MOANER_defaultMoans.light;
+        }
+        if (pleasure.low == undefined || pleasure.low.length == 0) {
+            pleasure.low = M_MOANER_defaultMoans.low;
+        }
+        if (pleasure.orgasm == undefined || pleasure.orgasm.length == 0) {
+            pleasure.orgasm = M_MOANER_defaultMoans.orgasm;
+        }
+        if (pleasure.pain == undefined || pleasure.pain.length == 0) {
+            pleasure.pain = M_MOANER_defaultMoans.pain;
+        }
+        M_MOANER_moansProfiles[name] = pleasure;
+    }
+
+    function addLowMoans(name, pleasureList) {
+        var profile = M_MOANER_moansProfiles[name];
+        if (profile == undefined) {
+            profiledefaultPleasureMoans;
+        }
+        profile.low = pleasureList;
+        addMoansProfile(name, profile);
+    }
+
+    M_MOANER_addMoansProfile("default", M_MOANER_defaultMoans);
+
+    //MoanerReactions
+
+    var M_MOANER_orgasmMoans = [];
+    var M_MOANER_factor4Moans = [];
+    var M_MOANER_factor3Moans = [];
+    var M_MOANER_factor2Moans = [];
+    var factor1Moans = [];
+    var PROPORTION_MAX = 40;
+
+    /******************************************************************/
+    // Reactions in chat
+    /******************************************************************/
+
+    window.ChatRoomRegisterMessageHandler({ 
+        Priority: 600, 
+        Description: "Moaner Orgasm", 
+        Callback: (data, sender, msg, metadata) => {
+            if (M_MOANER_scriptOn) {
+	        M_MOANER_reactionOrgasm(Player);
+            }
+        }});
+
+    function M_MOANER_reactionOrgasm(Player){
+        if(M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen=="ChatRoom") {
+            if ((Player.ID==0) && (Player.ArousalSettings.OrgasmStage == 2)) {
+	        var moan;
+                var backupChatRoomTargetMemberNumber=null;
+		// not in whisper mode
+		// not as /me
+		// only in normal talk mode
+                msg=ElementValue("InputChat");
+	        if(M_MOANER_isSimpleChat(msg)) {			
+		    moan= msg + "... " + getOrgasmMoan();
+                    ElementValue("InputChat", moan);
+                    if (this.BabyTalkOn == true) {
+                        var moan2 = SpeechBabyTalk({
+                            Effect: ["RegressedTalk"]
+                        }, moan);  
+                    } else if (this.GagTalkOn == true) {
+                        var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+                    } else {
+                        var moan2 = moan;
+                    }
+                    ElementValue("InputChat", moan.replace(moan, moan2));
+                    if (this.Stutter1On == true) {
+                        var moan3 = StutterTalk1(moan2);
+                    } else if (this.Stutter2On == true) {
+                        var moan3 = StutterTalk2(moan2);
+                    } else if (this.Stutter3On == true) {
+                        var moan3 = StutterTalk3(moan2);
+                    } else if (this.Stutter4On == true) {
+                        var moan3 = StutterTalk4(moan2);
+                    } else {
+                        var moan3 = moan2;
+                    }
+                    ElementValue("InputChat", moan2.replace(moan2, moan3));
+                    msg="";
+                    Player.ArousalSettings.OrgasmStage = 0;
+                    Player.ArousalSettings.Progress = 0;
+                    ActivityChatRoomArousalSync(Player);
+		    ChatRoomSendChat();
+                } else {	
+		    backupChatRoomTargetMemberNumber=ChatRoomTargetMemberNumber;
+		    ChatRoomTargetMemberNumber=null;
+	            moan = "... " + getOrgasmMoan();
+                    ElementValue("InputChat", moan);
+                    if (this.BabyTalkOn == true) {
+                        var moan2 = SpeechBabyTalk({
+                            Effect: ["RegressedTalk"]
+                        }, moan);  
+                    } else if (this.GagTalkOn == true) {
+                        var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+                    } else {
+                        var moan2 = moan;
+                    }
+                    ElementValue("InputChat", moan.replace(moan, moan2));
+                    if (this.Stutter1On == true) {
+                        var moan3 = StutterTalk1(moan2);
+                    } else if (this.Stutter2On == true) {
+                        var moan3 = StutterTalk2(moan2);
+                    } else if (this.Stutter3On == true) {
+                        var moan3 = StutterTalk3(moan2);
+                    } else if (this.Stutter4On == true) {
+                        var moan3 = StutterTalk4(moan2);
+                    } else {
+                        var moan3 = moan2;
+                    }
+                    ElementValue("InputChat", moan2.replace(moan2, moan3));
+                    Player.ArousalSettings.OrgasmStage = 0;
+                    Player.ArousalSettings.Progress = 0;
+                    ActivityChatRoomArousalSync(Player);
+                    ChatRoomSendChat();
+		    ChatRoomTargetMemberNumber=backupChatRoomTargetMemberNumber;
+		    ElementValue("InputChat",msg);
+                } 
+            } 
+        }
+    }
 
 window.ChatRoomRegisterMessageHandler({ 
     Priority: 600, 
