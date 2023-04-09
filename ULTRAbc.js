@@ -2010,6 +2010,96 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
     }
 	
+    // Initializer function
+    function diaperWetter({
+        initMessChance = diaperDefaultValues.messChance,
+        initWetChance = diaperDefaultValues.wetChance,
+        baseTimer = diaperDefaultValues.baseTimer,
+        initRegressionLevel = diaperDefaultValues.regressionLevel,
+        initDesperationLevel = diaperDefaultValues.desperationLevel,
+        initMessLevelInner = diaperDefaultValues.messLevelInner,
+        initWetLevelInner = diaperDefaultValues.wetLevelInner,
+        initMessLevelOuter = diaperDefaultValues.messLevelOuter,
+        initWetLevelOuter = diaperDefaultValues.wetLevelOuter
+    } = {}) {
+	    
+        // Greating message
+        if (Player.Nickname == '') {
+            var tmpname = Player.Name;
+        } else {
+            var tmpname = Player.Nickname;
+        }
+        ServerSend("ChatRoomChat", {
+            Type: "Action",
+            Content: "gag",
+            Dictionary: [{
+                Tag: "gag",
+                Text: "Say hello to the little baby " + tmpname + "!"
+            }]
+        });
+	    
+	// Initial clear.
+        refreshDiaper({
+            cdiaper: "both",
+            inMessLevelChastity: (initMessLevelOuter < 0 || initMessLevelOuter > 2) ?
+                diaperDefaultValues.messLevelOuter : initMessLevelOuter,
+            inWetLevelChastity: (initWetLevelOuter < 0 || initWetLevelOuter > 2) ?
+                ((initMessLevelOuter < 0 || initMessLevelOuter > 2) ?
+                    diaperDefaultValues.messLevelOuter :
+                    inMessLevelOuter
+                ) : ((initWetLevelOuter > initMessLevelOuter) ?
+                    initWetLevelOuter :
+                    ((initMessLevelOuter < 0 || initMessLevelOuter > 2) ?
+                        diaperDefaultValues.messLevelOuter :
+                        initMessLevelOuter
+                    )
+                ),
+            inMessLevelPanties: (initMessLevelInner < 0 || initMessLevelInner > 2) ?
+                diaperDefaultValues.messLevelInner : initMessLevelInner,
+            inWetLevelPanties: (initWetLevelInner < 0 || initWetLevelInner > 2) ?
+                ((initMessLevelInner < 0 || initMessLevelInner > 2) ?
+                    diaperDefaultValues.messLevelInner :
+                    initMessLevelOuter
+                ) : ((initWetLevelInner > initMessLevelInner) ?
+                    initWetLevelInner :
+                    ((initMessLevelInner < 0 || initMessLevelInner > 2) ?
+                        diaperDefaultValues.messLevelInner :
+                        initMessLevelInner
+                    )
+                ),
+        });
+        messChance = initMessChance;
+        wetChance = initWetChance;
+        diaperTimerBase = baseTimer; // The default amount of time between ticks in minutes
+        regressionLevel = initRegressionLevel; // Used for tracking how much the user has regressed (affects the timer)
+        desperationLevel = initDesperationLevel; // Used for tracking how recently a milk bottle has been used (affects the timer)
+
+        // Handle modifiers
+        var diaperTimerModifier = 1; // We will divide by the modifier (positive modifiers decrease the timer)
+        diaperTimerModifier = manageRegression(diaperTimerModifier);
+        diaperTimerModifier = manageDesperation(diaperTimerModifier);
+        diaperTimer = diaperTimerBase / diaperTimerModifier;
+
+        // Go into main loop
+        diaperRunning = true; // Helps with the kill switch
+        checkTick();
+    }
+  
+    // Changes how long it takes between ticks (in minutes)
+    function changeDiaperTimer(delay) {
+        // Bound the delay to between 2 minutes and 1 hour
+        if (delay < 2) {
+            delay = 2;
+        } else if (delay > 60) {
+            delay = 60;
+        }
+        diaperTimerBase = delay; // Updates diaperTimerBase
+    }  
+	   
+	
+	
+	
+	
 	
 	
 	
