@@ -28,9 +28,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         repository: 'https://github.com/tetris245/ULTRAbc',
     });
 	
-    //Variables and settings
+    //Main variables and settings for UBC and The Moaner
     var FBC_VERSION = ""; 
     var M_MOANER_moanerKey = "bc_moaner_";
+    var M_MOANER_scriptOn = true;
+    let profileName;
+    let SosbuttonsOn;
+	
+    var M_MOANER_talkActive = true;
+    var M_MOANER_orgasmActive = true;
+    var M_MOANER_vibratorActive = true;
+    var M_MOANER_spankActive = true;
+    var M_MOANER_verboseActive = true;
 	
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
@@ -899,23 +908,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     //ChatRoom
 
-    var M_MOANER_scriptOn = true;
-
     function M_MOANER_isSimpleChat(msg) {
         return msg.trim().length > 0 && !msg.startsWith("/") && !msg.startsWith("(") && !msg.startsWith("*") && ChatRoomTargetMemberNumber == null;
     }
-
-    //MoanerCommands
-    //@moaner feature commande
-    //feature: talk, orgasm, startVibrator, spank
-    //commande On, OFF
-
-    //features
-    var M_MOANER_talkActive = true;
-    var M_MOANER_orgasmActive = true;
-    var M_MOANER_vibratorActive = true;
-    var M_MOANER_spankActive = true;
-    var M_MOANER_verboseActive = true;
 
     var M_MOANER_scriptStatus = ["The moaner is active.", "The moaner is not active."];
     var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.", "The orgasm moan is not active. You will not moan while cumming anymore."];
