@@ -2287,11 +2287,221 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         checkTick();
     }
 	
+    // Funcky while loop
+    function checkTick() {
+        // Terminate loop if the user isn't wearing a compatible diaper
+        if ((checkForDiaper("ItemPelvis") || checkForDiaper("Panties")) && diaperRunning === true) {
+            // Wait for a bit
+            diaperLoop = setTimeout(checkTick, diaperTimer * 60 * 1000);
+            // Go to main logic
+            diaperTick();
+        } else {
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
+            diaperRunning = false;
+            ServerSend("ChatRoomChat", {
+                Type: "Action",
+                Content: "gag",
+                Dictionary: [{
+                    Tag: "gag",
+                    Text: "Awww, " + tmpname + " is all grown up!"
+                }]
+            });
+        }
+    }
 	
-	
-	
-	
-	
+    // Body function
+    // If the baby uses their diaper, it will make the front of their diaper look like it's been used
+    function diaperTick() {
+        // Handle modifiers 
+        if (Player.Nickname == '') {
+            var tmpname = Player.Name;
+        } else {
+            var tmpname = Player.Nickname;
+        }
+        if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
+            var tmpr1 = "He";
+            var tmpr2 = "him";
+            var tmpr3 = "his";
+            var tmpr4 = "he";
+        } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
+            var tmpr1 = "She";
+            var tmpr2 = "her";
+            var tmpr3 = "her";
+            var tmpr4 = "she";
+        } else {
+            var tmpr1 = "They";
+            var tmpr2 = "them";
+            var tmpr3 = "their";
+            var tmpr4 = "they";
+        }
+        DiaperUseMessages = {
+            "MessInner": " has messed " + tmpr3 + " inner diaper.",
+            "MessInnerFully": " has fully messed " + tmpr3 + " inner diaper.",
+            "WetInner": " has wet " + tmpr3 + " inner diaper.",
+            "WetInnerFully": " has fully wet " + tmpr3 + " inner diaper.",
+            "MessOuter": " has messed " + tmpr3 + " outer diaper.",
+            "MessOuterFully": " has fully messed " + tmpr3 + " outer diaper.",
+            "WetOuter": " has wet " + tmpr3 + " outer diaper.",
+            "WetOuterFully": " has fully wet " + tmpr3 + " outer diaper.",
+            "MessOnly": " has messed " + tmpr3 + " diaper.",
+            "MessOnlyFully": " has fully messed " + tmpr3 + " diaper.",
+            "WetOnly": " has wet " + tmpr3 + " diaper.",
+            "WetOnlyFully": " has fully " + tmpr3 + " her diaper."
+        };
+        var diaperTimerModifier = 1; // We will divide by the modifier (positive modifiers decrease the timer)
+        diaperTimerModifier = manageRegression(diaperTimerModifier);
+        diaperTimerModifier = manageDesperation(diaperTimerModifier);
+        diaperTimer = diaperTimerBase / diaperTimerModifier;
+        testMess = Math.random();
+        // If the baby messes, increment the mess level to a max of 2 and make sure that the wet level is at least as high as the mess level.
+        if (testMess > 1 - messChance) {
+            if (MessLevelPanties === 2 || !checkForDiaper("Panties")) {
+                MessLevelChastity = (MessLevelChastity < 2) ? MessLevelChastity + 1 : MessLevelChastity;
+                WetLevelChastity = (WetLevelChastity < MessLevelChastity) ? MessLevelChastity : WetLevelChastity;
+            } else if (checkForDiaper("Panties")) {
+                MessLevelPanties = MessLevelPanties + 1;
+                WetLevelPanties = (WetLevelPanties < MessLevelPanties) ? MessLevelPanties : WetLevelPanties;
+            }
+            // Display messages for when a diaper is messed.
+            if ((MessLevelPanties === 2 && checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (MessLevelChastity === 2 && checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperUseMessages["MessOnlyFully"]
+                    }]
+                });
+            } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperUseMessages["MessOnly"]
+                    }]
+                });
+            } else if (MessLevelChastity === 0) {
+                if (MessLevelPanties === 2) {
+                    ServerSend("ChatRoomChat", {
+                        Type: "Action",
+                        Content: "gag",
+                        Dictionary: [{
+                            Tag: "gag",
+                            Text: tmpname + DiaperUseMessages["MessInnerFully"]
+                        }]
+                    });
+                } else if (MessLevelPanties === 1) {
+                    ServerSend("ChatRoomChat", {
+                        Type: "Action",
+                        Content: "gag",
+                        Dictionary: [{
+                            Tag: "gag",
+                            Text: tmpname + DiaperUseMessages["MessInner"]
+                        }]
+                    });
+                }
+            } else if (MessLevelChastity === 1) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperUseMessages["MessOuter"]
+                    }]
+                });
+            } else if (MessLevelChastity === 2) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperUseMessages["MessOuterFully"]
+                    }]
+                });
+            }
+        }
+        // If the baby only wets, increment the wet level to a max of 2.
+        else if (testMess > 1 - wetChance) {
+            if (WetLevelPanties == 2 && (InventoryGet(Player, "Panties") !== "PoofyDiaper" && InventoryGet(Player, "Panties") !== "BulkyDiaper")) {
+                WetLevelChastity = (WetLevelChastity < 2) ? WetLevelChastity + 1 : WetLevelChastity;
+            } else {
+                WetLevelPanties = WetLevelPanties + 1;
+            }
+            // Display messages for when a diaper is wet.
+            if ((WetLevelPanties === 2 && checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (WetLevelChastity === 2 && checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperUseMessages["MessOnlyFully"]
+                    }]
+                });
+            } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperUseMessages["WetOnly"]
+                    }]
+                });
+            } else if (WetLevelChastity === 0) {
+                if (WetLevelPanties === 2) {
+                    ServerSend("ChatRoomChat", {
+                        Type: "Action",
+                        Content: "gag",
+                        Dictionary: [{
+                            Tag: "gag",
+                            Text: tmpname + DiaperUseMessages["WetInnerFully"]
+                        }]
+                    });
+                } else if (WetLevelPanties === 1) {
+                    ServerSend("ChatRoomChat", {
+                        Type: "Action",
+                        Content: "gag",
+                        Dictionary: [{
+                            Tag: "gag",
+                            Text: tmpname + DiaperUseMessages["WetInner"]
+                        }]
+                    });
+                }
+            } else if (WetLevelChastity === 1) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperUseMessages["WetOuter"]
+                    }]
+                });
+            } else if (WetLevelChastity === 2) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperUseMessages["WetOuterFully"]
+                    }]
+                });
+            }
+        }
+        // Don't update the color when it's not needed.
+        else {
+            return;
+        }
+        // Update color based on the DiaperUseLevels table.
+        changeDiaperColor("ItemPelvis");
+        changeDiaperColor("Panties");
+        ChatRoomCharacterUpdate(Player);
+    }
+
+    ///////////////////////////////////////////////////////////////				
     //Commands
 
     CommandCombine([{
