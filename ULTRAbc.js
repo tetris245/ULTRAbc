@@ -3616,7 +3616,211 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ActivityOrgasmStart(Player);
         }
     }])
-
+	
+    CommandCombine([{
+        Tag: 'diaper',
+        Description: "(action) (target or value) = plays with diapers (ABDL game).",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The diaper command must include an action.\n" +
+                    "You need to wear one or two layers of diapers (only bulky and poofy versions)\n" +
+                    "<b>/diaper start</b> to enable the script\n" +
+                    "<b>/diaper stop</b> to disable the script\n" +
+                    "<b>/diaper tick</b> to force a tick\n" +
+                    " \n" +
+                    "To get new clean diapers:\n" +
+                    "<b>/diaper change1</b> (target) for normal diapers\n" +
+                    "<b>/diaper change2</b> (target) for chastity diapers\n" +
+                    "<b>/diaper change3</b> (target) for both diapers\n" +
+                    " \n" +
+                    "Customisation (before using /diaper start):\n" +
+                    "Use <b>/diaper custom</b> for detailed info</p>"
+                );
+	    } else if (args === "custom") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Diaper customisation (before using /diaper start):\n" +
+                    "<b>/diaper setdesperation</b> (value between 0 and 3) for desperation level, normally controlled by having a milk bottle used on you\n" +
+                    "<b>/diaper setregression</b> (value between 0 and 3) for regression level, normally controlled by wearing Nursery Milk for an extended period of time\n" +
+                    "<b>/diaper settimer</b> (minutes) to change the wet/mess timer\n" +
+                    "<b>/diaper setwetchance</b> (value between 0 and 1) to control how often you will wet\n" +
+                    "<b>/diaper setmesschance</b> (value between 0 and 1) to control how often you will mess. Make sure this is lower than wetchance.\n" +
+                    "<b>/diaper setwet1</b> (value)* for wet level of normal diapers\n" +
+                    "<b>/diaper setwet2</b> (value)* for wet level of chastity diapers\n" +
+                    "<b>/diaper setmess1</b> (value)* for mess level of normal diapers\n" +
+                    "<b>/diaper setmess2</b> (value)* for mess level of chastity diapers - * = value between 0 and 2</p>"
+                );
+            } else if (args === "start") {
+                diaperWetter();
+            } else if (args === "stop") {
+                stopWetting();
+            } else if (args === "tick") {
+                diaperTick();
+            } else {
+                var stringDiaper1 = args;
+                var stringDiaper2 = stringDiaper1.split(/[ ,]+/);
+                var feature = stringDiaper2[0];
+		if (feature == "change1") {
+		    var targetname = stringDiaper2[1];
+                    if ((targetname === null) && (checkForDiaper("Panties"))) {
+                        refreshDiaper("panties");
+                    } else {
+                        var targetfinder = new RegExp('^' + targetname + '', 'i');
+                        var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                        if (target[0] == null) {
+                            var targetnumber = parseInt(targetname);
+                            target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                        }
+                        if (target[0] != null) {
+                            if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
+                                ServerSend("ChatRoomChat", {
+                                    Content: "ULTRAbc: " + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.",
+                                    Type: "Whisper",
+                                    Target: target[0].MemberNumber
+                                })
+                            };
+                        }
+                        ChatRoomSetTarget(null);
+                    }
+		}
+		if (feature == "change2") { 
+		    var targetname = stringDiaper2[1];
+                    if ((targetname === null) && (checkForDiaper("ItemPelvis"))) {
+                        refreshDiaper("chastity");
+                    } else {
+                        var targetfinder = new RegExp('^' + targetname + '', 'i');
+                        var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                        if (target[0] == null) {
+                            var targetnumber = parseInt(targetname);
+                            target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                        }
+                        if (target[0] != null) {
+                            if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
+                                ServerSend("ChatRoomChat", {
+                                    Content: "ULTRAbc: " + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.",
+                                    Type: "Whisper",
+                                    Target: target[0].MemberNumber
+                                })
+                            };
+                        }
+                        ChatRoomSetTarget(null);
+                    }
+		}
+		if (feature == "change3") {   
+		    var targetname = stringDiaper2[1];
+                    if ((targetname === null) && (checkForDiaper("Panties")) && (checkForDiaper("ItemPelvis"))) {
+                        refreshDiaper("both");
+                    } else {
+                        var targetfinder = new RegExp('^' + targetname + '', 'i');
+                        var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                        if (target[0] == null) {
+                            var targetnumber = parseInt(targetname);
+                            target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                        }
+                        if (target[0] != null) {
+                            if ((InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper")
+                                && (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper")) {
+                                ServerSend("ChatRoomChat", {
+                                    Content: "ULTRAbc: " + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.",
+                                    Type: "Whisper",
+                                    Target: target[0].MemberNumber
+                                })
+                            };
+                        }
+                        ChatRoomSetTarget(null);
+                    }
+		}
+		if (feature == "setdesperation") {
+                    var setchange = stringDiaper2[1];
+                    diaperDefaultValues.desperationLevel = setchange;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your desperation level has been changed.</p>"
+                    );
+		}
+		if (feature == "setmesschance") {
+		    var setchange = stringDiaper2[1];
+                    diaperDefaultValues.messChance = setchange;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to mess diapers has been changed.</p>"
+                    );
+                }
+		if (feature == "setmess1") {  
+	            if (InventoryGet(Player, "Panties") != null) {  
+                        if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
+                            var setchange = stringDiaper2[1];
+                            if (setchange < diaperDefaultValues.wetLevelInner) {
+                                diaperDefaultValues.messLevelInner = setchange;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for normal diapers has been changed.</p>"
+                                );
+                            }
+                        }
+                    }
+                }
+		if (feature == "setmess2") { 
+		    if (InventoryGet(Player, "ItemPelvis") != null) {
+                        if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
+                            var setchange = stringDiaper2[1];
+                            if (setchange < diaperDefaultValues.wetLevelOuter) {
+                                diaperDefaultValues.messLevelOuter = setchange;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for chastity diapers has been changed.</p>"
+                                );
+                            }
+                        }
+                    }
+                }
+		if (feature == "setregression") { 
+		    var setchange = stringDiaper2[1];
+                    diaperDefaultValues.regressionLevel = setchange;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your regression level has been changed.</p>"
+                    );
+                } 
+		if (feature == "settimer") {	
+		    var setchange = stringDiaper2[1];
+                    diaperDefaultValues.baseTimer = setchange;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet/mess timer has been changed.</p>"
+                    );
+                }
+		if (feature == "setwetchance") {
+		    var setchange = stringDiaper2[1];
+                    diaperDefaultValues.wetChance = setchange;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to wet diapers has been changed.</p>"
+                    );
+                } 
+		if (feature == "setwet1") {	
+		    if (InventoryGet(Player, "Panties") != null) {
+                        if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
+                            var setchange = stringDiaper2[1];
+                            if (setchange > diaperDefaultValues.messLevelInner) {
+                                diaperDefaultValues.wetLevelInner = setchange;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for normal diapers has been changed.</p>"
+                                );
+                            }
+                        }
+                    }
+                }
+		if (feature == "setwet2") {
+		    if (InventoryGet(Player, "ItemPelvis") != null) {
+                        if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
+                            var setchange = stringDiaper2[1];
+                            if (setchange > diaperDefaultValues.messLevelOuter) {
+                                diaperDefaultValues.wetLevelOuter = setchange;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for chastity diapers has been changed.</p>"
+                                );
+                            }
+                        }
+                    }
+                }
+	    }
+        }
+    }])	
+			
     CommandCombine([{
         Tag: 'difficulty',
         Description: "(number): changes game difficulty.",
@@ -8247,6 +8451,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Clothing commands:\n" +
                     "<b>/clothes</b> (target) = changes clothes.\n" +
+		    "<b>/diaper</b> (action) (target or value) = plays with diapers (ABDL game). Using will give more info.\n" +
                     "<b>/naked</b> (target) = removes clothes.\n" +
                     "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
                     "<b>/underwear</b> (target) = changes underwear.\n" +
