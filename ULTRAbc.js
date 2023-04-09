@@ -900,18 +900,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //ChatRoom
 
     var M_MOANER_scriptOn = true;
-    var M_MOANER_tempChatRoomData;
-
-    function M_MOANER_isCommande(msg) {
-        return msg.startsWith("/") && ChatRoomTargetMemberNumber == null;
-    }
 
     function M_MOANER_isSimpleChat(msg) {
         return msg.trim().length > 0 && !msg.startsWith("/") && !msg.startsWith("(") && !msg.startsWith("*") && ChatRoomTargetMemberNumber == null;
-    }
-
-    function M_MOANER_isInChatRoom() {
-        return window.CurrentScreen == "ChatRoom";
     }
 
     //MoanerCommands
