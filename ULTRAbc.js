@@ -2096,7 +2096,196 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         diaperTimerBase = delay; // Updates diaperTimerBase
     }  
 	   
+    // Refresh the diaper settings so wet and mess levels are 0. Pass "chastity", "panties", or "both" so only the correct diaper gets reset.
+    function refreshDiaper({
+        cdiaper = "both",
+        inWetLevelPanties = diaperDefaultValues.wetLevelInner,
+        inMessLevelPanties = diaperDefaultValues.messLevelInner,
+        inWetLevelChastity = diaperDefaultValues.wetLevelOuter,
+        inMessLevelChastity = diaperDefaultValues.messLevelOuter,
+    } = {}) {
+        if (Player.Nickname == '') {
+            var tmpname = Player.Name;
+        } else {
+            var tmpname = Player.Nickname;
+        }
+        if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
+            var tmpr1 = "He";
+            var tmpr2 = "him";
+            var tmpr3 = "his";
+            var tmpr4 = "he";
+        } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
+            var tmpr1 = "She";
+            var tmpr2 = "her";
+            var tmpr3 = "her";
+            var tmpr4 = "she";
+        } else {
+            var tmpr1 = "They";
+            var tmpr2 = "them";
+            var tmpr3 = "their";
+            var tmpr4 = "they";
+        }
+        DiaperChangeMessages = {
+            "ChangeDiaperInner": " has gotten a fresh inner diaper.",
+            "ChangeDiaperOuter": " has gotten a fresh outer diaper.",
+            "ChangeDiaperOnly": " has gotten a fresh diaper.",
+            "ChangeDiaperBoth": " has gotten a fresh pair of diapers."
+        };
+        if (cdiaper === "both") {
+            MessLevelPanties = inMessLevelPanties;
+            WetLevelPanties = inWetLevelPanties;
+            MessLevelChastity = inMessLevelChastity;
+            WetLevelChastity = inWetLevelChastity;
+            changeDiaperColor("ItemPelvis");
+            changeDiaperColor("Panties");
+            if (checkForDiaper("Panties") && checkForDiaper("ItemPelvis")) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperChangeMessages["ChangeDiaperBoth"]
+                    }]
+                });
+            } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOnly"]
+                    }]
+                });
+            }
+        } else if (cdiaper === "chastity") {
+            MessLevelChastity = inMessLevelChastity;
+            WetLevelChastity = inWetLevelChastity;
+            changeDiaperColor("ItemPelvis");
+            if (checkForDiaper("ItemPelvis") && checkForDiaper("Panties")) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOuter"]
+                    }]
+                });
+            } else if (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties")) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOnly"]
+                    }]
+                });
+            }
+        } else if (cdiaper === "panties") {
+            MessLevelPanties = inMessLevelPanties;
+            WetLevelPanties = inWetLevelPanties;
+            changeDiaperColor("Panties");
+            if (checkForDiaper("ItemPelvis") && checkForDiaper("Panties")) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOuter"]
+                    }]
+                });
+            } else if (checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) {
+                ServerSend("ChatRoomChat", {
+                    Type: "Action",
+                    Content: "gag",
+                    Dictionary: [{
+                        Tag: "gag",
+                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOnly"]
+                    }]
+                });
+            }
+        }
+    }
+
+    // Check for if a diaper is in the Panties or ItemPelvies slot
+    function checkForDiaper(slot) {
+        return InventoryGet(Player, slot)?.Asset?.Name === "PoofyDiaper" || InventoryGet(Player, slot)?.Asset?.Name === "BulkyDiaper";
+    }
+
+    // Checks to see if the user has a nursery milk equiped
+    function checkForNurseryMilk() {
+        return (InventoryGet(Player, "ItemMouth")?.Asset?.Name === "RegressedMilk") || (InventoryGet(Player, "ItemMouth2")?.Asset?.Name === "RegressedMilk") || (InventoryGet(Player, "ItemMouth3")?.Asset?.Name === "RegressedMilk");
+    }
+
+    // Checks for a normal milk bottle
+    function checkForMilk() {
+        return (InventoryGet(Player, "ItemMouth")?.Asset?.Name === "MilkBottle") || (InventoryGet(Player, "ItemMouth2")?.Asset?.Name === "MilkBottle") || (InventoryGet(Player, "ItemMouth3")?.Asset?.Name === "MilkBottle");
+    }
+
+    // Handles the regression counter
+    function manageRegression(diaperTimerModifier = 1) {
+        if (checkForNurseryMilk() && regressionLevel < 3) {
+            regressionLevel++;
+        } else if (!checkForNurseryMilk() && regressionLevel > 0) {
+            regressionLevel--;
+        }
+        return diaperTimerModifier * Math.pow(2, regressionLevel);
+    }  
 	
+    // Sets the users desperationLevel to 3 when they are given a milk bottle
+    function setDesperation() {
+        desperationLevel = 3;
+    }
+
+    // Handles "desperateness" aka how recently a milk bottle was drunk
+    function manageDesperation(diaperTimerModifier = 1) {
+        // If they don't have a milk bottle anymore
+        if (!checkForMilk()) {
+            // Decrease desperationLevel to a minimum of zero if no milk is found
+            desperationLevel = (desperationLevel != 0) ? desperationLevel - 1 : 0;
+        }
+        return diaperTimerModifier * (desperationLevel + 1);
+    }
+	
+    // Updates the color of a diaper
+    function changeDiaperColor(slot) {
+        if (slot === "ItemPelvis" && checkForDiaper(slot)) {
+            InventoryWear(
+                Player,
+                InventoryGet(Player, slot)?.Asset?.Name,
+                slot,
+                [
+                    InventoryGet(Player, slot)?.Color[0],
+                    DiaperUseLevels[MessLevelChastity][WetLevelChastity - MessLevelChastity],
+                    InventoryGet(Player, slot)?.Color[2],
+                    InventoryGet(Player, slot)?.Color[3]
+                ],
+                InventoryGet(Player, slot)?.Difficulty,
+                Player.MemberNumber
+            );
+        } else if (slot === "Panties" && checkForDiaper(slot)) {
+            InventoryWear(
+                Player,
+                InventoryGet(Player, slot)?.Asset?.Name,
+                slot,
+                [
+                    InventoryGet(Player, slot)?.Color[0],
+                    DiaperUseLevels[MessLevelPanties][WetLevelPanties - MessLevelPanties],
+                    InventoryGet(Player, slot)?.Color[2],
+                    InventoryGet(Player, slot)?.Color[3]
+                ],
+                InventoryGet(Player, slot)?.Difficulty,
+                Player.MemberNumber
+            );
+        }
+    }
+
+    // Command to stop the script from running
+    function stopWetting() {
+        console.log("See you next time!");
+        diaperRunning = false;
+        clearTimeout(diaperLoop);
+        checkTick();
+    }
 	
 	
 	
