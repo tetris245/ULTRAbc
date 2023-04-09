@@ -83,13 +83,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function MoanerLoginListener() {
         while (!MoanerIsLoaded) {
             try {
-                while ((!window.CurrentScreen || window.CurrentScreen == "Login" || (typeof window.CursedStarter === "function" && window.cursedConfig === undefined)) && !MoanerIsLoaded) {
-                    //console.log("cherche isLoaded");
+                while ((!window.CurrentScreen || window.CurrentScreen == "Login") && !MoanerIsLoaded) {
+                    //console.log("search for isLoaded");
                     //console.log("window.CurrentScreen="+window.CurrentScreen);
                     await new Promise(r => setTimeout(r, 2000));
                 }
                 //console.log("window.CurrentScreen="+window.CurrentScreen);
-                //console.log("MoanerIsLoaded trouvÃƒÂ©");
+                //console.log("MoanerIsLoaded found");
                 MoanerIsLoaded = true;
                 M_MOANER_initControls();
             } catch (err) {
