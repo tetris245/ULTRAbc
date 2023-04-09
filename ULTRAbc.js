@@ -3733,6 +3733,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		if (feature == "setdesperation") {
                     var setchange = stringDiaper2[1];
                     diaperDefaultValues.desperationLevel = setchange;
+		    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your desperation level has been changed.</p>"
                     );
@@ -3740,6 +3741,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		if (feature == "setmesschance") {
 		    var setchange = stringDiaper2[1];
                     diaperDefaultValues.messChance = setchange;
+		    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to mess diapers has been changed.</p>"
                     );
@@ -3750,6 +3752,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var setchange = stringDiaper2[1];
                             if (setchange < diaperDefaultValues.wetLevelInner) {
                                 diaperDefaultValues.messLevelInner = setchange;
+				setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for normal diapers has been changed.</p>"
                                 );
@@ -3763,6 +3766,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var setchange = stringDiaper2[1];
                             if (setchange < diaperDefaultValues.wetLevelOuter) {
                                 diaperDefaultValues.messLevelOuter = setchange;
+				setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for chastity diapers has been changed.</p>"
                                 );
@@ -3773,6 +3777,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		if (feature == "setregression") { 
 		    var setchange = stringDiaper2[1];
                     diaperDefaultValues.regressionLevel = setchange;
+		    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your regression level has been changed.</p>"
                     );
@@ -3780,6 +3785,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		if (feature == "settimer") {	
 		    var setchange = stringDiaper2[1];
                     diaperDefaultValues.baseTimer = setchange;
+		    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet/mess timer has been changed.</p>"
                     );
@@ -3787,6 +3793,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		if (feature == "setwetchance") {
 		    var setchange = stringDiaper2[1];
                     diaperDefaultValues.wetChance = setchange;
+		    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to wet diapers has been changed.</p>"
                     );
@@ -3797,6 +3804,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var setchange = stringDiaper2[1];
                             if (setchange > diaperDefaultValues.messLevelInner) {
                                 diaperDefaultValues.wetLevelInner = setchange;
+				setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for normal diapers has been changed.</p>"
                                 );
@@ -3810,6 +3818,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var setchange = stringDiaper2[1];
                             if (setchange > diaperDefaultValues.messLevelOuter) {
                                 diaperDefaultValues.wetLevelOuter = setchange;
+				setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for chastity diapers has been changed.</p>"
                                 );
