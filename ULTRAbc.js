@@ -2574,71 +2574,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: ": adds hidden backgrounds to the admin selection screen.",
         Action: () => {
             BackgroundsList.push({
-                Name: "AmandaCollarIntro",
+                Name: "HouseBasement1",
+                Tag: [BackgroundsTagIndoor]
+            });  
+            BackgroundsList.push({
+                Name: "HouseBasement2",
+                Tag: [BackgroundsTagIndoor]
+            }); 
+            BackgroundsList.push({
+                Name: "HouseBasement3",
+                Tag: [BackgroundsTagIndoor]
+            }); 
+            BackgroundsList.push({
+                Name: "HouseInterior1",
+                Tag: [BackgroundsTagIndoor]
+            }); 
+            BackgroundsList.push({
+                Name: "HouseInterior2",
                 Tag: [BackgroundsTagIndoor]
             });
             BackgroundsList.push({
-                Name: "AmandaIntro",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "AsylumGGTSRoomAlert",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "Bar",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "BrickWall",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "Cell",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "CollegeCafeteria",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "CollegeClass2",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "CollegeDetention",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "CollegeEntrance",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "CollegeTeacherLounge",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "CollegeTennisPlay",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "CraftingWorkshop",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "Dressing",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "Gambling",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "grey",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "HorseStableLight",
+                Name: "HouseInterior3",
                 Tag: [BackgroundsTagIndoor]
             });
             BackgroundsList.push({
@@ -2649,83 +2605,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 Name: "HypnoticSpiral",
                 Tag: [BackgroundsTagIndoor]
             });
-            BackgroundsList.push({
-                Name: "Magic",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "MagicSchoolEscape",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "MagicSchoolLaboratory",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "/Orig/Entrance",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "/Orig/Lounge",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "Prison",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "RhythmGame",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "RhythmGameLoading",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "SarahBedroom0",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "SarahBedroom1",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "SarahBedroom2",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "SarahBedroom3",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "SarahIntro",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "Sheet",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "SheetWhite",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "Shop",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "SlaveMarket",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "SophieIntro",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "White",
-                Tag: [BackgroundsTagIndoor]
-            });
 	    if (!window.BCX_Loaded == true) {
+		BackgroundsList.push({
+                    Name: "AmandaCollarIntro",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "AmandaIntro",
+                    Tag: [BackgroundsTagIndoor]
+                });
                 BackgroundsList.push({
                     Name: "AsylumBedroom", 
                     Tag: [BackgroundsTagIndoor]
@@ -2738,12 +2626,92 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Name: "AsylumGGTSRoom",
                     Tag: [BackgroundsTagIndoor]
                 }); 
+		BackgroundsList.push({
+                    Name: "AsylumGGTSRoomAlert",
+                    Tag: [BackgroundsTagIndoor]
+                });
                 BackgroundsList.push({
                     Name: "AsylumMeeting",
                     Tag: [BackgroundsTagIndoor]
                 });
                 BackgroundsList.push({
                     Name: "AsylumTherapy",
+                    Tag: [BackgroundsTagIndoor]
+                });
+		BackgroundsList.push({
+                    Name: "Bar",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "BrickWall",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "Cell",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "CollegeCafeteria",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "CollegeClass2",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "CollegeDetention",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "CollegeEntrance",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "CollegeTeacherLounge",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "CollegeTennisPlay",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "CraftingWorkshop",
+                    Tag: [BackgroundsTagIndoor]
+                });
+		BackgroundsList.push({
+                    Name: "Dressing",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "Gambling",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "grey",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "HorseStableLight",
+                    Tag: [BackgroundsTagIndoor]
+                });
+		BackgroundsList.push({
+                    Name: "Magic",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "MagicSchoolEscape",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "MagicSchoolLaboratory",
+                    Tag: [BackgroundsTagIndoor]
+                });
+		BackgroundsList.push({
+                    Name: "/Orig/Entrance",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "/Orig/Lounge",
                     Tag: [BackgroundsTagIndoor]
                 });
                 BackgroundsList.push({
@@ -2944,6 +2912,62 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 });
                 BackgroundsList.push({
                     Name: "Pandora/Underground/Tunnel6",
+                    Tag: [BackgroundsTagIndoor]
+                });
+		BackgroundsList.push({
+                    Name: "Prison",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "RhythmGame",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "RhythmGameLoading",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "SarahBedroom0",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "SarahBedroom1",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "SarahBedroom2",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "SarahBedroom3",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "SarahIntro",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "Sheet",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "SheetWhite",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "Shop",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "SlaveMarket",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "SophieIntro",
+                    Tag: [BackgroundsTagIndoor]
+                });
+                BackgroundsList.push({
+                    Name: "White",
                     Tag: [BackgroundsTagIndoor]
                 });
             }	
