@@ -592,16 +592,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
-    //Speech
-    async function ULTRASpeechGarble() {
-        modApi.hookFunction('SpeechGarble', 4, (args, next) => {
-            if ((this.DeafOn == true) && (C == sender)) {
-                var GagEffect = 2;
-            } 
-	      next(args);
-        });
-    }
-
     //Timer Cell
     async function ULTRACellLoad() {
         modApi.hookFunction('CellLoad', 4, (args, next) => {
