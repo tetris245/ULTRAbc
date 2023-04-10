@@ -34,6 +34,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_scriptOn = true;
     let profileName;
     let SosbuttonsOn;
+    let SlowleaveOn;
 	
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
@@ -3889,6 +3890,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: ": erases chat.",
         Action: () => {
             ElementRemove("TextAreaChatLog");
+        }
+    }])
+	
+    CommandCombine([{
+        Tag: 'exitmode',
+        Description: ": toggles exit mode for OUT button in chat room.",
+        Action: () => {
+            if (SlowleaveOn == true) {
+                SlowleaveOn = false;
+		M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Back to fast exit mode!</p>"
+                );
+            } else {
+                SlowleaveOn = true;
+		M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Slow exit mode is activated.</p>"
+                );
+            }
         }
     }])
 
