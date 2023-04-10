@@ -52,6 +52,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_scriptOn = false;
             profileName = "default";
 	    SosbuttonsOn = false;
+	    SlowleaveOn = false;
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -61,6 +62,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_scriptOn = datas.script;
             profileName = datas.moanProfile;
 	    SosbuttonsOn = datas.sosbuttons;
+	    SlowleaveOn = datas.slowleave;
         }
     }
 	
@@ -72,7 +74,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "spankMoan": M_MOANER_spankActive,
             "script": M_MOANER_scriptOn,
             "moanProfile": profileName,
-            "sosbuttons": SosbuttonsOn
+            "sosbuttons": SosbuttonsOn,
+	    "slowleave": SlowleaveOn
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -151,12 +154,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
 	    if (SosbuttonsOn == true) {
+		if (Player.Nickname == '') {
+                    var tmpname = Player.Name;
+                } else {
+                    var tmpname = Player.Nickname;
+                }
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
-                    if (Player.Nickname == '') {
-                        var tmpname = Player.Name;
-                    } else {
-                        var tmpname = Player.Nickname;
-                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
@@ -170,11 +173,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     return;
                 }
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
-                    ChatRoomSetLastChatRoom("");
-                    ServerSend("ChatRoomLeave", "");
-                    CommonSetScreen("Online", "ChatSearch");
-                    ChatRoomClearAllElements();
-                    OnlineGameName = "";
+		    if (SlowleaveOn == true) {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: "" + tmpname + " slowly leaves the room."
+                            }]
+                        });
+                        setTimeout(function () {
+                            ChatRoomSetLastChatRoom("");
+                            ServerSend("ChatRoomLeave", "");
+                            CommonSetScreen("Online", "ChatSearch");
+                            ChatRoomClearAllElements();
+                            OnlineGameName = "";                                  
+                        }, 15000); 
+                        return; 
+                    } else {
+                        ChatRoomSetLastChatRoom("");
+                        ServerSend("ChatRoomLeave", "");
+                        CommonSetScreen("Online", "ChatSearch");
+                        ChatRoomClearAllElements();
+                        OnlineGameName = "";                                  
+                    }                                  
                 }
 	    }    
             next(args);
@@ -282,12 +304,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
 	    if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
-                DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
-	    }    
+                if (SlowleaveOn == true) {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                } else {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                }
+	    }      
             next(args);
         });
     }
-
+	
     //Chat Search (including Auto-Join)
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
