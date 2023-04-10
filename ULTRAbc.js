@@ -7632,6 +7632,33 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
+	
+    CommandCombine([{
+        Tag: 'slowleave',
+        Description: ": slowly leaves the room.",
+        Action: () => {
+             if (Player.Nickname == '') {
+                 var tmpname = Player.Name;
+             } else {
+                 var tmpname = Player.Nickname;
+             }
+             ServerSend("ChatRoomChat", {
+                 Content: "Beep",
+                 Type: "Action",
+                 Dictionary: [{
+                     Tag: "Beep",
+                     Text: "" + tmpname + " slowly leaves the room."
+                 }]
+             });
+             setTimeout(function () {
+                 ChatRoomSetLastChatRoom("");
+                 ServerSend("ChatRoomLeave", "");
+                 CommonSetScreen("Online", "ChatSearch");
+                 ChatRoomClearAllElements();
+                 OnlineGameName = "";                                  
+             }, 15000); 
+         }    
+    }])
 
     CommandCombine([{
         Tag: 'solidity',
