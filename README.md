@@ -37,3 +37,5 @@ Changes for future version
 * Added support for the FBC feature OOC with Ctrl+Enter
 * Added another case of forced normal talk in chat rooms (no whisper mode) when using : instead of * or /me
 * Fixed a bug in the Moaner: it will no more activate features defined as ON when it is itself OFF
+* Restructured the code with a section for main variables and settings (UBC and The Moaner)
+* Added a timer in the Tampermonkey loader
