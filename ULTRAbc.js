@@ -8623,7 +8623,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.3:\n" +
 		    "- Integrated the BC-Diaper-Wetter script.\n" +
-		    "- New commands: exitmode and slowleave.\n" +
+		    "- New commands: diaper, exitmode and slowleave.\n" +
 		    "- Improved the OUT button, you can leave in fast or slow mode according your choice with /exitmode.\n" +
 		    "- Updated and improved the bg1 command.\n" +
 		    "- Added support for FBC feature OOC with Ctrl+Enter.\n" +
