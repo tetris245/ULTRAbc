@@ -31,8 +31,8 @@ After installation, refresh your BC page and relog.
 Changes for future version
 
 * Integrated the BC-Diaper-Wetter script created by Firefly - Thanks for the permission :)
-* Improved the OUT button in the chat rooms, you can leave in fast or slow mode according your choice set by using the new exitmode command
 * New commands: exitmode and slowleave 
+* Improved the OUT button in the chat rooms, you can leave in fast or slow mode according your choice with the exitmode command
 * Updated and improved the bg1 command
 * Added support for the FBC feature OOC with Ctrl+Enter
 * Added another case of forced normal talk in chat rooms (no whisper mode) when using : instead of * or /me
