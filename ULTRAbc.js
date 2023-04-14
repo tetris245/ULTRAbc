@@ -2591,30 +2591,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: ": adds hidden backgrounds to the admin selection screen.",
         Action: () => {
             BackgroundsList.push({
-                Name: "HouseBasement1",
-                Tag: [BackgroundsTagIndoor]
-            });  
-            BackgroundsList.push({
-                Name: "HouseBasement2",
-                Tag: [BackgroundsTagIndoor]
-            }); 
-            BackgroundsList.push({
-                Name: "HouseBasement3",
-                Tag: [BackgroundsTagIndoor]
-            }); 
-            BackgroundsList.push({
-                Name: "HouseInterior1",
-                Tag: [BackgroundsTagIndoor]
-            }); 
-            BackgroundsList.push({
-                Name: "HouseInterior2",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "HouseInterior3",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
                 Name: "HypnoSpiral2",
                 Tag: [BackgroundsTagIndoor]
             });
@@ -8625,7 +8601,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		    "- Integrated the BC-Diaper-Wetter script.\n" +
 		    "- New commands: diaper, exitmode and slowleave.\n" +
 		    "- Improved the OUT button, you can leave in fast or slow mode according your choice with /exitmode.\n" +
-		    "- Updated and improved the bg1 command.\n" +
+		    "- Improved the bg1 command.\n" +
 		    "- Added support for FBC feature OOC with Ctrl+Enter.\n" +
 		    "- Added support for using : instead of * or /me.\n" +
                     "- Fixed a bug in the Moaner: it will no more activate features defined as ON when it is itself OFF.\n" +
