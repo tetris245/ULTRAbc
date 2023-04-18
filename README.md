@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 1.2
+Most recent version: 1.3
 
 ## Installation 
 
@@ -19,7 +19,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version1.2.zip file on the Releases page
+1. Download the ULTRAbc-version1.3.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -30,12 +30,4 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-* Integrated the BC-Diaper-Wetter script created by Firefly - Thanks for the permission :)
-* New commands: diaper, exitmode and slowleave 
-* Improved the OUT button in the chat rooms, you can leave in fast or slow mode according your choice with the exitmode command
-* Improved the bg1 command
-* Added support for the FBC feature OOC with Ctrl+Enter
-* Added another case of forced normal talk in chat rooms (no whisper mode) when using : instead of * or /me
-* Fixed a bug in the Moaner: it will no more activate features defined as ON when it is itself OFF
-* Restructured the code with a section for main variables and settings (UBC and The Moaner)
-* Added a timer in the Tampermonkey loader (thanks to Aries!)
+(..)
