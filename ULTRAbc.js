@@ -3270,8 +3270,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 CommonSetScreen("Character", "OnlineProfile");
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -3414,8 +3413,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -3682,8 +3680,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if ((targetname === null) && (checkForDiaper("Panties"))) {
                         refreshDiaper("panties");
                     } else {
-                        var targetfinder = new RegExp('^' + targetname + '', 'i');
-                        var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                        var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                         if (target[0] == null) {
                             var targetnumber = parseInt(targetname);
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -3705,8 +3702,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if ((targetname === null) && (checkForDiaper("ItemPelvis"))) {
                         refreshDiaper("chastity");
                     } else {
-                        var targetfinder = new RegExp('^' + targetname + '', 'i');
-                        var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                        var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                         if (target[0] == null) {
                             var targetnumber = parseInt(targetname);
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -3728,8 +3724,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if ((targetname === null) && (checkForDiaper("Panties")) && (checkForDiaper("ItemPelvis"))) {
                         refreshDiaper("both");
                     } else {
-                        var targetfinder = new RegExp('^' + targetname + '', 'i');
-                        var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                        var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                         if (target[0] == null) {
                             var targetnumber = parseInt(targetname);
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -4325,8 +4320,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     });
                     ChatRoomCharacterUpdate(Player);
                 } else {
-                    var targetfinder = new RegExp('^' + targetname + '', 'i');
-                    var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                     if (target[0] == null) {
                         var targetnumber = parseInt(targetname);
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -4959,8 +4953,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var removeitem = stringLock2[6];
                 }
                 var targetname = stringLock2[0];
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -5752,8 +5745,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -5941,8 +5933,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -6520,8 +6511,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         CharacterRefresh(Player);
                     }
                 } else {
-                    var targetfinder = new RegExp('^' + targetname + '', 'i');
-                    var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                     if (target[0] == null) {
                         var targetnumber = parseInt(targetname);
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -6891,8 +6881,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -7076,8 +7065,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -7599,8 +7587,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -8379,8 +8366,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -8673,8 +8659,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -8724,8 +8709,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var stringUnlock2 = stringUnlock1.split(/[ ,]+/);
                 var lk = stringUnlock2[1];
                 var targetname = stringUnlock2[0];
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -8928,8 +8912,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase()))); 
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -9007,8 +8990,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: "(target): sets whisper target.",
         Action: (args) => {
             var targetname = args;
-            var targetfinder = new RegExp('^' + targetname + '', 'i');
-            var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
             if (target[0] == null) {
                 var targetnumber = parseInt(targetname);
                 target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -9028,8 +9010,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 DialogChangeClothes();
             } else {
                 var targetname = args;
-                var targetfinder = new RegExp('^' + targetname + '', 'i');
-                var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
