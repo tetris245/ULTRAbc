@@ -30,4 +30,4 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-(..)
+* Improved the target search in all commands with target (thanks to Sidsel!)
