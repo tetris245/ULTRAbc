@@ -4853,20 +4853,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8\n" +
+                    "/lock (target) (locktype) for locks 1 to 8 + lock 17\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
                     "/lock (target) (locktype) (code) for lock 10\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
-                    "/lock (target) (locktype) (minutes) (h) (i) (r) for locks 13 to 15\n" +
+                    "/lock (target) (locktype) (minutes) (h) (i) (r) for locks 13 to 15 + lock 18\n" +
                     "/lock (target) (locktype) (password) (minutes) (h) (i) (r) for lock 16\n" +
                     " \n" +
-                    "The target always needs to be specified.\n" +
-                    "The lock types:\n" +
+                    "The target always needs to be specified. Lock types:\n" +
                     "1 Metal - 2 Exclusive - 3 Intricate - 4 High Security\n" +
                     "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password\n" +
+		    "17 Best Friend - 18 Best Friend Timer\n" +
+		    "BCTweaks is required for locks 17 and 18\n" +
                     "Use <b>/lock par</b> for info about other parameters</p>"
                 );
             } else if (args === "par") {
@@ -4875,7 +4876,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "code must be between 0 and 9999.\n" +
                     "password is limited to 8 characters.\n" +
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
-                    "10080 minutes for locks 14 and 15.\n" +
+                    "10080 minutes for locks 14, 15 and 18\n" +
                     " \n" +
                     "Optional parameters:\n" +
                     "h to hide the timer,\n" +
@@ -4963,7 +4964,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var hidetimer = stringLock2[4];
                     var enableinput = stringLock2[5];
                     var removeitem = stringLock2[6];
-                }
+                } else if (lk == 17) {
+                    Lock = "Best Friend Padlock";                     
+                } else if (lk == 18) {
+                    Lock = "Best Friend Timer Padlock";
+                    if (stringLock2[2] == null) {
+                        var minutes = 1;
+                    } else {
+                        var minutes = stringLock2[2];
+                    }
+                    if (minutes > 10080) {
+                        time = 100800;
+                    } else {
+                        time = (minutes + 5);
+                    }
+                    var hidetimer = stringLock2[3];
+                    var enableinput = stringLock2[4];
+                    var removeitem = stringLock2[5];   
+                } 
                 var targetname = stringLock2[0];
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
