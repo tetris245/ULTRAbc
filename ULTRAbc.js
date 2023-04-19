@@ -5366,7 +5366,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 InventoryGet(target[0], "ItemNeck").Property.ShowTimer = false;
                             }
                             if (enableinput == "i") {
-                                InventoryGet(target[0], "ItemNek").Property.EnableRandomInput = true;
+                                InventoryGet(target[0], "ItemNeck").Property.EnableRandomInput = true;
                             }
                             if ((code != null) && (code > -1) && (code < 10000)) {
                                 InventoryGet(target[0], "ItemNeck").Property.CombinationNumber = code;
