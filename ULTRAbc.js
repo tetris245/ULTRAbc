@@ -4914,12 +4914,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 } else if (lk == 11) {
                     Lock = "SafewordPadlock";
                     var PS = /^[A-Z]+$/;
-                    var pw = stringLock2[2].toUpperCase();
+                    if (stringLock2[2] != null) {
+                        var pw = stringLock2[2].toUpperCase();
+                    } else {
+                        var pw = "PASSWORD";
+                    }
                     var removeitem = stringLock2[3];
                 } else if (lk == 12) {
                     Lock = "PasswordPadlock";
                     var PS = /^[A-Z]+$/;
-                    var pw = stringLock2[2].toUpperCase();
+                    if (stringLock2[2] != null) {
+                        var pw = stringLock2[2].toUpperCase();
+                    } else {
+                        var pw = "PASSWORD";
+                    }
                     var removeitem = stringLock2[3];
                 } else if (lk == 13) {
                     Lock = "MistressTimerPadlock";
@@ -4945,7 +4953,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 } else if (lk == 16) {
                     Lock = "TimerPasswordPadlock";
                     var PS = /^[A-Z]+$/;
-                    var pw = stringLock2[2].toUpperCase();
+                    if (stringLock2[2] != null) {
+                        var pw = stringLock2[2].toUpperCase();
+                    } else {
+                        var pw = "PASSWORD";
+                    }
                     var minutes = stringLock2[3];
                     time = (minutes - 5);
                     var hidetimer = stringLock2[4];
