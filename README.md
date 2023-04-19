@@ -31,3 +31,4 @@ After installation, refresh your BC page and relog.
 Changes for future version
 
 * Improved the target search in all commands with target (thanks to Sidsel!)
+* Fixed a bug in the lock command when a password is required and not provided
