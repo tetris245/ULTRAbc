@@ -4231,39 +4231,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'hiddenmessages',
-        Description: ": toggles on show hidden messages made by game.",
-        Action: () => {
-            if (this.HiddenMessagesOn == undefined || this.HiddenMessagesOn == false) {
-                HiddenMessagesOn = true;
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Hidden messages revealed.</p>"
-                );
-                (typeof oldChatRoomMessage !== 'undefined') && (ChatRoomMessage = oldChatRoomMessage); //reset
-                newChatRoomMessage = function(data) {
-                    if (data.Type == "Hidden") {
-                        ChatRoomMessage({
-                            Content: "HiddenMessage:" + data.Content,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                    }
-                    oldChatRoomMessage(data);
-                }
-                window.oldChatRoomMessage = ChatRoomMessage;
-                window.ChatRoomMessage = newChatRoomMessage;
-            } else {
-                HiddenMessagesOn = false;
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Hidden messages hidden.</p>"
-                );
-                (typeof oldChatRoomMessage !== 'undefined') && (ChatRoomMessage = oldChatRoomMessage); //reset
-                newChatRoomMessage = function(data) {}
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'itemcolor',
         Description: "(colorcode) (target): changes color on all current bindings.",
         Action: (args) => {
@@ -7961,7 +7928,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. Using will give more info.\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
-                    "<b>/hiddenmessages</b> = toggles on show hidden messages made by game.\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/search</b> (lobby) = opens room search for 15 seconds in specified lobby. *\n" +
                     "<b>/theme</b> (number) = changes chat color theme after automatic relog. Number must be between 0 and 3.</p>"
