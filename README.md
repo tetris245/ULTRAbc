@@ -31,7 +31,7 @@ After installation, refresh your BC page and relog.
 Changes for future version
 
 * Updated and improved the lock command:
-  - Addded support for the Best Friend and Best Friend Timer locks, provided by BCTweaks
+  - Added support for the Best Friend and Best Friend Timer locks, provided by BCTweaks
   - Optimised and simpified the code
   - Fixed a few minor bugs
 * Updated the help for the unlock command
