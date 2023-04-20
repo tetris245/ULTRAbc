@@ -8163,7 +8163,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
-                    "15 Owner Timer - 16 Timer Password</p>"
+                    "15 Owner Timer - 16 Timer Password\n" +
+                    "Best Friend locks and Best Friend Timer locks, \n" +
+		    "provided by BCTweaks, are removed as type 4.</p>"
                 );
             } else {
                 var stringUnlock1 = args;
