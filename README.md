@@ -35,5 +35,6 @@ Changes for future version
   - Optimised and simplified the code
   - Fixed a few minor bugs
 * Updated the help for the unlock command
+* Improved the whisper command: you can now add the message you want to whisper to the specified target
 * Improved the target search in all commands with target (thanks to Sidsel!)
 * Removed the not very useful hiddenmessages command
