@@ -4247,7 +4247,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if (target[0] != null) {
+                if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true))) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
