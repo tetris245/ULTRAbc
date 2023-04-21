@@ -4229,6 +4229,52 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
+	
+    CommandCombine([{
+        Tag: 'hint',
+        Description: "(target) (hint): adds a hint to current locks with passwords.",
+        Action: (_, command, args) => {
+            var [targetname] = args;
+            if (!targetname) {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The hint command must be followed by a target and the hint you want to add to locks with password.<p>\n"
+                );
+            } else {
+                var [, , ...message] = command.split(" ");
+                var hint = message?.join(" ");
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if (target[0] != null) {
+                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                        tgpname = target[0].Name;
+                    } else {
+                        tgpname = target[0].Nickname;
+                    }
+                    if (hint != "") {
+                        for (let A = 0; A   < target[0].Appearance.length; A++)
+                            if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) { 
+                                if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
+                                    target[0].Appearance[A].Property.Hint = hint;
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "A hint has been added to " + tgpname + " locks with password."
+                                        }]
+                                    });
+                                }
+                            }
+                        ChatRoomCharacterUpdate(Player);
+                        ChatRoomSetTarget(null);
+                    }
+                }
+            }
+        }
+    }])
 
     CommandCombine([{
         Tag: 'itemcolor',
@@ -7894,6 +7940,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "bondage") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bondage commands:\n" +
+		    "<b>/hint</b> (target) (hint) = adds a hint  to all current locks with password.\n" +
                     "<b>/itemcolor</b> (colorcode) (target) = changes color on all current bindings. Color code must be in the format #000000\n" +
                     "<b>/lock</b> = adds locks on all lockable items. Use /help lock for more info.\n" +
                     "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
