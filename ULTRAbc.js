@@ -8511,7 +8511,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomTargetMemberNumber = target[0].MemberNumber;
                     if (msg != "") {
                         ServerSend("ChatRoomChat", {
-                            "Content": msg,
+                            "Content": msg4,
                             "Type": "Whisper",
                             "Target": ChatRoomTargetMemberNumber
                         });
@@ -8521,7 +8521,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 break;
                             }
                         ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + msg,
+                            Content: "Whisper to " + TargetName + ": " + msg4,
                             Type: "LocalMessage",
                             Sender: Player.MemberNumber
                         });
