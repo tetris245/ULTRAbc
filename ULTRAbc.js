@@ -8033,7 +8033,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/s4</b> (stuffhere) = speaks once in total stuttering mode.\n" +
                     "<b>/stutter</b> (stuttermode) = forces a specific stuttering mode. *\n" +
 		    "<b>/talk</b> (talkmode) = forces a specific talk mode. *\n" +
-                    "<b>/whisper</b> (target) = sets whisper target.</p>"
+                    "<b>/whisper</b> (target) (message): sends whisper to specified target.</p>"
                 );
             }
             if (args === "visual") {
@@ -8416,9 +8416,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'whisper',
-        Description: "(target): sets whisper target.",
-        Action: (args) => {
-            var targetname = args;
+        Description: "(target) (message): sends whisper to specified target.",
+        Action: (_, command, args) => {
+            var [targetname] = args;
+            var [, , ...message] = command.split(" ");
+            var msg = message?.join(" ");
             var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
             if (target[0] == null) {
                 var targetnumber = parseInt(targetname);
@@ -8426,6 +8428,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (target[0] != null) {
                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                if (msg != "") {
+                    ServerSend("ChatRoomChat", {
+                        "Content": msg,
+                        "Type": "Whisper",
+                        "Target": ChatRoomTargetMemberNumber
+                    });
+                    for (let C = 0; C < ChatRoomCharacter.length; C++)
+                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                            TargetName = ChatRoomCharacter[C].Name;
+                            break;
+                        }
+                    ChatRoomMessage({
+                        Content: "Whisper to " + TargetName + ": " + msg,
+                        Type: "LocalMessage",
+                        Sender: Player.MemberNumber
+                    });
+                document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                }
             }
         }
     }])
