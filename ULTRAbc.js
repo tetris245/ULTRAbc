@@ -4232,7 +4232,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	
     CommandCombine([{
         Tag: 'hint',
-        Description: "(target) (hint): adds a hint to current locks with passwords.",
+        Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
         Action: (_, command, args) => {
             var [targetname] = args;
             if (!targetname) {
@@ -7940,7 +7940,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "bondage") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bondage commands:\n" +
-		    "<b>/hint</b> (target) (hint) = adds a hint  to all current locks with password.\n" +
+		    "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
                     "<b>/itemcolor</b> (colorcode) (target) = changes color on all current bindings. Color code must be in the format #000000\n" +
                     "<b>/lock</b> = adds locks on all lockable items. Use /help lock for more info.\n" +
                     "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
