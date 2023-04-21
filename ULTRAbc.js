@@ -8479,6 +8479,35 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
+		    ElementValue("InputChat", msg);
+                    if (this.BabyTalkOn == true) {
+                        var msg2 = SpeechBabyTalk({
+                            Effect: ["RegressedTalk"]
+                        }, msg);  
+                    } else if (this.GagTalkOn == true) {
+                        var msg2 = SpeechGarbleByGagLevel(gl, msg);   
+                    } else {
+                        var msg2 = msg;
+                    }
+                    ElementValue("InputChat", msg.replace(msg, msg2));
+                    if (this.Stutter1On == true) {
+                        var msg3 = StutterTalk1(msg2);
+                    } else if (this.Stutter2On == true) {
+                        var msg3 = StutterTalk2(msg2);
+                    } else if (this.Stutter3On == true) {
+                        var msg3 = StutterTalk3(msg2);
+                    } else if (this.Stutter4On == true) {
+                        var msg3 = StutterTalk4(msg2);
+                    } else {
+                        var msg3 = msg2;
+                    }
+                    ElementValue("InputChat", msg2.replace(msg2, msg3)); 
+                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                        var msg4 = M_MOANER_applyMoanToMsg(Player, msg3);
+                    } else {
+                        var msg4 = msg3;
+                    }                   
+                    ElementValue("InputChat", msg3.replace(msg3, msg4));
                     ChatRoomTargetMemberNumber = target[0].MemberNumber;
                     if (msg != "") {
                         ServerSend("ChatRoomChat", {
