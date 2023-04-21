@@ -30,7 +30,7 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-* New command: hint to add a hint to current locks with passwords on specified target
+* New command: hint to add or change a hint for current locks with password on specified target
 * Updated and improved the lock command:
   - Added support for the Best Friend and Best Friend Timer locks, provided by BCTweaks
   - Optimised and simplified the code
