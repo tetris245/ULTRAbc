@@ -31,6 +31,7 @@ After installation, refresh your BC page and relog.
 Changes for future version
 
 * New commands: 
+  - code to reveal codes used for current combination locks on specified target
   - hint to add or change a hint for current locks with password on specified target
   - pw to reveal passwords used for current locks with password on specified target
 * Updated and improved the lock command:
