@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 1.3
+// @version 1.4
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -20,7 +20,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 //SDKstuff end
 
 (async function() {
-    const ver = "1.3";
+    const ver = "1.4";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -117,7 +117,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
             Player.RestrictionSettings.BypassNPCPunishments = true;
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.3: Ready, type <b>/uhelp</b> for general menu.\n" +
+                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.4: Ready, type <b>/uhelp</b> for general menu.\n" +
                 "Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
                 "Note: NPC punishments are disabled.\n" +
                 "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
@@ -494,7 +494,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 120, 500, 60, "ULTRAbc 1.3 Ready!", "Pink", "Black", "");
+            DrawButton(750, 120, 500, 60, "ULTRAbc 1.4 Ready!", "Pink", "Black", "");
             next(args);
         });
     }
@@ -8126,15 +8126,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "new") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.3:\n" +
-		    "- Integrated the BC-Diaper-Wetter script.\n" +
-		    "- New commands: diaper, exitmode and slowleave.\n" +
-		    "- Improved the OUT button, you can leave in fast or slow mode according your choice with /exitmode.\n" +
-		    "- Improved the bg1 command.\n" +
-		    "- Added support for FBC feature OOC with Ctrl+Enter.\n" +
-		    "- Added support for using : instead of * or /me.\n" +
-                    "- Fixed a bug in the Moaner: it will no more activate features defined as ON when it is itself OFF.\n" +
-		    "- Restructured the code and added a timer in the loader.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.4:\n" +
+		    "- Added support in the lock command for the Best Friend and Best Friend Timer locks, provided by BCTweaks.\n" +
+		    "- Added 3 commands related to locks: code, hint, pw.\n" +
+		    "- Updated the help for the unlock command.\n" +
+		    "- Improved the whisper command: you can now add the message you want to whisper to the specified target.\n" +
+		    "- Improved the target search in all commands with target.\n" +
+		    "- Removed the not very useful hiddenmessages command.\n" +
+                    "- Fixed bug in jump option of pose2 command.\n" +
+		    "- Fixed a grammatical issue in several commands with target.</p>"
                 ); 
             }
             if (args === "talking") {
