@@ -3439,6 +3439,40 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
+	
+    CommandCombine([{
+        Tag: 'code',
+        Description: "(target) reveals codes used on current combination locks.",
+        Action: (args) => {
+            if (args === "") {
+                for (let A = 0; A < Player.Appearance.length; A++)
+                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
+                        if (Player.Appearance[A].Property.LockedBy == "CombinationPadlock") {        
+                            var asset = Player.Appearance[A].Asset.Description; 
+                            var code = Player.Appearance[A].Property.CombinationNumber; 
+                            ChatRoomSendLocal("" + asset + " = " + code + "");
+                        }
+                    }
+            } else {
+                var targetname = args;
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if (target[0] != null) {
+                    for (let A = 0; A < target[0].Appearance.length; A++)
+                        if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
+                            if (target[0].Appearance[A].Property.LockedBy == "CombinationPadlock") {        
+                                var asset = target[0].Appearance[A].Asset.Description;
+                                var code = target[0].Appearance[A].Property.CombinationNumber; 
+                                ChatRoomSendLocal( "" + asset + " = " + code + "");         
+                            }
+                        }
+                }
+            }
+        }
+    }])
 
     CommandCombine([{
         Tag: 'college',
@@ -4254,7 +4288,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         tgpname = target[0].Nickname;
                     }
                     if (hint != "") {
-                        for (let A = 0; A   < target[0].Appearance.length; A++)
+                        for (let A = 0; A < target[0].Appearance.length; A++)
                             if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) { 
                                 if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
                                     target[0].Appearance[A].Property.Hint = hint;
@@ -6335,7 +6369,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: "(target) reveals passwords used on current locks with password.",
         Action: (args) => {
             if (args === "") {
-                for (let A = 0; A   < Player.Appearance.length; A++)
+                for (let A = 0; A < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
 			if ((Player.Appearance[A].Property.LockedBy == "SafewordPadlock") || (Player.Appearance[A].Property.LockedBy == "PasswordPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
                             var asset = Player.Appearance[A].Asset.Description; 
@@ -6351,7 +6385,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
-                    for (let A = 0; A   < target[0].Appearance.length; A++)
+                    for (let A = 0; A < target[0].Appearance.length; A++)
                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
 			    if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
                                 var asset = target[0].Appearance[A].Asset.Description;
@@ -8029,6 +8063,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Escape commands:\n" +
                     "<b>/boost</b> = boosts skills, similar to maid quarters drink.\n" +
+		    "<b>/code</b> (target) = reveals codes for current combination locks.\n" +
                     "<b>/leave</b> = leaves room, even if prevented.\n" +
 		    "<b>/pw</b> (target) = reveals passwords for current locks with password.\n" +
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
