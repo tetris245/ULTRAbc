@@ -6337,10 +6337,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "") {
                 for (let A = 0; A   < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
-                        var asset = Player.Appearance[A].Asset.Description; 
-                        var pw = Player.Appearance[A].Property.Password; 
-                        ChatRoomSendLocal("" + asset + " = " + pw + "");
-                    }
+			if ((Player.Appearance[A].Property.LockedBy == "SafewordPadlock") || (Player.Appearance[A].Property.LockedBy == "PasswordPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
+                            var asset = Player.Appearance[A].Asset.Description; 
+                            var pw = Player.Appearance[A].Property.Password; 
+                            ChatRoomSendLocal("" + asset + " = " + pw + "");
+                        }
+		    }    
             } else {
                 var targetname = args;
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -6351,10 +6353,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (target[0] != null) {
                     for (let A = 0; A   < target[0].Appearance.length; A++)
                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
-                            var asset = target[0].Appearance[A].Asset.Description;
-                            var pw = target[0].Appearance[A].Property.Password; 
-                            ChatRoomSendLocal( "" + asset + " = " + pw + "");
-                        }
+			    if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
+                                var asset = target[0].Appearance[A].Asset.Description;
+                                var pw = target[0].Appearance[A].Property.Password; 
+                                ChatRoomSendLocal( "" + asset + " = " + pw + "");
+                            }
+			}	
                 }
             }
         }
