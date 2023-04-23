@@ -42,4 +42,5 @@ Changes for future version
 * Improved the whisper command: you can now add the message you want to whisper to the specified target
 * Improved the target search in all commands with target (thanks to Sidsel!)
 * Removed the not very useful hiddenmessages command
+* Fixed bug in jump option of pose2 command
 * Fixed a grammatical issue in several commands with target
