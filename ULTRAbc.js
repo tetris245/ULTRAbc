@@ -5749,7 +5749,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         (Player.ActivePose != null) &&
                         ((CharacterCanChangeToPose(Player, null)) || (ChatRoomCanAttemptStand(Player) == true))) {
                         CharacterSetActivePose(Player, null);
-                        delete InventoryGet(Player, 'Emoticon').Property.OverrideHeight;
+                        //delete InventoryGet(Player, 'Emoticon').Property.OverrideHeight;
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
                         ServerSend("ChatRoomChat", {
@@ -6014,7 +6014,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         // reset	 
                     } else if (pose == "reset") {
                         CharacterSetActivePose(Player, null);
-                        delete InventoryGet(Player, 'Emoticon').Property.OverrideHeight;
+                        //delete InventoryGet(Player, 'Emoticon').Property.OverrideHeight;
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
                     }
