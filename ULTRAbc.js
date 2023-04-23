@@ -165,7 +165,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear all bindings and toys on " + tmpname + " body."
+                            Text: "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                         }]
                     });
                     CharacterReleaseTotal(Player);
@@ -3406,7 +3406,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers put random clothes on " + tmpname + " body."
+                        Text: "Magical lasers put random clothes on " + tmpname + "'s body."
                     }]
                 });
                 CharacterAppearanceFullRandom(Player, true);
@@ -3429,7 +3429,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers put random clothes on " + tgpname + " body."
+                            Text: "Magical lasers put random clothes on " + tgpname + "'s body."
                         }]
                     });
                     CharacterAppearanceFullRandom(target[0], true);
@@ -4362,7 +4362,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "New colors are used on " + tmpname + " bindings."
+                            Text: "New colors are used on " + tmpname + "'s bindings."
                         }]
                     });
                     ChatRoomCharacterUpdate(Player);
@@ -4411,7 +4411,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "New colors are used on " + tgpname + " bindings."
+                                Text: "New colors are used on " + tgpname + "'s bindings."
                             }]
                         });
                         ChatRoomCharacterUpdate(target[0]);
@@ -4873,7 +4873,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "" + tmpname + " keys are now safe in the vault for " + hours + " hours."
+                        Text: "" + tmpname + "'s keys are now safe in the vault for " + hours + " hours."
                     }]
                 });
                 CellDepositKeys(hours);
@@ -5246,7 +5246,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make disappear the clothes on " + tmpname + " body."
+                        Text: "Magical lasers make disappear the clothes on " + tmpname + "'s body."
                     }]
                 });
                 CharacterNaked(Player);
@@ -5269,7 +5269,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear the clothes on " + tgpname + " body."
+                            Text: "Magical lasers make disappear the clothes on " + tgpname + "'s body."
                         }]
                     });
                     CharacterNaked(target[0]);
@@ -6413,7 +6413,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers apply random clothes and bindings on " + tmpname + " body."
+                        Text: "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
                     }]
                 });
                 CharacterNaked(Player);
@@ -6439,7 +6439,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers apply random clothes and bindings on " + tgpname + " body."
+                            Text: "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
                         }]
                     });
                     CharacterNaked(target[0]);
@@ -6600,7 +6600,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers apply random restraints on " + tmpname + " body."
+                        Text: "Magical lasers apply random restraints on " + tmpname + "'s body."
                     }]
                 });
                 CharacterFullRandomRestrain(Player, "ALL");
@@ -6623,7 +6623,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers apply random restraints on " + tgpname + " body."
+                            Text: "Magical lasers apply random restraints on " + tgpname + "'s body."
                         }]
                     });
                     CharacterFullRandomRestrain(target[0], "ALL");
@@ -7901,7 +7901,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make disappear all bindings and toys on " + tmpname + " body."
+                        Text: "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                     }]
                 });
                 CharacterReleaseTotal(Player);
@@ -7924,7 +7924,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear all bindings and toys on " + tgpname + " body."
+                            Text: "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
                         }]
                     });
                     CharacterReleaseTotal(target[0]);
@@ -8450,7 +8450,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make disappear the bindings on " + tmpname + " body."
+                        Text: "Magical lasers make disappear the bindings on " + tmpname + "'s body."
                     }]
                 });
                 CharacterRelease(Player);
@@ -8473,7 +8473,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear the bindings on " + tgpname + " body."
+                            Text: "Magical lasers make disappear the bindings on " + tgpname + "'s body."
                         }]
                     });
                     CharacterRelease(target[0]);
