@@ -5749,7 +5749,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         (Player.ActivePose != null) &&
                         ((CharacterCanChangeToPose(Player, null)) || (ChatRoomCanAttemptStand(Player) == true))) {
                         CharacterSetActivePose(Player, null);
-                        //delete InventoryGet(Player, 'Emoticon').Property.OverrideHeight;
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
                         ServerSend("ChatRoomChat", {
@@ -5796,7 +5795,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 Text: "" + tmpname + " jumps with joy."
                             }]
                         });
+                        CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         CharacterSetActivePose(Player, null);
+                        ChatRoomCharacterUpdate(Player);
                         setTimeout(function() {
                             InventoryGet(Player, "Emoticon").Property.OverrideHeight = {
                                 Height: 150
@@ -6014,7 +6015,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         // reset	 
                     } else if (pose == "reset") {
                         CharacterSetActivePose(Player, null);
-                        //delete InventoryGet(Player, 'Emoticon').Property.OverrideHeight;
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
                     }
