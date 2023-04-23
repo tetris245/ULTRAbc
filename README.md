@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 1.3
+Most recent version: 1.4
 
 ## Installation 
 
@@ -19,7 +19,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version1.3.zip file on the Releases page
+1. Download the ULTRAbc-version1.4.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -30,17 +30,4 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-* New commands: 
-  - code to reveal codes used for current combination locks on specified target
-  - hint to add or change a hint for current locks with password on specified target
-  - pw to reveal passwords used for current locks with password on specified target
-* Updated and improved the lock command:
-  - Added support for the Best Friend and Best Friend Timer locks, provided by BCTweaks
-  - Optimised and simplified the code
-  - Fixed a few minor bugs
-* Updated the help for the unlock command
-* Improved the whisper command: you can now add the message you want to whisper to the specified target
-* Improved the target search in all commands with target (thanks to Sidsel!)
-* Removed the not very useful hiddenmessages command
-* Fixed bug in jump option of pose2 command
-* Fixed a grammatical issue in several commands with target
+(..)
