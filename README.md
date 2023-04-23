@@ -30,12 +30,14 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-* New command: hint to add or change a hint for current locks with password on specified target
+* New commands: 
+  - hint to add or change a hint for current locks with password on specified target
+  - pw to reveal passwords used for current locks with password on specified target
 * Updated and improved the lock command:
   - Added support for the Best Friend and Best Friend Timer locks, provided by BCTweaks
   - Optimised and simplified the code
   - Fixed a few minor bugs
 * Updated the help for the unlock command
-* Improved the whisper command: you can now add the message you want to whisper to the specified target, it can be altered like any other whisper according your current settings with the Moaner, the stutter command and the talk command 
+* Improved the whisper command: you can now add the message you want to whisper to the specified target
 * Improved the target search in all commands with target (thanks to Sidsel!)
 * Removed the not very useful hiddenmessages command
