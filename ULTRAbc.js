@@ -4297,7 +4297,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                         Type: "Action",
                                         Dictionary: [{
                                             Tag: "Beep",
-                                            Text: "A hint has been added to " + tgpname + " locks with password."
+                                            Text: "A hint has been added to " + tgpname + "'s locks with password."
                                         }]
                                     });
                                 }
@@ -5046,7 +5046,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make appear locks on " + tgpname + " body."
+                            Text: "Magical lasers make appear locks on " + tgpname + "'s body."
                         }]
                     });
                     mn = Player.MemberNumber;
@@ -8270,7 +8270,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear locks on " + tgpname + " body."
+                            Text: "Magical lasers make disappear locks on " + tgpname + "'s body."
                         }]
                     });
                     if (lk == null) {
