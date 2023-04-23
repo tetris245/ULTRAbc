@@ -8067,11 +8067,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/leave</b> = leaves room, even if prevented.\n" +
 		    "<b>/pw</b> (target) = reveals passwords for current locks with password.\n" +
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
-                    "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it. Will warn first.\n" +
+                    "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
                     "<b>/safeworditem</b> = removes specific item. More info when used.\n" +
                     "<b>/solidity</b> (value) = changes the solidity of most current bindings. Use low values to escape! Value 1 allows to escape special devices.\n" +
                     "<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n" +
-                    "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. More info with /help unl.\n" +
+                    "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. More info when used.\n" +
                     "<b>/untie</b> (target) = removes all bindings.</p>"
                 );
             }
