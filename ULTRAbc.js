@@ -6329,6 +6329,36 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             PandoraPunishmentStart();
         }
     }])
+	
+    CommandCombine([{
+        Tag: 'pw',
+        Description: "(target) reveals passwords used on current locks with password.",
+        Action: (args) => {
+            if (args === "") {
+                for (let A = 0; A   < Player.Appearance.length; A++)
+                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
+                        var asset = Player.Appearance[A].Asset.Description; 
+                        var pw = Player.Appearance[A].Property.Password; 
+                        ChatRoomSendLocal("" + asset + " = " + pw + "");
+                    }
+            } else {
+                var targetname = args;
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if (target[0] != null) {
+                    for (let A = 0; A   < target[0].Appearance.length; A++)
+                        if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
+                            var asset = target[0].Appearance[A].Asset.Description;
+                            var pw = target[0].Appearance[A].Property.Password; 
+                            ChatRoomSendLocal( "" + asset + " = " + pw + "");
+                        }
+                }
+            }
+        }
+    }])
 
     CommandCombine([{
         Tag: 'randomize',
@@ -7995,8 +8025,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Escape commands:\n" +
                     "<b>/boost</b> = boosts skills, similar to maid quarters drink.\n" +
-                    "<b>/frlist</b> = gives access to friendlist with clickable links to other rooms during 15 seconds.\n" +
                     "<b>/leave</b> = leaves room, even if prevented.\n" +
+		    "<b>/pw</b> (target) = reveals passwords for current locks with password.\n" +
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
                     "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it. Will warn first.\n" +
                     "<b>/safeworditem</b> = removes specific item. More info when used.\n" +
