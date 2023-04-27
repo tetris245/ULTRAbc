@@ -35,6 +35,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let profileName;
     let SosbuttonsOn;
     let SlowleaveOn;
+    let FullseedOn;
 	
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
@@ -53,6 +54,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             profileName = "default";
 	    SosbuttonsOn = false;
 	    SlowleaveOn = false;
+	    FullseedOn = false;
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -63,6 +65,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             profileName = datas.moanProfile;
 	    SosbuttonsOn = datas.sosbuttons;
 	    SlowleaveOn = datas.slowleave;
+	    FullseedOn = datas.fullseed;
         }
     }
 	
@@ -75,7 +78,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "script": M_MOANER_scriptOn,
             "moanProfile": profileName,
             "sosbuttons": SosbuttonsOn,
-	    "slowleave": SlowleaveOn
+	    "slowleave": SlowleaveOn,
+	    "fullseed": FullseedOn
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -149,6 +153,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
+    ULTRAStruggleLockPickDraw();
 	
     //Chat Room
     async function ULTRAChatRoomClick() {
@@ -490,7 +495,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             next(args);
         });
     }
-   
+	
+    //Lockpicking
+    async function ULTRAStruggleLockPickDraw() {
+        modApi.hookFunction('StruggleLockPickDraw', 4, (args, next) => {	 	
+           if (FullseedOn == true) {	
+               var seed = parseInt(StruggleLockPickOrder.join(""));
+	       var tips = StruggleLockPickOrder.map((a) => {
+                   return true;
+               });
+	       for (let q = 0; q < tips.length; q++) {
+	           var xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
+		   DrawText(`${StruggleLockPickOrder.indexOf(q) + 1}`, xx, 300, "blue");
+	       }
+           }
+           next(args);
+        });
+    }
+  
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
@@ -4084,6 +4106,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     document.getElementById("InputChat").style.display = "inline";
                     document.getElementById("TextAreaChatLog").style.display = "inline";
                 }, 15000);
+            }
+        }
+    }])
+	
+    CommandCombine([{
+        Tag: 'fullseed',
+        Description: ": toggles full solution for intricate and high security locks.",
+        Action: () => {
+            if (FullseedOn == true) {
+                FullseedOn = false;
+		M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Full solution for intricate and high security locks is disabled.</p>"
+                );
+            } else {
+                FullseedOn = true;
+		M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Full solution for intricate and high security locks is enabled.</p>"
+                )  
             }
         }
     }])
@@ -8117,6 +8159,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands:\n" +
 		    "<b>/exitmode</b> = toggles exit mode (fast or slow) for OUT button in chat room.\n" +
+		    "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
 		    "<b>/sosbuttons</b> = toggles emergency buttons in chat room.\n" +
