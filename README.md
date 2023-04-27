@@ -30,4 +30,4 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-(..)
+* New command: fullseed to toggle full solution for intricate and high security locks
