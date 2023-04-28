@@ -8289,8 +8289,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password\n" +
-                    "Best Friend locks and Best Friend Timer locks, \n" +
-		    "provided by BCTweaks, are removed as type 4.</p>"
+                    "17 Best Friend - 18 Best Friend Timer\n" +
+		    "19 Family</p>"
                 );
             } else {
                 var stringUnlock1 = args;
@@ -8319,6 +8319,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if (lk == null) {
                         CharacterReleaseFromLock(target[0], "CombinationPadlock");
                         CharacterReleaseFromLock(target[0], "ExclusivePadlock");
+			CharacterReleaseFromLock(target[0], "FamilyPadlock"); 
                         CharacterReleaseFromLock(target[0], "HighSecurityPadlock");
                         CharacterReleaseFromLock(target[0], "IntricatePadlock");
                         CharacterReleaseFromLock(target[0], "LoversPadlock");
@@ -8340,7 +8341,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else if (lk == 3) {
                         CharacterReleaseFromLock(target[0], "IntricatePadlock");
                     } else if (lk == 4) {
-                        CharacterReleaseFromLock(target[0], "HighSecurityPadlock");
+			  for (let A = 0; A < target[0].Appearance.length; A++)
+		              if ((target[0].Appearance[A].Property != null) 
+				  && (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") 
+				  && (target[0].Appearance[A].Property.Name == undefined))
+			              InventoryUnlock(target[0], target[0].Appearance[A]);
                     } else if (lk == 5) {
                         CharacterReleaseFromLock(target[0], "PandoraPadlock");
                     } else if (lk == 6) {
@@ -8365,11 +8370,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
                     } else if (lk == 16) {
                         CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
+	            } else if (lk == 17) {
+                         for (let A = 0; A < target[0].Appearance.length; A++)
+		             if ((target[0].Appearance[A].Property != null) 
+				 && (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") 
+				 && (target[0].Appearance[A].Property.Name == "Best Friend Padlock"))
+			             InventoryUnlock(target[0], target[0].Appearance[A]);   
+                     } else if (lk == 18) {
+                         for (let A = 0; A < target[0].Appearance.length; A++)
+		             if ((target[0].Appearance[A].Property != null) 
+				 && (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") 
+				 && (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock"))
+			             InventoryUnlock(target[0], target[0].Appearance[A]);
+                    } else if (lk == 19) {
+                        CharacterReleaseFromLock(target[0], "FamilyPadlock");
                     }
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
                 }
-
             }
         }
     }])
