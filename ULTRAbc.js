@@ -5000,7 +5000,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password\n" +
-		    "17 Best Friend - 18 Best Friend Timer\n" +
+		    "17 Best Friend - 18 Best Friend Timer - 19 Family\n" +
 		    "BCTweaks is required for locks 17 and 18\n" +
                     "Use <b>/lock par</b> for info about other parameters</p>"
                 );
@@ -5115,7 +5115,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var hidetimer = stringLock2[3];
                     var enableinput = stringLock2[4];
                     var removeitem = stringLock2[5];   
-                } 
+                } else if (lk == 19) {
+                    Lock = "FamilyPadlock";
+		}	
                 var targetname = stringLock2[0];
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
@@ -8203,6 +8205,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "misc") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands:\n" +
+		    "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
 		    "<b>/exitmode</b> = toggles exit mode (fast or slow) for OUT button in chat room.\n" +
 		    "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
