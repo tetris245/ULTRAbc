@@ -30,7 +30,9 @@ After installation, refresh your BC page and relog.
 
 Changes for future version
 
-* New command: fullseed to toggle full solution for intricate and high security locks
+* New commands: 
+  - autojoin to enable/disable Auto-Join feature to enter a full room as soon as it is possible
+  - fullseed to toggle full solution for intricate and high security locks
 * Improved and updated the unlock command:
   - Added the Family lock
   - Added apart unlocking for Best Friend and Best Friend Timer locks (they are no more handled as High 5ecurity locks)
