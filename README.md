@@ -28,7 +28,7 @@ After installation, refresh your BC page and relog.
 
 ## Credits
 
-Special thanks to KellyLoveyness for creating the original version.
+Special thanks to KellyLoveyness for creating the original version of QAM.
 
 Special thanks to Firefly for giving permission to integrate the BC-Diaper-Wetter script.
 
