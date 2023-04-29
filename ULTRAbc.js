@@ -36,6 +36,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let SosbuttonsOn;
     let SlowleaveOn;
     let FullseedOn;
+    let AutojoinOn;
 	
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
@@ -55,6 +56,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    SosbuttonsOn = false;
 	    SlowleaveOn = false;
 	    FullseedOn = false;
+	    AutojoinOn = false;
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -66,6 +68,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    SosbuttonsOn = datas.sosbuttons;
 	    SlowleaveOn = datas.slowleave;
 	    FullseedOn = datas.fullseed;
+            AutojoinOn = datas.autojoin;
         }
     }
 	
@@ -79,7 +82,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "moanProfile": profileName,
             "sosbuttons": SosbuttonsOn,
 	    "slowleave": SlowleaveOn,
-	    "fullseed": FullseedOn
+	    "fullseed": FullseedOn,
+	    "autojoin": AutojoinOn
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -322,51 +326,72 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Chat Search (including Auto-Join)
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
-            var X = 25;
-            var Y = 25;
-            for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
-                if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
-                    if (this.IsOn == undefined || this.IsOn == false) {
-                        IsOn = true;
-                        var TextArea = document.createElement("TextArea");
-                        TextArea.setAttribute("ID", "AutoJoinAlert");
-                        document.body.appendChild(TextArea);
-                        ElementValue("AutoJoinAlert", "AutoJoining...");
-                        ElementPosition("AutoJoinAlert", 300, 970, 350);
-                    };
-                    if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
-                        var RoomName = ChatSearchResult[C].Name;
-                        AutoJoin = function() {
-                            this.AutoJoinOn = true;
-                            setTimeout(function() {
-                                AutoJoin()
-                            }, 1300);
-                            ChatSearchLastQueryJoinTime = CommonTime();
-                            ChatSearchLastQueryJoin = RoomName;
-                            ChatRoomPlayerCanJoin = true;
-                            ServerSend("ChatRoomJoin", {
-                                Name: RoomName
-                            });
-                            ChatRoomPingLeashedPlayers();
-                            if (CurrentScreen == "ChatRoom") {
-                                AutoJoin = function() {};
-                                this.AutoJoinOn = false;
-                                ElementRemove("AutoJoinAlert");
-                                IsOn = false;
-                            }
-                        };
-                        if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
-                            AutoJoin()
-                        };
+            if (AutojoinOn == true) {
+                var X = 25;
+                var Y = 25;
+                for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
+                    if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
+                        if (this.IsOn == undefined || this.IsOn == false) {
+                            IsOn = true;
+                            var TextArea = document.createElement("TextArea");
+                            TextArea.setAttribute("ID", "AutoJoinAlert");
+                            document.body.appendChild(TextArea);
+                            ElementValue("AutoJoinAlert", "AutoJoining...");
+                            ElementPosition("AutoJoinAlert", 300, 970, 350);
+                        }
+                        if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
+                            var RoomName = ChatSearchResult[C].Name;
+                            AutoJoin = function() {
+                                this.AutoJoinOn = true;
+                                setTimeout(function() {
+                                    AutoJoin()
+                                }, 1300);
+                                ChatSearchLastQueryJoinTime = CommonTime();
+                                ChatSearchLastQueryJoin = RoomName;
+                                ChatRoomPlayerCanJoin = true;
+                                ServerSend("ChatRoomJoin", {
+                                    Name: RoomName
+                                });
+                                ChatRoomPingLeashedPlayers();
+                                if (CurrentScreen == "ChatRoom") {
+                                    AutoJoin = function() {};
+                                    this.AutoJoinOn = false;
+                                     ElementRemove("AutoJoinAlert");
+                                    IsOn = false;
+                                }
+                          }
+                          if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
+                              AutoJoin();
+                          }
+                       }
+                    }
+                    X = X + 660;
+                    if (X > 1500) {
+                        X = 25;
+                        Y = Y + 109;
                     }
                 }
-                X = X + 660;
-                if (X > 1500) {
-                    X = 25;
-                    Y = Y + 109;
+            } if (AutojoinOn == false) {
+                var X = 25;
+                var Y = 25;
+                for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
+                    if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
+	                var RoomName = ChatSearchResult[C].Name;
+			if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
+		            ChatSearchLastQueryJoinTime = CommonTime();
+		            ChatSearchLastQueryJoin = RoomName;
+			    ChatRoomPlayerCanJoin = true;
+		            ServerSend("ChatRoomJoin", { Name: RoomName });
+		            ChatRoomPingLeashedPlayers();
+			}
+		    }
+		    X = X + 660;
+		    if (X > 1500) {
+	                X = 25;
+			Y = Y + 109;
+		    }
                 }
             }
-            return;
             next(args);
         });
     }
@@ -2564,6 +2589,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (ReputationGet("Asylum") < 0) {
                     LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
                 }
+            }
+        }
+    }])
+	
+    CommandCombine([{
+        Tag: 'autojoin',
+        Description: ": enables/disables Auto-Join to enter a full room as soon as it is possible.",
+        Action: () => {
+            if (AutojoinOn == true) {
+                AutojoinOn = false;
+		M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is disabled.</p>"
+                );
+            } else {
+                AutojoinOn = true;
+		M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is enabled.</p>"
+                )  
             }
         }
     }])
