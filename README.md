@@ -26,6 +26,25 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 
 After installation, refresh your BC page and relog.
 
+## Credits
+
+Special thanks to KellyLoveyness for creating the original version.
+
+Special thanks to Firefly for giving permission to integrate the BC-Diaper-Wetter script.
+
+Special thanks to Myrhanda and Kimei for giving permission to integrate the Moaner script.
+
+Thanks to lillyBC for providing ideas and inspiration with her bcTampermonkeys scripts.
+
+Thanks for special assistance:
+Shyness, Ada, huzpsb, Lilly, Nikky90506, Tarram1010.
+
+Thanks for general assistance:
+Brianna, Better, Miyako, Zeltron, Selina, Estsanatlehi, okatakab.
+All else I might not have included.
+
+
+
 ==========================================================================
 
 Changes for future version
