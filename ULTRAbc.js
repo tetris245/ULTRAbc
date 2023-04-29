@@ -356,7 +356,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 if (CurrentScreen == "ChatRoom") {
                                     AutoJoin = function() {};
                                     this.AutoJoinOn = false;
-                                     ElementRemove("AutoJoinAlert");
+                                    ElementRemove("AutoJoinAlert");
                                     IsOn = false;
                                 }
                           }
