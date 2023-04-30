@@ -55,4 +55,4 @@ Changes for future version
 * Updated the lock command by adding the Family lock
 * Improved and updated the unlock command:
   - Added the Family lock
-  - Added apart unlocking for Best Friend and Best Friend Timer locks (they are no more handled as High 5ecurity locks)
+  - Added apart unlocking for Best Friend and Best Friend Timer locks (they are no more handled as High Security locks)
