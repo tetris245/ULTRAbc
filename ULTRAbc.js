@@ -15,7 +15,6 @@
 // ==/UserScript==
 
 //SDK stuff
-
 var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ERROR:\n"+e);const o=new Error(e);throw console.error(o),o}const t=new TextEncoder;function n(e){return!!e&&"object"==typeof e&&!Array.isArray(e)}function r(e){const o=new Set;return e.filter((e=>!o.has(e)&&o.add(e)))}const i=new Map,a=new Set;function d(e){a.has(e)||(a.add(e),console.warn(e))}function s(e){const o=[],t=new Map,n=new Set;for(const r of p.values()){const i=r.patching.get(e.name);if(i){o.push(...i.hooks);for(const[o,a]of i.patches.entries())t.has(o)&&t.get(o)!==a&&d(`ModSDK: Mod '${r.name}' is patching function ${e.name} with same pattern that is already applied by different mod, but with different pattern:\nPattern:\n${o}\nPatch1:\n${t.get(o)||""}\nPatch2:\n${a}`),t.set(o,a),n.add(r.name)}}o.sort(((e,o)=>o.priority-e.priority));const r=function(e,o){if(0===o.size)return e;let t=e.toString().replaceAll("\r\n","\n");for(const[n,r]of o.entries())t.includes(n)||d(`ModSDK: Patching ${e.name}: Patch ${n} not applied`),t=t.replaceAll(n,r);return(0,eval)(`(${t})`)}(e.original,t);let i=function(o){var t,i;const a=null===(i=(t=m.errorReporterHooks).hookChainExit)||void 0===i?void 0:i.call(t,e.name,n),d=r.apply(this,o);return null==a||a(),d};for(let t=o.length-1;t>=0;t--){const n=o[t],r=i;i=function(o){var t,i;const a=null===(i=(t=m.errorReporterHooks).hookEnter)||void 0===i?void 0:i.call(t,e.name,n.mod),d=n.hook.apply(this,[o,e=>{if(1!==arguments.length||!Array.isArray(o))throw new Error(`Mod ${n.mod} failed to call next hook: Expected args to be array, got ${typeof e}`);return r.call(this,e)}]);return null==a||a(),d}}return{hooks:o,patches:t,patchesSources:n,enter:i,final:r}}function c(e,o=!1){let r=i.get(e);if(r)o&&(r.precomputed=s(r));else{let o=window;const a=e.split(".");for(let t=0;t<a.length-1;t++)if(o=o[a[t]],!n(o))throw new Error(`ModSDK: Function ${e} to be patched not found; ${a.slice(0,t+1).join(".")} is not object`);const d=o[a[a.length-1]];if("function"!=typeof d)throw new Error(`ModSDK: Function ${e} to be patched not found`);const c=function(e){let o=-1;for(const n of t.encode(e)){let e=255&(o^n);for(let o=0;o<8;o++)e=1&e?-306674912^e>>>1:e>>>1;o=o>>>8^e}return((-1^o)>>>0).toString(16).padStart(8,"0").toUpperCase()}(d.toString().replaceAll("\r\n","\n")),l={name:e,original:d,originalHash:c};r=Object.assign(Object.assign({},l),{precomputed:s(l),router:()=>{},context:o,contextProperty:a[a.length-1]}),r.router=function(e){return function(...o){return e.precomputed.enter.apply(this,[o])}}(r),i.set(e,r),o[r.contextProperty]=r.router}return r}function l(){const e=new Set;for(const o of p.values())for(const t of o.patching.keys())e.add(t);for(const o of i.keys())e.add(o);for(const o of e)c(o,!0)}function f(){const e=new Map;for(const[o,t]of i)e.set(o,{name:o,original:t.original,originalHash:t.originalHash,sdkEntrypoint:t.router,currentEntrypoint:t.context[t.contextProperty],hookedByMods:r(t.precomputed.hooks.map((e=>e.mod))),patchedByMods:Array.from(t.precomputed.patchesSources)});return e}const p=new Map;function u(e){p.get(e.name)!==e&&o(`Failed to unload mod '${e.name}': Not registered`),p.delete(e.name),e.loaded=!1,l()}function g(e,t,r){"string"==typeof e&&"string"==typeof t&&(alert(`Mod SDK warning: Mod '${e}' is registering in a deprecated way.\nIt will work for now, but please inform author to update.`),e={name:e,fullName:e,version:t},t={allowReplace:!0===r}),e&&"object"==typeof e||o("Failed to register mod: Expected info object, got "+typeof e),"string"==typeof e.name&&e.name||o("Failed to register mod: Expected name to be non-empty string, got "+typeof e.name);let i=`'${e.name}'`;"string"==typeof e.fullName&&e.fullName||o(`Failed to register mod ${i}: Expected fullName to be non-empty string, got ${typeof e.fullName}`),i=`'${e.fullName} (${e.name})'`,"string"!=typeof e.version&&o(`Failed to register mod ${i}: Expected version to be string, got ${typeof e.version}`),e.repository||(e.repository=void 0),void 0!==e.repository&&"string"!=typeof e.repository&&o(`Failed to register mod ${i}: Expected repository to be undefined or string, got ${typeof e.version}`),null==t&&(t={}),t&&"object"==typeof t||o(`Failed to register mod ${i}: Expected options to be undefined or object, got ${typeof t}`);const a=!0===t.allowReplace,d=p.get(e.name);d&&(d.allowReplace&&a||o(`Refusing to load mod ${i}: it is already loaded and doesn't allow being replaced.\nWas the mod loaded multiple times?`),u(d));const s=e=>{"string"==typeof e&&e||o(`Mod ${i} failed to patch a function: Expected function name string, got ${typeof e}`);let t=g.patching.get(e);return t||(t={hooks:[],patches:new Map},g.patching.set(e,t)),t},f={unload:()=>u(g),hookFunction:(e,t,n)=>{g.loaded||o(`Mod ${i} attempted to call SDK function after being unloaded`);const r=s(e);"number"!=typeof t&&o(`Mod ${i} failed to hook function '${e}': Expected priority number, got ${typeof t}`),"function"!=typeof n&&o(`Mod ${i} failed to hook function '${e}': Expected hook function, got ${typeof n}`);const a={mod:g.name,priority:t,hook:n};return r.hooks.push(a),l(),()=>{const e=r.hooks.indexOf(a);e>=0&&(r.hooks.splice(e,1),l())}},patchFunction:(e,t)=>{g.loaded||o(`Mod ${i} attempted to call SDK function after being unloaded`);const r=s(e);n(t)||o(`Mod ${i} failed to patch function '${e}': Expected patches object, got ${typeof t}`);for(const[n,a]of Object.entries(t))"string"==typeof a?r.patches.set(n,a):null===a?r.patches.delete(n):o(`Mod ${i} failed to patch function '${e}': Invalid format of patch '${n}'`);l()},removePatches:e=>{g.loaded||o(`Mod ${i} attempted to call SDK function after being unloaded`);s(e).patches.clear(),l()},callOriginal:(e,t,n)=>(g.loaded||o(`Mod ${i} attempted to call SDK function after being unloaded`),"string"==typeof e&&e||o(`Mod ${i} failed to call a function: Expected function name string, got ${typeof e}`),Array.isArray(t)||o(`Mod ${i} failed to call a function: Expected args array, got ${typeof t}`),function(e,o,t=window){return c(e).original.apply(t,o)}(e,t,n)),getOriginalHash:e=>("string"==typeof e&&e||o(`Mod ${i} failed to get hash: Expected function name string, got ${typeof e}`),c(e).originalHash)},g={name:e.name,fullName:e.fullName,version:e.version,repository:e.repository,allowReplace:a,api:f,loaded:!0,patching:new Map};return p.set(e.name,g),Object.freeze(f)}function h(){const e=[];for(const o of p.values())e.push({name:o.name,fullName:o.fullName,version:o.version,repository:o.repository});return e}let m;const y=function(){if(void 0===window.bcModSdk)return window.bcModSdk=function(){const o={version:e,apiVersion:1,registerMod:g,getModsInfo:h,getPatchingInfo:f,errorReporterHooks:Object.seal({hookEnter:null,hookChainExit:null})};return m=o,Object.freeze(o)}();if(n(window.bcModSdk)||o("Failed to init Mod SDK: Name already in use"),1!==window.bcModSdk.apiVersion&&o(`Failed to init Mod SDK: Different version already loaded ('1.1.0' vs '${window.bcModSdk.version}')`),window.bcModSdk.version!==e&&(alert(`Mod SDK warning: Loading different but compatible versions ('1.1.0' vs '${window.bcModSdk.version}')\nOne of mods you are using is using an old version of SDK. It will work for now but please inform author to update`),window.bcModSdk.version.startsWith("1.0.")&&void 0===window.bcModSdk._shim10register)){const e=window.bcModSdk,o=Object.freeze(Object.assign(Object.assign({},e),{registerMod:(o,t,n)=>o&&"object"==typeof o&&"string"==typeof o.name&&"string"==typeof o.version?e.registerMod(o.name,o.version,"object"==typeof t&&!!t&&!0===t.allowReplace):e.registerMod(o,t,n),_shim10register:!0}));window.bcModSdk=o}return window.bcModSdk}();return"undefined"!=typeof exports&&(Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=y),y}();
 //SDKstuff end
 
@@ -27,9 +26,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         version: ver,
         repository: 'https://github.com/tetris245/ULTRAbc',
     });
-	
+
     //Main variables and settings for UBC and The Moaner
-    var FBC_VERSION = ""; 
+    var FBC_VERSION = "";
     var M_MOANER_moanerKey = "bc_moaner_";
     var M_MOANER_scriptOn = true;
     let profileName;
@@ -37,13 +36,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let SlowleaveOn;
     let FullseedOn;
     let AutojoinOn;
-	
+
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
     var M_MOANER_vibratorActive = true;
     var M_MOANER_spankActive = true;
     var M_MOANER_verboseActive = true;
-	
+
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
@@ -53,10 +52,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_spankActive = true;
             M_MOANER_scriptOn = false;
             profileName = "default";
-	    SosbuttonsOn = false;
-	    SlowleaveOn = false;
-	    FullseedOn = false;
-	    AutojoinOn = false;
+            SosbuttonsOn = false;
+            SlowleaveOn = false;
+            FullseedOn = false;
+            AutojoinOn = false;
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -65,13 +64,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_spankActive = datas.spankMoan;
             M_MOANER_scriptOn = datas.script;
             profileName = datas.moanProfile;
-	    SosbuttonsOn = datas.sosbuttons;
-	    SlowleaveOn = datas.slowleave;
-	    FullseedOn = datas.fullseed;
+            SosbuttonsOn = datas.sosbuttons;
+            SlowleaveOn = datas.slowleave;
+            FullseedOn = datas.fullseed;
             AutojoinOn = datas.autojoin;
         }
     }
-	
+
     function M_MOANER_saveControls() {
         var controls = {
             "talkMoan": M_MOANER_talkActive,
@@ -81,9 +80,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "script": M_MOANER_scriptOn,
             "moanProfile": profileName,
             "sosbuttons": SosbuttonsOn,
-	    "slowleave": SlowleaveOn,
-	    "fullseed": FullseedOn,
-	    "autojoin": AutojoinOn
+            "slowleave": SlowleaveOn,
+            "fullseed": FullseedOn,
+            "autojoin": AutojoinOn
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -96,7 +95,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }
-    
+
     let MoanerIsLoaded;
 
     MoanerLoginListener();
@@ -139,7 +138,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     setTimeout(function() {
         ServerSocket.on('ChatRoomMessage', ChatCommandGreeting);
     }, 5000);
- 
+
     //ModSDK Functions
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
@@ -158,12 +157,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
     ULTRAStruggleLockPickDraw();
-	
+
     //Chat Room
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
-	    if (SosbuttonsOn == true) {
-		if (Player.Nickname == '') {
+            if (SosbuttonsOn == true) {
+                if (Player.Nickname == '') {
                     var tmpname = Player.Name;
                 } else {
                     var tmpname = Player.Nickname;
@@ -182,7 +181,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     return;
                 }
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
-		    if (SlowleaveOn == true) {
+                    if (SlowleaveOn == true) {
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
                             Type: "Action",
@@ -191,73 +190,73 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 Text: "" + tmpname + " slowly heads for the door."
                             }]
                         });
-                        setTimeout(function () {
+                        setTimeout(function() {
                             ChatRoomSetLastChatRoom("");
                             ServerSend("ChatRoomLeave", "");
                             CommonSetScreen("Online", "ChatSearch");
                             ChatRoomClearAllElements();
-                            OnlineGameName = "";                                  
-                        }, 15000); 
-                        return; 
+                            OnlineGameName = "";
+                        }, 15000);
+                        return;
                     } else {
                         ChatRoomSetLastChatRoom("");
                         ServerSend("ChatRoomLeave", "");
                         CommonSetScreen("Online", "ChatSearch");
                         ChatRoomClearAllElements();
-                        OnlineGameName = "";                                  
-                    }                                  
+                        OnlineGameName = "";
+                    }
                 }
-	    }    
+            }
             next(args);
         });
     }
-	
+
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             if (KeyPress == 13 && !event.shiftKey) {
-		if ((FBC_VERSION != "") && bceSettingValue("ctrlEnterOoc") && event.ctrlKey) {
+                if ((FBC_VERSION != "") && bceSettingValue("ctrlEnterOoc") && event.ctrlKey) {
                     var text = ElementValue("InputChat");
                     var text1 = "(" + ElementValue("InputChat") + ")";
                     ElementValue("InputChat", text.replace(text, text1));
                 } else {
-                     var text = ElementValue("InputChat");
-                     var text1 = text;
-                }     
+                    var text = ElementValue("InputChat");
+                    var text1 = text;
+                }
                 if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
                     var text2 = text1;
                     var tsp = 1;
-		    ChatRoomSetTarget(null);
-		} else if ((text1.startsWith("!")) || (text1.startsWith("("))) {
+                    ChatRoomSetTarget(null);
+                } else if ((text1.startsWith("!")) || (text1.startsWith("("))) {
                     var text2 = text1;
                     var tsp = 1;
-		} else if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) {
+                } else if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) {
                     var text2 = text1;
                     var tsp = 1;
-		    ChatRoomSetTarget(null);	
-		} else if ((text1.startsWith("*")) || (text1.startsWith("/"))) {
+                    ChatRoomSetTarget(null);
+                } else if ((text1.startsWith("*")) || (text1.startsWith("/"))) {
                     var text2 = text1;
                     var tsp = 1;
-		    ChatRoomSetTarget(null);
+                    ChatRoomSetTarget(null);
                 } else if ((text1.startsWith("@")) && (window.MBCHC)) {
                     var text2 = text1;
                     var tsp = 1;
-		    ChatRoomSetTarget(null);	
+                    ChatRoomSetTarget(null);
                 } else {
-		    var tsp = 0;
+                    var tsp = 0;
                     if (this.BabyTalkOn == true) {
                         var text2 = SpeechBabyTalk({
                             Effect: ["RegressedTalk"]
-                        }, text1);  
+                        }, text1);
                     } else if (this.GagTalkOn == true) {
-                        var text2 = SpeechGarbleByGagLevel(gl, text1);   
+                        var text2 = SpeechGarbleByGagLevel(gl, text1);
                     } else {
                         var text2 = text1;
                     }
                 }
                 ElementValue("InputChat", text1.replace(text1, text2));
-                if (tsp == 1) {   
+                if (tsp == 1) {
                     var text3 = text2;
-                } else {       
+                } else {
                     if (this.Stutter1On == true) {
                         var text3 = StutterTalk1(text2);
                     } else if (this.Stutter2On == true) {
@@ -271,9 +270,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
                 ElementValue("InputChat", text2.replace(text2, text3));
-                if (tsp == 1) {   
+                if (tsp == 1) {
                     var text4 = text3;
-                } else { 
+                } else {
                     if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
                         var text4 = M_MOANER_applyMoanToMsg(Player, text3);
                     } else {
@@ -308,21 +307,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             next(args);
         });
     }
-	
+
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
-	    if (SosbuttonsOn == true) {
+            if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
                 if (SlowleaveOn == true) {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
                 } else {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
                 }
-	    }      
+            }
             next(args);
         });
     }
-	
+
     //Chat Search (including Auto-Join)
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
@@ -359,11 +358,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                     ElementRemove("AutoJoinAlert");
                                     IsOn = false;
                                 }
-                          }
-                          if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
-                              AutoJoin();
-                          }
-                       }
+                            }
+                            if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
+                                AutoJoin();
+                            }
+                        }
                     }
                     X = X + 660;
                     if (X > 1500) {
@@ -371,25 +370,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Y = Y + 109;
                     }
                 }
-            } if (AutojoinOn == false) {
+            }
+            if (AutojoinOn == false) {
                 var X = 25;
                 var Y = 25;
                 for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
                     if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
-	                var RoomName = ChatSearchResult[C].Name;
-			if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
-		            ChatSearchLastQueryJoinTime = CommonTime();
-		            ChatSearchLastQueryJoin = RoomName;
-			    ChatRoomPlayerCanJoin = true;
-		            ServerSend("ChatRoomJoin", { Name: RoomName });
-		            ChatRoomPingLeashedPlayers();
-			}
-		    }
-		    X = X + 660;
-		    if (X > 1500) {
-	                X = 25;
-			Y = Y + 109;
-		    }
+                        var RoomName = ChatSearchResult[C].Name;
+                        if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
+                            ChatSearchLastQueryJoinTime = CommonTime();
+                            ChatSearchLastQueryJoin = RoomName;
+                            ChatRoomPlayerCanJoin = true;
+                            ServerSend("ChatRoomJoin", {
+                                Name: RoomName
+                            });
+                            ChatRoomPingLeashedPlayers();
+                        }
+                    }
+                    X = X + 660;
+                    if (X > 1500) {
+                        X = 25;
+                        Y = Y + 109;
+                    }
                 }
             }
             next(args);
@@ -520,24 +522,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             next(args);
         });
     }
-	
+
     //Lockpicking
     async function ULTRAStruggleLockPickDraw() {
-        modApi.hookFunction('StruggleLockPickDraw', 4, (args, next) => {	 	
-           if (FullseedOn == true) {	
-               var seed = parseInt(StruggleLockPickOrder.join(""));
-	       var tips = StruggleLockPickOrder.map((a) => {
-                   return true;
-               });
-	       for (let q = 0; q < tips.length; q++) {
-	           var xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
-		   DrawText(`${StruggleLockPickOrder.indexOf(q) + 1}`, xx, 300, "blue");
-	       }
-           }
-           next(args);
+        modApi.hookFunction('StruggleLockPickDraw', 4, (args, next) => {
+            if (FullseedOn == true) {
+                var seed = parseInt(StruggleLockPickOrder.join(""));
+                var tips = StruggleLockPickOrder.map((a) => {
+                    return true;
+                });
+                for (let q = 0; q < tips.length; q++) {
+                    var xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
+                    DrawText(`${StruggleLockPickOrder.indexOf(q) + 1}`, xx, 300, "blue");
+                }
+            }
+            next(args);
         });
     }
-  
+
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
@@ -654,7 +656,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     async function ULTRACellClick() {
         modApi.hookFunction('CellClick', 4, (args, next) => {
-	    if (CellOpenTimer < CurrentTime) {
+            if (CellOpenTimer < CurrentTime) {
                 if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
             }
             next(args);
@@ -984,7 +986,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_verboseStatus = ["Moaner is verbose.", "Moaner is not verbose."];
     var M_MOANER_profileStatus = ["No custom profile loaded.", "Current moans profile: "];
     var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
-	
+
     //Full script control
     function scriptControl(commande) {
         if (commande == "on") {
@@ -1151,11 +1153,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = M_MOANER_spankStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
-    }   
+    }
 
     //MoanerUtils
 
-    function M_MOANER_logDebug(msg) { }
+    function M_MOANER_logDebug(msg) {}
 
     function startDebug() {
         M_MOANER_logDebug = (msg) => {
@@ -1210,7 +1212,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         let number = Math.floor(Math.abs(Math.sin(seed) * 1000));
         return number;
     }
- 
+
     //MoanerManagement
 
     /*const baseM_MOANER_factor4Moans=["n... Nyah\u2665","Oooh","mmmmmh!","NYyaaA\u2665"];
@@ -1306,33 +1308,34 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     // Reactions in chat
     /******************************************************************/
 
-    window.ChatRoomRegisterMessageHandler({ 
-        Priority: 600, 
-        Description: "Moaner Orgasm", 
+    window.ChatRoomRegisterMessageHandler({
+        Priority: 600,
+        Description: "Moaner Orgasm",
         Callback: (data, sender, msg, metadata) => {
             if (M_MOANER_scriptOn) {
-	        M_MOANER_reactionOrgasm(Player);
+                M_MOANER_reactionOrgasm(Player);
             }
-        }});
+        }
+    });
 
-    function M_MOANER_reactionOrgasm(Player){
-        if(M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen=="ChatRoom") {
-            if ((Player.ID==0) && (Player.ArousalSettings.OrgasmStage == 2)) {
-	        var moan;
-                var backupChatRoomTargetMemberNumber=null;
-		// not in whisper mode
-		// not as /me
-		// only in normal talk mode
-                msg=ElementValue("InputChat");
-	        if(M_MOANER_isSimpleChat(msg)) {			
-		    moan= msg + "... " + getOrgasmMoan();
+    function M_MOANER_reactionOrgasm(Player) {
+        if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
+            if ((Player.ID == 0) && (Player.ArousalSettings.OrgasmStage == 2)) {
+                var moan;
+                var backupChatRoomTargetMemberNumber = null;
+                // not in whisper mode
+                // not as /me
+                // only in normal talk mode
+                msg = ElementValue("InputChat");
+                if (M_MOANER_isSimpleChat(msg)) {
+                    moan = msg + "... " + getOrgasmMoan();
                     ElementValue("InputChat", moan);
                     if (this.BabyTalkOn == true) {
                         var moan2 = SpeechBabyTalk({
                             Effect: ["RegressedTalk"]
-                        }, moan);  
+                        }, moan);
                     } else if (this.GagTalkOn == true) {
-                        var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+                        var moan2 = SpeechGarbleByGagLevel(gl, moan);
                     } else {
                         var moan2 = moan;
                     }
@@ -1349,22 +1352,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var moan3 = moan2;
                     }
                     ElementValue("InputChat", moan2.replace(moan2, moan3));
-                    msg="";
+                    msg = "";
                     Player.ArousalSettings.OrgasmStage = 0;
                     Player.ArousalSettings.Progress = 0;
                     ActivityChatRoomArousalSync(Player);
-		    ChatRoomSendChat();
-                } else {	
-		    backupChatRoomTargetMemberNumber=ChatRoomTargetMemberNumber;
-		    ChatRoomTargetMemberNumber=null;
-	            moan = "... " + getOrgasmMoan();
+                    ChatRoomSendChat();
+                } else {
+                    backupChatRoomTargetMemberNumber = ChatRoomTargetMemberNumber;
+                    ChatRoomTargetMemberNumber = null;
+                    moan = "... " + getOrgasmMoan();
                     ElementValue("InputChat", moan);
                     if (this.BabyTalkOn == true) {
                         var moan2 = SpeechBabyTalk({
                             Effect: ["RegressedTalk"]
-                        }, moan);  
+                        }, moan);
                     } else if (this.GagTalkOn == true) {
-                        var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+                        var moan2 = SpeechGarbleByGagLevel(gl, moan);
                     } else {
                         var moan2 = moan;
                     }
@@ -1385,16 +1388,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Player.ArousalSettings.Progress = 0;
                     ActivityChatRoomArousalSync(Player);
                     ChatRoomSendChat();
-		    ChatRoomTargetMemberNumber=backupChatRoomTargetMemberNumber;
-		    ElementValue("InputChat",msg);
-                } 
-            } 
+                    ChatRoomTargetMemberNumber = backupChatRoomTargetMemberNumber;
+                    ElementValue("InputChat", msg);
+                }
+            }
         }
     }
 
-    window.ChatRoomRegisterMessageHandler({ 
-        Priority: 600, 
-        Description: "Moaner Reactions", 
+    window.ChatRoomRegisterMessageHandler({
+        Priority: 600,
+        Description: "Moaner Reactions",
         Callback: (data, sender, msg, metadata) => {
             if (M_MOANER_isPlayerTarget(data)) {
                 var msg = ElementValue("InputChat");
@@ -1406,7 +1409,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     M_MOANER_reactionVibeWithoutChat(data);
                 }
             }
-        }});
+        }
+    });
 
     function M_MOANER_reactionSpankWithChat(data) {
         if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
@@ -1422,9 +1426,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (this.BabyTalkOn == true) {
                 var moan2 = SpeechBabyTalk({
                     Effect: ["RegressedTalk"]
-                }, moan);  
+                }, moan);
             } else if (this.GagTalkOn == true) {
-                var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);
             } else {
                 var moan2 = moan;
             }
@@ -1458,9 +1462,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (this.BabyTalkOn == true) {
                 var moan2 = SpeechBabyTalk({
                     Effect: ["RegressedTalk"]
-                }, moan);  
+                }, moan);
             } else if (this.GagTalkOn == true) {
-                var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);
             } else {
                 var moan2 = moan;
             }
@@ -1496,9 +1500,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (this.BabyTalkOn == true) {
                 var moan2 = SpeechBabyTalk({
                     Effect: ["RegressedTalk"]
-                }, moan);  
+                }, moan);
             } else if (this.GagTalkOn == true) {
-                var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);
             } else {
                 var moan2 = moan;
             }
@@ -1535,9 +1539,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (this.BabyTalkOn == true) {
                 var moan2 = SpeechBabyTalk({
                     Effect: ["RegressedTalk"]
-                }, moan);  
+                }, moan);
             } else if (this.GagTalkOn == true) {
-                var moan2 = SpeechGarbleByGagLevel(gl, moan);   
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);
             } else {
                 var moan2 = moan;
             }
@@ -1722,8 +1726,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     function getActivityTaste(name) {
         for (index in Player.ArousalSettings.Activity) {
-             var activity = Player.ArousalSettings.Activity[index];
-             if (activity.Name == name) return activity;
+            var activity = Player.ArousalSettings.Activity[index];
+            if (activity.Name == name) return activity;
         }
     }
 
@@ -1885,18 +1889,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "pain": []
     }
     M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
-	
+
     //////////////////////////////////////////////////////////
     //BC-Diaper-Wetter
     //////////////////////////////////////////////////////////	
-	
+
     // A simple table for the colors that the script will use.
     DiaperUseLevels = [
         ["#808080", "#97916A", "#8B8D41"],
         ["#877C6C", "#7E774E"],
         ["#4C3017"]
     ];
-	
+
     // Table to store all the defaul values for diaperWetter()
     const diaperDefaultValues = {
         messChance: .3,
@@ -1909,14 +1913,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         messLevelOuter: 0,
         wetLevelOuter: 0
     };
-	
+
     const diaperHelpMessages = {
         default: "Welcome to BCDW: Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\nTo get started, use the ->diaper start to begin using your diaper and ->diaper stop to stop. You can also use ->diaper help <command> to get more information on any given command (for example, arguments!).",
         start: "",
         change: "",
         stop: ""
     };
-	
+
     diaperLoop = null; // Keeps a hold of the loop so it can be exited at any time easily
 
     // Destutter speach. Needed for interations with other mods
@@ -1930,7 +1934,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
         return string;
     }
-	
+
     // Chat handler
     // ServerSocket.on("ChatRoomMessage", bcdw);
     function bcdw(data) {
@@ -1959,7 +1963,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }
-	
+
     // Command handler
     function bcdwCommands(chatCommand, callerID, type) {
         // Commands only the user can use
@@ -2005,13 +2009,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     chatCommand.pop();
                 }
                 diaperWetter(caughtArguments);
-            }	
-	    // End the script
+            }
+            // End the script
             else if (chatCommand[chatCommand.length - 1] === "stop") {
                 stopWetting();
             }
         }
-	// Chat commands that can be executed by other people
+        // Chat commands that can be executed by other people
         {
             // Filter to make sure the command is targeted at the user
             if (chatCommand[chatCommand.length - 2] === Player.MemberNumber || type === "Whisper" || callerID === Player.MemberNumber) {
@@ -2073,7 +2077,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }
-	
+
     // Initializer function
     function diaperWetter({
         initMessChance = diaperDefaultValues.messChance,
@@ -2086,7 +2090,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         initMessLevelOuter = diaperDefaultValues.messLevelOuter,
         initWetLevelOuter = diaperDefaultValues.wetLevelOuter
     } = {}) {
-	    
+
         // Greating message
         if (Player.Nickname == '') {
             var tmpname = Player.Name;
@@ -2101,8 +2105,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 Text: "Say hello to the little baby " + tmpname + "!"
             }]
         });
-	    
-	// Initial clear.
+
+        // Initial clear.
         refreshDiaper({
             cdiaper: "both",
             inMessLevelChastity: (initMessLevelOuter < 0 || initMessLevelOuter > 2) ?
@@ -2148,7 +2152,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         diaperRunning = true; // Helps with the kill switch
         checkTick();
     }
-  
+
     // Changes how long it takes between ticks (in minutes)
     function changeDiaperTimer(delay) {
         // Bound the delay to between 2 minutes and 1 hour
@@ -2158,8 +2162,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             delay = 60;
         }
         diaperTimerBase = delay; // Updates diaperTimerBase
-    }  
-	   
+    }
+
     // Refresh the diaper settings so wet and mess levels are 0. Pass "chastity", "panties", or "both" so only the correct diaper gets reset.
     function refreshDiaper({
         cdiaper = "both",
@@ -2293,8 +2297,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             regressionLevel--;
         }
         return diaperTimerModifier * Math.pow(2, regressionLevel);
-    }  
-	
+    }
+
     // Sets the users desperationLevel to 3 when they are given a milk bottle
     function setDesperation() {
         desperationLevel = 3;
@@ -2309,7 +2313,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
         return diaperTimerModifier * (desperationLevel + 1);
     }
-	
+
     // Updates the color of a diaper
     function changeDiaperColor(slot) {
         if (slot === "ItemPelvis" && checkForDiaper(slot)) {
@@ -2350,7 +2354,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         clearTimeout(diaperLoop);
         checkTick();
     }
-	
+
     // Funcky while loop
     function checkTick() {
         // Terminate loop if the user isn't wearing a compatible diaper
@@ -2376,7 +2380,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             });
         }
     }
-	
+
     // Body function
     // If the baby uses their diaper, it will make the front of their diaper look like it's been used
     function diaperTick() {
@@ -2592,23 +2596,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'autojoin',
         Description: ": enables/disables Auto-Join to enter a full room as soon as it is possible.",
         Action: () => {
             if (AutojoinOn == true) {
                 AutojoinOn = false;
-		M_MOANER_saveControls();
+                M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is disabled.</p>"
                 );
             } else {
                 AutojoinOn = true;
-		M_MOANER_saveControls();
+                M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is enabled.</p>"
-                )  
+                )
             }
         }
     }])
@@ -2665,8 +2669,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 Name: "HypnoticSpiral",
                 Tag: [BackgroundsTagIndoor]
             });
-	    if (!window.BCX_Loaded == true) {
-		BackgroundsList.push({
+            if (!window.BCX_Loaded == true) {
+                BackgroundsList.push({
                     Name: "AmandaCollarIntro",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -2675,18 +2679,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Tag: [BackgroundsTagIndoor]
                 });
                 BackgroundsList.push({
-                    Name: "AsylumBedroom", 
+                    Name: "AsylumBedroom",
                     Tag: [BackgroundsTagIndoor]
                 });
                 BackgroundsList.push({
                     Name: "AsylumEntrance",
                     Tag: [BackgroundsTagIndoor]
                 });
-	           BackgroundsList.push({
+                BackgroundsList.push({
                     Name: "AsylumGGTSRoom",
                     Tag: [BackgroundsTagIndoor]
-                }); 
-		BackgroundsList.push({
+                });
+                BackgroundsList.push({
                     Name: "AsylumGGTSRoomAlert",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -2698,7 +2702,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Name: "AsylumTherapy",
                     Tag: [BackgroundsTagIndoor]
                 });
-		BackgroundsList.push({
+                BackgroundsList.push({
                     Name: "Bar",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -2738,7 +2742,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Name: "CraftingWorkshop",
                     Tag: [BackgroundsTagIndoor]
                 });
-		BackgroundsList.push({
+                BackgroundsList.push({
                     Name: "Dressing",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -2754,7 +2758,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Name: "HorseStableLight",
                     Tag: [BackgroundsTagIndoor]
                 });
-		BackgroundsList.push({
+                BackgroundsList.push({
                     Name: "Magic",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -2766,7 +2770,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Name: "MagicSchoolLaboratory",
                     Tag: [BackgroundsTagIndoor]
                 });
-		BackgroundsList.push({
+                BackgroundsList.push({
                     Name: "/Orig/Entrance",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -2786,7 +2790,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Name: "PaddedCell2",
                     Tag: [BackgroundsTagIndoor]
                 });
-		BackgroundsList.push({
+                BackgroundsList.push({
                     Name: "Pandora/Ground/Entrance",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -2974,7 +2978,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Name: "Pandora/Underground/Tunnel6",
                     Tag: [BackgroundsTagIndoor]
                 });
-		BackgroundsList.push({
+                BackgroundsList.push({
                     Name: "Prison",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -3030,7 +3034,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Name: "White",
                     Tag: [BackgroundsTagIndoor]
                 });
-            }	
+            }
             ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
             ChatRoomSendLocal(
                 "<p style='background-color:#5fbd7a'>ULTRAbc: You can use more backgrounds now.</p>"
@@ -3506,7 +3510,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'code',
         Description: "(target) reveals codes used on current combination locks.",
@@ -3514,9 +3518,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "") {
                 for (let A = 0; A < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
-                        if (Player.Appearance[A].Property.LockedBy == "CombinationPadlock") {        
-                            var asset = Player.Appearance[A].Asset.Description; 
-                            var code = Player.Appearance[A].Property.CombinationNumber; 
+                        if (Player.Appearance[A].Property.LockedBy == "CombinationPadlock") {
+                            var asset = Player.Appearance[A].Asset.Description;
+                            var code = Player.Appearance[A].Property.CombinationNumber;
                             ChatRoomSendLocal("" + asset + " = " + code + "");
                         }
                     }
@@ -3530,10 +3534,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (target[0] != null) {
                     for (let A = 0; A < target[0].Appearance.length; A++)
                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
-                            if (target[0].Appearance[A].Property.LockedBy == "CombinationPadlock") {        
+                            if (target[0].Appearance[A].Property.LockedBy == "CombinationPadlock") {
                                 var asset = target[0].Appearance[A].Asset.Description;
-                                var code = target[0].Appearance[A].Property.CombinationNumber; 
-                                ChatRoomSendLocal( "" + asset + " = " + code + "");         
+                                var code = target[0].Appearance[A].Property.CombinationNumber;
+                                ChatRoomSendLocal("" + asset + " = " + code + "");
                             }
                         }
                 }
@@ -3732,7 +3736,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ActivityOrgasmStart(Player);
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'diaper',
         Description: "(action) (target or value) = plays with diapers (ABDL game).",
@@ -3753,7 +3757,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Customisation (before using /diaper start):\n" +
                     "Use <b>/diaper custom</b> for detailed info</p>"
                 );
-	    } else if (args === "custom") {
+            } else if (args === "custom") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Diaper customisation (before using /diaper start):\n" +
                     "<b>/diaper setdesperation</b> (value between 0 and 3) for desperation level, normally controlled by having a milk bottle used on you\n" +
@@ -3776,8 +3780,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var stringDiaper1 = args;
                 var stringDiaper2 = stringDiaper1.split(/[ ,]+/);
                 var feature = stringDiaper2[0];
-		if (feature == "change1") {
-		    var targetname = stringDiaper2[1];
+                if (feature == "change1") {
+                    var targetname = stringDiaper2[1];
                     if ((targetname === null) && (checkForDiaper("Panties"))) {
                         refreshDiaper("panties");
                     } else {
@@ -3797,9 +3801,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                         ChatRoomSetTarget(null);
                     }
-		}
-		if (feature == "change2") { 
-		    var targetname = stringDiaper2[1];
+                }
+                if (feature == "change2") {
+                    var targetname = stringDiaper2[1];
                     if ((targetname === null) && (checkForDiaper("ItemPelvis"))) {
                         refreshDiaper("chastity");
                     } else {
@@ -3819,9 +3823,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                         ChatRoomSetTarget(null);
                     }
-		}
-		if (feature == "change3") {   
-		    var targetname = stringDiaper2[1];
+                }
+                if (feature == "change3") {
+                    var targetname = stringDiaper2[1];
                     if ((targetname === null) && (checkForDiaper("Panties")) && (checkForDiaper("ItemPelvis"))) {
                         refreshDiaper("both");
                     } else {
@@ -3831,8 +3835,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                         }
                         if (target[0] != null) {
-                            if ((InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper")
-                                && (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper")) {
+                            if ((InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") &&
+                                (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper")) {
                                 ServerSend("ChatRoomChat", {
                                     Content: "ULTRAbc: " + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.",
                                     Type: "Whisper",
@@ -3842,30 +3846,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                         ChatRoomSetTarget(null);
                     }
-		}
-		if (feature == "setdesperation") {
+                }
+                if (feature == "setdesperation") {
                     var setchange = stringDiaper2[1];
                     diaperDefaultValues.desperationLevel = setchange;
-		    setchange = "";
+                    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your desperation level has been changed.</p>"
                     );
-		}
-		if (feature == "setmesschance") {
-		    var setchange = stringDiaper2[1];
+                }
+                if (feature == "setmesschance") {
+                    var setchange = stringDiaper2[1];
                     diaperDefaultValues.messChance = setchange;
-		    setchange = "";
+                    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to mess diapers has been changed.</p>"
                     );
                 }
-		if (feature == "setmess1") {  
-	            if (InventoryGet(Player, "Panties") != null) {  
+                if (feature == "setmess1") {
+                    if (InventoryGet(Player, "Panties") != null) {
                         if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
                             if (setchange < diaperDefaultValues.wetLevelInner) {
                                 diaperDefaultValues.messLevelInner = setchange;
-				setchange = "";
+                                setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for normal diapers has been changed.</p>"
                                 );
@@ -3873,13 +3877,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 }
-		if (feature == "setmess2") { 
-		    if (InventoryGet(Player, "ItemPelvis") != null) {
+                if (feature == "setmess2") {
+                    if (InventoryGet(Player, "ItemPelvis") != null) {
                         if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
                             if (setchange < diaperDefaultValues.wetLevelOuter) {
                                 diaperDefaultValues.messLevelOuter = setchange;
-				setchange = "";
+                                setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for chastity diapers has been changed.</p>"
                                 );
@@ -3887,37 +3891,37 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 }
-		if (feature == "setregression") { 
-		    var setchange = stringDiaper2[1];
+                if (feature == "setregression") {
+                    var setchange = stringDiaper2[1];
                     diaperDefaultValues.regressionLevel = setchange;
-		    setchange = "";
+                    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your regression level has been changed.</p>"
                     );
-                } 
-		if (feature == "settimer") {	
-		    var setchange = stringDiaper2[1];
+                }
+                if (feature == "settimer") {
+                    var setchange = stringDiaper2[1];
                     diaperDefaultValues.baseTimer = setchange;
-		    setchange = "";
+                    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet/mess timer has been changed.</p>"
                     );
                 }
-		if (feature == "setwetchance") {
-		    var setchange = stringDiaper2[1];
+                if (feature == "setwetchance") {
+                    var setchange = stringDiaper2[1];
                     diaperDefaultValues.wetChance = setchange;
-		    setchange = "";
+                    setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to wet diapers has been changed.</p>"
                     );
-                } 
-		if (feature == "setwet1") {	
-		    if (InventoryGet(Player, "Panties") != null) {
+                }
+                if (feature == "setwet1") {
+                    if (InventoryGet(Player, "Panties") != null) {
                         if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
                             if (setchange > diaperDefaultValues.messLevelInner) {
                                 diaperDefaultValues.wetLevelInner = setchange;
-				setchange = "";
+                                setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for normal diapers has been changed.</p>"
                                 );
@@ -3925,13 +3929,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 }
-		if (feature == "setwet2") {
-		    if (InventoryGet(Player, "ItemPelvis") != null) {
+                if (feature == "setwet2") {
+                    if (InventoryGet(Player, "ItemPelvis") != null) {
                         if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
                             if (setchange > diaperDefaultValues.messLevelOuter) {
                                 diaperDefaultValues.wetLevelOuter = setchange;
-				setchange = "";
+                                setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for chastity diapers has been changed.</p>"
                                 );
@@ -3939,10 +3943,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 }
-	    }
+            }
         }
-    }])	
-			
+    }])
+
     CommandCombine([{
         Tag: 'difficulty',
         Description: "(number): changes game difficulty.",
@@ -3980,20 +3984,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ElementRemove("TextAreaChatLog");
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'exitmode',
         Description: ": toggles exit mode for OUT button in chat room.",
         Action: () => {
             if (SlowleaveOn == true) {
                 SlowleaveOn = false;
-		M_MOANER_saveControls();
+                M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Back to fast exit mode!</p>"
                 );
             } else {
                 SlowleaveOn = true;
-		M_MOANER_saveControls();
+                M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Slow exit mode is activated.</p>"
                 );
@@ -4154,23 +4158,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'fullseed',
         Description: ": toggles full solution for intricate and high security locks.",
         Action: () => {
             if (FullseedOn == true) {
                 FullseedOn = false;
-		M_MOANER_saveControls();
+                M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Full solution for intricate and high security locks is disabled.</p>"
                 );
             } else {
                 FullseedOn = true;
-		M_MOANER_saveControls();
+                M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Full solution for intricate and high security locks is enabled.</p>"
-                )  
+                )
             }
         }
     }])
@@ -4350,7 +4354,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'hint',
         Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
@@ -4376,8 +4380,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     if (hint != "") {
                         for (let A = 0; A < target[0].Appearance.length; A++)
-                            if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) { 
-                                if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
+                            if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
+                                if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
                                     target[0].Appearance[A].Property.Hint = hint;
                                     ServerSend("ChatRoomChat", {
                                         Content: "Beep",
@@ -5000,8 +5004,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password\n" +
-		    "17 Best Friend - 18 Best Friend Timer - 19 Family\n" +
-		    "BCTweaks is required for locks 17 and 18\n" +
+                    "17 Best Friend - 18 Best Friend Timer - 19 Family\n" +
+                    "BCTweaks is required for locks 17 and 18\n" +
                     "Use <b>/lock par</b> for info about other parameters</p>"
                 );
             } else if (args === "par") {
@@ -5099,7 +5103,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var enableinput = stringLock2[5];
                     var removeitem = stringLock2[6];
                 } else if (lk == 17) {
-                    Lock = "Best Friend Padlock";                     
+                    Lock = "Best Friend Padlock";
                 } else if (lk == 18) {
                     Lock = "Best Friend Timer Padlock";
                     if (stringLock2[2] == null) {
@@ -5114,10 +5118,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     var hidetimer = stringLock2[3];
                     var enableinput = stringLock2[4];
-                    var removeitem = stringLock2[5];   
+                    var removeitem = stringLock2[5];
                 } else if (lk == 19) {
                     Lock = "FamilyPadlock";
-		}	
+                }
                 var targetname = stringLock2[0];
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
@@ -5139,18 +5143,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }]
                     });
                     mn = Player.MemberNumber;
-		    for (let A = 0; A < target[0].Appearance.length; A++)
+                    for (let A = 0; A < target[0].Appearance.length; A++)
                         if (target[0].Appearance[A].Asset.AllowLock == true) {
-                            if (((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy == null)) || (target[0].Appearance[A].Property == null)) { 
-			        InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
-                                if (removeitem == "r") {                              
+                            if (((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy == null)) || (target[0].Appearance[A].Property == null)) {
+                                InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+                                if (removeitem == "r") {
                                     target[0].Appearance[A].Property.RemoveOnUnlock = true;
                                     target[0].Appearance[A].Property.RemoveItem = true;
                                 }
                                 if (minutes != null) {
                                     if (lk == 18) {
                                         target[0].Appearance[A].Property.MaxTime = 604800;
-                                        target[0].Appearance[A].Property.RemovalTime = Math.round(CurrentTime + time * 60 * 100);      
+                                        target[0].Appearance[A].Property.RemovalTime = Math.round(CurrentTime + time * 60 * 100);
                                     } else {
                                         target[0].Appearance[A].Property.RemoveTimer = target[0].Appearance[A].Property.RemoveTimer + (time * 60 * 1000);
                                     }
@@ -5169,19 +5173,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 }
                                 if (lk > 16) {
                                     target[0].Appearance[A].Property.LockedBy = "HighSecurityPadlock";
-                                    target[0].Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";                              
+                                    target[0].Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
                                     let listOwnerLovers = new Set();
-		                    if (target[0].Ownership && target[0].Ownership.MemberNumber != null) {
-			                listOwnerLovers.add(target[0].Ownership.MemberNumber);
-		                    }
-		                    if(target[0].Lovership) {
-			                for (let L = 0; L < target[0].Lovership.length; L++) {
-				            const lover = target[0].Lovership[L];
-				            if (lover.MemberNumber != null)
-				            listOwnerLovers.add(target[0].Lovership[L].MemberNumber);
-			                }
-		                    }
-		                    target[0].Appearance[A].Property.MemberNumberListKeys = "-1," + Array.from(listOwnerLovers).join(",");
+                                    if (target[0].Ownership && target[0].Ownership.MemberNumber != null) {
+                                        listOwnerLovers.add(target[0].Ownership.MemberNumber);
+                                    }
+                                    if (target[0].Lovership) {
+                                        for (let L = 0; L < target[0].Lovership.length; L++) {
+                                            const lover = target[0].Lovership[L];
+                                            if (lover.MemberNumber != null)
+                                                listOwnerLovers.add(target[0].Lovership[L].MemberNumber);
+                                        }
+                                    }
+                                    target[0].Appearance[A].Property.MemberNumberListKeys = "-1," + Array.from(listOwnerLovers).join(",");
                                 }
                                 if (lk == 17) {
                                     target[0].Appearance[A].Property.Name = "Best Friend Padlock";
@@ -6452,7 +6456,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             PandoraPunishmentStart();
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'pw',
         Description: "(target) reveals passwords used on current locks with password.",
@@ -6460,12 +6464,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "") {
                 for (let A = 0; A < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
-			if ((Player.Appearance[A].Property.LockedBy == "SafewordPadlock") || (Player.Appearance[A].Property.LockedBy == "PasswordPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
-                            var asset = Player.Appearance[A].Asset.Description; 
-                            var pw = Player.Appearance[A].Property.Password; 
+                        if ((Player.Appearance[A].Property.LockedBy == "SafewordPadlock") || (Player.Appearance[A].Property.LockedBy == "PasswordPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
+                            var asset = Player.Appearance[A].Asset.Description;
+                            var pw = Player.Appearance[A].Property.Password;
                             ChatRoomSendLocal("" + asset + " = " + pw + "");
                         }
-		    }    
+                    }
             } else {
                 var targetname = args;
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -6476,12 +6480,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (target[0] != null) {
                     for (let A = 0; A < target[0].Appearance.length; A++)
                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
-			    if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {        
+                            if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
                                 var asset = target[0].Appearance[A].Asset.Description;
-                                var pw = target[0].Appearance[A].Property.Password; 
-                                ChatRoomSendLocal( "" + asset + " = " + pw + "");
+                                var pw = target[0].Appearance[A].Property.Password;
+                                ChatRoomSendLocal("" + asset + " = " + pw + "");
                             }
-			}	
+                        }
                 }
             }
         }
@@ -7263,32 +7267,32 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'slowleave',
         Description: ": slowly leaves the room.",
         Action: () => {
-             if (Player.Nickname == '') {
-                 var tmpname = Player.Name;
-             } else {
-                 var tmpname = Player.Nickname;
-             }
-             ServerSend("ChatRoomChat", {
-                 Content: "Beep",
-                 Type: "Action",
-                 Dictionary: [{
-                     Tag: "Beep",
-                     Text: "" + tmpname + " slowly heads for the door."
-                 }]
-             });
-             setTimeout(function () {
-                 ChatRoomSetLastChatRoom("");
-                 ServerSend("ChatRoomLeave", "");
-                 CommonSetScreen("Online", "ChatSearch");
-                 ChatRoomClearAllElements();
-                 OnlineGameName = "";                                  
-             }, 15000); 
-         }    
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
+            ServerSend("ChatRoomChat", {
+                Content: "Beep",
+                Type: "Action",
+                Dictionary: [{
+                    Tag: "Beep",
+                    Text: "" + tmpname + " slowly heads for the door."
+                }]
+            });
+            setTimeout(function() {
+                ChatRoomSetLastChatRoom("");
+                ServerSend("ChatRoomLeave", "");
+                CommonSetScreen("Online", "ChatSearch");
+                ChatRoomClearAllElements();
+                OnlineGameName = "";
+            }, 15000);
+        }
     }])
 
     CommandCombine([{
@@ -7355,20 +7359,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'sosbuttons',
         Description: ": toggles emergency buttons in chat room.",
         Action: () => {
             if (SosbuttonsOn == true) {
                 SosbuttonsOn = false;
-		M_MOANER_saveControls();
+                M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons hidden and disabled.</p>"
                 );
             } else {
                 SosbuttonsOn = true;
-		M_MOANER_saveControls();
+                M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons displayed and enabled.</p>"
                 );
@@ -7390,7 +7394,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ChatRoomClearAllElements();
         }
     }])
-    
+
     CommandCombine([{
         Tag: 'stutter',
         Description: "(stuttermode): forces a specific stuttering mode.",
@@ -7453,7 +7457,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-    
+
     CommandCombine([{
         Tag: 'superdice',
         Description: "(sides): rolls a superdice. ",
@@ -7484,7 +7488,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'talk',
         Description: "(talkmode): forces a specific talk mode",
@@ -8096,7 +8100,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "bondage") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bondage commands:\n" +
-		    "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
+                    "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
                     "<b>/itemcolor</b> (colorcode) (target) = changes color on all current bindings. Color code must be in the format #000000\n" +
                     "<b>/lock</b> = adds locks on all lockable items. Use /help lock for more info.\n" +
                     "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
@@ -8140,7 +8144,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Clothing commands:\n" +
                     "<b>/clothes</b> (target) = changes clothes.\n" +
-		    "<b>/diaper</b> (action) (target or value) = plays with diapers (ABDL game). Using will give more info.\n" +
+                    "<b>/diaper</b> (action) (target or value) = plays with diapers (ABDL game). Using will give more info.\n" +
                     "<b>/naked</b> (target) = removes clothes.\n" +
                     "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
                     "<b>/underwear</b> (target) = changes underwear.\n" +
@@ -8151,9 +8155,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Escape commands:\n" +
                     "<b>/boost</b> = boosts skills, similar to maid quarters drink.\n" +
-		    "<b>/code</b> (target) = reveals codes for current combination locks.\n" +
+                    "<b>/code</b> (target) = reveals codes for current combination locks.\n" +
                     "<b>/leave</b> = leaves room, even if prevented.\n" +
-		    "<b>/pw</b> (target) = reveals passwords for current locks with password.\n" +
+                    "<b>/pw</b> (target) = reveals passwords for current locks with password.\n" +
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
                     "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
                     "<b>/safeworditem</b> = removes specific item. More info when used.\n" +
@@ -8178,9 +8182,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands:\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
-		    "<b>/moaner</b> = moans when horny and stimulated. More info when using.\n" +
+                    "<b>/moaner</b> = moans when horny and stimulated. More info when using.\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
-		    "<b>/slowleave</b> = slowly leaves the room.\n" +
+                    "<b>/slowleave</b> = slowly leaves the room.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.</p>"
                 );
             }
@@ -8204,41 +8208,41 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "misc") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands:\n" +
-		    "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
-		    "<b>/exitmode</b> = toggles exit mode (fast or slow) for OUT button in chat room.\n" +
-		    "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
+                    "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
+                    "<b>/exitmode</b> = toggles exit mode (fast or slow) for OUT button in chat room.\n" +
+                    "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
-		    "<b>/sosbuttons</b> = toggles emergency buttons in chat room.\n" +
-		    "<b>/uhelp</b> (category) = displays the ULTRAbc commands. Available categories: bondage, character, clothing, escape, features, fun, kd, misc, pleasure, talking, visual, zones.\n" +
+                    "<b>/sosbuttons</b> = toggles emergency buttons in chat room.\n" +
+                    "<b>/uhelp</b> (category) = displays the ULTRAbc commands. Available categories: bondage, character, clothing, escape, features, fun, kd, misc, pleasure, talking, visual, zones.\n" +
                     "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft.</p>"
                 );
             }
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.4:\n" +
-		    "- Added support in the lock command for the Best Friend and Best Friend Timer locks, provided by BCTweaks.\n" +
-		    "- Added 3 commands related to locks: code, hint, pw.\n" +
-		    "- Updated the help for the unlock command.\n" +
-		    "- Improved the whisper command: you can now add the message you want to whisper to the specified target.\n" +
-		    "- Improved the target search in all commands with target.\n" +
-		    "- Removed the not very useful hiddenmessages command.\n" +
+                    "- Added support in the lock command for the Best Friend and Best Friend Timer locks, provided by BCTweaks.\n" +
+                    "- Added 3 commands related to locks: code, hint, pw.\n" +
+                    "- Updated the help for the unlock command.\n" +
+                    "- Improved the whisper command: you can now add the message you want to whisper to the specified target.\n" +
+                    "- Improved the target search in all commands with target.\n" +
+                    "- Removed the not very useful hiddenmessages command.\n" +
                     "- Fixed bug in jump option of pose2 command.\n" +
-		    "- Fixed a grammatical issue in several commands with target.</p>"
-                ); 
+                    "- Fixed a grammatical issue in several commands with target.</p>"
+                );
             }
             if (args === "talking") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Talking commands - * = more info when using\n" +
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
-		    "<b>/moaner</b> = moans when horny and stimulated. *\n" +
+                    "<b>/moaner</b> = moans when horny and stimulated. *\n" +
                     "<b>/s1</b> (stuffhere) = speaks once in light stuttering mode.\n" +
                     "<b>/s2</b> (stuffhere) = speaks once in normal stuttering mode.\n" +
                     "<b>/s3</b> (stuffhere) = speaks once in heavy stuttering mode.\n" +
                     "<b>/s4</b> (stuffhere) = speaks once in total stuttering mode.\n" +
                     "<b>/stutter</b> (stuttermode) = forces a specific stuttering mode. *\n" +
-		    "<b>/talk</b> (talkmode) = forces a specific talk mode. *\n" +
+                    "<b>/talk</b> (talkmode) = forces a specific talk mode. *\n" +
                     "<b>/whisper</b> (target) (message): sends whisper to specified target.</p>"
                 );
             }
@@ -8337,7 +8341,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password\n" +
                     "17 Best Friend - 18 Best Friend Timer\n" +
-		    "19 Family</p>"
+                    "19 Family</p>"
                 );
             } else {
                 var stringUnlock1 = args;
@@ -8366,7 +8370,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if (lk == null) {
                         CharacterReleaseFromLock(target[0], "CombinationPadlock");
                         CharacterReleaseFromLock(target[0], "ExclusivePadlock");
-			CharacterReleaseFromLock(target[0], "FamilyPadlock"); 
+                        CharacterReleaseFromLock(target[0], "FamilyPadlock");
                         CharacterReleaseFromLock(target[0], "HighSecurityPadlock");
                         CharacterReleaseFromLock(target[0], "IntricatePadlock");
                         CharacterReleaseFromLock(target[0], "LoversPadlock");
@@ -8388,11 +8392,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else if (lk == 3) {
                         CharacterReleaseFromLock(target[0], "IntricatePadlock");
                     } else if (lk == 4) {
-			  for (let A = 0; A < target[0].Appearance.length; A++)
-		              if ((target[0].Appearance[A].Property != null) 
-				  && (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") 
-				  && (target[0].Appearance[A].Property.Name == undefined))
-			              InventoryUnlock(target[0], target[0].Appearance[A]);
+                        for (let A = 0; A < target[0].Appearance.length; A++)
+                            if ((target[0].Appearance[A].Property != null) &&
+                                (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                (target[0].Appearance[A].Property.Name == undefined))
+                                InventoryUnlock(target[0], target[0].Appearance[A]);
                     } else if (lk == 5) {
                         CharacterReleaseFromLock(target[0], "PandoraPadlock");
                     } else if (lk == 6) {
@@ -8417,18 +8421,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
                     } else if (lk == 16) {
                         CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
-	            } else if (lk == 17) {
+                    } else if (lk == 17) {
                         for (let A = 0; A < target[0].Appearance.length; A++)
-		            if ((target[0].Appearance[A].Property != null) 
-				&& (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") 
-				&& (target[0].Appearance[A].Property.Name == "Best Friend Padlock"))
-			            InventoryUnlock(target[0], target[0].Appearance[A]);   
+                            if ((target[0].Appearance[A].Property != null) &&
+                                (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                (target[0].Appearance[A].Property.Name == "Best Friend Padlock"))
+                                InventoryUnlock(target[0], target[0].Appearance[A]);
                     } else if (lk == 18) {
                         for (let A = 0; A < target[0].Appearance.length; A++)
-		            if ((target[0].Appearance[A].Property != null) 
-				&& (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") 
-				&& (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock"))
-			            InventoryUnlock(target[0], target[0].Appearance[A]);
+                            if ((target[0].Appearance[A].Property != null) &&
+                                (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock"))
+                                InventoryUnlock(target[0], target[0].Appearance[A]);
                     } else if (lk == 19) {
                         CharacterReleaseFromLock(target[0], "FamilyPadlock");
                     }
@@ -8565,7 +8569,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomCharacterUpdate(Player);
             } else {
                 var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase()))); 
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
@@ -8643,7 +8647,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: "(target) (message): sends whisper to specified target.",
         Action: (_, command, args) => {
             var [targetname] = args;
-	    if (!targetname) {
+            if (!targetname) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The whisper command must be followed by a target and the message you want to whisper.<p>\n"
                 );
@@ -8656,13 +8660,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
-		    ElementValue("InputChat", msg);
+                    ElementValue("InputChat", msg);
                     if (this.BabyTalkOn == true) {
                         var msg2 = SpeechBabyTalk({
                             Effect: ["RegressedTalk"]
-                        }, msg);  
+                        }, msg);
                     } else if (this.GagTalkOn == true) {
-                        var msg2 = SpeechGarbleByGagLevel(gl, msg);   
+                        var msg2 = SpeechGarbleByGagLevel(gl, msg);
                     } else {
                         var msg2 = msg;
                     }
@@ -8678,12 +8682,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         var msg3 = msg2;
                     }
-                    ElementValue("InputChat", msg2.replace(msg2, msg3)); 
+                    ElementValue("InputChat", msg2.replace(msg2, msg3));
                     if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
                         var msg4 = M_MOANER_applyMoanToMsg(Player, msg3);
                     } else {
                         var msg4 = msg3;
-                    }                   
+                    }
                     ElementValue("InputChat", msg3.replace(msg3, msg4));
                     ChatRoomTargetMemberNumber = target[0].MemberNumber;
                     if (msg != "") {
@@ -8702,11 +8706,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "LocalMessage",
                             Sender: Player.MemberNumber
                         });
-                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                     }
                 }
-	    }    
+            }
         }
     }])
 
