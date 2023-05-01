@@ -2024,7 +2024,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     // See if you should be changing both or just one of the diaper (and which one, of course)
                     if (chatCommand[chatCommand.length - 1] === "panties") {
-                        if (!checkForDiaper("panties")) {
+                        if (checkForDiaper("panties")) {
                             ServerSend("ChatRoomChat", {
                                 Type: "Action",
                                 Content: "gag",
@@ -2039,7 +2039,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             });
                         }
                     } else if (chatCommand[chatCommand.length - 1] === "chastity") {
-                        if (!checkForDiaper === "chastity") {
+                        if (checkForDiaper === "chastity") {
                             ServerSend("ChatRoomChat", {
                                 Type: "Action",
                                 Content: "gag",
@@ -2054,7 +2054,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             });
                         }
                     } else {
-                        if (!(checkForDiaper("panties") || checkForDiaper("chastity"))) {
+                        if (!((checkForDiaper("panties") || checkForDiaper("chastity")))) {
                             ServerSend("ChatRoomChat", {
                                 Type: "Action",
                                 Content: "gag",
