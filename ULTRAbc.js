@@ -1914,13 +1914,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         wetLevelOuter: 0
     };
 
-    const diaperHelpMessages = {
-        default: "Welcome to BCDW: Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\nTo get started, use the ->diaper start to begin using your diaper and ->diaper stop to stop. You can also use ->diaper help <command> to get more information on any given command (for example, arguments!).",
-        start: "",
-        change: "",
-        stop: ""
-    };
-
     diaperLoop = null; // Keeps a hold of the loop so it can be exited at any time easily
 
     // Destutter speach. Needed for interations with other mods
@@ -3743,7 +3736,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The diaper command must include an action.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Welcome to Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\\n" +
+                    " \n" +
+                    "The diaper command must include an action.\n" +
                     "You need to wear one or two layers of diapers (only bulky and poofy versions)\n" +
                     "<b>/diaper start</b> to enable the script\n" +
                     "<b>/diaper stop</b> to disable the script\n" +
