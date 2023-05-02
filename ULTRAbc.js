@@ -43,15 +43,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_spankActive = true;
     var M_MOANER_verboseActive = true;
     
-    let initMessChance;
-    let initWetChance;
-    let initBaseTimer;
-    let initRegressionLevel;
-    let initDesperationLevel;
-    let initMessLevelInner;
-    let initWetLevelInner;
-    let initMessLevelOuter;
-    let initWetLevelOuter;
+    let diaperDefaultValues_messChance;
+    let diaperDefaultValues_wetChance;
+    let diaperDefaultValues_baseTimer;
+    let diaperDefaultValues_regressionLevel;
+    let diaperDefaultValues_desperationLevel;
+    let diaperDefaultValues_messLevelInner;
+    let diaperDefaultValues_wetLevelInner;
+    let diaperDefaultValues_messLevelOuter;
+    let diaperDefaultValues_wetLevelOuter;
     
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
@@ -62,15 +62,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_spankActive = true;
             M_MOANER_scriptOn = false;
             profileName = "default";
-            initMessChance = .3;
-            initWetChance = .5;
-            initBaseTimer = 30;
-            initRegressionLevel = 0;
-            initDesperationLevel = 0:
-            initMessLevelInner = 0;
-            initWetLevelInner = 0;
-            initMessLevelOuter = 0;
-            initWetLevelOuter = 0;
+            diaperDefaultValues_messChance = .3;
+            diaperDefaultValues_wetChance = .5;
+            diaperDefaultValues_baseTimer = 30;
+            diaperDefaultValues_regressionLevel = 0;
+            diaperDefaultValues_desperationLevel = 0:
+            diaperDefaultValues_messLevelInner = 0;
+            diaperDefaultValues_wetLevelInner = 0;
+            diaperDefaultValues_messLevelOuter = 0;
+            diaperDefaultValues_wetLevelOuter = 0;
             SosbuttonsOn = false;
             SlowleaveOn = false;
             FullseedOn = false;
@@ -83,15 +83,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_spankActive = datas.spankMoan;
             M_MOANER_scriptOn = datas.script;
             profileName = datas.moanProfile;
-            initMessChance = datas.messchance;
-            initWetChance = datas.wetchance;
-            initBaseTimer = datas.basetimer;
-            initRegressionLevel = datas.regressionlevel;
-            initDesperationLevel = datas.desperationlevel;
-            initMessLevelInner = datas.messlevelinner;
-            initWetLevelInner = datas.wetlevelinner;
-            initMessLevelOuter = datas.messlevelouter;
-            initWetLevelOuter = datas.wetlevelouter;
+            diaperDefaultValues_messChance = datas.messchance;
+            diaperDefaultValues_wetChance = datas.wetchance;
+            diaperDefaultValues_baseTimer = datas.basetimer;
+            diaperDefaultValues_regressionLevel = datas.regressionlevel;
+            diaperDefaultValues_desperationLevel = datas.desperationlevel;
+            diaperDefaultValues_messLevelInner = datas.messlevelinner;
+            diaperDefaultValues_wetLevelInner = datas.wetlevelinner;
+            diaperDefaultValues_messLevelOuter = datas.messlevelouter;
+            diaperDefaultValues_wetLevelOuter = datas.wetlevelouter;
             SosbuttonsOn = datas.sosbuttons;
             SlowleaveOn = datas.slowleave;
             FullseedOn = datas.fullseed;
@@ -107,15 +107,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "spankMoan": M_MOANER_spankActive,
             "script": M_MOANER_scriptOn,
             "moanProfile": profileName,
-            "messchance": initMessChance,
-            "wetchance": initWetChance,
-            "basetimer": initBaseTimer,
-            "regressionlevel": initRegressionLevel,
-            "desperationlevel": initDesperationLevel,
-            "messlevelinner": initMessLevelInner,
-            "wetlevelinner": initWetLevelInner,
-            "messlevelouter": initMessLevelOuter,
-            "wetlevelouter": initWetLevelOuter,
+            "messchance": diaperDefaultValues_messChance,
+            "wetchance": diaperDefaultValues_wetChance,
+            "basetimer": diaperDefaultValues_baseTimer,
+            "regressionlevel": diaperDefaultValues_regressionLevel,
+            "desperationlevel": diaperDefaultValues_desperationLevel,
+            "messlevelinner": diaperDefaultValues_messLevelInner,
+            "wetlevelinner": diaperDefaultValues_wetLevelInner,
+            "messlevelouter": diaperDefaultValues_messLevelOuter,
+            "wetlevelouter": diaperDefaultValues_wWetLevelOuter,
             "sosbuttons": SosbuttonsOn,
             "slowleave": SlowleaveOn,
             "fullseed": FullseedOn,
@@ -1938,19 +1938,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         ["#4C3017"]
     ];
 
-    // Table to store all the defaul values for diaperWetter()
-    const diaperDefaultValues = {
-        messChance: .3,
-        wetChance: .5,
-        baseTimer: 30,
-        regressionLevel: 0,
-        desperationLevel: 0,
-        messLevelInner: 0,
-        wetLevelInner: 0,
-        messLevelOuter: 0,
-        wetLevelOuter: 0
-    };
-
     diaperLoop = null; // Keeps a hold of the loop so it can be exited at any time easily
 
     // Destutter speach. Needed for interations with other mods
@@ -2110,18 +2097,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     // Initializer function
     function diaperWetter({
-        initMessChance = diaperDefaultValues.messChance,
-        initWetChance = diaperDefaultValues.wetChance,
-        baseTimer = diaperDefaultValues.baseTimer,
-        initRegressionLevel = diaperDefaultValues.regressionLevel,
-        initDesperationLevel = diaperDefaultValues.desperationLevel,
-        initMessLevelInner = diaperDefaultValues.messLevelInner,
-        initWetLevelInner = diaperDefaultValues.wetLevelInner,
-        initMessLevelOuter = diaperDefaultValues.messLevelOuter,
-        initWetLevelOuter = diaperDefaultValues.wetLevelOuter
+        initMessChance = diaperDefaultValues_messChance,
+        initWetChance = diaperDefaultValues_wetChance,
+        baseTimer = diaperDefaultValues_baseTimer,
+        initRegressionLevel = diaperDefaultValues_regressionLevel,
+        initDesperationLevel = diaperDefaultValues_desperationLevel,
+        initMessLevelInner = diaperDefaultValues_messLevelInner,
+        initWetLevelInner = diaperDefaultValues_wetLevelInner,
+        initMessLevelOuter = diaperDefaultValues_messLevelOuter,
+        initWetLevelOuter = diaperDefaultValues_wetLevelOuter
     } = {}) {
 
-        // Greating message
+        // Greeting message
         if (Player.Nickname == '') {
             var tmpname = Player.Name;
         } else {
@@ -2140,28 +2127,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         refreshDiaper({
             cdiaper: "both",
             inMessLevelChastity: (initMessLevelOuter < 0 || initMessLevelOuter > 2) ?
-                diaperDefaultValues.messLevelOuter : initMessLevelOuter,
+                diaperDefaultValues_messLevelOuter : initMessLevelOuter,
             inWetLevelChastity: (initWetLevelOuter < 0 || initWetLevelOuter > 2) ?
                 ((initMessLevelOuter < 0 || initMessLevelOuter > 2) ?
-                    diaperDefaultValues.messLevelOuter :
+                    diaperDefaultValues_messLevelOuter :
                     inMessLevelOuter
                 ) : ((initWetLevelOuter > initMessLevelOuter) ?
                     initWetLevelOuter :
                     ((initMessLevelOuter < 0 || initMessLevelOuter > 2) ?
-                        diaperDefaultValues.messLevelOuter :
+                        diaperDefaultValues_messLevelOuter :
                         initMessLevelOuter
                     )
                 ),
             inMessLevelPanties: (initMessLevelInner < 0 || initMessLevelInner > 2) ?
-                diaperDefaultValues.messLevelInner : initMessLevelInner,
+                diaperDefaultValues_messLevelInner : initMessLevelInner,
             inWetLevelPanties: (initWetLevelInner < 0 || initWetLevelInner > 2) ?
                 ((initMessLevelInner < 0 || initMessLevelInner > 2) ?
-                    diaperDefaultValues.messLevelInner :
+                    diaperDefaultValues_messLevelInner :
                     initMessLevelOuter
                 ) : ((initWetLevelInner > initMessLevelInner) ?
                     initWetLevelInner :
                     ((initMessLevelInner < 0 || initMessLevelInner > 2) ?
-                        diaperDefaultValues.messLevelInner :
+                        diaperDefaultValues_messLevelInner :
                         initMessLevelInner
                     )
                 ),
@@ -3881,7 +3868,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "setdesperation") {
                     var setchange = stringDiaper2[1];
-                    initDesperationLevel = setchange;
+                    diaperDefaultValues_desperationLevel = setchange;
                     M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
@@ -3890,7 +3877,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "setmesschance") {
                     var setchange = stringDiaper2[1];
-                    initMessChance = setchange;
+                    diaperDefaultValues_messChance = setchange;
                     M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
@@ -3901,8 +3888,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if (InventoryGet(Player, "Panties") != null) {
                         if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
-                            if (setchange < diaperDefaultValues.wetLevelInner) {
-                                initMessLevelInner = setchange;
+                            if (setchange < diaperDefaultValues_wetLevelInner) {
+                                diaperDefaultValues_messLevelInner = setchange;
                                 M_MOANER_saveControls();
                                 setchange = "";
                                 ChatRoomSendLocal(
@@ -3916,8 +3903,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if (InventoryGet(Player, "ItemPelvis") != null) {
                         if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
-                            if (setchange < diaperDefaultValues.wetLevelOuter) {
-                                initMessLevelOuter = setchange;
+                            if (setchange < diaperDefaultValues_wetLevelOuter) {
+                                diaperDefaultValues_messLevelOuter = setchange;
                                 M_MOANER_saveControls();
                                 setchange = "";
                                 ChatRoomSendLocal(
@@ -3929,7 +3916,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "setregression") {
                     var setchange = stringDiaper2[1];
-                    initRegressionLevel = setchange;
+                    diaperDefaultValues_regressionLevel = setchange;
                     M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
@@ -3938,7 +3925,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "settimer") {
                     var setchange = stringDiaper2[1];
-                    initBaseTimer = setchange;
+                    diaperDefaultValues_baseTimer = setchange;
                     M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
@@ -3947,7 +3934,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "setwetchance") {
                     var setchange = stringDiaper2[1];
-                    initWetChance = setchange;
+                    diaperDefaultValues_wetChance = setchange;
                     M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
@@ -3958,8 +3945,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if (InventoryGet(Player, "Panties") != null) {
                         if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
-                            if (setchange > diaperDefaultValues.messLevelInner) {
-                                initWetLevelInner = setchange;
+                            if (setchange > diaperDefaultValues_messLevelInner) {
+                                diaperDefaultValues_wetLevelInner = setchange;
                                 M_MOANER_saveControls();
                                 setchange = "";
                                 ChatRoomSendLocal(
@@ -3973,8 +3960,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if (InventoryGet(Player, "ItemPelvis") != null) {
                         if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
-                            if (setchange > diaperDefaultValues.messLevelOuter) {
-                                initWetLevelOuter = setchange;
+                            if (setchange > diaperDefaultValues_messLevelOuter) {
+                                diaperDefaultValues_wetLevelOuter = setchange;
                                 M_MOANER_saveControls();
                                 setchange = "";
                                 ChatRoomSendLocal(
