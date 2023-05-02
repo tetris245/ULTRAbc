@@ -66,7 +66,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             diaperDefaultValues_wetChance = .5;
             diaperDefaultValues_baseTimer = 30;
             diaperDefaultValues_regressionLevel = 0;
-            diaperDefaultValues_desperationLevel = 0:
+            diaperDefaultValues_desperationLevel = 0;
             diaperDefaultValues_messLevelInner = 0;
             diaperDefaultValues_wetLevelInner = 0;
             diaperDefaultValues_messLevelOuter = 0;
