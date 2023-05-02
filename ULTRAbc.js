@@ -115,7 +115,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "messlevelinner": diaperDefaultValues_messLevelInner,
             "wetlevelinner": diaperDefaultValues_wetLevelInner,
             "messlevelouter": diaperDefaultValues_messLevelOuter,
-            "wetlevelouter": diaperDefaultValues_wWetLevelOuter,
+            "wetlevelouter": diaperDefaultValues_wetLevelOuter,
             "sosbuttons": SosbuttonsOn,
             "slowleave": SlowleaveOn,
             "fullseed": FullseedOn,
