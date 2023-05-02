@@ -3881,7 +3881,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "setdesperation") {
                     var setchange = stringDiaper2[1];
-                    diaperDefaultValues.desperationLevel = setchange;
+                    initDesperationLevel = setchange;
+                    M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your desperation level has been changed.</p>"
@@ -3889,7 +3890,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "setmesschance") {
                     var setchange = stringDiaper2[1];
-                    diaperDefaultValues.messChance = setchange;
+                    initMessChance = setchange;
+                    M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to mess diapers has been changed.</p>"
@@ -3900,7 +3902,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
                             if (setchange < diaperDefaultValues.wetLevelInner) {
-                                diaperDefaultValues.messLevelInner = setchange;
+                                initMessLevelInner = setchange;
+                                M_MOANER_saveControls();
                                 setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for normal diapers has been changed.</p>"
@@ -3914,7 +3917,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
                             if (setchange < diaperDefaultValues.wetLevelOuter) {
-                                diaperDefaultValues.messLevelOuter = setchange;
+                                initMessLevelOuter = setchange;
+                                M_MOANER_saveControls();
                                 setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for chastity diapers has been changed.</p>"
@@ -3925,7 +3929,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "setregression") {
                     var setchange = stringDiaper2[1];
-                    diaperDefaultValues.regressionLevel = setchange;
+                    initRegressionLevel = setchange;
+                    M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your regression level has been changed.</p>"
@@ -3933,7 +3938,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "settimer") {
                     var setchange = stringDiaper2[1];
-                    diaperDefaultValues.baseTimer = setchange;
+                    initBaseTimer = setchange;
+                    M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet/mess timer has been changed.</p>"
@@ -3941,7 +3947,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (feature == "setwetchance") {
                     var setchange = stringDiaper2[1];
-                    diaperDefaultValues.wetChance = setchange;
+                    initWetChance = setchange;
+                    M_MOANER_saveControls();
                     setchange = "";
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to wet diapers has been changed.</p>"
@@ -3952,7 +3959,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
                             if (setchange > diaperDefaultValues.messLevelInner) {
-                                diaperDefaultValues.wetLevelInner = setchange;
+                                initWetLevelInner = setchange;
+                                M_MOANER_saveControls();
                                 setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for normal diapers has been changed.</p>"
@@ -3966,7 +3974,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                             var setchange = stringDiaper2[1];
                             if (setchange > diaperDefaultValues.messLevelOuter) {
-                                diaperDefaultValues.wetLevelOuter = setchange;
+                                initWetLevelOuter = setchange;
+                                M_MOANER_saveControls();
                                 setchange = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for chastity diapers has been changed.</p>"
