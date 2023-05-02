@@ -27,7 +27,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         repository: 'https://github.com/tetris245/ULTRAbc',
     });
 
-    //Main variables and settings for UBC and The Moaner
+    //Main variables and settings for UBC, The Moaner, The Diaper Wetter
     var FBC_VERSION = "";
     var M_MOANER_moanerKey = "bc_moaner_";
     var M_MOANER_scriptOn = true;
@@ -42,7 +42,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_vibratorActive = true;
     var M_MOANER_spankActive = true;
     var M_MOANER_verboseActive = true;
-
+    
+    let initMessChance;
+    let initWetChance;
+    let initBaseTimer;
+    let initRegressionLevel;
+    let initDesperationLevel;
+    let initMessLevelInner;
+    let initWetLevelInner;
+    let initMessLevelOuter;
+    let initWetLevelOuter;
+    
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
@@ -52,6 +62,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_spankActive = true;
             M_MOANER_scriptOn = false;
             profileName = "default";
+            initMessChance = .3;
+            initWetChance = .5;
+            initBaseTimer = 30;
+            initRegressionLevel = 0;
+            initDesperationLevel = 0:
+            initMessLevelInner = 0;
+            initWetLevelInner = 0;
+            initMessLevelOuter = 0;
+            initWetLevelOuter = 0;
             SosbuttonsOn = false;
             SlowleaveOn = false;
             FullseedOn = false;
@@ -60,10 +79,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         } else {
             M_MOANER_talkActive = datas.talkMoan;
             M_MOANER_orgasmActive = datas.orgasmMoan;
-            M_MOANER_vibratorActive = datas.vibeMoan;
+            M_MOANER_v ibratorActive = datas.vibeMoan;
             M_MOANER_spankActive = datas.spankMoan;
             M_MOANER_scriptOn = datas.script;
             profileName = datas.moanProfile;
+            initMessChance = datas.messchance;
+            initWetChance = datas.wetchance;
+            initBaseTimer = datas.basetimer;
+            initRegressionLevel = datas.regressionlevel;
+            initDesperationLevel = datas.desperationlevel;
+            initMessLevelInner = datas.messlevelinner;
+            initWetLevelInner = datas.wetlevelinner;
+            initMessLevelOuter = datas.messlevelouter;
+            initWetLevelOuter = datas.wetlevelouter;
             SosbuttonsOn = datas.sosbuttons;
             SlowleaveOn = datas.slowleave;
             FullseedOn = datas.fullseed;
@@ -79,6 +107,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "spankMoan": M_MOANER_spankActive,
             "script": M_MOANER_scriptOn,
             "moanProfile": profileName,
+            "messchance": initMessChance,
+            "wetchance": initWetChance,
+            "basetimer": initBaseTimer,
+            "regressionlevel": initRegressionLevel,
+            "desperationlevel": initDesperationLevel,
+            "messlevelinner": initMessLevelInner,
+            "wetlevelinner": initWetLevelInner,
+            "messlevelouter": initMessLevelOuter,
+            "wetlevelouter": initWetLevelOuter,
             "sosbuttons": SosbuttonsOn,
             "slowleave": SlowleaveOn,
             "fullseed": FullseedOn,
