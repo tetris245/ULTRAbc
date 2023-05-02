@@ -79,7 +79,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         } else {
             M_MOANER_talkActive = datas.talkMoan;
             M_MOANER_orgasmActive = datas.orgasmMoan;
-            M_MOANER_v ibratorActive = datas.vibeMoan;
+            M_MOANER_vibratorActive = datas.vibeMoan;
             M_MOANER_spankActive = datas.spankMoan;
             M_MOANER_scriptOn = datas.script;
             profileName = datas.moanProfile;
