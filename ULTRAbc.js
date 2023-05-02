@@ -2184,10 +2184,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     // Refresh the diaper settings so wet and mess levels are 0. Pass "chastity", "panties", or "both" so only the correct diaper gets reset.
     function refreshDiaper({
         cdiaper = "both",
-        inWetLevelPanties = diaperDefaultValues.wetLevelInner,
-        inMessLevelPanties = diaperDefaultValues.messLevelInner,
-        inWetLevelChastity = diaperDefaultValues.wetLevelOuter,
-        inMessLevelChastity = diaperDefaultValues.messLevelOuter,
+        inWetLevelPanties = diaperDefaultValues_wetLevelInner,
+        inMessLevelPanties = diaperDefaultValues_messLevelInner,
+        inWetLevelChastity = diaperDefaultValues_wetLevelOuter,
+        inMessLevelChastity = diaperDefaultValues_messLevelOuter,
     } = {}) {
         if (Player.Nickname == '') {
             var tmpname = Player.Name;
