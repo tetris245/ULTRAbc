@@ -52,7 +52,7 @@ Changes for future version
 * New commands: 
   - autojoin to enable/disable Auto-Join feature to enter a full room as soon as it is possible
   - fullseed to toggle full solution for Intricate and High Security locks
-* Improved the integration of the BC-Diaper-Wetter to allow local saving of its parameters
+* Improved the integration of the BC-Diaper-Wetter script to allow local saving of its parameters
 * Updated the lock command by adding the Family lock
 * Improved and updated the unlock command:
   - Added the Family lock
