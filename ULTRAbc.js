@@ -5199,7 +5199,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 if ((pw != null) && (pw.length <= 8) && (pw.match(PS))) {
                                     target[0].Appearance[A].Property.Password = pw;
                                 }
-                                if (lk > 16) {
+                                if ((lk == 17) || (lk == 18)) {
                                     target[0].Appearance[A].Property.LockedBy = "HighSecurityPadlock";
                                     target[0].Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
                                     let listOwnerLovers = new Set();
