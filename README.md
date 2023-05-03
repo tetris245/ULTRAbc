@@ -56,4 +56,4 @@ Changes for future version
 * Improved and updated the unlock command:
   - Added the Family lock
   - Added apart unlocking for Best Friend and Best Friend Timer locks (they are no more handled as High Security locks)
-* Fixed several bugs in the BC-Diaper-Wetter script
+* Fixed several bugs in the diaper command
