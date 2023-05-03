@@ -3781,8 +3781,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var stringDiaper2 = stringDiaper1.split(/[ ,]+/);
                 var feature = stringDiaper2[0];
                 if (feature == "change1") {
-                    var targetname = stringDiaper2[1];
-                    if ((targetname === null) && (checkForDiaper("Panties"))) {
+                    if (Player.Nickname == '') {
+                        var tmpname = Player.Name;
+                    } else {
+                        var tmpname = Player.Nickname;
+                    }
+		            var targetname = stringDiaper2[1];
+                    if (targetname == null) {          
                         refreshDiaper("panties");
                     } else {
                         var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -3803,8 +3808,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
                 if (feature == "change2") {
-                    var targetname = stringDiaper2[1];
-                    if ((targetname === null) && (checkForDiaper("ItemPelvis"))) {
+                    if (Player.Nickname == '') {
+                        var tmpname = Player.Name;
+                    } else {
+                        var tmpname = Player.Nickname;
+                    }
+		            var targetname = stringDiaper2[1];
+                    if (targetname == null) {               
                         refreshDiaper("chastity");
                     } else {
                         var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -3825,8 +3835,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
                 if (feature == "change3") {
-                    var targetname = stringDiaper2[1];
-                    if ((targetname === null) && (checkForDiaper("Panties")) && (checkForDiaper("ItemPelvis"))) {
+                    if (Player.Nickname == '') {
+                        var tmpname = Player.Name;
+                    } else {
+                        var tmpname = Player.Nickname;
+                    }
+		            var targetname = stringDiaper2[1];
+                    if (targetname == null) { 
                         refreshDiaper("both");
                     } else {
                         var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
