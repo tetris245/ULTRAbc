@@ -3743,7 +3743,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The diaper command must include an action.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Welcome to Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\n" +
+                    " \n" +
+                    "The diaper command must include an action.\n" +
                     "You need to wear one or two layers of diapers (only bulky and poofy versions)\n" +
                     "<b>/diaper start</b> to enable the script\n" +
                     "<b>/diaper stop</b> to disable the script\n" +
@@ -3786,7 +3788,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         var tmpname = Player.Nickname;
                     }
-		            var targetname = stringDiaper2[1];
+		        var targetname = stringDiaper2[1];
                     if (targetname == null) {          
                         refreshDiaper("panties");
                     } else {
@@ -3813,7 +3815,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         var tmpname = Player.Nickname;
                     }
-		            var targetname = stringDiaper2[1];
+		        var targetname = stringDiaper2[1];
                     if (targetname == null) {               
                         refreshDiaper("chastity");
                     } else {
@@ -3840,7 +3842,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         var tmpname = Player.Nickname;
                     }
-		            var targetname = stringDiaper2[1];
+		        var targetname = stringDiaper2[1];
                     if (targetname == null) { 
                         refreshDiaper("both");
                     } else {
@@ -5186,7 +5188,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 if ((pw != null) && (pw.length <= 8) && (pw.match(PS))) {
                                     target[0].Appearance[A].Property.Password = pw;
                                 }
-                                if (lk > 16) {
+                                if ((lk == 17) || (lk == 18)) {
                                     target[0].Appearance[A].Property.LockedBy = "HighSecurityPadlock";
                                     target[0].Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
                                     let listOwnerLovers = new Set();
