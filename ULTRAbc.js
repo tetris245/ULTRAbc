@@ -31,6 +31,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var FBC_VERSION = "";
     var M_MOANER_moanerKey = "bc_moaner_";
     var M_MOANER_scriptOn = true;
+    var M_MOANER_cum = false;
+	
     let profileName;
     let SosbuttonsOn;
     let SlowleaveOn;
@@ -51,6 +53,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_vibratorActive = true;
             M_MOANER_spankActive = true;
             M_MOANER_scriptOn = false;
+	    M_MOANER_cum = false;
             profileName = "default";
             SosbuttonsOn = false;
             SlowleaveOn = false;
@@ -63,6 +66,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_vibratorActive = datas.vibeMoan;
             M_MOANER_spankActive = datas.spankMoan;
             M_MOANER_scriptOn = datas.script;
+	    M_MOANER_cum = datas.cum;
             profileName = datas.moanProfile;
             SosbuttonsOn = datas.sosbuttons;
             SlowleaveOn = datas.slowleave;
@@ -78,6 +82,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "vibeMoan": M_MOANER_vibratorActive,
             "spankMoan": M_MOANER_spankActive,
             "script": M_MOANER_scriptOn,
+	    "cum": M_MOANER_cum,
             "moanProfile": profileName,
             "sosbuttons": SosbuttonsOn,
             "slowleave": SlowleaveOn,
@@ -140,6 +145,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }, 5000);
 
     //ModSDK Functions
+    ULTRAActivityChatRoomArousalSync(); 
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
     ULTRACellClick();
@@ -544,6 +550,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
             DrawButton(750, 120, 500, 60, "ULTRAbc 1.4 Ready!", "Pink", "Black", "");
+            next(args);
+        });
+    }
+	
+    //Orgasm
+    async function ULTRAActivityChatRoomArousalSync() {
+        modApi.hookFunction('ActivityChatRoomArousalSync', 4, (args, next) => {
+            if ((Player.ArousalSettings.OrgasmStage == 0) && (M_MOANER_cum == true)) {
+                M_MOANER_cum = false;
+                M_MOANER_saveControls();
+            }
             next(args);
         });
     }
@@ -1353,10 +1370,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     ElementValue("InputChat", moan2.replace(moan2, moan3));
                     msg = "";
-                    Player.ArousalSettings.OrgasmStage = 0;
-                    Player.ArousalSettings.Progress = 0;
                     ActivityChatRoomArousalSync(Player);
-                    ChatRoomSendChat();
+                    if (M_MOANER_cum == false) {
+                        ChatRoomSendChat();
+                        M_MOANER_cum = true;
+                        M_MOANER_saveControls();
+                    }         
                 } else {
                     backupChatRoomTargetMemberNumber = ChatRoomTargetMemberNumber;
                     ChatRoomTargetMemberNumber = null;
@@ -1383,11 +1402,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         var moan3 = moan2;
                     }
-                    ElementValue("InputChat", moan2.replace(moan2, moan3));
-                    Player.ArousalSettings.OrgasmStage = 0;
-                    Player.ArousalSettings.Progress = 0;
+                    ElementValue("InputChat", moan2.replace(moan2, moan3));;
                     ActivityChatRoomArousalSync(Player);
-                    ChatRoomSendChat();
+                    if (M_MOANER_cum == false) {
+                        ChatRoomSendChat();
+                        M_MOANER_cum = true;
+                        M_MOANER_saveControls();
+                    }  
                     ChatRoomTargetMemberNumber = backupChatRoomTargetMemberNumber;
                     ElementValue("InputChat", msg);
                 }
