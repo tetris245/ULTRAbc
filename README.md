@@ -52,9 +52,10 @@ Changes for future version
 * New commands: 
   - autojoin to enable/disable Auto-Join feature to enter a full room as soon as it is possible
   - fullseed to toggle full solution for Intricate and High Security locks
+* Improved the Diaper Wetter by fixing the bugs in the diaper change commands and making them more solid
 * Improved the Moaner by restoring the recovery part after an orgasm while avoiding spamming of multiple moaning messages
 * Updated the lock command by adding the Family lock
 * Improved and updated the unlock command:
   - Added the Family lock
   - Added apart unlocking for Best Friend and Best Friend Timer locks (they are no more handled as High Security locks)
-* Fixed several bugs in the diaper command
+
