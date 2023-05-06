@@ -3810,11 +3810,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var tmpname = Player.Nickname;
                     }
 		    var targetname = stringDiaper2[1];
-                    if (targetname == null) { 
-                        if (InventoryGet(Player, "Panties") != null) {
-                            if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {      
-                                refreshDiaper("panties");
-                            }
+		    if (targetname == null) { 
+                        if (InventoryGet(Player, "Panties") == null) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have normal diapers!</p>"
+                            );
+                        } else if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {      
+                            refreshDiaper("panties");
+                        } else {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have normal diapers!</p>"
+                            );
                         }
                     } else {
                         var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -3823,19 +3829,44 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                         }
                         if (target[0] != null) {
-                            if (InventoryGet(target[0], "Panties") != null) {
-                                if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "ULTRAbc: " + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.",
-                                        Type: "Whisper",
-                                        Target: target[0].MemberNumber
-                                    });
-                                }
+                            if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                                tgpname = target[0].Name;
+                            } else {
+                                tgpname = target[0].Nickname;
                             }
-                        }
-                        ChatRoomSetTarget(null);
+                            if (InventoryGet(target[0], "Panties") == null) {
+                                  ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have normal diapers!</p>"
+                                );
+                            } else if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
+                                  ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                                  var msg = "" + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.";
+                                  ServerSend("ChatRoomChat", {
+                                      "Content": msg,
+                                      "Type": "Whisper",
+                                      "Target": ChatRoomTargetMemberNumber
+                                  });
+                                  for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                      if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                           TargetName = ChatRoomCharacter[C].Name;
+                                           break;
+                                      }
+                                  ChatRoomMessage({
+                                      Content: "Whisper to " + TargetName + ": " + msg,
+                                      Type: "LocalMessage",
+                                      Sender: Player.MemberNumber
+                                  });
+                                  document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                                  document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";                             
+                             } else {
+                                 ChatRoomSendLocal(
+                                     "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have normal diapers!</p>"
+                                 );
+                             }
+                             ChatRoomSetTarget(null);
+                         }
                     }
-                }
+                }    
                 if (feature == "change2") {
                     if (Player.Nickname == '') {
                         var tmpname = Player.Name;
@@ -3843,11 +3874,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var tmpname = Player.Nickname;
                     }
 		    var targetname = stringDiaper2[1];
-                    if (targetname == null) { 
-                        if (InventoryGet(Player, "ItemPelvis") != null) {
-                            if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {    
-                                refreshDiaper("chastity");
-                            } 
+		    if (targetname == null) { 
+                        if (InventoryGet(Player, "ItemPelvis") == null) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have chastity diapers!</p>"
+                            );
+                        } else if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {    
+                            refreshDiaper("chastity");
+                        } else {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have chastity diapers!</p>"
+                            );
                         }
                     } else {
                         var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -3856,19 +3893,44 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                         }
                         if (target[0] != null) {
-                            if (InventoryGet(target[0], "ItemPelvis") != null) {
-                                if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "ULTRAbc: " + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.",
-                                        Type: "Whisper",
-                                        Target: target[0].MemberNumber
-                                    });
-                                }
+                            if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                                tgpname = target[0].Name;
+                            } else {
+                                tgpname = target[0].Nickname;
                             }
+                            if (InventoryGet(target[0], "ItemPelvis") == null) {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have chastity diapers!</p>"
+                                );
+                            } else if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
+                                ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                                var msg = "" + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.";
+                                ServerSend("ChatRoomChat", {
+                                    "Content": msg,
+                                    "Type": "Whisper",
+                                    "Target": ChatRoomTargetMemberNumber
+                                });
+                                for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                    if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                         TargetName = ChatRoomCharacter[C].Name;
+                                         break;
+                                    }
+                                ChatRoomMessage({
+                                     Content: "Whisper to " + TargetName + ": " + msg,
+                                     Type: "LocalMessage",
+                                     Sender: Player.MemberNumber
+                                });
+                                document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                                document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";                             
+                            } else {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have chastity diapers!</p>"
+                                );
+                            }
+                            ChatRoomSetTarget(null);
                         }
-                        ChatRoomSetTarget(null);
                     }
-                }
+                }    
                 if (feature == "change3") {
                     if (Player.Nickname == '') {
                         var tmpname = Player.Name;
@@ -3876,34 +3938,126 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var tmpname = Player.Nickname;
                     }
 		    var targetname = stringDiaper2[1];
-                    if (targetname == null) { 
-                        if ((InventoryGet(Player, "Panties") != null) && (InventoryGet(Player, "ItemPelvis") != null)) {
+		    if (targetname == null) { 
+                        if ((InventoryGet(Player, "Panties") == null) && (InventoryGet(Player, "ItemPelvis") == null)) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have a diaper! Get one on you before you make a mess!</p>"
+                            );
+                        } else if ((InventoryGet(Player, "Panties") == null) && (InventoryGet(Player, "ItemPelvis") != null)) {
+                            if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have two layers of diapers!</p>"
+                                );
+                            } else { 
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have a diaper! Get one on you before you make a mess!</p>"
+                                );
+                            }
+                        } else if ((InventoryGet(Player, "Panties") != null) && (InventoryGet(Player, "ItemPelvis") == null)) {
+                            if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have two layers of diapers!</p>"
+                                );
+                            } else { 
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have a diaper! Get one on you before you make a mess!</p>"
+                                );
+                            }
+                        } else if ((InventoryGet(Player, "Panties") != null) && (InventoryGet(Player, "ItemPelvis") != null)) {
                             if ((InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper")
 				&& (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper")) {
                                 refreshDiaper("both");
+                            } else {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have two layers of diapers!</p>"
+                                );
                             }
-                        }
-                    } else {
-                        var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                        if (target[0] == null) {
-                            var targetnumber = parseInt(targetname);
-                            target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                        }
-                        if (target[0] != null) {
-                            if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
-                                if ((InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") 
-				    && (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper")) {
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "ULTRAbc: " + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.",
-                                        Type: "Whisper",
-                                        Target: target[0].MemberNumber
-                                    });
+                       }
+                   } else {
+                       var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                       if (target[0] == null) {
+                           var targetnumber = parseInt(targetname);
+                           target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                       }
+                       if (target[0] != null) {
+                           if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                               tgpname = target[0].Name;
+                           } else {
+                               tgpname = target[0].Nickname;
+                           }
+                           if (InventoryGet(target[0], "Pronouns").Asset.Name == "HeHim") {
+                               tgpr1 = "He";
+                               tgpr2 = "him";
+                               tgpr3 = "his";
+                               tgpr4 = "he";
+                           } else if (InventoryGet(target[0], "Pronouns").Asset.Name == "SheHer") {
+                               tgpr1 = "She";
+                               tgpr2 = "her";
+                               tgpr3 = "her";
+                               tgpr4 = "she";
+                           } else {
+                               tgpr1 = "They";
+                               tgpr2 = "them";
+                               tgpr3 = "their";
+                               tgpr4 = "they"; 
+			   }
+                           if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
+                                );
+                            } else if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
+                                if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
+                                    ChatRoomSendLocal(
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have two layers of diapers!</p>"
+                                    );
+                                } else { 
+                                    ChatRoomSendLocal(
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
+                                    );
                                 }
+                           } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
+                                if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
+                                    ChatRoomSendLocal(
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have two layers of diapers!</p>"
+                                    );        
+                                } else { 
+                                    ChatRoomSendLocal(
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
+                                    );
+                                }
+                            } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
+                                if ((InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper")
+				    && (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper")) {
+                                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                                    var msg = "" + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.";
+                                    ServerSend("ChatRoomChat", {
+                                        "Content": msg,
+                                        "Type": "Whisper",
+                                        "Target": ChatRoomTargetMemberNumber
+                                    });
+                                    for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                             TargetName = ChatRoomCharacter[C].Name;
+                                             break;
+                                        }
+                                     ChatRoomMessage({
+                                         Content: "Whisper to " + TargetName + ": " + msg,
+                                         Type: "LocalMessage",
+                                         Sender: Player.MemberNumber
+                                     });
+                                     document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                                     document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";                             
+                                } else {
+                                    ChatRoomSendLocal(
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have two layers of diapers!</p>"
+
+                                    );
+                                }
+                                ChatRoomSetTarget(null);
                             }
-                        }
-                        ChatRoomSetTarget(null);
-                    }
-                }
+                         }
+                     }               
+                }              
                 if (feature == "setdesperation") {
                     var setchange = stringDiaper2[1];
                     diaperDefaultValues.desperationLevel = setchange;
