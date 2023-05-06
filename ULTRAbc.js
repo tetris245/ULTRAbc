@@ -8544,9 +8544,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 Player.CanInteract = function() {
                     return true;
                 }
-                Player.CanWalk = function() {
-                    return true;
-                }
                 Player.CanTalk = function() {
                     return true;
                 }
