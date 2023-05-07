@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 1.4
+// @version 1.5
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -19,11 +19,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 //SDKstuff end
 
 (async function() {
-    const ver = "1.4";
+    const UBCver = "1.5";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
-        version: ver,
+        version: UBCver,
         repository: 'https://github.com/tetris245/ULTRAbc',
     });
 
@@ -129,7 +129,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
             Player.RestrictionSettings.BypassNPCPunishments = true;
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.4: Ready, type <b>/uhelp</b> for general menu.\n" +
+                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.5: Ready, type <b>/uhelp</b> for general menu.\n" +
                 "Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
                 "Note: NPC punishments are disabled.\n" +
                 "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
@@ -549,7 +549,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 120, 500, 60, "ULTRAbc 1.4 Ready!", "Pink", "Black", "");
+            DrawButton(750, 120, 500, 60, "ULTRAbc 1.5 Ready!", "Pink", "Black", "");
             next(args);
         });
     }
@@ -8431,15 +8431,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "new") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.4:\n" +
-                    "- Added support in the lock command for the Best Friend and Best Friend Timer locks, provided by BCTweaks.\n" +
-                    "- Added 3 commands related to locks: code, hint, pw.\n" +
-                    "- Updated the help for the unlock command.\n" +
-                    "- Improved the whisper command: you can now add the message you want to whisper to the specified target.\n" +
-                    "- Improved the target search in all commands with target.\n" +
-                    "- Removed the not very useful hiddenmessages command.\n" +
-                    "- Fixed bug in jump option of pose2 command.\n" +
-                    "- Fixed a grammatical issue in several commands with target.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.5:\n" +
+		    "- New commands: autojoin to enable/disable Auto-Join feature, fullseed to toggle full solution for Intricate and High Security locks.\n" +
+		    "- Improved the Diaper Wetter by fixing the bugs in the diaper change commands and making them more solid.\n" +
+		    "- Improved the Moaner by restoring the recovery part after an orgasm while avoiding spamming of multiple moaning messages.\n" +
+		    "- Added the Family lock to the lock and unlock commands.\n" +
+		    "- Added apart unlocking for Best Friend and Best Friend Timer locks.\n" +
+                    "- Removed minor incompatibility in the unrestrict total command.</p>"
                 );
             }
             if (args === "talking") {
