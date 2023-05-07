@@ -5202,7 +5202,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8 + lock 17\n" +
+                    "/lock (target) (locktype) for locks 1 to 8 + locks 17 and 19\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
                     "/lock (target) (locktype) (code) for lock 10\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
