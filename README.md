@@ -53,5 +53,6 @@ All else I might not have included.
 
 Changes for future version
 
-(..)
+* New command:
+  - blur to force a specific blur level
 
