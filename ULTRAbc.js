@@ -3484,6 +3484,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Blur2On = false;
                     Blur3On = true;
                     Blur4On = false;
+		    M_MOANER_saveControls();
                 } else if (brlevel == 4) {
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: Total blur effect enabled.</p>"
