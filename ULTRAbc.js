@@ -1951,7 +1951,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     M_MOANER_addMoansProfile("pig", M_MOANER_pigMoans);
 
     //wildFox
-    M_MOANER_wildFoxMoans = {
+    M_MOANER_wildfoxMoans = {
         "hot": ["w... Wiiif\u2665", "Yiiif\u2665", "Wa\u2665ouu"],
         "medium": ["wiiif\u2665", "Yiii", "..yif", "waouuu"],
         "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif", "waou"],
@@ -1959,7 +1959,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "orgasm": ["WAAAAOUUUUUUUHHHHH!", "Mmmhnn... Wiiif... Yiiiif!!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!", "WAAAAOUUUUUUUHHHHH!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!"],
         "pain": []
     }
-    M_MOANER_addMoansProfile("wildFox", M_MOANER_wildFoxMoans);
+    M_MOANER_addMoansProfile("wildfox", M_MOANER_wildfoxMoans);
 
     //////////////////////////////////////////////////////////
     //BC-Diaper-Wetter
