@@ -30,6 +30,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Main variables and settings for UBC and The Moaner
     var FBC_VERSION = "";
     var M_MOANER_moanerKey = "bc_moaner_";
+	
     var M_MOANER_scriptOn = true;
     var M_MOANER_cum = false;
 	
@@ -38,6 +39,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let SlowleaveOn;
     let FullseedOn;
     let AutojoinOn;
+    let blureffect;
 
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
@@ -59,6 +61,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             SlowleaveOn = false;
             FullseedOn = false;
             AutojoinOn = false;
+	    blureffect = false;
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -72,6 +75,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             SlowleaveOn = datas.slowleave;
             FullseedOn = datas.fullseed;
             AutojoinOn = datas.autojoin;
+	    blureffect = false;
         }
     }
 
@@ -87,7 +91,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "sosbuttons": SosbuttonsOn,
             "slowleave": SlowleaveOn,
             "fullseed": FullseedOn,
-            "autojoin": AutojoinOn
+            "autojoin": AutojoinOn,
+	    "blureffect": blureffect
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -151,11 +156,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRACellClick();
     ULTRACellLoad();
     ULTRAChatRoomClick();
+    ULTRAChatRoomDrawBackground();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMenuDraw();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
     ULTRACraftingItemListBuild();
+    ULTRADrawCharacter();
     ULTRAFriendListClick();
     ULTRAFriendListRun();
     ULTRALoginRun();
@@ -554,17 +561,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 	
-    //Orgasm
-    async function ULTRAActivityChatRoomArousalSync() {
-        modApi.hookFunction('ActivityChatRoomArousalSync', 4, (args, next) => {
-            if ((Player.ArousalSettings.OrgasmStage == 0) && (M_MOANER_cum == true)) {
-                M_MOANER_cum = false;
-                M_MOANER_saveControls();
-            }
-            next(args);
-        });
-    }
-
     //Main Hall
     async function ULTRAMainHallRun() {
         modApi.hookFunction('MainHallRun', 4, (args, next) => {
@@ -626,6 +622,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             next(args);
         });
     }
+	
+    //Orgasm
+    async function ULTRAActivityChatRoomArousalSync() {
+        modApi.hookFunction('ActivityChatRoomArousalSync', 4, (args, next) => {
+            if ((Player.ArousalSettings.OrgasmStage == 0) && (M_MOANER_cum == true)) {
+                M_MOANER_cum = false;
+                M_MOANER_saveControls();
+            }
+            next(args);
+        });
+    }
 
     //Pandora Prison
     async function ULTRAPandoraPrisonRun() {
@@ -677,6 +684,49 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
             }
             next(args);
+        });
+    }
+	
+    //Vision
+    async function ULTRAChatRoomDrawBackground() {
+        modApi.hookFunction('ChatRoomDrawBackground', 4, (args, next) => {
+            if (blureffect == true) {
+                if (Blur1On == true) {
+                    BlurLevel = 3;
+                }
+                if (Blur2On == true) {
+                    BlurLevel = 8;
+                }
+                if (Blur3On == true) {
+                    BlurLevel = 20;
+                }
+                if (Blur4On == true) {
+                    BlurLevel = 50;
+                }
+		MainCanvas.filter = `blur(${BlurLevel}px)`;
+             }            
+             next(args);
+        });
+    }
+
+    async function ULTRADrawCharacter() {
+        modApi.hookFunction('DrawCharacter', 4, (args, next) => {
+            if (blureffect == true) {
+                if (Blur1On == true) {
+                    BlurLevel = 3;
+                }
+                if (Blur2On == true) {
+                    BlurLevel = 8;
+                }
+                if (Blur3On == true) {
+                    BlurLevel = 20;
+                }
+                if (Blur4On == true) {
+                    BlurLevel = 50;
+                }
+		MainCanvas.filter = `blur(${BlurLevel}px)`;
+		}           
+           next(args);      
         });
     }
 
@@ -3373,6 +3423,77 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     document.getElementById("InputChat").style.display = "none";
                     document.getElementById("TextAreaChatLog").style.display = "none";
                     CommonSetScreen("Character", "OnlineProfile");
+                }
+            }
+        }
+    }])
+	
+    CommandCombine([{
+        Tag: 'blur',
+        Description: "(level): forces a specific blur level.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The blur command must be followed by a number between 0 and 4.\n" +
+                    " \n" +
+                    "Available blur levels:\n" +
+                    "0 no blur effect\n" +
+                    "1 light blur effect\n" +
+                    "2 normal blur effect\n" +
+                    "3 heavy blur effect\n" +
+                    "4 total blur effect</p>"
+                );
+            } else {
+                var brlevel = args;
+                if (brlevel == 0) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: No more forced blur effect.</p>"
+                    );
+                    blureffect = false;
+                    Blur1On = false;
+                    Blur2On = false;
+                    Blur3On = false;
+                    Blur4On = false;
+                    M_MOANER_saveControls();
+                } else if (brlevel == 1) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Light blur effect enabled.</p>"
+                    );
+                    blureffect = true;
+                    Blur1On = true;
+                    Blur2On = false;
+                    Blur3On = false;
+                    Blur4On = false;
+                    M_MOANER_saveControls();
+                } else if (brlevel == 2) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Normal blur effect enabled.</p>"
+                    );
+                    blureffect = true;
+                    Blur1On = false;
+                    Blur2On = true;
+                    Blur3On = false;
+                    Blur4On = false;
+                    M_MOANER_saveControls();
+                } else if (brlevel == 3) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Heavy blur effect enabled.</p>"
+                    );
+                    blureffect = true;
+                    Blur1On = false;
+                    Blur2On = false;
+                    Blur3On = true;
+                    Blur4On = false;
+                } else if (brlevel == 4) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Total blur effect enabled.</p>"
+                    );
+                    blureffect = true;
+                    Blur1On = false;
+                    Blur2On = false;
+                    Blur3On = false;
+                    Blur4On = true;
+                    M_MOANER_saveControls();
                 }
             }
         }
@@ -8460,6 +8581,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Visual commands - * = more info when using\n" +
                     "<b>/bg1</b> = adds hidden backgrounds to the admin selection screen. Tip for BCX users: activate BCX before login.\n" +
                     "<b>/bg2</b> (number) = uses a hidden platform background. Number between 1 and 86. /bg2 to get the list.\n" +
+		    "<b>/blur</b> (blurlevel) = forces a specific blur level.\n" +
                     "<b>/colorchanger</b> (animhere) = gets an animation with color change. *\n" +
                     "<b>/pose2</b> (posehere) (target) = changes the pose of any player. *\n" +
                     "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
