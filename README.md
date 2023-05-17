@@ -53,8 +53,9 @@ All else I might not have included.
 
 Changes for future version
 
-* New command:
+* New commands:
   - blur to force a specific blur level
+  - nowhisper to toggle the no-whisper mode
 * Renamed wildFox profile in the Moaner as wildfox to fix a bug (profile was not loaded)
 * Fixed a bug in game command when invalid options were used
 
