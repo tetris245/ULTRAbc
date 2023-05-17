@@ -39,6 +39,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let SlowleaveOn;
     let FullseedOn;
     let AutojoinOn;
+    let NowhisperOn;
     let blureffect;
 
     var M_MOANER_talkActive = true;
@@ -61,6 +62,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             SlowleaveOn = false;
             FullseedOn = false;
             AutojoinOn = false;
+	    NowhisperOn = false;
 	    blureffect = false;
             //M_MOANER_saveControls();
         } else {
@@ -75,6 +77,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             SlowleaveOn = datas.slowleave;
             FullseedOn = datas.fullseed;
             AutojoinOn = datas.autojoin;
+	    NowhisperOn = datas.nowhisper; 
 	    blureffect = false;
         }
     }
@@ -92,6 +95,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "slowleave": SlowleaveOn,
             "fullseed": FullseedOn,
             "autojoin": AutojoinOn,
+	    "nowhisper": NowhisperOn,
 	    "blureffect": blureffect
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
@@ -297,23 +301,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (ChatRoomTargetMemberNumber == null) {
                     ChatRoomSendChat();
                 } else {
-                    ServerSend("ChatRoomChat", {
-                        "Content": text4,
-                        "Type": "Whisper",
-                        "Target": ChatRoomTargetMemberNumber
-                    });
-                    for (let C = 0; C < ChatRoomCharacter.length; C++)
-                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                            TargetName = ChatRoomCharacter[C].Name;
-                            break;
-                        }
-                    ChatRoomMessage({
-                        Content: "Whisper to " + TargetName + ": " + text4,
-                        Type: "LocalMessage",
-                        Sender: Player.MemberNumber
-                    });
-                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    if (NowhisperOn == false) {
+                        ServerSend("ChatRoomChat", {
+                            "Content": text4,
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                TargetName = ChatRoomCharacter[C].Name;
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + text4,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    }   	    
                 }
                 ElementValue("InputChat", "");
             }
@@ -3530,23 +3536,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         "Type": "Chat"
                     });
                 } else {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Whisper",
-                        "Target": ChatRoomTargetMemberNumber
-                    });
-                    for (let C = 0; C < ChatRoomCharacter.length; C++)
-                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                            TargetName = ChatRoomCharacter[C].Name;
-                            break;
-                        }
-                    ChatRoomMessage({
-                        Content: "Whisper to " + TargetName + ": " + content,
-                        Type: "LocalMessage",
-                        Sender: Player.MemberNumber
-                    });
-                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    if (NowhisperOn == false) {
+                        ServerSend("ChatRoomChat", {
+                            "Content": content,
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                TargetName = ChatRoomCharacter[C].Name;
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + content,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    }	    
                 }
             }
         }
@@ -4701,23 +4709,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             "Type": "Chat"
                         });
                     } else {
-                        ServerSend("ChatRoomChat", {
-                            "Content": content,
-                            "Type": "Whisper",
-                            "Target": ChatRoomTargetMemberNumber
-                        });
-                        for (let C = 0; C < ChatRoomCharacter.length; C++)
-                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                TargetName = ChatRoomCharacter[C].Name;
-                                break;
-                            }
-                        ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + content,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+			if (NowhisperOn == false) {
+                            ServerSend("ChatRoomChat", {
+                                "Content": content,
+                                "Type": "Whisper",
+                                "Target": ChatRoomTargetMemberNumber
+                            });
+                            for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                    break;
+                                }
+                            ChatRoomMessage({
+                                Content: "Whisper to " + TargetName + ": " + content,
+                                Type: "LocalMessage",
+                                Sender: Player.MemberNumber
+                            });
+                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+			}	
                     }
                 }
             }
@@ -5738,6 +5748,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
                 }
+            }
+        }
+    }])
+	
+    CommandCombine([{
+        Tag: 'nowhisper',
+        Description: ": toggles no-whisper mode.",
+        Action: () => {
+            if (NowhisperOn == true) {
+                NowhisperOn = false;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: No-whisper mode disabled.</p>"
+                );
+            } else {
+                NowhisperOn = true;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: No-whisper mode enabled.</p>"
+                );
             }
         }
     }])
@@ -7268,23 +7298,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         "Type": "Chat"
                     });
                 } else {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Whisper",
-                        "Target": ChatRoomTargetMemberNumber
-                    });
-                    for (let C = 0; C < ChatRoomCharacter.length; C++)
-                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                            TargetName = ChatRoomCharacter[C].Name;
-                            break;
-                        }
-                    ChatRoomMessage({
-                        Content: "Whisper to " + TargetName + ": " + content,
-                        Type: "LocalMessage",
-                        Sender: Player.MemberNumber
-                    });
-                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    if (NowhisperOn == false) {
+                        ServerSend("ChatRoomChat", {
+                            "Content": content,
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                TargetName = ChatRoomCharacter[C].Name;
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + content,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    }	    
                 }
             }
         }
@@ -7306,23 +7338,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         "Type": "Chat"
                     });
                 } else {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Whisper",
-                        "Target": ChatRoomTargetMemberNumber
-                    });
-                    for (let C = 0; C < ChatRoomCharacter.length; C++)
-                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                            TargetName = ChatRoomCharacter[C].Name;
-                            break;
-                        }
-                    ChatRoomMessage({
-                        Content: "Whisper to " + TargetName + ": " + content,
-                        Type: "LocalMessage",
-                        Sender: Player.MemberNumber
-                    });
-                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    if (NowhisperOn == false) {
+                        ServerSend("ChatRoomChat", {
+                            "Content": content,
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                TargetName = ChatRoomCharacter[C].Name;
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + content,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    }	    
                 }
             }
         }
@@ -7344,23 +7378,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         "Type": "Chat"
                     });
                 } else {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Whisper",
-                        "Target": ChatRoomTargetMemberNumber
-                    });
-                    for (let C = 0; C < ChatRoomCharacter.length; C++)
-                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                            TargetName = ChatRoomCharacter[C].Name;
-                            break;
-                        }
-                    ChatRoomMessage({
-                        Content: "Whisper to " + TargetName + ": " + content,
-                        Type: "LocalMessage",
-                        Sender: Player.MemberNumber
-                    });
-                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    if (NowhisperOn == false) {
+                        ServerSend("ChatRoomChat", {
+                            "Content": content,
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                TargetName = ChatRoomCharacter[C].Name;
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + content,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    }	    
                 }
             }
         }
@@ -7382,23 +7418,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         "Type": "Chat"
                     });
                 } else {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Whisper",
-                        "Target": ChatRoomTargetMemberNumber
-                    });
-                    for (let C = 0; C < ChatRoomCharacter.length; C++)
-                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                            TargetName = ChatRoomCharacter[C].Name;
-                            break;
-                        }
-                    ChatRoomMessage({
-                        Content: "Whisper to " + TargetName + ": " + content,
-                        Type: "LocalMessage",
-                        Sender: Player.MemberNumber
-                    });
-                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    if (NowhisperOn == false) {
+                        ServerSend("ChatRoomChat", {
+                            "Content": content,
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                TargetName = ChatRoomCharacter[C].Name;
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + content,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+		    }	    
                 }
             }
         }
@@ -8581,6 +8619,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/exitmode</b> = toggles exit mode (fast or slow) for OUT button in chat room.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
+		    "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/sosbuttons</b> = toggles emergency buttons in chat room.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. Available categories: bondage, character, clothing, escape, features, fun, kd, misc, pleasure, talking, visual, zones.\n" +
@@ -9011,68 +9050,70 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'whisper',
         Description: "(target) (message): sends whisper to specified target.",
         Action: (_, command, args) => {
-            var [targetname] = args;
-            if (!targetname) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The whisper command must be followed by a target and the message you want to whisper.<p>\n"
-                );
-            } else {
-                var [, , ...message] = command.split(" ");
-                var msg = message?.join(" ");
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if (target[0] != null) {
-                    ElementValue("InputChat", msg);
-                    if (this.BabyTalkOn == true) {
-                        var msg2 = SpeechBabyTalk({
-                            Effect: ["RegressedTalk"]
-                        }, msg);
-                    } else if (this.GagTalkOn == true) {
-                        var msg2 = SpeechGarbleByGagLevel(gl, msg);
-                    } else {
-                        var msg2 = msg;
+	    if (NowhisperOn == false) {
+                var [targetname] = args;
+                if (!targetname) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The whisper command must be followed by a target and the message you want to whisper.<p>\n"
+                    );
+                } else {
+                    var [, , ...message] = command.split(" ");
+                    var msg = message?.join(" ");
+                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    if (target[0] == null) {
+                        var targetnumber = parseInt(targetname);
+                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                     }
-                    ElementValue("InputChat", msg.replace(msg, msg2));
-                    if (this.Stutter1On == true) {
-                        var msg3 = StutterTalk1(msg2);
-                    } else if (this.Stutter2On == true) {
-                        var msg3 = StutterTalk2(msg2);
-                    } else if (this.Stutter3On == true) {
-                        var msg3 = StutterTalk3(msg2);
-                    } else if (this.Stutter4On == true) {
-                        var msg3 = StutterTalk4(msg2);
-                    } else {
-                        var msg3 = msg2;
-                    }
-                    ElementValue("InputChat", msg2.replace(msg2, msg3));
-                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                        var msg4 = M_MOANER_applyMoanToMsg(Player, msg3);
-                    } else {
-                        var msg4 = msg3;
-                    }
-                    ElementValue("InputChat", msg3.replace(msg3, msg4));
-                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
-                    if (msg != "") {
-                        ServerSend("ChatRoomChat", {
-                            "Content": msg4,
-                            "Type": "Whisper",
-                            "Target": ChatRoomTargetMemberNumber
-                        });
-                        for (let C = 0; C < ChatRoomCharacter.length; C++)
-                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                TargetName = ChatRoomCharacter[C].Name;
-                                break;
-                            }
-                        ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + msg4,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                    if (target[0] != null) {
+                        ElementValue("InputChat", msg);
+                        if (this.BabyTalkOn == true) {
+                            var msg2 = SpeechBabyTalk({
+                                Effect: ["RegressedTalk"]
+                            }, msg);
+                        } else if (this.GagTalkOn == true) {
+                            var msg2 = SpeechGarbleByGagLevel(gl, msg);
+                        } else {
+                            var msg2 = msg;
+                        }
+                        ElementValue("InputChat", msg.replace(msg, msg2));
+                        if (this.Stutter1On == true) {
+                            var msg3 = StutterTalk1(msg2);
+                        } else if (this.Stutter2On == true) {
+                            var msg3 = StutterTalk2(msg2);
+                        } else if (this.Stutter3On == true) {
+                            var msg3 = StutterTalk3(msg2);
+                        } else if (this.Stutter4On == true) {
+                            var msg3 = StutterTalk4(msg2);
+                        } else {
+                            var msg3 = msg2;
+                        }
+                        ElementValue("InputChat", msg2.replace(msg2, msg3));
+                        if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                            var msg4 = M_MOANER_applyMoanToMsg(Player, msg3);
+                        } else {
+                            var msg4 = msg3;
+                        }
+                        ElementValue("InputChat", msg3.replace(msg3, msg4));
+                        ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                        if (msg != "") {
+                            ServerSend("ChatRoomChat", {
+                                "Content": msg4,
+                                "Type": "Whisper",
+                                "Target": ChatRoomTargetMemberNumber
+                            });
+                            for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                    break;
+                                }
+                            ChatRoomMessage({
+                                Content: "Whisper to " + TargetName + ": " + msg4,
+                                Type: "LocalMessage",
+                                Sender: Player.MemberNumber
+                            });
+                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+			}	
                     }
                 }
             }
