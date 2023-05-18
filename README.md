@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 1.5
+Most recent version: 1.6
 
 ## Installation 
 
@@ -23,7 +23,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version1.5.zip file on the Releases page
+1. Download the ULTRAbc-version1.6.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -53,15 +53,5 @@ All else I might not have included.
 
 Changes for future version
 
-* New commands:
-  - blur to force a specific blur level
-  - killpar to kill UBC/Moaner parameters saved locally
-  - nowhisper to toggle the no-whisper mode
-* Added movie1 and movie2 options to the game command
-* Added support for use of // command in whispers
-* Added support for target nickname in whispers
-* Removed whisper support for btalk, gtalk, s1, s2, s3 and s4 commands (Tip: use the stutter and talk commands before talking or whispering)
-* Renamed wildFox profile in the Moaner as wildfox to fix a bug (profile was not loaded)
-* Fixed a bug in game command when invalid options were used
-* Fixed a bug in resetinventory command (was not executed)
+(...)
 
