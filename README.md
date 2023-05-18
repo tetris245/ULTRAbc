@@ -58,7 +58,9 @@ Changes for future version
   - killpar to kill UBC/Moaner parameters saved locally
   - nowhisper to toggle the no-whisper mode
 * Added movie1 and movie2 options to the game command
+* Added support for use of // command in whispers
 * Added support for target nickname in whispers
+* Removed whisper support for btalk, gtalk, s1, s2, s3 and s4 commands (Tip: use the stutter and talk commands before talking or whispering)
 * Renamed wildFox profile in the Moaner as wildfox to fix a bug (profile was not loaded)
 * Fixed a bug in game command when invalid options were used
 * Fixed a bug in resetinventory command (was not executed)
