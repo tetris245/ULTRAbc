@@ -309,7 +309,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                         for (let C = 0; C < ChatRoomCharacter.length; C++)
                             if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                TargetName = ChatRoomCharacter[C].Name;
+				if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                } else {
+                                    TargetName = ChatRoomCharacter[C].Nickname;
+                                }      
                                 break;
                             }
                         ChatRoomMessage({
@@ -3544,7 +3548,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                         for (let C = 0; C < ChatRoomCharacter.length; C++)
                             if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                TargetName = ChatRoomCharacter[C].Name;
+                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                } else {
+                                    TargetName = ChatRoomCharacter[C].Nickname;
+                                }     
                                 break;
                             }
                         ChatRoomMessage({
@@ -4731,7 +4739,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             });
                             for (let C = 0; C < ChatRoomCharacter.length; C++)
                                 if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                    TargetName = ChatRoomCharacter[C].Name;
+                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                        TargetName = ChatRoomCharacter[C].Name;
+                                    } else {
+                                        TargetName = ChatRoomCharacter[C].Nickname;
+                                    }     
                                     break;
                                 }
                             ChatRoomMessage({
@@ -7337,7 +7349,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                         for (let C = 0; C < ChatRoomCharacter.length; C++)
                             if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                TargetName = ChatRoomCharacter[C].Name;
+                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                } else {
+                                    TargetName = ChatRoomCharacter[C].Nickname;
+                                }     
                                 break;
                             }
                         ChatRoomMessage({
@@ -7377,7 +7393,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                         for (let C = 0; C < ChatRoomCharacter.length; C++)
                             if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                TargetName = ChatRoomCharacter[C].Name;
+                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                } else {
+                                    TargetName = ChatRoomCharacter[C].Nickname;
+                                }     
                                 break;
                             }
                         ChatRoomMessage({
@@ -7417,7 +7437,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                         for (let C = 0; C < ChatRoomCharacter.length; C++)
                             if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                TargetName = ChatRoomCharacter[C].Name;
+                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                } else {
+                                    TargetName = ChatRoomCharacter[C].Nickname;
+                                }     
                                 break;
                             }
                         ChatRoomMessage({
@@ -7457,7 +7481,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                         for (let C = 0; C < ChatRoomCharacter.length; C++)
                             if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                TargetName = ChatRoomCharacter[C].Name;
+                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                } else {
+                                    TargetName = ChatRoomCharacter[C].Nickname;
+                                }     
                                 break;
                             }
                         ChatRoomMessage({
@@ -9135,7 +9163,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             });
                             for (let C = 0; C < ChatRoomCharacter.length; C++)
                                 if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                    TargetName = ChatRoomCharacter[C].Name;
+                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                        TargetName = ChatRoomCharacter[C].Name;
+                                    } else {
+                                        TargetName = ChatRoomCharacter[C].Nickname;
+                                    }     
                                     break;
                                 }
                             ChatRoomMessage({
