@@ -4704,14 +4704,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     gl = SpeechGetTotalGagLevel(Player);
                 }
                 if ((gaglevel > 0) && (gaglevel < 10)) {
-                    content = SpeechGarbleByGagLevel(gl, args.substring(2).trim());
+                    content = SpeechGarbleByGagLevel(gl, args.substring(2).trim());	
+                    ServerSend("ChatRoomChat", {
+                        "Content": content,
+                        "Type": "Chat"
+                    });
 		}	
-                ServerSend("ChatRoomChat", {
-                    "Content": content,
-                    "Type": "Chat"
-                });
             }
-        }
+        }  
     }])
 
     CommandCombine([{
@@ -7281,176 +7281,72 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 's1',
-        Description: "(words) = speaks or whispers once in light stuttering mode.",
+        Description: "(words) = speaks once in light stuttering mode.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s1 command must be followed by the words you want to say or whisper.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s1 command must be followed by the words you want to say.</p>"
                 );
             } else {
                 content = StutterTalk1(args);
-                if (ChatRoomTargetMemberNumber == null) {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Chat"
-                    });
-                } else {
-		    if (NowhisperOn == false) {
-                        ServerSend("ChatRoomChat", {
-                            "Content": content,
-                            "Type": "Whisper",
-                            "Target": ChatRoomTargetMemberNumber
-                        });
-                        for (let C = 0; C < ChatRoomCharacter.length; C++)
-                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                    TargetName = ChatRoomCharacter[C].Name;
-                                } else {
-                                    TargetName = ChatRoomCharacter[C].Nickname;
-                                }     
-                                break;
-                            }
-                        ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + content,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-		    }	    
-                }
+                ServerSend("ChatRoomChat", {
+                    "Content": content,
+                    "Type": "Chat"
+                });
             }
         }
     }])
 
     CommandCombine([{
         Tag: 's2',
-        Description: "(words) = speaks or whispers once in normal stuttering mode.",
+        Description: "(words) = speaks once in normal stuttering mode.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s2 command must be followed by the words you want to say or whisper.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s2 command must be followed by the words you want to say.</p>"
                 );
             } else {
                 content = StutterTalk2(args);
-                if (ChatRoomTargetMemberNumber == null) {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Chat"
-                    });
-                } else {
-		    if (NowhisperOn == false) {
-                        ServerSend("ChatRoomChat", {
-                            "Content": content,
-                            "Type": "Whisper",
-                            "Target": ChatRoomTargetMemberNumber
-                        });
-                        for (let C = 0; C < ChatRoomCharacter.length; C++)
-                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                    TargetName = ChatRoomCharacter[C].Name;
-                                } else {
-                                    TargetName = ChatRoomCharacter[C].Nickname;
-                                }     
-                                break;
-                            }
-                        ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + content,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-		    }	    
-                }
+                ServerSend("ChatRoomChat", {
+                    "Content": content,
+                    "Type": "Chat"
+                });
             }
         }
     }])
 
     CommandCombine([{
         Tag: 's3',
-        Description: "(words) = speaks or whispers once in heavy stuttering mode.",
+        Description: "(words) = speaks once in heavy stuttering mode.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s3 command must be followed by the words you want to say or whisper.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s3 command must be followed by the words you want to say.</p>"
                 );
             } else {
                 content = StutterTalk3(args);
-                if (ChatRoomTargetMemberNumber == null) {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Chat"
-                    });
-                } else {
-		    if (NowhisperOn == false) {
-                        ServerSend("ChatRoomChat", {
-                            "Content": content,
-                            "Type": "Whisper",
-                            "Target": ChatRoomTargetMemberNumber
-                        });
-                        for (let C = 0; C < ChatRoomCharacter.length; C++)
-                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                    TargetName = ChatRoomCharacter[C].Name;
-                                } else {
-                                    TargetName = ChatRoomCharacter[C].Nickname;
-                                }     
-                                break;
-                            }
-                        ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + content,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-		    }	    
-                }
+                ServerSend("ChatRoomChat", {
+                    "Content": content,
+                    "Type": "Chat"
+                });
             }
         }
     }])
 
     CommandCombine([{
         Tag: 's4',
-        Description: "(words) = speaks or whispers once in total stuttering mode.",
+        Description: "(words) = speaks once in total stuttering mode.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s4 command must be followed by the words you want to say or whisper.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s4 command must be followed by the words you want to say.</p>"
                 );
             } else {
                 content = StutterTalk4(args);
-                if (ChatRoomTargetMemberNumber == null) {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Chat"
-                    });
-                } else {
-		    if (NowhisperOn == false) {
-                        ServerSend("ChatRoomChat", {
-                            "Content": content,
-                            "Type": "Whisper",
-                            "Target": ChatRoomTargetMemberNumber
-                        });
-                        for (let C = 0; C < ChatRoomCharacter.length; C++)
-                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                    TargetName = ChatRoomCharacter[C].Name;
-                                } else {
-                                    TargetName = ChatRoomCharacter[C].Nickname;
-                                }     
-                                break;
-                            }
-                        ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + content,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-		    }	    
-                }
+                ServerSend("ChatRoomChat", {
+                    "Content": content,
+                    "Type": "Chat"
+                });             
             }
         }
     }])
