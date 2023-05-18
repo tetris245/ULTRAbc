@@ -59,4 +59,5 @@ Changes for future version
   - nowhisper to toggle the no-whisper mode
 * Renamed wildFox profile in the Moaner as wildfox to fix a bug (profile was not loaded)
 * Fixed a bug in game command when invalid options were used
+* Fixed a bug in resetinventory command (was not executed)
 
