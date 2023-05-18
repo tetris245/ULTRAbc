@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 1.5
+// @version 1.6
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -19,7 +19,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 //SDKstuff end
 
 (async function() {
-    const UBCver = "1.5";
+    const UBCver = "1.6";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -138,7 +138,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
             Player.RestrictionSettings.BypassNPCPunishments = true;
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc - version 1.5: Ready, type <b>/uhelp</b> for general menu.\n" +
+                "<p style='background-color:#5fbd7a'>ULTRAbc 1.6: type <b>/uhelp</b> for general menu.\n" +
                 "Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
                 "Note: NPC punishments are disabled.\n" +
                 "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
@@ -572,7 +572,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 120, 500, 60, "ULTRAbc 1.5 Ready!", "Pink", "Black", "");
+            DrawButton(750, 120, 500, 60, "ULTRAbc 1.6 Ready!", "Pink", "Black", "");
             next(args);
         });
     }
@@ -8539,12 +8539,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.5:\n" +
-		    "- New commands: autojoin to enable/disable Auto-Join feature, fullseed to toggle full solution for Intricate and High Security locks.\n" +
-		    "- Improved the Diaper Wetter by fixing the bugs in the diaper change commands and making them more solid.\n" +
-		    "- Improved the Moaner by restoring the recovery part after an orgasm while avoiding spamming of multiple moaning messages.\n" +
-		    "- Added the Family lock to the lock and unlock commands.\n" +
-		    "- Added apart unlocking for Best Friend and Best Friend Timer locks.\n" +
-                    "- Removed minor incompatibility in the unrestrict total command.</p>"
+		    "- New commands: blur to force a blur level, killpar to kill UBC/Moaner parameters saved locally, nowhisper to toggle the no-whisper mode.\n" +
+		    "- Added movie1 and movie2 options to the game command.\n" +
+		    "- Added support for target nickname and use of // in whispers.\n" +
+		    "- Removed whisper support for btalk, gtalk, s1, s2, s3 and s4 commands (Tip: use stutter and talk commands before talking or whispering).\n" 
+		    "- Renamed wildFox profile in the Moaner as wildfox to fix a bug (profile was not loaded).\n" +
+		    "- Fixed a bug in game command when invalid options were used.\n" +
+                    "- Fixed a bug in resetinventory command (was not executed).</p>"
                 );
             }
             if (args === "talking") {
