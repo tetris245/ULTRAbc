@@ -4528,8 +4528,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The game command must include a minigame.\n" +
                     "Available minigames:\n" +
-                    "carrot, cleaning, dojo, drinks, hurdle, kidnap, puppy,\n" +
-                    "rhythm, training, whippony.\n" +
+                    "carrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\n" +
+                    "movie2, puppy, rhythm, training, whippony.\n" +
                     "Training is the trainer version of the hurdle game.\n" +
                     "You need to click on the maid in the Maid Quarters for the cleaning, drinks and rhythm games.</p>"
                 );
@@ -4585,6 +4585,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     CommonSetScreen("Room", "Introduction");
                     IntroductionJobStart("DomKidnap", 0)
                     IntroductionJobBouncerStart();
+		} else if (minigame == "movie1") {
+		    ServerSend("ChatRoomLeave", "");
+                    ChatRoomSetLastChatRoom("");
+                    OnlineGameName = "";
+                    ChatRoomClearAllElements();
+                    CommonSetScreen("Room", "MovieStudio");
+                    MovieStudioDailyMovie = "Interview";
+                } else if (minigame == "movie2") {
+		    ServerSend("ChatRoomLeave", "");
+                    ChatRoomSetLastChatRoom("");
+                    OnlineGameName = "";
+                    ChatRoomClearAllElements();
+                    CommonSetScreen("Room", "MovieStudio");
+                    MovieStudioDailyMovie = "OpenHouse";	
                 } else if (minigame == "puppy") {
 		    ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
