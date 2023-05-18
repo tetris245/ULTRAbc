@@ -250,10 +250,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var text2 = text1;
                     var tsp = 1;
                     ChatRoomSetTarget(null);
-                } else if ((text1.startsWith("*")) || (text1.startsWith("/"))) {
+                } else if (text1.startsWith("*")) {
                     var text2 = text1;
                     var tsp = 1;
                     ChatRoomSetTarget(null);
+                } else if (text1.startsWith("/")) {
+                    var text2 = text1;
+                    var tsp = 1;
+                    if (!text1.startsWith("//")) {
+                        ChatRoomSetTarget(null);
+                    }
                 } else if ((text1.startsWith("@")) && (window.MBCHC)) {
                     var text2 = text1;
                     var tsp = 1;
