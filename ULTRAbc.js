@@ -8538,7 +8538,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "new") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.5:\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.6:\n" +
 		    "- New commands: blur to force a blur level, killpar to kill UBC/Moaner parameters saved locally, nowhisper to toggle the no-whisper mode.\n" +
 		    "- Added movie1 and movie2 options to the game command.\n" +
 		    "- Added support for target nickname and use of // in whispers.\n" +
