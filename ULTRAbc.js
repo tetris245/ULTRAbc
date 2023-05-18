@@ -8542,7 +8542,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		    "- New commands: blur to force a blur level, killpar to kill UBC/Moaner parameters saved locally, nowhisper to toggle the no-whisper mode.\n" +
 		    "- Added movie1 and movie2 options to the game command.\n" +
 		    "- Added support for target nickname and use of // in whispers.\n" +
-		    "- Removed whisper support for btalk, gtalk, s1, s2, s3 and s4 commands (Tip: use stutter and talk commands before talking or whispering).\n" 
+		    "- Removed whisper support for btalk, gtalk, s1, s2, s3 and s4 commands - Tip: use stutter and talk commands before talking or whispering.\n" 
 		    "- Renamed wildFox profile in the Moaner as wildfox to fix a bug (profile was not loaded).\n" +
 		    "- Fixed a bug in game command when invalid options were used.\n" +
                     "- Fixed a bug in resetinventory command (was not executed).</p>"
