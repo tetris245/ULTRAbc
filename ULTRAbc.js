@@ -5350,6 +5350,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
+	
+    CommandCombine([{
+        Tag: 'killpar',
+        Description: ": kills UBC/Moaner parameters saved locally.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b></p>"
+                );
+            } else if (args === "yes") {
+                M_MOANER_deleteControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: All UBC/Moaner parameters have been deleted. Use the appropriate commands to set the parameters that you like.</p>"
+                );
+            }
+        }
+    }])
 
     CommandCombine([{
         Tag: 'leave',
@@ -7062,7 +7079,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     CommandCombine([{
         Tag: 'resetinventory',
         Description: ": erases your inventory.",
-        Action: () => {
+        Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b></p>"
@@ -8618,6 +8635,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
                     "<b>/exitmode</b> = toggles exit mode (fast or slow) for OUT button in chat room.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
+		    "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
 		    "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
                     "<b>/relog</b> = relogs.\n" +
