@@ -3534,42 +3534,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The btalk command must be followed by the words you want to say or whisper.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The btalk command must be followed by the words you want to say.</p>"
                 );
             } else {
                 content = SpeechBabyTalk({
                     Effect: ["RegressedTalk"]
                 }, args);
-                if (ChatRoomTargetMemberNumber == null) {
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Chat"
-                    });
-                } else {
-		    if (NowhisperOn == false) {
-                        ServerSend("ChatRoomChat", {
-                            "Content": content,
-                            "Type": "Whisper",
-                            "Target": ChatRoomTargetMemberNumber
-                        });
-                        for (let C = 0; C < ChatRoomCharacter.length; C++)
-                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                    TargetName = ChatRoomCharacter[C].Name;
-                                } else {
-                                    TargetName = ChatRoomCharacter[C].Nickname;
-                                }     
-                                break;
-                            }
-                        ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + content,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-		    }	    
-                }
+                ServerSend("ChatRoomChat", {
+                    "Content": content,
+                    "Type": "Chat"
+                });
             }
         }
     }])
@@ -4706,7 +4680,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The gtalk command must be followed by a number between 1 and 9, then the words you want to say or whisper.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The gtalk command must be followed by a number between 1 and 9, then the words you want to say.\n" +
                     " \n" +
                     "Available talk modes:\n" +
                     "1 very light gag talk\n" +
@@ -4731,37 +4705,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if ((gaglevel > 0) && (gaglevel < 10)) {
                     content = SpeechGarbleByGagLevel(gl, args.substring(2).trim());
-                    if (ChatRoomTargetMemberNumber == null) {
-                        ServerSend("ChatRoomChat", {
-                            "Content": content,
-                            "Type": "Chat"
-                        });
-                    } else {
-			if (NowhisperOn == false) {
-                            ServerSend("ChatRoomChat", {
-                                "Content": content,
-                                "Type": "Whisper",
-                                "Target": ChatRoomTargetMemberNumber
-                            });
-                            for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                        TargetName = ChatRoomCharacter[C].Name;
-                                    } else {
-                                        TargetName = ChatRoomCharacter[C].Nickname;
-                                    }     
-                                    break;
-                                }
-                            ChatRoomMessage({
-                                Content: "Whisper to " + TargetName + ": " + content,
-                                Type: "LocalMessage",
-                                Sender: Player.MemberNumber
-                            });
-                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-			}	
-                    }
-                }
+		}	
+                ServerSend("ChatRoomChat", {
+                    "Content": content,
+                    "Type": "Chat"
+                });
             }
         }
     }])
