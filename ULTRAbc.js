@@ -39,7 +39,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let SlowleaveOn;
     let FullseedOn;
     let AutojoinOn;
-    let NowhisperOn;
+    var NowhisperOn = false;
     let blureffect;
 
     var M_MOANER_talkActive = true;
