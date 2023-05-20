@@ -53,5 +53,5 @@ All else I might not have included.
 
 Changes for future version
 
-* Fixed the bug with whispers after ini!ialisation
+* Fixed the bug with whispers after initialisation
 
