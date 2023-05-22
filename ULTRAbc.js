@@ -3965,9 +3965,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                       "Target": ChatRoomTargetMemberNumber
                                   });
                                   for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                      if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                           TargetName = ChatRoomCharacter[C].Name;
-                                           break;
+				      if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+				          if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                              TargetName = ChatRoomCharacter[C].Name;
+                                          } else {
+                                              TargetName = ChatRoomCharacter[C].Nickname;
+                                          }      
+                                          break;
                                       }
                                   ChatRoomMessage({
                                       Content: "Whisper to " + TargetName + ": " + msg,
@@ -4030,8 +4034,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 });
                                 for (let C = 0; C < ChatRoomCharacter.length; C++)
                                     if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                         TargetName = ChatRoomCharacter[C].Name;
-                                         break;
+			                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                            TargetName = ChatRoomCharacter[C].Name;
+                                        } else {
+                                            TargetName = ChatRoomCharacter[C].Nickname;
+                                        }      
+                                        break;
                                     }
                                 ChatRoomMessage({
                                      Content: "Whisper to " + TargetName + ": " + msg,
@@ -4155,8 +4163,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                     });
                                     for (let C = 0; C < ChatRoomCharacter.length; C++)
                                         if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                             TargetName = ChatRoomCharacter[C].Name;
-                                             break;
+					    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                                TargetName = ChatRoomCharacter[C].Name;
+                                            } else {
+                                                TargetName = ChatRoomCharacter[C].Nickname;
+                                            }      
+                                            break;
                                         }
                                      ChatRoomMessage({
                                          Content: "Whisper to " + TargetName + ": " + msg,
