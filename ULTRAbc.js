@@ -159,6 +159,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAAppearanceRun();
     ULTRACellClick();
     ULTRACellLoad();
+    ULTRACellRun(); 
     ULTRAChatRoomClick();
     ULTRAChatRoomDrawBackground();
     ULTRAChatRoomKeyDown();
@@ -682,6 +683,31 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //Timer Cell
+    async function ULTRACellClick() {
+        modApi.hookFunction('CellClick', 4, (args, next) => {
+            if (CellOpenTimer < CurrentTime) {
+                if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
+            }
+            if (SosbuttonsOn == true) {
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
+                    CharacterReleaseTotal(Player);
+                    ChatRoomCharacterUpdate(Player);
+                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
+                    CellLock(0);
+                    if (SlowleaveOn == true) {
+                        setTimeout(function() {
+                            CommonSetScreen("Room", "MainHall");
+                        }, 15000);
+                    } else {
+                        CommonSetScreen("Room", "MainHall");
+                    }
+                }
+            }
+            next(args);
+        });
+    }
+
     async function ULTRACellLoad() {
         modApi.hookFunction('CellLoad', 4, (args, next) => {
             CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
@@ -694,15 +720,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
-    async function ULTRACellClick() {
-        modApi.hookFunction('CellClick', 4, (args, next) => {
-            if (CellOpenTimer < CurrentTime) {
-                if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
+    async function ULTRACellRun() {
+        modApi.hookFunction('CellRun', 4, (args, next) => {
+            if (SosbuttonsOn == true) {
+                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+                if (SlowleaveOn == true) {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                } else {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                }
             }
             next(args);
         });
     }
-	
+
     //Vision
     async function ULTRAChatRoomDrawBackground() {
         modApi.hookFunction('ChatRoomDrawBackground', 4, (args, next) => {
