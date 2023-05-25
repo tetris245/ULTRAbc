@@ -53,5 +53,6 @@ All else I might not have included.
 
 Changes for future version
 
+* Added emergency buttons in timer cell (when they are enabled)
 * Fixed the bug with whispers after initialisation
 
