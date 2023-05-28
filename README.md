@@ -6,6 +6,8 @@ ULTRAbc is a modSDK version of QAM, providing better compatibility with other ad
 
 Most recent version: 1.6
 
+Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
+
 ## Installation 
 
 **Recommended methode with Tampermonkey** - links to the ULTRAbc loader: 
