@@ -6895,6 +6895,40 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             PandoraPunishmentStart();
         }
     }])
+	
+    CommandCombine([{
+        Tag: 'ptcode',
+        Description: "(target) reveals codes used on items controlled by portal link.",
+        Action: (args) => {
+            if (args === "") {
+                for (let A = 0; A < Player.Appearance.length; A++)
+                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.Attribute != null)) {
+                        if (Player.Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
+                            var asset = Player.Appearance[A].Asset.Description;
+                            var ptcode = Player.Appearance[A].Property.PortalLinkCode;
+                            ChatRoomSendLocal("" + asset + " = " + ptcode + "");
+                        }
+                    }
+            } else {
+                var targetname = args;
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if (target[0] != null) {
+                    for (let A = 0; A < target[0].Appearance.length; A++)
+                        if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.Attribute != null)) {
+                            if (target[0].Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
+                                var asset = target[0].Appearance[A].Asset.Description;
+                                var ptcode = target[0].Appearance[A].Property.PortalLinkCode;
+                              ChatRoomSendLocal("" + asset + " = " + ptcode + "");
+                            }
+                        }
+                }
+            }
+        }
+    }])
 
     CommandCombine([{
         Tag: 'pw',
@@ -8514,9 +8548,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Escape commands:\n" +
                     "<b>/boost</b> = boosts skills, similar to maid quarters drink.\n" +
-                    "<b>/code</b> (target) = reveals codes for current combination locks.\n" +
+                    "<b>/code</b> (target) = reveals codes for combination locks.\n" +
                     "<b>/leave</b> = leaves room, even if prevented.\n" +
-                    "<b>/pw</b> (target) = reveals passwords for current locks with password.\n" +
+		    "<b>/ptcode</b> (target) = reveals portal link codes.\n" +
+                    "<b>/pw</b> (target) = reveals passwords for locks with password.\n" +
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
                     "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
                     "<b>/safeworditem</b> = removes specific item. More info when used.\n" +
