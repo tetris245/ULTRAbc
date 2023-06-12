@@ -5432,7 +5432,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Special parameters of lock command:\n" +
                     "code must be between 0 and 9999.\n" +
                     "password is limited to 8 characters.\n" +
-		    "portal code must include 8 characters, using only 0-9 and a-f.\n"
+		    "portal code must include 8 characters, using only 0-9 and a-f.\n" +
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
                     "10080 minutes for locks 14, 15 and 18\n" +
                     " \n" +
