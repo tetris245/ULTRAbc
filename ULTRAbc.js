@@ -5412,18 +5412,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The lock command has several syntaxes:\n" +
                     "/lock (target) (locktype) for locks 1 to 8 + locks 17 and 19\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
-                    "/lock (target) (locktype) (code) for lock 10\n" +
+                    "/lock (target) (locktype) (code/ptcode) for locks 10 and 20\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
                     "/lock (target) (locktype) (minutes) (h) (i) (r) for locks 13 to 15 + lock 18\n" +
                     "/lock (target) (locktype) (password) (minutes) (h) (i) (r) for lock 16\n" +
-                    " \n" +
-                    "The target always needs to be specified. Lock types:\n" +
+                    "ALWAYS SPECIFY THE TARGET. Lock types:\n" +
                     "1 Metal - 2 Exclusive - 3 Intricate - 4 High Security\n" +
                     "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password\n" +
-                    "17 Best Friend - 18 Best Friend Timer - 19 Family\n" +
+                    "17 Best Friend - 18 Best Friend Timer\n" +
+		    "19 Family - 20 Portal Link\n" +
                     "BCTweaks is required for locks 17 and 18\n" +
                     "Use <b>/lock par</b> for info about other parameters</p>"
                 );
@@ -5432,6 +5432,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Special parameters of lock command:\n" +
                     "code must be between 0 and 9999.\n" +
                     "password is limited to 8 characters.\n" +
+		    "portal code must include 8 characters, using only 0-9 and a-f.\n"
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
                     "10080 minutes for locks 14, 15 and 18\n" +
                     " \n" +
@@ -5540,7 +5541,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var removeitem = stringLock2[5];
                 } else if (lk == 19) {
                     Lock = "FamilyPadlock";
-                }
+                } else if (lk == 20) {
+                    Lock = "PortalLinkPadlock";
+                    var PTS = /^[0-9a-f]+$/;
+                    var ptcode = stringLock2[2];
+                } 
                 var targetname = stringLock2[0];
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
@@ -5565,7 +5570,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     for (let A = 0; A < target[0].Appearance.length; A++)
                         if (target[0].Appearance[A].Asset.AllowLock == true) {
                             if (((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy == null)) || (target[0].Appearance[A].Property == null)) {
-                                InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+				if (lk != 20) {
+                                    InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+                                } else {
+                                    if (target[0].Appearance[A].Property.Attribute != null) {
+                                        if (target[0].Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
+                                            InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+                                        }
+                                    }
+                                }  
                                 if (removeitem == "r") {
                                     target[0].Appearance[A].Property.RemoveOnUnlock = true;
                                     target[0].Appearance[A].Property.RemoveItem = true;
@@ -5586,6 +5599,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 }
                                 if ((code != null) && (code > -1) && (code < 10000)) {
                                     target[0].Appearance[A].Property.CombinationNumber = code;
+                                }
+				if ((ptcode != null) && (ptcode.length = 8) && (ptcode.match(PTS))) {
+                                    target[0].Appearance[A].Property.PortalLinkCode = ptcode;
                                 }
                                 if ((pw != null) && (pw.length <= 8) && (pw.match(PS))) {
                                     target[0].Appearance[A].Property.Password = pw;
