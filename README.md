@@ -57,5 +57,6 @@ Changes for future version
 
 * New command: ptcode to reveal codes used on items controlled by portal link
 * Added emergency buttons in timer cell (when they are enabled)
+* Addef support for Portal Link lock in unlock command
 * Fixed the bug with whispers after initialisation
 
