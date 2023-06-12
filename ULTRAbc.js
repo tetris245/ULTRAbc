@@ -8737,7 +8737,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password\n" +
                     "17 Best Friend - 18 Best Friend Timer\n" +
-                    "19 Family</p>"
+                    "19 Family - 20 Portal Link</p>"
                 );
             } else {
                 var stringUnlock1 = args;
@@ -8778,6 +8778,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
                         CharacterReleaseFromLock(target[0], "PandoraPadlock");
                         CharacterReleaseFromLock(target[0], "PasswordPadlock");
+			CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
                         CharacterReleaseFromLock(target[0], "SafewordPadlock");
                         CharacterReleaseFromLock(target[0], "TimerPadlock");
                         CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
@@ -8831,6 +8832,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 InventoryUnlock(target[0], target[0].Appearance[A]);
                     } else if (lk == 19) {
                         CharacterReleaseFromLock(target[0], "FamilyPadlock");
+                    } else if (lk == 20) {
+                        CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
                     }
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
