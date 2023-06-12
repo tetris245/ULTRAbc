@@ -5600,7 +5600,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 if ((code != null) && (code > -1) && (code < 10000)) {
                                     target[0].Appearance[A].Property.CombinationNumber = code;
                                 }
-				if ((ptcode != null) && (ptcode.length = 8) && (ptcode.match(PTS))) {
+				if ((ptcode != null) && (ptcode.length == 8) && (ptcode.match(PTS))) {
                                     target[0].Appearance[A].Property.PortalLinkCode = ptcode;
                                 }
                                 if ((pw != null) && (pw.length <= 8) && (pw.match(PS))) {
