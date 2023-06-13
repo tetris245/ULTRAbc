@@ -42,6 +42,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var NowhisperOn = false;
     let blureffect;
 
+    let oldhorny = 0;
+
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
     var M_MOANER_vibratorActive = true;
@@ -64,6 +66,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             AutojoinOn = false;
 	    NowhisperOn = false;
 	    blureffect = false;
+	    oldhorny = 0;
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -79,6 +82,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             AutojoinOn = datas.autojoin;
 	    NowhisperOn = datas.nowhisper; 
 	    blureffect = false;
+	    oldhorny = 0;
         }
     }
 
@@ -96,7 +100,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "fullseed": FullseedOn,
             "autojoin": AutojoinOn,
 	    "nowhisper": NowhisperOn,
-	    "blureffect": blureffect
+	    "blureffect": blureffect,
+	    "oldhorny": oldhorny
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -1707,6 +1712,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     function M_MOANER_isVibes(data) {
         if (data.Type == "Action" && data.Content.includes("Vibe")) {
             return true;
+        }
+	if (Player.OnlineSettings.LSCG != undefined) {
+            if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
+                if (Player.OnlineSettings.LSCG.InjectorModule.hornyLevel != 0) {
+                    let newhorny = Player.OnlineSettings.LSCG.InjectorModule.hornyLevel; 
+                    if (newhorny > oldhorny) {
+                        oldhorny = newhorny;
+                        M_MOANER_saveControls();
+                        return true;
+                    } else {
+                        oldhorny = newhorny;
+                        M_MOANER_saveControls();
+                    }
+                }
+            }
         }
         return false;
     }
