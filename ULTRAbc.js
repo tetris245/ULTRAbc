@@ -2779,7 +2779,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'bg1',
         Description: ": adds hidden backgrounds to the admin selection screen.",
         Action: () => {
-	     BackgroundsList.push({
+	    BackgroundsList.push({
                 Name: "ClubCardLounge",
                 Tag: [BackgroundsTagIndoor]
             });
