@@ -59,5 +59,6 @@ Changes for future version
 * Added emergency buttons in timer cell (when they are enabled)
 * Added support for Portal Link lock in lock and unlock commands
 * Updated the bg1 command
+* Improved the help for the killpar and pose2 roof commands
 * Fixed the bug with whispers after initialisation
 
