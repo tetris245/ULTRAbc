@@ -6391,6 +6391,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 Text: "" + tmpname + " jumps to the ceiling."
                             }]
                         });
+			ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if FBC enabled).</p>" 
+                        );
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         CharacterSetActivePose(Player, null);
                         ChatRoomCharacterUpdate(Player);
