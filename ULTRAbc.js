@@ -5389,7 +5389,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else if (args === "yes") {
                 M_MOANER_deleteControls();
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: All UBC/Moaner parameters have been deleted. Use the appropriate commands to set the parameters that you like.</p>"
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: All UBC/Moaner parameters have been deleted. Make a full logout/login then use the appropriate commands to set the parameters that you like.</p>"
                 );
             }
         }
