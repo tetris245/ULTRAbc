@@ -5456,18 +5456,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'leave',
-        Description: ": leaves room, even if prevented.",
-        Action: () => {
-            ChatRoomSetLastChatRoom("");
-            ServerSend("ChatRoomLeave", "");
-            CommonSetScreen("Online", "ChatSearch");
-            ChatRoomClearAllElements();
-            OnlineGameName = "";
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'lock',
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
         Action: (args) => {
@@ -7045,6 +7033,40 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
             }
         }
+    }])
+
+    CommandCombine([{
+        Tag: 'quit',
+        Description: "(action): leaves room.",
+        Action: (args) => {
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
+            if (args === "") {
+                ChatRoomSetLastChatRoom("");
+                ServerSend("ChatRoomLeave", "");
+                CommonSetScreen("Online", "ChatSearch");
+                ChatRoomClearAllElements();
+                OnlineGameName = "";
+            } else {
+                var message = ' '.repeat(1) + args;
+                ServerSend("ChatRoomChat", {
+                    Content: "Beep",
+                    Type: "Action",
+                    Dictionary: [{
+                        Tag: "Beep",
+                        Text: "" + tmpname + message
+                    }]
+               });
+               ChatRoomSetLastChatRoom("");
+               ServerSend("ChatRoomLeave", "");
+               CommonSetScreen("Online", "ChatSearch");
+               ChatRoomClearAllElements();
+               OnlineGameName = "";
+           } 
+        }   
     }])
 
     CommandCombine([{
@@ -8637,9 +8659,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Escape commands:\n" +
                     "<b>/boost</b> = boosts skills, similar to maid quarters drink.\n" +
                     "<b>/code</b> (target) = reveals codes for combination locks.\n" +
-                    "<b>/leave</b> = leaves room, even if prevented.\n" +
 		    "<b>/ptcode</b> (target) = reveals portal link codes.\n" +
                     "<b>/pw</b> (target) = reveals passwords for locks with password.\n" +
+		    "<b>/quit</b> (action) = leaves room.\n" +
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
                     "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
                     "<b>/safeworditem</b> = removes specific item. More info when used.\n" +
