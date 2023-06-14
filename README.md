@@ -55,7 +55,11 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: ptcode to reveal codes used on items controlled by portal link
+* New commands:
+  - invisible1 to become invisible (anal hook needs to be allowed)
+  - invisible2 to become invisible (glitter mask must be usable) - thanks to Lilly for her help
+  - ptcode to reveal codes used on items controlled by portal link
+  - visible to go back to visible state after using of an invisible command
 * Added emergency buttons in timer cell (when they are enabled)
 * Added support for Portal Link lock in lock and unlock commands
 * Added support for LSCG Aphrodisiac Drinks and Injector in the Moaner
