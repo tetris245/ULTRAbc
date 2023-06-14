@@ -7746,19 +7746,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'slowleave',
-        Description: ": slowly leaves the room.",
-        Action: () => {
+        Description: "(action): slowly leaves the room.",
+        Action: (args) => {
             if (Player.Nickname == '') {
                 var tmpname = Player.Name;
             } else {
                 var tmpname = Player.Nickname;
+            }
+            if (args === "") {
+                var message = " slowly heads for the door."
+            } else {
+                var message = ' '.repeat(1) + args;
             }
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
                 Type: "Action",
                 Dictionary: [{
                     Tag: "Beep",
-                    Text: "" + tmpname + " slowly heads for the door."
+                    Text: "" + tmpname + message
                 }]
             });
             setTimeout(function() {
@@ -8661,7 +8666,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/moaner</b> = moans when horny and stimulated. More info when using.\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
-                    "<b>/slowleave</b> = slowly leaves the room.\n" +
+                    "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.</p>"
                 );
             }
