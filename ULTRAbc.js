@@ -1949,13 +1949,53 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function IsStimulated(C) {
-        if (C.IsEgged() && ((C.ArousalSettings == null) || (C.ArousalSettings.AffectStutter == null) || (C.ArousalSettings.AffectStutter == "Vibration") || (C.ArousalSettings.AffectStutter == "All")))
+        if (C.IsEgged() && ((C.ArousalSettings == null) || (C.ArousalSettings.AffectStutter == null) || (C.ArousalSettings.AffectStutter == "Vibration") || (C.ArousalSettings.AffectStutter == "All"))) {
             for (let A = 0; A < C.Appearance.length; A++) {
                 var Item = C.Appearance[A];
-                if (InventoryItemHasEffect(Item, "Vibrating", true))
+                if (InventoryItemHasEffect(Item, "Vibrating", true)) {
                     return true;
+                }
+	    }	  
+	}	
+	if (Player.OnlineSettings.LSCG != null) {
+            if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
+                if (Player.OnlineSettings.LSCG.InjectorModule.hornyLevel != 0) {
+                    let horny = Player.OnlineSettings.LSCG.InjectorModule.hornyLevel; 
+                    if (horny < 100) {
+                        Stutter1On = true;
+                        Stutter2On = false;
+                        Stutter3On = false;
+                        Stutter4On = false;
+                        return true;
+                    } else if ((horny > 99) && (horny < 200)) {
+                        Stutter1On = false;
+                        Stutter2On = true;
+                        Stutter3On = false;
+                        Stutter4On = false;
+                        return true;
+                    } else if ((horny > 199) && (horny < 300)) {
+                        Stutter1On = false;
+                        Stutter2On = false;
+                        Stutter3On = true;
+                        Stutter4On = false;
+                        return true;
+                    } else if (horny > 299) {
+                        Stutter1On = false;
+                        Stutter2On = false;
+                        Stutter3On = false;
+                        Stutter4On = true;
+                        return true;
+                    }                    
+                } else {
+                    Stutter1On = false;
+                    Stutter2On = false;
+                    Stutter3On = false;
+                    Stutter4On = false;
+		    return false;
+                }
             }
-        return false;
+        } 
+	return false;   
     }
 
     //MoanerProfiles
