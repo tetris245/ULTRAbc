@@ -8936,7 +8936,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.7:\n" +
-		    "- New commands: invisible1, invisible2, ptcode, visible.\n" +
+		    "- New commands: invisible1, invisible2, ptcode (to reveal codes used on items controlled by portal link), visible.\n" +
 		    "- Emergency buttons in timer cell, update of bg1 command.\n" +
 		    "- Support for Portal Link lock in lock and unlock commands.\n" +
 		    "- Support for LSCG Aphrodisiac Drinks and Injector in the Moaner.\n" +
