@@ -58,6 +58,7 @@ Changes for future version
 * New command: ptcode to reveal codes used on items controlled by portal link
 * Added emergency buttons in timer cell (when they are enabled)
 * Added support for Portal Link lock in lock and unlock commands
+* Added support for LSCG Aphrodisiac Injector in the Moaner
 * Updated the bg1 command
 * Improved the help for the killpar and pose2 roof commands
 * Fixed the bug with whispers after initialisation
