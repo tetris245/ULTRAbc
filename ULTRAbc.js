@@ -8892,10 +8892,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands:\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
+                    "<b>/invisible1</b> = becomes invisible (anal hook must be allowed).\n" +
+                    "<b>/invisible2</b> = becomes invisible (glitter mask must be usable).\n" +
                     "<b>/moaner</b> = moans when horny and stimulated. More info when using.\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
-                    "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
-                    "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.</p>"
+                    "<b>/slowleave (action)</b> = slowly leaves the room.\n" +
+                    "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
+                    "<b>/visible</b> = back to visible state after using of an invisible command.</p>"
                 );
             }
             if (args === "kd") {
@@ -9305,6 +9308,40 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomSetTarget(null);
                 }
             }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'visible',
+        Description: ": back to visible state after using of an invisible command.",
+        Action: (args) => {
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
+            ServerSend("ChatRoomChat", {
+                Content: "Beep",
+                Type: "Action",
+                Dictionary: [{
+                    Tag: "Beep",
+                    Text: "" + tmpname + " suddenly is visible for everybody."
+                }]
+            });
+            if (InventoryGet(Player, "ItemButt") != null) {
+                if (InventoryGet(Player, "ItemButt").Asset.Name == "AnalHook") {
+                    InventoryRemove(Player, "ItemButt");
+                }
+            }
+            if (InventoryGet(Player, "Mask") != null) {
+                if (InventoryGet(Player, "Mask").Asset.Name == "Glitter") {
+                    InventoryRemove(Player, "Mask");
+                }
+            }
+            InventoryRemove(Player, "ItemScript");
+            CurrentScreen === 'ChatRoom'
+                ? ChatRoomCharacterUpdate(Player)
+                : CharacterRefresh(Player);
         }
     }])
 
