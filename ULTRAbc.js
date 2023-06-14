@@ -5083,6 +5083,109 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'invisible2',
+        Description: ": becomes invisible (glitter mask must be usable).",
+        Action: () => {
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
+            ServerSend("ChatRoomChat", {
+                Content: "Beep",
+                Type: "Action",
+                Dictionary: [{
+                    Tag: "Beep",
+                    Text: "Magical lasers make " + tmpname + " completely invisible."
+                }]
+            });
+            InventoryWear(Player, "Glitter", "Mask", "#664433");
+            InventoryWear(Player, "Script", "ItemScript"); 
+            InventoryGet(Player, "ItemScript").Property = {
+                Hide: [
+                    "Activity",
+                    "Blush",
+                    "BodyLower",
+                    "BodyUpper",
+                    "Bra",
+                    "Bracelet",
+                    "Cloth",
+                    "ClothAccessory",
+                    "ClothLower",
+                    "Corset",
+                    "Emoticon",
+                    "Eyebrows",
+                    "Eyes",
+                    "Eyes2",
+                    "Face",
+                    "FacialHair",
+                    "Fluids",
+                    "Garters",
+                    "Glasses",
+                    "Gloves",
+                    "HairAccessory1",
+                    "HairAccessory2",
+                    "HairAccessory3",
+                    "HairBack",
+                    "HairFront",
+                    "Hands",
+                    "Hat",
+                    "Head",
+                    "ItemAddon",
+                    "ItemArms",
+                    "ItemBoots",
+                    "ItemBreast",
+                    "ItemButt",
+                    "ItemDevices",
+                    "ItemEars",
+                    "ItemFeet",
+                    "ItemHandheld",
+                    "ItemHands",
+                    "ItemHead",
+                    "ItemHood",
+                    "ItemLegs",
+                    "ItemMisc",
+                    "ItemMouth",
+                    "ItemMouth2",
+                    "ItemMouth3",
+                    "ItemNeck",
+                    "ItemNeckAccessories",
+                    "ItemNeckRestraints",
+                    "ItemNipples",
+                    "ItemNipplesPiercings",
+                    "ItemNose",
+                    "ItemPelvis",
+                    "ItemTorso",
+                    "ItemTorso2",
+                    "ItemVulva",
+                    "ItemVulvaPiercings",
+                    "Jewelry",
+                    "LeftAnklet",
+                    "LeftHand",
+                    "Mouth",
+                    "Necklace",
+                    "Nipples",
+                    "Panties",
+                    "Pussy",
+                    "RightAnklet",
+                    "RightHand",
+                    "Shoes",
+                    "Socks",
+                    "SocksLeft",
+                    "SocksRight",
+                    "Suit",
+                    "SuitLower",
+                    "TailStraps",
+                    "Wings"
+                ]
+            }
+            CurrentScreen === 'ChatRoom'
+                ? ChatRoomCharacterUpdate(Player)
+                : CharacterRefresh(Player);
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'kd',
         Description: "(option): launches Kinky Dungeon.",
         Action: (args) => {
