@@ -2843,6 +2843,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 Name: "ClubCardLounge",
                 Tag: [BackgroundsTagIndoor]
             });
+	    BackgroundsList.push({
+                Name: "ClubCardPlayBoard1",
+                Tag: [BackgroundsTagIndoor]
+            });
             BackgroundsList.push({
                 Name: "HypnoSpiral2",
                 Tag: [BackgroundsTagIndoor]
