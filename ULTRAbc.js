@@ -8896,7 +8896,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/invisible2</b> = becomes invisible (glitter mask must be usable).\n" +
                     "<b>/moaner</b> = moans when horny and stimulated. More info when using.\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
-                    "<b>/slowleave (action)</b> = slowly leaves the room.\n" +
+                    "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
                     "<b>/visible</b> = back to visible state after using of an invisible command.</p>"
                 );
