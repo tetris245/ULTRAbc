@@ -65,7 +65,7 @@ Changes for future version
 * Added support for LSCG Aphrodisiac Drinks and Injector in the Moaner
 * Updated the bg1 command
 * Renamed the leave command as quit to avoid conflict with BCAR
-* Improved the quit and slowleave commands: you can now add text corresponding to a personal action
+* Improved the quit and slowleave commands: you can now add text corresponding to personal action(s)
 * Improved the help for the killpar and pose2 roof commands
 * Fixed the bug with whispers after initialisation
 
