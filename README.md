@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 1.6
+Most recent version: 1.7
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -25,7 +25,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version1.6.zip file on the Releases page
+1. Download the ULTRAbc-version1.7.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -55,17 +55,5 @@ All else I might not have included.
 
 Changes for future version
 
-* New commands:
-  - invisible1 to become invisible (anal hook needs to be allowed)
-  - invisible2 to become invisible (glitter mask must be usable) - thanks to Lilly for her help
-  - ptcode to reveal codes used on items controlled by portal link
-  - visible to go back to visible state after using of an invisible command
-* Added emergency buttons in timer cell (when they are enabled)
-* Added support for Portal Link lock in lock and unlock commands
-* Added support for LSCG Aphrodisiac Drinks and Injector in the Moaner
-* Updated the bg1 command
-* Renamed the leave command as quit to avoid conflict with BCAR
-* Improved the quit and slowleave commands: you can now add text corresponding to personal action(s)
-* Improved the help for the killpar and pose2 roof commands
-* Fixed the bug with whispers after initialisation
+(...)
 
