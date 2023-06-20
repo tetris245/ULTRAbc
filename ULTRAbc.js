@@ -6323,7 +6323,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Available poses:\n" +
                     "armsfree, belly, boxtied, cuffed, elbowtied,\n" +
                     "kneel1, kneel2, legsclosed, legsopen, pet,\n" +
-                    "sleep, spreadarms1, spreadarms2, spreadeagle1\n" +
+                    "spreadarms1, spreadarms2, spreadeagle1\n" +
                     "spreadeagle2, spreadlegs, stand, suspension,\n" +
                     "tapedhands. Only on yourself: exercise, jump, roof.\n" +
                     "Use <b>/pose2 reset</b> (target) to back to neutral pose.\n" +
