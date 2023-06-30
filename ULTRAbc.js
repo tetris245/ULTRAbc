@@ -40,6 +40,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let FullseedOn;
     let AutojoinOn;
     let MagiccheatOn;
+    let WelcomeOn;
     var NowhisperOn = false;
     let blureffect;
 
@@ -66,6 +67,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             FullseedOn = false;
             AutojoinOn = false;
             MagiccheatOn = false;
+            WelcomeOn = false;
             NowhisperOn = false;
             blureffect = false;
             oldhorny = 0;
@@ -83,6 +85,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             FullseedOn = datas.fullseed;
             AutojoinOn = datas.autojoin;
             MagiccheatOn = datas.magiccheat;
+            WelcomeOn = datas.welcome;
             NowhisperOn = datas.nowhisper;
             blureffect = false;
             oldhorny = 0;
@@ -103,6 +106,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "fullseed": FullseedOn,
             "autojoin": AutojoinOn,
             "magiccheat": MagiccheatOn,
+            "welcome": WelcomeOn,
             "nowhisper": NowhisperOn,
             "blureffect": blureffect,
             "oldhorny": oldhorny
@@ -180,6 +184,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAFriendListClick();
     ULTRAFriendListRun();
     ULTRALoginRun();
+    ULTRAMagicPuzzleRun();
+    ULTRAMagicSchoolEscapeSpellEnd();
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
@@ -612,18 +618,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Main Hall
     async function ULTRAMainHallRun() {
         modApi.hookFunction('MainHallRun', 4, (args, next) => {
-            var Utext =
-                "             Welcome to ULTRAbc            " +
-                "         The modSDK version of QAM         " +
-                "    Many extra commands and features     " +
-                "             More info with /uhelp           " +
-                "             Visit also the ULTRAbc Wiki       ";
-            MainCanvas.fillStyle = "#50E992";
-            MainCanvas.fillRect(20, 588, 640, 246);
-            MainCanvas.strokeStyle = "Black";
-            MainCanvas.strokeRect(20, 588, 640, 246);
-            MainCanvas.textAlign = "left";
-            DrawTextWrap(Utext, 30 - 630 / 2, 593, 630, 236, "black");
+            if (WelcomeOn == true) {
+                var Utext =
+                    "             Welcome to ULTRAbc            " +
+                    "         The modSDK version of QAM         " +
+                    "    Many extra commands and features     " +
+                    "             More info with /uhelp           " +
+                    "             Visit also the ULTRAbc Wiki       ";
+                MainCanvas.fillStyle = "#50E992";
+                MainCanvas.fillRect(20, 588, 640, 246);
+                MainCanvas.strokeStyle = "Black";
+                MainCanvas.strokeRect(20, 588, 640, 246);
+                MainCanvas.textAlign = "left";
+                DrawTextWrap(Utext, 30 - 630 / 2, 593, 630, 236, "black");
+            }    
             MainCanvas.textAlign = "center";
             DrawText("Chat Rooms", 130, 530, "White", "Black");
             if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
@@ -8972,7 +8980,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands:\n" +
                     "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
-                    "<b>/exitmode</b> = toggles exit mode for OUT button in chat.\n" +
+                    "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
@@ -8981,7 +8989,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/sosbuttons</b> = toggles SOS buttons in chat + timer cell.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. Available categories: bondage, character, clothing, escape, features, fun, kd, misc, pleasure, talking, visual, zones.\n" +
-                    "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft.</p>"
+                    "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft.\n" +
+                    "<b>/welcome</b> = toggles UBC welcome message in main hall.</p>" 
                 );
             }
             if (args === "new") {
@@ -9438,6 +9447,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'welcome',
+        Description: ": toggles UBC welcome message in main hall.",
+        Action: () => {
+            if (WelcomeOn == true) {
+                WelcomeOn = false;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: No welcome message in main hall.</p>"
+                );
+            } else {
+                WelcomeOn = true;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Welcome message in main hall.</p>"
+                );
             }
         }
     }])
