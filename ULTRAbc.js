@@ -39,6 +39,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let SlowleaveOn;
     let FullseedOn;
     let AutojoinOn;
+    let MagiccheatOn;
     var NowhisperOn = false;
     let blureffect;
 
@@ -64,6 +65,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             SlowleaveOn = false;
             FullseedOn = false;
             AutojoinOn = false;
+            MagiccheatOn = false;
             NowhisperOn = false;
             blureffect = false;
             oldhorny = 0;
@@ -80,6 +82,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             SlowleaveOn = datas.slowleave;
             FullseedOn = datas.fullseed;
             AutojoinOn = datas.autojoin;
+            MagiccheatOn = datas.magiccheat;
             NowhisperOn = datas.nowhisper;
             blureffect = false;
             oldhorny = 0;
@@ -99,6 +102,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "slowleave": SlowleaveOn,
             "fullseed": FullseedOn,
             "autojoin": AutojoinOn,
+            "magiccheat": MagiccheatOn,
             "nowhisper": NowhisperOn,
             "blureffect": blureffect,
             "oldhorny": oldhorny
@@ -583,6 +587,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
+    //Magic School
+    async function ULTRAMagicPuzzleRun() {
+        modApi.hookFunction('MagicPuzzleRun', 4, (args, next) => {
+           if (MagiccheatOn == true) {
+               if (MiniGameEnded) {
+                  MiniGameVictory = true;
+               }
+           }
+           next(args);
+        });
+    }
+       
+    async function ULTRAMagicSchoolEscapeSpellEnd() {
+        modApi.hookFunction('MagicSchoolEscapeSpellEnd', 4, (args, next) => {
+           if (MagiccheatOn == true) {
+               MagicSchoolEscapeTimer > CommonTime();
+               MiniGameVictory = true;
+           }
+           next(args);
+        });
+    }
+ 
     //Main Hall
     async function ULTRAMainHallRun() {
         modApi.hookFunction('MainHallRun', 4, (args, next) => {
@@ -5926,6 +5952,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'magiccheat',
+        Description: ": toggles cheat mode in Magic School.",
+        Action: () => {
+            if (MagiccheatOn == true) {
+                MagiccheatOn = false;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode disabled in Magic School.</p>"
+                );
+            } else {
+                MagiccheatOn = true;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode enabled in Magic School.</p>"
+                );
+            }
+        }
+    }])
+ 
+    CommandCombine([{
         Tag: 'maxstatistics',
         Description: ": gives max statistics.",
         Action: () => {
@@ -8926,13 +8972,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands:\n" +
                     "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
-                    "<b>/exitmode</b> = toggles exit mode (fast or slow) for OUT button in chat room.\n" +
+                    "<b>/exitmode</b> = toggles exit mode for OUT button in chat.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
+                    "<b>/magiccheat</b> = toggles cheat mode in Magic School.\n" +
                     "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
                     "<b>/relog</b> = relogs.\n" +
-                    "<b>/sosbuttons</b> = toggles emergency buttons in chat room.\n" +
+                    "<b>/sosbuttons</b> = toggles SOS buttons in chat + timer cell.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. Available categories: bondage, character, clothing, escape, features, fun, kd, misc, pleasure, talking, visual, zones.\n" +
                     "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft.</p>"
                 );
