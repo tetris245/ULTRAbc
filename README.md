@@ -55,5 +55,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: magiccheat to toggle cheat mode in Magic 5chool
+* New commands:
+  - magiccheat to toggle cheat mode in Magic 5chool
+  - welcome to toggle UBC welcome message in main hall
 
