@@ -1128,7 +1128,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //ChatRoom
 
     function M_MOANER_isSimpleChat(msg) {
-        return msg.trim().length > 0 && !msg.startsWith("/") && !msg.startsWith("(") && !msg.startsWith("*") && ChatRoomTargetMemberNumber == null;
+        return msg.trim().length > 0 
+            && !msg.startsWith("/") 
+            && !msg.startsWith("(") 
+            && !msg.startsWith("*") 
+            && !msg.startsWith("@") 
+            && ChatRoomTargetMemberNumber == null;
     }
 
     var M_MOANER_scriptStatus = ["The moaner is active.", "The moaner is not active."];
