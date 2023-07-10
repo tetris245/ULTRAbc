@@ -1728,19 +1728,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (data.Content == "ActionActivitySpankItem") {
             return true;
         }
+        var FocusButt = false;
         var ActivitySpank = false;
         for (let elem of data.Dictionary) {
             if (elem.ActivityName) {
-                if ((elem.ActivityName == "Spank")
-                    || (elem.ActivityName == "Slap") 
-                    || (elem.ActivityName == "Pinch") 
-                    || (elem.ActivityName == "Bite") 
-                    || (elem.ActivityName == "SpankItem")) {
+                if (elem.ActivityName == "Spank" || elem.ActivityName == "SpankItem") {
                     ActivitySpank = true;
                 }
             }
+            if (elem.FocusGroupName) {
+                if (elem.FocusGroupName == "ItemButt") {
+                    FocusButt = true;
+                }
+            }
         }
-        if (ActivitySpank) {
+        if (FocusButt && ActivitySpank) {
             return true;
         }
         return false;
