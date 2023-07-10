@@ -59,7 +59,6 @@ Changes for future version
   - magiccheat to toggle cheat mode in Magic 5chool
   - welcome to toggle UBC welcome message in main hall
 * Improved the Moaner:
-  - extended the spank feature to all body zones and similar actions (bite, pinch, slap)
   - fixed an incompatibility issue with the MBCHC add-on
    
 
