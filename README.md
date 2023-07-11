@@ -58,7 +58,8 @@ Changes for future version
 * New commands:
   - magiccheat to toggle cheat mode in Magic 5chool
   - welcome to toggle UBC welcome message in main hall
-* Improved the Moaner:
+* Changes in the Moaner:
   - fixed an incompatibility issue with the MBCHC add-on
+* Added code to prevent double UBC loading
    
 
