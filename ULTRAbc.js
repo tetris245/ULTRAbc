@@ -19,6 +19,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 //SDKstuff end
 
 (async function() {
+    if (window.UBCver) {
+		console.warn("ULTRAbc already loaded. No double loading");
+		return;
+    }
+    
     const UBCver = "1.7";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
@@ -28,6 +33,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     });
 
     //Main variables and settings for UBC and The Moaner
+    window.UBCver = UBCver;
+    
     var FBC_VERSION = "";
     var M_MOANER_moanerKey = "bc_moaner_";
 
@@ -139,6 +146,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 //console.log("MoanerIsLoaded found");
                 MoanerIsLoaded = true;
                 M_MOANER_initControls();
+                Player.UBC = UBCver;
             } catch (err) {
                 console.log(err);
             }
