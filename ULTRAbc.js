@@ -6141,18 +6141,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'naked',
         Description: "(target): removes clothes.",
         Action: (args) => {
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }	
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
+                if (Naked != "") {
+                    var message = tmpname + ' '.repeat(1) + Naked;
                 } else {
-                    var tmpname = Player.Nickname;
+                    var message = "Magical lasers make disappear the clothes on " + tmpname + "'s body."
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make disappear the clothes on " + tmpname + "'s body."
+                        Text: message
                     }]
                 });
                 CharacterNaked(Player);
@@ -6170,12 +6175,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+		    if (Tnaked != "") {
+                        var message = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
+                    } else {
+                        var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                            Text: message
                         }]
                     });
                     CharacterNaked(target[0]);
