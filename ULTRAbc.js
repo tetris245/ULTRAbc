@@ -53,6 +53,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     let oldhorny = 0;
 
+    let Naked = "";
+    let Tnaked = "";
+
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
     var M_MOANER_vibratorActive = true;
@@ -78,6 +81,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = false;
             blureffect = false;
             oldhorny = 0;
+	    Naked = "";
+	    Tnaked = "";
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -96,6 +101,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = datas.nowhisper;
             blureffect = false;
             oldhorny = 0;
+	    Naked = datas.naked;
+	    Tnaked = datas.tnaked;
         }
     }
 
@@ -116,7 +123,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "welcome": WelcomeOn,
             "nowhisper": NowhisperOn,
             "blureffect": blureffect,
-            "oldhorny": oldhorny
+            "oldhorny": oldhorny,
+	    "naked": naked,
+	    "tnaked": tnaked
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -6017,6 +6026,46 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ChatRoomSendLocal(
                 "<p style='background-color:#5fbd7a'>ULTRAbc: A few things have to be set manually. See the /roleplay and /rolequit commands.</p>"
             );
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'message',
+        Description: "(option) (message): allows a custom message for a specific command.",
+        Action: (_, command, args) => {
+            var [option] = args;
+            if (!option) {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.<p>\n"
+                );
+            } else {
+                var [, , ...message] = command.split(" ");
+                var custom = message?.join(" ");
+                if (custom != "") {
+                    if (option == "naked") {
+                        if (custom != "?") {
+                            Naked = custom; 
+                            M_MOANER_saveControls();
+                            return;
+                        } else {
+                            Naked = "";
+                            M_MOANER_saveControls();
+                            return;
+                        }
+                    }
+                    if (option == "tnaked") {               
+                        if (custom != "?") {
+                            Tnaked = custom; 
+                            M_MOANER_saveControls();
+                            return;
+                        } else {
+                            Tnaked = "";
+                            M_MOANER_saveControls();
+                            return;
+                        }
+                    }
+                }
+            }
         }
     }])
 
