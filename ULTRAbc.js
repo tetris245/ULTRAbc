@@ -59,7 +59,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     let Tclothes = "";
     let Tnaked = "";
-	let Tunderwear = "";
+    let Tunderwear = "";
 
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
@@ -86,11 +86,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = false;
             blureffect = false;
             oldhorny = 0; 
-	        Clothes = "";
-	        Naked = "";
-	        Tclothes = "";
-	        Tnaked = "";
-			Tunderwear = "";
+	    Clothes = "";
+            Naked = "";
+	    Tclothes = "";
+	    Tnaked = "";
+	    Tunderwear = "";
             Underwear = "";
             //M_MOANER_saveControls();
         } else {
@@ -110,11 +110,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = datas.nowhisper;
             blureffect = false;
             oldhorny = 0;
-	        Clothes = datas.clothes;
-	        Naked = datas.naked;
-	        Tclothes = datas.tclothes;
-	        Tnaked = datas.tnaked;
-			Tunderwear = datas.tunderwear;
+	    Clothes = datas.clothes;
+	    Naked = datas.naked;
+	    Tclothes = datas.tclothes;
+	    Tnaked = datas.tnaked;
+	    Tunderwear = datas.tunderwear;
             Underwear = datas.underwear;
         }
     }
@@ -138,9 +138,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "blureffect": blureffect,
             "oldhorny": oldhorny, 
             "clothes": Clothes,
-	        "naked": Naked,
+	    "naked": Naked,
             "tclothes": Tclothes,
-	        "tnaked": Tnaked,	
+	    "tnaked": Tnaked,	
             "tunderwear": Tunderwear,
             "underwear": Underwear
         };
