@@ -55,11 +55,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     let Clothes = "";
     let Naked = "";
+    let Randomize = "";
     let Restrain = "";
     let Underwear = "";
 
     let Tclothes = "";
     let Tnaked = "";
+    let Trandomize = "";
     let Trestrain = "";
     let Tunderwear = "";
 
@@ -90,9 +92,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             oldhorny = 0; 
 	    Clothes = "";
             Naked = "";
+	    Randomize = "";
 	    Restrain = "";
 	    Tclothes = "";
 	    Tnaked = "";
+	    Trandomize = "";
 	    Trestrain = "";
 	    Tunderwear = "";
             Underwear = "";
@@ -116,9 +120,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             oldhorny = 0;
 	    Clothes = datas.clothes;
 	    Naked = datas.naked;
+	    Randomize = datas.randomize;
 	    Restrain = datas.restrain;
 	    Tclothes = datas.tclothes;
 	    Tnaked = datas.tnaked;
+	    Trandomize = datas.trandomize;
 	    Trestrain = datas.trestrain;
 	    Tunderwear = datas.tunderwear;
             Underwear = datas.underwear;
@@ -145,9 +151,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "oldhorny": oldhorny, 
             "clothes": Clothes,
 	    "naked": Naked,
+            "randomize": Randomize,
 	    "restrain": Restrain,
             "tclothes": Tclothes,
-	    "tnaked": Tnaked,	
+	    "tnaked": Tnaked,
+            "trandomize": Trandomize,
 	    "trestrain": Trestrain,
             "tunderwear": Tunderwear,
             "underwear": Underwear
@@ -6080,8 +6088,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (!option) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
-                    "Options on yourself: clothes, naked, restrain, underwear\n" +
-                    "Options on other players: tclothes, tnaked, trestrain, tunderwear\n" +
+                    "Options on yourself: clothes, naked, randomize, restrain, underwear\n" +
+                    "Options on other players: tclothes, tnaked, trandomize, trestrain, tunderwear\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
@@ -6118,6 +6126,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on yourself.</p>"
+                            );
+                        }
+                    }
+		    if (option == "randomize") {
+                        if (custom != "?") {
+                            Randomize = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for randomize command on yourself.</p>"
+                            );
+                        } else {
+                            Randomize = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for randomize command on yourself.</p>"
                             );
                         }
                     }
@@ -6166,6 +6189,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             );
                         }
 		    }   
+		    if (option == "trandomize") {
+                        if (custom != "?") {
+                            Trandomize = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for randomize command on other players.</p>"
+                            );
+                        } else {
+                            Trandomize = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for randomize command on other players.</p>"
+                            );
+                        }
+                    }
                     if (option == "trestrain") {
                         if (custom != "?") {
                             Trestrain = custom; 
@@ -7564,18 +7602,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'randomize',
         Description: "(target): naked + underwear + clothes + restrain commands.",
         Action: (args) => {
+	    if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
+                if (Randomize == undefined) {
+                    var message = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
+                } else {    
+                    if (Randomize != "") {
+                        var message = tmpname + ' '.repeat(1) + Randomize;
+                    } else {
+                        var message = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
+                    }
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
+                        Text: message
                     }]
                 });
                 CharacterNaked(Player);
@@ -7596,12 +7643,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+		    if (Trandomize == undefined) {
+                        var message = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
+                    } else {      
+                        if (Trandomize != "") {
+                            var message = tmpname + ' '.repeat(1) + Trandomize + ' '.repeat(1) + tgpname;
+                        } else {
+                            var message = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
+                            Text: message
                         }]
                     });
                     CharacterNaked(target[0]);
