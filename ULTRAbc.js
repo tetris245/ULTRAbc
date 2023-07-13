@@ -6067,7 +6067,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Options on yourself: clothes, naked\n" +
                     "Options on other players: tclothes, tnaked\n" +
                     " \n" +
-                    "When writing your message, don't forget that your name or nickname will be added before it\n" +"
+                    "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will added after the message\n" +
                     "Use ? as message to go back to default message</p>"         
                 );
