@@ -6147,10 +6147,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var tmpname = Player.Nickname;
             }	
             if (args === "") {
-                if (Naked != "") {
-                    var message = tmpname + ' '.repeat(1) + Naked;
-                } else {
+                if (Naked == undefined) {
                     var message = "Magical lasers make disappear the clothes on " + tmpname + "'s body."
+                } else {    
+                    if (Naked != "") {
+                        var message = tmpname + ' '.repeat(1) + Naked;
+                    } else {
+                        var message = "Magical lasers make disappear the clothes on " + tmpname + "'s body."
+                    }
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -6175,10 +6179,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-		    if (Tnaked != "") {
-                        var message = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
-                    } else {
+                    if (Tnaked == undefined) {
                         var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                    } else {      
+                        if (Tnaked != "") {
+                            var message = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
+                        } else {
+                            var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                        }
                     }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
