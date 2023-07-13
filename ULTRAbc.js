@@ -55,10 +55,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     let Clothes = "";
     let Naked = "";
+    let Restrain = "";
     let Underwear = "";
 
     let Tclothes = "";
     let Tnaked = "";
+    let Trestrain = "";
     let Tunderwear = "";
 
     var M_MOANER_talkActive = true;
@@ -88,8 +90,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             oldhorny = 0; 
 	    Clothes = "";
             Naked = "";
+	    Restrain = "";
 	    Tclothes = "";
 	    Tnaked = "";
+	    Trestrain = "";
 	    Tunderwear = "";
             Underwear = "";
             //M_MOANER_saveControls();
@@ -112,8 +116,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             oldhorny = 0;
 	    Clothes = datas.clothes;
 	    Naked = datas.naked;
+	    Restrain = datas.restrain;
 	    Tclothes = datas.tclothes;
 	    Tnaked = datas.tnaked;
+	    Trestrain = datas.trestrain;
 	    Tunderwear = datas.tunderwear;
             Underwear = datas.underwear;
         }
@@ -139,8 +145,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "oldhorny": oldhorny, 
             "clothes": Clothes,
 	    "naked": Naked,
+	    "restrain": Restrain,
             "tclothes": Tclothes,
 	    "tnaked": Tnaked,	
+	    "trestrain": Trestrain,
             "tunderwear": Tunderwear,
             "underwear": Underwear
         };
@@ -6113,6 +6121,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             );
                         }
                     }
+		    if (option == "restrain") {
+                        if (custom != "?") {
+                            Restrain = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on yourself.</p>"
+                            );
+                        } else {
+                            Restrain = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for restrain command on yourself.</p>"
+                            );
+                        }
+                    }
                     if (option == "tclothes") {
                         if (custom != "?") {
                             Tclothes = custom; 
@@ -6142,7 +6165,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
                             );
                         }
-		    }    
+		    }   
+                    if (option == "trestrain") {
+                        if (custom != "?") {
+                            Trestrain = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on other players.</p>"
+                            );
+                        } else {
+                            Trestrain = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for restrain command on other players.</p>"
+                            );
+                        }
+                    }
 		    if (option == "tunderwear") {               
                         if (custom != "?") {
                             Tunderwear = custom; 
@@ -7713,18 +7751,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'restrain',
         Description: "(target): adds random restraints.",
         Action: (args) => {
+	    if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
+                if (Restrain == undefined) {
+                    var message = "Magical lasers apply random restraints on " + tmpname + "'s body."
+                } else {    
+                    if (Restrain != "") {
+                        var message = tmpname + ' '.repeat(1) + Restrain;
+                    } else {
+                        var message = "Magical lasers apply random restraints on " + tmpname + "'s body."
+                    }
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers apply random restraints on " + tmpname + "'s body."
+                        Text: message
                     }]
                 });
                 CharacterFullRandomRestrain(Player, "ALL");
@@ -7742,12 +7789,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+		    if (Trestrain == undefined) {
+                        var message = "Magical lasers apply random restraints on " + tgpname + "'s body."
+                    } else {      
+                        if (Trestrain != "") {
+                            var message = tmpname + ' '.repeat(1) + Trestrain + ' '.repeat(1) + tgpname;
+                        } else {
+                            var message = "Magical lasers apply random restraints on " + tgpname + "'s body."
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers apply random restraints on " + tgpname + "'s body."
+                            Text: message
                         }]
                     });
                     CharacterFullRandomRestrain(target[0], "ALL");
