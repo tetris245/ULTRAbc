@@ -55,9 +55,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     let Clothes = "";
     let Naked = "";
+    let Underwear = "";
 
     let Tclothes = "";
     let Tnaked = "";
+	let Tunderwear = "";
 
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
@@ -83,11 +85,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             WelcomeOn = false;
             NowhisperOn = false;
             blureffect = false;
-            oldhorny = 0;
-	    Clothes = "";
-	    Naked = "";
-	    Tclothes = "";
-	    Tnaked = "";
+            oldhorny = 0; 
+	        Clothes = "";
+	        Naked = "";
+	        Tclothes = "";
+	        Tnaked = "";
+			Tunderwear = "";
+            Underwear = "";
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -106,10 +110,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = datas.nowhisper;
             blureffect = false;
             oldhorny = 0;
-	    Clothes = datas.clothes;
-	    Naked = datas.naked;
-	    Tclothes = datas.tclothes;
-	    Tnaked = datas.tnaked;
+	        Clothes = datas.clothes;
+	        Naked = datas.naked;
+	        Tclothes = datas.tclothes;
+	        Tnaked = datas.tnaked;
+			Tunderwear = datas.tunderwear;
+            Underwear = datas.underwear;
         }
     }
 
@@ -132,9 +138,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "blureffect": blureffect,
             "oldhorny": oldhorny, 
             "clothes": Clothes,
-	    "naked": Naked,
+	        "naked": Naked,
             "tclothes": Tclothes,
-	    "tnaked": Tnaked
+	        "tnaked": Tnaked,	
+            "tunderwear": Tunderwear,
+            "underwear": Underwear
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -6064,11 +6072,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (!option) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
-                    "Options on yourself: clothes, naked\n" +
-                    "Options on other players: tclothes, tnaked\n" +
+                    "Options on yourself: clothes, naked, underwear\n" +
+                    "Options on other players: tclothes, tnaked, tunderwear\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
-                    "When acting on another player, the target name or nickname will added after the message\n" +
+                    "When acting on another player, the target name or nickname will be added after the message\n" +
                     "Use ? as message to go back to default message</p>"         
                 );
             } else {
@@ -6132,6 +6140,35 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
+                            );
+                        }
+						if (option == "tunderwear") {               
+                        if (custom != "?") {
+                            Tunderwear = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for underwear command on other players.</p>"
+                            );
+                        } else {
+                            Tunderwear = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for underwear command on other players.</p>"
+                            );
+                        }
+                    }
+                    if (option == "underwear") {               
+                        if (custom != "?") {
+                            Underwear = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for underwear command on yourself.</p>"
+                            );
+                        } else {
+                            Underwear = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for underwear command on yourself.</p>"
                             );
                         }
                     }
@@ -9204,18 +9241,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'underwear',
         Description: "(target): changes underwear.",
         Action: (args) => {
+			if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
+                if (Underwear == undefined) {
+                    var message = "Magical lasers put " + tmpname + " in random underwear."
+                } else {    
+                    if (Underwear != "") {
+                        var message = tmpname + ' '.repeat(1) + Underwear;
+                    } else {
+                        var message = "Magical lasers put " + tmpname + " in random underwear."
+                    }
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers put " + tmpname + " in random underwear."
+                        Text: message
                     }]
                 });
                 CharacterRandomUnderwear(Player);
@@ -9233,12 +9279,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+					if (Tunderwear == undefined) {
+                        var message = "Magical lasers put " + tgpname + " in random underwear."
+                    } else {      
+                        if (Tunderwear != "") {
+                            var message = tmpname + ' '.repeat(1) + Tunderwear + ' '.repeat(1) + tgpname;
+                        } else {
+                            var message = "Magical lasers put " + tgpname + " in random underwear."
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers put " + tgpname + " in random underwear."
+                            Text: message
                         }]
                     });
                     CharacterRandomUnderwear(target[0]);
