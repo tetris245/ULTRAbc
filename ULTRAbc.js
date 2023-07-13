@@ -9242,7 +9242,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'underwear',
         Description: "(target): changes underwear.",
         Action: (args) => {
-			if (Player.Nickname == '') {
+	    if (Player.Nickname == '') {
                 var tmpname = Player.Name;
             } else {
                 var tmpname = Player.Nickname;
@@ -9280,7 +9280,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-					if (Tunderwear == undefined) {
+		    if (Tunderwear == undefined) {
                         var message = "Magical lasers put " + tgpname + " in random underwear."
                     } else {      
                         if (Tunderwear != "") {
