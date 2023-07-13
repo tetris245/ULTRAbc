@@ -6058,7 +6058,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'message',
-        Description: "(option) (message): allows a custom message for a specific command.",
+        Description: "(option) (message): creates custom message for a specific command.",
         Action: (_, command, args) => {
             var [option] = args;
             if (!option) {
