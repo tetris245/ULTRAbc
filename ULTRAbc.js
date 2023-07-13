@@ -6142,7 +6142,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
                             );
                         }
-						if (option == "tunderwear") {               
+		    }    
+		    if (option == "tunderwear") {               
                         if (custom != "?") {
                             Tunderwear = custom; 
                             M_MOANER_saveControls();
