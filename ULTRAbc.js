@@ -3769,18 +3769,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'clothes',
         Description: "(target): changes clothes.",
         Action: (args) => {
+	    if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
+                if (Clothes == undefined) {
+                    var message = "Magical lasers put random clothes on " + tmpname + "'s body."
                 } else {
-                    var tmpname = Player.Nickname;
+                    if (Clothes != "") {
+                        var message = tmpname + ' '.repeat(1) + Clothes;
+                    } else {
+                        var message = "Magical lasers put random clothes on " + tmpname + "'s body."
+                    }
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers put random clothes on " + tmpname + "'s body."
+                        Text: message
                     }]
                 });
                 CharacterAppearanceFullRandom(Player, true);
@@ -3798,12 +3807,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+		    if (Tclothes == undefined) {
+                        var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                    } else {
+                        if (Tclothes != "") {
+                            var message = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
+                        } else {
+                            var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers put random clothes on " + tgpname + "'s body."
+                            Text: message
                         }]
                     });
                     CharacterAppearanceFullRandom(target[0], true);
