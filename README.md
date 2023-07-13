@@ -58,7 +58,8 @@ Changes for future version
 * New commands:
   - magiccheat to toggle cheat mode in Magic 5chool
   - message (option) (message) to create custom messages for a specific command:
-    - supported commands: clothes, naked
+    - option is a command (add t as first letter to change message when command is used on other players)
+    - supported commands: clothes, naked, underwear 
     - back to default message with ? as message
   - welcome to toggle UBC welcome message in main hall
 * Changes in the Moaner:
