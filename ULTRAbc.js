@@ -53,7 +53,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     let oldhorny = 0;
 
+    let Clothes = "";
     let Naked = "";
+
+    let Tclothes = "";
     let Tnaked = "";
 
     var M_MOANER_talkActive = true;
@@ -81,7 +84,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = false;
             blureffect = false;
             oldhorny = 0;
+	    Clothes = "";
 	    Naked = "";
+	    Tclothes = "";
 	    Tnaked = "";
             //M_MOANER_saveControls();
         } else {
@@ -101,7 +106,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = datas.nowhisper;
             blureffect = false;
             oldhorny = 0;
+	    Clothes = datas.clothes;
 	    Naked = datas.naked;
+	    Tclothes = datas.tclothes;
 	    Tnaked = datas.tnaked;
         }
     }
@@ -123,9 +130,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "welcome": WelcomeOn,
             "nowhisper": NowhisperOn,
             "blureffect": blureffect,
-            "oldhorny": oldhorny,
-	    "naked": naked,
-	    "tnaked": tnaked
+            "oldhorny": oldhorny, 
+            "clothes": Clothes,
+	    "naked": Naked,
+            "tclothes": Tclothes,
+	    "tnaked": Tnaked
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -6036,32 +6045,76 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             var [option] = args;
             if (!option) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.<p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
+                    "Options on yourself: clothes, naked\n" +
+                    "Options on other players: tclothes, tnaked\n" +
+                    " \n" +
+                    "When writing your message, don't forget that your name or nickname will be added before it\n" +"
+                    "When acting on another player, the target name or nickname will added after the message\n" +
+                    "Use ? as message to go back to default message</p>"         
                 );
             } else {
                 var [, , ...message] = command.split(" ");
                 var custom = message?.join(" ");
                 if (custom != "") {
+                    if (option == "clothes") {
+                        if (custom != "?") {
+                            Clothes = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on yourself.</p>"
+                            );
+                        } else {
+                            Clothes = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for clothes command on yourself.</p>"
+                            );
+                        }
+                    }
                     if (option == "naked") {
                         if (custom != "?") {
                             Naked = custom; 
                             M_MOANER_saveControls();
-                            return;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for naked command on yourself.</p>"
+                            );
                         } else {
                             Naked = "";
                             M_MOANER_saveControls();
-                            return;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on yourself.</p>"
+                            );
+                        }
+                    }
+                    if (option == "tclothes") {
+                        if (custom != "?") {
+                            Tclothes = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on other players.</p>"
+                            );
+                        } else {
+                            Tclothes = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
+                            );
                         }
                     }
                     if (option == "tnaked") {               
                         if (custom != "?") {
                             Tnaked = custom; 
                             M_MOANER_saveControls();
-                            return;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for naked command on other players.</p>"
+                            );
                         } else {
                             Tnaked = "";
                             M_MOANER_saveControls();
-                            return;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
+                            );
                         }
                     }
                 }
