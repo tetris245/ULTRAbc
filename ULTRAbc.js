@@ -9278,13 +9278,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
 		    if (Ttotalrelease == undefined) {
                         var message = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
-
                     } else {      
                         if (Ttotalrelease != "") {
                             var message = tmpname + ' '.repeat(1) + Ttotalrelease + ' '.repeat(1) + tgpname;
                         } else {
                             var message = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
-
                         }
                     }
                     ServerSend("ChatRoomChat", {
@@ -9919,13 +9917,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
 		    if (Tuntie == undefined) {
                         var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
-
                     } else {      
                         if (Tuntie != "") {
                             var message = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
                         } else {
                             var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
-
                         }
                     }
                     ServerSend("ChatRoomChat", {
