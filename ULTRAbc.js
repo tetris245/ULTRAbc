@@ -59,7 +59,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Randomize = "";
     let Restrain = "";
     let Underwear = "";
-    let Unlock = "";
+    let Unlock = "";  
+    let Untie = "";
 
     let Tclothes = "";   
     let Tlock = "";
@@ -68,6 +69,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Trestrain = "";
     let Tunderwear = "";
     let Tunlock = "";
+    let Tuntie = "";
 
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
@@ -106,8 +108,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Trestrain = "";
 	    Tunderwear = "";
 	    Tunlock = "";
+	    Tuntie = "";
             Underwear = "";
 	    Unlock = "";
+	    Untie = "";
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -138,8 +142,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Trestrain = datas.trestrain;
 	    Tunderwear = datas.tunderwear;
 	    Tunlock = datas.tunlock;
+	    Tuntie = datas.tuntie;
             Underwear = datas.underwear;
 	    Unlock = datas.unlock;
+	    Untie = datas.untie;
         }
     }
 
@@ -173,8 +179,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    "trestrain": Trestrain,
             "tunderwear": Tunderwear,
             "tunlock": Tunlock,
+            "tuntie": Tuntie,
             "underwear": Underwear,
-            "unlock": Unlock
+            "unlock": Unlock,
+            "untie": Untie
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -6322,6 +6330,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             );
                         }
                     }
+		    if (option == "tuntie") {               
+                        if (custom != "?") {
+                            Tuntie = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for untie command on other players.</p>"
+                            );
+                        } else {
+                            Tuntie = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for untie command on other players.</p>"
+                            );
+                        }
+                    }
                     if (option == "underwear") {               
                         if (custom != "?") {
                             Underwear = custom; 
@@ -6349,6 +6372,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for unlock command on yourself.</p>"
+                            );
+                        }
+                    }
+		    if (option == "untie") {               
+                        if (custom != "?") {
+                            Untie = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for untie command on yourself.</p>"
+                            );
+                        } else {
+                            Untie = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for untie command on yourself.</p>"
                             );
                         }
                     }
@@ -9774,18 +9812,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'untie',
         Description: "(target): removes all bindings.",
         Action: (args) => {
+	    if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }	
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
+                if (Untie == undefined) {
+                    var message = "Magical lasers make disappear the bindings on " + tmpname + "'s body."
+
+                } else {    
+                    if (Untie != "") {
+                        var message = tmpname + ' '.repeat(1) + Untie;
+                    } else {
+                        var message = "Magical lasers make disappear the bindings on " + tmpname + "'s body."
+                    }
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make disappear the bindings on " + tmpname + "'s body."
+                        Text: message
                     }]
                 });
                 CharacterRelease(Player);
@@ -9803,12 +9851,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+		    if (Tuntie == undefined) {
+                        var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
+
+                    } else {      
+                        if (Tuntie != "") {
+                            var message = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
+                        } else {
+                            var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
+
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear the bindings on " + tgpname + "'s body."
+                            Text: message
                         }]
                     });
                     CharacterRelease(target[0]);
