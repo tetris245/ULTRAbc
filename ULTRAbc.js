@@ -56,6 +56,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Clothes = "";
     let Mlock = "";
     let Naked = "";
+    let Pet = "";
     let Randomize = "";
     let Restrain = "";
     let Totalrelease = "";
@@ -66,6 +67,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Tclothes = "";   
     let Tlock = "";
     let Tnaked = "";
+    let Tpet = "";
     let Trandomize = "";
     let Trestrain = "";
     let Ttotalrelease = "";
@@ -101,12 +103,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Clothes = "";
 	    Mlock = "";
             Naked = "";
+	    Pet = "";
 	    Randomize = "";
 	    Restrain = "";
 	    Tclothes = "";
 	    Tlock = "";
 	    Tnaked = "";
 	    Totalrelease = "";
+	    Tpet = "";
 	    Trandomize = "";
 	    Trestrain = "";
 	    Ttotalrelease = "";
@@ -137,12 +141,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Clothes = datas.clothes;
 	    Mlock = datas.mlock;
 	    Naked = datas.naked;
+	    Pet = datas.pet;
 	    Randomize = datas.randomize;
 	    Restrain = datas.restrain;
 	    Tclothes = datas.tclothes;
 	    Tlock = datas.tlock;
 	    Tnaked = datas.tnaked;
 	    Totalrelease = datas.totalrelease;
+	    Tpet = datas.tpet;
 	    Trandomize = datas.trandomize;
 	    Trestrain = datas.trestrain;
 	    Ttotalrelease = datas.ttotalrelease;
@@ -176,12 +182,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "clothes": Clothes,
 	    "mlock": Mlock,
 	    "naked": Naked,
+            "pet": Pet,
             "randomize": Randomize,
 	    "restrain": Restrain,
             "tclothes": Tclothes,
 	    "tlock": Tlock,
 	    "tnaked": Tnaked,
 	    "totalrelease": Totalrelease,
+            "tpet": Tpet,
             "trandomize": Trandomize,
 	    "trestrain": Trestrain,
 	    "ttotalrelease": Ttotalrelease,
@@ -6155,8 +6163,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (!option) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
-                    "Options on yourself: clothes, lock, naked, randomize, restrain, totalrelease, underwear, unlock, untie\n" +
-                    "Options on other players: tclothes, tlock, tnaked, trandomize, trestrain, ttotalrelease, tunderwear, tunlock, tuntie\n" +
+                    "Options on yourself: clothes, lock, naked, pet, randomize, restrain, totalrelease, underwear, unlock, untie\n" +
+                    "Options on other players: tclothes, tlock, tnaked, tpet, trandomize, trestrain, ttotalrelease, tunderwear, tunlock, tuntie\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
@@ -6208,6 +6216,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on yourself.</p>"
+                            );
+                        }
+                    }
+		    if (option == "pet") {
+                        if (custom != "?") {
+                            Pet = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for pet command on yourself.</p>"
+                            );
+                        } else {
+                            Pet = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for pet command on yourself.</p>"
                             );
                         }
                     }
@@ -6299,6 +6322,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for totalrelease command on yourself.</p>"
+                            );
+                        }
+                    }
+		    if (option == "tpet") {               
+                        if (custom != "?") {
+                            Tpet = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for pet command on other players.</p>"
+                            );
+                        } else {
+                            Tpet = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for pet command on other players.</p>"
                             );
                         }
                     }
@@ -6732,18 +6770,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'pet',
         Description: "(target): becomes a fully restrained pet.",
         Action: (args) => {
+	    if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }	
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
+                if (Pet == undefined) {
+                    var message = "" + tmpname + " becomes a cute pet."
+                } else {    
+                    if (Pet != "") {
+                        var message = tmpname + ' '.repeat(1) + Pet;
+                    } else {
+                        var message = "" + tmpname + " becomes a cute pet."
+                    }
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "" + tmpname + " becomes a cute pet."
+                        Text: message
                     }]
                 });
                 CharacterNaked(Player);
@@ -6769,12 +6816,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+		    if (Tpet == undefined) {
+                        var message = "" + tgpname + " becomes a cute pet."
+                    } else {      
+                        if (Tpet != "") {
+                            var message = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
+                        } else {
+                            var message = "" + tgpname + " becomes a cute pet."
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "" + tgpname + " becomes a cute pet."
+                            Text: message
                         }]
                     });
                     CharacterNaked(target[0]);
