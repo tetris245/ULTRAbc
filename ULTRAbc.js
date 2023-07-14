@@ -9820,7 +9820,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "") {
                 if (Untie == undefined) {
                     var message = "Magical lasers make disappear the bindings on " + tmpname + "'s body."
-
                 } else {    
                     if (Untie != "") {
                         var message = tmpname + ' '.repeat(1) + Untie;
