@@ -54,12 +54,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let oldhorny = 0;
 
     let Clothes = "";
+    let Mlock = "";
     let Naked = "";
     let Randomize = "";
     let Restrain = "";
     let Underwear = "";
 
-    let Tclothes = "";
+    let Tclothes = "";   
+    let Tlock = "";
     let Tnaked = "";
     let Trandomize = "";
     let Trestrain = "";
@@ -91,10 +93,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             blureffect = false;
             oldhorny = 0; 
 	    Clothes = "";
+	    Mlock = "";
             Naked = "";
 	    Randomize = "";
 	    Restrain = "";
 	    Tclothes = "";
+	    Tlock = "";
 	    Tnaked = "";
 	    Trandomize = "";
 	    Trestrain = "";
@@ -119,10 +123,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             blureffect = false;
             oldhorny = 0;
 	    Clothes = datas.clothes;
+	    Mlock = datas.mlock;
 	    Naked = datas.naked;
 	    Randomize = datas.randomize;
 	    Restrain = datas.restrain;
 	    Tclothes = datas.tclothes;
+	    Tlock = datas.tlock;
 	    Tnaked = datas.tnaked;
 	    Trandomize = datas.trandomize;
 	    Trestrain = datas.trestrain;
@@ -150,10 +156,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "blureffect": blureffect,
             "oldhorny": oldhorny, 
             "clothes": Clothes,
+	    "mlock": Mlock,
 	    "naked": Naked,
             "randomize": Randomize,
 	    "restrain": Restrain,
             "tclothes": Tclothes,
+	    "tlock": Tlock,
 	    "tnaked": Tnaked,
             "trandomize": Trandomize,
 	    "trestrain": Trestrain,
@@ -5814,6 +5822,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Tip: replace h and/or i by another character when you need to skip them.</p>"
                 );
             } else {
+		if (Player.Nickname == '') {
+                    var tmpname = Player.Name;
+                } else {
+                    var tmpname = Player.Nickname;
+                }
                 var stringLock1 = args;
                 var stringLock2 = stringLock1.split(/[ ,]+/);
                 var lk = stringLock2[1];
@@ -5926,6 +5939,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         tgpname = target[0].Name;
                     } else {
                         tgpname = target[0].Nickname;
+                    }
+		    if (tmpname == tgpname) {
+                        if (Mlock == undefined) {
+                            var message = "Magical lasers make appear locks on " + tgpname + "'s body."
+                        } else {    
+                            if (Mlock != "") {
+                                var message = tmpname + ' '.repeat(1) + Mlock;
+                            } else {
+                                var message = "Magical lasers make appear locks on " + tgpname + "'s body."
+                            }
+                        }
+                    } else {
+                        if (Tlock == undefined) {
+                            var message = "Magical lasers make appear locks on " + tgpname + "'s body."
+                        } else {    
+                            if (Tlock != "") {
+                                var message = tmpname + ' '.repeat(1) + Tlock;
+                            } else {
+                                var message = "Magical lasers make appear locks on " + tgpname + "'s body."
+                            }
+                        }
                     }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
@@ -6088,8 +6122,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (!option) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
-                    "Options on yourself: clothes, naked, randomize, restrain, underwear\n" +
-                    "Options on other players: tclothes, tnaked, trandomize, trestrain, tunderwear\n" +
+                    "Options on yourself: clothes, lock, naked, randomize, restrain, underwear\n" +
+                    "Options on other players: tclothes, tlock, tnaked, trandomize, trestrain, tunderwear\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
@@ -6111,6 +6145,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for clothes command on yourself.</p>"
+                            );
+                        }
+                    }
+		    if (option == "lock") {
+                        if (custom != "?") {
+                            Mlock = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for lock command on yourself.</p>"
+                            );
+                        } else {
+                            Mlock = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for lock command on yourself.</p>"
                             );
                         }
                     }
@@ -6171,6 +6220,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
+                            );
+                        }
+                    }
+		    }
+                    if (option == "tlock") {
+                        if (custom != "?") {
+                            Tlock = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for lock command on other players.</p>"
+                            );
+                        } else {
+                            Tlock = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for lock command on other players.</p>"
                             );
                         }
                     }
