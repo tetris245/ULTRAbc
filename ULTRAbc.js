@@ -59,6 +59,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Randomize = "";
     let Restrain = "";
     let Underwear = "";
+    let Unlock = "";
 
     let Tclothes = "";   
     let Tlock = "";
@@ -66,6 +67,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Trandomize = "";
     let Trestrain = "";
     let Tunderwear = "";
+    let Tunlock = "";
 
     var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
@@ -103,7 +105,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Trandomize = "";
 	    Trestrain = "";
 	    Tunderwear = "";
+	    Tunlock = "";
             Underwear = "";
+	    Unlock = "";
             //M_MOANER_saveControls();
         } else {
             M_MOANER_talkActive = datas.talkMoan;
@@ -133,7 +137,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Trandomize = datas.trandomize;
 	    Trestrain = datas.trestrain;
 	    Tunderwear = datas.tunderwear;
+	    Tunlock = datas.tunlock;
             Underwear = datas.underwear;
+	    Unlock = datas.unlock;
         }
     }
 
@@ -166,7 +172,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "trandomize": Trandomize,
 	    "trestrain": Trestrain,
             "tunderwear": Tunderwear,
-            "underwear": Underwear
+            "tunlock": Tunlock,
+            "underwear": Underwear,
+            "unlock": Unlock
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -6299,6 +6307,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             );
                         }
                     }
+		    if (option == "tunlock") {               
+                        if (custom != "?") {
+                            Tunlock = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for unlock command on other players.</p>"
+                            );
+                        } else {
+                            Tunlock = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for unlock command on other players.</p>"
+                            );
+                        }
+                    }
                     if (option == "underwear") {               
                         if (custom != "?") {
                             Underwear = custom; 
@@ -6311,6 +6334,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for underwear command on yourself.</p>"
+                            );
+                        }
+                    }
+		    if (option == "unlock") {               
+                        if (custom != "?") {
+                            Unlock = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for unlock command on yourself.</p>"
+                            );
+                        } else {
+                            Unlock = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for unlock command on yourself.</p>"
                             );
                         }
                     }
@@ -9503,6 +9541,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "19 Family - 20 Portal Link</p>"
                 );
             } else {
+		if (Player.Nickname == '') {
+                    var tmpname = Player.Name;
+                } else {
+                    var tmpname = Player.Nickname;
+                }
                 var stringUnlock1 = args;
                 var stringUnlock2 = stringUnlock1.split(/[ ,]+/);
                 var lk = stringUnlock2[1];
@@ -9518,12 +9561,33 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+		    if (tmpname == tgpname) {
+                        if (Unlock == undefined) {
+                            var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                        } else {    
+                            if (Unlock != "") {
+                                var message = tmpname + ' '.repeat(1) + Unlock;
+                            } else {
+                                var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                            }
+                        }
+                    } else {
+                        if (Tunlock == undefined) {
+                            var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                        } else {    
+                            if (Tunlock != "") {
+                                var message = tmpname + ' '.repeat(1) + Tunlock;
+                            } else {
+                                var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                            }
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear locks on " + tgpname + "'s body."
+                            Text: message
                         }]
                     });
                     if (lk == null) {
