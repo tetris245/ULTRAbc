@@ -6138,8 +6138,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (!option) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
-                    "Options on yourself: clothes, lock, naked, randomize, restrain, underwear\n" +
-                    "Options on other players: tclothes, tlock, tnaked, trandomize, trestrain, tunderwear\n" +
+                    "Options on yourself: clothes, lock, naked, randomize, restrain, underwear, unlock, untie\n" +
+                    "Options on other players: tclothes, tlock, tnaked, trandomize, trestrain, tunderwear, tunlock, tuntie\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
