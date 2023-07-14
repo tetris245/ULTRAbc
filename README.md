@@ -57,8 +57,8 @@ Changes for future version
 
 * New commands:
   - magiccheat to toggle cheat mode in Magic 5chool
-  - message (option) (message) to create custom messages for a specific command:
-    - option is a command (supported commands: clothes, lock, naked, randomize, restrain, underwear, unlock, untie)
+  - message (option) (message) to create custom messages for a specific command (and the FREE button in chat)
+    - option is a command (supported commands: clothes, lock, naked, randomize, restrain, totalrelease, underwear, unlock, untie)
     - you need to add a 't' as first letter of option to change message provoked by command used on other players (tclothes, tlock, etc..)
     - you can go back to default message with ? as message
   - welcome to toggle UBC welcome message in main hall
