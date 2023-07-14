@@ -58,6 +58,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Naked = "";
     let Randomize = "";
     let Restrain = "";
+    let Totalrelease = "";
     let Underwear = "";
     let Unlock = "";  
     let Untie = "";
@@ -67,6 +68,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Tnaked = "";
     let Trandomize = "";
     let Trestrain = "";
+    let Ttotalrelease = "";
     let Tunderwear = "";
     let Tunlock = "";
     let Tuntie = "";
@@ -104,8 +106,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Tclothes = "";
 	    Tlock = "";
 	    Tnaked = "";
+	    Totalrelease = "";
 	    Trandomize = "";
 	    Trestrain = "";
+	    Ttotalrelease = "";
 	    Tunderwear = "";
 	    Tunlock = "";
 	    Tuntie = "";
@@ -138,8 +142,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Tclothes = datas.tclothes;
 	    Tlock = datas.tlock;
 	    Tnaked = datas.tnaked;
+	    Totalrelease = datas.totalrelease;
 	    Trandomize = datas.trandomize;
 	    Trestrain = datas.trestrain;
+	    Ttotalrelease = datas.ttotalrelease;
 	    Tunderwear = datas.tunderwear;
 	    Tunlock = datas.tunlock;
 	    Tuntie = datas.tuntie;
@@ -175,8 +181,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "tclothes": Tclothes,
 	    "tlock": Tlock,
 	    "tnaked": Tnaked,
+	    "totalrelease": Totalrelease,
             "trandomize": Trandomize,
 	    "trestrain": Trestrain,
+	    "ttotalrelease": Ttotalrelease,
             "tunderwear": Tunderwear,
             "tunlock": Tunlock,
             "tuntie": Tuntie,
@@ -275,12 +283,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var tmpname = Player.Nickname;
                 }
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
+		    if (Totalrelease == undefined) {
+                        var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                    } else {    
+                        if (Totalrelease != "") {
+                            var message = tmpname + ' '.repeat(1) + Totalrelease;
+                        } else {
+                            var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                            Text: message
                         }]
                     });
                     CharacterReleaseTotal(Player);
@@ -6138,8 +6155,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (!option) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
-                    "Options on yourself: clothes, lock, naked, randomize, restrain, underwear, unlock, untie\n" +
-                    "Options on other players: tclothes, tlock, tnaked, trandomize, trestrain, tunderwear, tunlock, tuntie\n" +
+                    "Options on yourself: clothes, lock, naked, randomize, restrain, totalrelease, underwear, unlock, untie\n" +
+                    "Options on other players: tclothes, tlock, tnaked, trandomize, trestrain, ttotalrelease, tunderwear, tunlock, tuntie\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
@@ -6269,7 +6286,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
                             );
                         }
-		    }   
+		    } 
+		    if (option == "totalrelease") {
+                        if (custom != "?") {
+                            Totalrelease = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for totalrelease command on yourself.</p>"
+                            );
+                        } else {
+                            Totalrelease = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for totalrelease command on yourself.</p>"
+                            );
+                        }
+                    }
 		    if (option == "trandomize") {
                         if (custom != "?") {
                             Trandomize = custom; 
@@ -6297,6 +6329,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for restrain command on other players.</p>"
+                            );
+                        }
+                    }
+		    if (option == "ttotalrelease") {
+                        if (custom != "?") {
+                            Ttotalrelease = custom; 
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for totalrelease command on other players.</p>"
+                            );
+                        } else {
+                            Ttotalrelease = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for totalrelease command on other players.</p>"
                             );
                         }
                     }
@@ -9191,18 +9238,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'totalrelease',
         Description: "(target): removes all bindings, collar, harness, chastity, toys.",
         Action: (args) => {
+	    if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }	
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
+                if (Totalrelease == undefined) {
+                    var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                } else {    
+                    if (Totalrelease != "") {
+                        var message = tmpname + ' '.repeat(1) + Totalrelease;
+                    } else {
+                        var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                    }
                 }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                        Text: message
                     }]
                 });
                 CharacterReleaseTotal(Player);
@@ -9220,12 +9276,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
+		    if (Ttotalrelease == undefined) {
+                        var message = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
+
+                    } else {      
+                        if (Ttotalrelease != "") {
+                            var message = tmpname + ' '.repeat(1) + Ttotalrelease + ' '.repeat(1) + tgpname;
+                        } else {
+                            var message = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
+
+                        }
+                    }
                     ServerSend("ChatRoomChat", {
                         Content: "Beep",
                         Type: "Action",
                         Dictionary: [{
                             Tag: "Beep",
-                            Text: "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
+                            Text: message
                         }]
                     });
                     CharacterReleaseTotal(target[0]);
