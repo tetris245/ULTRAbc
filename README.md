@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 1.7
+Most recent version: 1.8
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -25,7 +25,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version1.7.zip file on the Releases page
+1. Download the ULTRAbc-version1.8.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -55,17 +55,5 @@ All else I might not have included.
 
 Changes for future version
 
-* New commands:
-  - magiccheat to toggle cheat mode in Magic 5chool
-  - message (option) (message) to create custom messages for a specific command (and the FREE button in chat)
-    - option is a command (supported commands: clothes, lock, naked, pet, randomize, restrain, totalrelease, underwear, unlock, untie)
-    - you need to add a 't' as first letter of option to change message provoked by command used on other players (tclothes, tlock, etc.)
-    - you can go back to default message with ? as message
-  - welcome to toggle UBC welcome message in main hall
-* Changes in the Moaner:
-  - removed the target condition and the spanking feature (can't work in R94 due to missing directly accessible target tag) 
-  - allowed the Moaner to react to changes in vibe settings of other players in the same chat room, even if you are not vibed (the only condition is an arousal level different from zero)
-  - fixed an incompatibility issue with the MBCHC add-on
-* Added code to prevent double UBC loading
-   
+(...)
 
