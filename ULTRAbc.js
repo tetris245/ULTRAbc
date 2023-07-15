@@ -9561,7 +9561,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.8:\n" +
                     "- New commands: magiccheat, message, welcome.\n" +
-                    "- Message allows to create custom messages for 10 commands.\n" +
+                    "- message allows to create custom messages for 10 commands.\n" +
                     "- Removed target condition and spanking feature in the Moaner.\n" +
                     "- Allowed the Moaner to react to changes in vibe settings of other players in the same chat room.\n" +
                     "- Fixed an incompatibility issue of the Moaner with the MBCHC add-on.\n" +
