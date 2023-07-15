@@ -63,6 +63,8 @@ Changes for future version
     - you can go back to default message with ? as message
   - welcome to toggle UBC welcome message in main hall
 * Changes in the Moaner:
+  - removed the target condition and the spanking feature (can't work in R94 due to missing directly accessible target tag) 
+  - allowed the Moaner to react to changes in vibe settings of other players in the same chat room, even if you are not vibed (the only condition is an arousal level different from zero)
   - fixed an incompatibility issue with the MBCHC add-on
 * Added code to prevent double UBC loading
    
