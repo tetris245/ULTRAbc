@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 1.7
+// @version 1.8
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	return;
     }
     
-    const UBCver = "1.7";
+    const UBCver = "1.8";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -241,7 +241,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
             Player.RestrictionSettings.BypassNPCPunishments = true;
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc 1.7: type <b>/uhelp</b> for general menu.\n" +
+                "<p style='background-color:#5fbd7a'>ULTRAbc 1.8: type <b>/uhelp</b> for general menu.\n" +
                 "Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
                 "Note: NPC punishments are disabled.\n" +
                 "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
@@ -687,7 +687,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 120, 500, 60, "ULTRAbc 1.7 Ready!", "Pink", "Black", "");
+            DrawButton(750, 120, 500, 60, "ULTRAbc 1.8 Ready!", "Pink", "Black", "");
             next(args);
         });
     }
@@ -9541,31 +9541,31 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "misc") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands:\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
                     "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
                     "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/magiccheat</b> = toggles cheat mode in Magic School.\n" +
+		    "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
-                    "<b>/relog</b> = relogs.\n" +
+                    "<b>/relog</b> = relogs.\n" + 
                     "<b>/sosbuttons</b> = toggles SOS buttons in chat + timer cell.\n" +
-                    "<b>/uhelp</b> (category) = displays the ULTRAbc commands. Available categories: bondage, character, clothing, escape, features, fun, kd, misc, pleasure, talking, visual, zones.\n" +
-                    "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft.\n" +
+                    "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
+                    "<b>/unrestrict</b> =  removes all restrictions from game. *\n" +
                     "<b>/welcome</b> = toggles UBC welcome message in main hall.</p>" 
                 );
             }
             if (args === "new") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.7:\n" +
-                    "- New commands: invisible1, invisible2, ptcode (to reveal codes used on items controlled by portal link), visible.\n" +
-                    "- Emergency buttons in timer cell, update of bg1 command.\n" +
-                    "- Support for Portal Link lock in lock and unlock commands.\n" +
-                    "- Support for LSCG Aphrodisiac Drinks and Injector in the Moaner.\n" +
-                    "- Renamed leave command as quit + improved quit and slowleave commands (can be followed by a text describing action).\n" +
-                    "- Improved the help for the killpar and pose2 roof commands.\n" +
-                    "- Fixed the bug with whispers after initialisation.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.8:\n" +
+                    "- New commands: magiccheat, message, welcome.\n" +
+                    "- Message allows to create custom messages for 10 commands.\n" +
+                    "- Removed target condition and spanking feature in the Moaner.\n" +
+                    "- Allowed the Moaner to react to changes in vibe settings of other players in the same chat room.\n" +
+                    "- Fixed an incompatibility issue of the Moaner with the MBCHC add-on.\n" +
+                    "- Added code to prevent double UBC loading.</p>"
                 );
             }
             if (args === "talking") {
