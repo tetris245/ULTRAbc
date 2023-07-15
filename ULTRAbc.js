@@ -1238,7 +1238,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_scriptStatus = ["The moaner is active.", "The moaner is not active."];
     var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.", "The orgasm moan is not active. You will not moan while cumming anymore."];
     var M_MOANER_vibratorStatus = ["The vibes moan is active. If your vibrator's setting changes, you will moan.", "The vibes moan is not active. If your vibrator's setting changes, you will not moan."];
-    var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.", "The spank moan is not active. You will not moan while being spanked."];
+    //var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.", "The spank moan is not active. You will not moan while being spanked."];
     var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.", "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
     var M_MOANER_verboseStatus = ["Moaner is verbose.", "Moaner is not verbose."];
     var M_MOANER_profileStatus = ["No custom profile loaded.", "Current moans profile: "];
@@ -1295,14 +1295,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //Spanking moans control
-    function spankControl(commande) {
+    /*function spankControl(commande) {
         if (commande == "on") {
             M_MOANER_spankActive = true;
         } else if (commande == "off") {
             M_MOANER_spankActive = false;
         }
         showM_MOANER_spankStatus();
-    }
+    }*/
 
     function profilesList() {
         let liste = M_MOANER_getKeys(M_MOANER_moansProfiles);
@@ -1317,7 +1317,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         showM_MOANER_talkStatus();
         showM_MOANER_orgasmStatus();
         showM_MOANER_vibratorStatus();
-        showM_MOANER_spankStatus();
+        //showM_MOANER_spankStatus();
         showM_MOANER_verboseStatus();
     }
 
@@ -1399,7 +1399,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showM_MOANER_spankStatus() {
+    /*function showM_MOANER_spankStatus() {
         if (!M_MOANER_verboseActive) {
             return;
         }
@@ -1410,7 +1410,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = M_MOANER_spankStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
-    }
+    }*/
 
     //MoanerUtils
 
@@ -1660,20 +1660,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Priority: 600,
         Description: "Moaner Reactions",
         Callback: (data, sender, msg, metadata) => {
-            if (M_MOANER_isPlayerTarget(data)) {
+            //if (M_MOANER_isPlayerTarget(data)) {
                 var msg = ElementValue("InputChat");
                 if (M_MOANER_isSimpleChat(msg)) {
                     M_MOANER_reactionVibeWithChat(data);
-                    M_MOANER_reactionSpankWithChat(data);
+                    //M_MOANER_reactionSpankWithChat(data);
                 } else {
-                    M_MOANER_reactionSpankWithoutChat(data);
+                    //M_MOANER_reactionSpankWithoutChat(data);
                     M_MOANER_reactionVibeWithoutChat(data);
                 }
-            }
+            //}
         }
     });
 
-    function M_MOANER_reactionSpankWithChat(data) {
+    /*function M_MOANER_reactionSpankWithChat(data) {
         if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
             //get the moan type to apply
             //data to generate the moans
@@ -1708,9 +1708,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ElementValue("InputChat", moan2.replace(moan2, moan3));
             ChatRoomSendChat();
         }
-    }
+    }*/
 
-    function M_MOANER_reactionSpankWithoutChat(data) {
+    /*function M_MOANER_reactionSpankWithoutChat(data) {
         if (M_MOANER_spankActive && M_MOANER_scriptOn && M_MOANER_isSpank(data)) {
             //get the moan type to apply
             //data to generate the moans
@@ -1746,7 +1746,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ElementValue("InputChat", msg);
             ChatRoomTargetMemberNumber = backtarget;
         }
-    }
+    }*/
 
     function M_MOANER_reactionVibeWithoutChat(data) {
         if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes(data)) {
@@ -1823,7 +1823,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
     }
 
-    function M_MOANER_isSpank(data) {
+    /*function M_MOANER_isSpank(data) {
         if (data.Content == "ActionActivitySpankItem") {
             return true;
         }
@@ -1845,11 +1845,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             return true;
         }
         return false;
-    }
+    }*/
 
     function M_MOANER_isVibes(data) {
-        if (data.Type == "Action" && data.Content.includes("Vibe")) {
-            return true;
+        if (Player.ArousalSettings.Progress != 0) {
+            if ((data.Type == "Action") && (data.Content.includes("Vibe"))) {
+                return true;
+            }
         }
         if (Player.OnlineSettings.LSCG != undefined) {
             if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
@@ -1869,7 +1871,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return false;
     }
 
-    function M_MOANER_isPlayerTarget(data) {
+    /*function M_MOANER_isPlayerTarget(data) {
         var array = data.Dictionary;
         for (index in array) {
             let elem = array[index];
@@ -1878,7 +1880,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
         return false;
-    }
+    }*/
 
     function M_MOANER_applyMoanToMsg(C, CD) {
         //determine the number of moans
@@ -1956,7 +1958,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return " " + selectMoan(Factor, seed);
     }
 
-    function getSpankMoan(Factor, seed) {
+    /*function getSpankMoan(Factor, seed) {
         let gemissement;
         //according level of spanking fetichism
         let activity = getActivityTaste("Spank");
@@ -1974,7 +1976,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             gemissement = getPainMoan() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
         }
         return gemissement;
-    }
+    }*/
 
     function getZoneTaste(data) {
         let zone;
@@ -2016,10 +2018,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         //M_MOANER_logDebug("resetMoans OUT");
     }
 
-    function getPainMoanBACK() {
+    /*function getPainMoanBACK() {
         let index = Math.floor(Math.random() * basePainMoans.length);
         return basePainMoans[index];
-    }
+    }*/
 
     function resetMoans(seed) {
         //M_MOANER_logDebug("resetMoans IN");
@@ -2031,11 +2033,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         //M_MOANER_logDebug("resetMoans OUT");
     }
 
-    function getPainMoan() {
+    /*function getPainMoan() {
         moanProfile = M_MOANER_getMoans(profileName);
         let index = Math.floor(Math.random() * moanProfile.pain.length);
         return moanProfile.pain[index];
-    }
+    }*/
 
     function getOrgasmMoan() {
         var gemissement;
@@ -6495,7 +6497,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     " \n" +
                     "You can also enable/disable parts of the Moaner with:\n" +
                     "<b>/moaner orgasm</b> (on/off): moans when you cum\n" +
-                    "<b>/moaner spank</b> (on/off): moans when you are spanked\n" +
                     "<b>/moaner talk</b> (on/off): moans when talking if vibed\n" +
                     "<b>/moaner vibe</b> (on/off): moans when vibes settings changed</p>"
                 );
@@ -6519,9 +6520,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                         }
                         showM_MOANER_profileStatus();
-                    } else if (feature == "spank") {
+                    /*} else if (feature == "spank") {
                         spankControl(commande);
-                        M_MOANER_saveControls();
+                        M_MOANER_saveControls();*/
                     } else if (feature == "status") {
                         showStatus();
                     } else if (feature == "talk") {
