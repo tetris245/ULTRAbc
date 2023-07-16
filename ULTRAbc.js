@@ -1237,7 +1237,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     var M_MOANER_scriptStatus = ["The moaner is active.", "The moaner is not active."];
     var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.", "The orgasm moan is not active. You will not moan while cumming anymore."];
-    var M_MOANER_vibratorStatus = ["The vibes moan is active. If your vibrator's setting changes, you will moan.", "The vibes moan is not active. If your vibrator's setting changes, you will not moan."];
+    var M_MOANER_vibratorStatus = ["The vibes moan is active. If vibrator's settings change in the chat room, you will moan.", "The vibes moan is not active. If vibrator's settings change in the chat room, you will not moan."];
     //var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.", "The spank moan is not active. You will not moan while being spanked."];
     var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.", "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
     var M_MOANER_verboseStatus = ["Moaner is verbose.", "Moaner is not verbose."];
