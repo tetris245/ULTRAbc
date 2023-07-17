@@ -1848,7 +1848,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }*/
 
     function M_MOANER_isVibes(data) {
-        if (Player.ArousalSettings.Progress != 0) {
+        if (Player.ArousalSettings.Progress >= 10) {
             if ((data.Type == "Action") && (data.Content.includes("Vibe"))) {
                 return true;
             }
