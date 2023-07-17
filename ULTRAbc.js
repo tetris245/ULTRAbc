@@ -3909,7 +3909,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'code',
-        Description: "(target) reveals codes used on current combination locks.",
+        Description: "(target): reveals codes used on current combination locks.",
         Action: (args) => {
             if (args === "") {
                 for (let A = 0; A < Player.Appearance.length; A++)
@@ -7742,7 +7742,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'ptcode',
-        Description: "(target) reveals codes used on items controlled by portal link.",
+        Description: "(target): reveals codes used on items controlled by portal link.",
         Action: (args) => {
             if (args === "") {
                 for (let A = 0; A < Player.Appearance.length; A++)
@@ -7776,7 +7776,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'pw',
-        Description: "(target) reveals passwords used on current locks with password.",
+        Description: "(target): reveals passwords used on current locks with password.",
         Action: (args) => {
             if (args === "") {
                 for (let A = 0; A < Player.Appearance.length; A++)
@@ -8272,7 +8272,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 's1',
-        Description: "(words) = speaks once in light stuttering mode.",
+        Description: "(words): speaks once in light stuttering mode.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
@@ -8290,7 +8290,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 's2',
-        Description: "(words) = speaks once in normal stuttering mode.",
+        Description: "(words): speaks once in normal stuttering mode.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
@@ -8308,7 +8308,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 's3',
-        Description: "(words) = speaks once in heavy stuttering mode.",
+        Description: "(words): speaks once in heavy stuttering mode.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
@@ -8326,7 +8326,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 's4',
-        Description: "(words) = speaks once in total stuttering mode.",
+        Description: "(words): speaks once in total stuttering mode.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
@@ -9359,7 +9359,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'trsee',
-        Description: "(visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet",
+        Description: "(visor) (deafening module) (chin strap): changes the settings of a worn Techno Helmet",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
