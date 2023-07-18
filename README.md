@@ -55,6 +55,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Changed the arousal level that is required to trigger the vibe effect in the Moaner
+* Changed the arousal level that is required to trigger the vibe effect from other players in the Moaner
 * Updated the invisible commands
 
