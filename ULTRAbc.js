@@ -81,6 +81,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_spankActive = true;
     var M_MOANER_verboseActive = true;
 
+    Player.RestrictionSettings.BypassNPCPunishments = true;
+
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
@@ -235,26 +237,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             await new Promise(r => setTimeout(r, 2000));
         }
     }
-
-    //Greeting message
-    ChatCommandGreeting = function(data) {
-        if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
-            Player.RestrictionSettings.BypassNPCPunishments = true;
-            ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc 1.8: type <b>/uhelp</b> for general menu.\n" +
-                "Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
-                "Note: NPC punishments are disabled.\n" +
-                "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
-                "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
-                "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a>\n" +
-                "For any inquiries, join <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>https://discord.gg/JUvYfSpCmN</a></p>"
-            );
-            ServerSocket.off('ChatRoomMessage', ChatCommandGreeting)
-        }
-    }
-    setTimeout(function() {
-        ServerSocket.on('ChatRoomMessage', ChatCommandGreeting);
-    }, 5000);
 
     //ModSDK Functions
     ULTRAActivityChatRoomArousalSync();
@@ -9402,6 +9384,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
             }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'ubc',
+        Description: ": display UBC version (+ more info if welcome message enabled).",
+        Action: () => {
+	    ChatRoomSendLocal(
+                "<p style='background-color:#5fbd7a'>ULTRAbc 1.8: type <b>/uhelp</b> for general menu.</p>"
+            );
+	    if (WelcomeOn == true) {	
+		ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
+                    "Note: NPC punishments are disabled.\n" +
+                    "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
+                    "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
+                    "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a>\n" +
+                    "For any inquiries, join <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>https://discord.gg/JUvYfSpCmN</a></p>"
+                );
+	    }
         }
     }])
 
