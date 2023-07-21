@@ -9389,7 +9389,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'ubc',
-        Description: ": display UBC version (+ more info if welcome message enabled).",
+        Description: ": displays UBC version (+ more info if welcome message enabled).",
         Action: () => {
 	    ChatRoomSendLocal(
                 "<p style='background-color:#5fbd7a'>ULTRAbc 1.8: type <b>/uhelp</b> for general menu.</p>"
