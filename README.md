@@ -55,6 +55,7 @@ All else I might not have included.
 
 Changes for future version
 
+* Replaced greetings message displayed in the first chat room you enter by the ubc command to display UBC version (+ more info if welcome message in main hall is enabled)
 * Changed the arousal level that is required to trigger the vibe effect from other players in the Moaner
 * Updated the invisible commands
 
