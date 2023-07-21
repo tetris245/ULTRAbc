@@ -9556,6 +9556,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
                     "<b>/relog</b> = relogs.\n" + 
                     "<b>/sosbuttons</b> = toggles SOS buttons in chat + timer cell.\n" +
+		    "<b>/ubc</b> = displays UBC version (+ more info if welcome message enabled).\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/unrestrict</b> =  removes all restrictions from game. *\n" +
                     "<b>/welcome</b> = toggles UBC welcome message in main hall.</p>" 
