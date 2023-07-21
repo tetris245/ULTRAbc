@@ -9528,7 +9528,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: How to use the kd command:\n" +
                     "1 - Optionally, use <b>/kd devious</b> to toggle the Devious Challenge and/or <b>/kd debug</b> to enable the Debug Mode\n" +
-                    "2 - Use <b>/kd</b> without any option to launch the game without cheat\n" +
+                    "2 - Use twice <b>/kd</b> without any option to launch the game without cheat\n" +
                     "3 -  After launching of the game, you can click on the Exit button to go back to the chatroom and use a command with cheat:\n" +
                     "<b>/kd maxstats</b> to get high stats and many potions\n" +
                     "<b>/kd moreitems</b> to get all extra items\n" +
