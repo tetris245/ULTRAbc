@@ -40,6 +40,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     var M_MOANER_scriptOn = true;
     var M_MOANER_cum = false;
+    var NPCpunish = false;
 
     let profileName;
     let SosbuttonsOn;
@@ -81,8 +82,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_spankActive = true;
     var M_MOANER_verboseActive = true;
 
-    Player.RestrictionSettings.BypassNPCPunishments = true;
-
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
@@ -93,6 +92,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_scriptOn = false;
             M_MOANER_cum = false;
             profileName = "default";
+	    NPCpunish = false;
             SosbuttonsOn = false;
             SlowleaveOn = false;
             FullseedOn = false;
@@ -131,6 +131,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_scriptOn = datas.script;
             M_MOANER_cum = datas.cum;
             profileName = datas.moanProfile;
+	    NPCpunish = datas.npcpunish;
             SosbuttonsOn = datas.sosbuttons;
             SlowleaveOn = datas.slowleave;
             FullseedOn = datas.fullseed;
@@ -172,6 +173,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "script": M_MOANER_scriptOn,
             "cum": M_MOANER_cum,
             "moanProfile": profileName,
+	    "npcpunish": NPCpunish,
             "sosbuttons": SosbuttonsOn,
             "slowleave": SlowleaveOn,
             "fullseed": FullseedOn,
@@ -231,6 +233,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 MoanerIsLoaded = true;
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
+		if (NPCpunish == true) {
+                    Player.RestrictionSettings.BypassNPCPunishments = false;
+                } else {                
+                    Player.RestrictionSettings.BypassNPCPunishments = true;
+                }
             } catch (err) {
                 console.log(err);
             }
@@ -6625,11 +6632,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: () => {
             if (Player.RestrictionSettings.BypassNPCPunishments == true) {
                 Player.RestrictionSettings.BypassNPCPunishments = false;
+	        NPCpunish = true;
+		M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: NPC punishments enabled.</p>"
                 );
             } else {
                 Player.RestrictionSettings.BypassNPCPunishments = true;
+		NPCpunish = false;
+		M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: NPC punishments disabled.</p>"
                 );
