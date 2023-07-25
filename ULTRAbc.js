@@ -185,10 +185,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "fullseed": FullseedOn,
             "magiccheat": MagiccheatOn,
             "nowhisper": NowhisperOn,
-            "npcpunish": NPCpunish
+            "npcpunish": NPCpunish,
             "slowleave": SlowleaveOn,
             "sosbuttons": SosbuttonsOn,
-            "welcome": WelcomeOn,,
+            "welcome": WelcomeOn,
             "blureffect": blureffect,
             "oldhorny": oldhorny, 
             "clothes": Clothes,
