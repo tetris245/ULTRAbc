@@ -34,24 +34,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
-    
+
     var FBC_VERSION = "";
     var M_MOANER_moanerKey = "bc_moaner_";
-
     var M_MOANER_scriptOn = true;
     var M_MOANER_cum = false;
-    var NPCpunish = false;
-
     let profileName;
-    let SosbuttonsOn;
-    let SlowleaveOn;
-    let FullseedOn;
-    let AutojoinOn;
-    let MagiccheatOn;
-    let WelcomeOn;
-    var NowhisperOn = false;
-    let blureffect;
 
+    let AutojoinOn;
+    let FullseedOn;
+    let MagiccheatOn;
+    var NowhisperOn = false;
+    var NPCpunish = false;
+    let SlowleaveOn;
+    let SosbuttonsOn;
+    let WelcomeOn;
+	
+    let blureffect;
     let oldhorny = 0;
 
     let Clothes = "";
@@ -82,6 +81,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_spankActive = true;
     var M_MOANER_verboseActive = true;
 
+    var M_MOANER_scriptStatus = ["The moaner is active.", "The moaner is not active."];
+    var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.", "The orgasm moan is not active. You will not moan while cumming anymore."];
+    var M_MOANER_vibratorStatus = ["The vibes moan is active. If vibrator's settings change in the chat room, you will moan.", "The vibes moan is not active. If vibrator's settings change in the chat room, you will not moan."];
+    //var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.", "The spank moan is not active. You will not moan while being spanked."];
+    var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.", "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
+    var M_MOANER_verboseStatus = ["Moaner is verbose.", "Moaner is not verbose."];
+    var M_MOANER_profileStatus = ["No custom profile loaded.", "Current moans profile: "];
+    var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
+
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
@@ -92,19 +100,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_scriptOn = false;
             M_MOANER_cum = false;
             profileName = "default";
-	    NPCpunish = false;
-            SosbuttonsOn = false;
-            SlowleaveOn = false;
+            AutojoinOn = false
             FullseedOn = false;
-            AutojoinOn = false;
             MagiccheatOn = false;
-            WelcomeOn = false;
             NowhisperOn = false;
+            NPCpunish = false;
+            SlowleaveOn = false;
+            SosbuttonsOn = false;  
+            WelcomeOn = false;
             blureffect = false;
             oldhorny = 0; 
-	    Clothes = "";
+            Clothes = "";
 	    Mlock = "";
-            Naked = "";
+	    Naked = "";
 	    Pet = "";
 	    Randomize = "";
 	    Restrain = "";
@@ -113,10 +121,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Tnaked = "";
 	    Totalrelease = "";
 	    Tpet = "";
-	    Trandomize = "";
+            Trandomize = "";
 	    Trestrain = "";
 	    Ttotalrelease = "";
-	    Tunderwear = "";
+            Tunderwear = "";
 	    Tunlock = "";
 	    Tuntie = "";
             Underwear = "";
@@ -130,18 +138,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_spankActive = datas.spankMoan;
             M_MOANER_scriptOn = datas.script;
             M_MOANER_cum = datas.cum;
-            profileName = datas.moanProfile;
-	    NPCpunish = datas.npcpunish;
-            SosbuttonsOn = datas.sosbuttons;
-            SlowleaveOn = datas.slowleave;
-            FullseedOn = datas.fullseed;
+            profileName = datas.moanProfile;           
             AutojoinOn = datas.autojoin;
+            FullseedOn = datas.fullseed;
             MagiccheatOn = datas.magiccheat;
-            WelcomeOn = datas.welcome;
             NowhisperOn = datas.nowhisper;
+            NPCpunish = datas.npcpunish;
+            SlowleaveOn = datas.slowleave;
+            SosbuttonsOn = datas.sosbuttons;
+            WelcomeOn = datas.welcome;
             blureffect = false;
             oldhorny = 0;
-	    Clothes = datas.clothes;
+            Clothes = datas.clothes;
 	    Mlock = datas.mlock;
 	    Naked = datas.naked;
 	    Pet = datas.pet;
@@ -153,12 +161,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    Totalrelease = datas.totalrelease;
 	    Tpet = datas.tpet;
 	    Trandomize = datas.trandomize;
-	    Trestrain = datas.trestrain;
+            Trestrain = datas.trestrain;
 	    Ttotalrelease = datas.ttotalrelease;
 	    Tunderwear = datas.tunderwear;
 	    Tunlock = datas.tunlock;
 	    Tuntie = datas.tuntie;
-            Underwear = datas.underwear;
+	    Underwear = datas.underwear;
 	    Unlock = datas.unlock;
 	    Untie = datas.untie;
         }
@@ -173,14 +181,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "script": M_MOANER_scriptOn,
             "cum": M_MOANER_cum,
             "moanProfile": profileName,
-	    "npcpunish": NPCpunish,
-            "sosbuttons": SosbuttonsOn,
-            "slowleave": SlowleaveOn,
-            "fullseed": FullseedOn,
             "autojoin": AutojoinOn,
+            "fullseed": FullseedOn,
             "magiccheat": MagiccheatOn,
-            "welcome": WelcomeOn,
             "nowhisper": NowhisperOn,
+            "npcpunish": NPCpunish
+            "slowleave": SlowleaveOn,
+            "sosbuttons": SosbuttonsOn,
+            "welcome": WelcomeOn,,
             "blureffect": blureffect,
             "oldhorny": oldhorny, 
             "clothes": Clothes,
@@ -202,7 +210,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "tuntie": Tuntie,
             "underwear": Underwear,
             "unlock": Unlock,
-            "untie": Untie
+            "untie": Untie  
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -1223,15 +1231,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             && !msg.startsWith("@") 
             && ChatRoomTargetMemberNumber == null;
     }
-
-    var M_MOANER_scriptStatus = ["The moaner is active.", "The moaner is not active."];
-    var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.", "The orgasm moan is not active. You will not moan while cumming anymore."];
-    var M_MOANER_vibratorStatus = ["The vibes moan is active. If vibrator's settings change in the chat room, you will moan.", "The vibes moan is not active. If vibrator's settings change in the chat room, you will not moan."];
-    //var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.", "The spank moan is not active. You will not moan while being spanked."];
-    var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.", "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
-    var M_MOANER_verboseStatus = ["Moaner is verbose.", "Moaner is not verbose."];
-    var M_MOANER_profileStatus = ["No custom profile loaded.", "Current moans profile: "];
-    var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
 
     //Full script control
     function scriptControl(commande) {
