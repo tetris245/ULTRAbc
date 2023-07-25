@@ -9408,7 +9408,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    if (WelcomeOn == true) {	
 		ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
-                    "Note: NPC punishments are disabled.\n" +
                     "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
                     "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
                     "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a>\n" +
