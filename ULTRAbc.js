@@ -9430,10 +9430,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>chat</b> = commands with extra features in chat room.\n" +
                     "<b>clothing</b> = commands related to the clothes.\n" +
                     "<b>escape</b> = commands related to escape.\n" +
-                    "<b>features</b> = automatic features without command.\n" +
                     "<b>fun</b> = commands related to fun, pain and pleasure.\n" +
                     "<b>kd</b> = info about kd command (for Kinky Dungeon).\n" +
                     "<b>misc</b> = special commands.\n" +
+		    "<b>settings</b> = commands to customize ULTRAbc.\n" +
                     "<b>talking</b> = commands related to talking.\n" +
                     "<b>visual</b> = commands related to animations and background.\n" +
                     "<b>zones</b> = commands related to game zones.\n" +
@@ -9462,7 +9462,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/giveeverything</b> = gives every item.\n" +
                     "<b>/maxstatistics</b> = gives max statistics.\n" +
                     "<b>/money</b> (value) = gives or takes money.\n" +
-                    "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
                     "<b>/permission</b> (number) = changes your item permission *\n" +
                     "<b>/reputation</b> (reputation) (level) = changes a reputation. *\n" +
                     "<b>/resetinventory</b> = erases your inventory. Will warn first.\n" +
@@ -9513,17 +9512,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/untie</b> (target) = removes all bindings.</p>"
                 );
             }
-            if (args === "features") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Automatic features without command:\n" +
-                    "<b>Auto All Items Are Craftable</b> but limited using of the extra crafted items\n" +
-                    "<b>Auto-Disable NPC Punishments</b> - can be changed with the /npcpunish command\n" +
-                    "<b>Auto Easy Access To Chat Rooms</b> by extra buttons in Main Hall and Friendlist\n" +
-                    "<b>Auto Extra Buttons In Wardrobe</b>: Export (usable only if you come from a chat room) - Import1 = outfit + restraints\n" +
-                    "Import2 = outfit + cosplay items + restraints - Import3 = full import including body changes\n" +
-                    "<b>Auto-Join</b> to enter a room as soon as possible</p>"
-                );
-            }
             if (args === "fun") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands:\n" +
@@ -9557,20 +9545,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "misc") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
-                    "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
-                    "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
-                    "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
-                    "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
-                    "<b>/magiccheat</b> = toggles cheat mode in Magic School.\n" +
-		    "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
-                    "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
                     "<b>/relog</b> = relogs.\n" + 
-                    "<b>/sosbuttons</b> = toggles SOS buttons in chat + timer cell.\n" +
 		    "<b>/ubc</b> = displays UBC version (+ more info if welcome message enabled).\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
-                    "<b>/unrestrict</b> =  removes all restrictions from game. *\n" +
-                    "<b>/welcome</b> = toggles UBC welcome message in main hall.</p>" 
+                    "<b>/unrestrict</b> =  removes all restrictions from game. * </p>\n" 
                 );
             }
             if (args === "new") {
@@ -9584,6 +9563,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "- Added code to prevent double UBC loading.</p>"
                 );
             }
+            if (args === "settings") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
+                    "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
+                    "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
+                    "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
+                    "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
+                    "<b>/magiccheat</b> = toggles cheat mode in Magic School.\n" +
+		    "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
+                    "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
+		    "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
+                    "<b>/sosbuttons</b> = toggles SOS buttons in chat + timer cell.\n" +
+                    "<b>/welcome</b> = toggles UBC welcome message in main hall.</p>" 
+                );
+            }
+	
             if (args === "talking") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Talking commands - * = more info when using\n" +
