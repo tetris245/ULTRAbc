@@ -97,6 +97,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Current moans profile: "];
     var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
 
+    var AutojoinStatus = ["Auto-Join feature is enabled.",
+        "Auto-Join feature is disabled."];
+    var ExitmodeStatus = ["Fast exit mode is activated.",
+        "Slow exit mode is activated."];
+    var FullseedStatus = ["Full solution for intricate and high security locks is enabled.",
+        "Full solution for intricate and high security locks is disabled."];
+    var MagiccheatStatus = ["Cheat mode enabled in Magic School.",
+        "Cheat mode disabled in Magic School."];
+    var NowhisperStatus = ["No-whisper mode enabled.",
+        "No-whisper mode disabled."];
+    var NpcpunishStatus = ["NPC punishments enabled.",
+        "NPC punishments disabled."];
+    var SosbuttonsStatus = ["Emergency buttons displayed and enabled.",
+        "Emergency buttons hidden and disabled."];
+    var WelcomeStatus = ["Welcome message in main hall.",
+        "No welcome message in main hall."];           
+
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
@@ -1129,6 +1146,87 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         CharacterNaked(Player);
         CharacterDress(Player, StablePlayerAppearance);
         CharacterRefresh(Player);
+    }
+
+    //Status
+    function showAutojoinStatus() {
+        let msg;
+        if (AutojoinOn) {
+            msg = AutojoinStatus[0];
+        } else {
+            msg = AutojoinStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showExitmodeStatus() {
+        let msg;
+        if (SlowleaveOn) {
+            msg = ExitmodeStatus[1];
+        } else {
+            msg = ExitmodeStatus[0];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showFullseedStatus() {
+        let msg;
+        if (FullseedOn) {
+            msg = FullseedStatus[0];
+        } else {
+            msg = FullseedStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showMagiccheatStatus() {
+        let msg;
+        if (MagiccheatOn) {
+            msg = MagiccheatStatus[0];
+        } else {
+            msg = MagiccheatStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showNowhisperStatus() {
+        let msg;
+        if (NowhisperOn) {
+            msg = NowhisperStatus[0];
+        } else {
+            msg = NowhisperStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showNpcpunishStatus() {
+        let msg;
+        if (NPCpunish) {
+            msg = NpcpunishStatus[0];
+        } else {
+            msg = NpcpunishStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showSosbuttonsStatus() {
+        let msg;
+        if (SosbuttonsOn) {
+            msg = SosbuttonsStatus[0];
+        } else {
+            msg = SosbuttonsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showWelcomeStatus() {
+        let msg;
+        if (WelcomeOn) {
+            msg = WelcomeStatus[0];
+        } else {
+            msg = WelcomeStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
     }
 
     //Talking
@@ -4586,7 +4684,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 SlowleaveOn = false;
                 M_MOANER_saveControls();
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Back to fast exit mode!</p>"
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Fast exit mode is activated.</p>"
                 );
             } else {
                 SlowleaveOn = true;
@@ -9554,6 +9652,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/ubc</b> = displays UBC version (+ more info if welcome message enabled).\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
+                    "<b>/ustatus</b> = displays status of ULTRAbc settings.\n" +
                     "<b>/unrestrict</b> =  removes all restrictions from game. * </p>\n"
                 );
             }
@@ -10009,6 +10108,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomSetTarget(null);
                 }
             }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'ustatus',
+        Description: ": displays status of UBC settings.",
+        Action: () => {
+            showAutojoinStatus();
+            showExitmodeStatus();
+            showFullseedStatus();
+            showMagiccheatStatus();
+            showNowhisperStatus();
+            showNpcpunishStatus();
+            showSosbuttonsStatus();
+            showWelcomeStatus();       
         }
     }])
 
