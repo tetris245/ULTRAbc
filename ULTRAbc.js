@@ -82,13 +82,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_spankActive = true;
     var M_MOANER_verboseActive = true;
 
-    var M_MOANER_scriptStatus = ["The moaner is active.", "The moaner is not active."];
-    var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.", "The orgasm moan is not active. You will not moan while cumming anymore."];
-    var M_MOANER_vibratorStatus = ["The vibes moan is active. If vibrator's settings change in the chat room, you will moan.", "The vibes moan is not active. If vibrator's settings change in the chat room, you will not moan."];
-    //var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.", "The spank moan is not active. You will not moan while being spanked."];
-    var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.", "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
-    var M_MOANER_verboseStatus = ["Moaner is verbose.", "Moaner is not verbose."];
-    var M_MOANER_profileStatus = ["No custom profile loaded.", "Current moans profile: "];
+    var M_MOANER_scriptStatus = ["The moaner is active.",
+        "The moaner is not active."];
+    var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.",
+        "The orgasm moan is not active. You will not moan while cumming anymore."];
+    var M_MOANER_vibratorStatus = ["The vibes moan is active. If vibrator's settings change in the chat room, you will moan.",
+        "The vibes moan is not active. If vibrator's settings change in the chat room, you will not moan."];
+    /*var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.",
+        "The spank moan is not active. You will not moan while being spanked."];*/
+    var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.",
+        "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
+    var M_MOANER_verboseStatus = ["Moaner is verbose.",
+        "Moaner is not verbose."];
+    var M_MOANER_profileStatus = ["No custom profile loaded.",
+        "Current moans profile: "];
     var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
 
     function M_MOANER_initControls() {
@@ -685,7 +692,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 120, 500, 60, "ULTRAbc 1.8 Ready!", "Pink", "Black", "");
+            DrawButton(750, 120, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "Black", "");
             next(args);
         });
     }
@@ -9403,7 +9410,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: ": displays UBC version (+ more info if welcome message enabled).",
         Action: () => {
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc 1.8: type <b>/uhelp</b> for general menu.</p>"
+                "<p style='background-color:#5fbd7a'>ULTRAbc " + UBCver + ": type <b>/uhelp</b> for general menu.</p>"
             );
             if (WelcomeOn == true) {
                 ChatRoomSendLocal(
@@ -9553,7 +9560,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "new") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version 1.8:\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
                     "- New commands: magiccheat, message, welcome.\n" +
                     "- message allows to create custom messages for 10 commands.\n" +
                     "- Removed target condition and spanking feature in the Moaner.\n" +
