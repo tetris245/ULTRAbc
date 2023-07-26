@@ -1,4 +1,3 @@
-
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
