@@ -59,9 +59,8 @@ Changes for future version
   - ubc to display UBC version (+ more info if welcome message in main hall is enabled)
   - ustatus to display current status of UBC settings
 * Changed the arousal level that is required to trigger the vibe effect from other players in the Moaner
-* Removed greetings message displayed in first chat room you enter (is replaced by ubc command)
+* Improved the uhelp command by adding the settings option and removing the features option
 * Updated the invisible commands
 * Updated the npcpunish command to include local saving
-* Improved the uhelp command by adding the settings option and removing the features option
-
+* Removed greetings message displayed in first chat room you enter (is replaced by ubc command)
 
