@@ -5125,7 +5125,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
     }])
 
-
     CommandCombine([{
         Tag: 'hint',
         Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
