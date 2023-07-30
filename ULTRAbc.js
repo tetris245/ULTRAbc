@@ -6958,7 +6958,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     " \n" +
                     "Available crotch shields: \n" +
                     "0 No shield - 1 Front shield\n" +
-                    "2 Back shiedd - 3 Both shields\n" +
+                    "2 Back shield - 3 Both shields\n" +
                     " \n" +
                     "Available intensities:\n" +
                     "0 Off - 1 Low\n" +
