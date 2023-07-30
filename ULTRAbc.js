@@ -6949,6 +6949,52 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'plvibe',
+        Description: "(crotch shield) (intensity) (orgasm mode) (shock level): changes the settings of worn Sci-Fi Pleasure Panties.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The plvibe command must be followed by 4 numbers for crotch shield, intensity, orgasm mode and shock level.\n" +
+                    " \n" +
+                    "Available crotch shields: \n" +
+                    "0 No shield - 1 Front shield\n" +
+                    "2 Back shiedd - 3 Both shields\n" +
+                    " \n" +
+                    "Available intensities:\n" +
+                    "0 Off - 1 Low\n" +
+                    "2 Medium - 3 High\n" +
+                    " \n" +
+                    "Available orgasm modes:\n" +
+                    "0 Normal - 1 Edge - 2 Deny\n" +
+                    " \n" +
+                    "Available shock levels:\n" +
+                    "0 Low - 1 Medium - 2 High</p>" 
+                );
+            } else {
+                if (InventoryGet(Player, "ItemPelvis") != null) {
+                    if (InventoryGet(Player, "ItemPelvis").Asset.Name == "SciFiPleasurePanties") {
+                        var stringPLpanties1 = args;
+                        var stringPLpanties2 = stringPLpanties1.split(/[ ,]+/);
+                        var cpl = stringPLpanties2[0];
+                        var ipl = stringPLpanties2[1];
+                        var opl = stringPLpanties2[2];
+                        var spl = stringPLpanties2[3];
+                        if ((cpl > -1) && (cpl < 4) && (ipl > -1) && (ipl < 4) && (opl > -1) && (opl < 3) && (spl > -1) && (spl < 3)) {
+                            const SciFiPleasurePanties = InventoryGet(Player, "ItemPelvis");
+                            const SciFiPleasurePantiesConfig = ModularItemDataLookup.ItemPelvisSciFiPleasurePanties;
+                            SciFiPleasurePanties.Property = ModularItemMergeModuleValues(SciFiPleasurePantiesConfig, [cpl, ipl, opl, spl]);
+                            ChatRoomCharacterUpdate(Player);
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The settings of your Sci-Fi Pleasure Panties have been modified.</p>"
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'poof',
         Description: "(action): leaves the club very fast.",
         Action: (args) => {
@@ -9617,11 +9663,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "fun") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands:\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
-                    "<b>/invisible1</b> = becomes invisible (anal hook must be allowed).\n" +
-                    "<b>/invisible2</b> = becomes invisible (glitter mask must be usable).\n" +
-                    "<b>/moaner</b> = moans when horny and stimulated. More info when using.\n" +
+                    "<b>/invisible1</b> = becomes invisible (if anal hook usable).\n" +
+                    "<b>/invisible2</b> = becomes invisible (if glitter mask usable).\n" +
+                    "<b>/moaner</b> (options) = moans when horny and stimulated. *.\n" +
+                    "<b>/plvibe</b> (options) = changes the settings of worn Sci-Fi Pleasure Panties. *\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
                     "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
