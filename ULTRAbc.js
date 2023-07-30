@@ -8596,6 +8596,55 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'sfchaste',
+        Description: "(mode) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The sfchaste command must be followed by 5 numbers for model, front shield, back shield, tamper protection and orgasm mode.\n" +
+                    " \n" +
+                    "Available models: \n" +
+                    "0 Prototype - 1 High-Security\n" +
+                    "2 Training - 3 Neo\n" +
+                    " \n" +
+                    "Available front shields:\n" +
+                    "0 Open - 1 Locked\n" +
+                    " \n" +     
+                    "Available back shields:\n" +
+                    "0 Open - 1 Locked\n" +
+                    " \n" +
+                    "Available tamper protections:\n" +
+                    "0 Disabled - 1 Belt - 2 All items\n" +
+                    " \n" +
+                    "Available orgasm modes:\n" +
+                    "0 Allow - 1 Punish</p>" 
+                );
+            } else {
+                if (InventoryGet(Player, "ItemPelvis") != null) {
+                    if (InventoryGet(Player, "ItemPelvis").Asset.Name == "FuturisticChastityBelt") {
+                        var stringSFchaste1 = args;
+                        var stringSFchaste2 = stringSFchaste1.split(/[ ,]+/);
+                        var msf = stringSFchaste2[0];
+                        var fsf = stringSFchaste2[1];
+                        var bsf = stringSFchaste2[2];
+                        var tsf = stringSFchaste2[3];
+                        var osf = stringSFchaste2[4];
+                        if ((msf > -1) && (msf < 4) && (fsf > -1) && (fsf < 2) && (bsf > -1) && (bsf < 2) && (tsf > -1) && (tsf < 3) && (osf > -1) && (osf < 2)) {
+                            const FuturisticChastityBelt = InventoryGet(Player, "ItemPelvis");
+                            const FuturisticChastityBeltConfig = ModularItemDataLookup.ItemPelvisFuturisticChastityBelt;
+                            FuturisticChastityBelt.Property = ModularItemMergeModuleValues(FuturisticChastityBeltConfig, [msf, fsf, bsf, tsf, osf]);
+                            ChatRoomCharacterUpdate(Player);
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The settings of your Futuristic Chastity Belt have been modified.</p>"
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'skill',
         Description: "(skill) (level): changes a skill. ",
         Action: (args) => {
@@ -9669,6 +9718,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/invisible2</b> = becomes invisible (if glitter mask usable).\n" +
                     "<b>/moaner</b> (options) = moans when horny and stimulated. *.\n" +
                     "<b>/plvibe</b> (options) = changes the settings of worn Sci-Fi Pleasure Panties. *\n" +
+                    "<b>/sfchaste</b> (options) = changes the settings of worn Futuristic Chastity Belt. *\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
                     "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
