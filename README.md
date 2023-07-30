@@ -56,6 +56,7 @@ All else I might not have included.
 Changes for future version
 
 * New commands:
+  - plvibe to change the settings of worn Sci-Fi Pleasure Panties, even when you are bound
   - ubc to display UBC version (+ more info if welcome message in main hall is enabled)
   - ustatus to display current status of UBC settings
 * Changed the arousal level that is required to trigger the vibe effect from other visible players in the Moaner
