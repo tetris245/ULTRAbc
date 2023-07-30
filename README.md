@@ -62,7 +62,7 @@ Changes for future version
   - ubc to display UBC version (+ more info if welcome message in main hall is enabled)
   - ustatus to display current status of UBC settings
 * Changed the arousal level that is required to trigger the vibe effect from other players in the Moaner
-* Allowed pause in effects of LSCG sedative and mind control drugs by the Moaner reaction when orgasming
+* Allowed pause in effects of LSCG sedative and mind control drugs by the Moaner reaction when having an orgasm
 * Improved the uhelp command by adding the settings option and removing the features option
 * Updated the invisible commands
 * Updated the npcpunish command to include local saving
