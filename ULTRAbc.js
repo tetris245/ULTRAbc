@@ -5077,6 +5077,56 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'hdvibe',
+        Description: "(crotch shield) (back shield) (modules)(intensity) (orgasm mode): changes the settings of worn Heavy Duty Belt.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The hdvibe command must be followed by 5 numbers for crotch shield, back shield, modules, intensity and orgasm mode.\n" +
+                    " \n" +
+                    "Available crotch shields:\n" +
+                    "0 Open - 1 Transparent - 2 Metal\n" +
+                    " \n" +     
+                    "Available back shields:\n" +
+                    "0 Open - 1 Closed\n" +
+                    " \n" +
+                    "Available modules:\n" +
+                    "0 No module - 1 Cage/Spreader\n" +
+                    "2 Brushes - 3 Both modules \n" +
+                    " \n" +
+                    "Available intensities:\n" +
+                    "0 Off - 1 Low - 2 Medium - 3 High - 4 Maximum\n" +
+                    " \n" +
+                    "Available orgasm modes:\n" +
+                    "0 Normal - 1 Edge - 2 Denial</p>" 
+                );
+            } else {
+                if (InventoryGet(Player, "ItemPelvis") != null) {
+                    if (InventoryGet(Player, "ItemPelvis").Asset.Name == "HeavyDutyBelt") {
+                        var stringHDbelt1 = args;
+                        var stringHDbelt2 = stringHDbelt1.split(/[ ,]+/);
+                        var chd = stringHDbelt2[0];
+                        var bhd = stringHDbelt2[1];
+                        var mhd = stringHDbelt2[2];
+                        var ihd = stringHDbelt2[3];
+                        var ohd = stringHDbelt2[4];
+                        if ((chd > -1) && (chd < 3) && (bhd > -1) && (bhd < 2) && (mhd > -1) && (mhd < 4) && (ihd > -1) && (ihd < 5) && (ohd > -1) && (ohd < 3)) {
+                            const HeavyDutyBelt = InventoryGet(Player, "ItemPelvis");
+                            const HeavyDutyBeltConfig = ModularItemDataLookup.ItemPelvisHeavyDutyBelt;
+                            HeavyDutyBelt.Property = ModularItemMergeModuleValues(HeavyDutyBeltConfig, [chd, bhd, mhd, ihd, ohd]);
+                            ChatRoomCharacterUpdate(Player);
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The settings of your Heavy Duty Belt have been modified.</p>"
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }])
+
+
+    CommandCombine([{
         Tag: 'hint',
         Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
         Action: (_, command, args) => {
@@ -6961,11 +7011,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "2 Back shield - 3 Both shields\n" +
                     " \n" +
                     "Available intensities:\n" +
-                    "0 Off - 1 Low\n" +
-                    "2 Medium - 3 High\n" +
+                    "0 Off - 1 Low - 2 Medium - 3 High - 4 Maximum\n" +
                     " \n" +
                     "Available orgasm modes:\n" +
-                    "0 Normal - 1 Edge - 2 Deny\n" +
+                    "0 Normal - 1 Edge - 2 Denial\n" +
                     " \n" +
                     "Available shock levels:\n" +
                     "0 Low - 1 Medium - 2 High</p>" 
@@ -6979,7 +7028,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var ipl = stringPLpanties2[1];
                         var opl = stringPLpanties2[2];
                         var spl = stringPLpanties2[3];
-                        if ((cpl > -1) && (cpl < 4) && (ipl > -1) && (ipl < 4) && (opl > -1) && (opl < 3) && (spl > -1) && (spl < 3)) {
+                        if ((cpl > -1) && (cpl < 4) && (ipl > -1) && (ipl < 5) && (opl > -1) && (opl < 3) && (spl > -1) && (spl < 3)) {
                             const SciFiPleasurePanties = InventoryGet(Player, "ItemPelvis");
                             const SciFiPleasurePantiesConfig = ModularItemDataLookup.ItemPelvisSciFiPleasurePanties;
                             SciFiPleasurePanties.Property = ModularItemMergeModuleValues(SciFiPleasurePantiesConfig, [cpl, ipl, opl, spl]);
@@ -9714,6 +9763,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
+                    "<b>/hdvibe</b> (options) = changes the settings of worn High Duty Belt. *\n" +
                     "<b>/invisible1</b> = becomes invisible (if anal hook usable).\n" +
                     "<b>/invisible2</b> = becomes invisible (if glitter mask usable).\n" +
                     "<b>/moaner</b> (options) = moans when horny and stimulated. *.\n" +
