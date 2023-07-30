@@ -56,6 +56,7 @@ All else I might not have included.
 Changes for future version
 
 * New commands:
+  - hdvibe to change the settings of worn Heavy Duty Belt, even when you are bound
   - plvibe to change the settings of worn Sci-Fi Pleasure Panties, even when you are bound
   - sfchaste to change the settings of worn Futuristic Chastity Belt, even when you are bound
   - ubc to display UBC version (+ more info if welcome message in main hall is enabled)
