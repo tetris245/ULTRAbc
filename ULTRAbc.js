@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 1.8
+// @version 1.9
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return;
     }
 
-    const UBCver = "1.8";
+    const UBCver = "1.9";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -9885,12 +9885,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- New commands: magiccheat, message, welcome.\n" +
-                    "- message allows to create custom messages for 10 commands.\n" +
-                    "- Removed target condition and spanking feature in the Moaner.\n" +
-                    "- Allowed the Moaner to react to changes in vibe settings of other players in the same chat room.\n" +
-                    "- Fixed an incompatibility issue of the Moaner with the MBCHC add-on.\n" +
-                    "- Added code to prevent double UBC loading.</p>"
+                    "- New commands: hdvibe, plvibe, sfchaste to change settings of some worn items,\n" +
+                    "- ubc to display UBC version (+ more if welcome message is enabled),\n" +
+                    "- ustatus to display current status of UBC settings.\n" +
+                    "- Changed arousal level for vibe effect from other players in the Moaner.\n" +
+                    "- Allowed Moaner reaction when orgasming to pause effects of LSCG sedative and mind control drugs.\n" +
+                    "- Improved uhelp command by adding settings option and removing features option.\n" +
+                    "- Updated the invisible and npcpunish commands.|n" + 
+                    "- Removed greetings message displayed in first chat room you enter.\n" +
+                    "- Fixed a grammatical issue in customized messages.</p>"
                 );
             }
             if (args === "settings") {
