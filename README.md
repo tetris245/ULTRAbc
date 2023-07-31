@@ -10,19 +10,7 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 ## Installation 
 
-Preliminary note: if you use many add-ons for BC, you could be interested by **FUSAM**, a multi-add-on-loader for TamperMonkey: https://sidiousious.gitlab.io/bc-addon-loader/
-
-## How to use
-
-After installing FUSAM, you can see the Addon Manager button on the login page and inside the game's preferences. Once opened, you can choose to enable other addons, which will be loaded when you close all menus and refresh the page.
-
-## Addon XYZ is not in the list
-
-If an addon is missing from the list, you can mention it in <#1134165682876059748>. If you're the developer of an addon and want to get in touch or make request, DM <@736143146987290695>. The aim is to have everything intended for public use available.
-
-## Security
-
-Please note that addons available via FUSAM are not actively monitored for malicious updates. You should only enable addons from authors you can trust.
+*Preliminary note* : if you use many add-ons for BC, you could be interested by **FUSAM**, a multi-add-on-loader for TamperMonkey: https://sidiousious.gitlab.io/bc-addon-loader/
 
 **Recommended methode with Tampermonkey** - links to the ULTRAbc loader: 
 
