@@ -67,4 +67,5 @@ Changes for future version
 * Updated the invisible commands
 * Updated the npcpunish command to include local saving
 * Removed greetings message displayed in first chat room you enter (is replaced by ubc command)
+* Fixed a grammatical issue in customized messages
 
