@@ -4,11 +4,25 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 1.8
+Most recent version: 1.9
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 ## Installation 
+
+Preliminary note: if you use many add-ons for BC, you could be interested by **FUSAM**, a multi-add-on-loader for TamperMonkey: https://sidiousious.gitlab.io/bc-addon-loader/
+
+## How to use
+
+After installing FUSAM, you can see the Addon Manager button on the login page and inside the game's preferences. Once opened, you can choose to enable other addons, which will be loaded when you close all menus and refresh the page.
+
+## Addon XYZ is not in the list
+
+If an addon is missing from the list, you can mention it in <#1134165682876059748>. If you're the developer of an addon and want to get in touch or make request, DM <@736143146987290695>. The aim is to have everything intended for public use available.
+
+## Security
+
+Please note that addons available via FUSAM are not actively monitored for malicious updates. You should only enable addons from authors you can trust.
 
 **Recommended methode with Tampermonkey** - links to the ULTRAbc loader: 
 
@@ -25,7 +39,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version1.8.zip file on the Releases page
+1. Download the ULTRAbc-version1.9.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -55,17 +69,5 @@ All else I might not have included.
 
 Changes for future version
 
-* New commands:
-  - hdvibe to change the settings of worn Heavy Duty Belt, even when you are bound
-  - plvibe to change the settings of worn Sci-Fi Pleasure Panties, even when you are bound
-  - sfchaste to change the settings of worn Futuristic Chastity Belt, even when you are bound
-  - ubc to display UBC version (+ more info if welcome message in main hall is enabled)
-  - ustatus to display current status of UBC settings
-* Changed the arousal level that is required to trigger the vibe effect from other players in the Moaner
-* Allowed Moaner reaction when having an orgasm to pause effects of LSCG sedative and mind control drugs
-* Improved the uhelp command by adding the settings option and removing the features option
-* Updated the invisible commands
-* Updated the npcpunish command to include local saving
-* Removed greetings message displayed in first chat room you enter (is replaced by ubc command)
-* Fixed a grammatical issue in customized messages
+(..)
 
