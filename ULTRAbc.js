@@ -9770,11 +9770,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "bondage") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bondage commands:\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bondage commands - * = more info when using\n" +
                     "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
                     "<b>/itemcolor</b> (colorcode) (target) = changes color on all current bindings. Color code must be in the format #000000\n" +
-                    "<b>/lock</b> = adds locks on all lockable items. Use /help lock for more info.\n" +
-                    "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
+                    "<b>/lock</b> = adds locks on all lockable items. *.\n" +
+                    "<b>/outfit</b> = restores/saves/loads outfit (including restraints). *\n" +
                     "<b>/pet</b> (target) = becomes a fully restrained pet.\n" +
                     "<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n" +
                     "<b>/restrain</b> (target) = adds random restraints.\n" +
@@ -9803,7 +9803,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
                     "<b>/bio</b> (target) = gives direct access to the profile description of any player in the chat room.\n" +
                     "<b>/erase</b> = erases chat.\n" +
-                    "<b>/font</b> (newfont) (size) = changes font in BC. Using will give more info.\n" +
+                    "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/search</b> (lobby) = opens room search for 15 seconds in specified lobby. *\n" +
@@ -9812,18 +9812,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "clothing") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Clothing commands:\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Clothing commands - * = more info when using\n" +
                     "<b>/clothes</b> (target) = changes clothes.\n" +
-                    "<b>/diaper</b> (action) (target or value) = plays with diapers (ABDL game). Using will give more info.\n" +
+                    "<b>/diaper</b> (options) = plays with diapers (ABDL game). *\n" +
                     "<b>/naked</b> (target) = removes clothes.\n" +
-                    "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
+                    "<b>/outfit</b> (options) = restores/saves/loads outfit (including restraints). *\n" +
                     "<b>/underwear</b> (target) = changes underwear.\n" +
                     "<b>/wrobe</b> (target) = opens target wardrobe.</p>"
                 );
             }
             if (args === "escape") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Escape commands:\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Escape commands - * = more info when using\n" +
                     "<b>/boost</b> = boosts skills, similar to maid quarters drink.\n" +
                     "<b>/code</b> (target) = reveals codes for combination locks.\n" +
                     "<b>/ptcode</b> (target) = reveals portal link codes.\n" +
@@ -9831,10 +9831,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/quit</b> (action) = leaves room.\n" +
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
                     "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
-                    "<b>/safeworditem</b> = removes specific item. More info when used.\n" +
+                    "<b>/safeworditem</b> = removes specific item. *\n" +
                     "<b>/solidity</b> (value) = changes the solidity of most current bindings. Use low values to escape! Value 1 allows to escape special devices.\n" +
                     "<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n" +
-                    "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. More info when used.\n" +
+                    "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. *\n" +
                     "<b>/untie</b> (target) = removes all bindings.</p>"
                 );
             }
