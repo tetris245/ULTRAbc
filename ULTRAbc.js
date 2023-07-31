@@ -9966,7 +9966,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (Underwear == undefined) {
                     var message = "Magical lasers put " + tmpname + " in random underwear."
                 } else {
-                    if (Underwear != "") 
+                    if (Underwear != "") {
                         if (Underwear.startsWith("\n0027")) {
                             var message = tmpname + Underwear;                  
                         } else {
