@@ -9622,6 +9622,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = tmpname + Totalrelease;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Totalrelease;
+                        }
                     } else {
                         var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                     }
