@@ -9891,7 +9891,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "- Changed arousal level for vibe effect from other players in the Moaner.\n" +
                     "- Allowed Moaner reaction when orgasming to pause effects of LSCG sedative and mind control drugs.\n" +
                     "- Improved uhelp command by adding settings option and removing features option.\n" +
-                    "- Updated the invisible and npcpunish commands.|n" + 
+                    "- Updated the invisible and npcpunish commands.\n" + 
                     "- Removed greetings message displayed in first chat room you enter.\n" +
                     "- Fixed a grammatical issue in customized messages.</p>"
                 );
