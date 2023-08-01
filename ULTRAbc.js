@@ -316,7 +316,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                     } else {
                         if (Totalrelease != "") {
-                            var message = tmpname + ' '.repeat(1) + Totalrelease;
+                            if (Totalrelease.startsWith("\n0027")) {
+                                var message = tmpname + Totalrelease;                  
+                            } else {
+                                var message = tmpname + ' '.repeat(1) + Totalrelease;
+                            }
                         } else {
                             var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                         }
@@ -1757,14 +1761,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomTargetMemberNumber = backupChatRoomTargetMemberNumber;
                     ElementValue("InputChat", msg);
                     if (Player.OnlineSettings.LSCG != null) {
-                        if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
+                        if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == false) {
                             if (Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel != 0) {
-                                Player.OnlineSettings.LSCG.InjectorModule.asleep = false;
+                                Player.OnlineSettings.LSCG.InjectorModule.asleep = true;
                             }
                         }
-                        if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == true) {
+                        if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == false) {
                             if (Player.OnlineSettings.LSCG.InjectorModule.mindControlLevel != 0) {
-                                Player.OnlineSettings.LSCG.InjectorModule.brainwashed = false;
+                                Player.OnlineSettings.LSCG.InjectorModule.brainwashed = true;
                             }
                         }         
                     }   
