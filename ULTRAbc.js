@@ -75,27 +75,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Tunlock = "";
     let Tuntie = "";
 
-    var M_MOANER_talkActive = true;
     var M_MOANER_orgasmActive = true;
-    var M_MOANER_vibratorActive = true;
     var M_MOANER_spankActive = true;
+    var M_MOANER_talkActive = true;
     var M_MOANER_verboseActive = true;
+    var M_MOANER_vibratorActive = true;
+    var M_MOANER_xvibratorActive = true;
 
-    var M_MOANER_scriptStatus = ["The moaner is active.",
-        "The moaner is not active."];
     var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.",
         "The orgasm moan is not active. You will not moan while cumming anymore."];
-    var M_MOANER_vibratorStatus = ["The vibes moan is active. If vibrator's settings change in the chat room, you will moan.",
-        "The vibes moan is not active. If vibrator's settings change in the chat room, you will not moan."];
+    var M_MOANER_profileStatus = ["No custom profile loaded.",
+        "Current moans profile: "];
+    var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
+    var M_MOANER_scriptStatus = ["The moaner is active.",
+        "The moaner is not active."];
     /*var M_MOANER_spankStatus = ["The spank moan is active. You will moan while being spanked.",
         "The spank moan is not active. You will not moan while being spanked."];*/
     var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.",
         "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
     var M_MOANER_verboseStatus = ["Moaner is verbose.",
         "Moaner is not verbose."];
-    var M_MOANER_profileStatus = ["No custom profile loaded.",
-        "Current moans profile: "];
-    var M_MOANER_profileListM_MOANER_intro = "Available moaning profiles: ";
+    var M_MOANER_vibratorStatus = ["The vibes moan is active. If your vibrator's settings change, you will moan.",
+        "The vibes moan is not active. If your vibrator's settings change, you will not moan."];
+     var M_MOANER_xvibratorStatus = ["The xvibes moan is active. If vibrator's settings of othe players change, you will moan.",
+        "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan."];
 
     var AutojoinStatus = ["Auto-Join feature is enabled.",
         "Auto-Join feature is disabled."];
@@ -117,11 +120,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
-            M_MOANER_talkActive = true;
             M_MOANER_orgasmActive = true;
-            M_MOANER_vibratorActive = true;
-            M_MOANER_spankActive = true;
             M_MOANER_scriptOn = false;
+            M_MOANER_spankActive = true;
+            M_MOANER_talkActive = true;
+            M_MOANER_vibratorActive = true;
+            M_MOANER_xvibratorActive = true;
             M_MOANER_cum = false;
             profileName = "default";
             AutojoinOn = false
@@ -156,11 +160,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Untie = "";
             //M_MOANER_saveControls();
         } else {
-            M_MOANER_talkActive = datas.talkMoan;
             M_MOANER_orgasmActive = datas.orgasmMoan;
-            M_MOANER_vibratorActive = datas.vibeMoan;
-            M_MOANER_spankActive = datas.spankMoan;
             M_MOANER_scriptOn = datas.script;
+            M_MOANER_spankActive = datas.spankMoan;
+            M_MOANER_talkActive = datas.talkMoan;
+            M_MOANER_vibratorActive = datas.vibeMoan;
+            M_MOANER_xvibratorActive = datas.xvibeMoan;
             M_MOANER_cum = datas.cum;
             profileName = datas.moanProfile;
             AutojoinOn = datas.autojoin;
@@ -198,11 +203,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     function M_MOANER_saveControls() {
         var controls = {
-            "talkMoan": M_MOANER_talkActive,
             "orgasmMoan": M_MOANER_orgasmActive,
-            "vibeMoan": M_MOANER_vibratorActive,
-            "spankMoan": M_MOANER_spankActive,
             "script": M_MOANER_scriptOn,
+            "spankMoan": M_MOANER_spankActive,
+            "talkMoan": M_MOANER_talkActive,
+            "vibeMoan": M_MOANER_vibratorActive,
+            "xvibeMoan": M_MOANER_xvibratorActive,
             "cum": M_MOANER_cum,
             "moanProfile": profileName,
             "autojoin": AutojoinOn,
@@ -1353,19 +1359,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     //Verbose mode control
     function verboseControl(commande) {
-        if (commande == "on") {
+        if (M_MOANERverboseActive == false) {
             M_MOANER_verboseActive = true;
-        } else if (commande == "off") {
-            M_MOANER_verboseActive = false;
+        } else {
+            M_MOANERverboseActive = false;
         }
         showM_MOANER_verboseStatus();
     }
 
     //Talking moans control
     function talkControl(commande) {
-        if (commande == "on") {
+        if (M_MOANER_talkActive == false) {
             M_MOANER_talkActive = true;
-        } else if (commande == "off") {
+        } else {
             M_MOANER_talkActive = false;
         }
         showM_MOANER_talkStatus();
@@ -1373,29 +1379,40 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     //Orgasm moans control
     function orgasmControl(commande) {
-        if (commande == "on") {
+        if (M_MOANER_orgasmActive == false) {
             M_MOANER_orgasmActive = true;
-        } else if (commande == "off") {
+        } else {
             M_MOANER_orgasmActive = false;
         }
         showM_MOANER_orgasmStatus();
     }
 
-    //Vibe start moans control
+    //Player vibes moans control
     function vibeControl(commande) {
-        if (commande == "on") {
+        if (M_MOANER_vibratorActive == false) {
             M_MOANER_vibratorActive = true;
-        } else if (commande == "off") {
+        } else {
             M_MOANER_vibratorActive = false;
         }
         showM_MOANER_vibratorStatus();
     }
 
+    //Other players vibes moans control
+    function xvibeControl(commande) {
+        if (M_MOANER_xvibratorActive == false) {
+            M_MOANER_xvibratorActive = true;
+            M_MOANER_vibratorActive = true;
+        } else {
+            M_MOANER_xvibratorActive = false;
+        }
+        showM_MOANER_xvibratorStatus();
+    }
+
     //Spanking moans control
     /*function spankControl(commande) {
-        if (commande == "on") {
+        if (M_MOANER_spankActive == false) {
             M_MOANER_spankActive = true;
-        } else if (commande == "off") {
+        } else {
             M_MOANER_spankActive = false;
         }
         showM_MOANER_spankStatus();
@@ -1414,10 +1431,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         showM_MOANER_talkStatus();
         showM_MOANER_orgasmStatus();
         showM_MOANER_vibratorStatus();
+        showM_MOANER_xvibratorStatus();
         //showM_MOANER_spankStatus();
         showM_MOANER_verboseStatus();
     }
-
+    
     function showM_MOANER_profileStatus() {
         if (!M_MOANER_verboseActive) {
             return;
@@ -1492,6 +1510,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = M_MOANER_vibratorStatus[0];
         } else {
             msg = M_MOANER_vibratorStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    
+    function showM_MOANER_xvibratorStatus() {
+        if (M_MOANER_xvibratorActive == null  || M_MOANER_xvibratorActive == undefined) {
+            M_MOANER_xvibratorActive = true;
+            M_MOANER_saveControls();
+        }
+        if (!M_MOANER_verboseActive) {
+            return;
+        }     
+        let msg;
+        if (M_MOANER_xvibratorActive) {
+            msg = M_MOANER_xvibratorStatus[0];
+        } else {
+            msg = M_MOANER_xvibratorStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -6678,12 +6713,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/moaner off</b> = stops the moaner\n" +
                     "<b>/moaner profile</b> (profilename) =  selects a moaner profile. Without profilename, access to moaner profile help\n" +
                     "<b>/moaner status</b> = displays current moaner status\n" +
-                    "<b>/moaner verbose</b> (on/off) = enable/disable verbose mode\n" +
+                    "<b>/moaner verbose</b>: toggles verbose mode\n" +
                     " \n" +
                     "You can also enable/disable parts of the Moaner with:\n" +
-                    "<b>/moaner orgasm</b> (on/off): moans when you cum\n" +
-                    "<b>/moaner talk</b> (on/off): moans when talking if vibed\n" +
-                    "<b>/moaner vibe</b> (on/off): moans when vibes settings changed</p>"
+                    "<b>/moaner orgasm</b>: toggles moans when you cum\n" +
+                    "<b>/moaner talk</b>: toggles moans when talking if vibed\n" +
+                    "<b>/moaner vibe</b>: toggles moans when your vibes settings change\n" +
+                    "<b>/moaner xvibe</b>: toggles moans when vibes settings of other players change</p>"
                 );
             } else {
                 var stringMoan1 = args;
@@ -6718,6 +6754,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         M_MOANER_saveControls();
                     } else if (feature == "vibe") {
                         vibeControl(commande);
+                        M_MOANER_saveControls();
+                    } else if (feature == "xvibe") {
+                        xvibeControl(commande);
                         M_MOANER_saveControls();
                     }
                 }
