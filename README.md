@@ -57,5 +57,7 @@ All else I might not have included.
 
 Changes for future version
 
-(..)
+* Changes in the Moaner:
+  - Converted the orgasm, talk, verbose and vibe options into toggles (no more need to add on or off)
+  - Added the option xvibe related to change in vibrator's settings of other players (note: if you activate it, it will also activate the vibe feature)
 
