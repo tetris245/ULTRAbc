@@ -2210,12 +2210,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function IsStimulated(C) {
-        if (C.IsEgged() && ((C.ArousalSettings == null) || (C.ArousalSettings.AffectStutter == null) || (C.ArousalSettings.AffectStutter == "Vibration") || (C.ArousalSettings.AffectStutter == "All"))) {
-            for (let A = 0; A < C.Appearance.length; A++) {
-                var Item = C.Appearance[A];
-                if (InventoryItemHasEffect(Item, "Vibrating", true)) {
-                    return true;
-                }
+        for (let A = 0; A < C.Appearance.length; A++) {
+            var Item = C.Appearance[A];
+            if (InventoryItemHasEffect(Item, "Vibrating", true)) {
+                return true;
             }
         }
         if (Player.OnlineSettings.LSCG != null) {
