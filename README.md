@@ -58,6 +58,8 @@ All else I might not have included.
 Changes for future version
 
 * Changes in the Moaner:
-  - Converted the orgasm, talk, verbose and vibe options into toggles (no more need to add on or off)
+  - Improved the vibe feature and extended it to activities on ears
+  - Restored the spank feature
+  - Converted the orgasm, spank, talk, verbose and vibe options into toggles (no more need to add on or off - if you disable the vibe feature, it will also disable the new xvibe feature)
   - Added the option xvibe related to change in vibrator's settings of other players (note: if you activate it, it will also activate the vibe feature)
 
