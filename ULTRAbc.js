@@ -1837,7 +1837,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
              mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber; 
              if (mtarget !== Player.MemberNumber) return;
              var msg = ElementValue("InputChat");                                         
-             if (data.Content.includes("Spank")) {
+             if ((data.Content.includes("Bite")) ||
+                 (data.Content.includes("Kick")) ||
+                 (data.Content.includes("Pinch")) ||
+                 (data.Content.includes("Shock")) ||
+                 (data.Content.includes("Slap")) ||
+                 (data.Content.includes("Spank"))) {
                  if (M_MOANER_isSimpleChat(msg)) {
                      M_MOANER_reactionSpankWithChat(data);
                  } else {
@@ -1847,7 +1852,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
              if ((data.Content == "ChatOther-ItemEars-Caress") ||
                  (data.Content == "ChatOther-ItemEars-Kiss") ||
                  (data.Content == "ChatOther-ItemEars-Lick") ||
-                 (data.Content == "ChatOther-ItemEars-Nibble")) {
+                 (data.Content == "ChatOther-ItemEars-Nibble") ||
+                 (data.Content.includes("Finger")) ||
+                 (data.Content.includes("Fist")) ||
+                 (data.Content.includes("Masturbate"))) {
                  if (M_MOANER_isSimpleChat(msg)) {
                      M_MOANER_reactionVibeWithChat(data);
                  } else {
