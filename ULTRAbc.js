@@ -1843,7 +1843,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                              if (M_MOANER_isSimpleChat(msg)) {
                                  M_MOANER_reactionVibeWithChat(data);
                              } else {
-                             M_MOANER_reactionVibeWithoutChat(data);
+                                 M_MOANER_reactionVibeWithoutChat(data);
                              }
                          }
                      }
