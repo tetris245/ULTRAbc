@@ -1831,6 +1831,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                      M_MOANER_reactionVibeWithoutChat(data);
                  }
              }
+             if (data.Content.includes("Inject")) {
+                 if (!Player?.MemberNumber) return;
+                 let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
+                 mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber; 
+                 if (mtarget !== Player.MemberNumber) return;
+                 var msg = ElementValue("InputChat");
+                 if (Player.OnlineSettings.LSCG != null) {
+                     if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
+                         if (Player.OnlineSettings.LSCG.InjectorModule.hornyLevel != 0) {
+                             if (M_MOANER_isSimpleChat(msg)) {
+                                 M_MOANER_reactionVibeWithChat(data);
+                             } else {
+                             M_MOANER_reactionVibeWithoutChat(data);
+                             }
+                         }
+                     }
+                 }
+             }
              if (data.Type !== 'Activity') return;
              if (!Player?.MemberNumber) return;
              let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
