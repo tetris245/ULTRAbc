@@ -1824,11 +1824,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                  let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
                  mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber; 
                  if ((mtarget !== Player.MemberNumber) && (M_MOANER_xvibratorActive == false)) return;
-                 var msg = ElementValue("InputChat");
-                 if (M_MOANER_isSimpleChat(msg)) {
-                     M_MOANER_reactionVibeWithChat(data);
-                 } else {
-                     M_MOANER_reactionVibeWithoutChat(data);
+                 if (Player.ArousalSettings.Progress >= 10) {
+                     var msg = ElementValue("InputChat");
+                     if (M_MOANER_isSimpleChat(msg)) {
+                         M_MOANER_reactionVibeWithChat(data);
+                     } else {
+                         M_MOANER_reactionVibeWithoutChat(data);
+                     }
                  }
              }
              if (data.Content.includes("Inject")) {
@@ -1990,9 +1992,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var moan3 = moan2;
             }
             ElementValue("InputChat", moan2.replace(moan2, moan3));
-            if (Player.ArousalSettings.Progress >= 10) {
-                ChatRoomSendChat();
-            }
+            ChatRoomSendChat();
             ElementValue("InputChat", msg);
             ChatRoomTargetMemberNumber = backtarget;
         }
@@ -2031,14 +2031,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var moan3 = moan2;
             }
             ElementValue("InputChat", moan2.replace(moan2, moan3));
-            if (Player.ArousalSettings.Progress >= 10) {
-                ChatRoomSendChat();
-            }
+            ChatRoomSendChat();
         }
     }
 
     function M_MOANER_isVibes(data) {
-        if (isStimulated) {
+        if (Player.ArousalSettings.Progress >= 10) {
             return true;
         }
         if (Player.OnlineSettings.LSCG != undefined) {
@@ -2269,7 +2267,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         for (let A = 0; A < C.Appearance.length; A++) {
             var Item = C.Appearance[A];
             if (InventoryItemHasEffect(Item, "Vibrating", true)) {
-                return true;
+                if (Player.ArousalSettings.Progress >= 10) {
+                    return true;
+                }
             }
         }
         if (Player.OnlineSettings.LSCG != null) {
