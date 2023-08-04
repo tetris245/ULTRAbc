@@ -97,7 +97,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Moaner is not verbose."];
     var M_MOANER_vibratorStatus = ["The vibes moan is active. If your vibrator's settings change, you will moan.",
         "The vibes moan is not active. If your vibrator's settings change, you will not moan."];
-     var M_MOANER_xvibratorStatus = ["The xvibes moan is active. If vibrator's settings of other players change, you will moan.",
+    var M_MOANER_xvibratorStatus = ["The xvibes moan is active. If vibrator's settings of other players change, you will moan.",
         "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan."];
 
     var AutojoinStatus = ["Auto-Join feature is enabled.",
