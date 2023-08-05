@@ -106,7 +106,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Slow exit mode is activated."];
     var FullseedStatus = ["Full solution for intricate and high security locks is enabled.",
         "Full solution for intricate and high security locks is disabled."];
-    var MagiccheatStatus = ["Cheat mode enabled in Magic School.",
+    var MagiccheatStatus = ["Cheat mode enabled in Bondage Brawl and Magic School.",
         "Cheat mode disabled in Magic School."];
     var NowhisperStatus = ["No-whisper mode enabled.",
         "No-whisper mode disabled."];
@@ -306,7 +306,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
+    ULTRAPlatformAttack();
     ULTRAStruggleLockPickDraw();
+
+    //Bondage Brawl
+    async function ULTRAPlatformAttack() {
+        modApi.hookFunction('PlatformAttack', 4, (args, next) => {
+           if (MagiccheatOn == true) {
+                PlatformPlayer.Health = 100;
+                PlatformPlayer.Magic = 100; 
+                PlatformPlayer.Projectile = 100;
+           }
+           next(args);
+        });
+    }
 
     //Chat Room
     async function ULTRAChatRoomClick() {
@@ -6353,19 +6366,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'magiccheat',
-        Description: ": toggles cheat mode in Magic School.",
+        Description: ": toggles cheat mode in Bondage Brawl and Magic School.",
         Action: () => {
             if (MagiccheatOn == true) {
                 MagiccheatOn = false;
                 M_MOANER_saveControls();
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode disabled in Magic School.</p>"
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode disabled in Bondage Brawl and Magic School.</p>"
                 );
             } else {
                 MagiccheatOn = true;
                 M_MOANER_saveControls();
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode enabled in Magic School.</p>"
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode enabled in Bondage Brawl and Magic School.</p>"
                 );
             }
         }
@@ -9966,7 +9979,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
-                    "<b>/magiccheat</b> = toggles cheat mode in Magic School.\n" +
+                    "<b>/magiccheat</b> = toggles cheat mode in Bondage Brawl and Magic School.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
                     "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
