@@ -307,11 +307,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
     ULTRAPlatformAttack();
+    ULTRAPlatformDialogEvent();
     ULTRAStruggleLockPickDraw();
 
     //Bondage Brawl
     async function ULTRAPlatformAttack() {
         modApi.hookFunction('PlatformAttack', 4, (args, next) => {
+           if (MagiccheatOn == true) {
+                PlatformPlayer.Health = 100;
+                PlatformPlayer.Magic = 100; 
+                PlatformPlayer.Projectile = 100;
+           }
+           next(args);
+        });
+    }
+
+    async function ULTRAPlatformDialogEvent() {
+        modApi.hookFunction('PlatformDialogEvent', 4, (args, next) => {
            if (MagiccheatOn == true) {
                 PlatformPlayer.Health = 100;
                 PlatformPlayer.Magic = 100; 
