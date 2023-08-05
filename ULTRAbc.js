@@ -1876,6 +1876,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                      }
                  }
              }
+             if (data.Type === "Action" && metadata.ShockIntensity >= 0) {
+                 let intensity = metadata.ShockIntensity;
+                 if (intensity !== null && metadata.TargetCharacter.IsPlayer()) {
+                     var msg = ElementValue("InputChat");                                         
+                     if (M_MOANER_isSimpleChat(msg)) {
+                         M_MOANER_reactionSpankWithChat(data);
+                     } else {
+                         M_MOANER_reactionSpankWithoutChat(data);
+                     }
+                 }
+             }
              if (data.Type !== 'Activity') return;
              if (!Player?.MemberNumber) return;
              let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
