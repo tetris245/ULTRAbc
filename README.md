@@ -57,6 +57,7 @@ All else I might not have included.
 
 Changes for future version
 
+* Extended the magiccheat command to Bondage Brawl
 * Changes in the Moaner:
   - Improved the vibe feature and extended it to similar activities (finger, fist, masturbate) and activities on ears (caress, kiss, lick, nibble)
   - Restored the spank feature and extended it to all body zones and similar activities (bite, kick, pinch, shock, slap)
