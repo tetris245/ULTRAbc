@@ -78,6 +78,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_orgasmActive = true;
     var M_MOANER_spankActive = true;
     var M_MOANER_talkActive = true;
+    var M_MOANER_tickleActive = true;
     var M_MOANER_verboseActive = true;
     var M_MOANER_vibratorActive = true;
     var M_MOANER_xvibratorActive = true;
@@ -93,6 +94,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "The spank moan is not active. You will not moan while being spanked."];
     var M_MOANER_talkStatus = ["The talk moan is active. If you're vibed, you will moan while speaking.",
         "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
+    var M_MOANER_tickleStatus = ["The tickle moan is active. You will moan while being tickled.",
+        "The tickle moan is not active. You will not moan while being tickled."];
     var M_MOANER_verboseStatus = ["Moaner is verbose.",
         "Moaner is not verbose."];
     var M_MOANER_vibratorStatus = ["The vibes moan is active. If your vibrator's settings change, you will moan.",
@@ -124,6 +127,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_scriptOn = false;
             M_MOANER_spankActive = true;
             M_MOANER_talkActive = true;
+            M_MOANER_tickleActive = true;
             M_MOANER_vibratorActive = true;
             M_MOANER_xvibratorActive = true;
             M_MOANER_cum = false;
@@ -164,6 +168,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_scriptOn = datas.script;
             M_MOANER_spankActive = datas.spankMoan;
             M_MOANER_talkActive = datas.talkMoan;
+            M_MOANER_tickleActive = datas.tickleMoan;
             M_MOANER_vibratorActive = datas.vibeMoan;
             M_MOANER_xvibratorActive = datas.xvibeMoan;
             M_MOANER_cum = datas.cum;
@@ -207,6 +212,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "script": M_MOANER_scriptOn,
             "spankMoan": M_MOANER_spankActive,
             "talkMoan": M_MOANER_talkActive,
+            "tickleMoan": M_MOANER_tickleActive,
             "vibeMoan": M_MOANER_vibratorActive,
             "xvibeMoan": M_MOANER_xvibratorActive,
             "cum": M_MOANER_cum,
@@ -1362,7 +1368,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //////////////////////////////////////////////////////////
 
     //ChatRoom
-
     function M_MOANER_isSimpleChat(msg) {
         return msg.trim().length > 0 &&
             !msg.startsWith("/") &&
@@ -1382,14 +1387,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         showM_MOANER_scriptStatus();
     }
 
-    //Verbose mode control
-    function verboseControl(commande) {
-        if (M_MOANERverboseActive == false) {
-            M_MOANER_verboseActive = true;
+    function profilesList() {
+        let liste = M_MOANER_getKeys(M_MOANER_moansProfiles);
+        let msg = M_MOANER_profileListM_MOANER_intro + liste;
+        M_MOANER_sendMessageToWearer(msg);
+    }
+   
+    //Orgasm moans control
+    function orgasmControl(commande) {
+        if (M_MOANER_orgasmActive == false) {
+            M_MOANER_orgasmActive = true;
         } else {
-            M_MOANERverboseActive = false;
+            M_MOANER_orgasmActive = false;
         }
-        showM_MOANER_verboseStatus();
+        showM_MOANER_orgasmStatus();
+    }
+
+    //Spanking moans control
+    function spankControl(commande) {
+        if (M_MOANER_spankActive == false) {
+            M_MOANER_spankActive = true;
+        } else {
+            M_MOANER_spankActive = false;
+        }
+        showM_MOANER_spankStatus();
     }
 
     //Talking moans control
@@ -1402,14 +1423,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         showM_MOANER_talkStatus();
     }
 
-    //Orgasm moans control
-    function orgasmControl(commande) {
-        if (M_MOANER_orgasmActive == false) {
-            M_MOANER_orgasmActive = true;
+    //Tickling moans control
+    function tickleControl(commande) {
+        if (M_MOANER_tickleActive == false) {
+            M_MOANER_tickleActive = true;
         } else {
-            M_MOANER_orgasmActive = false;
+            M_MOANER_tickleActive = false;
         }
-        showM_MOANER_orgasmStatus();
+        showM_MOANER_tickleStatus();
+    }
+
+    //Verbose mode control
+    function verboseControl(commande) {
+        if (M_MOANERverboseActive == false) {
+            M_MOANER_verboseActive = true;
+        } else {
+            M_MOANERverboseActive = false;
+        }
+        showM_MOANER_verboseStatus();
     }
 
     //Player vibes moans control
@@ -1436,22 +1467,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         showM_MOANER_xvibratorStatus();
     }
 
-    //Spanking moans control
-    function spankControl(commande) {
-        if (M_MOANER_spankActive == false) {
-            M_MOANER_spankActive = true;
-        } else {
-            M_MOANER_spankActive = false;
-        }
-        showM_MOANER_spankStatus();
-    }
-
-    function profilesList() {
-        let liste = M_MOANER_getKeys(M_MOANER_moansProfiles);
-        let msg = M_MOANER_profileListM_MOANER_intro + liste;
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     //Status
     function showStatus() {
         showM_MOANER_scriptStatus();
@@ -1459,9 +1474,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         showM_MOANER_orgasmStatus();
         showM_MOANER_spankStatus();
         showM_MOANER_talkStatus();
+        showM_MOANER_tickleStatus();
         showM_MOANER_verboseStatus();
         showM_MOANER_vibratorStatus();
         showM_MOANER_xvibratorStatus();
+    }
+    
+    function showM_MOANER_scriptStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (M_MOANER_scriptOn) {
+            msg = M_MOANER_scriptStatus[0];
+        } else {
+            msg = M_MOANER_scriptStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
     }
 
     function showM_MOANER_profileStatus() {
@@ -1477,28 +1506,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showM_MOANER_verboseStatus() {
+    function showM_MOANER_orgasmStatus() {
         if (!M_MOANER_verboseActive) {
             return;
         }
         let msg;
-        if (M_MOANER_scriptOn) {
-            msg = M_MOANER_verboseStatus[0];
+        if (M_MOANER_orgasmActive) {
+            msg = M_MOANER_orgasmStatus[0];
         } else {
-            msg = M_MOANER_verboseStatus[1];
+            msg = M_MOANER_orgasmStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showM_MOANER_scriptStatus() {
+    function showM_MOANER_spankStatus() {
         if (!M_MOANER_verboseActive) {
             return;
         }
         let msg;
-        if (M_MOANER_scriptOn) {
-            msg = M_MOANER_scriptStatus[0];
+        if (M_MOANER_spankActive) {
+            msg = M_MOANER_spankStatus[0];
         } else {
-            msg = M_MOANER_scriptStatus[1];
+            msg = M_MOANER_spankStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -1516,15 +1545,32 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showM_MOANER_orgasmStatus() {
+    function showM_MOANER_tickleStatus() {
+        if (M_MOANER_tickleActive == null  || M_MOANER_tickleActive == undefined) {
+            M_MOANER_tickleActive = true;
+            M_MOANER_saveControls();
+        }
         if (!M_MOANER_verboseActive) {
             return;
         }
         let msg;
-        if (M_MOANER_orgasmActive) {
-            msg = M_MOANER_orgasmStatus[0];
+        if (M_MOANER_tickleActive) {
+            msg = M_MOANER_tickleStatus[0];
         } else {
-            msg = M_MOANER_orgasmStatus[1];
+            msg = M_MOANER_tickleStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showM_MOANER_verboseStatus() {
+        if (!M_MOANER_verboseActive) {
+            return;
+        }
+        let msg;
+        if (M_MOANER_scriptOn) {
+            msg = M_MOANER_verboseStatus[0];
+        } else {
+            msg = M_MOANER_verboseStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -1559,21 +1605,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showM_MOANER_spankStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
-        let msg;
-        if (M_MOANER_spankActive) {
-            msg = M_MOANER_spankStatus[0];
-        } else {
-            msg = M_MOANER_spankStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     //MoanerUtils
-
     function M_MOANER_logDebug(msg) {}
 
     function startDebug() {
@@ -1631,7 +1663,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //MoanerManagement
-
     /*const baseM_MOANER_factor4Moans=["n... Nyah\u2665","Oooh","mmmmmh!","NYyaaA\u2665"];
     const baseM_MOANER_factor3Moans=["mm","aaaah","nyAh\u2665"];
     const baseM_MOANER_factor2Moans=["nyah\u2665","Aah!","mh","oh!\u2665","mh\u2665"];
@@ -1647,7 +1678,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "light": ["nyah\u2665", "Aah!", "mh", "oh!\u2665", "mh\u2665"],
         "low": ["mh", "\u2665oh\u2665", "ah", "...\u2665"],
         "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmmh... MMmh... Hhhmmmm...", "Oooooh... Mmmmh... OooOOOOh!", "Mmmhnn... Nyhmm... Nyah!"],
-        "pain": ["Aie!", "Aoouch!", "Aaaaie!", "Ouch", "Aow"]
+        "pain": ["Aie!", "Aoouch!", "Aaaaie!", "Ouch", "Aow"],
+        "tickle": ["Hahaha!", "Mmmmhahaha!", "Muhahah...", "Ha!Ha!"]
     }
 
     M_MOANER_customMoans = {
@@ -1656,7 +1688,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "light": [],
         "low": [],
         "orgasm": [],
-        "pain": []
+        "pain": [],
+        "tickle": []
     }
 
     var M_MOANER_moansProfiles = [];
@@ -1698,6 +1731,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (pleasure.pain == undefined || pleasure.pain.length == 0) {
             pleasure.pain = M_MOANER_defaultMoans.pain;
         }
+        if (pleasure.tickle == undefined || pleasure.tickle.length == 0) {
+            pleasure.tickle = M_MOANER_defaultMoans.tickle;
+        }
         M_MOANER_moansProfiles[name] = pleasure;
     }
 
@@ -1713,7 +1749,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     M_MOANER_addMoansProfile("default", M_MOANER_defaultMoans);
 
     //MoanerReactions
-
     var M_MOANER_orgasmMoans = [];
     var M_MOANER_factor4Moans = [];
     var M_MOANER_factor3Moans = [];
@@ -1905,6 +1940,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                      M_MOANER_reactionSpankWithoutChat(data);
                  }
              }
+             if ((data.Content.includes("Tickle")) {
+                  if (M_MOANER_isSimpleChat(msg)) {
+                     M_MOANER_reactionTickleWithChat(data);
+                 } else {
+                     M_MOANER_reactionTickleWithoutChat(data);
+                 }
+             } 
              if ((data.Content == "ChatOther-ItemEars-Caress") ||
                  (data.Content == "ChatOther-ItemEars-Kiss") ||
                  (data.Content == "ChatOther-ItemEars-Lick") ||
@@ -1957,7 +1999,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ChatRoomSendChat();
         }
     }
-
+        
     function M_MOANER_reactionSpankWithoutChat(data) {
         if (M_MOANER_spankActive && M_MOANER_scriptOn) {
             //get the moan type to apply
@@ -1996,12 +2038,49 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
     }
 
-    function M_MOANER_reactionVibeWithoutChat(data) {
-        if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes) {
+    function M_MOANER_reactionTickleWithChat(data) {
+        if (M_MOANER_tickleActive && M_MOANER_scriptOn) {
             //get the moan type to apply
             //data to generate the moans
             var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
-            var moan = getMoan(Factor, true, Math.random() * 300);
+            var moan = getTickleMoan(Factor, Math.random() * 300);
+            var msg = ElementValue("InputChat");
+            if (msg != "") {
+                moan = msg + "... " + moan;
+            }
+            ElementValue("InputChat", moan);
+            if (this.BabyTalkOn == true) {
+                var moan2 = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, moan);
+            } else if (this.GagTalkOn == true) {
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);
+            } else {
+                var moan2 = moan;
+            }
+            ElementValue("InputChat", moan.replace(moan, moan2));
+            if (this.Stutter1On == true) {
+                var moan3 = StutterTalk1(moan2);
+            } else if (this.Stutter2On == true) {
+                var moan3 = StutterTalk2(moan2);
+            } else if (this.Stutter3On == true) {
+                var moan3 = StutterTalk3(moan2);
+            } else if (this.Stutter4On == true) {
+                var moan3 = StutterTalk4(moan2);
+            } else {
+                var moan3 = moan2;
+            }
+            ElementValue("InputChat", moan2.replace(moan2, moan3));
+            ChatRoomSendChat();
+        }
+    }
+
+    function M_MOANER_reactionTickleWithoutChat(data) {
+        if (M_MOANER_tickleActive && M_MOANER_scriptOn) {
+            //get the moan type to apply
+            //data to generate the moans
+            var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
+            var moan = getTickleMoan(Factor, Math.random() * 300);
             var msg = ElementValue("InputChat");
             let backtarget = ChatRoomTargetMemberNumber;
             ChatRoomTargetMemberNumber = null;
@@ -2068,6 +2147,44 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             ElementValue("InputChat", moan2.replace(moan2, moan3));
             ChatRoomSendChat();
+        }
+    }
+
+    function M_MOANER_reactionVibeWithoutChat(data) {
+        if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes) {
+            //get the moan type to apply
+            //data to generate the moans
+            var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
+            var moan = getMoan(Factor, true, Math.random() * 300);
+            var msg = ElementValue("InputChat");
+            let backtarget = ChatRoomTargetMemberNumber;
+            ChatRoomTargetMemberNumber = null;
+            ElementValue("InputChat", moan);
+            if (this.BabyTalkOn == true) {
+                var moan2 = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, moan);
+            } else if (this.GagTalkOn == true) {
+                var moan2 = SpeechGarbleByGagLevel(gl, moan);
+            } else {
+                var moan2 = moan;
+            }
+            ElementValue("InputChat", moan.replace(moan, moan2));
+            if (this.Stutter1On == true) {
+                var moan3 = StutterTalk1(moan2);
+            } else if (this.Stutter2On == true) {
+                var moan3 = StutterTalk2(moan2);
+            } else if (this.Stutter3On == true) {
+                var moan3 = StutterTalk3(moan2);
+            } else if (this.Stutter4On == true) {
+                var moan3 = StutterTalk4(moan2);
+            } else {
+                var moan3 = moan2;
+            }
+            ElementValue("InputChat", moan2.replace(moan2, moan3));
+            ChatRoomSendChat();
+            ElementValue("InputChat", msg);
+            ChatRoomTargetMemberNumber = backtarget;
         }
     }
 
@@ -2189,6 +2306,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return gemissement;
     }
 
+    function getTickleMoan(Factor, seed) {
+        let gemissement;
+        //according level of tickling fetichism
+        let activity = getActivityTaste("Tickle");
+        if (activity == undefined) return "";
+        let activityTaste = activity.Self;
+        let seuilDouleur = Math.min(10, (4 - activityTaste) * 25);
+        let seuilPlaisir = seuilDouleur + 40
+        let douleur = Player.ArousalSettings.Progress <= seuilDouleur;
+        let plaisir = Player.ArousalSettings.Progress > seuilPlaisir;
+        if (douleur) {
+            gemissement = getTickleMoan();
+        } else if (plaisir) {
+            gemissement = "\u2665" + getMoan(Factor, true, 300) + "\u2665";
+        } else {
+            gemissement = getTickleMoan() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
+        }
+        return gemissement;
+    }
+
     function getZoneTaste(data) {
         let zone;
         let taste;
@@ -2234,6 +2371,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return basePainMoans[index];
     }
 
+    function getTickleMoanBACK() {
+        let index = Math.floor(Math.random() * baseTickleMoans.length);
+        return baseTickleMoans[index];
+    }
+
     function resetMoans(seed) {
         //M_MOANER_logDebug("resetMoans IN");
         moanProfile = M_MOANER_getMoans(profileName);
@@ -2248,6 +2390,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         moanProfile = M_MOANER_getMoans(profileName);
         let index = Math.floor(Math.random() * moanProfile.pain.length);
         return moanProfile.pain[index];
+    }
+
+    function getTickleMoan() {
+        moanProfile = M_MOANER_getMoans(profileName);
+        let index = Math.floor(Math.random() * moanProfile.tickle.length);
+        return moanProfile.tickle[index];
     }
 
     function getOrgasmMoan() {
@@ -2357,7 +2505,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "light": ["Ouaff\u2665", "Aouh!", "Oua\u2665af", "Ky\u016bn\u2665"],
         "low": ["wou..", "ouah\u2665", "Wouf\u2665", "\u2665ky\u016bn\u2665", "ky\u016b\u2665"],
         "orgasm": ["ouaf\u2665 O... Ouuw... Ouaaaa!!", "Mmmhnn... aaaa... Ouuuaaaaaf!!", "mmmh... Aouuuh.... Aouhhhh!"],
-        "pain": ["Ka\u00ef!", "Aoouch!", "Kaaa\u00ef!", "Ouch", "Aow"]
+        "pain": ["Ka\u00ef!", "Aoouch!", "Kaaa\u00ef!", "Ouch", "Aow"],
+        "tickle": []
     }
     M_MOANER_addMoansProfile("dog", M_MOANER_dogMoans);
 
@@ -2370,7 +2519,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif"],
         "low": ["wif", "Wy\u2665", "if\u2665", "\u2665yi\u2665", "Yi\u2665"],
         "orgasm": ["Wiff\u2665 W... Wiii... WIIF!!", "Mmmhnn... Wiiif... Yiiiif!!", "mmmh... Aouuuh.... Aouhhhh!"],
-        "pain": []
+        "pain": [],
+        "tickle": []
     }
     M_MOANER_addMoansProfile("fox", M_MOANER_foxMoans);
 
@@ -2382,7 +2532,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "light": ["Scouii\u2665", "Coui!", "kouu\u2665ic", "Couic \u2665"],
         "low": ["coui..", "scoui\u2665", "cou\u2665i", "Couic ", "koui\u2665"],
         "orgasm": ["Couic\u2665 sc.. couIIIiic!!", "Mmmhnn... ooo... ouiiiic!!", "mmmh... Scouuu.... Scouiiic!"],
-        "pain": []
+        "pain": [],
+        "tickle": []
     }
     M_MOANER_addMoansProfile("mouse", M_MOANER_mouseMoans);
 
@@ -2393,7 +2544,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "light": ["nyah\u2665", "Yah!", "myuh", "mh\u2665"],
         "low": ["myu", "ny\u2665", "mh", "\u2665yh\u2665", "ny\u2665"],
         "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmhnn... Nyhmm... Nyah!", "mmmh... mmmeeeee.... meeeoooow!"],
-        "pain": []
+        "pain": [],
+        "tickle": []
     }
     M_MOANER_addMoansProfile("neko", M_MOANER_nekoMoans);
 
@@ -2404,7 +2556,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "light": ["Grui\u2665", "Gruik!", "gruuiii\u2665ic", "gruik \u2665"],
         "low": ["grui.. gruiik\u2665", "gruiik\u2665", "gru\u2665i", "Gruik ", "Groi\u2665"],
         "orgasm": ["Gru\u2665 gr.. gruiIIIiick!!", "Mmmhnn... uii... gruiiik!!", "mmmh... Gruiik.... Gruiiiiik!"],
-        "pain": ["Gruuik!!", "Aoouch!", "Awo... gruik!", "Ouch", "Gruiiik"]
+        "pain": ["Gruuik!!", "Aoouch!", "Awo... gruik!", "Ouch", "Gruiiik"],
+        "tickle": []
     }
     M_MOANER_addMoansProfile("pig", M_MOANER_pigMoans);
 
@@ -2415,7 +2568,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif", "waou"],
         "low": ["wif", "Wy\u2665", "if\u2665", "\u2665yi\u2665", "Yi\u2665", "aou"],
         "orgasm": ["WAAAAOUUUUUUUHHHHH!", "Mmmhnn... Wiiif... Yiiiif!!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!", "WAAAAOUUUUUUUHHHHH!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!"],
-        "pain": []
+        "pain": [],
+        "tickle": []        
     }
     M_MOANER_addMoansProfile("wildfox", M_MOANER_wildfoxMoans);
 
@@ -6776,6 +6930,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/moaner orgasm</b> = toggles moans when you cum\n" +
                     "<b>/moaner spank</b> = toggles moans when you are spanked\n" +
                     "<b>/moaner talk</b> = toggles moans when talking if vibed\n" +
+                    "<b>/moaner tickle</b> = toggles moans when you are tickled\n" +
                     "<b>/moaner vibe</b> = toggles moans when your vibes settings change\n" +
                     "<b>/moaner xvibe</b> = toggles moans when vibes settings of other players change</p>"
                 );
@@ -6807,6 +6962,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else if (feature == "talk") {
                         talkControl(commande);
                         M_MOANER_saveControls();
+                    } else if (feature == "tickle") {
+                        tickleControl(commande);
+                        M_MOANER_saveControls();   
                     } else if (feature == "verbose") {
                         verboseControl(commande);
                         M_MOANER_saveControls();
