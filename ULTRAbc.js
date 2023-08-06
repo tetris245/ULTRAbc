@@ -282,6 +282,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
+                if (M_MOANER_tickleActive == null  || M_MOANER_tickleActive == undefined) {
+                    M_MOANER_tickleActive = true;
+                    M_MOANER_saveControls();
+                }
+                if (M_MOANER_xvibratorActive == null  || M_MOANER_xvibratorActive == undefined) {
+                    M_MOANER_xvibratorActive = true;
+                    M_MOANER_saveControls();
+                }
             } catch (err) {
                 console.log(err);
             }
@@ -1546,10 +1554,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function showM_MOANER_tickleStatus() {
-        if (M_MOANER_tickleActive == null  || M_MOANER_tickleActive == undefined) {
-            M_MOANER_tickleActive = true;
-            M_MOANER_saveControls();
-        }
         if (!M_MOANER_verboseActive) {
             return;
         }
@@ -1589,10 +1593,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
     
     function showM_MOANER_xvibratorStatus() {
-        if (M_MOANER_xvibratorActive == null  || M_MOANER_xvibratorActive == undefined) {
-            M_MOANER_xvibratorActive = true;
-            M_MOANER_saveControls();
-        }
         if (!M_MOANER_verboseActive) {
             return;
         }     
@@ -1940,7 +1940,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                      M_MOANER_reactionSpankWithoutChat(data);
                  }
              }
-             if ((data.Content.includes("Tickle")) {
+             if (data.Content.includes("Tickle")) {
                   if (M_MOANER_isSimpleChat(msg)) {
                      M_MOANER_reactionTickleWithChat(data);
                  } else {
