@@ -60,7 +60,7 @@ Changes for future version
 * Extended the magiccheat command to Bondage Brawl
 * Changes in the Moaner:
   - Improved the vibe feature and extended it to similar activities (finger, fist, masturbate) and activities on ears (caress, kiss, lick, nibble)
-  - Restored the spank feature and extended it to all body zones, similar activities (bite, kick, pinch, shock, slap) and actions that trigger shocks
+  - Restored the spank feature and extended it to all body zones, similar activities (bite, kick, pinch, shock, slap) and some actions that trigger shocks (to punish orgasm, standup or s!ruggle)
   - Converted the orgasm, spank, talk, verbose and vibe options into toggles (no more need to add on or off - if you disable the vibe feature, it will also disable the new xvibe feature)
   - Added the tickle option
   - Added the xvibe option, related to changes in vibrator's settings of other players (if you activate it, it will also activate the vibe feature)
