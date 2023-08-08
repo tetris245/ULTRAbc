@@ -10214,8 +10214,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "- Many changes in the Moaner: new options (tickle, xvibe related to changes in vibe's settings of other players),\n" +
                     "- most options become toggles (no more need to add on or off),\n" +
                     "- vibe feature extended to similar activities (finger, fist, masturbate) and activities on ears (caress, kiss, lick, nibble),\n" +
-                    "- spank feature is back and extended to all body zones, similar activities (bite, kick, pinch, shock, slap)\n" +
-                    "- and some actions that trigger shocks (to punish orgasm, standup or struggle).</p>"
+                    "- spank feature is back and extended to all body zones, similar activities (bite, kick, pinch, shock, slap) and some\n" +
+                    "actions that trigger shocks (to punish orgasm, standup or struggle).</p>"
                 );
             }
             if (args === "settings") {
