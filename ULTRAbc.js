@@ -3268,6 +3268,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else {
                 var tmpname = Player.Nickname;
             }
+            if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
+                var tmpr1 = "He";
+                var tmpr2 = "him";
+                var tmpr3 = "his";
+                var tmpr4 = "he";
+            } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
+                var tmpr1 = "She";
+                var tmpr2 = "her";
+                var tmpr3 = "her";
+                var tmpr4 = "she";
+            } else {
+                var tmpr1 = "They";
+                var tmpr2 = "them";
+                var tmpr3 = "their";
+                var tmpr4 = "they";
+            }
             if (Player.OnlineSettings.LSCG != null) {
                 if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
                     Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel = 0;
@@ -3286,12 +3302,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         InventoryRemove(Player, "ItemMouth3");                                                             
                     }
                 }
+                ServerAccountUpdate.QueueData(
+                    {OnlineSettings: Player.OnlineSettings}
+                );
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "" + tmpname + " uses her magical powers and succeeds to neutralize the effects of the drugs." 
+                        Text: "" + tmpname + " uses " + tmpr3 + " magical powers and succeds to neutralize the effects of the drugs." 
                     }]
                 });  
                 CharacterSetFacialExpression(Player, "Eyes", "Open");
@@ -3336,16 +3355,35 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else {
                 var tmpname = Player.Nickname;
             }
+            if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
+                var tmpr1 = "He";
+                var tmpr2 = "him";
+                var tmpr3 = "his";
+                var tmpr4 = "he";
+            } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
+                var tmpr1 = "She";
+                var tmpr2 = "her";
+                var tmpr3 = "her";
+                var tmpr4 = "she";
+            } else {
+                var tmpr1 = "They";
+                var tmpr2 = "them";
+                var tmpr3 = "their";
+                var tmpr4 = "they";
+            }
             if (Player.OnlineSettings.LSCG != null) {
                 if (Player.OnlineSettings.LSCG.HypnoModule.enabled == true) {
                     if (Player.OnlineSettings.LSCG.HypnoModule.hypnotized == true) {
                         Player.OnlineSettings.LSCG.HypnoModule.hypnotized = false;
+                        ServerAccountUpdate.QueueData(
+                            {OnlineSettings: Player.OnlineSettings}
+                        );
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " boops her nose and succeds to neutralize the effects of the hypnosis."
+                                Text: "" + tmpname + " boops " + tmpr3 + " nose and succeds to neutralize the effects of the hypnosis."
                             }]
                        });  
                        CharacterSetFacialExpression(Player, "Eyes", "Open");
