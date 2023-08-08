@@ -3310,7 +3310,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "" + tmpname + " uses " + tmpr3 + " magical powers and succeds to neutralize the effects of the drugs." 
+                        Text: "" + tmpname + " uses " + tmpr3 + " magical powers and succeeds to neutralize the effects of the drugs." 
                     }]
                 });  
                 CharacterSetFacialExpression(Player, "Eyes", "Open");
@@ -3383,7 +3383,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " boops " + tmpr3 + " nose and succeds to neutralize the effects of the hypnosis."
+                                Text: "" + tmpname + " boops " + tmpr3 + " nose and succeeds to neutralize the effects of the hypnosis."
                             }]
                        });  
                        CharacterSetFacialExpression(Player, "Eyes", "Open");
