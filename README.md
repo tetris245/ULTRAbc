@@ -58,7 +58,6 @@ All else I might not have included.
 Changes for future version
 
 * New command: antidote to neutralize effects of LSCG drugs (it will also remove the latex respirator if you wear it on your mouth)
-* New command: autoboop to neutralize effects of LSCG hypnosis
 * Extended the magiccheat command to Bondage Brawl
 * Changes in the Moaner:
   - Improved the vibe feature and extended it to similar activities (finger, fist, masturbate) and activities on ears (caress, kiss, lick, nibble)
