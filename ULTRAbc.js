@@ -3291,7 +3291,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "" + tmpname + "succeds to neutralize the effects of the drugs."
+                        Text: "" + tmpname + " uses her magical powers and succeeds to neutralize the effects of the drugs." 
                     }]
                 });  
                 CharacterSetFacialExpression(Player, "Eyes", "Open");
@@ -3324,6 +3324,37 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
                 }
             }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'autoboop',
+        Description: ": neutralizes effects of LSCG hypnosis.",
+        Action: () => {
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
+            if (Player.OnlineSettings.LSCG != null) {
+                if (Player.OnlineSettings.LSCG.HypnoModule.enabled == true) {
+                    if (Player.OnlineSettings.LSCG.HypnoModule.hypnotized == true) {
+                        Player.OnlineSettings.LSCG.HypnoModule.hypnotized = false;
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: "" + tmpname + " boops her nose and succeds to neutralize the effects of the hypnosis."
+                            }]
+                       });  
+                       CharacterSetFacialExpression(Player, "Eyes", "Open");
+                       CharacterSetFacialExpression(Player, "Eyes2", "Open");
+                       CharacterSetFacialExpression(Player, "Emoticon", "Awaken"); 
+                       ChatRoomCharacterUpdate(Player);
+                    }
+                }
+            }  
         }
     }])
 
@@ -10146,6 +10177,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
                     "<b>/antidote</b> = neutralizes effects of LSCG drugs.\n" +
+                    "<b>/autoboop</b> = neutralizes effects of LSCG hypnosis.\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes the settings of worn High Duty Belt. *\n" +
                     "<b>/invisible1</b> = becomes invisible (if anal hook usable).\n" +
