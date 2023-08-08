@@ -3261,7 +3261,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'antidote',
-        Description: ": neutralizes effects of LSCG drugs and removes special respirator.",
+        Description: ": neutralizes effects of LSCG drugs and removes latex respirator.",
         Action: () => {
             if (Player.Nickname == '') {
                 var tmpname = Player.Name;
