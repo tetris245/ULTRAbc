@@ -3313,9 +3313,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         Text: "" + tmpname + " uses " + tmpr3 + " magical powers and succeeds to neutralize the effects of the drugs." 
                     }]
                 });  
-                CharacterSetFacialExpression(Player, "Eyes", "Open");
-                CharacterSetFacialExpression(Player, "Eyes2", "Open");
-                CharacterSetFacialExpression(Player, "Emoticon", "Awaken"); 
+                CharacterSetFacialExpression(Player, "Eyes", null);
+                CharacterSetFacialExpression(Player, "Eyes2", null);
+                CharacterSetFacialExpression(Player, "Emoticon", null); 
                 ChatRoomCharacterUpdate(Player);
             }
         }
@@ -3343,56 +3343,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
                 }
             }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'autoboop',
-        Description: ": neutralizes effects of LSCG hypnosis.",
-        Action: () => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
-            if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
-                var tmpr1 = "He";
-                var tmpr2 = "him";
-                var tmpr3 = "his";
-                var tmpr4 = "he";
-            } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
-                var tmpr1 = "She";
-                var tmpr2 = "her";
-                var tmpr3 = "her";
-                var tmpr4 = "she";
-            } else {
-                var tmpr1 = "They";
-                var tmpr2 = "them";
-                var tmpr3 = "their";
-                var tmpr4 = "they";
-            }
-            if (Player.OnlineSettings.LSCG != null) {
-                if (Player.OnlineSettings.LSCG.HypnoModule.enabled == true) {
-                    if (Player.OnlineSettings.LSCG.HypnoModule.hypnotized == true) {
-                        Player.OnlineSettings.LSCG.HypnoModule.hypnotized = false;
-                        ServerAccountUpdate.QueueData(
-                            {OnlineSettings: Player.OnlineSettings}
-                        );
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " boops " + tmpr3 + " nose and succeeds to neutralize the effects of the hypnosis."
-                            }]
-                       });  
-                       CharacterSetFacialExpression(Player, "Eyes", "Open");
-                       CharacterSetFacialExpression(Player, "Eyes2", "Open");
-                       CharacterSetFacialExpression(Player, "Emoticon", "Awaken"); 
-                       ChatRoomCharacterUpdate(Player);
-                    }
-                }
-            }  
         }
     }])
 
@@ -10215,7 +10165,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
                     "<b>/antidote</b> = neutralizes effects of LSCG drugs.\n" +
-                    "<b>/autoboop</b> = neutralizes effects of LSCG hypnosis.\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes the settings of worn High Duty Belt. *\n" +
                     "<b>/invisible1</b> = becomes invisible (if anal hook usable).\n" +
