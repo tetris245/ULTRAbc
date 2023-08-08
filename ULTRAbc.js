@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 1.9
+// @version 2.0
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return;
     }
 
-    const UBCver = "1.9";
+    const UBCver = "2.0";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -10209,15 +10209,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- New commands: hdvibe, plvibe, sfchaste to change settings of some worn items,\n" +
-                    "- ubc to display UBC version (+ more if welcome message is enabled),\n" +
-                    "- ustatus to display current status of UBC settings.\n" +
-                    "- Changed arousal level for vibe effect from other players in the Moaner.\n" +
-                    "- Allowed Moaner reaction when orgasming to pause effects of LSCG sedative and mind control drugs.\n" +
-                    "- Improved uhelp command by adding settings option and removing features option.\n" +
-                    "- Updated the invisible and npcpunish commands.\n" + 
-                    "- Removed greetings message displayed in first chat room you enter.\n" +
-                    "- Fixed a grammatical issue in customized messages.</p>"
+                    "- New command: antidote to neutralize effects of LSCG drugs and remove the latex respirator.\n" +
+                    "- Extended the magiccheat command to Bondage Brawl.\n" +
+                    "- Many changes in the Moaner: new options (tickle, xvibe related to changes in vibe's settings of other players),\n" +
+                    "- most options become toggles (no more need to add on or off),\n" +
+                    "- vibe feature extended to similar activities (finger, fist, masturbate) and activities on ears (caress, kiss, lick, nibble),\n" +
+                    "- spank feature is back and extended to all body zones, similar activities (bite, kick, pinch, shock, slap)\n" +
+                    "- and some actions that trigger shocks (to punish orgasm, standup or struggle).</p>"
                 );
             }
             if (args === "settings") {
