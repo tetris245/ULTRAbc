@@ -3260,6 +3260,49 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Commands
 
     CommandCombine([{
+        Tag: 'antidote',
+        Description: ": neutralizes effects of LSCG drugs and removes special respirator.",
+        Action: () => {
+            if (Player.Nickname == '') {
+                var tmpname = Player.Name;
+            } else {
+                var tmpname = Player.Nickname;
+            }
+            if (Player.OnlineSettings.LSCG != null) {
+                if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
+                    Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel = 0;
+                    Player.OnlineSettings.LSCG.InjectorModule.asleep = false;
+                }
+                if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == true) {
+                    Player.OnlineSettings.LSCG.InjectorModule.mindControlLevel = 0;
+                    Player.OnlineSettings.LSCG.InjectorModule.brainwashed = false;
+                }
+                if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
+                    Player.OnlineSettings.LSCG.InjectorModule.hornyLevel = 0;
+                    Player.OnlineSettings.LSCG.InjectorModule.hornyLevel = false;
+                }
+                if (InventoryGet(Player, "ItemMouth3") != null) {
+                    if (InventoryGet(Player, "ItemMouth3").Asset.Name == "LatexRespirator") {
+                        InventoryRemove(Player, "ItemMouth3");                                                             
+                    }
+                }
+                ServerSend("ChatRoomChat", {
+                    Content: "Beep",
+                    Type: "Action",
+                    Dictionary: [{
+                        Tag: "Beep",
+                        Text: "" + tmpname + "succeds to neutralize the effects of the drugs."
+                    }]
+                });  
+                CharacterSetFacialExpression(Player, "Eyes", "Open");
+                CharacterSetFacialExpression(Player, "Eyes2", "Open");
+                CharacterSetFacialExpression(Player, "Emoticon", "Awaken"); 
+                ChatRoomCharacterUpdate(Player);
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'asylum',
         Description: "(minutes): enters asylum, bypasses requirements.",
         Action: (args) => {
@@ -3299,7 +3342,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is enabled.</p>"
-                )
+                );
             }
         }
     }])
@@ -10102,6 +10145,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "fun") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
+                    "<b>/antidote</b> = neutralizes effects of LSCG drugs.\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes the settings of worn High Duty Belt. *\n" +
                     "<b>/invisible1</b> = becomes invisible (if anal hook usable).\n" +
@@ -10112,7 +10156,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
                     "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
-                    "<b>/visible</b> = back to visible state after using of an invisible command.</p>"
+                    "<b>/visible</b> = back to visible state if you are invisible.</p>"
                 );
             }
             if (args === "kd") {
@@ -10120,7 +10164,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: How to use the kd command:\n" +
                     "1 - Optionally, use <b>/kd devious</b> to toggle the Devious Challenge and/or <b>/kd debug</b> to enable the Debug Mode\n" +
                     "2 - Use twice <b>/kd</b> without any option to launch the game without cheat\n" +
-                    "3 -  After launching of the game, you can click on the Exit button to go back to the chatroom and use a command with cheat:\n" +
+                    "3 - After launching of the game, you can click on the Exit button to go back to the chatroom and use a command with cheat:\n" +
                     "<b>/kd maxstats</b> to get high stats and many potions\n" +
                     "<b>/kd moreitems</b> to get all extra items\n" +
                     "<b>/kd outfits</b> to get all outfits\n" +
