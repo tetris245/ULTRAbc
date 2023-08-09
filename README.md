@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 1.9
+Most recent version: 2.0
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version1.9.zip file on the Releases page
+1. Download the ULTRAbc-version2.0.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -57,12 +57,5 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: antidote to neutralize effects of LSCG drugs (it will also remove the latex respirator if you wear it on your mouth)
-* Extended the magiccheat command to Bondage Brawl
-* Changes in the Moaner:
-  - Improved the vibe feature and extended it to similar activities (finger, fist, masturbate) and activities on ears (caress, kiss, lick, nibble)
-  - Restored the spank feature and extended it to all body zones, similar activities (bite, kick, pinch, shock, slap) and some actions that trigger shocks (to punish orgasm, standup or struggle)
-  - Converted the orgasm, spank, talk, verbose and vibe options into toggles (no more need to add on or off - if you disable the vibe feature, it will also disable the new xvibe feature)
-  - Added the tickle option
-  - Added the xvibe option, related to changes in vibrator's settings of other players (if you activate it, it will also activate the vibe feature)
+(..)
 
