@@ -35,7 +35,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
 
-    var FBC_VERSION = "";
     var M_MOANER_moanerKey = "bc_moaner_";
     var M_MOANER_scriptOn = true;
     var M_MOANER_cum = false;
@@ -416,13 +415,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             if (KeyPress == 13 && !event.shiftKey) {
-                if ((FBC_VERSION != "") && bceSettingValue("ctrlEnterOoc") && event.ctrlKey) {
-                    var text = ElementValue("InputChat");
-                    var text1 = "(" + ElementValue("InputChat") + ")";
-                    ElementValue("InputChat", text.replace(text, text1));
-                } else {
-                    var text = ElementValue("InputChat");
-                    var text1 = text;
+                var text = ElementValue("InputChat");
+                var text1 = text;
                 }
                 if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
                     var text2 = text1;
