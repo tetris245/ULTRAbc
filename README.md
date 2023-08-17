@@ -57,7 +57,8 @@ All else I might not have included.
 
 Changes for future version
 
-* Added support for OOC mode when message starts with a comma
+* Added alternative support for OOC mode by allowing to start the message with a comma
+* Updated the unrestrict command for R95 compatibility
 * Removed verbose option of the Moaner (was not very useful)
 * Removed Ctrl+Enter support for OOC (was not working)
 
