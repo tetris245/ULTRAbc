@@ -57,6 +57,7 @@ All else I might not have included.
 
 Changes for future version
 
+* Added support for OOC mode when message starts with a comma
 * Removed verbose option of the Moaner (was not very useful)
 * Removed Ctrl+Enter support for OOC (was not working)
 
