@@ -57,5 +57,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Removed non-working Ctrl+Enter support for OOC
+* Removed verbose option of the Moaner (was not very useful)
+* Removed Ctrl+Enter support for OOC (was not working)
 
