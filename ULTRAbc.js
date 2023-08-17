@@ -78,7 +78,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_spankActive = true;
     var M_MOANER_talkActive = true;
     var M_MOANER_tickleActive = true;
-    var M_MOANER_verboseActive = true;
     var M_MOANER_vibratorActive = true;
     var M_MOANER_xvibratorActive = true;
 
@@ -95,8 +94,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "The talk moan is not active. If you're vibed, you will not moan while speaking anymore."];
     var M_MOANER_tickleStatus = ["The tickle moan is active. You will moan while being tickled.",
         "The tickle moan is not active. You will not moan while being tickled."];
-    var M_MOANER_verboseStatus = ["Moaner is verbose.",
-        "Moaner is not verbose."];
     var M_MOANER_vibratorStatus = ["The vibes moan is active. If your vibrator's settings change, you will moan.",
         "The vibes moan is not active. If your vibrator's settings change, you will not moan."];
     var M_MOANER_xvibratorStatus = ["The xvibes moan is active. If vibrator's settings of other players change, you will moan.",
@@ -1435,16 +1432,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         showM_MOANER_tickleStatus();
     }
 
-    //Verbose mode control
-    function verboseControl(commande) {
-        if (M_MOANERverboseActive == false) {
-            M_MOANER_verboseActive = true;
-        } else {
-            M_MOANERverboseActive = false;
-        }
-        showM_MOANER_verboseStatus();
-    }
-
     //Player vibes moans control
     function vibeControl(commande) {
         if (M_MOANER_vibratorActive == false) {
@@ -1477,7 +1464,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         showM_MOANER_spankStatus();
         showM_MOANER_talkStatus();
         showM_MOANER_tickleStatus();
-        showM_MOANER_verboseStatus();
         showM_MOANER_vibratorStatus();
         showM_MOANER_xvibratorStatus();
     }
@@ -1556,19 +1542,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = M_MOANER_tickleStatus[0];
         } else {
             msg = M_MOANER_tickleStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
-    function showM_MOANER_verboseStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
-        let msg;
-        if (M_MOANER_scriptOn) {
-            msg = M_MOANER_verboseStatus[0];
-        } else {
-            msg = M_MOANER_verboseStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -6984,7 +6957,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/moaner off</b> = stops the moaner\n" +
                     "<b>/moaner profile</b> (profilename) =  selects a moaner profile. Without profilename, access to moaner profile help\n" +
                     "<b>/moaner status</b> = displays current moaner status\n" +
-                    "<b>/moaner verbose</b> = toggles verbose mode\n" +
                     " \n" +
                     "You can also enable/disable parts of the Moaner with:\n" +
                     "<b>/moaner orgasm</b> = toggles moans when you cum\n" +
@@ -7025,9 +6997,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else if (feature == "tickle") {
                         tickleControl(commande);
                         M_MOANER_saveControls();   
-                    } else if (feature == "verbose") {
-                        verboseControl(commande);
-                        M_MOANER_saveControls();
                     } else if (feature == "vibe") {
                         vibeControl(commande);
                         M_MOANER_saveControls();
