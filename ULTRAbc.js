@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 2.0
+// @version 2.0.1
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return;
     }
 
-    const UBCver = "2.0";
+    const UBCver = "2.0.1";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -10152,13 +10152,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- New command: antidote to neutralize effects of LSCG drugs and remove the latex respirator.\n" +
-                    "- Extended the magiccheat command to Bondage Brawl.\n" +
-                    "- Many changes in the Moaner: new options (tickle, xvibe related to changes in vibe's settings of other players),\n" +
-                    "- most options become toggles (no more need to add on or off),\n" +
-                    "- vibe feature extended to similar activities (finger, fist, masturbate) and activities on ears (caress, kiss, lick, nibble),\n" +
-                    "- spank feature is back and extended to all body zones, similar activities (bite, kick, pinch, shock, slap) and some\n" +
-                    "actions that trigger shocks (to punish orgasm, standup or struggle).</p>"
+                    "- Added alternative support for OOC mode by allowing to start the message with a comma.\n" +
+                    "- Updated the unrestrict command for R95 compatibility.\n" +
+                    "- Removed verbose option of the Moaner.\n" +
+                    "- Removed Ctrl+Enter support for OOC.</p>"
                 );
             }
             if (args === "settings") {
