@@ -413,7 +413,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             if (KeyPress == 13 && !event.shiftKey) {
                 var text = ElementValue("InputChat");
-                var text1 = text;
+                if (text.startsWith(",")) {
+                    var text1 = "(" + text.slice(1) + ")";
+                    ElementValue("InputChat", text.replace(text, text1));
+                } else {
+                    var text1 = text;
+                }
                 if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
                     var text2 = text1;
                     var tsp = 1;
