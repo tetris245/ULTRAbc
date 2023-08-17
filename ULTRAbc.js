@@ -1468,9 +1468,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
     
     function showM_MOANER_scriptStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
         let msg;
         if (M_MOANER_scriptOn) {
             msg = M_MOANER_scriptStatus[0];
@@ -1481,9 +1478,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function showM_MOANER_profileStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
         let msg;
         if (profileName == "default") {
             msg = M_MOANER_profileStatus[0];
@@ -1494,9 +1488,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function showM_MOANER_orgasmStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
         let msg;
         if (M_MOANER_orgasmActive) {
             msg = M_MOANER_orgasmStatus[0];
@@ -1507,9 +1498,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function showM_MOANER_spankStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
         let msg;
         if (M_MOANER_spankActive) {
             msg = M_MOANER_spankStatus[0];
@@ -1520,9 +1508,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function showM_MOANER_talkStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
         let msg;
         if (M_MOANER_talkActive) {
             msg = M_MOANER_talkStatus[0];
@@ -1533,9 +1518,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function showM_MOANER_tickleStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
         let msg;
         if (M_MOANER_tickleActive) {
             msg = M_MOANER_tickleStatus[0];
@@ -1546,9 +1528,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function showM_MOANER_vibratorStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }
         let msg;
         if (M_MOANER_vibratorActive) {
             msg = M_MOANER_vibratorStatus[0];
@@ -1558,10 +1537,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
     
-    function showM_MOANER_xvibratorStatus() {
-        if (!M_MOANER_verboseActive) {
-            return;
-        }     
+    function showM_MOANER_xvibratorStatus() {    
         let msg;
         if (M_MOANER_xvibratorActive) {
             msg = M_MOANER_xvibratorStatus[0];
