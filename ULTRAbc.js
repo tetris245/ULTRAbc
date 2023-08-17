@@ -10475,7 +10475,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else if (Prerequisit == 'HasPenis') {
                         return !InventoryIsItemInList(C, "Pussy", ["Penis"]) ? "MustHavePenis" : "";
                     } else if (Prerequisit == 'HasVagina') {
-                        return !InventoryIsItemInList(C, "Pussy", ["PussyLight1", "PussyLight2", "PussyLight3", "PussyDark1", "PussyDark2", "PussyDark3"]) ? "MustHaveVagina" : "";
+                        return !InventoryIsItemInList(C, "Pussy", ["Pussy1", "Pussy2", "Pussy3"]) ? "MustHaveVagina" : "";
                     } else {
                         return "";
                     }
@@ -10520,7 +10520,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else if (Prerequisit == 'HasPenis') {
                         return !InventoryIsItemInList(C, "Pussy", ["Penis"]) ? "MustHavePenis" : "";
                     } else if (Prerequisit == 'HasVagina') {
-                        return !InventoryIsItemInList(C, "Pussy", ["PussyLight1", "PussyLight2", "PussyLight3", "PussyDark1", "PussyDark2", "PussyDark3"]) ? "MustHaveVagina" : "";
+                        return !InventoryIsItemInList(C, "Pussy", ["Pussy1", "Pussy2", "Pussy3"]) ? "MustHaveVagina" : "";
                     } else {
                         return "";
                     }
