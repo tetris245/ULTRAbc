@@ -414,7 +414,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (KeyPress == 13 && !event.shiftKey) {
                 var text = ElementValue("InputChat");
                 var text1 = text;
-                }
                 if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
                     var text2 = text1;
                     var tsp = 1;
