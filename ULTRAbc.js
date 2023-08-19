@@ -3243,7 +3243,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var tmpr2 = "him";
                 var tmpr3 = "his";
                 var tmpr4 = "he";
-            } else if (InventoryGet(Player, "Pronouns").Aset.Name == "SheHer") {
+            } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
                 var tmpr1 = "She";
                 var tmpr2 = "her";
                 var tmpr3 = "her";
