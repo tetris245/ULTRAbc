@@ -34,6 +34,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
+    let tmpname;
 
     var M_MOANER_moanerKey = "bc_moaner_";
     var M_MOANER_scriptOn = true;
@@ -128,6 +129,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_xvibratorActive = true;
             M_MOANER_cum = false;
             profileName = "default";
+            tmpname = "";
             AutojoinOn = false
             FullseedOn = false;
             MagiccheatOn = false;
@@ -169,6 +171,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_xvibratorActive = datas.xvibeMoan;
             M_MOANER_cum = datas.cum;
             profileName = datas.moanProfile;
+            tmpname = datas.tmpname;
             AutojoinOn = datas.autojoin;
             FullseedOn = datas.fullseed;
             MagiccheatOn = datas.magiccheat;
@@ -213,6 +216,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "xvibeMoan": M_MOANER_xvibratorActive,
             "cum": M_MOANER_cum,
             "moanProfile": profileName,
+            "tmpname": tmpname,
             "autojoin": AutojoinOn,
             "fullseed": FullseedOn,
             "magiccheat": MagiccheatOn,
@@ -319,6 +323,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
     ULTRAStruggleLockPickDraw();
+    ULTRATitleExit();
 
     //Bondage Brawl
     async function ULTRAPlatformAttack() {
@@ -343,15 +348,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
-    //Chat Room
+    //Chat Room (+ name/nickname management)
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (SosbuttonsOn == true) {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
                     if (Totalrelease == undefined) {
                         var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
@@ -519,6 +519,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
+            if (tmpname == "") {
+                if (Player.Nickname == '') {
+                    tmpname = Player.Name;
+                } else {
+                    tmpname = Player.Nickname;
+                }  
+                M_MOANER_saveControls();
+            } else {
+                if (Player.Nickname != '') {
+                    if (tmpname != Player.Nickname) {
+                        tmpname = Player.Nickname; 
+                        M_MOANER_saveControls();
+                    }
+                } else {
+                     if (tmpname != Player.Name) {
+                        tmpname = Player.Name; 
+                        M_MOANER_saveControls();
+                    }
+                }  
+            }
             if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
                 if (SlowleaveOn == true) {
@@ -527,6 +547,34 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
                 }
             }
+            next(args);
+        });
+    }
+
+    async function ULTRATitleExit() {
+        modApi.hookFunction('TitleExit', 4, (args, next) => {
+            let Nick = ElementValue("InputNickname");
+            if (Nick == null) {
+                Nick = "";
+                if ((tmpname == "") || (tmpname != Nick)) {
+                    tmpname = Player.Name;
+                    M_MOANER_saveControls();
+                }
+            } else {
+                if ((tmpname == "") || (tmpname != Nick)) {                 
+                    tmpname = Nick;  
+                    M_MOANER_saveControls();
+                } 
+            }
+	        const status = CharacterSetNickname(Player, Nick);
+	        if (status) {
+		        TitleNicknameStatus = status;
+                return;
+	        }      
+            TitleSet(TitleSelectedTitle);
+	        ElementRemove("InputNickname");
+	        CommonSetScreen("Character", "InformationSheet");
+            return;
             next(args);
         });
     }
@@ -2726,11 +2774,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     } = {}) {
 
         // Greating message
-        if (Player.Nickname == '') {
-            var tmpname = Player.Name;
-        } else {
-            var tmpname = Player.Nickname;
-        }
         ServerSend("ChatRoomChat", {
             Type: "Action",
             Content: "gag",
@@ -2806,11 +2849,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         inWetLevelChastity = diaperDefaultValues.wetLevelOuter,
         inMessLevelChastity = diaperDefaultValues.messLevelOuter,
     } = {}) {
-        if (Player.Nickname == '') {
-            var tmpname = Player.Name;
-        } else {
-            var tmpname = Player.Nickname;
-        }
         if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
             var tmpr1 = "He";
             var tmpr2 = "him";
@@ -2998,11 +3036,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             // Go to main logic
             diaperTick();
         } else {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             diaperRunning = false;
             ServerSend("ChatRoomChat", {
                 Type: "Action",
@@ -3019,11 +3052,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     // If the baby uses their diaper, it will make the front of their diaper look like it's been used
     function diaperTick() {
         // Handle modifiers 
-        if (Player.Nickname == '') {
-            var tmpname = Player.Name;
-        } else {
-            var tmpname = Player.Nickname;
-        }
         if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
             var tmpr1 = "He";
             var tmpr2 = "him";
@@ -3210,17 +3238,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'antidote',
         Description: ": neutralizes effects of LSCG drugs and removes latex respirator.",
         Action: () => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
                 var tmpr1 = "He";
                 var tmpr2 = "him";
                 var tmpr3 = "his";
                 var tmpr4 = "he";
-            } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
+            } else if (InventoryGet(Player, "Pronouns").Aset.Name == "SheHer") {
                 var tmpr1 = "She";
                 var tmpr2 = "her";
                 var tmpr3 = "her";
@@ -4222,11 +4245,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'clothes',
         Description: "(target): changes clothes.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 if (Clothes == undefined) {
                     var message = "Magical lasers put random clothes on " + tmpname + "'s body."
@@ -4565,11 +4583,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var stringDiaper2 = stringDiaper1.split(/[ ,]+/);
                 var feature = stringDiaper2[0];
                 if (feature == "change1") {
-                    if (Player.Nickname == '') {
-                        var tmpname = Player.Name;
-                    } else {
-                        var tmpname = Player.Nickname;
-                    }
                     var targetname = stringDiaper2[1];
                     if (targetname == null) {
                         if (InventoryGet(Player, "Panties") == null) {
@@ -4633,11 +4646,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
                 if (feature == "change2") {
-                    if (Player.Nickname == '') {
-                        var tmpname = Player.Name;
-                    } else {
-                        var tmpname = Player.Nickname;
-                    }
                     var targetname = stringDiaper2[1];
                     if (targetname == null) {
                         if (InventoryGet(Player, "ItemPelvis") == null) {
@@ -4701,11 +4709,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
                 if (feature == "change3") {
-                    if (Player.Nickname == '') {
-                        var tmpname = Player.Name;
-                    } else {
-                        var tmpname = Player.Nickname;
-                    }
                     var targetname = stringDiaper2[1];
                     if (targetname == null) {
                         if ((InventoryGet(Player, "Panties") == null) && (InventoryGet(Player, "ItemPelvis") == null)) {
@@ -5290,11 +5293,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ggts command must be followed by two numbers to  specify minutes and level (1-6).<p>"
                 );
             } else {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 var stringGgts1 = args;
                 var stringGgts2 = stringGgts1.split(/[ ,]+/);
                 var minutes = stringGgts2[0];
@@ -5473,11 +5471,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The itemcolor command must be followed by a color code in the format #000000 and optionally a target.</p>"
                 );
             } else {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 var stringItc1 = args;
                 var stringItc2 = stringItc1.split(/[ ,]+/);
                 var color = stringItc2[0];
@@ -5580,11 +5573,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'invisible1',
         Description: ": becomes invisible (anal hook must be allowed).",
         Action: () => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
                 Type: "Action",
@@ -5684,11 +5672,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'invisible2',
         Description: ": becomes invisible (glitter mask must be usable).",
         Action: () => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
                 Type: "Action",
@@ -6223,11 +6206,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'keydeposit',
         Description: "(hours): keeps your keys safe in the vault.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             var hours = args;
             if (hours != '') {
                 ServerSend("ChatRoomChat", {
@@ -6302,11 +6280,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Tip: replace h and/or i by another character when you need to skip them.</p>"
                 );
             } else {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 var stringLock1 = args;
                 var stringLock2 = stringLock1.split(/[ ,]+/);
                 var lk = stringLock2[1];
@@ -7002,11 +6975,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'naked',
         Description: "(target): removes clothes.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 if (Naked == undefined) {
                     var message = "Magical lasers make disappear the clothes on " + tmpname + "'s body."
@@ -7232,11 +7200,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'pet',
         Description: "(target): becomes a fully restrained pet.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 if (Pet == undefined) {
                     var message = "" + tmpname + " becomes a cute pet."
@@ -7368,11 +7331,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'poof',
         Description: "(action): leaves the club very fast.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 var message = " poofs away."
             } else {
@@ -7408,11 +7366,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "If FBC is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.</p>"
                 );
             } else {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
                     var tmpr1 = "He";
                     var tmpr2 = "him";
@@ -8230,11 +8183,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'prison',
         Description: "(minutes): stays in Pandora prison.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             var minutes = args;
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
@@ -8327,11 +8275,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'quit',
         Description: "(action): leaves room.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 ChatRoomSetLastChatRoom("");
                 ServerSend("ChatRoomLeave", "");
@@ -8361,11 +8304,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'randomize',
         Description: "(target): naked + underwear + clothes + restrain commands.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 if (Randomize == undefined) {
                     var message = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
@@ -8574,11 +8512,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'restrain',
         Description: "(target): adds random restraints.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 if (Restrain == undefined) {
                     var message = "Magical lasers apply random restraints on " + tmpname + "'s body."
@@ -9073,11 +9006,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: "(target): uses the sleeping pill on yourself or another player.",
         Action: (args) => {
             if (args === "") {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
                     var tmpr1 = "He";
                     var tmpr2 = "him";
@@ -9159,11 +9087,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'slowleave',
         Description: "(action): slowly leaves the room.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 var message = " slowly heads for the door."
             } else {
@@ -9196,11 +9119,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The solidity command must be followed by a number between 1 and 99.</p>"
                 );
             } else {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 var solidity = args;
                 if (InventoryGet(Player, "ItemDevices") != null) {
                     if ((InventoryGet(Player, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(Player, "ItemDevices").Asset.Name == "WoodenRack")) {
@@ -9359,11 +9277,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The superdice command must be followed by a number between 2 and 999999999.<p>"
                 );
             } else {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 var sides = args;
                 if ((sides < 2) || (sides > 1000000000)) sides = 6;
                 const Result = [];
@@ -9515,11 +9428,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'timercell',
         Description: "(minutes): stays in the isolation cell.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             var minutes = args;
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
@@ -9874,11 +9782,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'totalrelease',
         Description: "(target): removes all bindings, collar, harness, chastity, toys.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 if (Totalrelease == undefined) {
                     var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
@@ -10222,11 +10125,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'underwear',
         Description: "(target): changes underwear.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 if (Underwear == undefined) {
                     var message = "Magical lasers put " + tmpname + " in random underwear."
@@ -10314,11 +10212,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "19 Family - 20 Portal Link</p>"
                 );
             } else {
-                if (Player.Nickname == '') {
-                    var tmpname = Player.Name;
-                } else {
-                    var tmpname = Player.Nickname;
-                }
                 var stringUnlock1 = args;
                 var stringUnlock2 = stringUnlock1.split(/[ ,]+/);
                 var lk = stringUnlock2[1];
@@ -10555,11 +10448,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'untie',
         Description: "(target): removes all bindings.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             if (args === "") {
                 if (Untie == undefined) {
                     var message = "Magical lasers make disappear the bindings on " + tmpname + "'s body."
@@ -10645,11 +10533,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'visible',
         Description: ": back to visible state after using of an invisible command.",
         Action: (args) => {
-            if (Player.Nickname == '') {
-                var tmpname = Player.Name;
-            } else {
-                var tmpname = Player.Nickname;
-            }
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
                 Type: "Action",
