@@ -10587,7 +10587,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var [targetname] = args;
                 if (!targetname) {
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The whisper command must be followed by a target and the message you want to whisper.<p>"
+                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The whisper command must be followed by a target and the message you want to whisper.\n" +
+			"You can omit the message if you want only to set the target for your whispers.</p>"   
                     );
                 } else {
                     var [, , ...message] = command.split(" ");
