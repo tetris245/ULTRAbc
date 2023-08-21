@@ -57,5 +57,5 @@ All else I might not have included.
 
 Changes for future version
 
-* Improved the code related to tmpname value (Player's name or nickname)
+* Optimized management of Player's name, nickname and pronouns
 
