@@ -35,6 +35,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
     let tmpname;
+    let pronoun1;
+    let pronoun2;
+    let pronoun3;
+    let pronoun4;
 
     var M_MOANER_moanerKey = "bc_moaner_";
     var M_MOANER_scriptOn = true;
@@ -130,6 +134,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_cum = false;
             profileName = "default";
             tmpname = "";
+	    pronoun1 = "";
+            pronoun2 = "";
+            pronoun3 = "";
+            pronoun4 = "";
             AutojoinOn = false
             FullseedOn = false;
             MagiccheatOn = false;
@@ -172,6 +180,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_cum = datas.cum;
             profileName = datas.moanProfile;
             tmpname = datas.tmpname;
+	    pronoun1 = datas.pronoun1;
+            pronoun2 = datas.pronoun2;
+            pronoun3 = datas.pronoun3;
+            pronoun4 = datas.pronoun4;
             AutojoinOn = datas.autojoin;
             FullseedOn = datas.fullseed;
             MagiccheatOn = datas.magiccheat;
@@ -217,6 +229,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "cum": M_MOANER_cum,
             "moanProfile": profileName,
             "tmpname": tmpname,
+            "pronoun1": pronoun1,
+            "pronoun2": pronoun2,
+            "pronoun3": pronoun3,
+            "pronoun4": pronoun4,
             "autojoin": AutojoinOn,
             "fullseed": FullseedOn,
             "magiccheat": MagiccheatOn,
@@ -348,7 +364,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
-    //Chat Room (+ name/nickname management)
+    //Chat Room (+ name/nickname/pronouns management for player)
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (SosbuttonsOn == true) {
@@ -539,6 +555,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }  
             }
+	    if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
+                    pronoun1 = "He";
+                    pronoun2 = "him";
+                    pronoun3 = "his";
+                    pronoun4 = "he";
+                    M_MOANER_saveControls();
+            } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
+                    pronoun1 = "She";
+                    pronoun2 = "her";
+                    pronoun3 = "her";
+                    pronoun4 = "she";
+                    M_MOANER_saveControls();
+            } else {
+                    pronoun1 = "They";
+                    pronoun2 = "them";
+                    pronoun3 = "their";
+                    pronoun4 = "they";
+                    M_MOANER_saveControls();
+            } 
             if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
                 if (SlowleaveOn == true) {
@@ -2849,22 +2884,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         inWetLevelChastity = diaperDefaultValues.wetLevelOuter,
         inMessLevelChastity = diaperDefaultValues.messLevelOuter,
     } = {}) {
-        if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
-            var tmpr1 = "He";
-            var tmpr2 = "him";
-            var tmpr3 = "his";
-            var tmpr4 = "he";
-        } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
-            var tmpr1 = "She";
-            var tmpr2 = "her";
-            var tmpr3 = "her";
-            var tmpr4 = "she";
-        } else {
-            var tmpr1 = "They";
-            var tmpr2 = "them";
-            var tmpr3 = "their";
-            var tmpr4 = "they";
-        }
         DiaperChangeMessages = {
             "ChangeDiaperInner": " has gotten a fresh inner diaper.",
             "ChangeDiaperOuter": " has gotten a fresh outer diaper.",
@@ -3052,35 +3071,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     // If the baby uses their diaper, it will make the front of their diaper look like it's been used
     function diaperTick() {
         // Handle modifiers 
-        if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
-            var tmpr1 = "He";
-            var tmpr2 = "him";
-            var tmpr3 = "his";
-            var tmpr4 = "he";
-        } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
-            var tmpr1 = "She";
-            var tmpr2 = "her";
-            var tmpr3 = "her";
-            var tmpr4 = "she";
-        } else {
-            var tmpr1 = "They";
-            var tmpr2 = "them";
-            var tmpr3 = "their";
-            var tmpr4 = "they";
-        }
         DiaperUseMessages = {
-            "MessInner": " has messed " + tmpr3 + " inner diaper.",
-            "MessInnerFully": " has fully messed " + tmpr3 + " inner diaper.",
-            "WetInner": " has wet " + tmpr3 + " inner diaper.",
-            "WetInnerFully": " has fully wet " + tmpr3 + " inner diaper.",
-            "MessOuter": " has messed " + tmpr3 + " outer diaper.",
-            "MessOuterFully": " has fully messed " + tmpr3 + " outer diaper.",
-            "WetOuter": " has wet " + tmpr3 + " outer diaper.",
-            "WetOuterFully": " has fully wet " + tmpr3 + " outer diaper.",
-            "MessOnly": " has messed " + tmpr3 + " diaper.",
-            "MessOnlyFully": " has fully messed " + tmpr3 + " diaper.",
-            "WetOnly": " has wet " + tmpr3 + " diaper.",
-            "WetOnlyFully": " has fully " + tmpr3 + " her diaper."
+            "MessInner": " has messed " + pronoun3 + " inner diaper.",
+            "MessInnerFully": " has fully messed " + pronoun3 + " inner diaper.",
+            "WetInner": " has wet " + pronoun3 + " inner diaper.",
+            "WetInnerFully": " has fully wet " + pronoun3 + " inner diaper.",
+            "MessOuter": " has messed " + pronoun3 + " outer diaper.",
+            "MessOuterFully": " has fully messed " + pronoun3 + " outer diaper.",
+            "WetOuter": " has wet " + pronoun3 + " outer diaper.",
+            "WetOuterFully": " has fully wet " + pronoun3 + " outer diaper.",
+            "MessOnly": " has messed " + pronoun3 + " diaper.",
+            "MessOnlyFully": " has fully messed " + pronoun3 + " diaper.",
+            "WetOnly": " has wet " + pronoun3 + " diaper.",
+            "WetOnlyFully": " has fully " + pronoun3 + " her diaper."
         };
         var diaperTimerModifier = 1; // We will divide by the modifier (positive modifiers decrease the timer)
         diaperTimerModifier = manageRegression(diaperTimerModifier);
@@ -3238,22 +3241,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'antidote',
         Description: ": neutralizes effects of LSCG drugs and removes latex respirator.",
         Action: () => {
-            if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
-                var tmpr1 = "He";
-                var tmpr2 = "him";
-                var tmpr3 = "his";
-                var tmpr4 = "he";
-            } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
-                var tmpr1 = "She";
-                var tmpr2 = "her";
-                var tmpr3 = "her";
-                var tmpr4 = "she";
-            } else {
-                var tmpr1 = "They";
-                var tmpr2 = "them";
-                var tmpr3 = "their";
-                var tmpr4 = "they";
-            }
             if (Player.OnlineSettings.LSCG != null) {
                 if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
                     Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel = 0;
@@ -3280,7 +3267,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "" + tmpname + " uses " + tmpr3 + " magical powers and succeeds to neutralize the effects of the drugs." 
+                        Text: "" + tmpname + " uses " + pronoun3 + " magical powers and succeeds to neutralize the effects of the drugs." 
                     }]
                 });  
                 CharacterSetFacialExpression(Player, "Eyes", null);
@@ -7366,22 +7353,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "If FBC is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.</p>"
                 );
             } else {
-                if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
-                    var tmpr1 = "He";
-                    var tmpr2 = "him";
-                    var tmpr3 = "his";
-                    var tmpr4 = "he";
-                } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
-                    var tmpr1 = "She";
-                    var tmpr2 = "her";
-                    var tmpr3 = "her";
-                    var tmpr4 = "she";
-                } else {
-                    var tmpr1 = "They";
-                    var tmpr2 = "them";
-                    var tmpr3 = "their";
-                    var tmpr4 = "they";
-                }
                 var stringPose1 = args;
                 var stringPose2 = stringPose1.split(/[ ,]+/);
                 var pose = stringPose2[0];
@@ -7397,7 +7368,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " relaxes " + tmpr3 + " arms."
+                                Text: "" + tmpname + " relaxes " + pronoun3 + " arms."
                             }]
                         });
                     } else if ((pose == "belly") &&
@@ -7410,7 +7381,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " relaxes on " + tmpr3 + " belly."
+                                Text: "" + tmpname + " relaxes on " + pronoun3 + " belly."
                             }]
                         });
                     } else if ((pose == "boxtied") &&
@@ -7423,7 +7394,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " puts the arms behind " + tmpr3 + " back."
+                                Text: "" + tmpname + " puts the arms behind " + pronoun3 + " back."
                             }]
                         });
                     } else if ((pose == "cuffed") &&
@@ -7436,7 +7407,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " puts " + tmpr3 + " arms out like " + tmpr4 + " is handcuffed."
+                                Text: "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun4 + " is handcuffed."
                             }]
                         });
                     } else if ((pose == "elbowtied") &&
@@ -7449,7 +7420,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " puts the arms behind " + tmpr3 + " back, elbows almost touching."
+                                Text: "" + tmpname + " puts the arms behind " + pronoun3 + " back, elbows almost touching."
                             }]
                         });
                     } else if ((pose == "kneel1") &&
@@ -7475,7 +7446,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " kneels down and opens " + tmpr3 + " legs."
+                                Text: "" + tmpname + " kneels down and opens " + pronoun3 + " legs."
                             }]
                         });
                     } else if ((pose == "legsclosed") &&
@@ -7488,7 +7459,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " stands up and closes " + tmpr3 + " legs."
+                                Text: "" + tmpname + " stands up and closes " + pronoun3 + " legs."
                             }]
                         });
                     } else if ((pose == "legsopen") &&
@@ -7501,7 +7472,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " stands up normally on " + tmpr3 + " feet."
+                                Text: "" + tmpname + " stands up normally on " + pronoun3 + " feet."
                             }]
                         });
                     } else if ((pose == "pet") &&
@@ -7527,7 +7498,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " raises " + tmpr3 + " hands."
+                                Text: "" + tmpname + " raises " + pronoun3 + " hands."
                             }]
                         });
                     } else if ((pose == "spreadarms2") &&
@@ -7540,7 +7511,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " raises the hands above " + tmpr3 + " head."
+                                Text: "" + tmpname + " raises the hands above " + pronoun3 + " head."
                             }]
                         });
                     } else if ((pose == "spreadeagle1") &&
@@ -7555,7 +7526,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " raises " + tmpr3 + " hands and spreads " + tmpr3 + " legs."
+                                Text: "" + tmpname + " raises " + pronoun3 + " hands and spreads " + pronoun3 + " legs."
                             }]
                         });
                     } else if ((pose == "spreadeagle2") &&
@@ -7570,7 +7541,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " raises the hands above " + tmpr3 + " head and spreads " + tmpr3 + " legs."
+                                Text: "" + tmpname + " raises the hands above " + pronoun3 + " head and spreads " + pronoun3 + " legs."
                             }]
                         });
                     } else if ((pose == "spreadlegs") &&
@@ -7583,7 +7554,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " spreads " + tmpr3 + " legs."
+                                Text: "" + tmpname + " spreads " + pronoun3 + " legs."
                             }]
                         });
                     } else if ((pose == "stand") &&
@@ -7623,7 +7594,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " puts " + tmpr3 + " arms out like " + tmpr3 + " hands are taped."
+                                Text: "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun3 + " hands are taped."
                             }]
                         });
                         // Special poses
@@ -7739,7 +7710,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Region = "ItemPelvis";
                         } else {
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: You're too heavily tied to excercise.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You're too heavily tied to exercise.</p>"
                             );
                         }
                         ServerSend("ChatRoomChat", {
@@ -7747,7 +7718,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + tmpname + " makes " + tmpr3 + " workout."
+                                Text: "" + tmpname + " makes " + pronoun3 + " workout."
                             }]
                         });
                         CharacterSetActivePose(Player, null);
@@ -9006,28 +8977,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: "(target): uses the sleeping pill on yourself or another player.",
         Action: (args) => {
             if (args === "") {
-                if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
-                    var tmpr1 = "He";
-                    var tmpr2 = "him";
-                    var tmpr3 = "his";
-                    var tmpr4 = "he";
-                } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
-                    var tmpr1 = "She";
-                    var tmpr2 = "her";
-                    var tmpr3 = "her";
-                    var tmpr4 = "she";
-                } else {
-                    var tmpr1 = "They";
-                    var tmpr2 = "them";
-                    var tmpr3 = "their";
-                    var tmpr4 = "they";
-                }
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + tmpr1 + " falls asleep very quickly."
+                        Text: "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + pronoun1 + " falls asleep very quickly."
                     }]
                 });
                 InventoryWear(Player, "RegularSleepingPill", 'ItemMouth');
