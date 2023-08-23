@@ -555,25 +555,29 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }  
             }
-	    if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
-                    pronoun1 = "He";
-                    pronoun2 = "him";
-                    pronoun3 = "his";
-                    pronoun4 = "he";
-                    M_MOANER_saveControls();
-            } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
-                    pronoun1 = "She";
-                    pronoun2 = "her";
-                    pronoun3 = "her";
-                    pronoun4 = "she";
-                    M_MOANER_saveControls();
-            } else {
-                    pronoun1 = "They";
-                    pronoun2 = "them";
-                    pronoun3 = "their";
-                    pronoun4 = "they";
-                    M_MOANER_saveControls();
-            } 
+            if (InventoryGet(Player, "Pronouns") != null) {
+                if (InventoryGet(Player, "Pronouns").Asset != null) {
+	            if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
+                         pronoun1 = "He";
+                         pronoun2 = "him";
+                         pronoun3 = "his";
+                         pronoun4 = "he";
+                         M_MOANER_saveControls();
+                    } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
+                         pronoun1 = "She";
+                         pronoun2 = "her";
+                         pronoun3 = "her";
+                         pronoun4 = "she";
+                         M_MOANER_saveControls();
+                    } else {
+                         pronoun1 = "They";
+                         pronoun2 = "them";
+                         pronoun3 = "their";
+                         pronoun4 = "they";
+                         M_MOANER_saveControls();
+                    } 
+                }
+            }
             if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
                 if (SlowleaveOn == true) {
