@@ -9150,6 +9150,41 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'spin',
+        Description: "(target): allows access to target's wheel of fortune, even when not displayed.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The spin command must be followed by the target whose wheel of fortune interests you.</p>" 
+                );
+            } else {
+                var targetname = args;
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if (target[0] != null) {
+                    if (!InventoryAvailable(target[0], "WheelFortune", "ItemDevices")) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bad luck! This player does not have a wheel of fortune.</p>" 
+                        );
+                    } else {  
+                        CurrentCharacter = target[0];
+			ChatRoomHideElements();
+			WheelFortuneEntryModule = CurrentModule;
+			WheelFortuneEntryScreen = CurrentScreen;
+			WheelFortuneBackground = ChatRoomData.Background;
+			WheelFortuneCharacter = CurrentCharacter;
+			DialogLeave();
+			CommonSetScreen("MiniGame", "WheelFortune");  
+                    }       
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'store',
         Description: ": leaves chatroom, goes to store, shows hidden items.",
         Action: () => {
@@ -9906,7 +9941,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/pet</b> (target) = becomes a fully restrained pet.\n" +
                     "<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n" +
                     "<b>/restrain</b> (target) = adds random restraints.\n" +
-                    "<b>/solidity</b> (value) = changes the solidity of most current bindings. Value must be between 1 and 99. Use high values to make escape impossible!</p>"
+                    "<b>/solidity</b> (value) = changes the solidity of most current bindings. Value must be between 1 and 99.\n" +
+                    "<b>/spin</b> (target) = access to any wheel of fortune, even hidden.</p>"
                 );
             }
             if (args === "character") {
