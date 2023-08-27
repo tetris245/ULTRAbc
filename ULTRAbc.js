@@ -373,7 +373,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                     } else {
                         if (Totalrelease != "") {
-                            if (Totalrelease.startsWith("\n0027")) {
+                            if (Totalrelease.startsWith("\u0027")) {
                                 var message = tmpname + Totalrelease;                  
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Totalrelease;
@@ -4241,7 +4241,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var message = "Magical lasers put random clothes on " + tmpname + "'s body."
                 } else {
                     if (Clothes != "") {
-                        if (Clothes.startsWith("\n0027")) {
+                        if (Clothes.startsWith("\u0027")) {
                             var message = tmpname + Clothes;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Clothes;
@@ -4277,7 +4277,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
                     } else {
                         if (Tclothes != "") {
-                            if (Tclothes.startsWith("\n0027")) {
+                            if (Tclothes.startsWith("\u0027")) {
                                 var message = tmpname + Tclothes + ' '.repeat(1) + tgpname;             
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
@@ -6389,7 +6389,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make appear locks on " + tgpname + "'s body."
                         } else {
                             if (Mlock != "") {
-                                if (Mlock.startsWith("\n0027")) {
+                                if (Mlock.startsWith("\u0027")) {
                                     var message = tmpname + Mlock;
                                 } else {
                                     var message = tmpname + ' '.repeat(1) + Mlock;
@@ -6403,7 +6403,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make appear locks on " + tgpname + "'s body."
                         } else {
                             if (Tlock != "") {
-                                if (Tlock.startsWith("\n0027")) {
+                                if (Tlock.startsWith("\u0027")) {
                                     var message = tmpname + Tlock + ' '.repeat(1) + tgpname;
                                 } else {
                                     var message = tmpname + ' '.repeat(1) + Tlock + ' '.repeat(1) + tgpname;
@@ -6971,7 +6971,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var message = "Magical lasers make disappear the clothes on " + tmpname + "'s body."
                 } else {
                     if (Naked != "") {
-                        if (Naked.startsWith("\n0027")) {
+                        if (Naked.startsWith("\u0027")) {
                             var message = tmpname + Naked;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Naked;
@@ -7007,7 +7007,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
                     } else {
                         if (Tnaked != "") {
-                            if (Tnaked.startsWith("\n0027")) {
+                            if (Tnaked.startsWith("\u0027")) {
                                 var message = tmpname + Tnaked + ' '.repeat(1) + tgpname;             
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
@@ -7196,7 +7196,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var message = "" + tmpname + " becomes a cute pet."
                 } else {
                     if (Pet != "") {
-                        if (Pet.startsWith("\n0027")) {
+                        if (Pet.startsWith("\u0027")) {
                             var message = tmpname + Pet;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Pet;
@@ -7240,7 +7240,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "" + tgpname + " becomes a cute pet."
                     } else {
                         if (Tpet != "") {
-                            if (Tpet.startsWith("\n0027")) {
+                            if (Tpet.startsWith("\u0027")) {
                                 var message = tmpname + Tpet + ' '.repeat(1) + tgpname;             
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
@@ -8284,7 +8284,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var message = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
                 } else {
                     if (Randomize != "") {
-                        if (Randomize.startsWith("\n0027")) {
+                        if (Randomize.startsWith("\u0027")) {
                             var message = tmpname + Randomize;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Randomize;
@@ -8323,7 +8323,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
                     } else {
                         if (Trandomize != "") {
-                            if (Trandomize.startsWith("\n0027")) {
+                            if (Trandomize.startsWith("\u0027")) {
                                 var message = tmpname + Trandomize + ' '.repeat(1) + tgpname;             
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Trandomize + ' '.repeat(1) + tgpname;
@@ -8492,7 +8492,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var message = "Magical lasers apply random restraints on " + tmpname + "'s body."
                 } else {
                     if (Restrain != "") {
-                        if (Restrain.startsWith("\n0027")) {
+                        if (Restrain.startsWith("\u0027")) {
                             var message = tmpname + Restrain;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Restrain;
@@ -8528,7 +8528,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers apply random restraints on " + tgpname + "'s body."
                     } else {
                         if (Trestrain != "") {
-                            if (Trestrain.startsWith("\n0027")) {
+                            if (Trestrain.startsWith("\u0027")) {
                                 var message = tmpname + Trestrain + ' '.repeat(1) + tgpname;             
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Trestrain + ' '.repeat(1) + tgpname;
@@ -9781,7 +9781,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                 } else {
                     if (Totalrelease != "") {
-                        if (Totalrelease.startsWith("\n0027")) {
+                        if (Totalrelease.startsWith("\u0027")) {
                             var message = tmpname + Totalrelease;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Totalrelease;
@@ -9817,7 +9817,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
                     } else {
                         if (Ttotalrelease != "") {
-                            if (Ttotalrelease.startsWith("\n0027")) {
+                            if (Ttotalrelease.startsWith("\u0027")) {
                                 var message = tmpname + Ttotalrelease + ' '.repeat(1) + tgpname;             
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Ttotalrelease + ' '.repeat(1) + tgpname;
@@ -10125,7 +10125,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var message = "Magical lasers put " + tmpname + " in random underwear."
                 } else {
                     if (Underwear != "") {
-                        if (Underwear.startsWith("\n0027")) {
+                        if (Underwear.startsWith("\u0027")) {
                             var message = tmpname + Underwear;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Underwear;
@@ -10161,7 +10161,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers put " + tgpname + " in random underwear."
                     } else {
                         if (Tunderwear != "") {
-                            if (Tunderwear.startsWith("\n0027")) {
+                            if (Tunderwear.startsWith("\u0027")) {
                                 var message = tmpname + Tunderwear + ' '.repeat(1) + tgpname;             
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Tunderwear + ' '.repeat(1) + tgpname;
@@ -10227,7 +10227,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
                         } else {
                             if (Unlock != "") {
-                                if (Unlock.startsWith("\n0027")) {
+                                if (Unlock.startsWith("\u0027")) {
                                     var message = tmpname + Unlock;                  
                                 } else {
                                     var message = tmpname + ' '.repeat(1) + Unlock;
@@ -10241,7 +10241,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
                         } else {
                             if (Tunlock != "") {
-                                if (Tunlock.startsWith("\n0027")) {
+                                if (Tunlock.startsWith("\u0027")) {
                                     var message = tmpname + Tunlock + ' '.repeat(1) + tgpname;             
                                 } else {
                                     var message = tmpname + ' '.repeat(1) + Tunlock + ' '.repeat(1) + tgpname;
@@ -10448,7 +10448,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var message = "Magical lasers make disappear the bindings on " + tmpname + "'s body."
                 } else {
                     if (Untie != "") {
-                        if (Untie.startsWith("\n0027")) {
+                        if (Untie.startsWith("\u0027")) {
                             var message = tmpname + Untie;                  
                         } else {
                             var message = tmpname + ' '.repeat(1) + Untie;
@@ -10484,7 +10484,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
                     } else {
                         if (Tuntie != "") {
-                            if (Tuntie.startsWith("\n0027")) {
+                            if (Tuntie.startsWith("\u0027")) {
                                 var message = tmpname + Tuntie + ' '.repeat(1) + tgpname;             
                             } else {
                                 var message = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
