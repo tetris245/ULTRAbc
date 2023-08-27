@@ -60,4 +60,5 @@ Changes for future version
 * New commands:
   - spin (target) to allow access to target's wheel of fortune, even when not displayed
 * Optimized management of Player's name, nickname and pronouns
+* Fixed again a grammatical issue in customized messages (previous fix was buggy!)
 
