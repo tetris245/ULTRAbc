@@ -47,6 +47,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     let AutojoinOn;
     let FullseedOn;
+    let HighfameOn;
     let MagiccheatOn;
     var NowhisperOn = false;
     var NPCpunish = false;
@@ -110,6 +111,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Slow exit mode is activated."];
     var FullseedStatus = ["Full solution for intricate and high security locks is enabled.",
         "Full solution for intricate and high security locks is disabled."];
+    var HighfameStatus = ["High fame mode enabled in Bondage Club Card Game.",
+        "High fame mode disabled in Bondage Club Card Game."];
     var MagiccheatStatus = ["Cheat mode enabled in Bondage Brawl and Magic School.",
         "Cheat mode disabled in Magic School."];
     var NowhisperStatus = ["No-whisper mode enabled.",
@@ -140,6 +143,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             pronoun4 = "";
             AutojoinOn = false
             FullseedOn = false;
+	    HighfameOn = false;
             MagiccheatOn = false;
             NowhisperOn = false;
             NPCpunish = false;
@@ -186,6 +190,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             pronoun4 = datas.pronoun4;
             AutojoinOn = datas.autojoin;
             FullseedOn = datas.fullseed;
+	    HighfameOn = datas.highfame;
             MagiccheatOn = datas.magiccheat;
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
@@ -235,6 +240,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "pronoun4": pronoun4,
             "autojoin": AutojoinOn,
             "fullseed": FullseedOn,
+            "highfame": HighfameOn,
             "magiccheat": MagiccheatOn,
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
@@ -298,6 +304,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
+		if (HighfameOn == null  || HighfameOn == undefined) {
+                    HighfameOn = false;
+                    M_MOANER_saveControls();
+                }
                 if (M_MOANER_tickleActive == null  || M_MOANER_tickleActive == undefined) {
                     M_MOANER_tickleActive = true;
                     M_MOANER_saveControls();
@@ -326,6 +336,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAChatRoomMenuDraw();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
+    ULTRAClubCardEndTurn();
     ULTRACraftingItemListBuild();
     ULTRADrawCharacter();
     ULTRAFriendListClick();
@@ -703,6 +714,78 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatSearchLeaveSpace = "Room";
                 ChatSearchLeaveRoom = "MainHall";
             }
+            next(args);
+        });
+    }
+
+    //Club Card Game
+    async function ULTRAClubCardEndTurn(Draw = false) {
+        modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
+            if (HighfameOn == true) {
+                ClubCardFameGoal = 200;
+                let nmg = ""; 
+                if (MouseIn(1705, 905, 90, 90) && (ClubCardPlayer[ClubCardTurnIndex].Control == "Player")) Draw = true;
+                let CCPlayer = ClubCardPlayer[ClubCardTurnIndex];
+	        let Opponent = ClubCardGetOpponent(CCPlayer);
+	        let StartingFame = CCPlayer.Fame;
+	        let StartingMoney = CCPlayer.Money;
+	        let FameMoneyText = "";
+	        if (CCPlayer.Board != null)
+		    for (let Card of CCPlayer.Board) {
+		        if (Card.FamePerTurn != null) ClubCardPlayerAddFame(CCPlayer, Card.FamePerTurn);
+			if (Card.MoneyPerTurn != null) ClubCardPlayerAddMoney(CCPlayer, Card.MoneyPerTurn);
+			if (Card.OnTurnEnd != null) Card.OnTurnEnd(CCPlayer);
+		    }
+	        if ((CCPlayer.Money < 0) && (CCPlayer.Fame > StartingFame)) CCPlayer.Fame = StartingFame;
+	        CCPlayer.LastFamePerTurn = CCPlayer.Fame - StartingFame;
+	        CCPlayer.LastMoneyPerTurn = CCPlayer.Money - StartingMoney;
+	        if (CCPlayer.Event != null)
+	            for (let Card of CCPlayer.Event)
+		        if (Card.OnTurnEnd != null)
+			    Card.OnTurnEnd(CCPlayer);
+	        if (Opponent.Event != null)
+		    for (let Card of Opponent.Event)
+			if (Card.OnOpponentTurnEnd != null)
+			    Card.OnOpponentTurnEnd(CCPlayer);
+	        FameMoneyText = ((CCPlayer.LastFamePerTurn >= 0) ? "+" : "") + CCPlayer.LastFamePerTurn.toString() + " Fame, " + ((CCPlayer.LastMoneyPerTurn >= 0) ? "+" : "") + CCPlayer.LastMoneyPerTurn.toString() + " Money";
+	        if (CCPlayer.Fame >= ClubCardFameGoal) {
+                    MiniGameVictory = (CCPlayer.Control == "Player");
+		    MiniGameEnded = true;
+		    let nmg = TextGet("VictoryFor" + CCPlayer.Control);
+		    if (ClubCardIsOnline()) nmg = TextGet("VictoryOnline").replace("PLAYERNAME", CharacterNickname(CCPlayer.Character));
+                    Msg = nmg.replace("100", "200");
+                    ClubCardLogAdd(Msg);
+		    ClubCardCreatePopup("TEXT", Msg, TextGet("Return"), null, "ClubCardEndGame()", null);
+		    if (MiniGameVictory && (ClubCardReward != null)) ClubCardGetReward();
+		    GameClubCardReset();
+		    return;
+	        }
+	        ClubCardTurnEndDraw = Draw;
+	        if (Draw) {
+	            ClubCardLogAdd(TextGet("EndDrawPlayer").replace("FAMEMONEY", FameMoneyText).replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)).replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
+		    ClubCardPlayerDrawCard(ClubCardPlayer[ClubCardTurnIndex]);
+	        } else {
+	            ClubCardLogAdd(TextGet("EndTurnPlayer").replace("FAMEMONEY", FameMoneyText).replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)).replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
+	        }  
+                Draw = false;
+	        ClubCardTurnIndex++;
+	        if (ClubCardTurnIndex >= ClubCardPlayer.length) ClubCardTurnIndex = 0;
+	        ClubCardTurnCardPlayed = 0;
+	        ClubCardAIStart();
+	        CCPlayer = ClubCardPlayer[ClubCardTurnIndex];
+	        if (CCPlayer.Event != null)
+		    for (let Pos = 0; Pos < CCPlayer.Event.length; Pos++) {
+		        let Card = CCPlayer.Event[Pos];
+			if ((Card.Time != null) && (Card.Time > 0)) Card.Time--;
+			if ((Card.Time == null) || (Card.Time <= 0)) {
+			    ClubCardLogPublish("EventExpired", CCPlayer, null, Card);
+			    CCPlayer.Event.splice(Pos, 1);
+			    Pos--;
+			}
+		    }
+	        GameClubCardSyncOnlineData();
+            return; 
+            } 
             next(args);
         });
     }
@@ -1310,6 +1393,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
+    function showHighfameStatus() {
+        let msg;
+        if (HighfameOn) {
+            msg = HighfameStatus[0];
+        } else {
+            msg = HighfameStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+	
     function showMagiccheatStatus() {
         let msg;
         if (MagiccheatOn) {
@@ -5403,6 +5496,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'highfame',
+        Description: ": toggles high fame (200) mode in Bondage Club Card Game.",
+        Action: () => {
+            if (HighfameOn == true) {
+                HighfameOn = false;
+                ClubCardFameGoal = 100;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: High fame mode disabled in Bondage Club Card Game.</p>"
+                );
+            } else {
+                HighfameOn = true;
+                ClubCardFameGoal = 200;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: High fame mode enabled in Bondage Club Card Game.</p>"
+                );
             }
         }
     }])
@@ -10062,6 +10177,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
                     "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
+		    "<b>/highfame</b> = toggles high fame (200) mode in Bondage Club Card Game.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
                     "<b>/magiccheat</b> = toggles cheat mode in Bondage Brawl and Magic School.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
@@ -10516,6 +10632,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             showAutojoinStatus();
             showExitmodeStatus();
             showFullseedStatus();
+	    showHighfameStatus();
             showMagiccheatStatus();
             showNowhisperStatus();
             showNpcpunishStatus();
