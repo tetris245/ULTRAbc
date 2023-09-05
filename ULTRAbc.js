@@ -34,6 +34,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
+    let kp = 0;
+	
     let tmpname;
     let pronoun1;
     let pronoun2;
@@ -274,6 +276,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     function M_MOANER_deleteControls() {
+	kp = 1;
         for (var i = 0; i < localStorage.length; i++) {
             var key = localStorage.key(i);
             if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
@@ -546,48 +549,53 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
-            if (tmpname == "") {
-                if (Player.Nickname == '') {
-                    tmpname = Player.Name;
-                } else {
-                    tmpname = Player.Nickname;
-                }  
-                M_MOANER_saveControls();
-            } else {
-                if (Player.Nickname != '') {
-                    if (tmpname != Player.Nickname) {
-                        tmpname = Player.Nickname; 
-                        M_MOANER_saveControls();
-                    }
-                } else {
-                     if (tmpname != Player.Name) {
-                        tmpname = Player.Name; 
-                        M_MOANER_saveControls();
-                    }
-                }  
-            }
-            if (InventoryGet(Player, "Pronouns") != null) {
-                if (InventoryGet(Player, "Pronouns").Asset != null) {
-	            if (InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") {
-                         pronoun1 = "He";
-                         pronoun2 = "him";
-                         pronoun3 = "his";
-                         pronoun4 = "he";
-                         M_MOANER_saveControls();
-                    } else if (InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") {
-                         pronoun1 = "She";
-                         pronoun2 = "her";
-                         pronoun3 = "her";
-                         pronoun4 = "she";
-                         M_MOANER_saveControls();
+	    if (kp != 1) {
+                if (tmpname == "") {
+                    if (Player.Nickname == '') {
+                        tmpname = Player.Name;
                     } else {
-                         pronoun1 = "They";
-                         pronoun2 = "them";
-                         pronoun3 = "their";
-                         pronoun4 = "they";
-                         M_MOANER_saveControls();
-                    } 
+                        tmpname = Player.Nickname;
+                    }  
+                    M_MOANER_saveControls();
+                } else {
+                    if (Player.Nickname != '') {
+                        if (tmpname != Player.Nickname) {
+                            tmpname = Player.Nickname; 
+                            M_MOANER_saveControls();
+                        }
+                    } else {
+                        if (tmpname != Player.Name) {
+                            tmpname = Player.Name; 
+                            M_MOANER_saveControls();
+                        }
+                    }  
                 }
+                if (InventoryGet(Player, "Pronouns") != null) {
+                    if (InventoryGet(Player, "Pronouns").Asset != null) {
+			let chprn = InventoryGet(Player, "Pronouns").Asset.Name;
+			if (chprn != pronoun1) {
+			    if (chprn == "HeHim") {
+                                pronoun1 = "He";
+                                pronoun2 = "him";
+                                pronoun3 = "his";
+                                pronoun4 = "he";
+                                M_MOANER_saveControls();
+                            } else if (chprn == "SheHer") {
+                                pronoun1 = "She";
+                                pronoun2 = "her";
+                                pronoun3 = "her";
+                                pronoun4 = "she";
+                                M_MOANER_saveControls();
+                            } else {
+                                pronoun1 = "They";
+                                pronoun2 = "them";
+                                pronoun3 = "their";
+                                pronoun4 = "they";
+                                M_MOANER_saveControls();
+                            } 
+		        }
+                    }
+	        }	
             }
             if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
@@ -604,17 +612,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRATitleExit() {
         modApi.hookFunction('TitleExit', 4, (args, next) => {
             let Nick = ElementValue("InputNickname");
-            if (Nick == null) {
-                Nick = "";
-                if ((tmpname == "") || (tmpname != Nick)) {
-                    tmpname = Player.Name;
-                    M_MOANER_saveControls();
-                }
-            } else {
-                if ((tmpname == "") || (tmpname != Nick)) {                 
-                    tmpname = Nick;  
-                    M_MOANER_saveControls();
-                } 
+	    if (kp != 1) {
+                if (Nick == null) {
+                    Nick = "";
+                    if ((tmpname == "") || (tmpname != Nick)) {
+                        tmpname = Player.Name;
+                        M_MOANER_saveControls();
+                    }
+                } else {
+                    if ((tmpname == "") || (tmpname != Nick)) {                 
+                        tmpname = Nick;  
+                        M_MOANER_saveControls();
+                    } 
+		}	
             }
 	    const status = CharacterSetNickname(Player, Nick);
 	    if (status) {
