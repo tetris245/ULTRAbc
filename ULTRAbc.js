@@ -10523,6 +10523,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 InventoryGroupIsBlocked = function(C, GroupName) {
                     return false;
                 }
+		if (Player.OnlineSettings.LSCG != null) {
+                    if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
+                        Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel = 0;
+                        Player.OnlineSettings.LSCG.InjectorModule.asleep = false;
+                    }
+                    if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == true) {
+                        Player.OnlineSettings.LSCG.InjectorModule.mindControlLevel = 0;
+                        Player.OnlineSettings.LSCG.InjectorModule.brainwashed = false;
+                    }                    
+                    Player.OnlineSettings.LSCG.CollarModule.knockout = false;
+                    Player.OnlineSettings.LSCG.HypnoModule.hypnotized = false;
+                    Player.OnlineSettings.LSCG.InjectorModule. enableContinuousDelivery = false;
+                    Player.OnlineSettings.LSCG.InjectorModule.continuousDeliveryForever = false;
+                    Player.OnlineSettings.LSCG.MiscModule.infiniteChloroformPotency = false;
+                }
                 InventoryPrerequisiteMessage = function(C, Prerequisit) {
                     if (Prerequisit == 'HasBreasts') {
                         return !InventoryIsItemInList(C, "BodyUpper", ["XLarge", "Large", "Normal", "Small"]) ? "MustHaveBreasts" : "";
