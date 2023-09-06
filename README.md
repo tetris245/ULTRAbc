@@ -60,6 +60,7 @@ Changes for future version
 * New commands:
   - highfame to toggle high fame (200) mode in Bondage Club Card Game
   - spin (target) to allow access to target's wheel of fortune, even when not displayed
+* Updated the unrestrict total command to neutralize sleepy and control effects of LSCG features by modifying settings
 * Optimized management of Player's name, nickname and pronouns
 * Fixed again a grammatical issue in customized messages (previous fix was buggy!)
 
