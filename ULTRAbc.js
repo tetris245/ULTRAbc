@@ -124,7 +124,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var SosbuttonsStatus = ["Emergency buttons displayed and enabled.",
         "Emergency buttons hidden and disabled."];
     var WelcomeStatus = ["Welcome message in main hall.",
-        "No welcome message in main hall."];           
+        "No welcome message in main hall."];  
+
+    var BCResponsiveStatus = ["BC Responsive is enabled.",
+        "BC Responsive is disabled."];
+    var CharacterTalkStatus = ["Character Talk is enabled.",
+        "Character Talk is disabled."];
+    var InterceptMessageStatus = ["Intercept Message feature is enabled.",
+        "Intercept Message feature is disabled."];
+    var LeaveMessageStatus = ["Leave Message feature is enabled.",
+        "Leave Message feature is disabled."];
+    var NewVersionStatus = ["New BCR Version feature is enabled.",
+        "New BCR Version feature is disabled."];
+    var SharkBiteStatus = ["Shark Bite feature is enabled.",
+        "Shark Bite feature is disabled."];
 
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
@@ -1346,6 +1359,67 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Room: UpdatedRoom,
             Action: "Update",
         });
+    }
+
+    //BCR Status
+    function showBCResponsiveStatus() {
+        let msg;
+        if (BCRdata.settings.enable) {
+            msg = BCResponsiveStatus[0];
+        } else {
+            msg = BCResponsiveStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showCharacterTalkStatus() {
+        let msg;
+        if (BCRdata.modSettings.doEnableCharTalk) {
+            msg = CharacterTalkStatus[0];
+        } else {
+            msg = CharacterTalkStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showInterceptMessageStatus() {
+        let msg;
+        if (BCRdata.modSettings.doInterceptMessage) {
+            msg = InterceptMessageStatus[0];
+        } else {
+            msg = InterceptMessageStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showLeaveMessageStatus() {
+        let msg;
+        if (BCRdata.modSettings.isLeaveMessageEnabled) {
+            msg = LeaveMessageStatus[0];
+        } else {
+            msg = LeaveMessageStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showNewVersionStatus() {
+        let msg;
+        if (BCRdata.modSettings.doShowNewVersion) {
+            msg = NewVersionStatus[0];
+        } else {
+            msg = NewVersionStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showSharkBiteStatus() {
+        let msg;
+        if (BCRdata.modSettings.isSharkBiteEnabled) {
+            msg = SharkBiteStatus[0];
+        } else {
+            msg = SharkBiteStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
     }
 
     //Stable
@@ -3466,6 +3540,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: AutoKick Disabled.</p>"
                 );
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'bcrstatus',
+        Description: ": displays status of BC Responsive settings (if you use this add-on)",
+        Action: () => {
+            if (Player.OnlineSettings.BCResponsive != null) {
+                if (Player.OnlineSettings.BCResponsive.data != null) {
+                    str = Player.OnlineSettings.BCResponsive.data;
+                    d = LZString.decompressFromBase64(str);
+                    BCRdata = {};
+                    decoded = JSON.parse(d);
+                    BCRdata = decoded;
+                    showBCResponsiveStatus();
+                    showCharacterTalkStatus(); 
+                    showInterceptMessageStatus(); 
+                    showLeaveMessageStatus();
+                    showNewVersionStatus();
+                    showSharkBiteStatus();               
+                }
             }
         }
     }])
@@ -10164,6 +10260,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "misc") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
+		    "<b>/bcrstatus</b> = displays status of BC Responsive settings (if used).\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/ubc</b> = displays UBC version (+ more info if welcome message enabled).\n" +
