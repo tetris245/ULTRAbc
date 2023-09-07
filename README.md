@@ -58,6 +58,7 @@ All else I might not have included.
 Changes for future version
 
 * New commands:
+  - bcrstatus to display current status of BC Responsive settings (if you use this add-on)
   - highfame to toggle high fame (200) mode in Bondage Club Card Game
   - spin (target) to allow access to target's wheel of fortune, even when not displayed
 * Updated the unrestrict total command to neutralize sleepy and control effects of LSCG features by modifying settings
