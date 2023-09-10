@@ -139,6 +139,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var SharkBiteStatus = ["Shark Bite feature is enabled.",
         "Shark Bite feature is disabled."];
 
+    var ArousalErectionStatus = ["Arousal can affect male erection.",
+        "Arousal can't affect male erection."];
+    var ArousalProgressStatus = ["Arousal can affect orgasm progress.",
+        "Arousal can't affect orgasm progress."];
+    var BCIconsStatus = ["BC Icons are displayed only when the mouse hovers above you.",
+        "BC Icons are always displayed."];
+    var BCTChangelogStatus = ["BCT Changelog feature is enabled.",
+        "BCT Changelog feature is disabled."];
+    var BCTIconStatus = ["BCT Icon is displayed only when the mouse hovers above you.",
+        "BCT Icon is always displayed."];
+    var BestFriendsStatus = ["Best Friends feature is enabled.",
+        "Best Friends feature is disabled."];
+    var LockConversionStatus = ["High security locks can become Best Friend locks.",
+        "High security locks can't become Best Friend locks."];
+    var RoomShareStatus = ["Best Friends can share private room names.",
+        "Best Friends can't share private room names."];
+    var SplitStatus = ["Two bars for arousal and orgasm.",
+        "Only the standard arousal + orgasm bar."];
+    var TailWaggingStatus = ["Tail Wagging feature is enabled.",
+        "Tail Wagging feature is disabled."];
+
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
@@ -1418,6 +1439,107 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = SharkBiteStatus[0];
         } else {
             msg = SharkBiteStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //BCT Status
+    function ShowArousalErectionStatus() {
+        let msg;
+        if (BCTdata.arousalAffectsErection) {
+            msg = ArousalErectionStatus[0];
+        } else {
+            msg = ArousalErectionStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowArousalProgressStatus() {
+        let msg;
+        if (BCTdata.arousalAffectsOrgasmProgress) {
+            msg = ArousalProgressStatus[0];
+        } else {
+            msg = ArousalProgressStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowBCIconsStatus() {
+        let msg;
+        if (BCTdata.allIconOnlyShowOnHover) {
+            msg = BCIconsStatus[0];
+        } else {
+            msg = BCIconsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowBCTChangelogStatus() {
+        let msg;
+        if (BCTdata.showChangelog ) {
+            msg = BCTChangelogStatus[0];
+        } else {
+            msg = BCTChangelogStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowBCTIconStatus() {
+        let msg;
+        if (BCTdata.bctIconOnlyShowOnHover) {
+            msg = BCTIconStatus[0];
+        } else {
+            msg = BCTIconStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowBestFriendsStatus() {
+        let msg;
+        if (BCTdata.bestFriendsEnabled) {
+            msg = BestFriendsStatus[0];
+        } else {
+            msg = BestFriendsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowLockConversionStatus() {
+        let msg;
+        if (BCTdata.hsToBFLockconvert) {
+            msg = LockConversionStatus[0];
+        } else {
+            msg = LockConversionStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowRoomShareStatus() {
+        let msg;
+        if (BCTdata.bestFriendsRoomShare) {
+            msg = RoomShareStatus[0];
+        } else {
+            msg = RoomShareStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowSplitStatus() {
+        let msg;
+        if (BCTdata.splitOrgasmArousal) {
+            msg = SplitStatus[0];
+        } else {
+            msg = SplitStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function ShowTailWaggingStatus() {
+        let msg;
+        if (BCTdata.tailWaggingEnable ) {
+            msg = TailWaggingStatus[0];
+        } else {
+            msg = TailWaggingStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3546,7 +3668,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bcrstatus',
-        Description: ": displays status of BC Responsive settings (if you use this add-on)",
+        Description: ": displays status of main BC Responsive settings (if you use this add-on)",
         Action: () => {
             if (Player.OnlineSettings.BCResponsive != null) {
                 if (Player.OnlineSettings.BCResponsive.data != null) {
@@ -3566,6 +3688,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
     }])
 
+    CommandCombine([{
+        Tag: 'bctstatus',
+        Description: ": displays status of main BCTweaks settings (if you use this add-on)",
+        Action: () => {
+            if (Player.OnlineSettings.BCT != null) {
+                str = Player.OnlineSettings.BCT;
+                d = LZString.decompressFromBase64(str);
+                BCTdata = {};
+                decoded = JSON.parse(d);
+                BCTdata = decoded;
+                ShowArousalErectionStatus();     
+                ShowArousalProgressStatus();
+                ShowBCIconsStatus();
+                ShowBCTChangelogStatus();
+                ShowBCTIconStatus();
+                ShowBestFriendsStatus();
+                ShowLockConversionStatus();
+                ShowRoomShareStatus();
+                ShowSplitStatus();
+                ShowTailWaggingStatus();
+            }
+        }
+    }])
+	
     CommandCombine([{
         Tag: 'bg1',
         Description: ": adds hidden backgrounds to the admin selection screen.",
@@ -10260,7 +10406,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "misc") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
-		    "<b>/bcrstatus</b> = displays status of BC Responsive settings (if used).\n" +
+		    "<b>/bcrstatus</b> = displays status of main BC Responsive settings (if used).\n" +
+		    "<b>/bctstatus</b> = displays status of main BCTweaks settings (if used).\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/ubc</b> = displays UBC version (+ more info if welcome message enabled).\n" +
