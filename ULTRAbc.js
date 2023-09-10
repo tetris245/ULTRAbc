@@ -126,6 +126,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var WelcomeStatus = ["Welcome message in main hall.",
         "No welcome message in main hall."];  
 
+    var AnimalTypeStatus = ["Current Animal Type: "];
+    var AnimationButtonsStatus = ["Animation Buttons enabled.",
+        "Animation Buttons disabled."];
+    var ArousalManipulationStatus = ["Arousal Manipulation enabled.",
+        "Arousal Manipulation disabled."];
+    var BCARExpressionsStatus = ["BCAR Expressions enabled.",
+        "BCAR Expressions disabled."];
+    var EarAnimationStatus = ["Ear Animation enabled.",
+        "Ear Animation disabled."];
+    var EarEmoteStatus = ["Ear Emote enabled.",
+        "Ear Emote disabled."];
+    var TailAnimationStatus = ["Tail Animation enabled.",
+        "Tail Animation disabled."];
+    var TailEmoteStatus = ["Tail Emote enabled.",
+        "Tail Emote disabled."];
+    var WingAnimationStatus = ["Wing Animation enabled.",
+        "Tail Animation disabled."];
+
     var BCResponsiveStatus = ["BC Responsive is enabled.",
         "BC Responsive is disabled."];
     var CharacterTalkStatus = ["Character Talk is enabled.",
@@ -1380,6 +1398,93 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Room: UpdatedRoom,
             Action: "Update",
         });
+    }
+
+    //BCAR Status
+    function showAnimalTypeStatus() {
+        let msg;
+        msg = AnimalTypeStatus[0] + BCARdata.animal;
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showAnimationButtonsStatus() {
+        let msg;
+        if (BCARdata.animationButtonsEnable) {
+            msg = AnimationButtonsStatus[0];
+        } else {
+            msg = AnimationButtonsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showArousalManipulationStatus() {
+        let msg;
+        if (BCARdata.arousalEnable) {
+            msg = ArousalManipulationStatus[0];
+        } else {
+            msg = ArousalManipulationStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showBCARExpressionsStatus() {
+        let msg;
+        if (BCARdata.expressionsEnable) {
+            msg = BCARExpressionsStatus[0];
+        } else {
+            msg = BCARExpressionsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showEarAnimationStatus() {
+        let msg;
+        if (BCARdata.earWigglingEnable) {
+            msg = EarAnimationStatus[0];
+        } else {
+            msg = EarAnimationStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showEarEmoteStatus() {
+        let msg;
+        if (BCARdata.earEmoteEnable) {
+            msg = EarEmoteStatus[0];
+        } else {
+            msg = EarEmoteStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showTailAnimationStatus() {
+        let msg;
+        if (BCARdata.tailWaggingEnable) {
+            msg = TailAnimationStatus[0];
+        } else {
+            msg = TailAnimationStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showTailEmoteStatus() {
+        let msg;
+        if (BCARdata.tailEmoteEnable) {
+            msg = TailEmoteStatus[0];
+        } else {
+            msg = TailEmoteStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showWingAnimationStatus() {
+        let msg;
+        if (BCARdata.wingFlappingEnable) {
+            msg = WingAnimationStatus[0];
+        } else {
+            msg = WingAnimationStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
     }
 
     //BCR Status
@@ -3662,6 +3767,29 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: AutoKick Disabled.</p>"
                 );
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'bcarstatus',
+        Description: ": displays status of main BCAR settings (if you use this add-on)",
+        Action: () => {
+            if (Player.OnlineSettings.BCAR != null) {
+                if (Player.OnlineSettings.BCAR.bcarSettings != null) {
+                    BCARdata = {};
+                    str = Player.OnlineSettings.BCAR.bcarSettings;
+                    BCARdata = str;
+                    showAnimalTypeStatus(); 
+                    showAnimationButtonsStatus();
+                    showArousalManipulationStatus();
+                    showBCARExpressionsStatus(); 
+                    showEarAnimationStatus(); 
+                    showEarEmoteStatus();
+                    showTailAnimationStatus(); 
+                    showTailEmoteStatus();
+                    showWingAnimationStatus();        
+                }
             }
         }
     }])
@@ -10406,6 +10534,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "misc") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
+		    "<b>/bcarstatus</b> = displays status of main BCAR settings (if used).\n" +
 		    "<b>/bcrstatus</b> = displays status of main BC Responsive settings (if used).\n" +
 		    "<b>/bctstatus</b> = displays status of main BCTweaks settings (if used).\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
