@@ -4496,8 +4496,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'boost',
         Description: ": boosts skills, similar to maid quarters drink.",
         Action: () => {
-            LogAdd("ModifierLevel", "SkillModifier", 105);
-            LogAdd("ModifierDuration", "SkillModifier", CurrentTime + 3600000);
+            SkillSetModifier(Player, "Bondage", + 5, 3600000);
+            SkillSetModifier(Player, "Evasion", + 5, 3600000);
             ChatRoomSendLocal(
                 "<p style='background-color:#5fbd7a'>ULTRAbc: You feel your senses heightened(bondage/evasion). Can see change in information panel.</p>"
             );
@@ -6910,13 +6910,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: ": gives max statistics.",
         Action: () => {
             Player.Money = 9999999999;
-            SkillChange("Infiltration", 10);
-            SkillChange("SelfBondage", 10);
-            SkillChange("Willpower", 10);
-            SkillChange("Evasion", 10);
-            SkillChange("Bondage", 10);
-            SkillChange("Dressage", 10);
-            SkillChange("LockPicking", 10)
+            SkillChange(Player, "Infiltration", 10);
+            SkillChange(Player, "SelfBondage", 10);
+            SkillChange(Player, "Willpower", 10);
+            SkillChange(Player, "Evasion", 10);
+            SkillChange(Player, "Bondage", 10);
+            SkillChange(Player, "Dressage", 10);
+            SkillChange(Player, "LockPicking", 10)
             ReputationChange("Gaming", 100);
             ReputationChange("Gambling", 100);
             ReputationChange("LARP", 100);
@@ -9325,19 +9325,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var skill = stringSkill2[0];
                 var level = stringSkill2[1];
                 if (skill == "bondage") {
-                    SkillChange("Bondage", level);
+                    SkillChange(Player, "Bondage", level);
                 } else if (skill == "dressage") {
-                    SkillChange("Dressage", level);
+                    SkillChange(Player, "Dressage", level);
                 } else if (skill == "evasion") {
-                    SkillChange("Evasion", level);
+                    SkillChange(Player, "Evasion", level);
                 } else if (skill == "infiltration") {
-                    SkillChange("Infiltration", level);
+                    SkillChange(Player, "Infiltration", level);
                 } else if (skill == "lockpicking") {
-                    SkillChange("LockPicking", level);
+                    SkillChange(Player, "LockPicking", level);
                 } else if (skill == "selfbondage") {
-                    SkillChange("SelfBondage", level);
+                    SkillChange(Player, "SelfBondage", level);
                 } else if (skill == "willpower") {
-                    SkillChange("Willpower", level);
+                    SkillChange(Player, "Willpower", level);
                 }
             }
         }
@@ -9834,7 +9834,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var title = args;
                 if (title == "agent") {
                     if ((SkillGetLevel(Player, "Infiltration") < 6) || (SkillGetLevel(Player, "Infiltration") > 7)) {
-                        SkillChange("Infiltration", 6);
+                        SkillChange(Player, "Infiltration", 6);
                     }
                     TitleSet("InfilrationAgent");
                 } else if (title == "angel") {
@@ -9849,7 +9849,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         DialogSetReputation("ABDL", 1);
                     }
                     if (SkillGetLevel(Player, "Evasion") < 10) {
-                        SkillChange("Evasion", 10);
+                        SkillChange(Player, "Evasion", 10);
                     }
                     TitleSet("BondageBaby");
                 } else if (title == "bondagemaid") {
@@ -9857,7 +9857,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         LogAdd("JoinedSorority", "Management");
                     }
                     if (SkillGetLevel(Player, "Evasion") < 10) {
-                        SkillChange("Evasion", 10);
+                        SkillChange(Player, "Evasion", 10);
                     }
                     TitleSet("BondageMaid");
                 } else if (title == "bunny") {
@@ -9866,7 +9866,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
                 } else if (title == "coldbloodhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 3) || (SkillGetLevel(Player, "Infiltration") > 3)) {
-                        SkillChange("Dressage", 3);
+                        SkillChange(Player, "Dressage", 3);
                     }
                     TitleSet("PonyCold");
                 } else if (title == "collegestudent") {
@@ -9903,22 +9903,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 } else if (title == "farmhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 2) || (SkillGetLevel(Player, "Infiltration") > 2)) {
-                        SkillChange("Dressage", 2);
+                        SkillChange(Player, "Dressage", 2);
                     }
                     TitleSet("PonyFarm");
                 } else if (title == "flyingpegasus") {
                     if ((SkillGetLevel(Player, "Dressage") < 8) || (SkillGetLevel(Player, "Infiltration") > 9)) {
-                        SkillChange("Dressage", 8);
+                        SkillChange(Player, "Dressage", 8);
                     }
                     TitleSet("PonyPegasus");
                 } else if (title == "foal") {
                     if (ReputationGet("ABDL") < 1) {
                         if ((SkillGetLevel(Player, "Dressage") < 1) || (SkillGetLevel(Player, "Infiltration") > 2)) {
-                            SkillChange("Dressage", 1);
+                            SkillChange(Player, "Dressage", 1);
                         }
                     } else if (ReputationGet("ABDL") >= 1) {
                         if (SkillGetLevel(Player, "Dressage") < 1) {
-                            SkillChange("Dressage", 1);
+                            SkillChange(Player, "Dressage", 1);
                         }
                     }
                     TitleSet("PonyFoal");
@@ -9956,17 +9956,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     TitleSet("HeadMaid");
                 } else if (title == "hotbloodhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 5) || (SkillGetLevel(Player, "Infiltration") > 5)) {
-                        SkillChange("Dressage", 5);
+                        SkillChange(Player, "Dressage", 5);
                     }
                     TitleSet("PonyHot");
                 } else if (title == "houdini") {
                     if (SkillGetLevel(Player, "Evasion") < 10) {
-                        SkillChange("Evasion", 10);
+                        SkillChange(Player, "Evasion", 10);
                     }
                     TitleSet("Houdini");
                 } else if (title == "infiltrator") {
                     if ((SkillGetLevel(Player, "Infiltration") < 4) || (SkillGetLevel(Player, "Infiltration") > 5)) {
-                        SkillChange("Infiltration", 4);
+                        SkillChange(Player, "Infiltration", 4);
                     }
                     TitleSet("InfilrationInfiltrator");
                 } else if (title == "kidnapper") {
@@ -10010,7 +10010,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     TitleSet("Maid");
                 } else if (title == "majesticalicorn") {
                     if (SkillGetLevel(Player, "Dressage") < 10) {
-                        SkillChange("Dressage", 10);
+                        SkillChange(Player, "Dressage", 10);
                     }
                     TitleSet("PonyAlicorn");
                 } else if (title == "masterkidnapper") {
@@ -10023,12 +10023,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     TitleSet("Mistress");
                 } else if (title == "mole") {
                     if ((SkillGetLevel(Player, "Infiltration") < 2) || (SkillGetLevel(Player, "Infiltration") > 3)) {
-                        SkillChange("Infiltration", 2);
+                        SkillChange(Player, "Infiltration", 2);
                     }
                     TitleSet("InfilrationMole");
                 } else if (title == "nawashi") {
                     if (SkillGetLevel(Player, "Bondage") < 10) {
-                        SkillChange("Bondage", 10);
+                        SkillChange(Player, "Bondage", 10);
                     }
                     TitleSet("Nawashi");
                 } else if (title == "nurse") {
@@ -10039,7 +10039,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     TitleSet("Nurse");
                 } else if (title == "operative") {
                     if ((SkillGetLevel(Player, "Infiltration") < 8) || (SkillGetLevel(Player, "Infiltration") > 9)) {
-                        SkillChange("Infiltration", 8);
+                        SkillChange(Player, "Infiltration", 8);
                     }
                     TitleSet("InfilrationOperative");
                 } else if (title == "oracle") {
@@ -10076,7 +10076,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     TitleSet("MagicSchoolSage");
                 } else if (title == "shiningunicorn") {
                     if ((SkillGetLevel(Player, "Dressage") < 7) || (SkillGetLevel(Player, "Infiltration") > 7)) {
-                        SkillChange("Dressage", 7);
+                        SkillChange(Player, "Dressage", 7);
                     }
                     TitleSet("PonyUnicorn");
                 } else if (title == "sorcerer") {
@@ -10092,7 +10092,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     TitleSet("Succubus");
                 } else if (title == "superspy") {
                     if (SkillGetLevel(Player, "Infiltration") < 10) {
-                        SkillChange("Infiltration", 10);
+                        SkillChange(Player, "Infiltration", 10);
                     }
                     TitleSet("InfilrationSuperspy");
                 } else if (title == "switch") {
@@ -10108,12 +10108,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     TitleSet("MagicSchoolWarlock");
                 } else if (title == "warmbloodhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 4) || (SkillGetLevel(Player, "Infiltration") > 4)) {
-                        SkillChange("Dressage", 4);
+                        SkillChange(Player, "Dressage", 4);
                     }
                     TitleSet("PonyWarm");
                 } else if (title == "wildmustang") {
                     if ((SkillGetLevel(Player, "Dressage") < 6) || (SkillGetLevel(Player, "Infiltration") > 6)) {
-                        SkillChange("Dressage", 6);
+                        SkillChange(Player, "Dressage", 6);
                     }
                     TitleSet("PonyWild");
                 } else if (title == "witch") {
