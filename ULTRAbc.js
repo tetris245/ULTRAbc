@@ -10622,11 +10622,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
 		if (Player.OnlineSettings.LSCG != null) {
                     if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
-                        Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel = 0;
                         Player.OnlineSettings.LSCG.InjectorModule.asleep = false;
                     }
                     if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == true) {
-                        Player.OnlineSettings.LSCG.InjectorModule.mindControlLevel = 0;
                         Player.OnlineSettings.LSCG.InjectorModule.brainwashed = false;
                     }                    
                     Player.OnlineSettings.LSCG.CollarModule.knockout = false;
