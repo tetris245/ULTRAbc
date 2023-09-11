@@ -10625,7 +10625,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Visual commands - * = more info when using\n" +
                     "<b>/bg1</b> = adds hidden backgrounds to the admin selection screen. Tip for BCX users: activate BCX before login.\n" +
-                    "<b>/bg2</b> (number) = uses a hidden platform background. Number between 1 and 86. /bg2 to get the list.\n" +
+                    "<b>/bg2</b> (number) = uses a hidden platform background. Number between 1 and 98. /bg2 to get the list.\n" +
                     "<b>/blur</b> (blurlevel) = forces a specific blur level.\n" +
                     "<b>/colorchanger</b> (animhere) = gets an animation with color change. *\n" +
                     "<b>/pose2</b> (posehere) (target) = changes the pose of any player. *\n" +
