@@ -63,6 +63,7 @@ Changes for future version
   - bctstatus to display current status of main BCTweaks settings (if you use this add-on)
   - highfame to toggle high fame (200) mode in Bondage Club Card Game
   - spin (target) to allow access to target's wheel of fortune, even when not displayed
+* Updated the bg2 command
 * Updated the boost, maxstatistics, skill and title commands for R96 compatibility
 * Updated the unrestrict total command to neutralize effects of LSCG features while keeping level bars and emoticon
 * Optimized management of Player's name, nickname and pronouns
