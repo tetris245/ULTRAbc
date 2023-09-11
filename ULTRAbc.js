@@ -4240,23 +4240,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The bg2 command must be followed by a number. List of hidden platform backgrounds:\n" +
-                    "1, 2 Balcony - 3 Ballroom\n" +
-                    "4 to 6 Barn - 7 to 9 Bathroom Olivia\n" +
-                    "10 Bedroom Dungeon - 11 Bedroom Edward\n" +
-                    "12, 13 Bedroom Isabella - 14 Bedroom Melody\n" +
-                    "15 to 17 Bedroom Olivia - 18 to 23 Birch\n" +
-                    "24 Black - 25 to 27 Camp Ground\n" +
-                    "28 to 30 Castle - 31, 32 Clearing\n" +
-                    "33 to 35 College - 36 to 38 Countess Hall\n" +
-                    "39, 40 Dungeon 1 - 41, 42 Dungeon Cell\n" +
-                    "43 to 45 Dungeon Storage - 46 Forest\n" +
-                    "47 to 50 Forest Cabin - 51 Gas\n" +
-                    "52 Green Plain - 53 to 63 Hall (1 to 4)\n" +
-                    "64 to 69 Lake - 70 Maid Bed\n" +
-                    "71 Mountain Path - 72, 73 Oak\n" +
-                    "74 to 78 Plain - 79 Pond\n" +
-                    "80, 81 Savannah - 82, 83 Terrace\n" +
-                    "84 Vulture Plain - 85, 86 Wine Cell</p>"
+                    "1, 2 Balcony - 3 Ballroom - 4 to 12 Bandit Camp\n" +
+                    "13 to 15 Barn - 16 to 18 Bathroom Olivia\n" +         
+                    "19 Bedroom Dungeon - 20 Bedroom Edward\n" +
+                    "21, 22 Bedroom Isabella - 23 Bedroom Melody\n" +
+                    "24 to 26 Bedroom Olivia - 27 to 32 Birch\n" +
+                    "33 Black - 34 to 36 Camp Ground\n" +
+                    "37 to 39 Castle - 40, 41 Clearing\n" +
+                    "42 to 44 College - 45 to 47 Countess Hall\n" +
+                    "48, 49 Dungeon 1 - 50, 51 Dungeon Cell\n" +
+                    "52 to 54 Dungeon Storage - 55 Forest\n" +
+                    "56 to 59 Forest Cabin - 60 Gas - 61 Green Plain\n" +
+                    "62 to 72 Hall (1 to 4) - 73 to 78 Lake - 79 Maid Bed\n" +
+                    "80 Mountain Path - 81, 82 Oak\n" +
+                    "83 to 87 Plain - 88 Pond - 89, 90 Savannah\n" +
+                    "91 to 93 Tent - 94, 95 Terrace\n" +
+                    "96 Vulture Plain - 97, 98 Wine Cell</p>"
                 );
             } else if (args == 1) {
                 ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Balcony';
@@ -4268,252 +4267,288 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Ballroom';
                 updateBackground();
             } else if (args == 4) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BarnExterior';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Savannah/BanditCampClosed';
                 updateBackground();
             } else if (args == 5) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BarnInterior';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Savannah/BanditCampGateClosed';
                 updateBackground();
             } else if (args == 6) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BarnInterior';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Savannah/BanditCampGateOpen';
                 updateBackground();
             } else if (args == 7) {
-                ChatCreateBackgroundSelect = '../Screens/Room//Platform/Background/Castle/Orig/BathroomOlivia';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Savannah/BanditCampOpen';
                 updateBackground();
             } else if (args == 8) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BathroomOlivia';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Savannah/BanditPath';
                 updateBackground();
             } else if (args == 9) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BathroomOlivia';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BanditCamp';
                 updateBackground();
             } else if (args == 10) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomDungeon';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BanditCampGateGround';
                 updateBackground();
             } else if (args == 11) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomEdward';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BanditCampGateOpen';
                 updateBackground();
             } else if (args == 12) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomIsabella';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BanditCampGround';
                 updateBackground();
             } else if (args == 13) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BedroomIsabella';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BarnExterior';
                 updateBackground();
             } else if (args == 14) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomMelody';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BarnInterior';
                 updateBackground();
             } else if (args == 15) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomOlivia';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BarnInterior';
                 updateBackground();
             } else if (args == 16) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BedroomOlivia';
+                ChatCreateBackgroundSelect = '../Screens/Room//Platform/Background/Castle/Orig/BathroomOlivia';
                 updateBackground();
             } else if (args == 17) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BedroomOliviaDark';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BathroomOlivia';
                 updateBackground();
             } else if (args == 18) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BirchClear';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BathroomOlivia';
                 updateBackground();
             } else if (args == 19) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BirchHeavy';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomDungeon';
                 updateBackground();
             } else if (args == 20) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BirchLight';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomEdward';
                 updateBackground();
             } else if (args == 21) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/ForestBirchLight';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomIsabella';
                 updateBackground();
             } else if (args == 22) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BirchMaze';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BedroomIsabella';
                 updateBackground();
             } else if (args == 23) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/ForestMaze';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomMelody';
                 updateBackground();
             } else if (args == 24) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Black';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/BedroomOlivia';
                 updateBackground();
             } else if (args == 25) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CampGround';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BedroomOlivia';
                 updateBackground();
             } else if (args == 26) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/CampGround';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/BedroomOliviaDark';
                 updateBackground();
             } else if (args == 27) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CampGroundRaft';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BirchClear';
                 updateBackground();
             } else if (args == 28) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/CastleEntrance';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BirchHeavy';
                 updateBackground();
             } else if (args == 29) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/CastleHall';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BirchLight';
                 updateBackground();
             } else if (args == 30) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CastleWall';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/ForestBirchLight';
                 updateBackground();
             } else if (args == 31) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/SecludedClearing';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/BirchMaze';
                 updateBackground();
             } else if (args == 32) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/SecludedClearing';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/ForestMaze';
                 updateBackground();
             } else if (args == 33) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/College/CollegeArt1';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Black';
                 updateBackground();
             } else if (args == 34) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/College/CollegeClass1';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CampGround';
                 updateBackground();
             } else if (args == 35) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/College/CollegeHall1';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/CampGround';
                 updateBackground();
             } else if (args == 36) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/CountessHall';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CampGroundRaft';
                 updateBackground();
             } else if (args == 37) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/CountessHall';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/CastleEntrance';
                 updateBackground();
             } else if (args == 38) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/CountessHallDeadEnd';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/CastleHall';
                 updateBackground();
             } else if (args == 39) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Dungeon1C';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CastleWall';
                 updateBackground();
             } else if (args == 40) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Dungeon1W';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/SecludedClearing';
                 updateBackground();
             } else if (args == 41) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/DungeonCell';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/SecludedClearing';
                 updateBackground();
             } else if (args == 42) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/DungeonCell';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/College/CollegeArt1';
                 updateBackground();
             } else if (args == 43) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/DungeonStorage';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/College/CollegeClass1';
                 updateBackground();
             } else if (args == 44) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/DungeonStorage';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/College/CollegeHall1';
                 updateBackground();
             } else if (args == 45) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/DungeonStorageDark';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/CountessHall';
                 updateBackground();
             } else if (args == 46) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/FirLight';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/CountessHall';
                 updateBackground();
             } else if (args == 47) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CabinInterior';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/CountessHallDeadEnd';
                 updateBackground();
             } else if (args == 48) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CabinPath';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Dungeon1C';
                 updateBackground();
             } else if (args == 49) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/ForestCabinInterior';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Dungeon1W';
                 updateBackground();
             } else if (args == 50) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/WoodCabin';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/DungeonCell';
                 updateBackground();
             } else if (args == 51) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Gas';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/DungeonCell';
                 updateBackground();
             } else if (args == 52) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/GreenPlain';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/DungeonStorage';
                 updateBackground();
             } else if (args == 53) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall1C';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/DungeonStorage';
                 updateBackground();
             } else if (args == 54) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall1W';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/DungeonStorageDark';
                 updateBackground();
             } else if (args == 55) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall2C';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/FirLight';
                 updateBackground();
             } else if (args == 56) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall3C';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CabinInterior';
                 updateBackground();
             } else if (args == 57) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall3Cv2';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/CabinPath';
                 updateBackground();
             } else if (args == 58) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall3E';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/ForestCabinInterior';
                 updateBackground();
             } else if (args == 59) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall3W';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/WoodCabin';
                 updateBackground();
             } else if (args == 60) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall4C';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Gas';
                 updateBackground();
             } else if (args == 61) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall4E';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/GreenPlain';
                 updateBackground();
             } else if (args == 62) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall4W1';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall1C';
                 updateBackground();
             } else if (args == 63) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall4W2';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall1W';
                 updateBackground();
             } else if (args == 64) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/LakeBetweenRocks';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall2C';
                 updateBackground();
             } else if (args == 65) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/LakeRaft';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall3C';
                 updateBackground();
             } else if (args == 66) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/LakeShore';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall3Cv2';
                 updateBackground();
             } else if (args == 67) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/LakeShoreRaft';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall3E';
                 updateBackground();
             } else if (args == 68) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/MountainLake';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall3W';
                 updateBackground();
             } else if (args == 69) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Water';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall4C';
                 updateBackground();
             } else if (args == 70) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/MaidBed';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall4E';
                 updateBackground();
             } else if (args == 71) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/MountainPath';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall4W1';
                 updateBackground();
             } else if (args == 72) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/OakHeavy';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Hall4W2';
                 updateBackground();
             } else if (args == 73) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/OakHeavy';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/LakeBetweenRocks';
                 updateBackground();
             } else if (args == 74) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainDistantLake';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/LakeRaft';
                 updateBackground();
             } else if (args == 75) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainSparseRocks';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/LakeShore';
                 updateBackground();
             } else if (args == 76) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainToForest';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/LakeShoreRaft';
                 updateBackground();
             } else if (args == 77) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainToSavannah';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/MountainLake';
                 updateBackground();
             } else if (args == 78) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainWoodPath';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Water';
                 updateBackground();
             } else if (args == 79) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/LostPond';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/MaidBed';
                 updateBackground();
             } else if (args == 80) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Savannah';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/MountainPath';
                 updateBackground();
             } else if (args == 81) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Savannah';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/OakHeavy';
                 updateBackground();
             } else if (args == 82) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Terrace';
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/OakHeavy';
                 updateBackground();
             } else if (args == 83) {
-                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Terrace';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainDistantLake';
                 updateBackground();
-            } else if (args == 84) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/VulturePlain';
+            } else if (args == 74) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainSparseRocks';
                 updateBackground();
             } else if (args == 85) {
-                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/WineCellar';
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainToForest';
                 updateBackground();
             } else if (args == 86) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainToSavannah';
+                updateBackground();
+            } else if (args == 87) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainWoodPath';
+                updateBackground();
+            } else if (args == 88) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/LostPond';
+                updateBackground();
+            } else if (args == 89) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Savannah';
+                updateBackground();
+            } else if (args == 90) {
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Savannah';
+                updateBackground();        
+            } else if (args == 91) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Savannah/TentExterior';
+                updateBackground();
+            } else if (args == 92) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Savannah/TentInterior';
+                updateBackground();       
+            } else if (args == 93) {
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/SavannahTentInterior';
+                updateBackground();
+            } else if (args == 94) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Terrace';
+                updateBackground();
+            } else if (args == 95) {
+                ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/Terrace';
+                updateBackground();
+            } else if (args == 96) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/Orig/VulturePlain';
+                updateBackground();
+            } else if (args == 97) {
+                ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/WineCellar';
+                updateBackground();
+            } else if (args == 98) {
                 ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/WineCellar';
                 updateBackground();
             }
