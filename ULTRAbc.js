@@ -4506,7 +4506,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else if (args == 83) {
                 ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainDistantLake';
                 updateBackground();
-            } else if (args == 74) {
+            } else if (args == 84) {
                 ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Forest/PlainSparseRocks';
                 updateBackground();
             } else if (args == 85) {
