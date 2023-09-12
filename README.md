@@ -66,6 +66,7 @@ Changes for future version
 * Updated the bg2 command
 * Updated the boost, maxstatistics, skill and title commands for R96 compatibility
 * Updated the unrestrict total command to neutralize effects of LSCG features while keeping level bars and emoticon
+* Updated the lockpicking cheat by patching a different BC function for R96 compatibility
 * Optimized management of Player's name, nickname and pronouns
 * Fixed again a grammatical issue in customized messages (previous fix was buggy!)
 
