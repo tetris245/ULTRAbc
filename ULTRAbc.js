@@ -404,7 +404,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAPandoraPrisonRun();
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
-    ULTRAStruggleLockPickDraw();
+    ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
     //Bondage Brawl
@@ -965,16 +965,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //Lockpicking
-    async function ULTRAStruggleLockPickDraw() {
-        modApi.hookFunction('StruggleLockPickDraw', 4, (args, next) => {
+    async function ULTRAStruggleMinigameWasInterrupted() {
+        modApi.hookFunction('StruggleMinigameWasInterrupted', 4, (args, next) => {
             if (FullseedOn == true) {
-                var seed = parseInt(StruggleLockPickOrder.join(""));
-                var tips = StruggleLockPickOrder.map((a) => {
-                    return true;
-                });
-                for (let q = 0; q < tips.length; q++) {
-                    var xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
-                    DrawText(`${StruggleLockPickOrder.indexOf(q) + 1}`, xx, 300, "blue");
+                if (StruggleProgressCurrentMinigame === "LockPick") {
+                    var seed = parseInt(StruggleLockPickOrder.join(""));
+                    var tips = StruggleLockPickOrder.map((a) => {
+                         return true;
+                    });           
+                    for (let q = 0; q < tips.length; q++) {
+                         var xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
+                         DrawText(`${StruggleLockPickOrder.indexOf(q) + 1}`, xx, 300, "blue");
+                    }
+                    return false;
                 }
             }
             next(args);
