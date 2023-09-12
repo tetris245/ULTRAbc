@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 2.0.1
+// @version 2.1
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return;
     }
 
-    const UBCver = "2.0.1";
+    const UBCver = "2.1";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -10586,10 +10586,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- Added alternative support for OOC mode by allowing to start the message with a comma.\n" +
-                    "- Updated the unrestrict command for R95 compatibility.\n" +
-                    "- Removed verbose option of the Moaner.\n" +
-                    "- Removed Ctrl+Enter support for OOC.</p>"
+                    "- New commands: bcarstatus, bcrstatus, bctstatus to display current status of main settings from other add-ons,\n" +
+		    "highfame to toggle high fame (200) mode in Bondage Club Card Game,\n" +
+		    "spin (target) to allow access to target's wheel of fortune, even when not displayed.\n" +
+		    "- Updated the bg2, boost, maxstatistics, skill, title commands + the lockpicking cheat for R96 compatibility.\n" +
+                    "- Updated the unrestrict total command to neutralize effects of LSCG features.\n" +
+                    "- Optimized management of Player's name, nickname and pronouns.\n" +
+                    "- Fixed again a grammatical issue in customized messages.</p>"
                 );
             }
             if (args === "settings") {
