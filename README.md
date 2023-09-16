@@ -57,16 +57,5 @@ All else I might not have included.
 
 Changes for future version
 
-* New commands:
-  - bcarstatus to display current status of main BCAR settings (if you use this add-on)
-  - bcrstatus to display current status of main BC Responsive settings (if you use this add-on)
-  - bctstatus to display current status of main BCTweaks settings (if you use this add-on)
-  - highfame to toggle high fame (200) mode in Bondage Club Card Game
-  - spin (target) to allow access to target's wheel of fortune, even when not displayed
-* Updated the bg2 command (new Bondage Brawl screens)
-* Updated the boost, maxstatistics, skill and title commands for R96 compatibility
-* Updated the unrestrict total command to neutralize effects of several LSCG features
-* Updated the lockpicking cheat by patching a different BC function for R96 compatibility
-* Optimized management of Player's name, nickname and pronouns
-* Fixed again a grammatical issue in customized messages (previous fix was buggy!)
+(...)
 
