@@ -43,7 +43,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let pronoun4;
 
     var M_MOANER_moanerKey = "bc_moaner_";
-    var M_MOANER_scriptOn = true;
+    var M_MOANER_scriptOn = false;
     var M_MOANER_cum = false;
     let profileName;
 
