@@ -4660,7 +4660,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'boost',
-        Description: ": boosts skills, similar to maid quarters drink.",
+        Description: ": boosts skills, similar to maid quarters energy drink + cupcake.",
         Action: () => {
             SkillSetModifier(Player, "Bondage", + 5, 3600000);
             SkillSetModifier(Player, "Evasion", + 5, 3600000);
