@@ -35,7 +35,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
     let kp = 0;
-	
+    let highfame = 200;
+
     let tmpname;
     let pronoun1;
     let pronoun2;
@@ -784,7 +785,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRAClubCardEndTurn(Draw = false) {
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
             if (HighfameOn == true) {
-                ClubCardFameGoal = 200;
+                ClubCardFameGoal = highfame;
                 let nmg = ""; 
                 if (MouseIn(1705, 905, 90, 90) && (ClubCardPlayer[ClubCardTurnIndex].Control == "Player")) Draw = true;
                 let CCPlayer = ClubCardPlayer[ClubCardTurnIndex];
@@ -815,7 +816,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		    MiniGameEnded = true;
 		    let nmg = TextGet("VictoryFor" + CCPlayer.Control);
 		    if (ClubCardIsOnline()) nmg = TextGet("VictoryOnline").replace("PLAYERNAME", CharacterNickname(CCPlayer.Character));
-                    Msg = nmg.replace("100", "200");
+                    Msg = nmg.replace("100", highfame);
                     ClubCardLogAdd(Msg);
 		    ClubCardCreatePopup("TEXT", Msg, TextGet("Return"), null, "ClubCardEndGame()", null);
 		    if (MiniGameVictory && (ClubCardReward != null)) ClubCardGetReward();
@@ -4697,25 +4698,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'btalk',
-        Description: "(words): speaks once as a baby.",
+        Tag: 'cardfame',
+        Description: "(fame): sets the fame level for the high fame mode of Bondage Club Card Game.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The btalk command must be followed by the words you want to say.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The cardfame command must be followed by a number between 200 and 1000.</p>"
                 );
             } else {
-                content = SpeechBabyTalk({
-                    Effect: ["RegressedTalk"]
-                }, args);
-                ServerSend("ChatRoomChat", {
-                    "Content": content,
-                    "Type": "Chat"
-                });
+                var fame = args;
+                if ((fame > 199) && (fame < 1001) && (fame != highfame)) {
+                    highfame = fame;
+                    M_MOANER_saveControls();
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fame level changed for the high fame mode of the Bondage Club Card Game.</p>"
+                    );
+                }
             }
         }
     }])
-
+ 
     CommandCombine([{
         Tag: 'chess',
         Description: "(difficulty): starts chess.",
@@ -10625,9 +10627,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
                     "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
+		    "<b>/cardfame</b> = sets high fame level for Club Card Game.\n" +
                     "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
-		    "<b>/highfame</b> = toggles high fame (200) mode in Bondage Club Card Game.\n" +
+		    "<b>/highfame</b> = toggles high fame (200) mode in Club Card Game.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
                     "<b>/magiccheat</b> = toggles cheat mode in Bondage Brawl and Magic School.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
