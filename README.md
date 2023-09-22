@@ -57,5 +57,7 @@ All else I might not have included.
 
 Changes for future version
 
+* New commands:
+  - cardfame (fame) to set the fame level (between 200 and 1000) for the high fame mode of the Club Card Game
 * Extended the boost command to all your skills
 
