@@ -4708,7 +4708,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var fame = args;
                 if ((fame > 199) && (fame < 1001) && (fame != highfame)) {
                     highfame = fame;
-                    M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fame level changed for the high fame mode of the Bondage Club Card Game.</p>"
                     );
