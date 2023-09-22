@@ -4660,15 +4660,39 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'boost',
-        Description: ": boosts skills, similar to maid quarters energy drink + cupcake.",
+        Description: ": boosts all your skills for one hour.",
         Action: () => {
-            SkillSetModifier(Player, "Bondage", + 5, 3600000);
+            SkillSetModifier(Player, "Bondage", + 5, 3600000);      
+            SkillSetModifier(Player, "Dressage", + 5, 3600000);
             SkillSetModifier(Player, "Evasion", + 5, 3600000);
-	    SkillSetModifier(Player, "LockPicking", + 5, 3600000);
+            SkillSetModifier(Player, "Infiltration", + 5, 3600000);
+            SkillSetModifier(Player, "LockPicking", + 5, 3600000);      
+            SkillSetModifier(Player, "SelfBondage", + 5, 3600000);
             SkillSetModifier(Player, "Willpower", + 5, 3600000);
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: You feel your senses heightened (bondage, evasion, lockpicking, willpower). Change can be seen in information panel.</p>"
+                "<p style='background-color:#5fbd7a'>ULTRAbc: You feel all your skills boosted. Changes can be seen in information panel.</p>"
             );
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'btalk',
+        Description: "(words): speaks once as a baby.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The btalk command must be followed by the words you want to say.</p>"
+                );
+            } else {
+                content = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, args);
+                ServerSend("ChatRoomChat", {
+                    "Content": content,
+                    "Type": "Chat"
+                });
+            }
+
         }
     }])
 
@@ -10523,7 +10547,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "escape") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Escape commands - * = more info when using\n" +
-                    "<b>/boost</b> = boosts skills, similar to maid quarters drink.\n" +
+                    "<b>/boost</b> = boosts all your skills for one hour.\n" +
                     "<b>/code</b> (target) = reveals codes for combination locks.\n" +
                     "<b>/ptcode</b> (target) = reveals portal link codes.\n" +
                     "<b>/pw</b> (target) = reveals passwords for locks with password.\n" +
