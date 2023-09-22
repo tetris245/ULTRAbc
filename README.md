@@ -57,5 +57,5 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Extended the boost command to your lockpocking skill and willpower
 
