@@ -4664,8 +4664,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: () => {
             SkillSetModifier(Player, "Bondage", + 5, 3600000);
             SkillSetModifier(Player, "Evasion", + 5, 3600000);
+	    SkillSetModifier(Player, "LockPicking", + 5, 3600000);
+            SkillSetModifier(Player, "Willpower", + 5, 3600000);
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: You feel your senses heightened(bondage/evasion). Can see change in information panel.</p>"
+                "<p style='background-color:#5fbd7a'>ULTRAbc: You feel your senses heightened (bondage, evasion, lockpicking, willpower). Change can be seen in information panel.</p>"
             );
         }
     }])
