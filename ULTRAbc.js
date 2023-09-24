@@ -6021,7 +6021,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 );
             } else {
                 HighfameOn = true;
-                ClubCardFameGoal = 200;
+                ClubCardFameGoal = cfame;
                 M_MOANER_saveControls();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: High fame mode enabled in Bondage Club Card Game.</p>"
