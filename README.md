@@ -59,6 +59,6 @@ Changes for future version
 
 * New commands:
   - carddesk (desk) to set a specific desk as default desk for the Bondage Club Card Game
-  - cardfame (fame) to set the fame level (between 200 and 1000) for the high fame mode of the Bondage Club Card Game
+  - cardfame (fame) to set the fame level (between 200 and 600) for the high fame mode of the Bondage Club Card Game
 * Extended the boost command to all your skills
 
