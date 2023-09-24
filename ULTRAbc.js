@@ -10689,7 +10689,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
                     "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
-		    "<b>/carddesk</b> (desk) = changes defaul! desk for Club Card Game.\n" +
+		    "<b>/carddesk</b> (desk) = changes default desk for Club Card Game.\n" +
 		    "<b>/cardfame</b> (fame) = sets high fame level for Club Card Game.\n" +
                     "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
