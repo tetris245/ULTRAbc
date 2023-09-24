@@ -4765,11 +4765,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The cardfame command must be followed by a number between 200 and 1000.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The cardfame command must be followed by a number between 200 and 600.</p>"
                 );
             } else {
                 var fame = args;
-                if ((fame > 199) && (fame < 1001) && (fame != cfame)) {
+                if ((fame > 199) && (fame < 601) && (fame != cfame)) {
                     cfame = fame;
 		    M_MOANER_saveControls();
                     ChatRoomSendLocal(
