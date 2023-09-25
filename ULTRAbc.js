@@ -127,7 +127,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Emergency buttons hidden and disabled."];
     var WelcomeStatus = ["Welcome message in main hall.",
         "No welcome message in main hall."];  
-
+	
+    // Main variables from other add-ons
     var AnimalTypeStatus = ["Current Animal Type: "];
     var AnimationButtonsStatus = ["Animation Buttons enabled.",
         "Animation Buttons disabled."];
@@ -180,6 +181,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var TailWaggingStatus = ["Tail Wagging feature is enabled.",
         "Tail Wagging feature is disabled."];
 
+    //Initialisation
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
