@@ -2252,18 +2252,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     function M_MOANER_reactionOrgasm(Player) {
         if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
             if ((Player.ID == 0) && (Player.ArousalSettings.OrgasmStage == 2)) {
-                if (Player.OnlineSettings.LSCG != null) {
-                    if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
-                        if (Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel != 0) {
-                            Player.OnlineSettings.LSCG.InjectorModule.asleep = false;
-                        }
-                    }
-                    if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == true) {
-                        if (Player.OnlineSettings.LSCG.InjectorModule.mindControlLevel != 0) {
-                            Player.OnlineSettings.LSCG.InjectorModule.brainwashed = false;
-                        }
-                    }
-                }
                 var moan;
                 var backupChatRoomTargetMemberNumber = null;
                 // not in whisper mode
@@ -2337,18 +2325,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     ChatRoomTargetMemberNumber = backupChatRoomTargetMemberNumber;
                     ElementValue("InputChat", msg);
-                    if (Player.OnlineSettings.LSCG != null) {
-                        if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == false) {
-                            if (Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel != 0) {
-                                Player.OnlineSettings.LSCG.InjectorModule.asleep = true;
-                            }
-                        }
-                        if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == false) {
-                            if (Player.OnlineSettings.LSCG.InjectorModule.mindControlLevel != 0) {
-                                Player.OnlineSettings.LSCG.InjectorModule.brainwashed = true;
-                            }
-                        }         
-                    }   
                 }
             }
         }
@@ -3685,47 +3661,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     ///////////////////////////////////////////////////////////////				
     //Commands
-
-    CommandCombine([{
-        Tag: 'antidote',
-        Description: ": neutralizes effects of LSCG drugs and removes latex respirator.",
-        Action: () => {
-            if (Player.OnlineSettings.LSCG != null) {
-                if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
-                    Player.OnlineSettings.LSCG.InjectorModule.sedativeLevel = 0;
-                    Player.OnlineSettings.LSCG.InjectorModule.asleep = false;
-                }
-                if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == true) {
-                    Player.OnlineSettings.LSCG.InjectorModule.mindControlLevel = 0;
-                    Player.OnlineSettings.LSCG.InjectorModule.brainwashed = false;
-                }
-                if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
-                    Player.OnlineSettings.LSCG.InjectorModule.hornyLevel = 0;
-                    Player.OnlineSettings.LSCG.InjectorModule.hornyLevel = false;
-                }
-                if (InventoryGet(Player, "ItemMouth3") != null) {
-                    if (InventoryGet(Player, "ItemMouth3").Asset.Name == "LatexRespirator") {
-                        InventoryRemove(Player, "ItemMouth3");                                                             
-                    }
-                }
-                ServerAccountUpdate.QueueData(
-                    {OnlineSettings: Player.OnlineSettings}
-                );
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: "" + tmpname + " uses " + pronoun3 + " magical powers and succeeds to neutralize the effects of the drugs." 
-                    }]
-                });  
-                CharacterSetFacialExpression(Player, "Eyes", null);
-                CharacterSetFacialExpression(Player, "Eyes2", null);
-                CharacterSetFacialExpression(Player, "Emoticon", null); 
-                ChatRoomCharacterUpdate(Player);
-            }
-        }
-    }])
 
     CommandCombine([{
         Tag: 'asylum',
@@ -10628,7 +10563,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "fun") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
-                    "<b>/antidote</b> = neutralizes effects of LSCG drugs.\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes the settings of worn High Duty Belt. *\n" +
                     "<b>/invisible1</b> = becomes invisible (if anal hook usable).\n" +
@@ -11028,19 +10962,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 InventoryGroupIsBlocked = function(C, GroupName) {
                     return false;
-                }
-		if (Player.OnlineSettings.LSCG != null) {
-                    if (Player.OnlineSettings.LSCG.InjectorModule.enableSedative == true) {
-                        Player.OnlineSettings.LSCG.InjectorModule.asleep = false;
-                    }
-                    if (Player.OnlineSettings.LSCG.InjectorModule.enableMindControl == true) {
-                        Player.OnlineSettings.LSCG.InjectorModule.brainwashed = false;
-                    }                    
-                    Player.OnlineSettings.LSCG.CollarModule.knockout = false;
-                    Player.OnlineSettings.LSCG.HypnoModule.hypnotized = false;
-                    Player.OnlineSettings.LSCG.InjectorModule. enableContinuousDelivery = false;
-                    Player.OnlineSettings.LSCG.InjectorModule.continuousDeliveryForever = false;
-                    Player.OnlineSettings.LSCG.MiscModule.infiniteChloroformPotency = false;
                 }
                 InventoryPrerequisiteMessage = function(C, Prerequisit) {
                     if (Prerequisit == 'HasBreasts') {
