@@ -1758,6 +1758,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         } else {
             msg = HighfameStatus[1];
         }
+	msg = msg + " Current high fame: " + cfame + ". Current default desk: " + cdesk + ".";
         M_MOANER_sendMessageToWearer(msg);
     }
 	
