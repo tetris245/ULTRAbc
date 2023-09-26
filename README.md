@@ -64,6 +64,7 @@ Changes for future version
   - cardnoextra to remove all extra cards in the Bondage Club Card Game
 * Extended the boost command to all your skills
 * Removed the antidote command and other features pausing or neutralizing LSCG effects (no more working with new LSCG data format)
+* Disabled Moaner features linked to LSCG to guarantee compatibility with LSCG development version (will be restored later)
 * Fixed bug in the Moaner related to changes in settings of Player's vibes
 * Fixed a minor bug on login screen and added a message in console about UBC loading
 
