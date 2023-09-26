@@ -364,6 +364,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 MoanerIsLoaded = true;
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
+		console.log("ULTRAbc loaded: Version " + UBCver);
                 if (NPCpunish == true) {
                     Player.RestrictionSettings.BypassNPCPunishments = false;
                 } else {
@@ -1030,7 +1031,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Login
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 120, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "Black", "");
+            DrawButton(750, 120, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "", "");
             next(args);
         });
     }
