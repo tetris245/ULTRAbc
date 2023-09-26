@@ -64,4 +64,5 @@ Changes for future version
   - cardnoextra to remove all extra cards in the Bondage Club Card Game
 * Extended the boost command to all your skills
 * Removed the antidote command and other features pausing or neutralizing LSCG effects (no more working with new LSCG data format)
+* Fixed a minor bug on login screen and added a message in console about UBC loading
 
