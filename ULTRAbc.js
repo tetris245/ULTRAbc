@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 2.1
+// @version 2.2
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return;
     }
 
-    const UBCver = "2.1";
+    const UBCver = "2.2";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -10566,7 +10566,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/money</b> (value) = gives or takes money.\n" +
                     "<b>/permission</b> (number) = changes your item permission *\n" +
                     "<b>/reputation</b> (reputation) (level) = changes a reputation. *\n" +
-                    "<b>/resetinventory</b> = erases your inventory. Will warn first.\n" +
+                    "<b>/resetinventory</b> = erases your inventory.\n" +
                     "<b>/roleplay</b> (rolehere) = starts a role. *\n" +
                     "<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n" +
                     "<b>/skill</b> (skill) (level) = changes a skill. *\n" +
@@ -10664,13 +10664,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- New commands: bcarstatus, bcrstatus, bctstatus to display current status of main settings from other add-ons,\n" +
-		    "highfame to toggle high fame (200) mode in Bondage Club Card Game,\n" +
-		    "spin (target) to allow access to target's wheel of fortune, even when not displayed.\n" +
-		    "- Updated the bg2, boost, maxstatistics, skill, title commands + the lockpicking cheat for R96 compatibility.\n" +
-                    "- Updated the unrestrict total command to neutralize effects of LSCG features.\n" +
-                    "- Optimized management of Player's name, nickname and pronouns.\n" +
-                    "- Fixed again a grammatical issue in customized messages.</p>"
+                    "- New commands for the Bondage Club Card Game:\n" +
+		    "carddesk (desk) to set a specific desk (0 to 8) as default desk,\n" +
+		    "cardfame (fame) to set fame level (between 200 and 600) for high fame mode,\n" +
+		    "cardextra and cardnoextra to get or remove the extra cards.\n" +
+		    "- Extended the boost command to all your skills.\n" +
+                    "- Removed antidote command and other features pausing or neutralizing LSCG effects.\n" +
+                    "- Disabled some Moaner features to guarantee compatibility with LSCG development version.\n" +
+                    "- Fixed bugs on login screen and in vibe option of the Moaner.</p>"
                 );
             }
             if (args === "settings") {
