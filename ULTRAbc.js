@@ -2360,7 +2360,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                      }
                  }
              }
-             if (data.Content.includes("Inject")) {
+             /*if (data.Content.includes("Inject")) {
                  if (!Player?.MemberNumber) return;
                  let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
                  mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber; 
@@ -2377,7 +2377,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                          }
                      }
                  }
-             }
+             }*/
              if (data.Type === "Action" && metadata.ShockIntensity >= 0) {
                  let intensity = metadata.ShockIntensity;
                  if (intensity !== null && metadata.TargetCharacter.IsPlayer()) {
@@ -2663,7 +2663,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         if (Player.ArousalSettings.Progress >= 10) {
             return true;
         }
-        if (Player.OnlineSettings.LSCG != undefined) {
+        /*if (Player.OnlineSettings.LSCG != undefined) {
             if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
                 if (Player.OnlineSettings.LSCG.InjectorModule.hornyLevel != 0) {
                     let newhorny = Player.OnlineSettings.LSCG.InjectorModule.hornyLevel;
@@ -2677,7 +2677,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
             }
-        }
+        }*/
         return false;
     }
 
@@ -2927,7 +2927,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
             }
         }
-        if (Player.OnlineSettings.LSCG != null) {
+        /*if (Player.OnlineSettings.LSCG != null) {
             if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
                 if (Player.OnlineSettings.LSCG.InjectorModule.hornyLevel != 0) {
                     let horny = Player.OnlineSettings.LSCG.InjectorModule.hornyLevel;
@@ -2964,7 +2964,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     return false;
                 }
             }
-        }
+        }*/
         return false;
     }
 
