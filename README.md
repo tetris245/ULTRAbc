@@ -63,5 +63,5 @@ Changes for future version
   - cardfame (fame) to set the fame level (between 200 and 600) for the high fame mode of the Bondage Club Card Game
   - cardnoextra to remove all extra cards in the Bondage Club Card Game
 * Extended the boost command to all your skills
-* Removed the antidote command and other features neutralizing LSCG effects (no more working with new LSCG data format)
+* Removed the antidote command and other features pausing or neutralizing LSCG effects (no more working with new LSCG data format)
 
