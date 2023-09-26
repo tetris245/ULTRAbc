@@ -58,7 +58,7 @@ All else I might not have included.
 Changes for future version
 
 * New commands:
-  - carddesk (desk) to set a specific desk as default desk for the Bondage Club Card Game
+  - carddesk (desk) to set a specific desk as default desk for the Bondage Club Card Game (note: the Extra desk includes all the extra cards)
   - cardfame (fame) to set the fame level (between 200 and 600) for the high fame mode of the Bondage Club Card Game
 * Extended the boost command to all your skills
 * Removed the antidote command and other features neutralizing LSCG effects (no more working with new LSCG data format)
