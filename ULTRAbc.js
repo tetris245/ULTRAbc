@@ -4701,6 +4701,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'cardextra',
+        Description: ": gives all extra cards of the Bondage Club Card Game.",
+        Action: () => {
+            Player.Game.ClubCard.Reward = "";
+            var Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
+            ChatRoomSendLocal(
+                "<p style='background-color:#5fbd7a'>ULTRAbc: All extra cards of the Bondage Club Card Game now added.</p>"
+            );
+            for (let i = 0; i < Extra.length; i++) {
+               let Char = String.fromCharCode(Extra[i]); 
+               Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
+            }
+            ServerAccountUpdate.QueueData({ 
+                Game: Player.Game 
+            }, true);
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'cardfame',
         Description: "(fame): sets the fame level for the high fame mode of Bondage Club Card Game.",
         Action: (args) => {
@@ -4720,7 +4739,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
- 
+
+    CommandCombine([{
+        Tag: 'cardnoextra',
+        Description: ": removes all extra cards of the Bondage Club Card Game.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>Warning</b>: You will lose all the extra cards of the Bondage Club Card Game. Confirm by typing: <b>/cardnoextra yes</b></p>"
+                );
+            } else if (args === "yes") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: No more extra cards in the Bondage Club Card Game.</p>"
+                );
+                Player.Game.ClubCard.Reward = "";
+                ServerAccountUpdate.QueueData({
+                   Game: Player.Game 
+                }, true);
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'chess',
         Description: "(difficulty): starts chess.",
@@ -10512,6 +10551,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "character") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Character commands - * = more info when using\n" +
+		    "<b>/cardextra</b> = gives all extra cards.\n" +
+                    "<b>/cardnoextra</b> = removes all extra cards.\n" +
                     "<b>/difficulty</b> (number) = changes game difficulty. *\n" +
                     "<b>/giveeverything</b> = gives every item.\n" +
                     "<b>/maxstatistics</b> = gives max statistics.\n" +
