@@ -2340,17 +2340,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Priority: 600, 
         Description: "Moaner Target", 
         Callback: (data, sender, msg, metadata) => {
-             if (data.Content.includes("Vibe")) {
-                 if (!Player?.MemberNumber) return;
-                 let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
-                 mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber; 
-                 if ((mtarget !== Player.MemberNumber) && (M_MOANER_xvibratorActive == false)) return;
-                 if (Player.ArousalSettings.Progress >= 10) {
+             if ((data.Content.includes("Vibe")) && (Player.ArousalSettings.Progress >= 10))  {
+                 if (M_MOANER_xvibratorActive == true) {
                      var msg = ElementValue("InputChat");
                      if (M_MOANER_isSimpleChat(msg)) {
                          M_MOANER_reactionVibeWithChat(data);
                      } else {
                          M_MOANER_reactionVibeWithoutChat(data);
+                     }
+                 } else {
+                     if (metadata.TargetCharacter.IsPlayer()) {      
+                         var msg = ElementValue("InputChat");
+                         if (M_MOANER_isSimpleChat(msg)) {
+                             M_MOANER_reactionVibeWithChat(data);
+                         } else {
+                             M_MOANER_reactionVibeWithoutChat(data);
+                         }
                      }
                  }
              }
