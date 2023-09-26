@@ -871,6 +871,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRAClubCardLoadDeckNumber() {
         modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
            let originaldesk = ClubCardBuilderDefaultDeck;
+	   var ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1009, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
            if (cdesk == 1) {
                ClubCardBuilderDefaultDeck = ClubCardBuilderABDLDeck; 
            } else if (cdesk == 2) {
@@ -885,6 +886,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                ClubCardBuilderDefaultDeck = ClubCardBuilderMaidDeck; 
            } else if (cdesk == 7) {
                ClubCardBuilderDefaultDeck = ClubCardBuilderPornDeck; 
+	   } else if (cdesk == 8) {
+               ClubCardBuilderDefaultDeck = ClubCardBuilderExtraDeck;
            } else if (cdesk == 0) {
                ClubCardBuilderDefaultDeck = originaldesk;
            }
@@ -4676,16 +4679,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The carddesk command must be followed by a number between 0 and 7.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The carddesk command must be followed by a number between 0 and 8.\n" +
                     " \n" +
                     "Available desks:\n" +
+		    "0 Original Default\n" +
                     "1 ABDL - 2 Asylum - 3 College\n" +
                     "4 Dominant - 5 Liability - 6 Maid\n" +
-                    "7 Porn - 0 Original Default</p>"
+                    "7 Porn - 8 Extra</p>"
                 );
             } else {
                 var desk = args;
-                if ((desk > -1) && (desk < 8) && (desk != cdesk)) {
+                if ((desk > -1) && (desk < 9) && (desk != cdesk)) {
                     cdesk = desk;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
