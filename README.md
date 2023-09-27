@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 2.1
+Most recent version: 2.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version2.1.zip file on the Releases page
+1. Download the ULTRAbc-version2.2.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -57,14 +57,5 @@ All else I might not have included.
 
 Changes for future version
 
-* New commands:
-  - carddesk (desk) to set a specific desk (0 to 8) as default desk for the Bondage Club Card Game (0 to 7 correspond to desks used by NPCs, 8 is the Extra desk which includes all extra cards)
-  - cardextra to get all extra cards in the Bondage Club Card Game
-  - cardfame (fame) to set the fame level (between 200 and 600) for the high fame mode of the Bondage Club Card Game
-  - cardnoextra to remove all extra cards in the Bondage Club Card Game
-* Extended the boost command to all your skills
-* Removed the antidote command and other features pausing or neutralizing LSCG effects (no more working with new LSCG data format)
-* Disabled Moaner features linked to LSCG to guarantee compatibility with LSCG development version (will be restored later)
-* Fixed bug in the Moaner related to changes in settings of Player's vibes
-* Fixed a minor bug on login screen and added a message in console about UBC loading
+(...)
 
