@@ -10683,7 +10683,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
 		    "<b>/highfame</b> = toggles high fame mode in Club Card Game.\n" +
-                    "<b>/killpar</b> = kills UBC/Moaner parameters saved locally. Will warn first.\n" +
+                    "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/magiccheat</b> = toggles cheat mode in Bondage Brawl and Magic School.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
