@@ -2350,12 +2350,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                          M_MOANER_reactionVibeWithoutChat(data);
                      }
                  } else {
-                     if (metadata.TargetCharacter.IsPlayer()) {      
-                         var msg = ElementValue("InputChat");
-                         if (M_MOANER_isSimpleChat(msg)) {
-                             M_MOANER_reactionVibeWithChat(data);
-                         } else {
-                             M_MOANER_reactionVibeWithoutChat(data);
+                     if ((metadata != undefined) || (metadata != null))  {
+                         if ((metadata.TargetCharacter != undefined) || (metadata.TargetCharacter != null))  {
+                             if (metadata.TargetCharacter.IsPlayer()) {      
+                                 var msg = ElementValue("InputChat");
+                                 if (M_MOANER_isSimpleChat(msg)) {
+                                     M_MOANER_reactionVibeWithChat(data);
+                                 } else {
+                                     M_MOANER_reactionVibeWithoutChat(data);
+                                 }
+                             }
                          }
                      }
                  }
