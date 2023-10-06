@@ -10971,7 +10971,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The unrestrict command removes all restrictions from game. It must be followed by an option.\n" +
                     "Submissives: type <b>/unrestrict soft</b>\n" +
-                    "Other players: type <b>/unrestrict total</b></p>"
+		    "Other players: type <b>/unrestrict total</b>\n" +
+                    "Note that the unrestrict total command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!</p>"
                 );
             } else if (args === "soft") {
                 InventoryGroupIsBlocked = function(C, GroupName) {
