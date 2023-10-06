@@ -57,5 +57,5 @@ All else I might not have included.
 
 Changes for future version
 
-* Added an extra message for the unrestrict total command about BCX warning
+* Added an extra message for the unrestrict total command
 
