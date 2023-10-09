@@ -10533,6 +10533,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>chat</b> = commands with extra features in chat room.\n" +
                     "<b>clothing</b> = commands related to the clothes.\n" +
                     "<b>escape</b> = commands related to escape.\n" +
+		    "<b>extra</b> = commands for info about other add-ons.\n" +
                     "<b>fun</b> = commands related to fun, pain and pleasure.\n" +
                     "<b>kd</b> = info about kd command (for Kinky Dungeon).\n" +
                     "<b>misc</b> = special commands.\n" +
@@ -10541,7 +10542,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>visual</b> = commands related to animations and background.\n" +
                     "<b>zones</b> = commands related to game zones.\n" +
                     "Several commands require or allow to specify a target. It can be a real name or a member number.\n" +
-                    "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
+                    "Use <b>/uhelp new</b> for changes in current UBC version.\n" +
                     "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a></p>"
                 );
             }
@@ -10618,6 +10619,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/untie</b> (target) = removes all bindings.</p>"
                 );
             }
+	    if (args === "extra") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Extra commands:\n" +
+	            "<b>/bcarstatus</b> = displays status of main BCAR settings (if used).\n" +
+		    "<b>/bcrstatus</b> = displays status of main BC Responsive settings (if used).\n" +
+		    "<b>/bctstatus</b> = displays status of main BCTweaks settings (if used).</p>\n"
+                );
+            }
             if (args === "fun") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
@@ -10654,9 +10663,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "misc") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
-		    "<b>/bcarstatus</b> = displays status of main BCAR settings (if used).\n" +
-		    "<b>/bcrstatus</b> = displays status of main BC Responsive settings (if used).\n" +
-		    "<b>/bctstatus</b> = displays status of main BCTweaks settings (if used).\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/ubc</b> = displays UBC version (+ more info if welcome message enabled).\n" +
