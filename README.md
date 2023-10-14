@@ -59,4 +59,5 @@ Changes for future version
 
 * Added new option to the uhelp command: extra (for info about settings of other add-ons)
 * Added extra info when you use the unrestrict command without option
+* Updated the updateBackground function
 
