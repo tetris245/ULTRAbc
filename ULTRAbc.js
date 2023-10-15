@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 2.2
+// @version 2.2.1
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return;
     }
 
-    const UBCver = "2.2";
+    const UBCver = "2.2.1";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -10643,9 +10643,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    if (args === "extra") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Extra commands:\n" +
-	            "<b>/bcarstatus</b> = displays status of main BCAR settings (if used).\n" +
-		    "<b>/bcrstatus</b> = displays status of main BC Responsive settings (if used).\n" +
-		    "<b>/bctstatus</b> = displays status of main BCTweaks settings (if used).</p>\n"
+	            "<b>/bcarstatus</b> = displays status of main BCAR settings.\n" +
+		    "<b>/bcrstatus</b> = displays status of main BC Responsive settings.\n" +
+		    "<b>/bctstatus</b> = displays status of main BCTweaks settings.</p>\n"
                 );
             }
             if (args === "fun") {
@@ -10695,14 +10695,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- New commands for the Bondage Club Card Game:\n" +
-		    "carddesk (desk) to set a specific desk (0 to 8) as default desk,\n" +
-		    "cardfame (fame) to set fame level (between 200 and 600) for high fame mode,\n" +
-		    "cardextra and cardnoextra to get or remove the extra cards.\n" +
-		    "- Extended the boost command to all your skills.\n" +
-                    "- Removed antidote command and other features pausing or neutralizing LSCG effects.\n" +
-                    "- Disabled some Moaner features to guarantee compatibility with LSCG development version.\n" +
-                    "- Fixed bugs on login screen and in vibe option of the Moaner.</p>"
+		    "- Added new option to the uhelp command: extra (for info about settings of other add-ons).\n" +
+                    "- Added extra info when you use the unrestrict command without option.\n" +
+                    "- Updated the kd weapons command and the updateBackground function.</p>"
                 );
             }
             if (args === "settings") {
