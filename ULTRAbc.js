@@ -3835,7 +3835,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	
     CommandCombine([{
         Tag: 'bg1',
-        Description: ": adds hidden backgrounds to the admin selection screen.",
+        Description: ": adds hidden backgrounds to the selection screen.",
         Action: () => {
             BackgroundsList.push({
                 Name: "ClubCardLounge",
@@ -4228,7 +4228,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg2',
-        Description: "(number): uses a hidden platform background.",
+        Description: "(number): uses a Bondage Brawl background as standard background.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
@@ -4544,6 +4544,123 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else if (args == 98) {
                 ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/WineCellar';
                 updateBackground();
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'bg3',
+        Description: "(number): uses a Bondage College background as custom background.",
+        Action: (args) => {
+            let BCver = GameVersion;
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The bg3 command must be followed by a number. List of Bondage College backgrounds:\n" +
+                    "1 Art Class - 2, 3 Class - 4 Club\n" +
+                    "5 College - 6 Dorm\n" +         
+                    "7 Dressing Room - 8 Gym Class\n" +              
+                    "9 to 12 Isolation Room\n" +
+                    "13 to 16 Kinbaku Club\n" +
+                    "17 to 26 Library\n" +
+                    "27, 28 Lockers - 29 Running Track\n" +                    
+                    "30, 31 Showers - 32 Theater</p>"
+                );
+            } else if (args == 1) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C004_ArtClass/Intro/Background.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 2) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C001_BeforeClass/Intro/Background2.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);  
+            } else if (args == 3) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C999_Common/Quiz/Backgrounds/Classroom.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 4) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C013_BondageClub/Intro/Background.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 5) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C000_Intro/Intro/Background.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 6) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C012_AfterClass/Intro/Background.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);    
+            } else if (args == 7) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C008_DramaClass/DressingRoom/Background.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 8) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C005_GymClass/Intro/Background.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);     
+            } else if (args == 9) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C006_Isolation/Intro/Background.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);      
+            } else if (args == 10) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C006_Isolation/IsolationRoom/C006_CutRope_3_0.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 11) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C006_Isolation/IsolationRoom/C006_CutRope_3_1.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 12) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C006_Isolation/IsolationRoom/C006_CutRope_3_2.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);         
+            } else if (args == 13) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C101_KinbakuClub/ClubRoom1/ClubRoom1Arrows.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 14) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C101_KinbakuClub/ClubRoom2/ClubRoom2Arrows.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 15) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C101_KinbakuClub/ClubRoom3/ClubRoom3Arrows.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 16) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C101_KinbakuClub/ClubRoom4/ClubRoom4.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);      
+            } else if (args == 17) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/001.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 18) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/002.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 19) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/003.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 20) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/004.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 21) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/005.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+           } else if (args == 22) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/006.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 23) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/007.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 24) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/008.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 25) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/009.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 26) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/010.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);       
+            } else if (args == 27) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C010_Revenge/Intro/BackgroundAmandaSarah.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 28) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C010_Revenge/Intro/BackgroundSidneyJennifer.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 29) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C999_Common/Fights/Backgrounds/RunningTrack.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);            
+            } else if (args == 30) {
+                Background = "https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/Shower1.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 31) {
+                Background ="https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/Shower2.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else if (args == 32) {
+                Background = "https://www.bondage-europe.com/" + BCver + "/C008_DramaClass/Theater/Background.jpg";
+                ChatAdminRoomCustomizationCommand("Image", Background);
             }
         }
     }])
@@ -10737,8 +10854,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "visual") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Visual commands - * = more info when using\n" +
-                    "<b>/bg1</b> = adds hidden backgrounds to the admin selection screen. Tip for BCX users: activate BCX before login.\n" +
-                    "<b>/bg2</b> (number) = uses a hidden platform background. Number between 1 and 98. /bg2 to get the list.\n" +
+                    "<b>/bg1</b> = adds hidden backgrounds to the selection screen.\n" +
+                    "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.\n" +
+                    "<b>/bg3</b> (number) = uses a Bondage College background as custom background. /bg3 to get the list.\n" +
                     "<b>/blur</b> (blurlevel) = forces a specific blur level.\n" +
                     "<b>/colorchanger</b> (animhere) = gets an animation with color change. *\n" +
                     "<b>/pose2</b> (posehere) (target) = changes the pose of any player. *\n" +
