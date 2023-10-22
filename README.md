@@ -57,5 +57,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* New commands:
+  - bg3 (number) to use a Bondage College background as custom background (Number between 1 and 32 - Full list with /bg3)
 
