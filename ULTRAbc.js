@@ -459,6 +459,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMagicSchoolEscapeSpellEnd();
     ULTRAMainHallClick();
     ULTRAMainHallRun();
+    ULTRAPandoraPrisonClick();
     ULTRAPandoraPrisonRun();
     ULTRAPhotographicClick();
     ULTRAPhotographicRun();
@@ -1177,6 +1178,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //Pandora Prison
+    async function ULTRAPandoraPrisonClick() {
+        modApi.hookFunction('PandoraPrisonClick', 4, (args, next) => {            
+            if (SosbuttonsOn == true) {
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
+                    CharacterReleaseTotal(Player);
+                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
+                    PandoraPunishmentSentence(0);
+                    CharacterRefresh(Player);
+                    if (SlowleaveOn == true) {
+                        setTimeout(function() {
+                            PandoraPrisonExitPrison();
+                        }, 15000);
+                    } else {
+                        PandoraPrisonExitPrison();
+                    }
+                }
+            }
+            next(args);
+        });
+    }
+    
     async function ULTRAPandoraPrisonRun() {
         modApi.hookFunction('PandoraPrisonRun', 4, (args, next) => {
             if ((Player.Infiltration.Punishment.Timer < CurrentTime) && (CurrentCharacter == null) && !PandoraPrisonEscaped)
@@ -1202,6 +1225,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             DrawProgressBar(1610, 954, 380, 36, Math.round(PandoraWillpower / PandoraMaxWillpower * 100));
             DrawText(PandoraWillpower.toString(), 1800, 973, "black", "white");
+            if (SosbuttonsOn == true) {
+                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+                if (SlowleaveOn == true) {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                } else {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                }
+            }
             return;
             next(args);
         });
@@ -9961,7 +9992,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'sosbuttons',
-        Description: ": toggles emergency buttons in chat room, photographic room and timer cell",
+        Description: ": toggles emergency buttons in chat room, Pandora prison, photographic room and timer cell",
         Action: () => {
             if (SosbuttonsOn == true) {
                 SosbuttonsOn = false;
@@ -10909,7 +10940,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
                     "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
-                    "<b>/sosbuttons</b> = toggles SOS buttons in chat, photographic room and timer cell.\n" +
+                    "<b>/sosbuttons</b> = toggles SOS buttons in chat, Pandora prison, photographic room and timer cell.\n" +
                     "<b>/welcome</b> = toggles UBC welcome message in main hall.</p>"
                 );
             }
