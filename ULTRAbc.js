@@ -4609,7 +4609,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else if (args == 1) {
                 Background = "https://www.bondage-europe.com/" + BCver + "/C004_ArtClass/Intro/Background.jpg";
                 ChatAdminRoomCustomizationCommand("Image", Background);
-
             } else if (args == 2) {
                 Background = "https://www.bondage-europe.com/" + BCver + "/C001_BeforeClass/Intro/Background2.jpg";
                 ChatAdminRoomCustomizationCommand("Image", Background);
