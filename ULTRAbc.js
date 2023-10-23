@@ -460,6 +460,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAPandoraPrisonRun();
+    ULTRAPhotographicClick();
+    ULTRAPhotographicRun();
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
     ULTRAStruggleMinigameWasInterrupted();
@@ -1205,6 +1207,42 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
+    //Photographic Room
+    async function ULTRAPhotographicClick() {
+        modApi.hookFunction('PhotographicClick', 4, (args, next) => {            
+            if (SosbuttonsOn == true) {
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
+                    CharacterReleaseTotal(Player);
+                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
+                    CharacterRefresh(Player);
+                    if (SlowleaveOn == true) {
+                        setTimeout(function() {
+                            CommonSetScreen("Room", "MainHall");
+                        }, 15000);
+                    } else {
+                        CommonSetScreen("Room", "MainHall");
+                    }
+                }
+            }
+            next(args);
+        });
+    }
+   
+    async function ULTRAPhotographicRun() {
+        modApi.hookFunction('PhotographicRun', 4, (args, next) => {
+            if (SosbuttonsOn == true) {
+                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+                if (SlowleaveOn == true) {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                } else {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                }
+            }
+            next(args);
+        });
+    }
+
     //Timer Cell
     async function ULTRACellClick() {
         modApi.hookFunction('CellClick', 4, (args, next) => {
@@ -1214,7 +1252,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (SosbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
                     CharacterReleaseTotal(Player);
-                    ChatRoomCharacterUpdate(Player);
                 }
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
                     CellLock(0);
@@ -9924,7 +9961,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'sosbuttons',
-        Description: ": toggles emergency buttons in chat room and timer cell",
+        Description: ": toggles emergency buttons in chat room, photographic room and timer cell",
         Action: () => {
             if (SosbuttonsOn == true) {
                 SosbuttonsOn = false;
@@ -10872,7 +10909,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
                     "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
-                    "<b>/sosbuttons</b> = toggles SOS buttons in chat + timer cell.\n" +
+                    "<b>/sosbuttons</b> = toggles SOS buttons in chat, photographic room and timer cell.\n" +
                     "<b>/welcome</b> = toggles UBC welcome message in main hall.</p>"
                 );
             }
