@@ -1396,7 +1396,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             app.push(item.Difficulty);
                             app.push(item.Craft);
                             app.push(false);
-                            //Do not remove this line.It is for the compability with bcg.
+                            //Do not remove this line. It is for the compatibility with bcg.
                             appall.push(app);
                         });
                         ChatRoomSendLocal(
@@ -5784,7 +5784,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'exitmode',
-        Description: ": toggles exit mode for OUT button in chat room.",
+        Description: ": toggles exit mode for OUT button in chat, Pandora prison, photographic room and timer cell.",
         Action: () => {
             if (SlowleaveOn == true) {
                 SlowleaveOn = false;
