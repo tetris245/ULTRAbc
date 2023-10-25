@@ -509,14 +509,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Totalrelease != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterReleaseTotal(Player);
                     ChatRoomCharacterUpdate(Player);
                     return;
@@ -5069,14 +5071,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers put random clothes on " + tmpname + "'s body."
                     }
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: message
-                    }]
-                });
+                if (Clothes != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 CharacterAppearanceFullRandom(Player, true);
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -5105,14 +5109,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Tclothes != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterAppearanceFullRandom(target[0], true);
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
@@ -7132,6 +7138,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Tip: replace h and/or i by another character when you need to skip them.</p>"
                 );
             } else {
+                var silent = 0;
                 var stringLock1 = args;
                 var stringLock2 = stringLock1.split(/[ ,]+/);
                 var lk = stringLock2[1];
@@ -7259,6 +7266,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 var message = "Magical lasers make appear locks on " + tgpname + "'s body."
                             }
                         }
+                        if (Mlock == "no message") var silent = 1;
                     } else {
                         if (Tlock == undefined) {
                             var message = "Magical lasers make appear locks on " + tgpname + "'s body."
@@ -7273,15 +7281,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 var message = "Magical lasers make appear locks on " + tgpname + "'s body."
                             }
                         }
+                        if (Tlock == "no message") var silent = 1;
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (silent == 0) {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     mn = Player.MemberNumber;
                     for (let A = 0; A < target[0].Appearance.length; A++)
                         if (target[0].Appearance[A].Asset.AllowLock == true) {
@@ -7440,311 +7451,369 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
-                    "Use ? as message to go back to default message</p>"
+                    "Use ? as message to go back to default message\n" + 
+                    "Use ! as message to select silent mode (no message)</p>" 
                 );
             } else {
                 var [, , ...message] = command.split(" ");
                 var custom = message?.join(" ");
                 if (custom != "") {
                     if (option == "clothes") {
-                        if (custom != "?") {
-                            Clothes = custom;
+                        if (custom == "!") {
+                            Clothes = "no message";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on yourself.</p>"
-                            );
-                        } else {
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for clothes command on yourself.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Clothes = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for clothes command on yourself.</p>"
                             );
-                        }
-                    }
-                    if (option == "lock") {
-                        if (custom != "?") {
-                            Mlock = custom;
+                        } else {
+                            Clothes = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for lock command on yourself.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on yourself.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "lock") {
+                        if (custom == "!") {
+                            Mlock = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for lock command on yourself.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Mlock = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for lock command on yourself.</p>"
                             );
-                        }
-                    }
-                    if (option == "naked") {
-                        if (custom != "?") {
-                            Naked = custom;
+                        } else {
+                            Mlock = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for naked command on yourself.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for lock command on yourself.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "naked") {
+                        if (custom == "!") {
+                            Naked = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for naked command on yourself.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Naked = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on yourself.</p>"
                             );
-                        }
-                    }
-                    if (option == "pet") {
-                        if (custom != "?") {
-                            Pet = custom;
+                        } else {
+                            Naked = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for pet command on yourself.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for naked command on yourself.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "pet") {
+                        if (custom == "!") {
+                            Pet = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for pet command on yourself.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Pet = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for pet command on yourself.</p>"
                             );
-                        }
-                    }
-                    if (option == "randomize") {
-                        if (custom != "?") {
-                            Randomize = custom;
+                        } else {
+                            Pet = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for randomize command on yourself.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for pet command on yourself.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "randomize") {
+                        if (custom == "!") {
+                            Randomize = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for randomize command on yourself.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Randomize = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for randomize command on yourself.</p>"
                             );
-                        }
-                    }
-                    if (option == "restrain") {
-                        if (custom != "?") {
-                            Restrain = custom;
+                        } else {
+                            Randomize = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on yourself.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for randomize command on yourself.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "restrain") {
+                        if (custom == "!") {
+                            Restrain = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for restrain command on yourself.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Restrain = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for restrain command on yourself.</p>"
                             );
-                        }
+                        } else {
+                            Restrain = custom;
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on yourself.</p>"
+                            );
+                        } 
                     }
                     if (option == "tclothes") {
-                        if (custom != "?") {
+                        if (custom == "!") {
+                            Tclothes = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for clothes command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
+                            Tclothes = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for clothes command on other players.</p>"
+                            );
+                        } else {
                             Tclothes = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on other players.</p>"
                             );
-                        } else {
-                            Tclothes = "";
-                            M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
-                            );
-                        }
+                        } 
                     }
                     if (option == "tlock") {
-                        if (custom != "?") {
-                            Tlock = custom;
+                        if (custom == "!") {
+                            Tlock = "no message";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for lock command on other players.</p>"
-                            );
-                        } else {
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for lock command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Tlock = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for lock command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "tnaked") {
-                        if (custom != "?") {
-                            Tnaked = custom;
+                        } else {
+                            Tlock = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for naked command on other players.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for lock command on other players.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "tnaked") {
+                        if (custom == "!") {
+                            Tnaked = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for naked command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Tnaked = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "totalrelease") {
-                        if (custom != "?") {
-                            Totalrelease = custom;
+                        } else {
+                            Tnaked = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for totalrelease command on yourself.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for naked command on other players.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "totalrelease") {
+                        if (custom == "!") {
+                            Totalrelease = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for totalrelease command on yourself.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Totalrelease = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for totalrelease command on yourself.</p>"
                             );
-                        }
-                    }
-                    if (option == "tpet") {
-                        if (custom != "?") {
-                            Tpet = custom;
+                        } else {
+                            Totalrelease = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for pet command on other players.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for totalrelease command on yourself.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "tpet") {
+                        if (custom == "!") {
+                            Tpet = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for pet command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Tpet = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for pet command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "trandomize") {
-                        if (custom != "?") {
-                            Trandomize = custom;
+                        } else {
+                            Tpet = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for randomize command on other players.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for pet command on other players.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "trandomize") {
+                        if (custom == "!") {
+                            Trandomize = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for randomize command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Trandomize = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for randomize command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "trestrain") {
-                        if (custom != "?") {
-                            Trestrain = custom;
+                        } else {
+                            Trandomize = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on other players.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for randomize command on other players.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "trestrain") {
+                        if (custom == "!") {
+                            Trestrain = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for restrain command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Trestrain = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for restrain command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "ttotalrelease") {
-                        if (custom != "?") {
-                            Ttotalrelease = custom;
+                        } else {
+                            Trestrain = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for totalrelease command on other players.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on other players.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "ttotalrelease") {
+                        if (custom == "!") {
+                            Ttotalrelease = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for totalrelease command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Ttotalrelease = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for totalrelease command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "tunderwear") {
-                        if (custom != "?") {
-                            Tunderwear = custom;
+                        } else {
+                            Ttotalrelease = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for underwear command on other players.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for totalrelease command on other players.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "tunderwear") {
+                        if (custom == "!") {
+                            Tunderwear = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for underwear command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Tunderwear = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for underwear command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "tunlock") {
-                        if (custom != "?") {
-                            Tunlock = custom;
+                        } else {
+                            Tunderwear = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for unlock command on other players.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for underwear command on other players.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "tunlock") {
+                        if (custom == "!") {
+                            Tunlock = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for unlock command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Tunlock = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for unlock command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "tuntie") {
-                        if (custom != "?") {
-                            Tuntie = custom;
+                        } else {
+                            Tunlock = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for untie command on other players.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for unlock command on other players.</p>"
                             );
-                        } else {
+                        } 
+                    }
+                    if (option == "tuntie") {
+                        if (custom == "!") {
+                            Tuntie = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for untie command on other players.</p>"
+                            ); 
+                        } else if (custom == "?") {
                             Tuntie = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for untie command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "underwear") {
-                        if (custom != "?") {
-                            Underwear = custom;
-                            M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for underwear command on yourself.</p>"
-                            );
                         } else {
-                            Underwear = "";
+                            Tuntie = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for underwear command on yourself.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for untie command on other players.</p>"
                             );
-                        }
-                    }
-                    if (option == "unlock") {
-                        if (custom != "?") {
-                            Unlock = custom;
-                            M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for unlock command on yourself.</p>"
-                            );
-                        } else {
-                            Unlock = "";
-                            M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for unlock command on yourself.</p>"
-                            );
-                        }
-                    }
-                    if (option == "untie") {
-                        if (custom != "?") {
-                            Untie = custom;
-                            M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for untie command on yourself.</p>"
-                            );
-                        } else {
-                            Untie = "";
-                            M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for untie command on yourself.</p>"
-                            );
-                        }
+                        } 
                     }
                 }
             }
@@ -7841,14 +7910,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear the clothes on " + tmpname + "'s body."
                     }
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: message
-                    }]
-                });
+                if (Naked != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 CharacterNaked(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -7877,14 +7948,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Tnaked != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterNaked(target[0]);
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
@@ -8066,14 +8139,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "" + tmpname + " becomes a cute pet."
                     }
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: message
-                    }]
-                });
+                if (Pet != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 CharacterNaked(Player);
                 InventoryWearRandom(Player, "ItemArms", 8, null, false, true, ["ArmbinderJacket", "BitchSuit", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "PantyhoseBody", "PantyhoseBodyOpen", "SeamlessStraitDress", "SeamlessStraitDressOpen", "StraitLeotard", "StrictLeatherPetCrawler"], true);
                 InventoryWearRandom(Player, "HairAccessory1", 8, null, false, true, ["Antennae", "BunnyEars1", "BunnyEars2", "CowHorns", "Ears1", "Ears2", "ElfEars", "FoxEars1", "FoxEars2", "FoxEars3", "KittenEars1", "KittenEars2", "MouseEars1", "MouseEars2", "PonyEars1", "PuppyEars1", "PuppyEars2", "RaccoonEars1", "WolfEars1", "WolfEars2"], true);
@@ -8110,14 +8185,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "" + tgpname + " becomes a cute pet."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Tpet != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterNaked(target[0]);
                     InventoryWearRandom(target[0], "ItemArms", 8, null, false, true, ["ArmbinderJacket", "BitchSuit", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "PantyhoseBody", "PantyhoseBodyOpen", "SeamlessStraitDress", "SeamlessStraitDressOpen", "StraitLeotard", "StrictLeatherPetCrawler"], true);
                     InventoryWearRandom(target[0], "HairAccessory1", 8, null, false, true, ["Antennae", "BunnyEars1", "BunnyEars2", "CowHorns", "Ears1", "Ears2", "ElfEars", "FoxEars1", "FoxEars2", "FoxEars3", "KittenEars1", "KittenEars2", "MouseEars1", "MouseEars2", "PonyEars1", "PuppyEars1", "PuppyEars2", "RaccoonEars1", "WolfEars1", "WolfEars2"], true);
@@ -9154,14 +9231,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
                     }
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: message
-                    }]
-                });
+                if (Randomize != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 CharacterNaked(Player);
                 CharacterRandomUnderwear(Player);
                 CharacterAppearanceFullRandom(Player, true);
@@ -9193,14 +9272,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Trandomize != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterNaked(target[0]);
                     CharacterRandomUnderwear(target[0]);
                     CharacterAppearanceFullRandom(target[0], true);
@@ -9362,14 +9443,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers apply random restraints on " + tmpname + "'s body."
                     }
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: message
-                    }]
-                });
+                if (Restrain != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -9398,14 +9481,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers apply random restraints on " + tgpname + "'s body."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Trestrain != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterFullRandomRestrain(target[0], "ALL");
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
@@ -10651,14 +10736,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                     }
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: message
-                    }]
-                });
+                if (Totalrelease != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 CharacterReleaseTotal(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -10687,14 +10774,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Ttotalrelease != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterReleaseTotal(target[0]);
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
@@ -11008,14 +11097,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers put " + tmpname + " in random underwear."
                     }
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: message
-                    }]
-                });
+                if (Underwear != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 CharacterRandomUnderwear(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -11044,14 +11135,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers put " + tgpname + " in random underwear."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Tunderwear != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterRandomUnderwear(target[0]);
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
@@ -11081,6 +11174,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "19 Family - 20 Portal Link</p>"
                 );
             } else {
+                var silent = 0;
                 var stringUnlock1 = args;
                 var stringUnlock2 = stringUnlock1.split(/[ ,]+/);
                 var lk = stringUnlock2[1];
@@ -11110,6 +11204,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
                             }
                         }
+                        if (Unlock == "no message") var silent = 1;
                     } else {
                         if (Tunlock == undefined) {
                             var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
@@ -11124,15 +11219,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
                             }
                         }
+                        if (Tunlock == "no message") var silent = 1;
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (silent == 0) {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     if (lk == null) {
                         CharacterReleaseFromLock(target[0], "CombinationPadlock");
                         CharacterReleaseFromLock(target[0], "ExclusivePadlock");
@@ -11332,14 +11430,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var message = "Magical lasers make disappear the bindings on " + tmpname + "'s body."
                     }
                 }
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: message
-                    }]
-                });
+                if (Untie != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 CharacterRelease(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -11368,14 +11468,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
                         }
                     }
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
+                    if (Tuntie != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     CharacterRelease(target[0]);
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
