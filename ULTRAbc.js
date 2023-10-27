@@ -1198,7 +1198,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 			        Type: Type,
 			        Name: DialogFind(InfiltrationSupervisor, "Object" + Type),
 		        };
-            }
+                }
 	        InfiltrationSupervisor.Stage = InfiltrationMission;
 	        InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
 	        InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
