@@ -1182,7 +1182,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     //Pandora Infiltration
     async function ULTRAInfiltrationPrepareMission() {
-        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {            
+        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {   
+	    if (InfiltrationMission == "") {
+                var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
+                InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
+            }
 	    if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
 	        let C = /** @type {NPCCharacter} */ ({});
 		CharacterRandomName(C);
