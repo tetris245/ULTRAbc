@@ -454,6 +454,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRADrawCharacter();
     ULTRAFriendListClick();
     ULTRAFriendListRun();
+    ULTRAInfiltrationPrepareMission();
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
     ULTRAMagicSchoolEscapeSpellEnd();
@@ -1175,6 +1176,33 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 M_MOANER_cum = false;
                 M_MOANER_saveControls();
             }
+            next(args);
+        });
+    }
+
+    //Pandora Infiltration
+    async function ULTRAInfiltrationPrepareMission() {
+        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {            
+	        if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
+		        let C = /** @type {NPCCharacter} */ ({});
+		        CharacterRandomName(C);
+		        InfiltrationTarget = {
+			        Type: "NPC",
+			        Name: C.Name,
+			        PrivateRoom: false
+		        };
+	        } else {
+		        const PreviousTarget = InfiltrationTarget && InfiltrationTarget.Type || "";
+		        const Type = /** @type {InfiltrationTargetType} */(CommonRandomItemFromList(PreviousTarget, InfiltrationObjectType));
+		        InfiltrationTarget = {
+			        Type: Type,
+			        Name: DialogFind(InfiltrationSupervisor, "Object" + Type),
+		        };
+            }
+	        InfiltrationSupervisor.Stage = InfiltrationMission;
+	        InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
+	        InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
+            return;
             next(args);
         });
     }
@@ -7821,6 +7849,47 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'mission',
+        Description: "(mission): goes to infiltration room and forces a specific mission.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The mission command must include a mission.\n" +
+                    "Available missions:\n" +
+                    "burglar, kidnap, rescue, retrieve, sabotage.\n" +  
+                    "Full random mission with random.</p>"                                     
+                );
+            } else {
+                var mission = args;
+                if (mission == "random") {
+                    var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
+                }
+                if (mission == "burglar") {
+                    var InfiltrationMissionType = ["CatBurglar"];
+                }
+                if (mission == "kidnap") {
+                    var InfiltrationMissionType = ["Kidnap"];
+                }
+                if (mission == "rescue") {
+                    var InfiltrationMissionType = ["Rescue"];
+                }
+                if (mission == "retrieve") {
+                    var InfiltrationMissionType = ["Retrieve"];
+                }
+                if (mission == "sabotage") {
+                    var InfiltrationMissionType = ["ReverseMaid"];
+                }
+                InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
+                ServerSend("ChatRoomLeave", "");
+                ChatRoomSetLastChatRoom("");
+                OnlineGameName = "";
+                ChatRoomClearAllElements();
+                CommonSetScreen("Room", "Infiltration");
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'moaner',
         Description: "(options): moans when horny and stimulated.",
         Action: (args) => {
@@ -11064,13 +11133,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (args === "zones") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Zones commands:\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
                     "<b>/chess</b> (difficulty) = starts chess, must specify difficulty first (1 easy - 2 normal - 3 hard).\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
-                    "<b>/game</b> (minigamehere) = launches a minigame. Using will give more info.\n" +
+                    "<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault.\n" +
+                    "<b>/mission</b> (missionhere) = forces a specific infiltration mission. *\n" +
                     "<b>/prison</b> (minutes) = stays in Pandora prison. More than 60 minutes is possible.\n" +
                     "<b>/store</b> = leaves chatroom, goes to store. Shows hidden items.\n" +
                     "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.</p>"
