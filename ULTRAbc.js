@@ -4697,6 +4697,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: "(number): uses a Bondage College background as custom background.",
         Action: (args) => {
             let BCver = GameVersion;
+	    if (BCver.includes("Beta")) {
+               var beta1 = BCver.slice(0,3);
+               var beta2 = beta1.slice(-2);
+               var beta3 = beta2 - 1;
+               var BCver = "R" + beta3;
+            }
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The bg3 command must be followed by a number. List of Bondage College backgrounds:\n" +
