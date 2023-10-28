@@ -61,5 +61,6 @@ Changes for future version
   - bg3 (number) to use a Bondage College background as custom background (Number between 1 and 32 - Full list with /bg3)
   - mission (mission) to go to infiltration room and force a specific mission
 * Added emergency buttons in Pandora prison and photographic room (when they are enabled)
-* Added silent mode for messages controlled by message command (Use ! as message to select silent mode for a specific command) 
+* Added silent mode for messages controlled by message command (Use ! as message to select silent mode for a specific command)
+* Fixed a bug in the high fame mode of the Club Card Game
 
