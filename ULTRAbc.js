@@ -883,6 +883,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ClubCardLogAdd(Msg);
                     ClubCardCreatePopup("TEXT", Msg, TextGet("Return"), null, "ClubCardEndGame()", null);
                     if (MiniGameVictory && (ClubCardReward != null)) ClubCardGetReward();
+		    GameClubCardSyncOnlineData();
                     GameClubCardReset();
                     return;
                 }
