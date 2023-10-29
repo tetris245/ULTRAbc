@@ -4696,7 +4696,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'bg3',
         Description: "(number): uses a Bondage College background as custom background.",
         Action: (args) => {
-            let BCver = GameVersion;
+            var BCver = GameVersion;
 	    if (BCver.includes("Beta")) {
                var beta1 = BCver.slice(0,3);
                var beta2 = beta1.slice(-2);
