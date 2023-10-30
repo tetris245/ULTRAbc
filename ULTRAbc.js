@@ -226,6 +226,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Tail Wagging feature is disabled."
     ];
 
+    var EbchLogStatus = ["Chatlogging is disabled.",
+        "Chatlogging is enabled."
+    ];
+    var EbchNotificationStatus = ["Custom notifications are disabled.",
+        "Custom notifications are enabled."
+    ];
+    var EbchPoseStatus = ["Pose menu is not automatically displayed.",
+        "Pose menu is automatically displayed."
+    ];
+    var EbchUngarbleStatus = ["Messages are not ungarbled.",
+        "Messages from white list are ungarbled.",
+        "All messages are ungarbled."
+    ];
+    var EbchWelcomeStatus = ["No EBCH Welcome message.",
+        "EBCH Welcome message."
+    ];
+
     //Initialisation
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
@@ -1766,7 +1783,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //BCT Status
-    function ShowArousalErectionStatus() {
+    function showArousalErectionStatus() {
         let msg;
         if (BCTdata.arousalAffectsErection) {
             msg = ArousalErectionStatus[0];
@@ -1776,7 +1793,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowArousalProgressStatus() {
+    function showArousalProgressStatus() {
         let msg;
         if (BCTdata.arousalAffectsOrgasmProgress) {
             msg = ArousalProgressStatus[0];
@@ -1786,7 +1803,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowBCIconsStatus() {
+    function showBCIconsStatus() {
         let msg;
         if (BCTdata.allIconOnlyShowOnHover) {
             msg = BCIconsStatus[0];
@@ -1796,7 +1813,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowBCTChangelogStatus() {
+    function showBCTChangelogStatus() {
         let msg;
         if (BCTdata.showChangelog) {
             msg = BCTChangelogStatus[0];
@@ -1806,7 +1823,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowBCTIconStatus() {
+    function showBCTIconStatus() {
         let msg;
         if (BCTdata.bctIconOnlyShowOnHover) {
             msg = BCTIconStatus[0];
@@ -1816,7 +1833,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowBestFriendsStatus() {
+    function showBestFriendsStatus() {
         let msg;
         if (BCTdata.bestFriendsEnabled) {
             msg = BestFriendsStatus[0];
@@ -1826,7 +1843,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowLockConversionStatus() {
+    function showLockConversionStatus() {
         let msg;
         if (BCTdata.hsToBFLockconvert) {
             msg = LockConversionStatus[0];
@@ -1836,7 +1853,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowRoomShareStatus() {
+    function showRoomShareStatus() {
         let msg;
         if (BCTdata.bestFriendsRoomShare) {
             msg = RoomShareStatus[0];
@@ -1846,7 +1863,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowSplitStatus() {
+    function showSplitStatus() {
         let msg;
         if (BCTdata.splitOrgasmArousal) {
             msg = SplitStatus[0];
@@ -1856,12 +1873,65 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function ShowTailWaggingStatus() {
+    function showTailWaggingStatus() {
         let msg;
         if (BCTdata.tailWaggingEnable) {
             msg = TailWaggingStatus[0];
         } else {
             msg = TailWaggingStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //EBCH Status
+    function showEbchLogStatus() {
+        let msg;
+        if (EBCHdata[4] == 0) {
+            msg = EbchLogStatus[0];
+        } else {
+            msg = EbchLogStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showEbchNotificationStatus() {
+        let msg;
+        if (EBCHdata[8] == 0) {
+            msg = EbchNotificationStatus[0];
+        } else {
+            msg = EbchNotificationStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showEbchPoseStatus() {
+        let msg;
+        if (EBCHdata[6] == 0) {
+            msg = EbchPoseStatus[0];
+        } else {
+            msg = EbchPoseStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showEbchUngarbleStatus() {
+        let msg;
+        if (EBCHdata[2] == 0) {
+            msg = EbchUngarbleStatus[0];
+        } else if (EBCHdata[2] == 1) {
+            msg = EbchUngarbleStatus[1];
+        } else {
+            msg = EbchUngarbleStatus[2];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showEbchWelcomeStatus() {
+        let msg;
+        if (EBCHdata[20] == 0) {
+            msg = EbchWelcomeStatus[0];
+        } else {
+            msg = EbchWelcomeStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3998,16 +4068,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 BCTdata = {};
                 decoded = JSON.parse(d);
                 BCTdata = decoded;
-                ShowArousalErectionStatus();
-                ShowArousalProgressStatus();
-                ShowBCIconsStatus();
-                ShowBCTChangelogStatus();
-                ShowBCTIconStatus();
-                ShowBestFriendsStatus();
-                ShowLockConversionStatus();
-                ShowRoomShareStatus();
-                ShowSplitStatus();
-                ShowTailWaggingStatus();
+                showArousalErectionStatus();
+                showArousalProgressStatus();
+                showBCIconsStatus();
+                showBCTChangelogStatus();
+                showBCTIconStatus();
+                showBestFriendsStatus();
+                showLockConversionStatus();
+                showRoomShareStatus();
+                showSplitStatus();
+                showTailWaggingStatus();
             }
         }
     }])
@@ -5850,6 +5920,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ServerSend("AccountDifficulty", PreferenceDifficultyLevel);
                 PreferenceInitPlayer();
                 LoginDifficulty(true);
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'ebchstatus',
+        Description: ": displays status of main EBCH settings.",
+        Action: () => {
+            if (Player.OnlineSettings.EBCH != null) {
+                EBCHdata = {};
+                str = Player.OnlineSettings.EBCH;
+                EBCHdata = str;                    
+                showEbchLogStatus();
+                showEbchNotificationStatus();
+                showEbchPoseStatus();
+                showEbchUngarbleStatus();
+                showEbchWelcomeStatus();
             }
         }
     }])
@@ -11095,7 +11182,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Extra commands:\n" +
                     "<b>/bcarstatus</b> = displays status of main BCAR settings.\n" +
                     "<b>/bcrstatus</b> = displays status of main BC Responsive settings.\n" +
-                    "<b>/bctstatus</b> = displays status of main BCTweaks settings.</p>\n"
+                    "<b>/bctstatus</b> = displays status of main BCTweaks settings.\n" +
+                    "<b>/ebchstatus</b> = displays status of main EBCH settings.</p>"
                 );
             }
             if (args === "fun") {
