@@ -62,8 +62,8 @@ Changes for future version
   - mission (mission) to go to infiltration room and force a specific mission
 * Added emergency buttons in Pandora prison and photographic room (when they are enabled)
 * Added two fast hotkeys using the numeric pad:
-  - / = fast leave
-  - * = total release (generally you need to use it twice)
+  - Numpad Divide (/) = fast leave
+  - Numpad Multiply (*) = total release (generally you need to use it twice)
 * Added silent mode for messages controlled by message command (Use ! as message to select silent mode for a specific command)
 * Fixed a bug in the high fame mode of the Bondage Club Card Game
 
