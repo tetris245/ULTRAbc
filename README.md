@@ -59,6 +59,7 @@ Changes for future version
 
 * New commands:
   - bg3 (number) to use a Bondage College background as custom background (Number between 1 and 32 - Full list with /bg3)
+  - ebchstatus to display status of main EBCH settings (if you use this add-on)
   - hotkeys to enable/disable hotkeys on numeric pad
   - mission (mission) to go to infiltration room and force a specific mission
 * Added emergency buttons in Pandora prison and photographic room (when they are enabled)
