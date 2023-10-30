@@ -52,6 +52,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let AutojoinOn;
     let FullseedOn;
     let HighfameOn;
+    let HotkeysOn;
     let MagiccheatOn;
     var NowhisperOn = false;
     var NPCpunish = false;
@@ -128,6 +129,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ];
     var HighfameStatus = ["High fame mode enabled in Bondage Club Card Game.",
         "High fame mode disabled in Bondage Club Card Game."
+    ];
+    var HotkeysStatus = ["Hotkeys on numeric pad are enabled.",
+        "Hotkeys on numeric pad are disabled."
     ];
     var MagiccheatStatus = ["Cheat mode enabled in Bondage Brawl and Magic School.",
         "Cheat mode disabled in Magic School."
@@ -245,6 +249,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             AutojoinOn = false
             FullseedOn = false;
             HighfameOn = false;
+            HotkeysOn = false;
             MagiccheatOn = false;
             NowhisperOn = false;
             NPCpunish = false;
@@ -294,6 +299,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             AutojoinOn = datas.autojoin;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
+	    HotkeysOn = datas.hotkeys;
             MagiccheatOn = datas.magiccheat;
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
@@ -346,6 +352,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "autojoin": AutojoinOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
+            "hotkeys": HotkeysOn,
             "magiccheat": MagiccheatOn,
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
@@ -418,6 +425,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (HighfameOn == null || HighfameOn == undefined) {
                     HighfameOn = false;
+                    M_MOANER_saveControls();
+                }
+		if (HotkeysOn == null || HotkeysOn == undefined) {
+                    HotkeysOn = false;
                     M_MOANER_saveControls();
                 }
                 if (M_MOANER_tickleActive == null || M_MOANER_tickleActive == undefined) {
@@ -557,17 +568,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
-	    if (KeyPress == 111) {                
-                ChatRoomSetLastChatRoom("");
-                ServerSend("ChatRoomLeave", "");
-                CommonSetScreen("Online", "ChatSearch");
-                ChatRoomClearAllElements();
-                OnlineGameName = "";
-            }
-            if (KeyPress == 106) {             
-                CharacterReleaseTotal(Player);
-                ChatRoomCharacterUpdate(Player);
-                return;
+	    if (HotkeysOn == true) {
+                if (KeyPress == 111) {                
+                    ChatRoomSetLastChatRoom("");
+                    ServerSend("ChatRoomLeave", "");
+                    CommonSetScreen("Online", "ChatSearch");
+                    ChatRoomClearAllElements();
+                    OnlineGameName = "";
+                }
+                if (KeyPress == 106) {             
+                     CharacterReleaseTotal(Player);
+                     ChatRoomCharacterUpdate(Player);
+                     return;
+                }
             }
             if (KeyPress == 13 && !event.shiftKey) {
                 var text = ElementValue("InputChat");
@@ -1916,6 +1929,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = HighfameStatus[1];
         }
         msg = msg + " Current high fame: " + cfame + ". Current default desk: " + cdesk + ".";
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showHotkeysStatus() {
+        let msg;
+        if (HotkeysOn) {
+            msg = HotkeysStatus[0];
+        } else {
+            msg = HotkeysStatus[1];
+        }
         M_MOANER_sendMessageToWearer(msg);
     }
 
@@ -3922,7 +3945,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bcarstatus',
-        Description: ": displays status of main BCAR settings (if you use this add-on)",
+        Description: ": displays status of main BCAR settings.",
         Action: () => {
             if (Player.OnlineSettings.BCAR != null) {
                 if (Player.OnlineSettings.BCAR.bcarSettings != null) {
@@ -3945,7 +3968,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bcrstatus',
-        Description: ": displays status of main BC Responsive settings (if you use this add-on)",
+        Description: ": displays status of main BC Responsive settings.",
         Action: () => {
             if (Player.OnlineSettings.BCResponsive != null) {
                 if (Player.OnlineSettings.BCResponsive.data != null) {
@@ -3967,7 +3990,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bctstatus',
-        Description: ": displays status of main BCTweaks settings (if you use this add-on)",
+        Description: ": displays status of main BCTweaks settings.",
         Action: () => {
             if (Player.OnlineSettings.BCT != null) {
                 str = Player.OnlineSettings.BCT;
@@ -6347,6 +6370,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         ChatRoomSetTarget(null);
                     }
                 }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'hotkeys',
+        Description: ": toggles hotkeys on numeric pad.",
+        Action: () => {
+            if (HotkeysOn == true) {
+                HotkeysOn = false;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys on numeric pad are disabled.</p>"
+                );
+            } else {
+                HotkeysOn = true;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys on numeric pad are enabled.</p>"
+                );
             }
         }
     }])
@@ -11111,11 +11154,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
                     "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
-                    "<b>/carddesk</b> (desk) = changes default desk for Club Card Game.\n" +
-                    "<b>/cardfame</b> (fame) = sets high fame level for Club Card Game.\n" +
+                    "<b>/carddesk</b> (desk) = changes default desk for Card Game.\n" +
+                    "<b>/cardfame</b> (fame) = sets high fame level for Card Game.\n" +
                     "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
                     "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
-                    "<b>/highfame</b> = toggles high fame mode in Club Card Game.\n" +
+                    "<b>/highfame</b> = toggles high fame mode in Card Game.\n" +
+		    "<b>/hotkeys</b> = toggles hotkeys on numeric pad.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/magiccheat</b> = toggles cheat mode in Bondage Brawl and Magic School.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
@@ -11587,6 +11631,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             showExitmodeStatus();
             showFullseedStatus();
             showHighfameStatus();
+	    showHotkeysStatus();
             showMagiccheatStatus();
             showNowhisperStatus();
             showNpcpunishStatus();
