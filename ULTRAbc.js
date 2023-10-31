@@ -1229,29 +1229,29 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {   
             if (InfiltrationMission == "") {
                 var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
-                 InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
-           }
-	      if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
-		    let C = /** @type {NPCCharacter} */ ({});
-		    CharacterRandomName(C);
-		    InfiltrationTarget = {
-			   Type: "NPC",
-			   Name: C.Name,
-			   PrivateRoom: false
-		    };
-	      } else {
-		    const PreviousTarget = InfiltrationTarget && InfiltrationTarget.Type || "";
-		    const Type = /** @type {InfiltrationTargetType} */(CommonRandomItemFromList(PreviousTarget, InfiltrationObjectType));
-		    InfiltrationTarget = {
-			   Type: Type,
-			   Name: DialogFind(InfiltrationSupervisor, "Object" + Type),
-		    };
+                InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
+            }
+	    if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
+		let C = /** @type {NPCCharacter} */ ({});
+		CharacterRandomName(C);
+		InfiltrationTarget = {
+		    Type: "NPC",
+		    Name: C.Name,
+		    PrivateRoom: false
+		};
+	    } else {
+		const PreviousTarget = InfiltrationTarget && InfiltrationTarget.Type || "";
+		const Type = /** @type {InfiltrationTargetType} */(CommonRandomItemFromList(PreviousTarget, InfiltrationObjectType));
+		InfiltrationTarget = {
+		    Type: Type,
+		    Name: DialogFind(InfiltrationSupervisor, "Object" + Type),
+		};
 	     }
 	     InfiltrationSupervisor.Stage = InfiltrationMission;
 	     InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
 	     InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
-           return;
-           next(args);
+             return;
+             next(args);
         });
     }
 
