@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 2.2.1
+// @version 2.3
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return;
     }
 
-    const UBCver = "2.2.1";
+    const UBCver = "2.3";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -11101,7 +11101,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>zones</b> = commands related to game zones.\n" +
                     "Several commands require or allow to specify a target. It can be a real name or a member number.\n" +
                     "Use <b>/uhelp new</b> for changes in current UBC version.\n" +
-                    "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a></p>"
+                    "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> and join this <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>Discord</a></p>"
+</p>"
                 );
             }
             if (args === "bondage") {
@@ -11233,9 +11234,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- Added new option to the uhelp command: extra (for info about settings of other add-ons).\n" +
-                    "- Added extra info when you use the unrestrict command without option.\n" +
-                    "- Updated the kd weapons command and the updateBackground function.</p>"
+                    "- New commands: bg3 to use a Bondage College background as custom background,\n" +
+                    "ebchstatus to display status of main EBCH settings,\n" +
+                    "hotkeys to enable/disable hotkeys on numeric pad: Numpad Divide = leave - Numpad Multiply (used twice) = total release,\n" +
+                    "mission to force a specific infiltration mission.\n" +
+                    "- Added emergency buttons in Pandora prison and photographic room.\n" +
+                    "- Added silent mode for messages controlled by message command (Use ! as message to select this mode).\n" +
+                    "- Fixed a bug in the high fame mode of the Bondage Club Card Game.</p>"
                 );
             }
             if (args === "settings") {
