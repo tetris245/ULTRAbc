@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 2.2.1
+Most recent version: 2.3
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version2.2.1.zip file on the Releases page
+1. Download the ULTRAbc-version2.3.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -57,15 +57,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* New commands:
-  - bg3 (number) to use a Bondage College background as custom background (Number between 1 and 32 - Full list with /bg3)
-  - ebchstatus to display status of main EBCH settings (if you use this add-on)
-  - hotkeys to enable/disable hotkeys on numeric pad
-  - mission (mission) to go to infiltration room and force a specific mission
-* Added emergency buttons in Pandora prison and photographic room (when they are enabled)
-* Added two fast hotkeys using the numeric pad:
-  - Numpad Divide (/) = fast leave
-  - Numpad Multiply (*) = total release (generally you need to use it twice)
-* Added silent mode for messages controlled by message command (Use ! as message to select silent mode for a specific command)
-* Fixed a bug in the high fame mode of the Bondage Club Card Game
-
+(...)
