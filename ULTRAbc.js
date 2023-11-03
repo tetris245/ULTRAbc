@@ -191,10 +191,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var NewVersionStatus = ["New BCR Version feature is enabled.",
         "New BCR Version feature is disabled."
     ];
-    var SharkBiteStatus = ["Shark Bite feature is enabled.",
-        "Shark Bite feature is disabled."
-    ];
-
+    
     var ArousalErectionStatus = ["Arousal can affect male erection.",
         "Arousal can't affect male erection."
     ];
@@ -1725,7 +1722,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //BCR Status
     function showBCResponsiveStatus() {
         let msg;
-        if (BCRdata.settings.enable) {
+        if (BCRdata.GlobalModule.ResponsiveEnabled) {
             msg = BCResponsiveStatus[0];
         } else {
             msg = BCResponsiveStatus[1];
@@ -1735,7 +1732,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     function showCharacterTalkStatus() {
         let msg;
-        if (BCRdata.modSettings.doEnableCharTalk) {
+        if (BCRdata.GlobalModule.CharTalkEnabled) {
             msg = CharacterTalkStatus[0];
         } else {
             msg = CharacterTalkStatus[1];
@@ -1745,7 +1742,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     function showInterceptMessageStatus() {
         let msg;
-        if (BCRdata.modSettings.doInterceptMessage) {
+        if (BCRdata.GlobalModule.doMessageInterruption) {
             msg = InterceptMessageStatus[0];
         } else {
             msg = InterceptMessageStatus[1];
@@ -1755,7 +1752,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     function showLeaveMessageStatus() {
         let msg;
-        if (BCRdata.modSettings.isLeaveMessageEnabled) {
+        if (BCRdata.GlobalModule.doLeaveMessage) {
             msg = LeaveMessageStatus[0];
         } else {
             msg = LeaveMessageStatus[1];
@@ -1765,20 +1762,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     function showNewVersionStatus() {
         let msg;
-        if (BCRdata.modSettings.doShowNewVersion) {
+        if (BCRdata.GlobalModule.doShowNewVersionMessage) {
             msg = NewVersionStatus[0];
         } else {
             msg = NewVersionStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
-    function showSharkBiteStatus() {
-        let msg;
-        if (BCRdata.modSettings.isSharkBiteEnabled) {
-            msg = SharkBiteStatus[0];
-        } else {
-            msg = SharkBiteStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -4016,7 +4003,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bcarstatus',
-        Description: ": displays status of main BCAR settings (if you use this add-on)",
+        Description: ": displays status of main BCAR settings.",
         Action: () => {
             if (Player.OnlineSettings.BCAR != null) {
                 if (Player.OnlineSettings.BCAR.bcarSettings != null) {
@@ -4039,29 +4026,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bcrstatus',
-        Description: ": displays status of main BC Responsive settings (if you use this add-on)",
+        Description: ": displays status of main BC Responsive settings.",
         Action: () => {
             if (Player.OnlineSettings.BCResponsive != null) {
-                if (Player.OnlineSettings.BCResponsive.data != null) {
-                    str = Player.OnlineSettings.BCResponsive.data;
-                    d = LZString.decompressFromBase64(str);
-                    BCRdata = {};
-                    decoded = JSON.parse(d);
-                    BCRdata = decoded;
-                    showBCResponsiveStatus();
-                    showCharacterTalkStatus();
-                    showInterceptMessageStatus();
-                    showLeaveMessageStatus();
-                    showNewVersionStatus();
-                    showSharkBiteStatus();
-                }
+                str = Player.OnlineSettings.BCResponsive;
+                d = LZString.decompressFromBase64(str);
+                BCRdata = {};
+                decoded = JSON.parse(d);
+                BCRdata = decoded;
+                showBCResponsiveStatus();
+                showCharacterTalkStatus();
+                showInterceptMessageStatus();
+                showLeaveMessageStatus();
+                showNewVersionStatus();
             }
         }
     }])
 
     CommandCombine([{
         Tag: 'bctstatus',
-        Description: ": displays status of main BCTweaks settings (if you use this add-on)",
+        Description: ": displays status of main BCTweaks settings.",
         Action: () => {
             if (Player.OnlineSettings.BCT != null) {
                 str = Player.OnlineSettings.BCT;
