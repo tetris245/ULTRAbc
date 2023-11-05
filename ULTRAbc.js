@@ -4002,72 +4002,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'bcarstatus',
-        Description: ": displays status of main BCAR settings.",
-        Action: () => {
-            if (Player.OnlineSettings.BCAR != null) {
-                if (Player.OnlineSettings.BCAR.bcarSettings != null) {
-                    BCARdata = {};
-                    str = Player.OnlineSettings.BCAR.bcarSettings;
-                    BCARdata = str;
-                    showAnimalTypeStatus();
-                    showAnimationButtonsStatus();
-                    showArousalManipulationStatus();
-                    showBCARExpressionsStatus();
-                    showEarAnimationStatus();
-                    showEarEmoteStatus();
-                    showTailAnimationStatus();
-                    showTailEmoteStatus();
-                    showWingAnimationStatus();
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'bcrstatus',
-        Description: ": displays status of main BC Responsive settings.",
-        Action: () => {
-            if (Player.OnlineSettings.BCResponsive != null) {
-                str = Player.OnlineSettings.BCResponsive;
-                d = LZString.decompressFromBase64(str);
-                BCRdata = {};
-                decoded = JSON.parse(d);
-                BCRdata = decoded;
-                showBCResponsiveStatus();
-                showCharacterTalkStatus();
-                showInterceptMessageStatus();
-                showLeaveMessageStatus();
-                showNewVersionStatus();
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'bctstatus',
-        Description: ": displays status of main BCTweaks settings.",
-        Action: () => {
-            if (Player.OnlineSettings.BCT != null) {
-                str = Player.OnlineSettings.BCT;
-                d = LZString.decompressFromBase64(str);
-                BCTdata = {};
-                decoded = JSON.parse(d);
-                BCTdata = decoded;
-                showArousalErectionStatus();
-                showArousalProgressStatus();
-                showBCIconsStatus();
-                showBCTChangelogStatus();
-                showBCTIconStatus();
-                showBestFriendsStatus();
-                showLockConversionStatus();
-                showRoomShareStatus();
-                showSplitStatus();
-                showTailWaggingStatus();
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'bg1',
         Description: ": adds hidden backgrounds to the selection screen.",
         Action: () => {          
@@ -11228,10 +11162,7 @@ CommandCombine([{
             if (args === "extra") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Extra commands:\n" +
-                    "<b>/bcarstatus</b> = displays status of main BCAR settings.\n" +
-                    "<b>/bcrstatus</b> = displays status of main BC Responsive settings.\n" +
-                    "<b>/bctstatus</b> = displays status of main BCTweaks settings.\n" +
-                    "<b>/ebchstatus</b> = displays status of main EBCH settings.</p>"
+                    "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. Available options with /xstatus.</p>"
                 );
             }
             if (args === "fun") {
@@ -11851,6 +11782,86 @@ CommandCombine([{
                         }
                     }
                 }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'xstatus',
+        Description: "(add-on): displays status settings for other add-ons.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The xstatus command must be followed by an option corresponding to an add-on.\n" +
+                    " \n" +
+                    "Available options:\n" +
+                    "bcar for BCAR\n" +
+                    "bcr for BC Responsive\n" +
+                    "bct for BCTweaks\n" +
+                    "ebch for EBCH</p>"
+                );
+            } else {
+                var addon = args;
+                if (addon == "bcar") {
+                    if (Player.OnlineSettings.BCAR != null) {
+                        if (Player.OnlineSettings.BCAR.bcarSettings != null) {
+                            BCARdata = {};
+                            str = Player.OnlineSettings.BCAR.bcarSettings;
+                            BCARdata = str;
+                            showAnimalTypeStatus();
+                            showAnimationButtonsStatus();
+                            showArousalManipulationStatus();
+                            showBCARExpressionsStatus();
+                            showEarAnimationStatus();
+                            showEarEmoteStatus();
+                            showTailAnimationStatus();
+                            showTailEmoteStatus();
+                            showWingAnimationStatus();
+                        }
+                    }
+                } else if (addon == "bcr") {
+                    if (Player.OnlineSettings.BCResponsive != null) {
+                        str = Player.OnlineSettings.BCResponsive;
+                        d = LZString.decompressFromBase64(str);
+                        BCRdata = {};
+                        decoded = JSON.parse(d);
+                        BCRdata = decoded;
+                        showBCResponsiveStatus();
+                        showCharacterTalkStatus();
+                        showInterceptMessageStatus();
+                        showLeaveMessageStatus();
+                        showNewVersionStatus();
+                    }
+                } else if (addon == "bct") {
+                    if (Player.OnlineSettings.BCT != null) {
+                        str = Player.OnlineSettings.BCT;
+                        d = LZString.decompressFromBase64(str);
+                        BCTdata = {};
+                        decoded = JSON.parse(d);
+                        BCTdata = decoded;
+                        showArousalErectionStatus();
+                        showArousalProgressStatus();
+                        showBCIconsStatus();
+                        showBCTChangelogStatus();
+                        showBCTIconStatus();
+                        showBestFriendsStatus();
+                        showLockConversionStatus();
+                        showRoomShareStatus();
+                        showSplitStatus();
+                        showTailWaggingStatus();
+                     }
+                } else if (addon == "ebch") {
+                    if (Player.OnlineSettings.EBCH != null) {
+                        EBCHdata = {};
+                        str = Player.OnlineSettings.EBCH;
+                        EBCHdata = str;                    
+                        showEbchLogStatus();
+                        showEbchNotificationStatus();
+                        showEbchPoseStatus();
+                        showEbchUngarbleStatus();
+                        showEbchWelcomeStatus();
+                    }
+                } 
             }
         }
     }])
