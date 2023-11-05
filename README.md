@@ -57,4 +57,6 @@ All else I might not have included.
 
 Changes for future version 
 
-* Updated the bcrstatus command
+* New commands:
+  - xstatus (add-on) to display status of main settings for other add-ons (available options: bcar, bcr, bct, ebch)
+* Removed the apart status commands for other add-ons
