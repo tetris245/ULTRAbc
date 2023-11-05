@@ -5843,23 +5843,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         }
     }])
    
-CommandCombine([{
-        Tag: 'ebchstatus',
-        Description: ": displays status of main EBCH settings.",
-        Action: () => {
-            if (Player.OnlineSettings.EBCH != null) {
-                EBCHdata = {};
-                str = Player.OnlineSettings.EBCH;
-                EBCHdata = str;                    
-                showEbchLogStatus();
-                showEbchNotificationStatus();
-                showEbchPoseStatus();
-                showEbchUngarbleStatus();
-                showEbchWelcomeStatus();
-            }
-        }
-    }])
-
     CommandCombine([{
         Tag: 'erase',
         Description: ": erases chat.",
