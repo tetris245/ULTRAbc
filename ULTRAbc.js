@@ -150,6 +150,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ];
 
     // Main variables from other add-ons
+    // BCAR
     var AnimalTypeStatus = ["Current Animal Type: "];
     var AnimationButtonsStatus = ["Animation Buttons enabled.",
         "Animation Buttons disabled."
@@ -176,6 +177,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Tail Animation disabled."
     ];
 
+    // BC Responsive
     var BCResponsiveStatus = ["BC Responsive is enabled.",
         "BC Responsive is disabled."
     ];
@@ -191,7 +193,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var NewVersionStatus = ["New BCR Version feature is enabled.",
         "New BCR Version feature is disabled."
     ];
-    
+
+    // BCTweaks
     var ArousalErectionStatus = ["Arousal can affect male erection.",
         "Arousal can't affect male erection."
     ];
@@ -223,6 +226,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Tail Wagging feature is disabled."
     ];
 
+    // EBCH
     var EbchLogStatus = ["Chatlogging is disabled.",
         "Chatlogging is enabled."
     ];
@@ -238,6 +242,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ];
     var EbchWelcomeStatus = ["No EBCH Welcome message.",
         "EBCH Welcome message."
+    ];
+
+    // MBS
+    var LockedMbsStatus = ["MBS settings are locked when you are restrained.",
+        "You can always change MBS settings, even when you are restrained."
+    ]; 
+    var LockedWheelStatus = ["You can always spin a wheel of fortune, even when you are restrained.",
+        "Wheel of fortune is locked when you are restrained."
     ];
 
     //Initialisation
@@ -1719,7 +1731,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    //BCR Status
+    //BC Responsive Status
     function showBCResponsiveStatus() {
         let msg;
         if (BCRdata.GlobalModule.ResponsiveEnabled) {
@@ -1770,7 +1782,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    //BCT Status
+    //BCTweaks Status
     function showArousalErectionStatus() {
         let msg;
         if (BCTdata.arousalAffectsErection) {
@@ -1920,6 +1932,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = EbchWelcomeStatus[0];
         } else {
             msg = EbchWelcomeStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //MBS Status
+    function showLockedMbsStatus() {
+        let msg;
+        if (MBSdata.LockedWhenRestrained) {
+            msg = LockedMbsStatus[0];
+        } else {
+            msg = LockedMbsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showLockedWheelStatus() {
+        let msg;
+        if (MBSdata.RollWhenRestrained) {
+            msg = LockedWheelStatus[0];
+        } else {
+            msg = LockedWheelStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -11781,7 +11814,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "bcar for BCAR\n" +
                     "bcr for BC Responsive\n" +
                     "bctw for BCTweaks\n" +
-                    "ebch for EBCH</p>"
+                    "ebch for EBCH\n" +
+                    "mbs for MBS</p>"
                 );
             } else {
                 var addon = args;
@@ -11843,6 +11877,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showEbchPoseStatus();
                         showEbchUngarbleStatus();
                         showEbchWelcomeStatus();
+                    }
+		} else if (addon == "mbs") {
+                    if (Player.OnlineSettings.MBS != null) {
+                        str = Player.OnlineSettings.MBS;
+                        d = LZString.decompressFromUTF16(str);
+                        MBSdata = {};
+                        decoded = JSON.parse(d);
+                        MBSdata = decoded;  
+                        showLockedMbsStatus();
+                        showLockedWheelStatus(); 
                     }
                 } 
             }
