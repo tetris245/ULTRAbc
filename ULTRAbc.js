@@ -11780,7 +11780,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Available options:\n" +
                     "bcar for BCAR\n" +
                     "bcr for BC Responsive\n" +
-                    "bct for BCTweaks\n" +
+                    "bctw for BCTweaks\n" +
                     "ebch for EBCH</p>"
                 );
             } else {
@@ -11815,7 +11815,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showLeaveMessageStatus();
                         showNewVersionStatus();
                     }
-                } else if (addon == "bct") {
+                } else if (addon == "bctw") {
                     if (Player.OnlineSettings.BCT != null) {
                         str = Player.OnlineSettings.BCT;
                         d = LZString.decompressFromBase64(str);
@@ -11832,7 +11832,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showRoomShareStatus();
                         showSplitStatus();
                         showTailWaggingStatus();
-                     }
+                    }
                 } else if (addon == "ebch") {
                     if (Player.OnlineSettings.EBCH != null) {
                         EBCHdata = {};
