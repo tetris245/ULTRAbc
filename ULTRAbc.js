@@ -7555,6 +7555,43 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'mbslist',
+        Description: "(target): displays list of custom options on a MBS wheel of fortune.",
+        Action: (args) => {
+            if (args === "") {
+                if (Player.MBSSettings != null) {
+                    for (let i = 0; i < 32; i++)
+                        if (Player.MBSSettings.FortuneWheelItemSets[i] != null) {
+                            ChatRoomSendLocal(
+			        i + " - " + Player.MBSSettings.FortuneWheelItemSets[i].name        
+                            );
+                        }
+                }
+            } else {
+                var targetname = args;
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if (target[0].OnlineSharedSettings.MBS != null) {
+                     str = target[0].OnlineSharedSettings.MBS;
+                     d = LZString.decompressFromUTF16(str);
+                     MBSwhdata = {};
+                     decoded = JSON.parse(d);
+                     MBSwhdata = decoded;  
+                     for (let i = 0; i < 32; i++)
+                        if (MBSwhdata.FortuneWheelItemSets[i] != null) {
+                            ChatRoomSendLocal(
+			        i + " - " + MBSwhdata.FortuneWheelItemSets[i].name        
+                            );
+                        }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'message',
         Description: "(option) (message): creates custom message for a specific command.",
         Action: (_, command, args) => {
@@ -11178,6 +11215,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "extra") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Extra commands:\n" +
+		    "<b>/mbslist</b> (target) = displays list of custom options on a MBS wheel of fortune.\n" +
                     "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. Available options with /xstatus.</p>"
                 );
             }
