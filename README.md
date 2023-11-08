@@ -58,5 +58,6 @@ All else I might not have included.
 Changes for future version 
 
 * New commands:
+  - mbslist (target) to display list of custom options on a MBS wheel of fortune
   - xstatus (add-on) to display status of main settings for other add-ons (available options: bcar, bcr, bctw, ebch, mbs)
 * Removed the apart status commands for other add-ons
