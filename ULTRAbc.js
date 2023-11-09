@@ -7574,18 +7574,37 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if (target[0].OnlineSharedSettings.MBS != null) {
-                     str = target[0].OnlineSharedSettings.MBS;
-                     d = LZString.decompressFromUTF16(str);
-                     MBSwhdata = {};
-                     decoded = JSON.parse(d);
-                     MBSwhdata = decoded;  
-                     for (let i = 0; i < 32; i++)
-                        if (MBSwhdata.FortuneWheelItemSets[i] != null) {
-                            ChatRoomSendLocal(
-			        i + " - " + MBSwhdata.FortuneWheelItemSets[i].name        
-                            );
-                        }
+                if (target[0] != null) {
+                    if (!InventoryAvailable(target[0], "WheelFortune", "ItemDevices")) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bad luck! This player does not have a wheel of fortune.</p>"
+                        );
+                    } else {
+                        if (target[0].OnlineSharedSettings.MBS != null) {
+                             str = target[0].OnlineSharedSettings.MBS;
+                             d = LZString.decompressFromUTF16(str);
+                             MBSwhdata = {};
+                             decoded = JSON.parse(d);
+                             MBSwhdata = decoded; 
+                             var j = 0; 
+                             for (let i = 0; i < 32; i++)
+                                 if (MBSwhdata.FortuneWheelItemSets[i] != null) {
+                                     j = j + 1;
+                                     ChatRoomSendLocal(
+				         i + " - " + MBSwhdata.FortuneWheelItemSets[i].name        
+                                     );
+                                 }
+                             if (j == 0) {
+                                 ChatRoomSendLocal(
+                                      "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bad luck! This player does not have custom options on a MBS wheel of fortune.</p>"
+                                 ); 
+                             }
+                         } else {
+                               ChatRoomSendLocal(
+                                   "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bad luck! This player does not have a MBS wheel of fortune.</p>"
+                               ); 
+                         }
+                    }
                 }
             }
         }
