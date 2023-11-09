@@ -10641,6 +10641,54 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'timeleft',
+        Description: "(target): reveals remaining time on current timer locks.",
+        Action: (args) => {
+            if (args === "") {
+                for (let A = 0; A < Player.Appearance.length; A++)
+                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
+                        if ((Player.Appearance[A].Property.LockedBy == "TimerPadlock") || (Player.Appearance[A].Property.LockedBy == "MistressTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "LoversTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "OwnerTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
+                            var asset = Player.Appearance[A].Asset.Description;
+                            var time = Player.Appearance[A].Property.RemoveTimer;
+                            var left = TimerToString(time - CurrentTime);
+                            ChatRoomSendLocal("" + asset + " = " + left + "");
+                        }
+                        if (Player.Appearance[A].Property.Name == "Best Friend Timer Padlock") {
+                            var asset = Player.Appearance[A].Asset.Description;
+                            var time = Player.Appearance[A].Property.RemovalTime;
+                            var left = TimerToString(time - CurrentTime);
+                            ChatRoomSendLocal("" + asset + " = " + left + "");
+                        }
+                    }
+            } else {
+                var targetname = args;
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if (target[0] != null) {
+                    for (let A = 0; A < target[0].Appearance.length; A++)
+                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
+                             if ((target[0].Appearance[A].Property.LockedBy == "TimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "MistressTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "LoversTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "OwnerTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
+                                 var asset = target[0].Appearance[A].Asset.Description;
+                                 var time = target[0].Appearance[A].Property.RemoveTimer;
+                                 var left = TimerToString(time - CurrentTime);
+                                 ChatRoomSendLocal("" + asset + " = " + left + "");
+                             }
+                             if (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock") {
+                                 var asset = target[0].Appearance[A].Asset.Description;
+                                 var time = target[0].Appearance[A].Property.RemovalTime;
+                                 var left = TimerToString(time - CurrentTime);
+                                 ChatRoomSendLocal("" + asset + " = " + left + "");
+                             }
+                        }            
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'timercell',
         Description: "(minutes): stays in the isolation cell.",
         Action: (args) => {
@@ -11226,6 +11274,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
                     "<b>/safeworditem</b> = removes specific item. *\n" +
                     "<b>/solidity</b> (value) = changes the solidity of most current bindings. Use low values to escape! Value 1 allows to escape special devices.\n" +
+		    "<b>/timeleft</b> (target) = reveals remaining time on timer locks.\n" +
                     "<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n" +
                     "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. *\n" +
                     "<b>/untie</b> (target) = removes all bindings.</p>"
