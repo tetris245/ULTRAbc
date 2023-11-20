@@ -58,7 +58,7 @@ All else I might not have included.
 Changes for future version 
 
 * New commands:
-  - mbslist (target) to display list of custom options on a MBS wheel of fortune
+  - mbsroom to give infos about MBS wheels of fortune in current chat room
   - timeleft (target) to reveal remaining time on current timer locks
   - xstatus (add-on) to display status of main settings for other add-ons (available options: bcar, bcr, bctw, ebch, mbs)
 * Removed the apart status commands for other add-ons
