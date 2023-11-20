@@ -7558,58 +7558,44 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'mbslist',
-        Description: "(target): displays list of custom options on a MBS wheel of fortune.",
+        Tag: 'mbsroom',
+        Description: ": gives infos about MBS wheels of fortune in current chat room.",
         Action: (args) => {
-            if (args === "") {
-                if (Player.MBSSettings != null) {
-                    for (let i = 0; i < 32; i++)
-                        if (Player.MBSSettings.FortuneWheelItemSets[i] != null) {
-                            ChatRoomSendLocal(
-			        i + " - " + Player.MBSSettings.FortuneWheelItemSets[i].name        
-                            );
-                        }
-                }
-            } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if (target[0] != null) {
-                    if (!InventoryAvailable(target[0], "WheelFortune", "ItemDevices")) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bad luck! This player does not have a wheel of fortune.</p>"
-                        );
-                    } else {
-                        if (target[0].OnlineSharedSettings.MBS != null) {
-                             str = target[0].OnlineSharedSettings.MBS;
-                             d = LZString.decompressFromUTF16(str);
-                             MBSwhdata = {};
-                             decoded = JSON.parse(d);
-                             MBSwhdata = decoded; 
-                             var j = 0; 
-                             for (let i = 0; i < 32; i++)
-                                 if (MBSwhdata.FortuneWheelItemSets[i] != null) {
-                                     j = j + 1;
-                                     ChatRoomSendLocal(
-				         i + " - " + MBSwhdata.FortuneWheelItemSets[i].name        
-                                     );
-                                 }
-                             if (j == 0) {
-                                 ChatRoomSendLocal(
-                                      "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bad luck! This player does not have custom options on a MBS wheel of fortune.</p>"
-                                 ); 
-                             }
-                         } else {
-                               ChatRoomSendLocal(
-                                   "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bad luck! This player does not have a MBS wheel of fortune.</p>"
-                               ); 
-                         }
-                    }
-                }
-            }
+            let pl = 0;
+            while (pl < ChatRoomCharacter.length) {
+                 if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
+                     var name = ChatRoomCharacter[pl].Name;
+                 } else {
+                     var name = ChatRoomCharacter[pl].Nickname;             
+                 }
+                 var number = ChatRoomCharacter[pl].MemberNumber;
+                 ChatRoomSendLocal(name + " - " + number);
+                 if (!InventoryAvailable(ChatRoomCharacter[pl], "WheelFortune", "ItemDevices")) {                
+                     ChatRoomSendLocal("Does not have a wheel of fortune.");
+                 } else {
+                     if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != null) {
+                          ChatRoomSendLocal("Has a MBS wheel of fortune.");
+                          str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
+                          d = LZString.decompressFromUTF16(str);
+                          MBSwhdata = {};
+                          decoded = JSON.parse(d);
+                          MBSwhdata = decoded; 
+                          var j = 0; 
+                          for (let i = 0; i < 32; i++)
+                              if (MBSwhdata.FortuneWheelItemSets[i] != null) {
+                                  j = j + 1;
+                                  ChatRoomSendLocal(i + " - " + MBSwhdata.FortuneWheelItemSets[i].name);
+                               }
+                               if (j == 0) {
+                                  ChatRoomSendLocal("Does not have custom options on this wheel."); 
+                               }
+                      } else {
+                          ChatRoomSendLocal("Does not have a MBS wheel of fortune.");             
+                      }
+                  }
+                  ChatRoomSendLocal(" "); 
+                  pl ++;
+             } 
         }
     }])
 
@@ -11286,7 +11272,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "extra") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Extra commands:\n" +
-		    "<b>/mbslist</b> (target) = displays list of custom options on a MBS wheel of fortune.\n" +
+		    "<b>/mbsroom</b> = gives infos about MBS wheels of fortune in current chat room.\n" +
                     "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. Available options with /xstatus.</p>"
                 );
             }
