@@ -7576,28 +7576,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                      ChatRoomSendLocal("Does not have a wheel of fortune.");
                  } else {
                      if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != null) {
-                          ChatRoomSendLocal("Has a MBS wheel of fortune.");
-                          str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
-                          d = LZString.decompressFromUTF16(str);
-                          MBSwhdata = {};
-                          decoded = JSON.parse(d);
-                          MBSwhdata = decoded; 
-                          var j = 0; 
-                          for (let i = 0; i < 32; i++)
-                              if (MBSwhdata.FortuneWheelItemSets[i] != null) {
-                                  j = j + 1;
-                                  ChatRoomSendLocal(i + " - " + MBSwhdata.FortuneWheelItemSets[i].name);
-                               }
-                               if (j == 0) {
-                                  ChatRoomSendLocal("Does not have custom options on this wheel."); 
-                               }
-                      } else {
-                          ChatRoomSendLocal("Does not have a MBS wheel of fortune.");             
-                      }
-                  }
-                  ChatRoomSendLocal(" "); 
-                  pl ++;
-             } 
+                         ChatRoomSendLocal("Has a MBS wheel of fortune.");
+                         str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
+                         d = LZString.decompressFromUTF16(str);
+                         MBSwhdata = {};
+                         decoded = JSON.parse(d);
+                         MBSwhdata = decoded; 
+                         var j = 0; 
+                         for (let i = 0; i < 32; i++)
+                             if (MBSwhdata.FortuneWheelItemSets[i] != null) {
+                                 j = j + 1;
+                                 ChatRoomSendLocal(i + " - " + MBSwhdata.FortuneWheelItemSets[i].name);
+                             }
+                             if (j == 0) {
+                                 ChatRoomSendLocal("Does not have custom options on this wheel."); 
+                             }
+                     } else {
+                         ChatRoomSendLocal("Does not have a MBS wheel of fortune.");             
+                     }
+                }
+                ChatRoomSendLocal(" "); 
+                pl ++;
+            } 
         }
     }])
 
