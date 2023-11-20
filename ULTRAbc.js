@@ -7565,11 +7565,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             while (pl < ChatRoomCharacter.length) {
                  if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
                      var name = ChatRoomCharacter[pl].Name;
+		     var aka = "";
                  } else {
-                     var name = ChatRoomCharacter[pl].Nickname;             
+                     var name = ChatRoomCharacter[pl].Nickname; 
+		     var aka =  ChatRoomCharacter[pl].Name;
                  }
                  var number = ChatRoomCharacter[pl].MemberNumber;
-                 ChatRoomSendLocal(name + " - " + number);
+                 ChatRoomSendLocal(name + " (" + aka + ") - " + number);
                  if (!InventoryAvailable(ChatRoomCharacter[pl], "WheelFortune", "ItemDevices")) {                
                      ChatRoomSendLocal("Does not have a wheel of fortune.");
                  } else {
