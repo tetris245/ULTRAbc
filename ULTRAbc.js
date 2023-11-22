@@ -7563,48 +7563,56 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             let pl = 0;
             while (pl < ChatRoomCharacter.length) {
-                 if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
-                     var name = ChatRoomCharacter[pl].Name;
-		     var aka = "";
-                 } else {
-                     var name = ChatRoomCharacter[pl].Nickname; 
-		     var aka =  ChatRoomCharacter[pl].Name;
-                 }
-                 var number = ChatRoomCharacter[pl].MemberNumber;
-                 ChatRoomSendLocal(name + " (" + aka + ") - " + number);
-                 if (!InventoryAvailable(ChatRoomCharacter[pl], "WheelFortune", "ItemDevices")) {                
-                     ChatRoomSendLocal("Does not have a wheel of fortune.");
-                 } else {
-                     if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != null) {
-                         ChatRoomSendLocal("Has a MBS wheel of fortune.");
-			 str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
-                         MBSver = Player.OnlineSharedSettings.MBSVersion;
-                         var MBS1 = MBSver.charAt(0);
-                         var MBS2 = MBSver.charAt(2);
-                         var MBS3 = MBSver.slice(-2);
-                         if ((MBS1 == 0) && (MBS2 <= 6) && (MBS3 <= 22)) {
-                             d = LZString.decompressFromBase64(str);
-                         } else {
-                             d = LZString.decompressFromUTF16(str);
-                         }
-                         MBSwhdata = {};
-                         decoded = JSON.parse(d);
-                         MBSwhdata = decoded; 
-                         var j = 0; 
-                         for (let i = 0; i < 32; i++)
-                             if (MBSwhdata.FortuneWheelItemSets[i] != null) {
-                                 j = j + 1;
-                                 ChatRoomSendLocal(i + " - " + MBSwhdata.FortuneWheelItemSets[i].name);
-                             }
-                             if (j == 0) {
-                                 ChatRoomSendLocal("Does not have custom options on this wheel."); 
-                             }
-                     } else {
-                         ChatRoomSendLocal("Does not have a MBS wheel of fortune.");             
-                     }
+                if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
+                    var name = ChatRoomCharacter[pl].Name;
+		    var aka = "";
+                } else {
+                    var name = ChatRoomCharacter[pl].Nickname; 
+		    var aka =  ChatRoomCharacter[pl].Name;
                 }
-                ChatRoomSendLocal(" "); 
-                pl ++;
+                var number = ChatRoomCharacter[pl].MemberNumber;
+                ChatRoomSendLocal(name + " (" + aka + ") - " + number);
+                if (!InventoryAvailable(ChatRoomCharacter[pl], "WheelFortune", "ItemDevices")) {                
+                    ChatRoomSendLocal("Does not have a wheel of fortune.");
+                } else {
+                    if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != null) {
+                        ChatRoomSendLocal("Has a MBS wheel of fortune.");
+                        if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.FortuneWheelCommands != null) {
+                            ChatRoomSendLocal("Does not have custom options on this wheel.");             
+                        } else {
+                            str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
+                            if (str == "ᯡ࠸䈌Ԁᜥ㠮恳ǴÒ⤡堲⍄אೄ䘡乀̀ව乌堣⏁琕ᦃ箎崇埝崛ԭాၒ㿔䢩ᦂ历័״㜭༹ᵆᘠ愨ȤĬࠠ䱈楏䮽㞁✒涧篮溼㹟煰ఄ  ") {
+                                ChatRoomSendLocal("Does not have custom options on this wheel.");             
+                            } else {
+                                MBSver = Player.OnlineSharedSettings.MBSVersion;
+                                var MBS1 = MBSver.charAt(0);
+                                var MBS2 = MBSver.charAt(2);
+                                var MBS3 = MBSver.slice(-2);
+                                if ((MBS1 == 0) && (MBS2 <= 6) && (MBS3 <= 22)) {
+                                    d = LZString.decompressFromBase64(str);
+                                } else {
+                                    d = LZString.decompressFromUTF16(str);
+                                }
+                                MBSwhdata = {};
+                                decoded = JSON.parse(d);
+                                MBSwhdata = decoded; 
+                                var j = 0; 
+                                for (let i = 0; i < 32; i++)
+                                    if (MBSwhdata.FortuneWheelItemSets[i] != null) {
+                                        j = j + 1;
+                                        ChatRoomSendLocal(i + " - " + MBSwhdata.FortuneWheelItemSets[i].name);
+                                    }
+                                    if (j == 0) {
+                                        ChatRoomSendLocal("Does not have custom options on this wheel."); 
+                                    }
+                        }
+                    }     
+                } else {
+                    ChatRoomSendLocal("Does not have a MBS wheel of fortune.");             
+                }
+            }
+            ChatRoomSendLocal(" "); 
+            pl ++;
             } 
         }
     }])
