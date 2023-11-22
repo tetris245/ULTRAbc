@@ -7577,8 +7577,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                  } else {
                      if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != null) {
                          ChatRoomSendLocal("Has a MBS wheel of fortune.");
-                         str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
-                         d = LZString.decompressFromUTF16(str);
+			 str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
+                         MBSver = Player.OnlineSharedSettings.MBSVersion;
+                         var MBS1 = MBSver.charAt(0);
+                         var MBS2 = MBSver.charAt(2);
+                         var MBS3 = MBSver.slice(-2);
+                         if ((MBS1 == 0) && (MBS2 <= 6) && (MBS3 <= 22)) {
+                             d = LZString.decompressFromBase64(str);
+                         } else {
+                             d = LZString.decompressFromUTF16(str);
+                         }
                          MBSwhdata = {};
                          decoded = JSON.parse(d);
                          MBSwhdata = decoded; 
