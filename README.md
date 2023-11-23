@@ -62,4 +62,4 @@ Changes for future version
   - timeleft (target) to reveal remaining time on current timer locks
   - xstatus (add-on) to display status of main settings for other add-ons (available options: bcar, bcr, bctw, ebch, mbs)
 * Removed the apart status commands for other add-ons
-* Updated the bg2 command
+* Updated the bg2 command and the updateBackground function
