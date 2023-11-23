@@ -7584,10 +7584,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             if (str == "ᯡ࠸䈌Ԁᜥ㠮恳ǴÒ⤡堲⍄אೄ䘡乀̀ව乌堣⏁琕ᦃ箎崇埝崛ԭాၒ㿔䢩ᦂ历័״㜭༹ᵆᘠ愨ȤĬࠠ䱈楏䮽㞁✒涧篮溼㹟煰ఄ  ") {
                                 ChatRoomSendLocal("Does not have custom options on this wheel.");             
                             } else {
-                                MBSver = Player.OnlineSharedSettings.MBSVersion;
-                                var MBS1 = MBSver.charAt(0);
-                                var MBS2 = MBSver.charAt(2);
-                                var MBS3 = MBSver.slice(-2);
+                                var stringMBSver1 = Player.OnlineSharedSettings.MBSVersion;
+                                var stringMBSver2 = stringMBSver1.split(".");
+                                var MBS1 = stringMBSver2[0];
+                                var MBS2 = stringMBSver2[1];
+                                var MBS3 = stringMBSver2[2];
                                 if ((MBS1 == 0) && (MBS2 <= 6) && (MBS3 <= 22)) {
                                     d = LZString.decompressFromBase64(str);
                                 } else {
@@ -11994,9 +11995,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		} else if (addon == "mbs") {
                     if (Player.OnlineSettings.MBS != null) {
                         MBSver = Player.OnlineSharedSettings.MBSVersion;
-                        var MBS1 = MBSver.charAt(0);
-                        var MBS2 = MBSver.charAt(2);
-                        var MBS3 = MBSver.slice(-2);
+                        var stringMBSver1 = MBSver;
+                        var stringMBSver2 = stringMBSver1.split(".");
+                        var MBS1 = stringMBSver2[0];
+                        var MBS2 = stringMBSver2[1];
+                        var MBS3 = stringMBSver2[2];
                         if ((MBS1 == 0) || (MBSver == "1.0.0") || (MBSver == "1.0.1")) {
                             str = Player.OnlineSettings.MBS; 
                         } else {
