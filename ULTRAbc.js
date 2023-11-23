@@ -1634,7 +1634,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             BlockCategory: ChatRoomData.BlockCategory,
             Game: ChatRoomData.Game,
             Private: ChatRoomData.Private,
-            Locked: ChatRoomData.Locked,
+            Locked: ChatRoomData.Locked,    
+            MapData: ChatAdminMapData,
             Custom: ChatRoomData.Custom,
         };
         ServerSend("ChatRoomAdmin", {
