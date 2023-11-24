@@ -252,6 +252,35 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Wheel of fortune is locked when you are restrained."
     ];
 
+    // Themed
+    var BCThemedStatus = ["Themed is enabled.",
+        "ThemedBC is disabled."
+    ];
+    var ChatInputStatus = ["The chat input zone uses colors selected in Themed.",
+        "The chat input zone uses the default BC colors."
+    ];
+    var ChatStylingStatus = ["Chat Special Tyling is enabled.",
+        "Chat Special Tyling is disabled."
+    ];
+    var FriendListStatus = ["The friend list uses colors selected in Themed.",
+        "The friend list uses the default BC colors."
+    ];
+    var GuiOverhaulStatus = ["The interface uses colors selected in Themed.",
+        "The interface uses the default BC colors."
+    ];
+    var InputZonesStatus = ["Misc input zones use colors selected in Themed.",
+        "Misc input zones use the default BC colors."
+    ];
+    var LocalTimeStatus = ["The time is displayed according your locale settings.",
+        "The time is displayed according your system settings."
+    ];
+    var MiscDetailsStatus = ["Misc details use colors selected in Themed.",
+        "Misc details use the default BC colors."
+    ];
+    var ThemedVersionStatus = ["New Themed Version feature is enabled.",
+        "New Themed Version feature is disabled."
+    ];
+
     //Initialisation
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
@@ -1954,6 +1983,89 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = LockedWheelStatus[0];
         } else {
             msg = LockedWheelStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //Themed Status   
+    function showBCThemedStatus() {
+        let msg;
+        if (THMdata.GlobalModule.themedEnabled) {
+            msg = BCThemedStatus[0];
+        } else {
+            msg = BCThemedStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showChatInputStatus() {
+        let msg;
+        if (THMdata.IntegrationModule.BC_Chat) {
+            msg = ChatInputStatus[0];
+        } else {
+            msg = ChatInputStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showChatStylingStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doUseChatSpecialStyling) {
+            msg = ChatStylingStatus[0];
+        } else {
+            msg = ChatStylingStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showFriendListStatus() {
+        let msg;
+        if (THMdata.IntegrationModule.BC_FriendList) {
+            msg = FriendListStatus[0];
+        } else {
+            msg = FriendListStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showGuiOverhaulStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doVanillaGuiOverhaul) {
+            msg = GuiOverhaulStatus[0];
+        } else {
+            msg = GuiOverhaulStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showInputZonesStatus() {
+        let msg;
+        if (THMdata.IntegrationModule.BC) {
+            msg = InputZonesStatus[0];
+        } else {
+            msg = InputZonesStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showLocalTimeStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doShowLocaleTime) {
+            msg = LocalTimeStatus[0];
+        } else {
+            msg = LocalTimeStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showMiscDetailsStatus() {
+        let msg;
+        if (THMdata.IntegrationModule.BC_Other) {
+            msg = MiscDetailsStatus[0];
+        } else {
+            msg = MiscDetailsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showThemedVersionStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doShowNewVersionMessage) {
+            msg = ThemedVersionStatus[0];
+        } else {
+            msg = ThemedVersionStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -11929,8 +12041,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "bcar for BCAR\n" +
                     "bcr for BC Responsive\n" +
                     "bctw for BCTweaks\n" +
-                    "ebch for EBCH\n" +
-                    "mbs for MBS</p>"
+                    "ebch for EBCH\n" +         
+                    "mbs for MBS\n" +
+                    "thm for Themed</p>"
                 );
             } else {
                 var addon = args;
@@ -12016,6 +12129,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         MBSdata = decoded;  
                         showLockedMbsStatus();
                         showLockedWheelStatus(); 
+                    }
+                } else if (addon == "thm") {
+                    if (Player.ExtensionSettings.Themed != null) {
+                        str = Player.ExtensionSettings.Themed;
+                        d = LZString.decompressFromBase64(str);
+                        THMdata = {};
+                        decoded = JSON.parse(d);
+                        THMdata = decoded;
+                        showBCThemedStatus();
+                        showChatInputStatus();
+                        //showChatStylingStatus();
+                        showFriendListStatus();
+                        showInputZonesStatus();
+                        showGuiOverhaulStatus(); 
+                        showLocalTimeStatus();  
+                        showMiscDetailsStatus();               
+                        showThemedVersionStatus();
                     }
                 } 
             }
