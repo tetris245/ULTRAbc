@@ -10449,7 +10449,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Player.Appearance[A].Difficulty = solidity;
                         }
                     }
-                ServerPlayerInventorySync();
+                ChatRoomCharacterUpdate(Player);
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: The solidity of most current bindings has been changed.</p>"
                 );
