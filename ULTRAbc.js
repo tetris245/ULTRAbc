@@ -10478,7 +10478,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
                 for (let A = 0; A < Player.Appearance.length; A++)
-                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Asset.Group.Name != null)) {
+                    if (Player.Appearance[A].Asset.Group.Name != null) {
                         if (Player.Appearance[A].Asset.Group.Name.startsWith("Item")) {
                             Player.Appearance[A].Difficulty = solidity;
                         }
