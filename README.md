@@ -62,7 +62,7 @@ Changes for future version
   - timeleft (target) to reveal remaining time on current timer locks
   - xstatus (add-on) to display status of main settings for other add-ons
     - Available options: bcar for BCAR, bcr for BC Responsive, bctw for BCTweaks, ebch for EBCH, mbs for MBS, thm for Themed
-* Added solidity option for message command (will be used when escaping special devices)
+* Added solidity option to message command (will be used when escaping special devices)
 * Removed the apart status commands for other add-ons
 * Optimised the code for the solidity command
 * Updated the bg2 command and the updateBackground function
