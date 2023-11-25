@@ -63,4 +63,5 @@ Changes for future version
   - xstatus (add-on) to display status of main settings for other add-ons
     - Available options: bcar for BCAR, bcr for BC Responsive, bctw for BCTweaks, ebch for EBCH, mbs for MBS, thm for Themed
 * Removed the apart status commands for other add-ons
+* Optimised the code for the solidity command
 * Updated the bg2 command and the updateBackground function
