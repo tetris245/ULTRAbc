@@ -10437,33 +10437,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 }
-                InventorySetDifficulty(Player, "ItemAddon", solidity);
-                InventorySetDifficulty(Player, "ItemArms", solidity);
-                InventorySetDifficulty(Player, "ItemBoots", solidity);
-                InventorySetDifficulty(Player, "ItemBreast", solidity);
-                InventorySetDifficulty(Player, "ItemButt", solidity);
-                InventorySetDifficulty(Player, "ItemDevices", solidity);
-                InventorySetDifficulty(Player, "ItemEars", solidity);
-                InventorySetDifficulty(Player, "ItemFeet", solidity);
-                InventorySetDifficulty(Player, "ItemHands", solidity);
-                InventorySetDifficulty(Player, "ItemHead", solidity);
-                InventorySetDifficulty(Player, "ItemHood", solidity);
-                InventorySetDifficulty(Player, "ItemLegs", solidity);
-                InventorySetDifficulty(Player, "ItemMisc", solidity);
-                InventorySetDifficulty(Player, "ItemMouth", solidity);
-                InventorySetDifficulty(Player, "ItemMouth2", solidity);
-                InventorySetDifficulty(Player, "ItemMouth3", solidity);
-                InventorySetDifficulty(Player, "ItemNeck", solidity);
-                InventorySetDifficulty(Player, "ItemNeckAccessories", solidity);
-                InventorySetDifficulty(Player, "ItemNeckRestraints", solidity);
-                InventorySetDifficulty(Player, "ItemNipples", solidity);
-                InventorySetDifficulty(Player, "ItemNipplesPiercings", solidity);
-                InventorySetDifficulty(Player, "ItemNose", solidity);
-                InventorySetDifficulty(Player, "ItemPelvis", solidity);
-                InventorySetDifficulty(Player, "ItemTorso", solidity);
-                InventorySetDifficulty(Player, "ItemTorso2", solidity);
-                InventorySetDifficulty(Player, "ItemVulva", solidity);
-                InventorySetDifficulty(Player, "ItemVulvaPiercings", solidity);
+                for (let A = 0; A < Player.Appearance.length; A++)
+                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Asset.Group.Name != null)) {
+                        if (Player.Appearance[A].Asset.Group.Name.startsWith("Item")) {
+                            Player.Appearance[A].Difficulty = solidity;
+                        }
+                    }
                 ServerPlayerInventorySync();
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: The solidity of most current bindings has been changed.</p>"
