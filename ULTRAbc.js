@@ -11411,7 +11411,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/pet</b> (target) = becomes a fully restrained pet.\n" +
                     "<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n" +
                     "<b>/restrain</b> (target) = adds random restraints.\n" +
-                    "<b>/solidity</b> (value) = changes the solidity of most current bindings. Value must be between 1 and 99.\n" +
+                    "<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Value must be between 1 and 99.\n" +
                     "<b>/spin</b> (target) = access to any wheel of fortune, even hidden.</p>"
                 );
             }
@@ -11468,7 +11468,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
                     "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
                     "<b>/safeworditem</b> = removes specific item. *\n" +
-                    "<b>/solidity</b> (value) = changes the solidity of most current bindings. Use low values to escape! Value 1 allows to escape special devices.\n" +
+                    "<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Use low values to escape! Value 1 to escape special devices.\n" +
 		    "<b>/timeleft</b> (target) = reveals remaining time on timer locks.\n" +
                     "<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n" +
                     "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. *\n" +
