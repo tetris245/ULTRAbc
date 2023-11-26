@@ -81,6 +81,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Tpet = "";
     let Trandomize = "";
     let Trestrain = "";
+    let Tsolidity = "";
     let Ttotalrelease = "";
     let Tunderwear = "";
     let Tunlock = "";
@@ -328,6 +329,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Tpet = "";
             Trandomize = "";
             Trestrain = "";
+	    Tsolidity = "";
             Ttotalrelease = "";
             Tunderwear = "";
             Tunlock = "";
@@ -379,6 +381,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Tpet = datas.tpet;
             Trandomize = datas.trandomize;
             Trestrain = datas.trestrain;
+	    Tsolidity = datas.tsolidity;
             Ttotalrelease = datas.ttotalrelease;
             Tunderwear = datas.tunderwear;
             Tunlock = datas.tunlock;
@@ -433,6 +436,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "tpet": Tpet,
             "trandomize": Trandomize,
             "trestrain": Trestrain,
+            "tsolidity": Tsolidity,
             "ttotalrelease": Ttotalrelease,
             "tunderwear": Tunderwear,
             "tunlock": Tunlock,
@@ -7710,7 +7714,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
                     "Options on yourself: clothes, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie\n" +
-                    "Options on other players: tclothes, tlock, tnaked, tpet, trandomize, trestrain, ttotalrelease, tunderwear, tunlock, tuntie\n" +
+                    "Options on other players: tclothes, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
@@ -7852,19 +7856,19 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             Solidity = "no message";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for solidity command to escape special devices.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for solidity command to escape yourself special devices.</p>"
                             ); 
                         } else if (custom == "?") {
                             Solidity = "";
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for solidity command to escape special devices.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for solidity command to escape yourself special devices.</p>"
                             );
                         } else {
                             Solidity = custom;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for solidity command to escape special devices.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for solidity command to escape yourself special devices.</p>"
                             );
                         } 
                     }
@@ -8012,6 +8016,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on other players.</p>"
+                            );
+                        } 
+                    }
+		    if (option == "tsolidity") {
+                        if (custom == "!") {
+                            Tsolidity = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for solidity command when helping another player to escape special devices.</p>"
+                            ); 
+                        } else if (custom == "?") {
+                            Tsolidity = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for solidity command when helping another player to escape special devices.</p>"
+                            );
+                        } else {
+                            Tsolidity = custom;
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for solidity command when helping another player to escape special devices.</p>"
                             );
                         } 
                     }
@@ -10405,58 +10430,122 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'solidity',
-        Description: "(value): changes the solidity of most current bindings.",
+        Description: "(value) (target): changes the solidity of most current bindings.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The solidity command must be followed by a number between 1 and 99.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The solidity command must be followed by a number between 1 and 99, and optionally a target. </p>"
                 );
             } else {
-                var solidity = args;
-                if (InventoryGet(Player, "ItemDevices") != null) {
-                    if ((InventoryGet(Player, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(Player, "ItemDevices").Asset.Name == "WoodenRack")) {
-                        if (solidity == 1) {
-                            InventoryRemove(Player, "ItemDevices");
-                            if (Solidity == undefined) {
-                                var message = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
-                            } else {
-                                if (Solidity != "") {
-                                    if (Solidity.startsWith("\u0027")) {
-                                        var message = tmpname + Solidity;
-                                    } else {
-                                        var message = tmpname + ' '.repeat(1) + Solidity;
-                                    }
-                                } else {
+                var stringSol1 = args;
+                var stringSol2 = stringSol1.split(/[ ,]+/);
+                var solidity = stringSol2[0];
+                var targetname = stringSol2[1];
+                if ((targetname == null) && (solidity > 0) && (solidity < 100)) {
+                    if (InventoryGet(Player, "ItemDevices") != null) {
+                        if ((InventoryGet(Player, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(Player, "ItemDevices").Asset.Name == "WoodenRack")) {
+                            if (solidity == 1) {
+                                InventoryRemove(Player, "ItemDevices");
+                                if (Solidity == undefined) {
                                     var message = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
+                                } else {
+                                    if (Solidity != "") {
+                                        if (Solidity.startsWith("\u0027")) {
+                                            var message = tmpname + Solidity;
+                                        } else {
+                                            var message = tmpname + ' '.repeat(1) + Solidity;
+                                        }
+                                    } else {
+                                        var message = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
+                                    }
+                                }
+                                if (Solidity != "no message") {
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: message
+                                        }]
+                                    });
                                 }
                             }
-                            if (Solidity != "no message") {
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: message
-                                    }]
-                                });
+                        }
+                    }
+                    for (let A = 0; A < Player.Appearance.length; A++)
+                        if  (Player.Appearance[A].Asset.Group.Name != null) {
+                            if (Player.Appearance[A].Asset.Group.Name.startsWith("Item")) {
+                                Player.Appearance[A].Difficulty = solidity;
+                            }
+                        } 
+                    ChatRoomCharacterUpdate(Player);
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: The solidity of most current bindings has been changed.</p>"
+                    );
+                } else {
+                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    if (target[0] == null) {
+                        var targetnumber = parseInt(targetname);
+                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                    }
+                    if ((target[0] != null) && (target[0].AllowItem == true) && (solidity > 0) && (solidity < 100)) {
+                        if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                            tgpname = target[0].Name;
+                        } else {
+                            tgpname = target[0].Nickname;
+                        }
+                        if (InventoryGet(target[0], "ItemDevices") != null) {
+                            if ((InventoryGet(target[0], "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(target[0], "ItemDevices").Asset.Name == "WoodenRack")) {
+                                if (solidity == 1) {
+                                    InventoryRemove(target[0], "ItemDevices");
+                                    if (Tsolidity == undefined) {
+                                        var message = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
+                                    } else {
+                                        if (Tsolidity != "") {
+                                            if (Tsolidity.startsWith("\u0027")) {
+                                                var message = tmpname + Tsolidity;
+                                            } else {
+                                                var message = tmpname + ' '.repeat(1) + Tsolidity;
+                                            }
+                                        } else {
+                                            var message = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
+                                        }
+                                    }
+                                    if (Tsolidity != "no message") {
+                                        ServerSend("ChatRoomChat", {
+                                            Content: "Beep",
+                                            Type: "Action",
+                                            Dictionary: [{
+                                                Tag: "Beep",
+                                                Text: message
+                                            }]
+                                        });
+                                    }
+                                }
                             }
                         }
+                        for (let A = 0; A < target[0].Appearance.length; A++)
+                            if (target[0].Appearance[A].Asset.Group.Name != null) {
+                                if (target[0].Appearance[A].Asset.Group.Name.startsWith("Item")) {
+                                    target[0].Appearance[A].Difficulty = solidity;
+                                }
+                            } 
+			ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: "The solidity of most current " + tgpname + "\u0027s bindings has been changed by " + tmpname + "."
+                            }]
+                        });
+                        ChatRoomCharacterUpdate(target[0]);
+                        ChatRoomSetTarget(null);
                     }
                 }
-                for (let A = 0; A < Player.Appearance.length; A++)
-                    if (Player.Appearance[A].Asset.Group.Name != null) {
-                        if (Player.Appearance[A].Asset.Group.Name.startsWith("Item")) {
-                            Player.Appearance[A].Difficulty = solidity;
-                        }
-                    }
-                ChatRoomCharacterUpdate(Player);
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: The solidity of most current bindings has been changed.</p>"
-                );
             }
         }
     }])
-
+    
     CommandCombine([{
         Tag: 'sosbuttons',
         Description: ": toggles emergency buttons in chat room, Pandora prison, photographic room and timer cell",
