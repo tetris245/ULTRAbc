@@ -11533,7 +11533,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "timeleft (target) to reveal remaining time on current timer locks\n" +
                     "xstatus (add-on) to display status of main settings for other add-ons (available options: bcar, bcr, bctw, ebch, mbs, thm).\n" +
                     "- Added the target option to the solidity command.\n" +
-                    "- Added solidity and tsolidity options to message command.\n" +
+                    "- Added solidity and tsolidity options to message command (concerns escape of special devices).\n" +
                     "- Improved and optimised the code for the itemcolor and solidity commands.\n" +
 		    "- Removed the apart status commands for other add-ons.\n" +
                     "- Updated the bg2 command and the updateBackground function.</p>"
