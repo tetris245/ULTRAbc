@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 2.3
+// @version 2.4
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return;
     }
 
-    const UBCver = "2.3";
+    const UBCver = "2.4";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -11529,13 +11529,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "new") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- New commands: bg3 to use a Bondage College background as custom background,\n" +
-                    "ebchstatus to display status of main EBCH settings,\n" +
-                    "hotkeys to enable/disable hotkeys on numeric pad: Numpad Divide = leave - Numpad Multiply (used twice) = total release,\n" +
-                    "mission to force a specific infiltration mission.\n" +
-                    "- Added emergency buttons in Pandora prison and photographic room.\n" +
-                    "- Added silent mode for messages controlled by message command (Use ! as message to select this mode).\n" +
-                    "- Fixed a bug in the high fame mode of the Bondage Club Card Game.</p>"
+                    "- New commands: mbsroom to give infos about MBS wheels of fortune in current chat room,\n" +
+                    "timeleft (target) to reveal remaining time on current timer locks\n" +
+                    "xstatus (add-on) to display status of main settings for other add-ons (available options: bcar, bcr, bctw, ebch, mbs, thm).\n" +
+                    "- Added the target option to the solidity command.\n" +
+                    "- Added solidity and tsolidity options to message command.\n" +
+                    "- Improved and optimised the code for the itemcolor and solidity commands.\n" +
+		    "- Removed the apart status commands for other add-ons.\n" +
+                    "- Updated the bg2 command and the updateBackground function.</p>"
                 );
             }
             if (args === "settings") {
