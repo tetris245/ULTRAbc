@@ -11530,7 +11530,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
                     "- New commands: mbsroom to give infos about MBS wheels of fortune in current chat room,\n" +
-                    "timeleft (target) to reveal remaining time on current timer locks\n" +
+                    "timeleft (target) to reveal remaining time on current timer locks,\n" +
                     "xstatus (add-on) to display status of main settings for other add-ons (available options: bcar, bcr, bctw, ebch, mbs, thm).\n" +
                     "- Added the target option to the solidity command.\n" +
                     "- Added solidity and tsolidity options to message command (concerns escape of special devices).\n" +
