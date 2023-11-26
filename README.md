@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 2.3
+Most recent version: 2.4
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version2.3.zip file on the Releases page
+1. Download the ULTRAbc-version2.4.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -57,13 +57,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* New commands:
-  - mbsroom to give infos about MBS wheels of fortune in current chat room
-  - timeleft (target) to reveal remaining time on current timer locks
-  - xstatus (add-on) to display status of main settings for other add-ons
-    - Available options: bcar for BCAR, bcr for BC Responsive, bctw for BCTweaks, ebch for EBCH, mbs for MBS, thm for Themed
-* Added the target option to the solidity command
-* Added solidity and tsolidity options to message command (will be used when escaping yourself special devices or helping another player to escape these devices)
-* Improved and optimised the code for the itemcolor and solidity commands
-* Removed the apart status commands for other add-ons
-* Updated the bg2 command and the updateBackground function
+(...)
