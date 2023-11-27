@@ -10503,9 +10503,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                     } else {
                                         if (Tsolidity != "") {
                                             if (Tsolidity.startsWith("\u0027")) {
-                                                var message = tmpname + Tsolidity;
+                                                var message = tmpname + Tsolidity + ' '.repeat(1) + tgpname;
                                             } else {
-                                                var message = tmpname + ' '.repeat(1) + Tsolidity;
+                                                var message = tmpname + ' '.repeat(1) + Tsolidity + ' '.repeat(1) + tgpname;
                                             }
                                         } else {
                                             var message = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
@@ -12118,7 +12118,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "bctw for BCTweaks\n" +
                     "ebch for EBCH\n" +         
                     "mbs for MBS\n" +
-                    "thm for Themed</p>"
+                    "thm for Themed-BC</p>"
                 );
             } else {
                 var addon = args;
