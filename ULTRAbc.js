@@ -7664,7 +7664,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 } else {
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != null) {
                         ChatRoomSendLocal("Has a MBS wheel of fortune.");
-                        if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.FortuneWheelCommands != null) {
+                        if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.FortuneWheelSets != null) {
                             ChatRoomSendLocal("Does not have custom options on this wheel.");             
                         } else {
                             str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
