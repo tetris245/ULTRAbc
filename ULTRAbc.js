@@ -6756,7 +6756,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         if (Player.Appearance[A].Asset.Group.Name != null) {
                             if (Player.Appearance[A].Asset.Group.Name.startsWith("Item")) {
                                 if (Array.isArray(Player.Appearance[A].Color)) {
-                                    for (let i = 0; i < 10; i++)
+                                    for (let i = 0; i < 14; i++)
                                     Player.Appearance[A].Color[i] = color;  
                                 } else {
                                       Player.Appearance[A].Color = color;    
@@ -6788,7 +6788,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         if (target[0].Appearance[A].Asset.Group.Name != null) {
                             if (target[0].Appearance[A].Asset.Group.Name.startsWith("Item")) {
                                 if (Array.isArray(target[0].Appearance[A].Color)) {
-                                    for (let i = 0; i < 10; i++)
+                                    for (let i = 0; i < 14; i++)
                                     target[0].Appearance[A].Color[i] = color;  
                                 } else {
                                       target[0].Appearance[A].Color = color;    
