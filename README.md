@@ -57,4 +57,4 @@ All else I might not have included.
 
 Changes for future version 
 
-(...)
+* Added lscg option to the xstatus command
