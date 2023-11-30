@@ -244,6 +244,38 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ];
     var EbchWelcomeStatus = ["No EBCH Welcome message.",
         "EBCH Welcome message."
+    ]
+
+    //LSCG
+    var BcLscgStatus = ["LSCG is enabled.",
+        "LSCG is disabled."
+    ];
+    var BoopReactionsStatus = ["Auto-react when booped.",
+        "No auto-react when booped."
+    ];
+    var CheckRollsStatus = ["Display of attacker/defender roll values with some activities.",
+        "No display of attacker/defender roll values with some activities."
+    ];
+    var Crafting1Status = ["Your public craftings are shared and can be used by other LSCG players in the chat room.",
+        "Your public craftings are not shared."
+    ];
+    var Crafting2Status = ["Your shared public craftings are displayed.",
+        "Your shared public craftings are not displayed."
+    ];
+    var EdgeBlurStatus = ["Blurring of the screen when you are on edge.",
+        "No blurring of the screen when you are on edge."
+    ];
+    var Lipstick1Status = ["Other people can leave lipstick marks on your face or neck when kissing you.",
+        "No lipstick mark on your face or neck when someone kisses you."
+    ];
+    var Lipstick2Status = ["No lipstick marks when you kiss someone.",
+        "Lipstick marks possible when you kiss someone."
+    ];
+    var RestrainedSettingsStatus = ["LSCG settings can't be changed when you are restrained.",
+        "LSCG settings can be changed when you are restrained."
+    ];
+    var ResizingStatus = ["LSCG resizing effects will not be displayed.",
+        "LSCG resizing effects will be displayed."
     ];
 
     // MBS
@@ -1970,6 +2002,140 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = EbchWelcomeStatus[0];
         } else {
             msg = EbchWelcomeStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //LSCG Status
+    function showBcLscgStatus() {
+        let msg;
+        if (LSCGdata.GlobalModule.enabled) {
+            msg1 = BcLscgStatus[0];
+        } else {
+            msg1 = BcLscgStatus[1];
+        }
+        if (LSCGdata.ActivityModule.enabled) {
+            Activities = "Activities - ";
+        } else {
+            Activities = "";
+        }
+        if (LSCGdata.CollarModule.enabled) {
+            Collar = "Breathplay (Collar) - ";
+        } else {
+            Collar = "";
+        }
+        if (LSCGdata.MiscModule.chloroformEnabled) {
+            Chloroform = "Chloroform - ";
+        } else {
+            Chloroform = "";
+        }
+        if (LSCGdata.InjectorModule.enabled) {
+            Drugs = "Drugs + Net Gun - ";
+        } else {
+            Drugs = "";
+        }
+        if (LSCGdata.MiscModule.gagChokeEnabled) {
+            Gagchoke = "Gag Choking - ";
+        } else {
+            Gagchoke = "";
+        }
+        if (LSCGdata.MiscModule.handChokeEnabled) {
+            Handchoke = "Hand Choking - ";
+        } else {
+            Handchoke = "";
+        }
+        if (LSCGdata.HypnoModule.enabled) {
+            Hypnosis = "Hypnosis - ";
+        } else {
+            Hypnosis = "";
+        }
+        if (LSCGdata.MagicModule.enabled) {
+            Magic = "Magic";
+        } else {
+            Magic = "";
+        }
+        msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Drugs + Gagchoke + Handchoke + Hypnosis + Magic;
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    
+    function showBoopReactionsStatus() {
+        let msg;
+        if (LSCGdata.BoopsModule.enabled) {
+            msg = BoopReactionsStatus[0];
+        } else {
+            msg = BoopReactionsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showCheckRollsStatus() {
+        let msg;
+        if (LSCGdata.GlobalModule.showCheckRolls) {
+            msg = CheckRollsStatus[0];
+        } else {
+            msg = CheckRollsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showCraftingStatus() {
+        let msg;
+        if (LSCGdata.GlobalModule.sharePublicCrafting) {
+            msg1 = Crafting1Status[0];
+        } else {
+            msg1 = Crafting1Status[1];
+        }
+        if (LSCGdata.GlobalModule.seeSharedCrafts) {
+            msg2 = Crafting2Status[0];
+        } else {
+            msg2 = Crafting2Status[1];
+        }
+        msg = msg1 + " " + msg2;
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    
+    function showEdgeBlurStatus() {
+        let msg;
+        if (LSCGdata.GlobalModule.edgeBlur) {
+            msg = EdgeBlurStatus[0];
+        } else {
+            msg = EdgeBlurStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showLipstickStatus() {
+        let msg;
+        if (LSCGdata.LipstickModule.enabled) {
+            msg1 = Lipstick1Status[0];
+        } else {
+            msg1 = Lipstick1Status[1];
+        }
+        if (LSCGdata.LipstickModule.dry) {
+            msg2 = Lipstick2Status[0];
+        } else {
+            msg2 = Lipstick2Status[1];
+        }
+        msg = msg1 + " " + msg2;
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showRestrainedSettingsStatus() {
+        let msg;
+        if (LSCGdata.GlobalModule.blockSettingsWhileRestrained) {
+            msg = RestrainedSettingsStatus[0];
+        } else {
+            msg = RestrainedSettingsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+ 
+    function showResizingStatus() {
+        let msg;
+        if (LSCGdata.GlobalModule.hideResizing) {
+            msg = ResizingStatus[0];
+        } else {
+            msg = ResizingStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -12116,7 +12282,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "bcar for BCAR\n" +
                     "bcr for BC Responsive\n" +
                     "bctw for BCTweaks\n" +
-                    "ebch for EBCH\n" +         
+                    "ebch for EBCH\n" + 
+                    "lscg for LSCG\n" +
                     "mbs for MBS\n" +
                     "thm for Themed-BC</p>"
                 );
@@ -12180,6 +12347,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showEbchPoseStatus();
                         showEbchUngarbleStatus();
                         showEbchWelcomeStatus();
+                    }
+		} else if (addon == "lscg") {
+                    if (Player.OnlineSettings.LSCG != null) {
+                        str = Player.OnlineSettings.LSCG;
+                        d = LZString.decompressFromUTF16(str);
+                        LSCGdata = {};
+                        decoded = JSON.parse(d);
+                        LSCGdata = decoded;
+                        showBcLscgStatus();
+                        showBoopReactionsStatus();
+                        showCheckRollsStatus();
+                        showCraftingStatus();
+                        showEdgeBlurStatus();
+                        showLipstickStatus();
+                        showRestrainedSettingsStatus();
+                        showResizingStatus();
                     }
 		} else if (addon == "mbs") {
                     if (Player.OnlineSharedSettings.MBSVersion != null) {
