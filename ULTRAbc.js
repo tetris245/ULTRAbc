@@ -11400,8 +11400,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "character") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Character commands - * = more info when using\n" +
-                    "<b>/cardextra</b> = gives all extra cards.\n" +
-                    "<b>/cardnoextra</b> = removes all extra cards.\n" +
                     "<b>/difficulty</b> (number) = changes game difficulty. *\n" +
                     "<b>/giveeverything</b> = gives every item.\n" +
                     "<b>/maxstatistics</b> = gives max statistics.\n" +
@@ -11525,7 +11523,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
                     "<b>/carddesk</b> (desk) = changes default desk for Card Game.\n" +
+		    "<b>/cardextra</b> = gives all extra cards.\n" +
                     "<b>/cardfame</b> (fame) = sets high fame level for Card Game.\n" +
+		    "<b>/cardnoextra</b> = removes all extra cards.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/uset</b> (setting) = toggles a specific UBC setting *.</p>"
