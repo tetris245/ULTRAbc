@@ -57,4 +57,6 @@ All else I might not have included.
 
 Changes for future version 
 
+* Replaced most UBC settings commands by uset (setting) to toggle a specific UBC setting
+  - Available options: autojoin, exitmode, fullseed, highfame, hotkeys, magiccheat, nowhisper, npcpunish, sosbuttons, welcome
 * Added lscg option to the xstatus command
