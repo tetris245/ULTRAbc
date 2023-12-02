@@ -11503,7 +11503,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/ubc</b> = displays UBC version (+ more info if welcome message enabled).\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ustatus</b> = displays status of ULTRAbc settings.\n" +
-                    "<b>/unrestrict</b> =  removes all restrictions from game. * </p>\n"
+                    "<b>/unrestrict</b> =  partially removes restrictions from game. * </p>\n"
                 );
             }
             if (args === "new") {
@@ -11811,31 +11811,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'unrestrict',
-        Description: "(option): removes all restrictions from game.",
+        Description: "(option): partially removes restrictions from game.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The unrestrict command removes all restrictions from game. It must be followed by an option.\n" +
                     "Submissives: type <b>/unrestrict soft</b>\n" +
                     "Other players: type <b>/unrestrict total</b>\n" +
-                    "Note that the unrestrict total command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!</p>"
+		    "Notes: \n" +
+                    "- On request from BC main coder, and because some developers act like the BC 'asset' police, a feature removing conditions (except those related to gender) to use assets is no more included in this command.\n" +
+                    "- The unrestrict total command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!</p>"
                 );
             } else if (args === "soft") {
                 InventoryGroupIsBlocked = function(C, GroupName) {
                     return false;
-                }
-                InventoryPrerequisiteMessage = function(C, Prerequisit) {
-                    if (Prerequisit == 'HasBreasts') {
-                        return !InventoryIsItemInList(C, "BodyUpper", ["XLarge", "Large", "Normal", "Small"]) ? "MustHaveBreasts" : "";
-                    } else if (Prerequisit == 'HasFlatChest') {
-                        return !InventoryIsItemInList(C, "BodyUpper", ["FlatSmall", "FlatMedium"]) ? "MustHaveFlatChest" : "";
-                    } else if (Prerequisit == 'HasPenis') {
-                        return !InventoryIsItemInList(C, "Pussy", ["Penis"]) ? "MustHavePenis" : "";
-                    } else if (Prerequisit == 'HasVagina') {
-                        return !InventoryIsItemInList(C, "Pussy", ["Pussy1", "Pussy2", "Pussy3"]) ? "MustHaveVagina" : "";
-                    } else {
-                        return "";
-                    }
                 }
                 Player.GameplaySettings.BlindDisableExamine = false;
                 Asset.forEach(e => {
@@ -11843,12 +11832,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 });
                 Player.Inventory.forEach(item => item.Asset.Enable = true);
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Unrestricted softly. Can do most things you couldn't do before.\n" +
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Unrestricted softly. Can do some things you couldn't do before.\n" +
                     "Store also includes hidden items. This can only be reset via a full relog.</p>"
                 );
             } else if (args === "total") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Unrestricted totally. Can do most things you couldn't do before.\n" +
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Unrestricted totally. Can do many things you couldn't do before.\n" +
                     "Store also includes hidden items. This can only be reset via a full relog.</p>"
                 );
                 Player.CanInteract = function() {
@@ -11868,19 +11857,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 InventoryGroupIsBlocked = function(C, GroupName) {
                     return false;
-                }
-                InventoryPrerequisiteMessage = function(C, Prerequisit) {
-                    if (Prerequisit == 'HasBreasts') {
-                        return !InventoryIsItemInList(C, "BodyUpper", ["XLarge", "Large", "Normal", "Small"]) ? "MustHaveBreasts" : "";
-                    } else if (Prerequisit == 'HasFlatChest') {
-                        return !InventoryIsItemInList(C, "BodyUpper", ["FlatSmall", "FlatMedium"]) ? "MustHaveFlatChest" : "";
-                    } else if (Prerequisit == 'HasPenis') {
-                        return !InventoryIsItemInList(C, "Pussy", ["Penis"]) ? "MustHavePenis" : "";
-                    } else if (Prerequisit == 'HasVagina') {
-                        return !InventoryIsItemInList(C, "Pussy", ["Pussy1", "Pussy2", "Pussy3"]) ? "MustHaveVagina" : "";
-                    } else {
-                        return "";
-                    }
                 }
                 Player.GameplaySettings.BlindDisableExamine = false;
                 Asset.forEach(e => {
