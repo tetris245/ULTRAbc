@@ -60,3 +60,4 @@ Changes for future version
 * Replaced most UBC settings commands by uset (setting) to toggle a specific UBC setting
   - Available options: autojoin, exitmode, fullseed, highfame, hotkeys, magiccheat, nowhisper, npcpunish, sosbuttons, welcome
 * Added lscg option to the xstatus command
+* Removed from the unrestrict command a feature removing conditions (except those related to gender) to use assets
