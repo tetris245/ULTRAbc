@@ -4262,26 +4262,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'autojoin',
-        Description: ": enables/disables Auto-Join to enter a full room as soon as it is possible.",
-        Action: () => {
-            if (AutojoinOn == true) {
-                AutojoinOn = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is disabled.</p>"
-                );
-            } else {
-                AutojoinOn = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is enabled.</p>"
-                );
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'autokick',
         Description: ": toggles on auto kick for 0 day old accounts.",
         Action: () => {
@@ -6175,26 +6155,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'exitmode',
-        Description: ": toggles exit mode for OUT button in chat, Pandora prison, photographic room and timer cell.",
-        Action: () => {
-            if (SlowleaveOn == true) {
-                SlowleaveOn = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Fast exit mode is activated.</p>"
-                );
-            } else {
-                SlowleaveOn = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Slow exit mode is activated.</p>"
-                );
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'font',
         Description: "(font) (size): changes font in BC after automatic relog. ",
         Action: (args) => {
@@ -6344,26 +6304,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     document.getElementById("InputChat").style.display = "inline";
                     document.getElementById("TextAreaChatLog").style.display = "inline";
                 }, 15000);
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'fullseed',
-        Description: ": toggles full solution for intricate and high security locks.",
-        Action: () => {
-            if (FullseedOn == true) {
-                FullseedOn = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Full solution for intricate and high security locks is disabled.</p>"
-                );
-            } else {
-                FullseedOn = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Full solution for intricate and high security locks is enabled.</p>"
-                )
             }
         }
     }])
@@ -6619,28 +6559,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'highfame',
-        Description: ": toggles high fame (200) mode in Bondage Club Card Game.",
-        Action: () => {
-            if (HighfameOn == true) {
-                HighfameOn = false;
-                ClubCardFameGoal = 100;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: High fame mode disabled in Bondage Club Card Game.</p>"
-                );
-            } else {
-                HighfameOn = true;
-                ClubCardFameGoal = cfame;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: High fame mode enabled in Bondage Club Card Game.</p>"
-                );
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'hint',
         Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
         Action: (_, command, args) => {
@@ -6682,26 +6600,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         ChatRoomSetTarget(null);
                     }
                 }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'hotkeys',
-        Description: ": toggles hotkeys on numeric pad.",
-        Action: () => {
-            if (HotkeysOn == true) {
-                HotkeysOn = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys on numeric pad are disabled.</p>"
-                );
-            } else {
-                HotkeysOn = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys on numeric pad are enabled.</p>"
-                );
             }
         }
     }])
@@ -7763,26 +7661,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'magiccheat',
-        Description: ": toggles cheat mode in Bondage Brawl and Magic School.",
-        Action: () => {
-            if (MagiccheatOn == true) {
-                MagiccheatOn = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode disabled in Bondage Brawl and Magic School.</p>"
-                );
-            } else {
-                MagiccheatOn = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode enabled in Bondage Brawl and Magic School.</p>"
-                );
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'maxstatistics',
         Description: ": gives max statistics.",
         Action: () => {
@@ -8541,48 +8419,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
                 }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'nowhisper',
-        Description: ": toggles no-whisper mode.",
-        Action: () => {
-            if (NowhisperOn == true) {
-                NowhisperOn = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: No-whisper mode disabled.</p>"
-                );
-            } else {
-                NowhisperOn = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: No-whisper mode enabled.</p>"
-                );
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'npcpunish',
-        Description: ": enables/disables NPC punishments.",
-        Action: () => {
-            if (Player.RestrictionSettings.BypassNPCPunishments == true) {
-                Player.RestrictionSettings.BypassNPCPunishments = false;
-                NPCpunish = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: NPC punishments enabled.</p>"
-                );
-            } else {
-                Player.RestrictionSettings.BypassNPCPunishments = true;
-                NPCpunish = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: NPC punishments disabled.</p>"
-                );
             }
         }
     }])
@@ -10713,26 +10549,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
     
     CommandCombine([{
-        Tag: 'sosbuttons',
-        Description: ": toggles emergency buttons in chat room, Pandora prison, photographic room and timer cell",
-        Action: () => {
-            if (SosbuttonsOn == true) {
-                SosbuttonsOn = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons hidden and disabled.</p>"
-                );
-            } else {
-                SosbuttonsOn = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons displayed and enabled.</p>"
-                );
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'spin',
         Description: "(target): allows access to target's wheel of fortune, even when not displayed.",
         Action: (args) => {
@@ -11708,20 +11524,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "settings") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
-                    "<b>/autojoin</b> = enables/disables the Auto-Join feature.\n" +
                     "<b>/carddesk</b> (desk) = changes default desk for Card Game.\n" +
                     "<b>/cardfame</b> (fame) = sets high fame level for Card Game.\n" +
-                    "<b>/exitmode</b> = toggles exit mode for OUT button.\n" +
-                    "<b>/fullseed</b> = toggles full solution for intricate and high security locks.\n" +
-                    "<b>/highfame</b> = toggles high fame mode in Card Game.\n" +
-                    "<b>/hotkeys</b> = toggles hotkeys on numeric pad.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
-                    "<b>/magiccheat</b> = toggles cheat mode in Bondage Brawl and Magic School.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
-                    "<b>/nowhisper</b> = toggles no-whisper mode.\n" +
-                    "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
-                    "<b>/sosbuttons</b> = toggles SOS buttons in chat, Pandora prison, photographic room and timer cell.\n" +
-                    "<b>/welcome</b> = toggles UBC welcome message in main hall.</p>"
+                    "<b>/uset</b> (setting) = toggles a specific UBC setting *.</p>"
                 );
             }
 
@@ -12179,6 +11986,177 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'uset',
+        Description: "(setting): toggles a specific UBC setting.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The uset command must be followed by an option corresponding to an UBC setting.\n" +
+                    " \n" +
+                    "Available options:\n" +
+                    "<b>autojoin</b> to toggle chat room auto-join feature\n" +
+                    "<b>exitmode</b> to toggle exit mode for OUT button \n" +
+                    "<b>fullseed</b> to toggle full solution for intricate and hs locks\n" +
+                    "<b>highfame</b> to toggle high fame mode in Club Card Game\n" +  
+                    "<b>hotkeys</b> to toggle hotkeys on numeric pad (Divide = fast leave - Multiply = Total Release)\n" +      
+                    "<b>magiccheat</b> to toggle cheat mode in Bondage Brawl and Magic School\n" +
+                    "<b>nowhisper</b> to toggle no-whisper mode\n" +
+                    "<b>npcpunish</b> to toggle NPC punishments\n" +
+                    "<b>sosbuttons</b> to toggle emergency buttons (FREE - OUT)\n" +
+                    "<b>welcome</b> to toggle UBC welcome message in main hall</p>"
+                );
+            } else {
+                var setting = args;
+                if (setting == "autojoin") {
+                    if (AutojoinOn == true) {
+                        AutojoinOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is disabled.</p>"
+                        );
+                    } else {
+                        AutojoinOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is enabled.</p>"
+                        );
+                    }
+                } else if (setting == "exitmode") {
+                    if (SlowleaveOn == true) {
+                        SlowleaveOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Fast exit mode is activated.</p>"
+                        );
+                    } else {
+                        SlowleaveOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Slow exit mode is activated.</p>"
+                        );
+                    }
+                } else if (setting == "fullseed") {
+                    if (FullseedOn == true) {
+                        FullseedOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Full solution for intricate and high security locks is disabled.</p>"
+                        );
+                    } else {
+                        FullseedOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Full solution for intricate and high security locks is enabled.</p>"
+                        );
+                    }
+                } else if (setting == "highfame") {
+                    if (HighfameOn == true) {
+                        HighfameOn = false;
+                        ClubCardFameGoal = 100;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: High fame mode disabled in Bondage Club Card Game.</p>"
+                        );
+                    } else {
+                        HighfameOn = true;
+                        ClubCardFameGoal = cfame;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: High fame mode enabled in Bondage Club Card Game.</p>"
+                        );
+                    }
+                } else if (setting == "hotkeys") {
+                    if (HotkeysOn == true) {
+                        HotkeysOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys on numeric pad are disabled.</p>"
+                        );
+                    } else {
+                        HotkeysOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys on numeric pad are enabled.</p>"
+                        );
+                    }
+                } else if (setting == "magiccheat") {
+                    if (MagiccheatOn == true) {
+                        MagiccheatOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode disabled in Bondage Brawl and Magic School.</p>"
+                        );
+                    } else {
+                        MagiccheatOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode enabled in Bondage Brawl and Magic School.</p>"
+                        );
+                    }
+                } else if (setting == "nowhisper") {                   
+                    if (NowhisperOn == true) {
+                        NowhisperOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: No-whisper mode disabled.</p>"
+                        );
+                    } else {
+                        NowhisperOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: No-whisper mode enabled.</p>"
+                        );
+                    }
+                } else if (setting == "npcpunish") {
+                    if (Player.RestrictionSettings.BypassNPCPunishments == true) {
+                        Player.RestrictionSettings.BypassNPCPunishments = false;
+                        NPCpunish = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: NPC punishments enabled.</p>"
+                        );
+                    } else {
+                        Player.RestrictionSettings.BypassNPCPunishments = true;
+                        NPCpunish = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: NPC punishments disabled.</p>"
+                        );
+                    }
+                } else if (setting == "sosbuttons") {
+                    if (SosbuttonsOn == true) {
+                        SosbuttonsOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons hidden and disabled.</p>"
+                        );
+                    } else {
+                        SosbuttonsOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons displayed and enabled.</p>"
+                        );
+                    }
+                } else if (setting == "welcome") {
+                    if (WelcomeOn == true) {
+                        WelcomeOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: No welcome message in main hall.</p>"
+                        );
+                    } else {
+                        WelcomeOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Welcome message in main hall.</p>"
+                        );
+                    }  
+                }
+            }    
+        }
+    }])
+ 
+    CommandCombine([{
         Tag: 'ustatus',
         Description: ": displays status of UBC settings.",
         Action: () => {
@@ -12406,26 +12384,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showThemedVersionStatus();
                     }
                 } 
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'welcome',
-        Description: ": toggles UBC welcome message in main hall.",
-        Action: () => {
-            if (WelcomeOn == true) {
-                WelcomeOn = false;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: No welcome message in main hall.</p>"
-                );
-            } else {
-                WelcomeOn = true;
-                M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Welcome message in main hall.</p>"
-                );
             }
         }
     }])
