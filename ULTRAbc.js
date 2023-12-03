@@ -2006,6 +2006,32 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
+    //Hearing
+    function GetDeafLevel0() {
+        let deafLevel = 0;
+        return deafLevel;
+    }
+
+    function GetDeafLevel1() {
+        let deafLevel = 1;
+        return deafLevel;
+    }
+
+    function GetDeafLevel2() {
+        let deafLevel = 2;
+        return deafLevel;
+    }
+
+    function GetDeafLevel3() {
+        let deafLevel = 3;
+        return deafLevel;
+    }
+
+    function GetDeafLevel4() {
+        let deafLevel = 4;
+        return deafLevel;
+    }
+
     //LSCG Status
     function showBcLscgStatus() {
         let msg;
@@ -6599,6 +6625,65 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             );
                         }
                     }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'hear',
+        Description: "(hearingmode): forces a specific hearing mode",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The hear command must be followed by a number between 0 and 4.\n" +
+                    "Notes:\n" +
+                    "- a full relog is requested to leave this forced hearing mode\n" +
+                    "- this command can trigger a BCX warning. Just ignore it (close the breaking message)!\n" +
+                    " \n" +
+                    "Available hearing modes:\n" +
+                    "0 normal hearing\n" +
+                    "1 light deafness\n" +
+                    "2 normal deafness\n" +
+                    "3 heavy deafness\n" +
+                    "4 total deafness</p>"
+                );
+            } else {
+                var dl = args;
+                if (dl == 0) {
+                    GetDeafLevel0();
+                    Player.GetDeafLevel = GetDeafLevel0;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal hearing mode.</p>"
+                    );
+                }
+                if (dl == 1) {
+                    GetDeafLevel1();
+                    Player.GetDeafLevel = GetDeafLevel1;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in light deafness mode.</p>"
+                    );
+                }
+                if (dl == 2) {
+                    GetDeafLevel2();
+                    Player.GetDeafLevel = GetDeafLevel2;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal deafness mode.</p>"
+                    );
+                }
+                if (dl == 3) {
+                    GetDeafLevel3();
+                    Player.GetDeafLevel = GetDeafLevel3;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in heavy deafness mode.</p>"
+                    );
+                }
+                if (dl == 4) {
+                    GetDeafLevel4();
+                    Player.GetDeafLevel = GetDeafLevel4;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in total deafness mode.</p>"
+                    );
                 }
             }
         }
@@ -11679,6 +11764,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Talking commands - * = more info when using\n" +
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
+		    "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
                     "<b>/moaner</b> = moans when horny and stimulated. *\n" +
                     "<b>/s1</b> (stuffhere) = speaks once in light stuttering mode.\n" +
                     "<b>/s2</b> (stuffhere) = speaks once in normal stuttering mode.\n" +
