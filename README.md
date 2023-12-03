@@ -58,6 +58,7 @@ All else I might not have included.
 Changes for future version 
 
 * New commands:
+  - hear (hearingmode) to force a specific hearing mode
   - see (visionmode) (blurlevel) to force a specific vision mode
   - uset (setting) to toggle a specific UBC setting
     * Available options: autojoin, exitmode, fullseed, highfame, hotkeys, magiccheat, nowhisper, npcpunish, sosbuttons, welcome
