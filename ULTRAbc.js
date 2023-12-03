@@ -2463,6 +2463,52 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return CD;
     }
 
+    //Vision
+    function GetBlindLevel0() {
+        let blindLevel = 0;
+        return blindLevel;
+    }
+
+    function GetBlindLevel1() {
+        let blindLevel = 1;
+        return blindLevel;
+    }
+
+    function GetBlindLevel2() {
+        let blindLevel = 2;
+        return blindLevel;
+    }
+
+    function GetBlindLevel3() {
+        let blindLevel = 3;
+        return blindLevel;
+    }
+
+    function GetBlurLevel0() {
+         let blurLevel = 0;
+         return blurLevel;
+    }
+
+    function GetBlurLevel1() {
+         let blurLevel = 3;
+         return blurLevel;
+    }
+
+    function GetBlurLevel2() {
+         let blurLevel = 8;
+         return blurLevel;
+    }
+
+    function GetBlurLevel3() {
+         let blurLevel = 20;
+         return blurLevel;
+    }
+
+    function GetBlurLevel4() {
+         let blurLevel = 50;
+         return blurLevel;
+    }
+
     //////////////////////////////////////////////////////////
     //Moaner
     //////////////////////////////////////////////////////////
@@ -10251,6 +10297,102 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'see',
+        Description: "(visionmode) (blurlevel): forces a specific vision mode",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The see command must be followed by a vision mode number and optionally a blur level number.\n" +
+                    "Notes:\n" +
+                    "- a full relog is requested to leave this forced vision mode\n" +
+                    "- this command can trigger a BCX warning. Just ignore it (close the breaking message)!\n" +
+                    " \n" +
+                    "Available vision modes:\n" +
+                    "0 normal vision\n" +
+                    "1 light blindness\n" +
+                    "2 normal blindness\n" +
+                    "3 heavy blindness\n" +
+                    " \n" +
+                    "Available blur levels:\n" +
+                    "0 no blur effect\n" +
+                    "1 light blur effect\n" +
+                    "2 normal blur effect\n" +
+                    "3 heavy blur effect\n" +
+                    "4 total blur effect</p>"
+                );
+            } else {
+                var stringVision1 = args;
+                var stringVision2 = stringVision1.split(/[ ,]+/);
+                var bl = stringVision2[0];
+                var br = stringVision2[1];
+                if (bl == 0) {
+                    GetBlindLevel0();
+                    Player.GetBlindLevel = GetBlindLevel0;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal vision mode.</p>"
+                    );
+                }
+                if (bl == 1) {
+                    GetBlindLevel1();
+                    Player.GetBlindLevel = GetBlindLevel1;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in light blindness mode.</p>"
+                    );
+                }
+                if (bl == 2) {
+                    GetBlindLevel2();
+                    Player.GetBlindLevel = GetBlindLevel2;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal blindness mode.</p>"
+                    );
+                }
+                if (bl == 3) {
+                    GetBlindLevel3();
+                    Player.GetBlindLevel = GetBlindLevel3;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in heavy blindness mode.</p>"
+                    );
+                }
+                if (br == 0) {
+                    GetBlurLevel0();
+                    Player.GetBlurLevel = GetBlurLevel0;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Back to vision without blur effect.</p>"
+                    );
+                }
+                if (br == 1) {
+                    GetBlurLevel1();
+                    Player.GetBlurLevel = GetBlurLevel1;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: A light blur effect is applied on your vision.</p>"
+                    );
+                }
+                if (br == 2) {
+                    GetBlurLevel2();
+                    Player.GetBlurLevel = GetBlurLevel2;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: A normal blur effect is applied on your vision.</p>"
+                    );
+                }
+                if (br == 3) {
+                    GetBlurLevel3();
+                    Player.GetBlurLevel = GetBlurLevel3;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: A heavy blur effect is applied on your vision.</p>"
+                    );
+                }
+                if (br == 4) {
+                    GetBlurLevel4();
+                    Player.GetBlurLevel = GetBlurLevel4;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: A total blur effect is applied on your vision.</p>"
+                    );
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'sfchaste',
         Description: "(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.",
         Action: (args) => {
@@ -11553,9 +11695,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/bg1</b> = adds hidden backgrounds to the selection screen.\n" +
                     "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.\n" +
                     "<b>/bg3</b> (number) = uses a Bondage College background as custom background. /bg3 to get the list.\n" +
-                    "<b>/blur</b> (blurlevel) = forces a specific blur level.\n" +
+                    "<b>/blur</b> (blurlevel) = forces a specific global blur level.\n" +
                     "<b>/colorchanger</b> (animhere) = gets an animation with color change. *\n" +
                     "<b>/pose2</b> (posehere) (target) = changes the pose of any player. *\n" +
+		    "<b>/see</b> (visionmode) (blurlevel): forces a specific vision mode. *\n" +
                     "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
                     "<b>/vrsee</b> (background) (mode) (game) = changes the settings of a worn VR Headset. *</p>"
                 );
