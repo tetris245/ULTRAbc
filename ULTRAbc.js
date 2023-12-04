@@ -7843,7 +7843,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             ChatRoomSendLocal("Does not have custom options on this wheel.");             
                         } else {
                             str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
-                            if (str == "ᯡ࠸䈌Ԁᜥ㠮恳ǴÒ⤡堲⍄אೄ䘡乀̀ව乌堣⏁琕ᦃ箎崇埝崛ԭాၒ㿔䢩ᦂ历័״㜭༹ᵆᘠ愨ȤĬࠠ䱈楏䮽㞁✒涧篮溼㹟煰ఄ  ") {
+                            if (str.startsWith("ᯡ࠸䈌Ԁᜥ㠮恳ǴÒ⤡堲⍄אೄ䘡乀̀ව乌堣⏁琕ᦃ箎崇埝崛ԭాၒ㿔䢩ᦂ历័״㜭༹ᵆᘠ愨ȤĬࠠ䱈楏䮽㞁✒涧篮溼㹟煰ఄ")) {
                                 ChatRoomSendLocal("Does not have custom options on this wheel.");             
                             } else {
                                 var stringMBSver1 = ChatRoomCharacter[pl].OnlineSharedSettings.MBSVersion;
