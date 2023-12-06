@@ -7844,7 +7844,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         ChatRoomSendLocal("Has a MBS wheel of fortune.");     
                         if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.FortuneWheelSets == undefined) {
                             str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
-                            if (str.startsWith("á¯¡à ¸äˆŒÔ€áœ¥ã ®æ³Ç´Ã’â¤¡å ²â„×à³„ä˜¡ä¹€Ì€à·€ä¹Œå £âç•á¦ƒç®Žå´‡åŸå´›Ô­à°¾á’ã¿”ä¢©á¦‚åŽ†áŸ×´ãœ­à¼¹áµ†á˜ æ„¨È¤Ä¬à  ä±ˆæ¥ä®½ãžâœ’æ¶§ç¯®æº¼ã¹Ÿç…°à°„")) {
+                            if (str.startsWith("ᯡ࠸䈌Ԁᜥ㠮恳ǴÒ⤡堲⍄אೄ䘡乀̀ව乌堣⏁琕ᦃ箎崇埝崛ԭాၒ㿔䢩ᦂ历័״㜭༹ᵆᘠ愨ȤĬࠠ䱈楏䮽㞁✒涧篮溼㹟煰ఄ")) {
                                 ChatRoomSendLocal("Does not have custom options on this wheel.");             
                             } else {
                                 var stringMBSver1 = ChatRoomCharacter[pl].OnlineSharedSettings.MBSVersion;
