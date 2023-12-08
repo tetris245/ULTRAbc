@@ -7842,34 +7842,34 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != undefined) {
                         ChatRoomSendLocal("Has a MBS wheel of fortune.");     
-                        if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.FortuneWheelSets == undefined) {
-                            str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
-                            if (str.startsWith("ᯡ࠸䈌Ԁᜥ㠮恳ǴÒ⤡堲⍄אೄ䘡乀̀ව乌堣⏁琕ᦃ箎崇埝崛ԭాၒ㿔䢩ᦂ历័״㜭༹ᵆᘠ愨ȤĬࠠ䱈楏䮽㞁✒涧篮溼㹟煰ఄ")) {
-                                ChatRoomSendLocal("Does not have custom options on this wheel.");             
+                        if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.FortuneWheelSets != undefined) {
+                            if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.FortuneWheelSets.lengsh != 0) {
+                                ChatRoomSendLocal("Does not have custom options on this wheel."); 
+                            }        
+                        } else {
+			    str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
+                            var stringMBSver1 = ChatRoomCharacter[pl].OnlineSharedSettings.MBSVersion;
+                            var stringMBSver2 = stringMBSver1.split(".");
+                            var MBS1 = stringMBSver2[0];
+                            var MBS2 = stringMBSver2[1];
+                            var MBS3 = stringMBSver2[2];
+                            if ((MBS1 == 0) && (MBS2 <= 6) && (MBS3 <= 22)) {
+                                d = LZString.decompressFromBase64(str);
                             } else {
-                                var stringMBSver1 = ChatRoomCharacter[pl].OnlineSharedSettings.MBSVersion;
-                                var stringMBSver2 = stringMBSver1.split(".");
-                                var MBS1 = stringMBSver2[0];
-                                var MBS2 = stringMBSver2[1];
-                                var MBS3 = stringMBSver2[2];
-                                if ((MBS1 == 0) && (MBS2 <= 6) && (MBS3 <= 22)) {
-                                    d = LZString.decompressFromBase64(str);
-                                } else {
-                                    d = LZString.decompressFromUTF16(str);
-                                }
-                                MBSwhdata = {};
-                                decoded = JSON.parse(d);
-                                MBSwhdata = decoded; 
-                                var j = 0; 
-                                for (let i = 0; i < 32; i++)
-                                    if (MBSwhdata.FortuneWheelItemSets[i] != null) {
-                                        j = j + 1;
-                                        ChatRoomSendLocal(i + " - " + MBSwhdata.FortuneWheelItemSets[i].name);
-                                    }
-                                    if (j == 0) {
-                                        ChatRoomSendLocal("Does not have custom options on this wheel."); 
-                                    }
+                                d = LZString.decompressFromUTF16(str);
                             }
+                            MBSwhdata = {};
+                            decoded = JSON.parse(d);
+                            MBSwhdata = decoded; 
+                            var j = 0; 
+                            for (let i = 0; i < 32; i++)
+                                if (MBSwhdata.FortuneWheelItemSets[i] != null) {
+                                    j = j + 1;
+                                    ChatRoomSendLocal(i + " - " + MBSwhdata.FortuneWheelItemSets[i].name);
+                                }
+                                if (j == 0) {
+                                    ChatRoomSendLocal("Does not have custom options on this wheel."); 
+                                }
                         }
                     }                     
 		}
