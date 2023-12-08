@@ -61,7 +61,8 @@ Changes for future version
   - hear (hearingmode) to force a specific hearing mode
   - see (visionmode) (blurlevel) to force a specific vision mode
   - uset (setting) to toggle a specific UBC setting
-    * Available options: autojoin, exitmode, fullseed, highfame, hotkeys, magiccheat, nowhisper, npcpunish, sosbuttons, welcome
+    * Available options: autojoin, exitmode, fullseed, highfame, hotkeys, magiccheat, nowhisper, npcpunish, outbuttons, sosbuttons, welcome
+    * The OUT and FREE buttons are now toggled separately
 * Added lscg option to the xstatus command
 * Removed from the unrestrict command a feature removing conditions (except those related to gender) to use assets
 * Removed the apart UBC setting commands that are now merged in the uset command
