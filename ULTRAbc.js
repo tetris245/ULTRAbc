@@ -55,7 +55,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let HotkeysOn;
     let MagiccheatOn;
     var NowhisperOn = false;
-    var NPCpunish = false;
+    var NPCpunish = false;  
+    let OutbuttonsOn;
     let SlowleaveOn;
     let SosbuttonsOn;
     let WelcomeOn;
@@ -144,8 +145,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var NpcpunishStatus = ["NPC punishments enabled.",
         "NPC punishments disabled."
     ];
-    var SosbuttonsStatus = ["Emergency buttons displayed and enabled.",
-        "Emergency buttons hidden and disabled."
+    var OutbuttonsStatus = ["OUT buttons displayed and enabled.",
+        "OUT buttons hidden and disabled."
+    ];
+    var SosbuttonsStatus = ["FREE buttons displayed and enabled.",
+        "FREE buttons hidden and disabled."
     ];
     var WelcomeStatus = ["Welcome message in main hall.",
         "No welcome message in main hall."
@@ -246,7 +250,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "EBCH Welcome message."
     ]
 
-    //LSCG
+    // LSCG
     var BcLscgStatus = ["LSCG is enabled.",
         "LSCG is disabled."
     ];
@@ -342,6 +346,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             MagiccheatOn = false;
             NowhisperOn = false;
             NPCpunish = false;
+	    OutbuttonsOn = false;
             SlowleaveOn = false;
             SosbuttonsOn = false;
             WelcomeOn = false;
@@ -394,6 +399,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             MagiccheatOn = datas.magiccheat;
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
+	    OutbuttonsOn = datas.outbuttons;
             SlowleaveOn = datas.slowleave;
             SosbuttonsOn = datas.sosbuttons;
             WelcomeOn = datas.welcome;
@@ -449,6 +455,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "magiccheat": MagiccheatOn,
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
+            "outbuttons": OutbuttonsOn,
             "slowleave": SlowleaveOn,
             "sosbuttons": SosbuttonsOn,
             "welcome": WelcomeOn,
@@ -524,6 +531,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (HotkeysOn == null || HotkeysOn == undefined) {
                     HotkeysOn = false;
+                    M_MOANER_saveControls();
+                }
+		if (OutbuttonsOn == null || OutbuttonsOn == undefined) {
+                    OutbuttonsOn = false;
                     M_MOANER_saveControls();
                 }
                 if (M_MOANER_tickleActive == null || M_MOANER_tickleActive == undefined) {
@@ -630,6 +641,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomCharacterUpdate(Player);
                     return;
                 }
+	    }
+            if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
                     if (SlowleaveOn == true) {
                         ServerSend("ChatRoomChat", {
@@ -835,6 +848,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+	    }
+            if (OutbuttonsOn == true) {
                 if (SlowleaveOn == true) {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
                 } else {
@@ -1340,6 +1355,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
                     CharacterReleaseTotal(Player);
                 }
+	    }
+            if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
                     PandoraPunishmentSentence(0);
                     CharacterRefresh(Player);
@@ -1383,6 +1400,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             DrawText(PandoraWillpower.toString(), 1800, 973, "black", "white");
             if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+	    }
+            if (OutbuttonsOn == true) {
                 if (SlowleaveOn == true) {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
                 } else {
@@ -1401,6 +1420,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
                     CharacterReleaseTotal(Player);
                 }
+	    }
+            if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
                     CharacterRefresh(Player);
                     if (SlowleaveOn == true) {
@@ -1420,6 +1441,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         modApi.hookFunction('PhotographicRun', 4, (args, next) => {
             if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+	    }
+            if (OutbuttonsOn == true) {
                 if (SlowleaveOn == true) {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
                 } else {
@@ -1440,6 +1463,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
                     CharacterReleaseTotal(Player);
                 }
+	    }
+            if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
                     CellLock(0);
                     if (SlowleaveOn == true) {
@@ -1471,6 +1496,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         modApi.hookFunction('CellRun', 4, (args, next) => {
             if (SosbuttonsOn == true) {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+	    }
+            if (OutbuttonsOn == true) {
                 if (SlowleaveOn == true) {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
                 } else {
@@ -2372,6 +2399,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = NpcpunishStatus[0];
         } else {
             msg = NpcpunishStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showOutbuttonsStatus() {
+        let msg;
+        if (OutbuttonsOn) {
+            msg = OutbuttonsStatus[0];
+        } else {
+            msg = OutbuttonsStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -12204,7 +12241,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>magiccheat</b> to toggle cheat mode in Bondage Brawl and Magic School\n" +
                     "<b>nowhisper</b> to toggle no-whisper mode\n" +
                     "<b>npcpunish</b> to toggle NPC punishments\n" +
-                    "<b>sosbuttons</b> to toggle emergency buttons (FREE - OUT)\n" +
+		    "<b>outbuttons</b> to toggle OUT buttons\n" +
+                    "<b>sosbuttons</b> to toggle emergency buttons (FREE)\n" +
                     "<b>welcome</b> to toggle UBC welcome message in main hall</p>"
                 );
             } else {
@@ -12325,6 +12363,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             "<p style='background-color:#5fbd7a'>ULTRAbc: NPC punishments disabled.</p>"
                         );
                     }
+		} else if (setting == "outbuttons") {
+                    if (OutbuttonsOn == true) {
+                        OutbuttonsOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: OUT buttons hidden and disabled.</p>"
+                        );
+                    } else {
+                        OutbuttonsOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: OUT buttons displayed and enabled.</p>"
+                        );
+                    }
                 } else if (setting == "sosbuttons") {
                     if (SosbuttonsOn == true) {
                         SosbuttonsOn = false;
@@ -12370,6 +12422,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             showMagiccheatStatus();
             showNowhisperStatus();
             showNpcpunishStatus();
+	    showOutbuttonsStatus();
             showSosbuttonsStatus();
             showWelcomeStatus();
         }
