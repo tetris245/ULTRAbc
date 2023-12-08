@@ -59,7 +59,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let OutbuttonsOn;
     let SlowleaveOn;
     let SosbuttonsOn;
-    let WelcomeOn;
 
     let blureffect;
     let oldhorny = 0;
@@ -151,10 +150,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var SosbuttonsStatus = ["FREE buttons displayed and enabled.",
         "FREE buttons hidden and disabled."
     ];
-    var WelcomeStatus = ["Welcome message in main hall.",
-        "No welcome message in main hall."
-    ];
-
+    
     // Main variables from other add-ons
     // BCAR
     var AnimalTypeStatus = ["Current Animal Type: "];
@@ -349,7 +345,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    OutbuttonsOn = false;
             SlowleaveOn = false;
             SosbuttonsOn = false;
-            WelcomeOn = false;
             blureffect = false;
             oldhorny = 0;
             Clothes = "";
@@ -402,7 +397,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 	    OutbuttonsOn = datas.outbuttons;
             SlowleaveOn = datas.slowleave;
             SosbuttonsOn = datas.sosbuttons;
-            WelcomeOn = datas.welcome;
             blureffect = false;
             oldhorny = 0;
             Clothes = datas.clothes;
@@ -458,7 +452,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "outbuttons": OutbuttonsOn,
             "slowleave": SlowleaveOn,
             "sosbuttons": SosbuttonsOn,
-            "welcome": WelcomeOn,
             "blureffect": blureffect,
             "oldhorny": oldhorny,
             "clothes": Clothes,
@@ -1245,20 +1238,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Main Hall
     async function ULTRAMainHallRun() {
         modApi.hookFunction('MainHallRun', 4, (args, next) => {
-            if (WelcomeOn == true) {
-                var Utext =
-                    "             Welcome to ULTRAbc            " +
-                    "         The modSDK version of QAM         " +
-                    "    Many extra commands and features     " +
-                    "             More info with /uhelp           " +
-                    "             Visit also the ULTRAbc Wiki       ";
-                MainCanvas.fillStyle = "#50E992";
-                MainCanvas.fillRect(20, 588, 640, 246);
-                MainCanvas.strokeStyle = "Black";
-                MainCanvas.strokeRect(20, 588, 640, 246);
-                MainCanvas.textAlign = "left";
-                DrawTextWrap(Utext, 30 - 630 / 2, 593, 630, 236, "black");
-            }
             MainCanvas.textAlign = "center";
             DrawText("Chat Rooms", 130, 530, "White", "Black");
             if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
@@ -1278,6 +1257,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else {
                 DrawButton(570, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
             }
+	    DrawText("ULTRAbc", 130, 615, "White", "Black");
+            DrawText(UBCver, 140, 655, "White", "Black");
+            DrawButton(240, 585, 420, 90, "", "White", "", "Open UBC Changelog on GitHub");
+            DrawImageResize("Icons/Changelog.png", 250, 600, 60, 60);
+            DrawTextFit("Open UBC Changelog", 480, 633, 308, "Black");   
+            DrawText("/uhelp", 145, 725, "White", "Black");
+            DrawText("in chat", 140, 765, "White", "Black");
+            DrawButton(240, 695, 420, 90, "", "White", "", "Open UBC Wiki on GitHub");
+            DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
+            DrawTextFit("Open UBC Wiki", 480, 743, 308, "Black");
             next(args);
         });
     }
@@ -1302,6 +1291,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
                 }
             }
+	    if (MouseIn(240, 585, 420, 90))
+                window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+            if (MouseIn(240, 695, 420, 90))
+                window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
             next(args);
         });
     }
@@ -2419,16 +2412,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = SosbuttonsStatus[0];
         } else {
             msg = SosbuttonsStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
-    function showWelcomeStatus() {
-        let msg;
-        if (WelcomeOn) {
-            msg = WelcomeStatus[0];
-        } else {
-            msg = WelcomeStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -11602,20 +11585,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'ubc',
-        Description: ": displays UBC version (+ more info if welcome message enabled).",
+        Description: ": displays UBC version and info.",
         Action: () => {
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc " + UBCver + ": type <b>/uhelp</b> for general menu.</p>"
+                "<p style='background-color:#5fbd7a'>ULTRAbc " + UBCver + ": type <b>/uhelp</b> for general menu.\n" +
+                "Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
+                "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
+                "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
+                "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a>\n" +
+                 "For any inquiries, join <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>https://discord.gg/JUvYfSpCmN</a></p>"
             );
-            if (WelcomeOn == true) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
-                    "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
-                    "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
-                    "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a>\n" +
-                    "For any inquiries, join <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>https://discord.gg/JUvYfSpCmN</a></p>"
-                );
-            }
         }
     }])
 
@@ -12242,8 +12221,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>nowhisper</b> to toggle no-whisper mode\n" +
                     "<b>npcpunish</b> to toggle NPC punishments\n" +
 		    "<b>outbuttons</b> to toggle OUT buttons\n" +
-                    "<b>sosbuttons</b> to toggle emergency buttons (FREE)\n" +
-                    "<b>welcome</b> to toggle UBC welcome message in main hall</p>"
+                    "<b>sosbuttons</b> to toggle emergency buttons (FREE)</p>"
                 );
             } else {
                 var setting = args;
@@ -12391,20 +12369,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Emergency buttons displayed and enabled.</p>"
                         );
                     }
-                } else if (setting == "welcome") {
-                    if (WelcomeOn == true) {
-                        WelcomeOn = false;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: No welcome message in main hall.</p>"
-                        );
-                    } else {
-                        WelcomeOn = true;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Welcome message in main hall.</p>"
-                        );
-                    }  
                 }
             }    
         }
@@ -12424,7 +12388,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             showNpcpunishStatus();
 	    showOutbuttonsStatus();
             showSosbuttonsStatus();
-            showWelcomeStatus();
         }
     }])
 
