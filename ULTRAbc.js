@@ -11584,21 +11584,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'ubc',
-        Description: ": displays UBC version and info.",
-        Action: () => {
-            ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc " + UBCver + ": type <b>/uhelp</b> for general menu.\n" +
-                "Myrhanda Moaner also installed. Type <b>/moaner</b> for more info, <b>/moaner status</b> for current status.\n" +
-                "Use <b>/uhelp new</b> to get info about changes in current ULTRAbc version.\n" +
-                "Use <b>/help</b> to get all standard BC + ULTRAbc commands in alphabetical order.\n" +
-                "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a>\n" +
-                 "For any inquiries, join <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>https://discord.gg/JUvYfSpCmN</a></p>"
-            );
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'uhelp',
         Description: "(category): displays the ULTRAbc commands.",
         Action: (args) => {
@@ -11619,7 +11604,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>visual</b> = commands related to animations and background.\n" +
                     "<b>zones</b> = commands related to game zones.\n" +
                     "Several commands require or allow to specify a target. It can be a real name or a member number.\n" +
-                    "Use <b>/uhelp new</b> for changes in current UBC version.\n" +
                     "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> and join this <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>Discord</a></p>"
                 );
             }
@@ -11740,23 +11724,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
-                    "<b>/ubc</b> = displays UBC version (+ more info if welcome message enabled).\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ustatus</b> = displays status of ULTRAbc settings.\n" +
                     "<b>/unrestrict</b> =  partially removes restrictions from game. * </p>\n"
-                );
-            }
-            if (args === "new") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Version " + UBCver + ":\n" +
-                    "- New commands: mbsroom to give infos about MBS wheels of fortune in current chat room,\n" +
-                    "timeleft (target) to reveal remaining time on current timer locks,\n" +
-                    "xstatus (add-on) to display status of main settings for other add-ons (available options: bcar, bcr, bctw, ebch, mbs, thm).\n" +
-                    "- Added the target option to the solidity command.\n" +
-                    "- Added solidity and tsolidity options to message command (concerns escape of special devices).\n" +
-                    "- Improved and optimised the code for the itemcolor and solidity commands.\n" +
-		    "- Removed the apart status commands for other add-ons.\n" +
-                    "- Updated the bg2 command and the updateBackground function.</p>"
                 );
             }
             if (args === "settings") {
