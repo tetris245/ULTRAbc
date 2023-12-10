@@ -60,11 +60,12 @@ Changes for future version
 * Improved the welcome screen by adding buttons to access changelog and wiki
 * New commands:
   - hear (hearingmode) to force a specific hearing mode
+  - invisible to become invisible (scripts must be allowed in BC settings) without need to use special items
   - see (visionmode) (blurlevel) to force a specific vision mode
   - uset (setting) to toggle a specific UBC setting
     * Available options: autojoin, exitmode, fullseed, highfame, hotkeys, magiccheat, nowhisper, npcpunish, outbuttons, sosbuttons
     * The OUT and FREE buttons are now toggled separately, the welcome setting has been removed
 * Added lscg option to the xstatus command
-* Removed ubc command, 'new' option of uhelp command, and the apart UBC setting commands that are now merged in the uset command
+* Removed the invisible1, invisible2, ubc commands, the 'new' option of uhelp command, and the apart UBC setting commands that are now merged in the uset command
 * Removed from the unrestrict command a feature removing conditions (except those related to gender) to use assets
 
