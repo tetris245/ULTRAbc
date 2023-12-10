@@ -6756,8 +6756,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'invisible1',
-        Description: ": becomes invisible (anal hook must be allowed).",
+        Tag: 'invisible',
+        Description: ": becomes invisible (scripts need to be allowed in BC settings).",
         Action: () => {
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
@@ -6767,106 +6767,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Text: "Magical lasers make " + tmpname + " completely invisible."
                 }]
             });
-            InventoryWear(Player, "AnalHook", "ItemButt");
-            InventoryWear(Player, "Script", "ItemScript");
-            InventoryGet(Player, "ItemScript").Property = {
-                Hide: [
-                    "Activity",
-                    "Blush",
-                    "BodyLower",
-                    "BodyUpper",
-                    "Bra",
-                    "Bracelet",
-                    "Cloth",
-                    "ClothAccessory",
-                    "ClothLower",
-                    "Corset",
-                    "Emoticon",
-                    "Eyebrows",
-                    "Eyes",
-                    "Eyes2",
-                    "EyeShadow",
-                    "Face",
-                    "FacialHair",
-                    "Fluids",
-                    "Garters",
-                    "Glasses",
-                    "Gloves",
-                    "HairAccessory1",
-                    "HairAccessory2",
-                    "HairAccessory3",
-                    "HairBack",
-                    "HairFront",
-                    "Hands",
-                    "Hat",
-                    "Head",
-                    "ItemAddon",
-                    "ItemArms",
-                    "ItemBoots",
-                    "ItemBreast",
-                    "ItemDevices",
-                    "ItemEars",
-                    "ItemFeet",
-                    "ItemHandheld",
-                    "ItemHands",
-                    "ItemHead",
-                    "ItemHood",
-                    "ItemLegs",
-                    "ItemMisc",
-                    "ItemMouth",
-                    "ItemMouth2",
-                    "ItemMouth3",
-                    "ItemNeck",
-                    "ItemNeckAccessories",
-                    "ItemNeckRestraints",
-                    "ItemNipples",
-                    "ItemNipplesPiercings",
-                    "ItemNose",
-                    "ItemPelvis",
-                    "ItemTorso",
-                    "ItemTorso2",
-                    "ItemVulva",
-                    "ItemVulvaPiercings",
-                    "Jewelry",
-                    "LeftAnklet",
-                    "LeftHand",
-                    "Mask",
-                    "Mouth",
-                    "Necklace",
-                    "Nipples",
-                    "Panties",
-                    "Pussy",
-                    "RightAnklet",
-                    "RightHand",
-                    "Shoes",
-                    "Socks",
-                    "SocksLeft",
-                    "SocksRight",
-                    "Suit",
-                    "SuitLower",
-                    "TailStraps",
-                    "Wings"
-                ]
-            }
-            CurrentScreen === 'ChatRoom' ?
-                ChatRoomCharacterUpdate(Player) :
-                CharacterRefresh(Player);
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'invisible2',
-        Description: ": becomes invisible (glitter mask must be usable).",
-        Action: () => {
-            ServerSend("ChatRoomChat", {
-                Content: "Beep",
-                Type: "Action",
-                Dictionary: [{
-                    Tag: "Beep",
-                    Text: "Magical lasers make " + tmpname + " completely invisible."
-                }]
-            });
-            InventoryWear(Player, "Glitter", "Mask", "#664433");
             InventoryWear(Player, "Script", "ItemScript");
             InventoryGet(Player, "ItemScript").Property = {
                 Hide: [
@@ -6930,6 +6830,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Jewelry",
                     "LeftAnklet",
                     "LeftHand",
+		    "Mask",
                     "Mouth",
                     "Necklace",
                     "Nipples",
@@ -11691,8 +11592,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes the settings of worn High Duty Belt. *\n" +
-                    "<b>/invisible1</b> = becomes invisible (if anal hook usable).\n" +
-                    "<b>/invisible2</b> = becomes invisible (if glitter mask usable).\n" +
+                    "<b>/invisible</b> = becomes invisible (scripts must be allowed in BC settings).\n" +
                     "<b>/moaner</b> (options) = moans when horny and stimulated. *.\n" +
                     "<b>/plvibe</b> (options) = changes the settings of worn Sci-Fi Pleasure Panties. *\n" +
                     "<b>/sfchaste</b> (options) = changes the settings of worn Futuristic Chastity Belt. *\n" +
@@ -12363,7 +12263,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'visible',
-        Description: ": back to visible state after using of an invisible command.",
+        Description: ": back to visible state after using of the invisible command.",
         Action: (args) => {
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
@@ -12373,16 +12273,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     Text: "" + tmpname + " suddenly is visible for everybody."
                 }]
             });
-            if (InventoryGet(Player, "ItemButt") != null) {
-                if (InventoryGet(Player, "ItemButt").Asset.Name == "AnalHook") {
-                    InventoryRemove(Player, "ItemButt");
-                }
-            }
-            if (InventoryGet(Player, "Mask") != null) {
-                if (InventoryGet(Player, "Mask").Asset.Name == "Glitter") {
-                    InventoryRemove(Player, "Mask");
-                }
-            }
             InventoryRemove(Player, "ItemScript");
             CurrentScreen === 'ChatRoom' ?
                 ChatRoomCharacterUpdate(Player) :
