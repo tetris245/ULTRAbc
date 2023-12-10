@@ -5117,8 +5117,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             var BCver = GameVersion;
             if (BCver.includes("Beta")) {
-               var beta1 = BCver.slice(0,3);
-               var beta2 = beta1.slice(-2);
+               if (BCver.startsWith("R10")) {
+                   var beta1 = BCver.slice(0,4);
+                   var beta2 = beta1.slice(-3);
+               } else {
+                   var beta1 = BCver.slice(0,3);
+                   var beta2 = beta1.slice(-2);
+               }
                var beta3 = beta2 - 1;
                var BCver = "R" + beta3;
             }
