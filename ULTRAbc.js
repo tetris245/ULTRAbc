@@ -670,20 +670,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             if (HotkeysOn == true) {
-                if (KeyPress == 111) {                
+                if (event.code === "NumpadDivide") {              
                     ChatRoomSetLastChatRoom("");
                     ServerSend("ChatRoomLeave", "");
                     CommonSetScreen("Online", "ChatSearch");
                     ChatRoomClearAllElements();
                     OnlineGameName = "";
                 }
-                if (KeyPress == 106) {             
+                if (event.code === "NumpadMultiply") {             
                      CharacterReleaseTotal(Player);
                      ChatRoomCharacterUpdate(Player);
                      return;
                 }
             }
-            if (KeyPress == 13 && !event.shiftKey) {
+            if (event.key === "Enter" && !event.shiftKey) {
                 var text = ElementValue("InputChat");
                 if (text.startsWith(",")) {
                     var text1 = "(" + text.slice(1) + ")";
