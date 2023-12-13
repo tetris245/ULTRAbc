@@ -2207,89 +2207,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    //Themed Status   
-    function showBCThemedStatus() {
-        let msg;
-        if (THMdata.GlobalModule.themedEnabled) {
-            msg = BCThemedStatus[0];
-        } else {
-            msg = BCThemedStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-    function showChatInputStatus() {
-        let msg;
-        if (THMdata.IntegrationModule.BC_Chat) {
-            msg = ChatInputStatus[0];
-        } else {
-            msg = ChatInputStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-    function showChatStylingStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doUseChatSpecialStyling) {
-            msg = ChatStylingStatus[0];
-        } else {
-            msg = ChatStylingStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-    function showFriendListStatus() {
-        let msg;
-        if (THMdata.IntegrationModule.BC_FriendList) {
-            msg = FriendListStatus[0];
-        } else {
-            msg = FriendListStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-    function showGuiOverhaulStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doVanillaGuiOverhaul) {
-            msg = GuiOverhaulStatus[0];
-        } else {
-            msg = GuiOverhaulStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-    function showInputZonesStatus() {
-        let msg;
-        if (THMdata.IntegrationModule.BC) {
-            msg = InputZonesStatus[0];
-        } else {
-            msg = InputZonesStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-    function showLocalTimeStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doShowLocaleTime) {
-            msg = LocalTimeStatus[0];
-        } else {
-            msg = LocalTimeStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-    function showMiscDetailsStatus() {
-        let msg;
-        if (THMdata.IntegrationModule.BC_Other) {
-            msg = MiscDetailsStatus[0];
-        } else {
-            msg = MiscDetailsStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-    function showThemedVersionStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doShowNewVersionMessage) {
-            msg = ThemedVersionStatus[0];
-        } else {
-            msg = ThemedVersionStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     //Stable
     function StablePonyEnd() {
         CommonSetScreen("Room", "Stable");
@@ -2507,6 +2424,89 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (H == " ") CS = 0;
         }
         return CD;
+    }
+
+    //Themed Status   
+    function showBCThemedStatus() {
+        let msg;
+        if (THMdata.GlobalModule.themedEnabled) {
+            msg = BCThemedStatus[0];
+        } else {
+            msg = BCThemedStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showChatInputStatus() {
+        let msg;
+        if (THMdata.IntegrationModule.BC_Chat) {
+            msg = ChatInputStatus[0];
+        } else {
+            msg = ChatInputStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showChatStylingStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doUseChatSpecialStyling) {
+            msg = ChatStylingStatus[0];
+        } else {
+            msg = ChatStylingStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showFriendListStatus() {
+        let msg;
+        if (THMdata.IntegrationModule.BC_FriendList) {
+            msg = FriendListStatus[0];
+        } else {
+            msg = FriendListStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showGuiOverhaulStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doVanillaGuiOverhaul) {
+            msg = GuiOverhaulStatus[0];
+        } else {
+            msg = GuiOverhaulStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showInputZonesStatus() {
+        let msg;
+        if (THMdata.IntegrationModule.BC) {
+            msg = InputZonesStatus[0];
+        } else {
+            msg = InputZonesStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showLocalTimeStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doShowLocaleTime) {
+            msg = LocalTimeStatus[0];
+        } else {
+            msg = LocalTimeStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showMiscDetailsStatus() {
+        let msg;
+        if (THMdata.IntegrationModule.BC_Other) {
+            msg = MiscDetailsStatus[0];
+        } else {
+            msg = MiscDetailsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+    function showThemedVersionStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doShowNewVersionMessage) {
+            msg = ThemedVersionStatus[0];
+        } else {
+            msg = ThemedVersionStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
     }
 
     //Vision
@@ -12412,7 +12412,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		} else if (addon == "lscg") {
                     if (Player.OnlineSettings.LSCG != null) {
                         str = Player.OnlineSettings.LSCG;
-                        d = LZString.decompressFromUTF16(str);
+                        d = LZString.decompressFromBase64(str);
                         LSCGdata = {};
                         decoded = JSON.parse(d);
                         LSCGdata = decoded;
