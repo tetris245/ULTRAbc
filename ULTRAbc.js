@@ -874,11 +874,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
                     }
                 } else {
-                    if (SlowleaveOn == true) {
-                        DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
-                    } else {
-                        DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
-                    }
+                    DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
                 }
             }
             next(args);
