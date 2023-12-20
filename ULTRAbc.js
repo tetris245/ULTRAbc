@@ -606,7 +606,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (SosbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
+                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                    if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
+                        var move = 1;
+                    }
+                } else {
+                    if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
+                        var move = 1;
+                    }
+                }    
+                if (move == 1) {
+                    var move = 0;
                     if (Totalrelease == undefined) {
                         var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                     } else {
@@ -636,7 +646,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
 	    }
             if (OutbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
+                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                    if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
+                        var move = 2;
+                    }
+                } else {
+                    if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 90) && (MouseY < 135)) {
+                        var move = 2;
+                    }
+                }    
+                if (move == 2) {
+                    var move = 0;
                     if (SlowleaveOn == true) {
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -840,13 +860,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
             }
             if (SosbuttonsOn == true) {
-                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
-	    }
+                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                    DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+	           } else {
+                    DrawButton(955, 45, 45, 45, "FREE", "White", "", "");
+                 }
+            }
             if (OutbuttonsOn == true) {
-                if (SlowleaveOn == true) {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                    if (SlowleaveOn == true) {
+                        DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                    } else {
+                        DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                    }
                 } else {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                    if (SlowleaveOn == true) {
+                        DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
+                    } else {
+                        DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
+                    }
                 }
             }
             next(args);
