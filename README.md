@@ -57,5 +57,5 @@ All else I might not have included.
 
 Changes for future version 
 
-(...)
+* Changed position of FREE and OUT buttons for chat rooms with map feature
 
