@@ -7782,6 +7782,90 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'mapx',
+        Description: "(x-position): changes your X coordinate in the map.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The mapx command must be followed by a number between 0 and 39."
+                );
+            } else {
+                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                    ChatRoomSendLocal("This room does not use the map feature");  
+                } else {
+                    var plx = args;
+                    if ((plx > -1) && (plx < 40) && (plx != Player.MapData.X)) {  
+                        if (plx < Player.MapData.X) {
+                            D = "West";
+                            m = (Player.MapData.X - plx);
+                        }  
+                        if (plx > Player.MapData.X) {
+                            D = "East";
+                            m = (plx - Player.MapData.X);
+                        }   
+                        let X = Player.MapData.X + ((D == "West") ? -m : 0) + ((D == "East") ? m : 0);
+                        let Y = Player.MapData.Y;
+                        let Time = ChatRoomMapCanEnterTile(X, Y);
+                        if (Time > 0) {
+		                 ChatRoomMapMovement = {
+			                X: X,
+			                Y: Y,
+			                Direction: D,
+			                TimeStart: CommonTime(),
+			                TimeEnd: CommonTime() + Time
+		                 };
+	                  }
+                        ChatRoomMapUpdatePlayerNext = null;
+                        ServerAccountUpdate.QueueData({ MapData: Player.MapData }, true);
+                    }
+                }
+            }
+        }
+    }])
+   
+    CommandCombine([{
+        Tag: 'mapy',
+        Description: "(y-position): changes your Y coordinate in the map.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The mapy command must be followed by a number between 0 and 39."
+                );
+            } else { 
+                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                    ChatRoomSendLocal("This room does not use the map feature");  
+                } else {
+                    var ply = args;
+                    if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Y)) {
+                        if (ply < Player.MapData.Y) {
+                            D = "North";
+                            m = (Player.MapData.Y - ply);
+                        }  
+                        if (ply > Player.MapData.Y) {
+                            D = "South";
+                            m = (ply - Player.MapData.Y);
+                        }                 
+                        let X = Player.MapData.X;
+                        let Y = Player.MapData.Y + ((D == "North") ? -m : 0) + ((D == "South") ? m : 0);
+                        let Time = ChatRoomMapCanEnterTile(X, Y);
+                        if (Time > 0) {
+		                 ChatRoomMapMovement = {
+			                X: X,
+			                Y: Y,
+			                Direction: D,
+			                TimeStart: CommonTime(),
+			                TimeEnd: CommonTime() + Time
+		                 };
+	                   }
+                        ChatRoomMapUpdatePlayerNext = null;
+                        ServerAccountUpdate.QueueData({ MapData: Player.MapData }, true);
+                    }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'maxstatistics',
         Description: ": gives max statistics.",
         Action: () => {
@@ -11615,6 +11699,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
+		    "<b>/maproom</b> = gives infos about location of players in current mapped chat room.\n" +
+                    "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
+                    "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/search</b> (lobby) = opens room search for 15 seconds in specified lobby. *\n" +
                     "<b>/theme</b> (number) = changes chat color theme after automatic relog. Number must be between 0 and 3.</p>"
@@ -11692,7 +11779,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
-		    "<b>/maproom</b> = gives infos about location of players in current mapped chat room.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ustatus</b> = displays status of ULTRAbc settings.\n" +
