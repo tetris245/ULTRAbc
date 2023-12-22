@@ -7807,14 +7807,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         let Y = Player.MapData.Y;
                         let Time = ChatRoomMapCanEnterTile(X, Y);
                         if (Time > 0) {
-		                 ChatRoomMapMovement = {
-			                X: X,
-			                Y: Y,
-			                Direction: D,
-			                TimeStart: CommonTime(),
-			                TimeEnd: CommonTime() + Time
-		                 };
-	                  }
+		            ChatRoomMapMovement = {
+			        X: X,
+			        Y: Y,
+			        Direction: D,
+			        TimeStart: CommonTime(),
+			        TimeEnd: CommonTime() + Time
+		            };
+	                }
                         ChatRoomMapUpdatePlayerNext = null;
                         ServerAccountUpdate.QueueData({ MapData: Player.MapData }, true);
                     }
@@ -7849,14 +7849,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         let Y = Player.MapData.Y + ((D == "North") ? -m : 0) + ((D == "South") ? m : 0);
                         let Time = ChatRoomMapCanEnterTile(X, Y);
                         if (Time > 0) {
-		                 ChatRoomMapMovement = {
-			                X: X,
-			                Y: Y,
-			                Direction: D,
-			                TimeStart: CommonTime(),
-			                TimeEnd: CommonTime() + Time
-		                 };
-	                   }
+		            ChatRoomMapMovement = {
+			        X: X,
+			        Y: Y,
+			        Direction: D,
+			        TimeStart: CommonTime(),
+			        TimeEnd: CommonTime() + Time
+		            };
+	                }
                         ChatRoomMapUpdatePlayerNext = null;
                         ServerAccountUpdate.QueueData({ MapData: Player.MapData }, true);
                     }
