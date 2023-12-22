@@ -57,5 +57,7 @@ All else I might not have included.
 
 Changes for future version 
 
+* New commands:
+  - maproom to give infos about location of players in current mapped chat room
 * Changed position of FREE and OUT buttons for chat rooms with map feature
 
