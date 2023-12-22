@@ -7752,6 +7752,36 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'maproom',
+        Description: ": gives infos about location of players in current mapped chat room.",
+        Action: (args) => {
+            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                ChatRoomSendLocal("This room does not use the map feature");  
+            } else {
+                let pl = 0;
+                while (pl < ChatRoomCharacter.length) {
+                    if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
+                        var name = ChatRoomCharacter[pl].Name;
+                        var aka = "";
+                    } else {
+                        var name = ChatRoomCharacter[pl].Nickname; 
+                        var aka =  ChatRoomCharacter[pl].Name;
+                    }
+                    var number = ChatRoomCharacter[pl].MemberNumber;
+                    ChatRoomSendLocal(name + " (" + aka + ") - " + number);           
+                    if (ChatRoomCharacter[pl].MapData != undefined) {
+                        ChatRoomSendLocal("X = " + ChatRoomCharacter[pl].MapData.X + " - Y = " + ChatRoomCharacter[pl].MapData.Y);  
+                    } else {
+                        ChatRoomSendLocal("Does not have entered map");  
+                    }   
+                ChatRoomSendLocal(" "); 
+                pl ++;
+                } 
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'maxstatistics',
         Description: ": gives max statistics.",
         Action: () => {
@@ -11662,6 +11692,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Misc commands - * = more info when using\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
+		    "<b>/maproom</b> = gives infos about location of players in current mapped chat room.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ustatus</b> = displays status of ULTRAbc settings.\n" +
