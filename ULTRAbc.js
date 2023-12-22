@@ -7754,7 +7754,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     CommandCombine([{
         Tag: 'maproom',
         Description: ": gives infos about location of players in current mapped chat room.",
-        Action: (args) => {
+        Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
                 ChatRoomSendLocal("This room does not use the map feature");  
             } else {
@@ -7896,7 +7896,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     CommandCombine([{
         Tag: 'mbsroom',
         Description: ": gives infos about MBS wheels of fortune in current chat room.",
-        Action: (args) => {
+        Action: () => {
             let pl = 0;
             while (pl < ChatRoomCharacter.length) {
                 if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
