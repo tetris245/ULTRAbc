@@ -57,9 +57,10 @@ All else I might not have included.
 
 Changes for future version 
 
+* Changed position of FREE and OUT buttons for chat rooms with map feature
 * New commands:
   - maproom to give infos about location of players in current mapped chat room
   - mapx (x-position) to change your X coordinate in the map
   - mapy (y-position) to change your Y coordinate in the map
-* Changed position of FREE and OUT buttons for chat rooms with map feature
+* Replaced whisper command by murmur command (for R100 compatibility)
 
