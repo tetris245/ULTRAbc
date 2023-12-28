@@ -8552,6 +8552,85 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'murmur',
+        Description: "(target) (message): sends whisper to specified target.",
+        Action: (_, command, args) => {
+            if (NowhisperOn == false) {
+                var [targetname] = args;
+                if (!targetname) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The murmur command must be followed by a target and the message you want to whisper.\n" +
+                        "You can omit the message if you want only to set the target for your whispers.</p>"
+                    );
+                } else {
+                    var [, , ...message] = command.split(" ");
+                    var msg = message?.join(" ");
+                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    if (target[0] == null) {
+                        var targetnumber = parseInt(targetname);
+                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                    }
+                    if (target[0] != null) {
+                        ElementValue("InputChat", msg);
+                        if (this.BabyTalkOn == true) {
+                            var msg2 = SpeechBabyTalk({
+                                Effect: ["RegressedTalk"]
+                            }, msg);
+                        } else if (this.GagTalkOn == true) {
+                            var msg2 = SpeechGarbleByGagLevel(gl, msg);
+                        } else {
+                            var msg2 = msg;
+                        }
+                        ElementValue("InputChat", msg.replace(msg, msg2));
+                        if (this.Stutter1On == true) {
+                            var msg3 = StutterTalk1(msg2);
+                        } else if (this.Stutter2On == true) {
+                            var msg3 = StutterTalk2(msg2);
+                        } else if (this.Stutter3On == true) {
+                            var msg3 = StutterTalk3(msg2);
+                        } else if (this.Stutter4On == true) {
+                            var msg3 = StutterTalk4(msg2);
+                        } else {
+                            var msg3 = msg2;
+                        }
+                        ElementValue("InputChat", msg2.replace(msg2, msg3));
+                        if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                            var msg4 = M_MOANER_applyMoanToMsg(Player, msg3);
+                        } else {
+                            var msg4 = msg3;
+                        }
+                        ElementValue("InputChat", msg3.replace(msg3, msg4));
+                        ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                        if (msg != "") {
+                            ServerSend("ChatRoomChat", {
+                                "Content": msg4,
+                                "Type": "Whisper",
+                                "Target": ChatRoomTargetMemberNumber
+                            });
+                            for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                        TargetName = ChatRoomCharacter[C].Name;
+                                    } else {
+                                        TargetName = ChatRoomCharacter[C].Nickname;
+                                    }
+                                    break;
+                                }
+                            ChatRoomMessage({
+                                Content: "Whisper to " + TargetName + ": " + msg4,
+                                Type: "LocalMessage",
+                                Sender: Player.MemberNumber
+                            });
+                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                        }
+                    }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'naked',
         Description: "(target): removes clothes.",
         Action: (args) => {
@@ -11805,13 +11884,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
 		    "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
                     "<b>/moaner</b> = moans when horny and stimulated. *\n" +
+		    "<b>/murmur</b> (target) (message): sends whisper to specified target.\n>" +
                     "<b>/s1</b> (stuffhere) = speaks once in light stuttering mode.\n" +
                     "<b>/s2</b> (stuffhere) = speaks once in normal stuttering mode.\n" +
                     "<b>/s3</b> (stuffhere) = speaks once in heavy stuttering mode.\n" +
                     "<b>/s4</b> (stuffhere) = speaks once in total stuttering mode.\n" +
                     "<b>/stutter</b> (stuttermode) = forces a specific stuttering mode. *\n" +
-                    "<b>/talk</b> (talkmode) = forces a specific talk mode. *\n" +
-                    "<b>/whisper</b> (target) (message): sends whisper to specified target.</p>"
+                    "<b>/talk</b> (talkmode) = forces a specific talk mode. *</p>"
                 );
             }
             if (args === "visual") {
@@ -12618,85 +12697,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showThemedVersionStatus();
                     }
                 } 
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'whisper',
-        Description: "(target) (message): sends whisper to specified target.",
-        Action: (_, command, args) => {
-            if (NowhisperOn == false) {
-                var [targetname] = args;
-                if (!targetname) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The whisper command must be followed by a target and the message you want to whisper.\n" +
-                        "You can omit the message if you want only to set the target for your whispers.</p>"
-                    );
-                } else {
-                    var [, , ...message] = command.split(" ");
-                    var msg = message?.join(" ");
-                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                    if (target[0] == null) {
-                        var targetnumber = parseInt(targetname);
-                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                    }
-                    if (target[0] != null) {
-                        ElementValue("InputChat", msg);
-                        if (this.BabyTalkOn == true) {
-                            var msg2 = SpeechBabyTalk({
-                                Effect: ["RegressedTalk"]
-                            }, msg);
-                        } else if (this.GagTalkOn == true) {
-                            var msg2 = SpeechGarbleByGagLevel(gl, msg);
-                        } else {
-                            var msg2 = msg;
-                        }
-                        ElementValue("InputChat", msg.replace(msg, msg2));
-                        if (this.Stutter1On == true) {
-                            var msg3 = StutterTalk1(msg2);
-                        } else if (this.Stutter2On == true) {
-                            var msg3 = StutterTalk2(msg2);
-                        } else if (this.Stutter3On == true) {
-                            var msg3 = StutterTalk3(msg2);
-                        } else if (this.Stutter4On == true) {
-                            var msg3 = StutterTalk4(msg2);
-                        } else {
-                            var msg3 = msg2;
-                        }
-                        ElementValue("InputChat", msg2.replace(msg2, msg3));
-                        if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                            var msg4 = M_MOANER_applyMoanToMsg(Player, msg3);
-                        } else {
-                            var msg4 = msg3;
-                        }
-                        ElementValue("InputChat", msg3.replace(msg3, msg4));
-                        ChatRoomTargetMemberNumber = target[0].MemberNumber;
-                        if (msg != "") {
-                            ServerSend("ChatRoomChat", {
-                                "Content": msg4,
-                                "Type": "Whisper",
-                                "Target": ChatRoomTargetMemberNumber
-                            });
-                            for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                        TargetName = ChatRoomCharacter[C].Name;
-                                    } else {
-                                        TargetName = ChatRoomCharacter[C].Nickname;
-                                    }
-                                    break;
-                                }
-                            ChatRoomMessage({
-                                Content: "Whisper to " + TargetName + ": " + msg4,
-                                Type: "LocalMessage",
-                                Sender: Player.MemberNumber
-                            });
-                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-                        }
-                    }
-                }
             }
         }
     }])
