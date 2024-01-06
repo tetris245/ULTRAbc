@@ -183,17 +183,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var BCResponsiveStatus = ["BC Responsive is enabled.",
         "BC Responsive is disabled."
     ];
+    var BcrResponsesStatus = ["Responses feature is enabled.",
+        "Responses feature is disabled."
+    ];
     var CharacterTalkStatus = ["Character Talk is enabled.",
         "Character Talk is disabled."
     ];
-    var InterceptMessageStatus = ["Intercept Message feature is enabled.",
-        "Intercept Message feature is disabled."
+    var InterceptMessageStatus = ["Responses can interrupt and send messages.",
+        "Responses can't interrupt and send messages."
     ];
-    var LeaveMessageStatus = ["Leave Message feature is enabled.",
-        "Leave Message feature is disabled."
+    var LeaveMessageStatus = ["The message being written is sent when leashed out of the room.",
+        "No message sent when leashed out of the room."
+    ];
+    var MoansStatus = ["Moans are added to responses when highly aroused.",
+        "Moans are not added to responses when highly aroused."
     ];
     var NewVersionStatus = ["New BCR Version feature is enabled.",
         "New BCR Version feature is disabled."
+    ];   
+    var RulesStatus = ["BCX rules can prevent message sending.",
+        "BCX rules can't prevent message sending."
     ];
 
     // BCTweaks
@@ -1908,6 +1917,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
+    function showBcrResponsesStatus() {
+        let msg;
+        if (BCRdata.GlobalModule.responsesEnabled) {
+            msg = BcrResponsesStatus[0];
+        } else {
+            msg = BcrResponsesStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
     function showCharacterTalkStatus() {
         let msg;
         if (BCRdata.GlobalModule.CharTalkEnabled) {
@@ -1938,12 +1957,32 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
+    function showMoansStatus() {
+        let msg;
+        if (BCRdata.GlobalModule.doAddMoansOnHighArousal) {
+            msg = MoansStatus[0];
+        } else {
+            msg = MoansStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+	
     function showNewVersionStatus() {
         let msg;
         if (BCRdata.GlobalModule.doShowNewVersionMessage) {
             msg = NewVersionStatus[0];
         } else {
             msg = NewVersionStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showRulesStatus() {
+        let msg;
+        if (BCRdata.GlobalModule.doPreventMessageIfBcxBlock) {
+            msg = RulesStatus[0];
+        } else {
+            msg = RulesStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -12646,17 +12685,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 } else if (addon == "bcr") {
-                    if (Player.OnlineSettings.BCResponsive != null) {
-                        str = Player.OnlineSettings.BCResponsive;
+                    if (Player.ExtensionSettings.BCResponsive != null) {
+                        str = Player.ExtensionSettings.BCResponsive;
                         d = LZString.decompressFromBase64(str);
                         BCRdata = {};
                         decoded = JSON.parse(d);
                         BCRdata = decoded;
                         showBCResponsiveStatus();
+			showBcrResponsesStatus();
                         showCharacterTalkStatus();
                         showInterceptMessageStatus();
                         showLeaveMessageStatus();
+			showMoansStatus();
                         showNewVersionStatus();
+			showRulesStatus();
                     }
                 } else if (addon == "bctw") {
                     if (Player.OnlineSettings.BCT != null) {
