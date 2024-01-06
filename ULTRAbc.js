@@ -558,6 +558,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAChatRoomMenuDraw();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
+    ULTRAChatSearchRoomSpaceSelectClick();
+    ULTRAChatSearchRoomSpaceSelectDraw(); 
     ULTRAClubCardEndTurn();
     ULTRAClubCardLoadDeckNumber();
     ULTRACraftingItemListBuild();
@@ -912,10 +914,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //Chat Search (including Auto-Join)
+    async function ULTRAChatSearchExit() {
+        modApi.hookFunction('ChatSearchExit', 4, (args, next) => {
+            if (ChatRoomSpace == "Asylum") {
+                ChatSearchLeaveSpace = "Room";
+                ChatSearchLeaveRoom = "AsylumEntrance";
+            } else {
+                ChatSearchLeaveSpace = "Room";
+                ChatSearchLeaveRoom = "MainHall";
+            }
+            next(args);
+        });
+    }
+	
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
-	    var ChatSearchPageX = 25;
-            var ChatSearchPageY = 135;
             if (AutojoinOn == true) {
                 var X = ChatSearchPageX;
 	        var Y = ChatSearchPageY;
@@ -989,19 +1002,55 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchExit() {
-        modApi.hookFunction('ChatSearchExit', 4, (args, next) => {
-            if (ChatRoomSpace == "Asylum") {
-                ChatSearchLeaveSpace = "Room";
-                ChatSearchLeaveRoom = "AsylumEntrance";
-            } else {
-                ChatSearchLeaveSpace = "Room";
-                ChatSearchLeaveRoom = "MainHall";
+    async function ULTRAChatSearchRoomSpaceSelectClick() {
+        modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
+           if ((MouseX >= 1515) && (MouseX < 1595) && (MouseY >= 885) && (MouseY < 975)) {
+                if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
+                    (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
+                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
+                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+                    ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+                }
             }
+            if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+            if ((MouseX >= 1845) && (MouseX < 1935) && (MouseY >= 885) && (MouseY < 975)) {
+                if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
+                    (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
+                    ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+                    ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+                }
+            } 
+	    return;
             next(args);
         });
     }
 
+    async function ULTRAChatSearchRoomSpaceSelectDraw() {
+        modApi.hookFunction('ChatSearchRoomSpaceSelectDraw', 4, (args, next) => {
+	    DrawText("Lobbies", 1405, 940, "White", "Black");
+            if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
+                (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
+                (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
+                (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+                DrawButton(1515, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
+            } else {
+                DrawButton(1515, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
+            }
+            DrawButton(1625, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            DrawButton(1735, 885, 90, 90, "MIXED", "White", "", "Mixed");
+            if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
+                (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
+                ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+                DrawButton(1845, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
+            } else {
+                DrawButton(1845, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
+            }
+            return;
+            next(args);
+        });
+    }
+    
     //Club Card Game
     async function ULTRAClubCardEndTurn(Draw = false) {
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
