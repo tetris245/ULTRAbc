@@ -57,6 +57,7 @@ All else I might not have included.
 
 Changes for future version 
 
+* Changed position of AutoJoin message (for R100 compatibility)
 * Changed position of FREE and OUT buttons for chat rooms with map feature
 * New commands:
   - maproom to give infos about location of players in current mapped chat room
