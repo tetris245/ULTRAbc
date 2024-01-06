@@ -58,6 +58,7 @@ All else I might not have included.
 Changes for future version 
 
 * Added Lobbies buttons in Chat Search (they replace the lobby switch system added in R100)
+* Added support for message starting with \ ('escape' feature added in R100) 
 * Changed position of AutoJoin message (for R100 compatibility)
 * Changed position of FREE and OUT buttons for chat rooms with map feature
 * New commands:
