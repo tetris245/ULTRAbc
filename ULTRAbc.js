@@ -193,7 +193,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         "Responses can't interrupt and send messages."
     ];
     var LeaveMessageStatus = ["The message being written is sent when leashed out of the room.",
-        "No message sent when leashed out of the room."
+        "The message being written is not sent when leashed out of the room."
     ];
     var MoansStatus = ["Moans are added to responses when highly aroused.",
         "Moans are not added to responses when highly aroused."
