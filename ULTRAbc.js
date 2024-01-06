@@ -914,9 +914,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Chat Search (including Auto-Join)
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
+	    var ChatSearchPageX = 25;
+            var ChatSearchPageY = 135;
             if (AutojoinOn == true) {
-                var X = 25;
-                var Y = 25;
+                var X = ChatSearchPageX;
+	        var Y = ChatSearchPageY;
                 for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
                     if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
                         if (this.IsOn == undefined || this.IsOn == false) {
@@ -925,7 +927,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             TextArea.setAttribute("ID", "AutoJoinAlert");
                             document.body.appendChild(TextArea);
                             ElementValue("AutoJoinAlert", "AutoJoining...");
-                            ElementPosition("AutoJoinAlert", 300, 970, 350);
+                            ElementPosition("AutoJoinAlert", 1030, 970, 350);
                         }
                         if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
                             var RoomName = ChatSearchResult[C].Name;
@@ -961,8 +963,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
             }
             if (AutojoinOn == false) {
-                var X = 25;
-                var Y = 25;
+                var X = ChatSearchPageX;
+	        var Y = ChatSearchPageY;
                 for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
                     if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
                         var RoomName = ChatSearchResult[C].Name;
