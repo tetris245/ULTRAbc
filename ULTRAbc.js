@@ -1568,7 +1568,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         modApi.hookFunction('CellLoad', 4, (args, next) => {
             CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
             CellKeyDepositStaff.AllowItem = false;
-            CharacterSetActivePose(Player, null);
+            PoseSetActive(Player, null);
             CellOpenTimer = LogValue("Locked", "Cell");
             if (CellOpenTimer == null) CellOpenTimer = 0;
             return;
@@ -8961,7 +8961,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (InventoryGet(Player, "ItemMouth") == null) InventoryWearRandom(Player, "ItemMouth", 8);
                 if (InventoryGet(Player, "ItemNeck") == null) InventoryWearRandom(Player, "ItemNeck", 8);
                 if (InventoryGet(Player, "ItemNeckRestraints") == null) InventoryWear(Player, "ChainLeash", "ItemNeckRestraints", null, 8);
-                CharacterSetActivePose(Player, "Kneel", true);
+                PoseSetActive(Player, "Kneel", true);
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -9007,7 +9007,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     if (InventoryGet(target[0], "ItemMouth") == null) InventoryWearRandom(target[0], "ItemMouth", 8);
                     if (InventoryGet(target[0], "ItemNeck") == null) InventoryWearRandom(target[0], "ItemNeck", 8);
                     if (InventoryGet(target[0], "ItemNeckRestraints") == null) InventoryWear(target[0], "ChainLeash", "ItemNeckRestraints", null, 8);
-                    CharacterSetActivePose(target[0], "Kneel", true);
+                    PoseSetActive(target[0], "Kneel", true);
                     CharacterRefresh(target[0]);
                     ChatRoomCharacterUpdate(target[0]);
                     ChatRoomSetTarget(null);
@@ -9106,9 +9106,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var targetname = stringPose2[1];
                 if (targetname == null) {
                     if ((pose == "armsfree") &&
-                        (Player.ActivePose != 'BaseUpper') &&
-                        (CharacterCanChangeToPose(Player, 'BaseUpper'))) {
-                        CharacterSetActivePose(Player, "BaseUpper");
+                        (Player.ActivePose != 'BaseUpper') &&    
+                        (PoseCanChangeUnaided(Player, 'BaseUpper'))) {
+                        PoseSetActive(Player, "BaseUpper");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9120,8 +9120,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "belly") &&
                         (Player.ActivePose != 'Hogtied') &&
-                        (CharacterCanChangeToPose(Player, 'Hogtied'))) {
-                        CharacterSetActivePose(Player, "Hogtied");
+                        (PoseCanChangeUnaided(Player, 'Hogtied'))) {
+                        PoseSetActive(Player, "Hogtied");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9133,8 +9133,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "boxtied") &&
                         (Player.ActivePose != 'BackBoxTie') &&
-                        (CharacterCanChangeToPose(Player, 'BackBoxTie'))) {
-                        CharacterSetActivePose(Player, "BackBoxTie");
+                        (PoseCanChangeUnaided(Player, 'BackBoxTie'))) {
+                        PoseSetActive(Player, "BackBoxTie");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9146,8 +9146,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "cuffed") &&
                         (Player.ActivePose != 'BackCuffs') &&
-                        (CharacterCanChangeToPose(Player, 'BackCuffs'))) {
-                        CharacterSetActivePose(Player, "BackCuffs");
+                        (PoseCanChangeUnaided(Player, 'BackCuffs'))) {
+                        PoseSetActive(Player, "BackCuffs");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9159,8 +9159,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "elbowtied") &&
                         (Player.ActivePose != 'BackElbowTouch') &&
-                        (CharacterCanChangeToPose(Player, 'BackElbowTouch'))) {
-                        CharacterSetActivePose(Player, "BackElbowTouch");
+                        (PoseCanChangeUnaided(Player, 'BackElbowTouch'))) {
+                        PoseSetActive(Player, "BackElbowTouch");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9172,8 +9172,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "kneel1") &&
                         (Player.ActivePose != 'Kneel') &&
-                        ((CharacterCanChangeToPose(Player, 'Kneel')) || (ChatRoomCanAttemptKneel(Player) == true))) {
-                        CharacterSetActivePose(Player, "Kneel");
+                        ((PoseCanChangeUnaided(Player, 'Kneel')) || (ChatRoomCanAttemptKneel(Player) == true))) {
+                        PoseSetActive(Player, "Kneel");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9185,8 +9185,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "kneel2") &&
                         (Player.ActivePose != 'KneelingSpread') &&
-                        (CharacterCanChangeToPose(Player, 'KneelingSpread'))) {
-                        CharacterSetActivePose(Player, "KneelingSpread");
+                        (PoseCanChangeUnaided(Player, 'KneelingSpread'))) {
+                        PoseSetActive(Player, "KneelingSpread");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9198,8 +9198,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "legsclosed") &&
                         (Player.ActivePose != 'LegsClosed') &&
-                        (CharacterCanChangeToPose(Player, 'LegsClosed'))) {
-                        CharacterSetActivePose(Player, "LegsClosed");
+                        (PoseCanChangeUnaided(Player, 'LegsClosed'))) {
+                        PoseSetActive(Player, "LegsClosed");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9211,8 +9211,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "legsopen") &&
                         (Player.ActivePose != 'LegsOpen') &&
-                        (CharacterCanChangeToPose(Player, 'LegsOpen'))) {
-                        CharacterSetActivePose(Player, "LegsOpen");
+                        (PoseCanChangeUnaided(Player, 'LegsOpen'))) {
+                        PoseSetActive(Player, "LegsOpen");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9224,8 +9224,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "pet") &&
                         (Player.ActivePose != 'AllFours') &&
-                        (CharacterCanChangeToPose(Player, 'AllFours'))) {
-                        CharacterSetActivePose(Player, "AllFours");
+                        (PoseCanChangeUnaided(Player, 'AllFours'))) {
+                        PoseSetActive(Player, "AllFours");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9237,8 +9237,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "spreadarms1") &&
                         (Player.ActivePose != 'Yoked') &&
-                        (CharacterCanChangeToPose(Player, 'Yoked'))) {
-                        CharacterSetActivePose(Player, "Yoked");
+                        (PoseCanChangeUnaided(Player, 'Yoked'))) {
+                        PoseSetActive(Player, "Yoked");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9250,8 +9250,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "spreadarms2") &&
                         (Player.ActivePose != 'OverTheHead') &&
-                        (CharacterCanChangeToPose(Player, 'OverTheHead'))) {
-                        CharacterSetActivePose(Player, "OverTheHead");
+                        (PoseCanChangeUnaided(Player, 'OverTheHead'))) {
+                        PoseSetActive(Player, "OverTheHead");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9263,10 +9263,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "spreadeagle1") &&
                         ((Player.ActivePose == null) || (Player.ActivePose.includes('Yoked') == false) || (Player.ActivePose.includes('Spread') == false)) &&
-                        (CharacterCanChangeToPose(target[0], 'Yoked')) &&
-                        (CharacterCanChangeToPose(target[0], 'Spread'))) {
-                        CharacterSetActivePose(target[0], "Yoked");
-                        CharacterSetActivePose(target[0], "Spread")
+                        (PoseCanChangeUnaided(Player, 'Yoked')) &&
+                        (PoseCanChangeUnaided(Player, 'Spread'))) {
+                        PoseSetActive(Player, "Yoked");
+                        PoseSetActive(Player, "Spread")
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9278,10 +9278,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "spreadeagle2") &&
                         ((Player.ActivePose == null) || (Player.ActivePose.includes('OverTheHead') == false) || (Player.ActivePose.includes('Spread') == false)) &&
-                        (CharacterCanChangeToPose(target[0], 'OverTheHead')) &&
-                        (CharacterCanChangeToPose(target[0], 'Spread'))) {
-                        CharacterSetActivePose(target[0], "OverTheHead");
-                        CharacterSetActivePose(target[0], "Spread")
+                        (PoseCanChangeUnaided(Player, 'OverTheHead')) &&
+                        (PoseCanChangeUnaided(Player, 'Spread'))) {
+                        PoseSetActive(Player, "OverTheHead");
+                        PoseSetActive(Player, "Spread")
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9293,8 +9293,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "spreadlegs") &&
                         (Player.ActivePose != 'Spread') &&
-                        (CharacterCanChangeToPose(Player, 'Spread'))) {
-                        CharacterSetActivePose(Player, "Spread");
+                        (PoseCanChangeUnaided(Player, 'Spread'))) {
+                        PoseSetActive(Player, "Spread");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9306,8 +9306,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "stand") &&
                         (Player.ActivePose != null) &&
-                        ((CharacterCanChangeToPose(Player, null)) || (ChatRoomCanAttemptStand(Player) == true))) {
-                        CharacterSetActivePose(Player, null);
+                        ((PoseCanChangeUnaided(Player, null)) || (ChatRoomCanAttemptStand(Player) == true))) {
+                        PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
                         ServerSend("ChatRoomChat", {
@@ -9320,8 +9320,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "suspension") &&
                         (Player.ActivePose != 'Suspension') &&
-                        (CharacterCanChangeToPose(Player, 'Suspension'))) {
-                        CharacterSetActivePose(Player, "Suspension");
+                        (PoseCanChangeUnaided(Player, 'Suspension'))) {
+                        PoseSetActive(Player, "Suspension");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9333,8 +9333,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         });
                     } else if ((pose == "tapedhands") &&
                         (Player.ActivePose != 'TapedHands') &&
-                        (CharacterCanChangeToPose(Player, 'TapedHands'))) {
-                        CharacterSetActivePose(Player, "TapedHands");
+                        (PoseCanChangeUnaided(Player, 'TapedHands'))) {
+                        PoseSetActive(Player, "TapedHands");
                         ChatRoomCharacterUpdate(Player);
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -9355,20 +9355,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             }]
                         });
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
-                        CharacterSetActivePose(Player, null);
+                        PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         setTimeout(function() {
                             InventoryGet(Player, "Emoticon").Property.OverrideHeight = {
                                 Height: 150
                             };
-                            CharacterSetActivePose(Player, "Kneel");
+                            PoseSetActive(Player, "Kneel");
                             CurrentScreen === "ChatRoom" ?
                                 ChatRoomCharacterUpdate(Player) :
                                 CharacterRefresh(Player);
                         }, 1000);
                         setTimeout(function() {
                             InventoryGet(Player, "Emoticon").Property.OverrideHeight = undefined;
-                            CharacterSetActivePose(Player, null);
+                            PoseSetActive(Player, null);
                             CurrentScreen === "ChatRoom" ?
                                 ChatRoomCharacterUpdate(Player) :
                                 CharacterRefresh(Player);
@@ -9377,13 +9377,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             InventoryGet(Player, "Emoticon").Property.OverrideHeight = {
                                 Height: 150
                             };
-                            CharacterSetActivePose(Player, "Kneel");
+                            PoseSetActive(Player, "Kneel");
                             CurrentScreen === "ChatRoom" ?
                                 ChatRoomCharacterUpdate(Player) :
                                 CharacterRefresh(Player);
                         }, 3000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, null);
+                            PoseSetActive(Player, null);
                             delete InventoryGet(Player, 'Emoticon').Property.OverrideHeight;
                             CurrentScreen === 'ChatRoom' ?
                                 ChatRoomCharacterUpdate(Player) :
@@ -9402,10 +9402,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if FBC enabled).</p>"
                         );
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
-                        CharacterSetActivePose(Player, null);
+                        PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "OverTheHead");
+                            PoseSetActive(Player, "OverTheHead");
                             ChatRoomCharacterUpdate(Player);
                         }, 500);
                         setTimeout(function() {
@@ -9417,13 +9417,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 CharacterRefresh(Player);
                         }, 1000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "Kneel");
+                            PoseSetActive(Player, "Kneel");
                             ChatRoomCharacterUpdate(Player);
                         }, 2000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "BaseUpper");
-                            CharacterSetActivePose(Player, null);
-                            CharacterSetActivePose(Player, ["Suspension", "Kneel"]);
+                            PoseSetActive(Player, "BaseUpper");
+                            PoseSetActive(Player, null);
+                            PoseSetActive(Player, ["Suspension", "Kneel"]);
                             InventoryGet(Player, "Emoticon").Property.OverrideHeight = {
                                 Height: -300
                             };
@@ -9468,10 +9468,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 Text: "" + tmpname + " makes " + pronoun3 + " workout."
                             }]
                         });
-                        CharacterSetActivePose(Player, null);
+                        PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "OverTheHead");
+                            PoseSetActive(Player, "OverTheHead");
                             ChatRoomCharacterUpdate(Player);
                         }, 500);
                         setTimeout(function() {
@@ -9484,10 +9484,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 1000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "Kneel");
+                            PoseSetActive(Player, "Kneel");
                         }, 2000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "Yoked");
+                            PoseSetActive(Player, "Yoked");
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = {
@@ -9497,7 +9497,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 3000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "OverTheHead");
+                            PoseSetActive(Player, "OverTheHead");
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = {
@@ -9507,7 +9507,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 4000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "Yoked");
+                            PoseSetActive(Player, "Yoked");
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = {
@@ -9517,7 +9517,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 5000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "OverTheHead");
+                            PoseSetActive(Player, "OverTheHead");
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = {
@@ -9527,7 +9527,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 6000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "Yoked");
+                            PoseSetActive(Player, "Yoked");
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = {
@@ -9537,7 +9537,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 7000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "OverTheHead");
+                            PoseSetActive(Player, "OverTheHead");
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = {
@@ -9547,7 +9547,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 8000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "Yoked");
+                            PoseSetActive(Player, "Yoked");
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = {
@@ -9557,7 +9557,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 9000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, "OverTheHead");
+                            PoseSetActive(Player, "OverTheHead");
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = {
@@ -9567,7 +9567,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogLeaveItemMenu();
                         }, 10000);
                         setTimeout(function() {
-                            CharacterSetActivePose(Player, null);
+                            PoseSetActive(Player, null);
                             Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
                             DialogExtendItem(InventoryGet(Player, Region));
                             DialogFocusItem.Property.OverrideHeight = undefined;
@@ -9576,7 +9576,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }, 10000);
                         // reset	 
                     } else if (pose == "reset") {
-                        CharacterSetActivePose(Player, null);
+                        PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
                     }
@@ -9611,8 +9611,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         if (pose == "armsfree") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'BaseUpper') &&
-                                (CharacterCanChangeToPose(target[0], 'BaseUpper'))) {
-                                CharacterSetActivePose(target[0], "BaseUpper");
+                                (PoseCanChangeUnaided(target[0], 'BaseUpper'))) {
+                                PoseSetActive(target[0], "BaseUpper");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9626,8 +9626,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "belly") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Hogtied') &&
-                                (CharacterCanChangeToPose(target[0], 'Hogtied'))) {
-                                CharacterSetActivePose(target[0], "Hogtied");
+                                (PoseCanChangeUnaided(target[0], 'Hogtied'))) {
+                                PoseSetActive(target[0], "Hogtied");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9641,8 +9641,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "boxtied") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'BackBoxTie') &&
-                                (CharacterCanChangeToPose(target[0], 'BackBoxTie'))) {
-                                CharacterSetActivePose(target[0], "BackBoxTie");
+                                (PoseCanChangeUnaided(target[0], 'BackBoxTie'))) {
+                                PoseSetActive(target[0], "BackBoxTie");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9656,8 +9656,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "cuffed") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'BackCuffs') &&
-                                (CharacterCanChangeToPose(target[0], 'BackCuffs'))) {
-                                CharacterSetActivePose(target[0], "BackCuffs");
+                                (PoseCanChangeUnaided(target[0], 'BackCuffs'))) {
+                                PoseSetActive(target[0], "BackCuffs");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9671,8 +9671,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "elbowtied") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'BackElbowTouch') &&
-                                (CharacterCanChangeToPose(target[0], 'BackElbowTouch'))) {
-                                CharacterSetActivePose(target[0], "BackElbowTouch");
+                                (PoseCanChangeUnaided(target[0], 'BackElbowTouch'))) {
+                                PoseSetActive(target[0], "BackElbowTouch");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9686,8 +9686,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "kneel1") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Kneel') &&
-                                ((CharacterCanChangeToPose(target[0], 'Kneel')) || (ChatRoomCanAttemptKneel(target[0]) == true))) {
-                                CharacterSetActivePose(target[0], "Kneel");
+                                ((PoseCanChangeUnaided(target[0], 'Kneel')) || (ChatRoomCanAttemptKneel(target[0]) == true))) {
+                                PoseSetActive(target[0], "Kneel");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9701,8 +9701,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "kneel2") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'KneelingSpread') &&
-                                (CharacterCanChangeToPose(target[0], 'KneelingSpread'))) {
-                                CharacterSetActivePose(target[0], "KneelingSpread");
+                                (PoseCanChangeUnaided(target[0], 'KneelingSpread'))) {
+                                PoseSetActive(target[0], "KneelingSpread");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9716,8 +9716,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "legsclosed") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'LegsClosed') &&
-                                (CharacterCanChangeToPose(target[0], 'LegsClosed'))) {
-                                CharacterSetActivePose(target[0], "LegsClosed");
+                                (PoseCanChangeUnaided(target[0], 'LegsClosed'))) {
+                                PoseSetActive(target[0], "LegsClosed");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9731,8 +9731,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "legsopen") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'LegsOpen') &&
-                                (CharacterCanChangeToPose(target[0], 'LegsOpen'))) {
-                                CharacterSetActivePose(target[0], "LegsOpen");
+                                (PoseCanChangeUnaided(target[0], 'LegsOpen'))) {
+                                PoseSetActive(target[0], "LegsOpen");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9746,8 +9746,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "pet") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'AllFours') &&
-                                (CharacterCanChangeToPose(target[0], 'AllFours'))) {
-                                CharacterSetActivePose(target[0], "AllFours");
+                                (PoseCanChangeUnaided(target[0], 'AllFours'))) {
+                                PoseSetActive(target[0], "AllFours");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9761,8 +9761,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "spreadarms1") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Yoked') &&
-                                (CharacterCanChangeToPose(target[0], 'Yoked'))) {
-                                CharacterSetActivePose(target[0], "Yoked");
+                                (PoseCanChangeUnaided(target[0], 'Yoked'))) {
+                                PoseSetActive(target[0], "Yoked");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9776,8 +9776,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "spreadarms2") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'OverTheHead') &&
-                                (CharacterCanChangeToPose(target[0], 'OverTheHead'))) {
-                                CharacterSetActivePose(target[0], "OverTheHead");
+                                (PoseCanChangeUnaided(target[0], 'OverTheHead'))) {
+                                PoseSetActive(target[0], "OverTheHead");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9791,10 +9791,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "spreadeagle1") {
                             if ((target[0].AllowItem == true) &&
                                 ((target[0].ActivePose == null) || (target[0].ActivePose.includes('Yoked') == false) || (target[0].ActivePose.includes('Spread') == false)) &&
-                                (CharacterCanChangeToPose(target[0], 'Yoked')) &&
-                                (CharacterCanChangeToPose(target[0], 'Spread'))) {
-                                CharacterSetActivePose(target[0], "Yoked");
-                                CharacterSetActivePose(target[0], "Spread");
+                                (PoseCanChangeUnaided(target[0], 'Yoked')) &&
+                                (PoseCanChangeUnaided(target[0], 'Spread'))) {
+                                PoseSetActive(target[0], "Yoked");
+                                PoseSetActive(target[0], "Spread");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9808,10 +9808,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "spreadeagle2") {
                             if ((target[0].AllowItem == true) &&
                                 ((target[0].ActivePose == null) || (target[0].ActivePose.includes('OverTheHead') == false) || (target[0].ActivePose.includes('Spread') == false)) &&
-                                (CharacterCanChangeToPose(target[0], 'OverTheHead')) &&
-                                (CharacterCanChangeToPose(target[0], 'Spread'))) {
-                                CharacterSetActivePose(target[0], "OverTheHead");
-                                CharacterSetActivePose(target[0], "Spread");
+                                (PoseCanChangeUnaided(target[0], 'OverTheHead')) &&
+                                (PoseCanChangeUnaided(target[0], 'Spread'))) {
+                                PoseSetActive(target[0], "OverTheHead");
+                                PoseSetActive(target[0], "Spread");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9825,8 +9825,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "spreadlegs") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Spread') &&
-                                (CharacterCanChangeToPose(target[0], 'Spread'))) {
-                                CharacterSetActivePose(target[0], "Spread");
+                                (PoseCanChangeUnaided(target[0], 'Spread'))) {
+                                PoseSetActive(target[0], "Spread");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9840,8 +9840,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "stand") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != null) &&
-                                ((CharacterCanChangeToPose(target[0], null)) || (ChatRoomCanAttemptStand(target[0]) == true))) {
-                                CharacterSetActivePose(target[0], null);
+                                ((PoseCanChangeUnaided(target[0], null)) || (ChatRoomCanAttemptStand(target[0]) == true))) {
+                                PoseSetActive(target[0], null);
                                 ChatRoomCharacterUpdate(target[0]);
                                 CharacterRefresh(target[0]);
                                 ServerSend("ChatRoomChat", {
@@ -9856,8 +9856,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "suspension") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Suspension') &&
-                                (CharacterCanChangeToPose(target[0], 'Suspension'))) {
-                                CharacterSetActivePose(target[0], "Suspension");
+                                (PoseCanChangeUnaided(target[0], 'Suspension'))) {
+                                PoseSetActive(target[0], "Suspension");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9871,8 +9871,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (pose == "tapedhands") {
                             if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'TapedHands') &&
-                                (CharacterCanChangeToPose(target[0], 'TapedHands'))) {
-                                CharacterSetActivePose(target[0], "TapedHands");
+                                (PoseCanChangeUnaided(target[0], 'TapedHands'))) {
+                                PoseSetActive(target[0], "TapedHands");
                                 ChatRoomCharacterUpdate(target[0]);
                                 ServerSend("ChatRoomChat", {
                                     Content: "Beep",
@@ -9885,7 +9885,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             }
                         } else if (pose == "reset") {
                             if (target[0].AllowItem == true) {
-                                CharacterSetActivePose(target[0], null);
+                                PoseSetActive(target[0], null);
                                 ChatRoomCharacterUpdate(target[0]);
                                 CharacterRefresh(target[0]);
                             }
