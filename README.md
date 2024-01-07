@@ -66,5 +66,5 @@ Changes for future version
   - mapx (x-position) to change your X coordinate in the map
   - mapy (y-position) to change your Y coordinate in the map
 * Replaced whisper command by murmur command (for R100 compatibility)
-* Updated bcr option of xstatus command
+* Updated bcr and lscg options of xstatus command
 
