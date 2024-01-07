@@ -280,6 +280,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var Lipstick2Status = ["No lipstick marks when you kiss someone.",
         "Lipstick marks possible when you kiss someone."
     ];
+    var Opacity1Status = ["Effects bypassing opacity are applied.",
+        "Effects bypassing opacity are not applied."
+    ];
+    var Opacity2Status = ["Other players can change the opacity of your wardrobe items.",
+        "Other players can't change the opacity of your wardrobe items."
+    ];
     var RestrainedSettingsStatus = ["LSCG settings can't be changed when you are restrained.",
         "LSCG settings can be changed when you are restrained."
     ];
@@ -2276,6 +2282,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg2 = Lipstick2Status[0];
         } else {
             msg2 = Lipstick2Status[1];
+        }
+        msg = msg1 + " " + msg2;
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showOpacityStatus() {
+        let msg;
+        if (LSCGdata.OpacityModule.enabled) {
+            msg1 = Opacity1Status[0];
+        } else {
+            msg1 = Opacity1Status[1];
+        }
+        if (LSCGdata.OpacityModule.preventExternalMod) {
+            msg2 = Opacity2Status[0];
+        } else {
+            msg2 = Opacity2Status[1];
         }
         msg = msg1 + " " + msg2;
         M_MOANER_sendMessageToWearer(msg);
@@ -12730,8 +12752,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showEbchWelcomeStatus();
                     }
 		} else if (addon == "lscg") {
-                    if (Player.OnlineSettings.LSCG != null) {
-                        str = Player.OnlineSettings.LSCG;
+                    if (Player.ExtensionSettings.LSCG != null) {
+                        str = Player.ExtensionSettings.LSCG;
                         d = LZString.decompressFromBase64(str);
                         LSCGdata = {};
                         decoded = JSON.parse(d);
@@ -12742,6 +12764,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showCraftingStatus();
                         showEdgeBlurStatus();
                         showLipstickStatus();
+			showOpacityStatus();
                         showRestrainedSettingsStatus();
                         showResizingStatus();
                     }
