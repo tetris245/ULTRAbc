@@ -12295,7 +12295,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Unrestricted totally. Can do many things you couldn't do before.\n" +
                     "Store also includes hidden items. This can only be reset via a full relog.\n" +
-		    "This command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!</p>
+		    "This command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!</p>"
                 );
                 Player.CanInteract = function() {
                     return true;
