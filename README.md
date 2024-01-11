@@ -62,10 +62,10 @@ Changes for future version
 * Changed position of AutoJoin message (for R100 compatibility)
 * Changed position of FREE and OUT buttons for chat rooms with map feature
 * New commands:
+  - mapfull to toggle full vision in mapped rooms
   - maproom to give infos about location of players in current mapped chat room
   - mapx (x-position) to change your X coordinate in the map
   - mapy (y-position) to change your Y coordinate in the map
-* Added fullmap option to uset command (toggles full vision in mapped rooms)
 * Replaced whisper command by murmur command (for R100 compatibility)
 * Updated bcr and lscg options of xstatus command
 * Updated names of pose functions
