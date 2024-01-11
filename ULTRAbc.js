@@ -50,11 +50,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var cfame = 200;
 
     let AutojoinOn;   
-    let FullmapOn;
     let FullseedOn;
     let HighfameOn;
     let HotkeysOn;
     let MagiccheatOn;
+    let MapfullOn = false;
     var NowhisperOn = false;
     var NPCpunish = false;  
     let OutbuttonsOn;
@@ -352,11 +352,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             cdesk = 0;
             cfame = 200;
             AutojoinOn = false;
-	    FullmapOn = false;
             FullseedOn = false;
             HighfameOn = false;
             HotkeysOn = false;
             MagiccheatOn = false;
+	    MapfullOn = false;
             NowhisperOn = false;
             NPCpunish = false;
 	    OutbuttonsOn = false;
@@ -405,11 +405,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             cdesk = datas.cdesk;
             cfame = datas.cfame;
             AutojoinOn = datas.autojoin;
-	    FullmapOn = datas.fullmap;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
             HotkeysOn = datas.hotkeys;
             MagiccheatOn = datas.magiccheat;
+	    MapfullOn = false;
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
 	    OutbuttonsOn = datas.outbuttons;
@@ -461,11 +461,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "cdesk": cdesk,
             "cfame": cfame,
             "autojoin": AutojoinOn,
-	    "fullmap": FullmapOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
             "hotkeys": HotkeysOn,
             "magiccheat": MagiccheatOn,
+	    "mapfull": MapfullOn,
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
             "outbuttons": OutbuttonsOn,
@@ -537,16 +537,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     cfame = 200;
                     M_MOANER_saveControls();
                 }
-		if (FullmapOn == null || FullmapOn == undefined) {
-                    FullmapOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (HighfameOn == null || HighfameOn == undefined) {
                     HighfameOn = false;
                     M_MOANER_saveControls();
                 }
                 if (HotkeysOn == null || HotkeysOn == undefined) {
                     HotkeysOn = false;
+                    M_MOANER_saveControls();
+                }
+		if (MapfullOn == null || MapfullOn == undefined) {
+                    MapfullOn = false;
                     M_MOANER_saveControls();
                 }
 		if (OutbuttonsOn == null || OutbuttonsOn == undefined) {
@@ -834,7 +834,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     async function ULTRAChatRoomMapCalculatePerceptionMasks() {
         modApi.hookFunction('ChatRoomMapCalculatePerceptionMasks', 4, (args, next) => {
-            if (FullmapOn) {
+            if (MapfullOn) {
                 ChatRoomMapVisibilityMask.fill(true);
 		ChatRoomMapAudibilityMask.fill(true);
 		return;
@@ -7881,6 +7881,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'mapfull',
+        Description: ": toggles full vision of mapped rooms",
+        Action: () => {
+            if (MapfullOn == true) {
+                MapfullOn = false;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision of mapped rooms is disabled.</p>"
+                 );
+            } else {
+                MapfullOn = true;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision of mapped rooms is enabled. Will be disabled if you relog.</p>"
+                );
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'maproom',
         Description: ": gives infos about location of players in current mapped chat room.",
         Action: () => {
@@ -11912,6 +11932,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
+		    "<b>/mapfull</b> toggles full vision of mapped rooms.\n" +
 		    "<b>/maproom</b> = gives infos about location of players in current mapped chat room.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
@@ -12454,7 +12475,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "Available options:\n" +
                     "<b>autojoin</b> to toggle chat room auto-join feature\n" +
                     "<b>exitmode</b> to toggle exit mode for OUT button \n" +
-		    "<b>fullmap</b> to toggle full vision of mapped rooms\n" +
                     "<b>fullseed</b> to toggle full solution for intricate and hs locks\n" +
                     "<b>highfame</b> to toggle high fame mode in Club Card Game\n" +  
                     "<b>hotkeys</b> to toggle hotkeys on numeric pad (Divide = fast leave - Multiply = Total Release)\n" +      
@@ -12492,20 +12512,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Slow exit mode is activated.</p>"
-                        );
-                    }
-		} else if (setting == "fullmap") {
-                    if (FullmapOn == true) {
-                        FullmapOn = false;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision of mapped rooms is disabled.</p>"
-                        );
-                    } else {
-                        FullmapOn = true;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision of mapped rooms is enabled.</p>"
                         );
                     }
                 } else if (setting == "fullseed") {
