@@ -7879,7 +7879,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var number = ChatRoomCharacter[pl].MemberNumber;
                     ChatRoomSendLocal(name + " (" + aka + ") - " + number);           
                     if (ChatRoomCharacter[pl].MapData != undefined) {
-                        ChatRoomSendLocal("X = " + ChatRoomCharacter[pl].MapData.X + " - Y = " + ChatRoomCharacter[pl].MapData.Y);  
+			if (ChatRoomData.MapData.Type == "Hybrid"){
+                            var exinfo = "Real presence in map: ?"; 
+                        } else {
+                            var exinfo = "Real presence in map: YES";                 
+                        }
+                        ChatRoomSendLocal("X = " + ChatRoomCharacter[pl].MapData.Pos.X + " - Y = " + ChatRoomCharacter[pl].MapData.Pos.Y + " - " + exinfo);
                     } else {
                         ChatRoomSendLocal("Does not have entered map");  
                     }   
@@ -7903,17 +7908,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomSendLocal("This room does not use the map feature");  
                 } else {
                     var plx = args;
-                    if ((plx > -1) && (plx < 40) && (plx != Player.MapData.X)) {  
-                        if (plx < Player.MapData.X) {
+                    if ((plx > -1) && (plx < 40) && (plx != Player.MapData.Pos.X)) {  
+                        if (plx < Player.MapData.Pos.X) {
                             D = "West";
-                            m = (Player.MapData.X - plx);
+                            m = (Player.MapData.Pos.X - plx);
                         }  
-                        if (plx > Player.MapData.X) {
+                        if (plx > Player.MapData.Pos.X) {
                             D = "East";
-                            m = (plx - Player.MapData.X);
+                            m = (plx - Player.MapData.Pos.X);
                         }   
-                        let X = Player.MapData.X + ((D == "West") ? -m : 0) + ((D == "East") ? m : 0);
-                        let Y = Player.MapData.Y;
+                        let X = Player.MapData.Pos.X + ((D == "West") ? -m : 0) + ((D == "East") ? m : 0);
+                        let Y = Player.MapData.Pos.Y;
                         let Time = ChatRoomMapCanEnterTile(X, Y);
                         if (Time > 0) {
 		            ChatRoomMapMovement = {
@@ -7945,17 +7950,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomSendLocal("This room does not use the map feature");  
                 } else {
                     var ply = args;
-                    if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Y)) {
-                        if (ply < Player.MapData.Y) {
+                    if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Pos.Y)) {
+                        if (ply < Player.MapData.Pos.Y) {
                             D = "North";
-                            m = (Player.MapData.Y - ply);
+                            m = (Player.MapData.Pos.Y - ply);
                         }  
-                        if (ply > Player.MapData.Y) {
+                        if (ply > Player.MapData.Pos.Y) {
                             D = "South";
-                            m = (ply - Player.MapData.Y);
+                            m = (ply - Player.MapData.Pos.Y);
                         }                 
-                        let X = Player.MapData.X;
-                        let Y = Player.MapData.Y + ((D == "North") ? -m : 0) + ((D == "South") ? m : 0);
+                        let X = Player.MapData.Pos.X;
+                        let Y = Player.MapData.Pos.Y + ((D == "North") ? -m : 0) + ((D == "South") ? m : 0);
                         let Time = ChatRoomMapCanEnterTile(X, Y);
                         if (Time > 0) {
 		            ChatRoomMapMovement = {
