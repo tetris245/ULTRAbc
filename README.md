@@ -62,7 +62,7 @@ Changes for future version
 * Changed position of AutoJoin message (for R100 compatibility)
 * Changed position of FREE and OUT buttons for chat rooms with map feature
 * New commands:
-  - mapfull to toggle full vision in mapped rooms
+  - mapfull to toggle full vision in mapped rooms, even if you are not admin
   - maproom to give infos about location of players in current mapped chat room
   - mapx (x-position) to change your X coordinate in the map
   - mapy (y-position) to change your Y coordinate in the map
