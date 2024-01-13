@@ -68,5 +68,5 @@ Changes for future version
   - mapy (y-position) to change your Y coordinate in the map
 * Replaced whisper command by murmur command (for R100 compatibility)
 * Updated bcr and lscg options of xstatus command
-* Updated names of pose functions
+* Updated names of pose functions and FriendListRun function
 
