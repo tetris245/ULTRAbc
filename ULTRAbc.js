@@ -11932,7 +11932,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
-		    "<b>/mapfull</b> toggles full vision of mapped rooms.\n" +
+		    "<b>/mapfull</b> = toggles full vision of mapped rooms.\n" +
 		    "<b>/maproom</b> = gives infos about location of players in current mapped chat room.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
