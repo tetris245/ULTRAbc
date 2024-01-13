@@ -12039,7 +12039,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
 		    "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
                     "<b>/moaner</b> = moans when horny and stimulated. *\n" +
-		    "<b>/murmur</b> (target) (message): sends whisper to specified target.\n>" +
+		    "<b>/murmur</b> (target) (message) = sends whisper to specified target.\n" +
                     "<b>/s1</b> (stuffhere) = speaks once in light stuttering mode.\n" +
                     "<b>/s2</b> (stuffhere) = speaks once in normal stuttering mode.\n" +
                     "<b>/s3</b> (stuffhere) = speaks once in heavy stuttering mode.\n" +
