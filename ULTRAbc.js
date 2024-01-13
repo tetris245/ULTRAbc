@@ -1245,7 +1245,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (FriendListBeepTarget !== null) {
                 ElementPositionFix("FriendListBeep", 36, 5, 75, 1985, 890);
             }
-            DrawButton(1795, 5, 60, 60, "", "White", "Icons/Small/Reset.png", TextGet("Refresh"));
+            DrawButton(1725, 5, 60, 60, "", "White", "Icons/Small/Reset.png", TextGet("Refresh"));
+	    DrawButton(1795, 5, 60, 60, "", "White", "Icons/Small/Prev.png");
             DrawButton(1865, 5, 60, 60, "", "White", "Icons/Small/Next.png");
             DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
             return;
