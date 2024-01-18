@@ -57,16 +57,5 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added Lobbies buttons in Chat Search (they replace the lobby switch system added in R100)
-* Added support for message starting with \ ('escape' feature added in R100) 
-* Changed position of AutoJoin message (for R100 compatibility)
-* Changed position of FREE and OUT buttons for chat rooms with map feature
-* New commands:
-  - mapfull to toggle full vision in mapped rooms, even if you are not admin
-  - maproom to give infos about location of players in current mapped chat room
-  - mapx (x-position) to change your X coordinate in the map
-  - mapy (y-position) to change your Y coordinate in the map
-* Replaced whisper command by murmur command (for R100 compatibility)
-* Updated bcr and lscg options of xstatus command
-* Updated names of pose functions and FriendListRun function
+(...)
 
