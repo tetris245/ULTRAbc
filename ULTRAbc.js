@@ -584,7 +584,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAChatRoomDrawBackground();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapCalculatePerceptionMasks();
-    ULTRAChatRoomMapWhisperValid();
     ULTRAChatRoomMenuDraw();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
@@ -846,13 +845,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		return;
             }    
             next(args);
-        });
-    }
-
-    async function ULTRAChatRoomMapWhisperValid() {
-        modApi.hookFunction('ChatRoomMapWhisperValid', 4, (args, next) => {
-           if (MapfullOn) return;
-           next(args);
         });
     }
 
@@ -7916,13 +7908,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     MapfullOn = false;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision, hearing and whispering in mapped rooms is disabled.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision and hearing in mapped rooms is disabled.</p>"
                      );
                 } else {
                     MapfullOn = true;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision, hearing and whispering in mapped rooms is enabled. Will be disabled if you relog.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision and hearing in mapped rooms is enabled. Will be disabled if you relog.</p>"
                     );
                 }
             }
@@ -11961,7 +11953,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
-		    "<b>/mapfull</b> = toggles full vision, hearing and whispering in mapped rooms.\n" +
+		    "<b>/mapfull</b> = toggles full vision and hearing in mapped rooms.\n" +
 		    "<b>/maproom</b> = gives infos about location of players in current mapped chat room.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
