@@ -1941,7 +1941,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //BC Responsive Status
     function showBCResponsiveStatus() {
         let msg;
-        if (BCRdata.settings.nabled) {
+        if (BCRdata.settings.enabled) {
             msg = BCResponsiveStatus[0];
         } else {
             msg = BCResponsiveStatus[1];
