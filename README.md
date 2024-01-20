@@ -57,5 +57,7 @@ All else I might not have included.
 
 Changes for future version 
 
-(...)
+* Updated the xstatus command
+  - option bcr for the original Chinese BC Responsive
+  - option rsp for Responsive
 
