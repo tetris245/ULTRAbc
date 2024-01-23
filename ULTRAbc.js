@@ -6063,7 +6063,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             }
                             if (InventoryGet(target[0], "Panties") == null) {
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have normal diapers!</p>"
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!</p>"
                                 );
                             } else if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
@@ -6091,7 +6091,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                             } else {
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have normal diapers!</p>"
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!</p>"
                                 );
                             }
                             ChatRoomSetTarget(null);
@@ -6126,7 +6126,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             }
                             if (InventoryGet(target[0], "ItemPelvis") == null) {
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have chastity diapers!</p>"
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!</p>"
                                 );
                             } else if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
@@ -6154,7 +6154,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                             } else {
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have chastity diapers!</p>"
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!</p>"
                                 );
                             }
                             ChatRoomSetTarget(null);
@@ -6228,26 +6228,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             }
                             if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
                                 );
                             } else if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
                                 if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
                                     ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have two layers of diapers!</p>"
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!</p>"
                                     );
                                 } else {
                                     ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
                                     );
                                 }
                             } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
                                 if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
                                     ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have two layers of diapers!</p>"
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!</p>"
                                     );
                                 } else {
                                     ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
                                     );
                                 }
                             } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
@@ -6278,7 +6278,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                     document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                                 } else {
                                     ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + tgpname + " does not have two layers of diapers!</p>"
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!</p>"
 
                                     );
                                 }
