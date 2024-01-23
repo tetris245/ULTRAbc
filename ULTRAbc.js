@@ -7899,7 +7899,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'mapfull',
-        Description: ": toggles full vision, hearing and whispering in mapped rooms",
+        Description: ": toggles full vision and hearing in mapped rooms",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
                 ChatRoomSendLocal("This room does not use the map feature");
