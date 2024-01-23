@@ -5733,21 +5733,26 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (Tclothes == undefined) {
-                        var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+		    if (target[0].OnlineSharedSettings.Uwall == true) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                        );
                     } else {
-                        if (Tclothes != "") {
-                            if (Tclothes.startsWith("\u0027")) {
-                                var message = tmpname + Tclothes + ' '.repeat(1) + tgpname;
-                            } else {
-                                var message = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
-                            }
-                        } else {
+                        if (Tclothes == undefined) {
                             var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                        } else {
+                            if (Tclothes != "") {
+                                if (Tclothes.startsWith("\u0027")) {
+                                    var message = tmpname + Tclothes + ' '.repeat(1) + tgpname;
+                                } else {
+                                    var message = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
+                                }
+                            } else {
+                                var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                            }
                         }
-                    }
-                    if (Tclothes != "no message") {
-                        ServerSend("ChatRoomChat", {
+                        if (Tclothes != "no message") {
+                            ServerSend("ChatRoomChat", {
                             Content: "Beep",
                             Type: "Action",
                             Dictionary: [{
@@ -5755,11 +5760,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 Text: message
                             }]
                         });
-                    }
-                    CharacterAppearanceFullRandom(target[0], true);
-                    ChatRoomCharacterUpdate(target[0]);
-                    ChatRoomSetTarget(null);
+                        }
+                        CharacterAppearanceFullRandom(target[0], true);
+                        ChatRoomCharacterUpdate(target[0]);
+                    }    
                 }
+                ChatRoomSetTarget(null);
             }
         }
     }])
@@ -6911,25 +6917,33 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (hint != "") {
-                        for (let A = 0; A < target[0].Appearance.length; A++)
-                            if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
-                                if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                                    target[0].Appearance[A].Property.Hint = hint;
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "A hint has been added to " + tgpname + "'s locks with password."
-                                        }]
-                                    });
+		    if (target[0].OnlineSharedSettings.Uwall == true) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                        );
+                    } else { 
+                        if (hint != "") {
+                            for (let A = 0; A < target[0].Appearance.length; A++)
+                                if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
+                                    if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") ||
+					(target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") ||
+					(target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
+                                        target[0].Appearance[A].Property.Hint = hint;
+                                        ServerSend("ChatRoomChat", {
+                                            Content: "Beep",
+                                            Type: "Action",
+                                            Dictionary: [{
+                                                Tag: "Beep",
+                                                Text: "A hint has been added to " + tgpname + "'s locks with password."
+                                            }]
+                                        });
+                                    }
                                 }
-                            }
-                        ChatRoomCharacterUpdate(Player);
-                        ChatRoomSetTarget(null);
+                            ChatRoomCharacterUpdate(Player);
+                        }
                     }
                 }
+                ChatRoomSetTarget(null);                
             }
         }
     }])
@@ -7085,28 +7099,34 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else {
                             tgpname = target[0].Nickname;
                         }
-                        for (let A = 0; A < target[0].Appearance.length; A++)
-                        if (target[0].Appearance[A].Asset.Group.Name != null) {
-                            if (target[0].Appearance[A].Asset.Group.Name.startsWith("Item")) {
-                                if (Array.isArray(target[0].Appearance[A].Color)) {
-                                    for (let i = 0; i < 14; i++)
-                                    target[0].Appearance[A].Color[i] = color;  
-                                } else {
-                                      target[0].Appearance[A].Color = color;    
-                                }               
-                            }
+                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } else { 
+                            for (let A = 0; A < target[0].Appearance.length; A++)
+                                if (target[0].Appearance[A].Asset.Group.Name != null) {
+                                    if (target[0].Appearance[A].Asset.Group.Name.startsWith("Item")) {
+                                        if (Array.isArray(target[0].Appearance[A].Color)) {
+                                            for (let i = 0; i < 14; i++)
+                                                target[0].Appearance[A].Color[i] = color;  
+                                        } else {
+                                            target[0].Appearance[A].Color = color;    
+                                        }               
+                                    }
+                                }
+                            ServerSend("ChatRoomChat", {
+                                 Content: "Beep",
+                                 Type: "Action",
+                                 Dictionary: [{
+                                     Tag: "Beep",
+                                     Text: "New colors are used on " + tgpname + "'s bindings."
+                                }]
+                            });
+                            ChatRoomCharacterUpdate(target[0]);
                         }
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "New colors are used on " + tgpname + "'s bindings."
-                            }]
-                        });
-                        ChatRoomCharacterUpdate(target[0]);
-                        ChatRoomSetTarget(null);
                     }
+                    ChatRoomSetTarget(null);
                 }
             }
         }
