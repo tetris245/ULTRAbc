@@ -12293,6 +12293,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 );
             } else {
                 var silent = 0;
+		var uw = 0;
                 var stringUnlock1 = args;
                 var stringUnlock2 = stringUnlock1.split(/[ ,]+/);
                 var lk = stringUnlock2[1];
@@ -12324,110 +12325,119 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }                     
                         if (Unlock == "no message") var silent = 1;
                     } else {
-                        if (Tunlock == undefined) {
-                            var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
-                        } else {
-                            if (Tunlock != "") {
-                                if (Tunlock.startsWith("\u0027")) {
-                                    var message = tmpname + Tunlock + ' '.repeat(1) + tgpname;
-                                } else {
-                                    var message = tmpname + ' '.repeat(1) + Tunlock + ' '.repeat(1) + tgpname;
-                                }
-                            } else {
+                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                            var uw = 1;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } else  { 
+                            if (Tunlock == undefined) {
                                 var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                            } else {
+                                if (Tunlock != "") {
+                                    if (Tunlock.startsWith("\u0027")) {
+                                        var message = tmpname + Tunlock + ' '.repeat(1) + tgpname;
+                                    } else {
+                                        var message = tmpname + ' '.repeat(1) + Tunlock + ' '.repeat(1) + tgpname;
+                                    }
+                                } else {
+                                    var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                                }
                             }
+                            if (Tunlock == "no message") var silent = 1;
                         }
-                        if (Tunlock == "no message") var silent = 1;
                     }
-                    if (silent == 0) {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: message
-                            }]
-                        });
-                    }
-                    if (lk == null) {
-                        CharacterReleaseFromLock(target[0], "CombinationPadlock");
-                        CharacterReleaseFromLock(target[0], "ExclusivePadlock");
-                        CharacterReleaseFromLock(target[0], "FamilyPadlock");
-                        CharacterReleaseFromLock(target[0], "HighSecurityPadlock");
-                        CharacterReleaseFromLock(target[0], "IntricatePadlock");
-                        CharacterReleaseFromLock(target[0], "LoversPadlock");
-                        CharacterReleaseFromLock(target[0], "LoversTimerPadlock");
-                        CharacterReleaseFromLock(target[0], "MetalPadlock");
-                        CharacterReleaseFromLock(target[0], "MistressPadlock");
-                        CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
-                        CharacterReleaseFromLock(target[0], "OwnerPadlock");
-                        CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
-                        CharacterReleaseFromLock(target[0], "PandoraPadlock");
-                        CharacterReleaseFromLock(target[0], "PasswordPadlock");
-                        CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
-                        CharacterReleaseFromLock(target[0], "SafewordPadlock");
-                        CharacterReleaseFromLock(target[0], "TimerPadlock");
-                        CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
-                    } else if (lk == 1) {
-                        CharacterReleaseFromLock(target[0], "MetalPadlock");
-                    } else if (lk == 2) {
-                        CharacterReleaseFromLock(target[0], "ExclusivePadlock");
-                    } else if (lk == 3) {
-                        CharacterReleaseFromLock(target[0], "IntricatePadlock");
-                    } else if (lk == 4) {
-                        for (let A = 0; A < target[0].Appearance.length; A++)
-                            if ((target[0].Appearance[A].Property != null) &&
+                    if (uw == 0) {
+                        if (silent == 0) {
+                            ServerSend("ChatRoomChat", {
+                                Content: "Beep",
+                                Type: "Action",
+                                Dictionary: [{
+                                    Tag: "Beep",
+                                    Text: message
+                                }]
+                            });
+                        }
+                        if (lk == null) {
+                            CharacterReleaseFromLock(target[0], "CombinationPadlock");
+                            CharacterReleaseFromLock(target[0], "ExclusivePadlock");
+                            CharacterReleaseFromLock(target[0], "FamilyPadlock");
+                            CharacterReleaseFromLock(target[0], "HighSecurityPadlock");
+                            CharacterReleaseFromLock(target[0], "IntricatePadlock");
+                            CharacterReleaseFromLock(target[0], "LoversPadlock");
+                            CharacterReleaseFromLock(target[0], "LoversTimerPadlock");
+                            CharacterReleaseFromLock(target[0], "MetalPadlock");
+                            CharacterReleaseFromLock(target[0], "MistressPadlock");
+                            CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
+                            CharacterReleaseFromLock(target[0], "OwnerPadlock");
+                            CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
+                            CharacterReleaseFromLock(target[0], "PandoraPadlock");
+                            CharacterReleaseFromLock(target[0], "PasswordPadlock");
+                            CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
+                            CharacterReleaseFromLock(target[0], "SafewordPadlock");
+                            CharacterReleaseFromLock(target[0], "TimerPadlock");
+                            CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
+                        } else if (lk == 1) {
+                            CharacterReleaseFromLock(target[0], "MetalPadlock");
+                        } else if (lk == 2) {
+                            CharacterReleaseFromLock(target[0], "ExclusivePadlock");
+                        } else if (lk == 3) {
+                            CharacterReleaseFromLock(target[0], "IntricatePadlock");
+                        } else if (lk == 4) {
+                            for (let A = 0; A < target[0].Appearance.length; A++)
+                                if ((target[0].Appearance[A].Property != null) &&
                                 (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
                                 (target[0].Appearance[A].Property.Name == undefined))
-                                InventoryUnlock(target[0], target[0].Appearance[A]);
-                    } else if (lk == 5) {
-                        CharacterReleaseFromLock(target[0], "PandoraPadlock");
-                    } else if (lk == 6) {
-                        CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
-                    } else if (lk == 7) {
-                        CharacterReleaseFromLock(target[0], "LoversPadlock");
-                    } else if (lk == 8) {
-                        CharacterReleaseFromLock(target[0], "OwnerPadlock");
-                    } else if (lk == 9) {
-                        CharacterReleaseFromLock(target[0], "TimerPadlock");
-                    } else if (lk == 10) {
-                        CharacterReleaseFromLock(target[0], "CombinationPadlock");
-                    } else if (lk == 11) {
-                        CharacterReleaseFromLock(target[0], "SafewordPadlock");
-                    } else if (lk == 12) {
-                        CharacterReleaseFromLock(target[0], "PasswordPadlock");
-                    } else if (lk == 13) {
-                        CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
-                    } else if (lk == 14) {
-                        CharacterReleaseFromLock(target[0], "LoversTimerPadlock");
-                    } else if (lk == 15) {
-                        CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
-                    } else if (lk == 16) {
-                        CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
-                    } else if (lk == 17) {
-                        for (let A = 0; A < target[0].Appearance.length; A++)
-                            if ((target[0].Appearance[A].Property != null) &&
+                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                        } else if (lk == 5) {
+                            CharacterReleaseFromLock(target[0], "PandoraPadlock");
+                        } else if (lk == 6) {
+                            CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
+                        } else if (lk == 7) {
+                            CharacterReleaseFromLock(target[0], "LoversPadlock");
+                        } else if (lk == 8) {
+                            CharacterReleaseFromLock(target[0], "OwnerPadlock");
+                        } else if (lk == 9) {
+                            CharacterReleaseFromLock(target[0], "TimerPadlock");
+                        } else if (lk == 10) {
+                            CharacterReleaseFromLock(target[0], "CombinationPadlock");
+                        } else if (lk == 11) {
+                            CharacterReleaseFromLock(target[0], "SafewordPadlock");
+                        } else if (lk == 12) {
+                            CharacterReleaseFromLock(target[0], "PasswordPadlock");
+                        } else if (lk == 13) {
+                            CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
+                        } else if (lk == 14) {
+                            CharacterReleaseFromLock(target[0], "LoversTimerPadlock");
+                        } else if (lk == 15) {
+                            CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
+                        } else if (lk == 16) {
+                            CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
+                        } else if (lk == 17) {
+                            for (let A = 0; A < target[0].Appearance.length; A++)
+                                if ((target[0].Appearance[A].Property != null) &&
                                 (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
                                 (target[0].Appearance[A].Property.Name == "Best Friend Padlock"))
-                                InventoryUnlock(target[0], target[0].Appearance[A]);
-                    } else if (lk == 18) {
-                        for (let A = 0; A < target[0].Appearance.length; A++)
-                            if ((target[0].Appearance[A].Property != null) &&
+                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                        } else if (lk == 18) {
+                            for (let A = 0; A < target[0].Appearance.length; A++)
+                                if ((target[0].Appearance[A].Property != null) &&
                                 (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
                                 (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock"))
-                                InventoryUnlock(target[0], target[0].Appearance[A]);
-                    } else if (lk == 19) {
-                        CharacterReleaseFromLock(target[0], "FamilyPadlock");
-                    } else if (lk == 20) {
-                        CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
+                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                        } else if (lk == 19) {
+                            CharacterReleaseFromLock(target[0], "FamilyPadlock");
+                        } else if (lk == 20) {
+                            CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
+                        }
+                        ChatRoomCharacterUpdate(target[0]);
                     }
-                    ChatRoomCharacterUpdate(target[0]);
-                    ChatRoomSetTarget(null);
-                }
+                }    
+                ChatRoomSetTarget(null);
             }
         }
     }])
-
+                 
     CommandCombine([{
         Tag: 'unrestrict',
         Description: "(option): partially removes restrictions from game.",
@@ -12550,37 +12560,43 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (Tuntie == undefined) {
-                        var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
+                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                        );
                     } else {
-                        if (Tuntie != "") {
-                            if (Tuntie.startsWith("\u0027")) {
-                                var message = tmpname + Tuntie + ' '.repeat(1) + tgpname;
-                            } else {
-                                var message = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
-                            }
-                        } else {
+                        if (Tuntie == undefined) {
                             var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
+                        } else {
+                            if (Tuntie != "") {
+                                if (Tuntie.startsWith("\u0027")) {
+                                    var message = tmpname + Tuntie + ' '.repeat(1) + tgpname;
+                                } else {
+                                    var message = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
+                                }
+                            } else {
+                                var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
+                            }
                         }
+                        if (Tuntie != "no message") {
+                            ServerSend("ChatRoomChat", {
+                                Content: "Beep",
+                                Type: "Action",
+                                Dictionary: [{
+                                    Tag: "Beep",
+                                    Text: message
+                                }]
+                            });
+                        }
+                        CharacterRelease(target[0]);
+                        ChatRoomCharacterUpdate(target[0]);
                     }
-                    if (Tuntie != "no message") {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: message
-                            }]
-                        });
-                    }
-                    CharacterRelease(target[0]);
-                    ChatRoomCharacterUpdate(target[0]);
-                    ChatRoomSetTarget(null);
                 }
+                ChatRoomSetTarget(null);
             }
         }
     }])
-
+          
     CommandCombine([{
         Tag: 'uset',
         Description: "(setting): toggles a specific UBC setting.",
@@ -13003,11 +13019,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
-                    target[0].OnlineSharedSettings.AllowFullWardrobeAccess = true;
-                    target[0].OnlineSharedSettings.BlockBodyCosplay = false;
-                    ChatRoomClickCharacter(target[0]);
-                    DialogChangeClothes();
+                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                        tgpname = target[0].Name;
+                    } else {
+                        tgpname = target[0].Nickname;
+                    }
+                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                        );
+                    } else  {                    
+                        target[0].OnlineSharedSettings.AllowFullWardrobeAccess = true;
+                        target[0].OnlineSharedSettings.BlockBodyCosplay = false;
+                        ChatRoomClickCharacter(target[0]);
+                        DialogChangeClothes();
+                    }
                 }
+                ChatRoomSetTarget(null);        
             }
         }
     }])
