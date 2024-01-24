@@ -58,6 +58,6 @@ All else I might not have included.
 Changes for future version 
 
 * Updated the xstatus command
-  - option bcr is now related the original Chinese BC Responsive mod
-  - you need to use the option rsp for the Responsive mod
+  - bcr option is now related to the original Chinese BC Responsive mod
+  - you need to use the rsp option for the Responsive mod
 * Fixed vulnerability issue in diaper command
