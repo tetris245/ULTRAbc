@@ -7666,6 +7666,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 );
             } else {
                 var silent = 0;
+		var uw = 0;
                 var stringLock1 = args;
                 var stringLock2 = stringLock1.split(/[ ,]+/);
                 var lk = stringLock2[1];
@@ -7795,98 +7796,107 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                         if (Mlock == "no message") var silent = 1;
                     } else {
-                        if (Tlock == undefined) {
-                            var message = "Magical lasers make appear locks on " + tgpname + "'s body."
-                        } else {
-                            if (Tlock != "") {
-                                if (Tlock.startsWith("\u0027")) {
-                                    var message = tmpname + Tlock + ' '.repeat(1) + tgpname;
-                                } else {
-                                    var message = tmpname + ' '.repeat(1) + Tlock + ' '.repeat(1) + tgpname;
-                                }
-                            } else {
+                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                            var uw = 1;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } else  { 
+                            if (Tlock == undefined) {
                                 var message = "Magical lasers make appear locks on " + tgpname + "'s body."
-                            }
-                        }
-                        if (Tlock == "no message") var silent = 1;
-                    }
-                    if (silent == 0) {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: message
-                            }]
-                        });
-                    }
-                    mn = Player.MemberNumber;
-                    for (let A = 0; A < target[0].Appearance.length; A++)
-                        if (target[0].Appearance[A].Asset.AllowLock == true) {
-                            if (((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy == null)) || (target[0].Appearance[A].Property == null)) {
-                                if (lk != 20) {
-                                    InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+                            } else {
+                                if (Tlock != "") {
+                                    if (Tlock.startsWith("\u0027")) {
+                                        var message = tmpname + Tlock + ' '.repeat(1) + tgpname;
+                                    } else {
+                                        var message = tmpname + ' '.repeat(1) + Tlock + ' '.repeat(1) + tgpname;
+                                    }
                                 } else {
-                                    if (target[0].Appearance[A].Property.Attribute != null) {
-                                        if (target[0].Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
+                                    var message = "Magical lasers make appear locks on " + tgpname + "'s body."
+                                }
+                            }
+                            if (Tlock == "no message") var silent = 1;                 
+                        }
+                    }
+                    if (uw == 0) {
+                        if (silent == 0) {
+                            ServerSend("ChatRoomChat", {
+                                Content: "Beep",
+                                Type: "Action",
+                                Dictionary: [{
+                                    Tag: "Beep",
+                                    Text: message
+                                }]
+                            });
+                        }
+                        mn = Player.MemberNumber;
+                        for (let A = 0; A < target[0].Appearance.length; A++)
+                            if (target[0].Appearance[A].Asset.AllowLock == true) {
+                                if (((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy == null)) || (target[0].Appearance[A].Property == null)) {
+                                    if (lk != 20) {
+                                    InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+                                    } else {
+                                        if (target[0].Appearance[A].Property.Attribute != null) {
+                                            if (target[0].Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
                                             InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+                                            }
                                         }
                                     }
-                                }
-                                if (removeitem == "r") {
+                                    if (removeitem == "r") {
                                     target[0].Appearance[A].Property.RemoveOnUnlock = true;
                                     target[0].Appearance[A].Property.RemoveItem = true;
-                                }
-                                if (minutes != null) {
-                                    if (lk == 18) {
+                                    }
+                                    if (minutes != null) {
+                                        if (lk == 18) {
                                         target[0].Appearance[A].Property.MaxTime = 604800;
                                         target[0].Appearance[A].Property.RemovalTime = Math.round(CurrentTime + time * 60 * 100);
-                                    } else {
+                                        } else {
                                         target[0].Appearance[A].Property.RemoveTimer = target[0].Appearance[A].Property.RemoveTimer + (time * 60 * 1000);
-                                    }
-                                }
-                                if (hidetimer == "h") {
-                                    target[0].Appearance[A].Property.ShowTimer = false;
-                                }
-                                if (enableinput == "i") {
-                                    target[0].Appearance[A].Property.EnableRandomInput = true;
-                                }
-                                if ((code != null) && (code > -1) && (code < 10000)) {
-                                    target[0].Appearance[A].Property.CombinationNumber = code;
-                                }
-                                if ((ptcode != null) && (ptcode.length == 8) && (ptcode.match(PTS))) {
-                                    target[0].Appearance[A].Property.PortalLinkCode = ptcode;
-                                }
-                                if ((pw != null) && (pw.length <= 8) && (pw.match(PS))) {
-                                    target[0].Appearance[A].Property.Password = pw;
-                                }
-                                if ((lk == 17) || (lk == 18)) {
-                                    target[0].Appearance[A].Property.LockedBy = "HighSecurityPadlock";
-                                    target[0].Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
-                                    let listOwnerLovers = new Set();
-                                    if (target[0].Ownership && target[0].Ownership.MemberNumber != null) {
-                                        listOwnerLovers.add(target[0].Ownership.MemberNumber);
-                                    }
-                                    if (target[0].Lovership) {
-                                        for (let L = 0; L < target[0].Lovership.length; L++) {
-                                            const lover = target[0].Lovership[L];
-                                            if (lover.MemberNumber != null)
-                                                listOwnerLovers.add(target[0].Lovership[L].MemberNumber);
                                         }
                                     }
+                                    if (hidetimer == "h") {
+                                    target[0].Appearance[A].Property.ShowTimer = false;
+                                    }
+                                    if (enableinput == "i") {
+                                    target[0].Appearance[A].Property.EnableRandomInput = true;
+                                    }
+                                    if ((code != null) && (code > -1) && (code < 10000)) {
+                                    target[0].Appearance[A].Property.CombinationNumber = code;
+                                    }
+                                    if ((ptcode != null) && (ptcode.length == 8) && (ptcode.match(PTS))) {
+                                    target[0].Appearance[A].Property.PortalLinkCode = ptcode;
+                                    }
+                                    if ((pw != null) && (pw.length <= 8) && (pw.match(PS))) {
+                                    target[0].Appearance[A].Property.Password = pw;
+                                    }
+                                    if ((lk == 17) || (lk == 18)) {
+                                    target[0].Appearance[A].Property.LockedBy = "HighSecurityPadlock";
+                                    target[0].Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
+                                        let listOwnerLovers = new Set();
+                                        if (target[0].Ownership && target[0].Ownership.MemberNumber != null) {
+                                        listOwnerLovers.add(target[0].Ownership.MemberNumber);
+                                        }
+                                        if (target[0].Lovership) {
+                                            for (let L = 0; L < target[0].Lovership.length; L++) {
+                                                const lover = target[0].Lovership[L];
+                                                if (lover.MemberNumber != null)
+                                                listOwnerLovers.add(target[0].Lovership[L].MemberNumber);
+                                            }
+                                        }
                                     target[0].Appearance[A].Property.MemberNumberListKeys = "-1," + Array.from(listOwnerLovers).join(",");
-                                }
-                                if (lk == 17) {
+                                    }
+                                    if (lk == 17) {
                                     target[0].Appearance[A].Property.Name = "Best Friend Padlock";
-                                }
-                                if (lk == 18) {
+                                    }
+                                    if (lk == 18) {
                                     target[0].Appearance[A].Property.Name = "Best Friend Timer Padlock";
+                                    }
                                 }
                             }
-                        }
-                    ChatRoomCharacterUpdate(target[0]);
-                    ChatRoomSetTarget(null);
+                        ChatRoomCharacterUpdate(target[0]);
+                    }
                 }
+                ChatRoomSetTarget(null);
             }
         }
     }])
@@ -8868,33 +8878,39 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (Tnaked == undefined) {
-                        var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
-                    } else {
-                        if (Tnaked != "") {
-                            if (Tnaked.startsWith("\u0027")) {
-                                var message = tmpname + Tnaked + ' '.repeat(1) + tgpname;
-                            } else {
-                                var message = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
-                            }
-                        } else {
+                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                        );
+                    } else {  
+                        if (Tnaked == undefined) {
                             var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                        } else {
+                            if (Tnaked != "") {
+                                if (Tnaked.startsWith("\u0027")) {
+                                    var message = tmpname + Tnaked + ' '.repeat(1) + tgpname;
+                                } else {
+                                    var message = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
+                                }
+                            } else {
+                                var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                            }
                         }
-                    }
-                    if (Tnaked != "no message") {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: message
-                            }]
-                        });
-                    }
-                    CharacterNaked(target[0]);
-                    ChatRoomCharacterUpdate(target[0]);
-                    ChatRoomSetTarget(null);
+                        if (Tnaked != "no message") {
+                            ServerSend("ChatRoomChat", {
+                                Content: "Beep",
+                                Type: "Action",
+                                Dictionary: [{
+                                    Tag: "Beep",
+                                    Text: message
+                                }]
+                            });
+                        }
+                        CharacterNaked(target[0]);
+                        ChatRoomCharacterUpdate(target[0]);
+                    }    
                 }
+                ChatRoomSetTarget(null);
             }
         }
     }])
