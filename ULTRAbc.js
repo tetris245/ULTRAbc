@@ -9079,41 +9079,47 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (Tpet == undefined) {
-                        var message = "" + tgpname + " becomes a cute pet."
+                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                        );
                     } else {
-                        if (Tpet != "") {
-                            if (Tpet.startsWith("\u0027")) {
-                                var message = tmpname + Tpet + ' '.repeat(1) + tgpname;
-                            } else {
-                                var message = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
-                            }
-                        } else {
+                        if (Tpet == undefined) {
                             var message = "" + tgpname + " becomes a cute pet."
+                        } else {
+                            if (Tpet != "") {
+                                if (Tpet.startsWith("\u0027")) {
+                                    var message = tmpname + Tpet + ' '.repeat(1) + tgpname;
+                                } else {
+                                    var message = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
+                                }
+                            } else {
+                                var message = "" + tgpname + " becomes a cute pet."
+                            }
                         }
-                    }
-                    if (Tpet != "no message") {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: message
-                            }]
-                        });
-                    }
-                    CharacterNaked(target[0]);
-                    InventoryWearRandom(target[0], "ItemArms", 8, null, false, true, ["ArmbinderJacket", "BitchSuit", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "PantyhoseBody", "PantyhoseBodyOpen", "SeamlessStraitDress", "SeamlessStraitDressOpen", "StraitLeotard", "StrictLeatherPetCrawler"], true);
-                    InventoryWearRandom(target[0], "HairAccessory1", 8, null, false, true, ["Antennae", "BunnyEars1", "BunnyEars2", "CowHorns", "Ears1", "Ears2", "ElfEars", "FoxEars1", "FoxEars2", "FoxEars3", "KittenEars1", "KittenEars2", "MouseEars1", "MouseEars2", "PonyEars1", "PuppyEars1", "PuppyEars2", "RaccoonEars1", "WolfEars1", "WolfEars2"], true);
-                    InventoryWearRandom(target[0], "TailStraps", 8, null, false, true, ["CowtailStrap", "FoxTailsStrap", "FoxTailStrap1", "FoxTailStrap2", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"], true);
-                    if (InventoryGet(target[0], "ItemMouth") == null) InventoryWearRandom(target[0], "ItemMouth", 8);
-                    if (InventoryGet(target[0], "ItemNeck") == null) InventoryWearRandom(target[0], "ItemNeck", 8);
-                    if (InventoryGet(target[0], "ItemNeckRestraints") == null) InventoryWear(target[0], "ChainLeash", "ItemNeckRestraints", null, 8);
-                    PoseSetActive(target[0], "Kneel", true);
-                    CharacterRefresh(target[0]);
-                    ChatRoomCharacterUpdate(target[0]);
-                    ChatRoomSetTarget(null);
+                        if (Tpet != "no message") {
+                            ServerSend("ChatRoomChat", {
+                                Content: "Beep",
+                                Type: "Action",
+                                Dictionary: [{
+                                    Tag: "Beep",
+                                    Text: message
+                                }]
+                            });
+                        }
+                        CharacterNaked(target[0]);
+                        InventoryWearRandom(target[0], "ItemArms", 8, null, false, true, ["ArmbinderJacket", "BitchSuit", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "PantyhoseBody", "PantyhoseBodyOpen", "SeamlessStraitDress", "SeamlessStraitDressOpen", "StraitLeotard", "StrictLeatherPetCrawler"], true);
+                        InventoryWearRandom(target[0], "HairAccessory1", 8, null, false, true, ["Antennae", "BunnyEars1", "BunnyEars2", "CowHorns", "Ears1", "Ears2", "ElfEars", "FoxEars1", "FoxEars2", "FoxEars3", "KittenEars1", "KittenEars2", "MouseEars1", "MouseEars2", "PonyEars1", "PuppyEars1", "PuppyEars2", "RaccoonEars1", "WolfEars1", "WolfEars2"], true);
+                        InventoryWearRandom(target[0], "TailStraps", 8, null, false, true, ["CowtailStrap", "FoxTailsStrap", "FoxTailStrap1", "FoxTailStrap2", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"], true);
+                        if (InventoryGet(target[0], "ItemMouth") == null) InventoryWearRandom(target[0], "ItemMouth", 8);
+                        if (InventoryGet(target[0], "ItemNeck") == null) InventoryWearRandom(target[0], "ItemNeck", 8);
+                        if (InventoryGet(target[0], "ItemNeckRestraints") == null) InventoryWear(target[0], "ChainLeash", "ItemNeckRestraints", null, 8);
+                        PoseSetActive(target[0], "Kneel", true);
+                        CharacterRefresh(target[0]);
+                        ChatRoomCharacterUpdate(target[0]);
+                    }    
                 }
+                ChatRoomSetTarget(null);
             }
         }
     }])
@@ -9710,291 +9716,297 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             tgpr3 = "their";
                             tgpr4 = "they";
                         }
-                        if (pose == "armsfree") {
-                            if ((target[0].AllowItem == true) &&
+                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } else {
+                            if (pose == "armsfree") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'BaseUpper') &&
                                 (PoseCanChangeUnaided(target[0], 'BaseUpper'))) {
-                                PoseSetActive(target[0], "BaseUpper");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " lets " + tgpname + " relax " + tgpr3 + " arms."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "belly") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "BaseUpper");
+                                     ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " lets " + tgpname + " relax " + tgpr3 + " arms."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "belly") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Hogtied') &&
                                 (PoseCanChangeUnaided(target[0], 'Hogtied'))) {
-                                PoseSetActive(target[0], "Hogtied");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to stay on " + tgpr3 + " belly."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "boxtied") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "Hogtied");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to stay on " + tgpr3 + " belly."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "boxtied") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'BackBoxTie') &&
                                 (PoseCanChangeUnaided(target[0], 'BackBoxTie'))) {
-                                PoseSetActive(target[0], "BackBoxTie");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to put the arms behind " + tgpr3 + " back."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "cuffed") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "BackBoxTie");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to put the arms behind " + tgpr3 + " back."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "cuffed") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'BackCuffs') &&
                                 (PoseCanChangeUnaided(target[0], 'BackCuffs'))) {
-                                PoseSetActive(target[0], "BackCuffs");
+                                    PoseSetActive(target[0], "BackCuffs");
                                 ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr4 + " handcuffed."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "elbowtied") {
-                            if ((target[0].AllowItem == true) &&
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr4 + " handcuffed."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "elbowtied") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'BackElbowTouch') &&
                                 (PoseCanChangeUnaided(target[0], 'BackElbowTouch'))) {
-                                PoseSetActive(target[0], "BackElbowTouch");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to put the arms behind her back, elbows almost touching."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "kneel1") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "BackElbowTouch");
+                                     ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to put the arms behind her back, elbows almost touching."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "kneel1") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Kneel') &&
                                 ((PoseCanChangeUnaided(target[0], 'Kneel')) || (ChatRoomCanAttemptKneel(target[0]) == true))) {
-                                PoseSetActive(target[0], "Kneel");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " helps " + tgpname + " to kneel down."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "kneel2") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "Kneel");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " helps " + tgpname + " to kneel down."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "kneel2") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'KneelingSpread') &&
                                 (PoseCanChangeUnaided(target[0], 'KneelingSpread'))) {
-                                PoseSetActive(target[0], "KneelingSpread");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " helps " + tgpname + " to kneel down, forcing " + tgpr3 + " legs open."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "legsclosed") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "KneelingSpread");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " helps " + tgpname + " to kneel down, forcing " + tgpr3 + " legs open."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "legsclosed") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'LegsClosed') &&
                                 (PoseCanChangeUnaided(target[0], 'LegsClosed'))) {
-                                PoseSetActive(target[0], "LegsClosed");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " helps " + tgpname + " to stand up with " + tgpr3 + " legs closed."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "legsopen") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "LegsClosed");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " helps " + tgpname + " to stand up with " + tgpr3 + " legs closed."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "legsopen") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'LegsOpen') &&
                                 (PoseCanChangeUnaided(target[0], 'LegsOpen'))) {
-                                PoseSetActive(target[0], "LegsOpen");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " helps " + tgpname + " to stand up normally on " + tgpr3 + " feet."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "pet") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "LegsOpen");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " helps " + tgpname + " to stand up normally on " + tgpr3 + " feet."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "pet") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'AllFours') &&
                                 (PoseCanChangeUnaided(target[0], 'AllFours'))) {
-                                PoseSetActive(target[0], "AllFours");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " on all fours."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "spreadarms1") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "AllFours");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " on all fours."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "spreadarms1") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Yoked') &&
                                 (PoseCanChangeUnaided(target[0], 'Yoked'))) {
-                                PoseSetActive(target[0], "Yoked");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " helps " + tgpname + " to raise " + tgpr3 + " hands."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "spreadarms2") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "Yoked");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " helps " + tgpname + " to raise " + tgpr3 + " hands."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "spreadarms2") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'OverTheHead') &&
                                 (PoseCanChangeUnaided(target[0], 'OverTheHead'))) {
-                                PoseSetActive(target[0], "OverTheHead");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to raise the hands above " + tgpr3 + " head."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "spreadeagle1") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "OverTheHead");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to raise the hands above " + tgpr3 + " head."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "spreadeagle1") {
+                                if ((target[0].AllowItem == true) &&
                                 ((target[0].ActivePose == null) || (target[0].ActivePose.includes('Yoked') == false) || (target[0].ActivePose.includes('Spread') == false)) &&
                                 (PoseCanChangeUnaided(target[0], 'Yoked')) &&
                                 (PoseCanChangeUnaided(target[0], 'Spread'))) {
-                                PoseSetActive(target[0], "Yoked");
-                                PoseSetActive(target[0], "Spread");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to raise the hands and spread the legs."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "spreadeagle2") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "Yoked");
+                                    PoseSetActive(target[0], "Spread");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to raise the hands and spread the legs."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "spreadeagle2") {
+                                if ((target[0].AllowItem == true) &&
                                 ((target[0].ActivePose == null) || (target[0].ActivePose.includes('OverTheHead') == false) || (target[0].ActivePose.includes('Spread') == false)) &&
                                 (PoseCanChangeUnaided(target[0], 'OverTheHead')) &&
                                 (PoseCanChangeUnaided(target[0], 'Spread'))) {
-                                PoseSetActive(target[0], "OverTheHead");
-                                PoseSetActive(target[0], "Spread");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to raise the hands above the head and spread the legs."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "spreadlegs") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "OverTheHead");
+                                    PoseSetActive(target[0], "Spread");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to raise the hands above the head and spread the legs."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "spreadlegs") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Spread') &&
                                 (PoseCanChangeUnaided(target[0], 'Spread'))) {
-                                PoseSetActive(target[0], "Spread");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to spread " + tgpr3 + " legs."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "stand") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "Spread");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to spread " + tgpr3 + " legs."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "stand") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != null) &&
                                 ((PoseCanChangeUnaided(target[0], null)) || (ChatRoomCanAttemptStand(target[0]) == true))) {
-                                PoseSetActive(target[0], null);
-                                ChatRoomCharacterUpdate(target[0]);
-                                CharacterRefresh(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " helps " + tgpname + " to stand up."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "suspension") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], null);
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    CharacterRefresh(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " helps " + tgpname + " to stand up."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "suspension") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'Suspension') &&
                                 (PoseCanChangeUnaided(target[0], 'Suspension'))) {
-                                PoseSetActive(target[0], "Suspension");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " in an acrobatic pose in suspension."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "tapedhands") {
-                            if ((target[0].AllowItem == true) &&
+                                    PoseSetActive(target[0], "Suspension");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " in an acrobatic pose in suspension."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "tapedhands") {
+                                if ((target[0].AllowItem == true) &&
                                 (target[0].ActivePose != 'TapedHands') &&
                                 (PoseCanChangeUnaided(target[0], 'TapedHands'))) {
-                                PoseSetActive(target[0], "TapedHands");
-                                ChatRoomCharacterUpdate(target[0]);
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr3 + " hands are taped."
-                                    }]
-                                });
-                            }
-                        } else if (pose == "reset") {
-                            if (target[0].AllowItem == true) {
-                                PoseSetActive(target[0], null);
-                                ChatRoomCharacterUpdate(target[0]);
-                                CharacterRefresh(target[0]);
+                                    PoseSetActive(target[0], "TapedHands");
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    ServerSend("ChatRoomChat", {
+                                        Content: "Beep",
+                                        Type: "Action",
+                                        Dictionary: [{
+                                            Tag: "Beep",
+                                            Text: "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr3 + " hands are taped."
+                                        }]
+                                    });
+                                }
+                            } else if (pose == "reset") {
+                                if (target[0].AllowItem == true) {
+                                    PoseSetActive(target[0], null);
+                                    ChatRoomCharacterUpdate(target[0]);
+                                    CharacterRefresh(target[0]);
+                                }
                             }
                         }
                     }
-                    ChatRoomSetTarget(null);
                 }
+                ChatRoomSetTarget(null);
             }
         }
     }])
