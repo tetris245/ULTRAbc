@@ -8938,6 +8938,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
                 );
                 setTimeout(function() {
+		    var uw = 0;
                     CurrentCharacter.Appearance = this.savedoutfit1.slice(0);
                     if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
                         if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
@@ -8945,10 +8946,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else {
                             tgpname = CurrentCharacter.Nickname;
                         }
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
-                    } else  {
+                        if (tgpname != tmpname) {
+                            var uw = 1;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } 
+                    } 
+                    if (uw == 0) {
                         CharacterRefresh(CurrentCharacter);
                         ChatRoomCharacterUpdate(CurrentCharacter);
                         DialogLeave();
@@ -8960,6 +8965,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
                 );
                 setTimeout(function() {
+		    var uw = 0;
                     CurrentCharacter.Appearance = savedoutfit2.slice(0);
                     if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
                         if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
@@ -8967,10 +8973,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else {
                             tgpname = CurrentCharacter.Nickname;
                         }
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
-                    } else  {
+                        if (tgpname != tmpname) {
+                            var uw = 1;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } 
+                    } 
+                    if (uw == 0) {
                         CharacterRefresh(CurrentCharacter);
                         ChatRoomCharacterUpdate(CurrentCharacter);
                         DialogLeave();
@@ -8982,6 +8992,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
                 );
                 setTimeout(function() {
+		    var uw = 0;
                     CurrentCharacter.Appearance = savedoutfit3.slice(0);
                     if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
                         if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
@@ -8989,10 +9000,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else {
                             tgpname = CurrentCharacter.Nickname;
                         }
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
-                    } else  {
+                        if (tgpname != tmpname) {
+                            var uw = 1;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } 
+                    } 
+                    if (uw == 0) {
                         CharacterRefresh(CurrentCharacter);
                         ChatRoomCharacterUpdate(CurrentCharacter);
                         DialogLeave();
