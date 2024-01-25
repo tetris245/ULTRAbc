@@ -8957,6 +8957,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         CharacterRefresh(CurrentCharacter);
                         ChatRoomCharacterUpdate(CurrentCharacter);
                         DialogLeave();
+			ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load1 command executed.</p>"
+                        );
                     }
                 }, 5000);
             }
@@ -8984,6 +8987,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         CharacterRefresh(CurrentCharacter);
                         ChatRoomCharacterUpdate(CurrentCharacter);
                         DialogLeave();
+			ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load2 command executed.</p>"
+                        );
                     }
                 }, 5000);
             }
@@ -9011,6 +9017,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         CharacterRefresh(CurrentCharacter);
                         ChatRoomCharacterUpdate(CurrentCharacter);
                         DialogLeave();
+			ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load3 command executed.</p>"
+                        );
                     }
                 }, 5000);
             }
@@ -9018,6 +9027,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 Player.Appearance = ChatSearchSafewordAppearance.slice(0);
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
+		ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit reset-restore-revert command executed.</p>"
+                    );
             }
             if (args === "save1") {
                 ChatRoomSendLocal(
@@ -9026,6 +9038,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 setTimeout(function() {
                     this.savedoutfit1 = CurrentCharacter.Appearance.slice(0);
                     DialogLeave();
+		    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save1 command executed.</p>"
+                    );
                 }, 5000);
             }
             if (args === "save2") {
@@ -9035,6 +9050,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 setTimeout(function() {
                     this.savedoutfit2 = CurrentCharacter.Appearance.slice(0);
                     DialogLeave();
+		    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save2 command executed.</p>"
+                    );
                 }, 5000);
             }
             if (args === "save3") {
@@ -9044,6 +9062,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 setTimeout(function() {
                     this.savedoutfit3 = CurrentCharacter.Appearance.slice(0);
                     DialogLeave();
+	            ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save3 command executed.</p>"
+                    );
                 }, 5000);
             }
         }
