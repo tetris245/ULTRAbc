@@ -57,6 +57,8 @@ All else I might not have included.
 
 Changes for future version 
 
+* Added support for Uwall protection
+* Added messages to outfit command
 * Updated the xstatus command
   - bcr option is now related to the original Chinese BC Responsive mod
   - you need to use the rsp option for the Responsive mod
