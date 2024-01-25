@@ -10699,6 +10699,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
             );
             setTimeout(function() {
+		var uw = 0;
                 CurrentCharacter.Appearance = CurrentCharacter.Appearance.filter(x => (CurrentCharacter.FocusGroup && CurrentCharacter.FocusGroup.Name) ? x.Asset.Group.Name !=
                     CurrentCharacter.FocusGroup.Name : true);
                 if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
@@ -10707,10 +10708,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else {
                         tgpname = CurrentCharacter.Nickname;
                     }
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                    );
-                } else  {
+                    if (tgpname != tmpname) {
+                        var uw = 1;
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                        );
+                    } 
+                } 
+                if (uw == 0) {
                     ChatRoomCharacterUpdate(CurrentCharacter);
                     DialogLeave();
                 }
