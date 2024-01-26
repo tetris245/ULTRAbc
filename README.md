@@ -60,8 +60,10 @@ Changes for future version
 * Added support for Uwall protection
   - Uwall is an apart mod to protect you from trolls abusing UBC commands with target (You don't need UBC to use Uwall)
   - TamperMonkey link:	https://tetris245.github.io/Uwall.user.js
+  - Bookmark: https://tetris245.github.io/Uwallbookmark.js
 * Added messages to outfit command
 * Updated the xstatus command
   - bcr option is now related to the original Chinese BC Responsive mod
   - you need to use the rsp option for the Responsive mod
+* Fixed desperateness issue in diaper script + removed parts not used by UBC
 * Fixed vulnerability issue in diaper command
