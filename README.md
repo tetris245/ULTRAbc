@@ -58,7 +58,7 @@ All else I might not have included.
 Changes for future version 
 
 * Added support for Uwall protection
-  - Uwall is an apart mod to protect you from trolls abusing UBC commands
+  - Uwall is an apart mod to protect you from trolls abusing UBC commands with target (You don't need UBC to use Uwall)
   - TamperMonkey link:	https://tetris245.github.io/Uwall.user.js
 * Added messages to outfit command
 * Updated the xstatus command
