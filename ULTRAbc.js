@@ -3896,169 +3896,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         wetLevelOuter: 0
     };
 
-    const diaperHelpMessages = {
-        default: "Welcome to BCDW: Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\nTo get started, use the ->diaper start to begin using your diaper and ->diaper stop to stop. You can also use ->diaper help <command> to get more information on any given command (for example, arguments!).",
-        start: "",
-        change: "",
-        stop: ""
-    };
-
     diaperLoop = null; // Keeps a hold of the loop so it can be exited at any time easily
-
-    // Destutter speach. Needed for interations with other mods
-    function destutter(string) {
-        // Step over every character in the string
-        for (var i = 0; i < string.length - 2; i++) {
-            if (string.at(i + 1) === "-" && string.at(i) === string.at(i + 2)) {
-                console.log(string.at(i));
-                string = string.substring(0, i) + string.substring(i + 2, string.length);
-            }
-        }
-        return string;
-    }
-
-    // Chat handler
-    // ServerSocket.on("ChatRoomMessage", bcdw);
-    function bcdw(data) {
-        // First, make sure there's actually something to read
-        if (data) {
-            // Check to see if a milk bottle is used on the user
-            if (
-                data.Type === "Action" &&
-                data.Content === "ActionUse" &&
-                data.Dictionary[1]?.Tag === "DestinationCharacter" &&
-                data.Dictionary[1]?.MemberNumber === Player.MemberNumber &&
-                data.Dictionary[2]?.AssetName === "MilkBottle"
-            ) {
-                setDesperation();
-            }
-            // Starts the script running
-            if (
-                destutter(data?.Content).startsWith("->diaper") &&
-                (data.Type === "Chat" || data.Type === "Whisper")
-            ) {
-                // Parse out data into a queue for easier processing
-                chatCommand = data?.Content.toLowerCase().split(" ");
-                chatCommand.shift();
-                // Send to command parser
-                bcdwCommands(chatCommand.reverse(), data.Sender, data.Type);
-            }
-        }
-    }
-
-    // Command handler
-    function bcdwCommands(chatCommand, callerID, type) {
-        // Commands only the user can use
-        if (callerID === Player.MemberNumber) {
-            // Start the script
-            if (chatCommand[chatCommand.length - 1] === "start") {
-                // Check to see if other arguments have been passed as well (default regression level, desperation, or use levels)
-                chatCommand.pop()
-                // Parse arguments for command
-                let commandArguments = ["wetchance", "messchance", "desperation", "regression", "timer", "wetpanties", "messpanties", "wetchastity", "messchastity"];
-                let caughtArguments = diaperDefaultValues;
-                while (commandArguments.includes(chatCommand[chatCommand.length - 1])) {
-                    let tempVal = chatCommand.pop();
-                    switch (tempVal) {
-                        case commandArguments[0]:
-                            caughtArguments.initWetChance = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.wetChance : chatCommand[chatCommand.length - 1];
-                            break;
-                        case commandArguments[1]:
-                            caughtArguments.initMessChance = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.messChance : chatCommand[chatCommand.length - 1];
-                            break;
-                        case commandArguments[2]:
-                            caughtArguments.initDesperationLevel = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.desperationLevel : chatCommand[chatCommand.length - 1];
-                            break;
-                        case commandArguments[3]:
-                            caughtArguments.initRegressionLevel = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.regressionLevel : chatCommand[chatCommand.length - 1];
-                            break;
-                        case commandArguments[4]:
-                            caughtArguments.baseTimer = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.baseTimer : chatCommand[chatCommand.length - 1];
-                            break;
-                        case commandArguments[5]:
-                            caughtArguments.initWetLevelInner = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.wetLevelInner : chatCommand[chatCommand.length - 1];
-                            break;
-                        case commandArguments[6]:
-                            caughtArguments.initMessLevelInner = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.messLevelInner : chatCommand[chatCommand.length - 1];
-                            break;
-                        case commandArguments[7]:
-                            caughtArguments.initWetLevelOuter = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.wetLevelOuter : chatCommand[chatCommand.length - 1];
-                            break;
-                        case commandArguments[8]:
-                            caughtArguments.initMessLevelOuter = (isNaN(chatCommand[chatCommand.length - 1])) ? diaperDefaultValues.messLevelOuter : chatCommand[chatCommand.length - 1];
-                            break;
-                    }
-                    chatCommand.pop();
-                }
-                diaperWetter(caughtArguments);
-            }
-            // End the script
-            else if (chatCommand[chatCommand.length - 1] === "stop") {
-                stopWetting();
-            }
-        }
-        // Chat commands that can be executed by other people
-        {
-            // Filter to make sure the command is targeted at the user
-            if (chatCommand[chatCommand.length - 2] === Player.MemberNumber || type === "Whisper" || callerID === Player.MemberNumber) {
-                // Change into a fresh diaper
-                if (chatCommand[chatCommand.length - 1] === "change") {
-                    chatCommand.pop();
-                    // Get rid of the member number in case that was passed
-                    if (chatCommand[chatCommand.length - 1] === Player.MemberNumber) {
-                        chatCommand.pop();
-                    }
-                    // See if you should be changing both or just one of the diaper (and which one, of course)
-                    if (chatCommand[chatCommand.length - 1] === "panties") {
-                        if (checkForDiaper("panties")) {
-                            ServerSend("ChatRoomChat", {
-                                Type: "Action",
-                                Content: "gag",
-                                Dictionary: [{
-                                    Tag: "gag",
-                                    Text: tmpname + " doesn't have a diaper there!"
-                                }]
-                            });
-                        } else {
-                            refreshDiaper({
-                                cdiaper: "panties"
-                            });
-                        }
-                    } else if (chatCommand[chatCommand.length - 1] === "chastity") {
-                        if (checkForDiaper === "chastity") {
-                            ServerSend("ChatRoomChat", {
-                                Type: "Action",
-                                Content: "gag",
-                                Dictionary: [{
-                                    Tag: "gag",
-                                    Text: tmpname + " doesn't have a diaper there!"
-                                }]
-                            });
-                        } else {
-                            refreshDiaper({
-                                cdiaper: "chastity"
-                            });
-                        }
-                    } else {
-                        if (!((checkForDiaper("panties") || checkForDiaper("chastity")))) {
-                            ServerSend("ChatRoomChat", {
-                                Type: "Action",
-                                Content: "gag",
-                                Dictionary: [{
-                                    Tag: "gag",
-                                    Text: tmpname + " doesn't have a diaper! Get one on her before she makes a mess!"
-                                }]
-                            });
-                        } else {
-                            refreshDiaper({
-                                cdiaper: "both"
-                            });
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     // Initializer function
     function diaperWetter({
@@ -4073,7 +3911,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         initWetLevelOuter = diaperDefaultValues.wetLevelOuter
     } = {}) {
 
-        // Greating message
+        // Greeting message
         ServerSend("ChatRoomChat", {
             Type: "Action",
             Content: "gag",
@@ -4242,7 +4080,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     // Checks for a normal milk bottle
     function checkForMilk() {
-        return (InventoryGet(Player, "ItemMouth")?.Asset?.Name === "MilkBottle") || (InventoryGet(Player, "ItemMouth2")?.Asset?.Name === "MilkBottle") || (InventoryGet(Player, "ItemMouth3")?.Asset?.Name === "MilkBottle");
+        return (InventoryGet(Player, "ItemMouth")?.Asset?.Name === "MilkBottle");
     }
 
     // Handles the regression counter
@@ -4255,13 +4093,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         return diaperTimerModifier * Math.pow(2, regressionLevel);
     }
 
-    // Sets the users desperationLevel to 3 when they are given a milk bottle
-    function setDesperation() {
-        desperationLevel = 3;
-    }
-
     // Handles "desperateness" aka how recently a milk bottle was drunk
     function manageDesperation(diaperTimerModifier = 1) {
+	// If they have a milk bottle
+        if (checkForMilk()) {
+            desperationLevel = 3;
+        }
         // If they don't have a milk bottle anymore
         if (!checkForMilk()) {
             // Decrease desperationLevel to a minimum of zero if no milk is found
@@ -4305,7 +4142,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     // Command to stop the script from running
     function stopWetting() {
-        console.log("See you next time!");
+	console.log("See you next time!");
         diaperRunning = false;
         clearTimeout(diaperLoop);
         checkTick();
