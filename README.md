@@ -58,6 +58,8 @@ All else I might not have included.
 Changes for future version 
 
 * Added support for Uwall protection
+  - Uwall is an apart mod to protect you from trolls abusing UBC commands
+  - TamperMonkey link:	https://tetris245.github.io/Uwall.user.js
 * Added messages to outfit command
 * Updated the xstatus command
   - bcr option is now related to the original Chinese BC Responsive mod
