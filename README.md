@@ -57,7 +57,7 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added support for Uwall protection
+* Added support for Uwall protection (thanks to Sidsel for allowing to use part of BCE/FBC code)
   - Uwall is an apart mod to protect you from trolls abusing UBC commands with target (You don't need UBC to use Uwall)
   - TamperMonkey link:	https://tetris245.github.io/Uwall.user.js
   - Bookmark: https://tetris245.github.io/Uwallbookmark.js
@@ -66,4 +66,4 @@ Changes for future version
   - bcr option is now related to the original Chinese BC Responsive mod
   - you need to use the rsp option for the Responsive mod
 * Fixed desperateness issue in diaper script + removed parts not used by UBC
-* Fixed vulnerability issue in diaper command
+* Fixed vulnerability issue in diaper command (thanks to Sidsel)
