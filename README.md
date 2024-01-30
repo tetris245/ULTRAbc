@@ -57,4 +57,4 @@ All else I might not have included.
 
 Changes for future version 
 
-(...)
+* New command: mapkeys to have all keys for current map room
