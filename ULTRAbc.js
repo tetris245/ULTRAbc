@@ -7769,7 +7769,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: ": toggles full vision and hearing in mapped rooms",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                ChatRoomSendLocal("This room does not use the map feature");
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
+                );
             } else {
                 if (MapfullOn == true) {
                     MapfullOn = false;
@@ -7789,11 +7791,38 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'mapkeys',
+        Description: ": gives all keys for current mapped chat room.",
+        Action: () => {
+            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
+                    );       
+            } else {
+                if (Player.MapData == undefined) {
+                     ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You fon't have entered the map.</p>"
+                    );
+                } else {
+                    Player.MapData.PrivateState.HasKeyGold = true;
+                    Player.MapData.PrivateState.HasKeySilver = true;
+                    Player.MapData.PrivateState.HasKeyBronze = true;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You have now the three keys.</p>"
+                    );
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'maproom',
         Description: ": gives infos about location of players in current mapped chat room.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                ChatRoomSendLocal("This room does not use the map feature");  
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
+                ); 
             } else {
                 let pl = 0;
                 while (pl < ChatRoomCharacter.length) {
@@ -7833,7 +7862,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 );
             } else {
                 if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    ChatRoomSendLocal("This room does not use the map feature");  
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
+                    ); 
                 } else {
                     var plx = args;
                     if ((plx > -1) && (plx < 40) && (plx != Player.MapData.Pos.X)) {  
@@ -7875,7 +7906,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 );
             } else { 
                 if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    ChatRoomSendLocal("This room does not use the map feature");  
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
+                    );
                 } else {
                     var ply = args;
                     if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Pos.Y)) {
@@ -11965,8 +11998,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
-		    "<b>/mapfull</b> = toggles full vision and hearing in mapped rooms.\n" +
-		    "<b>/maproom</b> = gives infos about location of players in current mapped chat room.\n" +
+		    "<b>/mapfull</b> = toggles full vision and hearing in map rooms.\n" +
+                    "<b>/mapkeys</b> = gives all keys for current map room.\n" + 
+		    "<b>/maproom</b> = gives infos about players in current map.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
