@@ -7765,25 +7765,49 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'mapfull',
-        Description: ": toggles full vision and hearing in mapped rooms",
+        Tag: 'mapfog',
+        Description: ": toggles fog in current mapped room.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
-                );
+                    );
+            } else {
+                if ((ChatRoomData.MapData.Fog == true || ChatRoomData.MapData.Fog == undefined)) {
+                    ChatRoomData.MapData.Fog = false;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Fog in current mapped room is disabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.</p>"
+                     );
+                } else {
+                    ChatRoomData.MapData.Fog = true;
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Fog in current mapped room is enabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.</p>"
+                    );
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'mapfull',
+        Description: ": toggles full vision and hearing in mapped rooms.",
+        Action: () => {
+            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
+                    );
             } else {
                 if (MapfullOn == true) {
                     MapfullOn = false;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision and hearing in mapped rooms is disabled.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision and hearing in mapped rooms is disabled. Fog is also back if not disabled with mapfog command.</p>"
                      );
                 } else {
                     MapfullOn = true;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision and hearing in mapped rooms is enabled. Will be disabled if you relog.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision and hearing in mapped rooms is enabled. Fog is also removed. Will be disabled if you use this toggle again or relog.</p>"
                     );
                 }
             }
@@ -7878,9 +7902,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }   
                         let X = Player.MapData.Pos.X + ((D == "West") ? -m : 0) + ((D == "East") ? m : 0);
                         let Y = Player.MapData.Pos.Y;
-                        let Time = ChatRoomMapCanEnterTile(X, Y);
+                        let Time = ChatRoomMapViewCanEnterTile(X, Y);
                         if (Time > 0) {
-		            ChatRoomMapMovement = {
+		            ChatRoomMapViewMovement = {
 			        X: X,
 			        Y: Y,
 			        Direction: D,
@@ -7888,7 +7912,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 			        TimeEnd: CommonTime() + Time
 		            };
 	                }
-                        ChatRoomMapUpdatePlayerNext = null;
+                        ChatRoomMapViewUpdatePlayerNext = null;
                         ServerAccountUpdate.QueueData({ MapData: Player.MapData }, true);
                     }
                 }
@@ -7922,9 +7946,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }                 
                         let X = Player.MapData.Pos.X;
                         let Y = Player.MapData.Pos.Y + ((D == "North") ? -m : 0) + ((D == "South") ? m : 0);
-                        let Time = ChatRoomMapCanEnterTile(X, Y);
+                        let Time = ChatRoomMapViewCanEnterTile(X, Y);
                         if (Time > 0) {
-		            ChatRoomMapMovement = {
+		            ChatRoomMapViewMovement = {
 			        X: X,
 			        Y: Y,
 			        Direction: D,
@@ -7932,7 +7956,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 			        TimeEnd: CommonTime() + Time
 		            };
 	                }
-                        ChatRoomMapUpdatePlayerNext = null;
+                        ChatRoomMapViewUpdatePlayerNext = null;
                         ServerAccountUpdate.QueueData({ MapData: Player.MapData }, true);
                     }
                 }
