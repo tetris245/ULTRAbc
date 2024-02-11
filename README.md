@@ -57,4 +57,6 @@ All else I might not have included.
 
 Changes for future version 
 
-* New command: mapkeys to have all keys for current map room
+* New commands:
+  - mapfog to enable/disable the fog in current map room
+  - mapkeys to have all keys for current map room
