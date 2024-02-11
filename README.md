@@ -60,3 +60,4 @@ Changes for future version
 * New commands:
   - mapfog to enable/disable the fog in current map room
   - mapkeys to have all keys for current map room
+* Updated the name of some modded functions
