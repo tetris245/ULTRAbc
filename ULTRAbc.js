@@ -12018,10 +12018,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Chat commands - * = more info when using\n" +
                     "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
-                    "<b>/bio</b> (target) = gives direct access to the profile description of any player in the chat room.\n" +
+                    "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
+		    "<b>/mapfog</b> = toggles fog in current map room.\n" +
 		    "<b>/mapfull</b> = toggles full vision and hearing in map rooms.\n" +
                     "<b>/mapkeys</b> = gives all keys for current map room.\n" + 
 		    "<b>/maproom</b> = gives infos about players in current map.\n" +
