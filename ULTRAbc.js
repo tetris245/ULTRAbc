@@ -580,10 +580,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRACellClick();
     ULTRACellLoad();
     ULTRACellRun();
+    ULTRAChatRoomCharacterViewDrawBackground();
     ULTRAChatRoomClick();
-    ULTRAChatRoomDrawBackground();
     ULTRAChatRoomKeyDown();
-    ULTRAChatRoomMapCalculatePerceptionMasks();
+    ULTRAChatRoomMapViewCalculatePerceptionMasks();
     ULTRAChatRoomMenuDraw();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
@@ -837,11 +837,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomMapCalculatePerceptionMasks() {
-        modApi.hookFunction('ChatRoomMapCalculatePerceptionMasks', 4, (args, next) => {
+    async function ULTRAChatRoomMapViewCalculatePerceptionMasks() {
+        modApi.hookFunction('ChatRoomMapViewCalculatePerceptionMasks', 4, (args, next) => {
             if (MapfullOn) {
-                ChatRoomMapVisibilityMask.fill(true);
-		ChatRoomMapAudibilityMask.fill(true);
+                ChatRoomMapViewVisibilityMask.fill(true);
+		ChatRoomMapViewAudibilityMask.fill(true);
 		return;
             }    
             next(args);
@@ -1619,8 +1619,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //Vision
-    async function ULTRAChatRoomDrawBackground() {
-        modApi.hookFunction('ChatRoomDrawBackground', 4, (args, next) => {
+    async function ULTRAChatRoomCharacterViewDrawBackground() {
+        modApi.hookFunction('ChatRoomCharacterViewDrawBackground', 4, (args, next) => {
             if (blureffect == true) {
                 if (Blur1On == true) {
                     BlurLevel = 3;
