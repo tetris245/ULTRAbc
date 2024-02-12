@@ -1709,27 +1709,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         for (let A = C.Appearance.length - 1; A >= 0; A--)
                             if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
                                 if ((C.Appearance[A].Asset.Group.Name != "Blush") &&
-                                (C.Appearance[A].Asset.Group.Name != "BodyLower") &&
-                                (C.Appearance[A].Asset.Group.Name != "BodyUpper") &&
-                                (C.Appearance[A].Asset.Group.Name != "Emoticon") &&
-                                (C.Appearance[A].Asset.Group.Name != "Eyebrows") &&
-                                (C.Appearance[A].Asset.Group.Name != "Eyes") &&
-                                (C.Appearance[A].Asset.Group.Name != "Eyes2") &&
-                                (C.Appearance[A].Asset.Group.Name != "FacialHair") &&
-                                (C.Appearance[A].Asset.Group.Name != "Fluids") &&
-                                (C.Appearance[A].Asset.Group.Name != "HairBack") &&
-                                (C.Appearance[A].Asset.Group.Name != "HairFront") &&
-                                (C.Appearance[A].Asset.Group.Name != "Hands") &&
-                                (C.Appearance[A].Asset.Group.Name != "Head") &&
-                                (C.Appearance[A].Asset.Group.Name != "Height") &&
-                                (C.Appearance[A].Asset.Group.Name != "Mouth") &&
-                                (C.Appearance[A].Asset.Group.Name != "Nipples") &&
-                                (C.Appearance[A].Asset.Group.Name != "Pronouns") &&
-                                (C.Appearance[A].Asset.Group.Name != "Pussy") &&
-                                (C.Appearance[A].Asset.Group.Name != "HairAccessory1") &&
-                                (C.Appearance[A].Asset.Group.Name != "HairAccessory2") &&
-                                (C.Appearance[A].Asset.Group.Name != "TailStraps") &&
-                                (C.Appearance[A].Asset.Group.Name != "Wings")) {
+                                    (C.Appearance[A].Asset.Group.Name != "BodyLower") &&
+                                    (C.Appearance[A].Asset.Group.Name != "BodyUpper") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Emoticon") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Eyebrows") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Eyes") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Eyes2") &&
+                                    (C.Appearance[A].Asset.Group.Name != "FacialHair") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Fluids") &&
+                                    (C.Appearance[A].Asset.Group.Name != "HairBack") &&
+                                    (C.Appearance[A].Asset.Group.Name != "HairFront") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Hands") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Head") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Height") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Mouth") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Nipples") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Pronouns") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Pussy") &&
+                                    (C.Appearance[A].Asset.Group.Name != "HairAccessory1") &&
+                                    (C.Appearance[A].Asset.Group.Name != "HairAccessory2") &&
+                                    (C.Appearance[A].Asset.Group.Name != "TailStraps") &&
+                                    (C.Appearance[A].Asset.Group.Name != "Wings")) {
                                     InventoryRemove(C, C.Appearance[A].Asset.Group.Name);
                                 }
                             }
