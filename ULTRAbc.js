@@ -6626,18 +6626,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'giveeverything',
-        Description: ": gives every item.",
-        Action: () => {
-            ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: Every item in the game now added.</p>"
-            );
-            AssetFemale3DCG.forEach(group => group.Asset.forEach(item => InventoryAdd(Player, item.Name, group.Group)));
-            ServerPlayerInventorySync();
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'gtalk',
         Description: "(talkmode) (words): speaks once in specified gag talk.",
         Action: (args) => {
@@ -8023,7 +8011,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'maxstatistics',
         Description: ": gives max statistics.",
         Action: () => {
-            Player.Money = 9999999999;
             SkillChange(Player, "Infiltration", 10);
             SkillChange(Player, "SelfBondage", 10);
             SkillChange(Player, "Willpower", 10);
@@ -8038,7 +8025,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             ReputationChange("ABDL", 100);
             ReputationChange("Nurse", 100);
             GameLARPLevelProgress(10000);
-            CheatAllow = true;
             LogAdd("BondageCollege", "Import");
             LogAdd("KidnapSophie", "Sarah");
             ChatRoomSendLocal(
@@ -8693,15 +8679,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
             }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'money',
-        Description: "(value): gives or takes money.",
-        Action: (args) => {
-            Player.Money = args;
-            ServerPlayerSync();
         }
     }])
 
@@ -12119,9 +12096,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Character commands - * = more info when using\n" +
                     "<b>/difficulty</b> (number) = changes game difficulty. *\n" +
-                    "<b>/giveeverything</b> = gives every item.\n" +
-                    "<b>/maxstatistics</b> = gives max statistics.\n" +
-                    "<b>/money</b> (value) = gives or takes money.\n" +
+                    "<b>/maxstatistics</b> = gives max statistics.\n" +     
                     "<b>/permission</b> (number) = changes your item permission *\n" +
                     "<b>/reputation</b> (reputation) (level) = changes a reputation. *\n" +
                     "<b>/resetinventory</b> = erases your inventory.\n" +
