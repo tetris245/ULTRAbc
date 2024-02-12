@@ -1992,15 +1992,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    //BC Responsive Status
     function showBCResponsiveStatus() {
         let msg;
         if (BCRdata.settings.enabled) {
-            msg = BCResponsiveStatus[0];
+            msg1 = BCResponsiveStatus[0];
         } else {
-            msg = BCResponsiveStatus[1];
+            msg1 = BCResponsiveStatus[1];
         }
-        M_MOANER_sendMessageToWearer(msg);
+        active = BCRdata.active_personality;
+        Personality = BCRdata.personalities[active].name;
+        msg2 = "";
+        if (BCRdata.personalities[active].responses.length != 0){
+            for (let i = 0; i < BCRdata.personalities[active].responses.length; i++) {
+                if (BCRdata.personalities[0].responses[i].enabled){ 
+                    rsp = BCRdata.personalities[0].responses[i].name;   
+                } else {
+                    rsp = "";
+                } 
+                msg2 = msg2 + rsp + " - ";           
+            }
+            msg = msg1 + " Active personality when enabled: " + Personality + ". Responses: " + msg2;
+            M_MOANER_sendMessageToWearer(msg);
+        }
     }
 
     //BCTweaks Status
@@ -12961,8 +12974,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }
                 } else if (addon == "bcr") {
-                    if (Player.OnlineSettings.BCResponsive != null) {
-                        str = Player.OnlineSettings.BCResponsive;
+                    if (Player.ExtensionSettings.BCResponsiveData != null) {
+                        str = Player.ExtensionSettings.BCResponsiveData;
                         d = LZString.decompressFromBase64(str);
                         BCRdata = {};
                         decoded = JSON.parse(d);
