@@ -60,5 +60,6 @@ Changes for future version
 * New commands:
   - mapfog to enable/disable the fog in current map room
   - mapkeys to have all keys for current map room
-* Limited targets for UBC buttons in wardrobe and many commands with target to UBC users 
+* Limited targets for UBC buttons in wardrobe and many commands with target to UBC users
+* Extended Uwall support to UBC buttons in wardrobe and save options of outfit command
 * Updated the name of some modded functions
