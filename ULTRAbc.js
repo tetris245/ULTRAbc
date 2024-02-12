@@ -532,6 +532,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
                 console.log("ULTRAbc loaded: Version " + UBCver);
+		Player.OnlineSharedSettings.UBC = UBCver;
+                ServerAccountUpdate.QueueData({ OnlineSharedSettings: Player.OnlineSharedSettings });
                 if (NPCpunish == true) {
                     Player.RestrictionSettings.BypassNPCPunishments = false;
                 } else {
@@ -1679,31 +1681,34 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             var C = CharacterAppearanceSelection;
             if (CharacterAppearanceMode == "Wardrobe") {
                 if ((MouseX >= 1510) && (MouseX < 1610) && (MouseY >= 240) && (MouseY < 290)) {
-                    if (ServerPlayerIsInChatRoom()) {
-                        var appall = new Array();
-                        C.Appearance.forEach(item => {
-                            var app = new Array();
-                            app.push(item.Asset.Name);
-                            app.push(item.Asset.Group.Name);
-                            app.push(item.Color);
-                            app.push(item.Difficulty);
-                            app.push(item.Craft);
-                            app.push(false);
-                            //Do not remove this line. It is for the compatibility with bcg.
-                            appall.push(app);
-                        });
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Appearance saved.</p>\n" +
+                    if (C.OnlineSharedSettings.UBC != undefined) {
+                        if (ServerPlayerIsInChatRoom()) {
+                            var appall = new Array();
+                            C.Appearance.forEach(item => {
+                                var app = new Array();
+                                app.push(item.Asset.Name);
+                                app.push(item.Asset.Group.Name);
+                                app.push(item.Color);
+                                app.push(item.Difficulty);
+                                app.push(item.Craft);
+                                app.push(false);
+                                //Do not remove this line. It is for the compatibility with bcg.
+                                appall.push(app);
+                            });
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Appearance saved.</p>\n" +
                             btoa(encodeURI(JSON.stringify(appall)))
-                        );
-                        DialogLeave();
+                            );
+                        }
                     }
+                    DialogLeave();
                 }
                 if ((MouseX >= 1630) && (MouseX < 1730) && (MouseY >= 240) && (MouseY < 290)) {
                     appinp = prompt('Please input the awcode (Compatible with BCG).', '');
-                    for (let A = C.Appearance.length - 1; A >= 0; A--)
-                        if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
-                            if ((C.Appearance[A].Asset.Group.Name != "Blush") &&
+                    if (C.OnlineSharedSettings.UBC != undefined) {
+                        for (let A = C.Appearance.length - 1; A >= 0; A--)
+                            if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
+                                if ((C.Appearance[A].Asset.Group.Name != "Blush") &&
                                 (C.Appearance[A].Asset.Group.Name != "BodyLower") &&
                                 (C.Appearance[A].Asset.Group.Name != "BodyUpper") &&
                                 (C.Appearance[A].Asset.Group.Name != "Emoticon") &&
@@ -1725,106 +1730,111 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 (C.Appearance[A].Asset.Group.Name != "HairAccessory2") &&
                                 (C.Appearance[A].Asset.Group.Name != "TailStraps") &&
                                 (C.Appearance[A].Asset.Group.Name != "Wings")) {
-                                InventoryRemove(C, C.Appearance[A].Asset.Group.Name);
+                                    InventoryRemove(C, C.Appearance[A].Asset.Group.Name);
+                                }
                             }
-                        }
-                    CharacterReleaseNoLock(C);
-                    var appobj = JSON.parse(decodeURI(atob(appinp)));
-                    appobj.forEach(itemstr => {
-                        if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                            if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                        CharacterReleaseNoLock(C);
+                        var appobj = JSON.parse(decodeURI(atob(appinp)));
+                        appobj.forEach(itemstr => {
+                            if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                                if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                                    InventoryRemove(C, itemstr[1]);
+                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                                }
+                            } else if ((itemstr[1] != "Blush") &&
+                                (itemstr[1] != "BodyLower") &&
+                                (itemstr[1] != "BodyUpper") &&
+                                (itemstr[1] != "Emoticon") &&
+                                (itemstr[1] != "Eyebrows") &&
+                                (itemstr[1] != "Eyes") &&
+                                (itemstr[1] != "Eyes2") &&
+                                (itemstr[1] != "FacialHair") &&
+                                (itemstr[1] != "Fluids") &&
+                                (itemstr[1] != "HairBack") &&
+                                (itemstr[1] != "HairFront") &&
+                                (itemstr[1] != "Hands") &&
+                                (itemstr[1] != "Head") &&
+                                (itemstr[1] != "Height") &&
+                                (itemstr[1] != "Mouth") &&
+                                (itemstr[1] != "Nipples") &&
+                                (itemstr[1] != "Pronouns") &&
+                                (itemstr[1] != "Pussy") &&
+                                (itemstr[1] != "HairAccessory1") &&
+                                (itemstr[1] != "HairAccessory2") &&
+                                (itemstr[1] != "TailStraps") &&
+                                (itemstr[1] != "Wings")) {
                                 InventoryRemove(C, itemstr[1]);
                                 InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
                             }
-                        } else if ((itemstr[1] != "Blush") &&
-                            (itemstr[1] != "BodyLower") &&
-                            (itemstr[1] != "BodyUpper") &&
-                            (itemstr[1] != "Emoticon") &&
-                            (itemstr[1] != "Eyebrows") &&
-                            (itemstr[1] != "Eyes") &&
-                            (itemstr[1] != "Eyes2") &&
-                            (itemstr[1] != "FacialHair") &&
-                            (itemstr[1] != "Fluids") &&
-                            (itemstr[1] != "HairBack") &&
-                            (itemstr[1] != "HairFront") &&
-                            (itemstr[1] != "Hands") &&
-                            (itemstr[1] != "Head") &&
-                            (itemstr[1] != "Height") &&
-                            (itemstr[1] != "Mouth") &&
-                            (itemstr[1] != "Nipples") &&
-                            (itemstr[1] != "Pronouns") &&
-                            (itemstr[1] != "Pussy") &&
-                            (itemstr[1] != "HairAccessory1") &&
-                            (itemstr[1] != "HairAccessory2") &&
-                            (itemstr[1] != "TailStraps") &&
-                            (itemstr[1] != "Wings")) {
-                            InventoryRemove(C, itemstr[1]);
-                            InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                        }
-                    });
-                    CharacterRefresh(C, false);
+                        });
+                        CharacterRefresh(C, false);
+                    }
                     DialogLeave();
                 }
                 if ((MouseX >= 1750) && (MouseX < 1850) && (MouseY >= 240) && (MouseY < 290)) {
                     appinp = prompt('Please input the awcode (Compatible with BCG).', '');
-                    CharacterNaked(C);
-                    CharacterReleaseNoLock(C);
-                    var appobj = JSON.parse(decodeURI(atob(appinp)));
-                    appobj.forEach(itemstr => {
-                        if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                            if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                    if (C.OnlineSharedSettings.UBC != undefined) {
+                        CharacterNaked(C);
+                        CharacterReleaseNoLock(C);
+                        var appobj = JSON.parse(decodeURI(atob(appinp)));
+                        appobj.forEach(itemstr => {
+                            if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                                if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                                    InventoryRemove(C, itemstr[1]);
+                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                                }
+                            } else if ((itemstr[1] != "Blush") &&
+                                (itemstr[1] != "BodyLower") &&
+                                (itemstr[1] != "BodyUpper") &&
+                                (itemstr[1] != "Emoticon") &&
+                                (itemstr[1] != "Eyebrows") &&
+                                (itemstr[1] != "Eyes") &&
+                                (itemstr[1] != "Eyes2") &&
+                                (itemstr[1] != "FacialHair") &&
+                                (itemstr[1] != "Fluids") &&
+                                (itemstr[1] != "HairBack") &&
+                                (itemstr[1] != "HairFront") &&
+                                (itemstr[1] != "Hands") &&
+                                (itemstr[1] != "Head") &&
+                                (itemstr[1] != "Height") &&
+                                (itemstr[1] != "Mouth") &&
+                                (itemstr[1] != "Nipples") &&
+                                (itemstr[1] != "Pronouns") &&
+                                (itemstr[1] != "Pussy")) {
                                 InventoryRemove(C, itemstr[1]);
                                 InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
                             }
-                        } else if ((itemstr[1] != "Blush") &&
-                            (itemstr[1] != "BodyLower") &&
-                            (itemstr[1] != "BodyUpper") &&
-                            (itemstr[1] != "Emoticon") &&
-                            (itemstr[1] != "Eyebrows") &&
-                            (itemstr[1] != "Eyes") &&
-                            (itemstr[1] != "Eyes2") &&
-                            (itemstr[1] != "FacialHair") &&
-                            (itemstr[1] != "Fluids") &&
-                            (itemstr[1] != "HairBack") &&
-                            (itemstr[1] != "HairFront") &&
-                            (itemstr[1] != "Hands") &&
-                            (itemstr[1] != "Head") &&
-                            (itemstr[1] != "Height") &&
-                            (itemstr[1] != "Mouth") &&
-                            (itemstr[1] != "Nipples") &&
-                            (itemstr[1] != "Pronouns") &&
-                            (itemstr[1] != "Pussy")) {
-                            InventoryRemove(C, itemstr[1]);
-                            InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                        }
-                    });
-                    CharacterRefresh(C, false);
+                        });
+                        CharacterRefresh(C, false);
+                    }
                     DialogLeave();
                 }
                 if ((MouseX >= 1870) && (MouseX < 1970) && (MouseY >= 240) && (MouseY < 290)) {
                     appinp = prompt('Please input the awcode (Compatible with BCG).', '');
-                    CharacterNaked(C);
-                    CharacterReleaseNoLock(C);
-                    var appobj = JSON.parse(decodeURI(atob(appinp)));
-                    appobj.forEach(itemstr => {
-                        if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                            if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                    if (C.OnlineSharedSettings.UBC != undefined) {
+                        CharacterNaked(C);
+                        CharacterReleaseNoLock(C);
+                        var appobj = JSON.parse(decodeURI(atob(appinp)));
+                        appobj.forEach(itemstr => {
+                            if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                                if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                                    InventoryRemove(C, itemstr[1]);
+                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                                }
+                            } else {
                                 InventoryRemove(C, itemstr[1]);
                                 InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
                             }
-                        } else {
-                            InventoryRemove(C, itemstr[1]);
-                            InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                        }
-                    });
-                    CharacterRefresh(C, false);
+                        });
+                        CharacterRefresh(C, false);
+                    }   
                     DialogLeave();
                 }
             }
             next(args);
         });
     }
-
+	
     //Other functions
 
     //Background
