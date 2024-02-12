@@ -5550,9 +5550,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     CommonDynamicFunction(MiniGameReturnFunction + "()");
                     CommonSetScreen("Online", "ChatRoom");
                     CurrentScreen = "ChatRoom";
-                    ChatRoomDrawCharacter();
+                    ChatRoomCharacterViewDraw();
                     ChatRoomMenuBuild();
-                    ChatRoomDrawBackground();
+                    ChatRoomCharacterViewDrawBackground();
                     ChatRoomLoad();
                     ChatRoomClearAllElements();
                 };
@@ -13107,7 +13107,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: "(target): opens target wardrobe.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomClickCharacter(Player);
+                ChatRoomCharacterViewClickCharacter(Player);
                 DialogChangeClothes();
             } else {
                 var targetname = args;
@@ -13129,7 +13129,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     } else  {                    
                         target[0].OnlineSharedSettings.AllowFullWardrobeAccess = true;
                         target[0].OnlineSharedSettings.BlockBodyCosplay = false;
-                        ChatRoomClickCharacter(target[0]);
+                        ChatRoomCharacterViewClickCharacter(target[0]);
                         DialogChangeClothes();
                     }
                 }
