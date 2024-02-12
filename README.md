@@ -62,4 +62,5 @@ Changes for future version
   - mapkeys to have all keys for current map room
 * Limited targets for UBC buttons in wardrobe and many commands with target to UBC users
 * Extended Uwall support to UBC buttons in wardrobe and save options of outfit command
+* Removed the giveeverything and money commands
 * Updated the invisible command and the name of functions related to Chat Room
