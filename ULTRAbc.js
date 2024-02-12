@@ -5574,7 +5574,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -6758,7 +6758,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true))) {
+                if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true)) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -6940,7 +6940,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var targetnumber = parseInt(targetname);
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                     }
-                    if ((target[0] != null) && (target[0].AllowItem == true) && (color.startsWith("#"))) {
+                    if ((target[0] != null) && (target[0].AllowItem == true) && (color.startsWith("#")) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                         if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                             tgpname = target[0].Name;
                         } else {
@@ -7621,7 +7621,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true))) {
+                if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true)) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -8776,7 +8776,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -8842,28 +8842,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
                 );
                 setTimeout(function() {
-		    var uw = 0;
-                    CurrentCharacter.Appearance = this.savedoutfit1.slice(0);
-                    if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
-                        if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                            tgpname = CurrentCharacter.Name;
-                        } else {
-                            tgpname = CurrentCharacter.Nickname;
-                        }
-                        if (tgpname != tmpname) {
-                            var uw = 1;
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                            );
+                    if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
+		        var uw = 0;
+                        CurrentCharacter.Appearance = this.savedoutfit1.slice(0);
+                        if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
+                                tgpname = CurrentCharacter.Name;
+                            } else {
+                               tgpname = CurrentCharacter.Nickname;
+                            }
+                            if (tgpname != tmpname) {
+                                var uw = 1;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                                );
+                            } 
                         } 
-                    } 
-                    if (uw == 0) {
-                        CharacterRefresh(CurrentCharacter);
-                        ChatRoomCharacterUpdate(CurrentCharacter);
-                        DialogLeave();
-			ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load1 command executed.</p>"
-                        );
+                        if (uw == 0) {
+                            CharacterRefresh(CurrentCharacter);
+                            ChatRoomCharacterUpdate(CurrentCharacter);
+                            DialogLeave();
+			    ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load1 command executed.</p>"
+                            );
+                        }
                     }
                 }, 5000);
             }
@@ -8872,28 +8874,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
                 );
                 setTimeout(function() {
-		    var uw = 0;
-                    CurrentCharacter.Appearance = savedoutfit2.slice(0);
-                    if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
-                        if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                            tgpname = CurrentCharacter.Name;
-                        } else {
-                            tgpname = CurrentCharacter.Nickname;
-                        }
-                        if (tgpname != tmpname) {
-                            var uw = 1;
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                            );
+                    if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
+		        var uw = 0;
+                        CurrentCharacter.Appearance = this.savedoutfit2.slice(0);
+                        if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
+                                tgpname = CurrentCharacter.Name;
+                            } else {
+                               tgpname = CurrentCharacter.Nickname;
+                            }
+                            if (tgpname != tmpname) {
+                                var uw = 1;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                                );
+                            } 
                         } 
-                    } 
-                    if (uw == 0) {
-                        CharacterRefresh(CurrentCharacter);
-                        ChatRoomCharacterUpdate(CurrentCharacter);
-                        DialogLeave();
-			ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load2 command executed.</p>"
-                        );
+                        if (uw == 0) {
+                            CharacterRefresh(CurrentCharacter);
+                            ChatRoomCharacterUpdate(CurrentCharacter);
+                            DialogLeave();
+			    ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load1 command executed.</p>"
+                            );
+                        }
                     }
                 }, 5000);
             }
@@ -8902,28 +8906,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
                 );
                 setTimeout(function() {
-		    var uw = 0;
-                    CurrentCharacter.Appearance = savedoutfit3.slice(0);
-                    if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
-                        if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                            tgpname = CurrentCharacter.Name;
-                        } else {
-                            tgpname = CurrentCharacter.Nickname;
-                        }
-                        if (tgpname != tmpname) {
-                            var uw = 1;
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                            );
+                    if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
+		        var uw = 0;
+                        CurrentCharacter.Appearance = this.savedoutfit3.slice(0);
+                        if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
+                                tgpname = CurrentCharacter.Name;
+                            } else {
+                               tgpname = CurrentCharacter.Nickname;
+                            }
+                            if (tgpname != tmpname) {
+                                var uw = 1;
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                                );
+                            } 
                         } 
-                    } 
-                    if (uw == 0) {
-                        CharacterRefresh(CurrentCharacter);
-                        ChatRoomCharacterUpdate(CurrentCharacter);
-                        DialogLeave();
-			ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load3 command executed.</p>"
-                        );
+                        if (uw == 0) {
+                            CharacterRefresh(CurrentCharacter);
+                            ChatRoomCharacterUpdate(CurrentCharacter);
+                            DialogLeave();
+			    ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load1 command executed.</p>"
+                            );
+                        }
                     }
                 }, 5000);
             }
@@ -8940,11 +8946,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.</p>"
                 );
                 setTimeout(function() {
-                    this.savedoutfit1 = CurrentCharacter.Appearance.slice(0);
-                    DialogLeave();
-		    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save1 command executed.</p>"
-                    );
+                    if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
+                        this.savedoutfit1 = CurrentCharacter.Appearance.slice(0);
+                        DialogLeave();
+		        ChatRoomSendLocal(
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save1 command executed.</p>"
+                        );
+                    }
                 }, 5000);
             }
             if (args === "save2") {
@@ -8952,11 +8960,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.</p>"
                 );
                 setTimeout(function() {
-                    this.savedoutfit2 = CurrentCharacter.Appearance.slice(0);
-                    DialogLeave();
-		    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save2 command executed.</p>"
-                    );
+                    if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
+                        this.savedoutfit2 = CurrentCharacter.Appearance.slice(0);
+                        DialogLeave();
+		        ChatRoomSendLocal(
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save1 command executed.</p>"
+                        );
+                    }
                 }, 5000);
             }
             if (args === "save3") {
@@ -8964,11 +8974,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.</p>"
                 );
                 setTimeout(function() {
-                    this.savedoutfit3 = CurrentCharacter.Appearance.slice(0);
-                    DialogLeave();
-	            ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save3 command executed.</p>"
-                    );
+                    if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
+                        this.savedoutfit3 = CurrentCharacter.Appearance.slice(0);
+                        DialogLeave();
+		        ChatRoomSendLocal(
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save1 command executed.</p>"
+                        );
+                    }
                 }, 5000);
             }
         }
