@@ -9058,7 +9058,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true)&& (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -9679,7 +9679,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var targetnumber = parseInt(targetname);
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                     }
-                    if (target[0] != null) {
+                    if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                         if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                             tgpname = target[0].Name;
                         } else {
@@ -10157,7 +10157,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -10372,7 +10372,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -10651,25 +10651,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
             );
             setTimeout(function() {
-		var uw = 0;
-                CurrentCharacter.Appearance = CurrentCharacter.Appearance.filter(x => (CurrentCharacter.FocusGroup && CurrentCharacter.FocusGroup.Name) ? x.Asset.Group.Name !=
+                if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
+		    var uw = 0;
+                    CurrentCharacter.Appearance = CurrentCharacter.Appearance.filter(x => (CurrentCharacter.FocusGroup && CurrentCharacter.FocusGroup.Name) ? x.Asset.Group.Name !=
                     CurrentCharacter.FocusGroup.Name : true);
-                if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
-                    if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                        tgpname = CurrentCharacter.Name;
-                    } else {
-                        tgpname = CurrentCharacter.Nickname;
-                    }
-                    if (tgpname != tmpname) {
-                        var uw = 1;
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
+                    if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                        if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
+                            tgpname = CurrentCharacter.Name;
+                        } else {
+                            tgpname = CurrentCharacter.Nickname;
+                        }
+                        if (tgpname != tmpname) {
+                            var uw = 1;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } 
                     } 
-                } 
-                if (uw == 0) {
-                    ChatRoomCharacterUpdate(CurrentCharacter);
-                    DialogLeave();
+                    if (uw == 0) {
+                        ChatRoomCharacterUpdate(CurrentCharacter);
+                        DialogLeave();
+                    }
                 }
             }, 5000);
         }
@@ -10975,7 +10977,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -11109,7 +11111,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var targetnumber = parseInt(targetname);
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                     }
-                    if ((target[0] != null) && (target[0].AllowItem == true) && (solidity > 0) && (solidity < 100)) {
+                    if ((target[0] != null) && (target[0].AllowItem == true) && (solidity > 0) && (solidity < 100) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                         if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                             tgpname = target[0].Name;
                         } else {
@@ -11188,7 +11190,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if (target[0] != null) {
+                if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -11893,7 +11895,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -12231,7 +12233,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -12306,7 +12308,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true)) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -12557,7 +12559,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if ((target[0] != null) && (target[0].AllowItem == true)) {
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
@@ -13021,7 +13023,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
-                if (target[0] != null) {
+                if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
                         tgpname = target[0].Name;
                     } else {
