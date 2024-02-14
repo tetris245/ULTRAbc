@@ -254,6 +254,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var EdgeBlurStatus = ["Blurring of the screen when you are on edge.",
         "No blurring of the screen when you are on edge."
     ];
+    var ErectionStatus = ["Private message when you feel an erection under your clothes.",
+        "No private message when you feel an erection under your clothes."
+    ];
     var Lipstick1Status = ["Other people can leave lipstick marks on your face or neck when kissing you.",
         "No lipstick mark on your face or neck when someone kisses you."
     ];
@@ -2290,6 +2293,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = EdgeBlurStatus[0];
         } else {
             msg = EdgeBlurStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showErectionStatus() {
+        let msg;
+        if (LSCGdata.GlobalModule.erectionDetection) {
+            msg = ErectionStatus[0];
+        } else {
+            msg = ErectionStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -13023,6 +13036,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         showCheckRollsStatus();
                         showCraftingStatus();
                         showEdgeBlurStatus();
+			showErectionStatus();
                         showLipstickStatus();
 			showOpacityStatus();
                         showRestrainedSettingsStatus();
