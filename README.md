@@ -65,3 +65,4 @@ Changes for future version
 * Updated the bcr and lscg options of the xstatus command
 * Updated the invisible command and the name of functions related to Chat Room
 * Removed the giveeverything and money commands
+* Fixed a bug in several commands with delay to click, if you do nothing within this delay
