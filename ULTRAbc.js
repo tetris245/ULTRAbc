@@ -7900,7 +7900,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else {
                 if (Player.MapData == undefined) {
                      ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You fon't have entered the map.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have entered the map.</p>"
                     );
                 } else {
                     Player.MapData.PrivateState.HasKeyGold = true;
