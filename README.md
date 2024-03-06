@@ -60,5 +60,5 @@ Changes for future version
 * New commands:
   - roomsize (players) to set the maximum players per room in Chat Search for normal and hybrid rooms
   - uroom to display infos about UBC users and Uwall protection in current chat room
-* Added the target option and extewall support to the invisible and visible commands
+* Added target option and extended Uwall support to the invisible and visible commands
 * Updated the ustatus command
