@@ -57,5 +57,6 @@ All else I might not have included.
 
 Changes for future version 
 
-* New command:
+* New commands:
   - roomsize (players) to set the maximum players per room in Chat Search
+  - uroom to display infos about UBC users and Uwall protection in current chat room
