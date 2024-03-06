@@ -2659,6 +2659,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
+    function showRoomSizeStatus() {
+        let msg;   
+        msg = " Current maximum players per room in Chat Search: " + rsize + ".";
+        M_MOANER_sendMessageToWearer(msg);
+    }
+	
     function showSosbuttonsStatus() {
         let msg;
         if (SosbuttonsOn) {
@@ -13041,6 +13047,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             showNowhisperStatus();
             showNpcpunishStatus();
 	    showOutbuttonsStatus();
+	    showRoomSizeStatus();
             showSosbuttonsStatus();
         }
     }])
