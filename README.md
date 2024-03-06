@@ -57,5 +57,5 @@ All else I might not have included.
 
 Changes for future version 
 
-
-(...)
+* New command:
+  - roomsize (players) to set the maximum players per room in Chat Search
