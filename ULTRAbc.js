@@ -12348,8 +12348,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
-                    "<b>/ustatus</b> = displays status of ULTRAbc settings.\n" +
-                    "<b>/unrestrict</b> =  partially removes restrictions from game. * </p>\n"
+                    "<b>/unrestrict</b> =  partially removes restrictions from game. *\n" + 
+                    "<b>/uroom</b> = gives infos about UBC users and Uwall protection in current room.\n" +
+                    "<b>/ustatus</b> = displays status of ULTRAbc settings.</p>"
                 );
             }
             if (args === "settings") {
@@ -12819,7 +12820,43 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-          
+
+    CommandCombine([{
+        Tag: 'uroom',
+        Description: ": gives infos about UBC users and Uwall protection in current chat room.",
+        Action: () => {
+            let pl = 0;
+            while (pl < ChatRoomCharacter.length) {
+                if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
+                    var name = ChatRoomCharacter[pl].Name;
+		    var aka = "";
+                } else {
+                    var name = ChatRoomCharacter[pl].Nickname; 
+		    var aka =  ChatRoomCharacter[pl].Name;
+                }
+                var number = ChatRoomCharacter[pl].MemberNumber;
+                ChatRoomSendLocal(name + " (" + aka + ") - " + number);
+                if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined){ 
+                    var mes1 = "Does not use ULTRAbc.";
+                } else {
+                    var mes1 = "Is an ULTRAbc user.";
+                } 
+                if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined){ 
+                    var mes2 = "Does not use Uwall.";
+                } else {   
+                    if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true){ 
+                        var mes2 = "Has enabled Uwall";
+                    } else {
+                        var mes2 = "Has disabled Uwall.";
+                    }
+                }  
+            ChatRoomSendLocal(mes1 + " - " + mes2);      
+            ChatRoomSendLocal(" "); 
+            pl ++;
+            } 
+        }
+    }])
+   
     CommandCombine([{
         Tag: 'uset',
         Description: "(setting): toggles a specific UBC setting.",
