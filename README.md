@@ -58,6 +58,6 @@ All else I might not have included.
 Changes for future version 
 
 * New commands:
-  - roomsize (players) to set the maximum players per room in Chat Search
+  - roomsize (players) to set the maximum players per room in Chat Search for normal and hybrid rooms
   - uroom to display infos about UBC users and Uwall protection in current chat room
 * Updated the ustatus command
