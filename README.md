@@ -60,3 +60,4 @@ Changes for future version
 * New commands:
   - roomsize (players) to set the maximum players per room in Chat Search
   - uroom to display infos about UBC users and Uwall protection in current chat room
+* Updated the ustatus command
