@@ -48,6 +48,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let profileName;
     var cdesk = 0;
     var cfame = 200;
+    var rsize = 20;
 
     let AutojoinOn;   
     let FullseedOn;
@@ -359,6 +360,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             pronoun4 = "";
             cdesk = 0;
             cfame = 200;
+	    rsize = 20;
             AutojoinOn = false;
             FullseedOn = false;
             HighfameOn = false;
@@ -412,6 +414,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             pronoun4 = datas.pronoun4;
             cdesk = datas.cdesk;
             cfame = datas.cfame;
+	    rsize = datas.rsize;
             AutojoinOn = datas.autojoin;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
@@ -468,6 +471,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "pronoun4": pronoun4,
             "cdesk": cdesk,
             "cfame": cfame,
+	    "rsize": rsize,
             "autojoin": AutojoinOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
@@ -563,12 +567,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     OutbuttonsOn = false;
                     M_MOANER_saveControls();
                 }
-                if (M_MOANER_tickleActive == null || M_MOANER_tickleActive == undefined) {
-                    M_MOANER_tickleActive = true;
-                    M_MOANER_saveControls();
-                }
-                if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) {
-                    M_MOANER_xvibratorActive = true;
+                if (rsize == null || rsize == undefined) {
+                    rsize = 20;
                     M_MOANER_saveControls();
                 }
             } catch (err) {
@@ -592,6 +592,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAChatRoomMenuDraw();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
+    ULTRAChatSearchNormalDraw();
     ULTRAChatSearchRoomSpaceSelectClick();
     ULTRAChatSearchRoomSpaceSelectDraw(); 
     ULTRAClubCardEndTurn();
@@ -1041,6 +1042,87 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
             }
             next(args);
+        });
+    }
+
+    async function ULTRAChatSearchNormalDraw() {
+        modApi.hookFunction('ChatSearchNormalDraw', 4, (args, next) => {
+            if ((ChatSearchResult.length >= 1)) {
+            let rm = 0;
+            let NewResult = [];
+            while (rm < ChatSearchResult.length) { 
+                if (ChatSearchResult[rm].MemberLimit <= rsize) {
+                    NewResult.push(ChatSearchResult[rm]);
+                }   
+             rm++;
+             }
+             if ((NewResult.length >= 1)) {
+		 var X = ChatSearchPageX;
+		 var Y = ChatSearchPageY;
+                 ChatSearchResult = NewResult;
+                 for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
+		     var HasFriends = ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0;
+		     var IsFull = ChatSearchResult[C].MemberCount >= ChatSearchResult[C].MemberLimit;
+		     var HasBlock = CharacterHasBlockedItem(Player, ChatSearchResult[C].BlockCategory);
+		     DrawButton(X, Y, 630, 85, "", (HasBlock && IsFull ? "#884444" : HasBlock ? "#FF9999" : HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White"), null, null, IsFull);
+		     if ((ChatSearchResult[C].MapType === "Always") || (ChatSearchResult[C].MapType === "Hybrid")) {
+		         DrawImage("Icons/MapType" + ChatSearchResult[C].MapType + ".png", X + 2, Y + 2);
+			 DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchMuffle(ChatSearchResult[C].DisplayName) + " - " + ChatSearchMuffle(ChatSearchResult[C].Creator) + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 355, Y + 25, 540, "black");
+			 DrawTextFit(ChatSearchMuffle(ChatSearchResult[C].Description), X + 355, Y + 62, 540, "black");
+		     } else {
+		         DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchMuffle(ChatSearchResult[C].DisplayName) + " - " + ChatSearchMuffle(ChatSearchResult[C].Creator) + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 540, "black");
+			 DrawTextFit(ChatSearchMuffle(ChatSearchResult[C].Description), X + 315, Y + 62, 620, "black");
+		     }
+		     X = X + 660;
+		     if (X > 1500) {
+		         X = 25;
+			 Y = Y + 109;
+		     }
+		 }
+		 if (!CommonIsMobile && MouseIn(25, 25, 1950, 850)) {
+		     X = ChatSearchPageX;
+		     Y = ChatSearchPageY;
+		     for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
+		         let Height = 58;
+			 let ListHeight = Height * (
+			     (ChatSearchResult[C].Friends.length > 0 ? 1 : 0) + ChatSearchResult[C].Friends.length
+			     + (ChatSearchResult[C].BlockCategory.length > 0 ? 1 : 0)
+			     + (ChatSearchResult[C].Game != "" ? 1 : 0));
+			 let ListY = Math.min(Y, 872 - ListHeight);
+			 if (MouseIn(X, Y, 630, 85) && ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0) {
+			     DrawTextWrap(TextGet("FriendsInRoom") + " " + ChatSearchMuffle(ChatSearchResult[C].DisplayName), (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
+			     ListY += Height;
+			     for (let F = 0; F < ChatSearchResult[C].Friends.length; F++) {
+			         DrawTextWrap(ChatSearchMuffle(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")"), (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
+				 ListY += Height;
+			     }
+			 }	
+			 if (MouseIn(X, Y, 630, 85) && (ChatSearchResult[C].BlockCategory != null) && (ChatSearchResult[C].BlockCategory.length > 0)) {
+			     let Block = TextGet("Block");
+			     for (let B = 0; B < ChatSearchResult[C].BlockCategory.length; B++)
+			         Block = Block + ((B > 0) ? ", " : " ") + TextGet(ChatSearchResult[C].BlockCategory[B]);
+			     DrawTextWrap(Block, (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FF9999", 1);
+			     ListY += Height;
+			 }
+			 if (MouseIn(X, Y, 630, 85) && (ChatSearchResult[C].Game != null) && (ChatSearchResult[C].Game != "")) {
+			     DrawTextWrap(TextGet("GameLabel") + " " + TextGet("Game" + ChatSearchResult[C].Game), (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#9999FF", 1);
+			     ListY += Height;
+			 }
+			 X = X + 660;
+			 if (X > 1500) {   
+			     X = 25;
+			     Y = Y + 109;
+			 }
+                    }  
+		}  
+	    } else {
+                DrawText(TextGet("NoChatRoomFound"), 1000, 450, "White", "Gray");  
+            }
+	} else {
+            DrawText(TextGet("NoChatRoomFound"), 1000, 450, "White", "Gray");
+        }
+        return;
+        next(args);
         });
     }
 
@@ -10686,6 +10768,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'roomsize',
+        Description: "(players): sets the maximum players per room in Chat Search.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The roomsize command must be followede by a number between 2 and 20.</p>"
+                );
+            } else {
+                var size = args;
+                if ((size > 1) && (size < 21) && (size != rsize)) {
+                    rsize = size *1;
+                    M_MOANER_saveControls();
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: You have modified the maximum players per room in Chat Search..</p>"
+                    );
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 's1',
         Description: "(words): speaks once in light stuttering mode.",
         Action: (args) => {
@@ -12258,6 +12361,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 		    "<b>/cardnoextra</b> = removes all extra cards.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
+		    "<b>/roomsize</b> (players) = sets maximum players per room in Chat Search.\n" +
                     "<b>/uset</b> (setting) = toggles a specific UBC setting *.</p>"
                 );
             }
