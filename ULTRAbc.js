@@ -6949,108 +6949,229 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'invisible',
-        Description: ": becomes invisible (scripts need to be allowed in BC settings).",
-        Action: () => {
-	    if (Player.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To use the invisible command, you need first to allow Scripts in BC settings.<p>"
-                );
-            } else {    
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: "Magical lasers make " + tmpname + " completely invisible."
-                    }]
-                });
-                InventoryWear(Player, "Script", "ItemScript");
-                InventoryGet(Player, "ItemScript").Property = {
-                    Hide: [
-                        "Activity",
-                        "Blush",
-                        "BodyLower",
-			"BodyMarkings",
-                        "BodyUpper",
-                        "Bra",
-                        "Bracelet",
-                        "Cloth",
-                        "ClothAccessory",
-                        "ClothLower",
-                        "Corset",
-                        "Emoticon",
-                        "Eyebrows",
-                        "Eyes",
-                        "Eyes2",
-                        "EyeShadow",
-                        "Face",
-                        "FacialHair",
-                        "Fluids",
-                        "Garters",
-                        "Glasses",
-                        "Gloves",
-                        "HairAccessory1",
-                        "HairAccessory2",
-                        "HairAccessory3",
-                        "HairBack",
-                        "HairFront",
-                        "Hands",
-                        "Hat",
-                        "Head",
-                        "ItemAddon",
-                        "ItemArms",
-                        "ItemBoots",
-                        "ItemBreast",
-                        "ItemButt",
-                        "ItemDevices",
-                        "ItemEars",
-                        "ItemFeet",
-                        "ItemHandheld",
-                        "ItemHands",
-                        "ItemHead",
-                        "ItemHood",
-                        "ItemLegs",
-                        "ItemMisc",
-                        "ItemMouth",
-                        "ItemMouth2",
-                        "ItemMouth3",
-                        "ItemNeck",
-                        "ItemNeckAccessories",
-                        "ItemNeckRestraints",
-                        "ItemNipples",
-                        "ItemNipplesPiercings",
-                        "ItemNose",
-                        "ItemPelvis",
-                        "ItemTorso",
-                        "ItemTorso2",
-                        "ItemVulva",
-                        "ItemVulvaPiercings",
-                        "Jewelry",
-                        "LeftAnklet",
-                        "LeftHand",
-		        "Mask",
-                        "Mouth",
-                        "Necklace",
-                        "Nipples",
-                        "Panties",
-                        "Pussy",
-                        "RightAnklet",
-                        "RightHand",
-                        "Shoes",
-                        "Socks",
-                        "SocksLeft",
-                        "SocksRight",
-                        "Suit",
-                        "SuitLower",
-                        "TailStraps",
-                        "Wings"
-                    ]
-                }
-                CurrentScreen === 'ChatRoom' ?
-                    ChatRoomCharacterUpdate(Player) :
-                CharacterRefresh(Player);
-	    }	    
-        }
+        Description: "(target): goes or sends to invisible mode (scripts need to be allowed in BC settings).",
+        Action: (args) => {
+            if (args === "") {
+	        if (Player.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To use the invisible command on yourself, you need first to allow Scripts in BC settings.<p>"
+                    );
+                } else {    
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: "Magical lasers make " + tmpname + " completely invisible."
+                        }]
+                    });
+                    InventoryWear(Player, "Script", "ItemScript");
+                    InventoryGet(Player, "ItemScript").Property = {
+                        Hide: [
+                            "Activity",
+                            "Blush",
+                            "BodyLower",
+			    "BodyMarkings",
+                            "BodyUpper",
+                            "Bra",
+                            "Bracelet",
+                            "Cloth",
+                            "ClothAccessory",
+                            "ClothLower",
+                            "Corset",
+                            "Emoticon",
+                            "Eyebrows",
+                            "Eyes",
+                            "Eyes2",
+                            "EyeShadow",
+                            "Face",
+                            "FacialHair",
+                            "Fluids",
+                            "Garters",
+                            "Glasses",
+                            "Gloves",
+                            "HairAccessory1",
+                            "HairAccessory2",
+                            "HairAccessory3",
+                            "HairBack",
+                            "HairFront",
+                            "Hands",
+                            "Hat",
+                            "Head",
+                            "ItemAddon",
+                            "ItemArms",
+                            "ItemBoots",
+                            "ItemBreast",
+                            "ItemButt",
+                            "ItemDevices",
+                            "ItemEars",
+                            "ItemFeet",
+                            "ItemHandheld",
+                            "ItemHands",
+                            "ItemHead",
+                            "ItemHood",
+                            "ItemLegs",
+                            "ItemMisc",
+                            "ItemMouth",
+                            "ItemMouth2",
+                            "ItemMouth3",
+                            "ItemNeck",
+                            "ItemNeckAccessories",
+                            "ItemNeckRestraints",
+                            "ItemNipples",
+                            "ItemNipplesPiercings",
+                            "ItemNose",
+                            "ItemPelvis",
+                            "ItemTorso",
+                            "ItemTorso2",
+                            "ItemVulva",
+                            "ItemVulvaPiercings",
+                            "Jewelry",
+                            "LeftAnklet",
+                            "LeftHand",
+		            "Mask",
+                            "Mouth",
+                            "Necklace",
+                            "Nipples",
+                            "Panties",
+                            "Pussy",
+                            "RightAnklet",
+                            "RightHand",
+                            "Shoes",
+                            "Socks",
+                            "SocksLeft",
+                            "SocksRight",
+                            "Suit",
+                            "SuitLower",
+                            "TailStraps",
+                            "Wings"
+                        ]
+                    }
+                    CurrentScreen === 'ChatRoom' ?
+                        ChatRoomCharacterUpdate(Player) :
+                        CharacterRefresh(Player);
+	        }	    
+            } else {
+                var targetname = args;
+                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    if (target[0] == null) {
+                        var targetnumber = parseInt(targetname);
+                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                    }
+                    if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
+                        if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                            tgpname = target[0].Name;
+                        } else {
+                            tgpname = target[0].Nickname;
+                        }
+                        if (target[0].OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To use the invisible command on other players, they need first to allow Scripts in BC settings.<p>"
+                            );
+                        } else {
+                            if (target[0].OnlineSharedSettings.Uwall == true) {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                                );
+                            } else {
+                                ServerSend("ChatRoomChat", {
+                                    Content: "Beep",
+                                    Type: "Action",
+                                    Dictionary: [{
+                                        Tag: "Beep",
+                                        Text: "Magical lasers make " + tgpname + " completely invisible."
+                                    }]
+                                });
+                                InventoryWear(target[0], "Script", "ItemScript");
+                                InventoryGet(target[0], "ItemScript").Property = {
+                                    Hide: [
+                                        "Activity",
+                                        "Blush",
+                                        "BodyLower",
+			                "BodyMarkings",
+                                        "BodyUpper",
+                                        "Bra",
+                                        "Bracelet",
+                                        "Cloth",
+                                        "ClothAccessory",
+                                        "ClothLower",
+                                        "Corset",
+                                        "Emoticon",
+                                        "Eyebrows",
+                                        "Eyes",
+                                        "Eyes2",
+                                        "EyeShadow",
+                                        "Face",
+                                        "FacialHair",
+                                        "Fluids",
+                                        "Garters",
+                                        "Glasses",
+                                        "Gloves",
+                                        "HairAccessory1",
+                                        "HairAccessory2",
+                                        "HairAccessory3",
+                                        "HairBack",
+                                        "HairFront",
+                                        "Hands",
+                                        "Hat",
+                                        "Head",
+                                        "ItemAddon",
+                                        "ItemArms",
+                                        "ItemBoots",
+                                        "ItemBreast",
+                                        "ItemButt",
+                                        "ItemDevices",
+                                        "ItemEars",
+                                        "ItemFeet",
+                                        "ItemHandheld",
+                                        "ItemHands",
+                                        "ItemHead",
+                                        "ItemHood",
+                                        "ItemLegs",
+                                        "ItemMisc",
+                                        "ItemMouth",
+                                        "ItemMouth2",
+                                        "ItemMouth3",
+                                        "ItemNeck",
+                                        "ItemNeckAccessories",
+                                        "ItemNeckRestraints",
+                                        "ItemNipples",
+                                        "ItemNipplesPiercings",
+                                        "ItemNose",
+                                        "ItemPelvis",
+                                        "ItemTorso",
+                                        "ItemTorso2",
+                                        "ItemVulva",
+                                        "ItemVulvaPiercings",
+                                        "Jewelry",
+                                        "LeftAnklet",
+                                        "LeftHand",
+		                        "Mask",
+                                        "Mouth",
+                                        "Necklace",
+                                        "Nipples",
+                                        "Panties",
+                                        "Pussy",
+                                        "RightAnklet",
+                                        "RightHand",
+                                        "Shoes",
+                                        "Socks",
+                                        "SocksLeft",
+                                        "SocksRight",
+                                        "Suit",
+                                        "SuitLower",
+                                        "TailStraps",
+                                        "Wings"
+                                    ]
+                                }
+                                CurrentScreen === 'ChatRoom' ?
+                                    ChatRoomCharacterUpdate(target[0]) :
+                                    CharacterRefresh(target[0]);
+                          }
+                      }
+	          }	    
+              }
+          }
     }])
 
     CommandCombine([{
@@ -12319,16 +12440,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (args === "fun") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fun commands - * = more info when using\n" +
+                    "** = scripts must be allowed in BC settings\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
-                    "<b>/hdvibe</b> (options) = changes the settings of worn High Duty Belt. *\n" +
-                    "<b>/invisible</b> = becomes invisible (scripts must be allowed in BC settings).\n" +
+                    "<b>/hdvibe</b> (options) = changes settings of worn High Duty Belt. *\n" +
+                    "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
                     "<b>/moaner</b> (options) = moans when horny and stimulated. *.\n" +
-                    "<b>/plvibe</b> (options) = changes the settings of worn Sci-Fi Pleasure Panties. *\n" +
-                    "<b>/sfchaste</b> (options) = changes the settings of worn Futuristic Chastity Belt. *\n" +
-                    "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
+                    "<b>/plvibe</b> (options) = changes settings of worn Sci-Fi Pleasure Panties. *\n" +
+                    "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
+                    "<b>/sleep</b> (target) = uses the sleeping pill.\n" +
                     "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
-                    "<b>/visible</b> = back to visible state if you are invisible.</p>"
+                    "<b>/visible</b> (target) = goes or sends back to visible mode. **</p>"
                 );
             }
             if (args === "kd") {
@@ -13054,21 +13176,61 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'visible',
-        Description: ": back to visible state after using of the invisible command.",
+        Description: ": (target): goes back or sends back to visible mode.",
         Action: (args) => {
-            ServerSend("ChatRoomChat", {
-                Content: "Beep",
-                Type: "Action",
-                Dictionary: [{
-                    Tag: "Beep",
-                    Text: "" + tmpname + " suddenly is visible for everybody."
-                }]
-            });
-            InventoryRemove(Player, "ItemScript");
-            CurrentScreen === 'ChatRoom' ?
-                ChatRoomCharacterUpdate(Player) :
-                CharacterRefresh(Player);
-        }
+            if (args === "") {
+                ServerSend("ChatRoomChat", {
+                    Content: "Beep",
+                    Type: "Action",
+                    Dictionary: [{
+                        Tag: "Beep",
+                        Text: "" + tmpname + " suddenly is visible for everybody."
+                    }]
+                });
+                InventoryRemove(Player, "ItemScript");
+                CurrentScreen === 'ChatRoom' ?
+                    ChatRoomCharacterUpdate(Player) :
+                    CharacterRefresh(Player);
+            } else {
+                var targetname = args;
+                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
+                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                        tgpname = target[0].Name;
+                    } else {
+                        tgpname = target[0].Nickname;
+                    }
+                    if (target[0].OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To use the visible command on other players, they need first to allow Scripts in BC settings.<p>"
+                        );
+                    } else {
+                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
+                            );
+                        } else {
+                            ServerSend("ChatRoomChat", {
+                                Content: "Beep",
+                                Type: "Action",
+                                Dictionary: [{
+                                    Tag: "Beep",
+                                    Text: "" + tgpname + " suddenly is visible for everybody."
+                                }]
+                            });
+                            InventoryRemove(target[0], "ItemScript");
+                            CurrentScreen === 'ChatRoom' ?
+                                ChatRoomCharacterUpdate(target[0]) :
+                                CharacterRefresh(target[0]);
+                        }
+                    }
+                }
+            }
+         }
     }])
 
     CommandCombine([{
