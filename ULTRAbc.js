@@ -8410,552 +8410,405 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 );
             } else {
                 var [, , ...message] = command.split(" ");
-                var custom = message?.join(" ");
+                var custom = message?.join(" ");      
                 if (custom != "") {
+                    if ((option.startsWith("t")) && (option != "totalrelease")) {
+                        var option2 = option.slice(1);
+                    }
+                    var msg1 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option + " command on yourself.</p>";
+                    var msg2 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option + " command on yourself.</p>"
+                    var msg3 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option + " command on yourself.</p>"
+                    var msg4 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option2 + " command on other players.</p>";
+                    var msg5 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option2 + " command on other players.</p>"
+                    var msg6 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option2 + " command on other players.</p>"
                     if (option == "clothes") {
                         if (custom == "!") {
                             Clothes = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for clothes command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Clothes = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for clothes command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);      
                         } else {
                             Clothes = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "invisible") {
                         if (custom == "!") {
                             Invisible = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for invisible command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Invisible = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for invisible command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Invisible = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for invisible command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "lock") {
                         if (custom == "!") {
                             Mlock = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for lock command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Mlock = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for lock command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Mlock = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for lock command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "naked") {
                         if (custom == "!") {
                             Naked = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for naked command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Naked = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Naked = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for naked command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "pet") {
                         if (custom == "!") {
                             Pet = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for pet command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Pet = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for pet command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Pet = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for pet command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "randomize") {
                         if (custom == "!") {
                             Randomize = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for randomize command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Randomize = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for randomize command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Randomize = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for randomize command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "restrain") {
                         if (custom == "!") {
                             Restrain = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for restrain command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Restrain = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for restrain command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Restrain = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "solidity") {
                         if (custom == "!") {
                             Solidity = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for solidity command to escape yourself special devices.</p>"
-                            );
+                            ChatRoomSendLocal(msg1); 
                         } else if (custom == "?") {
                             Solidity = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for solidity command to escape yourself special devices.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Solidity = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for solidity command to escape yourself special devices.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "tclothes") {
                         if (custom == "!") {
                             Tclothes = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for clothes command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tclothes = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for clothes command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tclothes = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "tinvisible") {
                         if (custom == "!") {
                             Tinvisible = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for invisible command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tinvisible = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for invisible command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tinvisible = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for invisible command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "tlock") {
                         if (custom == "!") {
                             Tlock = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for lock command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tlock = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for lock command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tlock = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for lock command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "tnaked") {
                         if (custom == "!") {
                             Tnaked = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for naked command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tnaked = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for naked command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tnaked = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for naked command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "totalrelease") {
                         if (custom == "!") {
                             Totalrelease = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for totalrelease command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Totalrelease = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for totalrelease command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Totalrelease = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for totalrelease command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "tpet") {
                         if (custom == "!") {
                             Tpet = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for pet command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tpet = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for pet command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tpet = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for pet command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "trandomize") {
                         if (custom == "!") {
                             Trandomize = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for randomize command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Trandomize = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for randomize command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Trandomize = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for randomize command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "trestrain") {
                         if (custom == "!") {
                             Trestrain = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for restrain command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Trestrain = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for restrain command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Trestrain = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for restrain command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "tsolidity") {
                         if (custom == "!") {
                             Tsolidity = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for solidity command when helping another player to escape special devices.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tsolidity = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for solidity command when helping another player to escape special devices.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tsolidity = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for solidity command when helping another player to escape special devices.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "ttotalrelease") {
                         if (custom == "!") {
                             Ttotalrelease = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for totalrelease command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Ttotalrelease = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for totalrelease command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Ttotalrelease = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for totalrelease command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "tunderwear") {
                         if (custom == "!") {
                             Tunderwear = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for underwear command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tunderwear = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for underwear command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tunderwear = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for underwear command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "tunlock") {
                         if (custom == "!") {
                             Tunlock = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for unlock command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tunlock = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for unlock command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tunlock = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for unlock command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "tuntie") {
                         if (custom == "!") {
                             Tuntie = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for untie command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tuntie = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for untie command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tuntie = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for untie command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "tvisible") {
                         if (custom == "!") {
                             Tvisible = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for visible command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg4);
                         } else if (custom == "?") {
                             Tvisible = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for visible command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg5);
                         } else {
                             Tvisible = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for visible command on other players.</p>"
-                            );
+                            ChatRoomSendLocal(msg6);
                         }
                     }
                     if (option == "underwear") {
                         if (custom == "!") {
                             Underwear = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for underwear command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Underwear = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for underwear command on yourself.</p>"
-                            );
-                        } else {
+                            ChatRoomSendLocal(msg2);
+                          } else {
                             Underwear = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for underwear command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "unlock") {
                         if (custom == "!") {
                             Unlock = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for unlock command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Unlock = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for unlock command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Unlock = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for unlock command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "untie") {
                         if (custom == "!") {
                             Untie = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for untie command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Untie = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for untie command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Untie = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for untie command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                     if (option == "visible") {
                         if (custom == "!") {
                             Visible = "no message";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for visible command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg1);
                         } else if (custom == "?") {
                             Visible = "";
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for visible command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg2);
                         } else {
                             Visible = custom;
                             M_MOANER_saveControls();
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for visible command on yourself.</p>"
-                            );
+                            ChatRoomSendLocal(msg3);
                         }
                     }
                 }
