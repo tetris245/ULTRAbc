@@ -10897,7 +10897,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The roomsize command must be followede by a number between 2 and 20.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The roomsize command must be followed by a number between 2 and 20.</p>"
                 );
             } else {
                 var size = args;
