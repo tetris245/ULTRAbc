@@ -66,6 +66,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let oldhorny = 0;
 
     let Clothes = "";
+    let Invisible = "";
     let Mlock = "";
     let Naked = "";
     let Pet = "";
@@ -76,8 +77,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Underwear = "";
     let Unlock = "";
     let Untie = "";
+    let Visible = "";
 
     let Tclothes = "";
+    let Tinvisible = "";
     let Tlock = "";
     let Tnaked = "";
     let Tpet = "";
@@ -88,6 +91,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let Tunderwear = "";
     let Tunlock = "";
     let Tuntie = "";
+    let Tvisible = "";
 
     var M_MOANER_orgasmActive = true;
     var M_MOANER_spankActive = true;
@@ -375,6 +379,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             blureffect = false;
             oldhorny = 0;
             Clothes = "";
+            Invisible = "";
             Mlock = "";
             Naked = "";
             Pet = "";
@@ -382,6 +387,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Restrain = "";
             Solidity = "";
             Tclothes = "";
+            Tinvisible = "",
             Tlock = "";
             Tnaked = "";
             Totalrelease = "";
@@ -393,9 +399,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Tunderwear = "";
             Tunlock = "";
             Tuntie = "";
+            Tvisible = "";
             Underwear = "";
             Unlock = "";
             Untie = "";
+            Visible= "";
             //M_MOANER_saveControls();
         } else {
             M_MOANER_orgasmActive = datas.orgasmMoan;
@@ -429,6 +437,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             blureffect = false;
             oldhorny = 0;
             Clothes = datas.clothes;
+            Invisible = datas.invisible;
             Mlock = datas.mlock;
             Naked = datas.naked;
             Pet = datas.pet;
@@ -436,6 +445,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Restrain = datas.restrain;
             Solidity = datas.solidity;
             Tclothes = datas.tclothes;
+            Tinvisible = datas.tinvisible;
             Tlock = datas.tlock;
             Tnaked = datas.tnaked;
             Totalrelease = datas.totalrelease;
@@ -447,9 +457,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             Tunderwear = datas.tunderwear;
             Tunlock = datas.tunlock;
             Tuntie = datas.tuntie;
+            Tvisible = datas.visible;
             Underwear = datas.underwear;
             Unlock = datas.unlock;
             Untie = datas.untie;
+            Visible = datas.visible;
         }
     }
 
@@ -486,6 +498,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "blureffect": blureffect,
             "oldhorny": oldhorny,
             "clothes": Clothes,
+            "invisible": Invisible,
             "mlock": Mlock,
             "naked": Naked,
             "pet": Pet,
@@ -493,6 +506,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "restrain": Restrain,
             "solidity": Solidity,
             "tclothes": Tclothes,
+            "tinvisible": Tinvisible,
             "tlock": Tlock,
             "tnaked": Tnaked,
             "totalrelease": Totalrelease,
@@ -504,9 +518,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "tunderwear": Tunderwear,
             "tunlock": Tunlock,
             "tuntie": Tuntie,
+            "tvisible": Tvisible,
             "underwear": Underwear,
             "unlock": Unlock,
-            "untie": Untie
+            "untie": Untie,
+            "visible": Visible
         };
         localStorage.setItem(M_MOANER_moanerKey + "_" + Player.MemberNumber, JSON.stringify(controls));
     }
@@ -6967,14 +6983,29 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To use the invisible command on yourself, you need first to allow Scripts in BC settings.<p>"
                     );
                 } else {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: "Magical lasers make " + tmpname + " completely invisible."
-                        }]
-                    });
+                    if (Invisible == undefined) {
+                        var message = "Magical lasers make " + tmpname + " completely invisible."
+                    } else {
+                        if (Invisible != "") {
+                            if (Invisible.startsWith("\u0027")) {
+                                var message = tmpname + Invisible;
+                            } else {
+                                var message = tmpname + ' '.repeat(1) + Invisible;
+                            }
+                        } else {
+                            var message = "Magical lasers make " + tmpname + " completely invisible."
+                        }
+                    }
+                    if (Invisible != "no message") {
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: message
+                            }]
+                        });
+                    }
                     InventoryWear(Player, "Script", "ItemScript");
                     InventoryGet(Player, "ItemScript").Property = {
                         Hide: [
@@ -7084,14 +7115,29 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
                         } else {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: "Magical lasers make " + tgpname + " completely invisible."
-                                }]
-                            });
+                            if (Tinvisible == undefined) {
+                                var message = "Magical lasers make " + tgpname + " completely invisible."
+                            } else {
+                                if (Tinvisible != "") {
+                                    if (Tinvisible.startsWith("\u0027")) {
+                                        var message = tmpname + Tinvisible + ' '.repeat(1) + tgpname;
+                                    } else {
+                                        var message = tmpname + ' '.repeat(1) + Tinvisible + ' '.repeat(1) + tgpname;
+                                    }
+                                } else {
+                                    var message = "Magical lasers make " + tgpname + " completely invisible."
+                                }
+                            }
+                            if (Tinvisible != "no message") {
+                                ServerSend("ChatRoomChat", {
+                                    Content: "Beep",
+                                    Type: "Action",
+                                    Dictionary: [{
+                                        Tag: "Beep",
+                                        Text: message
+                                    }]
+                                });
+                            } 
                             InventoryWear(target[0], "Script", "ItemScript");
                             InventoryGet(target[0], "ItemScript").Property = {
                                 Hide: [
@@ -8354,8 +8400,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if (!option) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
-                    "Options on yourself: clothes, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie\n" +
-                    "Options on other players: tclothes, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie\n" +
+                    "Options on yourself: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\n" +
+                    "Options on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
@@ -8384,6 +8430,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on yourself.</p>"
+                            );
+                        }
+                    }
+                    if (option == "invisible") {
+                        if (custom == "!") {
+                            Invisible = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for invisible command on yourself.</p>"
+                            );
+                        } else if (custom == "?") {
+                            Invisible = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for invisible command on yourself.</p>"
+                            );
+                        } else {
+                            Invisible = custom;
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for invisible command on yourself.</p>"
                             );
                         }
                     }
@@ -8531,6 +8598,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for clothes command on other players.</p>"
+                            );
+                        }
+                    }
+                    if (option == "tinvisible") {
+                        if (custom == "!") {
+                            Tinvisible = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for invisible command on other players.</p>"
+                            );
+                        } else if (custom == "?") {
+                            Tinvisible = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for invisible command on other players.</p>"
+                            );
+                        } else {
+                            Tinvisible = custom;
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for invisible command on other players.</p>"
                             );
                         }
                     }
@@ -8765,6 +8853,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             );
                         }
                     }
+                    if (option == "tvisible") {
+                        if (custom == "!") {
+                            Tvisible = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for visible command on other players.</p>"
+                            );
+                        } else if (custom == "?") {
+                            Tvisible = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for visible command on other players.</p>"
+                            );
+                        } else {
+                            Tvisible = custom;
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for visible command on other players.</p>"
+                            );
+                        }
+                    }
                     if (option == "underwear") {
                         if (custom == "!") {
                             Underwear = "no message";
@@ -8825,6 +8934,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for untie command on yourself.</p>"
+                            );
+                        }
+                    }
+                    if (option == "visible") {
+                        if (custom == "!") {
+                            Visible = "no message";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for visible command on yourself.</p>"
+                            );
+                        } else if (custom == "?") {
+                            Visible = "";
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for visible command on yourself.</p>"
+                            );
+                        } else {
+                            Visible = custom;
+                            M_MOANER_saveControls();
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for visible command on yourself.</p>"
                             );
                         }
                     }
@@ -13193,14 +13323,29 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: ": (target): goes back or sends back to visible mode.",
         Action: (args) => {
             if (args === "") {
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: "" + tmpname + " suddenly is visible for everybody."
-                    }]
-                });
+                if (Visible == undefined) {
+                    var message = "" + tmpname + " suddenly is visible for everybody."
+                } else {
+                    if (Visible != "") {
+                        if (Visible.startsWith("\u0027")) {
+                            var message = tmpname + Visible;
+                        } else {
+                            var message = tmpname + ' '.repeat(1) + Visible;
+                        }
+                    } else {
+                        var message = "" + tmpname + " suddenly is visible for everybody."
+                    }
+                }
+                if (Visible != "no message") {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: message
+                        }]
+                    });
+                }
                 InventoryRemove(Player, "ItemScript");
                 CurrentScreen === 'ChatRoom' ?
                     ChatRoomCharacterUpdate(Player) :
@@ -13228,14 +13373,29 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
                         } else {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: "" + tgpname + " suddenly is visible for everybody."
-                                }]
-                            });
+                            if (Tvisible == undefined) {
+                                var message = "" + tgpname + " suddenly is visible for everybody."
+                            } else {
+                                if (Tvisible != "") {
+                                    if (Tvisible.startsWith("\u0027")) {
+                                        var message = tmpname + Tvisible + ' '.repeat(1) + tgpname;
+                                    } else {
+                                        var message = tmpname + ' '.repeat(1) + Tvisible + ' '.repeat(1) + tgpname;
+                                    }
+                                } else {
+                                    var message = "" + tgpname + " suddenly is visible for everybody."
+                                }
+                            }
+                            if (Tvisible != "no message") {
+                                ServerSend("ChatRoomChat", {
+                                    Content: "Beep",
+                                    Type: "Action",
+                                    Dictionary: [{
+                                        Tag: "Beep",
+                                        Text: message
+                                    }]
+                                });
+                            }
                             InventoryRemove(target[0], "ItemScript");
                             CurrentScreen === 'ChatRoom' ?
                                 ChatRoomCharacterUpdate(target[0]) :
