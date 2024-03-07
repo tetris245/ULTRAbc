@@ -8356,7 +8356,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         ChatRoomSendLocal("Does not have a MBS wheel of fortune.");
                     }
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != undefined) {
-                        ChatRoomSendLocal("Has a MBS wheel of fortune.");
+                        var mes1 = "Has a MBS wheel of fortune.";
+                        if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
+                            var mes2 = "Does not use Uwall.";
+                        } else {
+                            if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
+                                var mes2 = "Has enabled Uwall.";
+                            } else {
+                                var mes2 = "Has disabled Uwall.";
+                        }
+                        ChatRoomSendLocal(mes1 + " - " + mes2);
+                        }
                         if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.Version != undefined) {
                             ChatRoomSendLocal("Does not have custom options on this wheel.");
                         } else {
