@@ -63,3 +63,4 @@ Changes for future version
 * Added target option and extended Uwall support to the invisible and visible commands
 * Added invisible, tinvisible, tvisible and visible options to message command
 * Updated the ustatus command
+* Improved the code for the message command
