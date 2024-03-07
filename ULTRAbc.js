@@ -12970,7 +12970,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var mes2 = "Does not use Uwall.";
                 } else {
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
-                        var mes2 = "Has enabled Uwall";
+                        var mes2 = "Has enabled Uwall.";
                     } else {
                         var mes2 = "Has disabled Uwall.";
                     }
