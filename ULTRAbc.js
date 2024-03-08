@@ -5322,13 +5322,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             var BCver = GameVersion;
             if (BCver.includes("Beta")) {
-                if (BCver.startsWith("R10")) {
-                    var beta1 = BCver.slice(0, 4);
-                    var beta2 = beta1.slice(-3);
-                } else {
-                    var beta1 = BCver.slice(0, 3);
-                    var beta2 = beta1.slice(-2);
-                }
+                var beta1 = BCver.slice(0, 4);
+                var beta2 = beta1.slice(-3);
                 var beta3 = beta2 - 1;
                 var BCver = "R" + beta3;
             }
@@ -7768,17 +7763,23 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'keydeposit',
         Description: "(hours): keeps your keys safe in the vault.",
         Action: (args) => {
-            var hours = args;
-            if (hours != '') {
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: "" + tmpname + "'s keys are now safe in the vault for " + hours + " hours."
-                    }]
-                });
-                CellDepositKeys(hours);
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The keydeposit command must be followed by a number higher than 0.</p>"
+                );
+            } else {
+                var hours = args;
+                if (hours > 0) {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: "" + tmpname + "'s keys are now safe in the vault for " + hours + " hours."
+                        }]
+                    });
+                    CellDepositKeys(hours);
+                }
             }
         }
     }])
@@ -10330,23 +10331,31 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'prison',
         Description: "(minutes): stays in Pandora prison.",
         Action: (args) => {
-            var minutes = args;
-            ServerSend("ChatRoomChat", {
-                Content: "Beep",
-                Type: "Action",
-                Dictionary: [{
-                    Tag: "Beep",
-                    Text: "" + tmpname + " gets grabbed by two maids and sent to Pandora prison for " + minutes + " minutes."
-                }]
-            });
-            DialogLentLockpicks = false;
-            ChatRoomClearAllElements();
-            ServerSend("ChatRoomLeave", "");
-            CharacterDeleteAllOnline();
-            PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 7).toString();
-            PandoraRestrainPlayer();
-            PandoraPunishmentSentence(minutes);
-            PandoraPunishmentStart();
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The prison command must be followed by a number higher than 0.</p>"
+                );
+            } else {
+                var minutes = args;
+                if (minutes > 0) {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: "" + tmpname + " gets grabbed by two maids and sent to Pandora prison for " + minutes + " minutes."
+                        }]
+                    });
+                    DialogLentLockpicks = false;
+                    ChatRoomClearAllElements();
+                    ServerSend("ChatRoomLeave", "");
+                    CharacterDeleteAllOnline();
+                    PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 7).toString();
+                    PandoraRestrainPlayer();
+                    PandoraPunishmentSentence(minutes);
+                    PandoraPunishmentStart();
+                }
+            }
         }
     }])
 
@@ -11861,20 +11870,28 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Tag: 'timercell',
         Description: "(minutes): stays in the isolation cell.",
         Action: (args) => {
-            var minutes = args;
-            ServerSend("ChatRoomChat", {
-                Content: "Beep",
-                Type: "Action",
-                Dictionary: [{
-                    Tag: "Beep",
-                    Text: "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes."
-                }]
-            });
-            DialogLentLockpicks = false;
-            ChatRoomClearAllElements();
-            ServerSend("ChatRoomLeave", "");
-            CharacterDeleteAllOnline();
-            CellLock(minutes);
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The timercell command must be followed by a number higher than 0.</p>"
+                );
+            } else {
+                var minutes = args;
+                if (minutes > 0) {
+                    ServerSend("ChatRoomChat", {
+                        Content: "Beep",
+                        Type: "Action",
+                        Dictionary: [{
+                            Tag: "Beep",
+                            Text: "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes."
+                        }]
+                    });
+                    DialogLentLockpicks = false;
+                    ChatRoomClearAllElements();
+                    ServerSend("ChatRoomLeave", "");
+                    CharacterDeleteAllOnline();
+                    CellLock(minutes);
+                }
+            }
         }
     }])
 
