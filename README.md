@@ -63,5 +63,5 @@ Changes for future version
 * Added target option and extended Uwall support to the invisible and visible commands
 * Added info about Uwall status in mbsroom command, only for players with a MBS wheel of fortune
 * Added invisible, tinvisible, tvisible and visible options to message command
+* Improved the code for the bg3, keydeposit, message, prison and timercell commands
 * Updated the ustatus command
-* Improved the code for the message command
