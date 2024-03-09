@@ -49,6 +49,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var cdesk = 0;
     var cfame = 200;
     var rsize = 20;
+    let rtype = "";
 
     let AutojoinOn;
     let FullseedOn;
@@ -365,6 +366,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             cdesk = 0;
             cfame = 200;
             rsize = 20;
+            rtype = "";
             AutojoinOn = false;
             FullseedOn = false;
             HighfameOn = false;
@@ -423,6 +425,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             cdesk = datas.cdesk;
             cfame = datas.cfame;
             rsize = datas.rsize;
+            rtype = datas.rtype;
             AutojoinOn = datas.autojoin;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
@@ -484,6 +487,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "cdesk": cdesk,
             "cfame": cfame,
             "rsize": rsize,
+            "rtype": rtype,
             "autojoin": AutojoinOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
@@ -587,6 +591,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (rsize == null || rsize == undefined) {
                     rsize = 20;
+                    M_MOANER_saveControls();
+                }
+                if (rtype == null || rtype == undefined) {
+                    rtype = "";
                     M_MOANER_saveControls();
                 }
             } catch (err) {
@@ -1066,13 +1074,42 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     async function ULTRAChatSearchNormalDraw() {
         modApi.hookFunction('ChatSearchNormalDraw', 4, (args, next) => {
             if ((ChatSearchResult.length >= 1)) {
-                let rm = 0;
                 let NewResult = [];
-                while (rm < ChatSearchResult.length) {
-                    if ((ChatSearchResult[rm].MemberLimit <= rsize) || (ChatSearchResult[rm].MapType == "Always")) {
-                        NewResult.push(ChatSearchResult[rm]);
+                if (rtype == "") {
+                    let rm = 0;
+                    while (rm < ChatSearchResult.length) {
+                        if ((ChatSearchResult[rm].MemberLimit <= rsize) || (ChatSearchResult[rm].MapType == "Always")) {
+                            NewResult.push(ChatSearchResult[rm]);
+                        }
+                        rm++;
                     }
-                    rm++;
+                }
+                if (rtype == "Never") {
+                    let rm = 0;
+                    while (rm < ChatSearchResult.length) {
+                        if ((ChatSearchResult[rm].MemberLimit <= rsize) && (ChatSearchResult[rm].MapType == "Never")) {
+                            NewResult.push(ChatSearchResult[rm]);
+                        }
+                        rm++;
+                    }
+                }
+                if (rtype == "Hybrid") {
+                    let rm = 0;
+                    while (rm < ChatSearchResult.length) {
+                        if ((ChatSearchResult[rm].MemberLimit <= rsize) && (ChatSearchResult[rm].MapType == "Hybrid")) {
+                            NewResult.push(ChatSearchResult[rm]);
+                        }
+                        rm++;
+                    }
+                }
+                if (rtype == "Always") {
+                    let rm = 0;
+                    while (rm < ChatSearchResult.length) {
+                        if (ChatSearchResult[rm].MapType == "Always") {
+                            NewResult.push(ChatSearchResult[rm]);
+                        }
+                        rm++;
+                    }
                 }
                 if ((NewResult.length >= 1)) {
                     var X = ChatSearchPageX;
@@ -10932,6 +10969,44 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'roomtype',
+        Description: "(type): sets the room type you want so see in Chat Search.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The roomtype command must be followed by a number between 0 and 3.\n" +
+                    " \n" +
+                    " 0 = All room types\n" +
+                    " 1 = Only normal rooms\n" +
+                    " 2 = Only hybrid rooms\n" +
+                    " 3 = Only map rooms</p>"
+ 
+                );
+            } else {
+                var type = args;
+                if ((type > -1) && (type < 4) && (type != rtype)) {
+                    if (type == 0) {
+                        rtype = "";
+                    }
+                    if (type == 1) {
+                        rtype = "Never";
+                    }
+                    if (type == 2) {
+                        rtype = "Hybrid";
+                    }
+                    if (type == 3) {
+                        rtype = "Always";
+                    }
+                    M_MOANER_saveControls();
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: You have modified the room type you want to see in Chat Search.</p>"
+                    );
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 's1',
         Description: "(words): speaks once in light stuttering mode.",
         Action: (args) => {
@@ -12515,6 +12590,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/roomsize</b> (players) = sets maximum players per room in Chat Search for normal and hybrid rooms.\n" +
+                    "<b>/roomtype</b> (type) = sets room type you want to see in Chat Search. *\n" +
                     "<b>/uset</b> (setting) = toggles a specific UBC setting *.</p>"
                 );
             }
