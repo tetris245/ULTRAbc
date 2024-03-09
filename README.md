@@ -59,6 +59,7 @@ Changes for future version
 
 * New commands:
   - roomsize (players) to set the maximum players per room in Chat Search for normal and hybrid rooms
+  - roomtype (type) to set the room type you want so see in Chat Search
   - uroom to display infos about UBC users and Uwall protection in current chat room
 * Added target option and extended Uwall support to the invisible and visible commands
 * Added info about Uwall status in mbsroom command, only for players with a MBS wheel of fortune
