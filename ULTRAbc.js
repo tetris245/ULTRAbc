@@ -10994,7 +10994,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     CommandCombine([{
         Tag: 'roomtype',
-        Description: "(type): sets the room type you want so see in Chat Search.",
+        Description: "(type): sets the room type you want to see in Chat Search.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
