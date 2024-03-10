@@ -8411,6 +8411,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 var number = ChatRoomCharacter[pl].MemberNumber;
                 ChatRoomSendLocal(name + " (" + aka + ") - " + number);
+                if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
+                    var ubc1 = "Does not use ULTRAbc.";
+                } else {
+                    var ubc1 = "Is an ULTRAbc user.";
+                }
+                if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
+                    var ubc2 = "Does not use Uwall.";
+                } else {
+                    if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
+                        var ubc2 = "Has enabled Uwall.";
+                    } else {
+                        var ubc2 = "Has disabled Uwall.";
+                    }
+                }
+                ChatRoomSendLocal(ubc1 + " - " + ubc2);
                 if (!InventoryAvailable(ChatRoomCharacter[pl], "WheelFortune", "ItemDevices")) {
                     ChatRoomSendLocal("Does not have a wheel of fortune.");
                 } else {
@@ -8419,16 +8434,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != undefined) {
                         var mes1 = "Has a MBS wheel of fortune.";
-                        if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
-                            var mes2 = "Does not use Uwall.";
-                        } else {
-                            if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
-                                var mes2 = "Has enabled Uwall.";
-                            } else {
-                                var mes2 = "Has disabled Uwall.";
-                        }
-                        ChatRoomSendLocal(mes1 + " - " + mes2);
-                        }
                         if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.Version != undefined) {
                             ChatRoomSendLocal("Does not have custom options on this wheel.");
                         } else {
