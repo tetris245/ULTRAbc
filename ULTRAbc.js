@@ -611,7 +611,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRACellClick();
     ULTRACellLoad();
     ULTRACellRun();
-    ULTRAChatRoomCharacterViewDrawBackground();
     ULTRAChatRoomClick();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
@@ -625,6 +624,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ULTRAClubCardLoadDeckNumber();
     ULTRACraftingItemListBuild();
     ULTRADrawCharacter();
+    ULTRADrawRoomBackground();
     ULTRAFriendListClick();
     ULTRAFriendListRun();
     ULTRAInfiltrationPrepareMission();
@@ -1785,8 +1785,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     }
 
     //Vision
-    async function ULTRAChatRoomCharacterViewDrawBackground() {
-        modApi.hookFunction('ChatRoomCharacterViewDrawBackground', 4, (args, next) => {
+    async function ULTRADrawCharacter() {
+        modApi.hookFunction('DrawCharacter', 4, (args, next) => {
             if (blureffect == true) {
                 if (Blur1On == true) {
                     BlurLevel = 3;
@@ -1806,8 +1806,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         });
     }
 
-    async function ULTRADrawCharacter() {
-        modApi.hookFunction('DrawCharacter', 4, (args, next) => {
+    async function ULTRADrawRoomBackground() {
+        modApi.hookFunction('DrawRoomBackground', 4, (args, next) => {
             if (blureffect == true) {
                 if (Blur1On == true) {
                     BlurLevel = 3;
@@ -5748,7 +5748,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     CurrentScreen = "ChatRoom";
                     ChatRoomCharacterViewDraw();
                     ChatRoomMenuBuild();
-                    ChatRoomCharacterViewDrawBackground();
+                    DrawRoomBackground();
                     ChatRoomLoad();
                     ChatRoomClearAllElements();
                 };
