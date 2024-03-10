@@ -63,7 +63,7 @@ Changes for future version
   - roomtype (type) to set the room type you want to see in Chat Search (type 0 = all types, 1 = normal rooms, 2 = hybrid rooms, 3 = map rooms)
   - uroom to display infos about UBC users and Uwall protection in current chat room
 * Added target option and extended Uwall support to the invisible and visible commands
-* Added info about Uwall status in mbsroom command, only for players with a MBS wheel of fortune
+* Added infos given by uroom command in mbsroom command
 * Added invisible, tinvisible, tvisible and visible options to message command
 * Improved the code for the bg3, keydeposit, message, prison and timercell commands
 * Updated the ustatus command
