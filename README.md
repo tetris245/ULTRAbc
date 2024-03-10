@@ -57,7 +57,7 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added 4 room types buttons in Chat Search
+* Added 4 room types buttons in Chat Search and slightly moved the location of the central bottom messages
 * New commands:
   - roomsize (players) to set the maximum players (between 2 and 20) per room in Chat Search for normal and hybrid rooms
   - roomtype (type) to set the room type you want to see in Chat Search (type 0 = all types, 1 = normal rooms, 2 = hybrid rooms, 3 = map rooms)
