@@ -66,4 +66,4 @@ Changes for future version
 * Added infos given by uroom command in mbsroom command
 * Added invisible, tinvisible, tvisible and visible options to message command
 * Improved the code for the bg3, keydeposit, message, prison and timercell commands
-* Updated the ustatus command and the name of function related to background
+* Updated the pose2 exercise and ustatus commands + the name of a function related to background
