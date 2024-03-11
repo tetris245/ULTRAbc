@@ -10006,6 +10006,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 Text: "" + tmpname + " makes " + pronoun3 + " workout."
                             }]
                         });
+			CurrentCharacter = Player;
                         PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         setTimeout(function() {
@@ -10111,6 +10112,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             DialogFocusItem.Property.OverrideHeight = undefined;
                             ChatRoomCharacterUpdate(Player);
                             DialogLeaveItemMenu();
+			    DialogLeave();
                         }, 10000);
                         // reset	 
                     } else if (pose == "reset") {
