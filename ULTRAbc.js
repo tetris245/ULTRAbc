@@ -8309,6 +8309,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     var number = ChatRoomCharacter[pl].MemberNumber;
                     ChatRoomSendLocal(name + " (" + aka + ") - " + number);
+		    if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
+                        var ubc1 = "Does not use ULTRAbc.";
+                    } else {
+                        var ubc1 = "Is an ULTRAbc user.";
+                    }
+                    if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
+                        var ubc2 = "Does not use Uwall.";
+                    } else {
+                        if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
+                            var ubc2 = "Has enabled Uwall.";
+                        } else {
+                            var ubc2 = "Has disabled Uwall.";
+                        }
+                    }
+                    ChatRoomSendLocal(ubc1 + " - " + ubc2);
                     if (ChatRoomCharacter[pl].MapData != undefined) {
                         if (ChatRoomData.MapData.Type == "Hybrid") {
                             var exinfo = "Real presence in map: ?";
