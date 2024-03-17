@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 2.8
+Most recent version: 2.9
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version2.8.zip file on the Releases page
+1. Download the ULTRAbc-version2.9.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -57,13 +57,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added 4 room types buttons in Chat Search and slightly moved the location of the central bottom messages
-* New commands:
-  - roomsize (players) to set the maximum players (between 2 and 20) per room in Chat Search for normal and hybrid rooms
-  - roomtype (type) to set the room type you want to see in Chat Search (type 0 = all types, 1 = normal rooms, 2 = hybrid rooms, 3 = map rooms)
-  - uroom to display infos about UBC users and Uwall protection in current chat room
-* Added target option and extended Uwall support to the invisible and visible commands
-* Added infos given by uroom command to maproom and mbsroom commands
-* Added invisible, tinvisible, tvisible and visible options to message command
-* Improved the code for the bg3, keydeposit, message, prison and timercell commands
-* Updated the pose2 exercise and ustatus commands + the name of a function related to background
+(...)
