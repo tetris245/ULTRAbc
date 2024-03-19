@@ -760,11 +760,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     CommonSetScreen("Online", "ChatSearch");
                     ChatRoomClearAllElements();
                     OnlineGameName = "";
+		    return true;
                 }
                 if (event.code === "NumpadMultiply") {
                     CharacterReleaseTotal(Player);
                     ChatRoomCharacterUpdate(Player);
-                    return;
+                    return true;
                 }
             }
             if (event.key === "Enter" && !event.shiftKey) {
@@ -866,7 +867,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 ElementValue("InputChat", "");
             }
-            next(args);
+            return next(args);
         });
     }
 
