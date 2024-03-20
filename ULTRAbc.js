@@ -47,11 +47,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_cum = false;
     let profileName;
     var cdesk = 0;
-    var cfame = 200;
+    var cfame = 200;    
+    var gl = 0;
     var rsize = 20;
     let rtype = "";
 
     let AutojoinOn;
+    let DoubletalkOn;
     let FullseedOn;
     let HighfameOn;
     let HotkeysOn;
@@ -129,6 +131,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 
     var AutojoinStatus = ["Auto-Join feature is enabled.",
         "Auto-Join feature is disabled."
+    ];
+    var DoubletalkStatus = ["Double talk (and whisper) mode enabled.",
+        "Double talk (and whisper) mode disabled."
     ];
     var ExitmodeStatus = ["Fast exit mode is activated.",
         "Slow exit mode is activated."
@@ -365,9 +370,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             pronoun4 = "";
             cdesk = 0;
             cfame = 200;
+	    gl = 0;
             rsize = 20;
             rtype = "";
             AutojoinOn = false;
+	    DoubletalkOn = false;
             FullseedOn = false;
             HighfameOn = false;
             HotkeysOn = false;
@@ -424,9 +431,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             pronoun4 = datas.pronoun4;
             cdesk = datas.cdesk;
             cfame = datas.cfame;
+	    gl = datas.gaglevel;
             rsize = datas.rsize;
             rtype = datas.rtype;
             AutojoinOn = datas.autojoin;
+	    DoubletalkOn = datas.doubletalk;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
             HotkeysOn = datas.hotkeys;
@@ -486,9 +495,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "pronoun4": pronoun4,
             "cdesk": cdesk,
             "cfame": cfame,
+            "gaglevel": gl,
             "rsize": rsize,
             "rtype": rtype,
             "autojoin": AutojoinOn,
+	    "doubletalk": DoubletalkOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
             "hotkeys": HotkeysOn,
@@ -573,8 +584,12 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     cfame = 200;
                     M_MOANER_saveControls();
                 }
-                if (HighfameOn == null || HighfameOn == undefined) {
-                    HighfameOn = false;
+                if (DoubletalkOn == null || DoubletalkOn == undefined) {
+                    DoubletalkOn = false;
+                    M_MOANER_saveControls();
+                }
+                if (gl == null || gl == undefined) {
+                    gl = 0;
                     M_MOANER_saveControls();
                 }
                 if (HotkeysOn == null || HotkeysOn == undefined) {
@@ -800,12 +815,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var tsp = 1;
                 } else {
                     var tsp = 0;
-                    if (this.BabyTalkOn == true) {
-                        var text2 = SpeechBabyTalk({
-                            Effect: ["RegressedTalk"]
-                        }, text1);
-                    } else if (this.GagTalkOn == true) {
-                        var text2 = SpeechGarbleByGagLevel(gl, text1);
+                    if (this.Stutter1On == true) {
+                        var text2 = StutterTalk1(text1);
+                    } else if (this.Stutter2On == true) {
+                        var text2 = StutterTalk2(text1);
+                    } else if (this.Stutter3On == true) {
+                        var text2 = StutterTalk3(text1);
+                    } else if (this.Stutter4On == true) {
+                        var text2 = StutterTalk4(text1);
                     } else {
                         var text2 = text1;
                     }
@@ -814,14 +831,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (tsp == 1) {
                     var text3 = text2;
                 } else {
-                    if (this.Stutter1On == true) {
-                        var text3 = StutterTalk1(text2);
-                    } else if (this.Stutter2On == true) {
-                        var text3 = StutterTalk2(text2);
-                    } else if (this.Stutter3On == true) {
-                        var text3 = StutterTalk3(text2);
-                    } else if (this.Stutter4On == true) {
-                        var text3 = StutterTalk4(text2);
+                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                        var text3 = M_MOANER_applyMoanToMsg(Player, text2);
                     } else {
                         var text3 = text2;
                     }
@@ -830,20 +841,71 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 if (tsp == 1) {
                     var text4 = text3;
                 } else {
-                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                        var text4 = M_MOANER_applyMoanToMsg(Player, text3);
+                    if (this.BabyTalkOn == true) {
+                        var text4 = SpeechBabyTalk({
+                            Effect: ["RegressedTalk"]
+                        }, text3);
+                    } else if (this.GagTalkOn == true) {
+                        var text4 = SpeechGarbleByGagLevel(gl, text3);
                     } else {
                         var text4 = text3;
                     }
                 }
                 ElementValue("InputChat", text3.replace(text3, text4));
-                event.preventDefault();
                 if (ChatRoomTargetMemberNumber == null) {
-                    ChatRoomSendChat();
+                    if (tsp == 1) {
+                        var text5 = text4;
+                    } else {
+                        if (DoubletalkOn == true) {
+                            if (gl != 0) {
+                                var text5 = "*" + "gagtalks: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
+                            } else {
+                                var text5 = "*" + "gagtalks without garbling: \u0022" + text3 + "\u0022)";
+                            }
+                        } else {
+                            if (gl != 0) {
+                                var text5 = text4;
+                            } else {
+                                var text5 = text3;
+                            }
+                        }
+                    }
+                    ElementValue("InputChat", text4.replace(text4, text5));
+                    event.preventDefault();
+                    ChatRoomSendChat();  
                 } else {
                     if (NowhisperOn == false) {
+                        if (tsp == 1) {
+                            var text5 = text4;
+                        } else {
+                            if (DoubletalkOn == true) {
+                                if (gl != 0) {
+                                    var text5 = "*" + "gagwhispers: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
+                                } else {
+                                    var text5 = "*" + "gagwhispers without garbling: \u0022" + text3 + "\u0022)";
+                                }
+                            } else {
+                                if (gl != 0) {
+                                    var text5 = text4;
+                                } else {
+                                    var text5 = text3;
+                                }     
+                            }    
+                        }
+                        ElementValue("InputChat", text4.replace(text4, text5));
+                        if (text5.startsWith("*")) {
+                            if (text5.startsWith("**")) {
+                                var text6 = text5.slice(1);
+                            } else {
+                                var text6 = "*" + tmpname + text5.slice(1);
+                            }
+                        } else {
+                            var text6 = text5;
+                        }  
+                        ElementValue("InputChat", text5.replace(text5, text6));  
+                        event.preventDefault();
                         ServerSend("ChatRoomChat", {
-                            "Content": text4,
+                            "Content": text6,
                             "Type": "Whisper",
                             "Target": ChatRoomTargetMemberNumber
                         });
@@ -857,7 +919,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 break;
                             }
                         ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + text4,
+                            Content: "Whisper to " + TargetName + ": " + text6,
                             Type: "LocalMessage",
                             Sender: Player.MemberNumber
                         });
@@ -866,7 +928,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                 }
                 ElementValue("InputChat", "");
-            }
+            }         
             return next(args);
         });
     }
@@ -2703,6 +2765,17 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         } else {
             msg = AutojoinStatus[1];
         }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showDoubletalkStatus() {
+        let msg;
+        if (DoubletalkOn) {
+            msg = DoubletalkStatus[0];
+        } else {
+            msg = DoubletalkStatus[1];
+        }
+        msg = msg + " Current forced gaglevel: " + gl +".";
         M_MOANER_sendMessageToWearer(msg);
     }
 
@@ -6900,13 +6973,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var stringGag2 = stringGag1.split(/[ ,]+/);
                 var gaglevel = stringGag2[0];
                 if ((gaglevel > 0) && (gaglevel < 9)) {
-                    gl = gaglevel;
+                    onegl = gaglevel;
                 }
                 if (gaglevel == 9) {
-                    gl = SpeechGetTotalGagLevel(Player);
+                    onegl = SpeechGetTotalGagLevel(Player);
                 }
                 if ((gaglevel > 0) && (gaglevel < 10)) {
-                    content = SpeechGarbleByGagLevel(gl, args.substring(2).trim());
+                    content = SpeechGarbleByGagLevel(onegl, args.substring(2).trim());
                     ServerSend("ChatRoomChat", {
                         "Content": content,
                         "Type": "Chat"
@@ -11880,7 +11953,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "9 real baby/gag talk</p>"
                 );
             } else {
-                var gaglevel = args;
+                var gaglevel = args *1;
                 ElementValue("InputChat", "");
                 if (gaglevel == -1) {
                     if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
@@ -11889,6 +11962,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         );
                         GagTalkOn = false;
                         BabyTalkOn = true;
+			gl = gaglevel;
+			M_MOANER_saveControls();
                     }
                 }
                 if (gaglevel == 0) {
@@ -11897,16 +11972,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     );
                     BabyTalkOn = false;
                     GagTalkOn = false;
+		    gl = gaglevel;
+		    M_MOANER_saveControls();
                 }
                 if ((gaglevel > 0) && (gaglevel < 9)) {
                     if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
                         BabyTalkOn = false;
                         gl = gaglevel;
                         GagTalkOn = true;
+			M_MOANER_saveControls();
                     } else {
                         GagTalkOn = false;
                         gl = gaglevel;
                         GagTalkOn = true;
+			M_MOANER_saveControls();
                     }
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in gag talk mode.</p>"
@@ -11930,6 +12009,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             );
                             GagTalkOn = false;
                             BabyTalkOn = true;
+			    gl = -1;
+			    M_MOANER_saveControls();
                         }
                     } else {
                         if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
@@ -11937,11 +12018,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             gl = SpeechGetTotalGagLevel(Player);
                             if (gl == 0) {
                                 GagTalkOn = false;
+				M_MOANER_saveControls();
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
                                 );
                             } else {
                                 GagTalkOn = true;
+				M_MOANER_saveControls();
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
                                 );
@@ -11950,11 +12033,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             GagTalkOn = false;
                             gl = SpeechGetTotalGagLevel(Player);
                             if (gl == 0) {
+				M_MOANER_saveControls();
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
                                 );
                             } else {
                                 GagTalkOn = true;
+				M_MOANER_saveControls();
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
                                 );
@@ -13190,6 +13275,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     " \n" +
                     "Available options:\n" +
                     "<b>autojoin</b> to toggle chat room auto-join feature\n" +
+		    "<b>doubletalk</b> to toggle double talk (and whisper) mode\n" +
                     "<b>exitmode</b> to toggle exit mode for OUT button \n" +
                     "<b>fullseed</b> to toggle full solution for intricate and hs locks\n" +
                     "<b>highfame</b> to toggle high fame mode in Club Card Game\n" +
@@ -13214,6 +13300,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is enabled.</p>"
+                        );
+                    }
+		} else if (setting == "doubletalk") {
+                    if (DoubletalkOn == true) {
+                        DoubletalkOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode disabled.</p>"
+                        );
+                    } else {
+                        DoubletalkOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled. You need to set the gaglevel with the <b>/talk</b> command.</p>"
                         );
                     }
                 } else if (setting == "exitmode") {
@@ -13356,6 +13456,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Description: ": displays status of UBC settings.",
         Action: () => {
             showAutojoinStatus();
+	    showDoubletalkStatus();
             showExitmodeStatus();
             showFullseedStatus();
             showHighfameStatus();
