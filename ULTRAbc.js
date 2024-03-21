@@ -863,7 +863,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 if (gl != 0) {
                                     var text5 = "*" + "gagtalks: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
                                 } else {
-                                    var text5 = "*" + "gagtalks without garbling: \u0022" + text3 + "\u0022)";
+                                    var text5 = text3;
                                 }
                             }
                         } else {
@@ -889,7 +889,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                     if (gl != 0) {
                                         var text5 = "*" + "gagwhispers: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
                                     } else {
-                                        var text5 = "*" + "gagwhispers without garbling: \u0022" + text3 + "\u0022)";
+                                        var text5 = text3;
                                     }
                                 } 
                             } else {
@@ -6963,30 +6963,34 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The gtalk command must be followed by a number between 1 and 9, then the words you want to say.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The gtalk command must be followed by a number between 0 and 9, then the words you want to say.\n" +
                     " \n" +
                     "Available talk modes:\n" +
-                    "1 very light gag talk\n" +
-                    "2 light gag talk\n" +
-                    "3 easy gag talk\n" +
-                    "4 normal gag talk\n" +
-                    "5 medium gag talk\n" +
-                    "6 heavy gag talk\n" +
-                    "7 very heavy gag talk\n" +
-                    "8 total gag talk\n" +
-                    "9 real gag talk</p>"
+                    "0 real gag talk\n" +
+                    "1 almost no gag talk\n" +
+                    "2 very light gag talk\n" +
+                    "3 light gag talk\n" +
+                    "4 easy gag talk\n" +
+                    "5 normal gag talk\n" +
+                    "6 medium gag talk\n" +
+                    "7 heavy gag talk\n" +
+                    "8 very heavy gag talk\n" +
+                    "9 total gag talk</p>"
                 );
             } else {
                 var stringGag1 = args;
                 var stringGag2 = stringGag1.split(/[ ,]+/);
                 var gaglevel = stringGag2[0];
-                if ((gaglevel > 0) && (gaglevel < 9)) {
-                    onegl = gaglevel;
-                }
-                if (gaglevel == 9) {
-                    onegl = SpeechGetTotalGagLevel(Player);
-                }
-                if ((gaglevel > 0) && (gaglevel < 10)) {
+                if ((gaglevel > -1) && (gaglevel < 10)) {
+                    if (gaglevel == 0) {
+                        onegl = SpeechGetTotalGagLevel(Player);
+                    } else {
+                        if (gaglevel == 9) {
+                            onegl = 10;
+                        } else {
+                            onegl = gaglevel;
+                        }
+                    }      
                     content = SpeechGarbleByGagLevel(onegl, args.substring(2).trim());
                     ServerSend("ChatRoomChat", {
                         "Content": content,
@@ -6996,7 +7000,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
-
+ 
     CommandCombine([{
         Tag: 'hdvibe',
         Description: "(crotch shield) (back shield) (modules)(intensity) (orgasm mode): changes the settings of worn Heavy Duty Belt.",
@@ -11945,23 +11949,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The talk command must be followed by a number between -1 and 9.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The talk command must be followed by a number between -2 and 9.\n" +
                     " \n" +
                     "Available talk modes:\n" +
+                    "-2 real baby/gag talk\n" +
                     "-1 baby talk\n" +
                     "0 normal talk\n" +
-                    "1 very light gag talk\n" +
-                    "2 light gag talk\n" +
-                    "3 easy gag talk\n" +
-                    "4 normal gag talk\n" +
-                    "5 medium gag talk\n" +
-                    "6 heavy gag talk\n" +
-                    "7 very heavy gag talk\n" +
-                    "8 total gag talk\n" +
-                    "9 real baby/gag talk</p>"
+                    "1 almost no gag talk\n" +
+                    "2 very light gag talk\n" +
+                    "3 light gag talk\n" +
+                    "4 easy gag talk\n" +
+                    "5 normal gag talk\n" +
+                    "6 medium gag talk\n" +
+                    "7 heavy gag talk\n" +
+                    "8 very heavy gag talk\n" +
+                    "9 total gag talk</p>"
                 );
             } else {
-                var gaglevel = args *1;
+                var gaglevel = args *1;    
                 ElementValue("InputChat", "");
                 if (gaglevel == -1) {
                     if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
@@ -11970,8 +11975,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         );
                         GagTalkOn = false;
                         BabyTalkOn = true;
-			gl = gaglevel;
-			M_MOANER_saveControls();
+                        gl = gaglevel;
+                        M_MOANER_saveControls();
                     }
                 }
                 if (gaglevel == 0) {
@@ -11980,26 +11985,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     );
                     BabyTalkOn = false;
                     GagTalkOn = false;
-		    gl = gaglevel;
-		    M_MOANER_saveControls();
+                    gl = gaglevel;
+                    M_MOANER_saveControls();  
                 }
-                if ((gaglevel > 0) && (gaglevel < 9)) {
-                    if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
-                        BabyTalkOn = false;
+                if ((gaglevel > 0) && (gaglevel < 10)) {
+                    if (gaglevel == 9) {
+                        gl = 10;
+                    } else {
                         gl = gaglevel;
+                    }
+                    if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
+                        BabyTalkOn = false;  
                         GagTalkOn = true;
-			M_MOANER_saveControls();
+                        M_MOANER_saveControls();  
                     } else {
                         GagTalkOn = false;
                         gl = gaglevel;
                         GagTalkOn = true;
-			M_MOANER_saveControls();
+                        M_MOANER_saveControls();  
                     }
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in gag talk mode.</p>"
                     );
                 }
-                if (gaglevel == 9) {
+                if (gaglevel == -2) {
                     var bl = 0;
                     if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
                         bl = 1;
@@ -12017,8 +12026,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             );
                             GagTalkOn = false;
                             BabyTalkOn = true;
-			    gl = -1;
-			    M_MOANER_saveControls();
+                            gl = -1;
+                            M_MOANER_saveControls();
                         }
                     } else {
                         if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
@@ -12026,13 +12035,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             gl = SpeechGetTotalGagLevel(Player);
                             if (gl == 0) {
                                 GagTalkOn = false;
-				M_MOANER_saveControls();
+                                M_MOANER_saveControls();  
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
                                 );
                             } else {
                                 GagTalkOn = true;
-				M_MOANER_saveControls();
+                                M_MOANER_saveControls();  
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
                                 );
@@ -12041,13 +12050,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             GagTalkOn = false;
                             gl = SpeechGetTotalGagLevel(Player);
                             if (gl == 0) {
-				M_MOANER_saveControls();
+                                M_MOANER_saveControls();  
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
                                 );
                             } else {
                                 GagTalkOn = true;
-				M_MOANER_saveControls();
+                                M_MOANER_saveControls();  
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
                                 );
@@ -13321,7 +13330,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         DoubletalkOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled. You need to set the gaglevel with the <b>/talk</b> command.</p>"
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled. You need to set the garbling level with the <b>/talk</b> command.</p>"
                         );
                     }
                 } else if (setting == "exitmode") {
