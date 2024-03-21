@@ -857,10 +857,14 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         var text5 = text4;
                     } else {
                         if (DoubletalkOn == true) {
-                            if (gl != 0) {
-                                var text5 = "*" + "gagtalks: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
-                            } else {
-                                var text5 = "*" + "gagtalks without garbling: \u0022" + text3 + "\u0022)";
+                            if (gl == -1) {
+                                var text5 = "*" + "babytalks: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
+                            } else {                  
+                                if (gl != 0) {
+                                    var text5 = "*" + "gagtalks: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
+                                } else {
+                                    var text5 = "*" + "gagtalks without garbling: \u0022" + text3 + "\u0022)";
+                                }
                             }
                         } else {
                             if (gl != 0) {
@@ -879,11 +883,15 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var text5 = text4;
                         } else {
                             if (DoubletalkOn == true) {
-                                if (gl != 0) {
-                                    var text5 = "*" + "gagwhispers: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
+                                if (gl == -1) {
+                                    var text5 = "*" + "babywhispers: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
                                 } else {
-                                    var text5 = "*" + "gagwhispers without garbling: \u0022" + text3 + "\u0022)";
-                                }
+                                    if (gl != 0) {
+                                        var text5 = "*" + "gagwhispers: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
+                                    } else {
+                                        var text5 = "*" + "gagwhispers without garbling: \u0022" + text3 + "\u0022)";
+                                    }
+                                } 
                             } else {
                                 if (gl != 0) {
                                     var text5 = text4;
