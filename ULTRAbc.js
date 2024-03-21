@@ -592,6 +592,18 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     gl = 0;
                     M_MOANER_saveControls();
                 }
+                if (gl == -1) {
+                    BabyTalkOn = true;
+                    GagTalkOn = false;
+                }
+                if (gl == 0) {
+                    BabyTalkOn = false;
+                    GagTalkOn = false;
+                }
+                if (gl > 0) {
+                    BabyTalkOn = false;
+                    GagTalkOn = true;
+                }   
                 if (HotkeysOn == null || HotkeysOn == undefined) {
                     HotkeysOn = false;
                     M_MOANER_saveControls();
@@ -2783,7 +2795,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         } else {
             msg = DoubletalkStatus[1];
         }
-        msg = msg + " Current forced gaglevel: " + gl +".";
+        msg = msg + " Current garbling level: " + gl +".";
         M_MOANER_sendMessageToWearer(msg);
     }
 
