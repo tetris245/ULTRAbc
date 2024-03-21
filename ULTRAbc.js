@@ -6970,7 +6970,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The gtalk command must be followed by a number between 0 and 9, then the words you want to say.\n" +
                     " \n" +
                     "Available talk modes:\n" +
-                    "0 real gag talk\n" +
+                    "0 real gag talk (based on currently worn gags)\n" +
                     "1 almost no gag talk\n" +
                     "2 very light gag talk\n" +
                     "3 light gag talk\n" +
@@ -6996,10 +6996,22 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }      
                     content = SpeechGarbleByGagLevel(onegl, args.substring(2).trim());
-                    ServerSend("ChatRoomChat", {
-                        "Content": content,
-                        "Type": "Chat"
-                    });
+                    if (DoubletalkOn == true) {
+                        if (onegl != 0) {
+                            content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args.substring(2).trim() + "\u0022)";
+                        } else {
+                            content2 = args.substring(2).trim();
+                        }
+                    } else {
+                        if (onegl != 0) {
+                            content2 = content;
+                        } else {
+                            content2 = args.substring(2).trim();
+                        }
+                    }
+                    ElementValue("InputChat", content.replace(content, content2));  
+                    event.preventDefault();
+                    ChatRoomSendChat();
                 }
             }
         }
@@ -11984,7 +11996,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The talk command must be followed by a number between -2 and 9.\n" +
                     " \n" +
                     "Available talk modes:\n" +
-                    "-2 real baby/gag talk\n" +
+                    "-2 real baby/gag talk (based on currently worn gags)\n" +
                     "-1 baby talk\n" +
                     "0 normal talk\n" +
                     "1 almost no gag talk\n" +
