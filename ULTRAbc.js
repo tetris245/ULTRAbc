@@ -5758,12 +5758,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             } else {
                 content = SpeechBabyTalk({
                     Effect: ["RegressedTalk"]
-                }, args);
-                ServerSend("ChatRoomChat", {
-                    "Content": content,
-                    "Type": "Chat"
-                });
-            }
+                }, args); 
+                if (DoubletalkOn == true) {
+                    content2 = "*" + "babytalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
+                } else {
+                    content2 = content;
+                }
+                ElementValue("InputChat", content.replace(content, content2));  
+                event.preventDefault();
+                ChatRoomSendChat();     
+           } 
         }
     }])
 
