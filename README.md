@@ -59,3 +59,4 @@ Changes for future version
 
 * Added the /uset doubletalk command to enable/disable the double talk (and whisper) mode, displaying babytalk or gagtalk as an action with both versions of message (the garbling level needs to be set with the /talk command)
 * Extended usage of messages starting with * or ** to whispers
+* Updated the gtalk and talk commands
