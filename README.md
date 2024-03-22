@@ -62,3 +62,4 @@ Changes for future version
   - the garbling level needs to be set with the talk command
 * Extended usage of messages starting with * or ** to whispers
 * Updated the btalk, gtalk, murmur and talk commands
+* Updated and optimised the code for the Moaner reactions
