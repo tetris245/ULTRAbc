@@ -6836,9 +6836,44 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var stringGag1 = args;
                 var stringGag2 = stringGag1.split(/[ ,]+/);
                 var gaglevel = stringGag2[0];
+                var nt = 0;
                 if ((gaglevel > -1) && (gaglevel < 10)) {
                     if (gaglevel == 0) {
                         onegl = SpeechGetTotalGagLevel(Player);
+                        if (Player.ExtensionSettings.LSCG != null) {
+                            str = Player.ExtensionSettings.LSCG;
+                            d = LZString.decompressFromBase64(str);
+                            LSCGdata = {};
+                            decoded = JSON.parse(d);
+                            LSCGdata = decoded;
+                            if (LSCGdata.CollarModule.chokeLevel > 1) {
+                                onegl = (LSCGdata.CollarModule.chokeLevel)*2 + onegl -1;
+                            }
+                            if (LSCGdata.CollarModule.chokeLevel == 4) {
+                                nt = 1;
+                            }
+                            this.settings.states = LSCGdata.StateModule.states;
+                            var type = 'asleep';
+                            var config = this.settings.states.find(s => s.type == type);
+                            if (config.active == true) {
+                                nt = 1;
+                            }
+                            var type = 'frozen';
+                            var config = this.settings.states.find(s => s.type == type);
+                            if (config.active == true) {
+                                nt = 1;
+                            }
+                            var type = 'gagged';
+                            var config = this.settings.states.find(s => s.type == type);
+                            if (config.active == true) {
+                                nt = 1;
+                            }
+                            var type = 'hypnotized';
+                            var config = this.settings.states.find(s => s.type == type);
+                            if (config.active == true) {
+                                nt = 1;
+                            }
+                        }
                     } else {
                         if (gaglevel == 9) {
                             onegl = 10;
@@ -6847,17 +6882,21 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     }      
                     content = SpeechGarbleByGagLevel(onegl, args.substring(2).trim());
-                    if (DoubletalkOn == true) {
-                        if (onegl != 0) {
-                            content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args.substring(2).trim() + "\u0022)";
-                        } else {
-                            content2 = args.substring(2).trim();
-                        }
+                    if (nt == 1) {
+                        content2 = content;
                     } else {
-                        if (onegl != 0) {
-                            content2 = content;
+                        if (DoubletalkOn == true) {                
+                            if (onegl != 0) {        
+                                content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args.substring(2).trim() + "\u0022)";
+                            } else {
+                                content2 = args.substring(2).trim();
+                            }
                         } else {
-                            content2 = args.substring(2).trim();
+                            if (onegl != 0) {
+                                content2 = content;
+                            } else {
+                                content2 = args.substring(2).trim();
+                            }
                         }
                     }
                     ElementValue("InputChat", content.replace(content, content2));  
@@ -6867,7 +6906,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
         }
     }])
- 
+
     CommandCombine([{
         Tag: 'hdvibe',
         Description: "(crotch shield) (back shield) (modules)(intensity) (orgasm mode): changes the settings of worn Heavy Duty Belt.",
