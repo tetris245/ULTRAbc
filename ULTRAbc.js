@@ -6847,7 +6847,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             decoded = JSON.parse(d);
                             LSCGdata = decoded;
                             if (LSCGdata.CollarModule.chokeLevel > 1) {
-                                onegl = (LSCGdata.CollarModule.chokeLevel)*2 + onegl -1;
+                                onegl = (LSCGdata.CollarModule.chokeLevel)*2 + onegl - 1;
                             }
                             if (LSCGdata.CollarModule.chokeLevel == 4) {
                                 nt = 1;
@@ -11930,6 +11930,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     }
                     if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
                         BabyTalkOn = false;  
+			gl = gaglevel;
                         GagTalkOn = true;
                         M_MOANER_saveControls();  
                     } else {
@@ -11965,37 +11966,34 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         }
                     } else {
                         if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
-                            BabyTalkOn = false;
-                            gl = SpeechGetTotalGagLevel(Player);
-                            if (gl == 0) {
-                                GagTalkOn = false;
-                                M_MOANER_saveControls();  
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
-                                );
-                            } else {
-                                GagTalkOn = true;
-                                M_MOANER_saveControls();  
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
-                                );
-                            }
+                            BabyTalkOn = false;               
                         } else {
                             GagTalkOn = false;
-                            gl = SpeechGetTotalGagLevel(Player);
-                            if (gl == 0) {
-                                M_MOANER_saveControls();  
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
-                                );
-                            } else {
-                                GagTalkOn = true;
-                                M_MOANER_saveControls();  
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
-                                );
+                        }
+                        gl = SpeechGetTotalGagLevel(Player);
+                        if (Player.ExtensionSettings.LSCG != null) {
+                            str = Player.ExtensionSettings.LSCG;
+                            d = LZString.decompressFromBase64(str);
+                            LSCGdata = {};
+                            decoded = JSON.parse(d);
+                            LSCGdata = decoded;
+                            if (LSCGdata.CollarModule.chokeLevel > 1) {
+                                gl = (LSCGdata.CollarModule.chokeLevel)*2 + gl - 1;
                             }
                         }
+                        if (gl == 0) {
+                            GagTalkOn = false;
+                            M_MOANER_saveControls();  
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
+                            );
+                        } else {
+                            GagTalkOn = true;
+                            M_MOANER_saveControls();  
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
+                            );
+                        }             
                     }
                 }
             }
