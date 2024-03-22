@@ -1740,13 +1740,11 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
             }
             if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
-                let C = /** @type {NPCCharacter} */ ({});
-                CharacterRandomName(C);
                 InfiltrationTarget = {
-                    Type: "NPC",
-                    Name: C.Name,
-                    PrivateRoom: false
-                };
+		    Type: "NPC",
+		    Name: CharacterGenerateRandomName(),
+		    PrivateRoom: false
+	        };
             } else {
                 const PreviousTarget = InfiltrationTarget && InfiltrationTarget.Type || "";
                 const Type = /** @type {InfiltrationTargetType} */ (CommonRandomItemFromList(PreviousTarget, InfiltrationObjectType));
