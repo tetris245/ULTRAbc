@@ -3483,77 +3483,70 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 var moan;
                 var backupChatRoomTargetMemberNumber = null;
                 // not in whisper mode
-                // not as /me
+                // initially not as /me
                 // only in normal talk mode
                 msg = ElementValue("InputChat");
                 if (M_MOANER_isSimpleChat(msg)) {
-                    moan = msg + "... " + getOrgasmMoan();
-                    ElementValue("InputChat", moan);
-                    if (this.BabyTalkOn == true) {
-                        var moan2 = SpeechBabyTalk({
-                            Effect: ["RegressedTalk"]
-                        }, moan);
-                    } else if (this.GagTalkOn == true) {
-                        var moan2 = SpeechGarbleByGagLevel(gl, moan);
-                    } else {
-                        var moan2 = moan;
-                    }
-                    ElementValue("InputChat", moan.replace(moan, moan2));
-                    if (this.Stutter1On == true) {
-                        var moan3 = StutterTalk1(moan2);
-                    } else if (this.Stutter2On == true) {
-                        var moan3 = StutterTalk2(moan2);
-                    } else if (this.Stutter3On == true) {
-                        var moan3 = StutterTalk3(moan2);
-                    } else if (this.Stutter4On == true) {
-                        var moan3 = StutterTalk4(moan2);
-                    } else {
-                        var moan3 = moan2;
-                    }
-                    ElementValue("InputChat", moan2.replace(moan2, moan3));
-                    msg = "";
-                    ActivityChatRoomArousalSync(Player);
-                    if (M_MOANER_cum == false) {
-                        ChatRoomSendChat();
-                        M_MOANER_cum = true;
-                        M_MOANER_saveControls();
-                    }
+                    sc = 1; 
+                    moan = msg + "... " + getOrgasmMoan();      
                 } else {
+                    sc = 0;
                     backupChatRoomTargetMemberNumber = ChatRoomTargetMemberNumber;
                     ChatRoomTargetMemberNumber = null;
-                    moan = "... " + getOrgasmMoan();
-                    ElementValue("InputChat", moan);
-                    if (this.BabyTalkOn == true) {
-                        var moan2 = SpeechBabyTalk({
-                            Effect: ["RegressedTalk"]
-                        }, moan);
-                    } else if (this.GagTalkOn == true) {
-                        var moan2 = SpeechGarbleByGagLevel(gl, moan);
+                    moan = "... " + getOrgasmMoan();  
+                }
+                ElementValue("InputChat", moan);
+                if (this.Stutter1On == true) {
+                    var moan2 = StutterTalk1(moan);
+                } else if (this.Stutter2On == true) {
+                    var moan2 = StutterTalk2(moan);
+                } else if (this.Stutter3On == true) {
+                    var moan2 = StutterTalk3(moan);
+                } else if (this.Stutter4On == true) {
+                    var moan2 = StutterTalk4(moan);
+                } else {
+                    var moan2 = moan;
+                }
+                ElementValue("InputChat", moan.replace(moan, moan2));
+                if (this.BabyTalkOn == true) {
+                    var moan3 = SpeechBabyTalk({
+                        Effect: ["RegressedTalk"]
+                    }, moan2);
+                } else if (this.GagTalkOn == true) {
+                    var moan3 = SpeechGarbleByGagLevel(gl, moan2);
+                } else {
+                    var moan3 = moan2;
+                }
+                ElementValue("InputChat", moan2.replace(moan2, moan3));
+                if (DoubletalkOn == true) {
+                    if (gl == -1) {
+                        var moan4 = "*" + "babytalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
+                    } else {                  
+                        if (gl != 0) {
+                            var moan4 = "*" + "gagtalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
+                        } else {
+                            var moan4 = moan2;
+                        }
+                    }
+                } else {
+                    if (gl != 0) {
+                        var moan4 = moan3;
                     } else {
-                        var moan2 = moan;
+                        var moan4 = moan2;
                     }
-                    ElementValue("InputChat", moan.replace(moan, moan2));
-                    if (this.Stutter1On == true) {
-                        var moan3 = StutterTalk1(moan2);
-                    } else if (this.Stutter2On == true) {
-                        var moan3 = StutterTalk2(moan2);
-                    } else if (this.Stutter3On == true) {
-                        var moan3 = StutterTalk3(moan2);
-                    } else if (this.Stutter4On == true) {
-                        var moan3 = StutterTalk4(moan2);
-                    } else {
-                        var moan3 = moan2;
-                    }
-                    ElementValue("InputChat", moan2.replace(moan2, moan3));;
-                    ActivityChatRoomArousalSync(Player);
-                    if (M_MOANER_cum == false) {
-                        ChatRoomSendChat();
-                        M_MOANER_cum = true;
-                        M_MOANER_saveControls();
-                    }
+                }
+                ElementValue("InputChat", moan3.replace(moan3, moan4));
+                msg = "";
+                ActivityChatRoomArousalSync(Player);
+                if (M_MOANER_cum == false) {
+                    ChatRoomSendChat();
+                    M_MOANER_cum = true;
+                    M_MOANER_saveControls();
+                }
+                if (sc == 0) {
                     ChatRoomTargetMemberNumber = backupChatRoomTargetMemberNumber;
                     ElementValue("InputChat", msg);
-                }
+                }                             
             }
         }
     }
