@@ -66,6 +66,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let SosbuttonsOn;
 
     let blureffect;
+    let notalk = 0;
     let oldhorny = 0;
     let reaction = 0;
 
@@ -387,6 +388,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             SlowleaveOn = false;
             SosbuttonsOn = false;
             blureffect = false;
+	    notalk = 0;
             oldhorny = 0;
 	    reaction = 0;
             Clothes = "";
@@ -449,6 +451,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             SlowleaveOn = datas.slowleave;
             SosbuttonsOn = datas.sosbuttons;
             blureffect = false;
+	    notalk = datas.notalk;
             oldhorny = 0;
 	    reaction = 0;
             Clothes = datas.clothes;
@@ -514,6 +517,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "slowleave": SlowleaveOn,
             "sosbuttons": SosbuttonsOn,
             "blureffect": blureffect,
+	    "notalk": notalk,
             "oldhorny": oldhorny,
 	    "reaction": reaction,
             "clothes": Clothes,
@@ -594,6 +598,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (gl == null || gl == undefined) {
                     gl = 0;
+		    notalk = 0;
                     M_MOANER_saveControls();
                 }
                 if (gl == -1) {
@@ -873,7 +878,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 ElementValue("InputChat", text3.replace(text3, text4));
                 if (ChatRoomTargetMemberNumber == null) {
-                    if (tsp == 1) {
+                    if ((tsp == 1) || (notalk == 1)) {
                         var text5 = text4;
                     } else {
                         if (DoubletalkOn == true) {
@@ -11900,7 +11905,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "9 total gag talk</p>"
                 );
             } else {
-                var gaglevel = args *1;    
+                var gaglevel = args *1; 
+		notalk = 0;
                 ElementValue("InputChat", "");
                 if (gaglevel == -1) {
                     if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
@@ -11979,6 +11985,30 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             LSCGdata = decoded;
                             if (LSCGdata.CollarModule.chokeLevel > 1) {
                                 gl = (LSCGdata.CollarModule.chokeLevel)*2 + gl - 1;
+                            }
+			    if (LSCGdata.CollarModule.chokeLevel == 4) {
+                                notalk = 1;
+                            }
+                            this.settings.states = LSCGdata.StateModule.states;
+                            var type = 'asleep';
+                            var config = this.settings.states.find(s => s.type == type);
+                            if (config.active == true) {
+                                notalk = 1;
+                            }
+                            var type = 'frozen';
+                            var config = this.settings.states.find(s => s.type == type);
+                            if (config.active == true) {
+                                notalk = 1;
+                            }
+                            var type = 'gagged';
+                            var config = this.settings.states.find(s => s.type == type);
+                            if (config.active == true) {
+                                notalk = 1;
+                            }
+                            var type = 'hypnotized';
+                            var config = this.settings.states.find(s => s.type == type);
+                            if (config.active == true) {
+                                notalk = 1;
                             }
                         }
                         if (gl == 0) {
