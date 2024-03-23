@@ -59,8 +59,9 @@ Changes for future version
 
 * Added the /uset doubletalk command to enable/disable the double talk (and whisper) mode:
   - this mode displays babytalk or gagtalk as an action with both versions of message
-  - the garbling level needs to be set with the talk command
-  - if you prefer to base the garbling level on the currently worn gags and other items restraining talking (including the LSCG collar), use /talk -2
+  - the 'permanent' garbling level needs to be set with the talk command (also without any gag!)
+  - if you want to base the garbling level on the currently worn gags and other items restraining talking (including the LSCG collar and spells preventing talking), use /talk -2 each time there are changes
+  - the equivalent of /talk -2 for only one message is /gtalk 0 (message)
 * Extended usage of messages starting with * or ** to whispers
 * Updated the btalk, gtalk, murmur and talk commands
 * Updated and optimised the code for the Moaner reactions
