@@ -55,15 +55,16 @@ All else I might not have included.
 
 ==========================================================================
 
+
 Changes for future version 
 
-* Moved the UBC buttons in Chat Room to the middle and added the RLG button, equivalent of the /talk -2 command, to update in real time your garbling level based on the currently worn gags and other items restraining talking (including the LSCG collar and spells preventing talking)
+* Moved the UBC buttons in Chat Room to the middle and added the RGL button (= Real Garbling Level) to update in real time your garbling level based on the currently worn gags and other items restraining talking (including LSCG collar and spells)
 * Added the /uset doubletalk command to enable/disable the double talk (and whisper) mode:
   - this mode displays babytalk or gagtalk as an action with both versions of message
   - the 'permanent' garbling level needs to be set with the talk command (also without any gag!)
-  - if you want to base the garbling level on your current situation, use /talk -2 each time there are changes (or the new RLG button)
+  - if you want to base the garbling level on your current situation, use /talk -2 each time there are changes (or the new RGL button)
   - the equivalent of /talk -2 for only one message is /gtalk 0 (message)
-* Added the /uset rlgbuttons to enable/disable the RLG button in Chat Room
+* Added the /uset rglbuttons to enable/disable the RGL button in Chat Room
 * Extended usage of messages starting with * or ** to whispers
 * Updated the btalk, gtalk, murmur and talk commands
 * Updated and optimised the code for the Moaner reactions
