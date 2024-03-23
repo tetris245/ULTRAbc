@@ -722,10 +722,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (SosbuttonsOn == true) {     
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
-                    var move = 1;
-                }
-                if (move == 1) {
-                    var move = 0;
                     if (Totalrelease == undefined) {
                         var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                     } else {
@@ -756,10 +752,6 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             }
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 90) && (MouseY < 135)) {
-                    var move = 2;
-                }
-                if (move == 2) {
-                    var move = 0;
                     if (SlowleaveOn == true) {
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -854,13 +846,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 GagTalkOn = false;
                                 M_MOANER_saveControls();  
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal talk mode.</p>"
                                 );
                             } else {
                                 GagTalkOn = true;
                                 M_MOANER_saveControls();  
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode. Your current garbling level is " + gl + " .</p>"
                                 );
                             }
                        } 
@@ -984,7 +976,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     ChatRoomSendChat();  
                 } else {
                     if (NowhisperOn == false) {
-                        if (tsp == 1) {
+                        if ((tsp == 1) || (notalk == 1)) {
                             var text5 = text4;
                         } else {
                             if (DoubletalkOn == true) {
@@ -9195,23 +9187,27 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             var msg4 = msg3;
                         }
                         ElementValue("InputChat", msg3.replace(msg3, msg4));
-                        if (DoubletalkOn == true) {
-                            if (gl == -1) {
-                                var msg5 = "*" + "babywhispers: \u0022" + msg4 + "\u0022 (\u0022" + msg3 + "\u0022)";
+                        if (notalk == 1) {
+                            var msg5 = msg4;
+                        } else {
+                            if (DoubletalkOn == true) {
+                                if (gl == -1) {
+                                    var msg5 = "*" + "babywhispers: \u0022" + msg4 + "\u0022 (\u0022" + msg3 + "\u0022)";
+                                } else {
+                                    if (gl != 0) {
+                                        var msg5 = "*" + "gagwhispers: \u0022" + msg4 + "\u0022 (\u0022" + msg3 + "\u0022)";
+                                    } else {
+                                        var msg5 = msg3;
+                                    }
+                                } 
                             } else {
                                 if (gl != 0) {
-                                    var msg5 = "*" + "gagwhispers: \u0022" + msg4 + "\u0022 (\u0022" + msg3 + "\u0022)";
+                                    var msg5 = msg4;
                                 } else {
                                     var msg5 = msg3;
-                                }
+                                }     
                             } 
-                        } else {
-                            if (gl != 0) {
-                                var msg5 = msg4;
-                            } else {
-                                var msg5 = msg3;
-                            }     
-                        }    
+                        }
                         ElementValue("InputChat", msg4.replace(msg4, msg5));
                         if (msg5.startsWith("*")) {
                             if (msg5.startsWith("**")) {
@@ -12010,7 +12006,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
                 if (gaglevel == 0) {
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal talk mode.</p>"
                     );
                     BabyTalkOn = false;
                     GagTalkOn = false;
@@ -12104,13 +12100,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             GagTalkOn = false;
                             M_MOANER_saveControls();  
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal talk mode.</p>"
                             );
                         } else {
                             GagTalkOn = true;
                             M_MOANER_saveControls();  
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode. Your current garbling level is " + gl + " .</p>"
                             );
                         }             
                     }
