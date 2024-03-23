@@ -61,7 +61,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     let MapfullOn = false;
     var NowhisperOn = false;
     var NPCpunish = false;
-    let OutbuttonsOn;
+    let OutbuttonsOn;   
+    let RglbuttonsOn;
     let SlowleaveOn;
     let SosbuttonsOn;
 
@@ -160,6 +161,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     ];
     var OutbuttonsStatus = ["OUT buttons displayed and enabled.",
         "OUT buttons hidden and disabled."
+    ];
+    var RglbuttonsStatus = ["RGL buttons displayed and enabled.",
+        "RGL buttons hidden and disabled."
     ];
     var SosbuttonsStatus = ["FREE buttons displayed and enabled.",
         "FREE buttons hidden and disabled."
@@ -385,6 +389,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = false;
             NPCpunish = false;
             OutbuttonsOn = false;
+	    RglbuttonsOn = true;
             SlowleaveOn = false;
             SosbuttonsOn = false;
             blureffect = false;
@@ -448,6 +453,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
             OutbuttonsOn = datas.outbuttons;
+	    RglbuttonsOn = datas.rglbuttons;
             SlowleaveOn = datas.slowleave;
             SosbuttonsOn = datas.sosbuttons;
             blureffect = false;
@@ -514,6 +520,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
             "outbuttons": OutbuttonsOn,
+	    "rglbuttons": RglbuttonsOn,
             "slowleave": SlowleaveOn,
             "sosbuttons": SosbuttonsOn,
             "blureffect": blureffect,
@@ -629,6 +636,10 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     reaction = 0;
                     M_MOANER_saveControls();
                 }
+		if (RglbuttonsOn == null || RglbuttonsOn == undefined) {
+                    RglbuttonsOn = true;
+                    M_MOANER_saveControls();
+                }
                 if (rsize == null || rsize == undefined) {
                     rsize = 20;
                     M_MOANER_saveControls();
@@ -709,15 +720,9 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     //Chat Room (+ name/nickname/pronouns management for player)
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
-            if (SosbuttonsOn == true) {
-                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
-                        var move = 1;
-                    }
-                } else {
-                    if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
-                        var move = 1;
-                    }
+            if (SosbuttonsOn == true) {     
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
+                    var move = 1;
                 }
                 if (move == 1) {
                     var move = 0;
@@ -750,14 +755,8 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
             }
             if (OutbuttonsOn == true) {
-                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
-                        var move = 2;
-                    }
-                } else {
-                    if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 90) && (MouseY < 135)) {
-                        var move = 2;
-                    }
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 90) && (MouseY < 135)) {
+                    var move = 2;
                 }
                 if (move == 2) {
                     var move = 0;
@@ -786,11 +785,92 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         OnlineGameName = "";
                     }
                 }
+                if (RglbuttonsOn == true) {
+                    if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 135) && (MouseY < 180)) {
+                        notalk = 0;
+                        ElementValue("InputChat", "");
+                        var bl = 0;
+                        if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
+                            bl = 1;
+                        }
+                        if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
+                            bl = 1;
+                        }
+                        if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
+                            bl = 1;
+                        }
+                        if (bl == 1) {
+                            if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real baby talk mode.</p>"
+                                );
+                                GagTalkOn = false;
+                                BabyTalkOn = true;
+                                gl = -1;
+                                M_MOANER_saveControls();
+                            }
+                        } else {
+                            if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
+                                BabyTalkOn = false;               
+                            } else {
+                                GagTalkOn = false;
+                            }
+                            gl = SpeechGetTotalGagLevel(Player);
+                            if (Player.ExtensionSettings.LSCG != null) {
+                                str = Player.ExtensionSettings.LSCG;
+                                d = LZString.decompressFromBase64(str);
+                                LSCGdata = {};
+                                decoded = JSON.parse(d);
+                                LSCGdata = decoded;
+                                if (LSCGdata.CollarModule.chokeLevel > 1) {
+                                    gl = (LSCGdata.CollarModule.chokeLevel)*2 + gl - 1;
+                                }
+                                if (LSCGdata.CollarModule.chokeLevel == 4) {
+                                    notalk = 1;
+                                }
+                                this.settings.states = LSCGdata.StateModule.states;
+                                var type = 'asleep';
+                                var config = this.settings.states.find(s => s.type == type);
+                                if (config.active == true) {
+                                    notalk = 1;
+                                }
+                                var type = 'frozen';
+                                var config = this.settings.states.find(s => s.type == type);
+                                if (config.active == true) {
+                                    notalk = 1;
+                                }
+                                var type = 'gagged';
+                                var config = this.settings.states.find(s => s.type == type);
+                                if (config.active == true) {
+                                    notalk = 1;
+                                }
+                                var type = 'hypnotized';
+                                var config = this.settings.states.find(s => s.type == type);
+                                if (config.active == true) {
+                                    notalk = 1;
+                                }
+                            }
+                            if (gl == 0) {
+                                GagTalkOn = false;
+                                M_MOANER_saveControls();  
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Back to normal talk mode.</p>"
+                                );
+                            } else {
+                                GagTalkOn = true;
+                                M_MOANER_saveControls();  
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode.</p>"
+                                );
+                            }
+                       } 
+                   }
+               }
             }
             next(args);
         });
     }
-
+	    
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             if (HotkeysOn == true) {
@@ -1028,22 +1108,13 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                 }
             }
             if (SosbuttonsOn == true) {
-                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
-                } else {
-                    DrawButton(955, 45, 45, 45, "FREE", "White", "", "");
-                }
+                DrawButton(955, 45, 45, 45, "FREE", "White", "", "");
             }
             if (OutbuttonsOn == true) {
-                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    if (SlowleaveOn == true) {
-                        DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
-                    } else {
-                        DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
-                    }
-                } else {
-                    DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
-                }
+                DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
+            }
+            if (RglbuttonsOn == true) {
+                DrawButton(955, 135, 45, 45, "RGL", "White", "", "");
             }
             next(args);
         });
@@ -2887,6 +2958,16 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             msg = OutbuttonsStatus[0];
         } else {
             msg = OutbuttonsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showRglbuttonsStatus() {
+        let msg;
+        if (RglbuttonsOn) {
+            msg = RglbuttonsStatus[0];
+        } else {
+            msg = RglbuttonsStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -13271,6 +13352,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     "<b>nowhisper</b> to toggle no-whisper mode\n" +
                     "<b>npcpunish</b> to toggle NPC punishments\n" +
                     "<b>outbuttons</b> to toggle OUT buttons\n" +
+		    "<b>rglbuttons</b> to toggle RGL buttons\n" +
                     "<b>sosbuttons</b> to toggle emergency buttons (FREE)</p>"
                 );
             } else {
@@ -13419,6 +13501,20 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             "<p style='background-color:#5fbd7a'>ULTRAbc: OUT buttons displayed and enabled.</p>"
                         );
                     }
+		} else if (setting == "rglbuttons") {
+                    if (RglbuttonsOn == true) {
+                        RglbuttonsOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: RGL buttons hidden and disabled.</p>"
+                        );
+                    } else {
+                        RglbuttonsOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: RGL buttons displayed and enabled.</p>"
+                        );
+                    }
                 } else if (setting == "sosbuttons") {
                     if (SosbuttonsOn == true) {
                         SosbuttonsOn = false;
@@ -13452,6 +13548,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             showNowhisperStatus();
             showNpcpunishStatus();
             showOutbuttonsStatus();
+	    showRglbuttonsStatus();
             showRoomSizeStatus();
             showSosbuttonsStatus();
         }
