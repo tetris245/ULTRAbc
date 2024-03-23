@@ -3529,21 +3529,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                     var moan3 = moan2;
                 }
                 ElementValue("InputChat", moan2.replace(moan2, moan3));
-                if (DoubletalkOn == true) {
-                    if (gl == -1) {
-                        var moan4 = "*" + "babytalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
-                    } else {                  
+                if (notalk == 1) {
+                    var moan4 = moan3;
+                } else {
+                    if (DoubletalkOn == true) {
+                        if (gl == -1) {
+                            var moan4 = "*" + "babytalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
+                        } else {                  
+                            if (gl != 0) {
+                                var moan4 = "*" + "gagtalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
+                            } else {
+                                var moan4 = moan2;
+                            }
+                        }
+                    } else {
                         if (gl != 0) {
-                            var moan4 = "*" + "gagtalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
+                            var moan4 = moan3;
                         } else {
                             var moan4 = moan2;
                         }
-                    }
-                } else {
-                    if (gl != 0) {
-                        var moan4 = moan3;
-                    } else {
-                        var moan4 = moan2;
                     }
                 }
                 ElementValue("InputChat", moan3.replace(moan3, moan4));
@@ -3703,21 +3707,25 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             var moan3 = moan2;
         }
         ElementValue("InputChat", moan2.replace(moan2, moan3));
-        if (DoubletalkOn == true) {
-            if (gl == -1) {
-                var moan4 = "*" + "babytalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
-            } else {                  
+        if (notalk == 1) {
+            var moan4 = moan3;
+        } else {
+            if (DoubletalkOn == true) {
+                if (gl == -1) {
+                    var moan4 = "*" + "babytalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
+                } else {                  
+                    if (gl != 0) {
+                        var moan4 = "*" + "gagtalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
+                    } else {
+                        var moan4 = moan2;
+                    }
+                }
+            } else {
                 if (gl != 0) {
-                    var moan4 = "*" + "gagtalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
+                    var moan4 = moan3;
                 } else {
                     var moan4 = moan2;
                 }
-            }
-        } else {
-            if (gl != 0) {
-                var moan4 = moan3;
-            } else {
-                var moan4 = moan2;
             }
         }
         ElementValue("InputChat", moan3.replace(moan3, moan4));
