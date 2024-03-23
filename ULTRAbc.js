@@ -12973,7 +12973,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         } else if (lk == 5) {
                             CharacterReleaseFromLock(target[0], "PandoraPadlock");
                         } else if (lk == 6) {
-                            CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
+                            CharacterReleaseFromLock(target[0], "MistressPadlock");
                         } else if (lk == 7) {
                             CharacterReleaseFromLock(target[0], "LoversPadlock");
                         } else if (lk == 8) {
