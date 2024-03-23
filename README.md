@@ -63,7 +63,6 @@ Changes for future version
   - this mode displays babytalk or gagtalk as an action with both versions of message
   - the 'permanent' garbling level needs to be set with the talk command (also without any gag!)
   - if you want to base the garbling level on your current situation, use /talk -2 each time there are changes (or the new RGL button)
-  - the equivalent of /talk -2 for only one message is /gtalk 0 (message)
 * Added the /uset rglbuttons command to enable/disable the RGL button in Chat Room
 * Extended usage of messages starting with * or ** to whispers
 * Updated the btalk, gtalk, murmur and talk commands
