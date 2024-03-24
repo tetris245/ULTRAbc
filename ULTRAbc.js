@@ -3646,6 +3646,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             if ((data.Content.includes("Vibe")) && (Player.ArousalSettings.Progress >= 10)) {
                 if (M_MOANER_xvibratorActive == true) {
                     var msg = ElementValue("InputChat");
+		    reaction = 3;
                     M_MOANER_miscReactions(data);           
                 } else {
                     if ((metadata != undefined) || (metadata != null)) {
