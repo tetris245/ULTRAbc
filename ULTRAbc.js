@@ -820,24 +820,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                                 if (LSCGdata.CollarModule.chokeLevel == 4) {
                                     notalk = 1;
                                 }
-                                this.settings.states = LSCGdata.StateModule.states;
+                                let states = LSCGdata.StateModule.states;
                                 var type = 'asleep';
-                                var config = this.settings.states.find(s => s.type == type);
+                                var config = states.find(s => s.type == type);
                                 if (config.active == true) {
                                     notalk = 1;
                                 }
                                 var type = 'frozen';
-                                var config = this.settings.states.find(s => s.type == type);
+                                var config = states.find(s => s.type == type);
                                 if (config.active == true) {
                                     notalk = 1;
                                 }
                                 var type = 'gagged';
-                                var config = this.settings.states.find(s => s.type == type);
+                                var config = states.find(s => s.type == type);
                                 if (config.active == true) {
                                     notalk = 1;
                                 }
                                 var type = 'hypnotized';
-                                var config = this.settings.states.find(s => s.type == type);
+                                var config = states.find(s => s.type == type);
                                 if (config.active == true) {
                                     notalk = 1;
                                 }
@@ -6939,24 +6939,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                             if (LSCGdata.CollarModule.chokeLevel == 4) {
                                 nt = 1;
                             }
-                            this.settings.states = LSCGdata.StateModule.states;
+                            let states = LSCGdata.StateModule.states;
                             var type = 'asleep';
-                            var config = this.settings.states.find(s => s.type == type);
+                            var config = states.find(s => s.type == type);
                             if (config.active == true) {
                                 nt = 1;
                             }
                             var type = 'frozen';
-                            var config = this.settings.states.find(s => s.type == type);
+                            var config = states.find(s => s.type == type);
                             if (config.active == true) {
                                 nt = 1;
                             }
                             var type = 'gagged';
-                            var config = this.settings.states.find(s => s.type == type);
+                            var config = states.find(s => s.type == type);
                             if (config.active == true) {
                                 nt = 1;
                             }
                             var type = 'hypnotized';
-                            var config = this.settings.states.find(s => s.type == type);
+                            var config = states.find(s => s.type == type);
                             if (config.active == true) {
                                 nt = 1;
                             }
@@ -12075,24 +12075,24 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
 			    if (LSCGdata.CollarModule.chokeLevel == 4) {
                                 notalk = 1;
                             }
-                            this.settings.states = LSCGdata.StateModule.states;
+                            let states = LSCGdata.StateModule.states;
                             var type = 'asleep';
-                            var config = this.settings.states.find(s => s.type == type);
+                            var config = states.find(s => s.type == type);
                             if (config.active == true) {
                                 notalk = 1;
                             }
                             var type = 'frozen';
-                            var config = this.settings.states.find(s => s.type == type);
+                            var config = states.find(s => s.type == type);
                             if (config.active == true) {
                                 notalk = 1;
                             }
                             var type = 'gagged';
-                            var config = this.settings.states.find(s => s.type == type);
+                            var config = states.find(s => s.type == type);
                             if (config.active == true) {
                                 notalk = 1;
                             }
                             var type = 'hypnotized';
-                            var config = this.settings.states.find(s => s.type == type);
+                            var config = states.find(s => s.type == type);
                             if (config.active == true) {
                                 notalk = 1;
                             }
