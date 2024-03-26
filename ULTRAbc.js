@@ -777,92 +777,93 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
                         OnlineGameName = "";
                     }
                 }
-                if (RglbuttonsOn == true) {
-                    if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 135) && (MouseY < 180)) {
-                        notalk = 0;
-                        ElementValue("InputChat", "");
-                        var bl = 0;
-                        if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
-                            bl = 1;
+            }
+            if (RglbuttonsOn == true) {
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 135) && (MouseY < 180)) {
+                    notalk = 0;
+                    ElementValue("InputChat", "");
+                    var bl = 0;
+                    if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
+                        bl = 1;
+                    }
+                    if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
+                        bl = 1;
+                    }
+                    if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
+                        bl = 1;
+                    }
+                    if (bl == 1) {
+                        if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real baby talk mode.</p>"
+                            );
+                            GagTalkOn = false;
+                            BabyTalkOn = true;
+                            gl = -1;
+                             M_MOANER_saveControls();
                         }
-                        if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
-                            bl = 1;
-                        }
-                        if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
-                            bl = 1;
-                        }
-                        if (bl == 1) {
-                            if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real baby talk mode.</p>"
-                                );
-                                GagTalkOn = false;
-                                BabyTalkOn = true;
-                                gl = -1;
-                                M_MOANER_saveControls();
-                            }
+                    } else {
+                        if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
+                            BabyTalkOn = false;               
                         } else {
-                            if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
-                                BabyTalkOn = false;               
-                            } else {
-                                GagTalkOn = false;
+                            GagTalkOn = false;
+                        }
+                        gl = SpeechGetTotalGagLevel(Player);
+                        if (Player.ExtensionSettings.LSCG != null) {
+                            str = Player.ExtensionSettings.LSCG;
+                            d = LZString.decompressFromBase64(str);
+                            LSCGdata = {};
+                            decoded = JSON.parse(d);
+                            LSCGdata = decoded;
+                            if (LSCGdata.CollarModule.chokeLevel > 1) {
+                               gl = (LSCGdata.CollarModule.chokeLevel)*2 + gl - 1;
                             }
-                            gl = SpeechGetTotalGagLevel(Player);
-                            if (Player.ExtensionSettings.LSCG != null) {
-                                str = Player.ExtensionSettings.LSCG;
-                                d = LZString.decompressFromBase64(str);
-                                LSCGdata = {};
-                                decoded = JSON.parse(d);
-                                LSCGdata = decoded;
-                                if (LSCGdata.CollarModule.chokeLevel > 1) {
-                                    gl = (LSCGdata.CollarModule.chokeLevel)*2 + gl - 1;
-                                }
-                                if (LSCGdata.CollarModule.chokeLevel == 4) {
-                                    notalk = 1;
-                                }
-                                let states = LSCGdata.StateModule.states;
-                                var type = 'asleep';
-                                var config = states.find(s => s.type == type);
-                                if (config.active == true) {
-                                    notalk = 1;
-                                }
-                                var type = 'frozen';
-                                var config = states.find(s => s.type == type);
-                                if (config.active == true) {
-                                    notalk = 1;
-                                }
-                                var type = 'gagged';
-                                var config = states.find(s => s.type == type);
-                                if (config.active == true) {
-                                    notalk = 1;
-                                }
-                                var type = 'hypnotized';
-                                var config = states.find(s => s.type == type);
-                                if (config.active == true) {
-                                    notalk = 1;
-                                }
+                            if (LSCGdata.CollarModule.chokeLevel == 4) {
+                                notalk = 1;
                             }
-                            if (gl == 0) {
-                                GagTalkOn = false;
-                                M_MOANER_saveControls();  
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal talk mode.</p>"
-                                );
-                            } else {
-                                GagTalkOn = true;
-                                M_MOANER_saveControls();  
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode. Your current garbling level is " + gl + " .</p>"
-                                );
+                            let states = LSCGdata.StateModule.states;
+                            var type = 'asleep';
+                            var config = states.find(s => s.type == type);
+                            if (config.active == true) {
+                                notalk = 1;
                             }
-                       } 
+                            var type = 'frozen';
+                            var config = states.find(s => s.type == type);
+                            if (config.active == true) {
+                                notalk = 1;
+                            }
+                            var type = 'gagged';
+                            var config = states.find(s => s.type == type);
+                            if (config.active == true) {
+                                notalk = 1;
+                            }
+                            var type = 'hypnotized';
+                            var config = states.find(s => s.type == type);
+                            if (config.active == true) {
+                                notalk = 1;
+                            }
+                       }
+                       if (gl == 0) {
+                            GagTalkOn = false;
+                            M_MOANER_saveControls();  
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal talk mode.</p>"
+                            );
+                       } else {
+                            GagTalkOn = true;
+                            M_MOANER_saveControls();  
+                            ChatRoomSendLocal(
+                               "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode. Your current garbling level is " + gl + " .</p>"
+                            );
+                       }
+                       return;
                    }
                }
             }
             next(args);
         });
     }
-	    
+    
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             if (HotkeysOn == true) {
