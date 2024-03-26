@@ -104,7 +104,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
     var M_MOANER_talkActive = true;
     var M_MOANER_tickleActive = true;
     var M_MOANER_vibratorActive = true;
-    var M_MOANER_xvibratorActive = true;
+    var M_MOANER_xvibratorActive = false;
 
     var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.",
         "The orgasm moan is not active. You will not moan while cumming anymore."
@@ -366,7 +366,7 @@ var bcModSDK=function(){"use strict";const e="1.1.0";function o(e){alert("Mod ER
             M_MOANER_talkActive = true;
             M_MOANER_tickleActive = true;
             M_MOANER_vibratorActive = true;
-            M_MOANER_xvibratorActive = true;
+            M_MOANER_xvibratorActive = false;
             M_MOANER_cum = false;
             profileName = "default";
             tmpname = "";
