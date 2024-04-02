@@ -12218,28 +12218,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'title',
-        Description: "(title): chooses a new title.",
+        Tag: 'title1',
+        Description: "(title): chooses a new title (from A to K).",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The title command must be followed by a title.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The title1 command must be followed by a title.\n" +
                     "It will also change required parameters to get the title.\n" +
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available titles:\n" +
-                    "agent, angel, baby, bondage baby, bondage maid,\n" +
-                    "bunny, clubslave, coldbloodhorse, collegestudent,\n" +
-                    "demon, diaperlover, doctor, doll, drone, duchess,\n" +
-                    "escapedpatient, farmhorse, flyingpegasus, foal, foxy,\n" +
-                    "goodgirl, goodslave, goodslavegirl, headmaid,\n" +
-                    "hotbloodhorse, houdini, infiltrator, kidnapper,\n" +
-                    "kitten, ladyluck, littleone, magician, magus, maid,\n" +
-                    "majesticalicorn, masterkidnapper, mistress, mole,\n" +
-                    "nawashi, nurse, operative, oracle, patient,\n" +
-                    "patron, permanentpatient, puppy, sage, shiningunicorn,\n" +
-                    "sorcerer, succubus, superspy, switch, warmbloodhorse,\n" +
-                    "warlock, wildmustang, witch, wizard.</p>"
+                    "agent, alien, angel, baby, bondage baby, bondage maid,\n" +
+                    "brat, bunny, captain, clubslave, coldbloodhorse,\n" +
+                    "collegestudent, concubus, demon, diaperlover,\n" +
+                    "doctor, doll, drone, duchess, duke, escapedpatient,\n" +
+                    "farmhorse, femboy, flyingpegasus, foal, foxy, goodboy,\n" +
+                    "goodone, goodgirl, goodslave, goodslaveboy,\n" +
+                    "goodslavegirl, headmaid,hotbloodhorse, houdini,\n" +
+                    "incubus, infiltrator, kidnapper, kitten.</p>"
                 );
             } else {
                 var title = args;
@@ -12248,6 +12244,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SkillChange(Player, "Infiltration", 6);
                     }
                     TitleSet("InfilrationAgent");
+                } else if (title == "alien") {
+                    TitleSet("Alien");
                 } else if (title == "angel") {
                     TitleSet("Angel");
                 } else if (title == "baby") {
@@ -12271,8 +12269,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SkillChange(Player, "Evasion", 10);
                     }
                     TitleSet("BondageMaid");
+                } else if (title == "brat") {
+                    TitleSet("Brat");
                 } else if (title == "bunny") {
                     TitleSet("Bunny");
+                } else if (title == "captain") {
+                    TitleSet("Captain");
                 } else if (title == "clubslave") {
                     LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
                 } else if (title == "coldbloodhorse") {
@@ -12283,6 +12285,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else if (title == "collegestudent") {
                     LogAdd("BondageCollege", "Import");
                     TitleSet("CollegeStudent");
+                } else if (title == "concubus") {
+                    TitleSet("Concubus");
                 } else if (title == "demon") {
                     TitleSet("Demon");
                 } else if (title == "diaperlover") {
@@ -12310,6 +12314,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else if (title == "duchess") {
                     LogAdd("KidnapSophie", "Sarah");
                     TitleSet("Duchess");
+                } else if (title == "duke") {
+                    LogAdd("KidnapSophie", "Sarah");
+                    TitleSet("Duke");
                 } else if (title == "escapedpatient") {
                     LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 } else if (title == "farmhorse") {
@@ -12317,6 +12324,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SkillChange(Player, "Dressage", 2);
                     }
                     TitleSet("PonyFarm");
+                } else if (title == "femboy") {
+                    TitleSet("Femboy");
                 } else if (title == "flyingpegasus") {
                     if ((SkillGetLevel(Player, "Dressage") < 8) || (SkillGetLevel(Player, "Infiltration") > 9)) {
                         SkillChange(Player, "Dressage", 8);
@@ -12335,6 +12344,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("PonyFoal");
                 } else if (title == "foxy") {
                     TitleSet("Foxy");
+                } else if (title == "goodboy") {
+                    if (AsylumGGTSGetLevel(Player) < 4) {
+                        Level = parseInt(4);
+                        Player.Game.GGTS.Level = 4;
+                        ServerAccountUpdate.QueueData({
+                            Game: Player.Game
+                        });
+                    }
+                    TitleSet("GoodBoy");
+                } else if (title == "goodone") {
+                    TitleSet("Good One");
                 } else if (title == "goodgirl") {
                     if (AsylumGGTSGetLevel(Player) < 4) {
                         Level = parseInt(4);
@@ -12353,6 +12373,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         });
                     }
                     TitleSet("GoodSlave");
+                } else if (title == "goodslaveboy") {
+                    if (AsylumGGTSGetLevel(Player) < 5) {
+                        Level = parseInt(5);
+                        Player.Game.GGTS.Level = 5;
+                        ServerAccountUpdate.QueueData({
+                            Game: Player.Game
+                        });
+                    }
+                    TitleSet("GoodSlaveBoy");
                 } else if (title == "goodslavegirl") {
                     if (AsylumGGTSGetLevel(Player) < 5) {
                         Level = parseInt(5);
@@ -12375,6 +12404,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SkillChange(Player, "Evasion", 10);
                     }
                     TitleSet("Houdini");
+                } else if (title == "incubus") {
+                    TitleSet("Incubus");
                 } else if (title == "infiltrator") {
                     if ((SkillGetLevel(Player, "Infiltration") < 4) || (SkillGetLevel(Player, "Infiltration") > 5)) {
                         SkillChange(Player, "Infiltration", 4);
@@ -12386,17 +12417,50 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("Kidnapper");
                 } else if (title == "kitten") {
-                    TitleSet("Kitten");
-                } else if (title == "ladyluck") {
+                    TitleSet("Kitten");           
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'title2',
+        Description: "(title): chooses a new title (from L to Z).",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The title2 command must be followed by a title.\n" +
+                    "It will also change required parameters to get the title.\n" +
+                    "You will be able to check the changes in your profile.\n" +
+                    " \n" +
+                    "Available titles:\n" +
+                    "ladyluck, liege, littleone, lordfortune, magician, magus,\n" +
+                    "maid, majesticalicorn, majesty, master, masterkidnapper,\n" +
+                    "missy, mistree, mistress, mole, nawashi, nurse, operative,\n" +
+                    "oracle, patient, patron, permanentpatient, pet, \n" +
+                    "prince, princess, puppy, sage, shiningunicorn, sissy,\n" +
+                    "sorcerer, succubus, superspy, switch, tomboy,\n" +
+                    "warmbloodhorse, warlock, wildmustang, witch, wizard.</p>"
+                );
+            } else {
+                var title = args;
+                if (title == "ladyluck") {  
                     if (ReputationGet("Gambling") < 100) {
                         DialogSetReputation("Gambling", 100);
                     }
                     TitleSet("LadyLuck");
+                } else if (title == "liege") {
+                    TitleSet("Liege");
                 } else if (title == "littleone") {
                     if (ReputationGet("ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("LittleOne");
+                } else if (title == "lordfortune") {
+                    if (ReputationGet("Gambling") < 100) {
+                        DialogSetReputation("Gambling", 100);
+                    }
+                    TitleSet("Lord Fortune");
                 } else if (title == "magician") {
                     if ((ReputationGet("HouseVincula") < 50) || (ReputationGet("HouseVincula") > 99)) {
                         DialogSetReputation("HouseAmplector", 0);
@@ -12424,11 +12488,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SkillChange(Player, "Dressage", 10);
                     }
                     TitleSet("PonyAlicorn");
+                } else if (title == "majesty") {
+                    TitleSet("Majesty");
+                } else if (title == "master") {
+                    LogAdd("ClubMistress", "Management");
+                    TitleSet("Master");
                 } else if (title == "masterkidnapper") {
                     if (ReputationGet("Kidnap") < 100) {
                         DialogSetReputation("Kidnap", 100);
                     }
                     TitleSet("MasterKidnapper");
+                } else if (title == "missy") {
+                    TitleSet("Missy");  
+                } else if (title == "mistree") {
+                    LogAdd("ClubMistress", "Management");
+                    TitleSet("Mistree");
                 } else if (title == "mistress") {
                     LogAdd("ClubMistress", "Management");
                     TitleSet("Mistress");
@@ -12474,6 +12548,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("Asylum", -100);
                     }
                     TitleSet("PermanentPatient");
+                } else if (title == "pet") {
+                    TitleSet("Pet");  
+                } else if (title == "prince") {
+                    TitleSet("Prince");  
+                } else if (title == "princess") {
+                    TitleSet("Princess");  
                 } else if (title == "puppy") {
                     TitleSet("Puppy");
                 } else if (title == "sage") {
@@ -12490,6 +12570,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SkillChange(Player, "Dressage", 7);
                     }
                     TitleSet("PonyUnicorn");
+                } else if (title == "sissy") {
+                    TitleSet("Sissy");  
                 } else if (title == "sorcerer") {
                     if (ReputationGet("HouseVincula") < 100) {
                         DialogSetReputation("HouseAmplector", 0);
@@ -12508,6 +12590,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("InfilrationSuperspy");
                 } else if (title == "switch") {
                     TitleSet("Switch");
+                } else if (title == "tomboy") {
+                    TitleSet("Tomboy");  
                 } else if (title == "warlock") {
                     if (ReputationGet("HouseCorporis") < 100) {
                         DialogSetReputation("HouseAmplector", 0);
@@ -12725,7 +12809,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/roleplay</b> (rolehere) = starts a role. *\n" +
                     "<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n" +
                     "<b>/skill</b> (skill) (level) = changes a skill. *\n" +
-                    "<b>/title</b> (newtitlehere) = chooses a new title. *</p>"
+                    "<b>/title1</b> (newtitlehere) = chooses a new title (from A to K). *\n" +
+                    "<b>/title2</b> (newtitlehere) = chooses a new title (from L to Z). *</p>"
                 );
             }
             if (args === "chat") {
