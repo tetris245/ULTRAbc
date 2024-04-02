@@ -58,4 +58,5 @@ All else I might not have included.
 
 Changes for future version 
 
+* Replaced the title command by the title1 (from A to K) and title2 (from L to Z) commands
 * Updated the ChatSearchRun function
