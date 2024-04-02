@@ -59,5 +59,5 @@ All else I might not have included.
 Changes for future version 
 
 * Replaced the title command by the title1 (from A to K) and title2 (from L to Z) commands
+* Moved RGL feature into a function and fixed the case of nursery milk used with gags
 * Updated the ChatSearchRun function
-* Moved RGL feature into a function and fixed a bug when nursery milk is used with gags
