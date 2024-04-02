@@ -784,13 +784,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementValue("InputChat", "");
                     var bl = 0;
                     if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
-                        bl = 1;
+                        gl = SpeechGetTotalGagLevel(Player);
+                        if (gl < 1) {
+                            bl = 1;
+                        }
                     }
                     if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
-                        bl = 1;
+                        gl = SpeechGetTotalGagLevel(Player);
+                        if (gl < 1) {
+                            bl = 1;
+                        }
                     }
                     if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
-                        bl = 1;
+                        gl = SpeechGetTotalGagLevel(Player);
+                        if (gl < 1) {
+                            bl = 1;
+                        }
                     }
                     if (bl == 1) {
                         if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
@@ -12040,13 +12049,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (gaglevel == -2) {
                     var bl = 0;
                     if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
-                        bl = 1;
+                        gl = SpeechGetTotalGagLevel(Player);
+                        if (gl < 1) {
+                            bl = 1;
+                        }
                     }
                     if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
-                        bl = 1;
+                        gl = SpeechGetTotalGagLevel(Player);
+                        if (gl < 1) {
+                            bl = 1;
+                        }
                     }
                     if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
-                        bl = 1;
+                        gl = SpeechGetTotalGagLevel(Player);
+                        if (gl < 1) {
+                            bl = 1;
+                        }
                     }
                     if (bl == 1) {
                         if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
