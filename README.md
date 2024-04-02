@@ -60,3 +60,4 @@ Changes for future version
 
 * Replaced the title command by the title1 (from A to K) and title2 (from L to Z) commands
 * Updated the ChatSearchRun function
+* Fixed a bug in RGL feature and talk -2 command when nursery milk is used with gags
