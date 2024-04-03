@@ -58,6 +58,7 @@ All else I might not have included.
 
 Changes for future version 
 
+* Improved the maproom command to determine if the UBC players are active in the map or not
 * Replaced the title command by the title1 (from A to K) and title2 (from L to Z) commands
 * Moved RGL feature into a function and fixed the case of nursery milk used with gags
 * Updated the ChatSearchRun function
