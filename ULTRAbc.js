@@ -34,6 +34,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
+    let ini = 0;
     let kp = 0;
 
     let tmpname;
@@ -389,7 +390,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NowhisperOn = false;
             NPCpunish = false;
             OutbuttonsOn = false;
-	    RglbuttonsOn = true;
+	    RglbuttonsOn = false;
             SlowleaveOn = false;
             SosbuttonsOn = false;
             blureffect = false;
@@ -595,11 +596,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
-                if (cfame == null || cfame == undefined) {
-                    cdesk = 0;
-                    cfame = 200;
-                    M_MOANER_saveControls();
-                }
                 if (DoubletalkOn == null || DoubletalkOn == undefined) {
                     DoubletalkOn = false;
                     M_MOANER_saveControls();
@@ -649,6 +645,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rtype = "";
                     M_MOANER_saveControls();
                 }
+		ini = 1; 
             } catch (err) {
                 console.log(err);
             }
@@ -984,17 +981,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tmpname = Player.Nickname;
                     }
-                    M_MOANER_saveControls();
+                    if (ini == 1) {
+                        M_MOANER_saveControls();
+                    }
                 } else {
                     if (Player.Nickname != '') {
                         if (tmpname != Player.Nickname) {
                             tmpname = Player.Nickname;
-                            M_MOANER_saveControls();
+                            if (ini == 1) {
+                                M_MOANER_saveControls();
+                            }
                         }
                     } else {
                         if (tmpname != Player.Name) {
                             tmpname = Player.Name;
-                            M_MOANER_saveControls();
+                            if (ini == 1) {
+                                M_MOANER_saveControls();
+                            }
                         }
                     }
                 }
@@ -1007,19 +1010,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 pronoun2 = "him";
                                 pronoun3 = "his";
                                 pronoun4 = "he";
-                                M_MOANER_saveControls();
+                                if (ini == 1) {
+                                    M_MOANER_saveControls();
+                                }
                             } else if (chprn == "SheHer") {
                                 pronoun1 = "She";
                                 pronoun2 = "her";
                                 pronoun3 = "her";
                                 pronoun4 = "she";
-                                M_MOANER_saveControls();
+                                if (ini == 1) {
+                                    M_MOANER_saveControls();
+                                }
                             } else {
                                 pronoun1 = "They";
                                 pronoun2 = "them";
                                 pronoun3 = "their";
                                 pronoun4 = "they";
-                                M_MOANER_saveControls();
+                                if (ini == 1) {
+                                    M_MOANER_saveControls();
+                                }
                             }
                         }
                     }
