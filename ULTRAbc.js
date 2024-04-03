@@ -586,6 +586,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.UBC = UBCver;
                 console.log("ULTRAbc loaded: Version " + UBCver);
                 Player.OnlineSharedSettings.UBC = UBCver;
+		Player.OnlineSharedSettings.Inmap = false;
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
@@ -1033,6 +1034,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (RglbuttonsOn == true) {
                 DrawButton(955, 135, 45, 45, "RGL", "White", "", "");
             }
+            if (ChatRoomCharacterViewIsActive() == false) {
+                Player.OnlineSharedSettings.Inmap = true;
+            } else {
+                Player.OnlineSharedSettings.Inmap = false;
+            }                
+            ServerAccountUpdate.QueueData({
+               OnlineSharedSettings: Player.OnlineSharedSettings
+            });
             next(args);
         });
     }
@@ -8420,9 +8429,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomSendLocal(ubc1 + " - " + ubc2);
                     if (ChatRoomCharacter[pl].MapData != undefined) {
                         if (ChatRoomData.MapData.Type == "Hybrid") {
-                            var exinfo = "Real presence in map: ?";
-                        } else {
-                            var exinfo = "Real presence in map: YES";
+                            if (ChatRoomCharacter[pl].OnlineSharedSettings.Inmap != undefined) {
+                                if (ChatRoomCharacter[pl].OnlineSharedSettings.Inmap == true) {
+                                     var exinfo = "Real presence in map: YES";
+                                } else {                        
+                                     var exinfo = "Real presence in map: NO";
+                                }                 
+                            } else {
+                                var exinfo = "Real presence in map: ?";
+                            }
                         }
                         ChatRoomSendLocal("X = " + ChatRoomCharacter[pl].MapData.Pos.X + " - Y = " + ChatRoomCharacter[pl].MapData.Pos.Y + " - " + exinfo);
                     } else {
