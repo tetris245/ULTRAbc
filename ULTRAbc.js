@@ -8437,6 +8437,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     ChatRoomSendLocal(ubc1 + " - " + ubc2);
                     if (ChatRoomCharacter[pl].MapData != undefined) {
+			if (ChatRoomData.MapData.Type == "Always") {
+                            var exinfo = "Real presence in map: YES";
+                        }
                         if (ChatRoomData.MapData.Type == "Hybrid") {
                             if (ChatRoomCharacter[pl].OnlineSharedSettings.Inmap != undefined) {
                                 if (ChatRoomCharacter[pl].OnlineSharedSettings.Inmap == true) {
