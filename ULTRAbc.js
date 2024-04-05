@@ -3696,15 +3696,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
-            /*if (data.Content.includes("Inject")) {
+            if (data.Content.includes("Inject")) {
                 if (!Player?.MemberNumber) return;
                 let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
                 mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber; 
                 if (mtarget !== Player.MemberNumber) return;
                 var msg = ElementValue("InputChat");
-                if (Player.OnlineSettings.LSCG != null) {
-                    if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
-                        if (Player.OnlineSettings.LSCG.InjectorModule.hornyLevel != 0) {
+                if (Player.ExtensionSettings.LSCG != null) {
+                    str = Player.ExtensionSettings.LSCG;
+                    d = LZString.decompressFromBase64(str);
+                    LSCGdata = {};
+                    decoded = JSON.parse(d);
+                    LSCGdata = decoded;
+                    if (LSCGdata.InjectorModule.enableHorny == true) {
+                        if (LSCGdata.InjectorModule.hornyLevel != 0) {
                               if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes) {
                                   reaction = 3;
                                   M_MOANER_saveControls();
@@ -3713,7 +3718,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
-            }*/
+            }
             if (data.Type === "Action" && metadata.ShockIntensity >= 0) {
                 let intensity = metadata.ShockIntensity;
                 if (intensity !== null && metadata.TargetCharacter.IsPlayer()) {
@@ -3847,10 +3852,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Player.ArousalSettings.Progress >= 10) {
             return true;
         }
-        /*if (Player.OnlineSettings.LSCG != undefined) {
-            if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
-                if (Player.OnlineSettings.LSCG.InjectorModule.hornyLevel != 0) {
-                    let newhorny = Player.OnlineSettings.LSCG.InjectorModule.hornyLevel;
+        if (Player.ExtensionSettings.LSCG != null) {
+            str = Player.ExtensionSettings.LSCG;
+            d = LZString.decompressFromBase64(str);
+            LSCGdata = {};
+            decoded = JSON.parse(d);
+            LSCGdata = decoded;
+            if (LSCGdata.InjectorModule.enableHorny == true) {
+                if (LSCGdata.InjectorModule.hornyLevel != 0) {
+                    let newhorny = LSCGdata.InjectorModule.hornyLevel;
                     if (newhorny > oldhorny) {
                         oldhorny = newhorny;
                         M_MOANER_saveControls();
@@ -3861,7 +3871,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
-        }*/
+        }
         return false;
     }
 
@@ -4110,46 +4120,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return true;
                 }
             }
-        }
-        /*if (Player.OnlineSettings.LSCG != null) {
-            if (Player.OnlineSettings.LSCG.InjectorModule.enableHorny == true) {
-                if (Player.OnlineSettings.LSCG.InjectorModule.hornyLevel != 0) {
-                    let horny = Player.OnlineSettings.LSCG.InjectorModule.hornyLevel;
-                    if (horny < 100) {
-                        Stutter1On = true;
-                        Stutter2On = false;
-                        Stutter3On = false;
-                        Stutter4On = false;
-                        return true;
-                    } else if ((horny > 99) && (horny < 200)) {
-                        Stutter1On = false;
-                        Stutter2On = true;
-                        Stutter3On = false;
-                        Stutter4On = false;
-                        return true;
-                    } else if ((horny > 199) && (horny < 300)) {
-                        Stutter1On = false;
-                        Stutter2On = false;
-                        Stutter3On = true;
-                        Stutter4On = false;
-                        return true;
-                    } else if (horny > 299) {
-                        Stutter1On = false;
-                        Stutter2On = false;
-                        Stutter3On = false;
-                        Stutter4On = true;
-                        return true;
-                    }
-                } else {
-                    Stutter1On = false;
-                    Stutter2On = false;
-                    Stutter3On = false;
-                    Stutter4On = false;
-                    return false;
-                }
-            }
-        }*/
-        return false;
+        }    
     }
 
     //MoanerProfiles
