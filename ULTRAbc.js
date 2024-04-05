@@ -4120,7 +4120,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return true;
                 }
             }
-        }    
+        } 
+        if (Player.ExtensionSettings.LSCG != null) {
+            str = Player.ExtensionSettings.LSCG;
+            d = LZString.decompressFromBase64(str);
+            LSCGdata = {};
+            decoded = JSON.parse(d);
+            LSCGdata = decoded;
+            if (LSCGdata.InjectorModule.enableHorny == true) {
+                if (LSCGdata.InjectorModule.hornyLevel >= 40) {
+                    return true;
+                }
+            }
+        } 
+        return false;
     }
 
     //MoanerProfiles
