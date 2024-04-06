@@ -13214,6 +13214,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (e.Value < 0) e.Value = 1;
                 });
                 Player.Inventory.forEach(item => item.Asset.Enable = true);
+		ChatRoomMapViewCanEnterTile = function(X,Y) {
+                    return 20;
+                }
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'>ULTRAbc: Unrestricted softly. Can do some things you couldn't do before.\n" +
                     "Store also includes hidden items. This can only be reset via a full relog.</p>"
@@ -13247,6 +13250,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (e.Value < 0) e.Value = 1;
                 });
                 Player.Inventory.forEach(item => item.Asset.Enable = true);
+		ChatRoomMapViewCanEnterTile = function(X,Y) {
+                    return 20;
+                }
                 DialogHasKey = function(C, Item) {
                     return true
                 }
