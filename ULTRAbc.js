@@ -3006,6 +3006,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  ChatRoomSendLocal(
                      "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode. Your current garbling level is " + gl + ".</p>"
                  );
+		 if (notalk == 1) {             
+                     ChatRoomSendLocal(
+                         "<p style='background-color:#5fbd7a'>Your very tight collar or a LSCG spell prevents you to talk.</p>"
+                     );	     
+                 } 
              }
          }    
     }
