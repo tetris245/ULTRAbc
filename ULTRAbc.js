@@ -69,7 +69,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     let blureffect;
     let notalk = 0;
-    let oldhorny = 0;
     let reaction = 0;
 
     let Clothes = "";
@@ -395,7 +394,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             SosbuttonsOn = false;
             blureffect = false;
 	    notalk = 0;
-            oldhorny = 0;
 	    reaction = 0;
             Clothes = "";
             Invisible = "";
@@ -459,7 +457,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             SosbuttonsOn = datas.sosbuttons;
             blureffect = false;
 	    notalk = datas.notalk;
-            oldhorny = 0;
 	    reaction = 0;
             Clothes = datas.clothes;
             Invisible = datas.invisible;
@@ -526,7 +523,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "sosbuttons": SosbuttonsOn,
             "blureffect": blureffect,
 	    "notalk": notalk,
-            "oldhorny": oldhorny,
 	    "reaction": reaction,
             "clothes": Clothes,
             "invisible": Invisible,
@@ -3857,18 +3853,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             d = LZString.decompressFromBase64(str);
             LSCGdata = {};
             decoded = JSON.parse(d);
-            LSCGdata = decoded;
+            LSCGdata = decoded;      
             if (LSCGdata.InjectorModule.enableHorny == true) {
-                if (LSCGdata.InjectorModule.hornyLevel != 0) {
-                    let newhorny = LSCGdata.InjectorModule.hornyLevel;
-                    if (newhorny > oldhorny) {
-                        oldhorny = newhorny;
-                        M_MOANER_saveControls();
-                        return true;
-                    } else {
-                        oldhorny = newhorny;
-                        M_MOANER_saveControls();
-                    }
+                if (LSCGdata.InjectorModule.hornyLevel >= 40) {
+                    return true;
                 }
             }
         }
