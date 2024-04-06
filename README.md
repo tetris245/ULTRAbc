@@ -58,9 +58,9 @@ All else I might not have included.
 
 Changes for future version 
 
+* Restored Moaner reaction with LSCG aphrodisiac injector and extended this feature to other LSCG activities : aphrodisiac drink (with or without Funnel Gag), aphrodisiac respirator
 * Improved the maproom command to determine if the UBC users are active in the map when a room is hybrid
 * Replaced the title command by the title1 (from A to K) and title2 (from L to Z) commands
-* Restored Moaner reaction with LSCG aphrodisiac injector
 * Moved RGL feature into a function and fixed the case of nursery milk used with gags
 * Updated the ChatSearchRun function
 * Fixed an initialisation bug 
