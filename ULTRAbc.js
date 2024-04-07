@@ -2301,6 +2301,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
+    //BC Responsive Status	
     function showBCResponsiveStatus() {
         let msg;
         if (BCRdata.settings.enabled) {
@@ -13447,7 +13448,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DoubletalkOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled. You need to set the garbling level with the <b>/talk</b> command.</p>"
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled.\n" +                                             
+                            "<b>IMPORTANT: </b>You need to set the garbling level with the <b>/talk</b> command every time there are changes with items or spells that restrain talking.\n" +
+                            "If you like moans, it is recommended to use the Moaner integrated in UBC. Other mods producing moans don't support the double talk (and whisper) mode.</p>"
                         );
                     }
                 } else if (setting == "exitmode") {
