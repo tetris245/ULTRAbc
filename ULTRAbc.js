@@ -13450,7 +13450,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled.\n" +                                             
                             "<b>IMPORTANT: </b>You need to set the garbling level with the <b>/talk</b> command every time there are changes with items or spells that restrain talking.\n" +
-                            "If you like moans, it is recommended to use the Moaner integrated in UBC. Other mods producing moans don't support the double talk (and whisper) mode.</p>"
+                            "For the whispers, use only the click under character and the <b>/murmur</b> command when you are in this mode.\n" +                     
+			    "If you like moans, it is recommended to use the Moaner integrated in UBC. Other mods producing moans don't support the double talk (and whisper) mode.</p>"
                         );
                     }
                 } else if (setting == "exitmode") {
