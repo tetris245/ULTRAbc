@@ -54,6 +54,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let rtype = "";
 
     let AutojoinOn;
+    let DolltalkOn;
     let DoubletalkOn;
     let FullseedOn;
     let HighfameOn;
@@ -380,6 +381,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rsize = 20;
             rtype = "";
             AutojoinOn = false;
+	    DolltalkOn = false;
 	    DoubletalkOn = false;
             FullseedOn = false;
             HighfameOn = false;
@@ -443,6 +445,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rsize = datas.rsize;
             rtype = datas.rtype;
             AutojoinOn = datas.autojoin;
+	    DolltalkOn = datas.dolltalk;
 	    DoubletalkOn = datas.doubletalk;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
@@ -509,6 +512,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "rsize": rsize,
             "rtype": rtype,
             "autojoin": AutojoinOn,
+            "dolltalk": DolltalkOn,
 	    "doubletalk": DoubletalkOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
@@ -592,6 +596,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
+		if (DolltalkOn == null || DolltalkOn == undefined) {
+                    DolltalkOn = false;
+                    M_MOANER_saveControls();
+                }
                 if (DoubletalkOn == null || DoubletalkOn == undefined) {
                     DoubletalkOn = false;
                     M_MOANER_saveControls();
@@ -613,10 +621,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     BabyTalkOn = false;
                     GagTalkOn = true;
                 }   
-                if (HotkeysOn == null || HotkeysOn == undefined) {
-                    HotkeysOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (MapfullOn == null || MapfullOn == undefined) {
                     MapfullOn = false;
                     M_MOANER_saveControls();
@@ -800,6 +804,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if (event.key === "Enter" && !event.shiftKey) {
+		var nm = 0;
                 var text = ElementValue("InputChat");
                 if (text.startsWith(",")) {
                     var text1 = "(" + text.slice(1) + ")";
@@ -831,23 +836,48 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var tsp = 1;
                 } else {
                     var tsp = 0;
-                    if (this.Stutter1On == true) {
-                        var text2 = StutterTalk1(text1);
-                    } else if (this.Stutter2On == true) {
-                        var text2 = StutterTalk2(text1);
-                    } else if (this.Stutter3On == true) {
-                        var text2 = StutterTalk3(text1);
-                    } else if (this.Stutter4On == true) {
-                        var text2 = StutterTalk4(text1);
-                    } else {
-                        var text2 = text1;
+		    if (DolltalkOn == true) {
+                        var segmenter = new Intl.Segmenter([], { granularity: 'word' });
+                        var segmentedText = segmenter.segment(text1);
+                        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                        var ln = words.length;       
+                        console.log(ln);
+                        if (ln > 5) {
+                            var nm = 1;
+                        }
+                        let i = 0;
+                        while (i < ln) {  
+                            var lw = words[i].length;
+                            if (lw > 6) {
+                                var nm = 1;
+                            }
+                            i++;
+                        } 
+                        if (nm == 1) { 
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your message or whisper can't be sent because it does not respect the rules of doll talk.</p>"
+                            );   
+                        }         
+                    } 
+                    if (nm == 0) {                   
+                        if (this.Stutter1On == true) {
+                            var text2 = StutterTalk1(text1);
+                        } else if (this.Stutter2On == true) {
+                            var text2 = StutterTalk2(text1);
+                        } else if (this.Stutter3On == true) {
+                            var text2 = StutterTalk3(text1);
+                        } else if (this.Stutter4On == true) {
+                            var text2 = StutterTalk4(text1);
+                        } else {
+                            var text2 = text1;
+                        }
                     }
                 }
                 ElementValue("InputChat", text1.replace(text1, text2));
                 if (tsp == 1) {
                     var text3 = text2;
                 } else {
-                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player) && (nm == 0)) {
                         var text3 = M_MOANER_applyMoanToMsg(Player, text2);
                     } else {
                         var text3 = text2;
@@ -892,9 +922,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     ElementValue("InputChat", text4.replace(text4, text5));
                     event.preventDefault();
-                    ChatRoomSendChat();  
+                    if (nm == 0) {
+                        ChatRoomSendChat(); 
+                    }
                 } else {
-                    if (NowhisperOn == false) {
+                    if ((NowhisperOn == false) && (nm == 0)) {
                         if ((tsp == 1) || (notalk == 1)) {
                             var text5 = text4;
                         } else {
@@ -9222,20 +9254,45 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                     }
                     if (target[0] != null) {
-                        ElementValue("InputChat", msg);    
-                        if (this.Stutter1On == true) {
-                            var msg2 = StutterTalk1(msg);
-                        } else if (this.Stutter2On == true) {
-                            var msg2 = StutterTalk2(msg);
-                        } else if (this.Stutter3On == true) {
-                            var msg2 = StutterTalk3(msg);
-                        } else if (this.Stutter4On == true) {
-                            var msg2 = StutterTalk4(msg);
-                        } else {
-                            var msg2 = msg;
+			var nm = 0;
+                        ElementValue("InputChat", msg);  
+                        if (DolltalkOn == true) {
+                            var segmenter = new Intl.Segmenter([], { granularity: 'word' });
+                            var segmentedText = segmenter.segment(msg);
+                            var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                            var ln = words.length;       
+                            if (ln > 5) {
+                                var nm = 1;
+                            }
+                            let i = 0;
+                            while (i < ln) {  
+                                var lw = words[i].length;
+                                if (lw > 6) {
+                                    var nm = 1;
+                                }
+                                i++;
+                            } 
+                            if (nm == 1) { 
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your whisper can't be sent becaute it does not respect the rules of doll talk.</p>"
+                                );  
+                            }      
+                        }
+                        if (nm == 0) {
+                            if (this.Stutter1On == true) {
+                                var msg2 = StutterTalk1(msg);
+                            } else if (this.Stutter2On == true) {
+                                var msg2 = StutterTalk2(msg);
+                            } else if (this.Stutter3On == true) {
+                                var msg2 = StutterTalk3(msg);
+                            } else if (this.Stutter4On == true) {
+                               var msg2 = StutterTalk4(msg);
+                            } else {
+                               var msg2 = msg; 
+                            }                     
                         }
                         ElementValue("InputChat", msg.replace(msg, msg2));
-                        if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                        if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player) && (nm == 0)) {
                             var msg3 = M_MOANER_applyMoanToMsg(Player, msg2);
                         } else {
                             var msg3 = msg2;
@@ -13420,6 +13477,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     " \n" +
                     "Available options:\n" +
                     "<b>autojoin</b> to toggle chat room auto-join feature\n" +
+		    "<b>dolltalk</b> to toggle doll talk (and whisper) mode\n" +
 		    "<b>doubletalk</b> to toggle double talk (and whisper) mode\n" +
                     "<b>exitmode</b> to toggle exit mode for OUT button \n" +
                     "<b>fullseed</b> to toggle full solution for intricate and hs locks\n" +
@@ -13448,6 +13506,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is enabled.</p>"
                         );
                     }
+                } else if (setting == "dolltalk") {
+                    if (DolltalkOn == true) {
+                        DolltalkOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Doll talk (and whisper) mode disabled.</p>"
+                        );
+                    } else {
+                        DolltalkOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Doll talk (and whisper) mode enabled.Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.</p>"                                                                       
+                        );
+                    }	
 		} else if (setting == "doubletalk") {
                     if (DoubletalkOn == true) {
                         DoubletalkOn = false;
