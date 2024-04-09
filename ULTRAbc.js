@@ -3708,34 +3708,45 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((data.Content.includes("Inject")) || (data.Content.includes("SipItem")) || (data.Content.includes("LSCG_FunnelPour")))  {
                     lvibe = 1;
                 }
-                if (InventoryGet(Player, "ItemMouth") != null) {
-                    if ((InventoryGet(Player, "ItemMouth").Asset.Name == "LatexRespirator") && (InventoryGet(Player, "ItemMouth").Craft.Item == "LatexRespirator")) {
-                       if (data.Type === "Action") {
-                           if (data.Content.includes ("ActionUse")) {
-                               lvibe = 1;
-                           }
+                 if (InventoryGet(Player, "ItemMouth") != null) {
+                    if (InventoryGet(Player, "ItemMouth").Asset.Name == "LatexRespirator") {
+                        if (InventoryGet(Player, "ItemMouth").Craft != undefined) {
+                            if (InventoryGet(Player, "ItemMouth").Craft.Item == "LatexRespirator") {
+                                if (data.Type === "Action") {
+                                   if (data.Content.includes ("ActionUse")) {                          
+                                      lvibe = 1;
+                                   }
+                                }
+                            }
                         }
                     }
                 }
                 if (InventoryGet(Player, "ItemMouth2") != null) {
-                      if ((InventoryGet(Player, "ItemMouth2").Asset.Name == "LatexRespirator") && (InventoryGet(Player, "ItemMouth2").Craft.Item == "LatexRespirator")) {
-                        if (data.Type === "Action") {
-                            if (data.Content.includes ("ActionUse")) {
-                               lvibe = 1;
+                    if (InventoryGet(Player, "ItemMouth2").Asset.Name == "LatexRespirator") {
+                        if (InventoryGet(Player, "ItemMouth2").Craft != undefined) {
+                            if (InventoryGet(Player, "ItemMouth2").Craft.Item == "LatexRespirator") {
+                                if (data.Type === "Action") {
+                                   if (data.Content.includes ("ActionUse")) {                          
+                                      lvibe = 1;
+                                   }
+                                }
                             }
                         }
                     }
-                }     
+                }
                 if (InventoryGet(Player, "ItemMouth3") != null) {
-                    if ((InventoryGet(Player, "ItemMouth3").Asset.Name == "LatexRespirator") && (InventoryGet(Player, "ItemMouth3").Craft.Item == "LatexRespirator")) {
-
-                         if (data.Type === "Action") {
-                            if (data.Content.includes ("ActionUse")) {
-                               lvibe = 1;
+                    if (InventoryGet(Player, "ItemMouth3").Asset.Name == "LatexRespirator") {
+                        if (InventoryGet(Player, "ItemMouth3").Craft != undefined) {
+                            if (InventoryGet(Player, "ItemMouth3").Craft.Item == "LatexRespirator") {
+                                if (data.Type === "Action") {
+                                   if (data.Content.includes ("ActionUse")) {                          
+                                      lvibe = 1;
+                                   }
+                                }
                             }
                         }
                     }
-                }     
+                }
                 if (lvibe == 1) {
                     if (!Player?.MemberNumber) return;
                     let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
