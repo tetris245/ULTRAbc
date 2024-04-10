@@ -136,6 +136,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var AutojoinStatus = ["Auto-Join feature is enabled.",
         "Auto-Join feature is disabled."
     ];
+    var DolltalkStatus = ["Doll talk (and whisper) mode enabled.",
+        "Doll talk (and whisper) mode disabled."
+    ];
     var DoubletalkStatus = ["Double talk (and whisper) mode enabled.",
         "Double talk (and whisper) mode disabled."
     ];
@@ -2834,6 +2837,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = AutojoinStatus[0];
         } else {
             msg = AutojoinStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showDolltalkStatus() {
+        let msg;
+        if (DolltalkOn) {
+            msg = DolltalkStatus[0];
+        } else {
+            msg = DolltalkStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -9278,7 +9291,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (nm == 1) { 
 				var msg2 = "";
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your whisper can't be sent becaute it does not respect the rules of doll talk.</p>"
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your whisper can't be sent because it does not respect the rules of doll talk.</p>"
                                 );  
                             }      
                         }
@@ -13529,7 +13542,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DolltalkOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Doll talk (and whisper) mode enabled.Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.</p>"                                                                       
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.</p>"                                                                       
                         );
                     }	
 		} else if (setting == "doubletalk") {
@@ -13703,6 +13716,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": displays status of UBC settings.",
         Action: () => {
             showAutojoinStatus();
+	    showDolltalkStatus();
 	    showDoubletalkStatus();
             showExitmodeStatus();
             showFullseedStatus();
