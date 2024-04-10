@@ -854,6 +854,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             i++;
                         } 
                         if (nm == 1) { 
+			    var text2 = "";
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your message or whisper can't be sent because it does not respect the rules of doll talk.</p>"
                             );   
@@ -874,17 +875,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 ElementValue("InputChat", text1.replace(text1, text2));
-                if (tsp == 1) {
+                if ((tsp == 1) || (nm == 1)) {
                     var text3 = text2;
                 } else {
-                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player) && (nm == 0)) {
+                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
                         var text3 = M_MOANER_applyMoanToMsg(Player, text2);
                     } else {
                         var text3 = text2;
                     }
                 }
                 ElementValue("InputChat", text2.replace(text2, text3));
-                if (tsp == 1) {
+                if ((tsp == 1) || (nm == 1)) {
                     var text4 = text3;
                 } else {
                     if (this.BabyTalkOn == true) {
@@ -899,7 +900,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 ElementValue("InputChat", text3.replace(text3, text4));
                 if (ChatRoomTargetMemberNumber == null) {
-                    if ((tsp == 1) || (notalk == 1)) {
+                    if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         var text5 = text4;
                     } else {
                         if (DoubletalkOn == true) {
