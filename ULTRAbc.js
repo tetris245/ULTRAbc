@@ -927,8 +927,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSendChat(); 
                     }
                 } else {
-                    if ((NowhisperOn == false) && (nm == 0)) {
-                        if ((tsp == 1) || (notalk == 1)) {
+                    if (NowhisperOn == false) {
+                        if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                             var text5 = text4;
                         } else {
                             if (DoubletalkOn == true) {
@@ -961,27 +961,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }  
                         ElementValue("InputChat", text5.replace(text5, text6));  
                         event.preventDefault();
-                        ServerSend("ChatRoomChat", {
-                            "Content": text6,
-                            "Type": "Whisper",
-                            "Target": ChatRoomTargetMemberNumber
-                        });
-                        for (let C = 0; C < ChatRoomCharacter.length; C++)
-                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                    TargetName = ChatRoomCharacter[C].Name;
-                                } else {
-                                    TargetName = ChatRoomCharacter[C].Nickname;
+                        if (text6 != "") {
+                            ServerSend("ChatRoomChat", {
+                                "Content": text6,
+                                "Type": "Whisper",
+                                "Target": ChatRoomTargetMemberNumber
+                            });
+                            for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                        TargetName = ChatRoomCharacter[C].Name;
+                                    } else {
+                                        TargetName = ChatRoomCharacter[C].Nickname;
+                                    }
+                                    break;
                                 }
-                                break;
-                            }
-                        ChatRoomMessage({
-                            Content: "Whisper to " + TargetName + ": " + text6,
-                            Type: "LocalMessage",
-                            Sender: Player.MemberNumber
-                        });
-                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                            ChatRoomMessage({
+                                Content: "Whisper to " + TargetName + ": " + text6,
+                                Type: "LocalMessage",
+                                Sender: Player.MemberNumber
+                            });
+                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                        }
                     }
                 }
                 ElementValue("InputChat", "");
@@ -9274,6 +9276,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 i++;
                             } 
                             if (nm == 1) { 
+				var msg2 = "";
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: Your whisper can't be sent becaute it does not respect the rules of doll talk.</p>"
                                 );  
@@ -9293,23 +9296,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }                     
                         }
                         ElementValue("InputChat", msg.replace(msg, msg2));
-                        if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player) && (nm == 0)) {
-                            var msg3 = M_MOANER_applyMoanToMsg(Player, msg2);
-                        } else {
+                        if (nm == 1) {
                             var msg3 = msg2;
-                        }
-                        ElementValue("InputChat", msg2.replace(msg2, msg3));    
-                        if (this.BabyTalkOn == true) {
-                            var msg4 = SpeechBabyTalk({
-                                Effect: ["RegressedTalk"]
-                            }, msg3);
-                        } else if (this.GagTalkOn == true) {
-                            var msg4 = SpeechGarbleByGagLevel(gl, msg3);
                         } else {
+                            if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                                var msg3 = M_MOANER_applyMoanToMsg(Player, msg2);
+                            } else {
+                                var msg3 = msg2;
+                            }
+                        }
+                        ElementValue("InputChat", msg2.replace(msg2, msg3)); 
+                        if (nm == 1) {
                             var msg4 = msg3;
+                        } else {
+                            if (this.BabyTalkOn == true) {
+                                var msg4 = SpeechBabyTalk({
+                                    Effect: ["RegressedTalk"]
+                                }, msg3);
+                            } else if (this.GagTalkOn == true) {
+                                var msg4 = SpeechGarbleByGagLevel(gl, msg3);
+                            } else {
+                                var msg4 = msg3;
+                            }
                         }
                         ElementValue("InputChat", msg3.replace(msg3, msg4));
-                        if (notalk == 1) {
+                        if ((notalk == 1) || (nm == 1)) {
                             var msg5 = msg4;
                         } else {
                             if (DoubletalkOn == true) {
