@@ -5813,7 +5813,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         i++;
                     } 
                     if (nm == 1) { 
-                        var text2 = "";
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
                         );   
@@ -7113,7 +7112,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             i++;
                         } 
                         if (nm == 1) { 
-                            var text2 = "";
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
                             );   
@@ -11416,11 +11414,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s1 command must be followed by the words you want to say.</p>"
                 );
             } else {
-                content = StutterTalk1(args);
-                ServerSend("ChatRoomChat", {
-                    "Content": content,
-                    "Type": "Chat"
-                });
+                var nm = 0;
+                if (DolltalkOn == true) {
+                    var segmenter = new Intl.Segmenter([], { granularity: 'word' });
+                    var segmentedText = segmenter.segment(args);
+                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                    var ln = words.length;       
+                    if (ln > 5) {
+                        var nm = 1;
+                    }
+                    let i = 0;
+                    while (i < ln) {  
+                        var lw = words[i].length;
+                        if (lw > 6) {
+                            var nm = 1;
+                        }
+                        i++;
+                    } 
+                    if (nm == 1) { 
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
+                        );   
+                    }         
+                }
+                if (nm == 0) {
+                    content = StutterTalk1(args);
+                    if (DoubletalkOn == true) {
+                        content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
+                    } else {
+                        content2 = content;
+                    }
+                    ElementValue("InputChat", content.replace(content, content2));  
+                    event.preventDefault();
+                    ChatRoomSendChat(); 
+               }
             }
         }
     }])
@@ -11434,14 +11461,44 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s2 command must be followed by the words you want to say.</p>"
                 );
             } else {
-                content = StutterTalk2(args);
-                ServerSend("ChatRoomChat", {
-                    "Content": content,
-                    "Type": "Chat"
-                });
+                var nm = 0;
+                if (DolltalkOn == true) {
+                    var segmenter = new Intl.Segmenter([], { granularity: 'word' });
+                    var segmentedText = segmenter.segment(args);
+                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                    var ln = words.length;       
+                    if (ln > 5) {
+                        var nm = 1;
+                    }
+                    let i = 0;
+                    while (i < ln) {  
+                        var lw = words[i].length;
+                        if (lw > 6) {
+                            var nm = 1;
+                        }
+                        i++;
+                    } 
+                    if (nm == 1) { 
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
+                        );   
+                    }         
+                }
+                if (nm == 0) {
+                    content = StutterTalk2(args);
+                    if (DoubletalkOn == true) {
+                        content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
+                    } else {
+                        content2 = content;
+                    }
+                    ElementValue("InputChat", content.replace(content, content2));  
+                    event.preventDefault();
+                    ChatRoomSendChat(); 
+               }
             }
         }
     }])
+
 
     CommandCombine([{
         Tag: 's3',
@@ -11452,16 +11509,46 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s3 command must be followed by the words you want to say.</p>"
                 );
             } else {
-                content = StutterTalk3(args);
-                ServerSend("ChatRoomChat", {
-                    "Content": content,
-                    "Type": "Chat"
-                });
+                var nm = 0;
+                if (DolltalkOn == true) {
+                    var segmenter = new Intl.Segmenter([], { granularity: 'word' });
+                    var segmentedText = segmenter.segment(args);
+                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                    var ln = words.length;       
+                    if (ln > 5) {
+                        var nm = 1;
+                    }
+                    let i = 0;
+                    while (i < ln) {  
+                        var lw = words[i].length;
+                        if (lw > 6) {
+                            var nm = 1;
+                        }
+                        i++;
+                    } 
+                    if (nm == 1) { 
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
+                        );   
+                    }         
+                }
+                if (nm == 0) {
+                    content = StutterTalk3(args);
+                    if (DoubletalkOn == true) {
+                        content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
+                    } else {
+                        content2 = content;
+                    }
+                    ElementValue("InputChat", content.replace(content, content2));  
+                    event.preventDefault();
+                    ChatRoomSendChat(); 
+               }
             }
         }
     }])
 
-    CommandCombine([{
+    
+CommandCombine([{
         Tag: 's4',
         Description: "(words): speaks once in total stuttering mode.",
         Action: (args) => {
@@ -11470,11 +11557,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s4 command must be followed by the words you want to say.</p>"
                 );
             } else {
-                content = StutterTalk4(args);
-                ServerSend("ChatRoomChat", {
-                    "Content": content,
-                    "Type": "Chat"
-                });
+                var nm = 0;
+                if (DolltalkOn == true) {
+                    var segmenter = new Intl.Segmenter([], { granularity: 'word' });
+                    var segmentedText = segmenter.segment(args);
+                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                    var ln = words.length;       
+                    if (ln > 5) {
+                        var nm = 1;
+                    }
+                    let i = 0;
+                    while (i < ln) {  
+                        var lw = words[i].length;
+                        if (lw > 6) {
+                            var nm = 1;
+                        }
+                        i++;
+                    } 
+                    if (nm == 1) { 
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
+                        );   
+                    }         
+                }
+                if (nm == 0) {
+                    content = StutterTalk4(args);
+                    if (DoubletalkOn == true) {
+                        content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
+                    } else {
+                        content2 = content;
+                    }
+                    ElementValue("InputChat", content.replace(content, content2));  
+                    event.preventDefault();
+                    ChatRoomSendChat(); 
+               }
             }
         }
     }])
