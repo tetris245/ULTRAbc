@@ -844,7 +844,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var segmentedText = segmenter.segment(text1);
                         var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
                         var ln = words.length;       
-                        console.log(ln);
                         if (ln > 5) {
                             var nm = 1;
                         }
@@ -5796,17 +5795,43 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The btalk command must be followed by the words you want to say.</p>"
                 );
             } else {
-                content = SpeechBabyTalk({
-                    Effect: ["RegressedTalk"]
-                }, args); 
-                if (DoubletalkOn == true) {
-                    content2 = "*" + "babytalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
-                } else {
-                    content2 = content;
+                var nm = 0;
+                if (DolltalkOn == true) {
+                    var segmenter = new Intl.Segmenter([], { granularity: 'word' });
+                    var segmentedText = segmenter.segment(args);
+                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                    var ln = words.length;       
+                    if (ln > 5) {
+                        var nm = 1;
+                    }
+                    let i = 0;
+                    while (i < ln) {  
+                        var lw = words[i].length;
+                        if (lw > 6) {
+                            var nm = 1;
+                        }
+                        i++;
+                    } 
+                    if (nm == 1) { 
+                        var text2 = "";
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
+                        );   
+                    }         
                 }
-                ElementValue("InputChat", content.replace(content, content2));  
-                event.preventDefault();
-                ChatRoomSendChat();     
+                if (nm == 0) {
+                    content = SpeechBabyTalk({
+                        Effect: ["RegressedTalk"]
+                    }, args); 
+                    if (DoubletalkOn == true) {
+                        content2 = "*" + "babytalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
+                    } else {
+                        content2 = content;
+                    }
+                    ElementValue("InputChat", content.replace(content, content2));  
+                    event.preventDefault();
+                    ChatRoomSendChat(); 
+               }
            } 
         }
     }])
@@ -7076,7 +7101,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var segmentedText = segmenter.segment(args.substring(2).trim());
                         var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
                         var ln = words.length;       
-                        console.log(ln);
                         if (ln > 5) {
                             var nm = 1;
                         }
