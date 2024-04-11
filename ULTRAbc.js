@@ -7036,7 +7036,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             decoded = JSON.parse(d);
                             LSCGdata = decoded;
                             if (LSCGdata.CollarModule.chokeLevel > 1) {
-                                onegl = (LSCGdata.CollarModule.chokeLevel)*2 + onegl - 1;
+                                onegl = (LSCGdata.CollarModule.chokeLevel)*2 + onegl;
                             }
                             if (LSCGdata.CollarModule.chokeLevel == 4) {
                                 nt = 1;
@@ -7069,28 +7069,55 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             onegl = gaglevel;
                         }
-                    }      
-                    content = SpeechGarbleByGagLevel(onegl, args.substring(2).trim());
-                    if (nt == 1) {
-                        content2 = content;
-                    } else {
-                        if (DoubletalkOn == true) {                
-                            if (onegl != 0) {        
-                                content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args.substring(2).trim() + "\u0022)";
-                            } else {
-                                content2 = args.substring(2).trim();
+                    } 
+                    var nm = 0;
+                    if (DolltalkOn == true) {
+                        var segmenter = new Intl.Segmenter([], { granularity: 'word' });
+                        var segmentedText = segmenter.segment(args.substring(2).trim());
+                        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                        var ln = words.length;       
+                        console.log(ln);
+                        if (ln > 5) {
+                            var nm = 1;
+                        }
+                        let i = 0;
+                        while (i < ln) {  
+                            var lw = words[i].length;
+                            if (lw > 6) {
+                                var nm = 1;
                             }
+                            i++;
+                        } 
+                        if (nm == 1) { 
+                            var text2 = "";
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
+                            );   
+                        }         
+                    }
+                    if (nm == 0) {
+                        content = SpeechGarbleByGagLevel(onegl, args.substring(2).trim());
+                        if (nt == 1) {
+                            content2 = content;
                         } else {
-                            if (onegl != 0) {
-                                content2 = content;
+                            if (DoubletalkOn == true) {                
+                                if (onegl != 0) {        
+                                    content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args.substring(2).trim() + "\u0022)";
+                                } else {
+                                    content2 = args.substring(2).trim();
+                                }
                             } else {
-                                content2 = args.substring(2).trim();
+                                if (onegl != 0) {
+                                    content2 = content;
+                                } else {
+                                    content2 = args.substring(2).trim();
+                                }
                             }
                         }
+                        ElementValue("InputChat", content.replace(content, content2));  
+                        event.preventDefault();
+                        ChatRoomSendChat();
                     }
-                    ElementValue("InputChat", content.replace(content, content2));  
-                    event.preventDefault();
-                    ChatRoomSendChat();
                 }
             }
         }
