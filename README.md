@@ -64,5 +64,5 @@ Changes for future version
 * Replaced the title command by the title1 (from A to K) and title2 (from L to Z) commands
 * Updated the unrestrict command by adding a general scrolling everywhere in the map, also through the walls, trees, etc.
 * Moved RGL feature into a function and fixed the case of nursery milk used as gag
-* Updated the ChatSearchRun function, the murmur command
+* Updated the ChatSearchRun function and commands related to talking
 * Fixed an initialisation bug 
