@@ -3015,7 +3015,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  decoded = JSON.parse(d);
                  LSCGdata = decoded;
                  if (LSCGdata.CollarModule.chokeLevel > 1) {
-                     gl = (LSCGdata.CollarModule.chokeLevel)*2 + gl - 1;
+                     gl = (LSCGdata.CollarModule.chokeLevel)*2 + gl;
                  }
                  if (LSCGdata.CollarModule.chokeLevel == 4) {
                      notalk = 1;
