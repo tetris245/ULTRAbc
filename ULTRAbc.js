@@ -782,7 +782,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (RglbuttonsOn == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 135) && (MouseY < 180)) {
                     RealGarblingLevel();
-                    return;-
+                    return;
                 }
 	    }    
             next(args);
