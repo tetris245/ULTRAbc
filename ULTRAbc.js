@@ -13723,10 +13723,11 @@ CommandCombine([{
                         DoubletalkOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled.\n" +                                             
-                            "<b>IMPORTANT: </b>You need to set the garbling level with the <b>/talk</b> command every time there are changes with items or spells that restrain talking.\n" +
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled.\n" +                                
+                            "<b>IMPORTANT: </b>You need to set the garbling level with the <b>RGL button</b> or the <b>/talk -2</b> command after each change with items or spells that restrain or prevent talking.\n" +
+                            "This garbling level will be applied in all cases, even if you are in rp difficulty and have checked the case to ignore garbling.\n" +
                             "For the whispers, use only the click under character and the <b>/murmur</b> command when you are in this mode.\n" +                     
-			    "If you like moans, it is recommended to use the Moaner integrated in UBC. Other mods producing moans don't support the double talk (and whisper) mode.</p>"
+                            "If you like moans, it is recommended to use the Moaner integrated in UBC. Other mods producing moans don't support the double talk (and whisper) mode.</p>"
                         );
                     }
                 } else if (setting == "exitmode") {
