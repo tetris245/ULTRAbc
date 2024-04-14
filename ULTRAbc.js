@@ -50,6 +50,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var cdesk = 0;
     var cfame = 200;    
     var gl = 0;
+    var onegl = 0;
+    var mgl = 0;
     var rsize = 20;
     let rtype = "";
 
@@ -387,6 +389,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cdesk = 0;
             cfame = 200;
 	    gl = 0;
+	    onegl = 0;
+            mgl = 0;
             rsize = 20;
             rtype = "";
             AutojoinOn = false;
@@ -451,6 +455,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cdesk = datas.cdesk;
             cfame = datas.cfame;
 	    gl = datas.gaglevel;
+	    onegl = 0;
+            mgl = 0;
             rsize = datas.rsize;
             rtype = datas.rtype;
             AutojoinOn = datas.autojoin;
@@ -893,6 +899,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 ElementValue("InputChat", text2.replace(text2, text3));
+                mb = 0;
+                if (Player.ExtensionSettings.MBS != null) {
+                    str = Player.ExtensionSettings.MBS;
+                    d = LZString.decompressFromUTF16(str);
+                    MBSdata = {};
+                    decoded = JSON.parse(d);
+                    MBSdata = decoded;
+                    if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                        mb = 1;
+                    }
+                }
                 if ((tsp == 1) || (nm == 1)) {
                     var text4 = text3;
                 } else {
@@ -901,7 +918,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             Effect: ["RegressedTalk"]
                         }, text3);
                     } else if (this.GagTalkOn == true) {
-                        var text4 = SpeechGarbleByGagLevel(gl, text3);
+                        if (mb == 1) {
+                            if (ChatRoomTargetMemberNumber == null) {
+                                var text4 = text3; 
+                            } else {
+                                var text4 = SpeechGarbleByGagLevel(gl, text3);
+                            }
+                        } else {
+                            var text4 = SpeechGarbleByGagLevel(gl, text3);
+                        }
                     } else {
                         var text4 = text3;
                     }
@@ -3029,7 +3054,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
              } else {
                  GagTalkOn = false;
              }
-             gl = SpeechGetTotalGagLevel(Player);
+             if (Player.ExtensionSettings.MBS != null) {
+                 str = Player.ExtensionSettings.MBS;
+                 d = LZString.decompressFromUTF16(str);
+                 MBSdata = {};
+                 decoded = JSON.parse(d);
+                 MBSdata = decoded;
+                 if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false) && (ChatRoomTargetMemberNumber == null)) {
+                     gl = 0;
+                     mgl = SpeechGetTotalGagLevel(Player);
+                 } else {
+                     gl = SpeechGetTotalGagLevel(Player);
+                     mgl = gl;
+                 }
+             } else {
+                 gl = SpeechGetTotalGagLevel(Player);
+                 mgl = gl;
+             }
              if (Player.ExtensionSettings.LSCG != null) {
                  str = Player.ExtensionSettings.LSCG;
                  d = LZString.decompressFromBase64(str);
@@ -3064,7 +3105,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                      notalk = 1;
                  }
              }
-             if (gl == 0) {
+             if (mgl == 0) {
                  GagTalkOn = false;
                  M_MOANER_saveControls();  
                  ChatRoomSendLocal(
@@ -7074,7 +7115,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 var nt = 0;
                 if ((gaglevel > -1) && (gaglevel < 10)) {
                     if (gaglevel == 0) {
-                        onegl = SpeechGetTotalGagLevel(Player);
+                        if (Player.ExtensionSettings.MBS != null) {
+                            str = Player.ExtensionSettings.MBS;
+                            d = LZString.decompressFromUTF16(str);
+                            MBSdata = {};
+                            decoded = JSON.parse(d);
+                            MBSdata = decoded;
+                            if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                                onegl = 0;
+                                mgl = SpeechGetTotalGagLevel(Player);
+                            } else {
+                                ongl = SpeechGetTotalGagLevel(Player);
+                                mgl = onegl;
+                            }
+                        } else {
+                            onegl = SpeechGetTotalGagLevel(Player);
+                            mgl = onegl;
+                        }
                         if (Player.ExtensionSettings.LSCG != null) {
                             str = Player.ExtensionSettings.LSCG;
                             d = LZString.decompressFromBase64(str);
