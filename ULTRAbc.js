@@ -298,6 +298,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ];
 
     // MBS
+    var Garbling1Status = ["Alternative garbling enabled.",
+        "Alternative garbling disabled."
+    ];
+    var Garbling2Status = ["Reduction of trailing characters with heavy gags is enabled.",
+        "Reduction of trailing characters with heavy gags is disabled."
+    ];
     var LockedMbsStatus = ["MBS settings are locked when you are restrained.",
         "You can always change MBS settings, even when you are restrained."
     ];
@@ -2704,6 +2710,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //MBS Status
+    function showGarblingStatus() {
+        let msg;
+        if (MBSdata.AlternativeGarbling) {
+            msg1 = Garbling1Status[0];
+        } else {
+            msg1 = Garbling1Status[1];
+        }
+        if (MBSdata.DropTrailing) {
+            msg2 = Garbling2Status[0];
+        } else {
+            msg2 = Garbling2Status[1];
+        }
+        msg = msg1 + " " + msg2;
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
     function showLockedMbsStatus() {
         let msg;
         if (MBSdata.LockedWhenRestrained) {
@@ -14149,6 +14171,7 @@ CommandCombine([{
                         MBSdata = {};
                         decoded = JSON.parse(d);
                         MBSdata = decoded;
+			showGarblingStatus();
                         showLockedMbsStatus();
                         showLockedWheelStatus();
                     }
