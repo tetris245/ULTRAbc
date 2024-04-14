@@ -306,6 +306,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var Garbling2Status = ["Reduction of trailing characters with heavy gags is enabled.",
         "Reduction of trailing characters with heavy gags is disabled."
     ];
+    var Garbling3Status = ["Garbling per syllable is enabled.",
+        "Garbling per syllable is disabled."
+    ];
     var LockedMbsStatus = ["MBS settings are locked when you are restrained.",
         "You can always change MBS settings, even when you are restrained."
     ];
@@ -2747,7 +2750,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg2 = Garbling2Status[1];
         }
-        msg = msg1 + " " + msg2;
+        if (MBSdata.GarblePerSyllable) {
+            msg3 = Garbling3Status[0];
+        } else {
+            msg3 = Garbling3Status[1];
+        }
+        msg = msg1 + " " + msg2 + " " + msg3;
         M_MOANER_sendMessageToWearer(msg);
     }
 
