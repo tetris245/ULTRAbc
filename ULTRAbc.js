@@ -690,7 +690,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchRun();
     ULTRAClubCardEndTurn();
     ULTRAClubCardLoadDeckNumber();
-    ULTRACraftingItemListBuild();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
     ULTRAFriendListClick();
@@ -1569,32 +1568,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else if (cdesk == 0) {
                 ClubCardBuilderDefaultDeck = originaldesk;
             }
-            next(args);
-        });
-    }
-
-    //Crafting
-    async function ULTRACraftingItemListBuild() {
-        modApi.hookFunction('CraftingItemListBuild', 4, (args, next) => {
-            let Search = ElementValue("InputSearch");
-            if (Search == null) Search = "";
-            Search = Search.toUpperCase().trim();
-            CraftingItemList = [];
-            for (let A of Asset) {
-                if (!InventoryAvailable(Player, A.Name, A.Group.Name) && A.AvailableLocations.length === 0) continue;
-                if (!A.Group.Name.startsWith("Item")) continue;
-                let Match = true;
-                const desc = A.DynamicDescription(Player).toUpperCase().trim();
-                if (desc.indexOf(Search) < 0) Match = false;
-                if (Match)
-                    for (let E of CraftingItemList)
-                        if (E.CraftGroup === A.Name || E.Name === A.CraftGroup)
-                            Match = false;
-                if (Match) CraftingItemList.push(A);
-            }
-            CraftingItemList.sort((a, b) => (a.Description > b.Description) ? 1 : (b.Description > a.Description) ? -1 : 0);
-            if (CraftingOffset >= CraftingItemList.length) CraftingOffset = 0;
-            return;
             next(args);
         });
     }
