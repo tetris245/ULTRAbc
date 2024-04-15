@@ -3745,12 +3745,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var moan2 = moan;
                 }
                 ElementValue("InputChat", moan.replace(moan, moan2));
+                mb = 0;
+                if (Player.ExtensionSettings.MBS != null) {
+                    str = Player.ExtensionSettings.MBS;
+                    d = LZString.decompressFromUTF16(str);
+                    MBSdata = {};
+                    decoded = JSON.parse(d);
+                    MBSdata = decoded;
+                    if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                        mb = 1;
+                    }
+                }
                 if (this.BabyTalkOn == true) {
                     var moan3 = SpeechBabyTalk({
                         Effect: ["RegressedTalk"]
                     }, moan2);
                 } else if (this.GagTalkOn == true) {
-                    var moan3 = SpeechGarbleByGagLevel(gl, moan2);
+                    if (mb == 1) {   
+                        var moan3 = moan2;
+                    } else {
+                        var moan3 = SpeechGarbleByGagLevel(gl, moan2);
+                    }
                 } else {
                     var moan3 = moan2;
                 }
@@ -3972,12 +3987,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             var moan2 = moan;
         }
         ElementValue("InputChat", moan.replace(moan, moan2));
+        mb = 0;
+        if (Player.ExtensionSettings.MBS != null) {
+            str = Player.ExtensionSettings.MBS;
+            d = LZString.decompressFromUTF16(str);
+            MBSdata = {};
+            decoded = JSON.parse(d);
+            MBSdata = decoded;
+            if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                mb = 1;
+            }
+        }
         if (this.BabyTalkOn == true) {
             var moan3 = SpeechBabyTalk({
                 Effect: ["RegressedTalk"]
             }, moan2);
         } else if (this.GagTalkOn == true) {
-            var moan3 = SpeechGarbleByGagLevel(gl, moan2);
+            if (mb == 1) {   
+                var moan3 = moan2;
+            } else {
+                var moan3 = SpeechGarbleByGagLevel(gl, moan2);
+            }
         } else {
             var moan3 = moan2;
         }
