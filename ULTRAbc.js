@@ -3062,20 +3062,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
              } else {
                  GagTalkOn = false;
              }
+             mb = 0;
              if (Player.ExtensionSettings.MBS != null) {
                  str = Player.ExtensionSettings.MBS;
                  d = LZString.decompressFromUTF16(str);
                  MBSdata = {};
                  decoded = JSON.parse(d);
                  MBSdata = decoded;
-                 if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false) && (ChatRoomTargetMemberNumber == null)) {
-                     gl = 0;
-                     mgl = SpeechGetTotalGagLevel(Player);
+                 if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                     mb = 1;
+                 } 
+             }
+             if (mb == 1) {
+                 if (ChatRoomTargetMemberNumber == null) {
+                      gl = 0;
+                      mgl = SpeechGetTotalGagLevel(Player);   
                  } else {
-                     gl = SpeechGetTotalGagLevel(Player);
-                     mgl = gl;
+                       gl = SpeechGetTotalGagLevel(Player);
+                       mgl = gl;               
                  }
-             } else {
+             } else {            
                  gl = SpeechGetTotalGagLevel(Player);
                  mgl = gl;
              }
@@ -3086,7 +3092,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  decoded = JSON.parse(d);
                  LSCGdata = decoded;
                  if (LSCGdata.CollarModule.chokeLevel > 1) {
-                     gl = (LSCGdata.CollarModule.chokeLevel)*2 + gl;
+                     mgl = (LSCGdata.CollarModule.chokeLevel)*2 + mgl;
                  }
                  if (LSCGdata.CollarModule.chokeLevel == 4) {
                      notalk = 1;
