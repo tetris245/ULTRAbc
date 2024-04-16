@@ -3058,6 +3058,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  gl = SpeechGetTotalGagLevel(Player);
                  mgl = gl;
              }
+	     if (gl < 0) gl = 0;
+             if (mgl < 0) mgl = 0;
              if (Player.ExtensionSettings.LSCG != null) {
                  str = Player.ExtensionSettings.LSCG;
                  d = LZString.decompressFromBase64(str);
