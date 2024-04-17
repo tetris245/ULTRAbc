@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 3.0
+Most recent version: 3.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version3.0.zip file on the Releases page
+1. Download the ULTRAbc-version3.1.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -58,12 +58,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added the /uset dolltalk command to enable/disable the doll talk (and whisper) mode: maximum 5 words by message or whisper, and you can't use words with more than 6 characters
-* Added support for MBS alternative garbling, moved RGL feature into a function and fixed the case of nursery milk used as gag
-* Restored Moaner reaction with LSCG aphrodisiac injector and extended this feature to other LSCG activities : aphrodisiac drink (with or without Funnel Gag), aphrodisiac respirator
-* Improved the maproom command to determine if the UBC users are active in the map when a room is hybrid
-* Replaced the title command by the title1 (from A to K) and title2 (from L to Z) commands
-* Updated the unrestrict command by adding a general scrolling everywhere in the map, also through the walls, trees, etc.
-* Removed extension of crafting to keys, locks, etc. (is broken by new validation)
-* Updated commands related to talking, the xstatus mbs command and the ChatSearchRun function 
-* Fixed an initialisation bug 
+(...)
