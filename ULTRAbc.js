@@ -1109,14 +1109,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (RglbuttonsOn == true) {
                 DrawButton(955, 135, 45, 45, "RGL", "White", "", "");
             }
-            if (ChatRoomCharacterViewIsActive() == false) {
-                Player.OnlineSharedSettings.Inmap = true;
-            } else {
-                Player.OnlineSharedSettings.Inmap = false;
-            }                
-            ServerAccountUpdate.QueueData({
-               OnlineSharedSettings: Player.OnlineSharedSettings
-            });
+            let chmap = ChatRoomCharacterViewIsActive();
+            if ((chmap == false) && (Player.OnlineSharedSettings.Inmap == false)) {
+                  Player.OnlineSharedSettings.Inmap = true;      
+                  ServerAccountUpdate.QueueData({
+                      OnlineSharedSettings: Player.OnlineSharedSettings
+                  });
+            } else if ((chmap == true) && (Player.OnlineSharedSettings.Inmap == true)) {
+                  Player.OnlineSharedSettings.Inmap = false;      
+                  ServerAccountUpdate.QueueData({
+                      OnlineSharedSettings: Player.OnlineSharedSettings
+                  });
+            }
             next(args);
         });
     }
