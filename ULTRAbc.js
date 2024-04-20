@@ -63,6 +63,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let HotkeysOn;
     let MagiccheatOn;
     let MapfullOn = false;
+    let NogarbleOn;
+    let NostruggleOn;
     var NowhisperOn = false;
     var NPCpunish = false;
     let OutbuttonsOn;   
@@ -407,6 +409,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HotkeysOn = false;
             MagiccheatOn = false;
             MapfullOn = false;
+	    NogarbleOn = false;
+            NostruggleOn = false;
             NowhisperOn = false;
             NPCpunish = false;
             OutbuttonsOn = false;
@@ -473,6 +477,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HotkeysOn = datas.hotkeys;
             MagiccheatOn = datas.magiccheat;
             MapfullOn = false;
+	    NogarbleOn = datas.nogarble;
+            NostruggleOn = datas.nostruggle;
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
             OutbuttonsOn = datas.outbuttons;
@@ -540,6 +546,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "hotkeys": HotkeysOn,
             "magiccheat": MagiccheatOn,
             "mapfull": MapfullOn,
+            "nogarble": NogarbleOn,
+            "nostruggle": NostruggleOn,	
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
             "outbuttons": OutbuttonsOn,
@@ -612,11 +620,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
+                if (NogarbleOn == null || NogarbleOn == undefined) {
+                    if (Player.RestrictionSettings.NoSpeechGarble == true) {
+                        NogarbleOn = true;
+                    } else {
+                        NogarbleOn = false;
+                    }
+                    M_MOANER_saveControls();
+                }
+                if (NostruggleOn == null || NostruggleOn == undefined) {
+                    if (Player.RestrictionSettings.BypassStruggle == true) {
+                        NostruggleOn = true;
+                    } else {
+                        NostruggleOn = false;
+                    }
+                    M_MOANER_saveControls();
+                } 
                 if (NPCpunish == true) {
                     Player.RestrictionSettings.BypassNPCPunishments = false;
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
-                }
+                }  
 		if (DolltalkOn == null || DolltalkOn == undefined) {
                     DolltalkOn = false;
                     M_MOANER_saveControls();
@@ -642,10 +666,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     BabyTalkOn = false;
                     GagTalkOn = true;
                 }   
-                if (MapfullOn == null || MapfullOn == undefined) {
-                    MapfullOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) {
                     OutbuttonsOn = false;
                     M_MOANER_saveControls();
@@ -13781,22 +13801,23 @@ CommandCombine([{
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The uset command must be followed by an option corresponding to an UBC setting.\n" +
-                    " \n" +
-                    "Available options:\n" +
-                    "<b>autojoin</b> to toggle chat room auto-join feature\n" +
-		    "<b>dolltalk</b> to toggle doll talk (and whisper) mode\n" +
-		    "<b>doubletalk</b> to toggle double talk (and whisper) mode\n" +
-                    "<b>exitmode</b> to toggle exit mode for OUT button \n" +
-                    "<b>fullseed</b> to toggle full solution for intricate and hs locks\n" +
-                    "<b>highfame</b> to toggle high fame mode in Club Card Game\n" +
-                    "<b>hotkeys</b> to toggle hotkeys on numeric pad (Divide = fast leave - Multiply = Total Release)\n" +
-                    "<b>magiccheat</b> to toggle cheat mode in Bondage Brawl and Magic School\n" +
-                    "<b>nowhisper</b> to toggle no-whisper mode\n" +
-                    "<b>npcpunish</b> to toggle NPC punishments\n" +
-                    "<b>outbuttons</b> to toggle OUT buttons\n" +
-		    "<b>rglbuttons</b> to toggle RGL buttons\n" +
-                    "<b>sosbuttons</b> to toggle emergency buttons (FREE)</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
+                    " \n" +                 
+                    "<b>autojoin</b> for chat room auto-join feature\n" +
+		    "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
+		    "<b>doubletalk</b> for double talk (and whisper) mode\n" +
+                    "<b>exitmode</b> for exit mode with OUT button \n" +
+                    "<b>fullseed</b> for full solution with intricate and hs locks\n" +
+                    "<b>highfame</b> for high fame mode in Club Card Game\n" +
+                    "<b>hotkeys</b> for hotkeys on numeric pad (Divide = fast leave - Multiply = Total Release)\n" +
+                    "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
+                    "<b>nogarble</b> for ungarble in default BC talk mode\n" +
+                    "<b>nostruggle</b> for manual struggle in mini-games\n" +
+                    "<b>nowhisper</b> for no-whisper mode\n" +
+                    "<b>npcpunish</b> for NPC punishments\n" +
+                    "<b>outbuttons</b> for OUT buttons\n" +
+		    "<b>rglbuttons</b> for RGL buttons\n" +
+                    "<b>sosbuttons</b> for emergency buttons (FREE)</p>"
                 );
             } else {
                 var setting = args;
@@ -13918,6 +13939,38 @@ CommandCombine([{
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode enabled in Bondage Brawl and Magic School.</p>"
                         );
                     }
+                } else if (setting == "nogarble") {
+                    if (Player.RestrictionSettings.NoSpeechGarble == true) {
+                        Player.RestrictionSettings.NoSpeechGarble = false;
+                        NogarbleOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will not ungarble messages and whispers.</p>"
+                        );
+                    } else {
+                        Player.RestrictionSettings.NoSpeechGarble = true;
+                        NogarbleOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will ungarble messages and whispers.</p>"
+                        );
+                    }
+                } else if (setting == "nostruggle") {
+                    if (Player.RestrictionSettings.BypassStruggle == true) {
+                        Player.RestrictionSettings.BypassStruggle = false;
+                        NostruggleOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Manual struggling in mini-games is enabled.</p>"
+                        );
+                    } else {
+                        Player.RestrictionSettings.BypassStruggle = true;
+                        NostruggleOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Manual struggling in mini-games is disabled. If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"
+                        );
+                    }	
                 } else if (setting == "nowhisper") {
                     if (NowhisperOn == true) {
                         NowhisperOn = false;
