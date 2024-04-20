@@ -352,6 +352,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var ChatStylingStatus = ["Chat Special Tyling is enabled.",
         "Chat Special Tyling is disabled."
     ];
+    var FlatColorStatus = ["Flat color enabled in settings.",
+        "Coloring sheet enabled in settings."
+    ];
     var FriendListStatus = ["The friend list uses colors selected in Themed.",
         "The friend list uses the default BC colors."
     ];
@@ -3238,6 +3241,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = ChatStylingStatus[0];
         } else {
             msg = ChatStylingStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showFlatColorStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doUseFlatColor) {
+            msg = FlatColorStatus[0];
+        } else {
+            msg = FlatColorStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -14282,6 +14295,7 @@ CommandCombine([{
                         showBCThemedStatus();
                         showChatInputStatus();
                         //showChatStylingStatus();
+			showFlatColorStatus();
                         showFriendListStatus();
                         showInputZonesStatus();
                         showGuiOverhaulStatus();
