@@ -137,9 +137,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan."
     ];
 
-    var AutojoinStatus = ["Auto-Join feature is enabled.",
-        "Auto-Join feature is disabled."
-    ];
     var DolltalkStatus = ["Doll talk (and whisper) mode enabled.",
         "Doll talk (and whisper) mode disabled."
     ];
@@ -148,33 +145,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ];
     var ExitmodeStatus = ["Fast exit mode is activated.",
         "Slow exit mode is activated."
-    ];
-    var FullseedStatus = ["Full solution for intricate and high security locks is enabled.",
-        "Full solution for intricate and high security locks  is disabled."
-    ];
+    ];  
     var HighfameStatus = ["High fame mode enabled in Bondage Club Card Game.",
         "High fame mode disabled in Bondage Club Card Game."
-    ];
-    var HotkeysStatus = ["Hotkeys on numeric pad are enabled.",
-        "Hotkeys on numeric pad are disabled."
-    ];
+    ];   
     var MagiccheatStatus = ["Cheat mode enabled in Bondage Brawl and Magic School.",
         "Cheat mode disabled in Magic School."
+    ];
+    var NogarbleStatus = ["BC default talk mode will ungarble messages and whispers.",
+        "BC default talk mode will not ungarble messages and whispers."
+    ];
+    var NostruggleStatus = ["Manual struggling in mini-games is disabled.",
+        "Manual struggling in mini-games is enabled."
     ];
     var NowhisperStatus = ["No-whisper mode enabled.",
         "No-whisper mode disabled."
     ];
     var NpcpunishStatus = ["NPC punishments enabled.",
         "NPC punishments disabled."
-    ];
-    var OutbuttonsStatus = ["OUT buttons displayed and enabled.",
-        "OUT buttons hidden and disabled."
-    ];
-    var RglbuttonsStatus = ["RGL buttons displayed and enabled.",
-        "RGL buttons hidden and disabled."
-    ];
-    var SosbuttonsStatus = ["FREE buttons displayed and enabled.",
-        "FREE buttons hidden and disabled."
     ];
 
     // Main variables from other add-ons
@@ -2885,13 +2873,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Status
-    function showAutojoinStatus() {
+    function showButtonsStatus() {
         let msg;
-        if (AutojoinOn) {
-            msg = AutojoinStatus[0];
+        if (SosbuttonsOn) {
+            FREE = "FREE - ";
         } else {
-            msg = AutojoinStatus[1];
+            FREE = "";
         }
+
+        if (OutbuttonsOn) {
+            OUT = "OUT - ";
+        } else {
+            OUT = "";
+        }
+        if (RglbuttonsOn) {
+            RGL = "RGL";
+        } else {
+            RGL = "";
+        }
+        msg = "Buttons activated and displayed: " + FREE + OUT + RGL;
         M_MOANER_sendMessageToWearer(msg);
     }
 
@@ -2926,16 +2926,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showFullseedStatus() {
+    function showFeaturesStatus() {
         let msg;
-        if (FullseedOn) {
-            msg = FullseedStatus[0];
+        if (AutojoinOn) {
+            Autojoin = "Auto-Join - ";
         } else {
-            msg = FullseedStatus[1];
+            Autojoin = "";
         }
+        if (FullseedOn) {
+            Fullseed = "Full solution for intricate and high security locks - ";
+        } else {
+            Fullseed = '';
+        }
+        if (HotkeysOn) {
+            Hotkeys = "Hotkeys on numeric pad"
+        } else {
+            Hotkeys = "";
+        }
+        msg = "Features enabled: " + Autojoin + Fullseed + Hotkeys;
         M_MOANER_sendMessageToWearer(msg);
     }
-
+ 
     function showHighfameStatus() {
         let msg;
         if (HighfameOn) {
@@ -2947,22 +2958,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showHotkeysStatus() {
-        let msg;
-        if (HotkeysOn) {
-            msg = HotkeysStatus[0];
-        } else {
-            msg = HotkeysStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     function showMagiccheatStatus() {
         let msg;
         if (MagiccheatOn) {
             msg = MagiccheatStatus[0];
         } else {
             msg = MagiccheatStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showNogarbleStatus() {
+        let msg;
+        if (NowhisperOn) {
+            msg = NogarbleStatus[0];
+        } else {
+            msg = NogarbleStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showNostruggleStatus() {
+        let msg;
+        if (NowhisperOn) {
+            msg = NostruggleStatus[0];
+        } else {
+            msg = NostruggleStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2987,39 +3008,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showOutbuttonsStatus() {
-        let msg;
-        if (OutbuttonsOn) {
-            msg = OutbuttonsStatus[0];
-        } else {
-            msg = OutbuttonsStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
-    function showRglbuttonsStatus() {
-        let msg;
-        if (RglbuttonsOn) {
-            msg = RglbuttonsStatus[0];
-        } else {
-            msg = RglbuttonsStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     function showRoomSizeStatus() {
         let msg;
-        msg = " Current maximum players per room in Chat Search for normal and hybrid rooms: " + rsize + ".";
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
-    function showSosbuttonsStatus() {
-        let msg;
-        if (SosbuttonsOn) {
-            msg = SosbuttonsStatus[0];
-        } else {
-            msg = SosbuttonsStatus[1];
-        }
+        msg = "Current maximum players per room in Chat Search for normal and hybrid rooms: " + rsize + ".";
         M_MOANER_sendMessageToWearer(msg);
     }
 
@@ -14052,20 +14043,18 @@ CommandCombine([{
         Tag: 'ustatus',
         Description: ": displays status of UBC settings.",
         Action: () => {
-            showAutojoinStatus();
+            showButtonsStatus();
 	    showDolltalkStatus();
 	    showDoubletalkStatus();
             showExitmodeStatus();
-            showFullseedStatus();
+            showFeaturesStatus();
             showHighfameStatus();
-            showHotkeysStatus();
             showMagiccheatStatus();
+	    showNogarbleStatus();
+	    showNostruggleStatus();
             showNowhisperStatus();
             showNpcpunishStatus();
-            showOutbuttonsStatus();
-	    showRglbuttonsStatus();
             showRoomSizeStatus();
-            showSosbuttonsStatus();
         }
     }])
 
