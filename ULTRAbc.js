@@ -3122,7 +3122,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  GagTalkOn = true;
                  M_MOANER_saveControls();  
                  ChatRoomSendLocal(
-                     "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode. Your current garbling level is " + gl + ".</p>"
+                     "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in real gag talk mode. Your current garbling level is " + mgl + ".</p>"
                  );
 		 if (notalk == 1) {             
                      ChatRoomSendLocal(
