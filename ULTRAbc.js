@@ -2970,7 +2970,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function showNogarbleStatus() {
         let msg;
-        if (NowhisperOn) {
+        if (NogarbleOn) {
             msg = NogarbleStatus[0];
         } else {
             msg = NogarbleStatus[1];
@@ -2980,7 +2980,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function showNostruggleStatus() {
         let msg;
-        if (NowhisperOn) {
+        if (NostruggleOn) {
             msg = NostruggleStatus[0];
         } else {
             msg = NostruggleStatus[1];
