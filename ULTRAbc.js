@@ -2607,12 +2607,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Hypnosis = "";
         }
+	if (LSCGdata.LeashingModule.enabled) {
+            Leashing = "Leashing - ";
+        } else {
+            Leashing = "";
+        }
         if (LSCGdata.MagicModule.enabled) {
             Magic = "Magic";
         } else {
             Magic = "";
         }
-        msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Drugs + Gagchoke + Handchoke + Hypnosis + Magic;
+        msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Drugs + Gagchoke + Handchoke + Hypnosis + Leashing + Magic
         M_MOANER_sendMessageToWearer(msg);
     }
 
