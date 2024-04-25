@@ -59,6 +59,6 @@ All else I might not have included.
 Changes for future version 
 
 * New commands:
-  - uset nogarble to toggle ungarble in default BC talk mode, no matter your game difficulty
-  - uset nostruggle to toggle manual struggle in mini-games, no matter your game difficulty
+  - uset nogarble to toggle garble/ungarble in default BC talk mode, no matter your game difficulty
+  - uset nostruggle to toggle manual/automatic struggle in mini-games, no matter your game difficulty
 * Updated the ustatus, xstatus lscg and xstatus thm commands
