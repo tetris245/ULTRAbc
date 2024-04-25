@@ -609,20 +609,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
                 if (NogarbleOn == null || NogarbleOn == undefined) {
-                    if (Player.RestrictionSettings.NoSpeechGarble == true) {
-                        NogarbleOn = true;
-                    } else {
-                        NogarbleOn = false;
-                    }
-                    M_MOANER_saveControls();
+                     NogarbleOn = false;
+                     NostruggleOn = false;                  
+                     M_MOANER_saveControls();
+                }  
+                if (NogarbleOn == true) {
+                    Player.RestrictionSettings.NoSpeechGarble = true;
+                } else {
+                    Player.RestrictionSettings.NoSpeechGarble = false;
                 }
-                if (NostruggleOn == null || NostruggleOn == undefined) {
-                    if (Player.RestrictionSettings.BypassStruggle == true) {
-                        NostruggleOn = true;
-                    } else {
-                        NostruggleOn = false;
-                    }
-                    M_MOANER_saveControls();
+                if (NostruggleOn == true) {
+                    Player.RestrictionSettings.BypassStruggle = true;
+                } else {
+                    Player.RestrictionSettings.BypassStruggle = false;
                 } 
                 if (NPCpunish == true) {
                     Player.RestrictionSettings.BypassNPCPunishments = false;
@@ -3016,6 +3015,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Talking
     function RealGarblingLevel() {
+	if ((NogarbleOn) && (DoubletalkOn == false)) {          
+             ChatRoomSendLocal(
+                  "<p style='background-color:#5fbd7a'>You are in BC default ungarbled mode!</p>"
+             );
+             gl = 0;
+             mgl = 0;
+             M_MOANER_saveControls();
+             return;
+         }
          notalk = 0;
          ElementValue("InputChat", "");
          var bl = 0;
@@ -7195,22 +7203,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let states = LSCGdata.StateModule.states;
                             var type = 'asleep';
                             var config = states.find(s => s.type == type);
-                            if (config.active == true) {
+                            if ((config != undefined) && (config.active == true)) {
                                 nt = 1;
                             }
                             var type = 'frozen';
                             var config = states.find(s => s.type == type);
-                            if (config.active == true) {
+                            if ((config != undefined) && (config.active == true)) {
                                 nt = 1;
                             }
                             var type = 'gagged';
                             var config = states.find(s => s.type == type);
-                            if (config.active == true) {
+                            if ((config != undefined) && (config.active == true)) {
                                 nt = 1;
                             }
                             var type = 'hypnotized';
                             var config = states.find(s => s.type == type);
-                            if (config.active == true) {
+                            if ((config != undefined) && (config.active == true)) {
                                 nt = 1;
                             }
                         }
@@ -13843,6 +13851,10 @@ CommandCombine([{
 		} else if (setting == "doubletalk") {
                     if (DoubletalkOn == true) {
                         DoubletalkOn = false;
+			if (NogarbleOn) {
+                            gl = 0;
+                            mgl = 0;
+                        }
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode disabled.</p>"
@@ -13941,6 +13953,8 @@ CommandCombine([{
                     } else {
                         Player.RestrictionSettings.NoSpeechGarble = true;
                         NogarbleOn = true;
+                        gl = 0;
+                        mgl = 0;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will ungarble messages and whispers.</p>"
