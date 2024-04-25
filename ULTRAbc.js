@@ -13816,7 +13816,7 @@ CommandCombine([{
                     "<b>hotkeys</b> for hotkeys on numeric pad (Divide = fast leave - Multiply = Total Release)\n" +
                     "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
                     "<b>nogarble</b> for ungarble in default BC talk mode\n" +
-                    "<b>nostruggle</b> for manual struggle in mini-games\n" +
+                    "<b>nostruggle</b> for type of struggle in mini-games\n" +
                     "<b>nowhisper</b> for no-whisper mode\n" +
                     "<b>npcpunish</b> for NPC punishments\n" +
                     "<b>outbuttons</b> for OUT buttons\n" +
@@ -13971,14 +13971,14 @@ CommandCombine([{
                         NostruggleOn = false;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Manual struggling in mini-games is enabled.</p>"
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Manual struggle in mini-games is enabled.</p>"
                         );
                     } else {
                         Player.RestrictionSettings.BypassStruggle = true;
                         NostruggleOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Manual struggling in mini-games is disabled. If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Manual struggle in mini-games is disabled. If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"
                         );
                     }	
                 } else if (setting == "nowhisper") {
