@@ -6860,7 +6860,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'font',
-        Description: "(font) (size): changes font in BC after automatic relog. ",
+        Description: "(font) (size): changes font in BC. ",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
@@ -6891,8 +6891,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     GraphicsSettings: Player.GraphicsSettings
                 });
-                ServerSocket.close();
-                ServerSocket.open();
+                ElementScrollToEnd("TextAreaChatLog");
             }
         }
     }])
@@ -12508,7 +12507,7 @@ CommandCombine([{
 
     CommandCombine([{
         Tag: 'theme',
-        Description: "(number): changes chat color theme after automatic relog.",
+        Description: "(number): changes chat color theme.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
@@ -12521,8 +12520,9 @@ CommandCombine([{
                     ServerAccountUpdate.QueueData({
                         ChatSettings: Player.ChatSettings
                     });
-                    ServerSocket.close();
-                    ServerSocket.open();
+                    InformationSheetLoad();
+                    InformationSheetLoadCharacter(Player);
+                    InformationSheetExit();
                 }
             }
         }
@@ -13218,7 +13218,7 @@ CommandCombine([{
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/search</b> (lobby) = opens room search for 15 seconds in specified lobby. *\n" +
-                    "<b>/theme</b> (number) = changes chat color theme after automatic relog. Number must be between 0 and 3.</p>"
+                    "<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.</p>"
                 );
             }
             if (args === "clothing") {
