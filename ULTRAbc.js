@@ -3860,10 +3860,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 LSCGdata = {};
                 decoded = JSON.parse(d);
                 LSCGdata = decoded;           
-                if ((data.Content.includes("Inject")) || (data.Content.includes("SipItem")) || (data.Content.includes("LSCG_FunnelPour")))  {
+                if ((data.Content.includes("SipItem")) || (data.Content.includes("LSCG_FunnelPour")))  {
                     lvibe = 1;
                 }
-                 if (InventoryGet(Player, "ItemMouth") != null) {
+                if (data.Content.includes("Inject")) {
+                    if (data.Content.includes("Gears")) {
+                        lvibe = 0;
+                    } else {
+                        lvibe = 1;
+                    }
+                }
+                if (InventoryGet(Player, "ItemMouth") != null) {
                     if (InventoryGet(Player, "ItemMouth").Asset.Name == "LatexRespirator") {
                         if (InventoryGet(Player, "ItemMouth").Craft != undefined) {
                             if (InventoryGet(Player, "ItemMouth").Craft.Item == "LatexRespirator") {
