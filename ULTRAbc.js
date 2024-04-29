@@ -772,6 +772,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     CharacterReleaseTotal(Player);
                     ChatRoomCharacterUpdate(Player);
+		    RealGarblingLevel();
                     return;
                 }
             }
@@ -827,6 +828,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (event.code === "NumpadMultiply") {
                     CharacterReleaseTotal(Player);
                     ChatRoomCharacterUpdate(Player);
+		    RealGarblingLevel();
                     return true;
                 }
             }
@@ -1833,6 +1835,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (SosbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
                     CharacterReleaseTotal(Player);
+		    RealGarblingLevel();
                 }
             }
             if (OutbuttonsOn == true) {
@@ -1898,6 +1901,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (SosbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
                     CharacterReleaseTotal(Player);
+		    RealGarblingLevel();
                 }
             }
             if (OutbuttonsOn == true) {
@@ -1941,6 +1945,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (SosbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
                     CharacterReleaseTotal(Player);
+		    RealGarblingLevel();
                 }
             }
             if (OutbuttonsOn == true) {
@@ -13047,6 +13052,7 @@ CommandCombine([{
                 }
                 CharacterReleaseTotal(Player);
                 ChatRoomCharacterUpdate(Player);
+		RealGarblingLevel();
             } else {
                 var targetname = args;
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -13720,6 +13726,7 @@ CommandCombine([{
                 }
                 CharacterRelease(Player);
                 ChatRoomCharacterUpdate(Player);
+		RealGarblingLevel();
             } else {
                 var targetname = args;
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
