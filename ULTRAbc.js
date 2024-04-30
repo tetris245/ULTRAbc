@@ -13216,7 +13216,6 @@ CommandCombine([{
                     "<b>/maproom</b> = gives infos about players in current map.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
-                    "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/search</b> (lobby) = opens room search for 15 seconds in specified lobby. *\n" +
                     "<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.</p>"
                 );
@@ -13266,6 +13265,7 @@ CommandCombine([{
                     "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
                     "<b>/moaner</b> (options) = moans when horny and stimulated. *.\n" +
                     "<b>/plvibe</b> (options) = changes settings of worn Sci-Fi Pleasure Panties. *\n" +
+		    "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill.\n" +
                     "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
