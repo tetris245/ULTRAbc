@@ -705,6 +705,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAFriendListClick();
     ULTRAFriendListRun();
     ULTRAInfiltrationPrepareMission();
+    ULTRAInformationSheetExit();
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
     ULTRAMagicSchoolEscapeSpellEnd();
@@ -1930,6 +1931,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
                 } else {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                }
+            }
+            next(args);
+        });
+    }
+
+    //Preferences
+    async function ULTRAInformationSheetExit() {
+        modApi.hookFunction('InformationSheetExit', 4, (args, next) => {
+            if (ini == 1) {
+                if (NogarbleOn == true) {
+                    Player.RestrictionSettings.NoSpeechGarble = true;
+                } else {
+                    Player.RestrictionSettings.NoSpeechGarble = false;
+                }
+                if (NostruggleOn == true) {
+                    Player.RestrictionSettings.BypassStruggle = true;
+                } else {
+                    Player.RestrictionSettings.BypassStruggle = false;
+                }  
+                if (NPCpunish == true) {
+                    Player.RestrictionSettings.BypassNPCPunishments = false;
+                } else {
+                    Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
             }
             next(args);
