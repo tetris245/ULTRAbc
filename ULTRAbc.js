@@ -12444,18 +12444,21 @@ CommandCombine([{
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available titles:\n" +
-                    "agent, alien, angel, baby, bondage baby, bondage maid,\n" +
-                    "brat, bunny, captain, clubslave, coldbloodhorse,\n" +
-                    "collegestudent, concubus, demon, diaperlover,\n" +
-                    "doctor, doll, drone, duchess, duke, escapedpatient,\n" +
-                    "farmhorse, femboy, flyingpegasus, foal, foxy, goodboy,\n" +
-                    "goodone, goodgirl, goodslave, goodslaveboy,\n" +
-                    "goodslavegirl, headmaid,hotbloodhorse, houdini,\n" +
-                    "incubus, infiltrator, kidnapper, kitten.</p>"
+                    "Available titles:\n" +
+                    "admiral, agent, alien, angel, baby, bondagebaby,\n" +
+                    "bondagemaid, brat, bunny, captain, clubslave,\n" +
+                    "coldbloodhorse, collegestudent, concubus, demon,\n" +
+                    "diaperlover, doctor, doll, drone, duchess, duke,\n" +
+                    "escapedpatient, farmhorse, femboy, flyingpegasus, foal,\n" +
+                    "foxy, goodboy, goodone, goodgirl, goodslave,\n" +
+                    "goodslaveboy, goodslavegirl, headmaid, hotbloodhorse,\n" +
+                    "houdin, incubus, infiltrator, kidnapper, kitten.</p>"
                 );
             } else {
                 var title = args;
-                if (title == "agent") {
+		if (title == "admiral") {
+                    TitleSet("Admiral");
+                } else if (title == "agent") {
                     if ((SkillGetLevel(Player, "Infiltration") < 6) || (SkillGetLevel(Player, "Infiltration") > 7)) {
                         SkillChange(Player, "Infiltration", 6);
                     }
