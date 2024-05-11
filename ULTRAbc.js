@@ -3902,7 +3902,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         //get the moan type to apply
         //data to generate the moans
         if (reaction == 1) {
-            var moan = getSpankMoan(Factor, Math.random() * 300);
+            var moan = getPainMoan(Factor, Math.random() * 300);
         } 
         if (reaction == 2) {
             var moan = getTickleMoan(Factor, Math.random() * 300);
@@ -4078,7 +4078,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return " " + selectMoan(Factor, seed);
     }
 
-    function getSpankMoan(Factor, seed) {
+    function getPainMoan(Factor, seed) {
         let gemissement;
         //according level of spanking fetichism
         let activity = getActivityTaste("Spank");
