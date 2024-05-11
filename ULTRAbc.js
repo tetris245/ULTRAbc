@@ -3076,7 +3076,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  GagTalkOn = false;
              }
              mb = 0;
-             if (Player.ExtensionSettings.MBS != null) {
+             if (Player.ExtensionSettings.MBS != -1) {
                  str = Player.ExtensionSettings.MBS;
                  d = LZString.decompressFromUTF16(str);
                  MBSdata = {};
@@ -3313,7 +3313,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             !msg.startsWith("(") &&
             !msg.startsWith("*") &&
             !msg.startsWith("@") &&
-            ChatRoomTargetMemberNumber == null;
+            ChatRoomTargetMemberNumber == -1;
     }
 
     //Full script control
@@ -3657,7 +3657,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
             if ((Player.ID == 0) && (Player.ArousalSettings.OrgasmStage == 2)) {
                 var moan;
-                var backupChatRoomTargetMemberNumber = null;
+                var backupChatRoomTargetMemberNumber = -1;
                 // not in whisper mode
                 // initially not as /me
                 // only in normal talk mode
@@ -3668,18 +3668,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     sc = 0;
                     backupChatRoomTargetMemberNumber = ChatRoomTargetMemberNumber;
-                    ChatRoomTargetMemberNumber = null;
+                    ChatRoomTargetMemberNumber = -1;
                     moan = "... " + getOrgasmMoan();  
                 }
                 ElementValue("InputChat", moan);
                 if (this.Stutter1On == true) {
-                    var moan2 = StutterTalk1(moan);
+                    var moan2 = SpeechTransformStutter(moan, 1);
                 } else if (this.Stutter2On == true) {
-                    var moan2 = StutterTalk2(moan);
+                    var moan2 = SpeechTransformStutter(moan, 2);
                 } else if (this.Stutter3On == true) {
-                    var moan2 = StutterTalk3(moan);
+                    var moan2 = SpeechTransformStutter(moan, 3);
                 } else if (this.Stutter4On == true) {
-                    var moan2 = StutterTalk4(moan);
+                    var moan2 = SpeechTransformStutter(moan, 4);
                 } else {
                     var moan2 = moan;
                 }
@@ -3696,14 +3696,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (this.BabyTalkOn == true) {
-                    var moan3 = SpeechBabyTalk({
-                        Effect: ["RegressedTalk"]
-                    }, moan2);
+                    var moan3 = SpeechTransformBabyTalk(moan2);
                 } else if (this.GagTalkOn == true) {
                     if (mb == 1) {   
                         var moan3 = moan2;
                     } else {
-                        var moan3 = SpeechGarbleByGagLevel(gl, moan2);
+                        var moan3 = SpeechTransformGagGarble(moan2, gl);
                     }
                 } else {
                     var moan3 = moan2;
@@ -3919,16 +3917,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }  
         let backtarget = ChatRoomTargetMemberNumber;
-        ChatRoomTargetMemberNumber = null;         
+        ChatRoomTargetMemberNumber = -1;         
         ElementValue("InputChat", moan);
         if (this.Stutter1On == true) {
-            var moan2 = StutterTalk1(moan);
+            var moan2 = SpeechTransformStutter(moan, 1);
         } else if (this.Stutter2On == true) {
-            var moan2 = StutterTalk2(moan);
+            var moan2 = SpeechTransformStutter(moan, 2);
         } else if (this.Stutter3On == true) {
-            var moan2 = StutterTalk3(moan);
+            var moan2 = SpeechTransformStutter(moan, 3);
         } else if (this.Stutter4On == true) {
-            var moan2 = StutterTalk4(moan);
+            var moan2 = SpeechTransformStutter(moan, 4);
         } else {
             var moan2 = moan;
         }
@@ -3945,14 +3943,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         if (this.BabyTalkOn == true) {
-            var moan3 = SpeechBabyTalk({
-                Effect: ["RegressedTalk"]
-            }, moan2);
+            var moan3 = SpeechTransformBabyTalk(moan2);
         } else if (this.GagTalkOn == true) {
             if (mb == 1) {   
                 var moan3 = moan2;
             } else {
-                var moan3 = SpeechGarbleByGagLevel(gl, moan2);
+                var moan3 = SpeechTransformGagGarble(moan2, gl);
             }
         } else {
             var moan3 = moan2;
@@ -5866,9 +5862,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }         
                 }
                 if (nm == 0) {
-                    content = SpeechBabyTalk({
-                        Effect: ["RegressedTalk"]
-                    }, args); 
+                    content = SpeechTransformBabyTalk(args);
                     if (DoubletalkOn == true) {
                         content2 = "*" + "babytalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
                     } else {
@@ -6097,7 +6091,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -6438,7 +6432,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!</p>"
                                 );
                             }
-                            ChatRoomSetTarget(null);
+                            ChatRoomSetTarget(-1);
                         }
                     }
                 }
@@ -6501,7 +6495,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!</p>"
                                 );
                             }
-                            ChatRoomSetTarget(null);
+                            ChatRoomSetTarget(-1);
                         }
                     }
                 }
@@ -6626,7 +6620,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
                                     );
                                 }
-                                ChatRoomSetTarget(null);
+                                ChatRoomSetTarget(-1);
                             }
                         }
                     }
@@ -7107,13 +7101,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             MBSdata = decoded;
                             if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
                                 onegl = 0;
-                                mgl = SpeechGetTotalGagLevel(Player);
+                                mgl = SpeechTransformGagGarbleIntensity(Player);
                             } else {
-                                ongl = SpeechGetTotalGagLevel(Player);
+                                ongl = SpeechTransformGagGarbleIntensity(Player);
                                 mgl = onegl;
                             }
                         } else {
-                            onegl = SpeechGetTotalGagLevel(Player);
+                            onegl = SpeechTransformGagGarbleIntensity(Player);
                             mgl = onegl;
                         }
                         if (Player.ExtensionSettings.LSCG != null) {
@@ -7181,7 +7175,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }         
                     }
                     if (nm == 0) {
-                        content = SpeechGarbleByGagLevel(onegl, args.substring(2).trim());
+                        content = SpeechTransformGagGarble(args.substring(2).trim(), onegl);
                         if (nt == 1) {
                             content2 = content;
                         } else {
@@ -7365,7 +7359,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -7700,7 +7694,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ChatRoomCharacterUpdate(target[0]);
                         }
                     }
-                    ChatRoomSetTarget(null);
+                    ChatRoomSetTarget(-1);
                 }
             }
         }
