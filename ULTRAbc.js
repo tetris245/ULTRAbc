@@ -845,22 +845,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
                     var text2 = text1;
                     var tsp = 1;
-                    ChatRoomSetTarget(null);
+                    ChatRoomSetTarget(-1);
                 } else if ((text1.startsWith("!")) || (text1.startsWith("(")) || (text1.startsWith("*"))) {
                     var text2 = text1;
                     var tsp = 1;
                 } else if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) {
                     var text2 = text1;
                     var tsp = 1;
-                    ChatRoomSetTarget(null);
+                    ChatRoomSetTarget(-1);
                 } else if (text1.startsWith("/")) {
                     var text2 = text1;
                     var tsp = 1;
-                    ChatRoomSetTarget(null);
+                    ChatRoomSetTarget(-1);
                 } else if ((text1.startsWith("@")) && (window.MBCHC)) {
                     var text2 = text1;
                     var tsp = 1;
-                    ChatRoomSetTarget(null);
+                    ChatRoomSetTarget(-1);
                 } else if (text1.startsWith("\\")) {
                     var text2 = text1.replaceAt(0, "\u200b");
                     var tsp = 1;
@@ -891,13 +891,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } 
                     if (nm == 0) {                   
                         if (this.Stutter1On == true) {
-                            var text2 = StutterTalk1(text1);
+                            var text2 = SpeechTransformStutter(text1, 1);
                         } else if (this.Stutter2On == true) {
-                            var text2 = StutterTalk2(text1);
+                            var text2 = SpeechTransformStutter(text1, 2);
                         } else if (this.Stutter3On == true) {
-                            var text2 = StutterTalk3(text1);
+                            var text2 = SpeechTransformStutter(text1, 3);
                         } else if (this.Stutter4On == true) {
-                            var text2 = StutterTalk4(text1);
+                            var text2 = SpeechTransformStutter(text1, 4);
                         } else {
                             var text2 = text1;
                         }
@@ -929,25 +929,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var text4 = text3;
                 } else {
                     if (this.BabyTalkOn == true) {
-                        var text4 = SpeechBabyTalk({
-                            Effect: ["RegressedTalk"]
-                        }, text3);
+                        var text4 = SpeechTransformBabyTalk(text3);
                     } else if (this.GagTalkOn == true) {
                         if (mb == 1) {
                             if (ChatRoomTargetMemberNumber == null) {
                                 var text4 = text3; 
                             } else {
-                                var text4 = SpeechGarbleByGagLevel(gl, text3);
+                                var text4 = SpeechTransformGagGarble(text3, gl);
                             }
                         } else {
-                            var text4 = SpeechGarbleByGagLevel(gl, text3);
+                            var text4 = SpeechTransformGagGarble(text3, gl);
                         }
                     } else {
                         var text4 = text3;
                     }
                 }
                 ElementValue("InputChat", text3.replace(text3, text4));
-                if (ChatRoomTargetMemberNumber == null) {
+                if (ChatRoomTargetMemberNumber == -1) {
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         var text5 = text4;
                     } else {
@@ -1010,27 +1008,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementValue("InputChat", text5.replace(text5, text6));  
                         event.preventDefault();
                         if (text6 != "") {
-                            ServerSend("ChatRoomChat", {
-                                "Content": text6,
-                                "Type": "Whisper",
-                                "Target": ChatRoomTargetMemberNumber
-                            });
-                            for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                        TargetName = ChatRoomCharacter[C].Name;
-                                    } else {
-                                        TargetName = ChatRoomCharacter[C].Nickname;
-                                    }
-                                    break;
-                                }
-                            ChatRoomMessage({
-                                Content: "Whisper to " + TargetName + ": " + text6,
-                                Type: "LocalMessage",
-                                Sender: Player.MemberNumber
-                            });
-                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                            targetNumber = ChatRoomTargetMemberNumber; 
+                            ChatRoomSendWhisper(targetNumber, text6);    
                         }
                     }
                 }
@@ -3063,19 +3042,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
          ElementValue("InputChat", "");
          var bl = 0;
          if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
-             gl = SpeechGetTotalGagLevel(Player);
+             gl = SpeechTransformGagGarbleIntensity(Player);
              if (gl < 1) {
                  bl = 1;
              }
          }
          if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
-             gl = SpeechGetTotalGagLevel(Player);
+             gl = SpeechTransformGagGarbleIntensity(Player);
                  if (gl < 1) {
                      bl = 1;
                  }
              }
          if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
-             gl = SpeechGetTotalGagLevel(Player);
+             gl = SpeechTransformGagGarbleIntensity(Player);
                  if (gl < 1) {
                      bl = 1;
                  }
@@ -3110,13 +3089,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
              if (mb == 1) {
                  if (ChatRoomTargetMemberNumber == null) {
                       gl = 0;
-                      mgl = SpeechGetTotalGagLevel(Player);   
+                      mgl = SpeechTransformGagGarbleIntensity(Player);     
                  } else {
-                       gl = SpeechGetTotalGagLevel(Player);
-                       mgl = gl;               
+                      gl = SpeechTransformGagGarbleIntensity(Player);   
+                      mgl = gl;               
                  }
              } else {            
-                 gl = SpeechGetTotalGagLevel(Player);
+                 gl = SpeechTransformGagGarbleIntensity(Player);   
                  mgl = gl;
              }
 	     if (gl < 0) gl = 0;
@@ -3174,98 +3153,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  } 
              }
          }    
-    }
-
-    function StutterTalk1(CD) {
-        if (CD == null) CD = "";
-        var Par = false;
-        var CS = 1;
-        var Seed = CD.length;
-        for (let L = 0; L < CD.length; L++) {
-            var H = CD.charAt(L).toLowerCase();
-            if (H == "(") Par = true;
-            if (!Par && CS >= 0 && (H.match(/[[a-z?-??]/i))) {
-                var R = Math.sin(Seed++) * 10000;
-                R = R - Math.floor(R);
-                R = Math.floor(R * 10) + 2;
-                if (CS == 1 || R >= 10) {
-                    CD = CD.substring(0, L) + CD.charAt(L) + "-" + CD.substring(L, CD.length);
-                    L += 2;
-                }
-                CS = -1;
-            }
-            if (H == " ") CS = 0;
-        }
-        return CD;
-    }
-
-    function StutterTalk2(CD) {
-        if (CD == null) CD = "";
-        var Par = false;
-        var CS = 1;
-        var Seed = CD.length;
-        for (let L = 0; L < CD.length; L++) {
-            var H = CD.charAt(L).toLowerCase();
-            if (H == "(") Par = true;
-            if (!Par && CS >= 0 && (H.match(/[[a-z?-??]/i))) {
-                var R = Math.sin(Seed++) * 10000;
-                R = R - Math.floor(R);
-                R = Math.floor(R * 10) + 4;
-                if (CS == 1 || R >= 10) {
-                    CD = CD.substring(0, L) + CD.charAt(L) + "-" + CD.substring(L, CD.length);
-                    L += 2;
-                }
-                CS = -1;
-            }
-            if (H == " ") CS = 0;
-        }
-        return CD;
-    }
-
-    function StutterTalk3(CD) {
-        if (CD == null) CD = "";
-        var Par = false;
-        var CS = 1;
-        var Seed = CD.length;
-        for (let L = 0; L < CD.length; L++) {
-            var H = CD.charAt(L).toLowerCase();
-            if (H == "(") Par = true;
-            if (!Par && CS >= 0 && (H.match(/[[a-z?-??]/i))) {
-                var R = Math.sin(Seed++) * 10000;
-                R = R - Math.floor(R);
-                R = Math.floor(R * 10) + 6;
-                if (CS == 1 || R >= 10) {
-                    CD = CD.substring(0, L) + CD.charAt(L) + "-" + CD.substring(L, CD.length);
-                    L += 2;
-                }
-                CS = -1;
-            }
-            if (H == " ") CS = 0;
-        }
-        return CD;
-    }
-
-    function StutterTalk4(CD) {
-        if (CD == null) CD = "";
-        var Par = false;
-        var CS = 1;
-        var Seed = CD.length;
-        for (let L = 0; L < CD.length; L++) {
-            var H = CD.charAt(L).toLowerCase();
-            if (H == "(") Par = true;
-            if (!Par && CS >= 0 && (H.match(/[[a-z?-??]/i))) {
-                var R = Math.sin(Seed++) * 10000;
-                R = R - Math.floor(R);
-                R = Math.floor(R * 10) + 8;
-                if (CS == 1 || R >= 10) {
-                    CD = CD.substring(0, L) + CD.charAt(L) + "-" + CD.substring(L, CD.length);
-                    L += 2;
-                }
-                CS = -1;
-            }
-            if (H == " ") CS = 0;
-        }
-        return CD;
     }
 
     //Themed Status   
