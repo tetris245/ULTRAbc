@@ -63,4 +63,6 @@ Changes for future version
   - uset nostruggle to toggle manual/automatic struggle in mini-games, no matter your game difficulty
 * Added automatic RGL (Real Garbling Level) update when the emergency buttons, hotkeys or commands to be released yourself are used
 * Improved the font and theme commands (no more automatic relog to see the change)
+* Updated commands related to talking and using of some target values or functions (for R104 compatibility)
 * Updated the ustatus, xstatus lscg and xstatus thm commands
+* Removed the UBC whisper routine to use the new BC whisper function
