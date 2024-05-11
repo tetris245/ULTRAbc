@@ -6406,27 +6406,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
                                 var msg = "" + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.";
-                                ServerSend("ChatRoomChat", {
-                                    "Content": msg,
-                                    "Type": "Whisper",
-                                    "Target": ChatRoomTargetMemberNumber
-                                });
-                                for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                    if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                        if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                            TargetName = ChatRoomCharacter[C].Name;
-                                        } else {
-                                            TargetName = ChatRoomCharacter[C].Nickname;
-                                        }
-                                        break;
-                                    }
-                                ChatRoomMessage({
-                                    Content: "Whisper to " + TargetName + ": " + msg,
-                                    Type: "LocalMessage",
-                                    Sender: Player.MemberNumber
-                                });
-                                document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                                document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                                targetNumber = ChatRoomTargetMemberNumber; 
+                                ChatRoomSendWhisper(targetNumber, msg);
                             } else {
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!</p>"
@@ -6469,27 +6450,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
                                 var msg = "" + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.";
-                                ServerSend("ChatRoomChat", {
-                                    "Content": msg,
-                                    "Type": "Whisper",
-                                    "Target": ChatRoomTargetMemberNumber
-                                });
-                                for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                    if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                        if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                            TargetName = ChatRoomCharacter[C].Name;
-                                        } else {
-                                            TargetName = ChatRoomCharacter[C].Nickname;
-                                        }
-                                        break;
-                                    }
-                                ChatRoomMessage({
-                                    Content: "Whisper to " + TargetName + ": " + msg,
-                                    Type: "LocalMessage",
-                                    Sender: Player.MemberNumber
-                                });
-                                document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                                document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                                targetNumber = ChatRoomTargetMemberNumber; 
+                                ChatRoomSendWhisper(targetNumber, msg);
                             } else {
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!</p>"
@@ -6593,27 +6555,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper")) {
                                     ChatRoomTargetMemberNumber = target[0].MemberNumber;
                                     var msg = "" + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.";
-                                    ServerSend("ChatRoomChat", {
-                                        "Content": msg,
-                                        "Type": "Whisper",
-                                        "Target": ChatRoomTargetMemberNumber
-                                    });
-                                    for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                            if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                                TargetName = ChatRoomCharacter[C].Name;
-                                            } else {
-                                                TargetName = ChatRoomCharacter[C].Nickname;
-                                            }
-                                            break;
-                                        }
-                                    ChatRoomMessage({
-                                        Content: "Whisper to " + TargetName + ": " + msg,
-                                        Type: "LocalMessage",
-                                        Sender: Player.MemberNumber
-                                    });
-                                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                                    targetNumber = ChatRoomTargetMemberNumber; 
+                                    ChatRoomSendWhisper(targetNumber, msg);     
                                 } else {
                                     ChatRoomSendLocal(
                                         "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!</p>"
@@ -8470,7 +8413,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -8486,8 +8429,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 var stringLogin1 = args;
                 var stringLogin2 = stringLogin1.split(/[ ,]+/);
-                this.LoginName = SpeechGarbleByGagLevel(6, stringLogin2[0]);
-                this.LoginPassword = SpeechGarbleByGagLevel(6, stringLogin2[1]);
+                this.LoginName = SpeechTransformGagGarble(stringLogin2[0], 6);
+                this.LoginPassword = SpeechTransformGagGarble(stringLogin2[1], 6);
                 ServerSocket.close();
                 ServerSocket.open();
                 ServerSend("AccountLogin", {
@@ -9403,15 +9346,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if (nm == 0) {
                             if (this.Stutter1On == true) {
-                                var msg2 = StutterTalk1(msg);
+                                var msg2 = SpeechTransformStutter(msg, 1);
                             } else if (this.Stutter2On == true) {
-                                var msg2 = StutterTalk2(msg);
+                                var msg2 = SpeechTransformStutter(msg, 2);
                             } else if (this.Stutter3On == true) {
-                                var msg2 = StutterTalk3(msg);
+                                var msg2 = SpeechTransformStutter(msg, 3);
                             } else if (this.Stutter4On == true) {
-                               var msg2 = StutterTalk4(msg);
+                                var msg2 = SpeechTransformStutter(msg, 4);
                             } else {
-                               var msg2 = msg; 
+                                var msg2 = msg; 
                             }                     
                         }
                         ElementValue("InputChat", msg.replace(msg, msg2));
@@ -9429,11 +9372,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             var msg4 = msg3;
                         } else {
                             if (this.BabyTalkOn == true) {
-                                var msg4 = SpeechBabyTalk({
-                                    Effect: ["RegressedTalk"]
-                                }, msg3);
+                                var msg4 = SpeechTransformBabyTalk(msg3);
                             } else if (this.GagTalkOn == true) {
-                                var msg4 = SpeechGarbleByGagLevel(gl, msg3);
+                                var msg4 = SpeechTransformGagGarble(msg3, gl);
                             } else {
                                 var msg4 = msg3;
                             }
@@ -9473,27 +9414,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementValue("InputChat", msg5.replace(msg5, msg6)); 
                         ChatRoomTargetMemberNumber = target[0].MemberNumber;
                         if (msg != "") {
-                            ServerSend("ChatRoomChat", {
-                                "Content": msg6,
-                                "Type": "Whisper",
-                                "Target": ChatRoomTargetMemberNumber
-                            });
-                            for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                        TargetName = ChatRoomCharacter[C].Name;
-                                    } else {
-                                        TargetName = ChatRoomCharacter[C].Nickname;
-                                    }
-                                    break;
-                                }
-                            ChatRoomMessage({
-                                Content: "Whisper to " + TargetName + ": " + msg6,
-                                Type: "LocalMessage",
-                                Sender: Player.MemberNumber
-                            });
-                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                            targetNumber = ChatRoomTargetMemberNumber; 
+                            ChatRoomSendWhisper(targetNumber, msg6);    
                         }
                     }
                 }
@@ -9576,7 +9498,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -9926,7 +9848,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget-1);
             }
         }
     }])
@@ -10815,7 +10737,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -11030,7 +10952,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -11242,7 +11164,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -11495,7 +11417,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }         
                 }
                 if (nm == 0) {
-                    content = StutterTalk1(args);
+                    content = SpeechTransformStutter(args, 1);
                     if (DoubletalkOn == true) {
                         content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
                     } else {
@@ -11542,7 +11464,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }         
                 }
                 if (nm == 0) {
-                    content = StutterTalk2(args);
+                    content = SpeechTransformStutter(args, 2);
                     if (DoubletalkOn == true) {
                         content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
                     } else {
@@ -11590,7 +11512,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }         
                 }
                 if (nm == 0) {
-                    content = StutterTalk3(args);
+                    content = SpeechTransformStutter(args, 3);
                     if (DoubletalkOn == true) {
                         content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
                     } else {
@@ -11638,7 +11560,7 @@ CommandCombine([{
                     }         
                 }
                 if (nm == 0) {
-                    content = StutterTalk4(args);
+                    content = SpeechTransformStutter(args, 4);
                     if (DoubletalkOn == true) {
                         content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
                     } else {
@@ -12030,7 +11952,7 @@ CommandCombine([{
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -12180,7 +12102,7 @@ CommandCombine([{
                             ChatRoomCharacterUpdate(target[0]);
                         }
                     }
-                    ChatRoomSetTarget(null);
+                    ChatRoomSetTarget(-1);
                 }
             }
         }
@@ -12228,7 +12150,7 @@ CommandCombine([{
                         }
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -13004,7 +12926,7 @@ CommandCombine([{
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -13345,7 +13267,7 @@ CommandCombine([{
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -13512,7 +13434,7 @@ CommandCombine([{
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -13678,7 +13600,7 @@ CommandCombine([{
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -14320,7 +14242,7 @@ CommandCombine([{
                         DialogChangeClothes();
                     }
                 }
-                ChatRoomSetTarget(null);
+                ChatRoomSetTarget(-1);
             }
         }
     }])
