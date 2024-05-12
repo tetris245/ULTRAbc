@@ -63,6 +63,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let HotkeysOn;
     let MagiccheatOn;
     let MapfullOn = false;
+    let MaptrapOn;
     let NogarbleOn;
     let NostruggleOn;
     var NowhisperOn = false;
@@ -151,6 +152,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ];   
     var MagiccheatStatus = ["Cheat mode enabled in Bondage Brawl and Magic School.",
         "Cheat mode disabled in Magic School."
+    ];
+    var MaptrapStatus = ["Traps in map rooms if you 'walk' on devices.",
+        "No traps with devices in map rooms."
     ];
     var NogarbleStatus = ["BC default talk mode will ungarble messages and whispers.",
         "BC default talk mode will not ungarble messages and whispers."
@@ -397,6 +401,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HotkeysOn = false;
             MagiccheatOn = false;
             MapfullOn = false;
+	    MaptrapOn = false;
 	    NogarbleOn = false;
             NostruggleOn = false;
             NowhisperOn = false;
@@ -465,6 +470,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HotkeysOn = datas.hotkeys;
             MagiccheatOn = datas.magiccheat;
             MapfullOn = false;
+	    MaptrapOn = datas.maptrap;
 	    NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
             NowhisperOn = datas.nowhisper;
@@ -533,7 +539,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "highfame": HighfameOn,
             "hotkeys": HotkeysOn,
             "magiccheat": MagiccheatOn,
-            "mapfull": MapfullOn,
+            "mapfull": MapfullOn, 
+            "maptrap": MaptrapOn,
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,	
             "nowhisper": NowhisperOn,
@@ -609,9 +616,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
                 if (NogarbleOn == null || NogarbleOn == undefined) {
-                     NogarbleOn = false;
-                     NostruggleOn = false;                  
-                     M_MOANER_saveControls();
+		    MaptrapOn = false;
+                    NogarbleOn = false;
+                    NostruggleOn = false;                  
+                    M_MOANER_saveControls();
                 }  
                 if (NogarbleOn == true) {
                     Player.RestrictionSettings.NoSpeechGarble = true;
@@ -691,6 +699,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomClick();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
+    ULTRAChatRoomMapViewMovementProcess();
     ULTRAChatRoomMenuDraw();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
@@ -1026,6 +1035,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomMapViewAudibilityMask.fill(true);
                 return;
             }
+            next(args);
+        });
+    }
+
+    async function ULTRAChatRoomMapViewMovementProcess() {
+        modApi.hookFunction('ChatRoomMapViewMovementProcess', 4, (args, next) => {
+            if ((ChatRoomMapViewMovement == null) || (ChatRoomMapViewMovement.TimeEnd > CommonTime())) return;
+	    Player.MapData.Pos.X = ChatRoomMapViewMovement.X;
+	    Player.MapData.Pos.Y = ChatRoomMapViewMovement.Y;
+	    ChatRoomMapViewUpdatePlayerFlag(ChatRoomMapViewMovement.TimeStart - ChatRoomMapViewMovement.TimeEnd);
+	    ChatRoomMapViewMovement = null;
+	    ChatRoomMapViewCalculatePerceptionMasks();
+	    const newTile = ChatRoomMapViewGetTileAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
+	    const newObject = ChatRoomMapViewGetObjectAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
+            if (MaptrapOn) {
+                let item1 = newObject.Type;
+                let item2 = newObject.Style;
+                if ((item1 == "FloorItem") && (item2 != "Blank")) {
+                    if (item2 == "BondageBench") {
+                        BondagebenchTrap();
+                    } 
+                }  
+            }                            
+	    if(newTile && newTile.OnEnter) newTile.OnEnter();
+	    if(newObject && newObject.OnEnter) newObject.OnEnter();
+            return;
             next(args);
         });
     }
@@ -2981,6 +3016,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
+    function showMaptrapStatus() {
+        let msg;
+        if (MaptrapOn) {
+            msg = MaptrapStatus[0];
+        } else {
+            msg = MaptrapStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
     function showNogarbleStatus() {
         let msg;
         if (NogarbleOn) {
@@ -3254,6 +3299,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = ThemedVersionStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //Traps
+    function BondagebenchTrap() {
+        CharacterNaked(Player);
+        InventoryWear(Player, "BondageBench", "ItemDevices");
+        InventoryWear(Player, "SleepSac", "ItemArms");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "FullBlindfold", "ItemHead"); 
+        InventoryWear(Player, "DeepthroatGag", "ItemMouth"); 
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "BondageBench") {
+                   Player.Appearance[A].Property.TypeRecord.typed = 4; 
+            }
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.AllowLock == true) {
+                if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                    InventoryLock(Player, Player.Appearance[A],"ExclusivePadlock");
+                }
+            }    
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
     }
 
     //Vision
@@ -8581,6 +8648,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'maptrap',
+        Description: ": toggles traps with devices in map rooms.",
+        Action: () => {
+            if (MaptrapOn == true) {
+                MaptrapOn = false;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: No traps with devices in map rooms.</p>"
+                );
+            } else {
+                MaptrapOn = true;
+                M_MOANER_saveControls();
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: Traps in map rooms if you 'walk' on devices.</p>" 
+                );
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'mapx',
         Description: "(x-position): changes your X coordinate in the map.",
         Action: (args) => {
@@ -13045,6 +13132,7 @@ CommandCombine([{
                     "<b>/mapfull</b> = toggles full vision and hearing in map rooms.\n" +
                     "<b>/mapkeys</b> = gives all keys for current map room.\n" +
                     "<b>/maproom</b> = gives infos about players in current map.\n" +
+		    "<b>/maptrap</b> = toggles traps with devices in map rooms.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/search</b> (lobby) = opens room search for 15 seconds in specified lobby. *\n" +
@@ -13915,6 +14003,7 @@ CommandCombine([{
             showFeaturesStatus();
             showHighfameStatus();
             showMagiccheatStatus();
+	    showMaptrapStatus();
 	    showNogarbleStatus();
 	    showNostruggleStatus();
             showNowhisperStatus();
