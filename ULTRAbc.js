@@ -155,8 +155,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var NogarbleStatus = ["BC default talk mode will ungarble messages and whispers.",
         "BC default talk mode will not ungarble messages and whispers."
     ];
-    var NostruggleStatus = ["Manual struggling in mini-games is disabled.",
-        "Manual struggling in mini-games is enabled."
+    var NostruggleStatus = ["Automatic struggle in mini-games is enabled.",
+        "Automatic struggle in mini-games is disabled."
     ];
     var NowhisperStatus = ["No-whisper mode enabled.",
         "No-whisper mode disabled."
@@ -13661,7 +13661,7 @@ CommandCombine([{
                     "<b>hotkeys</b> for hotkeys on numeric pad (Divide = fast leave - Multiply = Total Release)\n" +
                     "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
                     "<b>nogarble</b> for ungarble in default BC talk mode\n" +
-                    "<b>nostruggle</b> for type of struggle in mini-games\n" +
+                    "<b>nostruggle</b> for automatic struggle in mini-games\n" +
                     "<b>nowhisper</b> for no-whisper mode\n" +
                     "<b>npcpunish</b> for NPC punishments\n" +
                     "<b>outbuttons</b> for OUT buttons\n" +
@@ -13709,16 +13709,17 @@ CommandCombine([{
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode disabled.</p>"
                         );
+			RealGarblingLevel();   
                     } else {
                         DoubletalkOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled.\n" +                                
-                            "<b>IMPORTANT: </b>You need to set the garbling level with the <b>RGL button</b> or the <b>/talk -2</b> command after each change with items or spells that restrain or prevent talking.\n" +
-                            "This garbling level will be applied in all cases, even if you are in rp difficulty and have checked the case to ignore garbling.\n" +
+                            "<b>IMPORTANT: </b>You need to update the garbling level with the <b>RGL button</b> or the <b>/talk -2</b> command after each change with items or spells that restrain or prevent talking.\n" +
                             "For the whispers, use only the click under character and the <b>/murmur</b> command when you are in this mode.\n" +                     
                             "If you like moans, it is recommended to use the Moaner integrated in UBC. Other mods producing moans don't support the double talk (and whisper) mode.</p>"
                         );
+			RealGarblingLevel();
                     }
                 } else if (setting == "exitmode") {
                     if (SlowleaveOn == true) {
@@ -13816,14 +13817,14 @@ CommandCombine([{
                         NostruggleOn = false;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Manual struggle in mini-games is enabled.</p>"
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is disabled.</p>"
                         );
                     } else {
                         Player.RestrictionSettings.BypassStruggle = true;
                         NostruggleOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Manual struggle in mini-games is disabled. If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is enabled. If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"
                         );
                     }	
                 } else if (setting == "nowhisper") {
