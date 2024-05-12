@@ -60,9 +60,9 @@ Changes for future version
 
 * New commands:
   - maptrap to toggle traps when you 'walk' on devices in map rooms (available trap: bondage bench)
-  - uset nogarble to toggle ungarbling in default BC talk mode, no matter your game difficulty (*)
-  - uset nostruggle to toggle automatic struggle in mini-games, no matter your game difficulty (*)
-  (*) these UBC settings override the corresponding settings in BC (set directly or by another mod)
+  - uset nogarble to toggle ungarbling in default BC talk mode, no matter your game difficulty (see note)
+  - uset nostruggle to toggle automatic struggle in mini-games, no matter your game difficulty (see note)  
+* Note: these UBC settings override the corresponding settings in BC (set directly or by another mod)
 * Added automatic RGL (Real Garbling Level) update when using the uset doubletalk command or the emergency buttons, hotkeys or commands to release yourself
 * Improved the font and theme commands (no more automatic relog to see the change)
 * Updated commands and functions related to talking + using of some target values or functions
