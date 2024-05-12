@@ -59,7 +59,7 @@ All else I might not have included.
 Changes for future version 
 
 * New commands:
-  - uset nogarble to toggle ungarble in default BC talk mode, no matter your game difficulty
+  - uset nogarble to toggle ungarbling in default BC talk mode, no matter your game difficulty
   - uset nostruggle to toggle automatic struggle in mini-games, no matter your game difficulty
 * Added automatic RGL (Real Garbling Level) update when using the uset doubletalk command or the emergency buttons, hotkeys or commands to release yourself
 * Improved the font and theme commands (no more automatic relog to see the change)
