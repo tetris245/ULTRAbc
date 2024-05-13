@@ -34,7 +34,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
-    let FBC_VERSION;
     let ini = 0;
     let kp = 0;
 
@@ -616,12 +615,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
-                if (NogarbleOn == null || NogarbleOn == undefined) {
-		    MaptrapOn = false;
-                    NogarbleOn = false;
-                    NostruggleOn = false;                  
-                    M_MOANER_saveControls();
-                }  
+                if (MaptrapOn == null || MaptrapOn == undefined) {
+                     MaptrapOn = false;     
+                     M_MOANER_saveControls();
+                } 
                 if (NPCpunish == true) {
                     Player.RestrictionSettings.BypassNPCPunishments = false;
                 } else {
@@ -673,7 +670,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     M_MOANER_saveControls();
                 }
 		ini = 1; 
-		if (FBC_VERSION == undefined) { 
+		if (Player.ExtensionSettings.FBC != null) {
+                    str = Player.ExtensionSettings.FBC;
+                    d = LZString.decompressFromBase64(str);
+                    FBCdata = {};
+                    decoded = JSON.parse(d);
+                    FBCdata = decoded;
+                    if (FBCdata.gagspeak) {
+                        Player.RestrictionSettings.NoSpeechGarble = true;
+                        NogarbleOn = true;       
+                        M_MOANER_saveControls();
+                    } else {
+		        Player.RestrictionSettings.NoSpeechGarble = false;
+                        NogarbleOn = false;       
+                        M_MOANER_saveControls();
+                    }
+                    if (FBCdata.autoStruggle) {
+                        Player.RestrictionSettings.BypassStruggle = true;
+                        NostruggleOn = true;       
+                        M_MOANER_saveControls();
+                    } else {
+		        Player.RestrictionSettings.BypassStruggle = false;  
+                        NostruggleOn = false;       
+                        M_MOANER_saveControls();
+                    }
+               } else {
+                    if (NogarbleOn == null || NogarbleOn == undefined) {
+                        NogarbleOn = false; 
+                        M_MOANER_saveControls();   
+                    }  
+                    if (NostruggleOn == null || NostruggleOn == undefined) {
+                        NostruggleOn = false; 
+                        M_MOANER_saveControls();    
+                    }
                     if (NogarbleOn == true) {
                         Player.RestrictionSettings.NoSpeechGarble = true;
                     } else {
@@ -684,7 +713,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         Player.RestrictionSettings.BypassStruggle = false;
                     }  
-                }
+                } 
             } catch (err) {
                 console.log(err);
             }
@@ -1960,18 +1989,50 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Preferences
     async function ULTRAInformationSheetExit() {
         modApi.hookFunction('InformationSheetExit', 4, (args, next) => {
-            if ((FBC_VERSION == undefined) && (ini == 1)) { 
-                if (NogarbleOn == true) {
-                        Player.RestrictionSettings.NoSpeechGarble = true;
+            if (Player.ExtensionSettings.FBC != null) {
+                str = Player.ExtensionSettings.FBC;
+                d = LZString.decompressFromBase64(str);
+                FBCdata = {};
+                decoded = JSON.parse(d);
+                FBCdata = decoded;
+                if (FBCdata.gagspeak) {
+                    Player.RestrictionSettings.NoSpeechGarble = true;
+                    NogarbleOn = true;       
+                    M_MOANER_saveControls();
                 } else {
-                        Player.RestrictionSettings.NoSpeechGarble = false;
+		    Player.RestrictionSettings.NoSpeechGarble = false;
+                    NogarbleOn = false;       
+                    M_MOANER_saveControls();
+                }
+                if (FBCdata.autoStruggle) {
+                    Player.RestrictionSettings.BypassStruggle = true;
+                    NostruggleOn = true;       
+                    M_MOANER_saveControls();
+                } else {
+		    Player.RestrictionSettings.BypassStruggle = false;   
+                    NostruggleOn = false;       
+                    M_MOANER_saveControls();
+                }
+           } else {
+                if (NogarbleOn == null || NogarbleOn == undefined) {
+                    NogarbleOn = false; 
+                    M_MOANER_saveControls();   
+                }
+                if (NostruggleOn == null || NostruggleOn == undefined) {
+                    NostruggleOn = false; 
+                    M_MOANER_saveControls();    
+                }
+                if (NogarbleOn == true) {
+                    Player.RestrictionSettings.NoSpeechGarble = true;
+                } else {
+                    Player.RestrictionSettings.NoSpeechGarble = false;
                 }
                 if (NostruggleOn == true) {
-                        Player.RestrictionSettings.BypassStruggle = true;
+                    Player.RestrictionSettings.BypassStruggle = true;
                 } else {
-                        Player.RestrictionSettings.BypassStruggle = false;
+                    Player.RestrictionSettings.BypassStruggle = false;
                 }  
-            }
+            } 
             next(args);
         });
     }
@@ -13883,82 +13944,78 @@ CommandCombine([{
                         );
                     }
                 } else if (setting == "nogarble") {
-                    if (Player.RestrictionSettings.NoSpeechGarble == true) {
-                        Player.RestrictionSettings.NoSpeechGarble = false;
-                        NogarbleOn = false;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will not ungarble messages and whispers.\n" +
-                           "Note that this setting will be ignored if you use FBC.</p>"
-                        );
+                     if (Player.ExtensionSettings.FBC != null) {
+                         str = Player.ExtensionSettings.FBC;
+                         d = LZString.decompressFromBase64(str);
+                         FBCdata = {};
+                         decoded = JSON.parse(d);
+                         FBCdata = decoded;
+                         if (FBCdata.gagspeak) {
+                             Player.RestrictionSettings.NoSpeechGarble = true;
+                             NogarbleOn = true;       
+                             M_MOANER_saveControls();
+                         } else {
+			     Player.RestrictionSettings.NoSpeechGarble = false;
+                             NogarbleOn = false;       
+                             M_MOANER_saveControls();
+                         }
+                         ChatRoomSendLocal(
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: This command is not executed as you use FBC that has a similar setting.</p>"
+                         );                                
                     } else {
-                        Player.RestrictionSettings.NoSpeechGarble = true;
-                        NogarbleOn = true;
-                        gl = 0;
-                        mgl = 0;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will ungarble messages and whispers.\n</p>" +
-                            "Note that this setting will be ignored if you use FBC.</p>"
-                        );
-                    }
-                } else if (setting == "nostruggle") {
-                    if (Player.RestrictionSettings.BypassStruggle == true) {
-                        Player.RestrictionSettings.BypassStruggle = false;
-                        NostruggleOn = false;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is disabled.\n</p>" +
-                            "Note that this setting will be ignored if you use FBC.</p>"
-                        );
+                         if (Player.RestrictionSettings.NoSpeechGarble == true) {
+                             Player.RestrictionSettings.NoSpeechGarble = false;
+                             NogarbleOn = false;
+                             M_MOANER_saveControls();
+                             ChatRoomSendLocal(
+                                 "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will not ungarble messages and whispers.</p>"                        
+                             );
+                         } else {
+                             Player.RestrictionSettings.NoSpeechGarble = true;
+                             NogarbleOn = true;       
+                             M_MOANER_saveControls();
+                             ChatRoomSendLocal(
+                                 "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will ungarble messages and whispers.</p>" 
+                             );
+                        }
+                   }
+              } else if (setting == "nostruggle") {
+                    if (Player.ExtensionSettings.FBC != null) {
+                         str = Player.ExtensionSettings.FBC;
+                         d = LZString.decompressFromBase64(str);
+                         FBCdata = {};
+                         decoded = JSON.parse(d);
+                         FBCdata = decoded;
+                         if (FBCdata.autoStruggle) {
+                             Player.RestrictionSettings.BypassStruggle = true;
+                             NostruggleOn = true;       
+                             M_MOANER_saveControls();
+                         } else {
+			     Player.RestrictionSettings.BypassStruggle = false;
+                             NostruggleOn = false;       
+                             M_MOANER_saveControls();
+                         }
+                         ChatRoomSendLocal(
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: This command is not executed as you use FBC that has a similar setting.</p>"
+                         );                                
                     } else {
-                        Player.RestrictionSettings.BypassStruggle = true;
-                        NostruggleOn = true;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is enabled.\n" +
-                            "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.\n" +
-                            "Note that this setting will be ignored if you use FBC.</p>"
-                        );
-                    }
-
-
-
-			
-                } else if (setting == "nogarble") {
-                    if (Player.RestrictionSettings.NoSpeechGarble == true) {
-                        Player.RestrictionSettings.NoSpeechGarble = false;
-                        NogarbleOn = false;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will not ungarble messages and whispers.</p>"
-                        );
-                    } else {
-                        Player.RestrictionSettings.NoSpeechGarble = true;
-                        NogarbleOn = true;
-                        gl = 0;
-                        mgl = 0;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will ungarble messages and whispers.</p>"
-                        );
-                    }
-                } else if (setting == "nostruggle") {
-                    if (Player.RestrictionSettings.BypassStruggle == true) {
-                        Player.RestrictionSettings.BypassStruggle = false;
-                        NostruggleOn = false;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is disabled.</p>"
-                        );
-                    } else {
-                        Player.RestrictionSettings.BypassStruggle = true;
-                        NostruggleOn = true;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is enabled. If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"
-                        );
-                    }	
+                         if (Player.RestrictionSettings.BypassStruggle == true) {
+                             Player.RestrictionSettings.BypassStruggle = false;
+                             NostruggleOn = false;
+                             M_MOANER_saveControls();
+                             ChatRoomSendLocal(
+                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is disabled.</p>"              
+                             );
+                        } else {
+                             Player.RestrictionSettings.BypassStruggle = true;
+                             NostruggleOn = true;
+                             M_MOANER_saveControls();
+                             ChatRoomSendLocal(
+                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is enabled.\n" +
+                                 "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"               
+                              );
+                         }
+                    } 
                 } else if (setting == "nowhisper") {
                     if (NowhisperOn == true) {
                         NowhisperOn = false;
