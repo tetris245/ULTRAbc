@@ -1048,6 +1048,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (item2 == "BondageBench") {
                         BondagebenchTrap();
                     } 
+		    if (item2 == "Kennel") {
+                        KennelTrap();
+                    } 
 		    if (item2 == "X-Cross") {
                         XcrossTrap();
                     } 
@@ -3353,6 +3356,45 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }    
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
+    }
+
+    function KennelTrap() {
+        CharacterNaked(Player);
+        InventoryWear(Player, "ShinyPetSuit", "ItemArms");
+        InventoryWear(Player, "VibeNippleClamp", "ItemNipples"); 
+        InventoryWear(Player, "LeatherHarness", "ItemTorso"); 
+        InventoryWear(Player, "ClitoralStimulator", "ItemVulva");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "DildoPlugGag", "ItemMouth"); 
+        InventoryWear(Player, "LeatherSlimMaskOpenMouth", "ItemHead"); 
+        InventoryWear(Player, "Kennel", "ItemDevices");
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "VibeNippleClamp") {
+                Player.Appearance[A].Property.TypeRecord.vibrating = 9; 
+            }
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "ClitoralStimulator") {
+                Player.Appearance[A].Property.TypeRecord.vibrating = 9; 
+            }
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "DildoPlugGag") {
+                Player.Appearance[A].Property.TypeRecord.typed = 1;
+            }
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "Kennel") {
+                Player.Appearance[A].Property.TypeRecord.d = 1;
+                Player.Appearance[A].Property.TypeRecord.p = 1;
+            }
+        setTimeout(function() {
+            for (let A = 0; A < Player.Appearance.length; A++)
+                if (Player.Appearance[A].Asset.AllowLock == true) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
+                    }
+                }    
+            }, 2000);
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);      
     }
 
     function XcrossTrap() {
