@@ -1048,6 +1048,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (item2 == "BondageBench") {
                         BondagebenchTrap();
                     } 
+		    if (item2 == "X-Cross") {
+                        XcrossTrap();
+                    } 
                 }  
             }                            
 	    if(newTile && newTile.OnEnter) newTile.OnEnter();
@@ -3352,6 +3355,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
+    function XcrossTrap() {
+        CharacterNaked(Player);
+        InventoryWear(Player, "LeatherDeluxeCuffs", "ItemArms"); 
+        InventoryWear(Player, "LeatherDeluxeAnkleCuffs", "ItemFeet"); 
+        InventoryWear(Player, "X-Cross", "ItemDevices");
+        InventoryWear(Player, "PaddedLeatherMittens", "ItemHands");
+        InventoryWear(Player, "ChainClamp", "ItemNipples"); 
+        InventoryWear(Player, "HempRopeBelt", "ItemVulva"); 
+        InventoryWear(Player, "HarnessBallGag1", "ItemMouth"); 
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "PaddedBlindfold", "ItemHead"); 
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "HempRopeBelt") {
+		Player.Appearance[A].Property.TypeRecord.vibrating = 9; 
+            }
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.AllowLock == true) {
+                if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                    InventoryLock(Player, Player.Appearance[A],"ExclusivePadlock");
+                }
+            }    
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    }
+	
     //Vision
     function GetBlindLevel0() {
         let blindLevel = 0;
