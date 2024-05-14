@@ -670,50 +670,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     M_MOANER_saveControls();
                 }
 		ini = 1; 
-		if (Player.ExtensionSettings.FBC != null) {
-                    str = Player.ExtensionSettings.FBC;
-                    d = LZString.decompressFromBase64(str);
-                    FBCdata = {};
-                    decoded = JSON.parse(d);
-                    FBCdata = decoded;
-                    if (FBCdata.gagspeak) {
-                        Player.RestrictionSettings.NoSpeechGarble = true;
-                        NogarbleOn = true;       
-                        M_MOANER_saveControls();
-                    } else {
-		        Player.RestrictionSettings.NoSpeechGarble = false;
-                        NogarbleOn = false;       
-                        M_MOANER_saveControls();
-                    }
-                    if (FBCdata.autoStruggle) {
-                        Player.RestrictionSettings.BypassStruggle = true;
-                        NostruggleOn = true;       
-                        M_MOANER_saveControls();
-                    } else {
-		        Player.RestrictionSettings.BypassStruggle = false;  
-                        NostruggleOn = false;       
-                        M_MOANER_saveControls();
-                    }
-               } else {
-                    if (NogarbleOn == null || NogarbleOn == undefined) {
-                        NogarbleOn = false; 
-                        M_MOANER_saveControls();   
-                    }  
-                    if (NostruggleOn == null || NostruggleOn == undefined) {
-                        NostruggleOn = false; 
-                        M_MOANER_saveControls();    
-                    }
-                    if (NogarbleOn == true) {
-                        Player.RestrictionSettings.NoSpeechGarble = true;
-                    } else {
-                        Player.RestrictionSettings.NoSpeechGarble = false;
-                    }
-                    if (NostruggleOn == true) {
-                        Player.RestrictionSettings.BypassStruggle = true;
-                    } else {
-                        Player.RestrictionSettings.BypassStruggle = false;
-                    }  
-                } 
+                FBCsettings();
             } catch (err) {
                 console.log(err);
             }
@@ -1989,50 +1946,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Preferences
     async function ULTRAInformationSheetExit() {
         modApi.hookFunction('InformationSheetExit', 4, (args, next) => {
-            if (Player.ExtensionSettings.FBC != null) {
-                str = Player.ExtensionSettings.FBC;
-                d = LZString.decompressFromBase64(str);
-                FBCdata = {};
-                decoded = JSON.parse(d);
-                FBCdata = decoded;
-                if (FBCdata.gagspeak) {
-                    Player.RestrictionSettings.NoSpeechGarble = true;
-                    NogarbleOn = true;       
-                    M_MOANER_saveControls();
-                } else {
-		    Player.RestrictionSettings.NoSpeechGarble = false;
-                    NogarbleOn = false;       
-                    M_MOANER_saveControls();
-                }
-                if (FBCdata.autoStruggle) {
-                    Player.RestrictionSettings.BypassStruggle = true;
-                    NostruggleOn = true;       
-                    M_MOANER_saveControls();
-                } else {
-		    Player.RestrictionSettings.BypassStruggle = false;   
-                    NostruggleOn = false;       
-                    M_MOANER_saveControls();
-                }
-           } else {
-                if (NogarbleOn == null || NogarbleOn == undefined) {
-                    NogarbleOn = false; 
-                    M_MOANER_saveControls();   
-                }
-                if (NostruggleOn == null || NostruggleOn == undefined) {
-                    NostruggleOn = false; 
-                    M_MOANER_saveControls();    
-                }
-                if (NogarbleOn == true) {
-                    Player.RestrictionSettings.NoSpeechGarble = true;
-                } else {
-                    Player.RestrictionSettings.NoSpeechGarble = false;
-                }
-                if (NostruggleOn == true) {
-                    Player.RestrictionSettings.BypassStruggle = true;
-                } else {
-                    Player.RestrictionSettings.BypassStruggle = false;
-                }  
-            } 
+            FBCsettings();           
             next(args);
         });
     }
@@ -2875,6 +2789,54 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = LockedWheelStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
+    }
+
+    //Preferences 
+    function FBCsettings() {
+        if (Player.ExtensionSettings.FBC != null) {
+            str = Player.ExtensionSettings.FBC;
+            d = LZString.decompressFromBase64(str);
+            FBCdata = {};
+            decoded = JSON.parse(d);
+            FBCdata = decoded;
+            if (FBCdata.gagspeak) {
+                Player.RestrictionSettings.NoSpeechGarble  = true;
+                NogarbleOn = true;       
+                M_MOANER_saveControls();
+            } else {
+                Player.RestrictionSettings.NoSpeechGarble = false;
+                NogarbleOn = false;       
+                M_MOANER_saveControls();
+            }
+            if (FBCdata.autoStruggle) {
+                Player.RestrictionSettings.BypassStruggle  = true;
+                NostruggleOn = true;       
+                M_MOANER_saveControls();
+            } else {
+                Player.RestrictionSettings.BypassStruggle = false;
+                NostruggleOn = false;       
+                M_MOANER_saveControls();
+            }
+        } else {
+            if (NogarbleOn == null || NogarbleOn == undefined) {
+                NogarbleOn = false; 
+                M_MOANER_saveControls();   
+            }
+            if (NostruggleOn == null || NostruggleOn == undefined) {
+                NostruggleOn = false; 
+                M_MOANER_saveControls();    
+            }
+            if (NogarbleOn == true) {
+                Player.RestrictionSettings.NoSpeechGarble = true;
+            } else {
+                Player.RestrictionSettings.NoSpeechGarble = false;
+            }
+            if (NostruggleOn == true) {
+                Player.RestrictionSettings.BypassStruggle = true;
+            } else {
+                Player.RestrictionSettings.BypassStruggle = false;
+            }  
+        } 
     }
 
     //Responsive Status
