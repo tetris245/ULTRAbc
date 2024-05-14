@@ -59,7 +59,7 @@ All else I might not have included.
 Changes for future version 
 
 * New commands:
-  - maptrap to toggle traps when you 'walk' on devices in map rooms (available trap: bondage bench)
+  - maptrap to toggle traps when you 'walk' on devices in map rooms (current available traps: Bondage Bench, X-Cross)
   - uset nogarble to toggle ungarbling in default BC talk mode, no matter your game difficulty (see note)
   - uset nostruggle to toggle automatic struggle in mini-games, no matter your game difficulty (see note)  
 * Note: these UBC settings are automatically replaced by the similar FBC settings if they exist
