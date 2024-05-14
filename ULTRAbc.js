@@ -3329,13 +3329,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function BondagebenchTrap() {
         CharacterNaked(Player);
         InventoryWear(Player, "BondageBench", "ItemDevices");
+	InventoryWear(Player, "VibratingLatexPanties", "ItemVulva");
         InventoryWear(Player, "SleepSac", "ItemArms");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "FullBlindfold", "ItemHead"); 
         InventoryWear(Player, "DeepthroatGag", "ItemMouth"); 
         for (let A = 0; A < Player.Appearance.length; A++)
             if (Player.Appearance[A].Asset.Name == "BondageBench") {
-                   Player.Appearance[A].Property.TypeRecord.typed = 4; 
+                Player.Appearance[A].Property.TypeRecord.typed = 4; 
+            }
+	for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "VibratingLatexPanties") {
+                Player.Appearance[A].Property.TypeRecord.vibrating = 9; 
             }
         for (let A = 0; A < Player.Appearance.length; A++)
             if (Player.Appearance[A].Asset.AllowLock == true) {
