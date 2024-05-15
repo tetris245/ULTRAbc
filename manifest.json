@@ -1,7 +1,7 @@
 {
   "name": "ULTRAbc",
   "description": "Everything you'll ever need.",
-  "version": "3.1",
+  "version": "3.2",
   "manifest_version": 3,
   "icons": {
     "128": "icon128.png",
