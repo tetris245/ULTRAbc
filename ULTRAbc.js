@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 3.1
+// @version 3.2
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return;
     }
 
-    const UBCver = "3.1";
+    const UBCver = "3.2";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -1047,16 +1047,48 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((item1 == "FloorItem") && (item2 != "Blank")) {
                     if (item2 == "BondageBench") {
                         BondagebenchTrap();
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: "" + tmpname + " is suddenly trapped on a Bondage Bench."
+                            }]
+                        });
                     } 
-		    if (item2 == "Kennel") {
+                    if (item2 == "Kennel") {
                         KennelTrap();
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: "" + tmpname + " is suddenly trapped in a Kennel."
+                            }]
+                        });
                     } 
-		    if (item2 == "Locker") {
+                    if (item2 == "Locker") {
                         LockerTrap();
-                    }
-		    if (item2 == "X-Cross") {
-                        XcrossTrap();
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: "" + tmpname + " is suddenly trapped in a Locker."
+                            }]
+                        });
                     } 
+                    if (item2 == "X-Cross") {
+                        XcrossTrap();
+                        ServerSend("ChatRoomChat", {
+                            Content: "Beep",
+                            Type: "Action",
+                            Dictionary: [{
+                                Tag: "Beep",
+                                Text: "" + tmpname + " is suddenly trapped on an X-Cross."
+                            }]
+                        });
+                    }   
                 }  
             }                            
 	    if(newTile && newTile.OnEnter) newTile.OnEnter();
@@ -10154,7 +10186,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "spreadeagle2, spreadlegs, stand, suspension,\n" +
                     "tapedhands. Only on yourself: exercise, jump, roof.\n" +
                     "Use <b>/pose2 reset</b> (target) to back to neutral pose.\n" +
-                    "If FBC is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.</p>"
+                    "If WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.</p>"
                 );
             } else {
                 var stringPose1 = args;
@@ -10456,7 +10488,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }]
                         });
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if FBC enabled).</p>"
+                            "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if WCE enabled).</p>"
                         );
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         PoseSetActive(Player, null);
@@ -14031,7 +14063,7 @@ CommandCombine([{
                              M_MOANER_saveControls();
                          }
                          ChatRoomSendLocal(
-                             "<p style='background-color:#5fbd7a'>ULTRAbc: This command is not executed as you use FBC that has a similar setting.</p>"
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: This command is not executed as you use WCE that has a similar setting.</p>"
                          );                                
                     } else {
                          if (Player.RestrictionSettings.NoSpeechGarble == true) {
@@ -14067,7 +14099,7 @@ CommandCombine([{
                              M_MOANER_saveControls();
                          }
                          ChatRoomSendLocal(
-                             "<p style='background-color:#5fbd7a'>ULTRAbc: This command is not executed as you use FBC that has a similar setting.</p>"
+                             "<p style='background-color:#5fbd7a'>ULTRAbc: This command is not executed as you use WCE that has a similar setting.</p>"
                          );                                
                     } else {
                          if (Player.RestrictionSettings.BypassStruggle == true) {
