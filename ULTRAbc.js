@@ -3104,15 +3104,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Talking
     function RealGarblingLevel() {
-	if ((NogarbleOn) && (DoubletalkOn == false)) {          
-             ChatRoomSendLocal(
-                  "<p style='background-color:#5fbd7a'>You are in BC default ungarbled mode!</p>"
-             );
-             gl = 0;
-             mgl = 0;
-             M_MOANER_saveControls();
-             return;
-         }
          notalk = 0;
          ElementValue("InputChat", "");
          var bl = 0;
