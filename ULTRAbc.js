@@ -833,6 +833,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (event.key === "Enter" && !event.shiftKey) {
 		var nm = 0;
+		talking = true;
                 var text = ElementValue("InputChat");
                 if (text.startsWith(",")) {
                     var text1 = "(" + text.slice(1) + ")";
