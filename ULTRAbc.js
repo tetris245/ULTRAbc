@@ -1051,6 +1051,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    if (item2 == "Kennel") {
                         KennelTrap();
                     } 
+		    if (item2 == "Locker") {
+                        LockerTrap();
+                    }
 		    if (item2 == "X-Cross") {
                         XcrossTrap();
                     } 
@@ -3339,16 +3342,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (Player.Appearance[A].Asset.Name == "VibratingLatexPanties") {
                 Player.Appearance[A].Property.TypeRecord.vibrating = 9; 
             }
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.AllowLock == true) {
-                if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
-                    InventoryLock(Player, Player.Appearance[A],"ExclusivePadlock");
-                }
-            }    
+        setTimeout(function() {
+            for (let A = 0; A < Player.Appearance.length; A++)
+                if (Player.Appearance[A].Asset.AllowLock == true) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
+                    }
+                }    
+            }, 2000);
         CharacterRefresh(Player);
-        ChatRoomCharacterUpdate(Player);
+        ChatRoomCharacterUpdate(Player);  
     }
-
+    
     function KennelTrap() {
         CharacterNaked(Player);
         InventoryWear(Player, "ShinyPetSuit", "ItemArms");
@@ -3388,6 +3393,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);      
     }
 
+    function LockerTrap() {
+        CharacterNaked(Player);
+        InventoryWear(Player, "SockStuffing", "ItemMouth");
+        InventoryWear(Player, "PantiesMask", "ItemMouth2");
+        InventoryWear(Player, "ShoeGag", "ItemMouth3");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "Pantyhose", "ItemHead"); 
+        InventoryWear(Player, "TickleBra", "ItemBreast"); 
+        InventoryWear(Player, "ToeTie", "ItemBoots"); 
+        InventoryWear(Player, "HempRope", "ItemFeet"); 
+        InventoryWear(Player, "HempRope", "ItemLegs"); 
+        InventoryWear(Player, "HempRope", "ItemPelvis"); 
+        InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "PantyhoseBodyOpen", "ItemArms");
+        InventoryWear(Player, "Locker", "ItemDevices");
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "TickleBra") {
+                Player.Appearance[A].Property.TypeRecord.vibrating = 9; 
+            }
+        for (let A = 0; A < Player.Appearance.length; A++)
+            if (Player.Appearance[A].Asset.Name == "Locker") {
+                Player.Appearance[A].Property.Opacity = 0.66;
+                Player.Appearance[A].Property.TypeRecord.typed = 1;
+            }
+        setTimeout(function() {
+            for (let A = 0; A < Player.Appearance.length; A++)
+                if (Player.Appearance[A].Asset.AllowLock == true) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
+                    }
+                }    
+            }, 2000);
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);      
+    }
+
     function XcrossTrap() {
         CharacterNaked(Player);
         InventoryWear(Player, "LeatherDeluxeCuffs", "ItemArms"); 
@@ -3403,14 +3444,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (Player.Appearance[A].Asset.Name == "HempRopeBelt") {
 		Player.Appearance[A].Property.TypeRecord.vibrating = 9; 
             }
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.AllowLock == true) {
-                if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
-                    InventoryLock(Player, Player.Appearance[A],"ExclusivePadlock");
-                }
-            }    
+        setTimeout(function() {
+            for (let A = 0; A < Player.Appearance.length; A++)
+                if (Player.Appearance[A].Asset.AllowLock == true) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
+                    }
+                }    
+            }, 2000);
         CharacterRefresh(Player);
-        ChatRoomCharacterUpdate(Player);
+        ChatRoomCharacterUpdate(Player);  
     }
 	
     //Vision
