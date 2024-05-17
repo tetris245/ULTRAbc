@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 3.1
+Most recent version: 3.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version3.1.zip file on the Releases page
+1. Download the ULTRAbc-version3.2.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -58,13 +58,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* New commands:
-  - maptrap to toggle traps when you 'walk' on devices in map rooms (current available traps: Bondage Bench, Kennel, Locker, X-Cross)
-  - uset nogarble to toggle ungarbling in default BC talk mode, no matter your game difficulty (see note)
-  - uset nostruggle to toggle automatic struggle in mini-games, no matter your game difficulty (see note)  
-  ** Note: these UBC settings are automatically replaced by the similar FBC settings if they are enabled
-* Added automatic RGL (Real Garbling Level) update when using the uset doubletalk command or the emergency buttons, hotkeys or commands to release yourself
-* Improved the font and theme commands (no more automatic relog to see the change)
-* Updated commands and functions related to talking + using of some target values or functions
-* Updated the title1, ustatus, xstatus lscg and xstatus thm commands
-* Removed the UBC whisper routine to use the new BC whisper function
+(...)
