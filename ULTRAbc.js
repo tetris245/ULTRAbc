@@ -2841,37 +2841,41 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             FBCdata = {};
             decoded = JSON.parse(d);
             FBCdata = decoded;
-            if (FBCdata.gagspeak) {
-                Player.RestrictionSettings.NoSpeechGarble  = true;
-                NogarbleOn = true;       
-                M_MOANER_saveControls();
-            } else {
+            if (FBCdata.antiGarble) {
+                var gbc = 1;
                 Player.RestrictionSettings.NoSpeechGarble = false;
                 NogarbleOn = false;       
                 M_MOANER_saveControls();
+            } else {
+                var gbc = 0;
             }
             if (FBCdata.autoStruggle) {
-                Player.RestrictionSettings.BypassStruggle  = true;
-                NostruggleOn = true;       
-                M_MOANER_saveControls();
-            } else {
+                var sbc = 1;
                 Player.RestrictionSettings.BypassStruggle = false;
                 NostruggleOn = false;       
                 M_MOANER_saveControls();
+            } else {
+                var sbc = 0;
             }
         } else {
+            var gbc = 0;
+            var sbc = 0;
+        }
+        if (gbc == 0) { 
             if (NogarbleOn == null || NogarbleOn == undefined) {
                 NogarbleOn = false; 
                 M_MOANER_saveControls();   
-            }
-            if (NostruggleOn == null || NostruggleOn == undefined) {
-                NostruggleOn = false; 
-                M_MOANER_saveControls();    
             }
             if (NogarbleOn == true) {
                 Player.RestrictionSettings.NoSpeechGarble = true;
             } else {
                 Player.RestrictionSettings.NoSpeechGarble = false;
+            }
+        }
+        if (sbc == 0) { 
+            if (NostruggleOn == null || NostruggleOn == undefined) {
+                NostruggleOn = false; 
+                M_MOANER_saveControls();    
             }
             if (NostruggleOn == true) {
                 Player.RestrictionSettings.BypassStruggle = true;
@@ -14054,19 +14058,20 @@ CommandCombine([{
                          FBCdata = {};
                          decoded = JSON.parse(d);
                          FBCdata = decoded;
-                         if (FBCdata.gagspeak) {
-                             Player.RestrictionSettings.NoSpeechGarble = true;
-                             NogarbleOn = true;       
-                             M_MOANER_saveControls();
-                         } else {
-			     Player.RestrictionSettings.NoSpeechGarble = false;
+                         if (FBCdata.antiGarble) {
+                             Player.RestrictionSettings.NoSpeechGarble = false;
                              NogarbleOn = false;       
                              M_MOANER_saveControls();
+                             ChatRoomSendLocal(
+                                 "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode can ungarble messages and whispers according your WCE settings.</p>" 
+                             );
+                         } else {
+                             var gbc = 0;
                          }
-                         ChatRoomSendLocal(
-                             "<p style='background-color:#5fbd7a'>ULTRAbc: This command is not executed as you use WCE that has a similar setting.</p>"
-                         );                                
-                    } else {
+                     } else {
+                         var gbc = 0;
+                     }
+                     if (gbc == 0) {
                          if (Player.RestrictionSettings.NoSpeechGarble == true) {
                              Player.RestrictionSettings.NoSpeechGarble = false;
                              NogarbleOn = false;
@@ -14082,7 +14087,7 @@ CommandCombine([{
                                  "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode will ungarble messages and whispers.</p>" 
                              );
                         }
-                   }
+                   }      
               } else if (setting == "nostruggle") {
                     if (Player.ExtensionSettings.FBC != null) {
                          str = Player.ExtensionSettings.FBC;
@@ -14091,18 +14096,20 @@ CommandCombine([{
                          decoded = JSON.parse(d);
                          FBCdata = decoded;
                          if (FBCdata.autoStruggle) {
-                             Player.RestrictionSettings.BypassStruggle = true;
-                             NostruggleOn = true;       
-                             M_MOANER_saveControls();
-                         } else {
-			     Player.RestrictionSettings.BypassStruggle = false;
+                             Player.RestrictionSettings.BypassStruggle = false;
                              NostruggleOn = false;       
                              M_MOANER_saveControls();
+                             ChatRoomSendLocal(
+                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is enabled according your WCE setting.\n" +
+                                 "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"               
+                              );
+                         } else {
+                             var sbc = 0;
                          }
-                         ChatRoomSendLocal(
-                             "<p style='background-color:#5fbd7a'>ULTRAbc: This command is not executed as you use WCE that has a similar setting.</p>"
-                         );                                
-                    } else {
+                     } else {
+                         var sbc = 0;
+                     }
+                     if (sbc == 0) {  
                          if (Player.RestrictionSettings.BypassStruggle == true) {
                              Player.RestrictionSettings.BypassStruggle = false;
                              NostruggleOn = false;
