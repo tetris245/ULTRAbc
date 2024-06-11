@@ -3382,7 +3382,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) ||
+			(Player.Appearance[A].Property == null)) {
                         InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
                     }
                 }    
@@ -3421,7 +3422,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) ||
+			(Player.Appearance[A].Property == null)) {
                         InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
                     }
                 }    
@@ -3437,13 +3439,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "ShoeGag", "ItemMouth3");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "Pantyhose", "ItemHead"); 
-	if ((InventoryGet(Player, "ItemBreast") == null) || (InventoryGet(Player, "ItemBreast").Property == null) || (InventoryGet(Player, "ItemBreast").Property.LockedBy == null)) {
+	if ((InventoryGet(Player, "ItemBreast") == null) ||
+	    (InventoryGet(Player, "ItemBreast").Property == null) ||
+	    (InventoryGet(Player, "ItemBreast").Property.LockedBy == null)) {
             InventoryWear(Player, "TickleBra", "ItemBreast"); 
 	}
         InventoryWear(Player, "ToeTie", "ItemBoots"); 
         InventoryWear(Player, "HempRope", "ItemFeet"); 
         InventoryWear(Player, "HempRope", "ItemLegs"); 
-	if ((InventoryGet(Player, "ItemPelvis") == null) || (InventoryGet(Player, "ItemPelvis").Property == null) || (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)) {
+	if ((InventoryGet(Player, "ItemPelvis") == null) ||
+	    (InventoryGet(Player, "ItemPelvis").Property == null) ||
+	    (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)) {
             InventoryWear(Player, "HempRope", "ItemPelvis"); 
 	}	
         InventoryWear(Player, "DuctTape", "ItemHands");
@@ -3461,7 +3467,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) ||
+			(Player.Appearance[A].Property == null)) {
                         InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
                     }
                 }    
@@ -3488,7 +3495,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) ||
+			(Player.Appearance[A].Property == null)) {
                         InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
                     }
                 }    
