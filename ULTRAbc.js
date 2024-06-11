@@ -3437,11 +3437,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "ShoeGag", "ItemMouth3");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "Pantyhose", "ItemHead"); 
-        InventoryWear(Player, "TickleBra", "ItemBreast"); 
+	if ((InventoryGet(Player, "ItemBreast") == null) || (InventoryGet(Player, "ItemBreast").Property == null) || (InventoryGet(Player, "ItemBreast").Property.LockedBy == null)) {
+            InventoryWear(Player, "TickleBra", "ItemBreast"); 
+	}
         InventoryWear(Player, "ToeTie", "ItemBoots"); 
         InventoryWear(Player, "HempRope", "ItemFeet"); 
         InventoryWear(Player, "HempRope", "ItemLegs"); 
-        InventoryWear(Player, "HempRope", "ItemPelvis"); 
+	if ((InventoryGet(Player, "ItemPelvis") == null) || (InventoryGet(Player, "ItemPelvis").Property == null) || (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)) {
+            InventoryWear(Player, "HempRope", "ItemPelvis"); 
+	}	
         InventoryWear(Player, "DuctTape", "ItemHands");
         InventoryWear(Player, "PantyhoseBodyOpen", "ItemArms");
         InventoryWear(Player, "Locker", "ItemDevices");
