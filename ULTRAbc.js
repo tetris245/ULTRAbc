@@ -8930,6 +8930,72 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'mapz',
+        Description: "(target): gives coordinates in the map.",
+        Action: (args) => {
+            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
+                );
+            } else {
+                if (args === "") {
+                    if (Player.MapData != undefined) {
+	                if (ChatRoomData.MapData.Type == "Always") {
+                            var exinfo = "Real presence in map: YES";
+                        }
+                        if (ChatRoomData.MapData.Type == "Hybrid") {
+                            if (Player.OnlineSharedSettings.Inmap != undefined) {
+                                if (Player.OnlineSharedSettings.Inmap == true) {
+                                     var exinfo = "Real presence in map: YES";
+                                } else {                        
+                                     var exinfo = "Real presence in map: NO";
+                                }                 
+                            } else {
+                                var exinfo = "Real presence in map: ?";
+                            }
+                        }
+                        ChatRoomSendLocal("X = " + Player.MapData.Pos.X + " - Y = " + Player.MapData.Pos.Y + " - " + exinfo);
+			ChatRoomSendLocal(" ");
+                    } else {
+                        ChatRoomSendLocal("Does not have entered map");
+			ChatRoomSendLocal(" ");
+                    }
+                } else {
+                    var targetname = args;
+                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    if (target[0] == null) {
+                        var targetnumber = parseInt(targetname);
+                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                    }
+                    if (target[0] != null) {
+                        if (target[0].MapData != undefined) {
+			    if (ChatRoomData.MapData.Type == "Always") {
+                                var exinfo = "Real presence in map: YES";
+                            }
+                            if (ChatRoomData.MapData.Type == "Hybrid") {
+                                if (target[0].OnlineSharedSettings.Inmap != undefined) {
+                                    if (target[0].OnlineSharedSettings.Inmap == true) {
+                                        var exinfo = "Real presence in map: YES";
+                                    } else {                        
+                                        var exinfo = "Real presence in map: NO";
+                                    }                 
+                                } else {
+                                    var exinfo = "Real presence in map: ?";
+                                }
+                            }
+                            ChatRoomSendLocal("X = " + target[0].MapData.Pos.X + " - Y = " + target[0].MapData.Pos.Y + " - " + exinfo);
+			    ChatRoomSendLocal(" ");
+                        } else {
+                            ChatRoomSendLocal("Does not have entered map");
+			    ChatRoomSendLocal(" ");
+                        }
+                   } 
+               } 
+           }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'maxstatistics',
         Description: ": gives max statistics.",
         Action: () => {
@@ -13305,6 +13371,7 @@ CommandCombine([{
 		    "<b>/maptrap</b> = toggles traps with devices in map rooms.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
+		    "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
                     "<b>/search</b> (lobby) = opens room search for 15 seconds in specified lobby. *\n" +
                     "<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.</p>"
                 );
