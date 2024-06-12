@@ -58,6 +58,8 @@ All else I might not have included.
 
 Changes for future version 
 
-* New command: mapz (target) to give coordinates in the map for specified target (yourself when not specified)
-* Updated the xstatus bctw command
+* New commands:
+  - mapz (target) to give coordinates in the map for specified target (yourself when not specified)
+  - uset magictoys to enable/disable addition of vibes under locked chastity for trap mode in map rooms
+* Updated the ustatus and xstatus bctw command
 
