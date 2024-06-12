@@ -14184,7 +14184,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Toys can't be added under locked chastity for trap mode in map rooms.</p>"
                         );
                     } else {
-                        MagiccheatOn = true;
+                        MagictoysOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Toys can be added under locked chastity for trap mode in map rooms.</p>"
