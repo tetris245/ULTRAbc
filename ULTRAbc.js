@@ -3397,7 +3397,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function BondagebenchTrap() {
         CharacterNaked(Player);
         InventoryWear(Player, "BondageBench", "ItemDevices");
-        InventoryWear(Player, "VibratingLatexPanties", "ItemVulva");
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {   
+                InventoryWear(Player, "VibratingLatexPanties", "ItemVulva");
+            }
+        }
         InventoryWear(Player, "SleepSac", "ItemArms");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "FullBlindfold", "ItemHead");
