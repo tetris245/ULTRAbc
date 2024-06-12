@@ -221,6 +221,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var BestFriendsStatus = ["Best Friends feature is enabled.",
         "Best Friends feature is disabled."
     ];
+    var FriendlistSlotsStatus = ["No extra infos in Friendlist.",
+        "Extra infos in Friendlist."
+    ];
     var LockConversionStatus = ["High security locks can become Best Friend locks.",
         "High security locks can't become Best Friend locks."
     ];
@@ -2504,6 +2507,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = BestFriendsStatus[0];
         } else {
             msg = BestFriendsStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showFriendlistSlotsStatus() {
+        let msg;
+        if (BCTdata.friendlistSlotsEnabled) {
+            msg = FriendlistSlotsStatus[0];
+        } else {
+            msg = FriendlistSlotsStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -14512,6 +14525,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showBCTChangelogStatus();
                         showBCTIconStatus();
                         showBestFriendsStatus();
+                        showFriendlistSlotsStatus(); 
                         showLockConversionStatus();
                         showRoomShareStatus();
                         showSplitStatus();
