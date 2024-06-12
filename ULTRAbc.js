@@ -62,6 +62,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let HighfameOn;
     let HotkeysOn;
     let MagiccheatOn;
+    let MagictoysOn;
     let MapfullOn = false;
     let MaptrapOn;
     let NogarbleOn;
@@ -152,6 +153,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ];
     var MagiccheatStatus = ["Cheat mode enabled in Bondage Brawl and Magic School.",
         "Cheat mode disabled in Magic School."
+    ];
+    var MagictoysStatus = ["Toys can be added under locked chastity for trap mode in map rooms.",
+        "Toys can't be added under locked chastity for trap mode in map rooms.",
     ];
     var MaptrapStatus = ["Traps in map rooms if you 'walk' on devices.",
         "No traps with devices in map rooms."
@@ -403,6 +407,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HighfameOn = false;
             HotkeysOn = false;
             MagiccheatOn = false;
+            MagictoysOn = false;
             MapfullOn = false;
             MaptrapOn = false;
             NogarbleOn = false;
@@ -472,6 +477,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HighfameOn = datas.highfame;
             HotkeysOn = datas.hotkeys;
             MagiccheatOn = datas.magiccheat;
+            MagictoysOn = datas.magictoys;
             MapfullOn = false;
             MaptrapOn = datas.maptrap;
             NogarbleOn = datas.nogarble;
@@ -542,6 +548,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "highfame": HighfameOn,
             "hotkeys": HotkeysOn,
             "magiccheat": MagiccheatOn,
+            "magictoys": MagictoysOn,
             "mapfull": MapfullOn,
             "maptrap": MaptrapOn,
             "nogarble": NogarbleOn,
@@ -652,8 +659,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     BabyTalkOn = false;
                     GagTalkOn = true;
                 }
-                if (OutbuttonsOn == null || OutbuttonsOn == undefined) {
-                    OutbuttonsOn = false;
+                if (MagictoysOn == null || MagictoysOn == undefined) {
+                    MagictoysOn = false;
                     M_MOANER_saveControls();
                 }
                 if (reaction == null || reaction == undefined) {
@@ -3096,6 +3103,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = MagiccheatStatus[0];
         } else {
             msg = MagiccheatStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showMagictoysStatus() {
+        let msg;
+        if (MagiccheatOn) {
+            msg = MagictoysStatus[0];
+        } else {
+            msg = MagictoysStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -14025,6 +14042,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
                     "<b>hotkeys</b> for hotkeys on numeric pad (Divide = fast leave - Multiply = Total Release)\n" +
                     "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
+                    "<b>magictoys</b> for toys added under locked chastity in traps\n" +
                     "<b>nogarble</b> for ungarble in default BC talk mode\n" +
                     "<b>nostruggle</b> for automatic struggle in mini-games\n" +
                     "<b>nowhisper</b> for no-whisper mode\n" +
@@ -14156,6 +14174,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Cheat mode enabled in Bondage Brawl and Magic School.</p>"
+                        );
+                    }
+                } else if (setting == "magictoys") {
+                    if (MagictoysOn == true) {
+                        MagictoysOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Toys can't be added under locked chastity for trap mode in map rooms.</p>"
+                        );
+                    } else {
+                        MagiccheatOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Toys can be added under locked chastity for trap mode in map rooms.</p>"
                         );
                     }
                 } else if (setting == "nogarble") {
@@ -14322,6 +14354,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             showFeaturesStatus();
             showHighfameStatus();
             showMagiccheatStatus();
+            showMagictoysStatus(); 
             showMaptrapStatus();
             showNogarbleStatus();
             showNostruggleStatus();
