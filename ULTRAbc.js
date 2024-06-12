@@ -3514,8 +3514,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "LeatherDeluxeAnkleCuffs", "ItemFeet");
         InventoryWear(Player, "X-Cross", "ItemDevices");
         InventoryWear(Player, "PaddedLeatherMittens", "ItemHands");
-        InventoryWear(Player, "ChainClamp", "ItemNipples");
-        InventoryWear(Player, "HempRopeBelt", "ItemVulva");
+        if ((InventoryGet(Player, "ItemBreast") == null) ||
+            (InventoryGet(Player, "ItemBreast").Property == null) ||
+            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {
+            if ((InventoryGet(Player, "ItemNipples") == null) ||
+                (InventoryGet(Player, "ItemNipples").Property == null) ||
+                (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {   
+                InventoryWear(Player, "ChainClamp", "ItemNipples");
+            }
+        }
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {   
+                InventoryWear(Player, "HempRopeBelt", "ItemVulva");           
+            }
+        }
         InventoryWear(Player, "HarnessBallGag1", "ItemMouth");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "PaddedBlindfold", "ItemHead");
