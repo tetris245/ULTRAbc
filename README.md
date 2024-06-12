@@ -61,5 +61,8 @@ Changes for future version
 * New commands:
   - mapz (target) to give coordinates in the map for specified target (yourself when not specified)
   - uset magictoys to enable/disable addition of vibes under locked chastity for trap mode in map rooms
+* Improved the traps in map rooms:
+  - no removal of locked chastity items or locked toys in private zones
+  - no addition of toys under locked chastity except if you have enabled the 'magictoys' mode
 * Updated the ustatus and xstatus bctw command
 
