@@ -59,4 +59,5 @@ All else I might not have included.
 Changes for future version 
 
 * New command: mapz (target) to give coordinates in the map for specified target (yourself when not specified)
+* Updated the xstatus bctw command
 
