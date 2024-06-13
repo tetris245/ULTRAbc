@@ -13554,6 +13554,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
+                    "<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n" +
+                    "<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n" +
+                    "<b>/ulistshow</b> = displays the list of players allowed to bypass Uwall.\n" +
                     "<b>/unrestrict</b> =  partially removes restrictions from game. *\n" +
                     "<b>/uroom</b> = gives infos about UBC users and Uwall protection in current room.\n" +
                     "<b>/ustatus</b> = displays status of ULTRAbc settings.</p>"
@@ -13573,7 +13576,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/uset</b> (setting) = toggles a specific UBC setting *.</p>"
                 );
             }
-
             if (args === "talking") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Talking commands - * = more info when using\n" +
@@ -13621,6 +13623,77 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
+
+    CommandCombine([{
+        Tag: 'ulistadd',
+        Description: "(membernumber): adds a player to the list allowing to bypass Uwall.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ulistadd command must be followed by the member number of the player that you allow to bypass Uwall.<p>"
+                );
+            } else {
+                var member = args * 1;
+                if (Player.OnlineSharedSettings.Ulist == undefined) {
+                    List = [];
+                } else {
+                    List = Player.OnlineSharedSettings.Ulist;
+                }
+                if ((member > 0) && (member != Player.MemberNumber) && (!isNaN(member))) { 
+                    List.push (member);
+                    Player.OnlineSharedSettings.Ulist = List;
+                    ServerAccountUpdate.QueueData({
+                       OnlineSharedSettings: Player.OnlineSharedSettings
+                    });
+                } 
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'ulistremove',
+        Description: "(membernumber): removes a player from the list allowing to bypass Uwall.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ulistremove command must be followed by the member number of the player who is no more allowed to bypass Uwall.<p>"
+                );
+            } else {
+                var member = args * 1;
+                if (Player.OnlineSharedSettings.Ulist != undefined) {
+                    List = Player.OnlineSharedSettings.Ulist;
+                    if ((member > 0) && (member != Player.MemberNumber) && (!isNaN(member))) {
+                        let NewList = [];
+                        let rm = 0;
+                        while (rm < List.length) {
+                            if (List[rm] != member) {
+                                NewList.push(List[rm]);
+                            }
+                            rm++;
+                        }
+                        Player.OnlineSharedSettings.Ulist = NewList;
+                        ServerAccountUpdate.QueueData({
+                            OnlineSharedSettings: Player.OnlineSharedSettings
+                        });
+                    }
+                } 
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'ulistshow',
+        Description: "displays the list of players allowed to bypass Uwall.",
+        Action: (args) => {
+            if (Player.OnlineSharedSettings.Ulist == undefined) {
+                List = [];
+            } else {
+                List = Player.OnlineSharedSettings.Ulist;
+            }
+            ChatRoomSendLocal("Ulist: " + JSON.stringify(List));
+        }
+    }])
+
 
     CommandCombine([{
         Tag: 'underwear',
