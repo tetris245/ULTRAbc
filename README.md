@@ -60,6 +60,9 @@ Changes for future version
 
 * New commands:
   - mapz (target) to give coordinates in the map for specified target (yourself when not specified)
+  - ulistadd (membernumber) to add a player to the list allowing to bypass Uwall
+  - ulistremove (membernumber) to remove a player from the list allowing to bypass Uwall
+  - ulistshow to display the list of players allowed to bypass Uwall
   - uset magictoys to enable/disable addition of vibes under locked chastity for trap mode in map rooms
 * Improved the traps in map rooms:
   - no removal of locked chastity items or locked toys in private zones
