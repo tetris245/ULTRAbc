@@ -347,11 +347,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var BCThemedStatus = ["Themed is enabled.",
         "ThemedBC is disabled."
     ];
+    var CharacterAbsenceStatus = ["Absence's indicator is enabled.",
+        "Absence's indicator is disabled."
+    ];
     var ChatInputStatus = ["The chat input zone uses colors selected in Themed.",
         "The chat input zone uses the default BC colors."
-    ];
-    var ChatStylingStatus = ["Chat Special Tyling is enabled.",
-        "Chat Special Tyling is disabled."
     ];
     var FlatColorStatus = ["Flat color enabled in settings.",
         "Coloring sheet enabled in settings."
@@ -3303,6 +3303,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
+    function showCharacterAbsenceStatus() {
+        let msg;
+        if (THMdata.GlobalModule.doIndicateCharacterAbsence) {
+            msg = CharacterAbsenceStatus[0];
+        } else {
+            msg = CharacterAbsenceStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
     function showChatInputStatus() {
         let msg;
         if (THMdata.IntegrationModule.BC_Chat) {
@@ -3312,17 +3322,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         M_MOANER_sendMessageToWearer(msg);
     }
-
-    function showChatStylingStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doUseChatSpecialStyling) {
-            msg = ChatStylingStatus[0];
-        } else {
-            msg = ChatStylingStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
+    
     function showFlatColorStatus() {
         let msg;
         if (THMdata.GlobalModule.doUseFlatColor) {
@@ -14766,8 +14766,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         decoded = JSON.parse(d);
                         THMdata = decoded;
                         showBCThemedStatus();
+                        showCharacterAbsenceStatus();
                         showChatInputStatus();
-                        //showChatStylingStatus();
                         showFlatColorStatus();
                         showFriendListStatus();
                         showInputZonesStatus();
