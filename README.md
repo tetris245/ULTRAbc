@@ -67,5 +67,6 @@ Changes for future version
 * Improved the traps in map rooms:
   - no removal of locked chastity items or locked toys in private zones
   - no addition of toys under locked chastity except if you have enabled the 'magictoys' mode
+* Removed the self-whispering from the murmur command
 * Updated the ustatus and xstatus bctw command
 
