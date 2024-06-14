@@ -68,5 +68,5 @@ Changes for future version
   - no removal of locked chastity items or locked toys in private zones
   - no addition of toys under locked chastity except if you have enabled the 'magictoys' mode
 * Removed the self-whispering from the murmur command
-* Updated the ustatus and xstatus bctw command
+* Updated the ustatus, xstatus bctw and xstatus thm commands
 
