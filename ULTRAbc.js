@@ -2128,7 +2128,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else {
                                 tgpname = C.Nickname;
                             }
-                            if ((tmpname != tgpname) && (C.OnlineSharedSettings.Uwall == true)) {
+                            if ((tmpname != tgpname) &&
+                                (C.OnlineSharedSettings.Uwall == true) &&
+                                (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                                 ChatRoomSendLocal(
                                     "<p style='background-color:#5fbd7a'>ULTRAbc: UBC Export is not possible because " + tgpname + " has enabled the Uwall protection.</p>"
                                 );
@@ -2162,7 +2164,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             tgpname = C.Nickname;
                         }
-                        if ((tmpname != tgpname) && (C.OnlineSharedSettings.Uwall == true)) {
+                        if ((tmpname != tgpname) &&
+                            (C.OnlineSharedSettings.Uwall == true) &&
+                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
@@ -2241,7 +2245,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             tgpname = C.Nickname;
                         }
-                        if ((tmpname != tgpname) && (C.OnlineSharedSettings.Uwall == true)) {
+                        if ((tmpname != tgpname) &&
+                            (C.OnlineSharedSettings.Uwall == true) &&
+                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
@@ -2290,7 +2296,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             tgpname = C.Nickname;
                         }
-                        if ((tmpname != tgpname) && (C.OnlineSharedSettings.Uwall == true)) {
+                        if ((tmpname != tgpname) &&
+                            (C.OnlineSharedSettings.Uwall == true) &&
+                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
@@ -6386,7 +6394,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -7605,7 +7614,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -7773,7 +7783,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To use the invisible command on other players, they need first to allow Scripts in BC settings.<p>"
                         );
                     } else {
-                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                        if ((target[0].OnlineSharedSettings.Uwall) &&
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
@@ -7939,7 +7950,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             tgpname = target[0].Nickname;
                         }
-                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                        if ((target[0].OnlineSharedSettings.Uwall) &&
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
@@ -8642,7 +8654,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if (Mlock == "no message") var silent = 1;
                     } else {
-                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                        if ((target[0].OnlineSharedSettings.Uwall) &&
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             var uw = 1;
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
@@ -9889,7 +9902,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -9953,7 +9967,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
                             CurrentCharacter.Appearance = this.savedoutfit1.slice(0);
-                            if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -9987,7 +10002,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
                             CurrentCharacter.Appearance = this.savedoutfit2.slice(0);
-                            if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -10021,7 +10037,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
                             CurrentCharacter.Appearance = this.savedoutfit3.slice(0);
-                            if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -10062,7 +10079,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
-                            if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -10094,7 +10112,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
-                            if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -10126,7 +10145,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
-                            if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -10231,7 +10251,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -10870,7 +10891,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             tgpr3 = "their";
                             tgpr4 = "they";
                         }
-                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                        if ((target[0].OnlineSharedSettings.Uwall) &&
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
@@ -11340,7 +11362,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -11555,7 +11578,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -12018,7 +12042,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var uw = 0;
                         CurrentCharacter.Appearance = CurrentCharacter.Appearance.filter(x => (CurrentCharacter.FocusGroup && CurrentCharacter.FocusGroup.Name) ? x.Asset.Group.Name !=
                             CurrentCharacter.FocusGroup.Name : true);
-                        if (CurrentCharacter.OnlineSharedSettings.Uwall == true) {
+                        if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
+                            (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                 tgpname = CurrentCharacter.Name;
                             } else {
@@ -12363,7 +12388,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         tgpr3 = "their";
                         tgpr4 = "they";
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -12481,7 +12507,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             tgpname = target[0].Nickname;
                         }
-                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                        if ((target[0].OnlineSharedSettings.Uwall) &&
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
@@ -12560,7 +12587,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -13328,7 +13356,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -13744,7 +13773,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -13835,7 +13865,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if (Unlock == "no message") var silent = 1;
                     } else {
-                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                        if ((target[0].OnlineSharedSettings.Uwall) &&
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             var uw = 1;
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
@@ -14077,7 +14108,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
@@ -14538,7 +14570,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To use the visible command on other players, they need first to allow Scripts in BC settings.<p>"
                         );
                     } else {
-                        if (target[0].OnlineSharedSettings.Uwall == true) {
+                        if ((target[0].OnlineSharedSettings.Uwall) &&
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                             );
@@ -14801,7 +14834,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (target[0].OnlineSharedSettings.Uwall == true) {
+                    if ((target[0].OnlineSharedSettings.Uwall) &&
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
                         );
