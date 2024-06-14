@@ -64,6 +64,7 @@ Changes for future version
   - ulistremove (membernumber) to remove a player from the list allowing to bypass Uwall
   - ulistshow to display the list of players allowed to bypass Uwall
   - uset magictoys to enable/disable addition of vibes under locked chastity for trap mode in map rooms
+* Added Ulist support to all commands (and wardrobe buttons) protected by Uwall
 * Improved the traps in map rooms:
   - no removal of locked chastity items or locked toys in private zones
   - no addition of toys under locked chastity except if you have enabled the 'magictoys' mode
