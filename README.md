@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 3.2
+Most recent version: 3.3
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version3.2.zip file on the Releases page
+1. Download the ULTRAbc-version3.3.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -58,16 +58,5 @@ All else I might not have included.
 
 Changes for future version 
 
-* New commands:
-  - mapz (target) to give coordinates in the map for specified target (yourself when not specified)
-  - ulistadd (membernumber) to add a player to the list allowing to bypass Uwall
-  - ulistremove (membernumber) to remove a player from the list allowing to bypass Uwall
-  - ulistshow to display the list of players allowed to bypass Uwall
-  - uset magictoys to enable/disable addition of vibes under locked chastity for trap mode in map rooms
-* Added Ulist support to all commands (and wardrobe buttons) protected by Uwall
-* Improved the traps in map rooms:
-  - no removal of locked chastity items or locked toys in private zones
-  - no addition of toys under locked chastity except if you have enabled the 'magictoys' mode
-* Removed the self-whispering from the murmur command
-* Updated the ustatus, xstatus bctw and xstatus thm commands
+(...)
 
