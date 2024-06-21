@@ -1181,6 +1181,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (text7 != "") {
                         ElementValue("InputChat", text5.replace(text6, text7));
                         event.preventDefault(); 
+                        ElementValue("InputChat", "");
                         ServerSend("ChatRoomChat", {
                             "Content": text7,
                             "Type": "Whisper",
@@ -9860,6 +9861,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ElementValue("InputChat", msg5.replace(msg5, msg6));
                             ChatRoomTargetMemberNumber = target[0].MemberNumber;
                             if (msg != "") {
+                                ElementValue("InputChat", "");
                                 ServerSend("ChatRoomChat", {
                                     "Content": msg6,
                                     "Type": "Whisper",
