@@ -700,6 +700,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
     ULTRAChatRoomMapViewMovementProcess();
     ULTRAChatRoomMenuDraw();
+    ULTRAChatRoomSendChat();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
     ULTRAChatSearchNormalDraw();
@@ -841,195 +842,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return true;
                 }
             }
-            if (event.key === "Enter" && !event.shiftKey) {
-                var nm = 0;
-                talking = true;
-                var text = ElementValue("InputChat");
-                if (text.startsWith(",")) {
-                    var text1 = "(" + text.slice(1) + ")";
-                    ElementValue("InputChat", text.replace(text, text1));
-                } else {
-                    var text1 = text;
-                }
-                if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
-                    var text2 = text1;
-                    var tsp = 1;
-                    ChatRoomSetTarget(-1);
-                } else if ((text1.startsWith("!")) || (text1.startsWith("(")) || (text1.startsWith("*"))) {
-                    var text2 = text1;
-                    var tsp = 1;
-                } else if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) {
-                    var text2 = text1;
-                    var tsp = 1;
-                    ChatRoomSetTarget(-1);
-                } else if (text1.startsWith("/")) {
-                    var text2 = text1;
-                    var tsp = 1;
-                    ChatRoomSetTarget(-1);
-                    if (!text.startsWith("//")) {
-                        talking = false;
-                    }
-                } else if ((text1.startsWith("@")) && (window.MBCHC)) {
-                    var text2 = text1;
-                    var tsp = 1;
-                    ChatRoomSetTarget(-1);
-                } else if (text1.startsWith("\\")) {
-                    var text2 = text1.replaceAt(0, "\u200b");
-                    var tsp = 1;
-                } else {
-                    var tsp = 0;
-                    if (DolltalkOn == true) {
-                        var segmenter = new Intl.Segmenter([], {
-                            granularity: 'word'
-                        });
-                        var segmentedText = segmenter.segment(text1);
-                        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                        var ln = words.length;
-                        if (ln > 5) {
-                            var nm = 1;
-                        }
-                        let i = 0;
-                        while (i < ln) {
-                            var lw = words[i].length;
-                            if (lw > 6) {
-                                var nm = 1;
-                            }
-                            i++;
-                        }
-                        if (nm == 1) {
-                            var text2 = "";
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your message or whisper can't be sent because it does not respect the rules of doll talk.</p>"
-                            );
-                        }
-                    }
-                    if (nm == 0) {
-                        if (this.Stutter1On == true) {
-                            var text2 = SpeechTransformStutter(text1, 1);
-                        } else if (this.Stutter2On == true) {
-                            var text2 = SpeechTransformStutter(text1, 2);
-                        } else if (this.Stutter3On == true) {
-                            var text2 = SpeechTransformStutter(text1, 3);
-                        } else if (this.Stutter4On == true) {
-                            var text2 = SpeechTransformStutter(text1, 4);
-                        } else {
-                            var text2 = text1;
-                        }
-                    }
-                }
-                ElementValue("InputChat", text1.replace(text1, text2));
-                if ((tsp == 1) || (nm == 1)) {
-                    var text3 = text2;
-                } else {
-                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                        var text3 = M_MOANER_applyMoanToMsg(Player, text2);
-                    } else {
-                        var text3 = text2;
-                    }
-                }
-                ElementValue("InputChat", text2.replace(text2, text3));
-                mb = 0;
-                if (Player.ExtensionSettings.MBS != null) {
-                    str = Player.ExtensionSettings.MBS;
-                    d = LZString.decompressFromUTF16(str);
-                    MBSdata = {};
-                    decoded = JSON.parse(d);
-                    MBSdata = decoded;
-                    if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
-                        mb = 1;
-                    }
-                }
-                if ((tsp == 1) || (nm == 1)) {
-                    var text4 = text3;
-                } else {
-                    if (this.BabyTalkOn == true) {
-                        var text4 = SpeechTransformBabyTalk(text3);
-                    } else if (this.GagTalkOn == true) {
-                        if (mb == 1) {
-                            if (ChatRoomTargetMemberNumber == null) {
-                                var text4 = text3;
-                            } else {
-                                var text4 = SpeechTransformGagGarble(text3, gl);
-                            }
-                        } else {
-                            var text4 = SpeechTransformGagGarble(text3, gl);
-                        }
-                    } else {
-                        var text4 = text3;
-                    }
-                }
-                ElementValue("InputChat", text3.replace(text3, text4));
-                if (ChatRoomTargetMemberNumber == -1) {
-                    if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                        var text5 = text4;
-                    } else {
-                        if (DoubletalkOn == true) {
-                            if (gl == -1) {
-                                var text5 = "*" + "babytalks: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
-                            } else {
-                                if (gl != 0) {
-                                    var text5 = "*" + "gagtalks: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
-                                } else {
-                                    var text5 = text3;
-                                }
-                            }
-                        } else {
-                            if (gl != 0) {
-                                var text5 = text4;
-                            } else {
-                                var text5 = text3;
-                            }
-                        }
-                    }
-                    ElementValue("InputChat", text4.replace(text4, text5));
-                    event.preventDefault();
-                    if (nm == 0) {
-                        ChatRoomSendChat();
-                    }
-                } else {
-                    if (NowhisperOn == false) {
-                        if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                            var text5 = text4;
-                        } else {
-                            if (DoubletalkOn == true) {
-                                if (gl == -1) {
-                                    var text5 = "*" + "babywhispers: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
-                                } else {
-                                    if (gl != 0) {
-                                        var text5 = "*" + "gagwhispers: \u0022" + text4 + "\u0022 (\u0022" + text3 + "\u0022)";
-                                    } else {
-                                        var text5 = text3;
-                                    }
-                                }
-                            } else {
-                                if (gl != 0) {
-                                    var text5 = text4;
-                                } else {
-                                    var text5 = text3;
-                                }
-                            }
-                        }
-                        ElementValue("InputChat", text4.replace(text4, text5));
-                        if (text5.startsWith("*")) {
-                            if (text5.startsWith("**")) {
-                                var text6 = text5.slice(1);
-                            } else {
-                                var text6 = "*" + tmpname + text5.slice(1);
-                            }
-                        } else {
-                            var text6 = text5;
-                        }
-                        ElementValue("InputChat", text5.replace(text5, text6));
-                        event.preventDefault();
-                        if (text6 != "") {
-                            targetNumber = ChatRoomTargetMemberNumber;
-                            ChatRoomSendWhisper(targetNumber, text6);
-                        }
-                    }
-                }
-                ElementValue("InputChat", "");
-            }
-            return next(args);
+            next(args);
         });
     }
 
@@ -1194,6 +1007,204 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
             }
+            next(args);
+        });
+    }
+
+    async function ULTRAChatRoomSendChat() {
+        modApi.hookFunction('ChatRoomSendChat', 4, (args, next) => {
+           const inputChat = /** @type {null | HTMLTextAreaElement} */(document.getElementById("InputChat"));
+           let msg = inputChat.value.trim();
+           var tsp = 0;
+           if (msg.startsWith(",")) {
+               var text1 = "(" + msg.slice(1) + ")";
+               ElementValue("InputChat", msg.replace(msg, text1));
+           } else {
+               var text1 = msg;
+           }
+           if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) var tsp = 1;
+           if ((text1.startsWith("!")) || (text1.startsWith("(")) || (text1.startsWith("*"))) var tsp = 1;
+           if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) var tsp = 1;
+           if (text1.startsWith("/")) var tsp = 1;
+           if ((text1.startsWith("@")) && (window.MBCHC)) var tsp = 1;
+           if (text1.startsWith("\\")) var tsp = 1; 
+           if (tsp == 1) text2 = text1;
+           if (tsp == 0) {
+               var nm = 0;
+               if (DolltalkOn == true) {
+                   var segmenter = new Intl.Segmenter([], {
+                   granularity: 'word'
+                   });
+                   var segmentedText = segmenter.segment(text1);
+                   var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                   var ln = words.length;
+                   if (ln > 5) {
+                       var nm = 1; 
+                   }
+                   let i = 0;
+                   while (i < ln) {
+                       var lw = words[i].length;
+                       if (lw > 6) {
+                           var nm = 1;
+                        }
+                        i++;
+                    }
+                    if (nm == 1) {
+                        var text2 = "";
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message or whisper can't be sent because it does not respect the rules of doll talk.</p>"
+                         );
+                     } else {
+                         var text2 = text1;
+                     }
+                } else {
+                     var text2 = text1;
+                }
+                ElementValue("InputChat", text1.replace(text1, text2));
+            } 
+            if ((tsp == 1) || (nm == 1)) {
+                var text3 = text2;
+            } else {
+                if (this.Stutter1On == true) {
+                    var text3 = SpeechTransformStutter(text2, 1);
+                } else if (this.Stutter2On == true) {
+                    var text3 = SpeechTransformStutter(text2, 2);
+                } else if (this.Stutter3On == true) {
+                    var text3 = SpeechTransformStutter(text2, 3);
+                } else if (this.Stutter4On == true) {
+                    var text3 = SpeechTransformStutter(text2, 4);
+                } else {
+                    var text3 = text2;
+                }
+            }
+            ElementValue("InputChat", text2.replace(text2, text3));          
+            if ((tsp == 1) || (nm == 1)) {
+                var text4 = text3;
+            } else {
+                if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                     var text4 = M_MOANER_applyMoanToMsg(Player, text3);
+                 } else {
+                     var text4 = text3;
+                 }
+            }
+            ElementValue("InputChat", text3.replace(text3, text4));
+            mb = 0;
+            if (Player.ExtensionSettings.MBS != null) {
+                str = Player.ExtensionSettings.MBS;
+                d = LZString.decompressFromUTF16(str);
+                MBSdata = {};
+                decoded = JSON.parse(d);
+                MBSdata = decoded;
+                if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                    mb = 1;
+                }
+            }
+            if ((tsp == 1) || (nm == 1)) {
+                var text5 = text4;
+            } else {
+                if (this.BabyTalkOn == true) {
+                    var text5 = SpeechTransformBabyTalk(text4);
+                } else if (this.GagTalkOn == true) {
+                    if (mb == 1) {
+                        if (ChatRoomTargetMemberNumber == null) {
+                            var text5 = text4;
+                        } else {
+                            var text5 = SpeechTransformGagGarble(text4, gl);
+                        }
+                    } else {
+                        var text5 = SpeechTransformGagGarble(text4, gl);
+                    }
+                } else {
+                    var text5 = text4;
+                }
+            }
+            ElementValue("InputChat", text4.replace(text4, text5));
+            if (ChatRoomTargetMemberNumber == -1) {
+                if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
+                    var text6 = text5;
+                } else {
+                    if (DoubletalkOn == true) {
+                        if (gl == -1) {
+                            var text6 = "*" + "babytalks: \u0022" + text5 + "\u0022 (\u0022" + text3 + "\u0022)";
+                        } else {
+                            if (gl != 0) {
+                                var text6 = "*" + "gagtalks: \u0022" + text5 + "\u0022 (\u0022" + text4 + "\u0022)";
+                            } else {
+                                var text6 = text4;
+                            }
+                        }
+                    } else {
+                        if (gl != 0) {
+                            var text6 = text5;
+                        } else {
+                            var text6 = text4;
+                        }
+                    }
+                }
+                if (nm == 0) {
+                    ElementValue("InputChat", text5.replace(text5, text6));
+                    event.preventDefault();	               
+                }
+            } else {
+                if (NowhisperOn == false) {
+                    if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
+                        var text6 = text5;
+                    } else {
+                        if (DoubletalkOn == true) {
+                            if (gl == -1) {
+                                var text6 = "*" + "babywhispers: \u0022" + text5 + "\u0022 (\u0022" + text4 + "\u0022)";
+                            } else {
+                                if (gl != 0) {
+                                    var text6 = "*" + "gagwhispers: \u0022" + text5 + "\u0022 (\u0022" + text4 + "\u0022)";
+                                } else {
+                                    var text6 = text4;
+                                }
+                            }
+                        } else {
+                            if (gl != 0) {
+                                var text6 = text5;
+                            } else {
+                                var text6 = text4;
+                            }
+                        }
+                    }
+                    ElementValue("InputChat", text5.replace(text5, text6));
+                    if (text6.startsWith("*")) {
+                        if (text6.startsWith("**")) {
+                            var text7 = text6.slice(1);
+                        } else {
+                            var text7 = "*" + tmpname + text6.slice(1);
+                        }
+                    } else {
+                        var text7 = text6;
+                    }          
+                    if (text7 != "") {
+                        ElementValue("InputChat", text5.replace(text6, text7));
+                        event.preventDefault(); 
+                        ServerSend("ChatRoomChat", {
+                            "Content": text7,
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                } else {
+                                    TargetName = ChatRoomCharacter[C].Nickname;
+                                }
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + text7,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                    }
+                }         
+            }        
             next(args);
         });
     }
@@ -9849,8 +9860,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ElementValue("InputChat", msg5.replace(msg5, msg6));
                             ChatRoomTargetMemberNumber = target[0].MemberNumber;
                             if (msg != "") {
-                                targetNumber = ChatRoomTargetMemberNumber;
-                                ChatRoomSendWhisper(targetNumber, msg6);
+                                ServerSend("ChatRoomChat", {
+                                    "Content": msg6,
+                                    "Type": "Whisper",
+                                    "Target": ChatRoomTargetMemberNumber
+                                });
+                                for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                    if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                        if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                            TargetName = ChatRoomCharacter[C].Name;
+                                        } else {
+                                            TargetName = ChatRoomCharacter[C].Nickname;
+                                        }
+                                        break;
+                                   }
+                                ChatRoomMessage({
+                                    Content: "Whisper to " + TargetName + ": " + msg6,
+                                    Type: "LocalMessage",
+                                    Sender: Player.MemberNumber
+                                });
+                                document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                                document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                             }
                         }
                     }
