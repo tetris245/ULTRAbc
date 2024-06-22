@@ -1142,8 +1142,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (nm == 0) {
-                    ElementValue("InputChat", text5.replace(text5, text6));
-                    event.preventDefault();	               
+                    ElementValue("InputChat", text5.replace(text5, text6));               
                 }
             } else {
                 if (NowhisperOn == false) {
@@ -1180,7 +1179,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }          
                     if (text7 != "") {
                         ElementValue("InputChat", text5.replace(text6, text7));
-                        event.preventDefault(); 
                         ElementValue("InputChat", "");
                         ServerSend("ChatRoomChat", {
                             "Content": text7,
