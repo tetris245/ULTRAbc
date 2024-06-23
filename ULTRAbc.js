@@ -1195,34 +1195,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var text7 = text6;
                     }          
                     if (text7 != "") {
-                        ElementValue("InputChat", text5.replace(text6, text7));
-                        if (DoubletalkOn == false) {
-                            targetNumber = ChatRoomTargetMemberNumber;
-                            ChatRoomSendWhisper(targetNumber, text7);
-                        } else {                      
-                            ElementValue("InputChat", "");
-                            ServerSend("ChatRoomChat", {
-                                "Content": text7,
-                                "Type": "Whisper",
-                                "Target": ChatRoomTargetMemberNumber
-                            });
-                            for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                    if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                        TargetName = ChatRoomCharacter[C].Name;
-                                    } else {
-                                        TargetName = ChatRoomCharacter[C].Nickname;
-                                    }
-                                    break;
+                        ElementValue("InputChat", text5.replace(text6, text7));               
+                        ElementValue("InputChat", "");
+                        ServerSend("ChatRoomChat", {
+                            "Content": text7
+                            "Type": "Whisper",
+                            "Target": ChatRoomTargetMemberNumber
+                        });
+                        for (let C = 0; C < ChatRoomCharacter.length; C++)
+                            if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                    TargetName = ChatRoomCharacter[C].Name;
+                                } else {
+                                    TargetName = ChatRoomCharacter[C].Nickname;
                                 }
-                            ChatRoomMessage({
-                                Content: "Whisper to " + TargetName + ": " + text7,
-                                Type: "LocalMessage",
-                                Sender: Player.MemberNumber
-                            });
-                            document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                            document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-                        }
+                                break;
+                            }
+                        ChatRoomMessage({
+                            Content: "Whisper to " + TargetName + ": " + text7,
+                            Type: "LocalMessage",
+                            Sender: Player.MemberNumber
+                        });
+                        document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                        document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                     }         
                 }      
             }
@@ -9881,33 +9876,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ElementValue("InputChat", msg5.replace(msg5, msg6));
                             ChatRoomTargetMemberNumber = target[0].MemberNumber;
                             if (msg != "") {
-                                if (DoubletalkOn == false) {
-                                    targetNumber = ChatRoomTargetMemberNumber;
-                                    ChatRoomSendWhisper(targetNumber, msg6);
-                                } else {
-                                    ElementValue("InputChat", "");
-                                    ServerSend("ChatRoomChat", {
-                                        "Content": msg6,
-                                        "Type": "Whisper",
-                                        "Target": ChatRoomTargetMemberNumber
-                                    });
-                                    for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                            if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                                TargetName = ChatRoomCharacter[C].Name;
-                                            } else {
-                                                TargetName = ChatRoomCharacter[C].Nickname;
-                                            }
-                                            break;
-                                       }
-                                    ChatRoomMessage({
-                                        Content: "Whisper to " + TargetName + ": " + msg6,
-                                        Type: "LocalMessage",
-                                        Sender: Player.MemberNumber
-                                    });
-                                    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                                    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-                                }
+                                ElementValue("InputChat", "");
+                                ServerSend("ChatRoomChat", {
+                                    "Content": msg6,
+                                    "Type": "Whisper",
+                                    "Target": ChatRoomTargetMemberNumber
+                                });
+                                for (let C = 0; C < ChatRoomCharacter.length; C++)
+                                    if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+                                        if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
+                                            TargetName = ChatRoomCharacter[C].Name;
+                                        } else {
+                                            TargetName = ChatRoomCharacter[C].Nickname;
+                                        }
+                                        break;
+                                    }
+                                ChatRoomMessage({
+                                    Content: "Whisper to " + TargetName + ": " + msg6,
+                                    Type: "LocalMessage",
+                                    Sender: Player.MemberNumber
+                                });
+                                document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
+                                document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                             }
                         }
                     }
