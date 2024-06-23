@@ -1022,13 +1022,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
            } else {
                var text1 = msg;
            }
-           if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) var tsp = 1;
+           if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
+               var tsp = 1;
+           }
            if ((text1.startsWith("!")) || (text1.startsWith("(")) || (text1.startsWith("*"))) var tsp = 1;
            if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) var tsp = 1;
-           if (text1.startsWith("/")) var tsp = 1;
-           if ((text1.startsWith("@")) && (window.MBCHC)) var tsp = 1;
-           if (text1.startsWith("\\")) var tsp = 1; 
+           if (text1.startsWith("/")) {
+               if (!text1.startsWith("//")) {
+                   var tsp = 1;
+                   ChatRoomSetTarget(-1);
+               } else {
+                   var tsp = 2;
+                   var text2 = text1.replaceAt(0, "\u200b");
+               }
+           }
+           if ((text1.startsWith("@")) && (window.MBCHC)) {
+               var tsp = 1;
+               ChatRoomSetTarget(-1);
+           }
+           if (text1.startsWith("\\")) {
+               var tsp = 2;
+               var text2 = text1.replaceAt(0, "\u200b");
+           }
            if (tsp == 1) text2 = text1;
+           if (tsp == 2) tsp = 1;
            if (tsp == 0) {
                var nm = 0;
                if (DolltalkOn == true) {
