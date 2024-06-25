@@ -8509,6 +8509,44 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'layershow',
+        Description: "shows all layers of a specific worn item and saves Item Slot",
+        Action: () => {
+            ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
+                );
+                setTimeout(function() {
+                    if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
+                        if (CurrentCharacter.FocusGroup.Name) { 
+                            var Target = CurrentCharacter.FocusGroup.Name;
+                            ChatRoomSendLocal("AssetGroup = " + Target);                                
+                            if (InventoryGet(Player, Target) != null) {
+                                Asset.Priority = InventoryGet(Player, Target).Asset.DrawingPriority;
+                                ChatRoomSendLocal("Global Priority " + Asset.Priority);
+                                Color = InventoryGet(Player, Target).Color;                            
+                                OverridePriority = InventoryGet(Player, Target).Property.OverridePriority;
+                                Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
+                                Priority = InventoryGet(Player, Target).Asset.Layer.Priority;
+                                let ly = 0;
+                                while (ly < Asset.Layer.length) {
+                                    Name = Asset.Layer[ly].Name;
+                                    layerPriority = this.OverridePriority?.[Name] ?? Priority;                   
+                                    ChatRoomSendLocal("Layer " + ly  + " = " + Name + " - Color " + Color[ly] + " - Priority " + layerPriority);                
+                                    ly++; 
+                                }
+                                this.saveditemslot = Target;
+                                DialogLeave();
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Item Slot saved.</p>"
+                                );
+                            }
+                       }                       
+                 }
+            }, 5000);
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'lock',
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
         Action: (args) => {
@@ -13678,12 +13716,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Visual commands - * = more info when using\n" +
                     "<b>/bg1</b> = adds hidden backgrounds to the selection screen.\n" +
-                    "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.\n" +
-                    "<b>/bg3</b> (number) = uses a Bondage College background as custom background. /bg3 to get the list.\n" +
-                    "<b>/blur</b> (blurlevel) = forces a specific global blur level.\n" +
-                    "<b>/colorchanger</b> (animhere) = gets an animation with color change. *\n" +
-                    "<b>/pose2</b> (posehere) (target) = changes the pose of any player. *\n" +
-                    "<b>/see</b> (visionmode) (blurlevel): forces a specific vision mode. *\n" +
+                    "<b>/bg2</b> (number) = a B. Brawl bg as bg. /bg2 = list.\n" +
+                    "<b>/bg3</b> (number) = a B. College bg as bg. /bg3 = list.\n" +
+                    "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
+                    "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
+                    "<b>/layershow</b> = infos about a worn item + Item Slot saved\n" +
+                    "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
+                    "<b>/see</b> (visionmode) (blurlevel): forces a vision mode. *\n" +
                     "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
                     "<b>/vrsee</b> (background) (mode) (game) = changes the settings of a worn VR Headset. *</p>"
                 );
