@@ -1198,7 +1198,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementValue("InputChat", text5.replace(text6, text7));               
                         ElementValue("InputChat", "");
                         ServerSend("ChatRoomChat", {
-                            "Content": text7
+                            "Content": text7,
                             "Type": "Whisper",
                             "Target": ChatRoomTargetMemberNumber
                         });
