@@ -8509,43 +8509,79 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'layershow',
-        Description: "shows all layers of a specific worn item and saves Item Slot",
+        Tag: 'layershow1',
+        Description: "gives info about layer colors of a specific worn item + saves Item Slot",
         Action: () => {
             ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
-                );
-                setTimeout(function() {
-                    if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
-                        if (CurrentCharacter.FocusGroup.Name) { 
-                            var Target = CurrentCharacter.FocusGroup.Name;
-                            ChatRoomSendLocal("AssetGroup = " + Target);                                
-                            if (InventoryGet(Player, Target) != null) {
-                                Asset.Priority = InventoryGet(Player, Target).Asset.DrawingPriority;
-                                ChatRoomSendLocal("Global Priority " + Asset.Priority);
-                                Color = InventoryGet(Player, Target).Color;                            
-                                OverridePriority = InventoryGet(Player, Target).Property.OverridePriority;
-                                Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
-                                Priority = InventoryGet(Player, Target).Asset.Layer.Priority;
+                "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.</p>"
+            );
+            setTimeout(function() {
+                if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
+                    if (CurrentCharacter.FocusGroup.Name) { 
+                        var Target = CurrentCharacter.FocusGroup.Name;
+                        ChatRoomSendLocal("AssetGroup = " + Target); 
+                        if (InventoryGet(Player, Target) != null) {      
+                            Color = InventoryGet(Player, Target).Color;                        
+                            Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
+                            var ak = 0;                      
+                            if (InventoryGet(Player, Target).Asset.Archetype != undefined) {  
+                                Archetype = InventoryGet(Player, Target).Asset.Archetype; 
+                                if (Archetype == "typed") var ak = 1;
+                                if (Archetype == "modular") var ak = 2;
+                            }
+                            if (ak < 2) {
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
-                                    Name = Asset.Layer[ly].Name;
-                                    layerPriority = this.OverridePriority?.[Name] ?? Priority;                   
-                                    ChatRoomSendLocal("Layer " + ly  + " = " + Name + " - Color " + Color[ly] + " - Priority " + layerPriority);                
-                                    ly++; 
+                                    if ((Asset.Layer.length == 1) || (Asset.Layer[ly].Name == null)) {
+                                        Name = InventoryGet(Player, Target).Asset.Name;
+                                    } else {
+                                        Name = Asset.Layer[ly].Name;
+                                    }
+                                    if (ak == 0) {     
+                                        if (Color[ly] == undefined) {
+                                            Color2 = "No way to change color"; 
+                                        } else if (Color[ly] == "Default") {
+                                            Color2 = "Default";
+                                        } else {
+                                            Color2 = Color[ly];                                     
+                                        }
+                                     }
+                                     if (ak == 1) {  
+                                         if (Color[ly] == undefined) {
+                                            Color2 = Color; 
+                                         } else {
+                                            Color2 = Color[ly];                                     
+                                         }
+                                     }                                                                                                           
+                                     ChatRoomSendLocal("Layer " + ly  + " = " + Name + " - " + Color2);
+                                     ly++; 
                                 }
-                                this.saveditemslot = Target;
-                                DialogLeave();
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Item Slot saved.</p>"
-                                );
                             }
-                       }                       
+                            if (ak == 2) {
+                                let ly = 0;
+                                while (ly < Asset.Layer.length) {
+                                    if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
+                                        Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
+                                        Name2 = Asset.Layer[ly].Name;
+                                        ColorIndex = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
+                                        Color[ly] = Color[ColorIndex];
+                                        ChatRoomSendLocal("Layer " + ly  + " = " + Name1 + " - " + Name2 + " - " + Color[ly]);  
+                                     }
+                                     ly++;
+                                 } 
+                            }
+                            this.saveditemslot = Target;                      
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Item Slot saved.</p>"
+                            );
+                        }
+                        DialogLeave();
+                    }                       
                  }
             }, 5000);
         }
     }])
-
+ 
     CommandCombine([{
         Tag: 'lock',
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
@@ -13720,7 +13756,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bg3</b> (number) = a B. College bg as bg. /bg3 = list.\n" +
                     "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
-                    "<b>/layershow</b> = infos about a worn item + Item Slot saved\n" +
+                    "<b>/layershow1</b> = color infos for item + Slot saved.\n" +
                     "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
                     "<b>/see</b> (visionmode) (blurlevel): forces a vision mode. *\n" +
                     "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
