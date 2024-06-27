@@ -8509,6 +8509,44 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'layerset1',
+        Description: "(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>The layerset1 command must be followed by an available layer number and a color code in the format #000000 for the item in the Item Slot previously saved with <b>/layershow1</b>.</p>"
+                );
+            } else {
+                var stringLys1 = args;
+                var stringLys2 = stringLys1.split(/[ ,]+/);
+                var layer = stringLys2[0];
+                var color = stringLys2[1]; 
+                if (this.saveditemslot == undefined) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>Warning</b>: First use the <b>/layershow1</b> command to get useful info and save Item Slot.</p>"
+                    );
+                } else {
+                    var Target = this.saveditemslot.slice(0);
+                    if ((InventoryGet(Player, Target) != null) && (color.startsWith("#"))) {
+                        var ak = 0;                      
+                        if (InventoryGet(Player, Target).Asset.Archetype != undefined) {  
+                            Archetype = InventoryGet(Player, Target).Asset.Archetype; 
+                            if (Archetype == "typed") var ak = 1;
+                            if (Archetype == "modular") var ak = 2;
+                        }
+                        if (ak < 2) InventoryGet(Player, Target).Color[layer] = color;
+                        if (ak == 2) {
+                            ColorIndex = InventoryGet(Player, Target).Asset.Layer[layer].ColorIndex;
+                            Color[ColorIndex] = color;
+                         }
+                         ChatRoomCharacterUpdate(Player);
+                    }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'layershow1',
         Description: "gives info about layer colors of a specific worn item + saves Item Slot",
         Action: () => {
@@ -8546,15 +8584,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                             Color2 = Color[ly];                                     
                                         }
                                      }
-                                     if (ak == 1) {  
-                                         if (Color[ly] == undefined) {
-                                            Color2 = Color; 
+                                     if (ak == 1) { 
+                                         if (ly > (Color.length -1)) {                    
+                                             Color2 = "No way to change color"; 
                                          } else {
-                                            Color2 = Color[ly];                                     
+                                             if (Color[ly] == undefined) {
+                                                Color2 = Color; 
+                                             } else {
+                                                Color2 = Color[ly];                                     
+                                             }
                                          }
-                                     }                                                                                                           
+                                     }                                                 
                                      ChatRoomSendLocal("Layer " + ly  + " = " + Name + " - " + Color2);
-                                     ly++; 
+                                    ly++; 
                                 }
                             }
                             if (ak == 2) {
@@ -8563,14 +8605,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
                                         Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
                                         Name2 = Asset.Layer[ly].Name;
-                                        ColorIndex = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
-                                        Color[ly] = Color[ColorIndex];
-                                        ChatRoomSendLocal("Layer " + ly  + " = " + Name1 + " - " + Name2 + " - " + Color[ly]);  
+                                        Index = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
+                                        Color2 = InventoryGet(Player, Target).Color[Index];
+                                        ChatRoomSendLocal("Layer " + ly  + " = " + Name1 + " - " + Name2 + " - " + Color2);  
                                      }
                                      ly++;
                                  } 
                             }
-                            this.saveditemslot = Target;                      
+                            this.saveditemslot = Target;      
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Item Slot saved.</p>"
                             );
@@ -8581,7 +8623,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }, 5000);
         }
     }])
- 
+                
     CommandCombine([{
         Tag: 'lock',
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
@@ -13756,7 +13798,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bg3</b> (number) = a B. College bg as bg. /bg3 = list.\n" +
                     "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
-                    "<b>/layershow1</b> = color infos for item + Slot saved.\n" +
+                    "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot.\n" + 
+                    "<b>/layershow1</b> = color infos and saving of Item Slot.\n" +
                     "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
                     "<b>/see</b> (visionmode) (blurlevel): forces a vision mode. *\n" +
                     "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
