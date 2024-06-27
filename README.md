@@ -60,5 +60,5 @@ Changes for future version
 
 * New commands:
   - layerset1 (layernumber) (colorcode) to change a layer color for the worn item in the Item Slot previously saved by using layershow1
-  - layershow1 to get layer color info about worn iten in a slot selected by mouse click + saves the selected Item Slot
+  - layershow1 to get layer color info about worn item in a slot selected by mouse click + saves the selected Item Slot
 
