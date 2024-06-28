@@ -8567,8 +8567,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "gives info about layer colors of a specific worn item + saves Item Slot",
         Action: () => {
             ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.</p>"
-                );
+                "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.</p>"
+            );
             setTimeout(function() {
                 if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
                     if (CurrentCharacter.FocusGroup.Name) { 
