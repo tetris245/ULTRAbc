@@ -8514,7 +8514,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
+                    "<p style='background-color:#5fbd7a'>First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
                     "The layerset1 command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.</p>"
                 );
             } else {
