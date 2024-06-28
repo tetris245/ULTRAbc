@@ -8514,7 +8514,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>The layerset1 command must be followed by an available layer number and a color code in the format #000000 for the item in the Item Slot previously saved with <b>/layershow1</b>.</p>"
+                    "<p style='background-color:#5fbd7a'><b>First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
+                    "The layerset1 command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.</p>"
                 );
             } else {
                 var stringLys1 = args;
@@ -8534,12 +8535,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (Archetype == "typed") var ak = 1;
                             if (Archetype == "modular") var ak = 2;
                         }
-                        if (ak < 2) InventoryGet(Player, Target).Color[layer] = color;
+                        if (ak < 2) {
+                            if (layer == -1) {
+                                for (let A = 0; A < Asset.Layer.length; A++)
+                                     if (Asset.Layer[A].AllowColorize) {
+                                        InventoryGet(Player, Target).Color[A] = color; 
+                                     }     
+                            } else { 
+                                InventoryGet(Player, Target).Color[layer] = color;
+                            }
+                        }
                         if (ak == 2) {
-                            ColorIndex = InventoryGet(Player, Target).Asset.Layer[layer].ColorIndex;
-                            Color[ColorIndex] = color;
-                         }
-                         ChatRoomCharacterUpdate(Player);
+                            if (layer == -1) {
+                                for (let A = 0; A < Asset.Layer.length; A++)
+                                    ColorIndex = InventoryGet(Player, Target).Asset.Layer[A].ColorIndex;
+                                    InventoryGet(Player, Target).Color[ColorIndex] = color;
+                            } else { 
+                                ColorIndex = InventoryGet(Player, Target).Asset.Layer[layer].ColorIndex;
+                                InventoryGet(Player, Target).Color[ColorIndex] = color;
+                            }
+                        }
+                        ChatRoomCharacterUpdate(Player);
                     }
                 }
             }
@@ -8551,15 +8567,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "gives info about layer colors of a specific worn item + saves Item Slot",
         Action: () => {
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.</p>"
-            );
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.</p>"
+                );
             setTimeout(function() {
                 if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
                     if (CurrentCharacter.FocusGroup.Name) { 
-                        var Target = CurrentCharacter.FocusGroup.Name;
-                        ChatRoomSendLocal("AssetGroup = " + Target); 
-                        if (InventoryGet(Player, Target) != null) {      
-                            Color = InventoryGet(Player, Target).Color;                        
+                        var Target = CurrentCharacter.FocusGroup.Name;                   
+                        if (InventoryGet(Player, Target) != null) {   
+                            ChatRoomSendLocal("AssetGroup = " + Target);                           
                             Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
                             var ak = 0;                      
                             if (InventoryGet(Player, Target).Asset.Archetype != undefined) {  
@@ -8575,27 +8590,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     } else {
                                         Name = Asset.Layer[ly].Name;
                                     }
-                                    if (ak == 0) {     
-                                        if (Color[ly] == undefined) {
-                                            Color2 = "No way to change color"; 
-                                        } else if (Color[ly] == "Default") {
-                                            Color2 = "Default";
-                                        } else {
-                                            Color2 = Color[ly];                                     
-                                        }
-                                     }
-                                     if (ak == 1) { 
-                                         if (ly > (Color.length -1)) {                    
-                                             Color2 = "No way to change color"; 
-                                         } else {
-                                             if (Color[ly] == undefined) {
-                                                Color2 = Color; 
-                                             } else {
-                                                Color2 = Color[ly];                                     
-                                             }
-                                         }
-                                     }                                                 
-                                     ChatRoomSendLocal("Layer " + ly  + " = " + Name + " - " + Color2);
+                                    if (InventoryGet(Player, Target).Asset.Layer[ly].AllowColorize) {
+                                        Color2 =  InventoryGet(Player, Target).Color[ly];                                             
+                                    } else {
+                                        Color2 = "No way to change color"; 
+                                    }                                                                                                              
+                                    ChatRoomSendLocal("Layer " + ly  + " = " + Name + " - " + Color2);
                                     ly++; 
                                 }
                             }
@@ -8608,9 +8608,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         Index = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
                                         Color2 = InventoryGet(Player, Target).Color[Index];
                                         ChatRoomSendLocal("Layer " + ly  + " = " + Name1 + " - " + Name2 + " - " + Color2);  
-                                     }
-                                     ly++;
-                                 } 
+                                    }
+                                    ly++;
+                                } 
                             }
                             this.saveditemslot = Target;      
                             ChatRoomSendLocal(
@@ -8623,7 +8623,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }, 5000);
         }
     }])
-                
+            
     CommandCombine([{
         Tag: 'lock',
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
@@ -13798,7 +13798,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bg3</b> (number) = a B. College bg as bg. /bg3 = list.\n" +
                     "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
-                    "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot.\n" + 
+                    "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" + 
                     "<b>/layershow1</b> = color infos and saving of Item Slot.\n" +
                     "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
                     "<b>/see</b> (visionmode) (blurlevel): forces a vision mode. *\n" +
