@@ -8626,7 +8626,104 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }, 5000);
         }
     }])
-            
+
+    CommandCombine([{
+        Tag: 'layershow2',
+        Description: "gives info about layer priorities of a specific worn item + saves Item Slot",
+        Action: () => {
+            ChatRoomSendLocal(
+                "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.</p>"
+            );
+            setTimeout(function() {
+                if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
+                    if (CurrentCharacter.FocusGroup.Name) { 
+                        var Target = CurrentCharacter.FocusGroup.Name;
+                        if (InventoryGet(Player, Target) != null) {
+                            ChatRoomSendLocal("AssetGroup = " + Target); 
+                            var ak = 0;
+                            if (InventoryGet(Player, Target).Asset.Archetype != undefined) {  
+                                Archetype = InventoryGet(Player, Target).Asset.Archetype; 
+                                if (Archetype == "typed") var ak = 1;
+                                if (Archetype == "modular") var ak = 2;
+                            }                      
+                            Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
+                            Property = InventoryGet(Player, Target).Property;                                                   
+                            if (ak == 0) {  
+                                Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;                         
+                                let ly = 0;
+                                while (ly < Asset.Layer.length) {                               
+                                    if (ly == 0) { 
+                                        Name = InventoryGet(Player, Target).Asset.Name;                                 
+                                    } else {
+                                        Name = Asset.Layer[ly].Name;
+                                    }
+                                    if (InventoryGet(Player, Target).Property == undefined) {                                 
+                                        Priority2 = Priority;
+                                    } else {
+                                        layerPriority = Property.OverridePriority[Name]      
+                                        if (layerPriority == null) {                              
+                                            Priority2 = Priority;
+                                        } else {
+                                            Priority2 = layerPriority;                                        
+                                        }
+                                    }
+                                    ChatRoomSendLocal("Layer " + ly  + " = " + Name + " - " + Priority2);  
+                                    ly++; 
+                                }                        
+                            }                        
+                            if (ak == 1) {
+                                Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
+                                let ly = 0;
+                                while (ly < Asset.Layer.length) {
+                                    if ((Asset.Layer.length == 1) || (Asset.Layer[ly].Name == null)) {
+                                        Name = InventoryGet(Player, Target).Asset.Name;
+                                    } else {
+                                        Name = Asset.Layer[ly].Name;
+                                    }
+                                    if (InventoryGet(Player, Target).Property == undefined) {
+                                        Priority2 = InventoryGet(Player, Target).Asset.Layer[ly].Priority;
+                                    } else {
+                                        layerPriority = Property.OverridePriority?.[Name] ?? Priority;              
+                                        if (layerPriority == null) {
+                                            Priority2 = InventoryGet(Player, Target).Asset.Layer[ly].Priority;
+                                        } else {
+                                            Priority2 = layerPriority;
+                                        }
+                                    }
+                                    ChatRoomSendLocal("Layer " + ly  + " = " + Name + " - " + Priority2);  
+                                    ly++; 
+                                }
+                            }
+                            if (ak == 2) {
+                                let ly = 0;
+                                while (ly < Asset.Layer.length) {
+                                    if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
+                                        Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
+                                        Name2 = Asset.Layer[ly].Name;
+                                        Priority = Asset.Layer[ly].Priority;
+                                        layerPriority = Property.OverridePriority?.[Name2] ?? Priority;       
+                                        if (layerPriority == null) {
+                                            Priority2 = Priority;
+                                        } else {
+                                            Priority2 = layerPriority;
+                                        }
+                                        ChatRoomSendLocal("Layer " + ly  + " = " + Name1 + " - " + Name2 + " - " + Priority2);  
+                                    }
+                                    ly++;
+                                }
+                            } 
+                            this.saveditemslot = Target;
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Item Slot saved.</p>"     
+                            );
+                        }
+                        DialogLeave();
+                    } 
+                 }
+            }, 5000);  
+        }
+    }])
+       
     CommandCombine([{
         Tag: 'lock',
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
@@ -13803,6 +13900,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
                     "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" + 
                     "<b>/layershow1</b> = color infos and saving of Item Slot.\n" +
+                    "<b>/layershow2</b> = priority info + saving of Item Slot.\n" +
                     "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
                     "<b>/see</b> (visionmode) (blurlevel): forces a vision mode. *\n" +
                     "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
@@ -13896,7 +13994,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatRoomSendLocal("Ulist: " + JSON.stringify(List));
         }
     }])
-
 
     CommandCombine([{
         Tag: 'underwear',
