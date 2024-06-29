@@ -622,6 +622,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 console.log("ULTRAbc loaded: Version " + UBCver);
                 Player.OnlineSharedSettings.UBC = UBCver;
                 Player.OnlineSharedSettings.Inmap = false;
+                if (Player.OnlineSharedSettings.Ulist == undefined) {
+                    Player.OnlineSharedSettings.Ulist = [];
+                }
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
