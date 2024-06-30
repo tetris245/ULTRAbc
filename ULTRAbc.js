@@ -8566,6 +8566,78 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'layerset2',
+        Description: "(layernumber) (priority) changes a layer priority for worn item in saved Item Slot",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><First use the <b>/layershow2</b> command to click on worn item, get useful info about layer priorities and save Item Slot.\n" +
+                    "The layerset2 command must be followed by a layer number and a priority number (between -99 and 99) for the worn item in the previously saved Item Slot.</p>"
+                );
+            } else {
+                var stringLys3 = args;
+                var stringLys4 = stringLys3.split(/[ ,]+/);
+                var layer = stringLys4[0];
+                var priority = stringLys4[1] * 1;
+                if (priority > 99) priority = 99;
+                if (priority < -99) priority = -99;
+                if (this.saveditemslot == undefined) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>Warning</b>: First use the <b>/layershow2</b> command to get useful info and save Item Slot.</p>"
+                    );
+                } else {
+                    var Target = this.saveditemslot.slice(0);
+                    if (InventoryGet(Player, Target) != null) {
+                        var ak = 0;                      
+                        if (InventoryGet(Player, Target).Asset.Archetype != undefined) {  
+                            Archetype = InventoryGet(Player, Target).Asset.Archetype; 
+                            if (Archetype == "typed") var ak = 1;
+                            if (Archetype == "modular") var ak = 2;
+                        }
+                        Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
+                        Property = InventoryGet(Player, Target).Property;                    
+                        if (ak == 0) {
+                            if (layer == 0) { 
+                                Name = InventoryGet(Player, Target).Asset.Name;                                 
+                            } else {
+                                 Name = Asset.Layer[layer].Name;
+                            }
+                            if (Property == undefined){                           
+                                 Property = {};
+                                 OverridePriority = {};
+                                 OverridePriority[Name] = priority;
+                                 Property.OverridePriority = OverridePriority; 
+                            } else {
+                                Property.OverridePriority[Name] = priority;
+                            }
+                        }
+                        if (ak == 1) {
+                            if ((Asset.Layer.length == 1) || (Asset.Layer[layer].Name == null)) {
+                                Name = InventoryGet(Player, Target).Asset.Name;
+                            } else {
+                                Name = Asset.Layer[layer].Name;                          
+                            }
+                            if (Property.OverridePriority == undefined){                           
+                                 OverridePriority = {};
+                                 OverridePriority[Name] = priority;
+                                 Property.OverridePriority = OverridePriority; 
+                            } else {
+                                 Property.OverridePriority[Name] = priority;
+                            }
+                        }
+                        if (ak == 2) {
+                            Name1 = InventoryGet(Player, Target).Asset.Layer[layer].ColorGroup;
+                            Name2 = InventoryGet(Player, Target).Asset.Layer[layer].Name;
+                            InventoryGet(Player, Target).Property.OverridePriority[Name2] = priority;
+                        }
+                        ChatRoomCharacterUpdate(Player);
+                    }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'layershow1',
         Description: "gives info about layer colors of a specific worn item + saves Item Slot",
         Action: () => {
@@ -13899,7 +13971,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
                     "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" + 
-                    "<b>/layershow1</b> = color infos and saving of Item Slot.\n" +
+                    "<b>/layerset2</b> (layernumber) (priority) = changes layer priority of item in saved Item Slot. *\n" + 
+                    "<b>/layershow1</b> = color info and saving of Item Slot.\n" +
                     "<b>/layershow2</b> = priority info + saving of Item Slot.\n" +
                     "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
                     "<b>/see</b> (visionmode) (blurlevel): forces a vision mode. *\n" +
