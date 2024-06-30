@@ -60,5 +60,6 @@ Changes for future version
 
 * New commands:
   - layerset1 (layernumber) (colorcode) to change a layer color for the worn item in the Item Slot previously saved by using layershow1 (Can be used even when bound and locked - To change all layers, use value -1 as layernumber)
+  - layerset2 (layernumber) (priority) to change a layer priority for the worn item in the Item Slot previously saved by using layershow2 (Can be used even when bound and locked)
   - layershow1 to get layer color info about worn item in a slot selected by mouse click + save the selected Item Slot
   - layershow2 to get layer priority info about worn item in a slot selected by mouse click + save the selected Item Slot
