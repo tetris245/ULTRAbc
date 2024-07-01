@@ -66,4 +66,4 @@ Changes for future version
   - layershow1 to get layer color info about worn item in a slot selected by mouse click + save the selected Item Slot
   - layershow2 to get layer priority info about worn item in a slot selected by mouse click + save the selected Item Slot
 * Renamed the itemcolor command as itemcolor1
-* Addded the admin option to the uhelp command and moved there the autokick, bg1, bg2 and bg3 commands
+* Added the admin option to the uhelp command and moved there the autokick, bg1, bg2 and bg3 commands
