@@ -8015,6 +8015,60 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'itempriority',
+        Description: "(priority): changes priority of worn item in selected slot.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The itempriority command needs to be followed by a number (between -99 and 99) to change the priority of a worn item in a slot selected by mouse click.</p>"
+                );
+            } else {
+                var priority = args * 1;
+                if (priority > 99) priority = 99;
+                if (priority < -99) priority = -99;        
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, the priority of the worn item in selected slot will be changed. If not, retry.</p>"
+                );
+                setTimeout(function() {
+                    if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
+                        if (CurrentCharacter.FocusGroup.Name) { 
+                            var Target = CurrentCharacter.FocusGroup.Name;
+                            if (InventoryGet(Player, Target) != null) {
+                                ChatRoomSendLocal("AssetGroup = " + Target); 
+                                var ak = 0;
+                                if (InventoryGet(Player, Target).Asset.Archetype != undefined) {  
+                                    Archetype = InventoryGet(Player, Target).Asset.Archetype; 
+                                    if (Archetype == "typed") var ak = 1;
+                                    if (Archetype == "modular") var ak = 2;
+                                }                                                    
+                                Property = InventoryGet(Player, Target).Property;
+                                if (ak < 2) {
+                                    if (Property == undefined){                           
+                                        Property = {};
+                                        OverridePriority = {};
+                                        OverridePriority = priority;
+                                        Property.OverridePriority = OverridePriority; 
+                                    } else {
+                                        Property.OverridePriority = priority;
+                                    }
+                                }
+                                if (ak == 2) {
+                                     Property.OverridePriority = priority;
+                                }
+                                DialogLeave();
+                                ChatRoomCharacterUpdate(Player); 
+                                ChatRoomSendLocal(
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Item priority changed.</p>"
+                                );
+                            }     
+                        }
+                    }
+                }, 5000);
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'kd',
         Description: "(option): launches Kinky Dungeon.",
         Action: (args) => {
@@ -8559,6 +8613,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         }
                         ChatRoomCharacterUpdate(Player);
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Layer color changed.</p>"
+                        );
                     }
                 }
             }
@@ -8631,6 +8688,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             InventoryGet(Player, Target).Property.OverridePriority[Name2] = priority;
                         }
                         ChatRoomCharacterUpdate(Player);
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Layer priority changed.</p>"
+                        );
                     }
                 }
             }
@@ -13970,6 +14030,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bg3</b> (number) = a B. College bg as bg. /bg3 = list.\n" +
                     "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
+                    "<b>/itempriority</b> (priority) = changes item priority in selected slot. *\n" + 
                     "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" + 
                     "<b>/layerset2</b> (layernumber) (priority) = changes layer priority of item in saved Item Slot. *\n" + 
                     "<b>/layershow1</b> = color info and saving of Item Slot.\n" +
