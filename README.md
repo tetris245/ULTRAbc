@@ -59,8 +59,11 @@ All else I might not have included.
 Changes for future version 
 
 * New commands:
-  - itempriority (priority) to change the item priority for the worn item in a slot selected by mouse click (Can be used even when bound and locked)
+  - itemcolor2 (colorcode) to change the global item color for the worn item in a slot selected by mouse click (Can be used even when bound and locked)
+  - itempriority (priority) to change the global item priority for the worn item in a slot selected by mouse click (Can be used even when bound and locked)
   - layerset1 (layernumber) (colorcode) to change a layer color for the worn item in the Item Slot previously saved by using layershow1 (Can be used even when bound and locked - To change all layers, use value -1 as layernumber)
   - layerset2 (layernumber) (priority) to change a layer priority for the worn item in the Item Slot previously saved by using layershow2 (Can be used even when bound and locked)
   - layershow1 to get layer color info about worn item in a slot selected by mouse click + save the selected Item Slot
   - layershow2 to get layer priority info about worn item in a slot selected by mouse click + save the selected Item Slot
+* Renamed the itemcolor command as itemcolor1
+* Addded the admin option to the uhelp command and moved there the autokick, bg1, bg2 and bg3 commands
