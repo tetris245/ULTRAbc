@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 3.3.1
+Most recent version: 3.4
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -58,12 +58,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* New commands (all of them can be used even when bound and locked):
-  - itemcolor2 (colorcode) to change the global item color for the worn item in a slot selected by mouse click 
-  - itempriority (priority) to change the global item priority for the worn item in a slot selected by mouse click 
-  - layerset1 (layernumber) (colorcode) to change a layer color for the worn item in the Item Slot previously saved by using layershow1 (To change all layers, use value -1 as layernumber)
-  - layerset2 (layernumber) (priority) to change a layer priority for the worn item in the Item Slot previously saved by using layershow2 
-  - layershow1 to get layer color info about worn item in a slot selected by mouse click + save the selected Item Slot
-  - layershow2 to get layer priority info about worn item in a slot selected by mouse click + save the selected Item Slot
-* Renamed the itemcolor command as itemcolor1
-* Added the admin option to the uhelp command and moved there the autokick, bg1, bg2 and bg3 commands
+(...)
