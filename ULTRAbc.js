@@ -7935,12 +7935,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'itemcolor',
+        Tag: 'itemcolor1',
         Description: "(colorcode) (target): changes color on all current bindings.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The itemcolor command must be followed by a color code in the format #000000 and optionally a target.</p>"
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The itemcolor1 command must be followed by a color code in the format #000000 and optionally a target.</p>"
                 );
             } else {
                 var stringItc1 = args;
@@ -8010,6 +8010,41 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     ChatRoomSetTarget(-1);
                 }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'itemcolor2',
+        Description: "(colorcode): changes color of worn item in selected slot.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The itemcolor2 command needs to be followed by a color code in the format #000000to change the color of a worn item in a slot selected by mouse click.</p>"
+                );
+            } else {
+                var color = args;
+                if (color.startsWith("#")) {     
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, the color of the worn item in selected slot will be changed. If not, retry.</p>"
+                    );
+                    setTimeout(function() {
+                        if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
+                            if (CurrentCharacter.FocusGroup.Name) { 
+                                var Target = CurrentCharacter.FocusGroup.Name;
+                                if (InventoryGet(Player, Target) != null) {
+                                    ChatRoomSendLocal("AssetGroup = " + Target); 
+                                    InventoryGet(Player, Target).Color = color;
+                                    DialogLeave();
+                                    ChatRoomCharacterUpdate(Player); 
+                                    ChatRoomSendLocal(
+                                        "<p style='background-color:#5fbd7a'>ULTRAbc: Item color changed.</p>"
+                                    );
+                                }     
+                            }
+                        }
+                   }, 5000);
+               }
             }
         }
     }])
@@ -13842,6 +13877,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The help is organized into categories. Use <b>/uhelp</b> (category). List of categories:\n" +
+                    "<b>admin</b> = commands only for chat room admins.\n" +
                     "<b>bondage</b> = commands related to bondage.\n" +
                     "<b>character</b> = commands related to your character.\n" +
                     "<b>chat</b> = commands with extra features in chat room.\n" +
@@ -13859,11 +13895,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> and join this <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>Discord</a></p>"
                 );
             }
+            if (args === "admin") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Admin commands\n" +
+                    "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
+                    "<b>/bg1</b> = adds hidden backgrounds to the selection screen.\n" +
+                    "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.\n" +
+                    "<b>/bg3</b> (number) = uses a Bondage College background as custom background. /bg3 to get the list.</p>"
+                );
+            }
             if (args === "bondage") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Bondage commands - * = more info when using\n" +
                     "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
-                    "<b>/itemcolor</b> (colorcode) (target) = changes color on all current bindings. Color code must be in the format #000000\n" +
+                    "<b>/itemcolor1</b> (colorcode) (target) = changes color on all current bindings. Color code must be in the format #000000\n" +
                     "<b>/lock</b> = adds locks on all lockable items. *.\n" +
                     "<b>/outfit</b> = restores/saves/loads outfit (including restraints). *\n" +
                     "<b>/pet</b> (target) = becomes a fully restrained pet.\n" +
@@ -13891,7 +13936,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "chat") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Chat commands - * = more info when using\n" +
-                    "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
                     "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
@@ -14025,11 +14069,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "visual") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Visual commands - * = more info when using\n" +
-                    "<b>/bg1</b> = adds hidden backgrounds to the selection screen.\n" +
-                    "<b>/bg2</b> (number) = a B. Brawl bg as bg. /bg2 = list.\n" +
-                    "<b>/bg3</b> (number) = a B. College bg as bg. /bg3 = list.\n" +
                     "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
+                    "<b>/itemcolor2</b> (colorcode) = changes item color in selected slot. *\n" + 
                     "<b>/itempriority</b> (priority) = changes item priority in selected slot. *\n" + 
                     "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" + 
                     "<b>/layerset2</b> (layernumber) (priority) = changes layer priority of item in saved Item Slot. *\n" + 
