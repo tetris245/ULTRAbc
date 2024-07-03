@@ -14771,7 +14771,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         decoded = JSON.parse(d);
                         FBCdata = decoded;
                         if (FBCdata.antiGarble) {
-                        var gbc = 1;
+                            var gbc = 1;
                             Player.RestrictionSettings.NoSpeechGarble = false;
                             NogarbleOn = false;
                             M_MOANER_saveControls();
