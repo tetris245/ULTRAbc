@@ -2872,7 +2872,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Preferences 
     function FBCsettings() {
-        if (Player.ExtensionSettings.FBC != null) {
+        if (Player.FBCOtherAddons == undefined) {
+            var gbc = 0;
+            var sbc = 0;
+        } else {
             str = Player.ExtensionSettings.FBC;
             d = LZString.decompressFromBase64(str);
             FBCdata = {};
@@ -2883,20 +2886,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.RestrictionSettings.NoSpeechGarble = false;
                 NogarbleOn = false;
                 M_MOANER_saveControls();
-            } else {
-                var gbc = 0;
             }
             if (FBCdata.autoStruggle) {
                 var sbc = 1;
                 Player.RestrictionSettings.BypassStruggle = false;
                 NostruggleOn = false;
-                M_MOANER_saveControls();
-            } else {
-                var sbc = 0;
-            }
-        } else {
-            var gbc = 0;
-            var sbc = 0;
+                M_MOANER_saveControls();     
+            }   
         }
         if (gbc == 0) {
             if (NogarbleOn == null || NogarbleOn == undefined) {
@@ -14766,24 +14762,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         );
                     }
                 } else if (setting == "nogarble") {
-                    if (Player.ExtensionSettings.FBC != null) {
+                    if (Player.FBCOtherAddons == undefined) {
+                       var gbc = 0;                    
+                    } else {
                         str = Player.ExtensionSettings.FBC;
                         d = LZString.decompressFromBase64(str);
                         FBCdata = {};
                         decoded = JSON.parse(d);
                         FBCdata = decoded;
                         if (FBCdata.antiGarble) {
+                        var gbc = 1;
                             Player.RestrictionSettings.NoSpeechGarble = false;
                             NogarbleOn = false;
                             M_MOANER_saveControls();
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: BC default talk mode can ungarble messages and whispers according your WCE settings.</p>"
                             );
-                        } else {
-                            var gbc = 0;
-                        }
-                    } else {
-                        var gbc = 0;
+                        }             
                     }
                     if (gbc == 0) {
                         if (Player.RestrictionSettings.NoSpeechGarble == true) {
@@ -14803,13 +14798,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 } else if (setting == "nostruggle") {
-                    if (Player.ExtensionSettings.FBC != null) {
+                    if (Player.FBCOtherAddons == undefined) {
+                       var sbc = 0;                   
+                    } else {
                         str = Player.ExtensionSettings.FBC;
                         d = LZString.decompressFromBase64(str);
                         FBCdata = {};
                         decoded = JSON.parse(d);
                         FBCdata = decoded;
                         if (FBCdata.autoStruggle) {
+                            var sbc = 1;
                             Player.RestrictionSettings.BypassStruggle = false;
                             NostruggleOn = false;
                             M_MOANER_saveControls();
@@ -14817,11 +14815,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Automatic struggle in mini-games is enabled according your WCE setting.\n" +
                                 "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"
                             );
-                        } else {
-                            var sbc = 0;
-                        }
-                    } else {
-                        var sbc = 0;
+                        }             
                     }
                     if (sbc == 0) {
                         if (Player.RestrictionSettings.BypassStruggle == true) {
