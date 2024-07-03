@@ -1176,7 +1176,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         } else {
                             if (gl != 0) {
-                                var text6 = text5;
+                                if (Player.RestrictionSettings.NoSpeechGarble) {
+                                    var text6 = text5 + "\u0022 (\u0022" + text4 + "\u0022)";
+                                } else {            
+                                    var text6 = text5;
+                                }
                             } else {
                                 var text6 = text4;
                             }
