@@ -57,7 +57,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     let AutojoinOn;
     let DolltalkOn;
-    let DoubletalkOn;
     let FullseedOn;
     let HighfameOn;
     let HotkeysOn;
@@ -141,9 +140,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     var DolltalkStatus = ["Doll talk (and whisper) mode enabled.",
         "Doll talk (and whisper) mode disabled."
-    ];
-    var DoubletalkStatus = ["Double talk (and whisper) mode enabled.",
-        "Double talk (and whisper) mode disabled."
     ];
     var ExitmodeStatus = ["Fast exit mode is activated.",
         "Slow exit mode is activated."
@@ -402,7 +398,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rtype = "";
             AutojoinOn = false;
             DolltalkOn = false;
-            DoubletalkOn = false;
             FullseedOn = false;
             HighfameOn = false;
             HotkeysOn = false;
@@ -472,7 +467,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rtype = datas.rtype;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
-            DoubletalkOn = datas.doubletalk;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
             HotkeysOn = datas.hotkeys;
@@ -543,7 +537,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "rtype": rtype,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
-            "doubletalk": DoubletalkOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
             "hotkeys": HotkeysOn,
@@ -639,10 +632,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (DolltalkOn == null || DolltalkOn == undefined) {
                     DolltalkOn = false;
-                    M_MOANER_saveControls();
-                }
-                if (DoubletalkOn == null || DoubletalkOn == undefined) {
-                    DoubletalkOn = false;
                     M_MOANER_saveControls();
                 }
                 if (gl == null || gl == undefined) {
@@ -1111,7 +1100,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 MBSdata = {};
                 decoded = JSON.parse(d);
                 MBSdata = decoded;
-                if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                if (MBSdata.AlternativeGarbling) {
                     mb = 1;
                 }
             }
@@ -1138,23 +1127,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                     var text6 = text5;
                 } else {
-                    if (DoubletalkOn == true) {
-                        if (gl == -1) {
-                            var text6 = "*" + "babytalks: \u0022" + text5 + "\u0022 (\u0022" + text3 + "\u0022)";
-                        } else {
-                            if (gl != 0) {
-                                var text6 = "*" + "gagtalks: \u0022" + text5 + "\u0022 (\u0022" + text4 + "\u0022)";
-                            } else {
-                                var text6 = text4;
-                            }
-                        }
+                    if (gl != 0) {
+                        var text6 = text5;
                     } else {
-                        if (gl != 0) {
-                            var text6 = text5;
-                        } else {
-                            var text6 = text4;
-                        }
-                    }
+                         var text6 = text4;
+                    }      
                 }
                 if (nm == 0) {
                     var text6 = text5; 
@@ -1164,26 +1141,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         var text6 = text5;
                     } else {
-                        if (DoubletalkOn == true) {
-                            if (gl == -1) {
-                                var text6 = "*" + "babywhispers: \u0022" + text5 + "\u0022 (\u0022" + text4 + "\u0022)";
-                            } else {
-                                if (gl != 0) {
-                                    var text6 = "*" + "gagwhispers: \u0022" + text5 + "\u0022 (\u0022" + text4 + "\u0022)";
-                                } else {
-                                    var text6 = text4;
-                                }
+                        if (gl != 0) {
+                            if (Player.RestrictionSettings.NoSpeechGarble) {
+                                var text6 = text5 + " (\u0022" + text4 + "\u0022)";
+                            } else {            
+                                var text6 = text5;
                             }
                         } else {
-                            if (gl != 0) {
-                                if (Player.RestrictionSettings.NoSpeechGarble) {
-                                    var text6 = text5 + " (\u0022" + text4 + "\u0022)";
-                                } else {            
-                                var text6 = text5;
-                                }
-                            } else {
-                                var text6 = text4;
-                            }
+                            var text6 = text4; 
                         }
                     }
                     if (text6.startsWith("*")) {
@@ -3056,17 +3021,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showDoubletalkStatus() {
-        let msg;
-        if (DoubletalkOn) {
-            msg = DoubletalkStatus[0];
-        } else {
-            msg = DoubletalkStatus[1];
-        }
-        msg = msg + " Current garbling level: " + gl + ".";
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     function showExitmodeStatus() {
         let msg;
         if (SlowleaveOn) {
@@ -4028,7 +3982,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MBSdata = {};
                     decoded = JSON.parse(d);
                     MBSdata = decoded;
-                    if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                    if (MBSdata.AlternativeGarbling) {
                         mb = 1;
                     }
                 }
@@ -4046,24 +4000,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ElementValue("InputChat", moan2.replace(moan2, moan3));
                 if (notalk == 1) {
                     var moan4 = moan3;
-                } else {
-                    if (DoubletalkOn == true) {
-                        if (gl == -1) {
-                            var moan4 = "*" + "babytalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
-                        } else {
-                            if (gl != 0) {
-                                var moan4 = "*" + "gagtalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
-                            } else {
-                                var moan4 = moan2;
-                            }
-                        }
+                } else {   
+                    if (gl != 0) {
+                        var moan4 = moan3;
                     } else {
-                        if (gl != 0) {
-                            var moan4 = moan3;
-                        } else {
-                            var moan4 = moan2;
-                        }
-                    }
+                        var moan4 = moan2;
+                    } 
                 }
                 ElementValue("InputChat", moan3.replace(moan3, moan4));
                 msg = "";
@@ -4275,7 +4217,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MBSdata = {};
             decoded = JSON.parse(d);
             MBSdata = decoded;
-            if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+            if (MBSdata.AlternativeGarbling) {
                 mb = 1;
             }
         }
@@ -4294,22 +4236,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (notalk == 1) {
             var moan4 = moan3;
         } else {
-            if (DoubletalkOn == true) {
-                if (gl == -1) {
-                    var moan4 = "*" + "babytalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
-                } else {
-                    if (gl != 0) {
-                        var moan4 = "*" + "gagtalks: \u0022" + moan3 + "\u0022 (\u0022" + moan2 + "\u0022)";
-                    } else {
-                        var moan4 = moan2;
-                    }
-                }
+            if (gl != 0) {
+                var moan4 = moan3;
             } else {
-                if (gl != 0) {
-                    var moan4 = moan3;
-                } else {
-                    var moan4 = moan2;
-                }
+                var moan4 = moan2;
             }
         }
         ElementValue("InputChat", moan3.replace(moan3, moan4));
@@ -6202,12 +6132,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (nm == 0) {
                     content = SpeechTransformBabyTalk(args);
-                    if (DoubletalkOn == true) {
-                        content2 = "*" + "babytalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
-                    } else {
-                        content2 = content;
-                    }
-                    ElementValue("InputChat", content.replace(content, content2));
+                    ElementValue("InputChat", content);
                     event.preventDefault();
                     ChatRoomSendChat();
                 }
@@ -7382,7 +7307,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             MBSdata = {};
                             decoded = JSON.parse(d);
                             MBSdata = decoded;
-                            if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                            if (MBSdata.AlternativeGarbling) {
                                 onegl = 0;
                                 mgl = SpeechTransformGagGarbleIntensity(Player);
                             } else {
@@ -7463,19 +7388,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         content = SpeechTransformGagGarble(args.substring(2).trim(), onegl);
                         if (nt == 1) {
                             content2 = content;
-                        } else {
-                            if (DoubletalkOn == true) {
-                                if (onegl != 0) {
-                                    content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args.substring(2).trim() + "\u0022)";
-                                } else {
-                                    content2 = args.substring(2).trim();
-                                }
+                        } else {       
+                            if (onegl != 0) {
+                                content2 = content;
                             } else {
-                                if (onegl != 0) {
-                                    content2 = content;
-                                } else {
-                                    content2 = args.substring(2).trim();
-                                }
+                                content2 = args.substring(2).trim();
                             }
                         }
                         ElementValue("InputChat", content.replace(content, content2));
@@ -12119,12 +12036,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (nm == 0) {
                     content = SpeechTransformStutter(args, 1);
-                    if (DoubletalkOn == true) {
-                        content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
-                    } else {
-                        content2 = content;
-                    }
-                    ElementValue("InputChat", content.replace(content, content2));
+                    ElementValue("InputChat", content);
                     event.preventDefault();
                     ChatRoomSendChat();
                 }
@@ -12168,12 +12080,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (nm == 0) {
                     content = SpeechTransformStutter(args, 2);
-                    if (DoubletalkOn == true) {
-                        content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
-                    } else {
-                        content2 = content;
-                    }
-                    ElementValue("InputChat", content.replace(content, content2));
+                    ElementValue("InputChat", content);
                     event.preventDefault();
                     ChatRoomSendChat();
                 }
@@ -12218,12 +12125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (nm == 0) {
                     content = SpeechTransformStutter(args, 3);
-                    if (DoubletalkOn == true) {
-                        content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
-                    } else {
-                        content2 = content;
-                    }
-                    ElementValue("InputChat", content.replace(content, content2));
+                    ElementValue("InputChat", content);
                     event.preventDefault();
                     ChatRoomSendChat();
                 }
@@ -12268,12 +12170,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (nm == 0) {
                     content = SpeechTransformStutter(args, 4);
-                    if (DoubletalkOn == true) {
-                        content2 = "*" + "gagtalks: \u0022" + content + "\u0022 (\u0022" + args + "\u0022)";
-                    } else {
-                        content2 = content;
-                    }
-                    ElementValue("InputChat", content.replace(content, content2));
+                    ElementValue("InputChat", content);
                     event.preventDefault();
                     ChatRoomSendChat();
                 }
@@ -14454,7 +14351,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     " \n" +
                     "<b>autojoin</b> for chat room auto-join feature\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
-                    "<b>doubletalk</b> for double talk (and whisper) mode\n" +
                     "<b>exitmode</b> for exit mode with OUT button \n" +
                     "<b>fullseed</b> for full solution with intricate and hs locks\n" +
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
@@ -14498,28 +14394,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.</p>"
                         );
-                    }
-                } else if (setting == "doubletalk") {
-                    if (DoubletalkOn == true) {
-                        DoubletalkOn = false;
-                        if (NogarbleOn) {
-                            gl = 0;
-                            mgl = 0;
-                        }
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode disabled.</p>"
-                        );
-                        RealGarblingLevel();
-                    } else {
-                        DoubletalkOn = true;
-                        M_MOANER_saveControls();
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled.\n" +
-                            "<b>IMPORTANT: </b>You need to update the garbling level with the <b>RGL button</b> or the <b>/talk -2</b> command after each change with items or spells that restrain or prevent talking.\n" +
-                            "If you like moans, it is recommended to use the Moaner integrated in UBC. Other mods producing moans don't support the double talk (and whisper) mode.</p>"
-                        );
-                        RealGarblingLevel();
                     }
                 } else if (setting == "exitmode") {
                     if (SlowleaveOn == true) {
@@ -14764,7 +14638,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: () => {
             showButtonsStatus();
             showDolltalkStatus();
-            showDoubletalkStatus();
             showExitmodeStatus();
             showFeaturesStatus();
             showHighfameStatus();
