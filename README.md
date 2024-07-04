@@ -58,4 +58,4 @@ All else I might not have included.
 
 Changes for future version 
 
-(...)
+* Removed murmur command 
