@@ -10112,158 +10112,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'murmur',
-        Description: "(target) (message): sends whisper to specified target.",
-        Action: (_, command, args) => {
-            if (NowhisperOn == false) {
-                var [targetname] = args;
-                if (!targetname) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The murmur command must be followed by a target and the message you want to whisper.\n" +
-                        "You can omit the message if you want only to set the target for your whispers.</p>"
-                    );
-                } else {
-                    var [, , ...message] = command.split(" ");
-                    var msg = message?.join(" ");
-                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                    if (target[0] == null) {
-                        var targetnumber = parseInt(targetname);
-                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                    }
-                    if (target[0] != null) {
-                        if (targetnumber == Player.MemberNumber) {
-                            ChatRoomSendLocal(
-                                 "<p style='background-color:#5fbd7a'>ULTRAbc: You can't whisper to yourself.</p>"
-                            );
-                        } else {               
-                            var nm = 0;
-                            ElementValue("InputChat", msg);
-                            if (DolltalkOn == true) {
-                                var segmenter = new Intl.Segmenter([], {
-                                    granularity: 'word'
-                                });
-                                var segmentedText = segmenter.segment(msg);
-                                var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                                var ln = words.length;
-                                if (ln > 5) {
-                                    var nm = 1;
-                                }
-                                let i = 0;
-                                while (i < ln) {
-                                    var lw = words[i].length;
-                                    if (lw > 6) {
-                                        var nm = 1;
-                                    }
-                                    i++;
-                                }
-                                if (nm == 1) {
-                                    var msg2 = "";
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your whisper can't be sent because it does not respect the rules of doll talk.</p>"
-                                    );
-                                }
-                            }
-                            if (nm == 0) {
-                                if (this.Stutter1On == true) {
-                                    var msg2 = SpeechTransformStutter(msg, 1);
-                                } else if (this.Stutter2On == true) {
-                                    var msg2 = SpeechTransformStutter(msg, 2);
-                                } else if (this.Stutter3On == true) {
-                                    var msg2 = SpeechTransformStutter(msg, 3);
-                                } else if (this.Stutter4On == true) {
-                                    var msg2 = SpeechTransformStutter(msg, 4);
-                                } else {
-                                    var msg2 = msg;
-                                }
-                            }
-                            ElementValue("InputChat", msg.replace(msg, msg2));
-                            if (nm == 1) {
-                                var msg3 = msg2;
-                            } else {
-                                if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                                    var msg3 = M_MOANER_applyMoanToMsg(Player, msg2);
-                                } else {
-                                    var msg3 = msg2;
-                                }
-                            }
-                            ElementValue("InputChat", msg2.replace(msg2, msg3));
-                            if (nm == 1) {
-                                var msg4 = msg3;
-                            } else {
-                                if (this.BabyTalkOn == true) {
-                                    var msg4 = SpeechTransformBabyTalk(msg3);
-                                } else if (this.GagTalkOn == true) {
-                                    var msg4 = SpeechTransformGagGarble(msg3, gl);
-                                } else {
-                                    var msg4 = msg3;
-                                }
-                            }
-                            ElementValue("InputChat", msg3.replace(msg3, msg4));
-                            if ((notalk == 1) || (nm == 1)) {
-                                var msg5 = msg4;
-                            } else {
-                                if (DoubletalkOn == true) {
-                                    if (gl == -1) {
-                                        var msg5 = "*" + "babywhispers: \u0022" + msg4 + "\u0022 (\u0022" + msg3 + "\u0022)";
-                                    } else {
-                                        if (gl != 0) {
-                                            var msg5 = "*" + "gagwhispers: \u0022" + msg4 + "\u0022 (\u0022" + msg3 + "\u0022)";
-                                        } else {
-                                            var msg5 = msg3;
-                                        }
-                                    }
-                                } else {
-                                    if (gl != 0) {
-                                        var msg5 = msg4;
-                                    } else {
-                                        var msg5 = msg3;
-                                    }
-                                }
-                            }
-                            ElementValue("InputChat", msg4.replace(msg4, msg5));
-                            if (msg5.startsWith("*")) {
-                                if (msg5.startsWith("**")) {
-                                    var msg6 = msg5.slice(1);
-                                } else {
-                                    var msg6 = "*" + tmpname + msg5.slice(1);
-                                }
-                            } else {
-                                var msg6 = msg5;
-                            }
-                            ElementValue("InputChat", msg5.replace(msg5, msg6));
-                            ChatRoomTargetMemberNumber = target[0].MemberNumber;
-                            if (msg != "") {
-                                ElementValue("InputChat", "");
-                                ServerSend("ChatRoomChat", {
-                                    "Content": msg6,
-                                    "Type": "Whisper",
-                                    "Target": ChatRoomTargetMemberNumber
-                                });
-                                for (let C = 0; C < ChatRoomCharacter.length; C++)
-                                    if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
-                                        if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
-                                            TargetName = ChatRoomCharacter[C].Name;
-                                        } else {
-                                            TargetName = ChatRoomCharacter[C].Nickname;
-                                        }
-                                        break;
-                                    }
-                                ChatRoomMessage({
-                                    Content: "Whisper to " + TargetName + ": " + msg6,
-                                    Type: "LocalMessage",
-                                    Sender: Player.MemberNumber
-                                });
-                                document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";
-                                document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'naked',
         Description: "(target): removes clothes.",
         Action: (args) => {
@@ -14031,7 +13879,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
                     "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
                     "<b>/moaner</b> = moans when horny and stimulated. *\n" +
-                    "<b>/murmur</b> (target) (message) = sends whisper to specified target.\n" +
                     "<b>/s1</b> (stuffhere) = speaks once in light stuttering mode.\n" +
                     "<b>/s2</b> (stuffhere) = speaks once in normal stuttering mode.\n" +
                     "<b>/s3</b> (stuffhere) = speaks once in heavy stuttering mode.\n" +
@@ -14670,7 +14517,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Double talk (and whisper) mode enabled.\n" +
                             "<b>IMPORTANT: </b>You need to update the garbling level with the <b>RGL button</b> or the <b>/talk -2</b> command after each change with items or spells that restrain or prevent talking.\n" +
-                            "For the whispers, use only the click under character and the <b>/murmur</b> command when you are in this mode.\n" +
                             "If you like moans, it is recommended to use the Moaner integrated in UBC. Other mods producing moans don't support the double talk (and whisper) mode.</p>"
                         );
                         RealGarblingLevel();
