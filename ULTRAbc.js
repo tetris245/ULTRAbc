@@ -8718,7 +8718,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     if (InventoryGet(Player, Target).Property == undefined) {                                 
                                         Priority2 = Priority;
                                     } else {
-                                        layerPriority = Property.OverridePriority[Name]      
+                                        layerPriority = Property.OverridePriority[Name];     
                                         if (layerPriority == null) {                              
                                             Priority2 = Priority;
                                         } else {
