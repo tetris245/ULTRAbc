@@ -1008,9 +1008,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
            const inputChat = /** @type {null | HTMLTextAreaElement} */(document.getElementById("InputChat"));
            if (!inputChat) {
                return;
-	       }
+	   }
            let msg = inputChat.value.trim ();
-	       if (!msg.length) return;
+	   if (!msg.length) return;
            var tsp = 0;
            if (msg.startsWith(",")) {
                var text1 = "(" + msg.slice(1) + ")";
