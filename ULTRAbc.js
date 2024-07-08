@@ -1006,7 +1006,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomSendChat() {
         modApi.hookFunction('ChatRoomSendChat', 4, (args, next) => {
            const inputChat = /** @type {null | HTMLTextAreaElement} */(document.getElementById("InputChat"));
-           let msg = inputChat.value.trim(); 
+           if (!inputChat) {
+               return;
+	       }
+           let msg = inputChat.value.trim ();
+	       if (!msg.length) return;
            var tsp = 0;
            if (msg.startsWith(",")) {
                var text1 = "(" + msg.slice(1) + ")";
