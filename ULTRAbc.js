@@ -13268,10 +13268,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "ladyluck, liege, littleone, lordfortune, magician, magus,\n" +
                     "maid, majesticalicorn, majesty, master, masterkidnapper,\n" +
                     "missy, mistree, mistress, mole, nawashi, nurse, operative,\n" +
-                    "oracle, patient, patron, permanentpatient, pet, \n" +
+                    "oracle, patient, patron, permanentpatient, pet,\n" +
                     "prince, princess, puppy, sage, shiningunicorn, sissy,\n" +
-                    "sorcerer, succubus, superspy, switch, tomboy,\n" +
-                    "warmbloodhorse, warlock, wildmustang, witch, wizard.</p>"
+                    "sorcerer, succubus, superhero, superheroine,\n" +
+                    "superspy, switch, tomboy, warlock, warmbloodhorse,\n" +
+                    "wildmustang, witch, wizard.</p>"
                 );
             } else {
                 var title = args;
@@ -13414,6 +13415,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("MagicSchoolSorcerer");
                 } else if (title == "succubus") {
                     TitleSet("Succubus");
+		} else if (title == "superhero") {
+                    InventoryAdd(Player, "AnimeGirl", "Cloth"),
+                    TitleSet("AnimeBoy");
+                } else if (title == "superheroine") {
+                    InventoryAdd(Player, "AnimeGirl", "Cloth");
+                    TitleSet("AnimeGirl");	
                 } else if (title == "superspy") {
                     if (SkillGetLevel(Player, "Infiltration") < 10) {
                         SkillChange(Player, "Infiltration", 10);
