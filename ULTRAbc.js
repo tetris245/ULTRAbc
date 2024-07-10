@@ -1452,7 +1452,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchRoomSpaceSelectDraw', 4, (args, next) => {
             DrawButton(385, 885, 90, 90, "ALL", "White", "", "All Room Types");
             DrawButton(495, 885, 90, 90, "", "White", "", "Normal Rooms");
-            DrawImageResize("Icons/Small/CharacterView.png", 510, 900, 60, 60);
+            DrawImageResize("Icons/Rectangle/CharacterView.png", 480, 900, 120, 60);
             DrawButton(605, 885, 90, 90, "", "White", "Icons/MapTypeHybrid.png", "Hybrid Rooms");
             DrawButton(715, 885, 90, 90, "", "White", "Icons/MapTypeAlways.png", "Map Rooms");
             DrawText("Lobbies", 1405, 940, "White", "Black");
