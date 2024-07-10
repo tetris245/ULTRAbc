@@ -58,4 +58,5 @@ All else I might not have included.
 
 Changes for future version 
 
+* Updated the title2 command
 * Removed the murmur command and the experimental double talk (and whisper) mode
