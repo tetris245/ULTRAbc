@@ -58,6 +58,6 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added missing icon in Chat Search for missing rooms
+* Added missing icon in Chat Search for normal rooms
 * Updated the title2 command
 * Removed the murmur command and the experimental double talk (and whisper) mode
