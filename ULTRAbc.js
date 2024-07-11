@@ -818,22 +818,79 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
-            if (HotkeysOn == true) {
-                if (event.code === "NumpadDivide") {
-                    ChatRoomSetLastChatRoom("");
-                    ServerSend("ChatRoomLeave", "");
-                    CommonSetScreen("Online", "ChatSearch");
-                    ChatRoomClearAllElements();
-                    OnlineGameName = "";
-                    return true;
-                }
-                if (event.code === "NumpadMultiply") {
-                    CharacterReleaseTotal(Player);
-                    ChatRoomCharacterUpdate(Player);
-                    RealGarblingLevel();
-                    return true;
-                }
-            }        
+            const inputChat = /** @type {HTMLTextAreaElement} */(document.getElementById("InputChat"));
+	    const chatHasFocus = inputChat && document.activeElement === inputChat;
+	    if (chatHasFocus) {
+	        if (event.code === "Tab" && !event.shiftKey && inputChat.value.length !== 0) {
+		    CommandAutoComplete(inputChat.value);
+		    return true;
+		} else if (event.key === "Enter" && !event.shiftKey) {
+		    ChatRoomSendChat();
+		    return true;
+		} else if (event.key === "PageUp" || event.key === "PageDown") {
+		    ChatRoomScrollHistory(event.key === "PageUp");
+		    return true;
+		} else if (event.key === "Escape" && !event.shiftKey) {
+		    ElementFocus("MainCanvas");
+		    return true;
+		} else if (HotkeysOn == true) {
+                    if (event.code === "NumpadDivide") {
+                        ChatRoomSetLastChatRoom("");
+                        ServerSend("ChatRoomLeave", "");
+                        CommonSetScreen("Online", "ChatSearch");
+                        ChatRoomClearAllElements();
+                        OnlineGameName = "";
+                        return true;
+                    }
+                    if (event.code === "NumpadMultiply") {
+                        CharacterReleaseTotal(Player);
+                        ChatRoomCharacterUpdate(Player);
+                        RealGarblingLevel();
+                        return true;
+                    }
+                } 
+	    } else if (ChatRoomCommonKeyDown(event)) {
+	        return true;
+	    } else if (ChatRoomActiveView.KeyDown && ChatRoomActiveView.KeyDown(event)) {
+		return true;
+	    }
+	    if (event.key === "Escape" && event.shiftKey) {
+		ChatRoomAttemptLeave();
+	    }
+	    if (document.activeElement === null || document.activeElement === document.body || document.activeElement.id === "MainCanvas") { 
+		const chatLog = /** @type {HTMLDivElement} */(document.getElementById("TextAreaChatLog"));
+		if (!chatLog) {
+		    return false;
+		}  
+		if (!(event.ctrlKey || event.altKey || event.shiftKey || event.metaKey)) {
+		    switch (event.key) {
+		        case "Home":
+			    chatLog.scrollTop = 0;
+			    return true;
+			case "End":
+			    chatLog.scrollTop = chatLog.scrollHeight;
+			    return true;
+			case "PageUp":
+			    chatLog.scrollTop = Math.max(0, chatLog.scrollTop - chatLog.clientHeight);
+			    return true;
+			case "PageDown":
+			    chatLog.scrollTop = Math.min(chatLog.scrollHeight, chatLog.scrollTop + chatLog.clientHeight);
+			    return true;
+			case "ArrowUp":
+			    chatLog.scrollTop = Math.max(0, chatLog.scrollTop - chatLog.clientHeight * 0.05);
+			    return true;
+			case "ArrowDown":
+			    chatLog.scrollTop = Math.min(chatLog.scrollHeight, chatLog.scrollTop + chatLog.clientHeight * 0.05);
+			    return true;
+		    }
+		}
+		if ((event.key.length === 1 || event.key === "Enter") && !(event.altKey || event.metaKey || (event.ctrlKey && event.key !== "v"))) {
+		    ElementFocus("InputChat");
+		    return event.key === "Enter";
+		}
+	    }
+	    return false;
+            return;
             next(args);
         });
     }
