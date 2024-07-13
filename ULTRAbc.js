@@ -1071,6 +1071,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
            var tsp = 0;
            if (msg.startsWith(",")) {
                var text1 = "(" + msg.slice(1) + ")";
+	       ElementValue("InputChat", text1); 
            } else {
                var text1 = msg;
            }
