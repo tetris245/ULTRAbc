@@ -3439,14 +3439,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "FullBlindfold", "ItemHead");
         InventoryWear(Player, "DeepthroatGag", "ItemMouth");
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "BondageBench") {
-                Player.Appearance[A].Property.TypeRecord.typed = 4;
-            }
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "VibratingLatexPanties") {
-                Player.Appearance[A].Property.TypeRecord.vibrating = 9;
-            }
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "BondageBench") {
+            ExtendedItemSetOptionByRecord(Player, Item, { typed: 4, }, { push: true, refresh: true, }); 
+        }
+        Target = "ItemVulva";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "VibratingLatexPanties") {
+            ExtendedItemSetOptionByRecord(Player, Item, { vibrating: 9, }, { push: true, refresh: true, });      
+        }
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
@@ -3488,23 +3490,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "DildoPlugGag", "ItemMouth");
         InventoryWear(Player, "LeatherSlimMaskOpenMouth", "ItemHead");
         InventoryWear(Player, "Kennel", "ItemDevices");
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "VibeNippleClamp") {
-                Player.Appearance[A].Property.TypeRecord.vibrating = 9;
-            }
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "ClitoralStimulator") {
-                Player.Appearance[A].Property.TypeRecord.vibrating = 9;
-            }
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "DildoPlugGag") {
-                Player.Appearance[A].Property.TypeRecord.typed = 1;
-            }
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "Kennel") {
-                Player.Appearance[A].Property.TypeRecord.d = 1;
-                Player.Appearance[A].Property.TypeRecord.p = 1;
-            }
+        Target = "ItemNipples";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "VibeNippleClamp") {
+            ExtendedItemSetOptionByRecord(Player, Item, { vibrating: 9, }, { push: true, refresh: true, });      
+        }
+        Target = "ItemVulva";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "ClitoralStimulator") {
+            ExtendedItemSetOptionByRecord(Player, Item, { vibrating: 9, }, { push: true, refresh: true, });      
+        }
+        Target = "ItemMouth";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "DildoPlugGag") {
+            ExtendedItemSetOptionByRecord(Player, Item, { typed: 1, }, { push: true, refresh: true, });      
+        }
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "Kennel") {
+            ExtendedItemSetOptionByRecord(Player, Item, { d: 1, p: 1, }, { push: true, refresh: true, });      
+        }
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
@@ -3541,15 +3546,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "DuctTape", "ItemHands");
         InventoryWear(Player, "PantyhoseBodyOpen", "ItemArms");
         InventoryWear(Player, "Locker", "ItemDevices");
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "TickleBra") {
-                Player.Appearance[A].Property.TypeRecord.vibrating = 9;
-            }
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "Locker") {
-                Player.Appearance[A].Property.Opacity = 0.66;
-                Player.Appearance[A].Property.TypeRecord.typed = 1;
-            }
+        Target = "ItemBreast";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "TickleBra") {
+              ExtendedItemSetOptionByRecord(Player, Item, { vibrating: 9, }, { push: true, refresh: true, });      
+        }
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "Locker") {
+            ExtendedItemSetOptionByRecord(Player, Item, { typed: 1, }, { push: true, refresh: true, }); 
+            Item.Property.Opacity = 0.66;     
+        }
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
@@ -3592,10 +3599,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "HarnessBallGag1", "ItemMouth");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "PaddedBlindfold", "ItemHead");
-        for (let A = 0; A < Player.Appearance.length; A++)
-            if (Player.Appearance[A].Asset.Name == "HempRopeBelt") {
-                Player.Appearance[A].Property.TypeRecord.vibrating = 9;
-            }
+        Target = "ItemVulva";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "HempRopeBelt") {
+            ExtendedItemSetOptionByRecord(Player, Item, { vibrating: 9, }, { push: true, refresh: true, });
+        }
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
