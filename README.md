@@ -62,4 +62,4 @@ Changes for future version
 * Improved UBC detection in the maproom, mbsroom and uroom commands
 * Added missing icon in Chat Search for normal rooms
 * Updated the title2 command
-* Removed the murmur command and the experimental double talk (and whisper) mode
+* Removed the murmur command and the experimental double talk (and whisper) mode (note: the BC whisper function is again used since a hotfix)
