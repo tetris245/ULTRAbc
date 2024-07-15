@@ -9256,11 +9256,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
                         var ubc1 = "Does not use ULTRAbc.";
                     } else {
-                        if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC != UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC != UBCver0))  {
-                           var ubc1 = "Does not use ULTRAbc.";
-                        } else {
-                           var ubc1 = "Is an ULTRAbc user.";
-                        }  
+                        if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0))  {
+                            var ubc1 = "Is an ULTRAbc user."; 
+                        } else {         
+                            var ubc1 = "Does not use ULTRAbc";
+                        } 
                     }
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
                         var ubc2 = "Does not use Uwall.";
@@ -9520,11 +9520,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
                     var ubc1 = "Does not use ULTRAbc.";
                 } else {
-                    if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC != UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC != UBCver0))  {
-                        var ubc1 = "Does not use ULTRAbc.";
-                    } else {
-                        var ubc1 = "Is an ULTRAbc user.";
-                    }  
+                    if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0))  {
+                        var ubc1 = "Is an ULTRAbc user."; 
+                    } else {         
+                        var ubc1 = "Does not use ULTRAbc";
+                    }
                 }
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
                     var ubc2 = "Does not use Uwall.";
@@ -14409,11 +14409,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
                     var mes1 = "Does not use ULTRAbc.";
                 } else {
-                    if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC != UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC != UBCver0))  {
-                        var mes1 = "Does not use ULTRAbc.";
-                    } else {
-                        var mes1 = "Is an ULTRAbc user.";
-                    }  
+                    if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0))  {
+                        var mes1 = "Is an ULTRAbc user."; 
+                    } else {         
+                        var mes1 = "Does not use ULTRAbc";
+                    } 
                 }
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
                     var mes2 = "Does not use Uwall.";
