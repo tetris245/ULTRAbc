@@ -59,6 +59,7 @@ All else I might not have included.
 Changes for future version 
 
 * Improved the code for traps available in maptrap mode of mapped rooms
+* Improved UBC detection in the maproom, mbsroom and uroom commands
 * Added missing icon in Chat Search for normal rooms
 * Updated the title2 command
 * Removed the murmur command and the experimental double talk (and whisper) mode
