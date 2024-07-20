@@ -1147,7 +1147,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     var text3 = text2;
                 }
-            }          
+            }    
+	    ElementValue("InputChat", text2.replace(text2, text3));
             if ((tsp == 1) || (nm == 1)) {
                 var text4 = text3;
             } else {
@@ -1157,6 +1158,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                      var text4 = text3;
                  }
             }
+	    ElementValue("InputChat", text3.replace(text3, text4));
             mb = 0;
             if (Player.ExtensionSettings.MBS != null) {
                 str = Player.ExtensionSettings.MBS;
@@ -1187,6 +1189,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var text5 = text4;
                 }
             }
+	    ElementValue("InputChat", text4.replace(text4, text5));
             if (ChatRoomTargetMemberNumber == -1) {
                 if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                     var text6 = text5;
@@ -1198,6 +1201,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }      
                 }
                 if (nm == 0) {
+		    ElementValue("InputChat", text5.replace(text5, text6));
                     var text6 = text5; 
                 }
             } else {
