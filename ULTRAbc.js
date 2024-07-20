@@ -35,6 +35,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
+    let dc = 0;
     let ini = 0;
     let kp = 0;
 
@@ -385,6 +386,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             M_MOANER_xvibratorActive = false;
             M_MOANER_cum = false;
             profileName = "default";
+	    dc = 0;
             tmpname = "";
             pronoun1 = "";
             pronoun2 = "";
@@ -454,6 +456,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             M_MOANER_xvibratorActive = datas.xvibeMoan;
             M_MOANER_cum = datas.cum;
             profileName = datas.moanProfile;
+	    dc = datas.dc;
             tmpname = datas.tmpname;
             pronoun1 = datas.pronoun1;
             pronoun2 = datas.pronoun2;
@@ -526,6 +529,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "xvibeMoan": M_MOANER_xvibratorActive,
             "cum": M_MOANER_cum,
             "moanProfile": profileName,
+            "dc": dc,
             "tmpname": tmpname,
             "pronoun1": pronoun1,
             "pronoun2": pronoun2,
@@ -635,6 +639,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DolltalkOn = false;
                     M_MOANER_saveControls();
                 }
+		if (dc == null || dc == undefined) {
+                    dc = 0;
+                    M_MOANER_saveControls();
+                }
                 if (gl == null || gl == undefined) {
                     gl = 0;
                     notalk = 0;
@@ -662,14 +670,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) {
                     RglbuttonsOn = true;
-                    M_MOANER_saveControls();
-                }
-                if (rsize == null || rsize == undefined) {
-                    rsize = 20;
-                    M_MOANER_saveControls();
-                }
-                if (rtype == null || rtype == undefined) {
-                    rtype = "";
                     M_MOANER_saveControls();
                 }
                 ini = 1;
@@ -1102,9 +1102,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
            if (tsp == 2) tsp = 1;
            if (tsp == 0) {
                var nm = 0;
-               if (DolltalkOn == true) {
+               if ((DolltalkOn == true) && (dc == 0)) {
                    var segmenter = new Intl.Segmenter([], {
-                   granularity: 'word'
+                       granularity: 'word'
                    });
                    var segmentedText = segmenter.segment(text1);
                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
@@ -1133,6 +1133,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                      var text2 = text1;
                 }
             } 
+	    if (dc == 1) { 
+                var dc = 0;           
+                M_MOANER_saveControls();
+            }
             if ((tsp == 1) || (nm == 1)) {
                 var text3 = text2;
             } else {
@@ -6210,6 +6214,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     content = SpeechTransformBabyTalk(args);
                     ElementValue("InputChat", content);
                     event.preventDefault();
+                    var dc = 1;
+                    M_MOANER_saveControls();
                     ChatRoomSendChat();
                 }
             }
@@ -7480,6 +7486,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         ElementValue("InputChat", content.replace(content, content2));
                         event.preventDefault();
+                        var dc = 1;
+                        M_MOANER_saveControls();
                         ChatRoomSendChat();
                     }
                 }
@@ -12129,6 +12137,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     content = SpeechTransformStutter(args, 1);
                     ElementValue("InputChat", content);
                     event.preventDefault();
+                    var dc = 1;
+                    M_MOANER_saveControls();
                     ChatRoomSendChat();
                 }
             }
@@ -12173,6 +12183,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     content = SpeechTransformStutter(args, 2);
                     ElementValue("InputChat", content);
                     event.preventDefault();
+                    var dc = 1;
+                    M_MOANER_saveControls();
                     ChatRoomSendChat();
                 }
             }
@@ -12218,6 +12230,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     content = SpeechTransformStutter(args, 3);
                     ElementValue("InputChat", content);
                     event.preventDefault();
+                    var dc = 1;
+                    M_MOANER_saveControls();
                     ChatRoomSendChat();
                 }
             }
@@ -12263,6 +12277,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     content = SpeechTransformStutter(args, 4);
                     ElementValue("InputChat", content);
                     event.preventDefault();
+                    var dc = 1;
+                    M_MOANER_saveControls();
                     ChatRoomSendChat();
                 }
             }
