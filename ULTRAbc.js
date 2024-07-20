@@ -7039,11 +7039,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+     CommandCombine([{
         Tag: 'erase',
         Description: ": erases chat.",
         Action: () => {
-            ElementRemove("TextAreaChatLog");
+            const roomSeps = document.querySelectorAll("#TextAreaChatLog .chat-room-sep");
+            const roomSep = roomSeps[0];
+            const parent = roomSep.parentElement;
+            while (roomSep.nextSibling) {
+	        parent.removeChild(roomSep.nextSibling);
+            }
             ElementScrollToEnd("TextAreaChatLog");
         }
     }])
