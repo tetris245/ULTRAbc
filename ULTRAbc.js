@@ -12098,193 +12098,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
-    CommandCombine([{
-        Tag: 's1',
-        Description: "(words): speaks once in light stuttering mode.",
-        Action: (args) => {
-            if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s1 command must be followed by the words you want to say.</p>"
-                );
-            } else {
-                var nm = 0;
-                if (DolltalkOn == true) {
-                    var segmenter = new Intl.Segmenter([], {
-                        granularity: 'word'
-                    });
-                    var segmentedText = segmenter.segment(args);
-                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                    var ln = words.length;
-                    if (ln > 5) {
-                        var nm = 1;
-                    }
-                    let i = 0;
-                    while (i < ln) {
-                        var lw = words[i].length;
-                        if (lw > 6) {
-                            var nm = 1;
-                        }
-                        i++;
-                    }
-                    if (nm == 1) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
-                        );
-                    }
-                }
-                if (nm == 0) {
-                    content = SpeechTransformStutter(args, 1);
-                    ElementValue("InputChat", content);
-                    event.preventDefault();
-                    var dc = 1;
-                    M_MOANER_saveControls();
-                    ChatRoomSendChat();
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 's2',
-        Description: "(words): speaks once in normal stuttering mode.",
-        Action: (args) => {
-            if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s2 command must be followed by the words you want to say.</p>"
-                );
-            } else {
-                var nm = 0;
-                if (DolltalkOn == true) {
-                    var segmenter = new Intl.Segmenter([], {
-                        granularity: 'word'
-                    });
-                    var segmentedText = segmenter.segment(args);
-                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                    var ln = words.length;
-                    if (ln > 5) {
-                        var nm = 1;
-                    }
-                    let i = 0;
-                    while (i < ln) {
-                        var lw = words[i].length;
-                        if (lw > 6) {
-                            var nm = 1;
-                        }
-                        i++;
-                    }
-                    if (nm == 1) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
-                        );
-                    }
-                }
-                if (nm == 0) {
-                    content = SpeechTransformStutter(args, 2);
-                    ElementValue("InputChat", content);
-                    event.preventDefault();
-                    var dc = 1;
-                    M_MOANER_saveControls();
-                    ChatRoomSendChat();
-                }
-            }
-        }
-    }])
-
-
-    CommandCombine([{
-        Tag: 's3',
-        Description: "(words): speaks once in heavy stuttering mode.",
-        Action: (args) => {
-            if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s3 command must be followed by the words you want to say.</p>"
-                );
-            } else {
-                var nm = 0;
-                if (DolltalkOn == true) {
-                    var segmenter = new Intl.Segmenter([], {
-                        granularity: 'word'
-                    });
-                    var segmentedText = segmenter.segment(args);
-                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                    var ln = words.length;
-                    if (ln > 5) {
-                        var nm = 1;
-                    }
-                    let i = 0;
-                    while (i < ln) {
-                        var lw = words[i].length;
-                        if (lw > 6) {
-                            var nm = 1;
-                        }
-                        i++;
-                    }
-                    if (nm == 1) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
-                        );
-                    }
-                }
-                if (nm == 0) {
-                    content = SpeechTransformStutter(args, 3);
-                    ElementValue("InputChat", content);
-                    event.preventDefault();
-                    var dc = 1;
-                    M_MOANER_saveControls();
-                    ChatRoomSendChat();
-                }
-            }
-        }
-    }])
-
-
-    CommandCombine([{
-        Tag: 's4',
-        Description: "(words): speaks once in total stuttering mode.",
-        Action: (args) => {
-            if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The s4 command must be followed by the words you want to say.</p>"
-                );
-            } else {
-                var nm = 0;
-                if (DolltalkOn == true) {
-                    var segmenter = new Intl.Segmenter([], {
-                        granularity: 'word'
-                    });
-                    var segmentedText = segmenter.segment(args);
-                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                    var ln = words.length;
-                    if (ln > 5) {
-                        var nm = 1;
-                    }
-                    let i = 0;
-                    while (i < ln) {
-                        var lw = words[i].length;
-                        if (lw > 6) {
-                            var nm = 1;
-                        }
-                        i++;
-                    }
-                    if (nm == 1) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
-                        );
-                    }
-                }
-                if (nm == 0) {
-                    content = SpeechTransformStutter(args, 4);
-                    ElementValue("InputChat", content);
-                    event.preventDefault();
-                    var dc = 1;
-                    M_MOANER_saveControls();
-                    ChatRoomSendChat();
-                }
-            }
-        }
-    }])
-
+  
     CommandCombine([{
         Tag: 'safeworditem',
         Description: ": removes specific item.",
@@ -12866,6 +12680,66 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 ChatRoomSetTarget(-1);
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'stalk',
+        Description: "(stuttermode) (words): speaks once in a specified stuttering mode.",
+        Action: (_, command, args) => {
+            var [mode] = args;
+            if (!mode) {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
+                    " \n" +
+                    "Available stuttering modes:\n" +
+                    "1 light stuttering\n" +
+                    "2 normal stuttering\n" +
+                    "3 heavy stuttering\n" +
+                    "4 total stuttering</p>"
+                );
+            } else {
+                if ((mode > 0) && (mode < 5)) {
+                    var [, , ...message] = command.split(" ");
+                    var msg = message?.join(" ");
+                    var nm = 0;
+                    if (DolltalkOn == true) {
+                        var segmenter = new Intl.Segmenter([], {
+                            granularity: 'word'
+                        });
+                        var segmentedText = segmenter.segment(msg);
+                        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                        var ln = words.length;
+                        if (ln > 5) {
+                            var nm = 1;
+                        }
+                        let i = 0;
+                        while (i < ln) {
+                            var lw = words[i].length;
+                            if (lw > 6) {
+                                var nm = 1;
+                            }
+                            i++;
+                        }
+                        if (nm == 1) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
+                            );
+                        }
+                    }
+                    if (nm == 0) {
+                        if (mode == 1) content = SpeechTransformStutter(msg, 1);
+                        if (mode == 2) content = SpeechTransformStutter(msg, 2);
+                        if (mode == 3) content = SpeechTransformStutter(msg, 3);
+                        if (mode == 4) content = SpeechTransformStutter(msg, 4);
+                        ElementValue("InputChat", content);
+                        event.preventDefault();
+                        var dc = 1;
+                        M_MOANER_saveControls();
+                        ChatRoomSendChat();
+                    }
+                }
             }
         }
     }])
@@ -13890,10 +13764,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
                     "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
                     "<b>/moaner</b> = moans when horny and stimulated. *\n" +
-                    "<b>/s1</b> (stuffhere) = speaks once in light stuttering mode.\n" +
-                    "<b>/s2</b> (stuffhere) = speaks once in normal stuttering mode.\n" +
-                    "<b>/s3</b> (stuffhere) = speaks once in heavy stuttering mode.\n" +
-                    "<b>/s4</b> (stuffhere) = speaks once in total stuttering mode.\n" +
+                    "<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *\n" +
                     "<b>/stutter</b> (stuttermode) = forces a specific stuttering mode. *\n" +
                     "<b>/talk</b> (talkmode) = forces a specific talk mode. *</p>"
                 );
