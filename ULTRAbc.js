@@ -7081,7 +7081,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     GraphicsSettings: Player.GraphicsSettings
                 });
-                ElementScrollToEnd("TextAreaChatLog");
+                InformationSheetLoad();
+                InformationSheetLoadCharacter(Player);
+                InformationSheetExit();
             }
         }
     }])
