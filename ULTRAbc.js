@@ -3212,6 +3212,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Talking
+    function GarbleRandom(min, max) {
+        min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function GarbleTalk(text, garbleWords) {
+        let newText = "";
+	const punctuation = ",.!?";
+	for (const word of text.split(" ")) {
+	    const rword = word.split("").reverse().join("");
+	    let wordPunctuation = "";
+	    if (punctuation.includes(rword[0])) {
+		for (const c of rword.split("")) {
+		    if (punctuation.includes(c)) wordPunctuation += c;
+		}
+		wordPunctuation = wordPunctuation.split("").reverse().join("");
+	    }
+	    newText += garbleWords[GarbleRandom(0, garbleWords.length-1)] + wordPunctuation + " ";
+	}
+	return newText.trim();
+    }
+	
     function RealGarblingLevel() {
         notalk = 0;
         ElementValue("InputChat", "");
@@ -5175,6 +5198,70 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
                 }
             }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'atalk',
+        Description: "(animal) (words): speaks once as a specified animal.",
+        Action: (_, command, args) => {
+            var [mode] = args;
+            if (!mode) {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The atalk command must be followed by a number between 1 and 6 for the animal and the words you want to say.\n" +
+                    " \n" +
+                    "Available animals:\n" +
+                    "1 cow\n" +
+                    "2 fox\n" +
+                    "3 kitty\n" +
+                    "4 mouse\n" +
+                    "5 pig\n" +           
+                    "6 puppy</p>"
+                );
+            } else {
+                if ((mode > 0) && (mode < 7)) {
+                    var [, , ...message] = command.split(" ");
+                    var msg = message?.join(" ");
+                    var nm = 0;
+                    if (DolltalkOn == true) {
+                        var segmenter = new Intl.Segmenter([], {
+                            granularity: 'word'
+                        });
+                        var segmentedText = segmenter.segment(msg);
+                        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                        var ln = words.length;
+                        if (ln > 5) {
+                            var nm = 1;
+                        }
+                        let i = 0;
+                        while (i < ln) {
+                            var lw = words[i].length;
+                            if (lw > 6) {
+                                var nm = 1;
+                            }
+                            i++;
+                        }
+                        if (nm == 1) {
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
+                            );
+                        }
+                    }
+                    if (nm == 0) {
+                        if (mode == 1) content = GarbleTalk(msg, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
+                        if (mode == 2) content = GarbleTalk(msg, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]);
+                        if (mode == 3) content = GarbleTalk(msg, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
+                        if (mode == 4) content = GarbleTalk(msg, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
+                        if (mode == 5) content = GarbleTalk(msg, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);                      
+                        if (mode == 6) content = GarbleTalk(msg, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
+                        ElementValue("InputChat", content);
+                        event.preventDefault();
+                        var dc = 1;
+                        M_MOANER_saveControls();
+                        ChatRoomSendChat();
+                    }
+                }
+           }
         }
     }])
 
@@ -13760,6 +13847,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "talking") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Talking commands - * = more info when using\n" +
+		    "<b>/atalk</b> (stuffhere) = speaks once as an animal. *\n" +
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
                     "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
