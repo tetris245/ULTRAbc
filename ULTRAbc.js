@@ -1101,42 +1101,44 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
            if (tsp == 1) text2 = text1;
            if (tsp == 2) tsp = 1;
            if (tsp == 0) {
-               var nm = 0;
-               if ((DolltalkOn == true) && (dc == 0)) {
-                   var segmenter = new Intl.Segmenter([], {
-                       granularity: 'word'
-                   });
-                   var segmentedText = segmenter.segment(text1);
-                   var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                   var ln = words.length;
-                   if (ln > 5) {
-                       var nm = 1; 
-                   }
-                   let i = 0;
-                   while (i < ln) {
-                       var lw = words[i].length;
-                       if (lw > 6) {
-                           var nm = 1;
+               if (dc == 1) { 
+                   var text2 = text1;
+                   var dc = 0;           
+                   M_MOANER_saveControls();
+               } else {
+                   var nm = 0;
+                   if (DolltalkOn == true) {
+                       var segmenter = new Intl.Segmenter([], {
+                           granularity: 'word'
+                       });
+                       var segmentedText = segmenter.segment(text1);
+                       var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+                       var ln = words.length;
+                       if (ln > 5) {
+                           var nm = 1; 
+                       }
+                       let i = 0;
+                       while (i < ln) {
+                           var lw = words[i].length;
+                           if (lw > 6) {
+                               var nm = 1;
+                            }
+                            i++;
                         }
-                        i++;
-                    }
-                    if (nm == 1) {
-                        var text2 = "";
-			ElementValue("InputChat", ""); 
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message or whisper can't be sent because it does not respect the rules of doll talk.</p>"
-                         );
+                        if (nm == 1) {
+                            var text2 = "";
+                            ElementValue("InputChat", ""); 
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your message or whisper can't be sent because it does not respect the rules of doll talk.</p>"
+                             );
+                         } else {
+                             var text2 = text1;
+                         }
                      } else {
                          var text2 = text1;
                      }
-                } else {
-                     var text2 = text1;
-                }
+                }   
             } 
-	    if (dc == 1) { 
-                var dc = 0;           
-                M_MOANER_saveControls();
-            }
             if ((tsp == 1) || (nm == 1)) {
                 var text3 = text2;
             } else {
