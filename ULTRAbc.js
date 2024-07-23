@@ -1100,23 +1100,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                } else {
                    var nm = 0;
                    if (DolltalkOn == true) {
-                       var segmenter = new Intl.Segmenter([], {
-                           granularity: 'word'
-                       });
-                       var segmentedText = segmenter.segment(text1);
-                       var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                       var ln = words.length;
-                       if (ln > 5) {
-                           var nm = 1; 
-                       }
-                       let i = 0;
-                       while (i < ln) {
-                           var lw = words[i].length;
-                           if (lw > 6) {
-                               var nm = 1;
-                            }
-                            i++;
-                        }
+                        if (IsDollTalk(text1) == false) {
+                            var nm = 1;
+                        } 
                         if (nm == 1) {
                             var text2 = "";
                             ElementValue("InputChat", ""); 
@@ -3206,6 +3192,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Talking
+    function IsDollTalk(text) {
+        var nn = 0;
+        var segmenter = new Intl.Segmenter([], {
+            granularity: 'word'
+        });
+        var segmentedText = segmenter.segment(text);
+        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+        var ln = words.length;
+        if (ln > 5) {
+            var nn = 1;
+        }
+        let i = 0;
+        while (i < ln) {
+            var lw = words[i].length;
+            if (lw > 6) {
+                var nn = 1;
+            }
+            i++;
+        }      
+        if (nn == 1) {
+            return false;
+        } else {
+            return true;
+        }    
+    }
+
     function GarbleRandom(min, max) {
         min = Math.ceil(min);
 	max = Math.floor(max);
@@ -5230,23 +5242,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var msg = message?.join(" ");
                     var nm = 0;
                     if (DolltalkOn == true) {
-                        var segmenter = new Intl.Segmenter([], {
-                            granularity: 'word'
-                        });
-                        var segmentedText = segmenter.segment(msg);
-                        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                        var ln = words.length;
-                        if (ln > 5) {
+                        if (IsDollTalk(msg) == false) {
                             var nm = 1;
-                        }
-                        let i = 0;
-                        while (i < ln) {
-                            var lw = words[i].length;
-                            if (lw > 6) {
-                                var nm = 1;
-                            }
-                            i++;
-                        }
+                        } 
                         if (nm == 1) {
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
@@ -6279,24 +6277,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 var text = args;
                 var nm = 0;
-                if (DolltalkOn == true) {     
-                    var segmenter = new Intl.Segmenter([], {
-                        granularity: 'word'
-                    });
-                    var segmentedText = segmenter.segment(text);
-                    var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                    var ln = words.length;                 
-                    if (ln > 5) {
+                if (DolltalkOn == true) { 
+                    if (IsDollTalk(text) == false) {
                         var nm = 1;
-                    }
-                    let i = 0;
-                    while (i < ln) {
-                        var lw = words[i].length;
-                        if (lw > 6) {
-                            var nm = 1;
-                        }
-                        i++;
-                    }
+                    }   
                     if (nm == 1) {
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
@@ -7559,22 +7543,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     var nm = 0;
                     if (DolltalkOn == true) {
-                        var segmenter = new Intl.Segmenter([], {
-                            granularity: 'word'
-                        });
-                        var segmentedText = segmenter.segment(args.substring(2).trim());
-                        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                        var ln = words.length;
-                        if (ln > 5) {
+                        var text = args.substring(2).trim();
+                        if (IsDollTalk(text) == false) {
                             var nm = 1;
-                        }
-                        let i = 0;
-                        while (i < ln) {
-                            var lw = words[i].length;
-                            if (lw > 6) {
-                                var nm = 1;
-                            }
-                            i++;
                         }
                         if (nm == 1) {
                             ChatRoomSendLocal(
@@ -12813,22 +12784,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var msg = message?.join(" ");
                     var nm = 0;
                     if (DolltalkOn == true) {
-                        var segmenter = new Intl.Segmenter([], {
-                            granularity: 'word'
-                        });
-                        var segmentedText = segmenter.segment(msg);
-                        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                        var ln = words.length;
-                        if (ln > 5) {
+                        if (IsDollTalk(msg) == false) {
                             var nm = 1;
-                        }
-                        let i = 0;
-                        while (i < ln) {
-                            var lw = words[i].length;
-                            if (lw > 6) {
-                                var nm = 1;
-                            }
-                            i++;
                         }
                         if (nm == 1) {
                             ChatRoomSendLocal(
