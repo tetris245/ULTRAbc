@@ -386,7 +386,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             M_MOANER_xvibratorActive = false;
             M_MOANER_cum = false;
             profileName = "default";
-	    dc = 0;
             tmpname = "";
             pronoun1 = "";
             pronoun2 = "";
@@ -456,7 +455,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             M_MOANER_xvibratorActive = datas.xvibeMoan;
             M_MOANER_cum = datas.cum;
             profileName = datas.moanProfile;
-	    dc = datas.dc;
             tmpname = datas.tmpname;
             pronoun1 = datas.pronoun1;
             pronoun2 = datas.pronoun2;
@@ -529,7 +527,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "xvibeMoan": M_MOANER_xvibratorActive,
             "cum": M_MOANER_cum,
             "moanProfile": profileName,
-            "dc": dc,
             "tmpname": tmpname,
             "pronoun1": pronoun1,
             "pronoun2": pronoun2,
@@ -637,10 +634,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (DolltalkOn == null || DolltalkOn == undefined) {
                     DolltalkOn = false;
-                    M_MOANER_saveControls();
-                }
-		if (dc == null || dc == undefined) {
-                    dc = 0;
                     M_MOANER_saveControls();
                 }
                 if (gl == null || gl == undefined) {
@@ -1104,7 +1097,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                if (dc == 1) { 
                    var text2 = text1;
                    var dc = 0;           
-                   M_MOANER_saveControls();
                } else {
                    var nm = 0;
                    if (DolltalkOn == true) {
@@ -5271,7 +5263,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementValue("InputChat", content);
                         event.preventDefault();
                         var dc = 1;
-                        M_MOANER_saveControls();
                         ChatRoomSendChat();
                     }
                 }
@@ -6277,7 +6268,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'btalk',
         Description: "(words): speaks once as a baby.",
         Action: (args) => {
@@ -6286,14 +6277,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The btalk command must be followed by the words you want to say.</p>"
                 );
             } else {
+                var text = args;
                 var nm = 0;
-                if (DolltalkOn == true) {
+                if (DolltalkOn == true) {     
                     var segmenter = new Intl.Segmenter([], {
                         granularity: 'word'
                     });
-                    var segmentedText = segmenter.segment(args);
+                    var segmentedText = segmenter.segment(text);
                     var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-                    var ln = words.length;
+                    var ln = words.length;                 
                     if (ln > 5) {
                         var nm = 1;
                     }
@@ -6310,19 +6302,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Your message can't be sent because it does not respect the rules of doll talk.</p>"
                         );
                     }
-                }
+                } 
                 if (nm == 0) {
-                    content = SpeechTransformBabyTalk(args);
-                    ElementValue("InputChat", content);
+                    text2 = SpeechTransformBabyTalk(text);
+                    ElementValue("InputChat", text2);
+                    if (this.Stutter1On == true) {
+                        var text3 = SpeechTransformStutter(text2, 1);
+                    } else if (this.Stutter2On == true) {
+                        var text3 = SpeechTransformStutter(text2, 2);
+                    } else if (this.Stutter3On == true) {
+                        var text3 = SpeechTransformStutter(text2, 3);
+                    } else if (this.Stutter4On == true) {
+                        var text3 = SpeechTransformStutter(text2, 4);
+                    } else {
+                        var text3 = text2;
+                    }
+                    ElementValue("InputChat", text2.replace(text2, text3));
+                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
+                         var text4 = M_MOANER_applyMoanToMsg(Player, text3);
+                    } else {
+                         var text4 = text3;
+                    }
+                    ElementValue("InputChat", text3.replace(text3, text4));
                     event.preventDefault();
-                    var dc = 1;
-                    M_MOANER_saveControls();
-                    ChatRoomSendChat();
-                }
+                    ChatRoomSendChatMessage(text4);
+                }                 
             }
         }
     }])
-
+ 
     CommandCombine([{
         Tag: 'carddesk',
         Description: "(desk): sets a specific desk as default desk for the Bondage Club Card Game.",
@@ -7588,7 +7596,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementValue("InputChat", content.replace(content, content2));
                         event.preventDefault();
                         var dc = 1;
-                        M_MOANER_saveControls();
                         ChatRoomSendChat();
                     }
                 }
@@ -12837,7 +12844,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementValue("InputChat", content);
                         event.preventDefault();
                         var dc = 1;
-                        M_MOANER_saveControls();
                         ChatRoomSendChat();
                     }
                 }
