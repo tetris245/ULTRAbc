@@ -1215,6 +1215,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else if (this.AnimalTalk5On == true) {
                             var texta = GarbleTalk(text6, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
                         } else if (this.AnimalTalk6On == true) {
+                            var texta = GarbleTalk(text6, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]); 
+                        } else if (this.AnimalTalk7On == true) {
                             var texta = GarbleTalk(text6, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
                         } else {
                             var texta = text6;
@@ -1260,6 +1262,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else if (this.AnimalTalk5On == true) {
                             var texta = GarbleTalk(text7, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
                         } else if (this.AnimalTalk6On == true) {
+                            var texta = GarbleTalk(text7, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]); 
+                        } else if (this.AnimalTalk7On == true) {
                             var texta = GarbleTalk(text7, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
                         } else {
                             var texta = text7;
@@ -5279,18 +5283,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             var [mode] = args;
             if (!mode) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The atalk command must be followed by a number between 1 and 6 for the animal and the words you want to say.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The atalk command must be followed by a number between 1 and 7 for the animal and the words you want to say.\n" +
                     " \n" +
                     "Available animals:\n" +
                     "1 cow\n" +
                     "2 fox\n" +
                     "3 kitty\n" +
                     "4 mouse\n" +
-                    "5 pig\n" +           
-                    "6 puppy</p>"
+                    "5 pig\n" + 
+                    "6 pony\n" +          
+                    "7 puppy</p>"
                 );
             } else {
-                if ((mode > 0) && (mode < 7)) {
+                if ((mode > 0) && (mode < 8)) {
                     var [, , ...message] = command.split(" ");
                     var msg = message?.join(" ");
                     var nm = 0;
@@ -5309,11 +5314,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (mode == 2) content = GarbleTalk(msg, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]);
                         if (mode == 3) content = GarbleTalk(msg, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
                         if (mode == 4) content = GarbleTalk(msg, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
-                        if (mode == 5) content = GarbleTalk(msg, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);                      
-                        if (mode == 6) content = GarbleTalk(msg, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
+                        if (mode == 5) content = GarbleTalk(msg, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);  
+                        if (mode == 6) content = GarbleTalk(msg, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]);                 
+                        if (mode == 7) content = GarbleTalk(msg, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);                     
                         ElementValue("InputChat", content);
                         event.preventDefault();
-			var ac = 1;
+                        var ac = 1;
                         var dc = 1;
                         ChatRoomSendChat();
                     }
@@ -11620,13 +11626,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'ptalk',
         Description: "(animal): forces a specific animal talk mode",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 6.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 7.\n" +
                     " \n" +
                     "Available animals:\n" +        
                     "0 normal talk\n" +
@@ -11635,7 +11641,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "3 kitty\n" +
                     "4 mouse\n" +
                     "5 pig\n" +
-                    "6 puppy</p>"
+                    "6 pony\n" +
+                    "7 puppy</p>"
                 );
             } else {
                 var mode = args * 1;
@@ -11646,6 +11653,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk4On = false;
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
+                    AnimalTalk7On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
@@ -11658,6 +11666,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk4On = false;
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
+                    AnimalTalk7On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
@@ -11670,6 +11679,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk4On = false;
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
+                    AnimalTalk7On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
@@ -11682,6 +11692,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk4On = false;
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
+                    AnimalTalk7On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
@@ -11694,6 +11705,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk4On = true;
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
+                    AnimalTalk7On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
@@ -11706,6 +11718,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk4On = false;
                     AnimalTalk5On = true;
                     AnimalTalk6On = false;
+                    AnimalTalk7On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
@@ -11718,12 +11731,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk4On = false;
                     AnimalTalk5On = false;
                     AnimalTalk6On = true;
+                    AnimalTalk7On = false;
+                    animal = mode;
+                    M_MOANER_saveControls();
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pony talk mode.</p>"
+                    );
+                } else if (mode == 7) {
+                    AnimalTalk1On = false;
+                    AnimalTalk2On = false;
+                    AnimalTalk3On = false;
+                    AnimalTalk4On = false;
+                    AnimalTalk5On = false;
+                    AnimalTalk6On = false;
+                    AnimalTalk7On = true;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in puppy talk mode.</p>"
-                    );          
-                }              
+                    );
+                }
             } 
         }
     }])
