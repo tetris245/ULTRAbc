@@ -35,6 +35,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
+    let ac = 0;
     let dc = 0;
     let ini = 0;
     let kp = 0;
@@ -1196,26 +1197,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    ElementValue("InputChat", text5.replace(text5, text6));
                     var text6 = text5; 
                 }
-                if ((tsp == 1) || (nm == 1)) {
+                if (ac == 1) {
+                    var ac = 0;
                     var texta = text6;
                 } else {
-                    if (this.AnimalTalk1On == true) {
-                        var texta = GarbleTalk(text6, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
-                    } else if (this.AnimalTalk2On == true) {
-                        var texta = GarbleTalk(text6, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]); 
-                    } else if (this.AnimalTalk3On == true) {
-                        var texta = GarbleTalk(text6, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
-                    } else if (this.AnimalTalk4On == true) {
-                        var texta = GarbleTalk(text6, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
-                    } else if (this.AnimalTalk5On == true) {
-                        var texta = GarbleTalk(text6, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
-                    } else if (this.AnimalTalk6On == true) {
-                        var texta = GarbleTalk(text6, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
-                    } else {
+                    if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         var texta = text6;
-                    }         
-                } 
-                ElementValue("InputChat", text6.replace(text6, texta));	    
+                    } else {
+                        if (this.AnimalTalk1On == true) {
+                            var texta = GarbleTalk(text6, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
+                        } else if (this.AnimalTalk2On == true) {
+                            var texta = GarbleTalk(text6, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]); 
+                        } else if (this.AnimalTalk3On == true) {
+                            var texta = GarbleTalk(text6, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
+                        } else if (this.AnimalTalk4On == true) {
+                            var texta = GarbleTalk(text6, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
+                        } else if (this.AnimalTalk5On == true) {
+                            var texta = GarbleTalk(text6, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
+                        } else if (this.AnimalTalk6On == true) {
+                            var texta = GarbleTalk(text6, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
+                        } else {
+                            var texta = text6;
+                        } 
+                    } 
+                ElementValue("InputChat", text6.replace(text6, texta));
+	        }  
             } else {
                 if (NowhisperOn == false) {
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
@@ -5307,6 +5313,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (mode == 6) content = GarbleTalk(msg, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
                         ElementValue("InputChat", content);
                         event.preventDefault();
+			var ac = 1;
                         var dc = 1;
                         ChatRoomSendChat();
                     }
