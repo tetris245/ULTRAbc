@@ -4772,6 +4772,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
     M_MOANER_addMoansProfile("pig", M_MOANER_pigMoans);
 
+    //pony
+    M_MOANER_ponyMoans = {
+        "hot": ["n... Neighh\u2665", "NeighhH\u2665"],
+        "medium": ["neighh\u2665", "neigh", "..whinney"],
+        "light": ["neigh\u2665", "Whin!", "neigh", "whinny\u2665"],
+        "low": ["neigh", "whin\u2665", "nei", "\u2665nei\u2665", "nei\u2665"],
+        "orgasm": ["Neigh...Nei...Neighhhhh!", "Neighhh... Neighh... Neigh!", "whin... whinnyy.... whinnnnney!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("pony", M_MOANER_ponyMoans);
+
     //wildFox
     M_MOANER_wildfoxMoans = {
         "hot": ["w... Wiiif\u2665", "Yiiif\u2665", "Wa\u2665ouu"],
