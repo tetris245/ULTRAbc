@@ -60,6 +60,7 @@ Changes for future version
 
 * New commands:
   - atalk (animal) (words) to speak once as a specified animal (value 1 to 6)
+  - ptalk (animal) to force a specific animal talk mode (value 1 to 6)
   - stalk (stuttermode) (words) to speak once in a specified stuttering mode (value 1 to 4)
 * Added cow profile to the Moaner
 * Improved the code by using a function checking the conditions for the doll talk mode
