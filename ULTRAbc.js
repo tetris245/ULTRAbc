@@ -152,20 +152,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var HighfameStatus = ["High fame mode enabled in Bondage Club Card Game.",
         "High fame mode disabled in Bondage Club Card Game."
     ];
-    var MagiccheatStatus = ["Cheat mode enabled in Bondage Brawl and Magic School.",
-        "Cheat mode disabled in Magic School."
+    var MagiccheatStatus = ["Cheat mode enabled in B. Brawl and Magic School.",
+        "Cheat mode disabled in B. Brawl and Magic School."
     ];
-    var MagictoysStatus = ["Toys can be added under locked chastity for trap mode in map rooms.",
-        "Toys can't be added under locked chastity for trap mode in map rooms.",
+    var MagictoysStatus = ["Magic toys added under locked chastity for trap mode.",
+        "No magic toys added under locked chastity for trap mode.",
     ];
     var MaptrapStatus = ["Traps in map rooms if you 'walk' on devices.",
         "No traps with devices in map rooms."
     ];
-    var NogarbleStatus = ["BC default talk mode will ungarble messages and whispers.",
-        "BC default talk mode will not ungarble messages and whispers."
+    var NogarbleStatus = ["Ungarble with BC default talk mode.",
+        "No ungarble with BC default talk mode."
     ];
     var NostruggleStatus = ["Automatic struggle in mini-games is enabled.",
         "Automatic struggle in mini-games is disabled."
+    ];
+    var NotimeoutStatus = ["Time-out disabled in TAB help.",
+        "Time-out enabled in TAB help."
     ];
     var NowhisperStatus = ["No-whisper mode enabled.",
         "No-whisper mode disabled."
@@ -3155,7 +3158,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             FREE = "";
         }
-
         if (OutbuttonsOn) {
             OUT = "OUT - ";
         } else {
@@ -3198,7 +3200,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Autojoin = "";
         }
         if (FullseedOn) {
-            Fullseed = "Full solution for intricate and high security locks - ";
+            Fullseed = "Full solution for intricate/hs locks - ";
         } else {
             Fullseed = '';
         }
@@ -3232,23 +3234,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showMagictoysStatus() {
-        let msg;
-        if (MagiccheatOn) {
-            msg = MagictoysStatus[0];
-        } else {
-            msg = MagictoysStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     function showMaptrapStatus() {
         let msg;
         if (MaptrapOn) {
-            msg = MaptrapStatus[0];
+            msg1 = MaptrapStatus[0];
         } else {
-            msg = MaptrapStatus[1];
+            msg1 = MaptrapStatus[1];
         }
+        if (MagiccheatOn) {
+            msg2 = MagictoysStatus[0];
+        } else {
+            msg2 = MagictoysStatus[1];
+        }
+        msg = msg1 + " " + msg2;
         M_MOANER_sendMessageToWearer(msg);
     }
 
@@ -3268,6 +3266,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = NostruggleStatus[0];
         } else {
             msg = NostruggleStatus[1];
+        }
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showNotimeoutStatus() {
+        let msg;
+        if (NotimeoutOn) {
+            msg = NotimeoutStatus[0];
+        } else {
+            msg = NotimeoutStatus[1];
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -14968,11 +14976,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             showExitmodeStatus();
             showFeaturesStatus();
             showHighfameStatus();
-            showMagiccheatStatus();
-            showMagictoysStatus(); 
+            showMagiccheatStatus(); 
             showMaptrapStatus();
             showNogarbleStatus();
             showNostruggleStatus();
+	    showNotimeoutStatus();
             showNowhisperStatus();
             showNpcpunishStatus();
             showRoomSizeStatus();
