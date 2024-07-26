@@ -62,6 +62,7 @@ Changes for future version
   - atalk (animal) (words) to speak once as a specified animal (value 1 to 7 - does not override the forced animal talk mode)
   - ptalk (animal) to force a specific animal talk mode (value 1 to 7 - back to human mode with value 0)
   - stalk (stuttermode) (words) to speak once in a specified stuttering mode (value 1 to 4)
+  - uset notimeout to toggle the time-out for BC help provided by TAB key
 * Added cow and pony profiles to the Moaner
 * Improved the code by using a function checking the conditions for the doll talk mode
 * Removed the s1, s2, s3 and s4 commands that are merged in the stalk command
