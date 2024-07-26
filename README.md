@@ -66,3 +66,4 @@ Changes for future version
 * Added cow and pony profiles to the Moaner
 * Improved the code by using a function checking the conditions for the doll talk mode
 * Removed the s1, s2, s3 and s4 commands that are merged in the stalk command
+* Updated the ustatus command
