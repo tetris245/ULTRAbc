@@ -70,6 +70,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let MaptrapOn;
     let NogarbleOn;
     let NostruggleOn;
+    let NotimeoutOn;
     var NowhisperOn = false;
     var NPCpunish = false;
     let OutbuttonsOn;
@@ -412,6 +413,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MaptrapOn = false;
             NogarbleOn = false;
             NostruggleOn = false;
+	    NotimeoutOn = false;
             NowhisperOn = false;
             NPCpunish = false;
             OutbuttonsOn = false;
@@ -482,6 +484,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MaptrapOn = datas.maptrap;
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
+	    NotimeoutOn = datas.notimeout;
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
             OutbuttonsOn = datas.outbuttons;
@@ -553,6 +556,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "maptrap": MaptrapOn,
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,
+            "notimeout": NotimeoutOn,
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
             "outbuttons": OutbuttonsOn,
@@ -666,6 +670,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MagictoysOn = false;
                     M_MOANER_saveControls();
                 }
+		if (NotimeoutOn == null || NotimeoutOn == undefined) {
+                    NotimeoutOn = false;
+                    M_MOANER_saveControls();
+                }
                 if (reaction == null || reaction == undefined) {
                     reaction = 0;
                     M_MOANER_saveControls();
@@ -704,6 +712,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchRun();
     ULTRAClubCardEndTurn();
     ULTRAClubCardLoadDeckNumber();
+    UKTRACommandAutoComplete();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
     ULTRAFriendListClick();
@@ -1813,6 +1822,47 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     });
                 }
             }
+            next(args);
+        });
+    }
+
+    //Help
+    async function UKTRACommandAutoComplete() {
+        modApi.hookFunction('CommandAutoComplete', 4, (args, next) => {
+            msg = ElementValue("InputChat");
+            const low = msg.toLowerCase();
+	    if (!low || !low.startsWith(CommandsKey) || low.length <= CommandsKey.length) return;
+	    if (low.substring(CommandsKey.length).startsWith(CommandsKey)) return;
+	    const [key, ...forward] = low.replace(/\s{2,}/g, ' ').split(' ');
+	    const CS = GetCommands().filter(C => (CommandsKey + C.Tag).indexOf(key) == 0);
+	    if (CS.length == 0) return;
+	    if (CS.length == 1) {
+		if (key != (CommandsKey + CS[0].Tag)) {
+		    ElementValue("InputChat", CommandsKey + CS[0].Tag + " ");
+		    ElementFocus("InputChat");
+		} else if (CS[0].AutoComplete) {
+		    CS[0].AutoComplete.call(CS[0], forward, low, msg);
+		}
+		return;
+	    } if (forward.length > 0) return;
+	       let complete = low; 
+	       for (let I = low.length - CommandsKey.length; ; ++I) {
+		   const TSI = CS.map(C => C.Tag[I]);
+		   if (TSI.some(TI => TI == null)) break;
+		   if (new Set(TSI).size != 1) break;
+		   complete += TSI[0];
+	       }
+	       if (low.length != complete.length) {
+		   ElementValue("InputChat", complete);
+		   ElementFocus("InputChat");
+	       } else {
+                   if (NotimeoutOn == true) {
+                       CommandPrintHelpFor(CS);
+                   } else {
+		       CommandPrintHelpFor(CS, 5000);
+                   } 
+	       }
+            return;
             next(args);
         });
     }
@@ -14621,6 +14671,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>magictoys</b> for toys added under locked chastity in traps\n" +
                     "<b>nogarble</b> for ungarble in default BC talk mode\n" +
                     "<b>nostruggle</b> for automatic struggle in mini-games\n" +
+		    "<b>notimeout</b> for toggle time-out in BC help provided by TAB key\n" +     
                     "<b>nowhisper</b> for no-whisper mode\n" +
                     "<b>npcpunish</b> for NPC punishments\n" +
                     "<b>outbuttons</b> for OUT buttons\n" +
@@ -14816,6 +14867,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.</p>"
                             );
                         }
+                    }
+		} else if (setting == "notimeout") {
+                    if (NotimeoutOn == true) {
+                        NotimeoutOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Time-out for BC help provided by TAB key is activated.</p>"
+                        );
+                    } else {
+                        NotimeoutOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Time-out for BC help provided by TAB key is disabled.</p>"
+                        );
                     }
                 } else if (setting == "nowhisper") {
                     if (NowhisperOn == true) {
