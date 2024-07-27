@@ -652,6 +652,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     animal = 0;
                     M_MOANER_saveControls();
                 }
+		if (animal == 1) AnimalTalk1On = true;
+                if (animal == 2) AnimalTalk2On = true; 
+                if (animal == 3) AnimalTalk3On = true;
+                if (animal == 4) AnimalTalk4On = true;
+                if (animal == 5) AnimalTalk5On = true;
+                if (animal == 6) AnimalTalk6On = true;
+                if (animal == 7) AnimalTalk7On = true;
+                if (animal == 8) AnimalTalk8On = true;
                 if (gl == null || gl == undefined) {
                     gl = 0;
                     notalk = 0;
