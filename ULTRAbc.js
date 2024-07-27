@@ -3261,17 +3261,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         msg = msg1 + " " + msg2;
         M_MOANER_sendMessageToWearer(msg);
     }
-
-    function showNogarbleStatus() {
-        let msg;
-        if (NogarbleOn) {
-            msg = NogarbleStatus[0];
-        } else {
-            msg = NogarbleStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
+	
     function showNostruggleStatus() {
         let msg;
         if (NostruggleOn) {
@@ -3315,6 +3305,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showRoomSizeStatus() {
         let msg;
         msg = "Current maximum players per room in Chat Search for normal and hybrid rooms: " + rsize + ".";
+        M_MOANER_sendMessageToWearer(msg);
+    }
+
+    function showTalkStatus() {
+        let msg;
+        if (animal == 0) msg1 = "Human talk mode";
+        if (animal == 1) msg1 = "Bunny talk mode";
+        if (animal == 2) msg1 = "Cow talk mode";
+        if (animal == 3) msg1 = "Fox talk mode";
+        if (animal == 4) msg1 = "Kitty talk mode";
+        if (animal == 5) msg1 = "Mouse talk mode";
+        if (animal == 6) msg1 = "Pig talk mode";
+        if (animal == 7) msg1 = "Pony talk mode";
+        if (animal == 8) msg1 = "Puppy talk mode";
+        if (DolltalkOn) {
+            msg2 = DolltalkStatus[0];
+        } else {
+            msg2 = DolltalkStatus[1];
+        }
+        if (NogarbleOn) {
+            msg3 = NogarbleStatus[0];
+        } else {
+            msg3 = NogarbleStatus[1];
+        }
+        msg = msg1 + " - " + msg2 + " " + msg3;
         M_MOANER_sendMessageToWearer(msg);
     }
 
@@ -15009,18 +15024,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": displays status of UBC settings.",
         Action: () => {
             showButtonsStatus();
-            showDolltalkStatus();
             showExitmodeStatus();
             showFeaturesStatus();
             showHighfameStatus();
             showMagiccheatStatus(); 
             showMaptrapStatus();
-            showNogarbleStatus();
             showNostruggleStatus();
 	    showNotimeoutStatus();
             showNowhisperStatus();
             showNpcpunishStatus();
             showRoomSizeStatus();
+	    showTalkStatus();
         }
     }])
 
