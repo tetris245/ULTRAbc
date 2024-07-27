@@ -1217,18 +1217,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var texta = text6;
                     } else {
                         if (this.AnimalTalk1On == true) {
-                            var texta = GarbleTalk(text6, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
+                            var texta = GarbleTalk(text6,["hoo", "honk", "ooink", "oink", "oiink", "hum", "yum", "huumm", "yuuum"]);  
                         } else if (this.AnimalTalk2On == true) {
-                            var texta = GarbleTalk(text6, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]); 
+                            var texta = GarbleTalk(text6, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
                         } else if (this.AnimalTalk3On == true) {
-                            var texta = GarbleTalk(text6, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
+                            var texta = GarbleTalk(text6, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]); 
                         } else if (this.AnimalTalk4On == true) {
-                            var texta = GarbleTalk(text6, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
+                            var texta = GarbleTalk(text6, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
                         } else if (this.AnimalTalk5On == true) {
-                            var texta = GarbleTalk(text6, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
+                            var texta = GarbleTalk(text6, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
                         } else if (this.AnimalTalk6On == true) {
-                            var texta = GarbleTalk(text6, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]); 
+                            var texta = GarbleTalk(text6, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
                         } else if (this.AnimalTalk7On == true) {
+                            var texta = GarbleTalk(text6, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]); 
+                        } else if (this.AnimalTalk8On == true) {
                             var texta = GarbleTalk(text6, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
                         } else {
                             var texta = text6;
@@ -1262,24 +1264,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }  
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         var texta = text7;
-                    } else {
+                    } else {                       
                         if (this.AnimalTalk1On == true) {
-                            var texta = GarbleTalk(text7, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
+                            var texta = GarbleTalk(text7,["hoo", "honk", "ooink", "oink", "oiink", "hum", "yum", "huumm", "yuuum"]);  
                         } else if (this.AnimalTalk2On == true) {
-                            var texta = GarbleTalk(text7, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]); 
+                            var texta = GarbleTalk(text7, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
                         } else if (this.AnimalTalk3On == true) {
-                            var texta = GarbleTalk(text7, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
+                            var texta = GarbleTalk(text7, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]); 
                         } else if (this.AnimalTalk4On == true) {
-                            var texta = GarbleTalk(text7, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
+                            var texta = GarbleTalk(text7, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
                         } else if (this.AnimalTalk5On == true) {
-                            var texta = GarbleTalk(text7, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
+                            var texta = GarbleTalk(text7, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
                         } else if (this.AnimalTalk6On == true) {
-                            var texta = GarbleTalk(text7, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]); 
+                             var texta = GarbleTalk(text7, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
                         } else if (this.AnimalTalk7On == true) {
+                            var texta = GarbleTalk(text7, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]); 
+                        } else if (this.AnimalTalk8On == true) {
                             var texta = GarbleTalk(text7, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
                         } else {
                             var texta = text7;
-                        }         
+                        } 
                     } 
                     if (texta != "") { 
                         targetNumber = ChatRoomTargetMemberNumber;
@@ -5353,16 +5357,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             var [mode] = args;
             if (!mode) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The atalk command must be followed by a number between 1 and 7 for the animal and the words you want to say.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The atalk command must be followed by a number between 1 and 8 for the animal and the words you want to say.\n" +
                     " \n" +
                     "Available animals:\n" +
-                    "1 cow\n" +
-                    "2 fox\n" +
-                    "3 kitty\n" +
-                    "4 mouse\n" +
-                    "5 pig\n" + 
-                    "6 pony\n" +          
-                    "7 puppy</p>"
+                    "1 bunny\n" +
+                    "2 cow\n" +
+                    "3 fox\n" +
+                    "4 kitty\n" +
+                    "5 mouse\n" +
+                    "6 pig\n" + 
+                    "7 pony\n" +
+                    "8 puppy</p>"
                 );
             } else {
                 if ((mode > 0) && (mode < 8)) {
@@ -5380,13 +5385,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (nm == 0) {
-                        if (mode == 1) content = GarbleTalk(msg, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
-                        if (mode == 2) content = GarbleTalk(msg, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]);
-                        if (mode == 3) content = GarbleTalk(msg, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
-                        if (mode == 4) content = GarbleTalk(msg, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
-                        if (mode == 5) content = GarbleTalk(msg, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);  
-                        if (mode == 6) content = GarbleTalk(msg, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]);                 
-                        if (mode == 7) content = GarbleTalk(msg, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);                     
+                        if (mode == 1) content = GarbleTalk(msg, ["hoo", "honk", "ooink", "oink", "oiink", "hum", "yum", "huumm", "yuuum"]); 
+                        if (mode == 2) content = GarbleTalk(msg, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
+                        if (mode == 3) content = GarbleTalk(msg, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]);
+                        if (mode == 4) content = GarbleTalk(msg, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
+                        if (mode == 5) content = GarbleTalk(msg, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
+                        if (mode == 6) content = GarbleTalk(msg, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);  
+                        if (mode == 7) content = GarbleTalk(msg, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]);                 
+                        if (mode == 8) content = GarbleTalk(msg, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);                 
                         ElementValue("InputChat", content);
                         event.preventDefault();
                         var ac = 1;
@@ -11702,21 +11708,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 7.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 8.\n" +
                     " \n" +
                     "Available animals:\n" +        
                     "0 normal talk\n" +
-                    "1 cow\n" +
-                    "2 fox\n" +
-                    "3 kitty\n" +
-                    "4 mouse\n" +
-                    "5 pig\n" +
-                    "6 pony\n" +
-                    "7 puppy</p>"
+                    "1 bunny\n" +
+                    "2 cow\n" +
+                    "3 fox\n" +
+                    "4 kitty\n" +
+                    "5 mouse\n" +
+                    "6 pig\n" +
+                    "7 pony\n" +
+                    "8 puppy</p>"
                 );
             } else {
                 var mode = args * 1;
-                if (mode == 0) {
+		if (mode == 0) {
                     AnimalTalk1On = false;
                     AnimalTalk2On = false;
                     AnimalTalk3On = false;
@@ -11724,6 +11731,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
                     AnimalTalk7On = false;
+                    AnimalTalk8On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
@@ -11737,10 +11745,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
                     AnimalTalk7On = false;
+                    AnimalTalk8On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in cow talk mode.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in bunny talk mode.</p>"
                     );
                 } else if (mode == 2) {
                     AnimalTalk1On = false;
@@ -11750,10 +11759,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
                     AnimalTalk7On = false;
+                    AnimalTalk8On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in fox talk mode.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in cow talk mode.</p>"
                     );
                 } else if (mode == 3) {
                     AnimalTalk1On = false;
@@ -11763,10 +11773,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
                     AnimalTalk7On = false;
+                    AnimalTalk8On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in kitty talk mode.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in fox talk mode.</p>"
                     );
                 } else if (mode == 4) {
                     AnimalTalk1On = false;
@@ -11776,10 +11787,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
                     AnimalTalk7On = false;
+                    AnimalTalk8On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in mouse talk mode.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in kitty talk mode.</p>"
                     );
                 } else if (mode == 5) {
                     AnimalTalk1On = false;
@@ -11789,10 +11801,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk5On = true;
                     AnimalTalk6On = false;
                     AnimalTalk7On = false;
+                    AnimalTalk8On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pig talk mode.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in mouse talk mode.</p>"
                     );
                 } else if (mode == 6) {
                     AnimalTalk1On = false;
@@ -11802,10 +11815,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk5On = false;
                     AnimalTalk6On = true;
                     AnimalTalk7On = false;
+                    AnimalTalk8On = false;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pony talk mode.</p>"
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pig talk mode.</p>"
                     );
                 } else if (mode == 7) {
                     AnimalTalk1On = false;
@@ -11815,6 +11829,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk5On = false;
                     AnimalTalk6On = false;
                     AnimalTalk7On = true;
+                    AnimalTalk8On = false;
+                    animal = mode;
+                    M_MOANER_saveControls();
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pony talk mode.</p>"
+                    );
+                } else if (mode == 8) {
+                    AnimalTalk1On = false;
+                    AnimalTalk2On = false;
+                    AnimalTalk3On = false;
+                    AnimalTalk4On = false;
+                    AnimalTalk5On = false;
+                    AnimalTalk6On = false;
+                    AnimalTalk7On = false;
+                    AnimalTalk8On = true;
                     animal = mode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
@@ -11824,7 +11853,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } 
         }
     }])
-
+              
     CommandCombine([{
         Tag: 'ptcode',
         Description: "(target): reveals codes used on items controlled by portal link.",
