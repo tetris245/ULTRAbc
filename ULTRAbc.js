@@ -4782,6 +4782,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //MoanerProfiles
+    //bunny
     M_MOANER_bunnyMoans = {
         "hot": ["o... Oiink\u2665", "YuuumM\u2665"],
         "medium": ["oinK\u2665", "huumm", "..ooink"],
