@@ -4782,6 +4782,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //MoanerProfiles
+    M_MOANER_bunnyMoans = {
+        "hot": ["o... Oiink\u2665", "YuuumM\u2665"],
+        "medium": ["oinK\u2665", "huumm", "..ooink"],
+        "light": ["honk\u2665", "Hum!", "yum", "hoo\u2665"],
+        "low": ["hoo", "ny\u2665", "ho", "\u2665yum\u2665", "hum\u2665"],
+        "orgasm": ["Yum...Hum...YuuuuuMMMM!", "Ooiiinnk... Huuum... Yuuum!", "honkk... ooooiiink.... ooiiiiinnk!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("bunny", M_MOANER_bunnyMoans);
+
     //cow  
     M_MOANER_cowMoans = {
         "hot": ["m... Moooo\u2665", "Moooo\u2665"],
