@@ -1225,7 +1225,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var texta = text6;
                     } else {
                         if (this.AnimalTalk1On == true) {
-                            var texta = GarbleTalk(text6,["hoo", "honk", "ooink", "oink", "oiink", "hum", "yum", "huumm", "yuuum"]);  
+                            var texta = GarbleTalk(text6,["hoo", "honk", "hoink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"]);   
                         } else if (this.AnimalTalk2On == true) {
                             var texta = GarbleTalk(text6, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
                         } else if (this.AnimalTalk3On == true) {
@@ -1274,7 +1274,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var texta = text7;
                     } else {                       
                         if (this.AnimalTalk1On == true) {
-                            var texta = GarbleTalk(text7,["hoo", "honk", "ooink", "oink", "oiink", "hum", "yum", "huumm", "yuuum"]);  
+                            var texta = GarbleTalk(text7,["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"]);   
                         } else if (this.AnimalTalk2On == true) {
                             var texta = GarbleTalk(text7, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
                         } else if (this.AnimalTalk3On == true) {
@@ -4784,11 +4784,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //MoanerProfiles
     //bunny
     M_MOANER_bunnyMoans = {
-        "hot": ["o... Oiink\u2665", "YuuumM\u2665"],
-        "medium": ["oinK\u2665", "huumm", "..ooink"],
+        "hot": ["o... Hoiink\u2665", "YuuumM\u2665"],
+        "medium": ["hoinK\u2665", "huumm", "..hooink"],
         "light": ["honk\u2665", "Hum!", "yum", "hoo\u2665"],
-        "low": ["hoo", "ny\u2665", "ho", "\u2665yum\u2665", "hum\u2665"],
-        "orgasm": ["Yum...Hum...YuuuuuMMMM!", "Ooiiinnk... Huuum... Yuuum!", "honkk... ooooiiink.... ooiiiiinnk!"],
+        "low": ["hoo", "ho\u2665", "ho", "\u2665yum\u2665", "hum\u2665"],
+        "orgasm": ["Yum...Hum...YuuuuuMMMM!", "Hooiiinnk... Huuum... Yuuum!", "honkk... hoooiiink.... hoiiiiinnk!"],
         "pain": [],
         "tickle": []
     }
@@ -5420,7 +5420,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (nm == 0) {
-                        if (mode == 1) content = GarbleTalk(msg, ["hoo", "honk", "ooink", "oink", "oiink", "hum", "yum", "huumm", "yuuum"]); 
+                        if (mode == 1) content = GarbleTalk(msg, ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"]); 
                         if (mode == 2) content = GarbleTalk(msg, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
                         if (mode == 3) content = GarbleTalk(msg, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]);
                         if (mode == 4) content = GarbleTalk(msg, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
