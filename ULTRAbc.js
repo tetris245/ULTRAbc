@@ -58,6 +58,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var mgl = 0;
     var rsize = 20;
     let rtype = "";
+    var st = 0;
 
     let AutojoinOn;
     let DolltalkOn;
@@ -405,6 +406,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mgl = 0;
             rsize = 20;
             rtype = "";
+	    st = 0;
             AutojoinOn = false;
             DolltalkOn = false;
             FullseedOn = false;
@@ -476,6 +478,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mgl = 0;
             rsize = datas.rsize;
             rtype = datas.rtype;
+	    st = datas.stutterlevel;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             FullseedOn = datas.fullseed;
@@ -548,6 +551,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gaglevel": gl,
             "rsize": rsize,
             "rtype": rtype,
+            "stutterlevel": st,	
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "fullseed": FullseedOn,
@@ -650,6 +654,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
 		if (animal == null || animal == undefined) {
                     animal = 0;
+		    st = 0;
                     M_MOANER_saveControls();
                 }
 		if (animal == 1) AnimalTalk1On = true;
@@ -693,6 +698,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     RglbuttonsOn = true;
                     M_MOANER_saveControls();
                 }
+		if (st == 1) Stutter1On = true;
+                if (st == 2) Stutter2On = true;
+                if (st == 3) Stutter3On = true;
+                if (st == 4) Stutter4On = true;
                 ini = 1;
                 FBCsettings();
             } catch (err) {
@@ -13168,7 +13177,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "4 total stuttering</p>"
                 );
             } else {
-                var stlevel = args;
+		var stlevel = args * 1;
                 ElementValue("InputChat", "");
                 if (stlevel == 0) {
                     ChatRoomSendLocal(
@@ -13178,6 +13187,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Stutter2On = false;
                     Stutter3On = false;
                     Stutter4On = false;
+                    st = stlevel;
+                    M_MOANER_saveControls();
                 } else if (stlevel == 1) {
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in light stuttering mode.</p>"
@@ -13186,6 +13197,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Stutter2On = false;
                     Stutter3On = false;
                     Stutter4On = false;
+                    st = stlevel;
+                    M_MOANER_saveControls();
                 } else if (stlevel == 2) {
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal stuttering mode.</p>"
@@ -13194,6 +13207,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Stutter2On = true;
                     Stutter3On = false;
                     Stutter4On = false;
+                    st = stlevel;
+                    M_MOANER_saveControls();
                 } else if (stlevel == 3) {
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in heavy stuttering mode.</p>"
@@ -13202,6 +13217,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Stutter2On = false;
                     Stutter3On = true;
                     Stutter4On = false;
+                    st = stlevel;
+                    M_MOANER_saveControls();
                 } else if (stlevel == 4) {
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in total stuttering mode.</p>"
@@ -13210,6 +13227,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Stutter2On = false;
                     Stutter3On = false;
                     Stutter4On = true;
+                    st = stlevel;
+                    M_MOANER_saveControls();
                 }
             }
         }
