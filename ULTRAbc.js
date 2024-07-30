@@ -35,8 +35,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
-    let ac = 0;
-    let dc = 0;
     let ini = 0;
     let kp = 0;
 
@@ -698,10 +696,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     RglbuttonsOn = true;
                     M_MOANER_saveControls();
                 }
-		if (st == 1) Stutter1On = true;
-                if (st == 2) Stutter2On = true;
-                if (st == 3) Stutter3On = true;
-                if (st == 4) Stutter4On = true;
+		if (st == 0) StutterOn = false;
+                if (st > 0) StutterOn = true;
                 ini = 1;
                 FBCsettings();
             } catch (err) {
@@ -1132,44 +1128,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
            if (tsp == 1) text2 = text1;
            if (tsp == 2) tsp = 1;
            if (tsp == 0) {
-               if (dc == 1) { 
-                   var text2 = text1;
-                   var dc = 0;           
-               } else {
-                   var nm = 0;
-                   if (DolltalkOn == true) {
-                        if (IsDollTalk(text1) == false) {
-                            var nm = 1;
-                        } 
-                        if (nm == 1) {
-                            var text2 = "";
-                            ElementValue("InputChat", ""); 
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your message or whisper can't be sent because it does not respect the rules of doll talk.</p>"
-                             );
-                         } else {
-                             var text2 = text1;
-                         }
+	       var nm = 0;
+               if (DolltalkOn == true) {
+                    if (IsDollTalk(text1) == false) {
+                        var nm = 1;
+                    } 
+                    if (nm == 1) {
+                        var text2 = "";
+                        ElementValue("InputChat", ""); 
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your message or whisper can't be sent because it does not respect the rules of doll talk.</p>"
+                         );
                      } else {
                          var text2 = text1;
                      }
+                } else {
+                     var text2 = text1;
                 }   
             } 
             if ((tsp == 1) || (nm == 1)) {
                 var text3 = text2;
             } else {
-                if (this.Stutter1On == true) {
-                    var text3 = SpeechTransformStutter(text2, 1);
-                } else if (this.Stutter2On == true) {
-                    var text3 = SpeechTransformStutter(text2, 2);
-                } else if (this.Stutter3On == true) {
-                    var text3 = SpeechTransformStutter(text2, 3);
-                } else if (this.Stutter4On == true) {
-                    var text3 = SpeechTransformStutter(text2, 4);
+                if (this.StutterOn == true) {
+                    var text3 = SpeechTransformStutter(text2, st);       
                 } else {
                     var text3 = text2;
                 }
-            }    
+            }
 	    ElementValue("InputChat", text2.replace(text2, text3));
             if ((tsp == 1) || (nm == 1)) {
                 var text4 = text3;
@@ -3193,16 +3178,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showDolltalkStatus() {
-        let msg;
-        if (DolltalkOn) {
-            msg = DolltalkStatus[0];
-        } else {
-            msg = DolltalkStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     function showExitmodeStatus() {
         let msg;
         if (SlowleaveOn) {
@@ -3291,16 +3266,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showNowhisperStatus() {
-        let msg;
-        if (NowhisperOn) {
-            msg = NowhisperStatus[0];
-        } else {
-            msg = NowhisperStatus[1];
-        }
-        M_MOANER_sendMessageToWearer(msg);
-    }
-
     function showNpcpunishStatus() {
         let msg;
         if (NPCpunish) {
@@ -3328,19 +3293,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (animal == 6) msg1 = "Pig talk mode";
         if (animal == 7) msg1 = "Pony talk mode";
         if (animal == 8) msg1 = "Puppy talk mode";
-        if (DolltalkOn) {
-            msg2 = DolltalkStatus[0];
+        msg2 = "Forced stuttering level: " + st;
+        msg3 = "Forced gag level: " + gl;
+        if (NowhisperOn) {
+            msg4 = NowhisperStatus[0];
         } else {
-            msg2 = DolltalkStatus[1];
+            msg4 = NowhisperStatus[1];
+        }
+        if (DolltalkOn) {
+            msg5 = DolltalkStatus[0];
+        } else {
+            msg5 = DolltalkStatus[1];
         }
         if (NogarbleOn) {
-            msg3 = NogarbleStatus[0];
+            msg6 = NogarbleStatus[0];
         } else {
-            msg3 = NogarbleStatus[1];
+            msg6 = NogarbleStatus[1];
         }
-        msg = msg1 + " - " + msg2 + " " + msg3;
+        msg = msg1 + " - " + msg2 + " - " + msg3 + " - " + msg4 + " " + msg5 + " " + msg6;
         M_MOANER_sendMessageToWearer(msg);
-    }
+    } 
 
     //Talking
     function IsDollTalk(text) {
@@ -4223,14 +4195,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     moan = "... " + getOrgasmMoan();
                 }
                 ElementValue("InputChat", moan);
-                if (this.Stutter1On == true) {
-                    var moan2 = SpeechTransformStutter(moan, 1);
-                } else if (this.Stutter2On == true) {
-                    var moan2 = SpeechTransformStutter(moan, 2);
-                } else if (this.Stutter3On == true) {
-                    var moan2 = SpeechTransformStutter(moan, 3);
-                } else if (this.Stutter4On == true) {
-                    var moan2 = SpeechTransformStutter(moan, 4);
+                if (this.StutterOn == true) {
+                    var moan2 = SpeechTransformStutter(moan, st);            
                 } else {
                     var moan2 = moan;
                 }
@@ -4458,14 +4424,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let backtarget = ChatRoomTargetMemberNumber;
         ChatRoomTargetMemberNumber = -1;
         ElementValue("InputChat", moan);
-        if (this.Stutter1On == true) {
-            var moan2 = SpeechTransformStutter(moan, 1);
-        } else if (this.Stutter2On == true) {
-            var moan2 = SpeechTransformStutter(moan, 2);
-        } else if (this.Stutter3On == true) {
-            var moan2 = SpeechTransformStutter(moan, 3);
-        } else if (this.Stutter4On == true) {
-            var moan2 = SpeechTransformStutter(moan, 4);
+        if (this.StutterOn == true) {
+            var moan2 = SpeechTransformStutter(moan, st);
         } else {
             var moan2 = moan;
         }
@@ -5439,8 +5399,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (mode == 8) content = GarbleTalk(msg, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);                 
                         ElementValue("InputChat", content);
                         event.preventDefault();
-                        var ac = 1;
-                        var dc = 1;
                         ChatRoomSendChat();
                     }
                 }
@@ -6470,14 +6428,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (nm == 0) {
                     text2 = SpeechTransformBabyTalk(text);
                     ElementValue("InputChat", text2);
-                    if (this.Stutter1On == true) {
-                        var text3 = SpeechTransformStutter(text2, 1);
-                    } else if (this.Stutter2On == true) {
-                        var text3 = SpeechTransformStutter(text2, 2);
-                    } else if (this.Stutter3On == true) {
-                        var text3 = SpeechTransformStutter(text2, 3);
-                    } else if (this.Stutter4On == true) {
-                        var text3 = SpeechTransformStutter(text2, 4);
+		    if (this.StutterOn == true) {
+                        var text3 = SpeechTransformStutter(text2, st);             
                     } else {
                         var text3 = text2;
                     }
@@ -7746,7 +7698,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         ElementValue("InputChat", content.replace(content, content2));
                         event.preventDefault();
-                        var dc = 1;
                         ChatRoomSendChat();
                     }
                 }
@@ -13108,7 +13059,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             var [mode] = args;
             if (!mode) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +   
+		    "Note that it can't be used when you are in a 'permanent' stuttering mode, forced with the <b> / stutter </b> command.\n" +
                     " \n" +
                     "Available stuttering modes:\n" +
                     "1 light stuttering\n" +
@@ -13117,7 +13069,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "4 total stuttering</p>"
                 );
             } else {
-                if ((mode > 0) && (mode < 5)) {
+                if ((mode > 0) && (mode < 5) && (StutterOn == false)) {
                     var [, , ...message] = command.split(" ");
                     var msg = message?.join(" ");
                     var nm = 0;
@@ -13138,7 +13090,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (mode == 4) content = SpeechTransformStutter(msg, 4);
                         ElementValue("InputChat", content);
                         event.preventDefault();
-                        var dc = 1;
                         ChatRoomSendChat();
                     }
                 }
@@ -13167,7 +13118,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The stutter command must be followed by a number between 0 and 4.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The stutter command must be followed by a number between 0 and 4.\n" +               
                     " \n" +
                     "Available stuttering modes:\n" +
                     "0 no stuttering\n" +
@@ -13177,58 +13128,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "4 total stuttering</p>"
                 );
             } else {
-		var stlevel = args * 1;
+                var stlevel = args * 1;
                 ElementValue("InputChat", "");
                 if (stlevel == 0) {
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: No more stuttering.</p>"
                     );
-                    Stutter1On = false;
-                    Stutter2On = false;
-                    Stutter3On = false;
-                    Stutter4On = false;
+                    StutterOn = false;
                     st = stlevel;
                     M_MOANER_saveControls();
-                } else if (stlevel == 1) {
+                } else if ((stlevel > 0) && (stlevel < 5)) {
+                    var msg1 = "You are now in ";
+                    if (stlevel == 1) msg2 = "light ";
+                    if (stlevel == 2) msg2 = "normal ";
+                    if (stlevel == 3) msg2 = "heavy ";
+                    if (stlevel == 4) msg2 = "total ";
+                    var msg3 = "stuttering mode."
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in light stuttering mode.</p>"
+                        "<p style='background-color:#5fbd7a'>" + msg1 + msg2 + msg3 + "</p>"
                     );
-                    Stutter1On = true;
-                    Stutter2On = false;
-                    Stutter3On = false;
-                    Stutter4On = false;
+                    StutterOn = true;
                     st = stlevel;
-                    M_MOANER_saveControls();
-                } else if (stlevel == 2) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal stuttering mode.</p>"
-                    );
-                    Stutter1On = false;
-                    Stutter2On = true;
-                    Stutter3On = false;
-                    Stutter4On = false;
-                    st = stlevel;
-                    M_MOANER_saveControls();
-                } else if (stlevel == 3) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in heavy stuttering mode.</p>"
-                    );
-                    Stutter1On = false;
-                    Stutter2On = false;
-                    Stutter3On = true;
-                    Stutter4On = false;
-                    st = stlevel;
-                    M_MOANER_saveControls();
-                } else if (stlevel == 4) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in total stuttering mode.</p>"
-                    );
-                    Stutter1On = false;
-                    Stutter2On = false;
-                    Stutter3On = false;
-                    Stutter4On = true;
-                    st = stlevel;
-                    M_MOANER_saveControls();
+                    M_MOANER_saveControls();             
                 }
             }
         }
@@ -15062,7 +14983,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             showMaptrapStatus();
             showNostruggleStatus();
 	    showNotimeoutStatus();
-            showNowhisperStatus();
             showNpcpunishStatus();
             showRoomSizeStatus();
 	    showTalkStatus();
