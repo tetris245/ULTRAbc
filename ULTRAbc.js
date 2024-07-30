@@ -13060,7 +13060,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!mode) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +   
-		    "Note that it can't be used when you are in a 'permanent' stuttering mode, forced with the <b> / stutter </b> command.\n" +
+		    "Note that it can't be used when you are in a 'permanent' stuttering mode, forced with the <b> /stutter </b> command.\n" +
                     " \n" +
                     "Available stuttering modes:\n" +
                     "1 light stuttering\n" +
@@ -13138,7 +13138,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     st = stlevel;
                     M_MOANER_saveControls();
                 } else if ((stlevel > 0) && (stlevel < 5)) {
-                    var msg1 = "You are now in ";
+                    var msg1 = "ULTRAbc:You are now in ";
                     if (stlevel == 1) msg2 = "light ";
                     if (stlevel == 2) msg2 = "normal ";
                     if (stlevel == 3) msg2 = "heavy ";
@@ -13244,8 +13244,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         GagTalkOn = true;
                         M_MOANER_saveControls();
                     }
+		    var msg1 = "ULTRAbc: You are now in ";
+                    if (gaglevel == 1) msg2 = "almost no ";
+                    if (gaglevel == 2) msg2 = "very light ";
+                    if (gaglevel == 3) msg2 = "light ";
+                    if (gaglevel == 4) msg2 = "easy ";
+                    if (gaglevel == 5) msg2 = "normal ";
+                    if (gaglevel == 6) msg2 = "medium ";
+                    if (gaglevel == 7) msg2 = "heavy ";
+                    if (gaglevel == 8) msg2 = "very heavy ";
+                    if (gaglevel == 9) msg2 = "total ";
+                    var msg3 = "gag talk mode.";
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in gag talk mode.</p>"
+                        "<p style='background-color:#5fbd7a'>" + msg1 + msg2 + msg3 + "</p>"
                     );
                 }
                 if (gaglevel == -2) {
