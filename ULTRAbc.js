@@ -5362,6 +5362,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!mode) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The atalk command must be followed by a number between 1 and 8 for the animal and the words you want to say.\n" +
+		    "Note that it is recommended to use it only when you are not in a 'permanent' animal talk mode, forced with the <b> /ptalk </b> command, that will not be overrided.\n" +
                     " \n" +
                     "Available animals:\n" +
                     "1 bunny\n" +
@@ -11697,7 +11698,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-   CommandCombine([{
+    CommandCombine([{
         Tag: 'ptalk',
         Description: "(animal): forces a specific animal talk mode",
         Action: (args) => {
@@ -11706,7 +11707,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 8.\n" +
                     " \n" +
                     "Available animals:\n" +        
-                    "0 normal talk\n" +
+                    "0 human talk\n" +
                     "1 bunny\n" +
                     "2 cow\n" +
                     "3 fox\n" +
@@ -11717,8 +11718,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "8 puppy</p>"
                 );
             } else {
-                var mode = args * 1;
-		if (mode == 0) {
+                var pmode = args * 1;
+                if ((pmode > -1) && (pmode < 9)) {
                     AnimalTalk1On = false;
                     AnimalTalk2On = false;
                     AnimalTalk3On = false;
@@ -11727,119 +11728,65 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk6On = false;
                     AnimalTalk7On = false;
                     AnimalTalk8On = false;
-                    animal = mode;
+                    animal = pmode;
                     M_MOANER_saveControls();
+                }
+                if (pmode == 0) {
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in human talk mode.</p>"
                     );
-                } else if (mode == 1) {
-                    AnimalTalk1On = true;
-                    AnimalTalk2On = false;
-                    AnimalTalk3On = false;
-                    AnimalTalk4On = false;
-                    AnimalTalk5On = false;
-                    AnimalTalk6On = false;
-                    AnimalTalk7On = false;
-                    AnimalTalk8On = false;
-                    animal = mode;
+                } else if (pmode == 1) {
+                    AnimalTalk1On = true;         
+                    animal = pmode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in bunny talk mode.</p>"
                     );
-                } else if (mode == 2) {
-                    AnimalTalk1On = false;
+                } else if (pmode == 2) {
                     AnimalTalk2On = true;
-                    AnimalTalk3On = false;
-                    AnimalTalk4On = false;
-                    AnimalTalk5On = false;
-                    AnimalTalk6On = false;
-                    AnimalTalk7On = false;
-                    AnimalTalk8On = false;
-                    animal = mode;
+                    animal = pmode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in cow talk mode.</p>"
                     );
-                } else if (mode == 3) {
-                    AnimalTalk1On = false;
-                    AnimalTalk2On = false;
-                    AnimalTalk3On = true;
-                    AnimalTalk4On = false;
-                    AnimalTalk5On = false;
-                    AnimalTalk6On = false;
-                    AnimalTalk7On = false;
-                    AnimalTalk8On = false;
-                    animal = mode;
+                } else if (pmode == 3) {
+                    AnimalTalk3On = true;         
+                    animal = pmode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in fox talk mode.</p>"
                     );
-                } else if (mode == 4) {
-                    AnimalTalk1On = false;
-                    AnimalTalk2On = false;
-                    AnimalTalk3On = false;
+                } else if (pmode == 4) {                
                     AnimalTalk4On = true;
-                    AnimalTalk5On = false;
-                    AnimalTalk6On = false;
-                    AnimalTalk7On = false;
-                    AnimalTalk8On = false;
-                    animal = mode;
+                    animal = pmode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in kitty talk mode.</p>"
                     );
-                } else if (mode == 5) {
-                    AnimalTalk1On = false;
-                    AnimalTalk2On = false;
-                    AnimalTalk3On = false;
-                    AnimalTalk4On = false;
-                    AnimalTalk5On = true;
-                    AnimalTalk6On = false;
-                    AnimalTalk7On = false;
-                    AnimalTalk8On = false;
-                    animal = mode;
+                } else if (pmode == 5) {
+                    AnimalTalk5On = true;      
+                    animal = pmode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in mouse talk mode.</p>"
                     );
-                } else if (mode == 6) {
-                    AnimalTalk1On = false;
-                    AnimalTalk2On = false;
-                    AnimalTalk3On = false;
-                    AnimalTalk4On = false;
-                    AnimalTalk5On = false;
-                    AnimalTalk6On = true;
-                    AnimalTalk7On = false;
-                    AnimalTalk8On = false;
-                    animal = mode;
+                } else if (pmode == 6) {
+                    AnimalTalk6On = true;          
+                    animal = pmode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pig talk mode.</p>"
                     );
-                } else if (mode == 7) {
-                    AnimalTalk1On = false;
-                    AnimalTalk2On = false;
-                    AnimalTalk3On = false;
-                    AnimalTalk4On = false;
-                    AnimalTalk5On = false;
-                    AnimalTalk6On = false;
+                } else if (pmode == 7) {          
                     AnimalTalk7On = true;
-                    AnimalTalk8On = false;
-                    animal = mode;
+                    animal = pmode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pony talk mode.</p>"
                     );
-                } else if (mode == 8) {
-                    AnimalTalk1On = false;
-                    AnimalTalk2On = false;
-                    AnimalTalk3On = false;
-                    AnimalTalk4On = false;
-                    AnimalTalk5On = false;
-                    AnimalTalk6On = false;
-                    AnimalTalk7On = false;
+                } else if (pmode == 8) {
                     AnimalTalk8On = true;
-                    animal = mode;
+                    animal = pmode;
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in puppy talk mode.</p>"
@@ -11848,7 +11795,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } 
         }
     }])
-              
+            
     CommandCombine([{
         Tag: 'ptcode',
         Description: "(target): reveals codes used on items controlled by portal link.",
