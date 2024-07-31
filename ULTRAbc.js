@@ -5365,14 +5365,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    "Note that it is recommended to use it only when you are not in a 'permanent' animal talk mode, forced with the <b> /ptalk </b> command, that will not be overrided.\n" +
                     " \n" +
                     "Available animals:\n" +
-                    "1 bunny\n" +
-                    "2 cow\n" +
-                    "3 fox\n" +
-                    "4 kitty\n" +
-                    "5 mouse\n" +
-                    "6 pig\n" + 
-                    "7 pony\n" +
-                    "8 puppy</p>"
+                    "1 bunny - 2 cow - 3 fox - 4 kitty\n" +
+                    "5 mouse - 6 pig - 7 pony - 8 puppy</p>"
                 );
             } else {
                 if ((mode > 0) && (mode < 8)) {
@@ -11705,17 +11699,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 8.\n" +
+                    "Note about whispers in animal talk mode: you need to click on the character OR set the target with <b>/whisper</b> without words OR use the FBC/WCE <b>/w</b> command.\n" + 
                     " \n" +
                     "Available animals:\n" +        
-                    "0 human talk\n" +
-                    "1 bunny\n" +
-                    "2 cow\n" +
-                    "3 fox\n" +
-                    "4 kitty\n" +
-                    "5 mouse\n" +
-                    "6 pig\n" +
-                    "7 pony\n" +
-                    "8 puppy</p>"
+                    "0 human talk\n" +                 
+                    "1 bunny - 2 cow - 3 fox - 4 kitty\n" +
+                    "5 mouse - 6 pig - 7 pony - 8 puppy</p>"
                 );
             } else {
                 var pmode = args * 1;
