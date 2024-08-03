@@ -8881,7 +8881,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else {
                                  Name = Asset.Layer[layer].Name;
                             }
-                            if (Property == undefined){                           
+                            if ((Property == undefined) || (Property.OverridePriority == undefined)) {                           
                                  Property = {};
                                  OverridePriority = {};
                                  OverridePriority[Name] = priority;
@@ -9011,7 +9011,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     } else {
                                         Name = Asset.Layer[ly].Name;
                                     }
-                                    if (InventoryGet(Player, Target).Property == undefined) {                                 
+                                    if ((Property == undefined) || (Property.OverridePriority == undefined)) {                                 
                                         Priority2 = Priority;
                                     } else {
                                         layerPriority = Property.OverridePriority[Name];     
