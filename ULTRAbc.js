@@ -8959,13 +8959,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (ak == 2) {
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
-                                    if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
+                                    //if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
                                         Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
                                         Name2 = Asset.Layer[ly].Name;
                                         Index = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
                                         Color2 = InventoryGet(Player, Target).Color[Index];
                                         ChatRoomSendLocal("Layer " + ly  + " = " + Name1 + " - " + Name2 + " - " + Color2);  
-                                    }
+                                    //}
                                     ly++;
                                 } 
                             }
@@ -9051,7 +9051,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (ak == 2) {
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
-                                    if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
+                                    //if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
                                         Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
                                         Name2 = Asset.Layer[ly].Name;
                                         Priority = Asset.Layer[ly].Priority;
@@ -9062,7 +9062,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                             Priority2 = layerPriority;
                                         }
                                         ChatRoomSendLocal("Layer " + ly  + " = " + Name1 + " - " + Name2 + " - " + Priority2);  
-                                    }
+                                    //}
                                     ly++;
                                 }
                             } 
