@@ -5369,7 +5369,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "5 mouse - 6 pig - 7 pony - 8 puppy</p>"
                 );
             } else {
-                if ((mode > 0) && (mode < 8)) {
+                if ((mode > 0) && (mode < 9)) {
                     var [, , ...message] = command.split(" ");
                     var msg = message?.join(" ");
                     var nm = 0;
