@@ -7337,6 +7337,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     document.getElementById("InputChat").style.display = "none";
                     document.getElementById("TextAreaChatLog").style.display = "none";
                     ElementRemove("InputSearch");
+		    ChatRoomHideElements();
                     FriendListReturn = {
                         Screen: CurrentScreen,
                         Module: CurrentModule
@@ -7362,6 +7363,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("InputChat").style.display = "none";
                         document.getElementById("TextAreaChatLog").style.display = "none";
                         ElementRemove("InputSearch");
+			ChatRoomHideElements();
                         FriendListReturn = {
                             Screen: CurrentScreen,
                             Module: CurrentModule
@@ -7392,6 +7394,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("InputChat").style.display = "none";
                         document.getElementById("TextAreaChatLog").style.display = "none";
                         ElementRemove("InputSearch");
+			ChatRoomHideElements();
                         FriendListReturn = {
                             Screen: CurrentScreen,
                             Module: CurrentModule
@@ -7418,6 +7421,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     document.getElementById("InputChat").style.display = "none";
                     document.getElementById("TextAreaChatLog").style.display = "none";
                     ElementRemove("InputSearch");
+		    ChatRoomHideElements();
                     FriendListReturn = {
                         Screen: CurrentScreen,
                         Module: CurrentModule
