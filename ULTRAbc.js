@@ -12455,9 +12455,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatSearchBackground = "AsylumEntrance";
                     ChatCreateBackgroundList = BackgroundsTagAsylum;
                     CommonSetScreen("Online", "ChatSearch");
+		    ChatSelectStartSearch("Asylum");
                     ChatRoomSetLastChatRoom("");
                     document.getElementById("InputChat").style.display = "none";
                     document.getElementById("TextAreaChatLog").style.display = "none";
+		    ChatRoomHideElements();
+                    ChatSelectStartSearch("Asylum");
+                    ChatRoomSetLastChatRoom("");
                 }, 3000);
                 setTimeout(function() {
                     CommonSetScreen("Online", "ChatRoom");
@@ -12475,6 +12479,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSetLastChatRoom("");
                         document.getElementById("InputChat").style.display = "none";
                         document.getElementById("TextAreaChatLog").style.display = "none";
+			ChatRoomHideElements();
                         ChatSelectStartSearch("");
                         ChatRoomSetLastChatRoom("");
                     }, 3000);
@@ -12498,6 +12503,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSetLastChatRoom("");
                         document.getElementById("InputChat").style.display = "none";
                         document.getElementById("TextAreaChatLog").style.display = "none";
+			ChatRoomHideElements();
                         ChatSelectStartSearch("M");
                         ChatRoomSetLastChatRoom("");
                     }, 3000);
@@ -12518,6 +12524,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomSetLastChatRoom("");
                     document.getElementById("InputChat").style.display = "none";
                     document.getElementById("TextAreaChatLog").style.display = "none";
+		    ChatRoomHideElements();
                     ChatSelectStartSearch("X");
                     ChatRoomSetLastChatRoom("");
                 }, 3000);
