@@ -1771,7 +1771,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		}
             }
             if (FrkeysOn == true) {
-                if ((FriendListModeIndex == 0) && (!searchInputHasFocus)) { 
+               if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {  
                     if (KeyPress == 70) {  
                         if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
                             (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
