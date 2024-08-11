@@ -1752,7 +1752,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Friendlist
-    async function ULTRAFriendListKeyDown(event) {
+    async function ULTRAFriendListKeyDown() {
         modApi.hookFunction('FriendListKeyDown', 4, (args, next) => {
             const searchInput = /** @type {HTMLTextAreaElement} */(document.getElementById(FriendListIDs.searchInput));
             const searchInputHasFocus = searchInput && document.activeElement === searchInput;
