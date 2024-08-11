@@ -731,8 +731,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     UKTRACommandAutoComplete();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
-    ULTRAFriendListClick();
-    ULTRAFriendListRun();
+    ULTRAFriendListKeyDown();
     ULTRAInfiltrationPrepareMission();
     ULTRAInformationSheetExit();
     ULTRALoginRun();
@@ -1749,88 +1748,67 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Friendlist
-    async function ULTRAFriendListRun() {
-        modApi.hookFunction('FriendListRun', 4, (args, next) => {
-            const mode = FriendListMode[FriendListModeIndex];
-            DrawText(TextGet("MemberNumber"), 665, 35, "White", "Gray");
-            if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
-                DrawButton(850, 5, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            } else {
-                DrawButton(850, 5, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
+    async function ULTRAFriendListKeyDown(event) {
+        modApi.hookFunction('FriendListKeyDown', 4, (args, next) => {
+            const searchInput = /** @type {HTMLTextAreaElement} */(document.getElementById(FriendListIDs.searchInput));
+            const searchInputHasFocus = searchInput && document.activeElement === searchInput;
+            const beepTextArea = /** @type {HTMLTextAreaElement} */(document.getElementById(FriendListIDs.beepTextArea));
+	    const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
+	    if (FriendListBeepTarget !== -1 || beepTextArea) {
+	        if (event.key === 'Escape' && !event.shiftKey) {
+		    FriendListBeepMenuClose();
+		    return true;
+		}
+	    }
+	    if (beepTextAreaHasFocus) {
+		if (event.key === 'Enter' && event.ctrlKey) {
+		    FriendListBeepMenuSend();   
+		    return true;
+		}
             }
-            DrawButton(960, 5, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
-            DrawButton(1070, 5, 90, 90, "MIXED", "White", "", "Mixed");
-            if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
-                DrawButton(1180, 5, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            } else {
-                DrawButton(1180, 5, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            }
-            if (mode === "Friends") {
-                DrawText(TextGet("ListOnlineFriends"), 230, 35, "White", "Gray");
-                DrawText(TextGet("ActionFriends"), 1535, 35, "White", "Gray");
-            } else if (mode === "Beeps") {
-                DrawText(TextGet("ListBeeps"), 230, 35, "White", "Gray");
-            } else if (mode === "Delete") {
-                DrawText(TextGet("ListFriends"), 230, 35, "White", "Gray");
-                DrawText(TextGet("ActionDelete"), 1535, 35, "White", "Gray");
-            }
-            ElementPositionFix("FriendList", 36, 5, 75, 1985, 890);
-            if (FriendListBeepTarget !== null) {
-                ElementPositionFix("FriendListBeep", 36, 5, 75, 1985, 890);
-            }
-            DrawButton(1725, 5, 60, 60, "", "White", "Icons/Small/Reset.png", TextGet("Refresh"));
-            DrawButton(1795, 5, 60, 60, "", "White", "Icons/Small/Prev.png");
-            DrawButton(1865, 5, 60, 60, "", "White", "Icons/Small/Next.png");
-            DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
+            if (FrkeysOn == true) {
+                if ((FriendListModeIndex == 0) && (!searchInputHasFocus)) { 
+                    if (KeyPress == 70) {  
+                        if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
+                            (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
+                            (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
+                            (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+			    ChatRoomSpace = "";
+                            ServerSend("AccountQuery", {
+                                Query: "OnlineFriends"
+                            });
+			    return true;
+                        }
+                    }
+                    if (KeyPress == 71) {    
+			ChatRoomSpace = "X";
+                        ServerSend("AccountQuery", {
+                            Query: "OnlineFriends"
+                        });
+			return true;
+                    }
+                    if (KeyPress == 72) { 
+                        if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
+                            (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
+                            ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+			    ChatRoomSpace = "M";
+                            ServerSend("AccountQuery", {
+                                Query: "OnlineFriends"
+                            });
+			    return true;
+                        }
+                    } 
+                    if (KeyPress == 74) {    
+			ChatRoomSpace = "Asylum";
+                        ServerSend("AccountQuery", {
+                            Query: "OnlineFriends"
+                        });
+			return true;
+                    }
+                } 
+	    } 
+	    return false;
             return;
-            next(args);
-        });
-    }
-
-    async function ULTRAFriendListClick() {
-        modApi.hookFunction('FriendListClick', 4, (args, next) => {
-            if ((MouseX >= 850) && (MouseX < 940) && (MouseY >= 5) && (MouseY < 95)) {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
-                    ChatRoomSpace = "";
-                    ElementContent("FriendList", "");
-                    ServerSend("AccountQuery", {
-                        Query: "OnlineFriends"
-                    });
-                }
-            }
-            if ((MouseX >= 960) && (MouseX < 1050) && (MouseY >= 5) && (MouseY < 95)) {
-                ChatRoomSpace = "Asylum";
-                ElementContent("FriendList", "");
-                ServerSend("AccountQuery", {
-                    Query: "OnlineFriends"
-                });
-            }
-            if ((MouseX >= 1070) && (MouseX < 1160) && (MouseY >= 5) && (MouseY < 95)) {
-                ChatRoomSpace = "X";
-                ElementContent("FriendList", "");
-                ServerSend("AccountQuery", {
-                    Query: "OnlineFriends"
-                });
-            }
-            if ((MouseX >= 1180) && (MouseX < 1270) && (MouseY >= 5) && (MouseY < 95)) {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                    ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
-                    ChatRoomSpace = "M";
-                    ElementContent("FriendList", "");
-                    ServerSend("AccountQuery", {
-                        Query: "OnlineFriends"
-                    });
-                }
-            }
             next(args);
         });
     }
