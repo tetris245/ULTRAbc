@@ -58,6 +58,6 @@ All else I might not have included.
 
 Changes for future version 
 
-* New command: uset frkeys to enable/disable hotkeys in Friendlist, only in Current Online Friends, if you are not in the search input zone
+* New command: uset frkeys to enable/disable hotkeys in Friendlist, only in Current Online Friends, if you are not in the search input or send beep zone
   (F to get clickable links in female club, G for mixed club, H for male club, J for asylum)
 * Removed the lobby buttons in Friendlist
