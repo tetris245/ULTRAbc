@@ -1772,7 +1772,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (FrkeysOn == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {  
-                    if (KeyPress == 70) {  
+                    if (event.code === "KeyF") { 
                         if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
                             (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
                             (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
@@ -1784,14 +1784,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			    return true;
                         }
                     }
-                    if (KeyPress == 71) {    
+                    if (event.code === "KeyG") {   
 			ChatRoomSpace = "X";
                         ServerSend("AccountQuery", {
                             Query: "OnlineFriends"
                         });
 			return true;
                     }
-                    if (KeyPress == 72) { 
+                    if (event.code === "KeyH") {
                         if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
                             (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
                             ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
@@ -1802,7 +1802,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			    return true;
                         }
                     } 
-                    if (KeyPress == 74) {    
+                    if (event.code === "KeyJ") {   
 			ChatRoomSpace = "Asylum";
                         ServerSend("AccountQuery", {
                             Query: "OnlineFriends"
@@ -14692,7 +14692,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSendLocal(
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys in friendlist are enabled:\n" +
                             "They allow to get clickable links in another lobby you have access if you are in a lobby (not in a room).\n " +
-                            "You can use them only on the list of current online friends AND if you are not in the search input zone.\n" +
+                            "You can use them only on the list of current online friends AND if you are not in the search input or send beep zone.\n" +
                             "F = female club\n" +
                             "G = mixed club\n" +
                             "H = male club\n" +
