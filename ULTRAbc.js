@@ -60,6 +60,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     let AutojoinOn;
     let DolltalkOn;
+    let FrkeysOn;
     let FullseedOn;
     let HighfameOn;
     let HotkeysOn;
@@ -407,6 +408,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    st = 0;
             AutojoinOn = false;
             DolltalkOn = false;
+	    FrkeysOn = false;
             FullseedOn = false;
             HighfameOn = false;
             HotkeysOn = false;
@@ -479,6 +481,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    st = datas.stutterlevel;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
+	    FrkeysOn = datas.frkeys;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
             HotkeysOn = datas.hotkeys;
@@ -552,6 +555,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "stutterlevel": st,	
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
+            "frkeys": FrkeysOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
             "hotkeys": HotkeysOn,
@@ -663,6 +667,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 6) AnimalTalk6On = true;
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
+		if (FrkeysOn == null || FrkeysOn == undefined) {
+                    FrkeysOn = false;
+                    M_MOANER_saveControls();
+                }
                 if (gl == null || gl == undefined) {
                     gl = 0;
                     notalk = 0;
@@ -690,10 +698,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (reaction == null || reaction == undefined) {
                     reaction = 0;
-                    M_MOANER_saveControls();
-                }
-                if (RglbuttonsOn == null || RglbuttonsOn == undefined) {
-                    RglbuttonsOn = true;
                     M_MOANER_saveControls();
                 }
 		if (st == 0) StutterOn = false;
@@ -3176,14 +3180,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (FullseedOn) {
             Fullseed = "Full solution for intricate/hs locks - ";
         } else {
-            Fullseed = '';
+            Fullseed = "";
+        }
+        if (FrkeysOn) {
+            Frkeys = "Hotkeys in friendlist - "
+        } else {
+            Frkeys = "";
         }
         if (HotkeysOn) {
             Hotkeys = "Hotkeys on numeric pad"
         } else {
             Hotkeys = "";
         }
-        msg = "Features enabled: " + Autojoin + Fullseed + Hotkeys;
+        msg = "Features enabled: " + Autojoin + Fullseed + Frkeys + Hotkeys;
         M_MOANER_sendMessageToWearer(msg);
     }
 
@@ -14608,18 +14617,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
-                    " \n" +
                     "<b>autojoin</b> for chat room auto-join feature\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
                     "<b>exitmode</b> for exit mode with OUT button \n" +
+		    "<b>frkeys</b> for hotkeys in friendlist \n" +
                     "<b>fullseed</b> for full solution with intricate and hs locks\n" +
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
-                    "<b>hotkeys</b> for hotkeys on numeric pad (Divide = fast leave - Multiply = Total Release)\n" +
+                    "<b>hotkeys</b> for hotkeys on numeric pad \n" +
                     "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
                     "<b>magictoys</b> for toys added under locked chastity in traps\n" +
                     "<b>nogarble</b> for ungarble in default BC talk mode\n" +
                     "<b>nostruggle</b> for automatic struggle in mini-games\n" +
-		    "<b>notimeout</b> for toggle time-out in BC help provided by TAB key\n" +     
+		    "<b>notimeout</b> for toggle time-out in BC TAB help\n" +         
                     "<b>nowhisper</b> for no-whisper mode\n" +
                     "<b>npcpunish</b> for NPC punishments\n" +
                     "<b>outbuttons</b> for OUT buttons\n" +
@@ -14670,6 +14679,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Slow exit mode is activated.</p>"
                         );
                     }
+		} else if (setting == "frkeys") {
+                    if (FrkeysOn == true) {
+                        FrkeysOn = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys in friendlist are disabled.</p>"
+                        );
+                    } else {
+                        FrkeysOn = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys in friendlist are enabled:\n" +
+                            "They allow to get clickable links in another lobby you have access if you are in a lobby (not in a room).\n " +
+                            "You can use them only on the list of current online friends AND if you are not in the search input zone.\n" +
+                            "F = female club\n" +
+                            "G = mixed club\n" +
+                            "H = male club\n" +
+                            "J = asylum</p>"
+                        );
+                    }
                 } else if (setting == "fullseed") {
                     if (FullseedOn == true) {
                         FullseedOn = false;
@@ -14711,7 +14740,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         HotkeysOn = true;
                         M_MOANER_saveControls();
                         ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys on numeric pad are enabled.</p>"
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Hotkeys on numeric pad are enabled: Divide = fast leave - Multiply = Total Release</p>"
                         );
                     }
                 } else if (setting == "magiccheat") {
