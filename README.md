@@ -61,3 +61,4 @@ Changes for future version
 * New command: uset frkeys to enable/disable hotkeys in Friendlist
 * Removed the lobby buttons in Friendlist and replaced them by hotkeys working only in Current Online Friends, if you are not in the search input or send beep zone
   (F to get clickable links in female club, G for mixed club, H for male club, J for asylum)
+* Added info about chat room type selected for Chat Search in ustatus command
