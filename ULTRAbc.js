@@ -3271,9 +3271,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_sendMessageToWearer(msg);
     }
 
-    function showRoomSizeStatus() {
+    function showSearchRoomStatus() {
         let msg;
-        msg = "Current maximum players per room in Chat Search for normal and hybrid rooms: " + rsize + ".";
+        msg1 = "Chat Search type: ";
+        if (rtype == "") msg2 = "All rooms. ";
+        if (rtype == "Never") msg2 = "Normal rooms. ";
+        if (rtype == "Hybrid") msg2 = "Hybrid rooms. ";
+        if (rtype == "Always") msg2 = "Mapped rooms. ";
+        msg3 = "Max players for normal/hybrid rooms: ";
+        msg = msg1 + msg2 + msg3 + rsize + ".";
         M_MOANER_sendMessageToWearer(msg);
     }
 
@@ -14957,7 +14963,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             showNostruggleStatus();
 	    showNotimeoutStatus();
             showNpcpunishStatus();
-            showRoomSizeStatus();
+            showSearchRoomStatus(); 
 	    showTalkStatus();
         }
     }])
