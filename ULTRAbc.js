@@ -117,6 +117,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var M_MOANER_vibratorActive = true;
     var M_MOANER_xvibratorActive = false;
 
+    //Animal talk profiles
+    var animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"]; 
+    var animalmode2 = ["mo", "moo", "mooo", "mu", "muu", "moooo"];
+    var animalmode3 = ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"];
+    var animalmode4 =  ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]; 
+    var animalmode5 = ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"];
+    var animalmode6 = ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"];  
+    var animalmode7 = ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"];                 
+    var animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];
+
+    //Status variables for The Moaner/UBC
     var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.",
         "The orgasm moan is not active. You will not moan while cumming anymore."
     ];
@@ -177,7 +188,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "NPC punishments disabled."
     ];
 
-    // Main variables from other add-ons
+    //Status variables for other add-ons
     // BCAR
     var AnimalTypeStatus = ["Current Animal Type: "];
     var AnimationButtonsStatus = ["Animation Buttons enabled.",
@@ -1230,21 +1241,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var texta = text6;
                     } else {
                         if (this.AnimalTalk1On == true) {
-                            var texta = GarbleTalk(text6,["hoo", "honk", "hoink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"]);   
+                            var texta = GarbleTalk(text6, animalmode1);   
                         } else if (this.AnimalTalk2On == true) {
-                            var texta = GarbleTalk(text6, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
+                            var texta = GarbleTalk(text6, animalmode2);
                         } else if (this.AnimalTalk3On == true) {
-                            var texta = GarbleTalk(text6, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]); 
+                            var texta = GarbleTalk(text6, animalmode3); 
                         } else if (this.AnimalTalk4On == true) {
-                            var texta = GarbleTalk(text6, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
+                            var texta = GarbleTalk(text6, animalmode4); 
                         } else if (this.AnimalTalk5On == true) {
-                            var texta = GarbleTalk(text6, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
+                            var texta = GarbleTalk(text6, animalmode5);
                         } else if (this.AnimalTalk6On == true) {
-                            var texta = GarbleTalk(text6, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
+                            var texta = GarbleTalk(text6, animalmode6);
                         } else if (this.AnimalTalk7On == true) {
-                            var texta = GarbleTalk(text6, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]); 
+                            var texta = GarbleTalk(text6, animalmode7); 
                         } else if (this.AnimalTalk8On == true) {
-                            var texta = GarbleTalk(text6, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
+                            var texta = GarbleTalk(text6, animalmode8);
                         } else {
                             var texta = text6;
                         } 
@@ -1279,21 +1290,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var texta = text7;
                     } else {                       
                         if (this.AnimalTalk1On == true) {
-                            var texta = GarbleTalk(text7,["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"]);   
+                            var texta = GarbleTalk(text7, animalmode1);   
                         } else if (this.AnimalTalk2On == true) {
-                            var texta = GarbleTalk(text7, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
+                            var texta = GarbleTalk(text7, animalmode2);
                         } else if (this.AnimalTalk3On == true) {
-                            var texta = GarbleTalk(text7, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]); 
+                            var texta = GarbleTalk(text7, animalmode3); 
                         } else if (this.AnimalTalk4On == true) {
-                            var texta = GarbleTalk(text7, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
+                            var texta = GarbleTalk(text7, animalmode4); 
                         } else if (this.AnimalTalk5On == true) {
-                            var texta = GarbleTalk(text7, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
+                            var texta = GarbleTalk(text7, animalmode5);
                         } else if (this.AnimalTalk6On == true) {
-                             var texta = GarbleTalk(text7, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);
+                            var texta = GarbleTalk(text7, animalmode6);
                         } else if (this.AnimalTalk7On == true) {
-                            var texta = GarbleTalk(text7, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]); 
+                            var texta = GarbleTalk(text7, animalmode7); 
                         } else if (this.AnimalTalk8On == true) {
-                            var texta = GarbleTalk(text7, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);
+                            var texta = GarbleTalk(text7, animalmode8);
                         } else {
                             var texta = text7;
                         } 
@@ -5385,14 +5396,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (nm == 0) {
-                        if (mode == 1) content = GarbleTalk(msg, ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"]); 
-                        if (mode == 2) content = GarbleTalk(msg, ["mo", "moo", "mooo", "mu", "muu", "moooo"]);
-                        if (mode == 3) content = GarbleTalk(msg, ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"]);
-                        if (mode == 4) content = GarbleTalk(msg, ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"]); 
-                        if (mode == 5) content = GarbleTalk(msg, ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"]);
-                        if (mode == 6) content = GarbleTalk(msg, ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"]);  
-                        if (mode == 7) content = GarbleTalk(msg, ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"]);                 
-                        if (mode == 8) content = GarbleTalk(msg, ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"]);                 
+                        if (mode == 1) content = GarbleTalk(msg, animalmode1); 
+                        if (mode == 2) content = GarbleTalk(msg, animalmode2);
+                        if (mode == 3) content = GarbleTalk(msg, animalmode3);
+                        if (mode == 4) content = GarbleTalk(msg, animalmode4); 
+                        if (mode == 5) content = GarbleTalk(msg, animalmode5);
+                        if (mode == 6) content = GarbleTalk(msg, animalmode6);  
+                        if (mode == 7) content = GarbleTalk(msg, animalmode7);                 
+                        if (mode == 8) content = GarbleTalk(msg, animalmode8);                
                         ElementValue("InputChat", content);
                         event.preventDefault();
                         ChatRoomSendChat();
