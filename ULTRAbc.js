@@ -700,6 +700,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     reaction = 0;
                     M_MOANER_saveControls();
                 }
+		if (rsize == null || rsize == undefined) {
+                    rsize = 20;
+                    M_MOANER_saveControls();
+                }
+                if (rtype == null || rtype == undefined) {
+                    rtype = "";
+                    M_MOANER_saveControls();
+                }
 		if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 ini = 1;
