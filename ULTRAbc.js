@@ -127,6 +127,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var animalmode7 = ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"];                 
     var animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];
 
+    //Moaner default profile
+    var M_MOANER_profileName = "default";
+
+    M_MOANER_defaultMoans = {
+        "hot": ["n... Nyah\u2665", "Oooh", "mmmmmh!", "NYyaaA\u2665"],
+        "medium": ["mm", "aaaah", "nyAh\u2665"],
+        "light": ["nyah\u2665", "Aah!", "mh", "oh!\u2665", "mh\u2665"],
+        "low": ["mh", "\u2665oh\u2665", "ah", "...\u2665"],
+        "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmmh... MMmh... Hhhmmmm...", "Oooooh... Mmmmh... OooOOOOh!", "Mmmhnn... Nyhmm... Nyah!"],
+        "pain": ["Aie!", "Aoouch!", "Aaaaie!", "Ouch", "Aow"],
+        "tickle": ["Hahaha!", "Mmmmhahaha!", "Muhahah...", "Ha!Ha!"]
+    }
+
+    M_MOANER_customMoans = {
+        "hot": [],
+        "medium": [],
+        "light": [],
+        "low": [],
+        "orgasm": [],
+        "pain": [],
+        "tickle": []
+    }
+
+    var M_MOANER_moansProfiles = [];
+
     //Status variables for The Moaner/UBC
     var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.",
         "The orgasm moan is not active. You will not moan while cumming anymore."
@@ -4081,37 +4106,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //MoanerManagement
-    /*const baseM_MOANER_factor4Moans=["n... Nyah\u2665","Oooh","mmmmmh!","NYyaaA\u2665"];
-    const baseM_MOANER_factor3Moans=["mm","aaaah","nyAh\u2665"];
-    const baseM_MOANER_factor2Moans=["nyah\u2665","Aah!","mh","oh!\u2665","mh\u2665"];
-    const basefactor1Moans=["mh","\u2665oh\u2665","ah","...\u2665"];
-    const baseM_MOANER_orgasmMoans=["Nya...Ny...NyaaAAaah!","Mmmmh... MMmh... Hhhmmmm...","Oooooh... Mmmmh... OooOOOOh!","Mmmhnn... Nyhmm... Nyah!"];
-    const basePainMoans=["Aie!","Aoouch!","Eek","ouch","Aow"];*/
-
-    var M_MOANER_profileName = "default";
-
-    M_MOANER_defaultMoans = {
-        "hot": ["n... Nyah\u2665", "Oooh", "mmmmmh!", "NYyaaA\u2665"],
-        "medium": ["mm", "aaaah", "nyAh\u2665"],
-        "light": ["nyah\u2665", "Aah!", "mh", "oh!\u2665", "mh\u2665"],
-        "low": ["mh", "\u2665oh\u2665", "ah", "...\u2665"],
-        "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmmh... MMmh... Hhhmmmm...", "Oooooh... Mmmmh... OooOOOOh!", "Mmmhnn... Nyhmm... Nyah!"],
-        "pain": ["Aie!", "Aoouch!", "Aaaaie!", "Ouch", "Aow"],
-        "tickle": ["Hahaha!", "Mmmmhahaha!", "Muhahah...", "Ha!Ha!"]
-    }
-
-    M_MOANER_customMoans = {
-        "hot": [],
-        "medium": [],
-        "light": [],
-        "low": [],
-        "orgasm": [],
-        "pain": [],
-        "tickle": []
-    }
-
-    var M_MOANER_moansProfiles = [];
-
     function M_MOANER_activerProfile(name) {
         if (M_MOANER_moansProfiles[name] == undefined) {
             profileName = "default";
