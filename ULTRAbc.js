@@ -4149,28 +4149,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         M_MOANER_moansProfiles[name] = pleasure;
     }
 
-    function addLowMoans(name, pleasureList) {
-        var profile = M_MOANER_moansProfiles[name];
-        if (profile == undefined) {
-            profiledefaultPleasureMoans;
-        }
-        profile.low = pleasureList;
-        addMoansProfile(name, profile);
-    }
-
     M_MOANER_addMoansProfile("default", M_MOANER_defaultMoans);
 
-    //MoanerReactions
+    //MoanerReactions in chat
     var M_MOANER_orgasmMoans = [];
     var M_MOANER_factor4Moans = [];
     var M_MOANER_factor3Moans = [];
     var M_MOANER_factor2Moans = [];
     var factor1Moans = [];
     var PROPORTION_MAX = 40;
-
-    /******************************************************************/
-    // Reactions in chat
-    /******************************************************************/
 
     window.ChatRoomRegisterMessageHandler({
         Priority: 600,
