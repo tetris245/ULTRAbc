@@ -62,4 +62,4 @@ Changes for future version
 * Removed the lobby buttons in Friendlist and replaced them by hotkeys working only in Current Online Friends, if you are not in the search input or send beep zone
   (F to get clickable links in female club, G for mixed club, H for male club, J for asylum)
 * Added info about chat room type selected for Chat Search in ustatus command
-* Optimised the code related to the animal talk modes
+* Optimised the code related to the animal talk modes and moved Moaner default profile to the section with other default values
