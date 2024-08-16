@@ -3446,7 +3446,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 MBSdata = {};
                 decoded = JSON.parse(d);
                 MBSdata = decoded;
-                if ((MBSdata.AlternativeGarbling) && (DoubletalkOn == false)) {
+                if (MBSdata.AlternativeGarbling) {
                     mb = 1;
                 }
             }
