@@ -117,7 +117,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var M_MOANER_vibratorActive = true;
     var M_MOANER_xvibratorActive = false;
 
-    //Animal talk profiles
+    //Animal Talk Profiles
     var animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"]; 
     var animalmode2 = ["mo", "moo", "mooo", "mu", "muu", "moooo"];
     var animalmode3 = ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"];
@@ -127,7 +127,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var animalmode7 = ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"];                 
     var animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];
 
-    //Moaner default profile
+    //Moaner Default Profile
     var M_MOANER_profileName = "default";
 
     M_MOANER_defaultMoans = {
@@ -151,6 +151,164 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     var M_MOANER_moansProfiles = [];
+
+    //Moaner Profiles Management
+    function M_MOANER_activerProfile(name) {
+        if (M_MOANER_moansProfiles[name] == undefined) {
+            profileName = "default";
+            resetMoans(Math.random() * 300);
+        } else {
+            profileName = name;
+            resetMoans(Math.random() * 300);
+        }
+    }
+
+    function M_MOANER_getMoans(name) {
+        var pleasureMoans = M_MOANER_moansProfiles[name];
+        if (pleasureMoans == undefined) {
+            pleasureMoans = M_MOANER_defaultMoans;
+        }
+        return pleasureMoans;
+    }
+
+    function M_MOANER_addMoansProfile(name, pleasure) {
+        if (pleasure.hot == undefined || pleasure.hot.length == 0) {
+            pleasure.hot = M_MOANER_defaultMoans.hot;
+        }
+        if (pleasure.medium == undefined || pleasure.medium.length == 0) {
+            pleasure.medium = M_MOANER_defaultMoans.medium;
+        }
+        if (pleasure.light == undefined || pleasure.light.length == 0) {
+            pleasure.light = M_MOANER_defaultMoans.light;
+        }
+        if (pleasure.low == undefined || pleasure.low.length == 0) {
+            pleasure.low = M_MOANER_defaultMoans.low;
+        }
+        if (pleasure.orgasm == undefined || pleasure.orgasm.length == 0) {
+            pleasure.orgasm = M_MOANER_defaultMoans.orgasm;
+        }
+        if (pleasure.pain == undefined || pleasure.pain.length == 0) {
+            pleasure.pain = M_MOANER_defaultMoans.pain;
+        }
+        if (pleasure.tickle == undefined || pleasure.tickle.length == 0) {
+            pleasure.tickle = M_MOANER_defaultMoans.tickle;
+        }
+        M_MOANER_moansProfiles[name] = pleasure;
+    }
+
+    M_MOANER_addMoansProfile("default", M_MOANER_defaultMoans);
+
+    //Moaner Custom Profiles
+    //bunny
+    M_MOANER_bunnyMoans = {
+        "hot": ["o... Hoiink\u2665", "YuuumM\u2665"],
+        "medium": ["hoinK\u2665", "huumm", "..hooink"],
+        "light": ["honk\u2665", "Hum!", "yum", "hoo\u2665"],
+        "low": ["hoo", "ho\u2665", "ho", "\u2665yum\u2665", "hum\u2665"],
+        "orgasm": ["Yum...Hum...YuuuuuMMMM!", "Hooiiinnk... Huuum... Yuuum!", "honkk... hoooiiink.... hoiiiiinnk!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("bunny", M_MOANER_bunnyMoans);
+
+    //cow  
+    M_MOANER_cowMoans = {
+        "hot": ["m... Moooo\u2665", "Moooo\u2665"],
+        "medium": ["moooo\u2665", "Mooo", "..muu"],
+        "light": ["Mooo\u2665", "Muu!", "mu\u2665iif", "Mooo"],
+        "low": ["moo", "Mo\u2665", "mu\u2665", "\u2665mu\u2665", "Mu\u2665"],
+        "orgasm": ["Moooo\u2665 M... Mooo... MOOO!!", "Mmmhnn... Moooo... Moooooo!!", "mmmh... Muuuu.... Muuuuuu!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("cow", M_MOANER_cowMoans);
+
+    //dog
+    M_MOANER_dogMoans = {
+        "hot": ["w... Wouuuf\u2665", "aouuh\u2665"],
+        "medium": ["waaaf\u2665", "ky\u016b\u016b\n", "..wouf"],
+        "light": ["Ouaff\u2665", "Aouh!", "Oua\u2665af", "Ky\u016bn\u2665"],
+        "low": ["wou..", "ouah\u2665", "Wouf\u2665", "\u2665ky\u016bn\u2665", "ky\u016b\u2665"],
+        "orgasm": ["ouaf\u2665 O... Ouuw... Ouaaaa!!", "Mmmhnn... aaaa... Ouuuaaaaaf!!", "mmmh... Aouuuh.... Aouhhhh!"],
+        "pain": ["Ka\u00ef!", "Aoouch!", "Kaaa\u00ef!", "Ouch", "Aow"],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("dog", M_MOANER_dogMoans);
+
+    //fox
+    //base: wif, yif, aouh
+    //thanks to Noriko
+    M_MOANER_foxMoans = {
+        "hot": ["w... Wiiif\u2665", "Yiiif\u2665"],
+        "medium": ["wiiif\u2665", "Yiii", "..yif"],
+        "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif"],
+        "low": ["wif", "Wy\u2665", "if\u2665", "\u2665yi\u2665", "Yi\u2665"],
+        "orgasm": ["Wiff\u2665 W... Wiii... WIIF!!", "Mmmhnn... Wiiif... Yiiiif!!", "mmmh... Aouuuh.... Aouhhhh!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("fox", M_MOANER_foxMoans);
+
+    //mouse
+    //base coui
+    M_MOANER_mouseMoans = {
+        "hot": ["Scouiiic\u2665", "couiiic\u2665"],
+        "medium": ["scouiii\u2665", "Couyk", "..scoui"],
+        "light": ["Scouii\u2665", "Coui!", "kouu\u2665ic", "Couic \u2665"],
+        "low": ["coui..", "scoui\u2665", "cou\u2665i", "Couic ", "koui\u2665"],
+        "orgasm": ["Couic\u2665 sc.. couIIIiic!!", "Mmmhnn... ooo... ouiiiic!!", "mmmh... Scouuu.... Scouiiic!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("mouse", M_MOANER_mouseMoans);
+
+    //neko
+    M_MOANER_nekoMoans = {
+        "hot": ["n... Nyah\u2665", "NYyaaA\u2665"],
+        "medium": ["nyAh\u2665", "nyyy", "..yah"],
+        "light": ["nyah\u2665", "Yah!", "myuh", "mh\u2665"],
+        "low": ["myu", "ny\u2665", "mh", "\u2665yh\u2665", "ny\u2665"],
+        "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmhnn... Nyhmm... Nyah!", "mmmh... mmmeeeee.... meeeoooow!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("neko", M_MOANER_nekoMoans);
+
+    //pig
+    M_MOANER_pigMoans = {
+        "hot": ["Gruiik\u2665", "gruik\u2665"],
+        "medium": ["gruiii\u2665", "Gruik", "..Grui.."],
+        "light": ["Grui\u2665", "Gruik!", "gruuiii\u2665ic", "gruik \u2665"],
+        "low": ["grui.. gruiik\u2665", "gruiik\u2665", "gru\u2665i", "Gruik ", "Groi\u2665"],
+        "orgasm": ["Gru\u2665 gr.. gruiIIIiick!!", "Mmmhnn... uii... gruiiik!!", "mmmh... Gruiik.... Gruiiiiik!"],
+        "pain": ["Gruuik!!", "Aoouch!", "Awo... gruik!", "Ouch", "Gruiiik"],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("pig", M_MOANER_pigMoans);
+
+    //pony
+    M_MOANER_ponyMoans = {
+        "hot": ["n... Neighh\u2665", "NeighhH\u2665"],
+        "medium": ["neighh\u2665", "neigh", "..whinney"],
+        "light": ["neigh\u2665", "Whin!", "neigh", "whinny\u2665"],
+        "low": ["neigh", "whin\u2665", "nei", "\u2665nei\u2665", "nei\u2665"],
+        "orgasm": ["Neigh...Nei...Neighhhhh!", "Neighhh... Neighh... Neigh!", "whin... whinnyy.... whinnnnney!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("pony", M_MOANER_ponyMoans);
+
+    //wildFox
+    M_MOANER_wildfoxMoans = {
+        "hot": ["w... Wiiif\u2665", "Yiiif\u2665", "Wa\u2665ouu"],
+        "medium": ["wiiif\u2665", "Yiii", "..yif", "waouuu"],
+        "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif", "waou"],
+        "low": ["wif", "Wy\u2665", "if\u2665", "\u2665yi\u2665", "Yi\u2665", "aou"],
+        "orgasm": ["WAAAAOUUUUUUUHHHHH!", "Mmmhnn... Wiiif... Yiiiif!!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!", "WAAAAOUUUUUUUHHHHH!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("wildfox", M_MOANER_wildfoxMoans);
 
     //Status variables for The Moaner/UBC
     var M_MOANER_orgasmStatus = ["The orgasm moan is active. You will moan while cumming.",
@@ -4105,52 +4263,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return number;
     }
 
-    //MoanerManagement
-    function M_MOANER_activerProfile(name) {
-        if (M_MOANER_moansProfiles[name] == undefined) {
-            profileName = "default";
-            resetMoans(Math.random() * 300);
-        } else {
-            profileName = name;
-            resetMoans(Math.random() * 300);
-        }
-    }
-
-    function M_MOANER_getMoans(name) {
-        var pleasureMoans = M_MOANER_moansProfiles[name];
-        if (pleasureMoans == undefined) {
-            pleasureMoans = M_MOANER_defaultMoans;
-        }
-        return pleasureMoans;
-    }
-
-    function M_MOANER_addMoansProfile(name, pleasure) {
-        if (pleasure.hot == undefined || pleasure.hot.length == 0) {
-            pleasure.hot = M_MOANER_defaultMoans.hot;
-        }
-        if (pleasure.medium == undefined || pleasure.medium.length == 0) {
-            pleasure.medium = M_MOANER_defaultMoans.medium;
-        }
-        if (pleasure.light == undefined || pleasure.light.length == 0) {
-            pleasure.light = M_MOANER_defaultMoans.light;
-        }
-        if (pleasure.low == undefined || pleasure.low.length == 0) {
-            pleasure.low = M_MOANER_defaultMoans.low;
-        }
-        if (pleasure.orgasm == undefined || pleasure.orgasm.length == 0) {
-            pleasure.orgasm = M_MOANER_defaultMoans.orgasm;
-        }
-        if (pleasure.pain == undefined || pleasure.pain.length == 0) {
-            pleasure.pain = M_MOANER_defaultMoans.pain;
-        }
-        if (pleasure.tickle == undefined || pleasure.tickle.length == 0) {
-            pleasure.tickle = M_MOANER_defaultMoans.tickle;
-        }
-        M_MOANER_moansProfiles[name] = pleasure;
-    }
-
-    M_MOANER_addMoansProfile("default", M_MOANER_defaultMoans);
-
     //MoanerReactions in chat
     var M_MOANER_orgasmMoans = [];
     var M_MOANER_factor4Moans = [];
@@ -4742,118 +4854,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         return false;
     }
-
-    //MoanerProfiles
-    //bunny
-    M_MOANER_bunnyMoans = {
-        "hot": ["o... Hoiink\u2665", "YuuumM\u2665"],
-        "medium": ["hoinK\u2665", "huumm", "..hooink"],
-        "light": ["honk\u2665", "Hum!", "yum", "hoo\u2665"],
-        "low": ["hoo", "ho\u2665", "ho", "\u2665yum\u2665", "hum\u2665"],
-        "orgasm": ["Yum...Hum...YuuuuuMMMM!", "Hooiiinnk... Huuum... Yuuum!", "honkk... hoooiiink.... hoiiiiinnk!"],
-        "pain": [],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("bunny", M_MOANER_bunnyMoans);
-
-    //cow  
-    M_MOANER_cowMoans = {
-        "hot": ["m... Moooo\u2665", "Moooo\u2665"],
-        "medium": ["moooo\u2665", "Mooo", "..muu"],
-        "light": ["Mooo\u2665", "Muu!", "mu\u2665iif", "Mooo"],
-        "low": ["moo", "Mo\u2665", "mu\u2665", "\u2665mu\u2665", "Mu\u2665"],
-        "orgasm": ["Moooo\u2665 M... Mooo... MOOO!!", "Mmmhnn... Moooo... Moooooo!!", "mmmh... Muuuu.... Muuuuuu!"],
-        "pain": [],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("cow", M_MOANER_cowMoans);
-
-    //dog
-    M_MOANER_dogMoans = {
-        "hot": ["w... Wouuuf\u2665", "aouuh\u2665"],
-        "medium": ["waaaf\u2665", "ky\u016b\u016b\n", "..wouf"],
-        "light": ["Ouaff\u2665", "Aouh!", "Oua\u2665af", "Ky\u016bn\u2665"],
-        "low": ["wou..", "ouah\u2665", "Wouf\u2665", "\u2665ky\u016bn\u2665", "ky\u016b\u2665"],
-        "orgasm": ["ouaf\u2665 O... Ouuw... Ouaaaa!!", "Mmmhnn... aaaa... Ouuuaaaaaf!!", "mmmh... Aouuuh.... Aouhhhh!"],
-        "pain": ["Ka\u00ef!", "Aoouch!", "Kaaa\u00ef!", "Ouch", "Aow"],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("dog", M_MOANER_dogMoans);
-
-    //fox
-    //base: wif, yif, aouh
-    //thanks to Noriko
-    M_MOANER_foxMoans = {
-        "hot": ["w... Wiiif\u2665", "Yiiif\u2665"],
-        "medium": ["wiiif\u2665", "Yiii", "..yif"],
-        "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif"],
-        "low": ["wif", "Wy\u2665", "if\u2665", "\u2665yi\u2665", "Yi\u2665"],
-        "orgasm": ["Wiff\u2665 W... Wiii... WIIF!!", "Mmmhnn... Wiiif... Yiiiif!!", "mmmh... Aouuuh.... Aouhhhh!"],
-        "pain": [],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("fox", M_MOANER_foxMoans);
-
-    //mouse
-    //base coui
-    M_MOANER_mouseMoans = {
-        "hot": ["Scouiiic\u2665", "couiiic\u2665"],
-        "medium": ["scouiii\u2665", "Couyk", "..scoui"],
-        "light": ["Scouii\u2665", "Coui!", "kouu\u2665ic", "Couic \u2665"],
-        "low": ["coui..", "scoui\u2665", "cou\u2665i", "Couic ", "koui\u2665"],
-        "orgasm": ["Couic\u2665 sc.. couIIIiic!!", "Mmmhnn... ooo... ouiiiic!!", "mmmh... Scouuu.... Scouiiic!"],
-        "pain": [],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("mouse", M_MOANER_mouseMoans);
-
-    //neko
-    M_MOANER_nekoMoans = {
-        "hot": ["n... Nyah\u2665", "NYyaaA\u2665"],
-        "medium": ["nyAh\u2665", "nyyy", "..yah"],
-        "light": ["nyah\u2665", "Yah!", "myuh", "mh\u2665"],
-        "low": ["myu", "ny\u2665", "mh", "\u2665yh\u2665", "ny\u2665"],
-        "orgasm": ["Nya...Ny...NyaaAAaah!", "Mmmhnn... Nyhmm... Nyah!", "mmmh... mmmeeeee.... meeeoooow!"],
-        "pain": [],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("neko", M_MOANER_nekoMoans);
-
-    //pig
-    M_MOANER_pigMoans = {
-        "hot": ["Gruiik\u2665", "gruik\u2665"],
-        "medium": ["gruiii\u2665", "Gruik", "..Grui.."],
-        "light": ["Grui\u2665", "Gruik!", "gruuiii\u2665ic", "gruik \u2665"],
-        "low": ["grui.. gruiik\u2665", "gruiik\u2665", "gru\u2665i", "Gruik ", "Groi\u2665"],
-        "orgasm": ["Gru\u2665 gr.. gruiIIIiick!!", "Mmmhnn... uii... gruiiik!!", "mmmh... Gruiik.... Gruiiiiik!"],
-        "pain": ["Gruuik!!", "Aoouch!", "Awo... gruik!", "Ouch", "Gruiiik"],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("pig", M_MOANER_pigMoans);
-
-    //pony
-    M_MOANER_ponyMoans = {
-        "hot": ["n... Neighh\u2665", "NeighhH\u2665"],
-        "medium": ["neighh\u2665", "neigh", "..whinney"],
-        "light": ["neigh\u2665", "Whin!", "neigh", "whinny\u2665"],
-        "low": ["neigh", "whin\u2665", "nei", "\u2665nei\u2665", "nei\u2665"],
-        "orgasm": ["Neigh...Nei...Neighhhhh!", "Neighhh... Neighh... Neigh!", "whin... whinnyy.... whinnnnney!"],
-        "pain": [],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("pony", M_MOANER_ponyMoans);
-
-    //wildFox
-    M_MOANER_wildfoxMoans = {
-        "hot": ["w... Wiiif\u2665", "Yiiif\u2665", "Wa\u2665ouu"],
-        "medium": ["wiiif\u2665", "Yiii", "..yif", "waouuu"],
-        "light": ["Wiff\u2665", "Yif!", "yi\u2665iif", "Wiif", "waou"],
-        "low": ["wif", "Wy\u2665", "if\u2665", "\u2665yi\u2665", "Yi\u2665", "aou"],
-        "orgasm": ["WAAAAOUUUUUUUHHHHH!", "Mmmhnn... Wiiif... Yiiiif!!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!", "WAAAAOUUUUUUUHHHHH!", "AOUUUUUH!", "WAHOOOOOOOUUUUH!", "WAAAAAAAAHH!"],
-        "pain": [],
-        "tickle": []
-    }
-    M_MOANER_addMoansProfile("wildfox", M_MOANER_wildfoxMoans);
 
     //////////////////////////////////////////////////////////
     //BC-Diaper-Wetter
