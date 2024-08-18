@@ -372,11 +372,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ];
 
     //Status variables for other add-ons
-    
-    // BC Responsive
-    var BCResponsiveStatus = ["BC Responsive is enabled.",
-        "BC Responsive is disabled."
-    ];
 
     // LSCG
     var BcLscgStatus = ["LSCG is enabled.",
@@ -2615,9 +2610,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showBCResponsiveStatus() {
         let msg;
         if (BCRdata.settings.enabled) {
-            msg1 = BCResponsiveStatus[0];
+            msg1 = "BC Responsive is enabled.";
         } else {
-            msg1 = BCResponsiveStatus[1];
+            msg1 = "BC Responsive is disabled.";
         }
         active = BCRdata.active_personality;
         Personality = BCRdata.personalities[active].name;
