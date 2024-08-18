@@ -419,38 +419,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "LSCG resizing effects will be displayed."
     ];
 
-    // Themed
-    var BCThemedStatus = ["Themed is enabled.",
-        "ThemedBC is disabled."
-    ];
-    var CharacterAbsenceStatus = ["Absence's indicator is enabled.",
-        "Absence's indicator is disabled."
-    ];
-    var ChatInputStatus = ["The chat input zone uses colors selected in Themed.",
-        "The chat input zone uses the default BC colors."
-    ];
-    var FlatColorStatus = ["Flat color enabled in settings.",
-        "Coloring sheet enabled in settings."
-    ];
-    var FriendListStatus = ["The friend list uses colors selected in Themed.",
-        "The friend list uses the default BC colors."
-    ];
-    var GuiOverhaulStatus = ["The interface uses colors selected in Themed.",
-        "The interface uses the default BC colors."
-    ];
-    var InputZonesStatus = ["Misc input zones use colors selected in Themed.",
-        "Misc input zones use the default BC colors."
-    ];
-    var LocalTimeStatus = ["The time is displayed according your locale settings.",
-        "The time is displayed according your system settings."
-    ];
-    var MiscDetailsStatus = ["Misc details use colors selected in Themed.",
-        "Misc details use the default BC colors."
-    ];
-    var ThemedVersionStatus = ["New Themed Version feature is enabled.",
-        "New Themed Version feature is disabled."
-    ];
-
     //Initialisation
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
@@ -3555,13 +3523,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-    //Themed Status   
+    //Themed Status
     function showBCThemedStatus() {
         let msg;
         if (THMdata.GlobalModule.themedEnabled) {
-            msg = BCThemedStatus[0];
+            msg = "Themed is enabled.";
         } else {
-            msg = BCThemedStatus[1];
+            msg = "ThemedBC is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3569,9 +3537,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showCharacterAbsenceStatus() {
         let msg;
         if (THMdata.GlobalModule.doIndicateCharacterAbsence) {
-            msg = CharacterAbsenceStatus[0];
+            msg = "Absence's indicator is enabled.";
         } else {
-            msg = CharacterAbsenceStatus[1];
+            msg = "Absence's indicator is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3579,9 +3547,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showChatInputStatus() {
         let msg;
         if (THMdata.IntegrationModule.BC_Chat) {
-            msg = ChatInputStatus[0];
+            msg = "The chat input zone uses colors selected in Themed.";
         } else {
-            msg = ChatInputStatus[1];
+            msg =  "The chat input zone uses the default BC colors.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3589,9 +3557,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showFlatColorStatus() {
         let msg;
         if (THMdata.GlobalModule.doUseFlatColor) {
-            msg = FlatColorStatus[0];
+            msg = "Flat color enabled in settings.";
         } else {
-            msg = FlatColorStatus[1];
+            msg = "Coloring sheet enabled in settings.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3599,9 +3567,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showFriendListStatus() {
         let msg;
         if (THMdata.IntegrationModule.BC_FriendList) {
-            msg = FriendListStatus[0];
+            msg = "The friend list uses colors selected in Themed.";
         } else {
-            msg = FriendListStatus[1];
+            msg = "The friend list uses the default BC colors.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3609,9 +3577,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showGuiOverhaulStatus() {
         let msg;
         if (THMdata.GlobalModule.doVanillaGuiOverhaul) {
-            msg = GuiOverhaulStatus[0];
+            msg = "The interface uses colors selected in Themed.";
         } else {
-            msg = GuiOverhaulStatus[1];
+            msg = "The interface uses the default BC colors.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3619,9 +3587,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showInputZonesStatus() {
         let msg;
         if (THMdata.IntegrationModule.BC) {
-            msg = InputZonesStatus[0];
+            msg = "Misc input zones use colors selected in Themed.";
         } else {
-            msg = InputZonesStatus[1];
+            msg = "Misc input zones use the default BC colors.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3629,9 +3597,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showLocalTimeStatus() {
         let msg;
         if (THMdata.GlobalModule.doShowLocaleTime) {
-            msg = LocalTimeStatus[0];
+            msg = "The time is displayed according your locale settings.";
         } else {
-            msg = LocalTimeStatus[1];
+            msg = "The time is displayed according your system settings.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3639,9 +3607,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showMiscDetailsStatus() {
         let msg;
         if (THMdata.IntegrationModule.BC_Other) {
-            msg = MiscDetailsStatus[0];
+            msg = "Misc details use colors selected in Themed.";
         } else {
-            msg = MiscDetailsStatus[1];
+            msg = "Misc details use the default BC colors.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3649,9 +3617,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showThemedVersionStatus() {
         let msg;
         if (THMdata.GlobalModule.doShowNewVersionMessage) {
-            msg = ThemedVersionStatus[0];
+            msg = "New Themed Version feature is enabled.";
         } else {
-            msg = ThemedVersionStatus[1];
+            msg = "New Themed Version feature is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
