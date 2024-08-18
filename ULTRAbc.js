@@ -419,32 +419,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "LSCG resizing effects will be displayed."
     ];
 
-    // Responsive
-    var BcrResponsesStatus = ["Responses feature is enabled.",
-        "Responses feature is disabled."
-    ];
-    var CharacterTalkStatus = ["Character Talk is enabled.",
-        "Character Talk is disabled."
-    ];
-    var InterceptMessageStatus = ["Responses can interrupt and send messages.",
-        "Responses can't interrupt and send messages."
-    ];
-    var LeaveMessageStatus = ["The message being written is sent when leashed out of the room.",
-        "The message being written is not sent when leashed out of the room."
-    ];
-    var MoansStatus = ["Moans are added to responses when highly aroused.",
-        "Moans are not added to responses when highly aroused."
-    ];
-    var NewVersionStatus = ["New Responsive Version feature is enabled.",
-        "New Responsive Version feature is disabled."
-    ];
-    var ResponsiveStatus = ["Responsive is enabled.",
-        "Responsive is disabled."
-    ];
-    var RulesStatus = ["BCX rules can prevent message sending.",
-        "BCX rules can't prevent message sending."
-    ];
-
     // Themed
     var BCThemedStatus = ["Themed is enabled.",
         "ThemedBC is disabled."
@@ -3143,9 +3117,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showResponsiveStatus() {
         let msg;
         if (RSPdata.GlobalModule.ResponsiveEnabled) {
-            msg = ResponsiveStatus[0];
+            msg = "Responsive is enabled.";
         } else {
-            msg = ResponsiveStatus[1];
+            msg = "Responsive is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3153,9 +3127,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showBcrResponsesStatus() {
         let msg;
         if (RSPdata.GlobalModule.responsesEnabled) {
-            msg = BcrResponsesStatus[0];
+            msg = "Responses feature is enabled.";
         } else {
-            msg = BcrResponsesStatus[1];
+            msg = "Responses feature is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3163,9 +3137,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showCharacterTalkStatus() {
         let msg;
         if (RSPdata.GlobalModule.CharTalkEnabled) {
-            msg = CharacterTalkStatus[0];
+            msg = "Character Talk is enabled.";
         } else {
-            msg = CharacterTalkStatus[1];
+            msg = "Character Talk is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3173,9 +3147,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showInterceptMessageStatus() {
         let msg;
         if (RSPdata.GlobalModule.doMessageInterruption) {
-            msg = InterceptMessageStatus[0];
+            msg = "Responses can interrupt and send messages.";
         } else {
-            msg = InterceptMessageStatus[1];
+            msg = "Responses can interrupt and send messages.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3183,9 +3157,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showLeaveMessageStatus() {
         let msg;
         if (RSPdata.GlobalModule.doLeaveMessage) {
-            msg = LeaveMessageStatus[0];
+            msg = "The message being written is sent when leashed out of the room.";
         } else {
-            msg = LeaveMessageStatus[1];
+            msg = "The message being written is not sent when leashed out of the room.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3193,9 +3167,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showMoansStatus() {
         let msg;
         if (RSPdata.GlobalModule.doAddMoansOnHighArousal) {
-            msg = MoansStatus[0];
+            msg = "Moans are added to responses when highly aroused.";
         } else {
-            msg = MoansStatus[1];
+            msg = "Moans are not added to responses when highly aroused.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3203,9 +3177,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showNewVersionStatus() {
         let msg;
         if (RSPdata.GlobalModule.doShowNewVersionMessage) {
-            msg = NewVersionStatus[0];
+            msg = "New Responsive Version feature is enabled.";
         } else {
-            msg = NewVersionStatus[1];
+            msg = "New Responsive Version feature is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3213,9 +3187,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showRulesStatus() {
         let msg;
         if (RSPdata.GlobalModule.doPreventMessageIfBcxBlock) {
-            msg = RulesStatus[0];
+            msg = "BCX rules can prevent message sending.";
         } else {
-            msg = RulesStatus[1];
+            msg = "BCX rules can't prevent message sending.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
