@@ -370,50 +370,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var NpcpunishStatus = ["NPC punishments enabled.",
         "NPC punishments disabled."
     ];
-
-    //Status variables for other add-ons
-
-    // LSCG
-    var BcLscgStatus = ["LSCG is enabled.",
-        "LSCG is disabled."
-    ];
-    var BoopReactionsStatus = ["Auto-react when booped.",
-        "No auto-react when booped."
-    ];
-    var CheckRollsStatus = ["Display of attacker/defender roll values with some activities.",
-        "No display of attacker/defender roll values with some activities."
-    ];
-    var Crafting1Status = ["Your public craftings are shared and can be used by other LSCG players in the chat room.",
-        "Your public craftings are not shared."
-    ];
-    var Crafting2Status = ["Your shared public craftings are displayed.",
-        "Your shared public craftings are not displayed."
-    ];
-    var EdgeBlurStatus = ["Blurring of the screen when you are on edge.",
-        "No blurring of the screen when you are on edge."
-    ];
-    var ErectionStatus = ["Private message when you feel an erection under your clothes.",
-        "No private message when you feel an erection under your clothes."
-    ];
-    var Lipstick1Status = ["Other people can leave lipstick marks on your face or neck when kissing you.",
-        "No lipstick mark on your face or neck when someone kisses you."
-    ];
-    var Lipstick2Status = ["No lipstick marks when you kiss someone.",
-        "Lipstick marks possible when you kiss someone."
-    ];
-    var Opacity1Status = ["Effects bypassing opacity are applied.",
-        "Effects bypassing opacity are not applied."
-    ];
-    var Opacity2Status = ["Other players can change the opacity of your wardrobe items.",
-        "Other players can't change the opacity of your wardrobe items."
-    ];
-    var RestrainedSettingsStatus = ["LSCG settings can't be changed when you are restrained.",
-        "LSCG settings can be changed when you are restrained."
-    ];
-    var ResizingStatus = ["LSCG resizing effects will not be displayed.",
-        "LSCG resizing effects will be displayed."
-    ];
-
+    
     //Initialisation
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
@@ -2819,15 +2776,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function GetDeafLevel4() {
         let deafLevel = 4;
         return deafLevel;
-    }
+    } 
 
     //LSCG Status
     function showBcLscgStatus() {
         let msg;
         if (LSCGdata.GlobalModule.enabled) {
-            msg1 = BcLscgStatus[0];
+            msg1 = "LSCG is enabled.";
         } else {
-            msg1 = BcLscgStatus[1];
+            msg1 = "LSCG is disabled.";
         }
         if (LSCGdata.ActivityModule.enabled) {
             Activities = "Activities - ";
@@ -2881,9 +2838,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showBoopReactionsStatus() {
         let msg;
         if (LSCGdata.BoopsModule.enabled) {
-            msg = BoopReactionsStatus[0];
+            msg = "Auto-react when booped.";
         } else {
-            msg = BoopReactionsStatus[1];
+            msg = "No auto-react when booped.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2891,9 +2848,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showCheckRollsStatus() {
         let msg;
         if (LSCGdata.GlobalModule.showCheckRolls) {
-            msg = CheckRollsStatus[0];
+            msg = "Display of attacker/defender roll values with some activities.";
         } else {
-            msg = CheckRollsStatus[1];
+            msg = "No display of attacker/defender roll values with some activities.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2901,14 +2858,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showCraftingStatus() {
         let msg;
         if (LSCGdata.GlobalModule.sharePublicCrafting) {
-            msg1 = Crafting1Status[0];
+            msg1 = "Your public craftings are shared and can be used by other LSCG players in the chat room.";
         } else {
-            msg1 = Crafting1Status[1];
+            msg1 = "Your public craftings are not shared.";
         }
         if (LSCGdata.GlobalModule.seeSharedCrafts) {
-            msg2 = Crafting2Status[0];
+            msg2 = "Your shared public craftings are displayed.";
         } else {
-            msg2 = Crafting2Status[1];
+            msg2 = "Your shared public craftings are not displayed.";
         }
         msg = msg1 + " " + msg2;
         M_MOANER_sendMessageToWearer(msg);
@@ -2917,9 +2874,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showEdgeBlurStatus() {
         let msg;
         if (LSCGdata.GlobalModule.edgeBlur) {
-            msg = EdgeBlurStatus[0];
+            msg = "Blurring of the screen when you are on edge.";
         } else {
-            msg = EdgeBlurStatus[1];
+            msg = "No blurring of the screen when you are on edge.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2927,9 +2884,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showErectionStatus() {
         let msg;
         if (LSCGdata.GlobalModule.erectionDetection) {
-            msg = ErectionStatus[0];
+            msg = "Private message when you feel an erection under your clothes.";
         } else {
-            msg = ErectionStatus[1];
+            msg = "No private message when you feel an erection under your clothes.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2937,14 +2894,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showLipstickStatus() {
         let msg;
         if (LSCGdata.LipstickModule.enabled) {
-            msg1 = Lipstick1Status[0];
+            msg1 = "Other people can leave lipstick marks on your face or neck when kissing you.";
         } else {
-            msg1 = Lipstick1Status[1];
+            msg1 = "No lipstick mark on your face or neck when someone kisses you.";
         }
         if (LSCGdata.LipstickModule.dry) {
-            msg2 = Lipstick2Status[0];
+            msg2 = "No lipstick marks when you kiss someone.";
         } else {
-            msg2 = Lipstick2Status[1];
+            msg2 = "Lipstick marks possible when you kiss someone.";
         }
         msg = msg1 + " " + msg2;
         M_MOANER_sendMessageToWearer(msg);
@@ -2953,14 +2910,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showOpacityStatus() {
         let msg;
         if (LSCGdata.OpacityModule.enabled) {
-            msg1 = Opacity1Status[0];
+            msg1 = "Effects bypassing opacity are applied.";
         } else {
-            msg1 = Opacity1Status[1];
+            msg1 = "Effects bypassing opacity are not applied.";
         }
         if (LSCGdata.OpacityModule.preventExternalMod) {
-            msg2 = Opacity2Status[0];
+            msg2 = "Other players can change the opacity of your wardrobe items.";
         } else {
-            msg2 = Opacity2Status[1];
+            msg2 = "Other players can't change the opacity of your wardrobe items.";
         }
         msg = msg1 + " " + msg2;
         M_MOANER_sendMessageToWearer(msg);
@@ -2969,9 +2926,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showRestrainedSettingsStatus() {
         let msg;
         if (LSCGdata.GlobalModule.blockSettingsWhileRestrained) {
-            msg = RestrainedSettingsStatus[0];
+            msg = "LSCG settings can't be changed when you are restrained.";
         } else {
-            msg = RestrainedSettingsStatus[1];
+            msg = "LSCG settings can be changed when you are restrained.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2979,9 +2936,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showResizingStatus() {
         let msg;
         if (LSCGdata.GlobalModule.hideResizing) {
-            msg = ResizingStatus[0];
+            msg = "LSCG resizing effects will not be displayed.";
         } else {
-            msg = ResizingStatus[1];
+            msg = "LSCG resizing effects will be displayed.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
