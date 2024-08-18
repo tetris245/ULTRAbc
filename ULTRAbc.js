@@ -372,33 +372,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ];
 
     //Status variables for other add-ons
-    // BCAR
-    var AnimalTypeStatus = ["Current Animal Type: "];
-    var AnimationButtonsStatus = ["Animation Buttons enabled.",
-        "Animation Buttons disabled."
-    ];
-    var ArousalManipulationStatus = ["Arousal Manipulation enabled.",
-        "Arousal Manipulation disabled."
-    ];
-    var BCARExpressionsStatus = ["BCAR Expressions enabled.",
-        "BCAR Expressions disabled."
-    ];
-    var EarAnimationStatus = ["Ear Animation enabled.",
-        "Ear Animation disabled."
-    ];
-    var EarEmoteStatus = ["Ear Emote enabled.",
-        "Ear Emote disabled."
-    ];
-    var TailAnimationStatus = ["Tail Animation enabled.",
-        "Tail Animation disabled."
-    ];
-    var TailEmoteStatus = ["Tail Emote enabled.",
-        "Tail Emote disabled."
-    ];
-    var WingAnimationStatus = ["Wing Animation enabled.",
-        "Tail Animation disabled."
-    ];
-
+    
     // BC Responsive
     var BCResponsiveStatus = ["BC Responsive is enabled.",
         "BC Responsive is disabled."
@@ -2681,16 +2655,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //BCAR Status
     function showAnimalTypeStatus() {
         let msg;
-        msg = AnimalTypeStatus[0] + BCARdata.animal;
+        msg = "Current Animal Type: "  + BCARdata.animal;
         M_MOANER_sendMessageToWearer(msg);
     }
 
     function showAnimationButtonsStatus() {
         let msg;
         if (BCARdata.animationButtonsEnable) {
-            msg = AnimationButtonsStatus[0];
+            msg = "Animation Buttons enabled.";
         } else {
-            msg = AnimationButtonsStatus[1];
+            msg = "Animation Buttons disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2698,9 +2672,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showArousalManipulationStatus() {
         let msg;
         if (BCARdata.arousalEnable) {
-            msg = ArousalManipulationStatus[0];
+            msg = "Arousal Manipulation enabled.";
         } else {
-            msg = ArousalManipulationStatus[1];
+            msg = "Arousal Manipulation disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2708,9 +2682,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showBCARExpressionsStatus() {
         let msg;
         if (BCARdata.expressionsEnable) {
-            msg = BCARExpressionsStatus[0];
+            msg = "BCAR Expressions enabled.";
         } else {
-            msg = BCARExpressionsStatus[1];
+            msg = "BCAR Expressions disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2718,9 +2692,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showEarAnimationStatus() {
         let msg;
         if (BCARdata.earWigglingEnable) {
-            msg = EarAnimationStatus[0];
+            msg = "Ear Animation enabled.";
         } else {
-            msg = EarAnimationStatus[1];
+            msg = "Ear Animation disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2728,9 +2702,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showEarEmoteStatus() {
         let msg;
         if (BCARdata.earEmoteEnable) {
-            msg = EarEmoteStatus[0];
+            msg = "Ear Emote enabled.";
         } else {
-            msg = EarEmoteStatus[1];
+            msg = "Ear Emote disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2738,9 +2712,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showTailAnimationStatus() {
         let msg;
         if (BCARdata.tailWaggingEnable) {
-            msg = TailAnimationStatus[0];
+            msg = "Tail Animation enabled.";
         } else {
-            msg = TailAnimationStatus[1];
+            msg = "Tail Animation disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2748,9 +2722,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showTailEmoteStatus() {
         let msg;
         if (BCARdata.tailEmoteEnable) {
-            msg = TailEmoteStatus[0];
+            msg = "Tail Emote enabled.";
         } else {
-            msg = TailEmoteStatus[1];
+            msg = "Tail Emote disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2758,9 +2732,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showWingAnimationStatus() {
         let msg;
         if (BCARdata.wingFlappingEnable) {
-            msg = WingAnimationStatus[0];
+            msg = "Wing Animation enabled.";
         } else {
-            msg = WingAnimationStatus[1];
+            msg = "Wing Animation disabled."
         }
         M_MOANER_sendMessageToWearer(msg);
     }
