@@ -378,24 +378,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "BC Responsive is disabled."
     ];
 
-    // EBCH
-    var EbchLogStatus = ["Chatlogging is disabled.",
-        "Chatlogging is enabled."
-    ];
-    var EbchNotificationStatus = ["Custom notifications are disabled.",
-        "Custom notifications are enabled."
-    ];
-    var EbchPoseStatus = ["Pose menu is not automatically displayed.",
-        "Pose menu is automatically displayed."
-    ];
-    var EbchUngarbleStatus = ["Messages are not ungarbled.",
-        "Messages from white list are ungarbled.",
-        "All messages are ungarbled."
-    ];
-    var EbchWelcomeStatus = ["No EBCH Welcome message.",
-        "EBCH Welcome message."
-    ]
-
     // LSCG
     var BcLscgStatus = ["LSCG is enabled.",
         "LSCG is disabled."
@@ -2844,9 +2826,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showEbchLogStatus() {
         let msg;
         if (EBCHdata[4] == 0) {
-            msg = EbchLogStatus[0];
+            msg = "Chatlogging is disabled.";
         } else {
-            msg = EbchLogStatus[1];
+            msg = "Chatlogging is enabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2854,9 +2836,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showEbchNotificationStatus() {
         let msg;
         if (EBCHdata[8] == 0) {
-            msg = EbchNotificationStatus[0];
+            msg = "Custom notifications are disabled.";
         } else {
-            msg = EbchNotificationStatus[1];
+            msg = "Custom notifications are enabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2864,9 +2846,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showEbchPoseStatus() {
         let msg;
         if (EBCHdata[6] == 0) {
-            msg = EbchPoseStatus[0];
+            msg = "Pose menu is not automatically displayed.";
         } else {
-            msg = EbchPoseStatus[1];
+            msg = "Pose menu is automatically displayed.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2874,11 +2856,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showEbchUngarbleStatus() {
         let msg;
         if (EBCHdata[2] == 0) {
-            msg = EbchUngarbleStatus[0];
+            msg = "Messages are not ungarbled.";
         } else if (EBCHdata[2] == 1) {
-            msg = EbchUngarbleStatus[1];
+            msg = "Messages from white list are ungarbled.";
         } else {
-            msg = EbchUngarbleStatus[2];
+            msg = "All messages are ungarbled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2886,13 +2868,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showEbchWelcomeStatus() {
         let msg;
         if (EBCHdata[20] == 0) {
-            msg = EbchWelcomeStatus[0];
+            msg = "No EBCH Welcome message.";
         } else {
-            msg = EbchWelcomeStatus[1];
+            msg = "EBCH Welcome message.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
-
+  
     //Hearing
     function GetDeafLevel0() {
         let deafLevel = 0;
