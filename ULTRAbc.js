@@ -378,41 +378,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "BC Responsive is disabled."
     ];
 
-    // BCTweaks
-    var ArousalErectionStatus = ["Arousal can affect male erection.",
-        "Arousal can't affect male erection."
-    ];
-    var ArousalProgressStatus = ["Arousal can affect orgasm progress.",
-        "Arousal can't affect orgasm progress."
-    ];
-    var BCIconsStatus = ["BC Icons are displayed only when the mouse hovers above you.",
-        "BC Icons are always displayed."
-    ];
-    var BCTChangelogStatus = ["BCT Changelog feature is enabled.",
-        "BCT Changelog feature is disabled."
-    ];
-    var BCTIconStatus = ["BCT Icon is displayed only when the mouse hovers above you.",
-        "BCT Icon is always displayed."
-    ];
-    var BestFriendsStatus = ["Best Friends feature is enabled.",
-        "Best Friends feature is disabled."
-    ];
-    var FriendlistSlotsStatus = ["No extra infos in Friendlist.",
-        "Extra infos in Friendlist."
-    ];
-    var LockConversionStatus = ["High security locks can become Best Friend locks.",
-        "High security locks can't become Best Friend locks."
-    ];
-    var RoomShareStatus = ["Best Friends can share private room names.",
-        "Best Friends can't share private room names."
-    ];
-    var SplitStatus = ["Two bars for arousal and orgasm.",
-        "Only the standard arousal + orgasm bar."
-    ];
-    var TailWaggingStatus = ["Tail Wagging feature is enabled.",
-        "Tail Wagging feature is disabled."
-    ];
-
     // EBCH
     var EbchLogStatus = ["Chatlogging is disabled.",
         "Chatlogging is enabled."
@@ -2768,9 +2733,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showArousalErectionStatus() {
         let msg;
         if (BCTdata.arousalAffectsErection) {
-            msg = ArousalErectionStatus[0];
+            msg = "Arousal can affect male erection.";
         } else {
-            msg = ArousalErectionStatus[1];
+            msg = "Arousal can't affect male erection.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2778,9 +2743,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showArousalProgressStatus() {
         let msg;
         if (BCTdata.arousalAffectsOrgasmProgress) {
-            msg = ArousalProgressStatus[0];
+            msg = "Arousal can affect orgasm progress.";
         } else {
-            msg = ArousalProgressStatus[1];
+            msg = "Arousal can't affect orgasm progress.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2788,9 +2753,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showBCIconsStatus() {
         let msg;
         if (BCTdata.allIconOnlyShowOnHover) {
-            msg = BCIconsStatus[0];
+            msg = "BC Icons are displayed only when the mouse hovers above you.";
         } else {
-            msg = BCIconsStatus[1];
+            msg = "BC Icons are always displayed.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2798,9 +2763,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showBCTChangelogStatus() {
         let msg;
         if (BCTdata.showChangelog) {
-            msg = BCTChangelogStatus[0];
+            msg = "BCT Changelog feature is enabled.";
         } else {
-            msg = BCTChangelogStatus[1];
+            msg = "BCT Changelog feature is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2808,9 +2773,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showBCTIconStatus() {
         let msg;
         if (BCTdata.bctIconOnlyShowOnHover) {
-            msg = BCTIconStatus[0];
+            msg = "BCT Icon is displayed only when the mouse hovers above you.";
         } else {
-            msg = BCTIconStatus[1];
+            msg = "BCT Icon is always displayed.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2818,9 +2783,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showBestFriendsStatus() {
         let msg;
         if (BCTdata.bestFriendsEnabled) {
-            msg = BestFriendsStatus[0];
+            msg = "Best Friends feature is enabled.";
         } else {
-            msg = BestFriendsStatus[1];
+            msg = "Best Friends feature is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2828,9 +2793,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showFriendlistSlotsStatus() {
         let msg;
         if (BCTdata.friendlistSlotsEnabled) {
-            msg = FriendlistSlotsStatus[0];
+            msg = "Extra infos in Friendlist.";
         } else {
-            msg = FriendlistSlotsStatus[1];
+            msg = "No extra infos in Friendlist.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2838,9 +2803,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showLockConversionStatus() {
         let msg;
         if (BCTdata.hsToBFLockconvert) {
-            msg = LockConversionStatus[0];
+            msg = "High security locks can become Best Friend locks.";
         } else {
-            msg = LockConversionStatus[1];
+            msg = "High security locks can't become Best Friend locks.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2848,9 +2813,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showRoomShareStatus() {
         let msg;
         if (BCTdata.bestFriendsRoomShare) {
-            msg = RoomShareStatus[0];
+            msg = "Best Friends can share private room names.";
         } else {
-            msg = RoomShareStatus[1];
+            msg = "Best Friends can't share private room names.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2858,9 +2823,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showSplitStatus() {
         let msg;
         if (BCTdata.splitOrgasmArousal) {
-            msg = SplitStatus[0];
+            msg = "Two bars for arousal and orgasm.";
         } else {
-            msg = SplitStatus[1];
+            msg = "Only the standard arousal + orgasm bar.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -2868,13 +2833,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showTailWaggingStatus() {
         let msg;
         if (BCTdata.tailWaggingEnable) {
-            msg = TailWaggingStatus[0];
+            msg = "Tail Wagging feature is enabled.";
         } else {
-            msg = TailWaggingStatus[1];
+            msg = "Tail Wagging feature is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
-
+   
     //EBCH Status
     function showEbchLogStatus() {
         let msg;
