@@ -310,42 +310,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
     M_MOANER_addMoansProfile("wildfox", M_MOANER_wildfoxMoans);
 
-    //Status variables
-    
-    var DolltalkStatus = ["Doll talk (and whisper) mode enabled.",
-        "Doll talk (and whisper) mode disabled."
-    ];
-    var ExitmodeStatus = ["Fast exit mode is activated.",
-        "Slow exit mode is activated."
-    ];
-    var HighfameStatus = ["High fame mode enabled in Bondage Club Card Game.",
-        "High fame mode disabled in Bondage Club Card Game."
-    ];
-    var MagiccheatStatus = ["Cheat mode enabled in B. Brawl and Magic School.",
-        "Cheat mode disabled in B. Brawl and Magic School."
-    ];
-    var MagictoysStatus = ["Magic toys added under locked chastity for trap mode.",
-        "No magic toys added under locked chastity for trap mode.",
-    ];
-    var MaptrapStatus = ["Traps in map rooms if you 'walk' on devices.",
-        "No traps with devices in map rooms."
-    ];
-    var NogarbleStatus = ["Ungarble with BC default talk mode.",
-        "No ungarble with BC default talk mode."
-    ];
-    var NostruggleStatus = ["Automatic struggle in mini-games is enabled.",
-        "Automatic struggle in mini-games is disabled."
-    ];
-    var NotimeoutStatus = ["Time-out disabled in TAB help.",
-        "Time-out enabled in TAB help."
-    ];
-    var NowhisperStatus = ["No-whisper mode enabled.",
-        "No-whisper mode disabled."
-    ];
-    var NpcpunishStatus = ["NPC punishments enabled.",
-        "NPC punishments disabled."
-    ];
-    
     //Initialisation
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
@@ -3138,9 +3102,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showExitmodeStatus() {
         let msg;
         if (SlowleaveOn) {
-            msg = ExitmodeStatus[1];
+            msg = "Slow exit mode is activated.";
         } else {
-            msg = ExitmodeStatus[0];
+            msg = "Fast exit mode is activated.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3174,9 +3138,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showHighfameStatus() {
         let msg;
         if (HighfameOn) {
-            msg = HighfameStatus[0];
+            msg = "High fame mode enabled in Bondage Club Card Game.";
         } else {
-            msg = HighfameStatus[1];
+            msg = "High fame mode disabled in Bondage Club Card Game.";
         }
         msg = msg + " Current high fame: " + cfame + ". Current default desk: " + cdesk + ".";
         M_MOANER_sendMessageToWearer(msg);
@@ -3185,9 +3149,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showMagiccheatStatus() {
         let msg;
         if (MagiccheatOn) {
-            msg = MagiccheatStatus[0];
+            msg = "Cheat mode enabled in B. Brawl and Magic School.";
         } else {
-            msg = MagiccheatStatus[1];
+            msg = "Cheat mode disabled in B. Brawl and Magic School.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3195,14 +3159,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showMaptrapStatus() {
         let msg;
         if (MaptrapOn) {
-            msg1 = MaptrapStatus[0];
+            msg1 = "Traps in map rooms if you 'walk' on devices.";
         } else {
-            msg1 = MaptrapStatus[1];
+            msg1 = "No traps with devices in map rooms.";
         }
         if (MagiccheatOn) {
-            msg2 = MagictoysStatus[0];
+            msg2 = "Magic toys added under locked chastity for trap mode.";
         } else {
-            msg2 = MagictoysStatus[1];
+            msg2 = "No magic toys added under locked chastity for trap mode.";
         }
         msg = msg1 + " " + msg2;
         M_MOANER_sendMessageToWearer(msg);
@@ -3211,9 +3175,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showNostruggleStatus() {
         let msg;
         if (NostruggleOn) {
-            msg = NostruggleStatus[0];
+            msg = "Automatic struggle in mini-games is enabled.";
         } else {
-            msg = NostruggleStatus[1];
+            msg = "Automatic struggle in mini-games is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3221,9 +3185,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showNotimeoutStatus() {
         let msg;
         if (NotimeoutOn) {
-            msg = NotimeoutStatus[0];
+            msg = "Time-out disabled in TAB help.";
         } else {
-            msg = NotimeoutStatus[1];
+            msg = "Time-out enabled in TAB help.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3231,9 +3195,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showNpcpunishStatus() {
         let msg;
         if (NPCpunish) {
-            msg = NpcpunishStatus[0];
+            msg = "NPC punishments enabled.";
         } else {
-            msg = NpcpunishStatus[1];
+            msg = "NPC punishments disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3264,19 +3228,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         msg2 = "Forced stuttering level: " + st;
         msg3 = "Forced gag level: " + gl;
         if (NowhisperOn) {
-            msg4 = NowhisperStatus[0];
+            msg4 = "No-whisper mode enabled.";
         } else {
-            msg4 = NowhisperStatus[1];
+            msg4 = "No-whisper mode disabled.";
         }
         if (DolltalkOn) {
-            msg5 = DolltalkStatus[0];
+            msg5 = "Doll talk (and whisper) mode enabled.";
         } else {
-            msg5 = DolltalkStatus[1];
+            msg5 = "Doll talk (and whisper) mode disabled.";
         }
         if (NogarbleOn) {
-            msg6 = NogarbleStatus[0];
+            msg6 = "Ungarble with BC default talk mode.";
         } else {
-            msg6 = NogarbleStatus[1];
+            msg6 = "No ungarble with BC default talk mode.";
         }
         msg = msg1 + " - " + msg2 + " - " + msg3 + " - " + msg4 + " " + msg5 + " " + msg6;
         M_MOANER_sendMessageToWearer(msg);
