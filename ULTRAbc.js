@@ -419,23 +419,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "LSCG resizing effects will be displayed."
     ];
 
-    // MBS
-    var Garbling1Status = ["Alternative garbling enabled.",
-        "Alternative garbling disabled."
-    ];
-    var Garbling2Status = ["Reduction of trailing characters with heavy gags is enabled.",
-        "Reduction of trailing characters with heavy gags is disabled."
-    ];
-    var Garbling3Status = ["Garbling per syllable is enabled.",
-        "Garbling per syllable is disabled."
-    ];
-    var LockedMbsStatus = ["MBS settings are locked when you are restrained.",
-        "You can always change MBS settings, even when you are restrained."
-    ];
-    var LockedWheelStatus = ["You can always spin a wheel of fortune, even when you are restrained.",
-        "Wheel of fortune is locked when you are restrained."
-    ];
-
     // Responsive
     var BcrResponsesStatus = ["Responses feature is enabled.",
         "Responses feature is disabled."
@@ -3070,19 +3053,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showGarblingStatus() {
         let msg;
         if (MBSdata.AlternativeGarbling) {
-            msg1 = Garbling1Status[0];
+            msg1 = "Alternative garbling enabled.";
         } else {
-            msg1 = Garbling1Status[1];
+            msg1 = "Alternative garbling disabled.";
         }
         if (MBSdata.DropTrailing) {
-            msg2 = Garbling2Status[0];
+            msg2 = "Reduction of trailing characters with heavy gags is enabled.";
         } else {
-            msg2 = Garbling2Status[1];
+            msg2 = "Reduction of trailing characters with heavy gags is disabled."
         }
         if (MBSdata.GarblePerSyllable) {
-            msg3 = Garbling3Status[0];
+            msg3 = "Garbling per syllable is enabled.";
         } else {
-            msg3 = Garbling3Status[1];
+            msg3 = "Garbling per syllable is disabled.";
         }
         msg = msg1 + " " + msg2 + " " + msg3;
         M_MOANER_sendMessageToWearer(msg);
@@ -3091,9 +3074,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showLockedMbsStatus() {
         let msg;
         if (MBSdata.LockedWhenRestrained) {
-            msg = LockedMbsStatus[0];
+            msg = "MBS settings are locked when you are restrained.";
         } else {
-            msg = LockedMbsStatus[1];
+            msg =  "You can always change MBS settings, even when you are restrained.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
@@ -3101,9 +3084,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showLockedWheelStatus() {
         let msg;
         if (MBSdata.RollWhenRestrained) {
-            msg = LockedWheelStatus[0];
+            msg = "You can always spin a wheel of fortune, even when you are restrained.";
         } else {
-            msg = LockedWheelStatus[1];
+            msg =  "Wheel of fortune is locked when you are restrained.";
         }
         M_MOANER_sendMessageToWearer(msg);
     }
