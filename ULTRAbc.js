@@ -5191,14 +5191,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'bg1',
         Description: ": adds hidden backgrounds to the selection screen.",
         Action: () => {
-            BackgroundsList.push({
-                Name: "HypnoSpiral2",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "HypnoticSpiral",
-                Tag: [BackgroundsTagIndoor]
-            });
             if (!window.BCX_Loaded == true) {
                 BackgroundsList.push({
                     Name: "AmandaCollarIntro",
@@ -5573,6 +5565,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Tag: [BackgroundsTagIndoor]
                 });
             }
+	    BackgroundsList.push({
+                Name: "HypnoSpiral2",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
+                Name: "HypnoticSpiral",
+                Tag: [BackgroundsTagIndoor]
+            });
             ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
             ChatRoomSendLocal(
                 "<p style='background-color:#5fbd7a'>ULTRAbc: You can use more standard backgrounds now.</p>"
@@ -7071,7 +7071,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The frback command must be followed by a number between -1 and a maximum that can vary, especially if you use BCX. Use -1 to go back to the default background.</p>"   
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The frback command must be followed by a number between -1 and a maximum that can vary:\n" +
+                    " \n" +
+                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 to 259 are added if you use the /bg1 command.\n" + 
+                    " \n" + 
+                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 for 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
+                    " \n" +
+                    "Use -1 to go back to the default background.</p>"   
                 );
             } else {
                 var frbg = args * 1;
@@ -7084,7 +7090,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     frname = frback;
                     M_MOANER_saveControls();  
                     ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The background of the friendlist is now: " + frname + ".</p>"   
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the friendlist is now: " + frname + ".</p>"   
                     );
                 }
             }
