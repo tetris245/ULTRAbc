@@ -51,6 +51,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var animal = 0;
     var cdesk = 0;
     var cfame = 200;
+    var frname = "BrickWall";
     var gl = 0;
     var onegl = 0;
     var mgl = 0;
@@ -331,6 +332,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    animal = 0;
             cdesk = 0;
             cfame = 200;
+	    frname = "BrickWall";
             gl = 0;
             onegl = 0;
             mgl = 0;
@@ -404,6 +406,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    animal = datas.animal;
             cdesk = datas.cdesk;
             cfame = datas.cfame;
+	    frname = datas.frname;
             gl = datas.gaglevel;
             onegl = 0;
             mgl = 0;
@@ -479,7 +482,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun4": pronoun4,
             "animal": animal,	
             "cdesk": cdesk,
-            "cfame": cfame,
+            "cfame": cfame,    
+            "frname": frname,
             "gaglevel": gl,
             "rsize": rsize,
             "rtype": rtype,
@@ -602,6 +606,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     FrkeysOn = false;
                     M_MOANER_saveControls();
                 }
+		if (frname == null || frname == undefined) {
+                    frname = "BrickWall";
+                    M_MOANER_saveControls();
+                }
                 if (gl == null || gl == undefined) {
                     gl = 0;
                     notalk = 0;
@@ -674,6 +682,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     UKTRACommandAutoComplete();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
+    ULTRAFriendListDraw();
     ULTRAFriendListKeyDown();
     ULTRAInfiltrationPrepareMission();
     ULTRAInformationSheetExit();
@@ -1691,6 +1700,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Friendlist
+    async function ULTRAFriendListDraw() {
+        modApi.hookFunction('FriendListDraw', 4, (args, next) => {
+           FriendListBackground = frname;       
+           next(args);
+        });
+    }
+
     async function ULTRAFriendListKeyDown() {
         modApi.hookFunction('FriendListKeyDown', 4, (args, next) => {
             const searchInput = /** @type {HTMLTextAreaElement} */(document.getElementById(FriendListIDs.searchInput));
@@ -7045,6 +7061,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 InformationSheetLoad();
                 InformationSheetLoadCharacter(Player);
                 InformationSheetExit();
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'frback',
+        Description: "(number): selects a standard background for the friendlist.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The frback command must be followed by a number between -1 and a maximum that can vary, especially if you use BCX. Use -1 to go back to the default background.</p>"   
+                );
+            } else {
+                var frbg = args * 1;
+                if ((frbg > -2) && (frbg < (BackgroundsList.length - 1))) {
+                    if (frbg == -1) {
+                        var frback = "BrickWall";
+                    } else {
+                        var frback = BackgroundsList[frbg].Name;  
+                    }   
+                    frname = frback;
+                    M_MOANER_saveControls();  
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The background of the friendlist is now: " + frname + ".</p>"   
+                    );
+                }
             }
         }
     }])
@@ -13771,6 +13813,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/cardextra</b> = gives all extra cards.\n" +
                     "<b>/cardfame</b> (fame) = sets high fame level for Card Game.\n" +
                     "<b>/cardnoextra</b> = removes all extra cards.\n" +
+		    "<b>/frback</b> (number) = selects a standard background for the friendlist. *\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/roomsize</b> (players) = sets maximum players per room in Chat Search for normal and hybrid rooms.\n" +
