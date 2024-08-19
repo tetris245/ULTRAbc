@@ -690,7 +690,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAFriendListDraw();
     ULTRAFriendListKeyDown();
     ULTRAInfiltrationPrepareMission();
-    ULTRAInformationSheetClick();
     ULTRAInformationSheetExit();
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
@@ -2081,32 +2080,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Preferences
-    async function ULTRAInformationSheetClick() {
-        modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
-            var C = InformationSheetSelection;
-	    if (MouseIn(1815, 75, 90, 90)) InformationSheetExit();
-	    if (C.IsPlayer()) {
-		if (MouseIn(1815, 190, 90, 90) && !TitleIsForced(TitleGet(C))) CommonSetScreen("Character", "Title");
-		if (MouseIn(1815, 305, 90, 90)) CommonSetScreen("Character", "Preference");
-		if (MouseIn(1815, 420, 90, 90)) {                     
-                    if (ChatRoomSpace == "") ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY); 
-                    if (ChatRoomSpace == "Asylum") ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM); 
-                    if (ChatRoomSpace == "X") ChatSelectStartSearch(ChatRoomSpaceType.MIXED); 
-                    if (ChatRoomSpace == "M") ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);                  
-                    FriendListReturn = { Screen: CurrentScreen, Module: CurrentModule };
-		    CommonSetScreen("Character", "FriendList");
-                }
-		if (MouseIn(1815, 535, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
-		if (MouseIn(1815, 765, 90, 90)) InformationSheetSecondScreen = !InformationSheetSecondScreen;
-	    } else if (C.IsOnline()) {
-		if (MouseIn(1815, 190, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
-		if (MouseIn(1815, 765, 90, 90)) InformationSheetSecondScreen = !InformationSheetSecondScreen;
-	    }
-            return;
-            next(args);
-        });
-    }
-
     async function ULTRAInformationSheetExit() {
         modApi.hookFunction('InformationSheetExit', 4, (args, next) => {
             FBCsettings();
