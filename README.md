@@ -59,4 +59,5 @@ All else I might not have included.
 Changes for future version 
 
 * New command: bg4 (screen) (background) to select a standard background for the friendlist, the main hall, the private room (SP) or the timer cell
+* Patched a function to get clickable links in friendlist when coming from your profile (it will be the mixed club if you don't have entered a lobby - exit from friendlist will move you to Chat Search)
 * Removed all status variables for UBC, The Moaner and other add-ons (their content is now integrated in the corresponding functions)
