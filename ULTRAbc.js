@@ -58,6 +58,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var rsize = 20;
     let rtype = "";
     var st = 0;
+    var tcname = "Cell";
 
     let AutojoinOn;
     let DolltalkOn;
@@ -339,6 +340,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rsize = 20;
             rtype = "";
 	    st = 0;
+	    tcname = "Cell";
             AutojoinOn = false;
             DolltalkOn = false;
 	    FrkeysOn = false;
@@ -413,6 +415,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rsize = datas.rsize;
             rtype = datas.rtype;
 	    st = datas.stutterlevel;
+	    tcname = datas.tcname;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
 	    FrkeysOn = datas.frkeys;
@@ -487,7 +490,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gaglevel": gl,
             "rsize": rsize,
             "rtype": rtype,
-            "stutterlevel": st,	
+            "stutterlevel": st,  
+            "tcname": tcname,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "frkeys": FrkeysOn,
@@ -608,6 +612,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
 		if (frname == null || frname == undefined) {
                     frname = "BrickWall";
+		    tcname = "Cell";
                     M_MOANER_saveControls();
                 }
                 if (gl == null || gl == undefined) {
@@ -2112,6 +2117,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRACellLoad() {
         modApi.hookFunction('CellLoad', 4, (args, next) => {
+	    CellBackground = tcname;
             CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
             CellKeyDepositStaff.AllowItem = false;
             PoseSetActive(Player, null);
@@ -6030,12 +6036,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg4',
-        Description: "(screen) (background): selects a standard background for the friendlist, the main hall or the private room (SP).",
+        Description: "(screen) (background): selects a standard background for the friendlist, the main hall, the private room (SP) or the timer cell",
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The bg4 command must be followed by two numbers:\n" +
-                    "- the concerned screen: friendlist (value 0), main hall (value 1) or private room in SP mode (value 2)\n" +
+                    "- the concerned screen: friendlist (value 0), main hall (value 1),  private room in SP mode (value 2) or timer cell (value 3)\n" +
                     "- a number between -1 and a maximum that can vary:\n" +
                     " \n" +
                     "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 to 259 are added if you use the /bg1 command.\n" + 
@@ -6048,7 +6054,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 var stringBg1 = args;
                 var stringBg2 = stringBg1.split(/[ ,]+/);
                 var screen = stringBg2[0];
-                if ((screen > -1) && (screen < 3)) {
+                if ((screen > -1) && (screen < 4)) {
                     if (screen == 0) {
                         var frbg = stringBg2[1];
                         if ((frbg > -2) && (frbg < (BackgroundsList.length - 1))) {
@@ -6085,7 +6091,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var prbg = stringBg2[1];
                         if ((prbg > -2) && (prbg < (BackgroundsList.length - 1))) {
                             if (prbg == -1) {
-                                var prback = "PrivateRoom";
+                                var prback = "Private";
                             } else {
                                 var prback = BackgroundsList[prbg].Name;  
                             }   
@@ -6096,6 +6102,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             });
                             ChatRoomSendLocal(
                                 "<p style='background-color:#5fbd7a'>ULTRAbc: The background of your private room (SP) is now: " + prback + ".</p>"   
+                            );
+                        }
+                    }
+		    if (screen == 3) {
+                        var tcbg = stringBg2[1];
+                        if ((tcbg > -2) && (tcbg < (BackgroundsList.length - 1))) {
+                            if (tcbg == -1) {
+                                var tcback = "Cell";
+                            } else {
+                                var tcback = BackgroundsList[tcbg].Name;  
+                            }   
+                            tcname = tcback;
+                            M_MOANER_saveControls();  
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the timer cell is now: " + tcname + ".</p>"   
                             );
                         }
                     }
@@ -13859,7 +13880,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "settings") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
-		    "<b>/bg4</b> (screen) (background) = selects a standard background for the friendlist, the main hall or the private room (SP) *\n" +
+		    "<b>/bg4</b> (screen) (background) = selects a standard background for the friendlist, the main hall, the private room (SP) or the timer cell. *\n" +
                     "<b>/carddesk</b> (desk) = changes default desk for Card Game.\n" +
                     "<b>/cardextra</b> = gives all extra cards.\n" +
                     "<b>/cardfame</b> (fame) = sets high fame level for Card Game.\n" +
