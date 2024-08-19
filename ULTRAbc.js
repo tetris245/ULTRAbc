@@ -6041,7 +6041,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The bg4 command must be followed by two numbers:\n" +
-                    "- the concerned screen: friendlist (value 0), main hall (value 1),  private room in SP mode (value 2) or timer cell (value 3)\n" +
+                    " \n" +  
+                    "- a number for the concerned screen:\n" +
+                    "0 = friendlist - 1 = main hall\n" +
+                    "2 = private room (SP) - 3 = timer cell\n" +
+                    " \n" +  
                     "- a number between -1 and a maximum that can vary:\n" +
                     " \n" +
                     "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 to 259 are added if you use the /bg1 command.\n" + 
