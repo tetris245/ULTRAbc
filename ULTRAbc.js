@@ -690,6 +690,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAFriendListDraw();
     ULTRAFriendListKeyDown();
     ULTRAInfiltrationPrepareMission();
+    ULTRAInformationSheetClick();
     ULTRAInformationSheetExit();
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
@@ -1869,6 +1870,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Main Hall
+    async function ULTRAMainHallClick() {
+        modApi.hookFuction('MainHallClick', 4, (args, next) => {
+            if (MouseIn(1645, 145, 90, 90)) MainHallMoveToChatSelect();
+            if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
+                if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
+                    (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
+                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
+                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+                    ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+                }
+            }
+            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
+                if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
+                    (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
+                    ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+                    ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+                }
+            }
+            if (MouseIn(240, 585, 420, 90))
+                window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+            if (MouseIn(240, 695, 420, 90))
+                window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+            next(args);
+        });
+    }
+
     async function ULTRAMainHallRun() {
         modApi.hookFunction('MainHallRun', 4, (args, next) => {
             MainCanvas.textAlign = "center";
@@ -1903,35 +1932,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
-    async function ULTRAMainHallClick() {
-        modApi.hookFunction('MainHallClick', 4, (args, next) => {
-            if (MouseIn(1645, 145, 90, 90)) MainHallMoveToChatSelect();
-            if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
-                    ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-                }
-            }
-            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
-            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                    ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
-                    ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-                }
-            }
-            if (MouseIn(240, 585, 420, 90))
-                window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
-            if (MouseIn(240, 695, 420, 90))
-                window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
-            next(args);
-        });
-    }
-
+	
     //Orgasm
     async function ULTRAActivityChatRoomArousalSync() {
         modApi.hookFunction('ActivityChatRoomArousalSync', 4, (args, next) => {
@@ -2080,6 +2081,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Preferences
+    async function ULTRAInformationSheetClick() {
+        modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
+            var C = InformationSheetSelection;
+	    if (MouseIn(1815, 75, 90, 90)) InformationSheetExit();
+	    if (C.IsPlayer()) {
+		if (MouseIn(1815, 190, 90, 90) && !TitleIsForced(TitleGet(C))) CommonSetScreen("Character", "Title");
+		if (MouseIn(1815, 305, 90, 90)) CommonSetScreen("Character", "Preference");
+		if (MouseIn(1815, 420, 90, 90)) {                     
+                    if (ChatRoomSpace == "") ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY); 
+                    if (ChatRoomSpace == "Asylum") ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM); 
+                    if (ChatRoomSpace == "X") ChatSelectStartSearch(ChatRoomSpaceType.MIXED); 
+                    if (ChatRoomSpace == "M") ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);                  
+                    FriendListReturn = { Screen: CurrentScreen, Module: CurrentModule };
+		    CommonSetScreen("Character", "FriendList");
+                }
+		if (MouseIn(1815, 535, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
+		if (MouseIn(1815, 765, 90, 90)) InformationSheetSecondScreen = !InformationSheetSecondScreen;
+	    } else if if (C.IsOnline()) {
+		if (MouseIn(1815, 190, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
+		if (MouseIn(1815, 765, 90, 90)) InformationSheetSecondScreen = !InformationSheetSecondScreen;
+	    }
+            return;
+            next(args);
+        });
+    }
+
     async function ULTRAInformationSheetExit() {
         modApi.hookFunction('InformationSheetExit', 4, (args, next) => {
             FBCsettings();
