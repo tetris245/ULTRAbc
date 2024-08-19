@@ -58,5 +58,5 @@ All else I might not have included.
 
 Changes for future version 
 
-* New command: bg4 (screen) (background) to select a standard background for the friendlist, the main hall or the private room (SP)
+* New command: bg4 (screen) (background) to select a standard background for the friendlist, the main hall, the private room (SP) or the timer cell
 * Removed all status variables for UBC, The Moaner and other add-ons (their content is now integrated in the corresponding functions)
