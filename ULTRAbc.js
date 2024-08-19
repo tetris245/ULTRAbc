@@ -6029,6 +6029,82 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'bg4',
+        Description: "(screen) (background): selects a standard background for the friendlist, the main hall or the private room (SP).",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The bg4 command must be followed by two numbers:\n" +
+                    "- the concerned screen: friendlist (value 0), main hall (value 1) or private room in SP mode (value 2)\n" +
+                    "- a number between -1 and a maximum that can vary:\n" +
+                    " \n" +
+                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 to 259 are added if you use the /bg1 command.\n" + 
+                    " \n" + 
+                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 for 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
+                    " \n" +
+                    "Use -1 to go back to the default background.</p>"   
+                );
+            } else {
+                var stringBg1 = args;
+                var stringBg2 = stringBg1.split(/[ ,]+/);
+                var screen = stringBg2[0];
+                if ((screen > -1) && (screen < 3)) {
+                    if (screen == 0) {
+                        var frbg = stringBg2[1];
+                        if ((frbg > -2) && (frbg < (BackgroundsList.length - 1))) {
+                            if (frbg == -1) {
+                                var frback = "BrickWall";
+                            } else {
+                                var frback = BackgroundsList[frbg].Name;  
+                            }   
+                            frname = frback;
+                            M_MOANER_saveControls();  
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the friendlist is now: " + frname + ".</p>"   
+                            );
+                        }
+                    }
+                    if (screen == 1) {
+                        var mhbg = stringBg2[1];
+                        if ((mhbg > -2) && (mhbg < (BackgroundsList.length - 1))) {
+                            if (mhbg == -1) {
+                                var mhback = "MainHall";
+                            } else {
+                                var mhback = BackgroundsList[mhbg].Name;  
+                            }   
+                            Player.VisualSettings.MainHallBackground = mhback;              
+                            ServerAccountUpdate.QueueData({
+                                VisualSettings: Player.VisualSettings
+                            });
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the main hall is now: " + mhback + ".</p>"   
+                            );
+                        }
+                    }
+                    if (screen == 2) {
+                        var prbg = stringBg2[1];
+                        if ((prbg > -2) && (prbg < (BackgroundsList.length - 1))) {
+                            if (prbg == -1) {
+                                var prback = "PrivateRoom";
+                            } else {
+                                var prback = BackgroundsList[prbg].Name;  
+                            }   
+                            Player.VisualSettings.PrivateRoomBackground = prback; 
+                            PrivateBackground = prback;           
+                            ServerAccountUpdate.QueueData({
+                                VisualSettings: Player.VisualSettings
+                            });
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of your private room (SP) is now: " + prback + ".</p>"   
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }]) 
+
+    CommandCombine([{
         Tag: 'bio',
         Description: "(target): gives direct access to the profile description of any player in the chat room.",
         Action: (args) => {
@@ -7061,38 +7137,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 InformationSheetLoad();
                 InformationSheetLoadCharacter(Player);
                 InformationSheetExit();
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'frback',
-        Description: "(number): selects a standard background for the friendlist.",
-        Action: (args) => {
-            if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The frback command must be followed by a number between -1 and a maximum that can vary:\n" +
-                    " \n" +
-                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 to 259 are added if you use the /bg1 command.\n" + 
-                    " \n" + 
-                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 for 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
-                    " \n" +
-                    "Use -1 to go back to the default background.</p>"   
-                );
-            } else {
-                var frbg = args * 1;
-                if ((frbg > -2) && (frbg < (BackgroundsList.length - 1))) {
-                    if (frbg == -1) {
-                        var frback = "BrickWall";
-                    } else {
-                        var frback = BackgroundsList[frbg].Name;  
-                    }   
-                    frname = frback;
-                    M_MOANER_saveControls();  
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the friendlist is now: " + frname + ".</p>"   
-                    );
-                }
             }
         }
     }])
@@ -13815,11 +13859,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "settings") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
+		    "<b>/bg4</b> (screen) (background) = selects a standard background for the friendlist, the main hall or the private room (SP) *\n" +
                     "<b>/carddesk</b> (desk) = changes default desk for Card Game.\n" +
                     "<b>/cardextra</b> = gives all extra cards.\n" +
                     "<b>/cardfame</b> (fame) = sets high fame level for Card Game.\n" +
                     "<b>/cardnoextra</b> = removes all extra cards.\n" +
-		    "<b>/frback</b> (number) = selects a standard background for the friendlist. *\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/roomsize</b> (players) = sets maximum players per room in Chat Search for normal and hybrid rooms.\n" +
