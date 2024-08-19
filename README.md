@@ -58,4 +58,5 @@ All else I might not have included.
 
 Changes for future version 
 
+* New command: frback (number) to select a standard background for the friendlist
 * Removed all status variables for UBC, The Moaner and other add-ons (their content is now integrated in the corresponding functions)
