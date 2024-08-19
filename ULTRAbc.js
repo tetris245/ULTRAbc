@@ -2098,7 +2098,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
 		if (MouseIn(1815, 535, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
 		if (MouseIn(1815, 765, 90, 90)) InformationSheetSecondScreen = !InformationSheetSecondScreen;
-	    } else if if (C.IsOnline()) {
+	    } else if (C.IsOnline()) {
 		if (MouseIn(1815, 190, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
 		if (MouseIn(1815, 765, 90, 90)) InformationSheetSecondScreen = !InformationSheetSecondScreen;
 	    }
