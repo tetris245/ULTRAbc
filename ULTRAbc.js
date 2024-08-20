@@ -1713,7 +1713,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Friendlist
+    //Friend List
     async function ULTRAFriendListDraw() {
         modApi.hookFunction('FriendListDraw', 4, (args, next) => {
            FriendListBackground = frname;       
@@ -6110,8 +6110,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The bg4 command must be followed by two numbers:\n" +
                     " \n" +  
                     "- a number for the concerned screen:\n" +
-                    "0 = friendlist - 1 = main hall\n" +
-                    "2 = private room (SP) - 3 = timer cell\n" +
+                    "0 = Friend List - 1 = Main Hall\n" +
+                    "2 = Private Room (SP) - 3 = Timer Cell\n" 
                     " \n" +  
                     "- a number between -1 and a maximum that can vary:\n" +
                     " \n" +
@@ -6137,7 +6137,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             frname = frback;
                             M_MOANER_saveControls();  
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the friendlist is now: " + frname + ".</p>"   
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the Friend List is now: " + frname + ".</p>"   
                             );
                         }
                     }
@@ -6154,7 +6154,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 VisualSettings: Player.VisualSettings
                             });
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the main hall is now: " + mhback + ".</p>"   
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the Main Hall is now: " + mhback + ".</p>"   
                             );
                         }
                     }
@@ -6172,7 +6172,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 VisualSettings: Player.VisualSettings
                             });
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of your private room (SP) is now: " + prback + ".</p>"   
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of your Private Room (SP) is now: " + prback + ".</p>"   
                             );
                         }
                     }
@@ -6187,7 +6187,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             tcname = tcback;
                             M_MOANER_saveControls();  
                             ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the timer cell is now: " + tcname + ".</p>"   
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: The background of the Timer Cell is now: " + tcname + ".</p>"   
                             );
                         }
                     }
