@@ -3205,6 +3205,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Autojoin = "";
         }
+	if (bgall) {
+            Background = "All standard backgrounds usable with the buttons in Private Room (SP) - ";
+        } else {
+            Background = "";
+        }
         if (FullseedOn) {
             Fullseed = "Full solution for intricate/hs locks - ";
         } else {
@@ -3220,7 +3225,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Hotkeys = "";
         }
-        msg = "Features enabled: " + Autojoin + Fullseed + Frkeys + Hotkeys;
+        msg = "Features enabled: " + Autojoin + Background + Fullseed + Frkeys + Hotkeys;
         M_MOANER_sendMessageToWearer(msg);
     }
 
