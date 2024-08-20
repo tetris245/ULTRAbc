@@ -6130,6 +6130,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }]) 
 
     CommandCombine([{
+        Tag: 'bglist',
+        Description:": displays list of all available standard backgrounds",
+        Action: () => {
+            for (let i = 0; i < BackgroundsList.length ; i++)
+                ChatRoomSendLocal(i + " - " + BackgroundsList[i].Name);       
+        }
+    }])	
+
+    CommandCombine([{
         Tag: 'bio',
         Description: "(target): gives direct access to the profile description of any player in the chat room.",
         Action: (args) => {
@@ -13884,7 +13893,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "settings") {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Settings commands - * = more info when using\n" +
-		    "<b>/bg4</b> (screen) (background) = selects a standard background for the friendlist, the main hall, the private room (SP) or the timer cell. *\n" +
+		    "<b>/bg4</b> (screen) (background) = selects a standard background for the friendlist, the main hall, the private room (SP) or the timer cell. *\n" + 
+		    "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
                     "<b>/carddesk</b> (desk) = changes default desk for Card Game.\n" +
                     "<b>/cardextra</b> = gives all extra cards.\n" +
                     "<b>/cardfame</b> (fame) = sets high fame level for Card Game.\n" +
