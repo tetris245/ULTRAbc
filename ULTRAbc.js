@@ -49,6 +49,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var M_MOANER_cum = false;
     let profileName;
     var animal = 0;
+    var bgall = false;
     var cdesk = 0;
     var cfame = 200;
     var frname = "BrickWall";
@@ -331,6 +332,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun3 = "";
             pronoun4 = "";
 	    animal = 0;
+	    bgall = false;
             cdesk = 0;
             cfame = 200;
 	    frname = "BrickWall";
@@ -406,6 +408,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun3 = datas.pronoun3;
             pronoun4 = datas.pronoun4;
 	    animal = datas.animal;
+	    bgall = datas.bgall;
             cdesk = datas.cdesk;
             cfame = datas.cfame;
 	    frname = datas.frname;
@@ -483,7 +486,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun2": pronoun2,
             "pronoun3": pronoun3,
             "pronoun4": pronoun4,
-            "animal": animal,	
+            "animal": animal,
+            "bgall" : bgall,	
             "cdesk": cdesk,
             "cfame": cfame,    
             "frname": frname,
@@ -606,6 +610,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 6) AnimalTalk6On = true;
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
+		if (bgall == null || bgall == undefined) {
+                    bgall = false;
+                    M_MOANER_saveControls();
+                }
 		if (FrkeysOn == null || FrkeysOn == undefined) {
                     FrkeysOn = false;
                     M_MOANER_saveControls();
@@ -702,6 +710,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPhotographicRun();
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
+    ULTRAPrivateClick();
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
@@ -2083,6 +2092,64 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAInformationSheetExit() {
         modApi.hookFunction('InformationSheetExit', 4, (args, next) => {
             FBCsettings();
+            next(args);
+        });
+    }
+
+    //Private Room
+    async function ULTRAPrivateClick() {
+        modApi.hookFunction('PrivateClick', 4, (args, next) => {
+            if ((Player.ArousalSettings != null) && (Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
+		if ((MouseX >= 700) && (MouseX <= 950) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmGameGenerate(0);
+		if ((MouseX >= 1050) && (MouseX <= 1300) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmStart(Player);
+		if ((MouseX >= ActivityOrgasmGameButtonX + 500) && (MouseX <= ActivityOrgasmGameButtonX + 700) && (MouseY >= ActivityOrgasmGameButtonY) && (MouseY <= ActivityOrgasmGameButtonY + 64) && (Player.ArousalSettings.OrgasmStage == 1)) ActivityOrgasmGameGenerate(ActivityOrgasmGameProgress + 1);
+		return;
+	    }
+	    if (MouseIn(500, 0, 500, 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
+	    if (MouseIn(1000, 0, 500, 1000) && !LogQuery("RentRoom", "PrivateRoom")) { NPCTraitDialog(PrivateVendor); CharacterSetCurrent(PrivateVendor); }
+	    if (MouseIn(1885, PrivateButtonTop(0), 90, 90) && Player.CanWalk() && !Player.Cage) PrivateExit();
+	    if (MouseIn(1885, PrivateButtonTop(1), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) PoseSetActive(Player, Player.ActivePoseMapping.BodyLower !== "Kneel" ? "Kneel" : "BaseLower", true);
+	    if (MouseIn(1885, PrivateButtonTop(2), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (!Player.Cage)) CharacterSetCurrent(PrivateVendor);
+	    if (MouseIn(1885, PrivateButtonTop(3), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChangeOwnClothes()) CharacterAppearanceLoadCharacter(Player);
+	    if (MouseIn(1885, PrivateButtonTop(4), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChangeOwnClothes() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
+	    if (MouseIn(1885, PrivateButtonTop(5), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage) && PrivateBedActive()) CommonSetScreen("Room", "PrivateBed");
+	    if (MouseIn(1885, PrivateButtonTop(6), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset + 4 == PrivateCharacterMax) ? 0 : PrivateCharacterOffset + 4;
+	    if (MouseIn(1885, PrivateButtonTop(7), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
+		if (Player.VisualSettings == null) Player.VisualSettings = {};
+                if (bgall == true) {
+                    var backgrounds = BackgroundsGenerateList(BackgroundsTagList);
+                } else {
+                    var backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
+                }
+		let index = backgrounds.indexOf(MainHallBackground);
+		if (index < 0) index = 0;
+		BackgroundSelectionMake(backgrounds, index, Name => {
+		    Player.VisualSettings.MainHallBackground = Name;
+		    ServerAccountUpdate.QueueData({
+                        VisualSettings: Player.VisualSettings
+                    });
+		});
+	    }
+	    if (MouseIn(1885, PrivateButtonTop(8), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
+	        if (Player.VisualSettings == null) Player.VisualSettings = {};
+                if (bgall == true) {
+                    var backgrounds = BackgroundsGenerateList(BackgroundsTagList);
+                } else {
+                    var backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
+                } 
+		let index = backgrounds.indexOf(PrivateBackground);
+		if (index < 0) index = 0;
+		BackgroundSelectionMake(backgrounds, index, Name => {			           
+                    Player.VisualSettings.PrivateRoomBackground = Name;
+		    PrivateBackground = Name;
+	            ServerAccountUpdate.QueueData({
+                        VisualSettings: Player.VisualSettings
+                    });
+	        });
+	    }      
+	    if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage)) PrivateClickCharacter();
+	    if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
+            return;
             next(args);
         });
     }
@@ -14489,6 +14556,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
                     "<b>autojoin</b> for chat room auto-join feature\n" +
+		    "<b>bgall</b> for bgs usable with the buttons in Private Room\n" 
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
                     "<b>exitmode</b> for exit mode with OUT button \n" +
 		    "<b>frkeys</b> for hotkeys in friendlist \n" +
@@ -14496,7 +14564,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
                     "<b>hotkeys</b> for hotkeys on numeric pad \n" +
                     "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
-                    "<b>magictoys</b> for toys added under locked chastity in traps\n" +
+                    "<b>magictoys</b> for toys under locked chastity in traps\n" +
                     "<b>nogarble</b> for ungarble in default BC talk mode\n" +
                     "<b>nostruggle</b> for automatic struggle in mini-games\n" +
 		    "<b>notimeout</b> for toggle time-out in BC TAB help\n" +         
@@ -14522,6 +14590,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "<p style='background-color:#5fbd7a'>ULTRAbc: Auto-Join feature is enabled.</p>"
                         );
                     }
+                } else if (setting == "bgall") {
+                    if (bgall == true) {
+                        bgall = false;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: Only 43 standard backgrounds can be used with the buttons in Private Room (SP).</p>"
+                        );
+                    } else {
+                        bgall = true;
+                        M_MOANER_saveControls();
+                        ChatRoomSendLocal(
+                            "<p style='background-color:#5fbd7a'>ULTRAbc: All standard backgrounds can be used with the buttons in Private Room.</p>"
+                        );
+                    }	
                 } else if (setting == "dolltalk") {
                     if (DolltalkOn == true) {
                         DolltalkOn = false;
