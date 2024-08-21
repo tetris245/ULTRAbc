@@ -58,6 +58,7 @@ All else I might not have included.
 
 Changes for future version 
 
+* Added 2 buttons in Private Room (SP), allowing to change background for the Friend List and the Timer Cell
 * New commands:
   - bg4 (screen) (background) to select a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell
   - bglist to display the list of all available standard backgrounds
