@@ -686,7 +686,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSendChat();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
-    ULTRAChatSearchNormalDraw();
+    ULTRAChatSearchParseResponse();
     ULTRAChatSearchRoomSpaceSelectClick();
     ULTRAChatSearchRoomSpaceSelectDraw();
     ULTRAChatSearchRun();
@@ -1382,114 +1382,49 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchNormalDraw() {
-        modApi.hookFunction('ChatSearchNormalDraw', 4, (args, next) => {
-            if ((ChatSearchResult.length >= 1)) {
-                let NewResult = [];
-                if (rtype == "") {
-                    let rm = 0;
-                    while (rm < ChatSearchResult.length) {
-                        if ((ChatSearchResult[rm].MemberLimit <= rsize) || (ChatSearchResult[rm].MapType == "Always")) {
-                            NewResult.push(ChatSearchResult[rm]);
-                        }
-                        rm++;
+    async function ULTRAChatSearchParseResponse() {
+        modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
+            if (!["Always", "Hybrid", "Never"].includes(rtype)) return next(args);
+            const ret = next(args);
+            let NewResult = [];
+            if (rtype == "") {
+                let rm = 0;
+                while (rm < ret.length) {
+                    if ((ret[rm].MemberLimit <= rsize) || (ret[rm].MapType == "Always")) {
+                        NewResult.push(ret[rm]);
                     }
+                    rm++;
                 }
-                if (rtype == "Never") {
-                    let rm = 0;
-                    while (rm < ChatSearchResult.length) {
-                        if ((ChatSearchResult[rm].MemberLimit <= rsize) && (ChatSearchResult[rm].MapType == "Never")) {
-                            NewResult.push(ChatSearchResult[rm]);
-                        }
-                        rm++;
-                    }
-                }
-                if (rtype == "Hybrid") {
-                    let rm = 0;
-                    while (rm < ChatSearchResult.length) {
-                        if ((ChatSearchResult[rm].MemberLimit <= rsize) && (ChatSearchResult[rm].MapType == "Hybrid")) {
-                            NewResult.push(ChatSearchResult[rm]);
-                        }
-                        rm++;
-                    }
-                }
-                if (rtype == "Always") {
-                    let rm = 0;
-                    while (rm < ChatSearchResult.length) {
-                        if (ChatSearchResult[rm].MapType == "Always") {
-                            NewResult.push(ChatSearchResult[rm]);
-                        }
-                        rm++;
-                    }
-                }
-                if ((NewResult.length >= 1)) {
-                    var X = ChatSearchPageX;
-                    var Y = ChatSearchPageY;
-                    ChatSearchResult = NewResult;
-                    for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
-                        var HasFriends = ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0;
-                        var IsFull = ChatSearchResult[C].MemberCount >= ChatSearchResult[C].MemberLimit;
-                        var HasBlock = CharacterHasBlockedItem(Player, ChatSearchResult[C].BlockCategory);
-                        DrawButton(X, Y, 630, 85, "", (HasBlock && IsFull ? "#884444" : HasBlock ? "#FF9999" : HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White"), null, null, IsFull);
-                        if ((ChatSearchResult[C].MapType === "Always") || (ChatSearchResult[C].MapType === "Hybrid")) {
-                            DrawImage("Icons/MapType" + ChatSearchResult[C].MapType + ".png", X + 2, Y + 2);
-                            DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchMuffle(ChatSearchResult[C].DisplayName) + " - " + ChatSearchMuffle(ChatSearchResult[C].Creator) + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 355, Y + 25, 540, "black");
-                            DrawTextFit(ChatSearchMuffle(ChatSearchResult[C].Description), X + 355, Y + 62, 540, "black");
-                        } else {
-                            DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchMuffle(ChatSearchResult[C].DisplayName) + " - " + ChatSearchMuffle(ChatSearchResult[C].Creator) + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 540, "black");
-                            DrawTextFit(ChatSearchMuffle(ChatSearchResult[C].Description), X + 315, Y + 62, 620, "black");
-                        }
-                        X = X + 660;
-                        if (X > 1500) {
-                            X = 25;
-                            Y = Y + 109;
-                        }
-                    }
-                    if (!CommonIsMobile && MouseIn(25, 25, 1950, 850)) {
-                        X = ChatSearchPageX;
-                        Y = ChatSearchPageY;
-                        for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
-                            let Height = 58;
-                            let ListHeight = Height * (
-                                (ChatSearchResult[C].Friends.length > 0 ? 1 : 0) + ChatSearchResult[C].Friends.length +
-                                (ChatSearchResult[C].BlockCategory.length > 0 ? 1 : 0) +
-                                (ChatSearchResult[C].Game != "" ? 1 : 0));
-                            let ListY = Math.min(Y, 872 - ListHeight);
-                            if (MouseIn(X, Y, 630, 85) && ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0) {
-                                DrawTextWrap(TextGet("FriendsInRoom") + " " + ChatSearchMuffle(ChatSearchResult[C].DisplayName), (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
-                                ListY += Height;
-                                for (let F = 0; F < ChatSearchResult[C].Friends.length; F++) {
-                                    DrawTextWrap(ChatSearchMuffle(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")"), (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
-                                    ListY += Height;
-                                }
-                            }
-                            if (MouseIn(X, Y, 630, 85) && (ChatSearchResult[C].BlockCategory != null) && (ChatSearchResult[C].BlockCategory.length > 0)) {
-                                let Block = TextGet("Block");
-                                for (let B = 0; B < ChatSearchResult[C].BlockCategory.length; B++)
-                                    Block = Block + ((B > 0) ? ", " : " ") + TextGet(ChatSearchResult[C].BlockCategory[B]);
-                                DrawTextWrap(Block, (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FF9999", 1);
-                                ListY += Height;
-                            }
-                            if (MouseIn(X, Y, 630, 85) && (ChatSearchResult[C].Game != null) && (ChatSearchResult[C].Game != "")) {
-                                DrawTextWrap(TextGet("GameLabel") + " " + TextGet("Game" + ChatSearchResult[C].Game), (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#9999FF", 1);
-                                ListY += Height;
-                            }
-                            X = X + 660;
-                            if (X > 1500) {
-                                X = 25;
-                                Y = Y + 109;
-                            }
-                        }
-                    }
-                } else {
-                    DrawText(TextGet("NoChatRoomFound"), 1000, 450, "White", "Gray");
-                }
-            } else {
-                DrawText(TextGet("NoChatRoomFound"), 1000, 450, "White", "Gray");
             }
-            return;
-            next(args);
-        });
+            if (rtype == "Never") {
+                let rm = 0;
+                while (rm < ret.length) {
+                    if ((ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Never")) {
+                        NewResult.push(ret[rm]);
+                    }
+                    rm++;
+                }
+            }
+            if (rtype == "Hybrid") {
+                let rm = 0;
+                while (rm < ret.length) {
+                    if ((ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Hybrid")) {
+                        NewResult.push(ret[rm]);
+                    }
+                    rm++;
+                }
+            }
+            if (rtype == "Always") {
+                let rm = 0;
+                while (rm < ret.length) {
+                    if (ret[rm].MapType == "Always") {
+                        NewResult.push(ret[rm]);
+                    }
+                    rm++;
+                }
+            }
+            return NewResult;
+        });           
     }
 
     async function ULTRAChatSearchRoomSpaceSelectClick() {
