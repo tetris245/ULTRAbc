@@ -1384,10 +1384,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchParseResponse() {
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
-            if (!["Always", "Hybrid", "Never"].includes(rtype)) return next(args);
+            if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
             const ret = next(args);
             let NewResult = [];
-            if (rtype == "") {
+            if (rtype == "ALL") {
                 let rm = 0;
                 while (rm < ret.length) {
                     if ((ret[rm].MemberLimit <= rsize) || (ret[rm].MapType == "Always")) {
@@ -12244,7 +12244,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 var type = args;
                 if ((type > -1) && (type < 4) && (type != rtype)) {
                     if (type == 0) {
-                        rtype = "";
+                        rtype = "ALL";
                     }
                     if (type == 1) {
                         rtype = "Never";
