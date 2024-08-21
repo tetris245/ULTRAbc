@@ -711,6 +711,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
     ULTRAPrivateClick();
+    ULTRAPrivateRun();
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
@@ -2081,10 +2082,48 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         VisualSettings: Player.VisualSettings
                     });
 	        });
-	    }      
+	    }
+	    if (MouseIn(0, 900, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
+                if (bgall == true) {
+                    var backgrounds = BackgroundsGenerateList(BackgroundsTagList);
+                } else {
+                    var backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
+                } 
+		let index = backgrounds.indexOf(frname);
+		if (index < 0) index = 0;
+		BackgroundSelectionMake(backgrounds, index, Name => {			           
+                    frname = Name;
+                    M_MOANER_saveControls();     		
+		});
+	    }
+            if (MouseIn(0, 950, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
+                if (bgall == true) {
+                    var backgrounds = BackgroundsGenerateList(BackgroundsTagList);
+                } else {
+                    var backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
+                } 
+		let index = backgrounds.indexOf(tcname);
+		if (index < 0) index = 0;
+		BackgroundSelectionMake(backgrounds, index, Name => {			           
+                    tcname = Name;
+                    M_MOANER_saveControls();     		
+		});
+	    }
 	    if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage)) PrivateClickCharacter();
 	    if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
             return;
+            next(args);
+        });
+    }
+
+    async function ULTRAPrivateRun() {
+        modApi.hookFunction('PrivateRun', 4, (args, next) => {
+            if (LogQuery("RentRoom", "PrivateRoom")) {         
+                DrawButton(0, 900, 49, 49, "", "White", "", "Select friend list background");
+                DrawButton(0, 950, 49, 49, "", "White", "", "Select timer cell background");
+                DrawImageResize("Icons/FriendList.png", 0, 900, 48, 48);
+                DrawImageResize("Icons/Cell.png", 0, 950, 48, 48);
+            }
             next(args);
         });
     }
