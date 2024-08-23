@@ -2188,42 +2188,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Vision
     async function ULTRADrawCharacter() {
         modApi.hookFunction('DrawCharacter', 4, (args, next) => {
-            if (blureffect == true) {
-                if (Blur1On == true) {
-                    BlurLevel = 3;
-                }
-                if (Blur2On == true) {
-                    BlurLevel = 8;
-                }
-                if (Blur3On == true) {
-                    BlurLevel = 20;
-                }
-                if (Blur4On == true) {
-                    BlurLevel = 50;
-                }
-                MainCanvas.filter = `blur(${BlurLevel}px)`;
-            }
+            if (blureffect == true) BlurEffect();
             next(args);
         });
     }
 
     async function ULTRADrawRoomBackground() {
         modApi.hookFunction('DrawRoomBackground', 4, (args, next) => {
-            if (blureffect == true) {
-                if (Blur1On == true) {
-                    BlurLevel = 3;
-                }
-                if (Blur2On == true) {
-                    BlurLevel = 8;
-                }
-                if (Blur3On == true) {
-                    BlurLevel = 20;
-                }
-                if (Blur4On == true) {
-                    BlurLevel = 50;
-                }
-                MainCanvas.filter = `blur(${BlurLevel}px)`;
-            }
+            if (blureffect == true) BlurEffect();
             next(args);
         });
     }
@@ -3780,6 +3752,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Vision
+    function BlurEffect() {
+        if (Blur1On == true) BlurLevel = 3;
+        if (Blur2On == true) BlurLevel = 8;
+        if (Blur3On == true) BlurLevel = 20;
+        if (Blur4On == true) BlurLevel = 50;
+        MainCanvas.filter = `blur(${BlurLevel}px)`;
+    }
+
     function GetBlindLevel0() {
         let blindLevel = 0;
         return blindLevel;
