@@ -1029,12 +1029,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
-            if (SosbuttonsOn == true) {
-                DrawButton(955, 45, 45, 45, "FREE", "White", "", "");
-            }
-            if (OutbuttonsOn == true) {
-                DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
-            }
+            SosButtons(); 
+	    OutButtons(); 
             if (RglbuttonsOn == true) {
                 DrawButton(955, 135, 45, 45, "RGL", "White", "", "");
             }
@@ -1968,16 +1964,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             DrawProgressBar(1610, 954, 380, 36, Math.round(PandoraWillpower / PandoraMaxWillpower * 100));
             DrawText(PandoraWillpower.toString(), 1800, 973, "black", "white");
-            if (SosbuttonsOn == true) {
-                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
-            }
-            if (OutbuttonsOn == true) {
-                if (SlowleaveOn == true) {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
-                } else {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
-                }
-            }
+            SosButtons();      
+            OutButtons();   
             return;
             next(args);
         });
@@ -2010,16 +1998,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPhotographicRun() {
         modApi.hookFunction('PhotographicRun', 4, (args, next) => {
-            if (SosbuttonsOn == true) {
-                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
-            }
-            if (OutbuttonsOn == true) {
-                if (SlowleaveOn == true) {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
-                } else {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
-                }
-            }
+            SosButtons();   
+            OutButtons();
             next(args);
         });
     }
@@ -2171,16 +2151,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRACellRun() {
         modApi.hookFunction('CellRun', 4, (args, next) => {
-            if (SosbuttonsOn == true) {
-                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
-            }
-            if (OutbuttonsOn == true) {
-                if (SlowleaveOn == true) {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
-                } else {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
-                }
-            }
+            SosButtons();   
+            OutButtons();
             next(args);
         });
     }
@@ -2672,7 +2644,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         M_MOANER_sendMessageToWearer(msg);
     }
-   
+
+    //Buttons
+    function OutButtons() {
+        if (OutbuttonsOn == true) {
+            if (window.CurrentScreen == "ChatRoom") {
+                DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
+            } else {
+                if (SlowleaveOn == true) {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                } else {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                }
+            } 
+        }
+    }
+
+    function SosButtons() {
+        if (OutbuttonsOn == true) {
+            if (window.CurrentScreen == "ChatRoom") {
+                DrawButton(955, 45, 45, 45, "FREE", "White", "", "");
+            } else {
+                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");             
+            } 
+        }
+    }
+
     //EBCH Status
     function showEbchLogStatus() {
         let msg;
