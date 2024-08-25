@@ -4487,11 +4487,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let douleur = Player.ArousalSettings.Progress <= seuilDouleur;
         let plaisir = Player.ArousalSettings.Progress > seuilPlaisir;
         if (douleur) {
-            gemissement = getPtickleMoan();
+            gemissement = getPtickle();
         } else if (plaisir) {
             gemissement = "\u2665" + getMoan(Factor, true, 300) + "\u2665";
         } else {
-            gemissement = getPtickleMoan() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
+            gemissement = getPtickle() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
         }
         return gemissement;
     }
