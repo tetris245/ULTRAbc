@@ -63,6 +63,7 @@ Changes for future version
   - bg4 (screen) (background) to select a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell
   - bglist to display the list of all available standard backgrounds
   - uset bgall to use all available standard backgrounds with the buttons in Private Room (SP) instead of only 43 backgrounds
+* Updated the xstatus mbs command
 * Optimized several parts of the code
 * Removed all status variables for UBC, The Moaner and other add-ons (their content is now integrated in the corresponding functions)
  
