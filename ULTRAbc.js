@@ -4451,19 +4451,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function getPainMoan(Factor, seed) {
         let gemissement;
         //according level of spanking fetichism
-        let activity = getActivityTaste("Spank");
-        if (activity == undefined) return "";
-        let activityTaste = activity.Self;
-        let seuilDouleur = Math.min(10, (4 - activityTaste) * 25);
+        let ID = 26;
+        let Taste = Player.ArousalSettings.Activity.charCodeAt(ID) - 100;
+        if (Taste == 0 || Taste == 10 || Taste == 20 || Taste == 30 || Taste == 40) activitySelf = 0;
+        if (Taste == 1|| Taste == 11|| Taste == 21|| Taste == 31|| Taste == 41) activitySelf = 1;
+        if (Taste == 2|| Taste == 12|| Taste == 22|| Taste == 32|| Taste == 42) activitySelf = 2;
+        if (Taste == 3|| Taste == 13|| Taste == 23|| Taste == 33|| Taste == 43) activitySelf = 3;
+        if (Taste == 4|| Taste == 14|| Taste == 24|| Taste == 34|| Taste == 44) activitySelf = 4;
+        let seuilDouleur = Math.min(10, (4 - activitySelf) * 25);
         let seuilPlaisir = seuilDouleur + 40
         let douleur = Player.ArousalSettings.Progress <= seuilDouleur;
         let plaisir = Player.ArousalSettings.Progress > seuilPlaisir;
         if (douleur) {
-            gemissement = getPainMoan();
+            gemissement = getPain();
         } else if (plaisir) {
             gemissement = "\u2665" + getMoan(Factor, true, 300) + "\u2665";
         } else {
-            gemissement = getPainMoan() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
+            gemissement = getPain() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
         }
         return gemissement;
     }
@@ -4471,19 +4475,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function getTickleMoan(Factor, seed) {
         let gemissement;
         //according level of tickling fetichism
-        let activity = getActivityTaste("Tickle");
-        if (activity == undefined) return "";
-        let activityTaste = activity.Self;
-        let seuilDouleur = Math.min(10, (4 - activityTaste) * 25);
+        let ID = 20;
+        let Taste = Player.ArousalSettings.Activity.charCodeAt(ID) - 100;
+        if (Taste == 0 || Taste == 10 || Taste == 20 || Taste == 30 || Taste == 40) activitySelf = 0;
+        if (Taste == 1|| Taste == 11|| Taste == 21|| Taste == 31|| Taste == 41) activitySelf = 1;
+        if (Taste == 2|| Taste == 12|| Taste == 22|| Taste == 32|| Taste == 42) activitySelf = 2;
+        if (Taste == 3|| Taste == 13|| Taste == 23|| Taste == 33|| Taste == 43) activitySelf = 3;
+        if (Taste == 4|| Taste == 14|| Taste == 24|| Taste == 34|| Taste == 44) activitySelf = 4;
+        let seuilDouleur = Math.min(10, (4 - activitySelf) * 25);
         let seuilPlaisir = seuilDouleur + 40
         let douleur = Player.ArousalSettings.Progress <= seuilDouleur;
         let plaisir = Player.ArousalSettings.Progress > seuilPlaisir;
         if (douleur) {
-            gemissement = getTickleMoan();
+            gemissement = getPtickleMoan();
         } else if (plaisir) {
             gemissement = "\u2665" + getMoan(Factor, true, 300) + "\u2665";
         } else {
-            gemissement = getTickleMoan() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
+            gemissement = getPtickleMoan() + "\u2665" + getMoan(Factor, true, 300) + "\u2665";
         }
         return gemissement;
     }
@@ -4512,13 +4520,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-    function getActivityTaste(name) {
-        for (index in Player.ArousalSettings.Activity) {
-            var activity = Player.ArousalSettings.Activity[index];
-            if (activity.Name == name) return activity;
-        }
-    }
-
     function resetMoans(seed) {
         //M_MOANER_logDebug("resetMoans IN");
         factor1Moans = M_MOANER_shuffle(basefactor1Moans.concat([]), seed);
@@ -4528,12 +4529,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         //M_MOANER_logDebug("resetMoans OUT");
     }
 
-    function getPainMoanBACK() {
+    function getPainBACK() {
         let index = Math.floor(Math.random() * basePainMoans.length);
         return basePainMoans[index];
     }
 
-    function getTickleMoanBACK() {
+    function getPtickleBACK() {
         let index = Math.floor(Math.random() * baseTickleMoans.length);
         return baseTickleMoans[index];
     }
@@ -4548,13 +4549,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         //M_MOANER_logDebug("resetMoans OUT");
     }
 
-    function getPainMoan() {
+    function getPain() {
         moanProfile = M_MOANER_getMoans(profileName);
         let index = Math.floor(Math.random() * moanProfile.pain.length);
         return moanProfile.pain[index];
     }
 
-    function getTickleMoan() {
+    function getPtickle() {
         moanProfile = M_MOANER_getMoans(profileName);
         let index = Math.floor(Math.random() * moanProfile.tickle.length);
         return moanProfile.tickle[index];
