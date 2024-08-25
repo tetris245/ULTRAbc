@@ -885,7 +885,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    }
 	    return false;
             return;
-            next(args);
         });
     }
 
@@ -963,7 +962,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (newTile && newTile.OnEnter) newTile.OnEnter();
             if (newObject && newObject.OnEnter) newObject.OnEnter();
             return;
-            next(args);
         });
     }
 
@@ -1286,7 +1284,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ElementRemove("InputNickname");
             CommonSetScreen("Character", "InformationSheet");
             return;
-            next(args);
         });
     }
 
@@ -1343,29 +1340,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
                                 AutoJoin();
                             }
-                        }
-                    }
-                    X = X + 660;
-                    if (X > 1500) {
-                        X = 25;
-                        Y = Y + 109;
-                    }
-                }
-            }
-            if (AutojoinOn == false) {
-                var X = ChatSearchPageX;
-                var Y = ChatSearchPageY;
-                for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
-                    if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
-                        var RoomName = ChatSearchResult[C].Name;
-                        if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
-                            ChatSearchLastQueryJoinTime = CommonTime();
-                            ChatSearchLastQueryJoin = RoomName;
-                            ChatRoomPlayerCanJoin = true;
-                            ServerSend("ChatRoomJoin", {
-                                Name: RoomName
-                            });
-                            ChatRoomPingLeashedPlayers();
                         }
                     }
                     X = X + 660;
@@ -1464,7 +1438,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             return;
-            next(args);
         });
     }
 
@@ -1494,7 +1467,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1845, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
             }
             return;
-            next(args);
         });
     }
 
@@ -1540,7 +1512,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             ChatSearchRoomSpaceSelectDraw();
             return;
-            next(args);
         });
     }
 
@@ -1714,7 +1685,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    } 
 	    return false;
             return;
-            next(args);
         });
     }
 
@@ -1755,7 +1725,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                    } 
 	       }
             return;
-            next(args);
         });
     }
 
@@ -1909,7 +1878,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
             InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
             return;
-            next(args);
         });
     }
 
@@ -1967,7 +1935,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (SosbuttonsOn == true) SosButtons(); 
             if (OutbuttonsOn == true) OutButtons();   
             return;
-            next(args);
         });
     }
 
@@ -2092,7 +2059,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage)) PrivateClickCharacter();
 	    if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
             return;
-            next(args);
         });
     }
 
@@ -2145,7 +2111,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             CellOpenTimer = LogValue("Locked", "Cell");
             if (CellOpenTimer == null) CellOpenTimer = 0;
             return;
-            next(args);
         });
     }
 
