@@ -2915,6 +2915,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg =  "Wheel of fortune is locked when you are restrained.";
         }
         M_MOANER_sendMessageToWearer(msg);
+    } 
+
+    function showMbsCraftingStatus() {
+        let msg;
+        if (MBSdata.ExtendedCraftingDescription) {
+            msg = "You can use up to 398 characters to describe your crafted items.";
+        } else {
+            msg =  "You are limited to 200 characters to describe your crafted items.";
+        }
+        M_MOANER_sendMessageToWearer(msg);
     }
 
     //Preferences 
@@ -15079,6 +15089,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showGarblingStatus();
                         showLockedMbsStatus();
                         showLockedWheelStatus();
+			showMbsCraftingStatus();
                     }
                 } else if (addon == "rsp") {
                     if (Player.ExtensionSettings.Responsive != null) {
