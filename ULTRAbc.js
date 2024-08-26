@@ -11571,7 +11571,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
             } else {
                 var pmode = args * 1;
-                if ((pmode > -1) && (pmode < 9)) {
+                if ((pmode > -1) && (pmode < 10)) {
                     AnimalTalk1On = false;
                     AnimalTalk2On = false;
                     AnimalTalk3On = false;
