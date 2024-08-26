@@ -1902,17 +1902,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
-                    PandoraPunishmentSentence(0);
-                    CharacterRefresh(Player);
-                    if (SlowleaveOn == true) {
-                        setTimeout(function() {
-                            PandoraPrisonExitPrison();
-                        }, 15000);
-                    } else {
-                        PandoraPrisonExitPrison();
-                    }
-                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
             }
             next(args);
         });
@@ -1956,16 +1946,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
-                    CharacterRefresh(Player);
-                    if (SlowleaveOn == true) {
-                        setTimeout(function() {
-                            CommonSetScreen("Room", "MainHall");
-                        }, 15000);
-                    } else {
-                        CommonSetScreen("Room", "MainHall");
-                    }
-                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
             }
             next(args);
         });
@@ -2092,16 +2073,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
-                    CellLock(0);
-                    if (SlowleaveOn == true) {
-                        setTimeout(function() {
-                            CommonSetScreen("Room", "MainHall");
-                        }, 15000);
-                    } else {
-                        CommonSetScreen("Room", "MainHall");
-                    }
-                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
             }
             next(args);
         });
@@ -2624,6 +2596,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
             } else {
                 DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+            }
+        }
+    }
+
+    function OutClick() {
+        if (window.CurrentScreen == "Cell") CellLock(0);
+        if (window.CurrentScreen == "PandoraPrison") PandoraPunishmentSentence(0);
+        CharacterRefresh(Player);
+        if (SlowleaveOn == true) {
+            if (window.CurrentScreen == "PandoraPrison") {  
+                setTimeout(function() {
+                    PandoraPrisonExitPrison();
+                }, 15000);
+            } else {
+                setTimeout(function() {
+                    CommonSetScreen("Room", "MainHall");
+                }, 15000);
+            }
+        } else {
+            if (window.CurrentScreen == "PandoraPrison") {  
+                PandoraPrisonExitPrison();
+            } else {
+                CommonSetScreen("Room", "MainHall");
             }
         }
     }
