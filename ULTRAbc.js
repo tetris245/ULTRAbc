@@ -128,7 +128,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var animalmode5 = ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"];
     var animalmode6 = ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"];  
     var animalmode7 = ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"];                 
-    var animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];
+    var animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];   
+    var animalmode9 = ["owo", "owoo", "whoo", "owoooo", "howl", "howll", "hoowl"];
 
     //Moaner Default Profile
     var M_MOANER_profileName = "default";
@@ -610,6 +611,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 6) AnimalTalk6On = true;
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
+		if (animal == 9) AnimalTalk9On = true;
 		if (bgall == null || bgall == undefined) {
                     bgall = false;
                     M_MOANER_saveControls();
@@ -1194,6 +1196,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             var texta = GarbleTalk(text6, animalmode7); 
                         } else if (this.AnimalTalk8On == true) {
                             var texta = GarbleTalk(text6, animalmode8);
+			} else if (this.AnimalTalk9On == true) {
+                            var texta = GarbleTalk(text6, animalmode9);
                         } else {
                             var texta = text6;
                         } 
@@ -1243,6 +1247,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             var texta = GarbleTalk(text7, animalmode7); 
                         } else if (this.AnimalTalk8On == true) {
                             var texta = GarbleTalk(text7, animalmode8);
+			} else if (this.AnimalTalk9On == true) {
+                            var texta = GarbleTalk(text7, animalmode9);
                         } else {
                             var texta = text7;
                         } 
@@ -3233,6 +3239,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (animal == 6) msg1 = "Pig talk mode";
         if (animal == 7) msg1 = "Pony talk mode";
         if (animal == 8) msg1 = "Puppy talk mode";
+	if (animal == 9) msg1 = "Wolfy talk mode";
         msg2 = "Forced stuttering level: " + st;
         msg3 = "Forced gag level: " + gl;
         if (NowhisperOn) {
@@ -5108,15 +5115,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             var [mode] = args;
             if (!mode) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The atalk command must be followed by a number between 1 and 8 for the animal and the words you want to say.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\n" +
 		    "Note that it is recommended to use it only when you are not in a 'permanent' animal talk mode, forced with the <b> /ptalk </b> command, that will not be overrided.\n" +
                     " \n" +
                     "Available animals:\n" +
-                    "1 bunny - 2 cow - 3 fox - 4 kitty\n" +
-                    "5 mouse - 6 pig - 7 pony - 8 puppy</p>"
+                    "1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n" +
+                    "6 pig - 7 pony - 8 puppy - 9 wolfy</p>"
                 );
             } else {
-                if ((mode > 0) && (mode < 9)) {
+                if ((mode > 0) && (mode < 10)) {
                     var [, , ...message] = command.split(" ");
                     var msg = message?.join(" ");
                     var nm = 0;
@@ -5138,7 +5145,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (mode == 5) content = GarbleTalk(msg, animalmode5);
                         if (mode == 6) content = GarbleTalk(msg, animalmode6);  
                         if (mode == 7) content = GarbleTalk(msg, animalmode7);                 
-                        if (mode == 8) content = GarbleTalk(msg, animalmode8);                
+                        if (mode == 8) content = GarbleTalk(msg, animalmode8);  
+			if (mode == 9) content = GarbleTalk(msg, animalmode9);
                         ElementValue("InputChat", content);
                         event.preventDefault();
                         ChatRoomSendChat();
@@ -11553,13 +11561,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 8.\n" +
+                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 9.\n" +
                     "Note about whispers in animal talk mode: you need to click on the character OR set the target with <b>/whisper</b> without words OR use the FBC/WCE <b>/w</b> command.\n" + 
                     " \n" +
                     "Available animals:\n" +        
                     "0 human talk\n" +                 
-                    "1 bunny - 2 cow - 3 fox - 4 kitty\n" +
-                    "5 mouse - 6 pig - 7 pony - 8 puppy</p>"
+                    "1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n" +
+                    "6 pig - 7 pony - 8 puppy - 9 wolfy</p>"
                 );
             } else {
                 var pmode = args * 1;
@@ -11572,6 +11580,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AnimalTalk6On = false;
                     AnimalTalk7On = false;
                     AnimalTalk8On = false;
+		    AnimalTalk9On = false;
                     animal = pmode;
                     M_MOANER_saveControls();
                 }
@@ -11634,6 +11643,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     M_MOANER_saveControls();
                     ChatRoomSendLocal(
                         "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in puppy talk mode.</p>"
+                    );
+		} else if (pmode == 9) {
+                    AnimalTalk9On = true;
+                    animal = pmode;
+                    M_MOANER_saveControls();
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in wolfy talk mode.</p>"
                     );
                 }
             } 
