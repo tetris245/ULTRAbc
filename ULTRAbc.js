@@ -780,9 +780,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }]
                         });
                     }
-                    CharacterReleaseTotal(Player);
-                    ChatRoomCharacterUpdate(Player);
-                    RealGarblingLevel();
+		    SosClick();
                     return;
                 }
             }
@@ -851,9 +849,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         return true;
                     }
                     if (event.code === "NumpadMultiply") {
-                        CharacterReleaseTotal(Player);
-                        ChatRoomCharacterUpdate(Player);
-                        RealGarblingLevel();
+			SosClick();
                         return true;
                     }
                 } 
@@ -1903,10 +1899,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAPandoraPrisonClick() {
         modApi.hookFunction('PandoraPrisonClick', 4, (args, next) => {
             if (SosbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
-                    CharacterReleaseTotal(Player);
-                    RealGarblingLevel();
-                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
@@ -1960,10 +1953,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAPhotographicClick() {
         modApi.hookFunction('PhotographicClick', 4, (args, next) => {
             if (SosbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
-                    CharacterReleaseTotal(Player);
-                    RealGarblingLevel();
-                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
@@ -2099,10 +2089,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
             }
             if (SosbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) {
-                    CharacterReleaseTotal(Player);
-                    RealGarblingLevel();
-                }
+                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) {
@@ -2647,6 +2634,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
        } else {
            DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
        }
+    }
+
+    function SosClick() {
+        CharacterReleaseTotal(Player);
+        if (window.CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
+        RealGarblingLevel();
     }
 
     //EBCH Status
@@ -3423,9 +3416,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (mgl == 0) {
                 GagTalkOn = false;
                 M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal talk mode.</p>"
-                );
+                if (window.CurrentScreen == "ChatRoom") {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in normal talk mode.</p>"
+                    );
+                }
             } else {
                 GagTalkOn = true;
                 M_MOANER_saveControls();
@@ -13647,9 +13642,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }]
                     });
                 }
-                CharacterReleaseTotal(Player);
-                ChatRoomCharacterUpdate(Player);
-                RealGarblingLevel();
+                SosClick();
             } else {
                 var targetname = args;
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
