@@ -796,19 +796,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }]
                         });
                         setTimeout(function() {
-                            ChatRoomSetLastChatRoom("");
-                            ServerSend("ChatRoomLeave", "");
-                            CommonSetScreen("Online", "ChatSearch");
-                            ChatRoomClearAllElements();
-                            OnlineGameName = "";
+                            OutChat();
                         }, 15000);
                         return;
                     } else {
-                        ChatRoomSetLastChatRoom("");
-                        ServerSend("ChatRoomLeave", "");
-                        CommonSetScreen("Online", "ChatSearch");
-                        ChatRoomClearAllElements();
-                        OnlineGameName = "";
+                        OutChat();
                     }
                 }
             }
@@ -841,11 +833,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    return true;
 		} else if (HotkeysOn == true) {
                     if (event.code === "NumpadDivide") {
-                        ChatRoomSetLastChatRoom("");
-                        ServerSend("ChatRoomLeave", "");
-                        CommonSetScreen("Online", "ChatSearch");
-                        ChatRoomClearAllElements();
-                        OnlineGameName = "";
+                        OutChat();
                         return true;
                     }
                     if (event.code === "NumpadMultiply") {
@@ -2598,6 +2586,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
             }
         }
+    } 
+
+    function OutChat() {
+        ChatRoomSetLastChatRoom("");
+        ServerSend("ChatRoomLeave", "");
+        CommonSetScreen("Online", "ChatSearch");
+        ChatRoomClearAllElements();
+        OnlineGameName = "";
     }
 
     function OutClick() {
@@ -11731,11 +11727,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(action): leaves room.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSetLastChatRoom("");
-                ServerSend("ChatRoomLeave", "");
-                CommonSetScreen("Online", "ChatSearch");
-                ChatRoomClearAllElements();
-                OnlineGameName = "";
+                OutChat();
             } else {
                 var message = ' '.repeat(1) + args;
                 ServerSend("ChatRoomChat", {
@@ -11745,12 +11737,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         Tag: "Beep",
                         Text: "" + tmpname + message
                     }]
-                });
-                ChatRoomSetLastChatRoom("");
-                ServerSend("ChatRoomLeave", "");
-                CommonSetScreen("Online", "ChatSearch");
-                ChatRoomClearAllElements();
-                OnlineGameName = "";
+                }); 
+                OutChat();
             }
         }
     }])
