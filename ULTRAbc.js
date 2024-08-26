@@ -314,6 +314,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
     M_MOANER_addMoansProfile("wildfox", M_MOANER_wildfoxMoans);
 
+    //wolf
+    M_MOANER_wolfMoans = {
+        "hot": ["o... Woooooo\u2665", "hoowl\u2665"],
+        "medium": ["owoooo\u2665", "hoo\u016b\u016b\n", "..howll"],
+        "light": ["Whoo\u2665", "Howl!", "Owo\u2665oo", "Ho\u016bwl\u2665"],
+        "low": ["owo..", "howl\u2665", "Who\u2665", "\u2665ow\u016boo\u2665", "ow\u016bo\u2665"],
+        "orgasm": ["whoo\u2665 H... Ooow... Whooo!!", "Hoowl... whoo... Owooooooooh!!", "whoo... Hooowl.... Owhoooooo!"],
+        "pain": [],
+        "tickle": []
+    }
+    M_MOANER_addMoansProfile("wolf", M_MOANER_wolfMoans);
+
     //Initialisation
     function M_MOANER_initControls() {
         var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
