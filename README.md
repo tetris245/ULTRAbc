@@ -64,7 +64,7 @@ Changes for future version
   - bglist to display the list of all available standard backgrounds
   - uset bgall to use all available standard backgrounds with the buttons in Private Room (SP) instead of only 43 backgrounds
 * Added the wolfy talk mode to the atalk and ptalk commands
-* Updated the xstatus mbs command
-* Optimized several parts of the code
+* Added the wolf profile to the Moaner
+* Updated the xstatus mbs command and optimized several parts of the code
 * Removed all status variables for UBC, The Moaner and other add-ons (their content is now integrated in the corresponding functions)
  
