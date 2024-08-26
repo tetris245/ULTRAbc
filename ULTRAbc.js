@@ -57,7 +57,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var onegl = 0;
     var mgl = 0;
     var rsize = 20;
-    let rtype = "";
+    let rtype = "ALL";
     var st = 0;
     var tcname = "Cell";
 
@@ -341,7 +341,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             onegl = 0;
             mgl = 0;
             rsize = 20;
-            rtype = "";
+            rtype = "ALL";
 	    st = 0;
 	    tcname = "Cell";
             AutojoinOn = false;
@@ -657,9 +657,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		if (rsize == null || rsize == undefined) {
                     rsize = 20;
                     M_MOANER_saveControls();
-                }
-                if (rtype == null || rtype == undefined) {
-                    rtype = "";
+                }    
+                if (rtype == null || rtype == undefined || rtype == "") {
+                    rtype = "ALL";
                     M_MOANER_saveControls();
                 }
 		if (st == 0) StutterOn = false;
@@ -1407,7 +1407,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
             if ((MouseX >= 385) && (MouseX < 465) && (MouseY >= 885) && (MouseY < 975)) {
-                rtype = "";
+                rtype = "ALL";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
@@ -3219,7 +3219,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showSearchRoomStatus() {
         let msg;
         msg1 = "Chat Search type: ";
-        if (rtype == "") msg2 = "All rooms. ";
+        if (rtype == "ALL") msg2 = "All rooms. ";
         if (rtype == "Never") msg2 = "Normal rooms. ";
         if (rtype == "Hybrid") msg2 = "Hybrid rooms. ";
         if (rtype == "Always") msg2 = "Mapped rooms. ";
