@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and FBC.
 
-Most recent version: 3.5.1
+Most recent version: 3.6
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version3.5.1.zip file on the Releases page
+1. Download the ULTRAbc-version3.6.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -58,13 +58,5 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added 2 buttons in Private Room (SP), allowing to change background for the Friend List and the Timer Cell
-* New commands:
-  - bg4 (screen) (background) to select a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell
-  - bglist to display the list of all available standard backgrounds
-  - uset bgall to use all available standard backgrounds with the buttons in Private Room (SP) instead of only 43 backgrounds
-* Added the wolfy talk mode to the atalk and ptalk commands
-* Added the wolf profile to the Moaner
-* Updated the xstatus mbs command and optimized several parts of the code
-* Removed all status variables for UBC, The Moaner and other add-ons (their content is now integrated in the corresponding functions)
+(...)
  
