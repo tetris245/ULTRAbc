@@ -732,22 +732,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Bondage Brawl
     async function ULTRAPlatformAttack() {
         modApi.hookFunction('PlatformAttack', 4, (args, next) => {
-            if (MagiccheatOn == true) {
-                PlatformPlayer.Health = 100;
-                PlatformPlayer.Magic = 100;
-                PlatformPlayer.Projectile = 100;
-            }
+            if (MagiccheatOn == true) BrawlCheat();          
             next(args);
         });
     }
 
     async function ULTRAPlatformDialogEvent() {
         modApi.hookFunction('PlatformDialogEvent', 4, (args, next) => {
-            if (MagiccheatOn == true) {
-                PlatformPlayer.Health = 100;
-                PlatformPlayer.Magic = 100;
-                PlatformPlayer.Projectile = 100;
-            }
+            if (MagiccheatOn == true) BrawlCheat();             
             next(args);
         });
     }
@@ -2573,6 +2565,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = "Tail Wagging feature is disabled.";
         }
         M_MOANER_sendMessageToWearer(msg);
+    }
+    
+    //Bondage Brawl
+    function BrawlCheat() {
+        PlatformPlayer.Health = 100;
+        PlatformPlayer.Magic = 100;
+        PlatformPlayer.Projectile = 100;
     }
 
     //Buttons
