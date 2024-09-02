@@ -1886,16 +1886,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
-                /*PandoraPunishmentSentence(0);
-                    CharacterRefresh(Player);
-                    if (SlowleaveOn == true) {
-                        setTimeout(function() {
-                            PandoraPrisonExitPrison();
-                        }, 15000);
-                    } else {
-                        PandoraPrisonExitPrison();
-                    }
-                }*/
             }
             next(args);
         });
@@ -1940,15 +1930,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
-                /*CharacterRefresh(Player);
-                    if (SlowleaveOn == true) {
-                        setTimeout(function() {
-                            CommonSetScreen("Room", "MainHall");
-                        }, 15000);
-                    } else {
-                        CommonSetScreen("Room", "MainHall");
-                    }
-                }*/
             }
             next(args);
         });
@@ -2080,15 +2061,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
-                /*CellLock(0);
-                    if (SlowleaveOn == true) {
-                        setTimeout(function() {
-                            CommonSetScreen("Room", "MainHall");
-                        }, 15000);
-                    } else {
-                        CommonSetScreen("Room", "MainHall");
-                    }
-                }*/
             }
             next(args);
         });
@@ -2632,8 +2604,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function OutClick() {
         if (window.CurrentScreen == "Cell") CellLock(0);
-        if (window.CurrentScreen == "PandoraPrison")
-            PandoraPunishmentSentence(0);
+        if (window.CurrentScreen == "PandoraPrison") PandoraPunishmentSentence(0);
         CharacterRefresh(Player);
         if (SlowleaveOn == true) {
             if (window.CurrentScreen == "PandoraPrison") {
@@ -12749,11 +12720,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }]
             });
             setTimeout(function() {
-                ChatRoomSetLastChatRoom("");
-                ServerSend("ChatRoomLeave", "");
-                CommonSetScreen("Online", "ChatSearch");
-                ChatRoomClearAllElements();
-                OnlineGameName = "";
+                OutChat();
             }, 15000);
         }
     }])
