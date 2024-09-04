@@ -18,7 +18,7 @@ Automatic: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
 
 Non-automatic: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.js
 
-You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, Dolphin, UC)
+You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, Kiwi, UC)
 
 Manual installation: Add new script / Utilities / Insert link to ULTRAbc loader in last option / Click on "Install"
 
