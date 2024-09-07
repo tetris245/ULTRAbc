@@ -14383,7 +14383,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return 20;
                 }
                 DialogHasKey = function(C, Item) {
-                    return true
+                    if (C.IsPlayer()) {
+                        return true; 
+                    } else {
+                        if (C.OnlineSharedSettings.Uwall) {
+                            if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
+                                return true;
+                            } else {
+                                return false;   
+                            } 
+                        } else { 
+                            return true;
+                        }
+                    }
                 }
                 StruggleLockPickProgressStart = function(C, Item) {
                     InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
