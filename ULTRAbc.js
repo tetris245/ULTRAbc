@@ -6103,7 +6103,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     " \n" +
                     "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 to 259 are added if you use the /bg1 command.\n" +
                     " \n" +
-                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 for 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
+                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 to 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
                     " \n" +
                     "Use -1 to go back to the default background.</p>"
                 );
