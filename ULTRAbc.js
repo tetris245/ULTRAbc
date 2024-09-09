@@ -2600,6 +2600,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         CommonSetScreen("Online", "ChatSearch");
         ChatRoomClearAllElements();
         OnlineGameName = "";
+        ChatRoomGame = "";
+        ChatRoomData = null;
     }
 
     function OutClick() {
@@ -11790,7 +11792,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         Text: "" + tmpname + message
                     }]
                 });
-                OutChat1();
+                OutChat();
             }
         }
     }])
