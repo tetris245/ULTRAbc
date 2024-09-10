@@ -388,8 +388,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Restrain = "";
             Solidity = "";
             Tclothes = "";
-            Tinvisible = "",
-                Tlock = "";
+            Tinvisible = "";
+            Tlock = "";
             Tnaked = "";
             Totalrelease = "";
             Tpet = "";
