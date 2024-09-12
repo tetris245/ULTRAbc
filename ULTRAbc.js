@@ -314,7 +314,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
     M_MOANER_addMoansProfile("wildfox", M_MOANER_wildfoxMoans);
 
-
     //wolf
     M_MOANER_wolfMoans = {
         "hot": ["o... Woooooo\u2665", "hoowl\u2665"],
@@ -2355,7 +2354,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showAnimalTypeStatus() {
         let msg;
         msg = "Current Animal Type: " + BCARdata.animal;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showAnimationButtonsStatus() {
@@ -2365,7 +2364,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Animation Buttons disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showArousalManipulationStatus() {
@@ -2375,7 +2374,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Arousal Manipulation disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showBCARExpressionsStatus() {
@@ -2385,7 +2384,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "BCAR Expressions disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showEarAnimationStatus() {
@@ -2395,7 +2394,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Ear Animation disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showEarEmoteStatus() {
@@ -2405,7 +2404,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Ear Emote disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showTailAnimationStatus() {
@@ -2415,7 +2414,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Tail Animation disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showTailEmoteStatus() {
@@ -2425,7 +2424,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Tail Emote disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showWingAnimationStatus() {
@@ -2435,7 +2434,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Wing Animation disabled."
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //BC Responsive Status	
@@ -2459,7 +2458,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 msg2 = msg2 + rsp + " - ";
             }
             msg = msg1 + " Active personality when enabled: " + Personality + ". Responses: " + msg2;
-            M_MOANER_sendMessageToWearer(msg);
+            statusmsg(msg);
         }
     }
 
@@ -2471,7 +2470,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Arousal can't affect male erection.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showArousalProgressStatus() {
@@ -2481,7 +2480,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Arousal can't affect orgasm progress.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showBCIconsStatus() {
@@ -2491,7 +2490,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "BC Icons are always displayed.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showBCTChangelogStatus() {
@@ -2501,7 +2500,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "BCT Changelog feature is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showBCTIconStatus() {
@@ -2511,7 +2510,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "BCT Icon is always displayed.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showBestFriendsStatus() {
@@ -2521,7 +2520,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Best Friends feature is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showFriendlistSlotsStatus() {
@@ -2531,7 +2530,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "No extra infos in Friendlist.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showLockConversionStatus() {
@@ -2541,7 +2540,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "High security locks can't become Best Friend locks.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showRoomShareStatus() {
@@ -2551,7 +2550,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Best Friends can't share private room names.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showSplitStatus() {
@@ -2561,7 +2560,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Only the standard arousal + orgasm bar.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showTailWaggingStatus() {
@@ -2571,7 +2570,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Tail Wagging feature is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //Bondage Brawl
@@ -2649,7 +2648,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Chatlogging is enabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showEbchNotificationStatus() {
@@ -2659,7 +2658,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Custom notifications are enabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showEbchPoseStatus() {
@@ -2669,7 +2668,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Pose menu is automatically displayed.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showEbchUngarbleStatus() {
@@ -2681,7 +2680,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "All messages are ungarbled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showEbchWelcomeStatus() {
@@ -2691,7 +2690,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "EBCH Welcome message.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //Hearing
@@ -2774,7 +2773,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Magic = "";
         }
         msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Drugs + Gagchoke + Handchoke + Hypnosis + Leashing + Magic
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showBoopReactionsStatus() {
@@ -2784,7 +2783,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "No auto-react when booped.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showCheckRollsStatus() {
@@ -2794,7 +2793,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "No display of attacker/defender roll values with some activities.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showCraftingStatus() {
@@ -2810,7 +2809,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg2 = "Your shared public craftings are not displayed.";
         }
         msg = msg1 + " " + msg2;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showEdgeBlurStatus() {
@@ -2820,7 +2819,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "No blurring of the screen when you are on edge.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showErectionStatus() {
@@ -2830,7 +2829,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "No private message when you feel an erection under your clothes.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showLipstickStatus() {
@@ -2846,7 +2845,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg2 = "Lipstick marks possible when you kiss someone.";
         }
         msg = msg1 + " " + msg2;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showOpacityStatus() {
@@ -2862,7 +2861,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg2 = "Other players can't change the opacity of your wardrobe items.";
         }
         msg = msg1 + " " + msg2;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showRestrainedSettingsStatus() {
@@ -2872,7 +2871,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "LSCG settings can be changed when you are restrained.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showResizingStatus() {
@@ -2882,7 +2881,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "LSCG resizing effects will be displayed.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //MBS Status
@@ -2904,7 +2903,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg3 = "Garbling per syllable is disabled.";
         }
         msg = msg1 + " " + msg2 + " " + msg3;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showLockedMbsStatus() {
@@ -2914,7 +2913,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "You can always change MBS settings, even when you are restrained.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showLockedWheelStatus() {
@@ -2924,7 +2923,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Wheel of fortune is locked when you are restrained.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showMbsCraftingStatus() {
@@ -2934,7 +2933,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "You are limited to 200 characters to describe your crafted items.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //Preferences 
@@ -2985,6 +2984,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    //Messages
+    function statusmsg(msg) {
+        ServerSend("ChatRoomChat", {
+            Type: "Action",
+            Content: "gag",
+            Target: Player.MemberNumber,
+            Dictionary: [{
+                Tag: "gag",
+                Text: msg
+            }],
+        });
+    }
+
     //Responsive Status
     function showResponsiveStatus() {
         let msg;
@@ -2993,7 +3005,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Responsive is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showBcrResponsesStatus() {
@@ -3003,7 +3015,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Responses feature is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showCharacterTalkStatus() {
@@ -3013,7 +3025,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Character Talk is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showInterceptMessageStatus() {
@@ -3023,7 +3035,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Responses can interrupt and send messages.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showLeaveMessageStatus() {
@@ -3033,7 +3045,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The message being written is not sent when leashed out of the room.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showMoansStatus() {
@@ -3043,7 +3055,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Moans are not added to responses when highly aroused.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showNewVersionStatus() {
@@ -3053,7 +3065,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "New Responsive Version feature is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showRulesStatus() {
@@ -3063,7 +3075,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "BCX rules can't prevent message sending.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //Stable
@@ -3109,7 +3121,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             RGL = "";
         }
         msg = "Buttons activated and displayed: " + FREE + OUT + RGL;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showExitmodeStatus() {
@@ -3119,7 +3131,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Fast exit mode is activated.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showFeaturesStatus() {
@@ -3150,7 +3162,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Hotkeys = "";
         }
         msg = "Features enabled: " + Autojoin + Background + Fullseed + Frkeys + Hotkeys;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showHighfameStatus() {
@@ -3161,7 +3173,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = "High fame mode disabled in Bondage Club Card Game.";
         }
         msg = msg + " Current high fame: " + cfame + ". Current default desk: " + cdesk + ".";
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showMagiccheatStatus() {
@@ -3171,7 +3183,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Cheat mode disabled in B. Brawl and Magic School.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showMaptrapStatus() {
@@ -3187,7 +3199,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg2 = "No magic toys added under locked chastity for trap mode.";
         }
         msg = msg1 + " " + msg2;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showNostruggleStatus() {
@@ -3197,7 +3209,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Automatic struggle in mini-games is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showNotimeoutStatus() {
@@ -3207,7 +3219,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Time-out enabled in TAB help.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showNpcpunishStatus() {
@@ -3217,7 +3229,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "NPC punishments disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showSearchRoomStatus() {
@@ -3229,7 +3241,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (rtype == "Always") msg2 = "Mapped rooms. ";
         msg3 = "Max players for normal/hybrid rooms: ";
         msg = msg1 + msg2 + msg3 + rsize + ".";
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showTalkStatus() {
@@ -3262,7 +3274,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg6 = "No ungarble with BC default talk mode.";
         }
         msg = msg1 + " - " + msg2 + " - " + msg3 + " - " + msg4 + " " + msg5 + " " + msg6;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //Talking
@@ -3443,7 +3455,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "ThemedBC is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showCharacterAbsenceStatus() {
@@ -3453,7 +3465,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Absence's indicator is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showChatInputStatus() {
@@ -3463,7 +3475,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The chat input zone uses the default BC colors.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showFlatColorStatus() {
@@ -3473,7 +3485,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Coloring sheet enabled in settings.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showFriendListStatus() {
@@ -3483,7 +3495,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The friend list uses the default BC colors.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showGuiOverhaulStatus() {
@@ -3493,7 +3505,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The interface uses the default BC colors.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showInputZonesStatus() {
@@ -3503,7 +3515,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Misc input zones use the default BC colors.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showLocalTimeStatus() {
@@ -3513,7 +3525,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The time is displayed according your system settings.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showMiscDetailsStatus() {
@@ -3523,7 +3535,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Misc details use the default BC colors.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showThemedVersionStatus() {
@@ -3533,7 +3545,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "New Themed Version feature is disabled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //Traps
@@ -3859,7 +3871,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function profilesList() {
         let liste = M_MOANER_getKeys(M_MOANER_moansProfiles);
         let msg = "Available moaning profiles: " + liste;
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //Orgasm moans control
@@ -3945,7 +3957,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The moaner is not active.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showM_MOANER_profileStatus() {
@@ -3955,7 +3967,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "Current moans profile: " + profileName;
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showM_MOANER_orgasmStatus() {
@@ -3965,7 +3977,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The orgasm moan is not active. You will not moan while cumming anymore.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showM_MOANER_spankStatus() {
@@ -3975,7 +3987,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The spank moan is not active. You will not moan while being spanked.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showM_MOANER_talkStatus() {
@@ -3985,7 +3997,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The talk moan is not active. If you're vibed, you will not moan while speaking anymore.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showM_MOANER_tickleStatus() {
@@ -3995,7 +4007,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The tickle moan is not active. You will not moan while being tickled.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showM_MOANER_vibratorStatus() {
@@ -4005,7 +4017,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The vibes moan is not active. If your vibrator's settings change, you will not moan.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     function showM_MOANER_xvibratorStatus() {
@@ -4015,7 +4027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg = "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan.";
         }
-        M_MOANER_sendMessageToWearer(msg);
+        statusmsg(msg);
     }
 
     //MoanerUtils
@@ -4056,18 +4068,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             array[randomIndex] = temporaryValue;
         }
         return array;
-    }
-
-    function M_MOANER_sendMessageToWearer(msg) {
-        ServerSend("ChatRoomChat", {
-            Type: "Action",
-            Content: "gag",
-            Target: Player.MemberNumber,
-            Dictionary: [{
-                Tag: "gag",
-                Text: msg
-            }],
-        });
     }
 
     function M_MOANER_getRandomNumber(seed) {
