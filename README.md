@@ -58,5 +58,5 @@ All else I might not have included.
 
 Changes for future version 
 
-* Updated OOC handling OOC (for compatibility with new setting in R108)
+* Updated OOC handling (for compatibility with new setting in R108)
  
