@@ -1050,6 +1050,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (msg.startsWith(",")) {
                 var text1 = "(" + msg.slice(1) + ")";
                 ElementValue("InputChat", text1);
+            } else if ((msg.startsWith("!")) && (Player.ChatSettings.OOCAutoClose == true)) {
+                var lr = SpeechGetOOCRanges(msg).pop();
+                if ((lr !== undefined) &&   
+                    (msg.charAt(lr.start + lr.length - 1) !== ")") &&
+		            (lr.start + lr.length === msg.length) && 
+		            (lr.length !== 1)) {
+                    var text1 = msg + ")";
+                } else {
+                     var text1 = msg; 
+                }   
             } else {
                 var text1 = msg;
             }
