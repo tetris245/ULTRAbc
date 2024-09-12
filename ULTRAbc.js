@@ -1054,8 +1054,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 var lr = SpeechGetOOCRanges(msg).pop();
                 if ((lr !== undefined) &&   
                     (msg.charAt(lr.start + lr.length - 1) !== ")") &&
-		            (lr.start + lr.length === msg.length) && 
-		            (lr.length !== 1)) {
+		    (lr.start + lr.length === msg.length) && 
+		    (lr.length !== 1)) {
                     var text1 = msg + ")";
                 } else {
                      var text1 = msg; 
