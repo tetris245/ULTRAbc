@@ -6343,15 +6343,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(desk): sets a specific desk as default desk for the Bondage Club Card Game.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The carddesk command must be followed by a number between 0 and 8.\n" +
+		var msg = "The carddesk command must be followed by a number between 0 and 8.\n" +
                     " \n" +
                     "Available desks:\n" +
                     "0 Original Default\n" +
                     "1 ABDL - 2 Asylum - 3 College\n" +
                     "4 Dominant - 5 Liability - 6 Maid\n" +
-                    "7 Porn - 8 Extra</p>"
-                );
+                    "7 Porn - 8 Extra";
+                infomsg(msg);
             } else {
                 var desk = args;
                 if ((desk > -1) && (desk < 9) && (desk != cdesk)) {
@@ -6371,9 +6370,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: () => {
             Player.Game.ClubCard.Reward = "";
             var Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
-            ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: All extra cards of the Bondage Club Card Game now added.</p>"
-            );
+	    var msg = "All extra cards of the Bondage Club Card Game now added.";
+            infomsg(msg);
             for (let i = 0; i < Extra.length; i++) {
                 let Char = String.fromCharCode(Extra[i]);
                 Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
@@ -6389,17 +6387,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(fame): sets the fame level for the high fame mode of Bondage Club Card Game.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The cardfame command must be followed by a number between 200 and 600.</p>"
-                );
+		var msg = "The cardfame command must be followed by a number between 200 and 600.";
+                infomsg(msg);
             } else {
                 var fame = args;
                 if ((fame > 199) && (fame < 601) && (fame != cfame)) {
                     cfame = fame;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Fame level changed for the high fame mode of the Bondage Club Card Game.</p>"
-                    );
+		    var msg = "Fame level changed for the high fame mode of the Bondage Club Card Game.";
+                    infomsg(msg);
                 }
             }
         }
@@ -6410,13 +6406,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": removes all extra cards of the Bondage Club Card Game.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Warning</b>: You will lose all the extra cards of the Bondage Club Card Game. Confirm by typing: <b>/cardnoextra yes</b></p>"
-                );
+		var msg = "<b>Warning</b>: You will lose all the extra cards of the Bondage Club Card Game. Confirm by typing: <b>/cardnoextra yes</b>";
+                infomsg(msg);
             } else if (args === "yes") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: No more extra cards in the Bondage Club Card Game.</p>"
-                );
+		var msg = "No more extra cards in the Bondage Club Card Game.";
+                infomsg(msg);
                 Player.Game.ClubCard.Reward = "";
                 ServerAccountUpdate.QueueData({
                     Game: Player.Game
@@ -6430,14 +6424,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(difficulty): starts chess.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The chess command must be followed by a number between 1 and 3.\n" +
+		var msg = "The chess command must be followed by a number between 1 and 3.\n" +
                     " \n" +
                     "Available difficulty modes:\n" +
                     "1 easy\n" +
                     "2 normal\n" +
-                    "3 hard</p>"
-                );
+                    "3 hard";
+                infomsg(msg);
             } else {
                 CollegeChessGameEndALT = function() {
                     document.removeEventListener("chessOnMove", CollegeChessGameProgress);
@@ -6523,9 +6516,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
+			var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        infomsg(msg);
                     } else {
                         if (Tclothes == undefined) {
                             var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
@@ -6622,19 +6614,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(anim): gets an animation with color change.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The colorchanger command:\n" +
+	        var msg = "The colorchanger command:\n" +
                     "To preselect, two choices exist, type: <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\n" +
                     "To manually select area, type: <b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\n" +
                     "Manual selection can only target 10 areas at a time,\n" +
                     "then requires to be reset to reuse, type: <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\n" +
-                    "Only 1 target can be active at a time</p>"
-                );
+                    "Only 1 target can be active at a time";
+                infomsg(msg);
             }
             if ((args === "custom") || (args === "set") || (args === "select")) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
-                );
+		var msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.FocusGroup.Name) {
@@ -6714,9 +6704,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }, 5000);
             }
             if (args === "eyes") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
-                );
+		var msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter) {
@@ -6739,9 +6728,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }, 5000);
             }
             if (args === "hair") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
-                );
+		var msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter) {
@@ -6796,8 +6784,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(action) (target or value) = plays with diapers (ABDL game).",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Welcome to Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\n" +
+		var msg = "Welcome to Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\n" +
                     " \n" +
                     "The diaper command must include an action.\n" +
                     "You need to wear one or two layers of diapers (only bulky and poofy versions)\n" +
@@ -6811,11 +6798,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/diaper change3</b> (target) for both diapers\n" +
                     " \n" +
                     "Customisation (before using /diaper start):\n" +
-                    "Use <b>/diaper custom</b> for detailed info</p>"
-                );
+                    "Use <b>/diaper custom</b> for detailed info<";
+                infomsg(msg);
             } else if (args === "custom") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Diaper customisation (before using /diaper start):\n" +
+		var msg = "Diaper customisation (before using /diaper start):\n" +
                     "<b>/diaper setdesperation</b> (value between 0 and 3) for desperation level, normally controlled by having a milk bottle used on you\n" +
                     "<b>/diaper setregression</b> (value between 0 and 3) for regression level, normally controlled by wearing Nursery Milk for an extended period of time\n" +
                     "<b>/diaper settimer</b> (minutes) to change the wet/mess timer\n" +
@@ -6824,8 +6810,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/diaper setwet1</b> (value)* for wet level of normal diapers\n" +
                     "<b>/diaper setwet2</b> (value)* for wet level of chastity diapers\n" +
                     "<b>/diaper setmess1</b> (value)* for mess level of normal diapers\n" +
-                    "<b>/diaper setmess2</b> (value)* for mess level of chastity diapers - * = value between 0 and 2</p>"
-                );
+                    "<b>/diaper setmess2</b> (value)* for mess level of chastity diapers - * = value between 0 and 2";
+                infomsg(msg);
             } else if (args === "start") {
                 diaperWetter();
             } else if (args === "stop") {
@@ -6840,15 +6826,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var targetname = stringDiaper2[1];
                     if (targetname == null) {
                         if (InventoryGet(Player, "Panties") == null) {
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have normal diapers!</p>"
-                            );
+			    var msg = "You don't have normal diapers!";
+                            infomsg(msg);
                         } else if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
                             refreshDiaper("panties");
                         } else {
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have normal diapers!</p>"
-                            );
+                            var msg = "You don't have normal diapers!";
+                            infomsg(msg);
                         }
                     } else {
                         var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -6863,18 +6847,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpname = target[0].Nickname;
                             }
                             if (InventoryGet(target[0], "Panties") == null) {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!</p>"
-                                );
+				var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+                                infomsg(msg);
                             } else if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
                                 var msg = "" + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.";
                                 targetNumber = ChatRoomTargetMemberNumber;
                                 ChatRoomSendWhisper(targetNumber, msg);
                             } else {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!</p>"
-                                );
+                                var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+                                infomsg(msg);
                             }
                             ChatRoomSetTarget(-1);
                         }
@@ -6884,15 +6866,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var targetname = stringDiaper2[1];
                     if (targetname == null) {
                         if (InventoryGet(Player, "ItemPelvis") == null) {
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have chastity diapers!</p>"
-                            );
+			    var msg = "You don't have chastity diapers!";
+                            infomsg(msg);
                         } else if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                             refreshDiaper("chastity");
                         } else {
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have chastity diapers!</p>"
-                            );
+                            var msg = "You don't have chastity diapers!";
+                            infomsg(msg);
                         }
                     } else {
                         var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -6907,18 +6887,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpname = target[0].Nickname;
                             }
                             if (InventoryGet(target[0], "ItemPelvis") == null) {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!</p>"
-                                );
+				var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!";
+                                infomsg(msg);
                             } else if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
                                 var msg = "" + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.";
                                 targetNumber = ChatRoomTargetMemberNumber;
                                 ChatRoomSendWhisper(targetNumber, msg);
                             } else {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!</p>"
-                                );
+                                var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+                                infomsg(msg);
                             }
                             ChatRoomSetTarget(-1);
                         }
@@ -6928,37 +6906,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var targetname = stringDiaper2[1];
                     if (targetname == null) {
                         if ((InventoryGet(Player, "Panties") == null) && (InventoryGet(Player, "ItemPelvis") == null)) {
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have a diaper! Get one on you before you make a mess!</p>"
-                            );
+			    var msg = "You don't have a diaper! Get one on you before you make a mess!";
+                            infomsg(msg);
                         } else if ((InventoryGet(Player, "Panties") == null) && (InventoryGet(Player, "ItemPelvis") != null)) {
                             if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have two layers of diapers!</p>"
-                                );
+				var msg = "You don't have two layers of diapers!";
+                                infomsg(msg);
                             } else {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have a diaper! Get one on you before you make a mess!</p>"
-                                );
+				var msg = "You don't have a diaper! Get one on you before you make a mess!";
+                                infomsg(msg);
                             }
                         } else if ((InventoryGet(Player, "Panties") != null) && (InventoryGet(Player, "ItemPelvis") == null)) {
                             if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have two layers of diapers!</p>"
-                                );
+                                var msg = "You don't have two layers of diapers!";
+                                infomsg(msg);
                             } else {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have a diaper! Get one on you before you make a mess!</p>"
-                                );
+                                var msg = "You don't have a diaper! Get one on you before you make a mess!";
+                                infomsg(msg);
                             }
                         } else if ((InventoryGet(Player, "Panties") != null) && (InventoryGet(Player, "ItemPelvis") != null)) {
                             if ((InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") &&
                                 (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper")) {
                                 refreshDiaper("both");
                             } else {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have two layers of diapers!</p>"
-                                );
+                                var msg = "You don't have two layers of diapers!";
+                                infomsg(msg);
                             }
                         }
                     } else {
@@ -6990,28 +6962,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpr4 = "they";
                             }
                             if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
-                                );
+				var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                                infomsg(msg);
                             } else if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
                                 if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!</p>"
-                                    );
+				    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+                                    infomsg(msg);
                                 } else {
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
-                                    );
+                                    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                                    infomsg(msg);
                                 }
                             } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
                                 if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!</p>"
-                                    );
+                                    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+                                    infomsg(msg);
                                 } else {
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!</p>"
-                                    );
+                                    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                                    infomsg(msg);
                                 }
                             } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
                                 if ((InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") &&
@@ -7021,10 +6988,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     targetNumber = ChatRoomTargetMemberNumber;
                                     ChatRoomSendWhisper(targetNumber, msg);
                                 } else {
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!</p>"
-
-                                    );
+                                    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+                                    infomsg(msg);
                                 }
                                 ChatRoomSetTarget(-1);
                             }
@@ -7035,17 +7000,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var setchange = stringDiaper2[1];
                     diaperDefaultValues.desperationLevel = setchange;
                     setchange = "";
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your desperation level has been changed.</p>"
-                    );
+		    var msg = "Your desperation level has been changed";
+                    infomsg(msg);
                 }
                 if (feature == "setmesschance") {
                     var setchange = stringDiaper2[1];
                     diaperDefaultValues.messChance = setchange;
                     setchange = "";
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to mess diapers has been changed.</p>"
-                    );
+		    var msg = "Your chance to mess diapers has been changed";
+                    infomsg(msg);
                 }
                 if (feature == "setmess1") {
                     if (InventoryGet(Player, "Panties") != null) {
@@ -7054,9 +7017,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (setchange < diaperDefaultValues.wetLevelInner) {
                                 diaperDefaultValues.messLevelInner = setchange;
                                 setchange = "";
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for normal diapers has been changed.</p>"
-                                );
+				var msg = "Your mess level for normal diapers has been changed";
+                                infomsg(msg);
                             }
                         }
                     }
@@ -7068,9 +7030,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (setchange < diaperDefaultValues.wetLevelOuter) {
                                 diaperDefaultValues.messLevelOuter = setchange;
                                 setchange = "";
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your mess level for chastity diapers has been changed.</p>"
-                                );
+				var msg = "Your mess level for chastity diapers has been changed";
+                                infomsg(msg);
                             }
                         }
                     }
@@ -7079,25 +7040,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     var setchange = stringDiaper2[1];
                     diaperDefaultValues.regressionLevel = setchange;
                     setchange = "";
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your regression level has been changed.</p>"
-                    );
+		    var msg = "Your regression level has been changed";
+                    infomsg(msg);
                 }
                 if (feature == "settimer") {
                     var setchange = stringDiaper2[1];
                     diaperDefaultValues.baseTimer = setchange;
                     setchange = "";
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet/mess timer has been changed.</p>"
-                    );
+		    var msg = "Your wet/mess timer has been changed";
+                    infomsg(msg);
                 }
                 if (feature == "setwetchance") {
                     var setchange = stringDiaper2[1];
                     diaperDefaultValues.wetChance = setchange;
                     setchange = "";
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your chance to wet diapers has been changed.</p>"
-                    );
+		    var msg = "Your chance to wet diapers has been changed";
+                    infomsg(msg);
                 }
                 if (feature == "setwet1") {
                     if (InventoryGet(Player, "Panties") != null) {
@@ -7106,9 +7064,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (setchange > diaperDefaultValues.messLevelInner) {
                                 diaperDefaultValues.wetLevelInner = setchange;
                                 setchange = "";
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for normal diapers has been changed.</p>"
-                                );
+				var msg = "Your wet level for normal diapers has been changed";
+                                infomsg(msg);
                             }
                         }
                     }
@@ -7120,9 +7077,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (setchange > diaperDefaultValues.messLevelOuter) {
                                 diaperDefaultValues.wetLevelOuter = setchange;
                                 setchange = "";
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your wet level for chastity diapers has been changed.</p>"
-                                );
+				var msg = "Your wet level for chastity diapers has been changed";
+                                infomsg(msg);
                             }
                         }
                     }
@@ -7136,15 +7092,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(number): changes game difficulty.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The difficulty command must be followed by a number between 0 and 3.\n" +
+		var msg = "The difficulty command must be followed by a number between 0 and 3.\n" +
                     " \n" +
                     "Available difficulty modes:\n" +
                     "0 roleplay\n" +
                     "1 regular\n" +
                     "2 hardcore\n" +
-                    "3 extreme</p>"
-                );
+                    "3 extreme";
+                infomsg(msg);
             } else {
                 PreferenceDifficultyLevel = args * 1;
             }
