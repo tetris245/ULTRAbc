@@ -8597,7 +8597,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": kills UBC/Moaner parameters saved locally.",
         Action: (args) => {
             if (args === "") {
-		var msg = "'><b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b>";
+		var msg = "<b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b>";
                 infomsg(msg);
             } else if (args === "yes") {
                 M_MOANER_deleteControls();
@@ -8612,19 +8612,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
-                    "The layerset1 command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.</p>"
-                );
+		var msg = "First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
+                    "The layerset1 command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.";
+                infomsg(msg);
             } else {
                 var stringLys1 = args;
                 var stringLys2 = stringLys1.split(/[ ,]+/);
                 var layer = stringLys2[0];
                 var color = stringLys2[1];
                 if (this.saveditemslot == undefined) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>Warning</b>: First use the <b>/layershow1</b> command to get useful info and save Item Slot.</p>"
-                    );
+		    var msg = "<b>Warning</b>: First use the <b>/layershow1</b> command to get useful info and save Item Slot.";
+                    infomsg(msg);
                 } else {
                     var Target = this.saveditemslot.slice(0);
                     if ((InventoryGet(Player, Target) != null) && (color.startsWith("#"))) {
@@ -8655,9 +8653,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         }
                         ChatRoomCharacterUpdate(Player);
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Layer color changed.</p>"
-                        );
+			var msg = "Layer color changed.";
+                        infomsg(msg);
                     }
                 }
             }
@@ -8669,10 +8666,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(layernumber) (priority) changes a layer priority for worn item in saved Item Slot",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><First use the <b>/layershow2</b> command to click on worn item, get useful info about layer priorities and save Item Slot.\n" +
-                    "The layerset2 command must be followed by a layer number and a priority number (between -99 and 99) for the worn item in the previously saved Item Slot.</p>"
-                );
+		var msg = "First use the <b>/layershow2</b> command to click on worn item, get useful info about layer priorities and save Item Slot.\n" +
+                    "The layerset2 command must be followed by a layer number and a priority number (between -99 and 99) for the worn item in the previously saved Item Slot.";
+                infomsg(msg);
             } else {
                 var stringLys3 = args;
                 var stringLys4 = stringLys3.split(/[ ,]+/);
@@ -8681,9 +8677,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (priority > 99) priority = 99;
                 if (priority < -99) priority = -99;
                 if (this.saveditemslot == undefined) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>Warning</b>: First use the <b>/layershow2</b> command to get useful info and save Item Slot.</p>"
-                    );
+                    var msg = "<b>Warning</b>: First use the <b>/layershow2</b> command to get useful info and save Item Slot.";
+                    infomsg(msg);
                 } else {
                     var Target = this.saveditemslot.slice(0);
                     if (InventoryGet(Player, Target) != null) {
@@ -8730,9 +8725,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             InventoryGet(Player, Target).Property.OverridePriority[Name2] = priority;
                         }
                         ChatRoomCharacterUpdate(Player);
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Layer priority changed.</p>"
-                        );
+			var msg = "Layer priority changed.";
+                        infomsg(msg);
                     }
                 }
             }
@@ -8743,9 +8737,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'layershow1',
         Description: "gives info about layer colors of a specific worn item + saves Item Slot",
         Action: () => {
-            ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.</p>"
-            );
+            var msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
+            infomsg(msg);
             setTimeout(function() {
                 if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
                     if (CurrentCharacter.FocusGroup.Name) {
@@ -8789,10 +8782,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     ly++;
                                 }
                             }
-                            this.saveditemslot = Target;
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Item Slot saved.</p>"
-                            );
+                            this.saveditemslot = Target;  
+			    var msg = "Item Slot saved.";
+                            infomsg(msg);
                         }
                         DialogLeave();
                     }
@@ -8805,9 +8797,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'layershow2',
         Description: "gives info about layer priorities of a specific worn item + saves Item Slot",
         Action: () => {
-            ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.</p>"
-            );
+            var msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
+            infomsg(msg);
             setTimeout(function() {
                 if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
                     if (CurrentCharacter.FocusGroup.Name) {
@@ -8887,9 +8878,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                             }
                             this.saveditemslot = Target;
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Item Slot saved.</p>"
-                            );
+                            var msg = "Item Slot saved.";
+                            infomsg(msg);
                         }
                         DialogLeave();
                     }
@@ -8903,8 +8893,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The lock command has several syntaxes:\n" +
+		var msg = "The lock command has several syntaxes:\n" +
                     "/lock (target) (locktype) for locks 1 to 8 + locks 17 and 19\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
                     "/lock (target) (locktype) (code/ptcode) for locks 10 and 20\n" +
@@ -8920,11 +8909,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "17 Best Friend - 18 Best Friend Timer\n" +
                     "19 Family - 20 Portal Link\n" +
                     "BCTweaks is required for locks 17 and 18\n" +
-                    "Use <b>/lock par</b> for info about other parameters</p>"
-                );
+                    "Use <b>/lock par</b> for info about other parameters";
+                infomsg(msg);
             } else if (args === "par") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Special parameters of lock command:\n" +
+		var msg = "Special parameters of lock command:\n" +
                     "code must be between 0 and 9999.\n" +
                     "password is limited to 8 characters.\n" +
                     "portal code must include 8 characters, using only 0-9 and a-f.\n" +
@@ -8937,8 +8925,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "r for item removal when correct password entered\n" +
                     "or lock timer runs out.\n" +
                     " \n" +
-                    "Tip: replace h and/or i by another character when you need to skip them.</p>"
-                );
+                    "Tip: replace h and/or i by another character when you need to skip them.";
+                infomsg(msg);
             } else {
                 var silent = 0;
                 var uw = 0;
@@ -9074,9 +9062,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if ((target[0].OnlineSharedSettings.Uwall) &&
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             var uw = 1;
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                            );
+			    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                            infomsg(msg);
                         } else {
                             if (Tlock == undefined) {
                                 var message = "Magical lasers make appear locks on " + tgpname + "'s body."
@@ -9182,9 +9169,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(accountname) (password): logs in a new account.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The login command must be followed by an account name and a password.</p>"
-                );
+		var msg = "The login command must be followed by an account name and a password";
+                infomsg(msg);
             } else {
                 var stringLogin1 = args;
                 var stringLogin2 = stringLogin1.split(/[ ,]+/);
@@ -9208,20 +9194,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": toggles fog in current mapped room.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
-                );
+		var msg = "This room does not use the map feature.";
+                infomsg(msg);
             } else {
                 if ((ChatRoomData.MapData.Fog == true || ChatRoomData.MapData.Fog == undefined)) {
                     ChatRoomData.MapData.Fog = false;
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Fog in current mapped room is disabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.</p>"
-                    );
+		    var msg = "Fog in current mapped room is disabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.";
+                    infomsg(msg);
                 } else {
                     ChatRoomData.MapData.Fog = true;
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Fog in current mapped room is enabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.</p>"
-                    );
+		    var msg = "Fog in current mapped room is enabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.";
+                    infomsg(msg);
                 }
             }
         }
@@ -9232,22 +9215,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": toggles full vision and hearing in mapped rooms.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
-                );
+                var msg = "This room does not use the map feature.";
+                infomsg(msg);
             } else {
                 if (MapfullOn == true) {
                     MapfullOn = false;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision and hearing in mapped rooms is disabled. Fog is also back if not disabled with mapfog command.</p>"
-                    );
+		    var msg = "Full vision and hearing in mapped rooms is disabled. Fog is also back if not disabled with mapfog command";
+                    infomsg(msg);
                 } else {
                     MapfullOn = true;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: Full vision and hearing in mapped rooms is enabled. Fog is also removed. Will be disabled if you use this toggle again or relog.</p>"
-                    );
+		    var msg = "Full vision and hearing in mapped rooms is enabled. Fog is also removed. Will be disabled if you use this toggle again or relog";
+                    infomsg(msg);
                 }
             }
         }
@@ -9258,21 +9238,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": gives all keys for current mapped chat room.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
-                );
+                var msg = "This room does not use the map feature.";
+                infomsg(msg);
             } else {
                 if (Player.MapData == undefined) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You don't have entered the map.</p>"
-                    );
+		    var msg = "You don't have entered the map.";
+                    infomsg(msg);
                 } else {
                     Player.MapData.PrivateState.HasKeyGold = true;
                     Player.MapData.PrivateState.HasKeySilver = true;
                     Player.MapData.PrivateState.HasKeyBronze = true;
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You have now the three keys.</p>"
-                    );
+		    var msg = "You have now the three keys.";
+                    infomsg(msg);
                 }
             }
         }
@@ -9283,9 +9260,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": gives infos about location of players in current mapped chat room.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature. Better use the <b>/uroom</b> command.</p>"
-                );
+		var msg = "This room does not use the map feature. Better use the <b>/uroom</b> command.";
+                infomsg(msg);
             } else {
                 let pl = 0;
                 while (pl < ChatRoomCharacter.length) {
@@ -9350,15 +9326,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MaptrapOn == true) {
                 MaptrapOn = false;
                 M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: No traps with devices in map rooms.</p>"
-                );
+		var msg = "No traps with devices in map rooms";
+                infomsg(msg);
             } else {
                 MaptrapOn = true;
                 M_MOANER_saveControls();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Traps in map rooms if you 'walk' on devices.</p>"
-                );
+		var msg = "Traps in map rooms if you 'walk' on devices";
+                infomsg(msg);
             }
         }
     }])
@@ -9368,14 +9342,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(x-position): changes your X coordinate in the map.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The mapx command must be followed by a number between 0 and 39."
-                );
+		var msg = "The mapx command must be followed by a number between 0 and 39.";
+                infomsg(msg);
             } else {
                 if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
-                    );
+                    var msg = "This room does not use the map feature.";
+                    infomsg(msg);
                 } else {
                     var plx = args;
                     if ((plx > -1) && (plx < 40) && (plx != Player.MapData.Pos.X)) {
@@ -9414,14 +9386,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(y-position): changes your Y coordinate in the map.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The mapy command must be followed by a number between 0 and 39."
-                );
+                var msg = "The mapy command must be followed by a number between 0 and 39.";
+                infomsg(msg);
             } else {
                 if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
-                    );
+                    var msg = "This room does not use the map feature.";
+                    infomsg(msg);
                 } else {
                     var ply = args;
                     if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Pos.Y)) {
@@ -9460,9 +9430,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): gives coordinates in the map.",
         Action: (args) => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: This room does not use the map feature.</p>"
-                );
+                var msg = "This room does not use the map feature.";
+                infomsg(msg);
             } else {
                 if (args === "") {
                     if (Player.MapData != undefined) {
@@ -9541,9 +9510,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             GameLARPLevelProgress(10000);
             LogAdd("BondageCollege", "Import");
             LogAdd("KidnapSophie", "Sarah");
-            ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: A few things have to be set manually. See the /roleplay and /rolequit commands.</p>"
-            );
+	    var msg = "A few things have to be set manually. See the /roleplay and /rolequit commands";
+            infomsg(msg);
         }
     }])
 
@@ -9630,16 +9598,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (_, command, args) => {
             var [option] = args;
             if (!option) {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The message command must be followed by a command and the message you want instead of the default message.\n" +
+		var msg = "The message command must be followed by a command and the message you want instead of the default message.\n" +
                     "Options on yourself: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\n" +
                     "Options on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n" +
                     " \n" +
                     "When writing your message, don't forget that your name or nickname will be added before it\n" +
                     "When acting on another player, the target name or nickname will be added after the message\n" +
                     "Use ? as message to go back to default message\n" +
-                    "Use ! as message to select silent mode (no message)</p>"
-                );
+                    "Use ! as message to select silent mode (no message)";
+                infomsg(msg);
             } else {
                 var [, , ...message] = command.split(" ");
                 var custom = message?.join(" ");
@@ -10053,12 +10020,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(mission): goes to infiltration room and forces a specific mission.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The mission command must include a mission.\n" +
+                var msg = "The mission command must include a mission.\n" +
                     "Available missions:\n" +
                     "burglar, kidnap, rescue, retrieve, sabotage.\n" +
-                    "Full random mission with random.</p>"
-                );
+                    "Full random mission with random.";
+                infomsg(msg);
             } else {
                 var mission = args;
                 if (mission == "random") {
@@ -10094,8 +10060,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(options): moans when horny and stimulated.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Several actions are possible with the moaner command:\n" +
+                var msg = "Several actions are possible with the moaner command:\n" +
                     "<b>/moaner on</b> = starts the moaner\n" +
                     "<b>/moaner off</b> = stops the moaner\n" +
                     "<b>/moaner profile</b> (profilename) =  selects a moaner profile. Without profilename, access to moaner profile help\n" +
@@ -10107,8 +10072,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/moaner talk</b> = toggles moans when talking if vibed\n" +
                     "<b>/moaner tickle</b> = toggles moans when you are tickled\n" +
                     "<b>/moaner vibe</b> = toggles moans when your vibes settings change\n" +
-                    "<b>/moaner xvibe</b> = toggles moans when vibes settings of other players change</p>"
-                );
+                    "<b>/moaner xvibe</b> = toggles moans when vibes settings of other players change";
+                infomsg(msg);
             } else {
                 var stringMoan1 = args;
                 var stringMoan2 = stringMoan1.split(/[ ,]+/);
@@ -10197,9 +10162,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
+			var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        infomsg(msg);
                     } else {
                         if (Tnaked == undefined) {
                             var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
