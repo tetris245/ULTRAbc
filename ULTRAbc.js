@@ -8146,10 +8146,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     infomsg(msg);
                 }
             } else {
+                ServerSend("ChatRoomLeave", "");
+                ChatRoomSetLastChatRoom("");
+                OnlineGameName = "";
                 ArcadeRun();
                 ArcadeKinkyDungeonStart(ReputationChange("Gaming"));
-                document.getElementById("InputChat").style.display = "none";
-                document.getElementById("TextAreaChatLog").style.display = "none";
+                if (CurrentScreen != "ChatRoom") {         
+                    document.getElementById("InputChat").style.display = "none";
+                    document.getElementById("TextAreaChatLog").style.display = "none";
+                    ChatRoomClearAllElements();
+                }
                 if (args === "") {} else if (args === "maxstats") {
                     setTimeout(function() {
                         KinkyDungeonAddGold(999999);
