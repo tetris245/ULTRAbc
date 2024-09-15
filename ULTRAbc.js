@@ -10208,8 +10208,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(parameter): restores/saves/loads outfit (including restraints).",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Options for outfit command:\n" +
+                var msg = "Options for outfit command:\n" +
                     "<b>All these options include the restraints</b>, so it's also a good bondage tool.\n" +
                     "To restore your outfit to what it was before entering room, type: <b>/outfit reset</b> or <b>/outfit restore</b> or <b>/outfit revert</b>\n" +
                     "Three outfits can be saved by using <b>/outfit save1</b> or <b>/outfit save2</b> or <b>/outfit save3</b>\n" +
@@ -10218,13 +10217,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "These saves last only 1 login session.\n" +
                     "To save outfits between sessions, use the <b>Export button</b> in wardrobe\n" +
                     "You will have the outfit saved as a code. You can copy and paste it elsewhere.\n" +
-                    "Then you can use the <b>Import buttons</b> to load it later.</p>"
-                );
+                    "Then you can use the <b>Import buttons</b> to load it later.";
+                infomsg(msg);
             }
             if (args === "load1") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
-                );
+                var msg = "You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
@@ -10239,27 +10237,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                                    );
+				    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    infomsg(msg);
                                 }
                             }
                             if (uw == 0) {
                                 CharacterRefresh(CurrentCharacter);
                                 ChatRoomCharacterUpdate(CurrentCharacter);
                                 DialogLeave();
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load1 command executed.</p>"
-                                );
+                                var msg = "Outfit load1 command executed.";
+                                infomsg(msg);
                             }
                         }
                     }
                 }, 5000);
             }
             if (args === "load2") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
-                );
+                var msg = "You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
@@ -10274,27 +10269,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                                    );
+                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    infomsg(msg);
                                 }
                             }
                             if (uw == 0) {
                                 CharacterRefresh(CurrentCharacter);
                                 ChatRoomCharacterUpdate(CurrentCharacter);
                                 DialogLeave();
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load1 command executed.</p>"
-                                );
+                                var msg = "Outfit load2 command executed.";
+                                infomsg(msg);
                             }
                         }
                     }
                 }, 5000);
             }
             if (args === "load3") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.</p>"
-                );
+                var msg = "You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
@@ -10309,18 +10301,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                                    );
+                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    infomsg(msg);
                                 }
                             }
                             if (uw == 0) {
                                 CharacterRefresh(CurrentCharacter);
                                 ChatRoomCharacterUpdate(CurrentCharacter);
                                 DialogLeave();
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit load1 command executed.</p>"
-                                );
+                                var msg = "Outfit load3 command executed.";
+                                infomsg(msg);
                             }
                         }
                     }
@@ -10330,14 +10320,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.Appearance = ChatSearchSafewordAppearance.slice(0);
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit reset-restore-revert command executed.</p>"
-                );
+                var msg = "Outfit reset-restore-revert command executed.";
+                infomsg(msg);
             }
             if (args === "save1") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.</p>"
-                );
+                var msg = "You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
@@ -10351,26 +10339,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                                    );
+                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    infomsg(msg);
                                 }
                             }
                             if (uw == 0) {
                                 this.savedoutfit1 = CurrentCharacter.Appearance.slice(0);
                                 DialogLeave();
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save1 command executed.</p>"
-                                );
+                                var msg = "Outfit save1 command executed.";
+                                infomsg(msg);
                             }
                         }
                     }
                 }, 5000);
             }
             if (args === "save2") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.</p>"
-                );
+                var msg = "You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
@@ -10384,26 +10369,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                                    );
+                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    infomsg(msg);
                                 }
                             }
                             if (uw == 0) {
                                 this.savedoutfit2 = CurrentCharacter.Appearance.slice(0);
                                 DialogLeave();
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save1 command executed.</p>"
-                                );
+                                var msg = "Outfit save2 command executed.";
+                                infomsg(msg);
                             }
                         }
                     }
                 }, 5000);
             }
             if (args === "save3") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.</p>"
-                );
+                var msg = "You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.";
+                infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
@@ -10417,17 +10399,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    ChatRoomSendLocal(
-                                        "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                                    );
+                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    infomsg(msg);
                                 }
                             }
                             if (uw == 0) {
                                 this.savedoutfit3 = CurrentCharacter.Appearance.slice(0);
                                 DialogLeave();
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Outfit save1 command executed.</p>"
-                                );
+                                var msg = "Outfit save3 command executed.";
+                                infomsg(msg);
                             }
                         }
                     }
@@ -10441,16 +10421,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(number): changes your item permission.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The permission command must be followed by a number.\n" +
+                var msg = "The permission command must be followed by a number.\n" +
                     "The effect will be visible in your profile.\n" +
                     "0 Everyone, no exceptions\n" +
                     "1 Everyone, except blacklist\n" +
                     "2 Owner, Lover, whitelist & Dominants\n" +
                     "3 Owner, Lover and whitelist only\n" +
                     "4 Owner and Lover only\n" +
-                    "5 Owner only</p>"
-                );
+                    "5 Owner only";
+                infomsg(msg);
             } else {
                 var perm = args * 1;
                 if ((perm > -1) && (perm < 6)) {
@@ -10516,9 +10495,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
+                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        infomsg(msg);
                     } else {
                         if (Tpet == undefined) {
                             var message = "" + tgpname + " becomes a cute pet."
@@ -10565,8 +10543,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(crotch shield) (intensity) (orgasm mode) (shock level): changes the settings of worn Sci-Fi Pleasure Panties.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The plvibe command must be followed by 4 numbers for crotch shield, intensity, orgasm mode and shock level.\n" +
+                var msg = "The plvibe command must be followed by 4 numbers for crotch shield, intensity, orgasm mode and shock level.\n" +
                     " \n" +
                     "Available crotch shields: \n" +
                     "0 No shield - 1 Front shield\n" +
@@ -10579,8 +10556,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "0 Normal - 1 Edge - 2 Denial\n" +
                     " \n" +
                     "Available shock levels:\n" +
-                    "0 Low - 1 Medium - 2 High</p>"
-                );
+                    "0 Low - 1 Medium - 2 High";
+                infomsg(msg);
             } else {
                 if (InventoryGet(Player, "ItemPelvis") != null) {
                     if (InventoryGet(Player, "ItemPelvis").Asset.Name == "SciFiPleasurePanties") {
@@ -10595,9 +10572,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             const SciFiPleasurePantiesConfig = ModularItemDataLookup.ItemPelvisSciFiPleasurePanties;
                             SciFiPleasurePanties.Property = ModularItemMergeModuleValues(SciFiPleasurePantiesConfig, [cpl, ipl, opl, spl]);
                             ChatRoomCharacterUpdate(Player);
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: The settings of your Sci-Fi Pleasure Panties have been modified.</p>"
-                            );
+                            var msg = "The settings of your Sci-Fi Pleasure Panties have been modified.";
+                            infomsg(msg);
                         }
                     }
                 }
@@ -10631,8 +10607,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(pose) (target): changes the pose of any player.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The pose2 command must be followed by a pose and optionally a target.\n" +
+                var msg = "The pose2 command must be followed by a pose and optionally a target.\n" +
                     " \n" +
                     "Available poses:\n" +
                     "armsfree, belly, boxtied, cuffed, elbowtied,\n" +
@@ -10641,8 +10616,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "spreadeagle2, spreadlegs, stand, suspension,\n" +
                     "tapedhands. Only on yourself: exercise, jump, roof.\n" +
                     "Use <b>/pose2 reset</b> (target) to back to neutral pose.\n" +
-                    "If WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.</p>"
-                );
+                    "If WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.";
+                infomsg(msg);
             } else {
                 var stringPose1 = args;
                 var stringPose2 = stringPose1.split(/[ ,]+/);
@@ -10942,9 +10917,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 Text: "" + tmpname + " jumps to the ceiling."
                             }]
                         });
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if WCE enabled).</p>"
-                        );
+                        var msg = "To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if WCE enabled).";
+                        infomsg(msg);
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
@@ -11000,9 +10974,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else if (InventoryGet(Player, "ItemPelvis").Asset.Name == "HempRope") {
                             Region = "ItemPelvis";
                         } else {
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: You're too heavily tied to exercise.</p>"
-                            );
+                            var msg = "You're too heavily tied to exercise.";
+                            infomsg(msg);
                         }
                         ServerSend("ChatRoomChat", {
                             Content: "Beep",
@@ -11156,9 +11129,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((target[0].OnlineSharedSettings.Uwall) &&
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                            ChatRoomSendLocal(
-                                "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                            );
+                            var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                            infomsg(msg);
                         } else {
                             if (pose == "armsfree") {
                                 if ((target[0].AllowItem == true) &&
@@ -11455,9 +11427,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(minutes): stays in Pandora prison.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The prison command must be followed by a number higher than 0.</p>"
-                );
+                var msg = "The prison command must be followed by a number higher than 0";
+                infomsg(msg);
             } else {
                 var minutes = args;
                 if (minutes > 0) {
@@ -11487,15 +11458,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(animal): forces a specific animal talk mode",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The ptalk command must be followed by a number between 0 and 9.\n" +
+                var msg = "The ptalk command must be followed by a number between 0 and 9.\n" +
                     "Note about whispers in animal talk mode: you need to click on the character OR set the target with <b>/whisper</b> without words OR use the FBC/WCE <b>/w</b> command.\n" +
                     " \n" +
                     "Available animals:\n" +
                     "0 human talk\n" +
                     "1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n" +
-                    "6 pig - 7 pony - 8 puppy - 9 wolfy</p>"
-                );
+                    "6 pig - 7 pony - 8 puppy - 9 wolfy";
+                infomsg(msg);
             } else {
                 var pmode = args * 1;
                 if ((pmode > -1) && (pmode < 10)) {
@@ -11512,72 +11482,62 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     M_MOANER_saveControls();
                 }
                 if (pmode == 0) {
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in human talk mode.</p>"
-                    );
+                    var msg = "You are now in human talk mode";
+                    infomsg(msg);
                 } else if (pmode == 1) {
                     AnimalTalk1On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in bunny talk mode.</p>"
-                    );
+                    var msg = "You are now in bunny talk mode";
+                    infomsg(msg);
                 } else if (pmode == 2) {
                     AnimalTalk2On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in cow talk mode.</p>"
-                    );
+                    var msg = "You are now in cow talk mode";
+                    infomsg(msg);
                 } else if (pmode == 3) {
                     AnimalTalk3On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in fox talk mode.</p>"
-                    );
+                    var msg = "You are now in fox talk mode";
+                    infomsg(msg);
                 } else if (pmode == 4) {
                     AnimalTalk4On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in kitty talk mode.</p>"
-                    );
+                    var msg = "You are now in kitty talk mode";
+                    infomsg(msg);
                 } else if (pmode == 5) {
                     AnimalTalk5On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in mouse talk mode.</p>"
-                    );
+                    var msg = "You are now in mouse talk mode";
+                    infomsg(msg);
                 } else if (pmode == 6) {
                     AnimalTalk6On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pig talk mode.</p>"
-                    );
+                    var msg = "You are now in pig talk mode";
+                    infomsg(msg);
                 } else if (pmode == 7) {
                     AnimalTalk7On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in pony talk mode.</p>"
-                    );
+                    var msg = "You are now in pony talk mode";
+                    infomsg(msg);
                 } else if (pmode == 8) {
                     AnimalTalk8On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in puppy talk mode.</p>"
-                    );
+                    var msg = "You are now in puppy talk mode";
+                    infomsg(msg);
                 } else if (pmode == 9) {
                     AnimalTalk9On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>ULTRAbc: You are now in wolfy talk mode.</p>"
-                    );
+                    var msg = "You are now in wolfy talk mode";
+                    infomsg(msg);
                 }
             }
         }
@@ -11720,9 +11680,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
+                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        infomsg(msg);
                     } else {
                         if (Trandomize == undefined) {
                             var message = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
@@ -11792,8 +11751,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(reputation) (level): changes a reputation. ",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The reputation command must be followed by a reputation and a level.\n" +
+                var msg = "The reputation command must be followed by a reputation and a level.\n" +
                     "You will be able to check the change in your profile.\n" +
                     " \n" +
                     "Available reputations:\n" +
@@ -11801,7 +11759,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "gaming, kidnap, larp, maid, maiestas, nurse,\n" +
                     "patient, submissive, vincula.\n" +
                     "Level must be between 0 and 100.</p>"
-                );
+                infomsg(msg);
             } else {
                 var stringReputation1 = args;
                 var stringReputation2 = stringReputation1.split(/[ ,]+/);
@@ -11861,14 +11819,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": resets difficulty, thereby quitting it.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Warning</b>: Resetting difficulty will incur a 7-day waiting period to rechange. Confirm by typing: <b>/resetdifficulty yes</b></p>"
-                );
+                var msg = "<b>Warning</b>: Resetting difficulty will incur a 7-day waiting period to rechange. Confirm by typing: <b>/resetdifficulty yes</b>";
+                infomsg(msg);
             } else if (args === "yes") {
                 Player.Difficulty = [];
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Difficulty reset, select a new one in settings.</p>"
-                );
+                var msg = "Difficulty reset, select a new one in settings.";
+                infomsg(msg);
             }
         }
     }])
@@ -11878,15 +11834,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": erases your inventory.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b></p>"
-                );
+                var msg = "<b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b>";
+                infomsg(msg);
             } else if (args === "yes") {
                 Player.Inventory = [];
                 ServerPlayerInventorySync();
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'>ULTRAbc: Accomplished. Visit store to buy new clothes and items.</p>"
-                );
+                var msg = "Accomplished. Visit store to buy new clothes and items.";
+                infomsg(msg);
             }
         }
     }])
@@ -11936,9 +11890,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        ChatRoomSendLocal(
-                            "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                        );
+                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        infomsg(msg);
                     } else {
                         if (Trestrain == undefined) {
                             var message = "Magical lasers apply random restraints on " + tgpname + "'s body."
@@ -11977,8 +11930,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(role): starts to play a role",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The roleplay command must include a role.\n" +
+                var msg = "The roleplay command must include a role.\n" +
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available roles:\n" +
@@ -11986,8 +11938,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "headmaid, kidnapper, maid, magician, magus,\n" +
                     "masterkidnapper, mistress, nurse, oracle, patient,\n" +
                     "permanentpatient, sage, sorcerer, warlock, witch, wizard.\n" +
-                    "Be careful with clubslave, you will be forced to complete contract. Similar warning for escapedpatient.</p>"
-                );
+                    "Be careful with clubslave, you will be forced to complete contract. Similar warning for escapedpatient.";
+                infomsg(msg);
             } else {
                 var role = args;
                 if (role == "clubmistress") {
@@ -12076,8 +12028,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(role or club area): ceases to play a role",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The rolequit command must include a role or clubarea.\n" +
+                var msg = "The rolequit command must include a role or clubarea.\n" +
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available roles or areas:\n" +
@@ -12087,8 +12038,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "kidnapper to cease being kidnapper or master kidnapper.\n" +
                     "magician to cease one of the 8 magic roles.\n" +
                     "management or mistress to cease being mistress or club mistress.\n" +
-                    "sorority or maid to cease being maid or headmaid.</p>"
-                );
+                    "sorority or maid to cease being maid or headmaid.";
+                infomsg(msg);
             } else {
                 var role = args;
                 if (role == "asylum") {
@@ -12133,17 +12084,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(players): sets the maximum players per room in Chat Search for normal and hybrid rooms.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The roomsize command must be followed by a number between 2 and 20.</p>"
-                );
+                var msg = "The roomsize command must be followed by a number between 2 and 20.";
+                infomsg(msg);
             } else {
                 var size = args;
                 if ((size > 1) && (size < 21) && (size != rsize)) {
                     rsize = size * 1;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: You have modified the maximum players per room in Chat Search for normal and hybrid rooms.</p>"
-                    );
+                    var msg = "You have modified the maximum players per room in Chat Search for normal and hybrid rooms.";
+                    infomsg(msg);
                 }
             }
         }
@@ -12154,15 +12103,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(type): sets the room type you want to see in Chat Search.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: The roomtype command must be followed by a number between 0 and 3.\n" +
+                var msg = "The roomtype command must be followed by a number between 0 and 3.\n" +
                     " \n" +
                     " 0 = All room types\n" +
                     " 1 = Only normal rooms\n" +
                     " 2 = Only hybrid rooms\n" +
-                    " 3 = Only map rooms</p>"
-
-                );
+                    " 3 = Only map rooms";
+                infomsg(msg);
             } else {
                 var type = args;
                 if ((type > -1) && (type < 4) && (type != rtype)) {
@@ -12179,9 +12126,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         rtype = "Always";
                     }
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: You have modified the room type you want to see in Chat Search.</p>"
-                    );
+                    var msg = "You have modified the room type you want to see in Chat Search.";
+                    infomsg(msg);
                 }
             }
         }
@@ -12191,9 +12137,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'safeworditem',
         Description: ": removes specific item.",
         Action: () => {
-            ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
-            );
+            var msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.";
+            infomsg(msg);
             setTimeout(function() {
                 if (CurrentCharacter != null) {
                     if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
@@ -12209,9 +12154,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             if (tgpname != tmpname) {
                                 var uw = 1;
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Your command can't be executed because " + tgpname + " has enabled the Uwall protection.</p>"
-                                );
+                                var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                infomsg(msg);
                             }
                         }
                         if (uw == 0) {
