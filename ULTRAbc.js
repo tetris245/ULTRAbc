@@ -1044,7 +1044,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!inputChat) {
                 return;
             }
-            let msg = inputChat.value.trim();
+            var msg = inputChat.value.trim();
             if (!msg.length) return;
             var tsp = 0;
             if (msg.startsWith(",")) {
@@ -3444,8 +3444,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 GagTalkOn = true;
                 M_MOANER_saveControls();
-		var msg = "You are now in real gag talk mode. Your current garbling level is " + mgl + ";
-                infomsg(msg);
+		var msg = "You are now in real gag talk mode. Your current garbling level is " + mgl + ".";
+                infomsg(msg);.
                 if (notalk == 1) {
 		    var msg = "Your very tight collar or a LSCG spell prevents you to talk.";
                     infomsg(msg);
@@ -6847,7 +6847,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpname = target[0].Nickname;
                             }
                             if (InventoryGet(target[0], "Panties") == null) {
-				var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+				var msg = ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
                                 infomsg(msg);
                             } else if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
@@ -6855,7 +6855,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 targetNumber = ChatRoomTargetMemberNumber;
                                 ChatRoomSendWhisper(targetNumber, msg);
                             } else {
-                                var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+                                var msg = ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
                                 infomsg(msg);
                             }
                             ChatRoomSetTarget(-1);
@@ -6887,7 +6887,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpname = target[0].Nickname;
                             }
                             if (InventoryGet(target[0], "ItemPelvis") == null) {
-				var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!";
+				var msg = ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!";
                                 infomsg(msg);
                             } else if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
@@ -6895,7 +6895,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 targetNumber = ChatRoomTargetMemberNumber;
                                 ChatRoomSendWhisper(targetNumber, msg);
                             } else {
-                                var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+                                var msg = ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
                                 infomsg(msg);
                             }
                             ChatRoomSetTarget(-1);
@@ -6962,22 +6962,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpr4 = "they";
                             }
                             if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
-				var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+				var msg = ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
                                 infomsg(msg);
                             } else if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
                                 if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
-				    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+				    var msg = ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
                                     infomsg(msg);
                                 } else {
-                                    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
                                     infomsg(msg);
                                 }
                             } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
                                 if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
-                                    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
                                     infomsg(msg);
                                 } else {
-                                    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
                                     infomsg(msg);
                                 }
                             } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
@@ -6988,7 +6988,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     targetNumber = ChatRoomTargetMemberNumber;
                                     ChatRoomSendWhisper(targetNumber, msg);
                                 } else {
-                                    var msg = " + ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
                                     infomsg(msg);
                                 }
                                 ChatRoomSetTarget(-1);
