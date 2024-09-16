@@ -3376,7 +3376,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 GagTalkOn = false;
             }
             mb = 0;
-            if (Player.ExtensionSettings.MBS != -1) {
+            if (Player.ExtensionSettings.MBS != null) {
                 str = Player.ExtensionSettings.MBS;
                 d = LZString.decompressFromUTF16(str);
                 MBSdata = {};
