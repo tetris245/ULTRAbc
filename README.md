@@ -59,4 +59,5 @@ All else I might not have included.
 Changes for future version 
 
 * Updated OOC handling (for compatibility with new setting in R108)
+* Optimised the handling of UBC local messages
  
