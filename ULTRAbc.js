@@ -6196,6 +6196,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 OnlineProfileRun();
                 document.getElementById("InputChat").style.display = "none";
                 document.getElementById("TextAreaChatLog").style.display = "none";
+                ChatRoomClearAllElements();
                 CommonSetScreen("Character", "OnlineProfile");
             } else {
                 var targetname = args;
@@ -6209,6 +6210,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     OnlineProfileRun();
                     document.getElementById("InputChat").style.display = "none";
                     document.getElementById("TextAreaChatLog").style.display = "none";
+                    ChatRoomClearAllElements();
                     CommonSetScreen("Character", "OnlineProfile");
                 }
             }
