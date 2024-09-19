@@ -8904,21 +8904,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 var msg = "The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8 + locks 17 and 19\n" +
+                    "/lock (target) (locktype) for locks 1 to 8, 17, 19, 21\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
                     "/lock (target) (locktype) (code/ptcode) for locks 10 and 20\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
-                    "/lock (target) (locktype) (minutes) (h) (i) (r) for locks 13 to 15 + lock 18\n" +
-                    "/lock (target) (locktype) (password) (minutes) (h) (i) (r) for lock 16\n" +
+                    "/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15, 18\n" 
+                    "/lock (target) (locktype) (password) (minutes) (h) (i) (r) - lock 16\n" +
                     "ALWAYS SPECIFY THE TARGET. Lock types:\n" +
                     "1 Metal - 2 Exclusive - 3 Intricate - 4 High Security\n" +
                     "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
-                    "15 Owner Timer - 16 Timer Password\n" +
-                    "17 Best Friend - 18 Best Friend Timer\n" +
-                    "19 Family - 20 Portal Link\n" +
-                    "BCTweaks is required for locks 17 and 18\n" +
+                    "15 Owner Timer - 16 Timer Password - 17 Best Friend\n" +
+                    "18 Best Friend Timer - 19 Family\n" +
+                    "20 Portal Link - 21 Lewd Crest\n" +
+                    "Locks 17, 18 and 21 require a specific mod\n" +
                     "Use <b>/lock par</b> for info about other parameters";
                 infomsg(msg);
             } else if (args === "par") {
@@ -9040,6 +9040,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Lock = "PortalLinkPadlock";
                     var PTS = /^[0-9a-f]+$/;
                     var ptcode = stringLock2[2];
+                } else if (lk == 21) {
+                    Lock = "\u{6DEB}\u{7EB9}\u{9501}_Luzi";
                 }
                 var targetname = stringLock2[0];
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -9163,6 +9165,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     }
                                     if (lk == 18) {
                                         target[0].Appearance[A].Property.Name = "Best Friend Timer Padlock";
+                                    }
+                                    if (lk == 21) {
+                                        target[0].Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}_Luzi";
                                     }
                                 }
                             }
