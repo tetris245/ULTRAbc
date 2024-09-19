@@ -13941,9 +13941,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
-                    "15 Owner Timer - 16 Timer Password\n" +
-                    "17 Best Friend - 18 Best Friend Timer\n" +
-                    "19 Family - 20 Portal Link";
+                    "15 Owner Timer - 16 Timer Password - 17 Best Friend\n" +
+                    "18 Best Friend Timer - 19 Family\n" +
+                    "20 Portal Link - 21 Lewd Crest";
                 infomsg(msg);
             } else {
                 var silent = 0;
@@ -14083,6 +14083,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             CharacterReleaseFromLock(target[0], "FamilyPadlock");
                         } else if (lk == 20) {
                             CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
+                        } else if (lk == 21) {
+                            for (let A = 0; A < target[0].Appearance.length; A++)
+                                if ((target[0].Appearance[A].Property != null) &&
+                                    (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi")) {
+                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                                }
                         }
                         ChatRoomCharacterUpdate(target[0]);
                     }
