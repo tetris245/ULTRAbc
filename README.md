@@ -58,5 +58,5 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added support for the Lewd Crest lock (added by Echo's items/clothes mod) to the lock and unlock commands
+* Added support for the Lewd Crest lock (provided by Echo's items/clothes mod) to the lock and unlock commands
  
