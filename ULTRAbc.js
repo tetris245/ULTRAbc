@@ -6197,7 +6197,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSetLastChatRoom("");            
                 ChatRoomHideElements();
                 InformationSheetLoadCharacter(Player);
-                OnlineProfileLoad();          
+                OnlineProfileRun();          
                 CommonSetScreen("Character", "OnlineProfile")        
             } else {
                 var targetname = args;
@@ -6210,7 +6210,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomSetLastChatRoom("");            
                     ChatRoomHideElements();
                     InformationSheetLoadCharacter(target[0]);
-                    OnlineProfileLoad();
+                    OnlineProfileRun();
                     CommonSetScreen("Character", "OnlineProfile");
                 }
             }
