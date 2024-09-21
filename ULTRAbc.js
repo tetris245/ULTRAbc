@@ -65,6 +65,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     let AutojoinOn;
     let DolltalkOn;
+    let ExtbuttonsOn;
     let FrkeysOn;
     let FullseedOn;
     let HighfameOn;
@@ -360,6 +361,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tcname = "Cell";
             AutojoinOn = false;
             DolltalkOn = false;
+	    ExtbuttonsOn = false;
             FrkeysOn = false;
             FullseedOn = false;
             HighfameOn = false;
@@ -436,6 +438,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tcname = datas.tcname;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
+	    ExtbuttonsOn = datas.extbuttons;
             FrkeysOn = datas.frkeys;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
@@ -513,6 +516,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tcname": tcname,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
+	    "extbuttons": ExtbuttonsOn,
             "frkeys": FrkeysOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
@@ -628,6 +632,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 9) AnimalTalk9On = true;
                 if (bgall == null || bgall == undefined) {
                     bgall = false;
+                    M_MOANER_saveControls();
+                }
+		if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) {
+                    ExtbuttonsOn = false;
                     M_MOANER_saveControls();
                 }
                 if (FrkeysOn == null || FrkeysOn == undefined) {
@@ -749,6 +757,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Chat Room (+ name/nickname/pronouns management for player)
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
+	    if (ExtbuttonsOn == true) {
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 45)) {
+                    ExtClick();
+                    return;
+                }
+            }
             if (SosbuttonsOn == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
                     if (Totalrelease == undefined) {
@@ -1019,11 +1033,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
+	    if (ExtbuttonsOn == true) DrawButton(955, 0, 45, 45, "EXT", "White", "", "");
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
-            if (RglbuttonsOn == true) {
-                DrawButton(955, 135, 45, 45, "RGL", "White", "", "");
-            }
+            if (RglbuttonsOn == true) DrawButton(955, 135, 45, 45, "RGL", "White", "", "");
             let chmap = ChatRoomCharacterViewIsActive();
             if ((chmap == false) && (Player.OnlineSharedSettings.Inmap == false)) {
                 Player.OnlineSharedSettings.Inmap = true;
@@ -2588,6 +2601,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Buttons
+    function ExtClick() {
+        ChatRoomSetLastChatRoom("");
+        ChatRoomHideElements();
+        InformationSheetLoadCharacter(Player);
+        PreferenceSubscreen = "Extensions";
+        PreferenceRun(); 
+        CommonSetScreen("Character", "Preference");
+        PreferenceSubscreenExtensionsLoad = function() {
+            PreferenceSubscreen = "Extensions";
+            PreferenceSettings = "Settings";
+            PreferenceExtensionsDisplay = Object.keys(PreferenceExtensionsSettings).map(
+	        k => (
+		    s=>({
+		        Button: typeof s.ButtonText === "function" ? s.ButtonText() : s.ButtonText,
+			Image: s.Image && (typeof s.Image === "function" ? s.Image() : s.Image),
+			click: () => {
+			    PreferenceExtensionsCurrent = s;
+			    s?.load();
+			}
+		    })
+		)(PreferenceExtensionsSettings[k])
+	    );
+        };
+        PreferenceSubscreenExtensionsLoad();
+    }
+
     function OutButtons() {
         if (window.CurrentScreen == "ChatRoom") {
             DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
@@ -14340,6 +14379,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>bgall</b> for bgs usable with the buttons in Private Room\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
                     "<b>exitmode</b> for exit mode with OUT button \n" +
+		    "<b>extbuttons</b> for EXT buttons\n" +
                     "<b>frkeys</b> for hotkeys in friendlist \n" +
                     "<b>fullseed</b> for full solution with intricate and hs locks\n" +
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
@@ -14353,7 +14393,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>npcpunish</b> for NPC punishments\n" +
                     "<b>outbuttons</b> for OUT buttons\n" +
                     "<b>rglbuttons</b> for RGL buttons\n" +
-                    "<b>sosbuttons</b> for emergency buttons (FREE)";
+                    "<b>sosbuttons</b> for FREE buttons";
                 infomsg(msg);
             } else {
                 var setting = args;
@@ -14403,6 +14443,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SlowleaveOn = true;
                         M_MOANER_saveControls();
                         var msg = "Slow exit mode is activated.";
+                        infomsg(msg);
+                    }
+		} else if (setting == "extbuttons") {
+                    if (ExtbuttonsOn == true) {
+                        ExtbuttonsOn = false;
+                        M_MOANER_saveControls();
+                        var msg = "EXT buttons hidden and disabled.";
+                        infomsg(msg);
+                    } else {
+                        ExtbuttonsOn = true;
+                        M_MOANER_saveControls();
+                        var msg = "EXT buttons displayed and enabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "frkeys") {
@@ -14786,31 +14838,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'xmenu',
         Description: ": direct access to Extensions menu.",
         Action: () => {  
-            ChatRoomSetLastChatRoom("");
-            ChatRoomHideElements();
-            InformationSheetLoadCharacter(Player);
-            PreferenceSubscreen = "Extensions";
-            PreferenceRun(); 
-            CommonSetScreen("Character", "Preference");
-            PreferenceSubscreenExtensionsLoad = function() {
-                PreferenceSubscreen = "Extensions";
-                PreferenceSettings = "Settings";
-                PreferenceExtensionsDisplay = Object.keys(PreferenceExtensionsSettings).map(
-		    k => (
-		        s=>({
-			    Button: typeof s.ButtonText === "function" ? s.ButtonText() : s.ButtonText,
-			    Image: s.Image && (typeof s.Image === "function" ? s.Image() : s.Image),
-			    click: () => {
-			       PreferenceExtensionsCurrent = s;
-			       s?.load();  
-			    }
-		        })
-		    )(PreferenceExtensionsSettings[k]));
-            };
-            PreferenceSubscreenExtensionsLoad(); 
-           }
+            ExtClick();
+        }
     }])
-
+    
     CommandCombine([{
         Tag: 'xstatus',
         Description: "(add-on): displays status settings for other add-ons.",
