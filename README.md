@@ -58,5 +58,8 @@ All else I might not have included.
 
 Changes for future version 
 
+* New commands:
+  - pmenu for direct access to Preferences screen
+  - xmenu for direct access to Extensions screen
 * Added support for the Lewd Crest lock (provided by Echo's items/clothes mod) to the lock and unlock commands
  
