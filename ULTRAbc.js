@@ -14796,15 +14796,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 PreferenceSubscreen = "Extensions";
                 PreferenceSettings = "Settings";
                 PreferenceExtensionsDisplay = Object.keys(PreferenceExtensionsSettings).map(
-		            k => (
-			            s=>({
-				            Button: typeof s.ButtonText === "function" ? s.ButtonText() : s.ButtonText,
-				            Image: s.Image && (typeof s.Image === "function" ? s.Image() : s.Image),
-				            click: () => {
-					            PreferenceExtensionsCurrent = s;
-					            s?.load();
-				            }
-			            }))(PreferenceExtensionsSettings[k]));
+		    k => (
+		        s=>({
+			    Button: typeof s.ButtonText === "function" ? s.ButtonText() : s.ButtonText,
+			    Image: s.Image && (typeof s.Image === "function" ? s.Image() : s.Image),
+			    click: () => {
+			       PreferenceExtensionsCurrent = s;
+			       s?.load();  
+			    }
+		       }))(PreferenceExtensionsSettings[k]));
                };
                PreferenceSubscreenExtensionsLoad(); 
            }
