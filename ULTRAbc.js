@@ -10589,6 +10589,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'pmenu',
+        Description: ": direct access to Preferences menu.",
+        Action: () => {  
+              ChatRoomSetLastChatRoom("");
+              ChatRoomHideElements();
+              InformationSheetLoadCharacter(Player);
+              PreferenceSubscreen = "Main";
+              PreferenceRun(); 
+              CommonSetScreen("Character", "Preference");
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'poof',
         Description: "(action): leaves the club very fast.",
         Action: (args) => {
@@ -13676,7 +13689,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes settings of worn High Duty Belt. *\n" +
                     "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
-                    "<b>/moaner</b> (options) = moans when horny and stimulated. *.\n" +
+                    "<b>/moaner</b> (options) = moans when horny and stimulated. *\n" +
                     "<b>/plvibe</b> (options) = changes settings of worn Sci-Fi Pleasure Panties. *\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
@@ -13705,6 +13718,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "misc") {
                 var msg = "Misc commands - * = more info when using\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
+                    "<b>/pmenu</b> = direct access to  Preferences screen.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n" +
@@ -13727,7 +13741,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/roomsize</b> (players) = sets maximum players per room in Chat Search for normal and hybrid rooms.\n" +
                     "<b>/roomtype</b> (type) = sets room type you want to see in Chat Search. *\n" +
-                    "<b>/uset</b> (setting) = toggles a specific UBC setting *.";
+                    "<b>/uset</b> (setting) = toggles a specific UBC setting. *";
                 infomsg(msg);
             }
             if (args === "talking") {
