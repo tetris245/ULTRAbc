@@ -6193,13 +6193,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'bio',
         Description: "(target): gives direct access to the profile description of any player in the chat room.",
         Action: (args) => {
-            if (args === "") {
+            if (args === "") {  
+                ChatRoomSetLastChatRoom("");            
+                ChatRoomHideElements();
                 InformationSheetLoadCharacter(Player);
-                OnlineProfileRun();
-                document.getElementById("InputChat").style.display = "none";
-                document.getElementById("TextAreaChatLog").style.display = "none";
-                ChatRoomClearAllElements();
-                CommonSetScreen("Character", "OnlineProfile");
+                OnlineProfileLoad();          
+                CommonSetScreen("Character", "OnlineProfile")        
             } else {
                 var targetname = args;
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -6208,11 +6207,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
+                    ChatRoomSetLastChatRoom("");            
+                    ChatRoomHideElements();
                     InformationSheetLoadCharacter(target[0]);
-                    OnlineProfileRun();
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ChatRoomClearAllElements();
+                    OnlineProfileLoad();
                     CommonSetScreen("Character", "OnlineProfile");
                 }
             }
