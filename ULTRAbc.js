@@ -13680,6 +13680,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "extra") {
                 var msg = "Extra commands:\n" +
                     "<b>/mbsroom</b> = gives infos about MBS wheels of fortune in current chat room.\n" +
+                    "<b>/xmenu</b> = direct access to Extensions screen.\n" +
                     "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. Available options with /xstatus.";
                 infomsg(msg);
             }
@@ -14779,6 +14780,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
         }
+    }])
+
+    CommandCombine([{
+        Tag: 'xmenu',
+        Description: ": direct access to Extensions menu.",
+        Action: () => {  
+            ChatRoomSetLastChatRoom("");
+            ChatRoomHideElements();
+            InformationSheetLoadCharacter(Player);
+            PreferenceSubscreen = "Extensions";
+            PreferenceRun(); 
+            CommonSetScreen("Character", "Preference");
+            PreferenceSubscreenExtensionsLoad = function() {
+                PreferenceSubscreen = "Extensions";
+                PreferenceSettings = "Settings";
+                PreferenceExtensionsDisplay = Object.keys(PreferenceExtensionsSettings).map(
+		            k => (
+			            s=>({
+				            Button: typeof s.ButtonText === "function" ? s.ButtonText() : s.ButtonText,
+				            Image: s.Image && (typeof s.Image === "function" ? s.Image() : s.Image),
+				            click: () => {
+					            PreferenceExtensionsCurrent = s;
+					            s?.load();
+				            }
+			            }))(PreferenceExtensionsSettings[k]));
+               };
+               PreferenceSubscreenExtensionsLoad(); 
+           }
     }])
 
     CommandCombine([{
