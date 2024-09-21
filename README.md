@@ -58,8 +58,10 @@ All else I might not have included.
 
 Changes for future version 
 
+* Added the EXT button in chat rooms for direct access to Extensions screen
 * New commands:
   - pmenu for direct access to Preferences screen
+  - uset extbuttons to enable/disable the EXT button in chat rooms
   - xmenu for direct access to Extensions screen
 * Added support for the Lewd Crest lock (provided by Echo's items/clothes mod) to the lock and unlock commands
  
