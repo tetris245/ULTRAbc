@@ -6399,9 +6399,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((desk > -1) && (desk < 9) && (desk != cdesk)) {
                     cdesk = desk;
                     M_MOANER_saveControls();
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'><b>ULTRAbc</b>: Default desk changed for the Bondage Club Card Game.</p>"
-                    );
+                    var msg = "Default desk changed for the Bondage Club Card Game.";
+                    infomsg(msg);
                 }
             }
         }
