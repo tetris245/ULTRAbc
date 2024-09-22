@@ -45,6 +45,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let pronoun2;
     let pronoun3;
     let pronoun4;
+    var umsg1 = "Your command can't be executed because ";
+    var umsg2 = " has enabled the Uwall protection.";
 
     var M_MOANER_moanerKey = "bc_moaner_";
     var M_MOANER_scriptOn = false;
@@ -6557,7 +6559,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (Tclothes == undefined) {
@@ -7712,7 +7714,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (hint != "") {
@@ -7878,7 +7880,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         if ((target[0].OnlineSharedSettings.Uwall) &&
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                            var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                            var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
                             if (Tinvisible == undefined) {
@@ -8043,7 +8045,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((target[0].OnlineSharedSettings.Uwall) &&
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                            var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                            var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
                             for (let A = 0; A < target[0].Appearance.length; A++)
@@ -9111,7 +9113,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if ((target[0].OnlineSharedSettings.Uwall) &&
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             var uw = 1;
-                            var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                            var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
                             if (Tlock == undefined) {
@@ -10214,7 +10216,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (Tnaked == undefined) {
@@ -10283,7 +10285,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    var msg = umsg1 + tgpname + umsg2;
                                     infomsg(msg);
                                 }
                             }
@@ -10315,7 +10317,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    var msg = umsg1 + tgpname + umsg2;
                                     infomsg(msg);
                                 }
                             }
@@ -10347,7 +10349,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    var msg = umsg1 + tgpname + umsg2;
                                     infomsg(msg);
                                 }
                             }
@@ -10385,7 +10387,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    var msg = umsg1 + tgpname + umsg2;
                                     infomsg(msg);
                                 }
                             }
@@ -10415,7 +10417,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    var msg = umsg1 + tgpname + umsg2;
                                     infomsg(msg);
                                 }
                             }
@@ -10445,7 +10447,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (tgpname != tmpname) {
                                     var uw = 1;
-                                    var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                    var msg = umsg1 + tgpname + umsg2;
                                     infomsg(msg);
                                 }
                             }
@@ -10541,7 +10543,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (Tpet == undefined) {
@@ -11188,7 +11190,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((target[0].OnlineSharedSettings.Uwall) &&
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                            var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                            var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
                             if (pose == "armsfree") {
@@ -11739,7 +11741,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (Trandomize == undefined) {
@@ -11949,7 +11951,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (Trestrain == undefined) {
@@ -12213,7 +12215,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             if (tgpname != tmpname) {
                                 var uw = 1;
-                                var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                var msg = umsg1 + tgpname + umsg2;
                                 infomsg(msg);
                             }
                         }
@@ -12542,7 +12544,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         ServerSend("ChatRoomChat", {
@@ -12658,7 +12660,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             if ((target[0].OnlineSharedSettings.Uwall) &&
                                 (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                                var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                                var msg = umsg1 + tgpname + umsg2;
                                 infomsg(msg);
                             } else {
                                 if (InventoryGet(target[0], "ItemDevices") != null) {
@@ -12737,7 +12739,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (!InventoryAvailable(target[0], "WheelFortune", "ItemDevices")) {
@@ -13533,7 +13535,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (Ttotalrelease == undefined) {
@@ -13943,7 +13945,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (Tunderwear == undefined) {
@@ -14034,7 +14036,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if ((target[0].OnlineSharedSettings.Uwall) &&
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
                             var uw = 1;
-                            var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                            var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
                             if (Tunlock == undefined) {
@@ -14294,7 +14296,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (Tuntie == undefined) {
@@ -14753,7 +14755,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         if ((target[0].OnlineSharedSettings.Uwall) &&
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                            var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                            var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
                             if (Tvisible == undefined) {
@@ -15022,7 +15024,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) &&
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
-                        var msg = "Your command can't be executed because " + tgpname + " has enabled the Uwall protection.";
+                        var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         target[0].OnlineSharedSettings.AllowFullWardrobeAccess = true;
