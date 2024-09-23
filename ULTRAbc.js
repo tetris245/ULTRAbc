@@ -2975,7 +2975,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-
     //Preferences 
     function FBCsettings() {
         if (Player.FBCOtherAddons == undefined) {
@@ -10988,14 +10987,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 var minutes = args;
                 if (minutes > 0) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: "" + tmpname + " gets grabbed by two maids and sent to Pandora prison for " + minutes + " minutes."
-                        }]
-                    });
+		    var msg = "" + tmpname + " gets grabbed by two maids and sent to Pandora prison for " + minutes + " minutes.";
+		    publicmsg(msg);
                     DialogLentLockpicks = false;
                     ChatRoomClearAllElements();
                     ServerSend("ChatRoomLeave", "");
@@ -11175,14 +11168,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 OutChat();
             } else {
                 var message = ' '.repeat(1) + args;
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: "" + tmpname + message
-                    }]
-                });
+		var msg = "" + tmpname + message;
+		publicmsg(msg);
                 OutChat();
             }
         }
@@ -11194,28 +11181,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Randomize == undefined) {
-                    var message = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
+                    var msg = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body.";
                 } else {
                     if (Randomize != "") {
                         if (Randomize.startsWith("\u0027")) {
-                            var message = tmpname + Randomize;
+                            var msg = tmpname + Randomize;
                         } else {
-                            var message = tmpname + ' '.repeat(1) + Randomize;
+                            var msg = tmpname + ' '.repeat(1) + Randomize;
                         }
                     } else {
-                        var message = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body."
+                        var msg = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body.";
                     }
                 }
-                if (Randomize != "no message") {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
-                }
+                if (Randomize != "no message") publicmsg(msg);
                 CharacterNaked(Player);
                 CharacterRandomUnderwear(Player);
                 CharacterAppearanceFullRandom(Player, true);
@@ -11240,28 +11218,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         if (Trandomize == undefined) {
-                            var message = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
+                            var msg = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body.";
                         } else {
                             if (Trandomize != "") {
                                 if (Trandomize.startsWith("\u0027")) {
-                                    var message = tmpname + Trandomize + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + Trandomize + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var message = tmpname + ' '.repeat(1) + Trandomize + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + ' '.repeat(1) + Trandomize + ' '.repeat(1) + tgpname;
                                 }
                             } else {
-                                var message = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body."
+                                var msg = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body.";
                             }
                         }
-                        if (Trandomize != "no message") {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: message
-                                }]
-                            });
-                        }
+                        if (Trandomize != "no message") publicmsg(msg);
                         CharacterNaked(target[0]);
                         CharacterRandomUnderwear(target[0]);
                         CharacterAppearanceFullRandom(target[0], true);
@@ -11407,28 +11376,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Restrain == undefined) {
-                    var message = "Magical lasers apply random restraints on " + tmpname + "'s body."
+                    var msg = "Magical lasers apply random restraints on " + tmpname + "'s body.";
                 } else {
                     if (Restrain != "") {
                         if (Restrain.startsWith("\u0027")) {
-                            var message = tmpname + Restrain;
+                            var msg = tmpname + Restrain;
                         } else {
-                            var message = tmpname + ' '.repeat(1) + Restrain;
+                            var msg = tmpname + ' '.repeat(1) + Restrain;
                         }
                     } else {
-                        var message = "Magical lasers apply random restraints on " + tmpname + "'s body."
+                        var msg = "Magical lasers apply random restraints on " + tmpname + "'s body.";
                     }
                 }
-                if (Restrain != "no message") {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
-                }
+                if (Restrain != "no message") publicmsg(msg);
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -11450,28 +11410,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         if (Trestrain == undefined) {
-                            var message = "Magical lasers apply random restraints on " + tgpname + "'s body."
+                            var msg = "Magical lasers apply random restraints on " + tgpname + "'s body.";
                         } else {
                             if (Trestrain != "") {
                                 if (Trestrain.startsWith("\u0027")) {
-                                    var message = tmpname + Trestrain + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + Trestrain + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var message = tmpname + ' '.repeat(1) + Trestrain + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + ' '.repeat(1) + Trestrain + ' '.repeat(1) + tgpname;
                                 }
                             } else {
-                                var message = "Magical lasers apply random restraints on " + tgpname + "'s body."
+                                var msg = "Magical lasers apply random restraints on " + tgpname + "'s body.";
                             }
                         }
-                        if (Trestrain != "no message") {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: message
-                                }]
-                            });
-                        }
+                        if (Trestrain != "no message") publicmsg(msg);
                         CharacterFullRandomRestrain(target[0], "ALL");
                         ChatRoomCharacterUpdate(target[0]);
                     }
@@ -11995,14 +11946,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): uses the sleeping pill on yourself or another player.",
         Action: (args) => {
             if (args === "") {
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + pronoun1 + " falls asleep very quickly."
-                    }]
-                });
+		var msg = "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + pronoun1 + " falls asleep very quickly.";
+		publicmsg(msg);
                 InventoryWear(Player, "RegularSleepingPill", 'ItemMouth');
                 CharacterSetFacialExpression(Player, "Eyes", "Closed");
                 CharacterSetFacialExpression(Player, "Eyes2", "Closed");
@@ -12042,14 +11987,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " feeds " + tgpname + " a sleeping pill and gives " + tgpr2 + " a glass of water. " + tgpname + " falls asleep very quickly."
-                            }]
-                        });
+			var msg = "" + tmpname + " feeds " + tgpname + " a sleeping pill and gives " + tgpr2 + " a glass of water. " + tgpname + " falls asleep very quickly.";
+			publicmsg(msg);
                         InventoryWear(target[0], "RegularSleepingPill", 'ItemMouth');
                         CharacterSetFacialExpression(target[0], "Eyes", "Closed");
                         CharacterSetFacialExpression(target[0], "Eyes2", "Closed");
@@ -12071,14 +12010,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 var message = ' '.repeat(1) + args;
             }
-            ServerSend("ChatRoomChat", {
-                Content: "Beep",
-                Type: "Action",
-                Dictionary: [{
-                    Tag: "Beep",
-                    Text: "" + tmpname + message
-                }]
-            });
+	    var msg = "" + tmpname + message;
+	    publicmsg(msg);
             setTimeout(function() {
                 OutChat();
             }, 15000);
@@ -12107,28 +12040,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 if (solidity == 1) {
                                     InventoryRemove(Player, "ItemDevices");
                                     if (Solidity == undefined) {
-                                        var message = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
+                                        var msg = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
                                     } else {
                                         if (Solidity != "") {
                                             if (Solidity.startsWith("\u0027")) {
-                                                var message = tmpname + Solidity;
+                                                var msg = tmpname + Solidity;
                                             } else {
-                                                var message = tmpname + ' '.repeat(1) + Solidity;
+                                                var msg = tmpname + ' '.repeat(1) + Solidity;
                                             }
                                         } else {
-                                            var message = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
+                                            var msg = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
                                         }
                                     }
-                                    if (Solidity != "no message") {
-                                        ServerSend("ChatRoomChat", {
-                                            Content: "Beep",
-                                            Type: "Action",
-                                            Dictionary: [{
-                                                Tag: "Beep",
-                                                Text: message
-                                            }]
-                                        });
-                                    }
+                                    if (Solidity != "no message") publicmsg(msg);
                                 }
                             }
                         }
@@ -12163,28 +12087,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         if (solidity == 1) {
                                             InventoryRemove(target[0], "ItemDevices");
                                             if (Tsolidity == undefined) {
-                                                var message = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
+                                                var msg1 = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
                                             } else {
                                                 if (Tsolidity != "") {
                                                     if (Tsolidity.startsWith("\u0027")) {
-                                                        var message = tmpname + Tsolidity + ' '.repeat(1) + tgpname;
+                                                        var msg1 = tmpname + Tsolidity + ' '.repeat(1) + tgpname;
                                                     } else {
-                                                        var message = tmpname + ' '.repeat(1) + Tsolidity + ' '.repeat(1) + tgpname;
+                                                        var msg1 = tmpname + ' '.repeat(1) + Tsolidity + ' '.repeat(1) + tgpname;
                                                     }
                                                 } else {
-                                                    var message = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
+                                                    var msg1 = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
                                                 }
                                             }
-                                            if (Tsolidity != "no message") {
-                                                ServerSend("ChatRoomChat", {
-                                                    Content: "Beep",
-                                                    Type: "Action",
-                                                    Dictionary: [{
-                                                        Tag: "Beep",
-                                                        Text: message
-                                                    }]
-                                                });
-                                            }
+                                            if (Tsolidity != "no message") publicmsg(msg1);
                                         }
                                     }
                                 }
@@ -12194,14 +12109,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                             target[0].Appearance[A].Difficulty = solidity;
                                         }
                                     }
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: "The solidity of most current " + tgpname + "\u0027s bindings has been changed by " + tmpname + "."
-                                    }]
-                                });
+				var msg2 = "The solidity of most current " + tgpname + "\u0027s bindings has been changed by " + tmpname + ".";
+				publicmsg(msg2);
                                 ChatRoomCharacterUpdate(target[0]);
                             }
                         }
@@ -12369,14 +12278,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 const Result = [];
                 let Roll = Math.floor(Math.random() * sides) + 1;
                 Result.push(Roll);
-                ServerSend("ChatRoomChat", {
-                    Content: "Beep",
-                    Type: "Action",
-                    Dictionary: [{
-                        Tag: "Beep",
-                        Text: "" + tmpname + " rolls a superdice of " + sides + " sides. The result is " + Result + "."
-                    }]
-                });
+		var msg = "" + tmpname + " rolls a superdice of " + sides + " sides. The result is " + Result + ".";
+		publicmsg(msg);
             }
         }
     }])
@@ -12543,14 +12446,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 var minutes = args;
                 if (minutes > 0) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes."
-                        }]
-                    });
+		    var msg = "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes.";
+		    publicmsg(msg);
                     DialogLentLockpicks = false;
                     ChatRoomClearAllElements();
                     ServerSend("ChatRoomLeave", "");
@@ -12992,28 +12889,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Totalrelease == undefined) {
-                    var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                    var msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
                 } else {
                     if (Totalrelease != "") {
                         if (Totalrelease.startsWith("\u0027")) {
-                            var message = tmpname + Totalrelease;
+                            var msg = tmpname + Totalrelease;
                         } else {
-                            var message = tmpname + ' '.repeat(1) + Totalrelease;
+                            var msg = tmpname + ' '.repeat(1) + Totalrelease;
                         }
                     } else {
-                        var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                        var msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
                     }
                 }
-                if (Totalrelease != "no message") {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
-                }
+                if (Totalrelease != "no message") publicmsg(msg);
                 SosClick();
             } else {
                 var targetname = args;
@@ -13034,28 +12922,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         if (Ttotalrelease == undefined) {
-                            var message = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
+                            var msg = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body.";
                         } else {
                             if (Ttotalrelease != "") {
                                 if (Ttotalrelease.startsWith("\u0027")) {
-                                    var message = tmpname + Ttotalrelease + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + Ttotalrelease + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var message = tmpname + ' '.repeat(1) + Ttotalrelease + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + ' '.repeat(1) + Ttotalrelease + ' '.repeat(1) + tgpname;
                                 }
                             } else {
-                                var message = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body."
+                                var msg = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body.";
                             }
                         }
-                        if (Ttotalrelease != "no message") {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: message
-                                }]
-                            });
-                        }
+                        if (Ttotalrelease != "no message") publicmsg(msg);
                         CharacterReleaseTotal(target[0]);
                         ChatRoomCharacterUpdate(target[0]);
                     }
@@ -13401,28 +13280,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Underwear == undefined) {
-                    var message = "Magical lasers put " + tmpname + " in random underwear."
+                    var msg = "Magical lasers put " + tmpname + " in random underwear.";
                 } else {
                     if (Underwear != "") {
                         if (Underwear.startsWith("\u0027")) {
-                            var message = tmpname + Underwear;
+                            var msg = tmpname + Underwear;
                         } else {
-                            var message = tmpname + ' '.repeat(1) + Underwear;
+                            var msg = tmpname + ' '.repeat(1) + Underwear;
                         }
                     } else {
-                        var message = "Magical lasers put " + tmpname + " in random underwear."
+                        var msg = "Magical lasers put " + tmpname + " in random underwear.";
                     }
                 }
-                if (Underwear != "no message") {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
-                }
+                if (Underwear != "no message") publicmsg(msg);
                 CharacterRandomUnderwear(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -13444,28 +13314,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         if (Tunderwear == undefined) {
-                            var message = "Magical lasers put " + tgpname + " in random underwear."
+                            var msg = "Magical lasers put " + tgpname + " in random underwear.";
                         } else {
                             if (Tunderwear != "") {
                                 if (Tunderwear.startsWith("\u0027")) {
-                                    var message = tmpname + Tunderwear + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + Tunderwear + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var message = tmpname + ' '.repeat(1) + Tunderwear + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + ' '.repeat(1) + Tunderwear + ' '.repeat(1) + tgpname;
                                 }
                             } else {
-                                var message = "Magical lasers put " + tgpname + " in random underwear."
+                                var msg = "Magical lasers put " + tgpname + " in random underwear.";
                             }
                         }
-                        if (Tunderwear != "no message") {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: message
-                                }]
-                            });
-                        }
+                        if (Tunderwear != "no message") publicmsg(msg);
                         CharacterRandomUnderwear(target[0]);
                         ChatRoomCharacterUpdate(target[0]);
                     }
@@ -13514,16 +13375,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if (tmpname == tgpname) {
                         if (Unlock == undefined) {
-                            var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                            var msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
                         } else {
                             if (Unlock != "") {
                                 if (Unlock.startsWith("\u0027")) {
-                                    var message = tmpname + Unlock;
+                                    var msg = tmpname + Unlock;
                                 } else {
-                                    var message = tmpname + ' '.repeat(1) + Unlock;
+                                    var msg = tmpname + ' '.repeat(1) + Unlock;
                                 }
                             } else {
-                                var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                                var msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
                             }
                         }
                         if (Unlock == "no message") var silent = 1;
@@ -13535,32 +13396,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         } else {
                             if (Tunlock == undefined) {
-                                var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                                var msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
                             } else {
                                 if (Tunlock != "") {
                                     if (Tunlock.startsWith("\u0027")) {
-                                        var message = tmpname + Tunlock + ' '.repeat(1) + tgpname;
+                                        var msg = tmpname + Tunlock + ' '.repeat(1) + tgpname;
                                     } else {
-                                        var message = tmpname + ' '.repeat(1) + Tunlock + ' '.repeat(1) + tgpname;
+                                        var msg = tmpname + ' '.repeat(1) + Tunlock + ' '.repeat(1) + tgpname;
                                     }
                                 } else {
-                                    var message = "Magical lasers make disappear locks on " + tgpname + "'s body."
+                                    var msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
                                 }
                             }
                             if (Tunlock == "no message") var silent = 1;
                         }
                     }
                     if (uw == 0) {
-                        if (silent == 0) {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: message
-                                }]
-                            });
-                        }
+                        if (silent == 0) publicmsg(msg);
                         if (lk == null) {
                             CharacterReleaseFromLock(target[0], "CombinationPadlock");
                             CharacterReleaseFromLock(target[0], "ExclusivePadlock");
@@ -13751,28 +13603,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Untie == undefined) {
-                    var message = "Magical lasers make disappear the bindings on " + tmpname + "'s body."
+                    var msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
                 } else {
                     if (Untie != "") {
                         if (Untie.startsWith("\u0027")) {
-                            var message = tmpname + Untie;
+                            var msg = tmpname + Untie;
                         } else {
-                            var message = tmpname + ' '.repeat(1) + Untie;
+                            var msg = tmpname + ' '.repeat(1) + Untie;
                         }
                     } else {
-                        var message = "Magical lasers make disappear the bindings on " + tmpname + "'s body."
+                        var msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
                     }
                 }
-                if (Untie != "no message") {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
-                }
+                if (Untie != "no message") publicmsg(msg);
                 CharacterRelease(Player);
                 ChatRoomCharacterUpdate(Player);
                 RealGarblingLevel();
@@ -13795,28 +13638,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         if (Tuntie == undefined) {
-                            var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
+                            var msg = "Magical lasers make disappear the bindings on " + tgpname + "'s body.";
                         } else {
                             if (Tuntie != "") {
                                 if (Tuntie.startsWith("\u0027")) {
-                                    var message = tmpname + Tuntie + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + Tuntie + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var message = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
                                 }
                             } else {
-                                var message = "Magical lasers make disappear the bindings on " + tgpname + "'s body."
+                                var msg = "Magical lasers make disappear the bindings on " + tgpname + "'s body.";
                             }
                         }
-                        if (Tuntie != "no message") {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: message
-                                }]
-                            });
-                        }
+                        if (Tuntie != "no message") publicmsg(msg);
                         CharacterRelease(target[0]);
                         ChatRoomCharacterUpdate(target[0]);
                     }
@@ -14205,28 +14039,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Visible == undefined) {
-                    var message = "" + tmpname + " suddenly is visible for everybody."
+                    var msg = "" + tmpname + " suddenly is visible for everybody.";
                 } else {
                     if (Visible != "") {
                         if (Visible.startsWith("\u0027")) {
-                            var message = tmpname + Visible;
+                            var msg = tmpname + Visible;
                         } else {
-                            var message = tmpname + ' '.repeat(1) + Visible;
+                            var msg = tmpname + ' '.repeat(1) + Visible;
                         }
                     } else {
-                        var message = "" + tmpname + " suddenly is visible for everybody."
+                        var msg = "" + tmpname + " suddenly is visible for everybody."
                     }
                 }
-                if (Visible != "no message") {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
-                }
+                if (Visible != "no message") publicmsg(msg);
                 InventoryRemove(Player, "ItemScript");
                 CurrentScreen === 'ChatRoom' ?
                     ChatRoomCharacterUpdate(Player) :
@@ -14254,28 +14079,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         } else {
                             if (Tvisible == undefined) {
-                                var message = "" + tgpname + " suddenly is visible for everybody."
+                                var msg = "" + tgpname + " suddenly is visible for everybody.";
                             } else {
                                 if (Tvisible != "") {
                                     if (Tvisible.startsWith("\u0027")) {
-                                        var message = tmpname + Tvisible + ' '.repeat(1) + tgpname;
+                                        var msg = tmpname + Tvisible + ' '.repeat(1) + tgpname;
                                     } else {
-                                        var message = tmpname + ' '.repeat(1) + Tvisible + ' '.repeat(1) + tgpname;
+                                        var msg = tmpname + ' '.repeat(1) + Tvisible + ' '.repeat(1) + tgpname;
                                     }
                                 } else {
-                                    var message = "" + tgpname + " suddenly is visible for everybody."
+                                    var msg = "" + tgpname + " suddenly is visible for everybody.";
                                 }
                             }
-                            if (Tvisible != "no message") {
-                                ServerSend("ChatRoomChat", {
-                                    Content: "Beep",
-                                    Type: "Action",
-                                    Dictionary: [{
-                                        Tag: "Beep",
-                                        Text: message
-                                    }]
-                                });
-                            }
+                            if (Tvisible != "no message") publicmsg(msg);
                             InventoryRemove(target[0], "ItemScript");
                             CurrentScreen === 'ChatRoom' ?
                                 ChatRoomCharacterUpdate(target[0]) :
