@@ -13432,6 +13432,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             CharacterReleaseFromLock(target[0], "SafewordPadlock");
                             CharacterReleaseFromLock(target[0], "TimerPadlock");
                             CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
+			    for (let A = 0; A < target[0].Appearance.length; A++)
+                                if ((target[0].Appearance[A].Property != null) &&
+                                    (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi")) {
+                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                                }
                         } else if (lk == 1) {
                             CharacterReleaseFromLock(target[0], "MetalPadlock");
                         } else if (lk == 2) {
