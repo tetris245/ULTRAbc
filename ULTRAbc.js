@@ -125,6 +125,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var M_MOANER_vibratorActive = true;
     var M_MOANER_xvibratorActive = false;
 
+    //BC Slots
+    var body1 = ["Activity", "Blush", "BodyLower", "BodyMarkings", "BodyUpper", "Emoticon", "Eyebrows", "Eyes", "Eyes2", "EyeShadow", "Face", "FacialHair", "Fluids", "HairBack", "HairFront", "Hands", "Head", "Height", "Mouth", "Nipples", "Pronouns", "Pussy"];
+
+    var body2 = ["BodyMarkings2_Luzi", "Liquid2_Luzi", "\u{8EAB}\u{4F53}\u{75D5}\u{8FF9}_Luzi"];
+
+    var clothes1 = ["Bra", "Bracelet", "Cloth", "ClothAccessory", "ClothLower", "Corset", "Garters", "Glasses", "Gloves", "HairAccessory3", "Hat", "Jewelry", "LeftAnklet", "LeftHand", "Mask", "Necklace", "Panties", "RightAnklet", "RightHand", "Shoes", "Socks", "SocksLeft", "SocksRight", "Suit", "SuitLower"];
+
+    var clothes2 = ["\u{52A8}\u{7269}\u{8EAB}\u{4F53}_Luzi", "Bra_\u{7B28}\u{7B28}\u{86CB}Luzi", "ClothAccessory_\u{7B28}\u{7B28}\u{86CB}Luzi", "Cloth_\u{7B28}\u{7B28}\u{86CB}Luzi", "Cloth_\u{7B28}\u{7B28}\u{7B28}\u{86CB}Luzi2", "ClothLower_\u{7B28}\u{7B28}\u{86CB}Luzi", "ClothLower_\u{7B28}\u{7B28}\u{7B28}\u{86CB}Luzi2", "Gloves_\u{7B28}\u{7B28}\u{86CB}Luzi", "Hat_\u{7B28}\u{7B28}\u{86CB}Luzi", "\u{957F}\u{8896}\u{5B50}_Luzi", "Mask_\u{7B28}\u{7B28}\u{86CB}Luzi", "Necklace_\u{7B28}\u{7B28}\u{86CB}Luzi", "Panties_\u{7B28}\u{7B28}\u{86CB}Luzi", "Shoes_\u{7B28}\u{7B28}\u{86CB}Luzi"];
+
+    var cosplay1 = ["HairAccessory1", "HairAccessory2", "TailStraps", "Wings"];
+
+    var cosplay2 = ["HairAccessory3_\u{7B28}\u{7B28}\u{86CB}Luzi", "Wings_\u{7B28}\u{7B28}\u{86CB}Luzi"]
+
+    var restraints = ["ItemAddon", "ItemArms", "ItemBoots", "ItemDevices", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemHood", "ItemLegs", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemNeckRestraints", "ItemNose", "ItemTorso", "ItemTorso2"];  
+
+    var toys = ["ItemBreast", "ItemButt", "ItemHandHeld", "ItemMisc", "ItemNeckAccessories", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings"];
+
+    var allbody = body1.concat(body2);
+    var allclothes = clothes1.concat(clothes2);
+    var allcosplay = cosplay1.concat(cosplay2);
+    var allitems = restraints.concat(toys);
+
+    var bclevel1 = body1;
+    var bclevel2 = bclevel1.concat(cosplay1);
+    var bclevel3 = bclevel2.concat(clothes1);
+    var bclevel4 = bclevel3.concat(restraints);
+    var bclevel5 = bclevel4.concat(toys);
+
+    var echolevel1 = allbody;
+    var echolevel2 = echolevel1.concat(allcosplay);
+    var echolevel3 = echolevel2.concat(allclothes);
+    var echolevel4 = echolevel3.concat(restraints);
+    var echolevel5 = echolevel4.concat(toys);
+
     //Animal Talk Profiles
     var animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"];
     var animalmode2 = ["mo", "moo", "mooo", "mu", "muu", "moooo"];
