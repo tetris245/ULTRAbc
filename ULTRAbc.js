@@ -768,28 +768,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (SosbuttonsOn == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
                     if (Totalrelease == undefined) {
-                        var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                        var msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                     } else {
                         if (Totalrelease != "") {
                             if (Totalrelease.startsWith("\u0027")) {
-                                var message = tmpname + Totalrelease;
+                                var msg = tmpname + Totalrelease;
                             } else {
-                                var message = tmpname + ' '.repeat(1) + Totalrelease;
+                                var msg = tmpname + ' '.repeat(1) + Totalrelease;
                             }
                         } else {
-                            var message = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
+                            var msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body."
                         }
                     }
-                    if (Totalrelease != "no message") {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: message
-                            }]
-                        });
-                    }
+                    if (Totalrelease != "no message") publicmsg(msg);
                     SosClick();
                     return;
                 }
@@ -797,14 +788,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 90) && (MouseY < 135)) {
                     if (SlowleaveOn == true) {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " slowly heads for the door."
-                            }]
-                        });
+                        var msg = "" + tmpname + " slowly heads for the door.";
+			publicmsg(msg);
                         setTimeout(function() {
                             OutChat();
                         }, 15000);
@@ -2982,7 +2967,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             msg = "You are limited to 200 characters to describe your crafted items.";
         }
         statusmsg(msg);
+    } 
+
+    //Messages
+    function infomsg(msg) {
+        ChatRoomSendLocal(
+            "<p style='background-color:#5fbd7a'>ULTRAbc: " + msg + "</p>"
+        );
     }
+
+    function publicmsg(msg) {
+        ServerSend("ChatRoomChat", {
+            Content: "Beep",
+            Type: "Action",
+            Dictionary: [{
+                Tag: "Beep",
+                Text: msg
+            }]
+         });
+    }
+
+    function statusmsg(msg) {
+        ServerSend("ChatRoomChat", {
+            Type: "Action",
+            Content: "gag",
+            Target: Player.MemberNumber,
+            Dictionary: [{
+                Tag: "gag",
+                Text: msg
+            }],
+        });
+    }
+
 
     //Preferences 
     function FBCsettings() {
@@ -3030,25 +3046,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.RestrictionSettings.BypassStruggle = false;
             }
         }
-    }
-
-    //Messages
-    function infomsg(msg) {
-        ChatRoomSendLocal(
-            "<p style='background-color:#5fbd7a'>ULTRAbc: " + msg + "</p>"
-        );
-    }
-
-    function statusmsg(msg) {
-        ServerSend("ChatRoomChat", {
-            Type: "Action",
-            Content: "gag",
-            Target: Player.MemberNumber,
-            Dictionary: [{
-                Tag: "gag",
-                Text: msg
-            }],
-        });
     }
 
     //Responsive Status
@@ -4758,15 +4755,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     } = {}) {
 
         // Greeting message
-        ServerSend("ChatRoomChat", {
-            Type: "Action",
-            Content: "gag",
-            Dictionary: [{
-                Tag: "gag",
-                Text: "Say hello to the little baby " + tmpname + "!"
-            }]
-        });
-
+        var msg = "Say hello to the little baby " + tmpname + "!";
+	publicmsg(msg);
+	    
         // Initial clear.
         refreshDiaper({
             cdiaper: "both",
@@ -4847,69 +4838,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             changeDiaperColor("ItemPelvis");
             changeDiaperColor("Panties");
             if (checkForDiaper("Panties") && checkForDiaper("ItemPelvis")) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperChangeMessages["ChangeDiaperBoth"]
-                    }]
-                });
+		var msg = tmpname + DiaperChangeMessages["ChangeDiaperBoth"];
+		publicmsg(msg);
             } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOnly"]
-                    }]
-                });
+		var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
+		publicmsg(msg):
             }
         } else if (cdiaper === "chastity") {
             MessLevelChastity = inMessLevelChastity;
             WetLevelChastity = inWetLevelChastity;
             changeDiaperColor("ItemPelvis");
             if (checkForDiaper("ItemPelvis") && checkForDiaper("Panties")) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOuter"]
-                    }]
-                });
+		var msg = tmpname + DiaperChangeMessages["ChangeDiaperOuter"];
+		publicmsg(msg);
             } else if (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties")) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOnly"]
-                    }]
-                });
+		var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
+		publicmsg(msg):
             }
         } else if (cdiaper === "panties") {
             MessLevelPanties = inMessLevelPanties;
             WetLevelPanties = inWetLevelPanties;
             changeDiaperColor("Panties");
             if (checkForDiaper("ItemPelvis") && checkForDiaper("Panties")) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOuter"]
-                    }]
-                });
+		var msg = tmpname + DiaperChangeMessages["ChangeDiaperInner"];
+		publicmsg(msg);
             } else if (checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperChangeMessages["ChangeDiaperOnly"]
-                    }]
-                });
+                var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
+		publicmsg(msg):
             }
         }
     }
@@ -5004,14 +4959,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             diaperTick();
         } else {
             diaperRunning = false;
-            ServerSend("ChatRoomChat", {
-                Type: "Action",
-                Content: "gag",
-                Dictionary: [{
-                    Tag: "gag",
-                    Text: "Awww, " + tmpname + " is all grown up!"
-                }]
-            });
+	    var msg = "Awww, " + tmpname + " is all grown up!";
+	    publicmsg(msg);
         }
     }
 
@@ -5049,61 +4998,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             // Display messages for when a diaper is messed.
             if ((MessLevelPanties === 2 && checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (MessLevelChastity === 2 && checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperUseMessages["MessOnlyFully"]
-                    }]
-                });
+                var msg = tmpname + DiaperUseMessages["MessOnlyFully"];
+		publicmsg(msg);
             } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperUseMessages["MessOnly"]
-                    }]
-                });
+                var msg = tmpname + DiaperUseMessages["MessOnly"];
+		publicmsg(msg);
             } else if (MessLevelChastity === 0) {
-                if (MessLevelPanties === 2) {
-                    ServerSend("ChatRoomChat", {
-                        Type: "Action",
-                        Content: "gag",
-                        Dictionary: [{
-                            Tag: "gag",
-                            Text: tmpname + DiaperUseMessages["MessInnerFully"]
-                        }]
-                    });
+		if (MessLevelPanties === 2) {
+                    var msg = tmpname + DiaperUseMessages["MessInnerFully"];
+		    publicmsg(msg);
                 } else if (MessLevelPanties === 1) {
-                    ServerSend("ChatRoomChat", {
-                        Type: "Action",
-                        Content: "gag",
-                        Dictionary: [{
-                            Tag: "gag",
-                            Text: tmpname + DiaperUseMessages["MessInner"]
-                        }]
-                    });
+		    var msg = tmpname + DiaperUseMessages["MessInner"];
+		    publicmsg(msg);
                 }
             } else if (MessLevelChastity === 1) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperUseMessages["MessOuter"]
-                    }]
-                });
+		var msg = mpname + DiaperUseMessages["MessOuter"];
+		publicmsg(msg);
             } else if (MessLevelChastity === 2) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperUseMessages["MessOuterFully"]
-                    }]
-                });
+		var msg = tmpname + DiaperUseMessages["MessOuterFully"];
+		publicmsg(msg);
             }
         }
         // If the baby only wets, increment the wet level to a max of 2.
@@ -5115,61 +5028,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             // Display messages for when a diaper is wet.
             if ((WetLevelPanties === 2 && checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (WetLevelChastity === 2 && checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperUseMessages["MessOnlyFully"]
-                    }]
-                });
+                var msg = tmpname + DiaperUseMessages["MessOnlyFully"];
+		publicmsg(msg);
             } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperUseMessages["WetOnly"]
-                    }]
-                });
-            } else if (WetLevelChastity === 0) {
+		var msg = tmpname + DiaperUseMessages["WetOnly"];
+		publicmsg(msg);
+            } else if (WetLevelChastiy === 0) {
                 if (WetLevelPanties === 2) {
-                    ServerSend("ChatRoomChat", {
-                        Type: "Action",
-                        Content: "gag",
-                        Dictionary: [{
-                            Tag: "gag",
-                            Text: tmpname + DiaperUseMessages["WetInnerFully"]
-                        }]
-                    });
+		    var msg = tmpname + DiaperUseMessages["WetInnerFully"];
+		    publicmsg(msg);
                 } else if (WetLevelPanties === 1) {
-                    ServerSend("ChatRoomChat", {
-                        Type: "Action",
-                        Content: "gag",
-                        Dictionary: [{
-                            Tag: "gag",
-                            Text: tmpname + DiaperUseMessages["WetInner"]
-                        }]
-                    });
+		    var msg = tmpname + DiaperUseMessages["WetInner"];
+		    publicmsg(msg);
                 }
             } else if (WetLevelChastity === 1) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperUseMessages["WetOuter"]
-                    }]
-                });
+		var msg = tmpname + DiaperUseMessages["WetOuter"];
+		publicmsg(msg);
             } else if (WetLevelChastity === 2) {
-                ServerSend("ChatRoomChat", {
-                    Type: "Action",
-                    Content: "gag",
-                    Dictionary: [{
-                        Tag: "gag",
-                        Text: tmpname + DiaperUseMessages["WetOuterFully"]
-                    }]
-                });
+		var msg = tmpname + DiaperUseMessages["WetOuterFully"];
+		publicmsg(msg);
             }
         }
         // Don't update the color when it's not needed.
