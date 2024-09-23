@@ -4817,7 +4817,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		publicmsg(msg);
             } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
 		var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
-		publicmsg(msg):
+		publicmsg(msg);
             }
         } else if (cdiaper === "chastity") {
             MessLevelChastity = inMessLevelChastity;
@@ -4828,7 +4828,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		publicmsg(msg);
             } else if (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties")) {
 		var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
-		publicmsg(msg):
+		publicmsg(msg);
             }
         } else if (cdiaper === "panties") {
             MessLevelPanties = inMessLevelPanties;
@@ -4839,7 +4839,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		publicmsg(msg);
             } else if (checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) {
                 var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
-		publicmsg(msg):
+		publicmsg(msg);
             }
         }
     }
@@ -5125,7 +5125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             MemberNumber: character.MemberNumber,
                             Action: "Ban"
                         });
-			var msg = AutoKick: Account was 0 days old.";
+			var msg = "AutoKick: Account was 0 days old.";
 			publicmsg(msg);
                     };
                 };
@@ -10646,7 +10646,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             var msg1 = "You're too heavily tied to exercise.";
                             infomsg(msg1);
                         }
-			var msg2 = " + tmpname + " makes " + pronoun3 + " workout.";
+			var msg2 = "" + tmpname + " makes " + pronoun3 + " workout.";
 			publicmsg(msg2);
                         CurrentCharacter = Player;
                         PoseSetActive(Player, null);
