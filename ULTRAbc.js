@@ -9948,28 +9948,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Naked == undefined) {
-                    var message = "Magical lasers make disappear the clothes on " + tmpname + "'s body."
+                    var msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
                 } else {
                     if (Naked != "") {
                         if (Naked.startsWith("\u0027")) {
-                            var message = tmpname + Naked;
+                            var msg = tmpname + Naked;
                         } else {
-                            var message = tmpname + ' '.repeat(1) + Naked;
+                            var msg = tmpname + ' '.repeat(1) + Naked;
                         }
                     } else {
-                        var message = "Magical lasers make disappear the clothes on " + tmpname + "'s body."
+                        var msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
                     }
                 }
-                if (Naked != "no message") {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
-                }
+                if (Naked != "no message") publicmsg(msg);
                 CharacterNaked(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
@@ -9991,28 +9982,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         if (Tnaked == undefined) {
-                            var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                            var msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
                         } else {
                             if (Tnaked != "") {
                                 if (Tnaked.startsWith("\u0027")) {
-                                    var message = tmpname + Tnaked + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + Tnaked + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var message = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
                                 }
                             } else {
-                                var message = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                                var msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
                             }
                         }
-                        if (Tnaked != "no message") {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: message
-                                }]
-                            });
-                        }
+                        if (Tnaked != "no message") publicmsg(msg);
                         CharacterNaked(target[0]);
                         ChatRoomCharacterUpdate(target[0]);
                     }
@@ -10267,28 +10249,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Pet == undefined) {
-                    var message = "" + tmpname + " becomes a cute pet."
+                    var msg = "" + tmpname + " becomes a cute pet."
                 } else {
                     if (Pet != "") {
                         if (Pet.startsWith("\u0027")) {
-                            var message = tmpname + Pet;
+                            var msg = tmpname + Pet;
                         } else {
-                            var message = tmpname + ' '.repeat(1) + Pet;
+                            var msg = tmpname + ' '.repeat(1) + Pet;
                         }
                     } else {
-                        var message = "" + tmpname + " becomes a cute pet."
+                        var msg = "" + tmpname + " becomes a cute pet."
                     }
                 }
-                if (Pet != "no message") {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Beep",
-                        Type: "Action",
-                        Dictionary: [{
-                            Tag: "Beep",
-                            Text: message
-                        }]
-                    });
-                }
+                if (Pet != "no message") publicmsg(msg);
                 CharacterNaked(Player);
                 InventoryWearRandom(Player, "ItemArms", 8, null, false, true, ["ArmbinderJacket", "BitchSuit", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "PantyhoseBody", "PantyhoseBodyOpen", "SeamlessStraitDress", "SeamlessStraitDressOpen", "StraitLeotard", "StrictLeatherPetCrawler"], true);
                 InventoryWearRandom(Player, "HairAccessory1", 8, null, false, true, ["Antennae", "BunnyEars1", "BunnyEars2", "CowHorns", "Ears1", "Ears2", "ElfEars", "FoxEars1", "FoxEars2", "FoxEars3", "KittenEars1", "KittenEars2", "MouseEars1", "MouseEars2", "PonyEars1", "PuppyEars1", "PuppyEars2", "RaccoonEars1", "WolfEars1", "WolfEars2"], true);
@@ -10318,28 +10291,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         if (Tpet == undefined) {
-                            var message = "" + tgpname + " becomes a cute pet."
+                            var msg = "" + tgpname + " becomes a cute pet.";
                         } else {
                             if (Tpet != "") {
                                 if (Tpet.startsWith("\u0027")) {
-                                    var message = tmpname + Tpet + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + Tpet + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var message = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
+                                    var msg = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
                                 }
                             } else {
-                                var message = "" + tgpname + " becomes a cute pet."
+                                var msg = "" + tgpname + " becomes a cute pet."
                             }
                         }
-                        if (Tpet != "no message") {
-                            ServerSend("ChatRoomChat", {
-                                Content: "Beep",
-                                Type: "Action",
-                                Dictionary: [{
-                                    Tag: "Beep",
-                                    Text: message
-                                }]
-                            });
-                        }
+                        if (Tpet != "no message") publicmsg(msg);
                         CharacterNaked(target[0]);
                         InventoryWearRandom(target[0], "ItemArms", 8, null, false, true, ["ArmbinderJacket", "BitchSuit", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "PantyhoseBody", "PantyhoseBodyOpen", "SeamlessStraitDress", "SeamlessStraitDressOpen", "StraitLeotard", "StrictLeatherPetCrawler"], true);
                         InventoryWearRandom(target[0], "HairAccessory1", 8, null, false, true, ["Antennae", "BunnyEars1", "BunnyEars2", "CowHorns", "Ears1", "Ears2", "ElfEars", "FoxEars1", "FoxEars2", "FoxEars3", "KittenEars1", "KittenEars2", "MouseEars1", "MouseEars2", "PonyEars1", "PuppyEars1", "PuppyEars2", "RaccoonEars1", "WolfEars1", "WolfEars2"], true);
@@ -10422,14 +10386,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 var message = ' '.repeat(1) + args;
             }
-            ServerSend("ChatRoomChat", {
-                Content: "Beep",
-                Type: "Action",
-                Dictionary: [{
-                    Tag: "Beep",
-                    Text: "" + tmpname + message
-                }]
-            });
+	    var msg = "" + tmpname + message;
+	    publicmsg(msg);
             RelogExit();
         }
     }])
@@ -10461,157 +10419,85 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         (PoseCanChangeUnaided(Player, 'BaseUpper'))) {
                         PoseSetActive(Player, "BaseUpper");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " relaxes " + pronoun3 + " arms."
-                            }]
-                        });
+			var msg = "" + tmpname + " relaxes " + pronoun3 + " arms.";
+			publicmsg(msg);
                     } else if ((pose == "belly") &&
                         (Player.ActivePose != 'Hogtied') &&
                         (PoseCanChangeUnaided(Player, 'Hogtied'))) {
                         PoseSetActive(Player, "Hogtied");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " relaxes on " + pronoun3 + " belly."
-                            }]
-                        });
+			var msg = "" + tmpname + " relaxes on " + pronoun3 + " belly.";
+			publicmsg(msg);
                     } else if ((pose == "boxtied") &&
                         (Player.ActivePose != 'BackBoxTie') &&
                         (PoseCanChangeUnaided(Player, 'BackBoxTie'))) {
                         PoseSetActive(Player, "BackBoxTie");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " puts the arms behind " + pronoun3 + " back."
-                            }]
-                        });
+			var msg = "" + tmpname + " puts the arms behind " + pronoun3 + " back.";
+			publicmsg(msg);
                     } else if ((pose == "cuffed") &&
                         (Player.ActivePose != 'BackCuffs') &&
                         (PoseCanChangeUnaided(Player, 'BackCuffs'))) {
                         PoseSetActive(Player, "BackCuffs");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun4 + " is handcuffed."
-                            }]
-                        });
+			var msg = "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun4 + " is handcuffed.";
+			publicmsg(msg);
                     } else if ((pose == "elbowtied") &&
                         (Player.ActivePose != 'BackElbowTouch') &&
                         (PoseCanChangeUnaided(Player, 'BackElbowTouch'))) {
                         PoseSetActive(Player, "BackElbowTouch");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " puts the arms behind " + pronoun3 + " back, elbows almost touching."
-                            }]
-                        });
+			var msg = "" + tmpname + " puts the arms behind " + pronoun3 + " back, elbows almost touching.";
+			publicmsg(msg);
                     } else if ((pose == "kneel1") &&
                         (Player.ActivePose != 'Kneel') &&
                         ((PoseCanChangeUnaided(Player, 'Kneel')) || (ChatRoomCanAttemptKneel(Player) == true))) {
                         PoseSetActive(Player, "Kneel");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " kneels down."
-                            }]
-                        });
+			var msg = "" + tmpname + " kneels down.";
+			publicmsg(msg);
                     } else if ((pose == "kneel2") &&
                         (Player.ActivePose != 'KneelingSpread') &&
                         (PoseCanChangeUnaided(Player, 'KneelingSpread'))) {
                         PoseSetActive(Player, "KneelingSpread");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " kneels down and opens " + pronoun3 + " legs."
-                            }]
-                        });
+			var msg = "" + tmpname + " kneels down and opens " + pronoun3 + " legs.";
+			publicmsg(msg);
                     } else if ((pose == "legsclosed") &&
                         (Player.ActivePose != 'LegsClosed') &&
                         (PoseCanChangeUnaided(Player, 'LegsClosed'))) {
                         PoseSetActive(Player, "LegsClosed");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " stands up and closes " + pronoun3 + " legs."
-                            }]
-                        });
+			var msg = "" + tmpname + " stands up and closes " + pronoun3 + " legs.";
+			publicmsg(msg);
                     } else if ((pose == "legsopen") &&
                         (Player.ActivePose != 'LegsOpen') &&
                         (PoseCanChangeUnaided(Player, 'LegsOpen'))) {
                         PoseSetActive(Player, "LegsOpen");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " stands up normally on " + pronoun3 + " feet."
-                            }]
-                        });
+			var msg = "" + tmpname + " stands up normally on " + pronoun3 + " feet.";
+			publicmsg(msg);
                     } else if ((pose == "pet") &&
                         (Player.ActivePose != 'AllFours') &&
                         (PoseCanChangeUnaided(Player, 'AllFours'))) {
                         PoseSetActive(Player, "AllFours");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " relaxes on all fours."
-                            }]
-                        });
+			var msg = "" + tmpname + " relaxes on all fours.";
+			publicmsg(msg);
                     } else if ((pose == "spreadarms1") &&
                         (Player.ActivePose != 'Yoked') &&
                         (PoseCanChangeUnaided(Player, 'Yoked'))) {
                         PoseSetActive(Player, "Yoked");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " raises " + pronoun3 + " hands."
-                            }]
-                        });
+			var msg = "" + tmpname + " raises " + pronoun3 + " hands.";
+			publicmsg(msg);
                     } else if ((pose == "spreadarms2") &&
                         (Player.ActivePose != 'OverTheHead') &&
                         (PoseCanChangeUnaided(Player, 'OverTheHead'))) {
                         PoseSetActive(Player, "OverTheHead");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " raises the hands above " + pronoun3 + " head."
-                            }]
-                        });
+			var msg = "" + tmpname + " raises the hands above " + pronoun3 + " head.";
+			publicmsg(msg);
                     } else if ((pose == "spreadeagle1") &&
                         ((Player.ActivePose == null) || (Player.ActivePose.includes('Yoked') == false) || (Player.ActivePose.includes('Spread') == false)) &&
                         (PoseCanChangeUnaided(Player, 'Yoked')) &&
@@ -10619,14 +10505,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         PoseSetActive(Player, "Yoked");
                         PoseSetActive(Player, "Spread")
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " raises " + pronoun3 + " hands and spreads " + pronoun3 + " legs."
-                            }]
-                        });
+			var msg = "" + tmpname + " raises " + pronoun3 + " hands and spreads " + pronoun3 + " legs.";
+			publicmsg(msg);
                     } else if ((pose == "spreadeagle2") &&
                         ((Player.ActivePose == null) || (Player.ActivePose.includes('OverTheHead') == false) || (Player.ActivePose.includes('Spread') == false)) &&
                         (PoseCanChangeUnaided(Player, 'OverTheHead')) &&
@@ -10634,77 +10514,41 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         PoseSetActive(Player, "OverTheHead");
                         PoseSetActive(Player, "Spread")
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " raises the hands above " + pronoun3 + " head and spreads " + pronoun3 + " legs."
-                            }]
-                        });
+			var msg = "" + tmpname + " raises the hands above " + pronoun3 + " head and spreads " + pronoun3 + " legs.";
+			publicmsg(msg);
                     } else if ((pose == "spreadlegs") &&
                         (Player.ActivePose != 'Spread') &&
                         (PoseCanChangeUnaided(Player, 'Spread'))) {
                         PoseSetActive(Player, "Spread");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " spreads " + pronoun3 + " legs."
-                            }]
-                        });
+			var msg = "" + tmpname + " spreads " + pronoun3 + " legs.";
+			publicmsg(msg);
                     } else if ((pose == "stand") &&
                         (Player.ActivePose != null) &&
                         ((PoseCanChangeUnaided(Player, null)) || (ChatRoomCanAttemptStand(Player) == true))) {
                         PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " stands up."
-                            }]
-                        });
+			var msg = "" + tmpname + " stands up.";
+			publicmsg(msg);
                     } else if ((pose == "suspension") &&
                         (Player.ActivePose != 'Suspension') &&
                         (PoseCanChangeUnaided(Player, 'Suspension'))) {
                         PoseSetActive(Player, "Suspension");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " is now in an acrobatic pose in suspension."
-                            }]
-                        });
+			var msg = "" + tmpname + " is now in an acrobatic pose in suspension.";
+			publicmsg(msg);
                     } else if ((pose == "tapedhands") &&
                         (Player.ActivePose != 'TapedHands') &&
                         (PoseCanChangeUnaided(Player, 'TapedHands'))) {
                         PoseSetActive(Player, "TapedHands");
                         ChatRoomCharacterUpdate(Player);
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun3 + " hands are taped."
-                            }]
-                        });
+			var msg = "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun3 + " hands are taped.";
+			publicmsg(msg);
                         // Special poses
                     } else if (pose == "jump") {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " jumps with joy."
-                            }]
-                        });
+			var msg = "" + tmpname + " jumps with joy.";
+			publicmsg(msg);
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
@@ -10741,16 +10585,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 CharacterRefresh(Player);
                         }, 4000);
                     } else if (pose == "roof") {
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " jumps to the ceiling."
-                            }]
-                        });
-                        var msg = "To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if WCE enabled).";
-                        infomsg(msg);
+			var msg1 = "" + tmpname + " jumps to the ceiling.";
+			publicmsg(msg1);
+                        var msg2 = "To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if WCE enabled).";
+                        infomsg(msg2);
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
@@ -10806,17 +10644,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else if (InventoryGet(Player, "ItemPelvis").Asset.Name == "HempRope") {
                             Region = "ItemPelvis";
                         } else {
-                            var msg = "You're too heavily tied to exercise.";
-                            infomsg(msg);
+                            var msg1 = "You're too heavily tied to exercise.";
+                            infomsg(msg1);
                         }
-                        ServerSend("ChatRoomChat", {
-                            Content: "Beep",
-                            Type: "Action",
-                            Dictionary: [{
-                                Tag: "Beep",
-                                Text: "" + tmpname + " makes " + pronoun3 + " workout."
-                            }]
-                        });
+			var msg2 = " + tmpname + " makes " + pronoun3 + " workout.";
+			publicmsg(msg2);
                         CurrentCharacter = Player;
                         PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
@@ -10970,14 +10802,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BaseUpper'))) {
                                     PoseSetActive(target[0], "BaseUpper");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " lets " + tgpname + " relax " + tgpr3 + " arms."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " lets " + tgpname + " relax " + tgpr3 + " arms.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "belly") {
                                 if ((target[0].AllowItem == true) &&
@@ -10985,14 +10811,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'Hogtied'))) {
                                     PoseSetActive(target[0], "Hogtied");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to stay on " + tgpr3 + " belly."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " to stay on " + tgpr3 + " belly.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "boxtied") {
                                 if ((target[0].AllowItem == true) &&
@@ -11000,14 +10820,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BackBoxTie'))) {
                                     PoseSetActive(target[0], "BackBoxTie");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to put the arms behind " + tgpr3 + " back."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms behind " + tgpr3 + " back.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "cuffed") {
                                 if ((target[0].AllowItem == true) &&
@@ -11015,14 +10829,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BackCuffs'))) {
                                     PoseSetActive(target[0], "BackCuffs");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr4 + " handcuffed."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr4 + " handcuffed.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "elbowtied") {
                                 if ((target[0].AllowItem == true) &&
@@ -11030,14 +10838,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BackElbowTouch'))) {
                                     PoseSetActive(target[0], "BackElbowTouch");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to put the arms behind her back, elbows almost touching."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms behind her back, elbows almost touching.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "kneel1") {
                                 if ((target[0].AllowItem == true) &&
@@ -11045,14 +10847,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     ((PoseCanChangeUnaided(target[0], 'Kneel')) || (ChatRoomCanAttemptKneel(target[0]) == true))) {
                                     PoseSetActive(target[0], "Kneel");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " helps " + tgpname + " to kneel down."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " helps " + tgpname + " to kneel down.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "kneel2") {
                                 if ((target[0].AllowItem == true) &&
@@ -11060,14 +10856,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'KneelingSpread'))) {
                                     PoseSetActive(target[0], "KneelingSpread");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " helps " + tgpname + " to kneel down, forcing " + tgpr3 + " legs open."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " helps " + tgpname + " to kneel down, forcing " + tgpr3 + " legs open.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "legsclosed") {
                                 if ((target[0].AllowItem == true) &&
@@ -11075,14 +10865,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'LegsClosed'))) {
                                     PoseSetActive(target[0], "LegsClosed");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " helps " + tgpname + " to stand up with " + tgpr3 + " legs closed."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " helps " + tgpname + " to stand up with " + tgpr3 + " legs closed.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "legsopen") {
                                 if ((target[0].AllowItem == true) &&
@@ -11090,14 +10874,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'LegsOpen'))) {
                                     PoseSetActive(target[0], "LegsOpen");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " helps " + tgpname + " to stand up normally on " + tgpr3 + " feet."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " helps " + tgpname + " to stand up normally on " + tgpr3 + " feet.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "pet") {
                                 if ((target[0].AllowItem == true) &&
@@ -11105,14 +10883,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'AllFours'))) {
                                     PoseSetActive(target[0], "AllFours");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " on all fours."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " on all fours.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadarms1") {
                                 if ((target[0].AllowItem == true) &&
@@ -11120,14 +10892,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'Yoked'))) {
                                     PoseSetActive(target[0], "Yoked");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " helps " + tgpname + " to raise " + tgpr3 + " hands."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " helps " + tgpname + " to raise " + tgpr3 + " hands.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadarms2") {
                                 if ((target[0].AllowItem == true) &&
@@ -11135,14 +10901,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'OverTheHead'))) {
                                     PoseSetActive(target[0], "OverTheHead");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to raise the hands above " + tgpr3 + " head."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " to raise the hands above " + tgpr3 + " head.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadeagle1") {
                                 if ((target[0].AllowItem == true) &&
@@ -11152,14 +10912,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target[0], "Yoked");
                                     PoseSetActive(target[0], "Spread");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to raise the hands and spread the legs."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " to raise the hands and spread the legs.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadeagle2") {
                                 if ((target[0].AllowItem == true) &&
@@ -11169,29 +10923,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target[0], "OverTheHead");
                                     PoseSetActive(target[0], "Spread");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to raise the hands above the head and spread the legs."
-                                        }]
-                                    });
+                                    var msg = "" + tmpname + " forces " + tgpname + " to raise the hands above the head and spread the legs.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadlegs") {
                                 if ((target[0].AllowItem == true) &&
                                     (target[0].ActivePose != 'Spread') &&
                                     (PoseCanChangeUnaided(target[0], 'Spread'))) {
                                     PoseSetActive(target[0], "Spread");
-                                    ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to spread " + tgpr3 + " legs."
-                                        }]
-                                    });
+                                    ChatRoomCharacterUpdate(target[0]);  
+				    var msg = "" + tmpname + " forces " + tgpname + " to spread " + tgpr3 + " legs.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "stand") {
                                 if ((target[0].AllowItem == true) &&
@@ -11200,14 +10942,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target[0], null);
                                     ChatRoomCharacterUpdate(target[0]);
                                     CharacterRefresh(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " helps " + tgpname + " to stand up."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " helps " + tgpname + " to stand up.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "suspension") {
                                 if ((target[0].AllowItem == true) &&
@@ -11215,14 +10951,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'Suspension'))) {
                                     PoseSetActive(target[0], "Suspension");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " in an acrobatic pose in suspension."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " in an acrobatic pose in suspension.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "tapedhands") {
                                 if ((target[0].AllowItem == true) &&
@@ -11230,14 +10960,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'TapedHands'))) {
                                     PoseSetActive(target[0], "TapedHands");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    ServerSend("ChatRoomChat", {
-                                        Content: "Beep",
-                                        Type: "Action",
-                                        Dictionary: [{
-                                            Tag: "Beep",
-                                            Text: "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr3 + " hands are taped."
-                                        }]
-                                    });
+				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr3 + " hands are taped.";
+				    publicmsg(msg);
                                 }
                             } else if (pose == "reset") {
                                 if (target[0].AllowItem == true) {
