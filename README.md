@@ -64,4 +64,5 @@ Changes for future version
   - uset extbuttons to enable/disable the EXT button in chat rooms
   - xmenu for direct access to Extensions screen
 * Added support for the Lewd Crest lock (provided by Echo's items/clothes mod) to the lock and unlock commands
+* Updated the invisible command to include the extra slots added by Echo's items/clothes mod
 * Optimised the handling of UBC public messages
