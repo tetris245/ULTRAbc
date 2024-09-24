@@ -2603,171 +2603,92 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //LSCG Status
     function showBcLscgStatus() {
-        let msg;
-        if (LSCGdata.GlobalModule.enabled) {
-            msg1 = "LSCG is enabled.";
-        } else {
-            msg1 = "LSCG is disabled.";
-        }
-        if (LSCGdata.ActivityModule.enabled) {
-            Activities = "Activities - ";
-        } else {
-            Activities = "";
-        }
-        if (LSCGdata.CollarModule.enabled) {
-            Collar = "Breathplay (Collar) - ";
-        } else {
-            Collar = "";
-        }
-        if (LSCGdata.MiscModule.chloroformEnabled) {
-            Chloroform = "Chloroform - ";
-        } else {
-            Chloroform = "";
-        }
-        if (LSCGdata.InjectorModule.enabled) {
-            Drugs = "Drugs + Net Gun - ";
-        } else {
-            Drugs = "";
-        }
-        if (LSCGdata.MiscModule.gagChokeEnabled) {
-            Gagchoke = "Gag Choking - ";
-        } else {
-            Gagchoke = "";
-        }
-        if (LSCGdata.MiscModule.handChokeEnabled) {
-            Handchoke = "Hand Choking - ";
-        } else {
-            Handchoke = "";
-        }
-        if (LSCGdata.HypnoModule.enabled) {
-            Hypnosis = "Hypnosis - ";
-        } else {
-            Hypnosis = "";
-        }
-        if (LSCGdata.LeashingModule.enabled) {
-            Leashing = "Leashing - ";
-        } else {
-            Leashing = "";
-        }
-        if (LSCGdata.MagicModule.enabled) {
-            Magic = "Magic";
-        } else {
-            Magic = "";
-        }
+        Activities = "";
+        Collar = "";
+        Chloroform = "";
+        Drugs = "";
+        Gagchoke = "";
+        Handchoke = "";
+        Hypnosis = "";
+        Leashing = "";
+        Magic = "";
+        msg1 = "LSCG is disabled.";
+        if (LSCGdata.GlobalModule.enabled) msg1 = "LSCG is enabled.";   
+        if (LSCGdata.ActivityModule.enabled) Activities = "Activities - ";  
+        if (LSCGdata.CollarModule.enabled) Collar = "Breathplay (Collar) - ";
+        if (LSCGdata.MiscModule.chloroformEnabled) Chloroform = "Chloroform - ";
+        if (LSCGdata.InjectorModule.enabled) Drugs = "Drugs + Net Gun - ";  
+        if (LSCGdata.MiscModule.gagChokeEnabled) Gagchoke = "Gag Choking - ";
+        if (LSCGdata.MiscModule.handChokeEnabled) Handchoke = "Hand Choking - ";
+        if (LSCGdata.HypnoModule.enabled) Hypnosis = "Hypnosis - "; 
+        if (LSCGdata.LeashingModule.enabled) Leashing = "Leashing - ";  
+        if (LSCGdata.MagicModule.enabled) Magic = "Magic";  
         msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Drugs + Gagchoke + Handchoke + Hypnosis + Leashing + Magic
         statusmsg(msg);
     }
 
     function showBoopReactionsStatus() {
-        let msg;
-        if (LSCGdata.BoopsModule.enabled) {
-            msg = "Auto-react when booped.";
-        } else {
-            msg = "No auto-react when booped.";
-        }
+        var msg = "No auto-react when booped.";
+        if (LSCGdata.BoopsModule.enabled) var msg = "Auto-react when booped."; 
         statusmsg(msg);
     }
 
     function showCheckRollsStatus() {
-        let msg;
-        if (LSCGdata.GlobalModule.showCheckRolls) {
-            msg = "Display of attacker/defender roll values with some activities.";
-        } else {
-            msg = "No display of attacker/defender roll values with some activities.";
-        }
+        var msg = "No display of attacker/defender roll values with some activities.";
+        if (LSCGdata.GlobalModule.showCheckRolls) var msg = "Display of attacker/defender roll values with some activities.";    
         statusmsg(msg);
     }
 
     function showCraftingStatus() {
-        let msg;
-        if (LSCGdata.GlobalModule.sharePublicCrafting) {
-            msg1 = "Your public craftings are shared and can be used by other LSCG players in the chat room.";
-        } else {
-            msg1 = "Your public craftings are not shared.";
-        }
-        if (LSCGdata.GlobalModule.seeSharedCrafts) {
-            msg2 = "Your shared public craftings are displayed.";
-        } else {
-            msg2 = "Your shared public craftings are not displayed.";
-        }
-	if (LSCGdata.GlobalModule.tamperproofEnabled) {
-            msg3 = "Tamperproof features are enabled.";
-        } else {
-            msg3 = "Tamperproof features are disabled.";
-        }
+        msg1 = "Your public craftings are not shared.";
+        msg2 = "Your shared public craftings are not displayed.";
+        msg3 = "Tamperproof features are disabled.";
+        if (LSCGdata.GlobalModule.sharePublicCrafting) msg1 = "Your public craftings are shared and can be used by other LSCG players in the chat room.";    
+        if (LSCGdata.GlobalModule.seeSharedCrafts) msg2 = "Your shared public craftings are displayed.";    
+        if (LSCGdata.GlobalModule.tamperproofEnabled) msg3 = "Tamperproof features are enabled.";    
         msg = msg1 + " " + msg2 + " " + msg3;
         statusmsg(msg);
     }
 
     function showEdgeBlurStatus() {
-        let msg;
-        if (LSCGdata.GlobalModule.edgeBlur) {
-            msg = "Blurring of the screen when you are on edge.";
-        } else {
-            msg = "No blurring of the screen when you are on edge.";
-        }
+        var msg = "No blurring of the screen when you are on edge.";
+        if (LSCGdata.GlobalModule.edgeBlur) var msg = "Blurring of the screen when you are on edge.";      
         statusmsg(msg);
     }
 
     function showErectionStatus() {
-        let msg;
-        if (LSCGdata.GlobalModule.erectionDetection) {
-            msg = "Private message when you feel an erection under your clothes.";
-        } else {
-            msg = "No private message when you feel an erection under your clothes.";
-        }
+        var msg = "No private message when you feel an erection under your clothes.";
+        if (LSCGdata.GlobalModule.erectionDetection) var msg = "Private message when you feel an erection under your clothes.";      
         statusmsg(msg);
     }
 
     function showLipstickStatus() {
-        let msg;
-        if (LSCGdata.LipstickModule.enabled) {
-            msg1 = "Other people can leave lipstick marks on your face or neck when kissing you.";
-        } else {
-            msg1 = "No lipstick mark on your face or neck when someone kisses you.";
-        }
-        if (LSCGdata.LipstickModule.dry) {
-            msg2 = "No lipstick marks when you kiss someone.";
-        } else {
-            msg2 = "Lipstick marks possible when you kiss someone.";
-        }
+        msg1 = "No lipstick mark on your face or neck when someone kisses you.";
+        msg2 = "Lipstick marks possible when you kiss someone.";
+        if (LSCGdata.LipstickModule.enabled) msg1 = "Other people can leave lipstick marks on your face or neck when kissing you.";   
+        if (LSCGdata.LipstickModule.dry) msg2 = "No lipstick marks when you kiss someone.";   
         msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
 
     function showOpacityStatus() {
-        let msg;
-        if (LSCGdata.OpacityModule.enabled) {
-            msg1 = "Effects bypassing opacity are applied.";
-        } else {
-            msg1 = "Effects bypassing opacity are not applied.";
-        }
-        if (LSCGdata.OpacityModule.preventExternalMod) {
-            msg2 = "Other players can change the opacity of your wardrobe items.";
-        } else {
-            msg2 = "Other players can't change the opacity of your wardrobe items.";
-        }
+        msg1 = "Effects bypassing opacity are not applied.";
+        msg2 = "Other players can't change the opacity of your wardrobe items.";
+        if (LSCGdata.OpacityModule.enabled) msg1 = "Effects bypassing opacity are applied.";  
+        if (LSCGdata.OpacityModule.preventExternalMod) msg2 = "Other players can change the opacity of your wardrobe items.";    
         msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
 
     function showRestrainedSettingsStatus() {
-        let msg;
-        if (LSCGdata.GlobalModule.blockSettingsWhileRestrained) {
-            msg = "LSCG settings can't be changed when you are restrained.";
-        } else {
-            msg = "LSCG settings can be changed when you are restrained.";
-        }
+        var msg = "LSCG settings can be changed when you are restrained.";
+        if (LSCGdata.GlobalModule.blockSettingsWhileRestrained) var msg = "LSCG settings can't be changed when you are restrained.";     
         statusmsg(msg);
     }
 
     function showResizingStatus() {
-        let msg;
-        if (LSCGdata.GlobalModule.hideResizing) {
-            msg = "LSCG resizing effects will not be displayed.";
-        } else {
-            msg = "LSCG resizing effects will be displayed.";
-        }
+        var msg = "LSCG resizing effects will be displayed.";
+        if (LSCGdata.GlobalModule.hideResizing) var msg = "LSCG resizing effects will not be displayed.";    
         statusmsg(msg);
     }
 
