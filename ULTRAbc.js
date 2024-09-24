@@ -2189,28 +2189,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             for (let A = C.Appearance.length - 1; A >= 0; A--)
                                 if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
-                                    if ((C.Appearance[A].Asset.Group.Name != "Blush") &&
-                                        (C.Appearance[A].Asset.Group.Name != "BodyLower") &&
-                                        (C.Appearance[A].Asset.Group.Name != "BodyUpper") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Emoticon") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Eyebrows") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Eyes") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Eyes2") &&
-                                        (C.Appearance[A].Asset.Group.Name != "FacialHair") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Fluids") &&
-                                        (C.Appearance[A].Asset.Group.Name != "HairBack") &&
-                                        (C.Appearance[A].Asset.Group.Name != "HairFront") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Hands") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Head") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Height") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Mouth") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Nipples") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Pronouns") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Pussy") &&
-                                        (C.Appearance[A].Asset.Group.Name != "HairAccessory1") &&
-                                        (C.Appearance[A].Asset.Group.Name != "HairAccessory2") &&
-                                        (C.Appearance[A].Asset.Group.Name != "TailStraps") &&
-                                        (C.Appearance[A].Asset.Group.Name != "Wings")) {
+                                    if (!(echolevel2.includes(C.Appearance[A].Asset.Group.Name))) { 
                                         InventoryRemove(C, C.Appearance[A].Asset.Group.Name);
                                     }
                                 }
@@ -2222,28 +2201,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         InventoryRemove(C, itemstr[1]);
                                         InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
                                     }
-                                } else if ((itemstr[1] != "Blush") &&
-                                    (itemstr[1] != "BodyLower") &&
-                                    (itemstr[1] != "BodyUpper") &&
-                                    (itemstr[1] != "Emoticon") &&
-                                    (itemstr[1] != "Eyebrows") &&
-                                    (itemstr[1] != "Eyes") &&
-                                    (itemstr[1] != "Eyes2") &&
-                                    (itemstr[1] != "FacialHair") &&
-                                    (itemstr[1] != "Fluids") &&
-                                    (itemstr[1] != "HairBack") &&
-                                    (itemstr[1] != "HairFront") &&
-                                    (itemstr[1] != "Hands") &&
-                                    (itemstr[1] != "Head") &&
-                                    (itemstr[1] != "Height") &&
-                                    (itemstr[1] != "Mouth") &&
-                                    (itemstr[1] != "Nipples") &&
-                                    (itemstr[1] != "Pronouns") &&
-                                    (itemstr[1] != "Pussy") &&
-                                    (itemstr[1] != "HairAccessory1") &&
-                                    (itemstr[1] != "HairAccessory2") &&
-                                    (itemstr[1] != "TailStraps") &&
-                                    (itemstr[1] != "Wings")) {
+                                } else if (!(echolevel2.includes(itemstr[1]))) {                              
                                     InventoryRemove(C, itemstr[1]);
                                     InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
                                 }
@@ -2276,24 +2234,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         InventoryRemove(C, itemstr[1]);
                                         InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
                                     }
-                                } else if ((itemstr[1] != "Blush") &&
-                                    (itemstr[1] != "BodyLower") &&
-                                    (itemstr[1] != "BodyUpper") &&
-                                    (itemstr[1] != "Emoticon") &&
-                                    (itemstr[1] != "Eyebrows") &&
-                                    (itemstr[1] != "Eyes") &&
-                                    (itemstr[1] != "Eyes2") &&
-                                    (itemstr[1] != "FacialHair") &&
-                                    (itemstr[1] != "Fluids") &&
-                                    (itemstr[1] != "HairBack") &&
-                                    (itemstr[1] != "HairFront") &&
-                                    (itemstr[1] != "Hands") &&
-                                    (itemstr[1] != "Head") &&
-                                    (itemstr[1] != "Height") &&
-                                    (itemstr[1] != "Mouth") &&
-                                    (itemstr[1] != "Nipples") &&
-                                    (itemstr[1] != "Pronouns") &&
-                                    (itemstr[1] != "Pussy")) {
+                                } else if (!(echolevel1.includes(itemstr[1]))) {
                                     InventoryRemove(C, itemstr[1]);
                                     InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
                                 }
