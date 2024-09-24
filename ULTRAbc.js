@@ -2310,99 +2310,62 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //BCAR Status
     function showAnimalTypeStatus() {
-        let msg;
-        msg = "Current Animal Type: " + BCARdata.animal;
+        var msg = "Current Animal Type: " + BCARdata.animal;
         statusmsg(msg);
     }
 
     function showAnimationButtonsStatus() {
-        let msg;
-        if (BCARdata.animationButtonsEnable) {
-            msg = "Animation Buttons enabled.";
-        } else {
-            msg = "Animation Buttons disabled.";
-        }
+        var msg = "Animation Buttons disabled.";
+        if (BCARdata.animationButtonsEnable) var msg = "Animation Buttons enabled.";
         statusmsg(msg);
     }
 
     function showArousalManipulationStatus() {
-        let msg;
-        if (BCARdata.arousalEnable) {
-            msg = "Arousal Manipulation enabled.";
-        } else {
-            msg = "Arousal Manipulation disabled.";
-        }
+        var msg = "Arousal Manipulation disabled.";
+        if (BCARdata.arousalEnable) var msg = "Arousal Manipulation enabled.";
         statusmsg(msg);
     }
 
     function showBCARExpressionsStatus() {
-        let msg;
-        if (BCARdata.expressionsEnable) {
-            msg = "BCAR Expressions enabled.";
-        } else {
-            msg = "BCAR Expressions disabled.";
-        }
+        var msg = "BCAR Expressions disabled.";
+        if (BCARdata.expressionsEnable) var msg = "BCAR Expressions enabled.";     
         statusmsg(msg);
     }
 
     function showEarAnimationStatus() {
-        let msg;
-        if (BCARdata.earWigglingEnable) {
-            msg = "Ear Animation enabled.";
-        } else {
-            msg = "Ear Animation disabled.";
-        }
+        var msg = "Ear Animation disabled.";
+        if (BCARdata.earWigglingEnable) var msg = "Ear Animation enabled.";       
         statusmsg(msg);
     }
 
     function showEarEmoteStatus() {
-        let msg;
-        if (BCARdata.earEmoteEnable) {
-            msg = "Ear Emote enabled.";
-        } else {
-            msg = "Ear Emote disabled.";
-        }
+        var msg = "Ear Emote disabled.";
+        if (BCARdata.earEmoteEnable) var msg = "Ear Emote enabled.";    
         statusmsg(msg);
     }
 
     function showTailAnimationStatus() {
-        let msg;
-        if (BCARdata.tailWaggingEnable) {
-            msg = "Tail Animation enabled.";
-        } else {
-            msg = "Tail Animation disabled.";
-        }
+        var msg = "Tail Animation disabled.";
+        if (BCARdata.tailWaggingEnable) var msg = "Tail Animation enabled.";   
         statusmsg(msg);
     }
 
     function showTailEmoteStatus() {
-        let msg;
-        if (BCARdata.tailEmoteEnable) {
-            msg = "Tail Emote enabled.";
-        } else {
-            msg = "Tail Emote disabled.";
-        }
+        var msg = "Tail Emote disabled.";
+        if (BCARdata.tailEmoteEnable) var msg = "Tail Emote enabled.";      
         statusmsg(msg);
     }
 
     function showWingAnimationStatus() {
-        let msg;
-        if (BCARdata.wingFlappingEnable) {
-            msg = "Wing Animation enabled.";
-        } else {
-            msg = "Wing Animation disabled."
-        }
+        var msg = "Wing Animation disabled.";
+        if (BCARdata.wingFlappingEnable) var msg = "Wing Animation enabled.";   
         statusmsg(msg);
     }
 
     //BC Responsive Status	
     function showBCResponsiveStatus() {
-        let msg;
-        if (BCRdata.settings.enabled) {
-            msg1 = "BC Responsive is enabled.";
-        } else {
-            msg1 = "BC Responsive is disabled.";
-        }
+        var msg1 = "BC Responsive is disabled.";
+        if (BCRdata.settings.enabled) var msg1 = "BC Responsive is enabled.";   
         active = BCRdata.active_personality;
         Personality = BCRdata.personalities[active].name;
         msg2 = "";
