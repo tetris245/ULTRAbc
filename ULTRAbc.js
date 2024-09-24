@@ -2545,54 +2545,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //EBCH Status
     function showEbchLogStatus() {
-        let msg;
-        if (EBCHdata[4] == 0) {
-            msg = "Chatlogging is disabled.";
-        } else {
-            msg = "Chatlogging is enabled.";
-        }
+        var msg = "Chatlogging is enabled.";
+        if (EBCHdata[4] == 0) var msg = "Chatlogging is disabled.";  
         statusmsg(msg);
     }
 
     function showEbchNotificationStatus() {
-        let msg;
-        if (EBCHdata[8] == 0) {
-            msg = "Custom notifications are disabled.";
-        } else {
-            msg = "Custom notifications are enabled.";
-        }
+        var msg = "Custom notifications are enabled.";
+        if (EBCHdata[8] == 0) var msg = "Custom notifications are disabled.";     
         statusmsg(msg);
     }
 
     function showEbchPoseStatus() {
-        let msg;
-        if (EBCHdata[6] == 0) {
-            msg = "Pose menu is not automatically displayed.";
-        } else {
-            msg = "Pose menu is automatically displayed.";
-        }
+        var msg = "Pose menu is automatically displayed.";
+        if (EBCHdata[6] == 0) var msg = "Pose menu is not automatically displayed.";    
         statusmsg(msg);
     }
 
     function showEbchUngarbleStatus() {
-        let msg;
-        if (EBCHdata[2] == 0) {
-            msg = "Messages are not ungarbled.";
-        } else if (EBCHdata[2] == 1) {
-            msg = "Messages from white list are ungarbled.";
-        } else {
-            msg = "All messages are ungarbled.";
-        }
+        var msg = "All messages are ungarbled.";
+        if (EBCHdata[2] == 0) var msg = "Messages are not ungarbled.";
+        if (EBCHdata[2] == 1) var msg = "Messages from white list are ungarbled.";      
         statusmsg(msg);
     }
 
     function showEbchWelcomeStatus() {
-        let msg;
-        if (EBCHdata[20] == 0) {
-            msg = "No EBCH Welcome message.";
-        } else {
-            msg = "EBCH Welcome message.";
-        }
+        var msg = "EBCH Welcome message.";
+        if (EBCHdata[20] == 0) var msg = "No EBCH Welcome message.";  
         statusmsg(msg);
     }
 
