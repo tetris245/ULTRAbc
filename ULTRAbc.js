@@ -136,7 +136,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     var cosplay1 = ["HairAccessory1", "HairAccessory2", "TailStraps", "Wings"];
 
-    var cosplay2 = ["HairAccessory3_\u{7B28}\u{7B28}\u{86CB}Luzi", "Wings_\u{7B28}\u{7B28}\u{86CB}Luzi"]
+    var cosplay2 = ["HairAccessory3_\u{7B28}\u{7B28}\u{86CB}Luzi", "Wings_\u{7B28}\u{7B28}\u{86CB}Luzi"];
 
     var restraints = ["ItemAddon", "ItemArms", "ItemBoots", "ItemDevices", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemHood", "ItemLegs", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemNeckRestraints", "ItemNose", "ItemTorso", "ItemTorso2"];  
 
@@ -2385,112 +2385,68 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //BCTweaks Status
     function showArousalErectionStatus() {
-        let msg;
-        if (BCTdata.arousalAffectsErection) {
-            msg = "Arousal can affect male erection.";
-        } else {
-            msg = "Arousal can't affect male erection.";
-        }
+        var msg = "Arousal can't affect male erection.";
+        if (BCTdata.arousalAffectsErection) var msg = "Arousal can affect male erection.";    
         statusmsg(msg);
     }
 
     function showArousalProgressStatus() {
-        let msg;
-        if (BCTdata.arousalAffectsOrgasmProgress) {
-            msg = "Arousal can affect orgasm progress.";
-        } else {
-            msg = "Arousal can't affect orgasm progress.";
-        }
+        var msg = "Arousal can't affect orgasm progress.";
+        if (BCTdata.arousalAffectsOrgasmProgress) var msg = "Arousal can affect orgasm progress.";    
         statusmsg(msg);
     }
 
     function showBCIconsStatus() {
-        let msg;
-        if (BCTdata.allIconOnlyShowOnHover) {
-            msg = "BC Icons are displayed only when the mouse hovers above you.";
-        } else {
-            msg = "BC Icons are always displayed.";
-        }
+        var msg = "BC Icons are always displayed.";
+        if (BCTdata.allIconOnlyShowOnHover) var msg = "BC Icons are displayed only when the mouse hovers above you.";   
         statusmsg(msg);
     }
 
     function showBCTChangelogStatus() {
-        let msg;
-        if (BCTdata.showChangelog) {
-            msg = "BCT Changelog feature is enabled.";
-        } else {
-            msg = "BCT Changelog feature is disabled.";
-        }
+        var msg = "BCT Changelog feature is disabled.";
+        if (BCTdata.showChangelog) var msg = "BCT Changelog feature is enabled.";    
         statusmsg(msg);
     }
 
     function showBCTIconStatus() {
-        let msg;
-        if (BCTdata.bctIconOnlyShowOnHover) {
-            msg = "BCT Icon is displayed only when the mouse hovers above you.";
-        } else {
-            msg = "BCT Icon is always displayed.";
-        }
+        var msg = "BCT Icon is always displayed.";
+        if (BCTdata.bctIconOnlyShowOnHover) var msg = "BCT Icon is displayed only when the mouse hovers above you.";     
         statusmsg(msg);
     }
 
     function showBestFriendsStatus() {
-        let msg;
-        if (BCTdata.bestFriendsEnabled) {
-            msg = "Best Friends feature is enabled.";
-        } else {
-            msg = "Best Friends feature is disabled.";
-        }
+        var msg = "Best Friends feature is disabled.";
+        if (BCTdata.bestFriendsEnabled) var msg = "Best Friends feature is enabled.";    
         statusmsg(msg);
     }
 
     function showFriendlistSlotsStatus() {
-        let msg;
-        if (BCTdata.friendlistSlotsEnabled) {
-            msg = "Extra infos in Friendlist.";
-        } else {
-            msg = "No extra infos in Friendlist.";
-        }
+        var msg = "No extra infos in Friendlist.";
+        if (BCTdata.friendlistSlotsEnabled) var msg = "Extra infos in Friendlist.";     
         statusmsg(msg);
     }
 
     function showLockConversionStatus() {
-        let msg;
-        if (BCTdata.hsToBFLockconvert) {
-            msg = "High security locks can become Best Friend locks.";
-        } else {
-            msg = "High security locks can't become Best Friend locks.";
-        }
+        var msg = "High security locks can't become Best Friend locks.";
+        if (BCTdata.hsToBFLockconvert) var msg = "High security locks can become Best Friend locks.";      
         statusmsg(msg);
     }
 
     function showRoomShareStatus() {
-        let msg;
-        if (BCTdata.bestFriendsRoomShare) {
-            msg = "Best Friends can share private room names.";
-        } else {
-            msg = "Best Friends can't share private room names.";
-        }
+        var msg = "Best Friends can't share private room names.";
+        if (BCTdata.bestFriendsRoomShare) var msg = "Best Friends can share private room names.";     
         statusmsg(msg);
     }
 
     function showSplitStatus() {
-        let msg;
-        if (BCTdata.splitOrgasmArousal) {
-            msg = "Two bars for arousal and orgasm.";
-        } else {
-            msg = "Only the standard arousal + orgasm bar.";
-        }
+        var msg = "Only the standard arousal + orgasm bar.";
+        if (BCTdata.splitOrgasmArousal) var msg = "Two bars for arousal and orgasm.";   
         statusmsg(msg);
     }
 
     function showTailWaggingStatus() {
-        let msg;
-        if (BCTdata.tailWaggingEnable) {
-            msg = "Tail Wagging feature is enabled.";
-        } else {
-            msg = "Tail Wagging feature is disabled.";
-        }
+        var msg = "Tail Wagging feature is disabled.";
+        if (BCTdata.tailWaggingEnable) var msg = "Tail Wagging feature is enabled.";    
         statusmsg(msg);
     }
 
