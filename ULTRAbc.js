@@ -3209,102 +3209,74 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Themed Status   
     function showBCThemedStatus() {
-        let msg;
-        if (THMdata.GlobalModule.themedEnabled) {
-            msg = "Themed is enabled.";
-        } else {
-            msg = "ThemedBC is disabled.";
-        }
+        var msg = "ThemedBC is disabled.";
+        if (THMdata.GlobalModule.themedEnabled) var msg = "Themed is enabled.";
         statusmsg(msg);
     }
 
     function showCharacterAbsenceStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doIndicateCharacterAbsence) {
-            msg = "Absence's indicator is enabled.";
-        } else {
-            msg = "Absence's indicator is disabled.";
-        }
+        var msg = "Absence's indicator is disabled.";
+        if (THMdata.GlobalModule.doIndicateCharacterAbsence) var msg = "Absence's indicator is enabled.";
         statusmsg(msg);
     }
 
-    function showChatInputStatus() {
-        let msg;
-        if (THMdata.IntegrationModule.BC_Chat) {
-            msg = "The chat input zone uses colors selected in Themed.";
-        } else {
-            msg = "The chat input zone uses the default BC colors.";
-        }
+    function showAdvancedColoringStatus() {
+        var msg = "Advanced coloring is disabled";
+        if (THMdata.GlobalModule.doUseAdvancedColoring) var msg = "Advanced coloring is enabled.";
+        statusmsg(msg);
+    }
+
+    function showChatStatus() {
+        var msg = "The chat uses the default BC colors.";
+        if (THMdata.IntegrationModule.chat) var msg = "The chat uses colors selected in Themed.";   
         statusmsg(msg);
     }
 
     function showFlatColorStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doUseFlatColor) {
-            msg = "Flat color enabled in settings.";
-        } else {
-            msg = "Coloring sheet enabled in settings.";
-        }
+        var msg = "Coloring sheet enabled in settings.";
+        if (THMdata.GlobalModule.doUseFlatColor) var msg = "Flat color enabled in settings."; 
         statusmsg(msg);
     }
 
     function showFriendListStatus() {
-        let msg;
-        if (THMdata.IntegrationModule.BC_FriendList) {
-            msg = "The friend list uses colors selected in Themed.";
-        } else {
-            msg = "The friend list uses the default BC colors.";
-        }
+        msg1 = "The friend list uses the default BC colors.";
+        msg2 = "No blur effect on friend list background.";
+        if (THMdata.IntegrationModule.friendList) msg1 = "The friend list uses colors selected in Themed.";   
+        if (THMdata.IntegrationModule.friendListBlur) msg2 = "Blur effect on friend list background.";   
+        msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
 
     function showGuiOverhaulStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doVanillaGuiOverhaul) {
-            msg = "The interface uses colors selected in Themed.";
-        } else {
-            msg = "The interface uses the default BC colors.";
-        }
+        var msg = "The interface uses the default BC colors.";
+        if (THMdata.GlobalModule.doVanillaGuiOverhaul) var msg = "The interface uses colors selected in Themed.";
         statusmsg(msg);
     }
 
     function showInputZonesStatus() {
-        let msg;
-        if (THMdata.IntegrationModule.BC) {
-            msg = "Misc input zones use colors selected in Themed.";
-        } else {
-            msg = "Misc input zones use the default BC colors.";
-        }
+         var msg = "The input zones use the default BC colors.";
+        if (THMdata.IntegrationModule.inputs) var msg = "The input zones use colors selected in Themed.";   
         statusmsg(msg);
     }
 
     function showLocalTimeStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doShowLocaleTime) {
-            msg = "The time is displayed according your locale settings.";
-        } else {
-            msg = "The time is displayed according your system settings.";
-        }
+        var msg = "The time is displayed according your system settings.";
+        if (THMdata.GlobalModule.doShowLocaleTime) var msg = "The time is displayed according your locale settings.";
         statusmsg(msg);
     }
 
     function showMiscDetailsStatus() {
-        let msg;
-        if (THMdata.IntegrationModule.BC_Other) {
-            msg = "Misc details use colors selected in Themed.";
-        } else {
-            msg = "Misc details use the default BC colors.";
-        }
+        msg1 = "Scrollbar uses the default BC colors.";
+        msg2 = "Text selection is not colored.";
+        if (THMdata.IntegrationModule.scrollbar) msg1 = "Scrollbar uses colors selected in Themed."; 
+        if (THMdata.IntegrationModule.selection) msg2 = "Text selection is colored."; 
+        msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
 
     function showThemedVersionStatus() {
-        let msg;
-        if (THMdata.GlobalModule.doShowNewVersionMessage) {
-            msg = "New Themed Version feature is enabled.";
-        } else {
-            msg = "New Themed Version feature is disabled.";
-        }
+        var msg = "New Themed Version feature is disabled.";
+        if (THMdata.GlobalModule.doShowNewVersionMessage) var msg = "New Themed Version feature is enabled.";     
         statusmsg(msg);
     }
 
@@ -13886,11 +13858,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         THMdata = decoded;
                         showBCThemedStatus();
                         showCharacterAbsenceStatus();
-                        showChatInputStatus();
+                        showAdvancedColoringStatus();
+                        showChatStatus();
                         showFlatColorStatus();
                         showFriendListStatus();
-                        showInputZonesStatus();
                         showGuiOverhaulStatus();
+                        showInputZonesStatus();
                         showLocalTimeStatus();
                         showMiscDetailsStatus();
                         showThemedVersionStatus();
