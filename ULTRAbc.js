@@ -2875,7 +2875,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Status
     function showButtonsStatus() {
-        let msg;
         EXT = "";
         FREE = "";
         OUT = "";
@@ -2889,115 +2888,67 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showExitmodeStatus() {
-        let msg;
-        if (SlowleaveOn) {
-            msg = "Slow exit mode is activated.";
-        } else {
-            msg = "Fast exit mode is activated.";
-        }
+        var msg = "Fast exit mode is activated.";
+        if (SlowleaveOn) var msg = "Slow exit mode is activated.";  
         statusmsg(msg);
     }
 
     function showFeaturesStatus() {
-        let msg;
-        if (AutojoinOn) {
-            Autojoin = "Auto-Join - ";
-        } else {
-            Autojoin = "";
-        }
-        if (bgall) {
-            Background = "All standard backgrounds usable with the buttons in Private Room (SP) - ";
-        } else {
-            Background = "";
-        }
-        if (FullseedOn) {
-            Fullseed = "Full solution for intricate/hs locks - ";
-        } else {
-            Fullseed = "";
-        }
-        if (FrkeysOn) {
-            Frkeys = "Hotkeys in friendlist - "
-        } else {
-            Frkeys = "";
-        }
-        if (HotkeysOn) {
-            Hotkeys = "Hotkeys on numeric pad"
-        } else {
-            Hotkeys = "";
-        }
+        Autojoin = "";
+        Background = "";
+        Fullseed = "";
+        Frkeys = "";
+        Hotkeys = "";
+        if (AutojoinOn) Autojoin = "Auto-Join - ";  
+        if (bgall) Background = "All standard backgrounds usable with the buttons in Private Room (SP) - "; 
+        if (FullseedOn) Fullseed = "Full solution for intricate/hs locks - ";    
+        if (FrkeysOn) Frkeys = "Hotkeys in friendlist - " 
+        if (HotkeysOn) Hotkeys = "Hotkeys on numeric pad"
         msg = "Features enabled: " + Autojoin + Background + Fullseed + Frkeys + Hotkeys;
         statusmsg(msg);
     }
 
     function showHighfameStatus() {
-        let msg;
-        if (HighfameOn) {
-            msg = "High fame mode enabled in Bondage Club Card Game.";
-        } else {
-            msg = "High fame mode disabled in Bondage Club Card Game.";
-        }
-        msg = msg + " Current high fame: " + cfame + ". Current default desk: " + cdesk + ".";
+        msg1 = "High fame mode disabled in Bondage Club Card Game.";
+        if (HighfameOn) msg1 = "High fame mode enabled in Bondage Club Card Game.";   
+        msg = msg1 + " Current high fame: " + cfame + ". Current default desk: " + cdesk + ".";
         statusmsg(msg);
     }
 
     function showMagiccheatStatus() {
-        let msg;
-        if (MagiccheatOn) {
-            msg = "Cheat mode enabled in B. Brawl and Magic School.";
-        } else {
-            msg = "Cheat mode disabled in B. Brawl and Magic School.";
-        }
+        var msg = "Cheat mode disabled in B. Brawl and Magic School.";
+        if (MagiccheatOn) var msg = "Cheat mode enabled in B. Brawl and Magic School.";   
         statusmsg(msg);
     }
 
     function showMaptrapStatus() {
-        let msg;
-        if (MaptrapOn) {
-            msg1 = "Traps in map rooms if you 'walk' on devices.";
-        } else {
-            msg1 = "No traps with devices in map rooms.";
-        }
-        if (MagiccheatOn) {
-            msg2 = "Magic toys added under locked chastity for trap mode.";
-        } else {
-            msg2 = "No magic toys added under locked chastity for trap mode.";
-        }
+        msg1 = "No traps with devices in map rooms.";
+        msg2 = "No magic toys added under locked chastity for trap mode.";
+        if (MaptrapOn) msg1 = "Traps in map rooms if you 'walk' on devices.";  
+        if (MagiccheatOn) msg2 = "Magic toys added under locked chastity for trap mode."; 
         msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
 
     function showNostruggleStatus() {
-        let msg;
-        if (NostruggleOn) {
-            msg = "Automatic struggle in mini-games is enabled.";
-        } else {
-            msg = "Automatic struggle in mini-games is disabled.";
-        }
+        var msg = "Automatic struggle in mini-games is disabled.";
+        if (NostruggleOn) var msg = "Automatic struggle in mini-games is enabled."; 
         statusmsg(msg);
     }
 
     function showNotimeoutStatus() {
-        let msg;
-        if (NotimeoutOn) {
-            msg = "Time-out disabled in TAB help.";
-        } else {
-            msg = "Time-out enabled in TAB help.";
-        }
+        var msg = "Time-out enabled in TAB help.";
+        if (NotimeoutOn) var msg = "Time-out disabled in TAB help.";      
         statusmsg(msg);
     }
 
     function showNpcpunishStatus() {
-        let msg;
-        if (NPCpunish) {
-            msg = "NPC punishments enabled.";
-        } else {
-            msg = "NPC punishments disabled.";
-        }
+        var msg = "NPC punishments disabled.";
+        if (NPCpunish) var msg = "NPC punishments enabled.";  
         statusmsg(msg);
     }
 
     function showSearchRoomStatus() {
-        let msg;
         msg1 = "Chat Search type: ";
         if (rtype == "ALL") msg2 = "All rooms. ";
         if (rtype == "Never") msg2 = "Normal rooms. ";
@@ -3009,7 +2960,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showTalkStatus() {
-        let msg;
         if (animal == 0) msg1 = "Human talk mode";
         if (animal == 1) msg1 = "Bunny talk mode";
         if (animal == 2) msg1 = "Cow talk mode";
@@ -3022,21 +2972,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (animal == 9) msg1 = "Wolfy talk mode";
         msg2 = "Forced stuttering level: " + st;
         msg3 = "Forced gag level: " + gl;
-        if (NowhisperOn) {
-            msg4 = "No-whisper mode enabled.";
-        } else {
-            msg4 = "No-whisper mode disabled.";
-        }
-        if (DolltalkOn) {
-            msg5 = "Doll talk (and whisper) mode enabled.";
-        } else {
-            msg5 = "Doll talk (and whisper) mode disabled.";
-        }
-        if (NogarbleOn) {
-            msg6 = "Ungarble with BC default talk mode.";
-        } else {
-            msg6 = "No ungarble with BC default talk mode.";
-        }
+        msg4 = "No-whisper mode disabled.";
+        msg5 = "Doll talk (and whisper) mode disabled.";
+        msg6 = "No ungarble with BC default talk mode.";
+        if (NowhisperOn) msg4 = "No-whisper mode enabled.";  
+        if (DolltalkOn) msg5 = "Doll talk (and whisper) mode enabled.";   
+        if (NogarbleOn) msg6 = "Ungarble with BC default talk mode.";
         msg = msg1 + " - " + msg2 + " - " + msg3 + " - " + msg4 + " " + msg5 + " " + msg6;
         statusmsg(msg);
     }
