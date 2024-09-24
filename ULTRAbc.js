@@ -2802,82 +2802,50 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Responsive Status
     function showResponsiveStatus() {
-        let msg;
-        if (RSPdata.GlobalModule.ResponsiveEnabled) {
-            msg = "Responsive is enabled.";
-        } else {
-            msg = "Responsive is disabled.";
-        }
+        var msg = "Responsive is disabled.";
+        if (RSPdata.GlobalModule.ResponsiveEnabled) var msg = "Responsive is enabled.";
         statusmsg(msg);
     }
 
     function showBcrResponsesStatus() {
-        let msg;
-        if (RSPdata.GlobalModule.responsesEnabled) {
-            msg = "Responses feature is enabled.";
-        } else {
-            msg = "Responses feature is disabled.";
-        }
+        var msg = "Responses feature is disabled.";
+        if (RSPdata.GlobalModule.responsesEnabled) var msg = "Responses feature is enabled.";
         statusmsg(msg);
     }
 
     function showCharacterTalkStatus() {
-        let msg;
-        if (RSPdata.GlobalModule.CharTalkEnabled) {
-            msg = "Character Talk is enabled.";
-        } else {
-            msg = "Character Talk is disabled.";
-        }
+        var msg = "Character Talk is disabled.";
+        if (RSPdata.GlobalModule.CharTalkEnabled) var msg = "Character Talk is enabled.";      
         statusmsg(msg);
     }
 
     function showInterceptMessageStatus() {
-        let msg;
-        if (RSPdata.GlobalModule.doMessageInterruption) {
-            msg = "Responses can interrupt and send messages.";
-        } else {
-            msg = "Responses can interrupt and send messages.";
-        }
+        var msg = "Responses can't interrupt and send messages.";
+        if (RSPdata.GlobalModule.doMessageInterruption) var msg = "Responses can interrupt and send messages.";   
         statusmsg(msg);
     }
 
     function showLeaveMessageStatus() {
-        let msg;
-        if (RSPdata.GlobalModule.doLeaveMessage) {
-            msg = "The message being written is sent when leashed out of the room.";
-        } else {
-            msg = "The message being written is not sent when leashed out of the room.";
-        }
+        var msg = "The message being written is not sent when leashed out of the room.";
+        if (RSPdata.GlobalModule.doLeaveMessage) var msg = "The message being written is sent when leashed out of the room.";    
         statusmsg(msg);
     }
 
     function showMoansStatus() {
-        let msg;
-        if (RSPdata.GlobalModule.doAddMoansOnHighArousal) {
-            msg = "Moans are added to responses when highly aroused.";
-        } else {
-            msg = "Moans are not added to responses when highly aroused.";
-        }
+        var msg = "Moans are not added to responses when highly aroused.";
+        if (RSPdata.GlobalModule.doAddMoansOnHighArousal) var msg = "Moans are added to responses when highly aroused.";     
         statusmsg(msg);
     }
 
     function showNewVersionStatus() {
-        let msg;
-        if (RSPdata.GlobalModule.doShowNewVersionMessage) {
-            msg = "New Responsive Version feature is enabled.";
-        } else {
-            msg = "New Responsive Version feature is disabled.";
-        }
+        var msg = "New Responsive Version feature is disabled.";
+        if (RSPdata.GlobalModule.doShowNewVersionMessage) var msg = "New Responsive Version feature is enabled.";   
         statusmsg(msg);
     }
 
     function showRulesStatus() {
-        let msg;
-        if (RSPdata.GlobalModule.doPreventMessageIfBcxBlock) {
-            msg = "BCX rules can prevent message sending.";
-        } else {
-            msg = "BCX rules can't prevent message sending.";
-        }
+        var msg = "BCX rules can't prevent message sending.";
+        if (RSPdata.GlobalModule.doPreventMessageIfBcxBlock)  var msg = "BCX rules can prevent message sending.";   
         statusmsg(msg);
     }
 
