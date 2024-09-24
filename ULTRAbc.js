@@ -3683,85 +3683,53 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showM_MOANER_scriptStatus() {
-        let msg;
-        if (M_MOANER_scriptOn) {
-            msg = "The moaner is active.";
-        } else {
-            msg = "The moaner is not active.";
-        }
+        var msg = "The moaner is not active.";
+        if (M_MOANER_scriptOn) var msg = "The moaner is active.";
         statusmsg(msg);
     }
 
     function showM_MOANER_profileStatus() {
-        let msg;
-        if (profileName == "default") {
-            msg = "No custom profile loaded.";
-        } else {
-            msg = "Current moans profile: " + profileName;
-        }
+        var msg = "Current moans profile: " + profileName;
+        if (profileName == "default") var msg = "No custom profile loaded.";
         statusmsg(msg);
     }
 
     function showM_MOANER_orgasmStatus() {
-        let msg;
-        if (M_MOANER_orgasmActive) {
-            msg = "The orgasm moan is active. You will moan while cumming.";
-        } else {
-            msg = "The orgasm moan is not active. You will not moan while cumming anymore.";
-        }
+        var msg = "The orgasm moan is not active. You will not moan while cumming anymore.";
+        if (M_MOANER_orgasmActive) var msg = "The orgasm moan is active. You will moan while cumming.";     
         statusmsg(msg);
     }
 
     function showM_MOANER_spankStatus() {
-        let msg;
-        if (M_MOANER_spankActive) {
-            msg = "The spank moan is active. You will moan while being spanked.";
-        } else {
-            msg = "The spank moan is not active. You will not moan while being spanked.";
-        }
+        var msg = "The spank moan is not active. You will not moan while being spanked.";
+        if (M_MOANER_spankActive) var msg = "The spank moan is active. You will moan while being spanked.";     
         statusmsg(msg);
     }
 
     function showM_MOANER_talkStatus() {
-        let msg;
-        if (M_MOANER_talkActive) {
-            msg = "The talk moan is active. If you're vibed, you will moan while speaking.";
-        } else {
-            msg = "The talk moan is not active. If you're vibed, you will not moan while speaking anymore.";
-        }
+        var msg = "The talk moan is not active. If you're vibed, you will not moan while speaking anymore.";
+        if (M_MOANER_talkActive) var msg = "The talk moan is active. If you're vibed, you will moan while speaking.";     
         statusmsg(msg);
     }
 
     function showM_MOANER_tickleStatus() {
-        let msg;
-        if (M_MOANER_tickleActive) {
-            msg = "The tickle moan is active. You will moan while being tickled.";
-        } else {
-            msg = "The tickle moan is not active. You will not moan while being tickled.";
-        }
+        var msg = "The tickle moan is not active. You will not moan while being tickled.";
+        if (M_MOANER_tickleActive) var msg = "The tickle moan is active. You will moan while being tickled.";
         statusmsg(msg);
     }
 
     function showM_MOANER_vibratorStatus() {
-        let msg;
-        if (M_MOANER_vibratorActive) {
-            msg = "The vibes moan is active. If your vibrator's settings change, you will moan.";
-        } else {
-            msg = "The vibes moan is not active. If your vibrator's settings change, you will not moan.";
-        }
+        var msg = "The vibes moan is not active. If your vibrator's settings change, you will not moan.";
+        if (M_MOANER_vibratorActive) var msg = "The vibes moan is active. If your vibrator's settings change, you will moan.";    
         statusmsg(msg);
     }
 
     function showM_MOANER_xvibratorStatus() {
-        let msg;
-        if (M_MOANER_xvibratorActive) {
-            msg = "The xvibes moan is active. If vibrator's settings of other players change, you will moan.";
-        } else {
-            msg = "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan.";
-        }
+        var msg = "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan.";
+        if (M_MOANER_xvibratorActive) var msg = "The xvibes moan is active. If vibrator's settings of other players change, you will moan.";  
         statusmsg(msg);
     }
-
+ 
     //MoanerUtils
     function M_MOANER_logDebug(msg) {}
 
