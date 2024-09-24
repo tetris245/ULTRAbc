@@ -3106,22 +3106,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Status
     function showButtonsStatus() {
         let msg;
-        if (SosbuttonsOn) {
-            FREE = "FREE - ";
-        } else {
-            FREE = "";
-        }
-        if (OutbuttonsOn) {
-            OUT = "OUT - ";
-        } else {
-            OUT = "";
-        }
-        if (RglbuttonsOn) {
-            RGL = "RGL";
-        } else {
-            RGL = "";
-        }
-        msg = "Buttons activated and displayed: " + FREE + OUT + RGL;
+        EXT = "";
+        FREE = "";
+        OUT = "";
+        RGL = "";
+        if (ExtbuttonsOn) EXT = "EXT - ";
+        if (SosbuttonsOn) FREE = "FREE - ";
+        if (OutbuttonsOn) OUT = "OUT - ";  
+        if (RglbuttonsOn) RGL = "RGL";      
+        msg = "Buttons activated: " + EXT + FREE + OUT + RGL;
         statusmsg(msg);
     }
 
