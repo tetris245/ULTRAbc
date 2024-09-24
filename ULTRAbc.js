@@ -2792,7 +2792,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             msg2 = "Your shared public craftings are not displayed.";
         }
-        msg = msg1 + " " + msg2;
+	if (LSCGdata.GlobalModule.tamperproofEnabled) {
+            msg3 = "Tamperproof features are enabled.";
+        } else {
+            msg3 = "Tamperproof features are disabled.";
+        }
+        msg = msg1 + " " + msg2 + " " + msg3;
         statusmsg(msg);
     }
 
