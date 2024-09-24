@@ -2694,53 +2694,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //MBS Status
     function showGarblingStatus() {
-        let msg;
-        if (MBSdata.AlternativeGarbling) {
-            msg1 = "Alternative garbling enabled.";
-        } else {
-            msg1 = "Alternative garbling disabled.";
-        }
-        if (MBSdata.DropTrailing) {
-            msg2 = "Reduction of trailing characters with heavy gags is enabled.";
-        } else {
-            msg2 = "Reduction of trailing characters with heavy gags is disabled."
-        }
-        if (MBSdata.GarblePerSyllable) {
-            msg3 = "Garbling per syllable is enabled.";
-        } else {
-            msg3 = "Garbling per syllable is disabled.";
-        }
+        msg1 = "Alternative garbling disabled.";
+        msg2 = "Reduction of trailing characters with heavy gags is disabled.";
+        msg3 = "Garbling per syllable is disabled.";
+        if (MBSdata.AlternativeGarbling) msg1 = "Alternative garbling enabled.";      
+        if (MBSdata.DropTrailing) msg2 = "Reduction of trailing characters with heavy gags is enabled.";     
+        if (MBSdata.GarblePerSyllable) msg3 = "Garbling per syllable is enabled."; 
         msg = msg1 + " " + msg2 + " " + msg3;
         statusmsg(msg);
     }
 
     function showLockedMbsStatus() {
-        let msg;
-        if (MBSdata.LockedWhenRestrained) {
-            msg = "MBS settings are locked when you are restrained.";
-        } else {
-            msg = "You can always change MBS settings, even when you are restrained.";
-        }
+        var msg = "You can always change MBS settings, even when you are restrained.";
+        if (MBSdata.LockedWhenRestrained) var msg = "MBS settings are locked when you are restrained.";     
         statusmsg(msg);
     }
 
     function showLockedWheelStatus() {
-        let msg;
-        if (MBSdata.RollWhenRestrained) {
-            msg = "You can always spin a wheel of fortune, even when you are restrained.";
-        } else {
-            msg = "Wheel of fortune is locked when you are restrained.";
-        }
+        var msg = "Wheel of fortune is locked when you are restrained.";
+        if (MBSdata.RollWhenRestrained) var msg = "You can always spin a wheel of fortune, even when you are restrained.";     
         statusmsg(msg);
     }
 
     function showMbsCraftingStatus() {
-        let msg;
-        if (MBSdata.ExtendedCraftingDescription) {
-            msg = "You can use up to 398 characters to describe your crafted items.";
-        } else {
-            msg = "You are limited to 200 characters to describe your crafted items.";
-        }
+        var msg = "You are limited to 200 characters to describe your crafted items.";
+        if (MBSdata.ExtendedCraftingDescription) var msg = "You can use up to 398 characters to describe your crafted items.";   
         statusmsg(msg);
     } 
 
