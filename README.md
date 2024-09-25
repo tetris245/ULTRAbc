@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 3.6.1
+Most recent version: 3.7
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -58,14 +58,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added the EXT button in chat rooms for direct access to Extensions screen
-* New commands:
-  - pmenu for direct access to Preferences screen
-  - uset extbuttons to enable/disable the EXT button in chat rooms
-  - xmenu for direct access to Extensions screen
-* Added support for the Lewd Crest lock (provided by Echo's items/clothes mod) to the lock and unlock commands
-* Added the wce option to the xstatus command
-* Updated the invisible command to include the extra slots added by Echo's items/clothes mod
-* Updated the ustatus, xstatus lscg and xstatus thm commands
-* Optimised the import functions in wardrobe with support for the extra Echo's slots
-* Optimised the handling of UBC public messages and all status functions
+(...)
