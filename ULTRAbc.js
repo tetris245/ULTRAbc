@@ -10405,7 +10405,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BackBoxTie'))) {
                                     PoseSetActive(target[0], "BackBoxTie");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms behind " + tgpr3 + " back.";
+				    var msg = "" + tmpname + " puts " + pronoun3 + " arms behind " + pronoun3 + " back.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "cuffed") {
@@ -10423,7 +10423,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BackElbowTouch'))) {
                                     PoseSetActive(target[0], "BackElbowTouch");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms behind her back, elbows almost touching.";
+				    var msg = "" + tmpname + " puts " + pronoun3 + " arms behind " + pronoun3 + " back, elbows almost touching.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "kneel1") {
