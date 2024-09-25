@@ -3726,7 +3726,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function xvibeControl(commande) {
         if (M_MOANER_xvibratorActive == false) {
             M_MOANER_xvibratorActive = true;
-            M_MOANER_vibratorActive = true
+            M_MOANER_vibratorActive = true;
             showM_MOANER_vibratorStatus();
         } else {
             M_MOANER_xvibratorActive = false;
