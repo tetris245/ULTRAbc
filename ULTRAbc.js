@@ -3517,6 +3517,129 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return blurLevel;
     }
 
+    //WCE Status 
+    function showAnimationStatus() {
+        var msg = "Animation Engine disabled.";     
+        if (WCEdata.animationEngine) var msg = "Animation Engine enabled.";    
+        statusmsg(msg);
+    }
+
+    function showAntiCheatStatus() {
+        msg1 = "Anti-Cheat disabled.";
+        msg2 = "No automatic blacklist for detected cheaters.";
+        msg3 = "Uwall disabled.";
+        if (WCEdata.itemAntiCheat) msg1 = "Anti-Cheat enabled.";    
+        if (WCEdata.antiCheatBlackList) msg2 = "Automatic blacklist for detected cheaters."; 
+        if (WCEdata.uwall) msg3 = "Uwall enabled.";
+        msg = msg1 + " " + msg2 + " " + msg3;
+        statusmsg(msg);
+    }
+
+    function showArousalStatus() {
+        msg1 = "No alternate arousal system.";
+        msg2 = "No numeric arousal meter.";
+        if (WCEdata.alternateArousal) msg1 = "Alternate arousal enabled.";    
+        if (WCEdata.numericArousalMeter) msg2 = "Numeric arousal meter.";
+        msg = msg1 + " " + msg2;
+        statusmsg(msg);
+    }
+
+    function showCheatStatus() {
+        msg1 = "No help for lockpicking.";
+        msg2 = "No automatic struggle.";
+        msg3 = "No bypassing of BCX beep restrictions.";
+        if (WCEdata.lockpick) msg1 = "Help for lockpicking based on skills.";    
+        if (WCEdata.autoStruggle) msg2 = "Automatic progress when struggling."; 
+        if (WCEdata.allowIMBypassBCX) msg3 = "BCX beep restrictions can be bypassed.";
+        msg = msg1 + " " + msg2 + " " + msg3;
+        statusmsg(msg);
+    }
+
+    function showColorStatus() {
+        msg1 = "No copy color option.";
+        msg2 = "No improved colors in chat.";
+        if (WCEdata.copyColor) msg1 = "Copy color option enabled.";    
+        if (WCEdata.chatColors) msg2 = "Improved colors in chat.";
+        msg = msg1 + " " + msg2;
+        statusmsg(msg);
+    }
+
+    function showEmbeddingStatus() {
+        var msg = "No clickable links and image embeds.";     
+        if (WCEdata.augmentChat) var msg = "Clickable links and image embeds.";    
+        statusmsg(msg);
+    }
+
+    function showImmersionStatus() {
+        msg1 = "No blind without glasses.";
+        msg2 = "No leashing without leashable items.";
+        msg3 = "No hiding of icon for hidden items.";     
+        if (WCEdata.blindWithoutGlasses) msg1 = "Blind without glasses."; 
+        if (WCEdata.leashAlways) msg2 = "Leashing also without leashable items.";
+        if (WCEdata.hideHiddenItemsIcon) msg3 = "Hiding of icon for hidden items.";       
+        msg = msg1 + " " + msg2 + " " + msg3;
+        statusmsg(msg);
+    }
+
+    function showLayeringStatus() {
+        msg1 = "No configuration for layer hiding.";
+        msg2 = "No layering menus when bound.";
+        msg3 = "Other players can make layer changes on you.";
+        if (WCEdata.layeringHide) msg1 = "Configuration for layer hiding.";    
+        if (WCEdata.allowLayeringWhileBound) msg2 = "Layering allowed when bound."; 
+        if (WCEdata.preventLayeringByOthers) msg3 = "Other players can't make layer changes on you.";
+        msg = msg1 + " " + msg2 + " " + msg3;
+        statusmsg(msg);
+    }
+
+    function showMiscStatus() {
+        msg1 = "No instant messager.";
+        msg2 = "No saving of profiles.";
+        msg3 = "No sharing of used add-ons.";
+        msg4 = "No synchronisation with connected toys.";     
+        if (WCEdata.instantMessenger) msg1 = "Instant messenger."; 
+        if (WCEdata.pastProfiles) msg2 = "Saving of profiles."; 
+        if (WCEdata.shareAddons) msg3 = "Sharing of used add-ons.";
+        if (WCEdata.toySync) msg4 = "Synchronisation with connected toys.";       
+        msg = msg1 + " " + msg2 + " " + msg3 + " " + msg4;
+        statusmsg(msg);
+    }
+
+    function showPerformanceStatus() {
+        msg1 = "No automatic clearing of drawing cache.";
+        msg2 = "No drawing cache button.";
+        msg3 = "Discreet mode disabled.";
+        if (WCEdata.automateCacheClear) msg1 = "Automatic clearing of drawing cache.";    
+        if (WCEdata.manualCacheClear) msg2 = "Drawing cache button."; 
+        if (WCEdata.discreetMode) msg3 = "Discreet mode enabled.";
+        msg = msg1 + " " + msg2 + " " + msg3;
+        statusmsg(msg);
+    }
+
+    function showWardrobeStatus() {
+        msg1 = "No extended wardrobe.";
+        msg2 = "No local wardrobe.";
+        msg3 = "No automatic preview.";
+        msg4 = "No confirmation when saving outfits.";
+        if (WCEdata.extendedWardrobe) msg1 = "Extended wardrobe.";
+        if (WCEdata.localWardrobe) msg2 = "Local wardrobe.";
+        if (WCEdata.privateWardrobe) msg3 = "Automatic preview.";
+        if (WCEdata.confirmWardrobeSave) msg4 = "Confirmation when saving outfits";
+        msg = msg1 + " " + msg2 + " " + msg3 + " " + msg4;
+        statusmsg(msg);
+    }
+
+    function showWceTalkingStatus() {
+         msg1 = "Anti-garble system disabled.";
+         msg2 = "Anti-deafen system disabled.";
+         msg3 = "Alternative speech stutter disabled.";
+         if (WCEdata.antiGarble) msg1 = "Anti-garble system enabled.";
+         if (WCEdata.antiDeaf) msg2 = "Anti-deafen system enabled.";
+         if (WCEdata.stutters) msg3 = "Alternative speech stutter enabled.";
+         msg = msg1 + " " + msg2 + " " + msg3;
+         statusmsg(msg);
+    }
+	
     //////////////////////////////////////////////////////////
     //Moaner
     //////////////////////////////////////////////////////////
@@ -13625,7 +13748,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     
     CommandCombine([{
         Tag: 'xstatus',
-        Description: "(add-on): displays status settings for other add-ons.",
+        Description: "(add-on): displays status of settings for other add-ons.",
         Action: (args) => {
             if (args === "") {
                 var msg = "The xstatus command must be followed by an option corresponding to an add-on.\n" +
@@ -13638,7 +13761,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "lscg for LSCG\n" +
                     "mbs for MBS\n" +
                     "rsp for Responsive\n" +
-                    "thm for Themed-BC";
+                    "thm for Themed-BC\n" +
+                    "wce for WCE";
                 infomsg(msg);
             } else {
                 var addon = args;
@@ -13776,6 +13900,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showLocalTimeStatus();
                         showMiscDetailsStatus();
                         showThemedVersionStatus();
+                    }
+                } else if (addon == "wce") {
+                    if (Player.ExtensionSettings.FBC != null) {
+                        str = Player.ExtensionSettings.FBC;
+                        d = LZString.decompressFromBase64(str);
+                        WCEdata = {};
+                        decoded = JSON.parse(d);
+                        WCEdata = decoded;       
+                        showAnimationStatus();
+                        showAntiCheatStatus();
+                        showArousalStatus();
+                        showCheatStatus();
+                        showColorStatus();
+                        showEmbeddingStatus();
+                        showImmersionStatus();
+                        showLayeringStatus();
+                        showMiscStatus();
+                        showPerformanceStatus();
+                        showWardrobeStatus();
+                        showWceTalkingStatus();
                     }
                 }
             }
