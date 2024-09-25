@@ -64,6 +64,7 @@ Changes for future version
   - uset extbuttons to enable/disable the EXT button in chat rooms
   - xmenu for direct access to Extensions screen
 * Added support for the Lewd Crest lock (provided by Echo's items/clothes mod) to the lock and unlock commands
+* Added the wce option to the xstatus command
 * Updated the invisible command to include the extra slots added by Echo's items/clothes mod
 * Updated the ustatus, xstatus lscg and xstatus thm commands
 * Optimised the import functions in wardrobe with support for the extra Echo's slots
