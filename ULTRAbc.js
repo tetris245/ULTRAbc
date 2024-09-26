@@ -12506,8 +12506,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
@@ -12898,8 +12898,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
@@ -12979,8 +12979,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if (Unlock == "no message") var silent = 1;
                     } else {
-                        if ((target[0].OnlineSharedSettings.Uwall) &&
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                        if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                             var uw = 1;
                             var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
@@ -13227,8 +13227,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
@@ -13668,8 +13668,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
                         infomsg(msg);
                     } else {
-                        if ((target[0].OnlineSharedSettings.Uwall) &&
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                        if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                             var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
@@ -13950,8 +13950,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
