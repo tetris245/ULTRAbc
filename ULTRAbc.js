@@ -2148,7 +2148,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             if ((tmpname != tgpname) &&
                                 (C.OnlineSharedSettings.Uwall == true) &&
-                                (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                                ((C.OnlineSharedSettings.Ulist == undefined) ||
+                                (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 var msg = "UBC Export is not possible because " + tgpname + " has enabled the Uwall protection.";
                                 infomsg(msg);
                             } else {
@@ -2183,7 +2184,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((tmpname != tgpname) &&
                             (C.OnlineSharedSettings.Uwall == true) &&
-                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            ((C.OnlineSharedSettings.Ulist == undefined) ||
+                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                             var msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
                             infomsg(msg);
                         } else {
@@ -2221,7 +2223,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((tmpname != tgpname) &&
                             (C.OnlineSharedSettings.Uwall == true) &&
-                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            ((C.OnlineSharedSettings.Ulist == undefined) ||
+                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                             var msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
                             infomsg(msg);
                         } else {
@@ -2254,7 +2257,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((tmpname != tgpname) &&
                             (C.OnlineSharedSettings.Uwall == true) &&
-                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            ((C.OnlineSharedSettings.Ulist == undefined) ||
+                            (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                             var msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
                             infomsg(msg);
                         } else {
