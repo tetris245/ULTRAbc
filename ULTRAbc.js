@@ -9618,8 +9618,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
                             CurrentCharacter.Appearance = this.savedoutfit1.slice(0);
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -9650,8 +9650,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
                             CurrentCharacter.Appearance = this.savedoutfit2.slice(0);
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -9682,8 +9682,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
                             CurrentCharacter.Appearance = this.savedoutfit3.slice(0);
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -9720,13 +9720,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
                                     tgpname = CurrentCharacter.Nickname;
-                                }
+                                } 
                                 if (tgpname != tmpname) {
                                     var uw = 1;
                                     var msg = umsg1 + tgpname + umsg2;
@@ -9750,8 +9750,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -9780,8 +9780,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
                             var uw = 0;
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                     tgpname = CurrentCharacter.Name;
                                 } else {
@@ -11242,8 +11242,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var uw = 0;
                         CurrentCharacter.Appearance = CurrentCharacter.Appearance.filter(x => (CurrentCharacter.FocusGroup && CurrentCharacter.FocusGroup.Name) ? x.Asset.Group.Name !=
                             CurrentCharacter.FocusGroup.Name : true);
-                        if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) &&
-                            (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                        if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                            (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                             if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
                                 tgpname = CurrentCharacter.Name;
                             } else {
@@ -13160,10 +13160,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             return false;
                         } else {
                             if (C.OnlineSharedSettings.Uwall) {
-                                if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
-                                    return true;
-                                } else {
+                                if (C.OnlineSharedSettings.Ulist == undefined) {
                                     return false;
+                                } else {
+                                    if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
                                 }
                             } else {
                                 return true;
