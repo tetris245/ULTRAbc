@@ -9874,8 +9874,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
@@ -10380,8 +10380,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             tgpr3 = "their";
                             tgpr4 = "they";
                         }
-                        if ((target[0].OnlineSharedSettings.Uwall) &&
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                        if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                             var msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
@@ -10802,8 +10802,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
@@ -10994,8 +10994,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
@@ -11572,8 +11572,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         tgpr3 = "their";
                         tgpr4 = "they";
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
@@ -11667,8 +11667,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else {
                                 tgpname = target[0].Nickname;
                             }
-                            if ((target[0].OnlineSharedSettings.Uwall) &&
-                                (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                            if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                                (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 var msg = umsg1 + tgpname + umsg2;
                                 infomsg(msg);
                             } else {
@@ -11731,8 +11731,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if ((target[0].OnlineSharedSettings.Uwall) &&
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber)))) {
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                         var msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
