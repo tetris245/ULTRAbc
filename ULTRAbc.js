@@ -2314,65 +2314,67 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //BCAR Status
     function showAnimalTypeStatus() {
-        var msg = "Current Animal Type: " + BCARdata.animal;
+        let msg = "Current Animal Type: " + BCARdata.animal;
         statusmsg(msg);
     }
 
     function showAnimationButtonsStatus() {
-        var msg = "Animation Buttons disabled.";
-        if (BCARdata.animationButtonsEnable) var msg = "Animation Buttons enabled.";
+        let msg = "Animation Buttons disabled.";
+        if (BCARdata.animationButtonsEnable) msg = "Animation Buttons enabled.";
         statusmsg(msg);
     }
 
     function showArousalManipulationStatus() {
-        var msg = "Arousal Manipulation disabled.";
-        if (BCARdata.arousalEnable) var msg = "Arousal Manipulation enabled.";
+        let msg = "Arousal Manipulation disabled.";
+        if (BCARdata.arousalEnable) msg = "Arousal Manipulation enabled.";
         statusmsg(msg);
     }
 
     function showBCARExpressionsStatus() {
-        var msg = "BCAR Expressions disabled.";
-        if (BCARdata.expressionsEnable) var msg = "BCAR Expressions enabled.";     
+        let msg = "BCAR Expressions disabled.";
+        if (BCARdata.expressionsEnable) msg = "BCAR Expressions enabled.";     
         statusmsg(msg);
     }
 
     function showEarAnimationStatus() {
-        var msg = "Ear Animation disabled.";
-        if (BCARdata.earWigglingEnable) var msg = "Ear Animation enabled.";       
+        let msg = "Ear Animation disabled.";
+        if (BCARdata.earWigglingEnable) msg = "Ear Animation enabled.";       
         statusmsg(msg);
     }
 
     function showEarEmoteStatus() {
-        var msg = "Ear Emote disabled.";
-        if (BCARdata.earEmoteEnable) var msg = "Ear Emote enabled.";    
+        let msg = "Ear Emote disabled.";
+        if (BCARdata.earEmoteEnable) msg = "Ear Emote enabled.";    
         statusmsg(msg);
     }
 
     function showTailAnimationStatus() {
-        var msg = "Tail Animation disabled.";
-        if (BCARdata.tailWaggingEnable) var msg = "Tail Animation enabled.";   
+        let msg = "Tail Animation disabled.";
+        if (BCARdata.tailWaggingEnable) msg = "Tail Animation enabled.";   
         statusmsg(msg);
     }
 
     function showTailEmoteStatus() {
-        var msg = "Tail Emote disabled.";
-        if (BCARdata.tailEmoteEnable) var msg = "Tail Emote enabled.";      
+        let msg = "Tail Emote disabled.";
+        if (BCARdata.tailEmoteEnable) msg = "Tail Emote enabled.";      
         statusmsg(msg);
     }
 
     function showWingAnimationStatus() {
-        var msg = "Wing Animation disabled.";
-        if (BCARdata.wingFlappingEnable) var msg = "Wing Animation enabled.";   
+        let msg = "Wing Animation disabled.";
+        if (BCARdata.wingFlappingEnable) msg = "Wing Animation enabled.";   
         statusmsg(msg);
     }
 
     //BC Responsive Status	
     function showBCResponsiveStatus() {
-        var msg1 = "BC Responsive is disabled.";
-        if (BCRdata.settings.enabled) var msg1 = "BC Responsive is enabled.";   
+	let msg = "";
+        let msg1 = "BC Responsive is disabled.";
+        if (BCRdata.settings.enabled) msg1 = "BC Responsive is enabled.";   
         active = BCRdata.active_personality;
         Personality = BCRdata.personalities[active].name;
-        msg2 = "";
+        let msg2 = "";
+	let rsp = "";
         if (BCRdata.personalities[active].responses.length != 0) {
             for (let i = 0; i < BCRdata.personalities[active].responses.length; i++) {
                 if (BCRdata.personalities[0].responses[i].enabled) {
@@ -2389,68 +2391,68 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //BCTweaks Status
     function showArousalErectionStatus() {
-        var msg = "Arousal can't affect male erection.";
-        if (BCTdata.arousalAffectsErection) var msg = "Arousal can affect male erection.";    
+        let msg = "Arousal can't affect male erection.";
+        if (BCTdata.arousalAffectsErection) msg = "Arousal can affect male erection.";    
         statusmsg(msg);
     }
 
     function showArousalProgressStatus() {
-        var msg = "Arousal can't affect orgasm progress.";
-        if (BCTdata.arousalAffectsOrgasmProgress) var msg = "Arousal can affect orgasm progress.";    
+        let msg = "Arousal can't affect orgasm progress.";
+        if (BCTdata.arousalAffectsOrgasmProgress) msg = "Arousal can affect orgasm progress.";    
         statusmsg(msg);
     }
 
     function showBCIconsStatus() {
-        var msg = "BC Icons are always displayed.";
-        if (BCTdata.allIconOnlyShowOnHover) var msg = "BC Icons are displayed only when the mouse hovers above you.";   
+        let msg = "BC Icons are always displayed.";
+        if (BCTdata.allIconOnlyShowOnHover) msg = "BC Icons are displayed only when the mouse hovers above you.";   
         statusmsg(msg);
     }
 
     function showBCTChangelogStatus() {
-        var msg = "BCT Changelog feature is disabled.";
-        if (BCTdata.showChangelog) var msg = "BCT Changelog feature is enabled.";    
+        let msg = "BCT Changelog feature is disabled.";
+        if (BCTdata.showChangelog) msg = "BCT Changelog feature is enabled.";    
         statusmsg(msg);
     }
 
     function showBCTIconStatus() {
-        var msg = "BCT Icon is always displayed.";
-        if (BCTdata.bctIconOnlyShowOnHover) var msg = "BCT Icon is displayed only when the mouse hovers above you.";     
+        let msg = "BCT Icon is always displayed.";
+        if (BCTdata.bctIconOnlyShowOnHover) msg = "BCT Icon is displayed only when the mouse hovers above you.";     
         statusmsg(msg);
     }
 
     function showBestFriendsStatus() {
-        var msg = "Best Friends feature is disabled.";
-        if (BCTdata.bestFriendsEnabled) var msg = "Best Friends feature is enabled.";    
+        let msg = "Best Friends feature is disabled.";
+        if (BCTdata.bestFriendsEnabled) msg = "Best Friends feature is enabled.";    
         statusmsg(msg);
     }
 
     function showFriendlistSlotsStatus() {
-        var msg = "No extra infos in Friendlist.";
-        if (BCTdata.friendlistSlotsEnabled) var msg = "Extra infos in Friendlist.";     
+        let msg = "No extra infos in Friendlist.";
+        if (BCTdata.friendlistSlotsEnabled) msg = "Extra infos in Friendlist.";     
         statusmsg(msg);
     }
 
     function showLockConversionStatus() {
-        var msg = "High security locks can't become Best Friend locks.";
-        if (BCTdata.hsToBFLockconvert) var msg = "High security locks can become Best Friend locks.";      
+        let msg = "High security locks can't become Best Friend locks.";
+        if (BCTdata.hsToBFLockconvert) msg = "High security locks can become Best Friend locks.";      
         statusmsg(msg);
     }
 
     function showRoomShareStatus() {
-        var msg = "Best Friends can't share private room names.";
-        if (BCTdata.bestFriendsRoomShare) var msg = "Best Friends can share private room names.";     
+        let msg = "Best Friends can't share private room names.";
+        if (BCTdata.bestFriendsRoomShare) msg = "Best Friends can share private room names.";     
         statusmsg(msg);
     }
 
     function showSplitStatus() {
-        var msg = "Only the standard arousal + orgasm bar.";
-        if (BCTdata.splitOrgasmArousal) var msg = "Two bars for arousal and orgasm.";   
+        let msg = "Only the standard arousal + orgasm bar.";
+        if (BCTdata.splitOrgasmArousal) msg = "Two bars for arousal and orgasm.";   
         statusmsg(msg);
     }
 
     function showTailWaggingStatus() {
-        var msg = "Tail Wagging feature is disabled.";
-        if (BCTdata.tailWaggingEnable) var msg = "Tail Wagging feature is enabled.";    
+        let msg = "Tail Wagging feature is disabled.";
+        if (BCTdata.tailWaggingEnable) msg = "Tail Wagging feature is enabled.";    
         statusmsg(msg);
     }
 
@@ -2549,33 +2551,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //EBCH Status
     function showEbchLogStatus() {
-        var msg = "Chatlogging is enabled.";
-        if (EBCHdata[4] == 0) var msg = "Chatlogging is disabled.";  
+        let msg = "Chatlogging is enabled.";
+        if (EBCHdata[4] == 0) msg = "Chatlogging is disabled.";  
         statusmsg(msg);
     }
 
     function showEbchNotificationStatus() {
-        var msg = "Custom notifications are enabled.";
-        if (EBCHdata[8] == 0) var msg = "Custom notifications are disabled.";     
+        let msg = "Custom notifications are enabled.";
+        if (EBCHdata[8] == 0) msg = "Custom notifications are disabled.";     
         statusmsg(msg);
     }
 
     function showEbchPoseStatus() {
-        var msg = "Pose menu is automatically displayed.";
-        if (EBCHdata[6] == 0) var msg = "Pose menu is not automatically displayed.";    
+        let msg = "Pose menu is automatically displayed.";
+        if (EBCHdata[6] == 0) msg = "Pose menu is not automatically displayed.";    
         statusmsg(msg);
     }
 
     function showEbchUngarbleStatus() {
-        var msg = "All messages are ungarbled.";
-        if (EBCHdata[2] == 0) var msg = "Messages are not ungarbled.";
-        if (EBCHdata[2] == 1) var msg = "Messages from white list are ungarbled.";      
+        let msg = "All messages are ungarbled.";
+        if (EBCHdata[2] == 0) msg = "Messages are not ungarbled.";
+        if (EBCHdata[2] == 1) msg = "Messages from white list are ungarbled.";      
         statusmsg(msg);
     }
 
     function showEbchWelcomeStatus() {
-        var msg = "EBCH Welcome message.";
-        if (EBCHdata[20] == 0) var msg = "No EBCH Welcome message.";  
+        let msg = "EBCH Welcome message.";
+        if (EBCHdata[20] == 0) msg = "No EBCH Welcome message.";  
         statusmsg(msg);
     }
 
@@ -2607,16 +2609,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //LSCG Status
     function showBcLscgStatus() {
-        Activities = "";
-        Collar = "";
-        Chloroform = "";
-        Drugs = "";
-        Gagchoke = "";
-        Handchoke = "";
-        Hypnosis = "";
-        Leashing = "";
-        Magic = "";
-        msg1 = "LSCG is disabled.";
+	let msg = "";
+        let Activities = "";
+        let Collar = "";
+        let Chloroform = "";
+        let Drugs = "";
+        let Gagchoke = "";
+        let Handchoke = "";
+        let Hypnosis = "";
+        let Leashing = "";
+        let Magic = "";
+        let msg1 = "LSCG is disabled.";
         if (LSCGdata.GlobalModule.enabled) msg1 = "LSCG is enabled.";   
         if (LSCGdata.ActivityModule.enabled) Activities = "Activities - ";  
         if (LSCGdata.CollarModule.enabled) Collar = "Breathplay (Collar) - ";
@@ -2632,21 +2635,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showBoopReactionsStatus() {
-        var msg = "No auto-react when booped.";
-        if (LSCGdata.BoopsModule.enabled) var msg = "Auto-react when booped."; 
+        let msg = "No auto-react when booped.";
+        if (LSCGdata.BoopsModule.enabled) msg = "Auto-react when booped."; 
         statusmsg(msg);
     }
 
     function showCheckRollsStatus() {
-        var msg = "No display of attacker/defender roll values with some activities.";
-        if (LSCGdata.GlobalModule.showCheckRolls) var msg = "Display of attacker/defender roll values with some activities.";    
+        let msg = "No display of attacker/defender roll values with some activities.";
+        if (LSCGdata.GlobalModule.showCheckRolls) msg = "Display of attacker/defender roll values with some activities.";    
         statusmsg(msg);
     }
 
     function showCraftingStatus() {
-        msg1 = "Your public craftings are not shared.";
-        msg2 = "Your shared public craftings are not displayed.";
-        msg3 = "Tamperproof features are disabled.";
+	let msg = "";
+        let msg1 = "Your public craftings are not shared.";
+        let msg2 = "Your shared public craftings are not displayed.";
+        let msg3 = "Tamperproof features are disabled.";
         if (LSCGdata.GlobalModule.sharePublicCrafting) msg1 = "Your public craftings are shared and can be used by other LSCG players in the chat room.";    
         if (LSCGdata.GlobalModule.seeSharedCrafts) msg2 = "Your shared public craftings are displayed.";    
         if (LSCGdata.GlobalModule.tamperproofEnabled) msg3 = "Tamperproof features are enabled.";    
@@ -2655,20 +2659,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showEdgeBlurStatus() {
-        var msg = "No blurring of the screen when you are on edge.";
-        if (LSCGdata.GlobalModule.edgeBlur) var msg = "Blurring of the screen when you are on edge.";      
+        let msg = "No blurring of the screen when you are on edge.";
+        if (LSCGdata.GlobalModule.edgeBlur) msg = "Blurring of the screen when you are on edge.";      
         statusmsg(msg);
     }
 
     function showErectionStatus() {
-        var msg = "No private message when you feel an erection under your clothes.";
-        if (LSCGdata.GlobalModule.erectionDetection) var msg = "Private message when you feel an erection under your clothes.";      
+        let msg = "No private message when you feel an erection under your clothes.";
+        if (LSCGdata.GlobalModule.erectionDetection) msg = "Private message when you feel an erection under your clothes.";      
         statusmsg(msg);
     }
 
     function showLipstickStatus() {
-        msg1 = "No lipstick mark on your face or neck when someone kisses you.";
-        msg2 = "Lipstick marks possible when you kiss someone.";
+	let msg = "";
+        let msg1 = "No lipstick mark on your face or neck when someone kisses you.";
+        let msg2 = "Lipstick marks possible when you kiss someone.";
         if (LSCGdata.LipstickModule.enabled) msg1 = "Other people can leave lipstick marks on your face or neck when kissing you.";   
         if (LSCGdata.LipstickModule.dry) msg2 = "No lipstick marks when you kiss someone.";   
         msg = msg1 + " " + msg2;
@@ -2676,8 +2681,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showOpacityStatus() {
-        msg1 = "Effects bypassing opacity are not applied.";
-        msg2 = "Other players can't change the opacity of your wardrobe items.";
+	let msg = "";
+        let msg1 = "Effects bypassing opacity are not applied.";
+        let msg2 = "Other players can't change the opacity of your wardrobe items.";
         if (LSCGdata.OpacityModule.enabled) msg1 = "Effects bypassing opacity are applied.";  
         if (LSCGdata.OpacityModule.preventExternalMod) msg2 = "Other players can change the opacity of your wardrobe items.";    
         msg = msg1 + " " + msg2;
@@ -2685,22 +2691,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showRestrainedSettingsStatus() {
-        var msg = "LSCG settings can be changed when you are restrained.";
-        if (LSCGdata.GlobalModule.blockSettingsWhileRestrained) var msg = "LSCG settings can't be changed when you are restrained.";     
+        let msg = "LSCG settings can be changed when you are restrained.";
+        if (LSCGdata.GlobalModule.blockSettingsWhileRestrained) msg = "LSCG settings can't be changed when you are restrained.";     
         statusmsg(msg);
     }
 
     function showResizingStatus() {
-        var msg = "LSCG resizing effects will be displayed.";
-        if (LSCGdata.GlobalModule.hideResizing) var msg = "LSCG resizing effects will not be displayed.";    
+        let msg = "LSCG resizing effects will be displayed.";
+        if (LSCGdata.GlobalModule.hideResizing) msg = "LSCG resizing effects will not be displayed.";    
         statusmsg(msg);
     }
 
     //MBS Status
     function showGarblingStatus() {
-        msg1 = "Alternative garbling disabled.";
-        msg2 = "Reduction of trailing characters with heavy gags is disabled.";
-        msg3 = "Garbling per syllable is disabled.";
+	let msg = "";
+        let msg1 = "Alternative garbling disabled.";
+        let msg2 = "Reduction of trailing characters with heavy gags is disabled.";
+        let msg3 = "Garbling per syllable is disabled.";
         if (MBSdata.AlternativeGarbling) msg1 = "Alternative garbling enabled.";      
         if (MBSdata.DropTrailing) msg2 = "Reduction of trailing characters with heavy gags is enabled.";     
         if (MBSdata.GarblePerSyllable) msg3 = "Garbling per syllable is enabled."; 
@@ -2709,20 +2716,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showLockedMbsStatus() {
-        var msg = "You can always change MBS settings, even when you are restrained.";
-        if (MBSdata.LockedWhenRestrained) var msg = "MBS settings are locked when you are restrained.";     
+        let msg = "You can always change MBS settings, even when you are restrained.";
+        if (MBSdata.LockedWhenRestrained) msg = "MBS settings are locked when you are restrained.";     
         statusmsg(msg);
     }
 
     function showLockedWheelStatus() {
-        var msg = "Wheel of fortune is locked when you are restrained.";
-        if (MBSdata.RollWhenRestrained) var msg = "You can always spin a wheel of fortune, even when you are restrained.";     
+        let msg = "Wheel of fortune is locked when you are restrained.";
+        if (MBSdata.RollWhenRestrained) msg = "You can always spin a wheel of fortune, even when you are restrained.";     
         statusmsg(msg);
     }
 
     function showMbsCraftingStatus() {
-        var msg = "You are limited to 200 characters to describe your crafted items.";
-        if (MBSdata.ExtendedCraftingDescription) var msg = "You can use up to 398 characters to describe your crafted items.";   
+        let msg = "You are limited to 200 characters to describe your crafted items.";
+        if (MBSdata.ExtendedCraftingDescription) msg = "You can use up to 398 characters to describe your crafted items.";   
         statusmsg(msg);
     } 
 
@@ -2806,50 +2813,50 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Responsive Status
     function showResponsiveStatus() {
-        var msg = "Responsive is disabled.";
-        if (RSPdata.GlobalModule.ResponsiveEnabled) var msg = "Responsive is enabled.";
+        let msg = "Responsive is disabled.";
+        if (RSPdata.GlobalModule.ResponsiveEnabled) msg = "Responsive is enabled.";
         statusmsg(msg);
     }
 
     function showBcrResponsesStatus() {
-        var msg = "Responses feature is disabled.";
-        if (RSPdata.GlobalModule.responsesEnabled) var msg = "Responses feature is enabled.";
+        let msg = "Responses feature is disabled.";
+        if (RSPdata.GlobalModule.responsesEnabled) msg = "Responses feature is enabled.";
         statusmsg(msg);
     }
 
     function showCharacterTalkStatus() {
-        var msg = "Character Talk is disabled.";
-        if (RSPdata.GlobalModule.CharTalkEnabled) var msg = "Character Talk is enabled.";      
+        let msg = "Character Talk is disabled.";
+        if (RSPdata.GlobalModule.CharTalkEnabled) msg = "Character Talk is enabled.";      
         statusmsg(msg);
     }
 
     function showInterceptMessageStatus() {
-        var msg = "Responses can't interrupt and send messages.";
-        if (RSPdata.GlobalModule.doMessageInterruption) var msg = "Responses can interrupt and send messages.";   
+        let msg = "Responses can't interrupt and send messages.";
+        if (RSPdata.GlobalModule.doMessageInterruption) msg = "Responses can interrupt and send messages.";   
         statusmsg(msg);
     }
 
     function showLeaveMessageStatus() {
-        var msg = "The message being written is not sent when leashed out of the room.";
-        if (RSPdata.GlobalModule.doLeaveMessage) var msg = "The message being written is sent when leashed out of the room.";    
+        let msg = "The message being written is not sent when leashed out of the room.";
+        if (RSPdata.GlobalModule.doLeaveMessage) msg = "The message being written is sent when leashed out of the room.";    
         statusmsg(msg);
     }
 
     function showMoansStatus() {
-        var msg = "Moans are not added to responses when highly aroused.";
-        if (RSPdata.GlobalModule.doAddMoansOnHighArousal) var msg = "Moans are added to responses when highly aroused.";     
+        let msg = "Moans are not added to responses when highly aroused.";
+        if (RSPdata.GlobalModule.doAddMoansOnHighArousal) msg = "Moans are added to responses when highly aroused.";     
         statusmsg(msg);
     }
 
     function showNewVersionStatus() {
-        var msg = "New Responsive Version feature is disabled.";
-        if (RSPdata.GlobalModule.doShowNewVersionMessage) var msg = "New Responsive Version feature is enabled.";   
+        let msg = "New Responsive Version feature is disabled.";
+        if (RSPdata.GlobalModule.doShowNewVersionMessage) msg = "New Responsive Version feature is enabled.";   
         statusmsg(msg);
     }
 
     function showRulesStatus() {
-        var msg = "BCX rules can't prevent message sending.";
-        if (RSPdata.GlobalModule.doPreventMessageIfBcxBlock)  var msg = "BCX rules can prevent message sending.";   
+        let msg = "BCX rules can't prevent message sending.";
+        if (RSPdata.GlobalModule.doPreventMessageIfBcxBlock) msg = "BCX rules can prevent message sending.";   
         statusmsg(msg);
     }
 
@@ -2879,10 +2886,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Status
     function showButtonsStatus() {
-        EXT = "";
-        FREE = "";
-        OUT = "";
-        RGL = "";
+	let msg = "";
+        let EXT = "";
+        let FREE = "";
+        let OUT = "";
+        let RGL = "";
         if (ExtbuttonsOn) EXT = "EXT - ";
         if (SosbuttonsOn) FREE = "FREE - ";
         if (OutbuttonsOn) OUT = "OUT - ";  
@@ -2892,17 +2900,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showExitmodeStatus() {
-        var msg = "Fast exit mode is activated.";
-        if (SlowleaveOn) var msg = "Slow exit mode is activated.";  
+        let msg = "Fast exit mode is activated.";
+        if (SlowleaveOn) msg = "Slow exit mode is activated.";  
         statusmsg(msg);
     }
 
     function showFeaturesStatus() {
-        Autojoin = "";
-        Background = "";
-        Fullseed = "";
-        Frkeys = "";
-        Hotkeys = "";
+	let msg = "";
+        let Autojoin = "";
+        let Background = "";
+        let Fullseed = "";
+        let Frkeys = "";
+        let Hotkeys = "";
         if (AutojoinOn) Autojoin = "Auto-Join - ";  
         if (bgall) Background = "All standard backgrounds usable with the buttons in Private Room (SP) - "; 
         if (FullseedOn) Fullseed = "Full solution for intricate/hs locks - ";    
@@ -2913,21 +2922,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showHighfameStatus() {
-        msg1 = "High fame mode disabled in Bondage Club Card Game.";
+	let msg = "";
+        let msg1 = "High fame mode disabled in Bondage Club Card Game.";
         if (HighfameOn) msg1 = "High fame mode enabled in Bondage Club Card Game.";   
         msg = msg1 + " Current high fame: " + cfame + ". Current default desk: " + cdesk + ".";
         statusmsg(msg);
     }
 
     function showMagiccheatStatus() {
-        var msg = "Cheat mode disabled in B. Brawl and Magic School.";
-        if (MagiccheatOn) var msg = "Cheat mode enabled in B. Brawl and Magic School.";   
+        let msg = "Cheat mode disabled in B. Brawl and Magic School.";
+        if (MagiccheatOn) msg = "Cheat mode enabled in B. Brawl and Magic School.";   
         statusmsg(msg);
     }
 
     function showMaptrapStatus() {
-        msg1 = "No traps with devices in map rooms.";
-        msg2 = "No magic toys added under locked chastity for trap mode.";
+	let msg = "";
+        let msg1 = "No traps with devices in map rooms.";
+        let msg2 = "No magic toys added under locked chastity for trap mode.";
         if (MaptrapOn) msg1 = "Traps in map rooms if you 'walk' on devices.";  
         if (MagiccheatOn) msg2 = "Magic toys added under locked chastity for trap mode."; 
         msg = msg1 + " " + msg2;
@@ -2935,35 +2946,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showNostruggleStatus() {
-        var msg = "Automatic struggle in mini-games is disabled.";
-        if (NostruggleOn) var msg = "Automatic struggle in mini-games is enabled."; 
+        let msg = "Automatic struggle in mini-games is disabled.";
+        if (NostruggleOn) msg = "Automatic struggle in mini-games is enabled."; 
         statusmsg(msg);
     }
 
     function showNotimeoutStatus() {
-        var msg = "Time-out enabled in TAB help.";
-        if (NotimeoutOn) var msg = "Time-out disabled in TAB help.";      
+        let msg = "Time-out enabled in TAB help.";
+        if (NotimeoutOn) msg = "Time-out disabled in TAB help.";      
         statusmsg(msg);
     }
 
     function showNpcpunishStatus() {
-        var msg = "NPC punishments disabled.";
-        if (NPCpunish) var msg = "NPC punishments enabled.";  
+        let msg = "NPC punishments disabled.";
+        if (NPCpunish) msg = "NPC punishments enabled.";  
         statusmsg(msg);
     }
 
     function showSearchRoomStatus() {
-        msg1 = "Chat Search type: ";
+	let msg = "";
+        let msg1 = "Chat Search type: ";
+	let msg2 = "";
         if (rtype == "ALL") msg2 = "All rooms. ";
         if (rtype == "Never") msg2 = "Normal rooms. ";
         if (rtype == "Hybrid") msg2 = "Hybrid rooms. ";
         if (rtype == "Always") msg2 = "Mapped rooms. ";
-        msg3 = "Max players for normal/hybrid rooms: ";
+        let msg3 = "Max players for normal/hybrid rooms: ";
         msg = msg1 + msg2 + msg3 + rsize + ".";
         statusmsg(msg);
     }
 
     function showTalkStatus() {
+	let msg = "";
+	let msg1 = "";
         if (animal == 0) msg1 = "Human talk mode";
         if (animal == 1) msg1 = "Bunny talk mode";
         if (animal == 2) msg1 = "Cow talk mode";
@@ -2974,11 +2989,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (animal == 7) msg1 = "Pony talk mode";
         if (animal == 8) msg1 = "Puppy talk mode";
         if (animal == 9) msg1 = "Wolfy talk mode";
-        msg2 = "Forced stuttering level: " + st;
-        msg3 = "Forced gag level: " + gl;
-        msg4 = "No-whisper mode disabled.";
-        msg5 = "Doll talk (and whisper) mode disabled.";
-        msg6 = "No ungarble with BC default talk mode.";
+        let msg2 = "Forced stuttering level: " + st;
+        let msg3 = "Forced gag level: " + gl;
+        let msg4 = "No-whisper mode disabled.";
+        let msg5 = "Doll talk (and whisper) mode disabled.";
+        let msg6 = "No ungarble with BC default talk mode.";
         if (NowhisperOn) msg4 = "No-whisper mode enabled.";  
         if (DolltalkOn) msg5 = "Doll talk (and whisper) mode enabled.";   
         if (NogarbleOn) msg6 = "Ungarble with BC default talk mode.";
@@ -3154,38 +3169,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Themed Status   
     function showBCThemedStatus() {
-        var msg = "ThemedBC is disabled.";
-        if (THMdata.GlobalModule.themedEnabled) var msg = "Themed is enabled.";
+        let msg = "ThemedBC is disabled.";
+        if (THMdata.GlobalModule.themedEnabled) msg = "Themed is enabled.";
         statusmsg(msg);
     }
 
     function showCharacterAbsenceStatus() {
-        var msg = "Absence's indicator is disabled.";
-        if (THMdata.GlobalModule.doIndicateCharacterAbsence) var msg = "Absence's indicator is enabled.";
+        let msg = "Absence's indicator is disabled.";
+        if (THMdata.GlobalModule.doIndicateCharacterAbsence) msg = "Absence's indicator is enabled.";
         statusmsg(msg);
     }
 
     function showAdvancedColoringStatus() {
-        var msg = "Advanced coloring is disabled";
-        if (THMdata.GlobalModule.doUseAdvancedColoring) var msg = "Advanced coloring is enabled.";
+        let msg = "Advanced coloring is disabled";
+        if (THMdata.GlobalModule.doUseAdvancedColoring) msg = "Advanced coloring is enabled.";
         statusmsg(msg);
     }
 
     function showChatStatus() {
-        var msg = "The chat uses the default BC colors.";
-        if (THMdata.IntegrationModule.chat) var msg = "The chat uses colors selected in Themed.";   
+        let msg = "The chat uses the default BC colors.";
+        if (THMdata.IntegrationModule.chat) msg = "The chat uses colors selected in Themed.";   
         statusmsg(msg);
     }
 
     function showFlatColorStatus() {
-        var msg = "Coloring sheet enabled in settings.";
-        if (THMdata.GlobalModule.doUseFlatColor) var msg = "Flat color enabled in settings."; 
+        let msg = "Coloring sheet enabled in settings.";
+        if (THMdata.GlobalModule.doUseFlatColor) msg = "Flat color enabled in settings."; 
         statusmsg(msg);
     }
 
     function showFriendListStatus() {
-        msg1 = "The friend list uses the default BC colors.";
-        msg2 = "No blur effect on friend list background.";
+	let mgs = "";
+        let msg1 = "The friend list uses the default BC colors.";
+        let msg2 = "No blur effect on friend list background.";
         if (THMdata.IntegrationModule.friendList) msg1 = "The friend list uses colors selected in Themed.";   
         if (THMdata.IntegrationModule.friendListBlur) msg2 = "Blur effect on friend list background.";   
         msg = msg1 + " " + msg2;
@@ -3193,26 +3209,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showGuiOverhaulStatus() {
-        var msg = "The interface uses the default BC colors.";
-        if (THMdata.GlobalModule.doVanillaGuiOverhaul) var msg = "The interface uses colors selected in Themed.";
+        let msg = "The interface uses the default BC colors.";
+        if (THMdata.GlobalModule.doVanillaGuiOverhaul) msg = "The interface uses colors selected in Themed.";
         statusmsg(msg);
     }
 
     function showInputZonesStatus() {
-         var msg = "The input zones use the default BC colors.";
-        if (THMdata.IntegrationModule.inputs) var msg = "The input zones use colors selected in Themed.";   
+        let msg = "The input zones use the default BC colors.";
+        if (THMdata.IntegrationModule.inputs) msg = "The input zones use colors selected in Themed.";   
         statusmsg(msg);
     }
 
     function showLocalTimeStatus() {
-        var msg = "The time is displayed according your system settings.";
-        if (THMdata.GlobalModule.doShowLocaleTime) var msg = "The time is displayed according your locale settings.";
+        let msg = "The time is displayed according your system settings.";
+        if (THMdata.GlobalModule.doShowLocaleTime) msg = "The time is displayed according your locale settings.";
         statusmsg(msg);
     }
 
     function showMiscDetailsStatus() {
-        msg1 = "Scrollbar uses the default BC colors.";
-        msg2 = "Text selection is not colored.";
+	let mgs = "";
+        let msg1 = "Scrollbar uses the default BC colors.";
+        let msg2 = "Text selection is not colored.";
         if (THMdata.IntegrationModule.scrollbar) msg1 = "Scrollbar uses colors selected in Themed."; 
         if (THMdata.IntegrationModule.selection) msg2 = "Text selection is colored."; 
         msg = msg1 + " " + msg2;
@@ -3220,8 +3237,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showThemedVersionStatus() {
-        var msg = "New Themed Version feature is disabled.";
-        if (THMdata.GlobalModule.doShowNewVersionMessage) var msg = "New Themed Version feature is enabled.";     
+        let msg = "New Themed Version feature is disabled.";
+        if (THMdata.GlobalModule.doShowNewVersionMessage) msg = "New Themed Version feature is enabled.";     
         statusmsg(msg);
     }
 
@@ -3523,15 +3540,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //WCE Status 
     function showAnimationStatus() {
-        var msg = "Animation Engine disabled.";     
-        if (WCEdata.animationEngine) var msg = "Animation Engine enabled.";    
+        let msg = "Animation Engine disabled.";     
+        if (WCEdata.animationEngine) msg = "Animation Engine enabled.";    
         statusmsg(msg);
     }
 
     function showAntiCheatStatus() {
-        msg1 = "Anti-Cheat disabled.";
-        msg2 = "No automatic blacklist for detected cheaters.";
-        msg3 = "Uwall disabled.";
+	let msg = "";
+        let msg1 = "Anti-Cheat disabled.";
+        let msg2 = "No automatic blacklist for detected cheaters.";
+        let msg3 = "Uwall disabled.";
         if (WCEdata.itemAntiCheat) msg1 = "Anti-Cheat enabled.";    
         if (WCEdata.antiCheatBlackList) msg2 = "Automatic blacklist for detected cheaters."; 
         if (WCEdata.uwall) msg3 = "Uwall enabled.";
@@ -3540,8 +3558,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showArousalStatus() {
-        msg1 = "No alternate arousal system.";
-        msg2 = "No numeric arousal meter.";
+	let msg = "";
+        let msg1 = "No alternate arousal system.";
+        let msg2 = "No numeric arousal meter.";
         if (WCEdata.alternateArousal) msg1 = "Alternate arousal enabled.";    
         if (WCEdata.numericArousalMeter) msg2 = "Numeric arousal meter.";
         msg = msg1 + " " + msg2;
@@ -3549,9 +3568,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showCheatStatus() {
-        msg1 = "No help for lockpicking.";
-        msg2 = "No automatic struggle.";
-        msg3 = "No bypassing of BCX beep restrictions.";
+	let msg = "";
+        let msg1 = "No help for lockpicking.";
+        let msg2 = "No automatic struggle.";
+        let msg3 = "No bypassing of BCX beep restrictions.";
         if (WCEdata.lockpick) msg1 = "Help for lockpicking based on skills.";    
         if (WCEdata.autoStruggle) msg2 = "Automatic progress when struggling."; 
         if (WCEdata.allowIMBypassBCX) msg3 = "BCX beep restrictions can be bypassed.";
@@ -3560,8 +3580,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showColorStatus() {
-        msg1 = "No copy color option.";
-        msg2 = "No improved colors in chat.";
+	let msg = "";
+        let msg1 = "No copy color option.";
+        let msg2 = "No improved colors in chat.";
         if (WCEdata.copyColor) msg1 = "Copy color option enabled.";    
         if (WCEdata.chatColors) msg2 = "Improved colors in chat.";
         msg = msg1 + " " + msg2;
@@ -3569,15 +3590,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showEmbeddingStatus() {
-        var msg = "No clickable links and image embeds.";     
-        if (WCEdata.augmentChat) var msg = "Clickable links and image embeds.";    
+        let msg = "No clickable links and image embeds.";     
+        if (WCEdata.augmentChat) msg = "Clickable links and image embeds.";    
         statusmsg(msg);
     }
 
     function showImmersionStatus() {
-        msg1 = "No blind without glasses.";
-        msg2 = "No leashing without leashable items.";
-        msg3 = "No hiding of icon for hidden items.";     
+	let msg = "";
+        let msg1 = "No blind without glasses.";
+        let msg2 = "No leashing without leashable items.";
+        let msg3 = "No hiding of icon for hidden items.";     
         if (WCEdata.blindWithoutGlasses) msg1 = "Blind without glasses."; 
         if (WCEdata.leashAlways) msg2 = "Leashing also without leashable items.";
         if (WCEdata.hideHiddenItemsIcon) msg3 = "Hiding of icon for hidden items.";       
@@ -3586,9 +3608,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showLayeringStatus() {
-        msg1 = "No configuration for layer hiding.";
-        msg2 = "No layering menus when bound.";
-        msg3 = "Other players can make layer changes on you.";
+	let msg = "";
+        let msg1 = "No configuration for layer hiding.";
+        let msg2 = "No layering menus when bound.";
+        let msg3 = "Other players can make layer changes on you.";
         if (WCEdata.layeringHide) msg1 = "Configuration for layer hiding.";    
         if (WCEdata.allowLayeringWhileBound) msg2 = "Layering allowed when bound."; 
         if (WCEdata.preventLayeringByOthers) msg3 = "Other players can't make layer changes on you.";
@@ -3597,10 +3620,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showMiscStatus() {
-        msg1 = "No instant messager.";
-        msg2 = "No saving of profiles.";
-        msg3 = "No sharing of used add-ons.";
-        msg4 = "No synchronisation with connected toys.";     
+	let msg = "";
+        let msg1 = "No instant messager.";
+        let msg2 = "No saving of profiles.";
+        let msg3 = "No sharing of used add-ons.";
+        let msg4 = "No synchronisation with connected toys.";     
         if (WCEdata.instantMessenger) msg1 = "Instant messenger."; 
         if (WCEdata.pastProfiles) msg2 = "Saving of profiles."; 
         if (WCEdata.shareAddons) msg3 = "Sharing of used add-ons.";
@@ -3610,9 +3634,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showPerformanceStatus() {
-        msg1 = "No automatic clearing of drawing cache.";
-        msg2 = "No drawing cache button.";
-        msg3 = "Discreet mode disabled.";
+	let msg = "";
+        let msg1 = "No automatic clearing of drawing cache.";
+        let msg2 = "No drawing cache button.";
+        let msg3 = "Discreet mode disabled.";
         if (WCEdata.automateCacheClear) msg1 = "Automatic clearing of drawing cache.";    
         if (WCEdata.manualCacheClear) msg2 = "Drawing cache button."; 
         if (WCEdata.discreetMode) msg3 = "Discreet mode enabled.";
@@ -3621,10 +3646,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showWardrobeStatus() {
-        msg1 = "No extended wardrobe.";
-        msg2 = "No local wardrobe.";
-        msg3 = "No automatic preview.";
-        msg4 = "No confirmation when saving outfits.";
+	let msg = "";
+        let msg1 = "No extended wardrobe.";
+        let msg2 = "No local wardrobe.";
+        let msg3 = "No automatic preview.";
+        let msg4 = "No confirmation when saving outfits.";
         if (WCEdata.extendedWardrobe) msg1 = "Extended wardrobe.";
         if (WCEdata.localWardrobe) msg2 = "Local wardrobe.";
         if (WCEdata.privateWardrobe) msg3 = "Automatic preview.";
@@ -3634,9 +3660,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showWceTalkingStatus() {
-         msg1 = "Anti-garble system disabled.";
-         msg2 = "Anti-deafen system disabled.";
-         msg3 = "Alternative speech stutter disabled.";
+	 let msg = "";
+         let msg1 = "Anti-garble system disabled.";
+         let msg2 = "Anti-deafen system disabled.";
+         let msg3 = "Alternative speech stutter disabled.";
          if (WCEdata.antiGarble) msg1 = "Anti-garble system enabled.";
          if (WCEdata.antiDeaf) msg2 = "Anti-deafen system enabled.";
          if (WCEdata.stutters) msg3 = "Alternative speech stutter enabled.";
@@ -3751,50 +3778,50 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showM_MOANER_scriptStatus() {
-        var msg = "The moaner is not active.";
-        if (M_MOANER_scriptOn) var msg = "The moaner is active.";
+        let msg = "The moaner is not active.";
+        if (M_MOANER_scriptOn) msg = "The moaner is active.";
         statusmsg(msg);
     }
 
     function showM_MOANER_profileStatus() {
-        var msg = "Current moans profile: " + profileName;
-        if (profileName == "default") var msg = "No custom profile loaded.";
+        let msg = "Current moans profile: " + profileName;
+        if (profileName == "default") msg = "No custom profile loaded.";
         statusmsg(msg);
     }
 
     function showM_MOANER_orgasmStatus() {
-        var msg = "The orgasm moan is not active. You will not moan while cumming anymore.";
-        if (M_MOANER_orgasmActive) var msg = "The orgasm moan is active. You will moan while cumming.";     
+        let msg = "The orgasm moan is not active. You will not moan while cumming anymore.";
+        if (M_MOANER_orgasmActive) msg = "The orgasm moan is active. You will moan while cumming.";     
         statusmsg(msg);
     }
 
     function showM_MOANER_spankStatus() {
-        var msg = "The spank moan is not active. You will not moan while being spanked.";
-        if (M_MOANER_spankActive) var msg = "The spank moan is active. You will moan while being spanked.";     
+        let msg = "The spank moan is not active. You will not moan while being spanked.";
+        if (M_MOANER_spankActive) msg = "The spank moan is active. You will moan while being spanked.";     
         statusmsg(msg);
     }
 
     function showM_MOANER_talkStatus() {
-        var msg = "The talk moan is not active. If you're vibed, you will not moan while speaking anymore.";
-        if (M_MOANER_talkActive) var msg = "The talk moan is active. If you're vibed, you will moan while speaking.";     
+        let msg = "The talk moan is not active. If you're vibed, you will not moan while speaking anymore.";
+        if (M_MOANER_talkActive) msg = "The talk moan is active. If you're vibed, you will moan while speaking.";     
         statusmsg(msg);
     }
 
     function showM_MOANER_tickleStatus() {
-        var msg = "The tickle moan is not active. You will not moan while being tickled.";
-        if (M_MOANER_tickleActive) var msg = "The tickle moan is active. You will moan while being tickled.";
+        let msg = "The tickle moan is not active. You will not moan while being tickled.";
+        if (M_MOANER_tickleActive) msg = "The tickle moan is active. You will moan while being tickled.";
         statusmsg(msg);
     }
 
     function showM_MOANER_vibratorStatus() {
-        var msg = "The vibes moan is not active. If your vibrator's settings change, you will not moan.";
-        if (M_MOANER_vibratorActive) var msg = "The vibes moan is active. If your vibrator's settings change, you will moan.";    
+        let msg = "The vibes moan is not active. If your vibrator's settings change, you will not moan.";
+        if (M_MOANER_vibratorActive) msg = "The vibes moan is active. If your vibrator's settings change, you will moan.";    
         statusmsg(msg);
     }
 
     function showM_MOANER_xvibratorStatus() {
-        var msg = "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan.";
-        if (M_MOANER_xvibratorActive) var msg = "The xvibes moan is active. If vibrator's settings of other players change, you will moan.";  
+        let msg = "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan.";
+        if (M_MOANER_xvibratorActive) msg = "The xvibes moan is active. If vibrator's settings of other players change, you will moan.";  
         statusmsg(msg);
     }
  
