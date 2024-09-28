@@ -3199,7 +3199,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showFriendListStatus() {
-	let mgs = "";
+	let msg = "";
         let msg1 = "The friend list uses the default BC colors.";
         let msg2 = "No blur effect on friend list background.";
         if (THMdata.IntegrationModule.friendList) msg1 = "The friend list uses colors selected in Themed.";   
@@ -3227,7 +3227,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showMiscDetailsStatus() {
-	let mgs = "";
+	let msg = "";
         let msg1 = "Scrollbar uses the default BC colors.";
         let msg2 = "Text selection is not colored.";
         if (THMdata.IntegrationModule.scrollbar) msg1 = "Scrollbar uses colors selected in Themed."; 
