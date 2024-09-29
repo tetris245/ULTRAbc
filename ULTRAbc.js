@@ -6086,7 +6086,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(difficulty): starts chess.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The chess command must be followed by a number between 1 and 3.\n" +
+                let msg = "The chess command must be followed by a number between 1 and 3.\n" +
                     " \n" +
                     "Available difficulty modes:\n" +
                     "1 easy\n" +
@@ -6116,14 +6116,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MiniGameStart("Chess", CollegeChessDifficulty, "CollegeChessGameEndALT");
                     document.addEventListener("chessOnMove", CollegeChessGameProgress);
                 };
-                var chessdifficulty = args;
+                let chessdifficulty = args;
                 if (this.ChessOn == false || this.ChessOn == undefined) {
                     ChessOn = true;
                     CommonSetScreen("Room", "CollegeChess");
                     CollegeChessGameStartALT(chessdifficulty);
                     setTimeout(function() {
                         CommonSetScreen("Online", "ChatRoom");
-                        ElementPositionFix("DivChessBoard", null, -1000, 0);
+                        ElementPositionFix("DivChessBoard", null, -1100, 0);
                     }, 2000);
                 } else {
                     ChessOn = false;
