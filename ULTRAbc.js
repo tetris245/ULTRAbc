@@ -56,14 +56,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var bgall = false;
     var cdesk = 0;
     var cfame = 200;
-    var frname = "BrickWall";
+    let frname = "BrickWall";
     var gl = 0;
     var onegl = 0;
     var mgl = 0;
     var rsize = 20;
     let rtype = "ALL";
     var st = 0;
-    var tcname = "Cell";
+    let tcname = "Cell";
 
     let AutojoinOn;
     let DolltalkOn;
@@ -1992,12 +1992,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(1885, PrivateButtonTop(4), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChangeOwnClothes() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
             if (MouseIn(1885, PrivateButtonTop(5), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage) && PrivateBedActive()) CommonSetScreen("Room", "PrivateBed");
             if (MouseIn(1885, PrivateButtonTop(6), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset + 4 == PrivateCharacterMax) ? 0 : PrivateCharacterOffset + 4;
-            if (MouseIn(1885, PrivateButtonTop(7), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
+            let backgrounds = "";
+	    if (MouseIn(1885, PrivateButtonTop(7), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
                 if (Player.VisualSettings == null) Player.VisualSettings = {};
                 if (bgall == true) {
-                    var backgrounds = BackgroundsGenerateList(BackgroundsTagList);
+                    backgrounds = BackgroundsGenerateList(BackgroundsTagList);
                 } else {
-                    var backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
+                    backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
                 }
                 let index = backgrounds.indexOf(MainHallBackground);
                 if (index < 0) index = 0;
@@ -2011,9 +2012,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(1885, PrivateButtonTop(8), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
                 if (Player.VisualSettings == null) Player.VisualSettings = {};
                 if (bgall == true) {
-                    var backgrounds = BackgroundsGenerateList(BackgroundsTagList);
+                    backgrounds = BackgroundsGenerateList(BackgroundsTagList);
                 } else {
-                    var backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
+                    backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
                 }
                 let index = backgrounds.indexOf(PrivateBackground);
                 if (index < 0) index = 0;
@@ -2028,9 +2029,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (MouseIn(0, 900, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
                 if (bgall == true) {
-                    var backgrounds = BackgroundsGenerateList(BackgroundsTagList);
+                    backgrounds = BackgroundsGenerateList(BackgroundsTagList);
                 } else {
-                    var backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
+                    backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
                 }
                 let index = backgrounds.indexOf(frname);
                 if (index < 0) index = 0;
@@ -2041,9 +2042,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (MouseIn(0, 950, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
                 if (bgall == true) {
-                    var backgrounds = BackgroundsGenerateList(BackgroundsTagList);
+                    backgrounds = BackgroundsGenerateList(BackgroundsTagList);
                 } else {
-                    var backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
+                    backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
                 }
                 let index = backgrounds.indexOf(tcname);
                 if (index < 0) index = 0;
