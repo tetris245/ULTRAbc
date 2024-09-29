@@ -4816,21 +4816,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(minutes): enters asylum, bypasses requirements.",
         Action: (args) => {
             if ((args === "") && (ReputationGet("Asylum") < 0)) {
-                var msg = "You must specify minutes if you are a patient.";
+                let msg = "You must specify minutes if you are a patient.";
                 infomsg(msg);
             } else {
-                var minutes = args;
+                if (ReputationGet("Asylum") < 0) {
+                    let minutes = args;
+                    LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
+                }
                 ChatRoomSetLastChatRoom("");
                 ServerSend("ChatRoomLeave", "");
                 OnlineGameName = "";
                 CommonSetScreen("Room", "AsylumEntrance");
-                ChatRoomClearAllElements();
+                ChatRoomHideElements();
                 AsylumEntranceIsWearingNurseClothes = function() {
                     return true
                 };
-                if (ReputationGet("Asylum") < 0) {
-                    LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
-                }
             }
         }
     }])
