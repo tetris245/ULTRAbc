@@ -7606,7 +7606,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (CurrentScreen != "ChatRoom") {
                     document.getElementById("InputChat").style.display = "none";
                     document.getElementById("TextAreaChatLog").style.display = "none";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                 }
                 if (args === "") {} else if (args === "maxstats") {
                     setTimeout(function() {
