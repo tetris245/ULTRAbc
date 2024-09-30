@@ -45,17 +45,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let pronoun2;
     let pronoun3;
     let pronoun4;
-    var umsg1 = "Your command can't be executed because ";
-    var umsg2 = " has enabled the Uwall protection.";
+    let tgpname;
+    const umsg1 = "Your command can't be executed because ";
+    const umsg2 = " has enabled the Uwall protection.";
 
     var M_MOANER_moanerKey = "bc_moaner_";
     var M_MOANER_scriptOn = false;
     var M_MOANER_cum = false;
     let profileName;
     var animal = 0;
-    var bgall = false;
-    var cdesk = 0;
-    var cfame = 200;
+    let bgall = false;
+    let cdesk = 0;
+    let cfame = 200;
     let frname = "BrickWall";
     var gl = 0;
     var onegl = 0;
@@ -1607,26 +1608,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAClubCardLoadDeckNumber() {
         modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
             let originaldesk = ClubCardBuilderDefaultDeck;
-            var ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1009, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
-            if (cdesk == 1) {
-                ClubCardBuilderDefaultDeck = ClubCardBuilderABDLDeck;
-            } else if (cdesk == 2) {
-                ClubCardBuilderDefaultDeck = ClubCardBuilderAsylumDeck;
-            } else if (cdesk == 3) {
-                ClubCardBuilderDefaultDeck = ClubCardBuilderCollegeDeck;
-            } else if (cdesk == 4) {
-                ClubCardBuilderDefaultDeck = ClubCardBuilderDominantDeck;
-            } else if (cdesk == 5) {
-                ClubCardBuilderDefaultDeck = ClubCardBuilderLiabilityDeck;
-            } else if (cdesk == 6) {
-                ClubCardBuilderDefaultDeck = ClubCardBuilderMaidDeck;
-            } else if (cdesk == 7) {
-                ClubCardBuilderDefaultDeck = ClubCardBuilderPornDeck;
-            } else if (cdesk == 8) {
-                ClubCardBuilderDefaultDeck = ClubCardBuilderExtraDeck;
-            } else if (cdesk == 0) {
-                ClubCardBuilderDefaultDeck = originaldesk;
-            }
+            let ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1009, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
+            if (cdesk == 1) ClubCardBuilderDefaultDeck = ClubCardBuilderABDLDeck;
+            if (cdesk == 2) ClubCardBuilderDefaultDeck = ClubCardBuilderAsylumDeck;
+            if (cdesk == 3) ClubCardBuilderDefaultDeck = ClubCardBuilderCollegeDeck;
+            if (cdesk == 4) ClubCardBuilderDefaultDeck = ClubCardBuilderDominantDeck;
+            if (cdesk == 5) ClubCardBuilderDefaultDeck = ClubCardBuilderLiabilityDeck;
+            if (cdesk == 6) ClubCardBuilderDefaultDeck = ClubCardBuilderMaidDeck;
+            if (cdesk == 7) ClubCardBuilderDefaultDeck = ClubCardBuilderPornDeck;
+            if (cdesk == 8) ClubCardBuilderDefaultDeck = ClubCardBuilderExtraDeck;
+            if (cdesk == 0) ClubCardBuilderDefaultDeck = originaldesk;
             next(args);
         });
     }
@@ -6000,7 +5991,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(desk): sets a specific desk as default desk for the Bondage Club Card Game.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The carddesk command must be followed by a number between 0 and 8.\n" +
+                let msg = "The carddesk command must be followed by a number between 0 and 8.\n" +
                     " \n" +
                     "Available desks:\n" +
                     "0 Original Default\n" +
@@ -6009,11 +6000,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "7 Porn - 8 Extra";
                 infomsg(msg);
             } else {
-                var desk = args;
+                let desk = args;
                 if ((desk > -1) && (desk < 9) && (desk != cdesk)) {
                     cdesk = desk;
                     M_MOANER_saveControls();
-                    var msg = "Default desk changed for the Bondage Club Card Game.";
+                    let msg = "Default desk changed for the Bondage Club Card Game.";
                     infomsg(msg);
                 }
             }
@@ -6025,8 +6016,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": gives all extra cards of the Bondage Club Card Game.",
         Action: () => {
             Player.Game.ClubCard.Reward = "";
-            var Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
-            var msg = "All extra cards of the Bondage Club Card Game now added.";
+            let Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
+            let msg = "All extra cards of the Bondage Club Card Game now added.";
             infomsg(msg);
             for (let i = 0; i < Extra.length; i++) {
                 let Char = String.fromCharCode(Extra[i]);
@@ -6043,14 +6034,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(fame): sets the fame level for the high fame mode of Bondage Club Card Game.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The cardfame command must be followed by a number between 200 and 600.";
+                let msg = "The cardfame command must be followed by a number between 200 and 600.";
                 infomsg(msg);
             } else {
-                var fame = args;
+                let fame = args;
                 if ((fame > 199) && (fame < 601) && (fame != cfame)) {
                     cfame = fame;
                     M_MOANER_saveControls();
-                    var msg = "Fame level changed for the high fame mode of the Bondage Club Card Game.";
+                    let msg = "Fame level changed for the high fame mode of the Bondage Club Card Game.";
                     infomsg(msg);
                 }
             }
@@ -6062,10 +6053,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": removes all extra cards of the Bondage Club Card Game.",
         Action: (args) => {
             if (args === "") {
-                var msg = "<b>Warning</b>: You will lose all the extra cards of the Bondage Club Card Game. Confirm by typing: <b>/cardnoextra yes</b>";
+                let msg = "<b>Warning</b>: You will lose all the extra cards of the Bondage Club Card Game. Confirm by typing: <b>/cardnoextra yes</b>";
                 infomsg(msg);
             } else if (args === "yes") {
-                var msg = "No more extra cards in the Bondage Club Card Game.";
+                let msg = "No more extra cards in the Bondage Club Card Game.";
                 infomsg(msg);
                 Player.Game.ClubCard.Reward = "";
                 ServerAccountUpdate.QueueData({
@@ -6132,27 +6123,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): changes clothes.",
         Action: (args) => {
             if (args === "") {
-                if (Clothes == undefined) {
-                    var msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
-                } else {
+                let msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
+                if (Clothes != undefined) {              
                     if (Clothes != "") {
                         if (Clothes.startsWith("\u0027")) {
-                            var msg = tmpname + Clothes;
+                            msg = tmpname + Clothes;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Clothes;
+                            msg = tmpname + ' '.repeat(1) + Clothes;
                         }
-                    } else {
-                        var msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
-                    }
+                    } 
                 }
                 if (Clothes != "no message") publicmsg(msg);
                 CharacterAppearanceFullRandom(Player, true);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -6163,21 +6151,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        if (Tclothes == undefined) {
-                            var msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
-                        } else {
+                        let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                        if (Tclothes == undefined) {           
                             if (Tclothes != "") {
                                 if (Tclothes.startsWith("\u0027")) {
-                                    var msg = tmpname + Tclothes + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + Tclothes + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
                                 }
-                            } else {
-                                var msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
-                            }
+                            } 
                         }
                         if (Tclothes != "no message") publicmsg(msg);
                         CharacterAppearanceFullRandom(target[0], true);
@@ -6197,24 +6182,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 for (let A = 0; A < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
                         if (Player.Appearance[A].Property.LockedBy == "CombinationPadlock") {
-                            var asset = Player.Appearance[A].Asset.Description;
-                            var code = Player.Appearance[A].Property.CombinationNumber;
+                            let asset = Player.Appearance[A].Asset.Description;
+                            let code = Player.Appearance[A].Property.CombinationNumber;
                             ChatRoomSendLocal("" + asset + " = " + code + "");
                         }
                     }
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
                     for (let A = 0; A < target[0].Appearance.length; A++)
                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
                             if (target[0].Appearance[A].Property.LockedBy == "CombinationPadlock") {
-                                var asset = target[0].Appearance[A].Asset.Description;
-                                var code = target[0].Appearance[A].Property.CombinationNumber;
+                                let asset = target[0].Appearance[A].Asset.Description;
+                                let code = target[0].Appearance[A].Property.CombinationNumber;
                                 ChatRoomSendLocal("" + asset + " = " + code + "");
                             }
                         }
@@ -6252,7 +6237,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(anim): gets an animation with color change.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The colorchanger command:\n" +
+                let msg = "The colorchanger command:\n" +
                     "To preselect, two choices exist, type: <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\n" +
                     "To manually select area, type: <b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\n" +
                     "Manual selection can only target 10 areas at a time,\n" +
@@ -6261,34 +6246,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if ((args === "custom") || (args === "set") || (args === "select")) {
-                var msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                let msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.FocusGroup.Name) {
-                            var RandomColor = null;
-                            var ColorTargetNameCustom = CurrentCharacter;
-                            if (this.ColorTarget1 == undefined) {
-                                this.ColorTarget1 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget2 == undefined) {
-                                this.ColorTarget2 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget3 == undefined) {
-                                this.ColorTarget3 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget4 == undefined) {
-                                this.ColorTarget4 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget5 == undefined) {
-                                this.ColorTarget5 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget6 == undefined) {
-                                this.ColorTarget6 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget7 == undefined) {
-                                this.ColorTarget7 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget8 == undefined) {
-                                this.ColorTarget8 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget9 == undefined) {
-                                this.ColorTarget9 = CurrentCharacter.FocusGroup.Name
-                            } else if (this.ColorTarget10 == undefined) {
-                                this.ColorTarget10 = CurrentCharacter.FocusGroup.Name
-                            }
+                            let RandomColor = null;
+                            let ColorTargetNameCustom = CurrentCharacter;
+                            if (this.ColorTarget1 == undefined) this.ColorTarget1 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget2 == undefined) this.ColorTarget2 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget3 == undefined) this.ColorTarget3 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget4 == undefined) this.ColorTarget4 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget5 == undefined) this.ColorTarget5 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget6 == undefined) this.ColorTarget6 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget7 == undefined) this.ColorTarget7 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget8 == undefined) this.ColorTarget8 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget9 == undefined) this.ColorTarget9 = CurrentCharacter.FocusGroup.Name;
+                            if (this.ColorTarget10 == undefined) this.ColorTarget10 = CurrentCharacter.FocusGroup.Name;
                             ColorChangerCustom = function() {
                                 setTimeout(function() {
                                     ColorChangerCustom()
@@ -6342,17 +6316,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }, 5000);
             }
             if (args === "eyes") {
-                var msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                let msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter) {
-                            var ColorTargetNameEyes = CurrentCharacter;
+                            let ColorTargetNameEyes = CurrentCharacter;
                             ColorChangerEyes = function() {
                                 setTimeout(function() {
                                     ColorChangerEyes()
                                 }, 1000);
-                                var RandomColor = null;
+                                let RandomColor = null;
                                 RandomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
                                 InventoryGet(ColorTargetNameEyes, "Eyes").Color = RandomColor;
                                 InventoryGet(ColorTargetNameEyes, "Eyes2").Color = RandomColor;
@@ -6366,17 +6340,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }, 5000);
             }
             if (args === "hair") {
-                var msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                let msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter) {
-                            var ColorTargetNameHair = CurrentCharacter;
+                            let ColorTargetNameHair = CurrentCharacter;
                             ColorChangerHair = function() {
                                 setTimeout(function() {
                                     ColorChangerHair()
                                 }, 1000);
-                                var RandomColor = null;
+                                let RandomColor = null;
                                 RandomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
                                 InventoryGet(ColorTargetNameHair, "HairFront").Color = RandomColor;
                                 InventoryGet(ColorTargetNameHair, "HairBack").Color = RandomColor;
