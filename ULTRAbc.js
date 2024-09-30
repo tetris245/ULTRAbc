@@ -7051,21 +7051,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(minutes) (level):  enters ggts training in asylum for the specified time and level.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The ggts command must be followed by two numbers to  specify minutes and level (1-6).";
+                let msg = "The ggts command must be followed by two numbers to  specify minutes and level (1-6).";
                 infomsg(msg);
             } else {
-                var stringGgts1 = args;
-                var stringGgts2 = stringGgts1.split(/[ ,]+/);
-                var minutes = stringGgts2[0];
-                var level = stringGgts2[1];
-		var msg = "" + tmpname + " gets grabbed by two maids and locked in the asylum for " + minutes + " minutes of training with the Good Girl Training System Level " + level + ".";
+                let stringGgts1 = args;
+                let stringGgts2 = stringGgts1.split(/[ ,]+/);
+                let minutes = stringGgts2[0];
+                let level = stringGgts2[1];
+		let msg = "" + tmpname + " gets grabbed by two maids and locked in the asylum for " + minutes + " minutes of training with the Good Girl Training System Level " + level + ".";
                 publicmsg(msg);
                 DialogLentLockpicks = false;
                 ChatRoomClearAllElements();
                 ServerSend("ChatRoomLeave", "");
                 CharacterDeleteAllOnline();
                 AsylumGGTSLock(minutes, TextGet("GGTSIntro"));
-                AsylumGGTSStartLevel(level);
+                Level = parseInt(level);
+	        if (Player.Game == null) Player.Game = {};
+	        Player.Game.GGTS = { Level: Level, Time: 0, Strike: 0, Rule: [] };
+	        AsylumGGTSSAddItems();
+	        if (Level == 6) CharacterChangeMoney(Player, 1000);
+	        else if (Level >= 2) CharacterChangeMoney(Player, 100 * (Level - 1));
+	        ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
             }
         }
     }])
@@ -11153,7 +11159,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(role or club area): ceases to play a role",
         Action: (args) => {
             if (args === "") {
-                var msg = "The rolequit command must include a role or clubarea.\n" +
+                let msg = "The rolequit command must include a role or clubarea.\n" +
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available roles or areas:\n" +
@@ -11166,7 +11172,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "sorority or maid to cease being maid or headmaid.";
                 infomsg(msg);
             } else {
-                var role = args;
+                let role = args;
                 if (role == "asylum") {
                     LogAdd("Escaped", "Asylum", CurrentTime);
                     LogAdd("Committed", "Asylum", CurrentTime);
@@ -11180,6 +11186,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ManagementClubSlaveDialog = function(Player) {}
                     ManagementFinishClubSlave()
                 } else if (role == "ggts") {
+		    ChatRoomHideElements();
+                    ServerSend("ChatRoomLeave", "");
+                    CharacterDeleteAllOnline();
+                    AsylumGGTSLock(0);
                     Level = parseInt(0);
                     Player.Game.GGTS.Level = 0;
                     ServerAccountUpdate.QueueData({
