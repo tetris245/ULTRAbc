@@ -10606,15 +10606,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(minutes): stays in Pandora prison.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The prison command must be followed by a number higher than 0";
+                let msg = "The prison command must be followed by a number higher than 0";
                 infomsg(msg);
             } else {
-                var minutes = args;
+                let minutes = args;
                 if (minutes > 0) {
 		    var msg = "" + tmpname + " gets grabbed by two maids and sent to Pandora prison for " + minutes + " minutes.";
 		    publicmsg(msg);
                     DialogLentLockpicks = false;
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     ServerSend("ChatRoomLeave", "");
                     CharacterDeleteAllOnline();
                     PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 7).toString();
