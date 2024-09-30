@@ -1874,7 +1874,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAInfiltrationPrepareMission() {
         modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {
             if (InfiltrationMission == "") {
-                var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
+                let InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
                 InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
             }
             if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
@@ -9468,36 +9468,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(mission): goes to infiltration room and forces a specific mission.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The mission command must include a mission.\n" +
+                let msg = "The mission command must include a mission.\n" +
                     "Available missions:\n" +
                     "burglar, kidnap, rescue, retrieve, sabotage.\n" +
                     "Full random mission with random.";
                 infomsg(msg);
             } else {
-                var mission = args;
+                let mission = args;
                 if (mission == "random") {
-                    var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
+                    InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
                 }
                 if (mission == "burglar") {
-                    var InfiltrationMissionType = ["CatBurglar"];
+                    InfiltrationMissionType = ["CatBurglar"];
                 }
                 if (mission == "kidnap") {
-                    var InfiltrationMissionType = ["Kidnap"];
+                    InfiltrationMissionType = ["Kidnap"];
                 }
                 if (mission == "rescue") {
-                    var InfiltrationMissionType = ["Rescue"];
+                    InfiltrationMissionType = ["Rescue"];
                 }
                 if (mission == "retrieve") {
-                    var InfiltrationMissionType = ["Retrieve"];
+                    InfiltrationMissionType = ["Retrieve"];
                 }
                 if (mission == "sabotage") {
-                    var InfiltrationMissionType = ["ReverseMaid"];
+                    InfiltrationMissionType = ["ReverseMaid"];
                 }
                 InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
                 ServerSend("ChatRoomLeave", "");
                 ChatRoomSetLastChatRoom("");
                 OnlineGameName = "";
-                ChatRoomClearAllElements();
+                ChatRoomhideElements();
                 CommonSetScreen("Room", "Infiltration");
             }
         }
