@@ -160,15 +160,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var echolevel5 = echolevel4.concat(toys);
 
     //Animal Talk Profiles
-    var animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"];
-    var animalmode2 = ["mo", "moo", "mooo", "mu", "muu", "moooo"];
-    var animalmode3 = ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"];
-    var animalmode4 = ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"];
-    var animalmode5 = ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"];
-    var animalmode6 = ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"];
-    var animalmode7 = ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"];
-    var animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];
-    var animalmode9 = ["owo", "owoo", "whoo", "owoooo", "howl", "howll", "hoowl"];
+    let animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"];
+    let animalmode2 = ["mo", "moo", "mooo", "mu", "muu", "moooo"];
+    let animalmode3 = ["wif", "yif", "wiif", "yiif", "wiff", "yiff", "aou", "waou", "awaou"];
+    let animalmode4 = ["meow", "meoow", "meooow", "meeow", "meeeow", "mnyaa", "mew", "meew", "meeew"];
+    let animalmode5 = ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"];
+    let animalmode6 = ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"];
+    let animalmode7 = ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"];
+    let animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];
+    let animalmode9 = ["owo", "owoo", "whoo", "owoooo", "howl", "howll", "hoowl"];
 
     //Moaner Default Profile
     var M_MOANER_profileName = "default";
@@ -4839,9 +4839,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'atalk',
         Description: "(animal) (words): speaks once as a specified animal.",
         Action: (_, command, args) => {
-            var [mode] = args;
+            let [mode] = args;
             if (!mode) {
-                var msg = "The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\n" +
+                let msg = "The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\n" +
                     "Note that it is recommended to use it only when you are not in a 'permanent' animal talk mode, forced with the <b> /ptalk </b> command, that will not be overrided.\n" +
                     " \n" +
                     "Available animals:\n" +
@@ -4850,15 +4850,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             } else {
                 if ((mode > 0) && (mode < 10)) {
-                    var [, , ...message] = command.split(" ");
-                    var msg = message?.join(" ");
-                    var nm = 0;
+                    let [, , ...message] = command.split(" ");
+                    let msg = message?.join(" ");
+                    let nm = 0;
                     if (DolltalkOn == true) {
-                        if (IsDollTalk(msg) == false) {
-                            var nm = 1;
-                        }
+                        if (IsDollTalk(msg) == false) nm = 1;
                         if (nm == 1) {
-                            var msg = "Your message can't be sent because it does not respect the rules of doll talk.";
+                            msg = "Your message can't be sent because it does not respect the rules of doll talk.";
                             infomsg(msg);
                         }
                     }
@@ -4886,7 +4884,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": toggles on auto kick for 0 day old accounts.",
         Action: () => {
             if (this.AutoKickOn == false || this.AutoKickOn == undefined) {
-                var msg = "AutoKick Ready.";
+                let msg = "AutoKick Ready.";
                 infomsg(msg);
                 AutoKickOn = true;
                 AutoKicker = function(data, days = 1, hours = 12, minutes = 0) {
@@ -4899,7 +4897,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             MemberNumber: character.MemberNumber,
                             Action: "Ban"
                         });
-			var msg = "AutoKick: Account was 0 days old.";
+			let msg = "AutoKick: Account was 0 days old.";
 			publicmsg(msg);
                     };
                 };
@@ -4907,7 +4905,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 AutoKickOn = false;
                 ServerSocket.off("ChatRoomMessage", AutoKicker);
-                var msg = "AutoKick Disabled.";
+                let msg = "AutoKick Disabled.";
                 infomsg(msg);
             }
         }
@@ -5300,7 +5298,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Tag: [BackgroundsTagIndoor]
             });
             ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
-            var msg = "You can use more standard backgrounds now.";
+            let msg = "You can use more standard backgrounds now.";
             infomsg(msg);
         }
     }])
@@ -5310,7 +5308,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(number): uses a Bondage Brawl background as standard background.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The bg2 command must be followed by a number. List of Bondage Brawl backgrounds:\n" +
+                let msg = "The bg2 command must be followed by a number. List of Bondage Brawl backgrounds:\n" +
                     "1, 2 Balcony - 3 Ballroom - 4 to 12 Bandit Camp\n" +
                     "13 to 15 Barn - 16 to 18 Bathroom Olivia\n" +
                     "19 Bedroom Dungeon - 20 Bedroom Edward\n" +
@@ -5633,15 +5631,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'bg3',
         Description: "(number): uses a Bondage College background as custom background.",
         Action: (args) => {
-            var BCver = GameVersion;
+            let BCver = GameVersion;
             if (BCver.includes("Beta")) {
-                var beta1 = BCver.slice(0, 4);
-                var beta2 = beta1.slice(-3);
-                var beta3 = beta2 - 1;
-                var BCver = "R" + beta3;
+                let beta1 = BCver.slice(0, 4);
+                let beta2 = beta1.slice(-3);
+                let beta3 = beta2 - 1;
+                BCver = "R" + beta3;
             }
             if (args === "") {
-                var msg = "The bg3 command must be followed by a number. List of Bondage College backgrounds:\n" +
+                let msg = "The bg3 command must be followed by a number. List of Bondage College backgrounds:\n" +
                     "1 Art Class - 2, 3 Class - 4 Club\n" +
                     "5 College - 6 Dorm\n" +
                     "7 Dressing Room - 8 Gym Class\n" +
@@ -5756,7 +5754,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(screen) (background): selects a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell",
         Action: (args) => {
             if (args === "") {
-                var msg = "The bg4 command must be followed by two numbers:\n" +
+                let msg = "The bg4 command must be followed by two numbers:\n" +
                     " \n" +
                     "- a number for the concerned screen:\n" +
                     "0 = Friend List - 1 = Main Hall\n" +
@@ -5771,68 +5769,72 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
                 infomsg(msg);
             } else {
-                var stringBg1 = args;
-                var stringBg2 = stringBg1.split(/[ ,]+/);
-                var screen = stringBg2[0];
+                let stringBg1 = args;
+                let stringBg2 = stringBg1.split(/[ ,]+/);
+                let screen = stringBg2[0];
                 if ((screen > -1) && (screen < 4)) {
                     if (screen == 0) {
-                        var frbg = stringBg2[1];
+                        let frbg = stringBg2[1];
+			let frback = "";
                         if ((frbg > -2) && (frbg < (BackgroundsList.length - 1))) {
                             if (frbg == -1) {
-                                var frback = "BrickWall";
+                                frback = "BrickWall";
                             } else {
-                                var frback = BackgroundsList[frbg].Name;
+                                frback = BackgroundsList[frbg].Name;
                             }
                             frname = frback;
                             M_MOANER_saveControls();
-                            var msg = "The background of the friend list is now: " + frname + ".";
+                            let msg = "The background of the friend list is now: " + frname + ".";
                             infomsg(msg);
                         }
                     }
                     if (screen == 1) {
-                        var mhbg = stringBg2[1];
+                        let mhbg = stringBg2[1];
+			let mhback = "";
                         if ((mhbg > -2) && (mhbg < (BackgroundsList.length - 1))) {
                             if (mhbg == -1) {
-                                var mhback = "MainHall";
+                                mhback = "MainHall";
                             } else {
-                                var mhback = BackgroundsList[mhbg].Name;
+                                mhback = BackgroundsList[mhbg].Name;
                             }
                             Player.VisualSettings.MainHallBackground = mhback;
                             ServerAccountUpdate.QueueData({
                                 VisualSettings: Player.VisualSettings
                             });
-                            var msg = "The background of the main hall is now: " + mhback + ".";
+                            let msg = "The background of the main hall is now: " + mhback + ".";
                             infomsg(msg);
                         }
                     }
                     if (screen == 2) {
-                        var prbg = stringBg2[1];
+                        let prbg = stringBg2[1];
+			let prback = "";
                         if ((prbg > -2) && (prbg < (BackgroundsList.length - 1))) {
                             if (prbg == -1) {
-                                var prback = "Private";
+                                prback = "Private";
                             } else {
-                                var prback = BackgroundsList[prbg].Name;
+                                prback = BackgroundsList[prbg].Name;
                             }
                             Player.VisualSettings.PrivateRoomBackground = prback;
                             PrivateBackground = prback;
                             ServerAccountUpdate.QueueData({
                                 VisualSettings: Player.VisualSettings
                             });
-                            var msg = "The background of your private room (SP) is now: " + prback + ".";
+                            let msg = "The background of your private room (SP) is now: " + prback + ".";
                             infomsg(msg);
                         }
                     }
                     if (screen == 3) {
-                        var tcbg = stringBg2[1];
+                        let tcbg = stringBg2[1];
+			let tcback = "";
                         if ((tcbg > -2) && (tcbg < (BackgroundsList.length - 1))) {
                             if (tcbg == -1) {
-                                var tcback = "Cell";
+                                tcback = "Cell";
                             } else {
-                                var tcback = BackgroundsList[tcbg].Name;
+                                tcback = BackgroundsList[tcbg].Name;
                             }
                             tcname = tcback;
                             M_MOANER_saveControls();
-                            var msg = "The background of the timer cell is now: " + tcname + ".";
+                            let msg = "The background of the timer cell is now: " + tcname + ".";
                             infomsg(msg);
                         }
                     }
@@ -5861,10 +5863,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 OnlineProfileRun();          
                 CommonSetScreen("Character", "OnlineProfile")        
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
@@ -5883,7 +5885,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(level): forces a specific blur level.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The blur command must be followed by a number between 0 and 4.\n" +
+                let msg = "The blur command must be followed by a number between 0 and 4.\n" +
                     " \n" +
                     "Available blur levels:\n" +
                     "0 no blur effect\n" +
@@ -5893,9 +5895,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "4 total blur effect";
                 infomsg(msg);
             } else {
-                var brlevel = args;
+                let brlevel = args;
                 if (brlevel == 0) {
-                    var msg = "No more forced blur effect.";
+                    let msg = "No more forced blur effect.";
                     infomsg(msg);
                     blureffect = false;
                     Blur1On = false;
@@ -5904,7 +5906,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Blur4On = false;
                     M_MOANER_saveControls();
                 } else if (brlevel == 1) {
-                    var msg = "Light blur effect enabled.";
+                    let msg = "Light blur effect enabled.";
                     infomsg(msg);
                     blureffect = true;
                     Blur1On = true;
@@ -5913,7 +5915,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Blur4On = false;
                     M_MOANER_saveControls();
                 } else if (brlevel == 2) {
-                    var msg = "Normal blur effect enabled.";
+                    let msg = "Normal blur effect enabled.";
                     infomsg(msg);
                     blureffect = true;
                     Blur1On = false;
@@ -5922,7 +5924,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Blur4On = false;
                     M_MOANER_saveControls();
                 } else if (brlevel == 3) {
-                    var msg = "Heavy blur effect enabled.";
+                    let msg = "Heavy blur effect enabled.";
                     infomsg(msg);
                     blureffect = true;
                     Blur1On = false;
@@ -5931,7 +5933,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Blur4On = false;
                     M_MOANER_saveControls();
                 } else if (brlevel == 4) {
-                    var msg = "Total blur effect enabled.";
+                    let msg = "Total blur effect enabled.";
                     infomsg(msg);
                     blureffect = true;
                     Blur1On = false;
@@ -5955,7 +5957,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             SkillSetModifier(Player, "LockPicking", +5, 3600000);
             SkillSetModifier(Player, "SelfBondage", +5, 3600000);
             SkillSetModifier(Player, "Willpower", +5, 3600000);
-            var msg = "You feel all your skills boosted. Changes can be seen in information panel.";
+            let msg = "You feel all your skills boosted. Changes can be seen in information panel.";
             infomsg(msg);
         }
     }])
@@ -5965,34 +5967,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(words): speaks once as a baby.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The btalk command must be followed by the words you want to say.";
+                let msg = "The btalk command must be followed by the words you want to say.";
                 infomsg(msg);
             } else {
-                var text = args;
-                var nm = 0;
+                let text = args;
+                let nm = 0;
                 if (DolltalkOn == true) {
-                    if (IsDollTalk(text) == false) {
-                        var nm = 1;
-                    }
+                    if (IsDollTalk(text) == false) nm = 1;
                     if (nm == 1) {
-                        var msg = "Your message can't be sent because it does not respect the rules of doll talk";
+                        let msg = "Your message can't be sent because it does not respect the rules of doll talk";
                         infomsg(msg);
                     }
                 }
                 if (nm == 0) {
-                    text2 = SpeechTransformBabyTalk(text);
+                    let text2 = SpeechTransformBabyTalk(text);
                     ElementValue("InputChat", text2);
-                    if (this.StutterOn == true) {
-                        var text3 = SpeechTransformStutter(text2, st);
-                    } else {
-                        var text3 = text2;
-                    }
-                    ElementValue("InputChat", text2.replace(text2, text3));
-                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                        var text4 = M_MOANER_applyMoanToMsg(Player, text3);
-                    } else {
-                        var text4 = text3;
-                    }
+                    let text3 = text2;
+                    if (this.StutterOn == true) text3 = SpeechTransformStutter(text2, st);                  
+                    ElementValue("InputChat", text2.replace(text2, text3));                 
+                    let text4 = text3;
+                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) text4 = M_MOANER_applyMoanToMsg(Player, text3);                   
                     ElementValue("InputChat", text3.replace(text3, text4));
                     event.preventDefault();
                     ChatRoomSendChatMessage(text4);
