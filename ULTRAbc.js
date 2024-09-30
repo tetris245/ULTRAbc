@@ -11848,7 +11848,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             CommonSetScreen("Room", "Shop");
             ChatRoomSetLastChatRoom("");
             OnlineGameName = "";
-            ChatRoomClearAllElements();
+            ChatRoomHideElements();
         }
     }])
 
@@ -12069,15 +12069,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(minutes): stays in the isolation cell.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The timercell command must be followed by a number higher than 0.";
+                let msg = "The timercell command must be followed by a number higher than 0.";
                 infomsg(msg);
             } else {
-                var minutes = args;
+                let minutes = args;
                 if (minutes > 0) {
-		    var msg = "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes.";
+		    let msg = "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes.";
 		    publicmsg(msg);
                     DialogLentLockpicks = false;
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     ServerSend("ChatRoomLeave", "");
                     CharacterDeleteAllOnline();
                     CellLock(minutes);
