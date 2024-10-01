@@ -6742,7 +6742,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(number): changes game difficulty.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The difficulty command must be followed by a number between 0 and 3.\n" +
+                let msg = "The difficulty command must be followed by a number between 0 and 3.\n" +
                     " \n" +
                     "Available difficulty modes:\n" +
                     "0 roleplay\n" +
@@ -6785,8 +6785,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(font) (size): changes font in BC. ",
         Action: (args) => {
             if (args === "") {
-                var msg = "The font command must be followed by a font number and optionally a size number.\n" +
-                    "The effect will be visible in the chat after an automatic relog.\n" +
+                let msg = "The font command must be followed by a font number and optionally a size number.\n" +
                     "Supported fonts: 0 Arial - 1 Times New Roman\n" +
                     "2 Papyrus - 3 Comic Sans - 4 Impact\n" +
                     "5 Helvetica Neue - 6 Verdana - 7 Century Gothic\n" +
@@ -6794,10 +6793,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Sizes: 0 Small - 1 Medium - 2 Large";
                 infomsg(msg);
             } else {
-                var stringFont1 = args;
-                var stringFont2 = stringFont1.split(/[ ,]+/);
-                var font = stringFont2[0];
-                var size = stringFont2[1];
+                let stringFont1 = args;
+                let stringFont2 = stringFont1.split(/[ ,]+/);
+                let font = stringFont2[0];
+                let size = stringFont2[1];
                 Player.GraphicsSettings.Font = PreferenceGraphicsFontList[font];
                 CommonGetFont.clearCache();
                 CommonGetFontName.clearCache();
@@ -6824,7 +6823,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(lobby): gives access to friendlist with clickable links in specified lobby during 15 seconds.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The frlist command must be followed by the lobby for which you want to have clickable links.\n" +
+                let msg = "The frlist command must be followed by the lobby for which you want to have clickable links.\n" +
                     "Available options: asylum, fclub, mclub, xclub.";
                 infomsg(msg);
             }
@@ -6876,7 +6875,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    var msg = "Only females have access to this lobby.";
+                    let msg = "Only females have access to this lobby.";
                     infomsg(msg);
                 }
             }
@@ -6906,7 +6905,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    var msg = "Only males have access to this lobby.";
+                    let msg = "Only males have access to this lobby.";
                     infomsg(msg);
                 }
             }
