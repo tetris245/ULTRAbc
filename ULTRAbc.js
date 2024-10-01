@@ -6416,7 +6416,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(action) (target or value) = plays with diapers (ABDL game).",
         Action: (args) => {
             if (args === "") {
-                var msg = "Welcome to Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\n" +
+                let msg = "Welcome to Bondage Club Diaper Wetter! Where we make sure babies use their diapers!\n" +
                     " \n" +
                     "The diaper command must include an action.\n" +
                     "You need to wear one or two layers of diapers (only bulky and poofy versions)\n" +
@@ -6430,10 +6430,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/diaper change3</b> (target) for both diapers\n" +
                     " \n" +
                     "Customisation (before using /diaper start):\n" +
-                    "Use <b>/diaper custom</b> for detailed info<";
+                    "Use <b>/diaper custom</b> for detailed info";
                 infomsg(msg);
             } else if (args === "custom") {
-                var msg = "Diaper customisation (before using /diaper start):\n" +
+                let msg = "Diaper customisation (before using /diaper start):\n" +
                     "<b>/diaper setdesperation</b> (value between 0 and 3) for desperation level, normally controlled by having a milk bottle used on you\n" +
                     "<b>/diaper setregression</b> (value between 0 and 3) for regression level, normally controlled by wearing Nursery Milk for an extended period of time\n" +
                     "<b>/diaper settimer</b> (minutes) to change the wet/mess timer\n" +
@@ -6451,25 +6451,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else if (args === "tick") {
                 diaperTick();
             } else {
-                var stringDiaper1 = args;
-                var stringDiaper2 = stringDiaper1.split(/[ ,]+/);
-                var feature = stringDiaper2[0];
+                let setchange = "";
+                let stringDiaper1 = args;
+                let stringDiaper2 = stringDiaper1.split(/[ ,]+/);
+                let feature = stringDiaper2[0];
                 if (feature == "change1") {
-                    var targetname = stringDiaper2[1];
+                    let targetname = stringDiaper2[1];
                     if (targetname == null) {
+                        let info = "You don't have normal diapers!";
                         if (InventoryGet(Player, "Panties") == null) {
-                            var msg = "You don't have normal diapers!";
+                            let msg = info;
                             infomsg(msg);
                         } else if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
                             refreshDiaper("panties");
                         } else {
-                            var msg = "You don't have normal diapers!";
+                            let msg = info;
                             infomsg(msg);
                         }
                     } else {
-                        var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                        let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                         if (target[0] == null) {
-                            var targetnumber = parseInt(targetname);
+                            let targetnumber = parseInt(targetname);
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                         }
                         if (target[0] != null) {
@@ -6478,16 +6480,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else {
                                 tgpname = target[0].Nickname;
                             }
+                            let info = ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
                             if (InventoryGet(target[0], "Panties") == null) {
-                                var msg = ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+                                let msg = info;
                                 infomsg(msg);
                             } else if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
-                                var msg = "" + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.";
+                                let msg = "" + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.";
                                 targetNumber = ChatRoomTargetMemberNumber;
                                 ChatRoomSendWhisper(targetNumber, msg);
                             } else {
-                                var msg = ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+                                let msg = info;
                                 infomsg(msg);
                             }
                             ChatRoomSetTarget(-1);
@@ -6495,21 +6498,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (feature == "change2") {
-                    var targetname = stringDiaper2[1];
+                    let targetname = stringDiaper2[1];
                     if (targetname == null) {
+                        let info = "You don't have chastity diapers!";
                         if (InventoryGet(Player, "ItemPelvis") == null) {
-                            var msg = "You don't have chastity diapers!";
+                            let msg = info;
                             infomsg(msg);
                         } else if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                             refreshDiaper("chastity");
                         } else {
-                            var msg = "You don't have chastity diapers!";
+                            let msg = info;
                             infomsg(msg);
                         }
                     } else {
-                        var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                        let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                         if (target[0] == null) {
-                            var targetnumber = parseInt(targetname);
+                            let targetnumber = parseInt(targetname);
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                         }
                         if (target[0] != null) {
@@ -6518,16 +6522,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else {
                                 tgpname = target[0].Nickname;
                             }
+                            let info = ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!";
                             if (InventoryGet(target[0], "ItemPelvis") == null) {
-                                var msg = ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!";
+                                let msg = info;
                                 infomsg(msg);
                             } else if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
                                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
-                                var msg = "" + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.";
+                                let msg = "" + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.";
                                 targetNumber = ChatRoomTargetMemberNumber;
                                 ChatRoomSendWhisper(targetNumber, msg);
                             } else {
-                                var msg = ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
+                                let msg = info;
                                 infomsg(msg);
                             }
                             ChatRoomSetTarget(-1);
@@ -6535,25 +6540,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (feature == "change3") {
-                    var targetname = stringDiaper2[1];
+                    let targetname = stringDiaper2[1];
                     if (targetname == null) {
+                        let info1 = "You don't have a diaper! Get one on you before you make a mess!";
+                        let info2 = "You don't have two layers of diapers!";
                         if ((InventoryGet(Player, "Panties") == null) && (InventoryGet(Player, "ItemPelvis") == null)) {
-                            var msg = "You don't have a diaper! Get one on you before you make a mess!";
+                            let msg = info1;
                             infomsg(msg);
                         } else if ((InventoryGet(Player, "Panties") == null) && (InventoryGet(Player, "ItemPelvis") != null)) {
                             if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
-                                var msg = "You don't have two layers of diapers!";
+                                let msg = info2;
                                 infomsg(msg);
                             } else {
-                                var msg = "You don't have a diaper! Get one on you before you make a mess!";
+                                let msg = info1;
                                 infomsg(msg);
                             }
                         } else if ((InventoryGet(Player, "Panties") != null) && (InventoryGet(Player, "ItemPelvis") == null)) {
                             if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
-                                var msg = "You don't have two layers of diapers!";
+                                let msg = info2;
                                 infomsg(msg);
                             } else {
-                                var msg = "You don't have a diaper! Get one on you before you make a mess!";
+                                let msg = info1;
                                 infomsg(msg);
                             }
                         } else if ((InventoryGet(Player, "Panties") != null) && (InventoryGet(Player, "ItemPelvis") != null)) {
@@ -6561,14 +6568,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper")) {
                                 refreshDiaper("both");
                             } else {
-                                var msg = "You don't have two layers of diapers!";
+                                let msg = info2;
                                 infomsg(msg);
                             }
                         }
                     } else {
-                        var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                        let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                         if (target[0] == null) {
-                            var targetnumber = parseInt(targetname);
+                            let targetnumber = parseInt(targetname);
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                         }
                         if (target[0] != null) {
@@ -6593,34 +6600,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpr3 = "their";
                                 tgpr4 = "they";
                             }
+                            let info1 = ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                            let info2 = ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
                             if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
-                                var msg = ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                                let msg = info1;
                                 infomsg(msg);
                             } else if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
                                 if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
-                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+                                    let msg = info2;
                                     infomsg(msg);
                                 } else {
-                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                                    let msg = info1;
                                     infomsg(msg);
                                 }
                             } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
                                 if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
-                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+                                    let msg = info2;
                                     infomsg(msg);
                                 } else {
-                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
+                                    let msg = info1;
                                     infomsg(msg);
                                 }
                             } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
                                 if ((InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") &&
                                     (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper")) {
                                     ChatRoomTargetMemberNumber = target[0].MemberNumber;
-                                    var msg = "" + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.";
+                                    let msg = "" + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.";
                                     targetNumber = ChatRoomTargetMemberNumber;
                                     ChatRoomSendWhisper(targetNumber, msg);
                                 } else {
-                                    var msg = ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
+                                    let msg = info2;
                                     infomsg(msg);
                                 }
                                 ChatRoomSetTarget(-1);
@@ -6629,28 +6638,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (feature == "setdesperation") {
-                    var setchange = stringDiaper2[1];
-                    diaperDefaultValues.desperationLevel = setchange;
-                    setchange = "";
-                    var msg = "Your desperation level has been changed";
-                    infomsg(msg);
+                    setchange = stringDiaper2[1];
+                    if ((setchange >= 0) && (setchange <= 3)) {
+                        diaperDefaultValues.desperationLevel = setchange;
+                        let msg = "Your desperation level has been changed";
+                        infomsg(msg);
+                    }
                 }
                 if (feature == "setmesschance") {
-                    var setchange = stringDiaper2[1];
-                    diaperDefaultValues.messChance = setchange;
-                    setchange = "";
-                    var msg = "Your chance to mess diapers has been changed";
-                    infomsg(msg);
+                    setchange = stringDiaper2[1];
+                    if ((setchange >= 0) && (setchange <= 1)) {
+                        diaperDefaultValues.messChance = setchange;
+                        let msg = "Your chance to mess diapers has been changed";
+                        infomsg(msg);
+                    }
                 }
                 if (feature == "setmess1") {
                     if (InventoryGet(Player, "Panties") != null) {
                         if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
-                            var setchange = stringDiaper2[1];
-                            if (setchange < diaperDefaultValues.wetLevelInner) {
-                                diaperDefaultValues.messLevelInner = setchange;
-                                setchange = "";
-                                var msg = "Your mess level for normal diapers has been changed";
-                                infomsg(msg);
+                            setchange = stringDiaper2[1];
+                            if ((setchange >= 0) && (setchange <= 2)) {
+                                if (setchange < diaperDefaultValues.wetLevelInner) {
+                                    diaperDefaultValues.messLevelInner = setchange;
+                                    let msg = "Your mess level for normal diapers has been changed";
+                                    infomsg(msg);
+                                }
                             }
                         }
                     }
@@ -6658,46 +6670,51 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (feature == "setmess2") {
                     if (InventoryGet(Player, "ItemPelvis") != null) {
                         if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
-                            var setchange = stringDiaper2[1];
-                            if (setchange < diaperDefaultValues.wetLevelOuter) {
-                                diaperDefaultValues.messLevelOuter = setchange;
-                                setchange = "";
-                                var msg = "Your mess level for chastity diapers has been changed";
-                                infomsg(msg);
+                            setchange = stringDiaper2[1];
+                            if ((setchange >= 0) && (setchange <= 2)) {
+                                if (setchange < diaperDefaultValues.wetLevelOuter) {
+                                    diaperDefaultValues.messLevelOuter = setchange;
+                                    let msg = "Your mess level for chastity diapers has been changed";
+                                    infomsg(msg);
+                                }
                             }
                         }
                     }
                 }
                 if (feature == "setregression") {
-                    var setchange = stringDiaper2[1];
-                    diaperDefaultValues.regressionLevel = setchange;
-                    setchange = "";
-                    var msg = "Your regression level has been changed";
-                    infomsg(msg);
+                    setchange = stringDiaper2[1];
+                    if ((setchange >= 0) && (setchange <= 3)) {
+                        diaperDefaultValues.regressionLevel = setchange;
+                        let msg = "Your regression level has been changed";
+                        infomsg(msg);
+                    }
                 }
                 if (feature == "settimer") {
-                    var setchange = stringDiaper2[1];
-                    diaperDefaultValues.baseTimer = setchange;
-                    setchange = "";
-                    var msg = "Your wet/mess timer has been changed";
-                    infomsg(msg);
+                    setchange = stringDiaper2[1];
+                    if (setchange >= 1) {
+                        diaperDefaultValues.baseTimer = setchange;
+                        let msg = "Your wet/mess timer has been changed";
+                        infomsg(msg);
+                    }
                 }
                 if (feature == "setwetchance") {
-                    var setchange = stringDiaper2[1];
-                    diaperDefaultValues.wetChance = setchange;
-                    setchange = "";
-                    var msg = "Your chance to wet diapers has been changed";
-                    infomsg(msg);
+                    setchange = stringDiaper2[1];
+                    if ((setchange >= 0) && (setchange <= 1)) {
+                        diaperDefaultValues.wetChance = setchange;
+                        let msg = "Your chance to wet diapers has been changed";
+                        infomsg(msg);
+                    }
                 }
                 if (feature == "setwet1") {
                     if (InventoryGet(Player, "Panties") != null) {
                         if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
-                            var setchange = stringDiaper2[1];
-                            if (setchange > diaperDefaultValues.messLevelInner) {
-                                diaperDefaultValues.wetLevelInner = setchange;
-                                setchange = "";
-                                var msg = "Your wet level for normal diapers has been changed";
-                                infomsg(msg);
+                            setchange = stringDiaper2[1];
+                            if ((setchange >= 0) && (setchange <= 2)) {
+                                if (setchange > diaperDefaultValues.messLevelInner) {
+                                    diaperDefaultValues.wetLevelInner = setchange;
+                                    let msg = "Your wet level for normal diapers has been changed";
+                                    infomsg(msg);
+                                }
                             }
                         }
                     }
@@ -6705,12 +6722,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (feature == "setwet2") {
                     if (InventoryGet(Player, "ItemPelvis") != null) {
                         if (InventoryGet(Player, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "ItemPelvis").Asset.Name === "PoofyDiaper") {
-                            var setchange = stringDiaper2[1];
-                            if (setchange > diaperDefaultValues.messLevelOuter) {
-                                diaperDefaultValues.wetLevelOuter = setchange;
-                                setchange = "";
-                                var msg = "Your wet level for chastity diapers has been changed";
-                                infomsg(msg);
+                            setchange = stringDiaper2[1];
+                            if ((setchange >= 0) && (setchange <= 2)) {                   
+                                if (setchange > diaperDefaultValues.messLevelOuter) {
+                                    diaperDefaultValues.wetLevelOuter = setchange;
+                                    let msg = "Your wet level for chastity diapers has been changed";
+                                    infomsg(msg);
+                                }
                             }
                         }
                     }
