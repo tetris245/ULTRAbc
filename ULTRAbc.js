@@ -1536,7 +1536,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
             if (HighfameOn == true) {
                 ClubCardFameGoal = cfame;
-                var win = 0;
                 let nmg = "";
                 if (MouseIn(1705, 905, 90, 90) && (ClubCardPlayer[ClubCardTurnIndex].Control == "Player")) Draw = true;
                 let CCPlayer = ClubCardPlayer[ClubCardTurnIndex];
@@ -1544,24 +1543,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let StartingFame = CCPlayer.Fame;
                 let StartingMoney = CCPlayer.Money;
                 let FameMoneyText = "";
-                if (CCPlayer.Board != null)
-                    for (let Card of CCPlayer.Board) {
-                        if (Card.FamePerTurn != null) ClubCardPlayerAddFame(CCPlayer, Card.FamePerTurn);
-                        if (Card.MoneyPerTurn != null) ClubCardPlayerAddMoney(CCPlayer, Card.MoneyPerTurn);
-                        if (Card.OnTurnEnd != null) Card.OnTurnEnd(CCPlayer);
-                    }
-                if ((CCPlayer.Money < 0) && (CCPlayer.Fame > StartingFame)) CCPlayer.Fame = StartingFame;
+                ClubCardRunTurnEndHandlers(CCPlayer, Opponent, true);
+                if (CCPlayer.Board != null) {
+		    for (let Card of CCPlayer.Board) {
+		        if (Card.FamePerTurn != null) ClubCardPlayerAddFame(CCPlayer, Card.FamePerTurn);
+			if (Card.MoneyPerTurn != null) ClubCardPlayerAddMoney(CCPlayer, Card.MoneyPerTurn);
+		    }    
+	        }
                 CCPlayer.LastFamePerTurn = CCPlayer.Fame - StartingFame;
-                CCPlayer.LastMoneyPerTurn = CCPlayer.Money - StartingMoney;
-                if (CCPlayer.Event != null)
-                    for (let Card of CCPlayer.Event)
-                        if (Card.OnTurnEnd != null)
-                            Card.OnTurnEnd(CCPlayer);
-                if (Opponent.Event != null)
-                    for (let Card of Opponent.Event)
-                        if (Card.OnOpponentTurnEnd != null)
-                            Card.OnOpponentTurnEnd(CCPlayer);
+	        CCPlayer.LastMoneyPerTurn = CCPlayer.Money - StartingMoney;        
+	        ClubCardRunTurnEndHandlers(CCPlayer, Opponent, false);          
+                if ((CCPlayer.Money < 0) && (CCPlayer.Fame > StartingFame)) {
+		    CCPlayer.Fame = StartingFame;
+		    CCPlayer.LastFamePerTurn = 0;
+	        }      	          
                 FameMoneyText = ((CCPlayer.LastFamePerTurn >= 0) ? "+" : "") + CCPlayer.LastFamePerTurn.toString() + " Fame, " + ((CCPlayer.LastMoneyPerTurn >= 0) ? "+" : "") + CCPlayer.LastMoneyPerTurn.toString() + " Money";
+                let TurnText = "Turn " + CCPlayer.ClubCardTurnCounter.toString() + ".";
                 if (CCPlayer.Fame >= ClubCardFameGoal) {
                     MiniGameVictory = (CCPlayer.Control == "Player");
                     MiniGameEnded = true;
@@ -1577,27 +1574,50 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 ClubCardTurnEndDraw = Draw;
                 if (Draw) {
-                    ClubCardLogAdd(TextGet("EndDrawPlayer").replace("FAMEMONEY", FameMoneyText).replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)).replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
+                    ClubCardLogAdd(TextGet("EndDrawPlayer").replace("TURNNUMBER", TurnText).replace("FAMEMONEY", FameMoneyText).replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)).replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
                     ClubCardPlayerDrawCard(ClubCardPlayer[ClubCardTurnIndex]);
                 } else {
-                    ClubCardLogAdd(TextGet("EndTurnPlayer").replace("FAMEMONEY", FameMoneyText).replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)).replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
+                    ClubCardLogAdd(TextGet("EndTurnPlayer").replace("TURNNUMBER", TurnText).replace("FAMEMONEY", FameMoneyText).replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)).replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
                 }
                 Draw = false;
                 ClubCardTurnIndex++;
+                CCPlayer.ClubCardTurnCounter++;
                 if (ClubCardTurnIndex >= ClubCardPlayer.length) ClubCardTurnIndex = 0;
                 ClubCardTurnCardPlayed = 0;
-                ClubCardAIStart();
+                ClubCardAIStart();              
+                let turnStartCards = [];
                 CCPlayer = ClubCardPlayer[ClubCardTurnIndex];
-                if (CCPlayer.Event != null)
+                if (CCPlayer.Board != null) {
+		    for (let Pos = 0; Pos < CCPlayer.Board.length; Pos++) {
+		        let Card = CCPlayer.Board[Pos];
+			if ((Card.Time != null) && (Card.Time > 0)) Card.Time--;
+		        if (Card.Time <= 0) {
+                            ClubCardRemoveFromBoard(CCPlayer, Card);
+	                    Pos--;
+		        }
+                        if (Card.turnStart != null) {
+			    turnStartCards.push(Card);
+			}
+		    }
+	        }
+                if (CCPlayer.Event != null) {
                     for (let Pos = 0; Pos < CCPlayer.Event.length; Pos++) {
                         let Card = CCPlayer.Event[Pos];
                         if ((Card.Time != null) && (Card.Time > 0)) Card.Time--;
                         if ((Card.Time == null) || (Card.Time <= 0)) {
                             ClubCardLogPublish("EventExpired", CCPlayer, null, Card);
                             CCPlayer.Event.splice(Pos, 1);
+                            CCPlayer.DiscardPile.push(Card);
                             Pos--;
                         }
+                        if (Card.turnStart != null) {
+			    Card.turnStart(Card);
+			}
                     }
+                }
+                for (let Card of turnStartCards) {
+		    Card.turnStart(CCPlayer);
+	        }
                 GameClubCardSyncOnlineData();
                 return;
             }
