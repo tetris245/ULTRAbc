@@ -59,4 +59,5 @@ All else I might not have included.
 Changes for future version 
 
 * Updated the high fame mode for Club Card Game with all the improvements made in BC since March 2024
+* Improved the diaper command by adding extra conditions for the custom parameters
 
