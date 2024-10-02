@@ -6175,7 +6175,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
-                        if (Tclothes == undefined) {           
+                        if (Tclothes != undefined) {           
                             if (Tclothes != "") {
                                 if (Tclothes.startsWith("\u0027")) {
                                     msg = tmpname + Tclothes + ' '.repeat(1) + tgpname;
