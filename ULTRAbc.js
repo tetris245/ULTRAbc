@@ -1437,21 +1437,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatSelectStartSearch(ChatRoomSpace);
             }
             if ((MouseX >= 1515) && (MouseX < 1595) && (MouseY >= 885) && (MouseY < 975)) {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
-                    ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-                }
+                if (IsFemale() == true) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
             if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
             if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             if ((MouseX >= 1845) && (MouseX < 1935) && (MouseY >= 885) && (MouseY < 975)) {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                    ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
-                    ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-                }
+                if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
             return;
         });
@@ -1465,19 +1456,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(605, 885, 90, 90, "", "White", "Icons/MapTypeHybrid.png", "Hybrid Rooms");
             DrawButton(715, 885, 90, 90, "", "White", "Icons/MapTypeAlways.png", "Map Rooms");
             DrawText("Lobbies", 1405, 940, "White", "Black");
-            if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+            if (IsFemale() == true) {
                 DrawButton(1515, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
             } else {
                 DrawButton(1515, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
             }
             DrawButton(1625, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
             DrawButton(1735, 885, 90, 90, "MIXED", "White", "", "Mixed");
-            if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+            if (IsMale() == true) {
                 DrawButton(1845, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
             } else {
                 DrawButton(1845, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
@@ -1671,10 +1657,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (FrkeysOn == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
                     if (event.code === "KeyF") {
-                        if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                            (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                            (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                            (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+                        if (IsFemale() == true) { 
                             ChatRoomSpace = "";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -1690,9 +1673,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         return true;
                     }
                     if (event.code === "KeyH") {
-                        if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                            (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                            ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+                        if (IsMale() == true) { 
                             ChatRoomSpace = "M";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -1810,21 +1791,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('MainHallClick', 4, (args, next) => {
             if (MouseIn(1645, 145, 90, 90)) MainHallMoveToChatSelect();
             if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
-                    ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-                }
+                if (IsFemale() == true) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
             if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
             if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                    ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
-                    ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-                }
+                if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
             if (MouseIn(240, 585, 420, 90))
                 window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
@@ -1839,19 +1811,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatRoomActivateView(ChatRoomCharacterViewName);
             MainCanvas.textAlign = "center";
             DrawText("Chat Rooms", 130, 530, "White", "Black");
-            if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+            if (IsFemale() == true) { 
                 DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
             } else {
                 DrawButton(240, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
             }
             DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
             DrawButton(460, 475, 90, 90, "MIXED", "White", "", "Mixed");
-            if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+            if (IsMale() == true) { 
                 DrawButton(570, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
             } else {
                 DrawButton(570, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
@@ -2591,6 +2558,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let msg = "EBCH Welcome message.";
         if (EBCHdata[20] == 0) msg = "No EBCH Welcome message.";  
         statusmsg(msg);
+    }
+
+    //Gender
+    function IsFemale() {
+        if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
+            (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
+            (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
+            (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function IsMale() {
+        if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
+            (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
+            ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || 
+            (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //Hearing
@@ -6850,10 +6840,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }, 15000);
             }
             if (args === "fclub") {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+                if (IsFemale() == true) { 
                     setTimeout(function() {
                         ChatRoomSpace = "";
                         CommonSetScreen("Online", "ChatSearch");
@@ -6880,10 +6867,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if (args === "mclub") {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                    ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
-
+                if (IsMale() == true) { 
                     setTimeout(function() {
                         ChatRoomSpace = "M";
                         CommonSetScreen("Online", "ChatSearch");
@@ -11327,10 +11311,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }, 15000);
             }
             if (args === "fclub") {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-                    (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+                if (IsFemale() == true) { 
                     setTimeout(function() {
                         ChatSelectStartSearch("");
                         ChatRoomSetLastChatRoom("");
@@ -11351,9 +11332,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if (args === "mclub") {
-                if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-                    (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-                    ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") || (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+                if (IsMale() == true) { 
                     setTimeout(function() {
                         ChatSelectStartSearch("M");
                         ChatRoomSetLastChatRoom("");
