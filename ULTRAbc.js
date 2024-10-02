@@ -8350,8 +8350,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8, 17, 19, 21\n" +
+                let msg = "The lock command has several syntaxes:\n" +
+                    "/lock (target) (locktype) for locks 1 to 8, 17, 19, 21, 22\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
                     "/lock (target) (locktype) (code/ptcode) for locks 10 and 20\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
@@ -8363,13 +8363,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password - 17 Best Friend\n" +
-                    "18 Best Friend Timer - 19 Family\n" +
-                    "20 Portal Link - 21 Lewd Crest\n" +
-                    "Locks 17, 18 and 21 require a specific mod\n" +
+                    "18 Best Friend Timer - 19 Family - 20 Portal Link\n" +
+                    "21 Lewd Crest - 22 Devious\n" +
+                    "Locks 17, 18, 21 and 22 require a specific mod\n" +
                     "Use <b>/lock par</b> for info about other parameters";
                 infomsg(msg);
             } else if (args === "par") {
-                var msg = "Special parameters of lock command:\n" +
+                let msg = "Special parameters of lock command:\n" +
                     "code must be between 0 and 9999.\n" +
                     "password is limited to 8 characters.\n" +
                     "portal code must include 8 characters, using only 0-9 and a-f.\n" +
@@ -8385,116 +8385,122 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Tip: replace h and/or i by another character when you need to skip them.";
                 infomsg(msg);
             } else {
-                var silent = 0;
-                var uw = 0;
-                var stringLock1 = args;
-                var stringLock2 = stringLock1.split(/[ ,]+/);
-                var lk = stringLock2[1];
-                if (lk == 1) {
-                    Lock = "MetalPadlock";
-                } else if (lk == 2) {
-                    Lock = "ExclusivePadlock";
-                } else if (lk == 3) {
-                    Lock = "IntricatePadlock";
-                } else if (lk == 4) {
-                    Lock = "HighSecurityPadlock";
-                } else if (lk == 5) {
-                    Lock = "PandoraPadlock";
-                } else if (lk == 6) {
-                    Lock = "MistressPadlock";
-                } else if (lk == 7) {
-                    Lock = "LoversPadlock";
-                } else if (lk == 8) {
-                    Lock = "OwnerPadlock";
-                } else if (lk == 9) {
+                let code = 0;
+                let dogs = 1;
+                let enableinput = "";
+                let hidetimer = "";
+                let minutes = 0;
+                let PS = "";
+                let ptcode = "";
+                let pw = "";
+                let removeitem = "";
+                let silent = 0;
+                let time = 0;
+                let uw = 0;
+                let stringLock1 = args;
+                let stringLock2 = stringLock1.split(/[ ,]+/);
+                let lk = stringLock2[1];
+                let Lock = "";
+                if (lk == 1) Lock = "MetalPadlock";
+                if (lk == 2) Lock = "ExclusivePadlock";
+                if (lk == 3) Lock = "IntricatePadlock";
+                if (lk == 4) Lock = "HighSecurityPadlock";
+                if (lk == 5) Lock = "PandoraPadlock";
+                if (lk == 6) Lock = "MistressPadlock";
+                if (lk == 7) Lock = "LoversPadlock";
+                if (lk == 8) Lock = "OwnerPadlock";
+                if (lk == 9) {
                     Lock = "TimerPadlock";
-                    var removeitem = stringLock2[2];
-                } else if (lk == 10) {
+                    removeitem = stringLock2[2];
+                } 
+                if (lk == 10) {
                     Lock = "CombinationPadlock";
-                    var code = stringLock2[2];
-                } else if (lk == 11) {
+                    code = stringLock2[2];
+                } 
+                if (lk == 11) {
                     Lock = "SafewordPadlock";
-                    var PS = /^[A-Z]+$/;
-                    if (stringLock2[2] != null) {
-                        var pw = stringLock2[2].toUpperCase();
-                    } else {
-                        var pw = "PLEASE";
-                    }
-                    var removeitem = stringLock2[3];
-                } else if (lk == 12) {
+                    PS = /^[A-Z]+$/;
+                    pw = "PLEASE";
+                    if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();      
+                    removeitem = stringLock2[3];
+                } 
+                if (lk == 12) {
                     Lock = "PasswordPadlock";
-                    var PS = /^[A-Z]+$/;
-                    if (stringLock2[2] != null) {
-                        var pw = stringLock2[2].toUpperCase();
-                    } else {
-                        var pw = "PASSWORD";
-                    }
-                    var removeitem = stringLock2[3];
-                } else if (lk == 13) {
-                    Lock = "MistressTimerPadlock";
-                    var minutes = stringLock2[2];
+                    PS = /^[A-Z]+$/;
+                    pw = "PASSWORD";
+                    if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();        
+                    removeitem = stringLock2[3];
+                } 
+                if (lk == 13) Lock = "MistressTimerPadlock";
+                if (lk == 14) Lock = "LoversTimerPadlock";
+                if (lk == 15) Lock = "OwnerTimerPadlock";
+                if ((lk == 13) || (lk == 14) || (lk == 15)) {
+                    minutes = stringLock2[2];
                     time = (minutes - 5);
-                    var hidetimer = stringLock2[3];
-                    var enableinput = stringLock2[4];
-                    var removeitem = stringLock2[5];
-                } else if (lk == 14) {
-                    Lock = "LoversTimerPadlock";
-                    var minutes = stringLock2[2];
-                    time = (minutes - 5);
-                    var hidetimer = stringLock2[3];
-                    var enableinput = stringLock2[4];
-                    var removeitem = stringLock2[5];
-                } else if (lk == 15) {
-                    Lock = "OwnerTimerPadlock";
-                    var minutes = stringLock2[2];
-                    time = (minutes - 5);
-                    var hidetimer = stringLock2[3];
-                    var enableinput = stringLock2[4];
-                    var removeitem = stringLock2[5];
-                } else if (lk == 16) {
+                    hidetimer = stringLock2[3];
+                    enableinput = stringLock2[4];
+                    removeitem = stringLock2[5];
+                }        
+                if (lk == 16) {
                     Lock = "TimerPasswordPadlock";
-                    var PS = /^[A-Z]+$/;
-                    if (stringLock2[2] != null) {
-                        var pw = stringLock2[2].toUpperCase();
-                    } else {
-                        var pw = "PASSWORD";
-                    }
-                    var minutes = stringLock2[3];
+                    PS = /^[A-Z]+$/;
+                    pw = "PASSWORD";
+                    if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();             
+                    minutes = stringLock2[3];
                     time = (minutes - 5);
-                    var hidetimer = stringLock2[4];
-                    var enableinput = stringLock2[5];
-                    var removeitem = stringLock2[6];
-                } else if (lk == 17) {
-                    Lock = "Best Friend Padlock";
-                } else if (lk == 18) {
+                    hidetimer = stringLock2[4];
+                    enableinput = stringLock2[5];
+                    removeitem = stringLock2[6];
+                } 
+                if (lk == 17) Lock = "Best Friend Padlock";
+                if (lk == 18) {
                     Lock = "Best Friend Timer Padlock";
                     if (stringLock2[2] == null) {
-                        var minutes = 1;
+                        minutes = 1;
                     } else {
-                        var minutes = stringLock2[2];
+                        minutes = stringLock2[2];
                     }
                     if (minutes > 10080) {
                         time = 100800;
                     } else {
                         time = (minutes + 5);
                     }
-                    var hidetimer = stringLock2[3];
-                    var enableinput = stringLock2[4];
-                    var removeitem = stringLock2[5];
-                } else if (lk == 19) {
-                    Lock = "FamilyPadlock";
-                } else if (lk == 20) {
+                    hidetimer = stringLock2[3];
+                    enableinput = stringLock2[4];
+                    removeitem = stringLock2[5];
+                } 
+                if (lk == 19) Lock = "FamilyPadlock";
+                if (lk == 20) {
                     Lock = "PortalLinkPadlock";
-                    var PTS = /^[0-9a-f]+$/;
-                    var ptcode = stringLock2[2];
-                } else if (lk == 21) {
-                    Lock = "\u{6DEB}\u{7EB9}\u{9501}_Luzi";
-                }
-                var targetname = stringLock2[0];
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    PTS = /^[0-9a-f]+$/;
+                    ptcode = stringLock2[2];
+                } 
+                if (lk == 21) Lock = "\u{6DEB}\u{7EB9}\u{9501}_Luzi";
+                if (lk == 22) Lock = "DeviousPadlock";  
+                if (lk != 22) dogs = 0;
+                let targetname = stringLock2[0];
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if ((target[0] != null) && (lk == 22)) {
+                    if (target[0] == Player) {
+                        if (Player.ExtensionSettings.DOGS != null) {
+                            let str = Player.ExtensionSettings.DOGS;
+                            let d = LZString.decompressFromBase64(str);
+                            let DOGSdata = {};
+                            let decoded = JSON.parse(d);
+                            DOGSdata = decoded;   
+                            if (DOGSdata.deviousPadlock.state == true) dogs = 0; 
+                        }
+                    } else {
+                        if (target[0].DOGS != null) {
+                            if (target[0].DOGS.deviousPadlock != undefined) {
+                                if (target[0].DOGS.deviousPadlock.state == true) dogs = 0; 
+                            }
+                        }
+                    }
                 }
                 if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true)) && (target[0].OnlineSharedSettings.UBC != undefined)) {
                     if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
@@ -8502,113 +8508,95 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tgpname = target[0].Nickname;
                     }
-                    if (tmpname == tgpname) {
-                        if (Mlock == undefined) {
-                            var msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
-                        } else {
-                            if (Mlock != "") {
-                                if (Mlock.startsWith("\u0027")) {
-                                    var msg = tmpname + Mlock;
-                                } else {
-                                    var msg = tmpname + ' '.repeat(1) + Mlock;
-                                }
-                            } else {
-                                var msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
-                            }
-                        }
-                        if (Mlock == "no message") var silent = 1;
-                    } else {
-                        if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var uw = 1;
-                            var msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            if (Tlock == undefined) {
-                                var msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
-                            } else {
-                                if (Tlock != "") {
-                                    if (Tlock.startsWith("\u0027")) {
-                                        var msg = tmpname + Tlock + ' '.repeat(1) + tgpname;
+                    if (dogs == 0) {
+                        if (tmpname == tgpname) {        
+                            let msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
+                            if (Mlock != undefined) {                             
+                                if (Mlock != "") {
+                                    if (Mlock.startsWith("\u0027")) {
+                                        msg = tmpname + Mlock;
                                     } else {
-                                        var msg = tmpname + ' '.repeat(1) + Tlock + ' '.repeat(1) + tgpname;
+                                        msg = tmpname + ' '.repeat(1) + Mlock;
                                     }
-                                } else {
-                                    var msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
                                 }
                             }
-                            if (Tlock == "no message") var silent = 1;
-                        }
-                    }
-                    if (uw == 0) {
-                        if (silent == 0) publicmsg(msg);
-                        mn = Player.MemberNumber;
-                        for (let A = 0; A < target[0].Appearance.length; A++)
-                            if (target[0].Appearance[A].Asset.AllowLock == true) {
-                                if (((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy == null)) || (target[0].Appearance[A].Property == null)) {
-                                    if (lk != 20) {
-                                        InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
-                                    } else {
-                                        if (target[0].Appearance[A].Property.Attribute != null) {
-                                            if (target[0].Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
-                                                InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
-                                            }
-                                        }
-                                    }
-                                    if (removeitem == "r") {
-                                        target[0].Appearance[A].Property.RemoveOnUnlock = true;
-                                        target[0].Appearance[A].Property.RemoveItem = true;
-                                    }
-                                    if (minutes != null) {
-                                        if (lk == 18) {
-                                            target[0].Appearance[A].Property.MaxTime = 604800;
-                                            target[0].Appearance[A].Property.RemovalTime = Math.round(CurrentTime + time * 60 * 100);
+                            if (Mlock == "no message") silent = 1;
+                            if (silent == 0) publicmsg(msg);
+                        } else {
+                            if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                                (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
+                                uw = 1;
+                                let msg = umsg1 + tgpname + umsg2;
+                                infomsg(msg);
+                            } else {
+                                let msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
+                                if (Tlock != undefined) {
+                                    if (Tlock != "") {
+                                        if (Tlock.startsWith("\u0027")) {
+                                            msg = tmpname + Tlock + ' '.repeat(1) + tgpname;
                                         } else {
-                                            target[0].Appearance[A].Property.RemoveTimer = target[0].Appearance[A].Property.RemoveTimer + (time * 60 * 1000);
+                                            msg = tmpname + ' '.repeat(1) + Tlock + ' '.repeat(1) + tgpname;
                                         }
-                                    }
-                                    if (hidetimer == "h") {
-                                        target[0].Appearance[A].Property.ShowTimer = false;
-                                    }
-                                    if (enableinput == "i") {
-                                        target[0].Appearance[A].Property.EnableRandomInput = true;
-                                    }
-                                    if ((code != null) && (code > -1) && (code < 10000)) {
-                                        target[0].Appearance[A].Property.CombinationNumber = code;
-                                    }
-                                    if ((ptcode != null) && (ptcode.length == 8) && (ptcode.match(PTS))) {
-                                        target[0].Appearance[A].Property.PortalLinkCode = ptcode;
-                                    }
-                                    if ((pw != null) && (pw.length <= 8) && (pw.match(PS))) {
-                                        target[0].Appearance[A].Property.Password = pw;
-                                    }
-                                    if ((lk == 17) || (lk == 18)) {
-                                        target[0].Appearance[A].Property.LockedBy = "HighSecurityPadlock";
-                                        target[0].Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
-                                        let listOwnerLovers = new Set();
-                                        if (target[0].Ownership && target[0].Ownership.MemberNumber != null) {
-                                            listOwnerLovers.add(target[0].Ownership.MemberNumber);
-                                        }
-                                        if (target[0].Lovership) {
-                                            for (let L = 0; L < target[0].Lovership.length; L++) {
-                                                const lover = target[0].Lovership[L];
-                                                if (lover.MemberNumber != null)
-                                                    listOwnerLovers.add(target[0].Lovership[L].MemberNumber);
+                                    } 
+                                }
+                                if (Tlock == "no message")  silent = 1;
+                                if (silent == 0) publicmsg(msg);
+                            }
+                        }
+                        if (uw == 0) {
+                            let mn = Player.MemberNumber;
+                            for (let A = 0; A < target[0].Appearance.length; A++)
+                                if (target[0].Appearance[A].Asset.AllowLock == true) {
+                                    if (((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy == null)) || (target[0].Appearance[A].Property == null)) {
+                                        if (lk != 20) {
+                                            InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+                                        } else {
+                                            if (target[0].Appearance[A].Property.Attribute != null) {
+                                                if (target[0].Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
+                                                    InventoryLock(target[0], target[0].Appearance[A], Lock, mn);
+                                                }
                                             }
                                         }
-                                        target[0].Appearance[A].Property.MemberNumberListKeys = "-1," + Array.from(listOwnerLovers).join(",");
-                                    }
-                                    if (lk == 17) {
-                                        target[0].Appearance[A].Property.Name = "Best Friend Padlock";
-                                    }
-                                    if (lk == 18) {
-                                        target[0].Appearance[A].Property.Name = "Best Friend Timer Padlock";
-                                    }
-                                    if (lk == 21) {
-                                        target[0].Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}_Luzi";
+                                        if (removeitem == "r") {
+                                            target[0].Appearance[A].Property.RemoveOnUnlock = true;
+                                            target[0].Appearance[A].Property.RemoveItem = true;
+                                        }
+                                        if (minutes != null) {
+                                            if (lk == 18) {
+                                                target[0].Appearance[A].Property.MaxTime = 604800;
+                                                target[0].Appearance[A].Property.RemovalTime = Math.round(CurrentTime + time * 60 * 100);
+                                            } else {
+                                                target[0].Appearance[A].Property.RemoveTimer = target[0].Appearance[A].Property.RemoveTimer + (time * 60 * 1000);
+                                            }
+                                        }
+                                        if (hidetimer == "h") target[0].Appearance[A].Property.ShowTimer = false;      
+                                        if (enableinput == "i") target[0].Appearance[A].Property.EnableRandomInput = true;         
+                                        if ((lk == 10) && (code != null) && (code > -1) && (code < 10000)) target[0].Appearance[A].Property.CombinationNumber = code;
+                                        if ((lk == 20) && (ptcode != null) && (ptcode.length == 8) && (ptcode.match(PTS))) target[0].Appearance[A].Property.PortalLinkCode = ptcode;
+                                        if (((lk == 11) ||  (lk == 12) || (lk == 16)) && (pw != null) && (pw.length <= 8) && (pw.match(PS))) target[0].Appearance[A].Property.Password = pw;
+                                        if ((lk == 17) || (lk == 18)) {
+                                            target[0].Appearance[A].Property.LockedBy = "HighSecurityPadlock";
+                                            target[0].Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
+                                            let listOwnerLovers = new Set();
+                                            if (target[0].Ownership && target[0].Ownership.MemberNumber != null) listOwnerLovers.add(target[0].Ownership.MemberNumber);
+                                            if (target[0].Lovership) {
+                                                for (let L = 0; L < target[0].Lovership.length; L++) {
+                                                    const lover = target[0].Lovership[L];
+                                                    if (lover.MemberNumber != null) listOwnerLovers.add(target[0].Lovership[L].MemberNumber);
+                                                }
+                                            }
+                                            target[0].Appearance[A].Property.MemberNumberListKeys = "-1," + Array.from(listOwnerLovers).join(",");
+                                        }
+                                        if (lk == 17) target[0].Appearance[A].Property.Name = "Best Friend Padlock";                  
+                                        if (lk == 18) target[0].Appearance[A].Property.Name = "Best Friend Timer Padlock";     
+                                        if (lk == 21) target[0].Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}_Luzi"; 
+                                        if (lk == 22) {
+                                            target[0].Appearance[A].Property.LockedBy = "ExclusivePadlock";
+                                            target[0].Appearance[A].Property.Name = "DeviousPadlock";                                                                         
+                                        }
                                     }
                                 }
-                            }
+                        }
                         ChatRoomCharacterUpdate(target[0]);
                     }
                 }
