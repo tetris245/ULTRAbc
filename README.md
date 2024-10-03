@@ -58,8 +58,9 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added support for the Devious Padlock (provided by GODS mod) to the lock command
-  - Note: As this lock is protected from cheats, no support in unlock command, you always need a friend to unlock it!
+* Added support for the Devious Padlock (provided by GODS mod) to the lock and unlock commands
+  - Note 1: The lock command will work only if you have enabled the Devious Padlock in the DOGS menu
+  - Note 2: As this lock is normally protected from cheats, the unlock command will work only with a modified version of the DOGS mod
 * Updated the high fame mode for Club Card Game with all the improvements made in BC since March 2024
 * Improved the diaper command by adding extra conditions for the custom settings
 * Optimised the gender checking for the Player
