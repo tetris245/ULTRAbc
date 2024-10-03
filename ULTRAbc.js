@@ -8348,7 +8348,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password - 17 Best Friend\n" +
                     "18 Best Friend Timer - 19 Family - 20 Portal Link\n" +
-                    "21 Lewd Crest - 22 Devious\n" +
+                    "21 Lewd Crest - 22 Devious (if enabled)\n" +
                     "Locks 17, 18, 21 and 22 require a specific mod\n" +
                     "Use <b>/lock par</b> for info about other parameters";
                 infomsg(msg);
@@ -12952,8 +12952,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "9 Five Minutes - 10 Combination - 11 Safeword\n" +
                     "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
                     "15 Owner Timer - 16 Timer Password - 17 Best Friend\n" +
-                    "18 Best Friend Timer - 19 Family\n" +
-                    "20 Portal Link - 21 Lewd Crest";
+                    "18 Best Friend Timer - 19 Family - 20 Portal Link\n" +
+                    "21 Lewd Crest - 22 Devious\n" +
+                    "Lock 22 can be removed only if you use a modified version of the DOGS mod.";
                 infomsg(msg);
             } else {
                 var silent = 0;
@@ -13095,6 +13096,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi")) {
                                     InventoryUnlock(target[0], target[0].Appearance[A]);
                                 }
+                        } else if (lk == 22) {
+                            for (let A = 0; A < target[0].Appearance.length; A++)
+                                if ((target[0].Appearance[A].Property != null) &&
+                                    (target[0].Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
+                                    (target[0].Appearance[A].Property.Name == "DeviousPadlock"))
+                                    InventoryUnlock(target[0], target[0].Appearance[A]);
                         }
                         ChatRoomCharacterUpdate(target[0]);
                     }
