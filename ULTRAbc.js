@@ -69,6 +69,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let AutojoinOn;
     let DolltalkOn;
     let ExtbuttonsOn;
+    let FixpermOn;
     let FrkeysOn;
     let FullseedOn;
     let HighfameOn;
@@ -398,7 +399,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tcname = "Cell";
             AutojoinOn = false;
             DolltalkOn = false;
-	    ExtbuttonsOn = false;
+	    ExtbuttonsOn = false;  
+	    FixpermOn = false;
             FrkeysOn = false;
             FullseedOn = false;
             HighfameOn = false;
@@ -476,6 +478,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
 	    ExtbuttonsOn = datas.extbuttons;
+	    FixpermOn = datas.fixperm;
             FrkeysOn = datas.frkeys;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
@@ -554,6 +557,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
 	    "extbuttons": ExtbuttonsOn,
+            "fixperm": FixpermOn,
             "frkeys": FrkeysOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
@@ -675,6 +679,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ExtbuttonsOn = false;
                     M_MOANER_saveControls();
                 }
+		if (FixpermOn == null || FixpermOn == undefined) {
+                    FixpermOn = false;
+                    M_MOANER_saveControls();
+                }
                 if (FrkeysOn == null || FrkeysOn == undefined) {
                     FrkeysOn = false;
                     M_MOANER_saveControls();
@@ -744,6 +752,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
     ULTRAChatRoomMapViewMovementProcess();
     ULTRAChatRoomMenuDraw();
+    ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
@@ -1048,6 +1057,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 });
             }
             next(args);
+        });
+    }
+
+    async function ULTRAChatRoomSafewordRevert() {
+        modApi.hookFunction('ChatRoomSafewordRevert', 4, (args, next) => {
+            if (ChatSearchSafewordAppearance != null) {
+	        Player.Appearance = ChatSearchSafewordAppearance.slice(0);
+	        Player.ActivePoseMapping = ChatSearchSafewordPose;
+	        CharacterRefresh(Player);
+	        ChatRoomCharacterUpdate(Player);
+	        const Dictionary = new DictionaryBuilder()
+		    .sourceCharacter(Player)
+		    .build();
+	        ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRevert", Type: "Action", Dictionary });
+	        if ((Player.ItemPermission < 3) && (FixpermOn == false)) {
+		    Player.ItemPermission = 3;
+		    ServerAccountUpdate.QueueData({ ItemPermission: Player.ItemPermission }, true);
+		    setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
+	        }
+	    }
+            return;
         });
     }
 
@@ -13320,12 +13350,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(setting): toggles a specific UBC setting.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
+                let msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
                     "<b>autojoin</b> for chat room auto-join feature\n" +
                     "<b>bgall</b> for bgs usable with the buttons in Private Room\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
                     "<b>exitmode</b> for exit mode with OUT button \n" +
 		    "<b>extbuttons</b> for EXT buttons\n" +
+		    "<b>fixperm</b> for permissions when using safeword\n" +
                     "<b>frkeys</b> for hotkeys in friendlist \n" +
                     "<b>fullseed</b> for full solution with intricate and hs locks\n" +
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
@@ -13342,77 +13373,90 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>sosbuttons</b> for FREE buttons";
                 infomsg(msg);
             } else {
-                var setting = args;
-                if (setting == "autojoin") {
+                let setting = args;
+		if (setting == "autojoin") {
                     if (AutojoinOn == true) {
                         AutojoinOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Auto-Join feature is disabled.";
+                        let msg = "Auto-Join feature is disabled.";
                         infomsg(msg);
                     } else {
                         AutojoinOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Auto-Join feature is enabled.";
+                        let msg = "Auto-Join feature is enabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "bgall") {
                     if (bgall == true) {
                         bgall = false;
                         M_MOANER_saveControls();
-                        var msg = "Only 43 standard backgrounds can be used with the buttons in Private Room (SP).";
+                        let msg = "Only 43 standard backgrounds can be used with the buttons in Private Room (SP).";
                         infomsg(msg);
                     } else {
                         bgall = true;
                         M_MOANER_saveControls();
-                        var msg = "All standard backgrounds can be used with the buttons in Private Room.";
+                        let msg = "All standard backgrounds can be used with the buttons in Private Room.";
                         infomsg(msg);
                     }
                 } else if (setting == "dolltalk") {
                     if (DolltalkOn == true) {
                         DolltalkOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Doll talk (and whisper) mode disabled.";
+                        let msg = "Doll talk (and whisper) mode disabled.";
                         infomsg(msg);
                     } else {
                         DolltalkOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.";
+                        let msg = "Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.";
                         infomsg(msg);
                     }
                 } else if (setting == "exitmode") {
                     if (SlowleaveOn == true) {
                         SlowleaveOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Fast exit mode is activated.";
+                        let msg = "Fast exit mode is activated.";
                         infomsg(msg);
                     } else {
                         SlowleaveOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Slow exit mode is activated.";
+                        let msg = "Slow exit mode is activated.";
                         infomsg(msg);
                     }
 		} else if (setting == "extbuttons") {
                     if (ExtbuttonsOn == true) {
                         ExtbuttonsOn = false;
                         M_MOANER_saveControls();
-                        var msg = "EXT buttons hidden and disabled.";
+                        let msg = "EXT buttons hidden and disabled.";
                         infomsg(msg);
                     } else {
                         ExtbuttonsOn = true;
                         M_MOANER_saveControls();
-                        var msg = "EXT buttons displayed and enabled.";
+                        let msg = "EXT buttons displayed and enabled.";
                         infomsg(msg);
                     }
+                } else if (setting == "fixperm") {
+                    if (FixpermOn == true) {
+                        FixpermOn = false;
+                        M_MOANER_saveControls();
+                        let msg = "Automatic change of your general item permission when using safeword."; 
+                        infomsg(msg);
+                    } else {
+                        FixpermOn = true;
+                        M_MOANER_saveControls();
+                        let msg = "No automatic change of your general item  permission when using safeword.";
+                        infomsg(msg);
+                    }
+
                 } else if (setting == "frkeys") {
                     if (FrkeysOn == true) {
                         FrkeysOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Hotkeys in friendlist are disabled.";
+                        let msg = "Hotkeys in friendlist are disabled.";
                         infomsg(msg);
                     } else {
                         FrkeysOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Hotkeys in friendlist are enabled:\n" +
+                        let msg = "Hotkeys in friendlist are enabled:\n" +
                             "They allow to get clickable links in another lobby you have access if you are in a lobby (not in a room).\n " +
                             "You can use them only on the list of current online friends AND if you are not in the search input or send beep zone.\n" +
                             "F = female club\n" +
@@ -13425,12 +13469,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (FullseedOn == true) {
                         FullseedOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Full solution for intricate and high security locks is disabled.";
+                        let msg = "Full solution for intricate and high security locks is disabled.";
                         infomsg(msg);
                     } else {
                         FullseedOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Full solution for intricate and high security locks is enabled.";
+                        let msg = "Full solution for intricate and high security locks is enabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "highfame") {
@@ -13438,66 +13482,65 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         HighfameOn = false;
                         ClubCardFameGoal = 100;
                         M_MOANER_saveControls();
-                        var msg = "High fame mode disabled in Bondage Club Card Game.";
+                        let msg = "High fame mode disabled in Bondage Club Card Game.";
                         infomsg(msg);
                     } else {
                         HighfameOn = true;
                         ClubCardFameGoal = cfame;
                         M_MOANER_saveControls();
-                        var msg = "High fame mode enabled in Bondage Club Card Game.";
+                        let msg = "High fame mode enabled in Bondage Club Card Game.";
                         infomsg(msg);
                     }
                 } else if (setting == "hotkeys") {
                     if (HotkeysOn == true) {
                         HotkeysOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Hotkeys on numeric pad are disabled.";
+                        let msg = "Hotkeys on numeric pad are disabled.";
                         infomsg(msg);
                     } else {
                         HotkeysOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Hotkeys on numeric pad are enabled: Divide = fast leave - Multiply = Total Release";
+                        let msg = "Hotkeys on numeric pad are enabled: Divide = fast leave - Multiply = Total Release";
                         infomsg(msg);
                     }
                 } else if (setting == "magiccheat") {
                     if (MagiccheatOn == true) {
                         MagiccheatOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Cheat mode disabled in Bondage Brawl and Magic School.";
+                        let msg = "Cheat mode disabled in Bondage Brawl and Magic School.";
                         infomsg(msg);
                     } else {
                         MagiccheatOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Cheat mode enabled in Bondage Brawl and Magic School.";
+                        let msg = "Cheat mode enabled in Bondage Brawl and Magic School.";
                         infomsg(msg);
                     }
                 } else if (setting == "magictoys") {
                     if (MagictoysOn == true) {
                         MagictoysOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Toys can't be added under locked chastity for trap mode in map rooms.";
+                        let msg = "Toys can't be added under locked chastity for trap mode in map rooms.";
                         infomsg(msg);
                     } else {
                         MagictoysOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Toys can be added under locked chastity for trap mode in map rooms.";
+                        let msg = "Toys can be added under locked chastity for trap mode in map rooms.";
                         infomsg(msg);
                     }
                 } else if (setting == "nogarble") {
-                    if (Player.FBCOtherAddons == undefined) {
-                        var gbc = 0;
-                    } else {
-                        str = Player.ExtensionSettings.FBC;
-                        d = LZString.decompressFromBase64(str);
-                        FBCdata = {};
-                        decoded = JSON.parse(d);
+		    let gbc = 0;
+                    if (Player.FBCOtherAddons != undefined) {
+                        let str = Player.ExtensionSettings.FBC;
+                        let d = LZString.decompressFromBase64(str);
+                        let FBCdata = {};
+                        let decoded = JSON.parse(d);
                         FBCdata = decoded;
                         if (FBCdata.antiGarble) {
-                            var gbc = 1;
+                            gbc = 1;
                             Player.RestrictionSettings.NoSpeechGarble = false;
                             NogarbleOn = false;
                             M_MOANER_saveControls();
-                            var msg = "BC default talk mode can ungarble messages and whispers according your WCE settings.";
+                            let msg = "BC default talk mode can ungarble messages and whispers according your WCE settings.";
                             infomsg(msg);
                         }
                     }
@@ -13506,31 +13549,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             Player.RestrictionSettings.NoSpeechGarble = false;
                             NogarbleOn = false;
                             M_MOANER_saveControls();
-                            var msg = "BC default talk mode will not ungarble messages and whispers.";
+                            let msg = "BC default talk mode will not ungarble messages and whispers.";
                             infomsg(msg);
                         } else {
                             Player.RestrictionSettings.NoSpeechGarble = true;
                             NogarbleOn = true;
                             M_MOANER_saveControls();
-                            var msg = "BC default talk mode will ungarble messages and whispers.";
+                            let msg = "BC default talk mode will ungarble messages and whispers.";
                             infomsg(msg);
                         }
                     }
                 } else if (setting == "nostruggle") {
-                    if (Player.FBCOtherAddons == undefined) {
-                        var sbc = 0;
-                    } else {
-                        str = Player.ExtensionSettings.FBC;
-                        d = LZString.decompressFromBase64(str);
-                        FBCdata = {};
-                        decoded = JSON.parse(d);
+		    let sbc = 0;
+                    if (Player.FBCOtherAddons != undefined) {
+                        let str = Player.ExtensionSettings.FBC;
+                        let d = LZString.decompressFromBase64(str);
+                        let FBCdata = {};
+                        let decoded = JSON.parse(d);
                         FBCdata = decoded;
                         if (FBCdata.autoStruggle) {
-                            var sbc = 1;
+                            sbc = 1;
                             Player.RestrictionSettings.BypassStruggle = false;
                             NostruggleOn = false;
                             M_MOANER_saveControls();
-                            var msg = "Automatic struggle in mini-games is enabled according your WCE setting.\n" +
+                            let msg = "Automatic struggle in mini-games is enabled according your WCE setting.\n" +
                                 "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.";
                             infomsg(msg);
                         }
@@ -13540,13 +13582,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             Player.RestrictionSettings.BypassStruggle = false;
                             NostruggleOn = false;
                             M_MOANER_saveControls();
-                            var msg = "Automatic struggle in mini-games is disabled.";
+                            let msg = "Automatic struggle in mini-games is disabled.";
                             infomsg(msg);
                         } else {
                             Player.RestrictionSettings.BypassStruggle = true;
                             NostruggleOn = true;
                             M_MOANER_saveControls();
-                            var msg = "Automatic struggle in mini-games is enabled.\n" +
+                            let msg = "Automatic struggle in mini-games is enabled.\n" +
                                 "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.";
                             infomsg(msg);
                         }
@@ -13555,24 +13597,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (NotimeoutOn == true) {
                         NotimeoutOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Time-out for BC help provided by TAB key is activated.";
+                        let msg = "Time-out for BC help provided by TAB key is activated.";
                         infomsg(msg);
                     } else {
                         NotimeoutOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Time-out for BC help provided by TAB key is disabled.";
+                        let msg = "Time-out for BC help provided by TAB key is disabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "nowhisper") {
                     if (NowhisperOn == true) {
                         NowhisperOn = false;
                         M_MOANER_saveControls();
-                        var msg = "No-whisper mode disabled.";
+                        let msg = "No-whisper mode disabled.";
                         infomsg(msg);
                     } else {
                         NowhisperOn = true;
                         M_MOANER_saveControls();
-                        var msg = "No-whisper mode enabled.";
+                        let msg = "No-whisper mode enabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "npcpunish") {
@@ -13580,56 +13622,56 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         Player.RestrictionSettings.BypassNPCPunishments = false;
                         NPCpunish = true;
                         M_MOANER_saveControls();
-                        var msg = "NPC punishments enabled.";
+                        let msg = "NPC punishments enabled.";
                         infomsg(msg);
                     } else {
                         Player.RestrictionSettings.BypassNPCPunishments = true;
                         NPCpunish = false;
                         M_MOANER_saveControls();
-                        var msg = "NPC punishments disabled.";
+                        let msg = "NPC punishments disabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "outbuttons") {
                     if (OutbuttonsOn == true) {
                         OutbuttonsOn = false;
                         M_MOANER_saveControls();
-                        var msg = "OUT buttons hidden and disabled.";
+                        let msg = "OUT buttons hidden and disabled.";
                         infomsg(msg);
                     } else {
                         OutbuttonsOn = true;
                         M_MOANER_saveControls();
-                        var msg = "OUT buttons displayed and enabled.";
+                        let msg = "OUT buttons displayed and enabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "rglbuttons") {
                     if (RglbuttonsOn == true) {
                         RglbuttonsOn = false;
                         M_MOANER_saveControls();
-                        var msg = "RGL buttons hidden and disabled.";
+                        let msg = "RGL buttons hidden and disabled.";
                         infomsg(msg);
                     } else {
                         RglbuttonsOn = true;
                         M_MOANER_saveControls();
-                        var msg = "RGL buttons displayed and enabled.";
+                        let msg = "RGL buttons displayed and enabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "sosbuttons") {
                     if (SosbuttonsOn == true) {
                         SosbuttonsOn = false;
                         M_MOANER_saveControls();
-                        var msg = "Emergency buttons hidden and disabled.";
+                        let msg = "Emergency buttons hidden and disabled.";
                         infomsg(msg);
                     } else {
                         SosbuttonsOn = true;
                         M_MOANER_saveControls();
-                        var msg = "Emergency buttons displayed and enabled.";
+                        let msg = "Emergency buttons displayed and enabled.";
                         infomsg(msg);
                     }
                 }
             }
         }
     }])
-
+	    
     CommandCombine([{
         Tag: 'ustatus',
         Description: ": displays status of UBC settings.",
