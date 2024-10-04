@@ -58,7 +58,7 @@ All else I might not have included.
 
 Changes for future version 
 
-* New command: uset fixperm to enable/disable automatic change of your general item permission when using the BC safeword command
+* New command: uset fixperm to enable/disable automatic change of your general item permission when using the BC safeword command or the revert option in the safeword menu
 * Added support for the Devious Padlock (provided by DOGS mod) to the lock and unlock commands
   - Note 1: The lock command will work only if both players (source and target) have enabled the Devious Padlock in the DOGS menu
   - Note 2: As this lock is normally protected from cheats, the unlock command (and other 'escape' commands) will work only with a modified version of the DOGS mod
