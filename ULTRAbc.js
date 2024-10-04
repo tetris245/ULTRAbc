@@ -59,8 +59,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cfame = 200;
     let frname = "BrickWall";
     var gl = 0;
-    var onegl = 0;
-    var mgl = 0;
+    let onegl = 0;
+    let mgl = 0;
     var rsize = 20;
     let rtype = "ALL";
     var st = 0;
@@ -7070,7 +7070,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(talkmode) (words): speaks once in specified gag talk.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The gtalk command must be followed by a number between 0 and 9, then the words you want to say.\n" +
+                let msg = "The gtalk command must be followed by a number between 0 and 9, then the words you want to say.\n" +
                     " \n" +
                     "Available talk modes:\n" +
                     "0 real gag talk (based on currently worn gags and other items restraining talking)\n" +
@@ -7082,37 +7082,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "6 medium gag talk\n" +
                     "7 heavy gag talk\n" +
                     "8 very heavy gag talk\n" +
-                    "9 total gag talk<";
+                    "9 total gag talk";
                 infomsg(msg);
             } else {
-                var stringGag1 = args;
-                var stringGag2 = stringGag1.split(/[ ,]+/);
-                var gaglevel = stringGag2[0];
-                var nt = 0;
+                let stringGag1 = args;
+                let stringGag2 = stringGag1.split(/[ ,]+/);
+                let gaglevel = stringGag2[0];
+                let nt = 0;
                 if ((gaglevel > -1) && (gaglevel < 10)) {
                     if (gaglevel == 0) {
+			onegl = SpeechTransformGagGarbleIntensity(Player);
+                        mgl = onegl;
                         if (Player.ExtensionSettings.MBS != null) {
-                            str = Player.ExtensionSettings.MBS;
-                            d = LZString.decompressFromUTF16(str);
-                            MBSdata = {};
-                            decoded = JSON.parse(d);
+                            let str = Player.ExtensionSettings.MBS;
+                            let d = LZString.decompressFromUTF16(str);
+                            let MBSdata = {};
+                            let decoded = JSON.parse(d);
                             MBSdata = decoded;
                             if (MBSdata.AlternativeGarbling) {
                                 onegl = 0;
                                 mgl = SpeechTransformGagGarbleIntensity(Player);
-                            } else {
-                                ongl = SpeechTransformGagGarbleIntensity(Player);
-                                mgl = onegl;
                             }
-                        } else {
-                            onegl = SpeechTransformGagGarbleIntensity(Player);
-                            mgl = onegl;
-                        }
+                        } 
                         if (Player.ExtensionSettings.LSCG != null) {
-                            str = Player.ExtensionSettings.LSCG;
-                            d = LZString.decompressFromBase64(str);
-                            LSCGdata = {};
-                            decoded = JSON.parse(d);
+                            let str = Player.ExtensionSettings.LSCG;
+                            let d = LZString.decompressFromBase64(str);
+                            let LSCGdata = {};
+                            let decoded = JSON.parse(d);
                             LSCGdata = decoded;
                             if (LSCGdata.CollarModule.chokeLevel > 1) {
                                 onegl = (LSCGdata.CollarModule.chokeLevel) * 2 + onegl;
@@ -7120,24 +7116,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (LSCGdata.CollarModule.chokeLevel == 4) {
                                 nt = 1;
                             }
+			    let type = '';
+                            let config = "";
                             let states = LSCGdata.StateModule.states;
-                            var type = 'asleep';
-                            var config = states.find(s => s.type == type);
+                            type = 'asleep';
+                            config = states.find(s => s.type == type);
                             if ((config != undefined) && (config.active == true)) {
                                 nt = 1;
                             }
-                            var type = 'frozen';
-                            var config = states.find(s => s.type == type);
+                            type = 'frozen';
+                            config = states.find(s => s.type == type);
                             if ((config != undefined) && (config.active == true)) {
                                 nt = 1;
                             }
-                            var type = 'gagged';
-                            var config = states.find(s => s.type == type);
+                            type = 'gagged';
+                            config = states.find(s => s.type == type);
                             if ((config != undefined) && (config.active == true)) {
                                 nt = 1;
                             }
-                            var type = 'hypnotized';
-                            var config = states.find(s => s.type == type);
+                            type = 'hypnotized';
+                            config = states.find(s => s.type == type);
                             if ((config != undefined) && (config.active == true)) {
                                 nt = 1;
                             }
@@ -7149,19 +7147,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             onegl = gaglevel;
                         }
                     }
-                    var nm = 0;
+                    let nm = 0;
                     if (DolltalkOn == true) {
-                        var text = args.substring(2).trim();
+                        let text = args.substring(2).trim();
                         if (IsDollTalk(text) == false) {
-                            var nm = 1;
+                            nm = 1;
                         }
                         if (nm == 1) {
-                            var msg = "Your message can't be sent because it does not respect the rules of doll talk.";
+                            let msg = "Your message can't be sent because it does not respect the rules of doll talk.";
                             infomsg(msg);
                         }
                     }
                     if (nm == 0) {
-                        content = SpeechTransformGagGarble(args.substring(2).trim(), onegl);
+                        let content = SpeechTransformGagGarble(args.substring(2).trim(), onegl);
+                        let content2 = "";
                         if (nt == 1) {
                             content2 = content;
                         } else {
@@ -7185,7 +7184,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(crotch shield) (back shield) (modules)(intensity) (orgasm mode): changes the settings of worn Heavy Duty Belt.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The hdvibe command must be followed by 5 numbers for crotch shield, back shield, modules, intensity and orgasm mode.\n" +
+                let msg = "The hdvibe command must be followed by 5 numbers for crotch shield, back shield, modules, intensity and orgasm mode.\n" +
                     " \n" +
                     "Available crotch shields:\n" +
                     "0 Open - 1 Transparent - 2 Metal\n" +
@@ -7206,19 +7205,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 if (InventoryGet(Player, "ItemPelvis") != null) {
                     if (InventoryGet(Player, "ItemPelvis").Asset.Name == "HeavyDutyBelt") {
-                        var stringHDbelt1 = args;
-                        var stringHDbelt2 = stringHDbelt1.split(/[ ,]+/);
-                        var chd = stringHDbelt2[0];
-                        var bhd = stringHDbelt2[1];
-                        var mhd = stringHDbelt2[2];
-                        var ihd = stringHDbelt2[3];
-                        var ohd = stringHDbelt2[4];
+                        let stringHDbelt1 = args;
+                        let stringHDbelt2 = stringHDbelt1.split(/[ ,]+/);
+                        let chd = stringHDbelt2[0];
+                        let bhd = stringHDbelt2[1];
+                        let mhd = stringHDbelt2[2];
+                        let ihd = stringHDbelt2[3];
+                        let ohd = stringHDbelt2[4];
                         if ((chd > -1) && (chd < 3) && (bhd > -1) && (bhd < 2) && (mhd > -1) && (mhd < 4) && (ihd > -1) && (ihd < 5) && (ohd > -1) && (ohd < 3)) {
                             const HeavyDutyBelt = InventoryGet(Player, "ItemPelvis");
                             const HeavyDutyBeltConfig = ModularItemDataLookup.ItemPelvisHeavyDutyBelt;
                             HeavyDutyBelt.Property = ModularItemMergeModuleValues(HeavyDutyBeltConfig, [chd, bhd, mhd, ihd, ohd]);
                             ChatRoomCharacterUpdate(Player);
-                            var msg = "The settings of your Heavy Duty Belt have been modified.";
+                            let msg = "The settings of your Heavy Duty Belt have been modified.";
                             infomsg(msg);
                         }
                     }
@@ -7232,7 +7231,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(hearingmode): forces a specific hearing mode",
         Action: (args) => {
             if (args === "") {
-                var msg = "The hear command must be followed by a number between 0 and 4.\n" +
+                let msg = "The hear command must be followed by a number between 0 and 4.\n" +
                     "Notes:\n" +
                     "- a full relog is requested to leave this forced hearing mode\n" +
                     "- this command can trigger a BCX warning. Just ignore it (close the breaking message)!\n" +
@@ -7245,35 +7244,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "4 total deafness";
                 infomsg(msg);
             } else {
-                var dl = args;
+                let dl = args;
                 if (dl == 0) {
                     GetDeafLevel0();
                     Player.GetDeafLevel = GetDeafLevel0;
-                    var msg = "Back to normal hearing mode.";
+                    let msg = "Back to normal hearing mode.";
                     infomsg(msg);
                 }
                 if (dl == 1) {
                     GetDeafLevel1();
                     Player.GetDeafLevel = GetDeafLevel1;
-                    var msg = "You are now in light deafness mode.";
+                    let msg = "You are now in light deafness mode.";
                     infomsg(msg);
                 }
                 if (dl == 2) {
                     GetDeafLevel2();
                     Player.GetDeafLevel = GetDeafLevel2;
-                    var msg = "You are now in normal deafness mode.";
+                    let msg = "You are now in normal deafness mode.";
                     infomsg(msg);
                 }
                 if (dl == 3) {
                     GetDeafLevel3();
                     Player.GetDeafLevel = GetDeafLevel3;
-                    var msg = "You are now in heavy deafness mode.";
+                    let msg = "You are now in heavy deafness mode.";
                     infomsg(msg);
                 }
                 if (dl == 4) {
                     GetDeafLevel4();
                     Player.GetDeafLevel = GetDeafLevel4;
-                    var msg = "You are now in total deafness mode.";
+                    let msg = "You are now in total deafness mode.";
                     infomsg(msg);
                 }
             }
@@ -7284,16 +7283,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'hint',
         Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
         Action: (_, command, args) => {
-            var [targetname] = args;
+            let [targetname] = args;
             if (!targetname) {
-                var msg = "The hint command must be followed by a target and the hint you want to add to locks with password.";
+                let msg = "The hint command must be followed by a target and the hint you want to add to locks with password.";
                 infomsg(msg);
             } else {
-                var [, , ...message] = command.split(" ");
-                var hint = message?.join(" ");
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let [, , ...message] = command.split(" ");
+                let hint = message?.join(" ");
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true)) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -7304,7 +7303,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (hint != "") {
@@ -7314,7 +7313,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") ||
                                         (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
                                         target[0].Appearance[A].Property.Hint = hint;
-					var msg = "A hint has been added to " + tgpname + "'s locks with password.";
+					let msg = "A hint has been added to " + tgpname + "'s locks with password.";
                                         publicmsg(msg);
                                     }
                                 }
