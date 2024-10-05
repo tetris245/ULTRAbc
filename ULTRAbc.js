@@ -8076,25 +8076,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot",
         Action: (args) => {
             if (args === "") {
-                var msg = "First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
+                let msg = "First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
                     "The layerset1 command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.";
                 infomsg(msg);
             } else {
-                var stringLys1 = args;
-                var stringLys2 = stringLys1.split(/[ ,]+/);
-                var layer = stringLys2[0];
-                var color = stringLys2[1];
+                let stringLys1 = args;
+                let stringLys2 = stringLys1.split(/[ ,]+/);
+                let layer = stringLys2[0];
+                let color = stringLys2[1];
                 if (this.saveditemslot == undefined) {
-                    var msg = "<b>Warning</b>: First use the <b>/layershow1</b> command to get useful info and save Item Slot.";
+                    let msg = "<b>Warning</b>: First use the <b>/layershow1</b> command to get useful info and save Item Slot.";
                     infomsg(msg);
                 } else {
-                    var Target = this.saveditemslot.slice(0);
+                    let Target = this.saveditemslot.slice(0);
                     if ((InventoryGet(Player, Target) != null) && (color.startsWith("#"))) {
-                        var ak = 0;
+                        let ak = 0;
                         if (InventoryGet(Player, Target).Asset.Archetype != undefined) {
-                            Archetype = InventoryGet(Player, Target).Asset.Archetype;
-                            if (Archetype == "typed") var ak = 1;
-                            if (Archetype == "modular") var ak = 2;
+                            let Archetype = InventoryGet(Player, Target).Asset.Archetype;
+                            if (Archetype == "typed") ak = 1;
+                            if (Archetype == "modular") ak = 2;
                         }
                         if (ak < 2) {
                             if (layer == -1) {
@@ -8107,17 +8107,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         }
                         if (ak == 2) {
+			    let ColorIndex = 0;
                             if (layer == -1) {
                                 for (let A = 0; A < Asset.Layer.length; A++)
                                     ColorIndex = InventoryGet(Player, Target).Asset.Layer[A].ColorIndex;
-                                InventoryGet(Player, Target).Color[ColorIndex] = color;
+                                    InventoryGet(Player, Target).Color[ColorIndex] = color;
                             } else {
                                 ColorIndex = InventoryGet(Player, Target).Asset.Layer[layer].ColorIndex;
                                 InventoryGet(Player, Target).Color[ColorIndex] = color;
                             }
                         }
                         ChatRoomCharacterUpdate(Player);
-                        var msg = "Layer color changed.";
+                        let msg = "Layer color changed.";
                         infomsg(msg);
                     }
                 }
@@ -8130,30 +8131,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(layernumber) (priority) changes a layer priority for worn item in saved Item Slot",
         Action: (args) => {
             if (args === "") {
-                var msg = "First use the <b>/layershow2</b> command to click on worn item, get useful info about layer priorities and save Item Slot.\n" +
+                let msg = "First use the <b>/layershow2</b> command to click on worn item, get useful info about layer priorities and save Item Slot.\n" +
                     "The layerset2 command must be followed by a layer number and a priority number (between -99 and 99) for the worn item in the previously saved Item Slot.";
                 infomsg(msg);
             } else {
-                var stringLys3 = args;
-                var stringLys4 = stringLys3.split(/[ ,]+/);
-                var layer = stringLys4[0];
-                var priority = stringLys4[1] * 1;
+                let stringLys3 = args;
+                let stringLys4 = stringLys3.split(/[ ,]+/);
+                let layer = stringLys4[0];
+                let priority = stringLys4[1] * 1;
                 if (priority > 99) priority = 99;
                 if (priority < -99) priority = -99;
                 if (this.saveditemslot == undefined) {
-                    var msg = "<b>Warning</b>: First use the <b>/layershow2</b> command to get useful info and save Item Slot.";
+                    let msg = "<b>Warning</b>: First use the <b>/layershow2</b> command to get useful info and save Item Slot.";
                     infomsg(msg);
                 } else {
-                    var Target = this.saveditemslot.slice(0);
+                    let Target = this.saveditemslot.slice(0);
                     if (InventoryGet(Player, Target) != null) {
-                        var ak = 0;
+                        let ak = 0;
                         if (InventoryGet(Player, Target).Asset.Archetype != undefined) {
-                            Archetype = InventoryGet(Player, Target).Asset.Archetype;
-                            if (Archetype == "typed") var ak = 1;
-                            if (Archetype == "modular") var ak = 2;
+                            let Archetype = InventoryGet(Player, Target).Asset.Archetype;
+                            if (Archetype == "typed") ak = 1;
+                            if (Archetype == "modular") ak = 2;
                         }
-                        Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
-                        Property = InventoryGet(Player, Target).Property;
+                        let Asset = InventoryGet(Player, Target).Asset;
+                        let Property = InventoryGet(Player, Target).Property;
+			let Name = "";
                         if (ak == 0) {
                             if (layer == 0) {
                                 Name = InventoryGet(Player, Target).Asset.Name;
@@ -8162,7 +8164,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             if ((Property == undefined) || (Property.OverridePriority == undefined)) {
                                 Property = {};
-                                OverridePriority = {};
+                                let OverridePriority = {};
                                 OverridePriority[Name] = priority;
                                 Property.OverridePriority = OverridePriority;
                             } else {
@@ -8176,7 +8178,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 Name = Asset.Layer[layer].Name;
                             }
                             if (Property.OverridePriority == undefined) {
-                                OverridePriority = {};
+                                let OverridePriority = {};
                                 OverridePriority[Name] = priority;
                                 Property.OverridePriority = OverridePriority;
                             } else {
@@ -8184,12 +8186,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         }
                         if (ak == 2) {
-                            Name1 = InventoryGet(Player, Target).Asset.Layer[layer].ColorGroup;
-                            Name2 = InventoryGet(Player, Target).Asset.Layer[layer].Name;
+                            let Name1 = InventoryGet(Player, Target).Asset.Layer[layer].ColorGroup;
+                            let Name2 = InventoryGet(Player, Target).Asset.Layer[layer].Name;
                             InventoryGet(Player, Target).Property.OverridePriority[Name2] = priority;
                         }
                         ChatRoomCharacterUpdate(Player);
-                        var msg = "Layer priority changed.";
+                        let msg = "Layer priority changed.";
                         infomsg(msg);
                     }
                 }
@@ -8201,20 +8203,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'layershow1',
         Description: "gives info about layer colors of a specific worn item + saves Item Slot",
         Action: () => {
-            var msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
+            let msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
             infomsg(msg);
             setTimeout(function() {
                 if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
+		    let Target = "";
                     if (CurrentCharacter.FocusGroup.Name) {
-                        var Target = CurrentCharacter.FocusGroup.Name;
+                        Target = CurrentCharacter.FocusGroup.Name;
                         if (InventoryGet(Player, Target) != null) {
                             ChatRoomSendLocal("AssetGroup = " + Target);
                             Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
-                            var ak = 0;
+                            let Name = "";
+                            let Color2 = "";
+                            let ak = 0;
                             if (InventoryGet(Player, Target).Asset.Archetype != undefined) {
-                                Archetype = InventoryGet(Player, Target).Asset.Archetype;
-                                if (Archetype == "typed") var ak = 1;
-                                if (Archetype == "modular") var ak = 2;
+                                let Archetype = InventoryGet(Player, Target).Asset.Archetype;
+                                if (Archetype == "typed") ak = 1;
+                                if (Archetype == "modular") ak = 2;
                             }
                             if (ak < 2) {
                                 let ly = 0;
@@ -8237,9 +8242,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
                                     //if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
-                                    Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
-                                    Name2 = Asset.Layer[ly].Name;
-                                    Index = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
+                                    let Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
+                                    let Name2 = Asset.Layer[ly].Name;
+                                    let Index = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
                                     Color2 = InventoryGet(Player, Target).Color[Index];
                                     ChatRoomSendLocal("Layer " + ly + " = " + Name1 + " - " + Name2 + " - " + Color2);
                                     //}
@@ -8247,7 +8252,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                             }
                             this.saveditemslot = Target;
-                            var msg = "Item Slot saved.";
+                            let msg = "Item Slot saved.";
                             infomsg(msg);
                         }
                         DialogLeave();
@@ -8261,24 +8266,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'layershow2',
         Description: "gives info about layer priorities of a specific worn item + saves Item Slot",
         Action: () => {
-            var msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
+            let msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
             infomsg(msg);
             setTimeout(function() {
                 if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
+		    let Target = "";
                     if (CurrentCharacter.FocusGroup.Name) {
-                        var Target = CurrentCharacter.FocusGroup.Name;
+                        let Target = CurrentCharacter.FocusGroup.Name;
                         if (InventoryGet(Player, Target) != null) {
                             ChatRoomSendLocal("AssetGroup = " + Target);
-                            var ak = 0;
+			    let Name = "";
+                            let Priority2 = 0;
+                            let ak = 0;
                             if (InventoryGet(Player, Target).Asset.Archetype != undefined) {
-                                Archetype = InventoryGet(Player, Target).Asset.Archetype;
-                                if (Archetype == "typed") var ak = 1;
-                                if (Archetype == "modular") var ak = 2;
+                                let Archetype = InventoryGet(Player, Target).Asset.Archetype;
+                                if (Archetype == "typed") ak = 1;
+                                if (Archetype == "modular") ak = 2;
                             }
-                            Asset.Layer = InventoryGet(Player, Target).Asset.Layer;
-                            Property = InventoryGet(Player, Target).Property;
+                            let Asset = InventoryGet(Player, Target).Asset;
+                            let Property = InventoryGet(Player, Target).Property;
                             if (ak == 0) {
-                                Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
+                                let Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
                                     if (ly == 0) {
@@ -8289,7 +8297,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     if ((Property == undefined) || (Property.OverridePriority == undefined)) {
                                         Priority2 = Priority;
                                     } else {
-                                        layerPriority = Property.OverridePriority[Name];
+                                        let layerPriority = Property.OverridePriority[Name];
                                         if (layerPriority == null) {
                                             Priority2 = Priority;
                                         } else {
@@ -8301,7 +8309,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                             }
                             if (ak == 1) {
-                                Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
+                                let Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
                                     if ((Asset.Layer.length == 1) || (Asset.Layer[ly].Name == null)) {
@@ -8312,7 +8320,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     if (InventoryGet(Player, Target).Property == undefined) {
                                         Priority2 = InventoryGet(Player, Target).Asset.Layer[ly].Priority;
                                     } else {
-                                        layerPriority = Property.OverridePriority?.[Name] ?? Priority;
+                                        let layerPriority = Property.OverridePriority?.[Name] ?? Priority;
                                         if (layerPriority == null) {
                                             Priority2 = InventoryGet(Player, Target).Asset.Layer[ly].Priority;
                                         } else {
@@ -8327,10 +8335,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
                                     //if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
-                                    Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
-                                    Name2 = Asset.Layer[ly].Name;
-                                    Priority = Asset.Layer[ly].Priority;
-                                    layerPriority = Property.OverridePriority?.[Name2] ?? Priority;
+                                    let Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
+                                    let Name2 = Asset.Layer[ly].Name;
+                                    let Priority = Asset.Layer[ly].Priority;
+                                    let layerPriority = Property.OverridePriority?.[Name2] ?? Priority;
                                     if (layerPriority == null) {
                                         Priority2 = Priority;
                                     } else {
@@ -8342,7 +8350,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                             }
                             this.saveditemslot = Target;
-                            var msg = "Item Slot saved.";
+                            let msg = "Item Slot saved.";
                             infomsg(msg);
                         }
                         DialogLeave();
