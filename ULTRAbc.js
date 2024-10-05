@@ -128,38 +128,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var M_MOANER_xvibratorActive = false;
 
     //BC Slots
-    var body1 = ["Activity", "Blush", "BodyLower", "BodyMarkings", "BodyUpper", "Emoticon", "Eyebrows", "Eyes", "Eyes2", "EyeShadow", "Face", "FacialHair", "Fluids", "HairBack", "HairFront", "Hands", "Head", "Height", "Mouth", "Nipples", "Pronouns", "Pussy"];
+    const body1 = ["Activity", "Blush", "BodyLower", "BodyMarkings", "BodyUpper", "Emoticon", "Eyebrows", "Eyes", "Eyes2", "EyeShadow", "Face", "FacialHair", "Fluids", "HairBack", "HairFront", "Hands", "Head", "Height", "Mouth", "Nipples", "Pronouns", "Pussy"];
 
-    var body2 = ["BodyMarkings2_Luzi", "Liquid2_Luzi", "\u{8EAB}\u{4F53}\u{75D5}\u{8FF9}_Luzi"];
+    const body2 = ["BodyMarkings2_Luzi", "Liquid2_Luzi", "\u{8EAB}\u{4F53}\u{75D5}\u{8FF9}_Luzi"];
 
-    var clothes1 = ["Bra", "Bracelet", "Cloth", "ClothAccessory", "ClothLower", "Corset", "Garters", "Glasses", "Gloves", "HairAccessory3", "Hat", "Jewelry", "LeftAnklet", "LeftHand", "Mask", "Necklace", "Panties", "RightAnklet", "RightHand", "Shoes", "Socks", "SocksLeft", "SocksRight", "Suit", "SuitLower"];
+    const clothes1 = ["Bra", "Bracelet", "Cloth", "ClothAccessory", "ClothLower", "Corset", "Garters", "Glasses", "Gloves", "HairAccessory3", "Hat", "Jewelry", "LeftAnklet", "LeftHand", "Mask", "Necklace", "Panties", "RightAnklet", "RightHand", "Shoes", "Socks", "SocksLeft", "SocksRight", "Suit", "SuitLower"];
 
-    var clothes2 = ["\u{52A8}\u{7269}\u{8EAB}\u{4F53}_Luzi", "Bra_\u{7B28}\u{7B28}\u{86CB}Luzi", "ClothAccessory_\u{7B28}\u{7B28}\u{86CB}Luzi", "Cloth_\u{7B28}\u{7B28}\u{86CB}Luzi", "Cloth_\u{7B28}\u{7B28}\u{7B28}\u{86CB}Luzi2", "ClothLower_\u{7B28}\u{7B28}\u{86CB}Luzi", "ClothLower_\u{7B28}\u{7B28}\u{7B28}\u{86CB}Luzi2", "Gloves_\u{7B28}\u{7B28}\u{86CB}Luzi", "Hat_\u{7B28}\u{7B28}\u{86CB}Luzi", "\u{957F}\u{8896}\u{5B50}_Luzi", "Mask_\u{7B28}\u{7B28}\u{86CB}Luzi", "Necklace_\u{7B28}\u{7B28}\u{86CB}Luzi", "Panties_\u{7B28}\u{7B28}\u{86CB}Luzi", "Shoes_\u{7B28}\u{7B28}\u{86CB}Luzi"];
+    const clothes2 = ["\u{52A8}\u{7269}\u{8EAB}\u{4F53}_Luzi", "Bra_\u{7B28}\u{7B28}\u{86CB}Luzi", "ClothAccessory_\u{7B28}\u{7B28}\u{86CB}Luzi", "Cloth_\u{7B28}\u{7B28}\u{86CB}Luzi", "Cloth_\u{7B28}\u{7B28}\u{7B28}\u{86CB}Luzi2", "ClothLower_\u{7B28}\u{7B28}\u{86CB}Luzi", "ClothLower_\u{7B28}\u{7B28}\u{7B28}\u{86CB}Luzi2", "Gloves_\u{7B28}\u{7B28}\u{86CB}Luzi", "Hat_\u{7B28}\u{7B28}\u{86CB}Luzi", "\u{957F}\u{8896}\u{5B50}_Luzi", "Mask_\u{7B28}\u{7B28}\u{86CB}Luzi", "Necklace_\u{7B28}\u{7B28}\u{86CB}Luzi", "Panties_\u{7B28}\u{7B28}\u{86CB}Luzi", "Shoes_\u{7B28}\u{7B28}\u{86CB}Luzi"];
 
-    var cosplay1 = ["HairAccessory1", "HairAccessory2", "TailStraps", "Wings"];
+    const cosplay1 = ["HairAccessory1", "HairAccessory2", "TailStraps", "Wings"];
 
-    var cosplay2 = ["HairAccessory3_\u{7B28}\u{7B28}\u{86CB}Luzi", "Wings_\u{7B28}\u{7B28}\u{86CB}Luzi"];
+    const cosplay2 = ["HairAccessory3_\u{7B28}\u{7B28}\u{86CB}Luzi", "Wings_\u{7B28}\u{7B28}\u{86CB}Luzi"];
 
-    var restraints = ["ItemAddon", "ItemArms", "ItemBoots", "ItemDevices", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemHood", "ItemLegs", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemNeckRestraints", "ItemNose", "ItemTorso", "ItemTorso2"];  
+    const restraints = ["ItemAddon", "ItemArms", "ItemBoots", "ItemDevices", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemHood", "ItemLegs", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemNeckRestraints", "ItemNose", "ItemTorso", "ItemTorso2"];  
 
-    var toys = ["ItemBreast", "ItemButt", "ItemHandHeld", "ItemMisc", "ItemNeckAccessories", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings"];
+    const toys = ["ItemBreast", "ItemButt", "ItemHandHeld", "ItemMisc", "ItemNeckAccessories", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings"];
 
-    var allbody = body1.concat(body2);
-    var allclothes = clothes1.concat(clothes2);
-    var allcosplay = cosplay1.concat(cosplay2);
-    var allitems = restraints.concat(toys);
+    const allbody = body1.concat(body2);
+    const allclothes = clothes1.concat(clothes2);
+    const allcosplay = cosplay1.concat(cosplay2);
+    const allitems = restraints.concat(toys);
 
-    var bclevel1 = body1;
-    var bclevel2 = bclevel1.concat(cosplay1);
-    var bclevel3 = bclevel2.concat(clothes1);
-    var bclevel4 = bclevel3.concat(restraints);
-    var bclevel5 = bclevel4.concat(toys);
+    const bclevel1 = body1;
+    const bclevel2 = bclevel1.concat(cosplay1);
+    const bclevel3 = bclevel2.concat(clothes1);
+    const bclevel4 = bclevel3.concat(restraints);
+    const bclevel5 = bclevel4.concat(toys);
 
-    var echolevel1 = allbody;
-    var echolevel2 = echolevel1.concat(allcosplay);
-    var echolevel3 = echolevel2.concat(allclothes);
-    var echolevel4 = echolevel3.concat(restraints);
-    var echolevel5 = echolevel4.concat(toys);
+    const echolevel1 = allbody;
+    const echolevel2 = echolevel1.concat(allcosplay);
+    const echolevel3 = echolevel2.concat(allclothes);
+    const echolevel4 = echolevel3.concat(restraints);
+    const echolevel5 = echolevel4.concat(toys);
 
     //Animal Talk Profiles
     let animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"];
@@ -7362,21 +7362,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 if (Player.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                    var msg = "To use the invisible command on yourself, you need first to allow Scripts in BC settings.";
+                    let msg = "To use the invisible command on yourself, you need first to allow Scripts in BC settings.";
                     infomsg(msg);
                 } else {
+		    let msg = "Magical lasers make " + tmpname + " completely invisible.";
                     if (Invisible == undefined) {
-                        var msg = "Magical lasers make " + tmpname + " completely invisible.";
-                    } else {
                         if (Invisible != "") {
                             if (Invisible.startsWith("\u0027")) {
-                                var msg = tmpname + Invisible;
+                                msg = tmpname + Invisible;
                             } else {
-                                var msg = tmpname + ' '.repeat(1) + Invisible;
+                                msg = tmpname + ' '.repeat(1) + Invisible;
                             }
-                        } else {
-                            var msg = "Magical lasers make " + tmpname + " completely invisible.";
-                        }
+                        } 
                     }
                     if (Invisible != "no message") publicmsg(msg);
                     InventoryWear(Player, "Script", "ItemScript");
@@ -7388,10 +7385,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         CharacterRefresh(Player);
                 }
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -7401,25 +7398,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         tgpname = target[0].Nickname;
                     }
                     if (target[0].OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                        var msg = "To use the invisible command on other players, they need first to allow Scripts in BC settings.";
+                        let msg = "To use the invisible command on other players, they need first to allow Scripts in BC settings.";
                         infomsg(msg);
                     } else {
                         if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var msg = umsg1 + tgpname + umsg2;
+                            let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
+			    let msg = "Magical lasers make " + tgpname + " completely invisible.";
                             if (Tinvisible == undefined) {
-                                var msg = "Magical lasers make " + tgpname + " completely invisible.";
-                            } else {
                                 if (Tinvisible != "") {
                                     if (Tinvisible.startsWith("\u0027")) {
-                                        var msg = tmpname + Tinvisible + ' '.repeat(1) + tgpname;
+                                        msg = tmpname + Tinvisible + ' '.repeat(1) + tgpname;
                                     } else {
-                                        var msg = tmpname + ' '.repeat(1) + Tinvisible + ' '.repeat(1) + tgpname;
+                                        msg = tmpname + ' '.repeat(1) + Tinvisible + ' '.repeat(1) + tgpname;
                                     }
-                                } else {
-                                    var msg = "Magical lasers make " + tgpname + " completely invisible.";
                                 }
                             }
                             if (Tinvisible != "no message") publicmsg(msg);
@@ -7442,13 +7436,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(colorcode) (target): changes color on all current bindings.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The itemcolor1 command must be followed by a color code in the format #000000 and optionally a target.";
+                let msg = "The itemcolor1 command must be followed by a color code in the format #000000 and optionally a target.";
                 infomsg(msg);
             } else {
-                var stringItc1 = args;
-                var stringItc2 = stringItc1.split(/[ ,]+/);
-                var color = stringItc2[0];
-                var targetname = stringItc2[1];
+                let stringItc1 = args;
+                let stringItc2 = stringItc1.split(/[ ,]+/);
+                let color = stringItc2[0];
+                let targetname = stringItc2[1];
                 if ((targetname == null) && (color.startsWith("#"))) {
                     for (let A = 0; A < Player.Appearance.length; A++)
                         if (Player.Appearance[A].Asset.Group.Name != null) {
@@ -7461,13 +7455,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                             }
                         }
-		    var msg = "New colors are used on " + tmpname + "'s bindings.";
+		    let msg = "New colors are used on " + tmpname + "'s bindings.";
                     publicmsg(msg);
                     ChatRoomCharacterUpdate(Player);
                 } else {
-                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                     if (target[0] == null) {
-                        var targetnumber = parseInt(targetname);
+                        let targetnumber = parseInt(targetname);
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                     }
                     if ((target[0] != null) && (target[0].AllowItem == true) && (color.startsWith("#")) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -7478,7 +7472,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var msg = umsg1 + tgpname + umsg2;
+                            let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
                             for (let A = 0; A < target[0].Appearance.length; A++)
@@ -7492,7 +7486,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         }
                                     }
                                 }
-			    var msg = "New colors are used on " + tgpname + "'s bindings.";
+			    let msg = "New colors are used on " + tgpname + "'s bindings.";
 			    publicmsg(msg);
                             ChatRoomCharacterUpdate(target[0]);
                         }
@@ -7508,23 +7502,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(colorcode): changes color of worn item in selected slot.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The itemcolor2 command needs to be followed by a color code in the format #000000to change the color of a worn item in a slot selected by mouse click.";
+                let msg = "The itemcolor2 command needs to be followed by a color code in the format #000000 to change the color of a worn item in a slot selected by mouse click.";
                 infomsg(msg);
             } else {
-                var color = args;
+                let color = args;
                 if (color.startsWith("#")) {
-                    var msg = "You have 5 seconds to click on yourself. If successful, the color of the worn item in selected slot will be changed. If not, retry.";
+                    let msg = "You have 5 seconds to click on yourself. If successful, the color of the worn item in selected slot will be changed. If not, retry.";
                     infomsg(msg);
                     setTimeout(function() {
                         if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
                             if (CurrentCharacter.FocusGroup.Name) {
-                                var Target = CurrentCharacter.FocusGroup.Name;
+                                let Target = CurrentCharacter.FocusGroup.Name;
                                 if (InventoryGet(Player, Target) != null) {
                                     ChatRoomSendLocal("AssetGroup = " + Target);
                                     InventoryGet(Player, Target).Color = color;
                                     DialogLeave();
                                     ChatRoomCharacterUpdate(Player);
-                                    var msg = "Item color changed.";
+                                    let msg = "Item color changed.";
                                     infomsg(msg);
                                 }
                             }
@@ -7540,31 +7534,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(priority): changes priority of worn item in selected slot.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The itempriority command needs to be followed by a number (between -99 and 99) to change the priority of a worn item in a slot selected by mouse click.";
+                let msg = "The itempriority command needs to be followed by a number (between -99 and 99) to change the priority of a worn item in a slot selected by mouse click.";
                 infomsg(msg);
             } else {
-                var priority = args * 1;
+                let priority = args * 1;
                 if (priority > 99) priority = 99;
                 if (priority < -99) priority = -99;
-                var msg = "You have 5 seconds to click on yourself. If successful, the priority of the worn item in selected slot will be changed. If not, retry.";
+                let msg = "You have 5 seconds to click on yourself. If successful, the priority of the worn item in selected slot will be changed. If not, retry.";
                 infomsg(msg);
                 setTimeout(function() {
                     if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
                         if (CurrentCharacter.FocusGroup.Name) {
-                            var Target = CurrentCharacter.FocusGroup.Name;
+                            let Target = CurrentCharacter.FocusGroup.Name;
                             if (InventoryGet(Player, Target) != null) {
                                 ChatRoomSendLocal("AssetGroup = " + Target);
-                                var ak = 0;
+                                let ak = 0;
                                 if (InventoryGet(Player, Target).Asset.Archetype != undefined) {
-                                    Archetype = InventoryGet(Player, Target).Asset.Archetype;
-                                    if (Archetype == "typed") var ak = 1;
-                                    if (Archetype == "modular") var ak = 2;
+                                    let Archetype = InventoryGet(Player, Target).Asset.Archetype;
+                                    if (Archetype == "typed") ak = 1;
+                                    if (Archetype == "modular") ak = 2;
                                 }
-                                Property = InventoryGet(Player, Target).Property;
+                                let Property = InventoryGet(Player, Target).Property;
                                 if (ak < 2) {
                                     if (Property == undefined) {
                                         Property = {};
-                                        OverridePriority = {};
+                                        let OverridePriority = {};
                                         OverridePriority = priority;
                                         Property.OverridePriority = OverridePriority;
                                     } else {
@@ -7576,7 +7570,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 DialogLeave();
                                 ChatRoomCharacterUpdate(Player);
-                                var msg = "Item priority changed.";
+                                let msg = "Item priority changed.";
                                 infomsg(msg);
                             }
                         }
@@ -7599,20 +7593,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "debug") {
                 TestMode = true;
                 KDDebugMode = true;
-                var msg = "KD Debug mode enabled";
+                let msg = "KD Debug mode enabled";
                 infomsg(msg);
             } else if (args === "devious") {
                 if (this.DeviousOn == undefined || this.DeviousOn == false) {
                     DeviousOn = true;
                     ArcadeDeviousChallenge = true;
                     LogAdd("DeviousChallenge", "Arcade", 1, true);
-                    var msg = "Devious Challenge enabled";
+                    let msg = "Devious Challenge enabled";
                     infomsg(msg);
                 } else {
                     DeviousOn = false;
                     ArcadeDeviousChallenge = false;
                     LogDelete("DeviousChallenge", "Arcade", true);
-                    var msg = "Devious Challenge disabled";
+                    let msg = "Devious Challenge disabled";
                     infomsg(msg);
                 }
             } else {
@@ -8049,12 +8043,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(hours): keeps your keys safe in the vault.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The keydeposit command must be followed by a number higher than 0.";
+                let msg = "The keydeposit command must be followed by a number higher than 0.";
                 infomsg(msg);
             } else {
-                var hours = args;
+                let hours = args;
                 if (hours > 0) {
-		    var msg = "" + tmpname + "'s keys are now safe in the vault for " + hours + " hours.";
+		    let msg = "" + tmpname + "'s keys are now safe in the vault for " + hours + " hours.";
 		    publicmsg(msg);
                     CellDepositKeys(hours);
                 }
@@ -8067,11 +8061,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": kills UBC/Moaner parameters saved locally.",
         Action: (args) => {
             if (args === "") {
-                var msg = "<b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b>";
+                let msg = "<b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b>";
                 infomsg(msg);
             } else if (args === "yes") {
                 M_MOANER_deleteControls();
-                var msg = "All UBC/Moaner parameters have been deleted. Make a full logout/login then use the appropriate commands to set the parameters that you like.";
+                let msg = "All UBC/Moaner parameters have been deleted. Make a full logout/login then use the appropriate commands to set the parameters that you like.";
                 infomsg(msg);
             }
         }
