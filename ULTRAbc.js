@@ -8364,7 +8364,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "/lock (target) (locktype) (r) for lock 9\n" +
                     "/lock (target) (locktype) (code/ptcode) for locks 10 and 20\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
-                    "/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15, 18\n" 
+                    "/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15, 18\n" +
                     "/lock (target) (locktype) (password) (minutes) (h) (i) (r) - lock 16\n" +
                     "ALWAYS SPECIFY THE TARGET. Lock types:\n" +
                     "1 Metal - 2 Exclusive - 3 Intricate - 4 High Security\n" +
@@ -8619,11 +8619,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(accountname) (password): logs in a new account.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The login command must be followed by an account name and a password";
+                let msg = "The login command must be followed by an account name and a password";
                 infomsg(msg);
             } else {
-                var stringLogin1 = args;
-                var stringLogin2 = stringLogin1.split(/[ ,]+/);
+                let stringLogin1 = args;
+                let stringLogin2 = stringLogin1.split(/[ ,]+/);
                 this.LoginName = SpeechTransformGagGarble(stringLogin2[0], 6);
                 this.LoginPassword = SpeechTransformGagGarble(stringLogin2[1], 6);
                 ServerSocket.close();
@@ -8644,16 +8644,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": toggles fog in current mapped room.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                var msg = "This room does not use the map feature.";
+                let msg = "This room does not use the map feature.";
                 infomsg(msg);
             } else {
                 if ((ChatRoomData.MapData.Fog == true || ChatRoomData.MapData.Fog == undefined)) {
                     ChatRoomData.MapData.Fog = false;
-                    var msg = "Fog in current mapped room is disabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.";
+                    let msg = "Fog in current mapped room is disabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.";
                     infomsg(msg);
                 } else {
                     ChatRoomData.MapData.Fog = true;
-                    var msg = "Fog in current mapped room is enabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.";
+                    let msg = "Fog in current mapped room is enabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.";
                     infomsg(msg);
                 }
             }
@@ -8665,18 +8665,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": toggles full vision and hearing in mapped rooms.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                var msg = "This room does not use the map feature.";
+                let msg = "This room does not use the map feature.";
                 infomsg(msg);
             } else {
                 if (MapfullOn == true) {
                     MapfullOn = false;
                     M_MOANER_saveControls();
-                    var msg = "Full vision and hearing in mapped rooms is disabled. Fog is also back if not disabled with mapfog command";
+                    let msg = "Full vision and hearing in mapped rooms is disabled. Fog is also back if not disabled with mapfog command";
                     infomsg(msg);
                 } else {
                     MapfullOn = true;
                     M_MOANER_saveControls();
-                    var msg = "Full vision and hearing in mapped rooms is enabled. Fog is also removed. Will be disabled if you use this toggle again or relog";
+                    let msg = "Full vision and hearing in mapped rooms is enabled. Fog is also removed. Will be disabled if you use this toggle again or relog";
                     infomsg(msg);
                 }
             }
@@ -8688,11 +8688,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": gives all keys for current mapped chat room.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                var msg = "This room does not use the map feature.";
+                let msg = "This room does not use the map feature.";
                 infomsg(msg);
             } else {
                 if (Player.MapData == undefined) {
-                    var msg = "You don't have entered the map.";
+                    let msg = "You don't have entered the map.";
                     infomsg(msg);
                 } else {
                     Player.MapData.PrivateState.HasKeyGold = true;
@@ -8710,52 +8710,54 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": gives infos about location of players in current mapped chat room.",
         Action: () => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                var msg = "This room does not use the map feature. Better use the <b>/uroom</b> command.";
+                let msg = "This room does not use the map feature. Better use the <b>/uroom</b> command.";
                 infomsg(msg);
             } else {
                 let pl = 0;
                 while (pl < ChatRoomCharacter.length) {
+		    let name = "";
+                    let aka = "";
                     if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
-                        var name = ChatRoomCharacter[pl].Name;
-                        var aka = "";
+                        name = ChatRoomCharacter[pl].Name;
                     } else {
-                        var name = ChatRoomCharacter[pl].Nickname;
-                        var aka = ChatRoomCharacter[pl].Name;
+                        name = ChatRoomCharacter[pl].Nickname;
+                        aka = ChatRoomCharacter[pl].Name;
                     }
-                    var number = ChatRoomCharacter[pl].MemberNumber;
-                    ChatRoomSendLocal(name + " (" + aka + ") - " + number);
+                    let number = ChatRoomCharacter[pl].MemberNumber;
+                    ChatRoomSendLocal(name + " (" + aka + ") - " + number);  
+		    let ubc1 = "";
+                    let ubc2 = "";
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
-                        var ubc1 = "Does not use ULTRAbc.";
+                        ubc1 = "Does not use ULTRAbc.";
                     } else {
                         if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0)) {
-                            var ubc1 = "Is an ULTRAbc user.";
+                            ubc1 = "Is an ULTRAbc user.";
                         } else {
-                            var ubc1 = "Does not use ULTRAbc";
+                            ubc1 = "Does not use ULTRAbc";
                         }
                     }
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
-                        var ubc2 = "Does not use Uwall.";
+                        ubc2 = "Does not use Uwall.";
                     } else {
                         if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
-                            var ubc2 = "Has enabled Uwall.";
+                            ubc2 = "Has enabled Uwall.";
                         } else {
-                            var ubc2 = "Has disabled Uwall.";
+                            ubc2 = "Has disabled Uwall.";
                         }
                     }
                     ChatRoomSendLocal(ubc1 + " - " + ubc2);
                     if (ChatRoomCharacter[pl].MapData != undefined) {
-                        if (ChatRoomData.MapData.Type == "Always") {
-                            var exinfo = "Real presence in map: YES";
-                        }
+			let exinfo = "";
+                        if (ChatRoomData.MapData.Type == "Always") exinfo = "Real presence in map: YES";
                         if (ChatRoomData.MapData.Type == "Hybrid") {
                             if (ChatRoomCharacter[pl].OnlineSharedSettings.Inmap != undefined) {
                                 if (ChatRoomCharacter[pl].OnlineSharedSettings.Inmap == true) {
-                                    var exinfo = "Real presence in map: YES";
+                                    exinfo = "Real presence in map: YES";
                                 } else {
-                                    var exinfo = "Real presence in map: NO";
+                                    exinfo = "Real presence in map: NO";
                                 }
                             } else {
-                                var exinfo = "Real presence in map: ?";
+                                exinfo = "Real presence in map: ?";
                             }
                         }
                         ChatRoomSendLocal("X = " + ChatRoomCharacter[pl].MapData.Pos.X + " - Y = " + ChatRoomCharacter[pl].MapData.Pos.Y + " - " + exinfo);
@@ -8776,12 +8778,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MaptrapOn == true) {
                 MaptrapOn = false;
                 M_MOANER_saveControls();
-                var msg = "No traps with devices in map rooms";
+                let msg = "No traps with devices in map rooms";
                 infomsg(msg);
             } else {
                 MaptrapOn = true;
                 M_MOANER_saveControls();
-                var msg = "Traps in map rooms if you 'walk' on devices";
+                let msg = "Traps in map rooms if you 'walk' on devices";
                 infomsg(msg);
             }
         }
@@ -8792,14 +8794,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(x-position): changes your X coordinate in the map.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The mapx command must be followed by a number between 0 and 39.";
+                let msg = "The mapx command must be followed by a number between 0 and 39.";
                 infomsg(msg);
             } else {
                 if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    var msg = "This room does not use the map feature.";
+                    let msg = "This room does not use the map feature.";
                     infomsg(msg);
                 } else {
-                    var plx = args;
+                    let plx = args;
                     if ((plx > -1) && (plx < 40) && (plx != Player.MapData.Pos.X)) {
                         if (plx < Player.MapData.Pos.X) {
                             D = "West";
@@ -8836,14 +8838,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(y-position): changes your Y coordinate in the map.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The mapy command must be followed by a number between 0 and 39.";
+                let msg = "The mapy command must be followed by a number between 0 and 39.";
                 infomsg(msg);
             } else {
                 if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    var msg = "This room does not use the map feature.";
+                    let msg = "This room does not use the map feature.";
                     infomsg(msg);
                 } else {
-                    var ply = args;
+                    let ply = args;
                     if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Pos.Y)) {
                         if (ply < Player.MapData.Pos.Y) {
                             D = "North";
@@ -8880,23 +8882,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): gives coordinates in the map.",
         Action: (args) => {
             if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                var msg = "This room does not use the map feature.";
+                let msg = "This room does not use the map feature.";
                 infomsg(msg);
             } else {
                 if (args === "") {
                     if (Player.MapData != undefined) {
-                        if (ChatRoomData.MapData.Type == "Always") {
-                            var exinfo = "Real presence in map: YES";
-                        }
+			let exinfo = "";
+                        if (ChatRoomData.MapData.Type == "Always") exinfo = "Real presence in map: YES";
                         if (ChatRoomData.MapData.Type == "Hybrid") {
                             if (Player.OnlineSharedSettings.Inmap != undefined) {
                                 if (Player.OnlineSharedSettings.Inmap == true) {
-                                    var exinfo = "Real presence in map: YES";
+                                    exinfo = "Real presence in map: YES";
                                 } else {
-                                    var exinfo = "Real presence in map: NO";
+                                    exinfo = "Real presence in map: NO";
                                 }
                             } else {
-                                var exinfo = "Real presence in map: ?";
+                                exinfo = "Real presence in map: ?";
                             }
                         }
                         ChatRoomSendLocal("X = " + Player.MapData.Pos.X + " - Y = " + Player.MapData.Pos.Y + " - " + exinfo);
@@ -8906,26 +8907,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSendLocal(" ");
                     }
                 } else {
-                    var targetname = args;
-                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    let targetname = args;
+                    let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                     if (target[0] == null) {
-                        var targetnumber = parseInt(targetname);
+                        let targetnumber = parseInt(targetname);
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                     }
                     if (target[0] != null) {
                         if (target[0].MapData != undefined) {
-                            if (ChatRoomData.MapData.Type == "Always") {
-                                var exinfo = "Real presence in map: YES";
-                            }
+			    let exinfo = "";
+                            if (ChatRoomData.MapData.Type == "Always") exinfo = "Real presence in map: YES";
                             if (ChatRoomData.MapData.Type == "Hybrid") {
                                 if (target[0].OnlineSharedSettings.Inmap != undefined) {
                                     if (target[0].OnlineSharedSettings.Inmap == true) {
-                                        var exinfo = "Real presence in map: YES";
+                                        exinfo = "Real presence in map: YES";
                                     } else {
-                                        var exinfo = "Real presence in map: NO";
+                                        exinfo = "Real presence in map: NO";
                                     }
                                 } else {
-                                    var exinfo = "Real presence in map: ?";
+                                    exinfo = "Real presence in map: ?";
                                 }
                             }
                             ChatRoomSendLocal("X = " + target[0].MapData.Pos.X + " - Y = " + target[0].MapData.Pos.Y + " - " + exinfo);
@@ -8960,7 +8960,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             GameLARPLevelProgress(10000);
             LogAdd("BondageCollege", "Import");
             LogAdd("KidnapSophie", "Sarah");
-            var msg = "A few things have to be set manually. See the /roleplay and /rolequit commands";
+            let msg = "A few things have to be set manually. See the /roleplay and /rolequit commands";
             infomsg(msg);
         }
     }])
@@ -8971,31 +8971,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: () => {
             let pl = 0;
             while (pl < ChatRoomCharacter.length) {
+		let name = "";
+                let aka = "";
                 if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
-                    var name = ChatRoomCharacter[pl].Name;
-                    var aka = "";
+		    name = ChatRoomCharacter[pl].Name;
                 } else {
-                    var name = ChatRoomCharacter[pl].Nickname;
-                    var aka = ChatRoomCharacter[pl].Name;
+                    name = ChatRoomCharacter[pl].Nickname;
+                    aka = ChatRoomCharacter[pl].Name;
                 }
-                var number = ChatRoomCharacter[pl].MemberNumber;
+                let number = ChatRoomCharacter[pl].MemberNumber;
                 ChatRoomSendLocal(name + " (" + aka + ") - " + number);
+		let ubc1 = "";
+                let ubc2 = "";
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
-                    var ubc1 = "Does not use ULTRAbc.";
+                    ubc1 = "Does not use ULTRAbc.";
                 } else {
                     if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0)) {
-                        var ubc1 = "Is an ULTRAbc user.";
+                        ubc1 = "Is an ULTRAbc user.";
                     } else {
-                        var ubc1 = "Does not use ULTRAbc";
+                        ubc1 = "Does not use ULTRAbc";
                     }
                 }
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
-                    var ubc2 = "Does not use Uwall.";
+                    ubc2 = "Does not use Uwall.";
                 } else {
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
-                        var ubc2 = "Has enabled Uwall.";
+                        ubc2 = "Has enabled Uwall.";
                     } else {
-                        var ubc2 = "Has disabled Uwall.";
+                        ubc2 = "Has disabled Uwall.";
                     }
                 }
                 ChatRoomSendLocal(ubc1 + " - " + ubc2);
@@ -9006,25 +9009,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSendLocal("Does not have a MBS wheel of fortune.");
                     }
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != undefined) {
-                        var mes1 = "Has a MBS wheel of fortune.";
+                        ChatRoomSendLocal("Has a MBS wheel of fortune.");
                         if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.Version != undefined) {
                             ChatRoomSendLocal("Does not have custom options on this wheel.");
-                        } else {
-                            str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
-                            var stringMBSver1 = ChatRoomCharacter[pl].OnlineSharedSettings.MBSVersion;
-                            var stringMBSver2 = stringMBSver1.split(".");
-                            var MBS1 = stringMBSver2[0];
-                            var MBS2 = stringMBSver2[1];
-                            var MBS3 = stringMBSver2[2];
+                        } else { 
+			    let d = "";
+                            let str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
+                            let stringMBSver1 = ChatRoomCharacter[pl].OnlineSharedSettings.MBSVersion;
+                            let stringMBSver2 = stringMBSver1.split(".");
+                            let MBS1 = stringMBSver2[0];
+                            let MBS2 = stringMBSver2[1];
+                            let MBS3 = stringMBSver2[2];
                             if ((MBS1 == 0) && (MBS2 <= 6) && (MBS3 <= 22)) {
                                 d = LZString.decompressFromBase64(str);
                             } else {
                                 d = LZString.decompressFromUTF16(str);
                             }
-                            MBSwhdata = {};
-                            decoded = JSON.parse(d);
+                            let MBSwhdata = {};
+                            let decoded = JSON.parse(d);
                             MBSwhdata = decoded;
-                            var j = 0;
+                            let j = 0;
                             for (let i = 0; i < 32; i++)
                                 if (MBSwhdata.FortuneWheelItemSets[i] != null) {
                                     j = j + 1;
@@ -9048,7 +9052,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (_, command, args) => {
             var [option] = args;
             if (!option) {
-                var msg = "The message command must be followed by a command and the message you want instead of the default message.\n" +
+                let msg = "The message command must be followed by a command and the message you want instead of the default message.\n" +
                     "Options on yourself: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\n" +
                     "Options on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n" +
                     " \n" +
@@ -9058,18 +9062,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Use ! as message to select silent mode (no message)";
                 infomsg(msg);
             } else {
-                var [, , ...message] = command.split(" ");
-                var custom = message?.join(" ");
+                let [, , ...message] = command.split(" ");
+                let custom = message?.join(" ");
                 if (custom != "") {
-                    if ((option.startsWith("t")) && (option != "totalrelease")) {
-                        var option2 = option.slice(1);
-                    }
-                    var msg1 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option + " command on yourself.</p>";
-                    var msg2 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option + " command on yourself.</p>"
-                    var msg3 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option + " command on yourself.</p>"
-                    var msg4 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option2 + " command on other players.</p>";
-                    var msg5 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option2 + " command on other players.</p>";
-                    var msg6 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option2 + " command on other players.</p>";
+		    let option2 = "";
+                    if ((option.startsWith("t")) && (option != "totalrelease")) var option2 = option.slice(1);
+                    let msg1 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option + " command on yourself.</p>";
+                    let msg2 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option + " command on yourself.</p>"
+                    let msg3 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option + " command on yourself.</p>"
+                    let msg4 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option2 + " command on other players.</p>";
+                    let msg5 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option2 + " command on other players.</p>";
+                    let msg6 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option2 + " command on other players.</p>";
                     if (option == "clothes") {
                         if (custom == "!") {
                             Clothes = "no message";
@@ -9510,7 +9513,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(options): moans when horny and stimulated.",
         Action: (args) => {
             if (args === "") {
-                var msg = "Several actions are possible with the moaner command:\n" +
+                let msg = "Several actions are possible with the moaner command:\n" +
                     "<b>/moaner on</b> = starts the moaner\n" +
                     "<b>/moaner off</b> = stops the moaner\n" +
                     "<b>/moaner profile</b> (profilename) =  selects a moaner profile. Without profilename, access to moaner profile help\n" +
@@ -9525,14 +9528,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/moaner xvibe</b> = toggles moans when vibes settings of other players change";
                 infomsg(msg);
             } else {
-                var stringMoan1 = args;
-                var stringMoan2 = stringMoan1.split(/[ ,]+/);
-                var feature = stringMoan2[0];
+                let stringMoan1 = args;
+                let stringMoan2 = stringMoan1.split(/[ ,]+/);
+                let feature = stringMoan2[0];
                 if ((feature == "on") || (feature == "off")) {
                     scriptControl(feature);
                     M_MOANER_saveControls();
                 } else {
-                    var commande = stringMoan2[1];
+                    let commande = stringMoan2[1];
                     if (feature == "orgasm") {
                         orgasmControl(commande);
                         M_MOANER_saveControls();
