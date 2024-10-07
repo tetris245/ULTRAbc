@@ -9575,27 +9575,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): removes clothes.",
         Action: (args) => {
             if (args === "") {
-                if (Naked == undefined) {
-                    var msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
-                } else {
+		let msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
+                if (Naked != undefined) {
                     if (Naked != "") {
                         if (Naked.startsWith("\u0027")) {
-                            var msg = tmpname + Naked;
+                            msg = tmpname + Naked;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Naked;
+                            msg = tmpname + ' '.repeat(1) + Naked;
                         }
-                    } else {
-                        var msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
-                    }
+                    } 
                 }
                 if (Naked != "no message") publicmsg(msg);
                 CharacterNaked(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -9606,21 +9603,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        if (Tnaked == undefined) {
-                            var msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
-                        } else {
+			let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
+                        if (Tnaked != undefined) {
                             if (Tnaked != "") {
                                 if (Tnaked.startsWith("\u0027")) {
-                                    var msg = tmpname + Tnaked + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + Tnaked + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
                                 }
-                            } else {
-                                var msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
-                            }
+                            } 
                         }
                         if (Tnaked != "no message") publicmsg(msg);
                         CharacterNaked(target[0]);
@@ -9637,7 +9631,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(parameter): restores/saves/loads outfit (including restraints).",
         Action: (args) => {
             if (args === "") {
-                var msg = "Options for outfit command:\n" +
+                let msg = "Options for outfit command:\n" +
                     "<b>All these options include the restraints</b>, so it's also a good bondage tool.\n" +
                     "To restore your outfit to what it was before entering room, type: <b>/outfit reset</b> or <b>/outfit restore</b> or <b>/outfit revert</b>\n" +
                     "Three outfits can be saved by using <b>/outfit save1</b> or <b>/outfit save2</b> or <b>/outfit save3</b>\n" +
@@ -9649,97 +9643,61 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Then you can use the <b>Import buttons</b> to load it later.";
                 infomsg(msg);
             }
-            if (args === "load1") {
-                var msg = "You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.";
+            if ((args === "load1") || (args === "load2") || (args === "load3")) {
+                let msg = "You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
-                            var uw = 0;
-                            CurrentCharacter.Appearance = this.savedoutfit1.slice(0);
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                                if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                                    tgpname = CurrentCharacter.Name;
+                            let nl = 0;
+                            let uw = 0;
+                            if (args === "load1") {
+                                if (this.savedoutfit1 == undefined) {
+                                    nl = 1;
                                 } else {
-                                    tgpname = CurrentCharacter.Nickname;
+                                    CurrentCharacter.Appearance = this.savedoutfit1.slice(0);
                                 }
-                                if (tgpname != tmpname) {
-                                    var uw = 1;
-                                    var msg = umsg1 + tgpname + umsg2;
+                            }
+                             if (args === "load2") {
+                                if (this.savedoutfit2 == undefined) {
+                                    nl = 1;
+                                } else {
+                                    CurrentCharacter.Appearance = this.savedoutfit2.slice(0);
+                                }
+                            }
+                            if (args === "load3") {
+                                if (this.savedoutfit1 == undefined) {
+                                    nl = 1;
+                                } else {
+                                    CurrentCharacter.Appearance = this.savedoutfit3.slice(0);
+                                }
+                            }
+                            if (nl == 1) {
+                                DialogLeave();
+                                let msg = "Outfit " + args + " command not executed as no any saved outfit has been found.";
+                                infomsg(msg);
+                            }  
+                            if (nl == 0) {                    
+                                if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                                    (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
+                                    if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
+                                        tgpname = CurrentCharacter.Name;
+                                    } else {
+                                        tgpname = CurrentCharacter.Nickname;
+                                    }
+                                    if (tgpname != tmpname) {
+                                        uw = 1;
+                                        let msg = umsg1 + tgpname + umsg2;
+                                        infomsg(msg);
+                                    }
+                                }
+                                if (uw == 0) {
+                                    CharacterRefresh(CurrentCharacter);
+                                    ChatRoomCharacterUpdate(CurrentCharacter);
+                                    DialogLeave();
+                                    let msg = "Outfit " + args + " command executed.";
                                     infomsg(msg);
                                 }
-                            }
-                            if (uw == 0) {
-                                CharacterRefresh(CurrentCharacter);
-                                ChatRoomCharacterUpdate(CurrentCharacter);
-                                DialogLeave();
-                                var msg = "Outfit load1 command executed.";
-                                infomsg(msg);
-                            }
-                        }
-                    }
-                }, 5000);
-            }
-            if (args === "load2") {
-                var msg = "You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.";
-                infomsg(msg);
-                setTimeout(function() {
-                    if (CurrentCharacter != null) {
-                        if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
-                            var uw = 0;
-                            CurrentCharacter.Appearance = this.savedoutfit2.slice(0);
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                                if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                                    tgpname = CurrentCharacter.Name;
-                                } else {
-                                    tgpname = CurrentCharacter.Nickname;
-                                }
-                                if (tgpname != tmpname) {
-                                    var uw = 1;
-                                    var msg = umsg1 + tgpname + umsg2;
-                                    infomsg(msg);
-                                }
-                            }
-                            if (uw == 0) {
-                                CharacterRefresh(CurrentCharacter);
-                                ChatRoomCharacterUpdate(CurrentCharacter);
-                                DialogLeave();
-                                var msg = "Outfit load2 command executed.";
-                                infomsg(msg);
-                            }
-                        }
-                    }
-                }, 5000);
-            }
-            if (args === "load3") {
-                var msg = "You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.";
-                infomsg(msg);
-                setTimeout(function() {
-                    if (CurrentCharacter != null) {
-                        if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
-                            var uw = 0;
-                            CurrentCharacter.Appearance = this.savedoutfit3.slice(0);
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                                if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                                    tgpname = CurrentCharacter.Name;
-                                } else {
-                                    tgpname = CurrentCharacter.Nickname;
-                                }
-                                if (tgpname != tmpname) {
-                                    var uw = 1;
-                                    var msg = umsg1 + tgpname + umsg2;
-                                    infomsg(msg);
-                                }
-                            }
-                            if (uw == 0) {
-                                CharacterRefresh(CurrentCharacter);
-                                ChatRoomCharacterUpdate(CurrentCharacter);
-                                DialogLeave();
-                                var msg = "Outfit load3 command executed.";
-                                infomsg(msg);
                             }
                         }
                     }
@@ -9749,16 +9707,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.Appearance = ChatSearchSafewordAppearance.slice(0);
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
-                var msg = "Outfit reset-restore-revert command executed.";
+                let msg = "Outfit reset-restore-revert command executed.";
                 infomsg(msg);
             }
-            if (args === "save1") {
-                var msg = "You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.";
+            if ((args === "save1") || (args === "save2") || (args === "save3")) {
+                let msg = "You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
                         if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
-                            var uw = 0;
+                            let uw = 0;
                             if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
                                 (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                                 if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
@@ -9767,84 +9725,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     tgpname = CurrentCharacter.Nickname;
                                 } 
                                 if (tgpname != tmpname) {
-                                    var uw = 1;
-                                    var msg = umsg1 + tgpname + umsg2;
+                                    uw = 1;
+                                    let msg = umsg1 + tgpname + umsg2;
                                     infomsg(msg);
                                 }
                             }
                             if (uw == 0) {
-                                this.savedoutfit1 = CurrentCharacter.Appearance.slice(0);
+                                if (args === "save1") this.savedoutfit1 = CurrentCharacter.Appearance.slice(0);
+                                if (args === "save2") this.savedoutfit2 = CurrentCharacter.Appearance.slice(0);
+                                if (args === "save3") this.savedoutfit3 = CurrentCharacter.Appearance.slice(0);
                                 DialogLeave();
-                                var msg = "Outfit save1 command executed.";
+                                let msg = "Outfit " + args + " command executed.";
                                 infomsg(msg);
                             }
                         }
                     }
                 }, 5000);
-            }
-            if (args === "save2") {
-                var msg = "You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.";
-                infomsg(msg);
-                setTimeout(function() {
-                    if (CurrentCharacter != null) {
-                        if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
-                            var uw = 0;
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                                if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                                    tgpname = CurrentCharacter.Name;
-                                } else {
-                                    tgpname = CurrentCharacter.Nickname;
-                                }
-                                if (tgpname != tmpname) {
-                                    var uw = 1;
-                                    var msg = umsg1 + tgpname + umsg2;
-                                    infomsg(msg);
-                                }
-                            }
-                            if (uw == 0) {
-                                this.savedoutfit2 = CurrentCharacter.Appearance.slice(0);
-                                DialogLeave();
-                                var msg = "Outfit save2 command executed.";
-                                infomsg(msg);
-                            }
-                        }
-                    }
-                }, 5000);
-            }
-            if (args === "save3") {
-                var msg = "You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.";
-                infomsg(msg);
-                setTimeout(function() {
-                    if (CurrentCharacter != null) {
-                        if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
-                            var uw = 0;
-                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
-                                (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                                if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                                    tgpname = CurrentCharacter.Name;
-                                } else {
-                                    tgpname = CurrentCharacter.Nickname;
-                                }
-                                if (tgpname != tmpname) {
-                                    var uw = 1;
-                                    var msg = umsg1 + tgpname + umsg2;
-                                    infomsg(msg);
-                                }
-                            }
-                            if (uw == 0) {
-                                this.savedoutfit3 = CurrentCharacter.Appearance.slice(0);
-                                DialogLeave();
-                                var msg = "Outfit save3 command executed.";
-                                infomsg(msg);
-                            }
-                        }
-                    }
-                }, 5000);
-            }
+            }      
         }
     }])
-
+     
     CommandCombine([{
         Tag: 'permission',
         Description: "(number): changes your item permission.",
