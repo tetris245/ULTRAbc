@@ -64,5 +64,5 @@ Changes for future version
   - Note 2: As this lock is normally protected from cheats, the unlock command (and other 'escape' commands) will work only with a modified version of the DOGS mod
 * Updated the high fame mode for Club Card Game with all the improvements made in BC since March 2024
 * Improved the diaper command by adding extra conditions for the custom settings
-* Optimised and fixed several bugs in the outfit command
+* Improved and optimised the outfit command 
 * Optimised the gender checking for the Player
