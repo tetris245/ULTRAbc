@@ -46,6 +46,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let pronoun3;
     let pronoun4;
     let tgpname;
+    let tgpr1;
+    let tgpr2;
+    let tgpr3;
+    let tgpr4;
     const umsg1 = "Your command can't be executed because ";
     const umsg2 = " has enabled the Uwall protection.";
 
@@ -53,7 +57,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var M_MOANER_scriptOn = false;
     var M_MOANER_cum = false;
     let profileName;
-    var animal = 0;
+    let animal = 0;
     let bgall = false;
     let cdesk = 0;
     let cfame = 200;
@@ -9750,7 +9754,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(number): changes your item permission.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The permission command must be followed by a number.\n" +
+                let msg = "The permission command must be followed by a number.\n" +
                     "The effect will be visible in your profile.\n" +
                     "0 Everyone, no exceptions\n" +
                     "1 Everyone, except blacklist\n" +
@@ -9760,7 +9764,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "5 Owner only";
                 infomsg(msg);
             } else {
-                var perm = args * 1;
+                let perm = args * 1;
                 if ((perm > -1) && (perm < 6)) {
                     Player.ItemPermission = perm;
                     ServerAccountUpdate.QueueData({
@@ -9776,17 +9780,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): becomes a fully restrained pet.",
         Action: (args) => {
             if (args === "") {
-                if (Pet == undefined) {
-                    var msg = "" + tmpname + " becomes a cute pet."
-                } else {
+		let msg = "" + tmpname + " becomes a cute pet."
+                if (Pet != undefined) {
                     if (Pet != "") {
                         if (Pet.startsWith("\u0027")) {
-                            var msg = tmpname + Pet;
+                            msg = tmpname + Pet;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Pet;
+                            msg = tmpname + ' '.repeat(1) + Pet;
                         }
-                    } else {
-                        var msg = "" + tmpname + " becomes a cute pet."
                     }
                 }
                 if (Pet != "no message") publicmsg(msg);
@@ -9801,10 +9802,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -9815,21 +9816,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        if (Tpet == undefined) {
-                            var msg = "" + tgpname + " becomes a cute pet.";
-                        } else {
+			let msg = "" + tgpname + " becomes a cute pet.";
+                        if (Tpet != undefined) {
                             if (Tpet != "") {
                                 if (Tpet.startsWith("\u0027")) {
-                                    var msg = tmpname + Tpet + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + Tpet + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
                                 }
-                            } else {
-                                var msg = "" + tgpname + " becomes a cute pet."
-                            }
+                            } 
                         }
                         if (Tpet != "no message") publicmsg(msg);
                         CharacterNaked(target[0]);
@@ -9854,7 +9852,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(crotch shield) (intensity) (orgasm mode) (shock level): changes the settings of worn Sci-Fi Pleasure Panties.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The plvibe command must be followed by 4 numbers for crotch shield, intensity, orgasm mode and shock level.\n" +
+                let msg = "The plvibe command must be followed by 4 numbers for crotch shield, intensity, orgasm mode and shock level.\n" +
                     " \n" +
                     "Available crotch shields: \n" +
                     "0 No shield - 1 Front shield\n" +
@@ -9872,18 +9870,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 if (InventoryGet(Player, "ItemPelvis") != null) {
                     if (InventoryGet(Player, "ItemPelvis").Asset.Name == "SciFiPleasurePanties") {
-                        var stringPLpanties1 = args;
-                        var stringPLpanties2 = stringPLpanties1.split(/[ ,]+/);
-                        var cpl = stringPLpanties2[0];
-                        var ipl = stringPLpanties2[1];
-                        var opl = stringPLpanties2[2];
-                        var spl = stringPLpanties2[3];
+                        let stringPLpanties1 = args;
+                        let stringPLpanties2 = stringPLpanties1.split(/[ ,]+/);
+                        let cpl = stringPLpanties2[0];
+                        let ipl = stringPLpanties2[1];
+                        let opl = stringPLpanties2[2];
+                        let spl = stringPLpanties2[3];
                         if ((cpl > -1) && (cpl < 4) && (ipl > -1) && (ipl < 5) && (opl > -1) && (opl < 3) && (spl > -1) && (spl < 3)) {
                             const SciFiPleasurePanties = InventoryGet(Player, "ItemPelvis");
                             const SciFiPleasurePantiesConfig = ModularItemDataLookup.ItemPelvisSciFiPleasurePanties;
                             SciFiPleasurePanties.Property = ModularItemMergeModuleValues(SciFiPleasurePantiesConfig, [cpl, ipl, opl, spl]);
                             ChatRoomCharacterUpdate(Player);
-                            var msg = "The settings of your Sci-Fi Pleasure Panties have been modified.";
+                            let msg = "The settings of your Sci-Fi Pleasure Panties have been modified.";
                             infomsg(msg);
                         }
                     }
@@ -9909,12 +9907,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'poof',
         Description: "(action): leaves the club very fast.",
         Action: (args) => {
+	    let message = "";
             if (args === "") {
-                var message = " poofs away."
+                message = " poofs away."
             } else {
-                var message = ' '.repeat(1) + args;
+                message = ' '.repeat(1) + args;
             }
-	    var msg = "" + tmpname + message;
+	    let msg = "" + tmpname + message;
 	    publicmsg(msg);
             RelogExit();
         }
@@ -9925,7 +9924,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(pose) (target): changes the pose of any player.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The pose2 command must be followed by a pose and optionally a target.\n" +
+                let msg = "The pose2 command must be followed by a pose and optionally a target.\n" +
                     " \n" +
                     "Available poses:\n" +
                     "armsfree, belly, boxtied, cuffed, elbowtied,\n" +
@@ -9937,94 +9936,94 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "If WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.";
                 infomsg(msg);
             } else {
-                var stringPose1 = args;
-                var stringPose2 = stringPose1.split(/[ ,]+/);
-                var pose = stringPose2[0];
-                var targetname = stringPose2[1];
+                let stringPose1 = args;
+                let stringPose2 = stringPose1.split(/[ ,]+/);
+                let pose = stringPose2[0];
+                let targetname = stringPose2[1];
                 if (targetname == null) {
                     if ((pose == "armsfree") &&
                         (Player.ActivePose != 'BaseUpper') &&
                         (PoseCanChangeUnaided(Player, 'BaseUpper'))) {
                         PoseSetActive(Player, "BaseUpper");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " relaxes " + pronoun3 + " arms.";
+			let msg = "" + tmpname + " relaxes " + pronoun3 + " arms.";
 			publicmsg(msg);
                     } else if ((pose == "belly") &&
                         (Player.ActivePose != 'Hogtied') &&
                         (PoseCanChangeUnaided(Player, 'Hogtied'))) {
                         PoseSetActive(Player, "Hogtied");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " relaxes on " + pronoun3 + " belly.";
+			let msg = "" + tmpname + " relaxes on " + pronoun3 + " belly.";
 			publicmsg(msg);
                     } else if ((pose == "boxtied") &&
                         (Player.ActivePose != 'BackBoxTie') &&
                         (PoseCanChangeUnaided(Player, 'BackBoxTie'))) {
                         PoseSetActive(Player, "BackBoxTie");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " puts " + pronoun3 + " arms behind " + pronoun3 + " back.";
+			let msg = "" + tmpname + " puts " + pronoun3 + " arms behind " + pronoun3 + " back.";
 			publicmsg(msg);
                     } else if ((pose == "cuffed") &&
                         (Player.ActivePose != 'BackCuffs') &&
                         (PoseCanChangeUnaided(Player, 'BackCuffs'))) {
                         PoseSetActive(Player, "BackCuffs");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun4 + " is handcuffed.";
+			let msg = "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun4 + " is handcuffed.";
 			publicmsg(msg);
                     } else if ((pose == "elbowtied") &&
                         (Player.ActivePose != 'BackElbowTouch') &&
                         (PoseCanChangeUnaided(Player, 'BackElbowTouch'))) {
                         PoseSetActive(Player, "BackElbowTouch");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " puts " + pronoun3 + " arms behind " + pronoun3 + " back, elbows almost touching.";
+			let msg = "" + tmpname + " puts " + pronoun3 + " arms behind " + pronoun3 + " back, elbows almost touching.";
 			publicmsg(msg);
                     } else if ((pose == "kneel1") &&
                         (Player.ActivePose != 'Kneel') &&
                         ((PoseCanChangeUnaided(Player, 'Kneel')) || (ChatRoomCanAttemptKneel(Player) == true))) {
                         PoseSetActive(Player, "Kneel");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " kneels down.";
+			let msg = "" + tmpname + " kneels down.";
 			publicmsg(msg);
                     } else if ((pose == "kneel2") &&
                         (Player.ActivePose != 'KneelingSpread') &&
                         (PoseCanChangeUnaided(Player, 'KneelingSpread'))) {
                         PoseSetActive(Player, "KneelingSpread");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " kneels down and opens " + pronoun3 + " legs.";
+			let msg = "" + tmpname + " kneels down and opens " + pronoun3 + " legs.";
 			publicmsg(msg);
                     } else if ((pose == "legsclosed") &&
                         (Player.ActivePose != 'LegsClosed') &&
                         (PoseCanChangeUnaided(Player, 'LegsClosed'))) {
                         PoseSetActive(Player, "LegsClosed");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " stands up and closes " + pronoun3 + " legs.";
+			let msg = "" + tmpname + " stands up and closes " + pronoun3 + " legs.";
 			publicmsg(msg);
                     } else if ((pose == "legsopen") &&
                         (Player.ActivePose != 'LegsOpen') &&
                         (PoseCanChangeUnaided(Player, 'LegsOpen'))) {
                         PoseSetActive(Player, "LegsOpen");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " stands up normally on " + pronoun3 + " feet.";
+			let msg = "" + tmpname + " stands up normally on " + pronoun3 + " feet.";
 			publicmsg(msg);
                     } else if ((pose == "pet") &&
                         (Player.ActivePose != 'AllFours') &&
                         (PoseCanChangeUnaided(Player, 'AllFours'))) {
                         PoseSetActive(Player, "AllFours");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " relaxes on all fours.";
+			let msg = "" + tmpname + " relaxes on all fours.";
 			publicmsg(msg);
                     } else if ((pose == "spreadarms1") &&
                         (Player.ActivePose != 'Yoked') &&
                         (PoseCanChangeUnaided(Player, 'Yoked'))) {
                         PoseSetActive(Player, "Yoked");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " raises " + pronoun3 + " hands.";
+			let msg = "" + tmpname + " raises " + pronoun3 + " hands.";
 			publicmsg(msg);
                     } else if ((pose == "spreadarms2") &&
                         (Player.ActivePose != 'OverTheHead') &&
                         (PoseCanChangeUnaided(Player, 'OverTheHead'))) {
                         PoseSetActive(Player, "OverTheHead");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " raises the hands above " + pronoun3 + " head.";
+			let msg = "" + tmpname + " raises the hands above " + pronoun3 + " head.";
 			publicmsg(msg);
                     } else if ((pose == "spreadeagle1") &&
                         ((Player.ActivePose == null) || (Player.ActivePose.includes('Yoked') == false) || (Player.ActivePose.includes('Spread') == false)) &&
@@ -10033,7 +10032,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         PoseSetActive(Player, "Yoked");
                         PoseSetActive(Player, "Spread")
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " raises " + pronoun3 + " hands and spreads " + pronoun3 + " legs.";
+			let msg = "" + tmpname + " raises " + pronoun3 + " hands and spreads " + pronoun3 + " legs.";
 			publicmsg(msg);
                     } else if ((pose == "spreadeagle2") &&
                         ((Player.ActivePose == null) || (Player.ActivePose.includes('OverTheHead') == false) || (Player.ActivePose.includes('Spread') == false)) &&
@@ -10042,14 +10041,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         PoseSetActive(Player, "OverTheHead");
                         PoseSetActive(Player, "Spread")
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " raises the hands above " + pronoun3 + " head and spreads " + pronoun3 + " legs.";
+			let msg = "" + tmpname + " raises the hands above " + pronoun3 + " head and spreads " + pronoun3 + " legs.";
 			publicmsg(msg);
                     } else if ((pose == "spreadlegs") &&
                         (Player.ActivePose != 'Spread') &&
                         (PoseCanChangeUnaided(Player, 'Spread'))) {
                         PoseSetActive(Player, "Spread");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " spreads " + pronoun3 + " legs.";
+			let msg = "" + tmpname + " spreads " + pronoun3 + " legs.";
 			publicmsg(msg);
                     } else if ((pose == "stand") &&
                         (Player.ActivePose != null) &&
@@ -10057,25 +10056,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
-			var msg = "" + tmpname + " stands up.";
+			let msg = "" + tmpname + " stands up.";
 			publicmsg(msg);
                     } else if ((pose == "suspension") &&
                         (Player.ActivePose != 'Suspension') &&
                         (PoseCanChangeUnaided(Player, 'Suspension'))) {
                         PoseSetActive(Player, "Suspension");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " is now in an acrobatic pose in suspension.";
+			let msg = "" + tmpname + " is now in an acrobatic pose in suspension.";
 			publicmsg(msg);
                     } else if ((pose == "tapedhands") &&
                         (Player.ActivePose != 'TapedHands') &&
                         (PoseCanChangeUnaided(Player, 'TapedHands'))) {
                         PoseSetActive(Player, "TapedHands");
                         ChatRoomCharacterUpdate(Player);
-			var msg = "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun3 + " hands are taped.";
+			let msg = "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun3 + " hands are taped.";
 			publicmsg(msg);
                         // Special poses
                     } else if (pose == "jump") {
-			var msg = "" + tmpname + " jumps with joy.";
+			let msg = "" + tmpname + " jumps with joy.";
 			publicmsg(msg);
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         PoseSetActive(Player, null);
@@ -10113,9 +10112,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 CharacterRefresh(Player);
                         }, 4000);
                     } else if (pose == "roof") {
-			var msg1 = "" + tmpname + " jumps to the ceiling.";
+			let msg1 = "" + tmpname + " jumps to the ceiling.";
 			publicmsg(msg1);
-                        var msg2 = "To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if WCE enabled).";
+                        let msg2 = "To leave this position, use first /pose2 jump, then /pose2 reset (or /pose baseupper if WCE enabled).";
                         infomsg(msg2);
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         PoseSetActive(Player, null);
@@ -10126,7 +10125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }, 500);
                         setTimeout(function() {
                             InventoryGet(Player, "Emoticon").Property.OverrideHeight = {
-                                Height: 250
+                                Height: -300
                             };
                             CurrentScreen === "ChatRoom" ?
                                 ChatRoomCharacterUpdate(Player) :
@@ -10141,7 +10140,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             PoseSetActive(Player, null);
                             PoseSetActive(Player, ["Suspension", "Kneel"]);
                             InventoryGet(Player, "Emoticon").Property.OverrideHeight = {
-                                Height: -300
+                                Height: 250
                             };
                             CurrentScreen === "ChatRoom" ?
                                 ChatRoomCharacterUpdate(Player) :
@@ -10149,7 +10148,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }, 3000);
                         // Workout
                     } else if (pose == "exercise") {
-                        var Region = undefined;
+                        let Region = undefined;
                         if (InventoryGet(Player, "ItemButt") == null) {
                             InventoryWear(Player, "AnalHook", "ItemButt", "#272727");
                             Region = "ItemButt";
@@ -10172,10 +10171,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else if (InventoryGet(Player, "ItemPelvis").Asset.Name == "HempRope") {
                             Region = "ItemPelvis";
                         } else {
-                            var msg1 = "You're too heavily tied to exercise.";
+                            let msg1 = "You're too heavily tied to exercise.";
                             infomsg(msg1);
                         }
-			var msg2 = "" + tmpname + " makes " + pronoun3 + " workout.";
+			let msg2 = "" + tmpname + " makes " + pronoun3 + " workout.";
 			publicmsg(msg2);
                         CurrentCharacter = Player;
                         PoseSetActive(Player, null);
@@ -10292,9 +10291,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         CharacterRefresh(Player);
                     }
                 } else {
-                    var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                    let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                     if (target[0] == null) {
-                        var targetnumber = parseInt(targetname);
+                        let targetnumber = parseInt(targetname);
                         target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                     }
                     if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -10321,7 +10320,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var msg = umsg1 + tgpname + umsg2;
+                            let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
                             if (pose == "armsfree") {
@@ -10330,7 +10329,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BaseUpper'))) {
                                     PoseSetActive(target[0], "BaseUpper");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " lets " + tgpname + " relax " + tgpr3 + " arms.";
+				    let msg = "" + tmpname + " lets " + tgpname + " relax " + tgpr3 + " arms.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "belly") {
@@ -10339,7 +10338,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'Hogtied'))) {
                                     PoseSetActive(target[0], "Hogtied");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to stay on " + tgpr3 + " belly.";
+				    let msg = "" + tmpname + " forces " + tgpname + " to stay on " + tgpr3 + " belly.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "boxtied") {
@@ -10348,7 +10347,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BackBoxTie'))) {
                                     PoseSetActive(target[0], "BackBoxTie");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms behind " + tgpr3 + " back.";
+				    let msg = "" + tmpname + " forces " + tgpname + " to put the arms behind " + tgpr3 + " back.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "cuffed") {
@@ -10357,7 +10356,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BackCuffs'))) {
                                     PoseSetActive(target[0], "BackCuffs");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr4 + " handcuffed.";
+				    let msg = "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr4 + " handcuffed.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "elbowtied") {
@@ -10366,7 +10365,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'BackElbowTouch'))) {
                                     PoseSetActive(target[0], "BackElbowTouch");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms behind her back, elbows almost touching.";
+				    let msg = "" + tmpname + " forces " + tgpname + " to put the arms behind her back, elbows almost touching.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "kneel1") {
@@ -10375,7 +10374,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     ((PoseCanChangeUnaided(target[0], 'Kneel')) || (ChatRoomCanAttemptKneel(target[0]) == true))) {
                                     PoseSetActive(target[0], "Kneel");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " helps " + tgpname + " to kneel down.";
+				    let msg = "" + tmpname + " helps " + tgpname + " to kneel down.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "kneel2") {
@@ -10384,7 +10383,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'KneelingSpread'))) {
                                     PoseSetActive(target[0], "KneelingSpread");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " helps " + tgpname + " to kneel down, forcing " + tgpr3 + " legs open.";
+				    let msg = "" + tmpname + " helps " + tgpname + " to kneel down, forcing " + tgpr3 + " legs open.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "legsclosed") {
@@ -10393,7 +10392,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'LegsClosed'))) {
                                     PoseSetActive(target[0], "LegsClosed");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " helps " + tgpname + " to stand up with " + tgpr3 + " legs closed.";
+				    let msg = "" + tmpname + " helps " + tgpname + " to stand up with " + tgpr3 + " legs closed.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "legsopen") {
@@ -10402,7 +10401,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'LegsOpen'))) {
                                     PoseSetActive(target[0], "LegsOpen");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " helps " + tgpname + " to stand up normally on " + tgpr3 + " feet.";
+				    let msg = "" + tmpname + " helps " + tgpname + " to stand up normally on " + tgpr3 + " feet.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "pet") {
@@ -10411,7 +10410,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'AllFours'))) {
                                     PoseSetActive(target[0], "AllFours");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " on all fours.";
+				    let msg = "" + tmpname + " forces " + tgpname + " on all fours.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadarms1") {
@@ -10420,7 +10419,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'Yoked'))) {
                                     PoseSetActive(target[0], "Yoked");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " helps " + tgpname + " to raise " + tgpr3 + " hands.";
+				    let msg = "" + tmpname + " helps " + tgpname + " to raise " + tgpr3 + " hands.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadarms2") {
@@ -10429,7 +10428,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'OverTheHead'))) {
                                     PoseSetActive(target[0], "OverTheHead");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to raise the hands above " + tgpr3 + " head.";
+				    let msg = "" + tmpname + " forces " + tgpname + " to raise the hands above " + tgpr3 + " head.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadeagle1") {
@@ -10440,7 +10439,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target[0], "Yoked");
                                     PoseSetActive(target[0], "Spread");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to raise the hands and spread the legs.";
+				    let msg = "" + tmpname + " forces " + tgpname + " to raise the hands and spread the legs.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadeagle2") {
@@ -10451,7 +10450,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target[0], "OverTheHead");
                                     PoseSetActive(target[0], "Spread");
                                     ChatRoomCharacterUpdate(target[0]);
-                                    var msg = "" + tmpname + " forces " + tgpname + " to raise the hands above the head and spread the legs.";
+                                    let msg = "" + tmpname + " forces " + tgpname + " to raise the hands above the head and spread the legs.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "spreadlegs") {
@@ -10460,7 +10459,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'Spread'))) {
                                     PoseSetActive(target[0], "Spread");
                                     ChatRoomCharacterUpdate(target[0]);  
-				    var msg = "" + tmpname + " forces " + tgpname + " to spread " + tgpr3 + " legs.";
+				    let msg = "" + tmpname + " forces " + tgpname + " to spread " + tgpr3 + " legs.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "stand") {
@@ -10470,7 +10469,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target[0], null);
                                     ChatRoomCharacterUpdate(target[0]);
                                     CharacterRefresh(target[0]);
-				    var msg = "" + tmpname + " helps " + tgpname + " to stand up.";
+				    let msg = "" + tmpname + " helps " + tgpname + " to stand up.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "suspension") {
@@ -10479,7 +10478,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'Suspension'))) {
                                     PoseSetActive(target[0], "Suspension");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " in an acrobatic pose in suspension.";
+				    let msg = "" + tmpname + " forces " + tgpname + " in an acrobatic pose in suspension.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "tapedhands") {
@@ -10488,7 +10487,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target[0], 'TapedHands'))) {
                                     PoseSetActive(target[0], "TapedHands");
                                     ChatRoomCharacterUpdate(target[0]);
-				    var msg = "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr3 + " hands are taped.";
+				    let msg = "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr3 + " hands are taped.";
 				    publicmsg(msg);
                                 }
                             } else if (pose == "reset") {
@@ -10516,7 +10515,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let minutes = args;
                 if (minutes > 0) {
-		    var msg = "" + tmpname + " gets grabbed by two maids and sent to Pandora prison for " + minutes + " minutes.";
+		    let msg = "" + tmpname + " gets grabbed by two maids and sent to Pandora prison for " + minutes + " minutes.";
 		    publicmsg(msg);
                     DialogLentLockpicks = false;
                     ChatRoomHideElements();
@@ -10536,7 +10535,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(animal): forces a specific animal talk mode",
         Action: (args) => {
             if (args === "") {
-                var msg = "The ptalk command must be followed by a number between 0 and 9.\n" +
+                let msg = "The ptalk command must be followed by a number between 0 and 9.\n" +
                     "Note about whispers in animal talk mode: you need to click on the character OR set the target with <b>/whisper</b> without words OR use the FBC/WCE <b>/w</b> command.\n" +
                     " \n" +
                     "Available animals:\n" +
@@ -10545,7 +10544,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "6 pig - 7 pony - 8 puppy - 9 wolfy";
                 infomsg(msg);
             } else {
-                var pmode = args * 1;
+                let pmode = args * 1;
                 if ((pmode > -1) && (pmode < 10)) {
                     AnimalTalk1On = false;
                     AnimalTalk2On = false;
@@ -10560,61 +10559,61 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     M_MOANER_saveControls();
                 }
                 if (pmode == 0) {
-                    var msg = "You are now in human talk mode";
+                    let msg = "You are now in human talk mode";
                     infomsg(msg);
                 } else if (pmode == 1) {
                     AnimalTalk1On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in bunny talk mode";
+                    let msg = "You are now in bunny talk mode";
                     infomsg(msg);
                 } else if (pmode == 2) {
                     AnimalTalk2On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in cow talk mode";
+                    let msg = "You are now in cow talk mode";
                     infomsg(msg);
                 } else if (pmode == 3) {
                     AnimalTalk3On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in fox talk mode";
+                    let msg = "You are now in fox talk mode";
                     infomsg(msg);
                 } else if (pmode == 4) {
                     AnimalTalk4On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in kitty talk mode";
+                    let msg = "You are now in kitty talk mode";
                     infomsg(msg);
                 } else if (pmode == 5) {
                     AnimalTalk5On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in mouse talk mode";
+                    let msg = "You are now in mouse talk mode";
                     infomsg(msg);
                 } else if (pmode == 6) {
                     AnimalTalk6On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in pig talk mode";
+                    let msg = "You are now in pig talk mode";
                     infomsg(msg);
                 } else if (pmode == 7) {
                     AnimalTalk7On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in pony talk mode";
+                    let msg = "You are now in pony talk mode";
                     infomsg(msg);
                 } else if (pmode == 8) {
                     AnimalTalk8On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in puppy talk mode";
+                    let msg = "You are now in puppy talk mode";
                     infomsg(msg);
                 } else if (pmode == 9) {
                     AnimalTalk9On = true;
                     animal = pmode;
                     M_MOANER_saveControls();
-                    var msg = "You are now in wolfy talk mode";
+                    let msg = "You are now in wolfy talk mode";
                     infomsg(msg);
                 }
             }
@@ -10629,24 +10628,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 for (let A = 0; A < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.Attribute != null)) {
                         if (Player.Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
-                            var asset = Player.Appearance[A].Asset.Description;
-                            var ptcode = Player.Appearance[A].Property.PortalLinkCode;
+                            let asset = Player.Appearance[A].Asset.Description;
+                            let ptcode = Player.Appearance[A].Property.PortalLinkCode;
                             ChatRoomSendLocal("" + asset + " = " + ptcode + "");
                         }
                     }
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
                     for (let A = 0; A < target[0].Appearance.length; A++)
                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.Attribute != null)) {
                             if (target[0].Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
-                                var asset = target[0].Appearance[A].Asset.Description;
-                                var ptcode = target[0].Appearance[A].Property.PortalLinkCode;
+                                let asset = target[0].Appearance[A].Asset.Description;
+                                let ptcode = target[0].Appearance[A].Property.PortalLinkCode;
                                 ChatRoomSendLocal("" + asset + " = " + ptcode + "");
                             }
                         }
@@ -10663,24 +10662,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 for (let A = 0; A < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
                         if ((Player.Appearance[A].Property.LockedBy == "SafewordPadlock") || (Player.Appearance[A].Property.LockedBy == "PasswordPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                            var asset = Player.Appearance[A].Asset.Description;
-                            var pw = Player.Appearance[A].Property.Password;
+                            let asset = Player.Appearance[A].Asset.Description;
+                            let pw = Player.Appearance[A].Property.Password;
                             ChatRoomSendLocal("" + asset + " = " + pw + "");
                         }
                     }
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
                     for (let A = 0; A < target[0].Appearance.length; A++)
                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
                             if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                                var asset = target[0].Appearance[A].Asset.Description;
-                                var pw = target[0].Appearance[A].Property.Password;
+                                let asset = target[0].Appearance[A].Asset.Description;
+                                let pw = target[0].Appearance[A].Property.Password;
                                 ChatRoomSendLocal("" + asset + " = " + pw + "");
                             }
                         }
@@ -10696,8 +10695,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 OutChat();
             } else {
-                var message = ' '.repeat(1) + args;
-		var msg = "" + tmpname + message;
+                let message = ' '.repeat(1) + args;
+		let msg = "" + tmpname + message;
 		publicmsg(msg);
                 OutChat();
             }
