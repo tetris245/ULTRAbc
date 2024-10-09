@@ -10742,7 +10742,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-			let msg = tmpname + Trandomize + ' '.repeat(1) + tgpname;
+			let msg = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body.";
                         if (Trandomize != undefined) {
                             if (Trandomize != "") {
                                 if (Trandomize.startsWith("\u0027")) {
