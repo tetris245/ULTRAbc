@@ -65,7 +65,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var gl = 0;
     let onegl = 0;
     let mgl = 0;
-    var rsize = 20;
+    let rsize = 20;
     let rtype = "ALL";
     var st = 0;
     let tcname = "Cell";
@@ -10708,18 +10708,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): naked + underwear + clothes + restrain commands.",
         Action: (args) => {
             if (args === "") {
-                if (Randomize == undefined) {
-                    var msg = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body.";
-                } else {
+		let msg = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body.";
+                if (Randomize != undefined) {
                     if (Randomize != "") {
                         if (Randomize.startsWith("\u0027")) {
-                            var msg = tmpname + Randomize;
+                            msg = tmpname + Randomize;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Randomize;
+                            msg = tmpname + ' '.repeat(1) + Randomize;
                         }
-                    } else {
-                        var msg = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body.";
-                    }
+                    } 
                 }
                 if (Randomize != "no message") publicmsg(msg);
                 CharacterNaked(Player);
@@ -10728,10 +10725,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -10742,21 +10739,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        if (Trandomize == undefined) {
-                            var msg = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body.";
-                        } else {
+			let msg = tmpname + Trandomize + ' '.repeat(1) + tgpname;
+                        if (Trandomize != undefined) {
                             if (Trandomize != "") {
                                 if (Trandomize.startsWith("\u0027")) {
-                                    var msg = tmpname + Trandomize + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + Trandomize + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Trandomize + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + ' '.repeat(1) + Trandomize + ' '.repeat(1) + tgpname;
                                 }
-                            } else {
-                                var msg = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body.";
-                            }
+                            } 
                         }
                         if (Trandomize != "no message") publicmsg(msg);
                         CharacterNaked(target[0]);
@@ -10804,7 +10798,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(reputation) (level): changes a reputation. ",
         Action: (args) => {
             if (args === "") {
-                var msg = "The reputation command must be followed by a reputation and a level.\n" +
+                let msg = "The reputation command must be followed by a reputation and a level.\n" +
                     "You will be able to check the change in your profile.\n" +
                     " \n" +
                     "Available reputations:\n" +
@@ -10814,10 +10808,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Level must be between 0 and 100.</p>"
                 infomsg(msg);
             } else {
-                var stringReputation1 = args;
-                var stringReputation2 = stringReputation1.split(/[ ,]+/);
-                var reputation = stringReputation2[0];
-                var level = stringReputation2[1];
+                let stringReputation1 = args;
+                let stringReputation2 = stringReputation1.split(/[ ,]+/);
+                let reputation = stringReputation2[0];
+                let level = stringReputation2[1];
                 if (reputation == "abdl") {
                     DialogSetReputation("ABDL", level);
                 } else if (reputation == "amplector") {
@@ -10872,11 +10866,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": resets difficulty, thereby quitting it.",
         Action: (args) => {
             if (args === "") {
-                var msg = "<b>Warning</b>: Resetting difficulty will incur a 7-day waiting period to rechange. Confirm by typing: <b>/resetdifficulty yes</b>";
+                let msg = "<b>Warning</b>: Resetting difficulty will incur a 7-day waiting period to rechange. Confirm by typing: <b>/resetdifficulty yes</b>";
                 infomsg(msg);
             } else if (args === "yes") {
                 Player.Difficulty = [];
-                var msg = "Difficulty reset, select a new one in settings.";
+                let msg = "Difficulty reset, select a new one in settings.";
                 infomsg(msg);
             }
         }
@@ -10887,12 +10881,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": erases your inventory.",
         Action: (args) => {
             if (args === "") {
-                var msg = "<b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b>";
+                let msg = "<b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b>";
                 infomsg(msg);
             } else if (args === "yes") {
                 Player.Inventory = [];
                 ServerPlayerInventorySync();
-                var msg = "Accomplished. Visit store to buy new clothes and items.";
+                let msg = "Accomplished. Visit store to buy new clothes and items.";
                 infomsg(msg);
             }
         }
@@ -10903,27 +10897,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): adds random restraints.",
         Action: (args) => {
             if (args === "") {
-                if (Restrain == undefined) {
-                    var msg = "Magical lasers apply random restraints on " + tmpname + "'s body.";
-                } else {
+		let msg = "Magical lasers apply random restraints on " + tmpname + "'s body.";
+                if (Restrain != undefined) {
                     if (Restrain != "") {
                         if (Restrain.startsWith("\u0027")) {
-                            var msg = tmpname + Restrain;
+                            msg = tmpname + Restrain;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Restrain;
+                            msg = tmpname + ' '.repeat(1) + Restrain;
                         }
-                    } else {
-                        var msg = "Magical lasers apply random restraints on " + tmpname + "'s body.";
                     }
                 }
                 if (Restrain != "no message") publicmsg(msg);
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -10934,21 +10925,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        if (Trestrain == undefined) {
-                            var msg = "Magical lasers apply random restraints on " + tgpname + "'s body.";
-                        } else {
+			let msg = "Magical lasers apply random restraints on " + tgpname + "'s body.";
+                        if (Trestrain != undefined) {
                             if (Trestrain != "") {
                                 if (Trestrain.startsWith("\u0027")) {
-                                    var msg = tmpname + Trestrain + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + Trestrain + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Trestrain + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + ' '.repeat(1) + Trestrain + ' '.repeat(1) + tgpname;
                                 }
-                            } else {
-                                var msg = "Magical lasers apply random restraints on " + tgpname + "'s body.";
-                            }
+                            } 
                         }
                         if (Trestrain != "no message") publicmsg(msg);
                         CharacterFullRandomRestrain(target[0], "ALL");
@@ -10965,7 +10953,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(role): starts to play a role",
         Action: (args) => {
             if (args === "") {
-                var msg = "The roleplay command must include a role.\n" +
+                let msg = "The roleplay command must include a role.\n" +
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available roles:\n" +
@@ -10976,7 +10964,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Be careful with clubslave, you will be forced to complete contract. Similar warning for escapedpatient.";
                 infomsg(msg);
             } else {
-                var role = args;
+                let role = args;
                 if (role == "clubmistress") {
                     LogAdd("ClubMistress", "Management");
                 } else if (role == "clubslave") {
@@ -11123,14 +11111,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(players): sets the maximum players per room in Chat Search for normal and hybrid rooms.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The roomsize command must be followed by a number between 2 and 20.";
+                let msg = "The roomsize command must be followed by a number between 2 and 20.";
                 infomsg(msg);
             } else {
-                var size = args;
+                let size = args;
                 if ((size > 1) && (size < 21) && (size != rsize)) {
                     rsize = size * 1;
                     M_MOANER_saveControls();
-                    var msg = "You have modified the maximum players per room in Chat Search for normal and hybrid rooms.";
+                    let msg = "You have modified the maximum players per room in Chat Search for normal and hybrid rooms.";
                     infomsg(msg);
                 }
             }
@@ -11142,7 +11130,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(type): sets the room type you want to see in Chat Search.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The roomtype command must be followed by a number between 0 and 3.\n" +
+                let msg = "The roomtype command must be followed by a number between 0 and 3.\n" +
                     " \n" +
                     " 0 = All room types\n" +
                     " 1 = Only normal rooms\n" +
@@ -11150,22 +11138,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     " 3 = Only map rooms";
                 infomsg(msg);
             } else {
-                var type = args;
+                let type = args;
                 if ((type > -1) && (type < 4) && (type != rtype)) {
-                    if (type == 0) {
-                        rtype = "ALL";
-                    }
-                    if (type == 1) {
-                        rtype = "Never";
-                    }
-                    if (type == 2) {
-                        rtype = "Hybrid";
-                    }
-                    if (type == 3) {
-                        rtype = "Always";
-                    }
+                    if (type == 0) rtype = "ALL";
+                    if (type == 1) rtype = "Never";
+                    if (type == 2) rtype = "Hybrid";
+                    if (type == 3) rtype = "Always";
                     M_MOANER_saveControls();
-                    var msg = "You have modified the room type you want to see in Chat Search.";
+                    let msg = "You have modified the room type you want to see in Chat Search.";
                     infomsg(msg);
                 }
             }
