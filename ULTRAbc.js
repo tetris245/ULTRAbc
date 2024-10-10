@@ -4505,7 +4505,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let desperationLevel;
     let diaperTimerModifier;
     let diaperTimer;
-    let diaperTimerBase; 
     let diaperRunning;
 
     // A simple table for the colors that the script will use.
