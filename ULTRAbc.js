@@ -12495,7 +12495,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(category): displays the ULTRAbc commands.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The uhelp is organized into categories. Use <b>/uhelp</b> (category). List of categories:\n" +
+                let msg = "The uhelp is organized into categories. Use <b>/uhelp</b> (category). List of categories:\n" +
                     "<b>admin</b> = commands only for chat room admins.\n" +
                     "<b>bondage</b> = commands related to bondage.\n" +
                     "<b>character</b> = commands related to your character.\n" +
@@ -12515,7 +12515,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "admin") {
-                var msg = "Admin commands\n" +
+                let msg = "Admin commands\n" +
                     "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
                     "<b>/bg1</b> = adds hidden backgrounds to the selection screen.\n" +
                     "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.\n" +
@@ -12523,7 +12523,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "bondage") {
-                var msg = "Bondage commands - * = more info when using\n" +
+                let msg = "Bondage commands - * = more info when using\n" +
                     "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
                     "<b>/itemcolor1</b> (colorcode) (target) = changes color on all current bindings. Color code must be in the format #000000\n" +
                     "<b>/lock</b> = adds locks on all lockable items. *.\n" +
@@ -12536,7 +12536,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "character") {
-                var msg = "Character commands - * = more info when using\n" +
+                let msg = "Character commands - * = more info when using\n" +
                     "<b>/difficulty</b> (number) = changes game difficulty. *\n" +
                     "<b>/maxstatistics</b> = gives max statistics.\n" +
                     "<b>/permission</b> (number) = changes your item permission *\n" +
@@ -12550,7 +12550,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "chat") {
-                var msg = "Chat commands - * = more info when using\n" +
+                let msg = "Chat commands - * = more info when using\n" +
                     "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
@@ -12568,7 +12568,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "clothing") {
-                var msg = "Clothing commands - * = more info when using\n" +
+                let msg = "Clothing commands - * = more info when using\n" +
                     "<b>/clothes</b> (target) = changes clothes.\n" +
                     "<b>/diaper</b> (options) = plays with diapers (ABDL game). *\n" +
                     "<b>/naked</b> (target) = removes clothes.\n" +
@@ -12578,7 +12578,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "escape") {
-                var msg = "Escape commands - * = more info when using\n" +
+                let msg = "Escape commands - * = more info when using\n" +
                     "<b>/boost</b> = boosts all your skills for one hour.\n" +
                     "<b>/code</b> (target) = reveals codes for combination locks.\n" +
                     "<b>/ptcode</b> (target) = reveals portal link codes.\n" +
@@ -12595,14 +12595,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "extra") {
-                var msg = "Extra commands:\n" +
+                let msg = "Extra commands:\n" +
                     "<b>/mbsroom</b> = gives infos about MBS wheels of fortune in current chat room.\n" +
                     "<b>/xmenu</b> = direct access to Extensions screen.\n" +
                     "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. Available options with /xstatus.";
                 infomsg(msg);
             }
             if (args === "fun") {
-                var msg = "Fun commands - * = more info when using\n" +
+                let msg = "Fun commands - * = more info when using\n" +
                     "** = scripts must be allowed in BC settings\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes settings of worn High Duty Belt. *\n" +
@@ -12618,7 +12618,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "kd") {
-                var msg = "How to use the kd command:\n" +
+                let msg = "How to use the kd command:\n" +
                     "1 - Optionally, use <b>/kd devious</b> to toggle the Devious Challenge and/or <b>/kd debug</b> to enable the Debug Mode\n" +
                     "2 - Use twice <b>/kd</b> without any option to launch the game without cheat\n" +
                     "3 - After launching and starting of the game, you can click on the Exit button to go back to the chatroom and use a command with cheat:\n" +
@@ -12634,7 +12634,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "misc") {
-                var msg = "Misc commands - * = more info when using\n" +
+                let msg = "Misc commands - * = more info when using\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/pmenu</b> = direct access to  Preferences screen.\n" +
                     "<b>/relog</b> = relogs.\n" +
@@ -12648,7 +12648,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "settings") {
-                var msg = "Settings commands - * = more info when using\n" +
+                let msg = "Settings commands - * = more info when using\n" +
                     "<b>/bg4</b> (screen) (background) = selects a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell. *\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
                     "<b>/carddesk</b> (desk) = changes default desk for Card Game.\n" +
@@ -12663,7 +12663,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "talking") {
-                var msg = "Talking commands - * = more info when using\n" +
+                let msg = "Talking commands - * = more info when using\n" +
                     "<b>/atalk</b> (stuffhere) = speaks once as an animal. *\n" +
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
@@ -12676,7 +12676,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "visual") {
-                var msg = "Visual commands - * = more info when using\n" +
+                let msg = "Visual commands - * = more info when using\n" +
                     "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
                     "<b>/itemcolor2</b> (colorcode) = changes item color in selected slot. *\n" +
@@ -12692,7 +12692,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "zones") {
-                var msg = "Zones commands - * = more info when using\n" +
+                let msg = "Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
                     "<b>/chess</b> (difficulty) = starts chess, must specify difficulty first (1 easy - 2 normal - 3 hard).\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
@@ -12713,10 +12713,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(membernumber): adds a player to the list allowing to bypass Uwall.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The ulistadd command must be followed by the member number of the player that you allow to bypass Uwall.";
+                let msg = "The ulistadd command must be followed by the member number of the player that you allow to bypass Uwall.";
                 infomsg(msg);
             } else {
-                var member = args * 1;
+                let member = args * 1;
+		let List;
                 if (Player.OnlineSharedSettings.Ulist == undefined) {
                     List = [];
                 } else {
@@ -12738,10 +12739,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(membernumber): removes a player from the list allowing to bypass Uwall.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The ulistremove command must be followed by the member number of the player who is no more allowed to bypass Uwall.";
+                let msg = "The ulistremove command must be followed by the member number of the player who is no more allowed to bypass Uwall.";
                 infomsg(msg);
             } else {
-                var member = args * 1;
+                let member = args * 1;
+		let List;
                 if (Player.OnlineSharedSettings.Ulist != undefined) {
                     List = Player.OnlineSharedSettings.Ulist;
                     if ((member > 0) && (member != Player.MemberNumber) && (!isNaN(member))) {
@@ -12767,6 +12769,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'ulistshow',
         Description: "displays the list of players allowed to bypass Uwall.",
         Action: (args) => {
+	    let List;
             if (Player.OnlineSharedSettings.Ulist == undefined) {
                 List = [];
             } else {
@@ -12781,27 +12784,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): changes underwear.",
         Action: (args) => {
             if (args === "") {
-                if (Underwear == undefined) {
-                    var msg = "Magical lasers put " + tmpname + " in random underwear.";
-                } else {
+		let msg = "Magical lasers put " + tmpname + " in random underwear.";
+                if (Underwear != undefined) {
                     if (Underwear != "") {
                         if (Underwear.startsWith("\u0027")) {
-                            var msg = tmpname + Underwear;
+                            msg = tmpname + Underwear;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Underwear;
+                            msg = tmpname + ' '.repeat(1) + Underwear;
                         }
-                    } else {
-                        var msg = "Magical lasers put " + tmpname + " in random underwear.";
-                    }
+                    } 
                 }
                 if (Underwear != "no message") publicmsg(msg);
                 CharacterRandomUnderwear(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -12812,21 +12812,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        if (Tunderwear == undefined) {
-                            var msg = "Magical lasers put " + tgpname + " in random underwear.";
-                        } else {
+			let msg = "Magical lasers put " + tgpname + " in random underwear.";
+                        if (Tunderwear != undefined) {
                             if (Tunderwear != "") {
                                 if (Tunderwear.startsWith("\u0027")) {
-                                    var msg = tmpname + Tunderwear + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + Tunderwear + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Tunderwear + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + ' '.repeat(1) + Tunderwear + ' '.repeat(1) + tgpname;
                                 }
-                            } else {
-                                var msg = "Magical lasers put " + tgpname + " in random underwear.";
-                            }
+                            } 
                         }
                         if (Tunderwear != "no message") publicmsg(msg);
                         CharacterRandomUnderwear(target[0]);
@@ -12843,7 +12840,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target) (locktype): removes all locks or only a specified type of lock on specified target.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The unlock command:\n" +
+                let msg = "The unlock command:\n" +
                     "<b>/unlock</b> (target) (locktype).\n" +
                     "The target always needs to be specified.\n" +
                     "All locks of any type will be removed if you don't specify the lock type.\n" +
@@ -12859,15 +12856,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Lock 22 can be removed only if you use a modified version of the DOGS mod.";
                 infomsg(msg);
             } else {
-                var silent = 0;
-                var uw = 0;
-                var stringUnlock1 = args;
-                var stringUnlock2 = stringUnlock1.split(/[ ,]+/);
-                var lk = stringUnlock2[1];
-                var targetname = stringUnlock2[0];
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let silent = 0;
+                let uw = 0;
+                let stringUnlock1 = args;
+                let stringUnlock2 = stringUnlock1.split(/[ ,]+/);
+                let lk = stringUnlock2[1];
+                let targetname = stringUnlock2[0];
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true)) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -12877,45 +12874,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         tgpname = target[0].Nickname;
                     }
                     if (tmpname == tgpname) {
-                        if (Unlock == undefined) {
-                            var msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
-                        } else {
+			let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
+                        if (Unlock != undefined) {
                             if (Unlock != "") {
                                 if (Unlock.startsWith("\u0027")) {
-                                    var msg = tmpname + Unlock;
+                                    msg = tmpname + Unlock;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Unlock;
+                                    msg = tmpname + ' '.repeat(1) + Unlock;
                                 }
-                            } else {
-                                var msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
-                            }
+                            } 
                         }
-                        if (Unlock == "no message") var silent = 1;
+                        if (Unlock == "no message") silent = 1;
+			if (silent == 0) publicmsg(msg);
                     } else {
                         if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var uw = 1;
-                            var msg = umsg1 + tgpname + umsg2;
+                            uw = 1;
+                            let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
-                            if (Tunlock == undefined) {
-                                var msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
-                            } else {
+			    let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
+                            if (Tunlock != undefined) {
                                 if (Tunlock != "") {
                                     if (Tunlock.startsWith("\u0027")) {
-                                        var msg = tmpname + Tunlock + ' '.repeat(1) + tgpname;
+                                        msg = tmpname + Tunlock + ' '.repeat(1) + tgpname;
                                     } else {
-                                        var msg = tmpname + ' '.repeat(1) + Tunlock + ' '.repeat(1) + tgpname;
+                                        msg = tmpname + ' '.repeat(1) + Tunlock + ' '.repeat(1) + tgpname;
                                     }
-                                } else {
-                                    var msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
-                                }
+                                } 
                             }
-                            if (Tunlock == "no message") var silent = 1;
+                            if (Tunlock == "no message") silent = 1;
+                            if (silent == 0) publicmsg(msg);	
                         }
                     }
                     if (uw == 0) {
-                        if (silent == 0) publicmsg(msg);
                         if (lk == null) {
                             CharacterReleaseFromLock(target[0], "CombinationPadlock");
                             CharacterReleaseFromLock(target[0], "ExclusivePadlock");
@@ -12937,68 +12929,54 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
 			    for (let A = 0; A < target[0].Appearance.length; A++)
                                 if ((target[0].Appearance[A].Property != null) &&
-                                    (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi")) {
-                                    InventoryUnlock(target[0], target[0].Appearance[A]);
-                                }
-                        } else if (lk == 1) {
-                            CharacterReleaseFromLock(target[0], "MetalPadlock");
-                        } else if (lk == 2) {
-                            CharacterReleaseFromLock(target[0], "ExclusivePadlock");
-                        } else if (lk == 3) {
-                            CharacterReleaseFromLock(target[0], "IntricatePadlock");
-                        } else if (lk == 4) {
+                                    (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi")) 
+                                    InventoryUnlock(target[0], target[0].Appearance[A]);            
+			}	
+                        if (lk == 1) CharacterReleaseFromLock(target[0], "MetalPadlock");
+                        if (lk == 2) CharacterReleaseFromLock(target[0], "ExclusivePadlock");
+                        if (lk == 3) CharacterReleaseFromLock(target[0], "IntricatePadlock");
+                        if (lk == 4) {
                             for (let A = 0; A < target[0].Appearance.length; A++)
                                 if ((target[0].Appearance[A].Property != null) &&
                                     (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
                                     (target[0].Appearance[A].Property.Name == undefined))
                                     InventoryUnlock(target[0], target[0].Appearance[A]);
-                        } else if (lk == 5) {
-                            CharacterReleaseFromLock(target[0], "PandoraPadlock");
-                        } else if (lk == 6) {
-                            CharacterReleaseFromLock(target[0], "MistressPadlock");
-                        } else if (lk == 7) {
-                            CharacterReleaseFromLock(target[0], "LoversPadlock");
-                        } else if (lk == 8) {
-                            CharacterReleaseFromLock(target[0], "OwnerPadlock");
-                        } else if (lk == 9) {
-                            CharacterReleaseFromLock(target[0], "TimerPadlock");
-                        } else if (lk == 10) {
-                            CharacterReleaseFromLock(target[0], "CombinationPadlock");
-                        } else if (lk == 11) {
-                            CharacterReleaseFromLock(target[0], "SafewordPadlock");
-                        } else if (lk == 12) {
-                            CharacterReleaseFromLock(target[0], "PasswordPadlock");
-                        } else if (lk == 13) {
-                            CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
-                        } else if (lk == 14) {
-                            CharacterReleaseFromLock(target[0], "LoversTimerPadlock");
-                        } else if (lk == 15) {
-                            CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
-                        } else if (lk == 16) {
-                            CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
-                        } else if (lk == 17) {
+                        } 
+			if (lk == 5) CharacterReleaseFromLock(target[0], "PandoraPadlock");
+                        if (lk == 6) CharacterReleaseFromLock(target[0], "MistressPadlock");
+                        if (lk == 7) CharacterReleaseFromLock(target[0], "LoversPadlock");
+                        if (lk == 8) CharacterReleaseFromLock(target[0], "OwnerPadlock");
+                        if (lk == 9) CharacterReleaseFromLock(target[0], "TimerPadlock");
+                        if (lk == 10) CharacterReleaseFromLock(target[0], "CombinationPadlock");
+                        if (lk == 11) CharacterReleaseFromLock(target[0], "SafewordPadlock");
+                        if (lk == 12) CharacterReleaseFromLock(target[0], "PasswordPadlock");
+			if (lk == 13) CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
+                        if (lk == 14) CharacterReleaseFromLock(target[0], "LoversTimerPadlock");
+                        if (lk == 15) CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
+                        if (lk == 16) CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
+                        if (lk == 17) {
                             for (let A = 0; A < target[0].Appearance.length; A++)
                                 if ((target[0].Appearance[A].Property != null) &&
                                     (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
                                     (target[0].Appearance[A].Property.Name == "Best Friend Padlock"))
                                     InventoryUnlock(target[0], target[0].Appearance[A]);
-                        } else if (lk == 18) {
+                        }  
+			if (lk == 18) {
                             for (let A = 0; A < target[0].Appearance.length; A++)
                                 if ((target[0].Appearance[A].Property != null) &&
                                     (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
                                     (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock"))
                                     InventoryUnlock(target[0], target[0].Appearance[A]);
-                        } else if (lk == 19) {
-                            CharacterReleaseFromLock(target[0], "FamilyPadlock");
-                        } else if (lk == 20) {
-                            CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
-                        } else if (lk == 21) {
+                        } 
+			if (lk == 19) CharacterReleaseFromLock(target[0], "FamilyPadlock");
+                        if (lk == 20) CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
+                        if (lk == 21) {
                             for (let A = 0; A < target[0].Appearance.length; A++)
                                 if ((target[0].Appearance[A].Property != null) &&
-                                    (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi")) {
+                                    (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi")) 
                                     InventoryUnlock(target[0], target[0].Appearance[A]);
-                                }
-                        } else if (lk == 22) {
+                        } 
+			if (lk == 22) {
                             for (let A = 0; A < target[0].Appearance.length; A++)
                                 if ((target[0].Appearance[A].Property != null) &&
                                     (target[0].Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
@@ -13018,7 +12996,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(option): partially removes restrictions from game.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The unrestrict command partially removes restrictions from game. It must be followed by an option.\n" +
+                let msg = "The unrestrict command partially removes restrictions from game. It must be followed by an option.\n" +
                     "Submissives: type <b>/unrestrict soft</b>\n" +
                     "Other players: type <b>/unrestrict total</b>\n" +
                     "Notes: \n" +
@@ -13037,11 +13015,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomMapViewCanEnterTile = function(X, Y) {
                     return 20;
                 }
-                var msg = "Unrestricted softly. Can do some things you couldn't do before.\n" +
+                let msg = "Unrestricted softly. Can do some things you couldn't do before.\n" +
                     "Store also includes hidden items. This can only be reset via a full relog.";
                 infomsg(msg);
             } else if (args === "total") {
-                var msg = "Unrestricted totally. Can do many things you couldn't do before.\n" +
+                let msg = "Unrestricted totally. Can do many things you couldn't do before.\n" +
                     "Store also includes hidden items. This can only be reset via a full relog.\n" +
                     "This command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!";
                 infomsg(msg);
@@ -13120,28 +13098,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): removes all bindings.",
         Action: (args) => {
             if (args === "") {
-                if (Untie == undefined) {
-                    var msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
-                } else {
+		let msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
+                if (Untie != undefined) {
                     if (Untie != "") {
                         if (Untie.startsWith("\u0027")) {
-                            var msg = tmpname + Untie;
+                            msg = tmpname + Untie;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Untie;
+                            msg = tmpname + ' '.repeat(1) + Untie;
                         }
-                    } else {
-                        var msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
-                    }
+                    } 
                 }
                 if (Untie != "no message") publicmsg(msg);
                 CharacterRelease(Player);
                 ChatRoomCharacterUpdate(Player);
                 RealGarblingLevel();
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -13152,21 +13127,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        if (Tuntie == undefined) {
-                            var msg = "Magical lasers make disappear the bindings on " + tgpname + "'s body.";
-                        } else {
+			let msg = "Magical lasers make disappear the bindings on " + tgpname + "'s body.";
+                        if (Tuntie != undefined) {
                             if (Tuntie != "") {
                                 if (Tuntie.startsWith("\u0027")) {
-                                    var msg = tmpname + Tuntie + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + Tuntie + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
                                 }
-                            } else {
-                                var msg = "Magical lasers make disappear the bindings on " + tgpname + "'s body.";
-                            }
+                            } 
                         }
                         if (Tuntie != "no message") publicmsg(msg);
                         CharacterRelease(target[0]);
@@ -13183,35 +13155,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": gives infos about UBC users and Uwall protection in current chat room.",
         Action: () => {
             let pl = 0;
-            while (pl < ChatRoomCharacter.length) {
+	    while (pl < ChatRoomCharacter.length) {
+                let name = "";
+                let aka = "";
                 if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
-                    var name = ChatRoomCharacter[pl].Name;
-                    var aka = "";
+                    name = ChatRoomCharacter[pl].Name;
                 } else {
-                    var name = ChatRoomCharacter[pl].Nickname;
-                    var aka = ChatRoomCharacter[pl].Name;
+                    name = ChatRoomCharacter[pl].Nickname;
+                    aka = ChatRoomCharacter[pl].Name;
                 }
-                var number = ChatRoomCharacter[pl].MemberNumber;
+                let number = ChatRoomCharacter[pl].MemberNumber;
                 ChatRoomSendLocal(name + " (" + aka + ") - " + number);
+                let ubc1 = "";
+                let ubc2 = "";
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
-                    var mes1 = "Does not use ULTRAbc.";
+                    ubc1 = "Does not use ULTRAbc.";
                 } else {
                     if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0)) {
-                        var mes1 = "Is an ULTRAbc user.";
+                        ubc1 = "Is an ULTRAbc user.";
                     } else {
-                        var mes1 = "Does not use ULTRAbc";
+                        ubc1 = "Does not use ULTRAbc";
                     }
                 }
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
-                    var mes2 = "Does not use Uwall.";
+                    ubc2 = "Does not use Uwall.";
                 } else {
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
-                        var mes2 = "Has enabled Uwall.";
+                        ubc2 = "Has enabled Uwall.";
                     } else {
-                        var mes2 = "Has disabled Uwall.";
+                        ubc2 = "Has disabled Uwall.";
                     }
                 }
-                ChatRoomSendLocal(mes1 + " - " + mes2);
+                ChatRoomSendLocal(ubc1 + " - " + ubc2);
                 ChatRoomSendLocal(" ");
                 pl++;
             }
