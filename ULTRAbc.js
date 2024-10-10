@@ -4497,14 +4497,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //BC-Diaper-Wetter
     //////////////////////////////////////////////////////////	
 
+    let diaperLoop = null; // Keeps a hold of the loop so it can be exited at any time easily
+    let messChance;
+    let wetChance;
+    let diaperTimerBase;
+    let regressionLevel;
+    let desperationLevel;
+    let diaperTimerModifier;
+    let diaperTimer;
+    let diaperTimerBase; 
+    let diaperRunning;
+
     // A simple table for the colors that the script will use.
-    DiaperUseLevels = [
+    const DiaperUseLevels = [
         ["#808080", "#97916A", "#8B8D41"],
         ["#877C6C", "#7E774E"],
         ["#4C3017"]
     ];
 
-    // Table to store all the defaul values for diaperWetter()
+    // Table to store all the default values for diaperWetter()
     const diaperDefaultValues = {
         messChance: .3,
         wetChance: .5,
@@ -4516,8 +4527,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         messLevelOuter: 0,
         wetLevelOuter: 0
     };
-
-    diaperLoop = null; // Keeps a hold of the loop so it can be exited at any time easily
 
     // Initializer function
     function diaperWetter({
@@ -4533,7 +4542,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     } = {}) {
 
         // Greeting message
-        var msg = "Say hello to the little baby " + tmpname + "!";
+        let msg = "Say hello to the little baby " + tmpname + "!";
 	publicmsg(msg);
 	    
         // Initial clear.
@@ -4573,7 +4582,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         desperationLevel = initDesperationLevel; // Used for tracking how recently a milk bottle has been used (affects the timer)
 
         // Handle modifiers
-        var diaperTimerModifier = 1; // We will divide by the modifier (positive modifiers decrease the timer)
+        diaperTimerModifier = 1; // We will divide by the modifier (positive modifiers decrease the timer)
         diaperTimerModifier = manageRegression(diaperTimerModifier);
         diaperTimerModifier = manageDesperation(diaperTimerModifier);
         diaperTimer = diaperTimerBase / diaperTimerModifier;
@@ -4586,11 +4595,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     // Changes how long it takes between ticks (in minutes)
     function changeDiaperTimer(delay) {
         // Bound the delay to between 2 minutes and 1 hour
-        if (delay < 2) {
-            delay = 2;
-        } else if (delay > 60) {
-            delay = 60;
-        }
+        if (delay < 2) delay = 2;
+        if (delay > 60) delay = 60;
         diaperTimerBase = delay; // Updates diaperTimerBase
     }
 
@@ -4602,7 +4608,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         inWetLevelChastity = diaperDefaultValues.wetLevelOuter,
         inMessLevelChastity = diaperDefaultValues.messLevelOuter,
     } = {}) {
-        DiaperChangeMessages = {
+        let DiaperChangeMessages = {
             "ChangeDiaperInner": " has gotten a fresh inner diaper.",
             "ChangeDiaperOuter": " has gotten a fresh outer diaper.",
             "ChangeDiaperOnly": " has gotten a fresh diaper.",
@@ -4616,10 +4622,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             changeDiaperColor("ItemPelvis");
             changeDiaperColor("Panties");
             if (checkForDiaper("Panties") && checkForDiaper("ItemPelvis")) {
-		var msg = tmpname + DiaperChangeMessages["ChangeDiaperBoth"];
+		let msg = tmpname + DiaperChangeMessages["ChangeDiaperBoth"];
 		publicmsg(msg);
             } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-		var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
+		let msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
 		publicmsg(msg);
             }
         } else if (cdiaper === "chastity") {
@@ -4627,10 +4633,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             WetLevelChastity = inWetLevelChastity;
             changeDiaperColor("ItemPelvis");
             if (checkForDiaper("ItemPelvis") && checkForDiaper("Panties")) {
-		var msg = tmpname + DiaperChangeMessages["ChangeDiaperOuter"];
+		let msg = tmpname + DiaperChangeMessages["ChangeDiaperOuter"];
 		publicmsg(msg);
             } else if (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties")) {
-		var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
+		let msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
 		publicmsg(msg);
             }
         } else if (cdiaper === "panties") {
@@ -4638,10 +4644,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             WetLevelPanties = inWetLevelPanties;
             changeDiaperColor("Panties");
             if (checkForDiaper("ItemPelvis") && checkForDiaper("Panties")) {
-		var msg = tmpname + DiaperChangeMessages["ChangeDiaperInner"];
+		let msg = tmpname + DiaperChangeMessages["ChangeDiaperInner"];
 		publicmsg(msg);
             } else if (checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) {
-                var msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
+                let msg = tmpname + DiaperChangeMessages["ChangeDiaperOnly"];
 		publicmsg(msg);
             }
         }
@@ -4737,7 +4743,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             diaperTick();
         } else {
             diaperRunning = false;
-	    var msg = "Awww, " + tmpname + " is all grown up!";
+	    let msg = "Awww, " + tmpname + " is all grown up!";
 	    publicmsg(msg);
         }
     }
@@ -4746,7 +4752,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     // If the baby uses their diaper, it will make the front of their diaper look like it's been used
     function diaperTick() {
         // Handle modifiers 
-        DiaperUseMessages = {
+        let DiaperUseMessages = {
             "MessInner": " has messed " + pronoun3 + " inner diaper.",
             "MessInnerFully": " has fully messed " + pronoun3 + " inner diaper.",
             "WetInner": " has wet " + pronoun3 + " inner diaper.",
@@ -4760,11 +4766,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "WetOnly": " has wet " + pronoun3 + " diaper.",
             "WetOnlyFully": " has fully " + pronoun3 + " her diaper."
         };
-        var diaperTimerModifier = 1; // We will divide by the modifier (positive modifiers decrease the timer)
+        diaperTimerModifier = 1; // We will divide by the modifier (positive modifiers decrease the timer)
         diaperTimerModifier = manageRegression(diaperTimerModifier);
         diaperTimerModifier = manageDesperation(diaperTimerModifier);
         diaperTimer = diaperTimerBase / diaperTimerModifier;
-        testMess = Math.random();
+        let testMess = Math.random();
         // If the baby messes, increment the mess level to a max of 2 and make sure that the wet level is at least as high as the mess level.
         if (testMess > 1 - messChance) {
             if (MessLevelPanties === 2 || !checkForDiaper("Panties")) {
@@ -4776,24 +4782,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             // Display messages for when a diaper is messed.
             if ((MessLevelPanties === 2 && checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (MessLevelChastity === 2 && checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-                var msg = tmpname + DiaperUseMessages["MessOnlyFully"];
+                let msg = tmpname + DiaperUseMessages["MessOnlyFully"];
 		publicmsg(msg);
             } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-                var msg = tmpname + DiaperUseMessages["MessOnly"];
+                let msg = tmpname + DiaperUseMessages["MessOnly"];
 		publicmsg(msg);
             } else if (MessLevelChastity === 0) {
 		if (MessLevelPanties === 2) {
-                    var msg = tmpname + DiaperUseMessages["MessInnerFully"];
+                    let msg = tmpname + DiaperUseMessages["MessInnerFully"];
 		    publicmsg(msg);
                 } else if (MessLevelPanties === 1) {
-		    var msg = tmpname + DiaperUseMessages["MessInner"];
+		    let msg = tmpname + DiaperUseMessages["MessInner"];
 		    publicmsg(msg);
                 }
             } else if (MessLevelChastity === 1) {
-		var msg = mpname + DiaperUseMessages["MessOuter"];
+		let msg = mpname + DiaperUseMessages["MessOuter"];
 		publicmsg(msg);
             } else if (MessLevelChastity === 2) {
-		var msg = tmpname + DiaperUseMessages["MessOuterFully"];
+		let msg = tmpname + DiaperUseMessages["MessOuterFully"];
 		publicmsg(msg);
             }
         }
@@ -4806,24 +4812,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             // Display messages for when a diaper is wet.
             if ((WetLevelPanties === 2 && checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (WetLevelChastity === 2 && checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-                var msg = tmpname + DiaperUseMessages["MessOnlyFully"];
+                let msg = tmpname + DiaperUseMessages["MessOnlyFully"];
 		publicmsg(msg);
             } else if ((checkForDiaper("Panties") && !checkForDiaper("ItemPelvis")) || (checkForDiaper("ItemPelvis") && !checkForDiaper("Panties"))) {
-		var msg = tmpname + DiaperUseMessages["WetOnly"];
+		let msg = tmpname + DiaperUseMessages["WetOnly"];
 		publicmsg(msg);
             } else if (WetLevelChastiy === 0) {
                 if (WetLevelPanties === 2) {
-		    var msg = tmpname + DiaperUseMessages["WetInnerFully"];
+		    let msg = tmpname + DiaperUseMessages["WetInnerFully"];
 		    publicmsg(msg);
                 } else if (WetLevelPanties === 1) {
-		    var msg = tmpname + DiaperUseMessages["WetInner"];
+		    let msg = tmpname + DiaperUseMessages["WetInner"];
 		    publicmsg(msg);
                 }
             } else if (WetLevelChastity === 1) {
-		var msg = tmpname + DiaperUseMessages["WetOuter"];
+		let msg = tmpname + DiaperUseMessages["WetOuter"];
 		publicmsg(msg);
             } else if (WetLevelChastity === 2) {
-		var msg = tmpname + DiaperUseMessages["WetOuterFully"];
+		let msg = tmpname + DiaperUseMessages["WetOuterFully"];
 		publicmsg(msg);
             }
         }
