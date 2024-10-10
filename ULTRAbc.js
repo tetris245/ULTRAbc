@@ -62,7 +62,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cdesk = 0;
     let cfame = 200;
     let frname = "BrickWall";
-    var gl = 0;
+    let gl = 0;
     let onegl = 0;
     let mgl = 0;
     let rsize = 20;
@@ -11784,7 +11784,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(talkmode): forces a specific talk mode",
         Action: (args) => {
             if (args === "") {
-                var msg = "The talk command must be followed by a number between -2 and 9.\n" +
+                let msg = "The talk command must be followed by a number between -2 and 9.\n" +
                     " \n" +
                     "Available talk modes:\n" +
                     "-2 real baby/gag talk (based on currently worn gags and other items restraining talking)\n" +
@@ -11801,12 +11801,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "9 total gag talk";
                 infomsg(msg);
             } else {
-                var gaglevel = args * 1;
+                let gaglevel = args * 1;
                 notalk = 0;
                 ElementValue("InputChat", "");
                 if (gaglevel == -1) {
                     if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
-                        var msg = "You are now in baby talk mode.";
+                        let msg = "You are now in baby talk mode.";
                         infomsg(msg);
                         GagTalkOn = false;
                         BabyTalkOn = true;
@@ -11815,7 +11815,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (gaglevel == 0) {
-                    var msg = "You are now in normal talk mode.";
+                    let msg = "You are now in normal talk mode.";
                     infomsg(msg);
                     BabyTalkOn = false;
                     GagTalkOn = false;
@@ -11823,23 +11823,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     M_MOANER_saveControls();
                 }
                 if ((gaglevel > 0) && (gaglevel < 10)) {
-                    if (gaglevel == 9) {
-                        gl = 10;
-                    } else {
-                        gl = gaglevel;
-                    }
-                    if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
-                        BabyTalkOn = false;
-                        gl = gaglevel;
-                        GagTalkOn = true;
-                        M_MOANER_saveControls();
-                    } else {
-                        GagTalkOn = false;
-                        gl = gaglevel;
-                        GagTalkOn = true;
-                        M_MOANER_saveControls();
-                    }
-                    var msg1 = "ULTRAbc: You are now in ";
+                    let msg = "";
+                    let msg1 = "";
+                    let msg2 = "";
+                    let msg3 = "";
+		    gl = gaglevel;
+                    if (gaglevel == 9) gl = 10;             
+                    if (this.GagTalkOn == false || this.GagTalkOn == undefined) BabyTalkOn = false;
+                    GagTalkOn = true;
+                    M_MOANER_saveControls();
+                    msg1 = "You are now in ";
                     if (gaglevel == 1) msg2 = "almost no ";
                     if (gaglevel == 2) msg2 = "very light ";
                     if (gaglevel == 3) msg2 = "light ";
@@ -11849,14 +11842,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (gaglevel == 7) msg2 = "heavy ";
                     if (gaglevel == 8) msg2 = "very heavy ";
                     if (gaglevel == 9) msg2 = "total ";
-                    var msg3 = "gag talk mode.";
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>" + msg1 + msg2 + msg3 + "</p>"
-                    );
+                    msg3 = "gag talk mode.";
+                    msg = msg1 + msg2 + msg3;
+                    infomsg(msg);
                 }
-                if (gaglevel == -2) {
-                    RealGarblingLevel();
-                }
+                if (gaglevel == -2) RealGarblingLevel();
             }
         }
     }])
@@ -11866,10 +11856,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(number): changes chat color theme.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The theme command must be followed by a number between 0 and 3.";
+                let msg = "The theme command must be followed by a number between 0 and 3.";
                 infomsg(msg);
             } else {
-                var theme = args;
+                let theme = args;
                 if ((theme > -1) && (theme < 4)) {
                     Player.ChatSettings.ColorTheme = PreferenceChatColorThemeList[theme]
                     ServerAccountUpdate.QueueData({
@@ -11891,38 +11881,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 for (let A = 0; A < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
                         if ((Player.Appearance[A].Property.LockedBy == "TimerPadlock") || (Player.Appearance[A].Property.LockedBy == "MistressTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "LoversTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "OwnerTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                            var asset = Player.Appearance[A].Asset.Description;
-                            var time = Player.Appearance[A].Property.RemoveTimer;
-                            var left = TimerToString(time - CurrentTime);
+                            let asset = Player.Appearance[A].Asset.Description;
+                            let time = Player.Appearance[A].Property.RemoveTimer;
+                            let left = TimerToString(time - CurrentTime);
                             ChatRoomSendLocal("" + asset + " = " + left + "");
                         }
                         if (Player.Appearance[A].Property.Name == "Best Friend Timer Padlock") {
-                            var asset = Player.Appearance[A].Asset.Description;
-                            var time = Player.Appearance[A].Property.RemovalTime;
-                            var left = TimerToString(time - CurrentTime);
+                            let asset = Player.Appearance[A].Asset.Description;
+                            let time = Player.Appearance[A].Property.RemovalTime;
+                            let left = TimerToString(time - CurrentTime);
                             ChatRoomSendLocal("" + asset + " = " + left + "");
                         }
                     }
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if (target[0] != null) {
                     for (let A = 0; A < target[0].Appearance.length; A++)
                         if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
                             if ((target[0].Appearance[A].Property.LockedBy == "TimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "MistressTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "LoversTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "OwnerTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                                var asset = target[0].Appearance[A].Asset.Description;
-                                var time = target[0].Appearance[A].Property.RemoveTimer;
-                                var left = TimerToString(time - CurrentTime);
+                                let asset = target[0].Appearance[A].Asset.Description;
+                                let time = target[0].Appearance[A].Property.RemoveTimer;
+                                let left = TimerToString(time - CurrentTime);
                                 ChatRoomSendLocal("" + asset + " = " + left + "");
                             }
                             if (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock") {
-                                var asset = target[0].Appearance[A].Asset.Description;
-                                var time = target[0].Appearance[A].Property.RemovalTime;
-                                var left = TimerToString(time - CurrentTime);
+                                let asset = target[0].Appearance[A].Asset.Description;
+                                let time = target[0].Appearance[A].Property.RemovalTime;
+                                let left = TimerToString(time - CurrentTime);
                                 ChatRoomSendLocal("" + asset + " = " + left + "");
                             }
                         }
@@ -11958,7 +11948,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(title): chooses a new title (from A to K).",
         Action: (args) => {
             if (args === "") {
-                var msg = "The title1 command must be followed by a title.\n" +
+                let msg = "The title1 command must be followed by a title.\n" +
                     "It will also change required parameters to get the title.\n" +
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
@@ -11974,24 +11964,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "houdin, incubus, infiltrator, kidnapper, kitten.";
                 infomsg(msg);
             } else {
-                var title = args;
-                if (title == "admiral") {
-                    TitleSet("Admiral");
-                } else if (title == "agent") {
+                let title = args;
+                if (title == "admiral") TitleSet("Admiral");
+                if (title == "agent") {
                     if ((SkillGetLevel(Player, "Infiltration") < 6) || (SkillGetLevel(Player, "Infiltration") > 7)) {
                         SkillChange(Player, "Infiltration", 6);
                     }
                     TitleSet("InfilrationAgent");
-                } else if (title == "alien") {
-                    TitleSet("Alien");
-                } else if (title == "angel") {
-                    TitleSet("Angel");
-                } else if (title == "baby") {
+                } 
+                if (title == "alien") TitleSet("Alien");
+                if (title == "angel") TitleSet("Angel");
+                if (title == "baby") {
                     if (ReputationGet("ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("Baby");
-                } else if (title == "bondagebaby") {
+                } 
+                if (title == "bondagebaby") {
                     if (ReputationGet("ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
@@ -11999,7 +11988,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SkillChange(Player, "Evasion", 10);
                     }
                     TitleSet("BondageBaby");
-                } else if (title == "bondagemaid") {
+                } 
+                if (title == "bondagemaid") {
                     if ((LogQuery("JoinedSorority", "Maid") == false) || (LogQuery("LeadSorority", "Maid") == false)) {
                         LogAdd("JoinedSorority", "Management");
                     }
@@ -12007,40 +11997,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SkillChange(Player, "Evasion", 10);
                     }
                     TitleSet("BondageMaid");
-                } else if (title == "brat") {
-                    TitleSet("Brat");
-                } else if (title == "bunny") {
-                    TitleSet("Bunny");
-                } else if (title == "captain") {
-                    TitleSet("Captain");
-                } else if (title == "clubslave") {
-                    LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
-                } else if (title == "coldbloodhorse") {
+                } 
+                if (title == "brat") TitleSet("Brat");
+                if (title == "bunny") TitleSet("Bunny");
+                if (title == "captain") TitleSet("Captain");
+                if (title == "clubslave") LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
+                if (title == "coldbloodhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 3) || (SkillGetLevel(Player, "Infiltration") > 3)) {
                         SkillChange(Player, "Dressage", 3);
                     }
                     TitleSet("PonyCold");
-                } else if (title == "collegestudent") {
+                } 
+                if (title == "collegestudent") {
                     LogAdd("BondageCollege", "Import");
                     TitleSet("CollegeStudent");
-                } else if (title == "concubus") {
-                    TitleSet("Concubus");
-                } else if (title == "demon") {
-                    TitleSet("Demon");
-                } else if (title == "diaperlover") {
+                } 
+                if (title == "concubus") TitleSet("Concubus");
+                if (title == "demon") TitleSet("Demon");
+                if (title == "diaperlover") {
                     if (ReputationGet("ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("DL");
-                } else if (title == "doctor") {
+                } 
+                if (title == "doctor") {
                     if (ReputationGet("Asylum") < 100) {
                         DialogSetReputation("Asylum", 100);
                     }
                     LogAdd("Committed", "Asylum", CurrentTime);
                     TitleSet("Doctor");
-                } else if (title == "doll") {
-                    TitleSet("Doll");
-                } else if (title == "drone") {
+                } 
+                if (title == "doll") TitleSet("Doll");
+                if (title == "drone") {
                     if (AsylumGGTSGetLevel(Player) < 6) {
                         Level = parseInt(6);
                         Player.Game.GGTS.Level = 6;
@@ -12049,27 +12037,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         });
                     }
                     TitleSet("Drone");
-                } else if (title == "duchess") {
+                } 
+                if (title == "duchess") {
                     LogAdd("KidnapSophie", "Sarah");
                     TitleSet("Duchess");
-                } else if (title == "duke") {
+                } 
+                if (title == "duke") {
                     LogAdd("KidnapSophie", "Sarah");
                     TitleSet("Duke");
-                } else if (title == "escapedpatient") {
-                    LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
-                } else if (title == "farmhorse") {
+                } 
+                if (title == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
+                if (title == "farmhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 2) || (SkillGetLevel(Player, "Infiltration") > 2)) {
                         SkillChange(Player, "Dressage", 2);
                     }
                     TitleSet("PonyFarm");
-                } else if (title == "femboy") {
-                    TitleSet("Femboy");
-                } else if (title == "flyingpegasus") {
+                } 
+                if (title == "femboy") TitleSet("Femboy");
+                if (title == "flyingpegasus") {
                     if ((SkillGetLevel(Player, "Dressage") < 8) || (SkillGetLevel(Player, "Infiltration") > 9)) {
                         SkillChange(Player, "Dressage", 8);
                     }
                     TitleSet("PonyPegasus");
-                } else if (title == "foal") {
+                } 
+                if (title == "foal") {
                     if (ReputationGet("ABDL") < 1) {
                         if ((SkillGetLevel(Player, "Dressage") < 1) || (SkillGetLevel(Player, "Infiltration") > 2)) {
                             SkillChange(Player, "Dressage", 1);
@@ -12080,9 +12071,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     TitleSet("PonyFoal");
-                } else if (title == "foxy") {
-                    TitleSet("Foxy");
-                } else if (title == "goodboy") {
+                } 
+                if (title == "foxy") TitleSet("Foxy");
+                if (title == "goodboy") {
                     if (AsylumGGTSGetLevel(Player) < 4) {
                         Level = parseInt(4);
                         Player.Game.GGTS.Level = 4;
@@ -12091,9 +12082,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         });
                     }
                     TitleSet("GoodBoy");
-                } else if (title == "goodone") {
-                    TitleSet("Good One");
-                } else if (title == "goodgirl") {
+                } 
+                if (title == "goodone") TitleSet("Good One");
+                if (title == "goodgirl") {
                     if (AsylumGGTSGetLevel(Player) < 4) {
                         Level = parseInt(4);
                         Player.Game.GGTS.Level = 4;
@@ -12102,7 +12093,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         });
                     }
                     TitleSet("GoodGirl");
-                } else if (title == "goodslave") {
+                } 
+                if (title == "goodslave") {
                     if (AsylumGGTSGetLevel(Player) < 6) {
                         Level = parseInt(6);
                         Player.Game.GGTS.Level = 6;
@@ -12111,7 +12103,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         });
                     }
                     TitleSet("GoodSlave");
-                } else if (title == "goodslaveboy") {
+                } 
+                if (title == "goodslaveboy") {
                     if (AsylumGGTSGetLevel(Player) < 5) {
                         Level = parseInt(5);
                         Player.Game.GGTS.Level = 5;
@@ -12120,7 +12113,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         });
                     }
                     TitleSet("GoodSlaveBoy");
-                } else if (title == "goodslavegirl") {
+                } 
+                if (title == "goodslavegirl") {
                     if (AsylumGGTSGetLevel(Player) < 5) {
                         Level = parseInt(5);
                         Player.Game.GGTS.Level = 5;
@@ -12129,44 +12123,47 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         });
                     }
                     TitleSet("GoodSlaveGirl");
-                } else if (title == "headmaid") {
+                } 
+                if (title == "headmaid") {
                     LogAdd("LeadSorority", "Maid");
                     TitleSet("HeadMaid");
-                } else if (title == "hotbloodhorse") {
+                } 
+                if (title == "hotbloodhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 5) || (SkillGetLevel(Player, "Infiltration") > 5)) {
                         SkillChange(Player, "Dressage", 5);
                     }
                     TitleSet("PonyHot");
-                } else if (title == "houdini") {
+                } 
+                if (title == "houdini") {
                     if (SkillGetLevel(Player, "Evasion") < 10) {
                         SkillChange(Player, "Evasion", 10);
                     }
                     TitleSet("Houdini");
-                } else if (title == "incubus") {
-                    TitleSet("Incubus");
-                } else if (title == "infiltrator") {
+                } 
+                if (title == "incubus") TitleSet("Incubus");
+                if (title == "infiltrator") {
                     if ((SkillGetLevel(Player, "Infiltration") < 4) || (SkillGetLevel(Player, "Infiltration") > 5)) {
                         SkillChange(Player, "Infiltration", 4);
                     }
                     TitleSet("InfilrationInfiltrator");
-                } else if (title == "kidnapper") {
+                } 
+                if (title == "kidnapper") {
                     if ((ReputationGet("Kidnap") < 50) || (ReputationGet("Kidnap") > 99)) {
                         DialogSetReputation("Kidnap", 50);
                     }
                     TitleSet("Kidnapper");
-                } else if (title == "kitten") {
-                    TitleSet("Kitten");
-                }
+                } 
+                if (title == "kitten") TitleSet("Kitten");
             }
         }
     }])
-
+             
     CommandCombine([{
         Tag: 'title2',
         Description: "(title): chooses a new title (from L to Z).",
         Action: (args) => {
             if (args === "") {
-                var msg = "The title2 command must be followed by a title.\n" +
+                let msg = "The title2 command must be followed by a title.\n" +
                     "It will also change required parameters to get the title.\n" +
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
@@ -12181,25 +12178,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "wildmustang, witch, wizard.";
                 infomsg(msg);
             } else {
-                var title = args;
+                let title = args;
                 if (title == "ladyluck") {
                     if (ReputationGet("Gambling") < 100) {
                         DialogSetReputation("Gambling", 100);
                     }
                     TitleSet("LadyLuck");
-                } else if (title == "liege") {
-                    TitleSet("Liege");
-                } else if (title == "littleone") {
+                } 
+                if (title == "liege") TitleSet("Liege");
+                if (title == "littleone") {
                     if (ReputationGet("ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("LittleOne");
-                } else if (title == "lordfortune") {
+                } 
+                if (title == "lordfortune") {
                     if (ReputationGet("Gambling") < 100) {
                         DialogSetReputation("Gambling", 100);
                     }
                     TitleSet("Lord Fortune");
-                } else if (title == "magician") {
+                } 
+                if (title == "magician") {
                     if ((ReputationGet("HouseVincula") < 50) || (ReputationGet("HouseVincula") > 99)) {
                         DialogSetReputation("HouseAmplector", 0);
                         DialogSetReputation("HouseCorporis", 0);
@@ -12208,7 +12207,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("HouseVincula", 50);
                     }
                     TitleSet("MagicSchoolMagician");
-                } else if (title == "magus") {
+                } 
+                if (title == "magus") {
                     if (ReputationGet("HouseMaiestas") < 100) {
                         DialogSetReputation("HouseAmplector", 0);
                         DialogSetReputation("HouseCorporis", 0);
@@ -12217,55 +12217,64 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("HouseMaiestas", 100);
                     }
                     TitleSet("MagicSchoolMagus");
-                } else if (title == "maid") {
+                } 
+                if (title == "maid") {
                     LogDelete("LeadSorority", "Maid");
                     LogAdd("JoinedSorority", "Management");
                     TitleSet("Maid");
-                } else if (title == "majesticalicorn") {
+                } 
+                if (title == "majesticalicorn") {
                     if (SkillGetLevel(Player, "Dressage") < 10) {
                         SkillChange(Player, "Dressage", 10);
                     }
                     TitleSet("PonyAlicorn");
-                } else if (title == "majesty") {
-                    TitleSet("Majesty");
-                } else if (title == "master") {
+                } 
+                if (title == "majesty") TitleSet("Majesty");
+                if (title == "master") {
                     LogAdd("ClubMistress", "Management");
                     TitleSet("Master");
-                } else if (title == "masterkidnapper") {
+                } 
+                if (title == "masterkidnapper") {
                     if (ReputationGet("Kidnap") < 100) {
                         DialogSetReputation("Kidnap", 100);
                     }
                     TitleSet("MasterKidnapper");
-                } else if (title == "missy") {
-                    TitleSet("Missy");
-                } else if (title == "mistree") {
+                } 
+                if (title == "missy") TitleSet("Missy");
+                if (title == "mistree") {
                     LogAdd("ClubMistress", "Management");
                     TitleSet("Mistree");
-                } else if (title == "mistress") {
+                } 
+                if (title == "mistress") {
                     LogAdd("ClubMistress", "Management");
                     TitleSet("Mistress");
-                } else if (title == "mole") {
+                } 
+                if (title == "mole") {
                     if ((SkillGetLevel(Player, "Infiltration") < 2) || (SkillGetLevel(Player, "Infiltration") > 3)) {
                         SkillChange(Player, "Infiltration", 2);
                     }
                     TitleSet("InfilrationMole");
-                } else if (title == "nawashi") {
+                } 
+                if (title == "nawashi") {
                     if (SkillGetLevel(Player, "Bondage") < 10) {
                         SkillChange(Player, "Bondage", 10);
                     }
                     TitleSet("Nawashi");
-                } else if (title == "nurse") {
+                } 
+                if (title == "nurse") {
                     if ((ReputationGet("Asylum") < 50) || (ReputationGet("Asylum") > 99)) {
                         DialogSetReputation("Asylum", 50);
                     }
                     LogAdd("Committed", "Asylum", CurrentTime);
                     TitleSet("Nurse");
-                } else if (title == "operative") {
+                } 
+                if (title == "operative") {
                     if ((SkillGetLevel(Player, "Infiltration") < 8) || (SkillGetLevel(Player, "Infiltration") > 9)) {
                         SkillChange(Player, "Infiltration", 8);
                     }
                     TitleSet("InfilrationOperative");
-                } else if (title == "oracle") {
+                } 
+                if (title == "oracle") {
                     if (ReputationGet("HouseAmplector") < 100) {
                         DialogSetReputation("HouseCorporis", 0);
                         DialogSetReputation("HouseMaiestas", 0);
@@ -12274,27 +12283,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("HouseAmplector", 100);
                     }
                     TitleSet("MagicSchoolOracle");
-                } else if (title == "patient") {
+                } 
+                if (title == "patient") {
                     if ((ReputationGet("Asylum") > -50) || (ReputationGet("Asylum") < -99)) {
                         DialogSetReputation("Asylum", -50);
                     }
                     TitleSet("Patient");
-                } else if (title == "patron") {
-                    TitleSet("Patron");
-                } else if (title == "permanentpatient") {
+                } 
+                if (title == "patron") TitleSet("Patron");
+                if (title == "permanentpatient") {
                     if (ReputationGet("Asylum") > -100) {
                         DialogSetReputation("Asylum", -100);
                     }
                     TitleSet("PermanentPatient");
-                } else if (title == "pet") {
-                    TitleSet("Pet");
-                } else if (title == "prince") {
-                    TitleSet("Prince");
-                } else if (title == "princess") {
-                    TitleSet("Princess");
-                } else if (title == "puppy") {
-                    TitleSet("Puppy");
-                } else if (title == "sage") {
+                } 
+                if (title == "pet") TitleSet("Pet");
+                if (title == "prince") TitleSet("Prince");
+                if (title == "princess") TitleSet("Princess");
+                if (title == "puppy") TitleSet("Puppy");
+                if (title == "sage") {
                     if ((ReputationGet("HouseAmplector") < 50) || (ReputationGet("HouseAmplector") > 99)) {
                         DialogSetReputation("HouseCorporis", 0);
                         DialogSetReputation("HouseMaiestas", 0);
@@ -12303,14 +12310,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("HouseAmplector", 50);
                     }
                     TitleSet("MagicSchoolSage");
-                } else if (title == "shiningunicorn") {
+                } 
+                if (title == "shiningunicorn") {
                     if ((SkillGetLevel(Player, "Dressage") < 7) || (SkillGetLevel(Player, "Infiltration") > 7)) {
                         SkillChange(Player, "Dressage", 7);
                     }
                     TitleSet("PonyUnicorn");
-                } else if (title == "sissy") {
-                    TitleSet("Sissy");
-                } else if (title == "sorcerer") {
+                } 
+                if (title == "sissy") TitleSet("Sissy");
+                if (title == "sorcerer") {
                     if (ReputationGet("HouseVincula") < 100) {
                         DialogSetReputation("HouseAmplector", 0);
                         DialogSetReputation("HouseCorporis", 0);
@@ -12319,24 +12327,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("HouseVincula", 100);
                     }
                     TitleSet("MagicSchoolSorcerer");
-                } else if (title == "succubus") {
-                    TitleSet("Succubus");
-                } else if (title == "superhero") {
+                } 
+                if (title == "succubus") TitleSet("Succubus");
+                if (title == "superhero") {
                     InventoryAdd(Player, "AnimeGirl", "Cloth"),
                         TitleSet("AnimeBoy");
-                } else if (title == "superheroine") {
+                } 
+                if (title == "superheroine") {
                     InventoryAdd(Player, "AnimeGirl", "Cloth");
                     TitleSet("AnimeGirl");
-                } else if (title == "superspy") {
+                } 
+                if (title == "superspy") {
                     if (SkillGetLevel(Player, "Infiltration") < 10) {
                         SkillChange(Player, "Infiltration", 10);
                     }
                     TitleSet("InfilrationSuperspy");
-                } else if (title == "switch") {
-                    TitleSet("Switch");
-                } else if (title == "tomboy") {
-                    TitleSet("Tomboy");
-                } else if (title == "warlock") {
+                } 
+                if (title == "switch") TitleSet("Switch");
+                if (title == "tomboy") TitleSet("Tomboy");
+                if (title == "warlock") {
                     if (ReputationGet("HouseCorporis") < 100) {
                         DialogSetReputation("HouseAmplector", 0);
                         DialogSetReputation("HouseMaiestas", 0);
@@ -12345,17 +12354,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("HouseCorporis", 100);
                     }
                     TitleSet("MagicSchoolWarlock");
-                } else if (title == "warmbloodhorse") {
+                } 
+                if (title == "warmbloodhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 4) || (SkillGetLevel(Player, "Infiltration") > 4)) {
                         SkillChange(Player, "Dressage", 4);
                     }
                     TitleSet("PonyWarm");
-                } else if (title == "wildmustang") {
+                } 
+                if (title == "wildmustang") {
                     if ((SkillGetLevel(Player, "Dressage") < 6) || (SkillGetLevel(Player, "Infiltration") > 6)) {
                         SkillChange(Player, "Dressage", 6);
                     }
                     TitleSet("PonyWild");
-                } else if (title == "witch") {
+                } 
+                if (title == "witch") {
                     if ((ReputationGet("HouseCorporis") < 50) || (ReputationGet("HouseCorporis") > 99)) {
                         DialogSetReputation("HouseAmplector", 0);
                         DialogSetReputation("HouseMaiestas", 0);
@@ -12364,7 +12376,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("HouseCorporis", 50);
                     }
                     TitleSet("MagicSchoolWitch");
-                } else if (title == "wizard") {
+                } 
+                if (title == "wizard") {
                     if ((ReputationGet("HouseMaiestas") < 50) || (ReputationGet("HouseMaiestas") > 99)) {
                         DialogSetReputation("HouseAmplector", 0);
                         DialogSetReputation("HouseCorporis", 0);
@@ -12377,32 +12390,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+	    
     CommandCombine([{
         Tag: 'totalrelease',
         Description: "(target): removes all bindings, collar, harness, chastity, toys.",
         Action: (args) => {
             if (args === "") {
-                if (Totalrelease == undefined) {
-                    var msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
-                } else {
+		let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
+                if (Totalrelease != undefined) {
                     if (Totalrelease != "") {
                         if (Totalrelease.startsWith("\u0027")) {
-                            var msg = tmpname + Totalrelease;
+                            msg = tmpname + Totalrelease;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Totalrelease;
+                            msg = tmpname + ' '.repeat(1) + Totalrelease;
                         }
-                    } else {
-                        var msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
-                    }
+                    } 
                 }
                 if (Totalrelease != "no message") publicmsg(msg);
                 SosClick();
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -12413,21 +12423,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        if (Ttotalrelease == undefined) {
-                            var msg = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body.";
-                        } else {
+			let msg = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body.";
+                        if (Ttotalrelease != undefined) {
                             if (Ttotalrelease != "") {
                                 if (Ttotalrelease.startsWith("\u0027")) {
-                                    var msg = tmpname + Ttotalrelease + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + Ttotalrelease + ' '.repeat(1) + tgpname;
                                 } else {
-                                    var msg = tmpname + ' '.repeat(1) + Ttotalrelease + ' '.repeat(1) + tgpname;
+                                    msg = tmpname + ' '.repeat(1) + Ttotalrelease + ' '.repeat(1) + tgpname;
                                 }
-                            } else {
-                                var msg = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body.";
-                            }
+                            } 
                         }
                         if (Ttotalrelease != "no message") publicmsg(msg);
                         CharacterReleaseTotal(target[0]);
@@ -12444,7 +12451,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(visor) (deafening module) (chin strap): changes the settings of a worn Techno Helmet",
         Action: (args) => {
             if (args === "") {
-                var msg = "The trsee command must be followed by 3 numbers for visor, deafening module and chin strap.\n" +
+                let msg = "The trsee command must be followed by 3 numbers for visor, deafening module and chin strap.\n" +
                     " \n" +
                     "Available visors:\n" +
                     "0 No visor - 1 transparent\n" +
@@ -12464,17 +12471,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 if (InventoryGet(Player, "ItemHood") != null) {
                     if (InventoryGet(Player, "ItemHood").Asset.Name == "TechnoHelmet1") {
-                        var stringTRvision1 = args;
-                        var stringTRvision2 = stringTRvision1.split(/[ ,]+/);
-                        var vtr = stringTRvision2[0];
-                        var dtr = stringTRvision2[1];
-                        var ctr = stringTRvision2[2];
+                        let stringTRvision1 = args;
+                        let stringTRvision2 = stringTRvision1.split(/[ ,]+/);
+                        let vtr = stringTRvision2[0];
+                        let dtr = stringTRvision2[1];
+                        let ctr = stringTRvision2[2];
                         if ((vtr > -1) && (vtr < 6) && (dtr > -1) && (dtr < 4) && (ctr > -1) && (ctr < 2)) {
                             const TechnoHelmet1 = InventoryGet(Player, "ItemHood");
                             const TechnoHelmet1Config = ModularItemDataLookup.ItemHoodTechnoHelmet1;
                             TechnoHelmet1.Property = ModularItemMergeModuleValues(TechnoHelmet1Config, [vtr, dtr, ctr]);
                             ChatRoomCharacterUpdate(Player);
-                            var msg = "The settings of your Techno Helmet have been modified.";
+                            let msg = "The settings of your Techno Helmet have been modified.";
                             infomsg(msg);
                         }
                     }
