@@ -11751,6 +11751,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (stlevel == 4) msg2 = "total ";
                     msg3 = "stuttering mode."
                     msg = msg1 + msg2 + msg3;
+		    infomsg(msg);
                     StutterOn = true;
                     st = stlevel;
                     M_MOANER_saveControls();
