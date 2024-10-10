@@ -13543,18 +13543,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": (target): goes back or sends back to visible mode.",
         Action: (args) => {
             if (args === "") {
-                if (Visible == undefined) {
-                    var msg = "" + tmpname + " suddenly is visible for everybody.";
-                } else {
+		let msg = "" + tmpname + " suddenly is visible for everybody.";
+                if (Visible != undefined) {
                     if (Visible != "") {
                         if (Visible.startsWith("\u0027")) {
-                            var msg = tmpname + Visible;
+                            msg = tmpname + Visible;
                         } else {
-                            var msg = tmpname + ' '.repeat(1) + Visible;
+                            msg = tmpname + ' '.repeat(1) + Visible;
                         }
-                    } else {
-                        var msg = "" + tmpname + " suddenly is visible for everybody."
-                    }
+                    } 
                 }
                 if (Visible != "no message") publicmsg(msg);
                 InventoryRemove(Player, "ItemScript");
@@ -13562,10 +13559,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomCharacterUpdate(Player) :
                     CharacterRefresh(Player);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -13575,26 +13572,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         tgpname = target[0].Nickname;
                     }
                     if (target[0].OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                        var msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
+                        let msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
                         infomsg(msg);
                     } else {
                         if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                             (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var msg = umsg1 + tgpname + umsg2;
+                            let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
-                            if (Tvisible == undefined) {
-                                var msg = "" + tgpname + " suddenly is visible for everybody.";
-                            } else {
+			    let msg = "" + tgpname + " suddenly is visible for everybody.";
+                            if (Tvisible != undefined) {
                                 if (Tvisible != "") {
                                     if (Tvisible.startsWith("\u0027")) {
-                                        var msg = tmpname + Tvisible + ' '.repeat(1) + tgpname;
+                                        msg = tmpname + Tvisible + ' '.repeat(1) + tgpname;
                                     } else {
-                                        var msg = tmpname + ' '.repeat(1) + Tvisible + ' '.repeat(1) + tgpname;
+                                        msg = tmpname + ' '.repeat(1) + Tvisible + ' '.repeat(1) + tgpname;
                                     }
-                                } else {
-                                    var msg = "" + tgpname + " suddenly is visible for everybody.";
-                                }
+                                } 
                             }
                             if (Tvisible != "no message") publicmsg(msg);
                             InventoryRemove(target[0], "ItemScript");
@@ -13613,7 +13607,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(background) (mode) (game): changes the settings of a worn VR Headset.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The vrsee command must be followed by 3 numbers for background, mode and game.\n" +
+                let msg = "The vrsee command must be followed by 3 numbers for background, mode and game.\n" +
                     " \n" +
                     "Available backgrounds:\n" +
                     "0 No background - 1 Virtual World\n" +
@@ -13633,21 +13627,57 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 if (InventoryGet(Player, "ItemHead") != null) {
                     if (InventoryGet(Player, "ItemHead").Asset.Name == "InteractiveVRHeadset") {
-                        var stringVRvision1 = args;
-                        var stringVRvision2 = stringVRvision1.split(/[ ,]+/);
-                        var bvr = stringVRvision2[0];
-                        var fvr = stringVRvision2[1];
-                        var gvr = stringVRvision2[2];
+                        let stringVRvision1 = args;
+                        let stringVRvision2 = stringVRvision1.split(/[ ,]+/);
+                        let bvr = stringVRvision2[0];
+                        let fvr = stringVRvision2[1];
+                        let gvr = stringVRvision2[2];
                         if ((bvr > -1) && (bvr < 6) && (fvr > -1) && (fvr < 4) && (gvr > -1) && (gvr < 2)) {
                             const InteractiveVRHeadset = InventoryGet(Player, "ItemHead");
                             const InteractiveVRHeadsetConfig = ModularItemDataLookup.ItemHeadInteractiveVRHeadset;
                             InteractiveVRHeadset.Property = ModularItemMergeModuleValues(InteractiveVRHeadsetConfig, [bvr, fvr, gvr]);
                             ChatRoomCharacterUpdate(Player);
-                            var msg = "The settings of your VR Headset have been modified.";
+                            let msg = "The settings of your VR Headset have been modified.";
                             infomsg(msg);
                         }
                     }
                 }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'wrobe',
+        Description: "(target): opens target wardrobe.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomCharacterViewClickCharacter(Player);
+                DialogChangeClothes();
+            } else {
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                if (target[0] == null) {
+                    let targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                }
+                if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
+                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
+                        tgpname = target[0].Name;
+                    } else {
+                        tgpname = target[0].Nickname;
+                    }
+                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
+                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
+                        let msg = umsg1 + tgpname + umsg2;
+                        infomsg(msg);
+                    } else {
+                        target[0].OnlineSharedSettings.AllowFullWardrobeAccess = true;
+                        target[0].OnlineSharedSettings.BlockBodyCosplay = false;
+                        ChatRoomCharacterViewClickCharacter(target[0]);
+                        DialogChangeClothes();
+                    }
+                }
+                ChatRoomSetTarget(-1);
             }
         }
     }])
@@ -13665,7 +13695,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(add-on): displays status of settings for other add-ons.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The xstatus command must be followed by an option corresponding to an add-on.\n" +
+                let msg = "The xstatus command must be followed by an option corresponding to an add-on.\n" +
                     " \n" +
                     "Available options:\n" +
                     "bcar for BCAR\n" +
@@ -13679,12 +13709,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "wce for WCE";
                 infomsg(msg);
             } else {
-                var addon = args;
+                let addon = args;
                 if (addon == "bcar") {
                     if (Player.OnlineSettings.BCAR != null) {
                         if (Player.OnlineSettings.BCAR.bcarSettings != null) {
-                            BCARdata = {};
-                            str = Player.OnlineSettings.BCAR.bcarSettings;
+                            let BCARdata = {};
+                            let str = Player.OnlineSettings.BCAR.bcarSettings;
                             BCARdata = str;
                             showAnimalTypeStatus();
                             showAnimationButtonsStatus();
@@ -13699,19 +13729,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "bcr") {
                     if (Player.ExtensionSettings.BCResponsiveData != null) {
-                        str = Player.ExtensionSettings.BCResponsiveData;
-                        d = LZString.decompressFromBase64(str);
-                        BCRdata = {};
-                        decoded = JSON.parse(d);
+                        let str = Player.ExtensionSettings.BCResponsiveData;
+                        let d = LZString.decompressFromBase64(str);
+                        let BCRdata = {};
+                        let decoded = JSON.parse(d);
                         BCRdata = decoded;
                         showBCResponsiveStatus();
                     }
                 } else if (addon == "bctw") {
                     if (Player.OnlineSettings.BCT != null) {
-                        str = Player.OnlineSettings.BCT;
-                        d = LZString.decompressFromBase64(str);
-                        BCTdata = {};
-                        decoded = JSON.parse(d);
+                        let str = Player.OnlineSettings.BCT;
+                        let d = LZString.decompressFromBase64(str);
+                        let BCTdata = {};
+                        let decoded = JSON.parse(d);
                         BCTdata = decoded;
                         showArousalErectionStatus();
                         showArousalProgressStatus();
@@ -13727,8 +13757,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "ebch") {
                     if (Player.OnlineSettings.EBCH != null) {
-                        EBCHdata = {};
-                        str = Player.OnlineSettings.EBCH;
+                        let EBCHdata = {};
+                        let str = Player.OnlineSettings.EBCH;
                         EBCHdata = str;
                         showEbchLogStatus();
                         showEbchNotificationStatus();
@@ -13738,10 +13768,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "lscg") {
                     if (Player.ExtensionSettings.LSCG != null) {
-                        str = Player.ExtensionSettings.LSCG;
-                        d = LZString.decompressFromBase64(str);
-                        LSCGdata = {};
-                        decoded = JSON.parse(d);
+                        let str = Player.ExtensionSettings.LSCG;
+                        let d = LZString.decompressFromBase64(str);
+                        let LSCGdata = {};
+                        let decoded = JSON.parse(d);
                         LSCGdata = decoded;
                         showBcLscgStatus();
                         showBoopReactionsStatus();
@@ -13756,12 +13786,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "mbs") {
                     if (Player.OnlineSharedSettings.MBSVersion != null) {
-                        MBSver = Player.OnlineSharedSettings.MBSVersion;
-                        var stringMBSver1 = MBSver;
-                        var stringMBSver2 = stringMBSver1.split(".");
-                        var MBS1 = stringMBSver2[0];
-                        var MBS2 = stringMBSver2[1];
-                        var MBS3 = stringMBSver2[2];
+                        let d = "";
+                        let str = "";
+                        let MBSver = Player.OnlineSharedSettings.MBSVersion;
+                        let stringMBSver1 = MBSver;
+                        let stringMBSver2 = stringMBSver1.split(".");
+                        let MBS1 = stringMBSver2[0];
+                        let MBS2 = stringMBSver2[1];
+                        let MBS3 = stringMBSver2[2];
                         if ((MBS1 == 0) || (MBSver == "1.0.0") || (MBSver == "1.0.1")) {
                             str = Player.OnlineSettings.MBS;
                         } else {
@@ -13772,8 +13804,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             d = LZString.decompressFromUTF16(str);
                         }
-                        MBSdata = {};
-                        decoded = JSON.parse(d);
+                        let MBSdata = {};
+                        let decoded = JSON.parse(d);
                         MBSdata = decoded;
                         showGarblingStatus();
                         showLockedMbsStatus();
@@ -13781,10 +13813,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "rsp") {
                     if (Player.ExtensionSettings.Responsive != null) {
-                        str = Player.ExtensionSettings.Responsive;
-                        d = LZString.decompressFromBase64(str);
-                        RSPdata = {};
-                        decoded = JSON.parse(d);
+                        let str = Player.ExtensionSettings.Responsive;
+                        let d = LZString.decompressFromBase64(str);
+                        let RSPdata = {};
+                        let decoded = JSON.parse(d);
                         RSPdata = decoded;
                         showResponsiveStatus();
                         showBcrResponsesStatus();
@@ -13797,10 +13829,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "thm") {
                     if (Player.ExtensionSettings.Themed != null) {
-                        str = Player.ExtensionSettings.Themed;
-                        d = LZString.decompressFromBase64(str);
-                        THMdata = {};
-                        decoded = JSON.parse(d);
+                        let str = Player.ExtensionSettings.Themed;
+                        let d = LZString.decompressFromBase64(str);
+                        let THMdata = {};
+                        let decoded = JSON.parse(d);
                         THMdata = decoded;
                         showBCThemedStatus();
                         showCharacterAbsenceStatus();
@@ -13816,10 +13848,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "wce") {
                     if (Player.ExtensionSettings.FBC != null) {
-                        str = Player.ExtensionSettings.FBC;
-                        d = LZString.decompressFromBase64(str);
-                        WCEdata = {};
-                        decoded = JSON.parse(d);
+                        let str = Player.ExtensionSettings.FBC;
+                        let d = LZString.decompressFromBase64(str);
+                        let WCEdata = {};
+                        let decoded = JSON.parse(d);
                         WCEdata = decoded;       
                         showAnimationStatus();
                         showAntiCheatStatus();
@@ -13835,42 +13867,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showWceTalkingStatus();
                     }
                 }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'wrobe',
-        Description: "(target): opens target wardrobe.",
-        Action: (args) => {
-            if (args === "") {
-                ChatRoomCharacterViewClickCharacter(Player);
-                DialogChangeClothes();
-            } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                        (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
-                        infomsg(msg);
-                    } else {
-                        target[0].OnlineSharedSettings.AllowFullWardrobeAccess = true;
-                        target[0].OnlineSharedSettings.BlockBodyCosplay = false;
-                        ChatRoomCharacterViewClickCharacter(target[0]);
-                        DialogChangeClothes();
-                    }
-                }
-                ChatRoomSetTarget(-1);
             }
         }
     }])
