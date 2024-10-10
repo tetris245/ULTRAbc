@@ -67,7 +67,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mgl = 0;
     let rsize = 20;
     let rtype = "ALL";
-    var st = 0;
+    let st = 0;
     let tcname = "Cell";
 
     let AutojoinOn;
@@ -11156,12 +11156,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'safeworditem',
         Description: ": removes specific item.",
         Action: () => {
-            var msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.";
+            let msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.";
             infomsg(msg);
             setTimeout(function() {
                 if (CurrentCharacter != null) {
                     if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
-                        var uw = 0;
+                        let uw = 0;
                         CurrentCharacter.Appearance = CurrentCharacter.Appearance.filter(x => (CurrentCharacter.FocusGroup && CurrentCharacter.FocusGroup.Name) ? x.Asset.Group.Name !=
                             CurrentCharacter.FocusGroup.Name : true);
                         if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
@@ -11172,8 +11172,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpname = CurrentCharacter.Nickname;
                             }
                             if (tgpname != tmpname) {
-                                var uw = 1;
-                                var msg = umsg1 + tgpname + umsg2;
+                                uw = 1;
+                                let msg = umsg1 + tgpname + umsg2;
                                 infomsg(msg);
                             }
                         }
@@ -11192,7 +11192,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(lobby): opens room search for 15 seconds in specified lobby.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The search command must be followed by the lobby you want to explore.\n" +
+                let msg = "The search command must be followed by the lobby you want to explore.\n" +
                     "Available options: asylum, fclub, mclub, xclub.";
                 infomsg(msg);
             }
@@ -11234,7 +11234,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    var msg = "Only females have access to this lobby.";
+                    let msg = "Only females have access to this lobby.";
                     infomsg(msg);
                 }
             }
@@ -11255,7 +11255,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    var msg = "Only males have access to this lobby.";
+                    let msg = "Only males have access to this lobby.";
                     infomsg(msg);
                 }
             }
@@ -11283,7 +11283,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(visionmode) (blurlevel): forces a specific vision mode",
         Action: (args) => {
             if (args === "") {
-                var msg = "The see command must be followed by a vision mode number and optionally a blur level number.\n" +
+                let msg = "The see command must be followed by a vision mode number and optionally a blur level number.\n" +
                     "Notes:\n" +
                     "- a full relog is requested to leave this forced vision mode\n" +
                     "- this command can trigger a BCX warning. Just ignore it (close the breaking message)!\n" +
@@ -11302,62 +11302,62 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "4 total blur effect";
                 infomsg(msg);
             } else {
-                var stringVision1 = args;
-                var stringVision2 = stringVision1.split(/[ ,]+/);
-                var bl = stringVision2[0];
-                var br = stringVision2[1];
+                let stringVision1 = args;
+                let stringVision2 = stringVision1.split(/[ ,]+/);
+                let bl = stringVision2[0];
+                let br = stringVision2[1];
                 if (bl == 0) {
                     GetBlindLevel0();
                     Player.GetBlindLevel = GetBlindLevel0;
-                    var msg = "Back to normal vision mode.";
+                    let msg = "Back to normal vision mode.";
                     infomsg(msg);
                 }
                 if (bl == 1) {
                     GetBlindLevel1();
                     Player.GetBlindLevel = GetBlindLevel1;
-                    var msg = "You are now in light blindness mode.";
+                    let msg = "You are now in light blindness mode.";
                     infomsg(msg);
                 }
                 if (bl == 2) {
                     GetBlindLevel2();
                     Player.GetBlindLevel = GetBlindLevel2;
-                    var msg = "You are now in normal blindness mode.";
+                    let msg = "You are now in normal blindness mode.";
                     infomsg(msg);
                 }
                 if (bl == 3) {
                     GetBlindLevel3();
                     Player.GetBlindLevel = GetBlindLevel3;
-                    var msg = "You are now in heavy blindness mode.";
+                    let msg = "You are now in heavy blindness mode.";
                     infomsg(msg);
                 }
                 if (br == 0) {
                     GetBlurLevel0();
                     Player.GetBlurLevel = GetBlurLevel0;
-                    var msg = "Back to vision without blur effect.";
+                    let msg = "Back to vision without blur effect.";
                     infomsg(msg);
                 }
                 if (br == 1) {
                     GetBlurLevel1();
                     Player.GetBlurLevel = GetBlurLevel1;
-                    var msg = "A light blur effect is applied on your vision.";
+                    let msg = "A light blur effect is applied on your vision.";
                     infomsg(msg);
                 }
                 if (br == 2) {
                     GetBlurLevel2();
                     Player.GetBlurLevel = GetBlurLevel2;
-                    var msg = "A normal blur effect is applied on your vision.";
+                    let msg = "A normal blur effect is applied on your vision.";
                     infomsg(msg);
                 }
                 if (br == 3) {
                     GetBlurLevel3();
                     Player.GetBlurLevel = GetBlurLevel3;
-                    var msg = "A heavy blur effect is applied on your vision.";
+                    let msg = "A heavy blur effect is applied on your vision.";
                     infomsg(msg);
                 }
                 if (br == 4) {
                     GetBlurLevel4();
                     Player.GetBlurLevel = GetBlurLevel4;
-                    var msg = "A total blur effect is applied on your vision.";
+                    let msg = "A total blur effect is applied on your vision.";
                     infomsg(msg);
                 }
             }
@@ -11369,7 +11369,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The sfchaste command must be followed by 5 numbers for model, front shield, back shield, tamper protection and orgasm mode.\n" +
+                let msg = "The sfchaste command must be followed by 5 numbers for model, front shield, back shield, tamper protection and orgasm mode.\n" +
                     " \n" +
                     "Available models: \n" +
                     "0 Prototype - 1 High-Security\n" +
@@ -11390,19 +11390,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 if (InventoryGet(Player, "ItemPelvis") != null) {
                     if (InventoryGet(Player, "ItemPelvis").Asset.Name == "FuturisticChastityBelt") {
-                        var stringSFchaste1 = args;
-                        var stringSFchaste2 = stringSFchaste1.split(/[ ,]+/);
-                        var msf = stringSFchaste2[0];
-                        var fsf = stringSFchaste2[1];
-                        var bsf = stringSFchaste2[2];
-                        var tsf = stringSFchaste2[3];
-                        var osf = stringSFchaste2[4];
+                        let stringSFchaste1 = args;
+                        let stringSFchaste2 = stringSFchaste1.split(/[ ,]+/);
+                        let msf = stringSFchaste2[0];
+                        let fsf = stringSFchaste2[1];
+                        let bsf = stringSFchaste2[2];
+                        let tsf = stringSFchaste2[3];
+                        let osf = stringSFchaste2[4];
                         if ((msf > -1) && (msf < 4) && (fsf > -1) && (fsf < 2) && (bsf > -1) && (bsf < 2) && (tsf > -1) && (tsf < 3) && (osf > -1) && (osf < 2)) {
                             const FuturisticChastityBelt = InventoryGet(Player, "ItemPelvis");
                             const FuturisticChastityBeltConfig = ModularItemDataLookup.ItemPelvisFuturisticChastityBelt;
                             FuturisticChastityBelt.Property = ModularItemMergeModuleValues(FuturisticChastityBeltConfig, [msf, fsf, bsf, tsf, osf]);
                             ChatRoomCharacterUpdate(Player);
-                            var msg = "The settings of your Futuristic Chastity Belt have been modified.";
+                            let msg = "The settings of your Futuristic Chastity Belt have been modified.";
                             infomsg(msg);
                         }
                     }
@@ -11416,7 +11416,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(skill) (level): changes a skill. ",
         Action: (args) => {
             if (args === "") {
-                var msg = "The skill command must be followed by a skill and a level.\n" +
+                let msg = "The skill command must be followed by a skill and a level.\n" +
                     "You will be able to check the change in your profile.\n" +
                     " \n" +
                     "Available skills:\n" +
@@ -11425,25 +11425,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Level must be between 0 and 10.";
                 infomsg(msg);
             } else {
-                var stringSkill1 = args;
-                var stringSkill2 = stringSkill1.split(/[ ,]+/);
-                var skill = stringSkill2[0];
-                var level = stringSkill2[1];
-                if (skill == "bondage") {
-                    SkillChange(Player, "Bondage", level);
-                } else if (skill == "dressage") {
-                    SkillChange(Player, "Dressage", level);
-                } else if (skill == "evasion") {
-                    SkillChange(Player, "Evasion", level);
-                } else if (skill == "infiltration") {
-                    SkillChange(Player, "Infiltration", level);
-                } else if (skill == "lockpicking") {
-                    SkillChange(Player, "LockPicking", level);
-                } else if (skill == "selfbondage") {
-                    SkillChange(Player, "SelfBondage", level);
-                } else if (skill == "willpower") {
-                    SkillChange(Player, "Willpower", level);
-                }
+                let stringSkill1 = args;
+                let stringSkill2 = stringSkill1.split(/[ ,]+/);
+                let skill = stringSkill2[0];
+                let level = stringSkill2[1];
+                if (skill == "bondage") SkillChange(Player, "Bondage", level);
+                if (skill == "dressage") SkillChange(Player, "Dressage", level);
+                if (skill == "evasion") SkillChange(Player, "Evasion", level);
+                if (skill == "infiltration") SkillChange(Player, "Infiltration", level);
+                if (skill == "lockpicking") SkillChange(Player, "LockPicking", level);
+                if (skill == "selfbondage") SkillChange(Player, "SelfBondage", level);
+                if (skill == "willpower") SkillChange(Player, "Willpower", level);
             }
         }
     }])
@@ -11453,7 +11445,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): uses the sleeping pill on yourself or another player.",
         Action: (args) => {
             if (args === "") {
-		var msg = "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + pronoun1 + " falls asleep very quickly.";
+		let msg = "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + pronoun1 + " falls asleep very quickly.";
 		publicmsg(msg);
                 InventoryWear(Player, "RegularSleepingPill", 'ItemMouth');
                 CharacterSetFacialExpression(Player, "Eyes", "Closed");
@@ -11461,10 +11453,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterSetFacialExpression(Player, "Emoticon", "Sleep");
                 ChatRoomCharacterUpdate(Player);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -11491,10 +11483,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-			var msg = "" + tmpname + " feeds " + tgpname + " a sleeping pill and gives " + tgpr2 + " a glass of water. " + tgpname + " falls asleep very quickly.";
+			let msg = "" + tmpname + " feeds " + tgpname + " a sleeping pill and gives " + tgpr2 + " a glass of water. " + tgpname + " falls asleep very quickly.";
 			publicmsg(msg);
                         InventoryWear(target[0], "RegularSleepingPill", 'ItemMouth');
                         CharacterSetFacialExpression(target[0], "Eyes", "Closed");
@@ -11512,12 +11504,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'slowleave',
         Description: "(action): slowly leaves the room.",
         Action: (args) => {
+	    let message = "";
             if (args === "") {
-                var message = " slowly heads for the door."
+                message = " slowly heads for the door."
             } else {
-                var message = ' '.repeat(1) + args;
+                message = ' '.repeat(1) + args;
             }
-	    var msg = "" + tmpname + message;
+	    let msg = "" + tmpname + message;
 	    publicmsg(msg);
             setTimeout(function() {
                 OutChat();
@@ -11530,15 +11523,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(value) (target): changes the solidity of most current bindings.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The solidity command must be followed by a number between 1 and 99, and optionally a target.";
+                let msg = "The solidity command must be followed by a number between 1 and 99, and optionally a target.";
                 infomsg(msg);
             } else {
-                var stringSol1 = args;
-                var stringSol2 = stringSol1.split(/[ ,]+/);
-                var solidity = stringSol2[0];
-                var targetname = stringSol2[1];
+                let stringSol1 = args;
+                let stringSol2 = stringSol1.split(/[ ,]+/);
+                let solidity = stringSol2[0];
+                let targetname = stringSol2[1];
                 if ((solidity < 1) || (solidity > 99)) {
-                    var msg = "The solidity value must be between 1 and 99.";
+                    let msg = "The solidity value must be between 1 and 99.";
                     infomsg(msg);
                 } else {
                     if ((targetname == null) && (solidity > 0) && (solidity < 100)) {
@@ -11546,20 +11539,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if ((InventoryGet(Player, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(Player, "ItemDevices").Asset.Name == "WoodenRack")) {
                                 if (solidity == 1) {
                                     InventoryRemove(Player, "ItemDevices");
-                                    if (Solidity == undefined) {
-                                        var msg = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
-                                    } else {
+				    let msg1 = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
+                                    if (Solidity != undefined) {
                                         if (Solidity != "") {
                                             if (Solidity.startsWith("\u0027")) {
-                                                var msg = tmpname + Solidity;
+                                                msg1 = tmpname + Solidity;
                                             } else {
-                                                var msg = tmpname + ' '.repeat(1) + Solidity;
+                                                msg1 = tmpname + ' '.repeat(1) + Solidity;
                                             }
-                                        } else {
-                                            var msg = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
-                                        }
+                                        } 
                                     }
-                                    if (Solidity != "no message") publicmsg(msg);
+                                    if (Solidity != "no message") publicmsg(msg1);
                                 }
                             }
                         }
@@ -11570,12 +11560,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                             }
                         ChatRoomCharacterUpdate(Player);
-                        var msg = "The solidity of most current bindings has been changed.";
-                        infomsg(msg);
+                        let msg2 = "The solidity of most current bindings has been changed.";
+                        infomsg(msg2);
                     } else {
-                        var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                        let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                         if (target[0] == null) {
-                            var targetnumber = parseInt(targetname);
+                            let targetnumber = parseInt(targetname);
                             target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                         }
                         if ((target[0] != null) && (target[0].AllowItem == true) && (solidity > 0) && (solidity < 100) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -11586,25 +11576,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                                 (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                                var msg = umsg1 + tgpname + umsg2;
+                                let msg = umsg1 + tgpname + umsg2;
                                 infomsg(msg);
                             } else {
                                 if (InventoryGet(target[0], "ItemDevices") != null) {
                                     if ((InventoryGet(target[0], "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(target[0], "ItemDevices").Asset.Name == "WoodenRack")) {
                                         if (solidity == 1) {
-                                            InventoryRemove(target[0], "ItemDevices");
-                                            if (Tsolidity == undefined) {
-                                                var msg1 = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
-                                            } else {
+                                            InventoryRemove(target[0], "ItemDevices");  
+					    let msg1 = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
+                                            if (Tsolidity != undefined) {
                                                 if (Tsolidity != "") {
                                                     if (Tsolidity.startsWith("\u0027")) {
-                                                        var msg1 = tmpname + Tsolidity + ' '.repeat(1) + tgpname;
+                                                        msg1 = tmpname + Tsolidity + ' '.repeat(1) + tgpname;
                                                     } else {
-                                                        var msg1 = tmpname + ' '.repeat(1) + Tsolidity + ' '.repeat(1) + tgpname;
+                                                        msg1 = tmpname + ' '.repeat(1) + Tsolidity + ' '.repeat(1) + tgpname;
                                                     }
-                                                } else {
-                                                    var msg1 = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
-                                                }
+                                                } 
                                             }
                                             if (Tsolidity != "no message") publicmsg(msg1);
                                         }
@@ -11616,7 +11603,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                             target[0].Appearance[A].Difficulty = solidity;
                                         }
                                     }
-				var msg2 = "The solidity of most current " + tgpname + "\u0027s bindings has been changed by " + tmpname + ".";
+				let msg2 = "The solidity of most current " + tgpname + "\u0027s bindings has been changed by " + tmpname + ".";
 				publicmsg(msg2);
                                 ChatRoomCharacterUpdate(target[0]);
                             }
@@ -11633,13 +11620,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target): allows access to target's wheel of fortune, even when not displayed.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The spin command must be followed by the target whose wheel of fortune interests you.";
+                let msg = "The spin command must be followed by the target whose wheel of fortune interests you.";
                 infomsg(msg);
             } else {
-                var targetname = args;
-                var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
+                let targetname = args;
+                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
                 if (target[0] == null) {
-                    var targetnumber = parseInt(targetname);
+                    let targetnumber = parseInt(targetname);
                     target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
                 }
                 if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
@@ -11650,11 +11637,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
                         (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        var msg = umsg1 + tgpname + umsg2;
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
                         if (!InventoryAvailable(target[0], "WheelFortune", "ItemDevices")) {
-                            var msg = "Bad luck! This player does not have a wheel of fortune.";
+                            let msg = "Bad luck! This player does not have a wheel of fortune.";
                             infomsg(msg);
                         } else {
                             CurrentCharacter = target[0];
@@ -11679,7 +11666,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (_, command, args) => {
             var [mode] = args;
             if (!mode) {
-                var msg = "The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
+                let msg = "The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
                     "Note that it can't be used when you are in a 'permanent' stuttering mode, forced with the <b> /stutter </b> command.\n" +
                     " \n" +
                     "Available stuttering modes:\n" +
@@ -11690,15 +11677,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             } else {
                 if ((mode > 0) && (mode < 5) && (StutterOn == false)) {
-                    var [, , ...message] = command.split(" ");
-                    var msg = message?.join(" ");
-                    var nm = 0;
+                    let [, , ...message] = command.split(" ");
+                    let msg = message?.join(" ");
+                    let nm = 0;
                     if (DolltalkOn == true) {
-                        if (IsDollTalk(msg) == false) {
-                            var nm = 1;
-                        }
+                        if (IsDollTalk(msg) == false) nm = 1;
                         if (nm == 1) {
-                            var msg = "Your message can't be sent because it does not respect the rules of doll talk.";
+                            let msg = "Your message can't be sent because it does not respect the rules of doll talk.";
                             infomsg(msg);
                         }
                     }
@@ -11736,34 +11721,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(stuttermode): forces a specific stuttering mode.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The stutter command must be followed by a number between 0 and 4.\n" +
+                let msg = "The stutter command must be followed by a number between 0 and 4.\n" +
                     " \n" +
                     "Available stuttering modes:\n" +
                     "0 no stuttering\n" +
                     "1 light stuttering\n" +
                     "2 normal stuttering\n" +
                     "3 heavy stuttering\n" +
-                    "4 total stuttering<";
+                    "4 total stuttering";
                 infomsg(msg);
             } else {
-                var stlevel = args * 1;
+                let stlevel = args * 1;
+		let msg = "";
+                let msg1 = "";
+                let mgs2 = "";
+                let mg3 = "";
                 ElementValue("InputChat", "");
                 if (stlevel == 0) {
-                    var msg = "No more stuttering.";
+                    msg = "No more stuttering.";
                     infomsg(msg);
                     StutterOn = false;
                     st = stlevel;
                     M_MOANER_saveControls();
                 } else if ((stlevel > 0) && (stlevel < 5)) {
-                    var msg1 = "ULTRAbc:You are now in ";
+                    msg1 = "You are now in ";
                     if (stlevel == 1) msg2 = "light ";
                     if (stlevel == 2) msg2 = "normal ";
                     if (stlevel == 3) msg2 = "heavy ";
                     if (stlevel == 4) msg2 = "total ";
-                    var msg3 = "stuttering mode."
-                    ChatRoomSendLocal(
-                        "<p style='background-color:#5fbd7a'>" + msg1 + msg2 + msg3 + "</p>"
-                    );
+                    msg3 = "stuttering mode."
+                    msg = msg1 + msg2 + msg3;
                     StutterOn = true;
                     st = stlevel;
                     M_MOANER_saveControls();
@@ -11777,15 +11764,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(sides): rolls a superdice. ",
         Action: (args) => {
             if (args === "") {
-                var msg = "The superdice command must be followed by a number between 2 and 999999999.";
+                let msg = "The superdice command must be followed by a number between 2 and 999999999.";
                 infomsg(msg);
             } else {
-                var sides = args;
+                let sides = args;
                 if ((sides < 2) || (sides > 1000000000)) sides = 6;
                 const Result = [];
                 let Roll = Math.floor(Math.random() * sides) + 1;
                 Result.push(Roll);
-		var msg = "" + tmpname + " rolls a superdice of " + sides + " sides. The result is " + Result + ".";
+		let msg = "" + tmpname + " rolls a superdice of " + sides + " sides. The result is " + Result + ".";
 		publicmsg(msg);
             }
         }
