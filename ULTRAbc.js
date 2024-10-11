@@ -1832,10 +1832,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
                 if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
-            if (MouseIn(240, 585, 420, 90))
-                window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
-            if (MouseIn(240, 695, 420, 90))
-                window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+            if (MouseIn(240, 585, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+            if (MouseIn(240, 695, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+	    if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) PrfClick();             
+            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 695) && (MouseY < 785)) ExtClick();            
             next(args);
         });
     }
@@ -1859,14 +1859,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             DrawText("ULTRAbc", 130, 615, "White", "Black");
             DrawText(UBCver, 140, 655, "White", "Black");
-            DrawButton(240, 585, 420, 90, "", "White", "", "Open UBC Changelog on GitHub");
+            DrawButton(240, 585, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
             DrawImageResize("Icons/Changelog.png", 250, 600, 60, 60);
-            DrawTextFit("Open UBC Changelog", 480, 633, 308, "Black");
+            DrawTextFit("UBC Changes", 425, 633, 308, "Black");
+            DrawButton(570, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferences");
             DrawText("/uhelp", 145, 725, "White", "Black");
             DrawText("in chat", 140, 765, "White", "Black");
-            DrawButton(240, 695, 420, 90, "", "White", "", "Open UBC Wiki on GitHub");
+            DrawButton(240, 695, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
             DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
-            DrawTextFit("Open UBC Wiki", 480, 743, 308, "Black");
+            DrawTextFit("UBC Wiki", 425, 743, 308, "Black");
+            DrawButton(570, 695, 90, 90, "EXT", "White", "", "Extensions");
             next(args);
         });
     }
@@ -2546,6 +2548,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CommonSetScreen("Room", "MainHall");
             }
         }
+    }
+
+    function PrfClick() {
+        ChatRoomSetLastChatRoom("");
+        ChatRoomHideElements();
+        InformationSheetLoadCharacter(Player);
+        PreferenceSubscreen = "Main";
+        PreferenceRun(); 
+        CommonSetScreen("Character", "Preference");
     }
 
     function SosButtons() {
@@ -9899,12 +9910,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'pmenu',
         Description: ": direct access to Preferences menu.",
         Action: () => {  
-              ChatRoomSetLastChatRoom("");
-              ChatRoomHideElements();
-              InformationSheetLoadCharacter(Player);
-              PreferenceSubscreen = "Main";
-              PreferenceRun(); 
-              CommonSetScreen("Character", "Preference");
+            PrfClick();
         }
     }])
 
