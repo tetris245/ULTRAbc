@@ -58,7 +58,7 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added two buttons in Main Hall for direct access to Preferences and Extensions screens
+* Added two buttons in Main Hall for direct access to the "Main" Preferences screen and the Extensions screen
 * Added a BACK button in all Preferences screens, so you can fastly go back to the chat room, the Main Hall or the Asylum Entrance
 * New command: uset fixperm to enable/disable automatic change of your general item permission when using the BC safeword command or the revert option in the safeword menu
 * Added support for the Devious Padlock (provided by DOGS mod) to the lock and unlock commands
