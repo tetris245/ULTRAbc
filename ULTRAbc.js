@@ -784,6 +784,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPhotographicRun();
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
+    ULTRAPreferenceClick(); 
+    ULTRAPreferenceRun(); 
     ULTRAPrivateClick();
     ULTRAPrivateRun();
     ULTRAStruggleMinigameWasInterrupted();
@@ -1983,6 +1985,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             FBCsettings();
             next(args);
         });
+    }
+
+    async function ULTRAPreferenceClick() {
+        modApi.hookFunction('PreferenceClick', 4, (args, next) => {
+            let event;
+            if (MouseIn(45, 75, 90, 90)) {
+                PreferenceSubscreenExit();
+                PreferenceExit();
+                InformationSheetExit();
+            }      
+            next(args);
+        });
+    }
+
+    async function ULTRAPreferenceRun() {
+        modApi.hookFunction('PreferenceRun', 4, (args, next) => {
+            MainCanvas.textAlign = "center";
+            DrawButton(45, 75, 90, 90, "BACK", "White", "");
+	    next(args);
+        }); 
     }
 
     //Private Room
