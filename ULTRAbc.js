@@ -1990,8 +1990,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAPreferenceClick() {
         modApi.hookFunction('PreferenceClick', 4, (args, next) => {
             let event;
-            if (MouseIn(45, 75, 90, 90)) {
-                PreferenceSubscreenExit();
+            if (MouseIn(1815, 780, 90, 90)) {
+                let name = PreferenceSubscreen.name;
+                if (name == "Arousal")  PreferenceSubscreenArousalExit();
+                if (name == "Audio") PreferenceSubscreenAudioExit(); 
+                if (name == "CensoredWords") PreferenceSubscreenCensoredWordsExit();  
+                if (name == "Chat") PreferenceSubscreenChatExit();
+                if (name == "Controller") PreferenceSubscreenControllerExit();
+                if (name == "Difficulty") PreferenceSubscreenExit();
+                if ((name == "Extensions") && (PreferenceExtensionsCurrent == null)) PreferenceSubscreenExtensionsExit();
+                if (name == "Gender") PreferenceSubscreenExit();
+                if (name == "General") PreferenceSubscreenGeneralExit();
+                if (name == "Graphics") PreferenceSubscreenGraphicsExit();
+                if (name == "Immersion") PreferenceSubscreenExit();
+                if (name == "Notifications") PreferenceSubscreenNotificationsExit();
+                if (name == "Online") PreferenceSubscreenExit();
+                if (name == "Restriction") PreferenceSubscreenExit();
+                if (name == "Scripts") PreferenceSubscreenScriptsExit();
+                if (name == "Security") PreferenceSubscreenSecurityExit(); 
                 PreferenceExit();
                 InformationSheetExit();
             }      
@@ -2002,9 +2018,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAPreferenceRun() {
         modApi.hookFunction('PreferenceRun', 4, (args, next) => {
             MainCanvas.textAlign = "center";
-            DrawButton(45, 75, 90, 90, "BACK", "White", "");
+            let name = PreferenceSubscreen.name;
+            if ((name != "Extensions") || ((name == "Extensions") && (PreferenceExtensionsCurrent == null))) {
+                DrawButton(1815, 780, 90, 90, "BACK", "White", "");
+            }
 	    next(args);
-        }); 
+        });
     }
 
     //Private Room
