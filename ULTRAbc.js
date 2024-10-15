@@ -2346,7 +2346,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Background
     function updateBackground() {
-        var UpdatedRoom = {
+        let UpdatedRoom = {
             Name: ChatRoomData.Name,
             Description: ChatRoomData.Description,
             Language: ChatRoomData.Language,
@@ -2847,23 +2847,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Preferences 
     function FBCsettings() {
-        if (Player.FBCOtherAddons == undefined) {
-            var gbc = 0;
-            var sbc = 0;
-        } else {
-            str = Player.ExtensionSettings.FBC;
-            d = LZString.decompressFromBase64(str);
-            FBCdata = {};
-            decoded = JSON.parse(d);
+	let gbc = 0;
+        let sbc = 0;
+        if (Player.FBCOtherAddons != undefined) {
+            let str = Player.ExtensionSettings.FBC;
+            let d = LZString.decompressFromBase64(str);
+            let FBCdata = {};
+            let decoded = JSON.parse(d);
             FBCdata = decoded;
             if (FBCdata.antiGarble) {
-                var gbc = 1;
+                gbc = 1;
                 Player.RestrictionSettings.NoSpeechGarble = false;
                 NogarbleOn = false;
                 M_MOANER_saveControls();
             }
             if (FBCdata.autoStruggle) {
-                var sbc = 1;
+                sbc = 1;
                 Player.RestrictionSettings.BypassStruggle = false;
                 NostruggleOn = false;
                 M_MOANER_saveControls();
@@ -3085,22 +3084,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Talking
     function IsDollTalk(text) {
-        var nn = 0;
-        var segmenter = new Intl.Segmenter([], {
+        let nn = 0;
+        let segmenter = new Intl.Segmenter([], {
             granularity: 'word'
         });
-        var segmentedText = segmenter.segment(text);
-        var words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-        var ln = words.length;
-        if (ln > 5) {
-            var nn = 1;
-        }
+        let segmentedText = segmenter.segment(text);
+        let words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+        let ln = words.length;
+        if (ln > 5) nn = 1;
         let i = 0;
         while (i < ln) {
-            var lw = words[i].length;
-            if (lw > 6) {
-                var nn = 1;
-            }
+            let lw = words[i].length;
+            if (lw > 6) nn = 1;
             i++;
         }
         if (nn == 1) {
@@ -3134,30 +3129,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function RealGarblingLevel() {
-        notalk = 0;
+        let notalk = 0;
         ElementValue("InputChat", "");
-        var bl = 0;
+        let bl = 0;
         if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
             gl = SpeechTransformGagGarbleIntensity(Player);
-            if (gl < 1) {
-                bl = 1;
-            }
+            if (gl < 1) bl = 1;
         }
         if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
             gl = SpeechTransformGagGarbleIntensity(Player);
-            if (gl < 1) {
-                bl = 1;
-            }
+            if (gl < 1) bl = 1;
         }
         if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
             gl = SpeechTransformGagGarbleIntensity(Player);
-            if (gl < 1) {
-                bl = 1;
-            }
+            if (gl < 1) bl = 1;
         }
         if (bl == 1) {
             if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
-                var msg = "You are now in real baby talk mode.";
+                let msg = "You are now in real baby talk mode.";
                 infomsg(msg);
                 GagTalkOn = false;
                 BabyTalkOn = true;
@@ -3170,79 +3159,59 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 GagTalkOn = false;
             }
-            mb = 0;
+	    gl = SpeechTransformGagGarbleIntensity(Player);
+            mgl = gl;
             if (Player.ExtensionSettings.MBS != null) {
-                str = Player.ExtensionSettings.MBS;
-                d = LZString.decompressFromUTF16(str);
-                MBSdata = {};
-                decoded = JSON.parse(d);
+                let str = Player.ExtensionSettings.MBS;
+                let d = LZString.decompressFromUTF16(str);
+                let MBSdata = {};
+                let decoded = JSON.parse(d);
                 MBSdata = decoded;
-                if (MBSdata.AlternativeGarbling) {
-                    mb = 1;
-                }
-            }
-            if (mb == 1) {
-                if (ChatRoomTargetMemberNumber == null) {
+                if ((MBSdata.AlternativeGarbling) && (ChatRoomTargetMemberNumber == null)) {
                     gl = 0;
                     mgl = SpeechTransformGagGarbleIntensity(Player);
-                } else {
-                    gl = SpeechTransformGagGarbleIntensity(Player);
-                    mgl = gl;
-                }
-            } else {
-                gl = SpeechTransformGagGarbleIntensity(Player);
-                mgl = gl;
+                } 
             }
             if (gl < 0) gl = 0;
             if (mgl < 0) mgl = 0;
             if (Player.ExtensionSettings.LSCG != null) {
-                str = Player.ExtensionSettings.LSCG;
-                d = LZString.decompressFromBase64(str);
-                LSCGdata = {};
-                decoded = JSON.parse(d);
+                let str = Player.ExtensionSettings.LSCG;
+                let d = LZString.decompressFromBase64(str);
+                let LSCGdata = {};
+                let decoded = JSON.parse(d);
                 LSCGdata = decoded;
-                if (LSCGdata.CollarModule.chokeLevel > 1) {
-                    mgl = (LSCGdata.CollarModule.chokeLevel) * 2 + mgl;
-                }
-                if (LSCGdata.CollarModule.chokeLevel == 4) {
-                    notalk = 1;
-                }
+                if (LSCGdata.CollarModule.chokeLevel > 1) mgl = (LSCGdata.CollarModule.chokeLevel) * 2 + mgl;
+                if (LSCGdata.CollarModule.chokeLevel == 4) notalk = 1;
+		let type = '';
+                let config = "";
                 let states = LSCGdata.StateModule.states;
-                var type = 'asleep';
-                var config = states.find(s => s.type == type);
-                if ((config != undefined) && (config.active == true)) {
-                    notalk = 1;
-                }
-                var type = 'frozen';
-                var config = states.find(s => s.type == type);
-                if ((config != undefined) && (config.active == true)) {
-                    notalk = 1;
-                }
-                var type = 'gagged';
-                var config = states.find(s => s.type == type);
-                if ((config != undefined) && (config.active == true)) {
-                    notalk = 1;
-                }
-                var type = 'hypnotized';
-                var config = states.find(s => s.type == type);
-                if ((config != undefined) && (config.active == true)) {
-                    notalk = 1;
-                }
+                type = 'asleep';
+                config = states.find(s => s.type == type);
+                if ((config != undefined) && (config.active == true)) notalk = 1;
+                type = 'frozen';
+                config = states.find(s => s.type == type);
+                if ((config != undefined) && (config.active == true)) notalk = 1;
+                type = 'gagged';
+                config = states.find(s => s.type == type);
+                if ((config != undefined) && (config.active == true)) notalk = 1;
+                type = 'hypnotized';
+                config = states.find(s => s.type == type);
+                if ((config != undefined) && (config.active == true)) notalk = 1;
             }
             if (mgl == 0) {
                 GagTalkOn = false;
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
-                    var msg = "You are now in normal talk mode.";
+                    let msg = "You are now in normal talk mode.";
                     infomsg(msg);
                 }
             } else {
                 GagTalkOn = true;
                 M_MOANER_saveControls();
-                var msg = "You are now in real gag talk mode. Your current garbling level is " + mgl + ".";
+                let msg = "You are now in real gag talk mode. Your current garbling level is " + mgl + ".";
                 infomsg(msg);
                 if (notalk == 1) {
-                    var msg = "Your very tight collar or a LSCG spell prevents you to talk.";
+                    let msg = "Your very tight collar or a LSCG spell prevents you to talk.";
                     infomsg(msg);
                 }
             }
@@ -3326,6 +3295,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Traps
     function BondagebenchTrap() {
+	let Target = "";
+        let Item = "";
         CharacterNaked(Player);
         InventoryWear(Player, "BondageBench", "ItemDevices");
         if ((InventoryGet(Player, "ItemPelvis") == null) ||
@@ -3376,6 +3347,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function KennelTrap() {
+	let Target = "";
+        let Item = "";
         CharacterNaked(Player);
         InventoryWear(Player, "ShinyPetSuit", "ItemArms");
         if ((InventoryGet(Player, "ItemBreast") == null) ||
@@ -3458,6 +3431,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function LockerTrap() {
+	let Target = "";
+        let Item = "";
         CharacterNaked(Player);
         InventoryWear(Player, "SockStuffing", "ItemMouth");
         InventoryWear(Player, "PantiesMask", "ItemMouth2");
@@ -3515,6 +3490,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function XcrossTrap() {
+	let Target = "";
+        let Item = "";
         CharacterNaked(Player);
         InventoryWear(Player, "LeatherDeluxeCuffs", "ItemArms");
         InventoryWear(Player, "LeatherDeluxeAnkleCuffs", "ItemFeet");
@@ -3568,6 +3545,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Vision
     function BlurEffect() {
+	let BlurLevel = 0;
         if (Blur1On == true) BlurLevel = 3;
         if (Blur2On == true) BlurLevel = 8;
         if (Blur3On == true) BlurLevel = 20;
@@ -7195,35 +7173,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let LSCGdata = {};
                             let decoded = JSON.parse(d);
                             LSCGdata = decoded;
-                            if (LSCGdata.CollarModule.chokeLevel > 1) {
-                                onegl = (LSCGdata.CollarModule.chokeLevel) * 2 + onegl;
-                            }
-                            if (LSCGdata.CollarModule.chokeLevel == 4) {
-                                nt = 1;
-                            }
+                            if (LSCGdata.CollarModule.chokeLevel > 1) onegl = (LSCGdata.CollarModule.chokeLevel) * 2 + onegl;
+                            if (LSCGdata.CollarModule.chokeLevel == 4) nt = 1;
 			    let type = '';
                             let config = "";
                             let states = LSCGdata.StateModule.states;
                             type = 'asleep';
                             config = states.find(s => s.type == type);
-                            if ((config != undefined) && (config.active == true)) {
-                                nt = 1;
-                            }
+                            if ((config != undefined) && (config.active == true)) nt = 1;
                             type = 'frozen';
                             config = states.find(s => s.type == type);
-                            if ((config != undefined) && (config.active == true)) {
-                                nt = 1;
-                            }
+                            if ((config != undefined) && (config.active == true)) nt = 1;
                             type = 'gagged';
                             config = states.find(s => s.type == type);
-                            if ((config != undefined) && (config.active == true)) {
-                                nt = 1;
-                            }
+                            if ((config != undefined) && (config.active == true)) nt = 1;
                             type = 'hypnotized';
                             config = states.find(s => s.type == type);
-                            if ((config != undefined) && (config.active == true)) {
-                                nt = 1;
-                            }
+                            if ((config != undefined) && (config.active == true)) nt = 1;
                         }
                     } else {
                         if (gaglevel == 9) {
@@ -7235,9 +7201,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let nm = 0;
                     if (DolltalkOn == true) {
                         let text = args.substring(2).trim();
-                        if (IsDollTalk(text) == false) {
-                            nm = 1;
-                        }
+                        if (IsDollTalk(text) == false) nm = 1;
                         if (nm == 1) {
                             let msg = "Your message can't be sent because it does not respect the rules of doll talk.";
                             infomsg(msg);
