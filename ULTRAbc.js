@@ -817,18 +817,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (SosbuttonsOn == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
-                    if (Totalrelease == undefined) {
-                        var msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
-                    } else {
+		    let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
+                    if (Totalrelease != undefined) {
                         if (Totalrelease != "") {
                             if (Totalrelease.startsWith("\u0027")) {
-                                var msg = tmpname + Totalrelease;
+                                msg = tmpname + Totalrelease;
                             } else {
-                                var msg = tmpname + ' '.repeat(1) + Totalrelease;
+                                msg = tmpname + ' '.repeat(1) + Totalrelease;
                             }
-                        } else {
-                            var msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
-                        }
+                        } 
                     }
                     if (Totalrelease != "no message") publicmsg(msg);
                     SosClick();
@@ -838,7 +835,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (OutbuttonsOn == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 90) && (MouseY < 135)) {
                     if (SlowleaveOn == true) {
-                        var msg = "" + tmpname + " slowly heads for the door.";
+                        let msg = "" + tmpname + " slowly heads for the door.";
 			publicmsg(msg);
                         setTimeout(function() {
                             OutChat();
@@ -958,22 +955,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((item1 == "FloorItem") && (item2 != "Blank")) {
                     if (item2 == "BondageBench") {
                         BondagebenchTrap();
-			var msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
+			let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
 			publicmsg(msg);
                     }
                     if (item2 == "Kennel") {
                         KennelTrap();
-			var msg = "" + tmpname + " is suddenly trapped in a Kennel.";
+			let msg = "" + tmpname + " is suddenly trapped in a Kennel.";
 			publicmsg(msg);
                     }
                     if (item2 == "Locker") {
                         LockerTrap();
-			var msg = "" + tmpname + " is suddenly trapped in a Locker.";
+			let msg = "" + tmpname + " is suddenly trapped in a Locker.";
 			publicmsg(msg);
                     }
                     if (item2 == "X-Cross") {
                         XcrossTrap();
-			var msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
+			let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
 			publicmsg(msg);
                     }
                 }
@@ -1090,218 +1087,184 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomSendChat() {
         modApi.hookFunction('ChatRoomSendChat', 4, (args, next) => {
             const inputChat = /** @type {null | HTMLTextAreaElement} */ (document.getElementById("InputChat"));
-            if (!inputChat) {
-                return;
-            }
-            var msg = inputChat.value.trim();
+            if (!inputChat) return;
+            msg = inputChat.value.trim();
             if (!msg.length) return;
-            var tsp = 0;
+            let tsp = 0;
+	    let text1 = msg;
             if (msg.startsWith(",")) {
-                var text1 = "(" + msg.slice(1) + ")";
+                text1 = "(" + msg.slice(1) + ")";
                 ElementValue("InputChat", text1);
             } else if ((msg.startsWith("!")) && (Player.ChatSettings.OOCAutoClose == true)) {
-                var lr = SpeechGetOOCRanges(msg).pop();
+                let lr = SpeechGetOOCRanges(msg).pop();
                 if ((lr != undefined) &&
                     (msg.charAt(lr.start + lr.length - 1) != ")") &&
                     (lr.start + lr.length == msg.length) &&
                     (lr.length != 1)) {
-                    var text1 = msg + ")";
-                } else {
-                    var text1 = msg;
-                }
-            } else {
-                var text1 = msg;
+                    text1 = msg + ")";
+                } 
             }
-            if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
-                var tsp = 1;
-            }
-            if ((text1.startsWith("!")) || (text1.startsWith("(")) || (text1.startsWith("*"))) var tsp = 1;
-            if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) var tsp = 1;
-            if (text1.startsWith("/")) {
-                if (!text1.startsWith("//")) {
-                    var tsp = 1;
-                    ChatRoomSetTarget(-1);
-                } else {
-                    var tsp = 2;
-                    var text2 = text1.replaceAt(0, "\u200b");
-                }
-            }
+            if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) tsp = 1;
+            if ((text1.startsWith("!")) || (text1.startsWith("(")) || (text1.startsWith("*"))) tsp = 1;
+            if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) tsp = 1;
             if ((text1.startsWith("@")) && (window.MBCHC)) {
-                var tsp = 1;
+                tsp = 1;
                 ChatRoomSetTarget(-1);
             }
-            if (text1.startsWith("\\")) {
-                var tsp = 2;
-                var text2 = text1.replaceAt(0, "\u200b");
-            }
-            if (tsp == 1) text2 = text1;
-            if (tsp == 2) tsp = 1;
-            if (tsp == 0) {
-                var nm = 0;
-                if (DolltalkOn == true) {
-                    if (IsDollTalk(text1) == false) {
-                        var nm = 1;
-                    }
-                    if (nm == 1) {
-                        var text2 = "";
-                        ElementValue("InputChat", "");
-                        var msg = "Your message or whisper can't be sent because it does not respect the rules of doll talk.";
-                        infomsg(msg);
-                    } else {
-                        var text2 = text1;
-                    }
+            let text2 = text1;	
+            if (text1.startsWith("/")) {
+                if (!text1.startsWith("//")) {
+                    tsp = 1;
+                    ChatRoomSetTarget(-1);
                 } else {
-                    var text2 = text1;
+                    tsp = 2;
+                    text2 = text1.replaceAt(0, "\u200b");
                 }
             }
+            if (text1.startsWith("\\")) {
+                tsp = 2;
+                text2 = text1.replaceAt(0, "\u200b");
+            }
+            if (tsp == 2) tsp = 1;
+	    let nm = 0;
+            if (tsp == 0) {
+                if (DolltalkOn == true) {
+                    if (IsDollTalk(text1) == false) nm = 1;
+                    if (nm == 1) {
+                        text2 = "";
+                        ElementValue("InputChat", "");
+                        let msg = "Your message or whisper can't be sent because it does not respect the rules of doll talk.";
+                        infomsg(msg);
+                    } 
+                }
+            }
+	    let text3 = "";
             if ((tsp == 1) || (nm == 1)) {
-                var text3 = text2;
+                text3 = text2;
             } else {
                 if (this.StutterOn == true) {
-                    var text3 = SpeechTransformStutter(text2, st);
+                    text3 = SpeechTransformStutter(text2, st);
                 } else {
-                    var text3 = text2;
+                    text3 = text2;
                 }
             }
             ElementValue("InputChat", text2.replace(text2, text3));
+	    let text4 = "";
             if ((tsp == 1) || (nm == 1)) {
-                var text4 = text3;
+                text4 = text3;
             } else {
                 if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                    var text4 = M_MOANER_applyMoanToMsg(Player, text3);
+                    text4 = M_MOANER_applyMoanToMsg(Player, text3);
                 } else {
-                    var text4 = text3;
+                    text4 = text3;
                 }
             }
             ElementValue("InputChat", text3.replace(text3, text4));
-            mb = 0;
+            let mb = 0;
             if (Player.ExtensionSettings.MBS != null) {
-                str = Player.ExtensionSettings.MBS;
-                d = LZString.decompressFromUTF16(str);
-                MBSdata = {};
-                decoded = JSON.parse(d);
+                let str = Player.ExtensionSettings.MBS;
+                let d = LZString.decompressFromUTF16(str);
+                let MBSdata = {};
+                let decoded = JSON.parse(d);
                 MBSdata = decoded;
-                if (MBSdata.AlternativeGarbling) {
-                    mb = 1;
-                }
+                if (MBSdata.AlternativeGarbling) mb = 1;
             }
+	    let text5 = "";
             if ((tsp == 1) || (nm == 1)) {
-                var text5 = text4;
+                text5 = text4;
             } else {
                 if (this.BabyTalkOn == true) {
-                    var text5 = SpeechTransformBabyTalk(text4);
+                    text5 = SpeechTransformBabyTalk(text4);
                 } else if (this.GagTalkOn == true) {
                     if (mb == 1) {
                         if (ChatRoomTargetMemberNumber == null) {
-                            var text5 = text4;
+                            text5 = text4;
                         } else {
-                            var text5 = SpeechTransformGagGarble(text4, gl);
+                            text5 = SpeechTransformGagGarble(text4, gl);
                         }
                     } else {
-                        var text5 = SpeechTransformGagGarble(text4, gl);
+                        text5 = SpeechTransformGagGarble(text4, gl);
                     }
                 } else {
-                    var text5 = text4;
+                    text5 = text4;
                 }
             }
             ElementValue("InputChat", text4.replace(text4, text5));
+	    let text6 = "";
             if (ChatRoomTargetMemberNumber == -1) {
                 if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                    var text6 = text5;
+                    text6 = text5;
                 } else {
                     if (gl != 0) {
-                        var text6 = text5;
+                        text6 = text5;
                     } else {
-                        var text6 = text4;
+                        text6 = text4;
                     }
                 }
                 if (nm == 0) {
                     ElementValue("InputChat", text5.replace(text5, text6));
-                    var text6 = text5;
+                    text6 = text5;
                 }
-                if (ac == 1) {
-                    var ac = 0;
-                    var texta = text6;
+		let texta = "";  
+                if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
+                    texta = text6;
                 } else {
-                    if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                        var texta = text6;
-                    } else {
-                        if (this.AnimalTalk1On == true) {
-                            var texta = GarbleTalk(text6, animalmode1);
-                        } else if (this.AnimalTalk2On == true) {
-                            var texta = GarbleTalk(text6, animalmode2);
-                        } else if (this.AnimalTalk3On == true) {
-                            var texta = GarbleTalk(text6, animalmode3);
-                        } else if (this.AnimalTalk4On == true) {
-                            var texta = GarbleTalk(text6, animalmode4);
-                        } else if (this.AnimalTalk5On == true) {
-                            var texta = GarbleTalk(text6, animalmode5);
-                        } else if (this.AnimalTalk6On == true) {
-                            var texta = GarbleTalk(text6, animalmode6);
-                        } else if (this.AnimalTalk7On == true) {
-                            var texta = GarbleTalk(text6, animalmode7);
-                        } else if (this.AnimalTalk8On == true) {
-                            var texta = GarbleTalk(text6, animalmode8);
-                        } else if (this.AnimalTalk9On == true) {
-                            var texta = GarbleTalk(text6, animalmode9);
-                        } else {
-                            var texta = text6;
-                        }
+		    texta = text6;
+                    if (this.AnimalTalk1On == true) texta = GarbleTalk(text6, animalmode1);
+                    if (this.AnimalTalk2On == true) texta = GarbleTalk(text6, animalmode2);
+                    if (this.AnimalTalk3On == true) texta = GarbleTalk(text6, animalmode3);
+                    if (this.AnimalTalk4On == true) texta = GarbleTalk(text6, animalmode4);
+                    if (this.AnimalTalk5On == true) texta = GarbleTalk(text6, animalmode5);
+                    if (this.AnimalTalk6On == true) texta = GarbleTalk(text6, animalmode6);
+                    if (this.AnimalTalk7On == true) texta = GarbleTalk(text6, animalmode7);
+                    if (this.AnimalTalk8On == true) texta = GarbleTalk(text6, animalmode8);
+		    if (this.AnimalTalk9On == true) texta = GarbleTalk(text6, animalmode9);
                     }
                     ElementValue("InputChat", text6.replace(text6, texta));
                 }
             } else {
                 if (NowhisperOn == false) {
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                        var text6 = text5;
+                        text6 = text5;
                     } else {
                         if (gl != 0) {
                             if (Player.RestrictionSettings.NoSpeechGarble) {
-                                var text6 = text5 + " (\u0022" + text4 + "\u0022)";
+                                text6 = text5 + " (\u0022" + text4 + "\u0022)";
                             } else {
-                                var text6 = text5;
+                                text6 = text5;
                             }
                         } else {
-                            var text6 = text4;
+                            text6 = text4;
                         }
                     }
+		    let text7 = "";
                     if (text6.startsWith("*")) {
                         if (text6.startsWith("**")) {
-                            var text7 = text6.slice(1);
+                            text7 = text6.slice(1);
                         } else {
-                            var text7 = "*" + tmpname + text6.slice(1);
+                            text7 = "*" + tmpname + text6.slice(1);
                         }
                     } else {
-                        var text7 = text6;
-                    }
+                        text7 = text6;
+                    }  
+		    let textb = "";
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                        var texta = text7;
+                        textb = text7;
                     } else {
-                        if (this.AnimalTalk1On == true) {
-                            var texta = GarbleTalk(text7, animalmode1);
-                        } else if (this.AnimalTalk2On == true) {
-                            var texta = GarbleTalk(text7, animalmode2);
-                        } else if (this.AnimalTalk3On == true) {
-                            var texta = GarbleTalk(text7, animalmode3);
-                        } else if (this.AnimalTalk4On == true) {
-                            var texta = GarbleTalk(text7, animalmode4);
-                        } else if (this.AnimalTalk5On == true) {
-                            var texta = GarbleTalk(text7, animalmode5);
-                        } else if (this.AnimalTalk6On == true) {
-                            var texta = GarbleTalk(text7, animalmode6);
-                        } else if (this.AnimalTalk7On == true) {
-                            var texta = GarbleTalk(text7, animalmode7);
-                        } else if (this.AnimalTalk8On == true) {
-                            var texta = GarbleTalk(text7, animalmode8);
-                        } else if (this.AnimalTalk9On == true) {
-                            var texta = GarbleTalk(text7, animalmode9);
-                        } else {
-                            var texta = text7;
-                        }
+			textb = text7;
+                        if (this.AnimalTalk1On == true) textb = GarbleTalk(text7, animalmode1);
+                        if (this.AnimalTalk2On == true) textb = GarbleTalk(text7, animalmode2);
+                        if (this.AnimalTalk3On == true) textb = GarbleTalk(text7, animalmode3);
+                        if (this.AnimalTalk4On == true) textb = GarbleTalk(text7, animalmode4);
+                        if (this.AnimalTalk5On == true) textb = GarbleTalk(text7, animalmode5);
+                        if (this.AnimalTalk6On == true) textb = GarbleTalk(text7, animalmode6);
+                        if (this.AnimalTalk7On == true) textb = GarbleTalk(text7, animalmode7);
+                        if (this.AnimalTalk8On == true) textb = GarbleTalk(text7, animalmode8);
+                        if (this.AnimalTalk9On == true) textb = GarbleTalk(text7, animalmode9);
                     }
                     if (texta != "") {
                         targetNumber = ChatRoomTargetMemberNumber;
-                        ChatRoomSendWhisper(targetNumber, texta);
+                        ChatRoomSendWhisper(targetNumber, textb);
                         ElementValue("InputChat", "");
                     }
                 }
@@ -1777,12 +1740,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('StruggleMinigameWasInterrupted', 4, (args, next) => {
             if (FullseedOn == true) {
                 if (StruggleProgressCurrentMinigame === "LockPick") {
-                    var seed = parseInt(StruggleLockPickOrder.join(""));
-                    var tips = StruggleLockPickOrder.map((a) => {
+                    let seed = parseInt(StruggleLockPickOrder.join(""));
+                    let tips = StruggleLockPickOrder.map((a) => {
                         return true;
                     });
                     for (let q = 0; q < tips.length; q++) {
-                        var xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
+                        let xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
                         DrawText(`${StruggleLockPickOrder.indexOf(q) + 1}`, xx, 300, "blue");
                     }
                     return false;
@@ -1804,9 +1767,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAMagicPuzzleRun() {
         modApi.hookFunction('MagicPuzzleRun', 4, (args, next) => {
             if (MagiccheatOn == true) {
-                if (MiniGameEnded) {
-                    MiniGameVictory = true;
-                }
+                if (MiniGameEnded) MiniGameVictory = true;
             }
             next(args);
         });
@@ -2192,7 +2153,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAAppearanceClick() {
         modApi.hookFunction('AppearanceClick', 4, (args, next) => {
-            var C = CharacterAppearanceSelection;
+            let C = CharacterAppearanceSelection;
             if (CharacterAppearanceMode == "Wardrobe") {
                 if ((MouseX >= 1510) && (MouseX < 1610) && (MouseY >= 240) && (MouseY < 290)) {
                     if (C.OnlineSharedSettings.UBC != undefined) {
@@ -2206,12 +2167,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 (C.OnlineSharedSettings.Uwall == true) &&
                                 ((C.OnlineSharedSettings.Ulist == undefined) ||
                                 (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                                var msg = "UBC Export is not possible because " + tgpname + " has enabled the Uwall protection.";
+                                let msg = "UBC Export is not possible because " + tgpname + " has enabled the Uwall protection.";
                                 infomsg(msg);
                             } else {
-                                var appall = new Array();
+                                let appall = new Array();
                                 C.Appearance.forEach(item => {
-                                    var app = new Array();
+                                    let app = new Array();
                                     app.push(item.Asset.Name);
                                     app.push(item.Asset.Group.Name);
                                     app.push(item.Color);
@@ -2231,7 +2192,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DialogLeave();
                 }
                 if ((MouseX >= 1630) && (MouseX < 1730) && (MouseY >= 240) && (MouseY < 290)) {
-                    appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
                     if (C.OnlineSharedSettings.UBC != undefined) {
                         if ((C.Nickname == '') || (C.Nickname == undefined)) {
                             tgpname = C.Name;
@@ -2242,7 +2203,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             (C.OnlineSharedSettings.Uwall == true) &&
                             ((C.OnlineSharedSettings.Ulist == undefined) ||
                             (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
+                            let msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
                             infomsg(msg);
                         } else {
                             for (let A = C.Appearance.length - 1; A >= 0; A--)
@@ -2252,7 +2213,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     }
                                 }
                             CharacterReleaseNoLock(C);
-                            var appobj = JSON.parse(decodeURI(atob(appinp)));
+                            let appobj = JSON.parse(decodeURI(atob(appinp)));
                             appobj.forEach(itemstr => {
                                 if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
                                     if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
@@ -2270,7 +2231,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DialogLeave();
                 }
                 if ((MouseX >= 1750) && (MouseX < 1850) && (MouseY >= 240) && (MouseY < 290)) {
-                    appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
                     if (C.OnlineSharedSettings.UBC != undefined) {
                         if ((C.Nickname == '') || (C.Nickname == undefined)) {
                             tgpname = C.Name;
@@ -2281,12 +2242,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             (C.OnlineSharedSettings.Uwall == true) &&
                             ((C.OnlineSharedSettings.Ulist == undefined) ||
                             (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
+                            let msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
                             infomsg(msg);
                         } else {
                             CharacterNaked(C);
                             CharacterReleaseNoLock(C);
-                            var appobj = JSON.parse(decodeURI(atob(appinp)));
+                            let appobj = JSON.parse(decodeURI(atob(appinp)));
                             appobj.forEach(itemstr => {
                                 if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
                                     if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
@@ -2304,7 +2265,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DialogLeave();
                 }
                 if ((MouseX >= 1870) && (MouseX < 1970) && (MouseY >= 240) && (MouseY < 290)) {
-                    appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
                     if (C.OnlineSharedSettings.UBC != undefined) {
                         if ((C.Nickname == '') || (C.Nickname == undefined)) {
                             tgpname = C.Name;
@@ -2315,12 +2276,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             (C.OnlineSharedSettings.Uwall == true) &&
                             ((C.OnlineSharedSettings.Ulist == undefined) ||
                             (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            var msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
+                            let msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
                             infomsg(msg);
                         } else {
                             CharacterNaked(C);
                             CharacterReleaseNoLock(C);
-                            var appobj = JSON.parse(decodeURI(atob(appinp)));
+                            let appobj = JSON.parse(decodeURI(atob(appinp)));
                             appobj.forEach(itemstr => {
                                 if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
                                     if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
