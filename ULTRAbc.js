@@ -1087,184 +1087,218 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomSendChat() {
         modApi.hookFunction('ChatRoomSendChat', 4, (args, next) => {
             const inputChat = /** @type {null | HTMLTextAreaElement} */ (document.getElementById("InputChat"));
-            if (!inputChat) return;
-            msg = inputChat.value.trim();
+            if (!inputChat) {
+                return;
+            }
+            var msg = inputChat.value.trim();
             if (!msg.length) return;
-            let tsp = 0;
-	    let text1 = msg;
+            var tsp = 0;
             if (msg.startsWith(",")) {
-                text1 = "(" + msg.slice(1) + ")";
+                var text1 = "(" + msg.slice(1) + ")";
                 ElementValue("InputChat", text1);
             } else if ((msg.startsWith("!")) && (Player.ChatSettings.OOCAutoClose == true)) {
-                let lr = SpeechGetOOCRanges(msg).pop();
+                var lr = SpeechGetOOCRanges(msg).pop();
                 if ((lr != undefined) &&
                     (msg.charAt(lr.start + lr.length - 1) != ")") &&
                     (lr.start + lr.length == msg.length) &&
                     (lr.length != 1)) {
-                    text1 = msg + ")";
-                } 
+                    var text1 = msg + ")";
+                } else {
+                    var text1 = msg;
+                }
+            } else {
+                var text1 = msg;
             }
-            if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) tsp = 1;
-            if ((text1.startsWith("!")) || (text1.startsWith("(")) || (text1.startsWith("*"))) tsp = 1;
-            if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) tsp = 1;
-            if ((text1.startsWith("@")) && (window.MBCHC)) {
-                tsp = 1;
-                ChatRoomSetTarget(-1);
+            if ((text1.startsWith(".")) && (window.BCX_Loaded == true)) {
+                var tsp = 1;
             }
-            let text2 = text1;	
+            if ((text1.startsWith("!")) || (text1.startsWith("(")) || (text1.startsWith("*"))) var tsp = 1;
+            if ((text1.startsWith(":")) && (Player.ChatSettings.MuStylePoses == true)) var tsp = 1;
             if (text1.startsWith("/")) {
                 if (!text1.startsWith("//")) {
-                    tsp = 1;
+                    var tsp = 1;
                     ChatRoomSetTarget(-1);
                 } else {
-                    tsp = 2;
-                    text2 = text1.replaceAt(0, "\u200b");
+                    var tsp = 2;
+                    var text2 = text1.replaceAt(0, "\u200b");
                 }
+            }
+            if ((text1.startsWith("@")) && (window.MBCHC)) {
+                var tsp = 1;
+                ChatRoomSetTarget(-1);
             }
             if (text1.startsWith("\\")) {
-                tsp = 2;
-                text2 = text1.replaceAt(0, "\u200b");
+                var tsp = 2;
+                var text2 = text1.replaceAt(0, "\u200b");
             }
+            if (tsp == 1) text2 = text1;
             if (tsp == 2) tsp = 1;
-	    let nm = 0;
             if (tsp == 0) {
+                var nm = 0;
                 if (DolltalkOn == true) {
-                    if (IsDollTalk(text1) == false) nm = 1;
+                    if (IsDollTalk(text1) == false) {
+                        var nm = 1;
+                    }
                     if (nm == 1) {
-                        text2 = "";
+                        var text2 = "";
                         ElementValue("InputChat", "");
-                        let msg = "Your message or whisper can't be sent because it does not respect the rules of doll talk.";
+                        var msg = "Your message or whisper can't be sent because it does not respect the rules of doll talk.";
                         infomsg(msg);
-                    } 
+                    } else {
+                        var text2 = text1;
+                    }
+                } else {
+                    var text2 = text1;
                 }
             }
-	    let text3 = "";
             if ((tsp == 1) || (nm == 1)) {
-                text3 = text2;
+                var text3 = text2;
             } else {
                 if (this.StutterOn == true) {
-                    text3 = SpeechTransformStutter(text2, st);
+                    var text3 = SpeechTransformStutter(text2, st);
                 } else {
-                    text3 = text2;
+                    var text3 = text2;
                 }
             }
             ElementValue("InputChat", text2.replace(text2, text3));
-	    let text4 = "";
             if ((tsp == 1) || (nm == 1)) {
-                text4 = text3;
+                var text4 = text3;
             } else {
                 if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                    text4 = M_MOANER_applyMoanToMsg(Player, text3);
+                    var text4 = M_MOANER_applyMoanToMsg(Player, text3);
                 } else {
-                    text4 = text3;
+                    var text4 = text3;
                 }
             }
             ElementValue("InputChat", text3.replace(text3, text4));
-            let mb = 0;
+            mb = 0;
             if (Player.ExtensionSettings.MBS != null) {
-                let str = Player.ExtensionSettings.MBS;
-                let d = LZString.decompressFromUTF16(str);
-                let MBSdata = {};
-                let decoded = JSON.parse(d);
+                str = Player.ExtensionSettings.MBS;
+                d = LZString.decompressFromUTF16(str);
+                MBSdata = {};
+                decoded = JSON.parse(d);
                 MBSdata = decoded;
-                if (MBSdata.AlternativeGarbling) mb = 1;
+                if (MBSdata.AlternativeGarbling) {
+                    mb = 1;
+                }
             }
-	    let text5 = "";
             if ((tsp == 1) || (nm == 1)) {
-                text5 = text4;
+                var text5 = text4;
             } else {
                 if (this.BabyTalkOn == true) {
-                    text5 = SpeechTransformBabyTalk(text4);
+                    var text5 = SpeechTransformBabyTalk(text4);
                 } else if (this.GagTalkOn == true) {
                     if (mb == 1) {
                         if (ChatRoomTargetMemberNumber == null) {
-                            text5 = text4;
+                            var text5 = text4;
                         } else {
-                            text5 = SpeechTransformGagGarble(text4, gl);
+                            var text5 = SpeechTransformGagGarble(text4, gl);
                         }
                     } else {
-                        text5 = SpeechTransformGagGarble(text4, gl);
+                        var text5 = SpeechTransformGagGarble(text4, gl);
                     }
                 } else {
-                    text5 = text4;
+                    var text5 = text4;
                 }
             }
             ElementValue("InputChat", text4.replace(text4, text5));
-	    let text6 = "";
             if (ChatRoomTargetMemberNumber == -1) {
                 if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                    text6 = text5;
+                    var text6 = text5;
                 } else {
                     if (gl != 0) {
-                        text6 = text5;
+                        var text6 = text5;
                     } else {
-                        text6 = text4;
+                        var text6 = text4;
                     }
                 }
                 if (nm == 0) {
                     ElementValue("InputChat", text5.replace(text5, text6));
-                    text6 = text5;
+                    var text6 = text5;
                 }
-		let texta = "";  
-                if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                    texta = text6;
+                if (ac == 1) {
+                    var ac = 0;
+                    var texta = text6;
                 } else {
-		    texta = text6;
-                    if (this.AnimalTalk1On == true) texta = GarbleTalk(text6, animalmode1);
-                    if (this.AnimalTalk2On == true) texta = GarbleTalk(text6, animalmode2);
-                    if (this.AnimalTalk3On == true) texta = GarbleTalk(text6, animalmode3);
-                    if (this.AnimalTalk4On == true) texta = GarbleTalk(text6, animalmode4);
-                    if (this.AnimalTalk5On == true) texta = GarbleTalk(text6, animalmode5);
-                    if (this.AnimalTalk6On == true) texta = GarbleTalk(text6, animalmode6);
-                    if (this.AnimalTalk7On == true) texta = GarbleTalk(text6, animalmode7);
-                    if (this.AnimalTalk8On == true) texta = GarbleTalk(text6, animalmode8);
-		    if (this.AnimalTalk9On == true) texta = GarbleTalk(text6, animalmode9);
+                    if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
+                        var texta = text6;
+                    } else {
+                        if (this.AnimalTalk1On == true) {
+                            var texta = GarbleTalk(text6, animalmode1);
+                        } else if (this.AnimalTalk2On == true) {
+                            var texta = GarbleTalk(text6, animalmode2);
+                        } else if (this.AnimalTalk3On == true) {
+                            var texta = GarbleTalk(text6, animalmode3);
+                        } else if (this.AnimalTalk4On == true) {
+                            var texta = GarbleTalk(text6, animalmode4);
+                        } else if (this.AnimalTalk5On == true) {
+                            var texta = GarbleTalk(text6, animalmode5);
+                        } else if (this.AnimalTalk6On == true) {
+                            var texta = GarbleTalk(text6, animalmode6);
+                        } else if (this.AnimalTalk7On == true) {
+                            var texta = GarbleTalk(text6, animalmode7);
+                        } else if (this.AnimalTalk8On == true) {
+                            var texta = GarbleTalk(text6, animalmode8);
+                        } else if (this.AnimalTalk9On == true) {
+                            var texta = GarbleTalk(text6, animalmode9);
+                        } else {
+                            var texta = text6;
+                        }
                     }
                     ElementValue("InputChat", text6.replace(text6, texta));
                 }
             } else {
                 if (NowhisperOn == false) {
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                        text6 = text5;
+                        var text6 = text5;
                     } else {
                         if (gl != 0) {
                             if (Player.RestrictionSettings.NoSpeechGarble) {
-                                text6 = text5 + " (\u0022" + text4 + "\u0022)";
+                                var text6 = text5 + " (\u0022" + text4 + "\u0022)";
                             } else {
-                                text6 = text5;
+                                var text6 = text5;
                             }
                         } else {
-                            text6 = text4;
+                            var text6 = text4;
                         }
                     }
-		    let text7 = "";
                     if (text6.startsWith("*")) {
                         if (text6.startsWith("**")) {
-                            text7 = text6.slice(1);
+                            var text7 = text6.slice(1);
                         } else {
-                            text7 = "*" + tmpname + text6.slice(1);
+                            var text7 = "*" + tmpname + text6.slice(1);
                         }
                     } else {
-                        text7 = text6;
-                    }  
-		    let textb = "";
+                        var text7 = text6;
+                    }
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
-                        textb = text7;
+                        var texta = text7;
                     } else {
-			textb = text7;
-                        if (this.AnimalTalk1On == true) textb = GarbleTalk(text7, animalmode1);
-                        if (this.AnimalTalk2On == true) textb = GarbleTalk(text7, animalmode2);
-                        if (this.AnimalTalk3On == true) textb = GarbleTalk(text7, animalmode3);
-                        if (this.AnimalTalk4On == true) textb = GarbleTalk(text7, animalmode4);
-                        if (this.AnimalTalk5On == true) textb = GarbleTalk(text7, animalmode5);
-                        if (this.AnimalTalk6On == true) textb = GarbleTalk(text7, animalmode6);
-                        if (this.AnimalTalk7On == true) textb = GarbleTalk(text7, animalmode7);
-                        if (this.AnimalTalk8On == true) textb = GarbleTalk(text7, animalmode8);
-                        if (this.AnimalTalk9On == true) textb = GarbleTalk(text7, animalmode9);
+                        if (this.AnimalTalk1On == true) {
+                            var texta = GarbleTalk(text7, animalmode1);
+                        } else if (this.AnimalTalk2On == true) {
+                            var texta = GarbleTalk(text7, animalmode2);
+                        } else if (this.AnimalTalk3On == true) {
+                            var texta = GarbleTalk(text7, animalmode3);
+                        } else if (this.AnimalTalk4On == true) {
+                            var texta = GarbleTalk(text7, animalmode4);
+                        } else if (this.AnimalTalk5On == true) {
+                            var texta = GarbleTalk(text7, animalmode5);
+                        } else if (this.AnimalTalk6On == true) {
+                            var texta = GarbleTalk(text7, animalmode6);
+                        } else if (this.AnimalTalk7On == true) {
+                            var texta = GarbleTalk(text7, animalmode7);
+                        } else if (this.AnimalTalk8On == true) {
+                            var texta = GarbleTalk(text7, animalmode8);
+                        } else if (this.AnimalTalk9On == true) {
+                            var texta = GarbleTalk(text7, animalmode9);
+                        } else {
+                            var texta = text7;
+                        }
                     }
                     if (texta != "") {
                         targetNumber = ChatRoomTargetMemberNumber;
-                        ChatRoomSendWhisper(targetNumber, textb);
+                        ChatRoomSendWhisper(targetNumber, texta);
                         ElementValue("InputChat", "");
                     }
                 }
