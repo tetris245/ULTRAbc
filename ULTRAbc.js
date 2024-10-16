@@ -9052,7 +9052,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let custom = message?.join(" ");
                 if (custom != "") {
 		    let option2 = "";
-                    if ((option.startsWith("t")) && (option != "totalrelease")) var option2 = option.slice(1);
+                    if ((option.startsWith("t")) && (option != "totalrelease")) option2 = option.slice(1);
                     let msg1 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option + " command on yourself.</p>";
                     let msg2 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option + " command on yourself.</p>"
                     let msg3 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option + " command on yourself.</p>"
