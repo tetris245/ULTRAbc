@@ -765,6 +765,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchRoomSpaceSelectDraw();
     ULTRAChatSearchRun();
     ULTRAClubCardEndTurn();
+    ULTRAClubCardGetReward(); 
     ULTRAClubCardLoadDeckNumber();
     UKTRACommandAutoComplete();
     ULTRADrawCharacter();
@@ -1534,7 +1535,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let FameMoneyText = "";
                 ClubCardRunTurnEndHandlers(CCPlayer, Opponent, true);
                 if (CCPlayer.Board != null) {
-		    for (let Card of CCPlayer.Board) {
+		    for (const Card of CCPlayer.Board) {
 		        if (Card.FamePerTurn != null) ClubCardPlayerAddFame(CCPlayer, Card.FamePerTurn);
 			if (Card.MoneyPerTurn != null) ClubCardPlayerAddMoney(CCPlayer, Card.MoneyPerTurn);
 		    }    
@@ -1547,7 +1548,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    CCPlayer.LastFamePerTurn = 0;
 	        }      	          
                 FameMoneyText = ((CCPlayer.LastFamePerTurn >= 0) ? "+" : "") + CCPlayer.LastFamePerTurn.toString() + " Fame, " + ((CCPlayer.LastMoneyPerTurn >= 0) ? "+" : "") + CCPlayer.LastMoneyPerTurn.toString() + " Money";
-                let TurnText = "Turn " + CCPlayer.ClubCardTurnCounter.toString() + ".";
                 if (CCPlayer.Fame >= ClubCardFameGoal) {
                     MiniGameVictory = (CCPlayer.Control == "Player");
                     MiniGameEnded = true;
@@ -1561,12 +1561,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     GameClubCardReset();
                     return;
                 }
+		if (!ClubCardIsStartTurnAddedLog) {
+		    ClubCardLogAdd(TextGet("StartTurnLogChat")
+		        .replace("TURNNUMBER", `${CCPlayer.ClubCardTurnCounter}`)
+			.replace("PLAYERNAME", CharacterNickname(CCPlayer.Character)));
+	        }
+	        ClubCardIsStartTurnAddedLog = false;
                 ClubCardTurnEndDraw = Draw;
                 if (Draw) {
-                    ClubCardLogAdd(TextGet("EndDrawPlayer").replace("TURNNUMBER", TurnText).replace("FAMEMONEY", FameMoneyText).replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)).replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
+                    ClubCardLogAdd(TextGet("EndDrawPlayer")
+			.replace("TURNNUMBER", "")
+			.replace("FAMEMONEY", FameMoneyText)
+			.replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character))
+			.replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
                     ClubCardPlayerDrawCard(ClubCardPlayer[ClubCardTurnIndex]);
                 } else {
-                    ClubCardLogAdd(TextGet("EndTurnPlayer").replace("TURNNUMBER", TurnText).replace("FAMEMONEY", FameMoneyText).replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)).replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
+                    ClubCardLogAdd(TextGet("EndTurnPlayer").
+			replace("TURNNUMBER", "")
+			.replace("FAMEMONEY", FameMoneyText)
+			.replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)
+			.replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
                 }
                 Draw = false;
                 ClubCardTurnIndex++;
@@ -1604,7 +1618,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			}
                     }
                 }
-                for (let Card of turnStartCards) {
+                for (const Card of turnStartCards) {
 		    Card.turnStart(CCPlayer);
 	        }
                 GameClubCardSyncOnlineData();
@@ -1614,10 +1628,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAClubCardGetReward() {
+        modApi.hookFunction('ClubCardGetReward', 4, (args, next) => {
+            if (HighfameOn == true) {
+                ClubCardFameGoal = cfame;
+                let nmg = "";
+                let Char = String.fromCharCode(ClubCardReward.ID);
+	        if (Player.Game.ClubCard.Reward.indexOf(Char) < 0) {
+	            ClubCardFocus = ClubCardReward;
+		    Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
+		    ServerAccoutUpdate.QueueData({ Game: Player.Game }, true);
+                    nmg = TextGet("WonNewCard");
+                    Msg = nmg.replace("100", cfame);
+		    ClubCardCreatePopup("TEXT", Msg + " " + ClubCardReward.Title, TextGet("Return"), null, "ClubCardEndGame()", null);
+	        } 
+            }
+            next(args);
+        });
+    }
+
     async function ULTRAClubCardLoadDeckNumber() {
         modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
             let originaldesk = ClubCardBuilderDefaultDeck;
-            let ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1009, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
+	    let ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
             if (cdesk == 1) ClubCardBuilderDefaultDeck = ClubCardBuilderABDLDeck;
             if (cdesk == 2) ClubCardBuilderDefaultDeck = ClubCardBuilderAsylumDeck;
             if (cdesk == 3) ClubCardBuilderDefaultDeck = ClubCardBuilderCollegeDeck;
@@ -6054,7 +6087,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": gives all extra cards of the Bondage Club Card Game.",
         Action: () => {
             Player.Game.ClubCard.Reward = "";
-            let Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 30012, 30013, 30021, 30022];
+            let Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
             let msg = "All extra cards of the Bondage Club Card Game now added.";
             infomsg(msg);
             for (let i = 0; i < Extra.length; i++) {
