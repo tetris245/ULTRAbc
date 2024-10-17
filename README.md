@@ -64,7 +64,9 @@ Changes for future version
 * Added support for the Devious Padlock (provided by DOGS mod) to the lock and unlock commands
   - Note 1: The lock command will work only if both players (source and target) have enabled the Devious Padlock in the DOGS menu
   - Note 2: As this lock is normally protected from cheats, the unlock command (and other 'escape' commands) will work only with a modified version of the DOGS mod
-* Updated the high fame mode for Club Card Game with all the improvements made in BC since March 2024
+* Updated the high fame mode for Club Card Game with all the improvements made in BC since March 2024 + fixed the final message when receiving a reward card in high fame mode
+* Updated the cardextra command and the Club Card Extra Deck
 * Improved the diaper command by adding extra conditions for the custom settings
 * Improved and optimised the outfit command 
-* Optimised the gender checking for the Player
+* Optimised the gender checking for the Player and several other parts of the code 
+ 
