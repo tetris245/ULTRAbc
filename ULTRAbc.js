@@ -1579,7 +1579,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ClubCardLogAdd(TextGet("EndTurnPlayer").
 			replace("TURNNUMBER", "")
 			.replace("FAMEMONEY", FameMoneyText)
-			.replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character)
+			.replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character))
 			.replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character)));
                 }
                 Draw = false;
