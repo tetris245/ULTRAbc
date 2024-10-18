@@ -69,4 +69,4 @@ Changes for future version
 * Improved the diaper command by adding extra conditions for the custom settings
 * Improved and optimised the outfit command 
 * Optimised the gender checking for the Player and several other parts of the code 
- 
+* Migrated almost all variables from 'var' to 'let' (or 'const' in a few cases)
