@@ -63,7 +63,7 @@ Changes for future version
 * New command: uset fixperm to enable/disable automatic change of your general item permission when using the BC safeword command or the revert option in the safeword menu
 * Added support for the Devious Padlock (provided by DOGS mod) to the lock and unlock commands
   - Note 1: The lock command will work only if both players (source and target) have enabled the Devious Padlock in the DOGS menu
-  - Note 2: As this lock is normally protected from cheats, the unlock command (and other 'escape' commands) will work only with a modified version of the DOGS mod
+  - Note 2: As this lock is normally protected from cheats, the unlock command (and other 'escape' commands) will work only when the locked player uses a modified version of the DOGS mod
 * Updated the high fame mode for Club Card Game with all the improvements made in BC since March 2024 + fixed the final message when receiving a reward card in high fame mode
 * Updated the cardextra command and the Club Card Extra Deck
 * Improved the diaper command by adding extra conditions for the custom settings
