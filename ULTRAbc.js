@@ -53,9 +53,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const umsg1 = "Your command can't be executed because ";
     const umsg2 = " has enabled the Uwall protection.";
 
-    var M_MOANER_moanerKey = "bc_moaner_";
-    var M_MOANER_scriptOn = false;
-    var M_MOANER_cum = false;
+    const M_MOANER_moanerKey = "bc_moaner_";
+    let M_MOANER_scriptOn = false;
+    let M_MOANER_cum = false;
     let profileName;
     let animal = 0;
     let bgall = false;
@@ -85,8 +85,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let NogarbleOn;
     let NostruggleOn;
     let NotimeoutOn;
-    var NowhisperOn = false;
-    var NPCpunish = false;
+    let NowhisperOn = false;
+    let NPCpunish = false;
     let OutbuttonsOn;
     let RglbuttonsOn;
     let SlowleaveOn;
@@ -124,12 +124,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let Tuntie = "";
     let Tvisible = "";
 
-    var M_MOANER_orgasmActive = true;
-    var M_MOANER_spankActive = true;
-    var M_MOANER_talkActive = true;
-    var M_MOANER_tickleActive = true;
-    var M_MOANER_vibratorActive = true;
-    var M_MOANER_xvibratorActive = false;
+    let M_MOANER_orgasmActive = true;
+    let M_MOANER_spankActive = true;
+    let M_MOANER_talkActive = true;
+    let M_MOANER_tickleActive = true;
+    let M_MOANER_vibratorActive = true;
+    let M_MOANER_xvibratorActive = false;
 
     //BC Slots
     const body1 = ["Activity", "Blush", "BodyLower", "BodyMarkings", "BodyUpper", "Emoticon", "Eyebrows", "Eyes", "Eyes2", "EyeShadow", "Face", "FacialHair", "Fluids", "HairBack", "HairFront", "Hands", "Head", "Height", "Mouth", "Nipples", "Pronouns", "Pussy"];
@@ -177,9 +177,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let animalmode9 = ["owo", "owoo", "whoo", "owoooo", "howl", "howll", "hoowl"];
 
     //Moaner Default Profile
-    var M_MOANER_profileName = "default";
+    let M_MOANER_profileName = "default";
 
-    M_MOANER_defaultMoans = {
+    let M_MOANER_defaultMoans = {
         "hot": ["n... Nyah\u2665", "Oooh", "mmmmmh!", "NYyaaA\u2665"],
         "medium": ["mm", "aaaah", "nyAh\u2665"],
         "light": ["nyah\u2665", "Aah!", "mh", "oh!\u2665", "mh\u2665"],
@@ -189,7 +189,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "tickle": ["Hahaha!", "Mmmmhahaha!", "Muhahah...", "Ha!Ha!"]
     }
 
-    M_MOANER_customMoans = {
+    let M_MOANER_customMoans = {
         "hot": [],
         "medium": [],
         "light": [],
@@ -199,7 +199,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "tickle": []
     }
 
-    var M_MOANER_moansProfiles = [];
+    let M_MOANER_moansProfiles = [];
 
     //Moaner Profiles Management
     function M_MOANER_activerProfile(name) {
@@ -213,7 +213,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_getMoans(name) {
-        var pleasureMoans = M_MOANER_moansProfiles[name];
+        let pleasureMoans = M_MOANER_moansProfiles[name];
         if (pleasureMoans == undefined) {
             pleasureMoans = M_MOANER_defaultMoans;
         }
@@ -615,7 +615,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function M_MOANER_deleteControls() {
         kp = 1;
         for (var i = 0; i < localStorage.length; i++) {
-            var key = localStorage.key(i);
+            let key = localStorage.key(i);
             if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
                 localStorage.removeItem(key);
             }
@@ -3899,7 +3899,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_getKeys(obj) {
-        var keys = [];
+        let keys = [];
         for (var key in obj) {
             keys.push(key);
         }
@@ -3907,13 +3907,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_shuffle(array, seed) {
-        var currentIndex = array.length,
+        let currentIndex = array.length,
             temporaryValue, randomIndex;
         // While there remain elements to M_MOANER_shuffle...
         while (0 !== currentIndex) {
             seed = M_MOANER_getRandomNumber(seed);
             // Pick a remaining element...
-            randomIndex = seed % (array.length - 1);
+            let randomIndex = seed % (array.length - 1);
             currentIndex -= 1;
             // And swap it with the current element.
             temporaryValue = array[currentIndex];
@@ -3929,12 +3929,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //MoanerReactions in chat
-    var M_MOANER_orgasmMoans = [];
-    var M_MOANER_factor4Moans = [];
-    var M_MOANER_factor3Moans = [];
-    var M_MOANER_factor2Moans = [];
-    var factor1Moans = [];
-    var PROPORTION_MAX = 40;
+    let M_MOANER_orgasmMoans = [];
+    let M_MOANER_factor4Moans = [];
+    let M_MOANER_factor3Moans = [];
+    let M_MOANER_factor2Moans = [];
+    let factor1Moans = [];
+    let PROPORTION_MAX = 40;
 
     window.ChatRoomRegisterMessageHandler({
         Priority: 600,
@@ -3949,12 +3949,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function M_MOANER_reactionOrgasm(Player) {
         if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
             if ((Player.ID == 0) && (Player.ArousalSettings.OrgasmStage == 2)) {
-                var moan;
-                var backupChatRoomTargetMemberNumber = -1;
+                let moan;
+	        let sc;
+                let backupChatRoomTargetMemberNumber = -1;
                 // not in whisper mode
                 // initially not as /me
                 // only in normal talk mode
-                msg = ElementValue("InputChat");
+                let msg = ElementValue("InputChat");
                 if (M_MOANER_isSimpleChat(msg)) {
                     sc = 1;
                     moan = msg + "... " + getOrgasmMoan();
@@ -3965,42 +3966,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     moan = "... " + getOrgasmMoan();
                 }
                 ElementValue("InputChat", moan);
-                if (this.StutterOn == true) {
-                    var moan2 = SpeechTransformStutter(moan, st);
-                } else {
-                    var moan2 = moan;
-                }
+		let moan2 = moan;
+                if (this.StutterOn == true) moan2 = SpeechTransformStutter(moan, st);
                 ElementValue("InputChat", moan.replace(moan, moan2));
-                mb = 0;
+                let mb = 0;
                 if (Player.ExtensionSettings.MBS != null) {
-                    str = Player.ExtensionSettings.MBS;
-                    d = LZString.decompressFromUTF16(str);
-                    MBSdata = {};
-                    decoded = JSON.parse(d);
+                    let str = Player.ExtensionSettings.MBS;
+                    let d = LZString.decompressFromUTF16(str);
+                    let MBSdata = {};
+                    let decoded = JSON.parse(d);
                     MBSdata = decoded;
-                    if (MBSdata.AlternativeGarbling) {
-                        mb = 1;
-                    }
+                    if (MBSdata.AlternativeGarbling) mb = 1;
                 }
+		let moan3;
                 if (this.BabyTalkOn == true) {
-                    var moan3 = SpeechTransformBabyTalk(moan2);
+                    moan3 = SpeechTransformBabyTalk(moan2);
                 } else if (this.GagTalkOn == true) {
                     if (mb == 1) {
-                        var moan3 = moan2;
+                        moan3 = moan2;
                     } else {
-                        var moan3 = SpeechTransformGagGarble(moan2, gl);
+                        moan3 = SpeechTransformGagGarble(moan2, gl);
                     }
                 } else {
-                    var moan3 = moan2;
+                    moan3 = moan2;
                 }
                 ElementValue("InputChat", moan2.replace(moan2, moan3));
+		let moan4;
                 if (notalk == 1) {
-                    var moan4 = moan3;
+                    moan4 = moan3;
                 } else {
                     if (gl != 0) {
-                        var moan4 = moan3;
+                        moan4 = moan3;
                     } else {
-                        var moan4 = moan2;
+                        moan4 = moan2;
                     }
                 }
                 ElementValue("InputChat", moan3.replace(moan3, moan4));
@@ -4025,14 +4023,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Callback: (data, sender, msg, metadata) => {
             if ((data.Content.includes("Vibe")) && (Player.ArousalSettings.Progress >= 10)) {
                 if (M_MOANER_xvibratorActive == true) {
-                    var msg = ElementValue("InputChat");
+                    msg = ElementValue("InputChat");
                     reaction = 3;
                     M_MOANER_miscReactions(data);
                 } else {
                     if ((metadata != undefined) || (metadata != null)) {
                         if ((metadata.TargetCharacter != undefined) || (metadata.TargetCharacter != null)) {
                             if (metadata.TargetCharacter.IsPlayer()) {
-                                var msg = ElementValue("InputChat");
+                                msg = ElementValue("InputChat");
                                 if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes) {
                                     reaction = 3;
                                     M_MOANER_saveControls();
@@ -4044,15 +4042,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if (Player.ExtensionSettings.LSCG != null) {
-                lvibe = 0;
-                str = Player.ExtensionSettings.LSCG;
-                d = LZString.decompressFromBase64(str);
-                LSCGdata = {};
-                decoded = JSON.parse(d);
+                let lvibe = 0;
+                let str = Player.ExtensionSettings.LSCG;
+                let d = LZString.decompressFromBase64(str);
+                let LSCGdata = {};
+                let decoded = JSON.parse(d);
                 LSCGdata = decoded;
-                if ((data.Content.includes("SipItem")) || (data.Content.includes("LSCG_FunnelPour"))) {
-                    lvibe = 1;
-                }
+                if ((data.Content.includes("SipItem")) || (data.Content.includes("LSCG_FunnelPour"))) lvibe = 1;
                 if (data.Content.includes("Inject")) {
                     if (data.Content.includes("Gears")) {
                         lvibe = 0;
@@ -4104,7 +4100,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
                     mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber;
                     if (mtarget !== Player.MemberNumber) return;
-                    var msg = ElementValue("InputChat");
+                    msg = ElementValue("InputChat");
                     if (LSCGdata.InjectorModule.enableHorny == true) {
                         if (LSCGdata.InjectorModule.hornyLevel != 0) {
                             if (M_MOANER_vibratorActive && M_MOANER_scriptOn && M_MOANER_isVibes) {
@@ -4119,7 +4115,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (data.Type === "Action" && metadata.ShockIntensity >= 0) {
                 let intensity = metadata.ShockIntensity;
                 if (intensity !== null && metadata.TargetCharacter.IsPlayer()) {
-                    var msg = ElementValue("InputChat");
+                    msg = ElementValue("InputChat");
                     if ((data.Content.includes("Orgasm")) ||
                         (data.Content.includes("Standup")) ||
                         (data.Content.includes("Struggle"))) {
@@ -4136,7 +4132,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
             mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber;
             if (mtarget !== Player.MemberNumber) return;
-            var msg = ElementValue("InputChat");
+            msg = ElementValue("InputChat");
             if ((data.Content.includes("Bite")) ||
                 (data.Content.includes("Kick")) ||
                 (data.Content.includes("Pinch")) ||
@@ -4173,19 +4169,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     function M_MOANER_miscReactions(data) {
-        var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
+	let moan;
+        let Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         //get the moan type to apply
         //data to generate the moans
-        if (reaction == 1) {
-            var moan = getPainMoan(Factor, Math.random() * 300);
-        }
-        if (reaction == 2) {
-            var moan = getTickleMoan(Factor, Math.random() * 300);
-        }
-        if (reaction == 3) {
-            var moan = getMoan(Factor, true, Math.random() * 300);
-        }
-        var msg = ElementValue("InputChat");
+        if (reaction == 1) moan = getPainMoan(Factor, Math.random() * 300);
+        if (reaction == 2) moan = getTickleMoan(Factor, Math.random() * 300);
+        if (reaction == 3) moan = getMoan(Factor, true, Math.random() * 300);
+        let msg = ElementValue("InputChat");
         if (M_MOANER_isSimpleChat(msg)) {
             if (msg != "") {
                 moan = msg + "... " + moan;
@@ -4194,42 +4185,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let backtarget = ChatRoomTargetMemberNumber;
         ChatRoomTargetMemberNumber = -1;
         ElementValue("InputChat", moan);
-        if (this.StutterOn == true) {
-            var moan2 = SpeechTransformStutter(moan, st);
-        } else {
-            var moan2 = moan;
-        }
+	let moan2 = moan;
+        if (this.StutterOn == true) moan2 = SpeechTransformStutter(moan, st);
         ElementValue("InputChat", moan.replace(moan, moan2));
-        mb = 0;
+        let mb = 0;
         if (Player.ExtensionSettings.MBS != null) {
-            str = Player.ExtensionSettings.MBS;
-            d = LZString.decompressFromUTF16(str);
-            MBSdata = {};
-            decoded = JSON.parse(d);
+            let str = Player.ExtensionSettings.MBS;
+            let d = LZString.decompressFromUTF16(str);
+            let MBSdata = {};
+            let decoded = JSON.parse(d);
             MBSdata = decoded;
-            if (MBSdata.AlternativeGarbling) {
-                mb = 1;
-            }
+            if (MBSdata.AlternativeGarbling) mb = 1;
         }
+	let moan3;
         if (this.BabyTalkOn == true) {
-            var moan3 = SpeechTransformBabyTalk(moan2);
+            moan3 = SpeechTransformBabyTalk(moan2);
         } else if (this.GagTalkOn == true) {
             if (mb == 1) {
-                var moan3 = moan2;
+                moan3 = moan2;
             } else {
-                var moan3 = SpeechTransformGagGarble(moan2, gl);
+                moan3 = SpeechTransformGagGarble(moan2, gl);
             }
         } else {
-            var moan3 = moan2;
+            moan3 = moan2;
         }
         ElementValue("InputChat", moan2.replace(moan2, moan3));
+	let moan4;
         if (notalk == 1) {
-            var moan4 = moan3;
+            moan4 = moan3;
         } else {
             if (gl != 0) {
-                var moan4 = moan3;
+                moan4 = moan3;
             } else {
-                var moan4 = moan2;
+                moan4 = moan2;
             }
         }
         ElementValue("InputChat", moan3.replace(moan3, moan4));
@@ -4245,10 +4233,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             return true;
         }
         if (Player.ExtensionSettings.LSCG != null) {
-            str = Player.ExtensionSettings.LSCG;
-            d = LZString.decompressFromBase64(str);
-            LSCGdata = {};
-            decoded = JSON.parse(d);
+            let str = Player.ExtensionSettings.LSCG;
+            let d = LZString.decompressFromBase64(str);
+            let LSCGdata = {};
+            let decoded = JSON.parse(d);
             LSCGdata = decoded;
             if (LSCGdata.InjectorModule.enableHorny == true) {
                 if (LSCGdata.InjectorModule.hornyLevel >= 40) {
@@ -4264,22 +4252,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         //calculate it according the number of words
         //proportion: PROPORTION_MAX*ArousingLevel
         //PROPORTION_MAX=40%
-        var proportion = C.ArousalSettings.Progress * PROPORTION_MAX / 10000;
+        let proportion = C.ArousalSettings.Progress * PROPORTION_MAX / 10000;
         M_MOANER_logDebug("proportion: " + proportion);
-        var CDList = CD.split(" ");
-        var currentIndex = 0;
-        var stop = false;
-        var finalTextList = [];
+        let CDList = CD.split(" ");
+        let currentIndex = 0;
+        let stop = false;
+        let finalTextList = [];
         //get the moans to apply
         //data to generate the moans
-        var Factor = Math.floor(C.ArousalSettings.Progress / 20);
+        let Factor = Math.floor(C.ArousalSettings.Progress / 20);
         while (currentIndex < CDList.length) {
             //if the next word contains a bracket, we stop the repartition of moans
-            var currentWord = CDList[currentIndex++];
-            var presenceParenthese = M_MOANER_detectParentheses(currentWord);
-            if (presenceParenthese == 1) {
-                stop = true;
-            }
+            let currentWord = CDList[currentIndex++];
+            let presenceParenthese = M_MOANER_detectParentheses(currentWord);
+            if (presenceParenthese == 1) stop = true;
             if (stop) {
                 finalTextList.push(currentWord);
             } else {
@@ -4296,9 +4282,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     finalTextList.push(currentWord);
                 }
             }
-            if (presenceParenthese == 2) {
-                stop = false;
-            }
+            if (presenceParenthese == 2) stop = false;
         }
         return finalTextList.join(" ");
     }
@@ -4387,7 +4371,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let zone;
         let taste;
         for (index in data.Dictionary) {
-            var elem = data.Dictionary[index];
+            let elem = data.Dictionary[index];
             if (elem.Tag == "ActivityGroup") zone = getZone(elem.Text);
         }
         if (zone == undefined || zone == null || zone.Factor == undefined) {
@@ -4402,7 +4386,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function getZone(name) {
         for (index in Player.ArousalSettings.Activity) {
-            var zone = Player.ArousalSettings.Zone[index];
+            let zone = Player.ArousalSettings.Zone[index];
             if (zone.Name == name) return zone;
         }
     }
@@ -4437,24 +4421,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function getPain() {
-        moanProfile = M_MOANER_getMoans(profileName);
+        let moanProfile = M_MOANER_getMoans(profileName);
         let index = Math.floor(Math.random() * moanProfile.pain.length);
         return moanProfile.pain[index];
     }
 
     function getPtickle() {
-        moanProfile = M_MOANER_getMoans(profileName);
+        let moanProfile = M_MOANER_getMoans(profileName);
         let index = Math.floor(Math.random() * moanProfile.tickle.length);
         return moanProfile.tickle[index];
     }
 
     function getOrgasmMoan() {
-        var gemissement;
+        let gemissement;
         if (M_MOANER_orgasmMoans.length == 0) {
             M_MOANER_logDebug("getOrgasmMoan: reset list");
             let seed = 3000;
             M_MOANER_logDebug("getOrgasmMoan: seed=" + seed);
-            moanProfile = M_MOANER_getMoans(profileName);
+            let moanProfile = M_MOANER_getMoans(profileName);
             M_MOANER_orgasmMoans = M_MOANER_shuffle(moanProfile.orgasm.concat([]), seed);
         }
         gemissement = M_MOANER_orgasmMoans.shift();
@@ -4499,7 +4483,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function IsStimulated(C) {
         for (let A = 0; A < C.Appearance.length; A++) {
-            var Item = C.Appearance[A];
+            let Item = C.Appearance[A];
             if (InventoryItemHasEffect(Item, "Vibrating", true)) {
                 if (Player.ArousalSettings.Progress >= 10) {
                     return true;
@@ -4507,10 +4491,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         if (Player.ExtensionSettings.LSCG != null) {
-            str = Player.ExtensionSettings.LSCG;
-            d = LZString.decompressFromBase64(str);
-            LSCGdata = {};
-            decoded = JSON.parse(d);
+            let str = Player.ExtensionSettings.LSCG;
+            let d = LZString.decompressFromBase64(str);
+            let LSCGdata = {};
+            let decoded = JSON.parse(d);
             LSCGdata = decoded;
             if (LSCGdata.InjectorModule.enableHorny == true) {
                 if (LSCGdata.InjectorModule.hornyLevel >= 40) {
