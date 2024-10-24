@@ -5692,50 +5692,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "4 total blur effect";
                 infomsg(msg);
             } else {
+                Blur1On = false;
+                Blur2On = false;
+                Blur3On = false;
+                Blur4On = false;
                 let brlevel = args;
                 if (brlevel == 0) {
                     let msg = "No more forced blur effect.";
                     infomsg(msg);
-                    blureffect = false;
-                    Blur1On = false;
-                    Blur2On = false;
-                    Blur3On = false;
-                    Blur4On = false;
+                    blureffect = false;              
                     M_MOANER_saveControls();
                 } else if (brlevel == 1) {
                     let msg = "Light blur effect enabled.";
                     infomsg(msg);
                     blureffect = true;
-                    Blur1On = true;
-                    Blur2On = false;
-                    Blur3On = false;
-                    Blur4On = false;
+                    Blur1On = true;        
                     M_MOANER_saveControls();
                 } else if (brlevel == 2) {
                     let msg = "Normal blur effect enabled.";
                     infomsg(msg);
                     blureffect = true;
-                    Blur1On = false;
-                    Blur2On = true;
-                    Blur3On = false;
-                    Blur4On = false;
+                    Blur2On = true;             
                     M_MOANER_saveControls();
                 } else if (brlevel == 3) {
                     let msg = "Heavy blur effect enabled.";
                     infomsg(msg);
                     blureffect = true;
-                    Blur1On = false;
-                    Blur2On = false;
                     Blur3On = true;
-                    Blur4On = false;
                     M_MOANER_saveControls();
                 } else if (brlevel == 4) {
                     let msg = "Total blur effect enabled.";
                     infomsg(msg);
-                    blureffect = true;
-                    Blur1On = false;
-                    Blur2On = false;
-                    Blur3On = false;
+                    blureffect = true;   
                     Blur4On = true;
                     M_MOANER_saveControls();
                 }
