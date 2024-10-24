@@ -5692,45 +5692,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "4 total blur effect";
                 infomsg(msg);
             } else {
+		let msg = "";
                 Blur1On = false;
                 Blur2On = false;
                 Blur3On = false;
                 Blur4On = false;
+                blureffect = false;
                 let brlevel = args;
-                if (brlevel == 0) {
-                    let msg = "No more forced blur effect.";
+                if (brlevel == 0) msg = "No any forced blur effect.";   
+                if (brlevel == 1) msg = "Light blur effect enabled.";   
+                if (brlevel == 2) msg = "Nprmal blur effect enabled.";   
+                if (brlevel == 3) msg = "Heavy blur effect enabled.";   
+                if (brlevel == 4) msg = "Total blur effect enabled.";   
+                if ((brlevel > 0) && (brlevel < 5)) blureffect = true;
+                if (brlevel == 1) Blur1On = true;
+                if (brlevel == 2) Blur2On = true;
+                if (brlevel == 3) Blur3On = true;
+                if (brlevel == 4) Blur4On = true;
+                if ((brlevel > -1) && (brlevel < 5)) {
                     infomsg(msg);
-                    blureffect = false;              
-                    M_MOANER_saveControls();
-                } else if (brlevel == 1) {
-                    let msg = "Light blur effect enabled.";
-                    infomsg(msg);
-                    blureffect = true;
-                    Blur1On = true;        
-                    M_MOANER_saveControls();
-                } else if (brlevel == 2) {
-                    let msg = "Normal blur effect enabled.";
-                    infomsg(msg);
-                    blureffect = true;
-                    Blur2On = true;             
-                    M_MOANER_saveControls();
-                } else if (brlevel == 3) {
-                    let msg = "Heavy blur effect enabled.";
-                    infomsg(msg);
-                    blureffect = true;
-                    Blur3On = true;
-                    M_MOANER_saveControls();
-                } else if (brlevel == 4) {
-                    let msg = "Total blur effect enabled.";
-                    infomsg(msg);
-                    blureffect = true;   
-                    Blur4On = true;
                     M_MOANER_saveControls();
                 }
             }
         }
     }])
-
+                
     CommandCombine([{
         Tag: 'boost',
         Description: ": boosts all your skills for one hour.",
