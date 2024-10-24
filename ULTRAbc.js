@@ -8705,7 +8705,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.MapData.PrivateState.HasKeyGold = true;
                     Player.MapData.PrivateState.HasKeySilver = true;
                     Player.MapData.PrivateState.HasKeyBronze = true;
-                    var msg = "You have now the three keys.";
+                    let msg = "You have now the three keys.";
                     infomsg(msg);
                 }
             }
