@@ -5701,7 +5701,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let brlevel = args;
                 if (brlevel == 0) msg = "No any forced blur effect.";   
                 if (brlevel == 1) msg = "Light blur effect enabled.";   
-                if (brlevel == 2) msg = "Nprmal blur effect enabled.";   
+                if (brlevel == 2) msg = "Normal blur effect enabled.";   
                 if (brlevel == 3) msg = "Heavy blur effect enabled.";   
                 if (brlevel == 4) msg = "Total blur effect enabled.";   
                 if ((brlevel > 0) && (brlevel < 5)) blureffect = true;
