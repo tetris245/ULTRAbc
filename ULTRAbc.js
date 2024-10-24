@@ -5505,106 +5505,47 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "27, 28 Lockers - 29 Running Track\n" +
                     "30, 31 Showers - 32 Theater";
                 infomsg(msg);
-            } else if (args == 1) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C004_ArtClass/Intro/Background.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 2) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C001_BeforeClass/Intro/Background2.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 3) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C999_Common/Quiz/Backgrounds/Classroom.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 4) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C013_BondageClub/Intro/Background.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 5) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C000_Intro/Intro/Background.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 6) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C012_AfterClass/Intro/Background.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 7) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C008_DramaClass/DressingRoom/Background.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 8) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C005_GymClass/Intro/Background.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 9) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C006_Isolation/Intro/Background.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 10) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C006_Isolation/IsolationRoom/C006_CutRope_3_0.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 11) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C006_Isolation/IsolationRoom/C006_CutRope_3_1.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 12) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C006_Isolation/IsolationRoom/C006_CutRope_3_2.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 13) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C101_KinbakuClub/ClubRoom1/ClubRoom1Arrows.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 14) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C101_KinbakuClub/ClubRoom2/ClubRoom2Arrows.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 15) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C101_KinbakuClub/ClubRoom3/ClubRoom3Arrows.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 16) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C101_KinbakuClub/ClubRoom4/ClubRoom4.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 17) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/001.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 18) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/002.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 19) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/003.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 20) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/004.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 21) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/005.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 22) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/006.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 23) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/007.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 24) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/008.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 25) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/009.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 26) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C009_Library/Library/010.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 27) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C010_Revenge/Intro/BackgroundAmandaSarah.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 28) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C010_Revenge/Intro/BackgroundSidneyJennifer.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 29) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C999_Common/Fights/Backgrounds/RunningTrack.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 30) {
-                Background = "https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/Shower1.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 31) {
-                Background = "https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/Shower2.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
-            } else if (args == 32) {
-                Background = "https://www.bondage-europe.com/" + BCver + "/C008_DramaClass/Theater/Background.jpg";
-                ChatAdminRoomCustomizationCommand("Image", Background);
+            } else {
+                let bg = "";
+                let url1 = "https://www.bondage-europe.com/" + BCver;
+                let url2 = "https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/";
+                if (args == 1) bg = url1 + "/C004_ArtClass/Intro/Background.jpg";
+                if (args == 2) bg = url1 + "/C001_BeforeClass/Intro/Background2.jpg";
+                if (args == 3) bg = url1 + "/C999_Common/Quiz/Backgrounds/Classroom.jpg";
+                if (args == 4) bg = url1 + "/C013_BondageClub/Intro/Background.jpg";
+                if (args == 5) bg = url1 + "/C000_Intro/Intro/Background.jpg";
+                if (args == 6) bg = url1 + "/C012_AfterClass/Intro/Background.jpg";
+                if (args == 7) bg = url1 + "/C008_DramaClass/DressingRoom/Background.jpg";
+                if (args == 8) bg = url1 + "/C005_GymClass/Intro/Background.jpg";
+                if (args == 9) bg = url1 + "/C006_Isolation/Intro/Background.jpg";
+                if (args == 10) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_0.jpg";
+                if (args == 11) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_1.jpg";
+                if (args == 12) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_2.jpg";
+                if (args == 13) bg = url1 + "/C101_KinbakuClub/ClubRoom1/ClubRoom1Arrows.jpg";
+                if (args == 14) bg = url1 + "/C101_KinbakuClub/ClubRoom2/ClubRoom2Arrows.jpg";
+                if (args == 15) bg = url1 + "/C101_KinbakuClub/ClubRoom3/ClubRoom3Arrows.jpg";
+                if (args == 16) bg = url1 + "/C101_KinbakuClub/ClubRoom4/ClubRoom4.jpg";
+                if (args == 17) bg = url1 + "/C009_Library/Library/001.jpg";
+                if (args == 18) bg = url1 + "/C009_Library/Library/002.jpg";
+                if (args == 19) bg = url1 + "/C009_Library/Library/003.jpg";
+                if (args == 20) bg = url1 + "/C009_Library/Library/004.jpg";
+                if (args == 21) bg = url1 + "/C009_Library/Library/005.jpg";
+                if (args == 22) bg = url1 + "/C009_Library/Library/006.jpg";
+                if (args == 23) bg = url1 + "/C009_Library/Library/007.jpg";
+                if (args == 24) bg = url1 + "/C009_Library/Library/008.jpg";
+                if (args == 25) bg = url1 + "/C009_Library/Library/009.jpg";
+                if (args == 26) bg = url1 + "/C009_Library/Library/010.jpg";
+                if (args == 27) bg = url1 + "/C010_Revenge/Intro/BackgroundAmandaSarah.jpg";
+                if (args == 28) bg = url1 + "/C010_Revenge/Intro/BackgroundSidneyJennifer.jpg";
+                if (args == 29) bg = url1 + "/C999_Common/Fights/Backgrounds/RunningTrack.jpg";
+                if (args == 30) bg = url2 + "Shower1.jpg";
+                if (args == 31) bg = url2 + "Shower2.jpg";
+                if (args == 32) bg = url1 + "/C008_DramaClass/Theater/Background.jpg";
+                if ((args > 0) && (args < 33)) ChatAdminRoomCustomizationCommand("Image", bg);
             }
         }
     }])
-
+  
     CommandCombine([{
         Tag: 'bg4',
         Description: "(screen) (background): selects a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell",
