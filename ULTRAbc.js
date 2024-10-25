@@ -736,6 +736,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 ini = 1;
+		PreferenceRegisterExtensionSetting({
+		    Identifier: "UBCSettings",
+		    ButtonText: "ULTRAbc Settings",
+		    Image: "",	
+                    click: PreferenceSubscreenUBCSettingsClick,
+                    exit: PreferenceSubscreenUBCSettingsExit,
+                    load:  PreferenceSubscreenUBCSettingsLoad,  
+			    run: PreferenceSubscreenUBCSettingsRun,
+		});
                 FBCsettings();
             } catch (err) {
                 console.log(err);
@@ -2888,6 +2897,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.RestrictionSettings.BypassStruggle = false;
             }
         }
+    }
+
+    function PreferenceSubscreenUBCSettingsClick() {
+        if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenUBCSettingsExit();
+        if (MouseIn(1550, 540, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+        if (MouseIn(1550, 650, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+    }
+
+    function PreferenceSubscreenUBCSettingsExit() {
+        ////M_MOANER_saveControls();
+	UBCPreferenceSubscreen = "";
+	PreferenceMessage = "";
+	PreferenceSubscreenExtensionsClear();
+    }
+
+    function PreferenceSubscreenUBCSettingsLoad() {
+        currentPageNumber = 0;
+    }
+
+    function PreferenceSubscreenUBCSettingsRun() {		
+        DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	MainCanvas.textAlign = "left";
+	DrawText("- ULTRAbc Settings -", 500, 125, "Black", "Gray");
+	MainCanvas.textAlign = "center";		
+	DrawText("ULTRAbc " + UBCver, 1695, 500, "Black", "Gray");
+	DrawButton(1550, 540, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
+        DrawImageResize("Icons/Changelog.png", 1560, 555, 60, 60);
+        DrawTextFit("UBC Changes", 1735, 588, 400, "Black");           
+        DrawButton(1550, 650, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
+        DrawImageResize("Icons/Introduction.png", 1560, 665, 60, 60);
+        DrawTextFit("UBC Wiki", 1735, 698, 400, "Black");
+        DrawText("/uhelp in chat", 1710, 775, "Black", "Gray");
     }
 
     //Responsive Status
