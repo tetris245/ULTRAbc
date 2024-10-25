@@ -743,7 +743,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     click: PreferenceSubscreenUBCSettingsClick,
                     exit: PreferenceSubscreenUBCSettingsExit,
                     load:  PreferenceSubscreenUBCSettingsLoad,  
-			    run: PreferenceSubscreenUBCSettingsRun,
+		    run: PreferenceSubscreenUBCSettingsRun,
 		});
                 FBCsettings();
             } catch (err) {
