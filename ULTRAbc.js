@@ -12947,7 +12947,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>bgall</b> for bgs usable with the buttons in Private Room\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
                     "<b>exitmode</b> for exit mode with OUT button \n" +
-		    "<b>extbuttons</b> for EXT buttons\n" +
 		    "<b>fixperm</b> for permissions when using safeword\n" +
                     "<b>frkeys</b> for hotkeys in friendlist \n" +
                     "<b>fullseed</b> for full solution with intricate and hs locks\n" +
@@ -12959,10 +12958,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>nostruggle</b> for automatic struggle in mini-games\n" +
                     "<b>notimeout</b> for toggle time-out in BC TAB help\n" +
                     "<b>nowhisper</b> for no-whisper mode\n" +
-                    "<b>npcpunish</b> for NPC punishments\n" +
-                    "<b>outbuttons</b> for OUT buttons\n" +
-                    "<b>rglbuttons</b> for RGL buttons\n" +
-                    "<b>sosbuttons</b> for FREE buttons";
+                    "<b>npcpunish</b> for NPC punishments";
                 infomsg(msg);
             } else {
                 let setting = args;
@@ -13012,18 +13008,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         SlowleaveOn = true;
                         M_MOANER_saveControls();
                         let msg = "Slow exit mode is activated.";
-                        infomsg(msg);
-                    }
-		} else if (setting == "extbuttons") {
-                    if (ExtbuttonsOn == true) {
-                        ExtbuttonsOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "EXT buttons hidden and disabled.";
-                        infomsg(msg);
-                    } else {
-                        ExtbuttonsOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "EXT buttons displayed and enabled.";
                         infomsg(msg);
                     }
                 } else if (setting == "fixperm") {
@@ -13222,43 +13206,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         M_MOANER_saveControls();
                         let msg = "NPC punishments disabled.";
                         infomsg(msg);
-                    }
-                } else if (setting == "outbuttons") {
-                    if (OutbuttonsOn == true) {
-                        OutbuttonsOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "OUT buttons hidden and disabled.";
-                        infomsg(msg);
-                    } else {
-                        OutbuttonsOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "OUT buttons displayed and enabled.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "rglbuttons") {
-                    if (RglbuttonsOn == true) {
-                        RglbuttonsOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "RGL buttons hidden and disabled.";
-                        infomsg(msg);
-                    } else {
-                        RglbuttonsOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "RGL buttons displayed and enabled.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "sosbuttons") {
-                    if (SosbuttonsOn == true) {
-                        SosbuttonsOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Emergency buttons hidden and disabled.";
-                        infomsg(msg);
-                    } else {
-                        SosbuttonsOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Emergency buttons displayed and enabled.";
-                        infomsg(msg);
-                    }
+                    }         
                 }
             }
         }
