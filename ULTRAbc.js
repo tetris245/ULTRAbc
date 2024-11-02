@@ -392,7 +392,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Initialisation
     function M_MOANER_initControls() {
-        var datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
+        let datas = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
         if (datas == null || datas == undefined) {
             M_MOANER_orgasmActive = true;
             M_MOANER_scriptOn = false;
@@ -470,7 +470,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Unlock = "";
             Untie = "";
             Visible = "";
-            //M_MOANER_saveControls();
+            M_MOANER_saveControls();
         } else {
             M_MOANER_orgasmActive = datas.orgasmMoan;
             M_MOANER_scriptOn = datas.script;
@@ -552,7 +552,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_saveControls() {
-        var controls = {
+        let controls = {
             "orgasmMoan": M_MOANER_orgasmActive,
             "script": M_MOANER_scriptOn,
             "spankMoan": M_MOANER_spankActive,
@@ -698,10 +698,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     bgall = false;
                     M_MOANER_saveControls();
                 }
-		if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) {
-                    ExtbuttonsOn = false;
-                    M_MOANER_saveControls();
-                }
+		if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
+                if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
+                if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
+                if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
+                M_MOANER_saveControls();
 		if (FixpermOn == null || FixpermOn == undefined) {
                     FixpermOn = false;
                     M_MOANER_saveControls();
@@ -755,16 +756,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 ini = 1;
-		PreferenceRegisterExtensionSetting({
-		    Identifier: "UBCSettings",
-		    ButtonText: "ULTRAbc Settings",
-		    Image: "",	
-                    click: PreferenceSubscreenUBCSettingsClick,
-                    exit: PreferenceSubscreenUBCSettingsExit,
-                    load:  PreferenceSubscreenUBCSettingsLoad,  
-		    run: PreferenceSubscreenUBCSettingsRun,
-		});
                 FBCsettings();
+		runUBC();
             } catch (err) {
                 console.log(err);
             }
@@ -2916,39 +2909,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.RestrictionSettings.BypassStruggle = false;
             }
         }
-    }
-
-    function PreferenceSubscreenUBCSettingsClick() {
-        if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenUBCSettingsExit();
-        if (MouseIn(1550, 540, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
-        if (MouseIn(1550, 650, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
-    }
-
-    function PreferenceSubscreenUBCSettingsExit() {
-        ////M_MOANER_saveControls();
-	UBCPreferenceSubscreen = "";
-	PreferenceMessage = "";
-	PreferenceSubscreenExtensionsClear();
-    }
-
-    function PreferenceSubscreenUBCSettingsLoad() {
-        currentPageNumber = 0;
-    }
-
-    function PreferenceSubscreenUBCSettingsRun() {		
-        DrawCharacter(Player, 50, 50, 0.9);
-	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-	MainCanvas.textAlign = "left";
-	DrawText("- ULTRAbc Settings -", 500, 125, "Black", "Gray");
-	MainCanvas.textAlign = "center";		
-	DrawText("ULTRAbc " + UBCver, 1695, 500, "Black", "Gray");
-	DrawButton(1550, 540, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
-        DrawImageResize("Icons/Changelog.png", 1560, 555, 60, 60);
-        DrawTextFit("UBC Changes", 1735, 588, 400, "Black");           
-        DrawButton(1550, 650, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
-        DrawImageResize("Icons/Introduction.png", 1560, 665, 60, 60);
-        DrawTextFit("UBC Wiki", 1735, 698, 400, "Black");
-        DrawText("/uhelp in chat", 1710, 775, "Black", "Gray");
     }
 
     //Responsive Status
