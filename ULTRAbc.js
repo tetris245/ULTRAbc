@@ -765,6 +765,573 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    //Section under GPLv3 license
+    //GUI 
+    const UBC_API = {
+	HintForeColor : "Black",
+	HintBackColor : "#5fbd7a",
+	HintBorderColor : "Black",
+    };
+
+    async function runUBC(){
+	
+	await waitFor(() => ServerSocket && ServerIsConnected);
+			
+	const UBC_TIPS = [
+             "Tip: Infos are displayed by clicking on the options.",
+             "Tip: Use the /uhelp command in chat or explore the wiki to better know all the UBC commands.",
+	     "More options in next version of UBC!"
+	]
+
+        const ubcSettingsKey = () => "bc_moaner_" + Player.MemberNumber;
+
+        await ubcSettingsLoad();
+        settingsPage();
+	
+	async function ubcSettingsLoad(reset = false) {
+	    await waitFor(() => !!Player?.AccountName);
+ 
+	    const UBC_DEFAULT_SETTINGS = {
+	        extbuttons: false,
+                outbuttons: false,
+                sosbuttons: false,
+                rglbuttons: false,	
+	    };
+
+            Player.UBC = {};
+	    Player.UBC.version = UBCver;
+	    Player.UBC.ubcSettings = {};
+	    Player.UBC.ubcSharedSettings = {};
+		
+            let settings = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
+
+            for (const setting in UBC_DEFAULT_SETTINGS) {
+	        if (!Object.prototype.hasOwnProperty.call(UBC_DEFAULT_SETTINGS, setting)) {
+		    continue;
+		}
+		if (!(setting in settings)) {
+		    settings[setting] = UBC_DEFAULT_SETTINGS[setting];
+		}
+	    }
+		
+            Player.UBC.ubcSettings = settings;
+        }
+
+	async function waitFor(func, cancelFunc = () => false) {
+	    while (!func()) {
+	        if (cancelFunc()) {
+		    return false;
+		}
+		await sleep(100);
+	    }
+	    return true;
+	}
+
+	function sleep(ms) {
+	    return new Promise((resolve) => setTimeout(resolve, ms));
+	}
+
+	function controllerIsActive() {
+	    if (typeof ControllerIsActive === "function") { // R92
+		return ControllerIsActive();
+	    } else if (typeof ControllerActive === "boolean") { // R91
+		return ControllerActive;
+	    } else {
+		return false;
+	    }
+	}
+	
+	async function settingsPage() {
+	    await waitFor(() => !!PreferenceRegisterExtensionSetting)
+
+	    const ubcSettingsCategories = [
+                "UBCButtons"
+	    ];
+	    const ubcSettingCategoryLabels = {
+                UBCButtons: "UBC Buttons"
+	    };
+	    const MENU_ELEMENT_X_OFFSET = 1050;
+		
+	    let menuElements = {};
+	    for (category of ubcSettingsCategories){
+		menuElements[category] = [];
+	    }
+
+	    let settingsHint = "";
+	    let currentHint = 0;
+
+	    let UBCPreferenceSubscreen = "UBCSettings";
+
+			/**
+	     * Draws a word wrapped text in a rectangle
+	     * @param {string} Text - Text to draw
+	     * @param {number} X - Position of the rectangle on the X axis
+	     * @param {number} Y - Position of the rectangle on the Y axis
+	     * @param {number} Width - Width of the rectangle
+	     * @param {number} Height - Height of the rectangle
+	     * @param {string} ForeColor - Foreground color
+	     * @param {string} [BackColor] - Background color
+	     * @param {number} [MaxLine] - Maximum of lines the word can wrap for
+	     * @returns {void} - Nothing
+	     */
+
+	    function DrawTextWrapGood(Text, X, Y, Width, Height, ForeColor = "Black", BackColor = null, BorderColor = "Black", MaxLine = null) {
+		if (controllerIsActive()) {
+		    setButton(X, Y);
+		}
+		// Draw the rectangle if we need too
+		if (BackColor != null) {
+		    MainCanvas.beginPath();
+		    MainCanvas.rect(X, Y, Width, Height);
+		    MainCanvas.fillStyle = BackColor;
+		    MainCanvas.fillRect(X, Y, Width, Height);
+		    MainCanvas.fill();
+		    MainCanvas.lineWidth = 2;
+		    MainCanvas.strokeStyle = BorderColor;
+		    MainCanvas.stroke();
+		    MainCanvas.closePath();
+		}
+		if (!Text) return;
+
+		// Sets the text size if there's a maximum number of lines
+		let TextSize;
+		if (MaxLine != null) {
+		    TextSize = MainCanvas.font;
+	            GetWrapTextSize(Text, Width, MaxLine);
+		}
+
+		// Split the text if it wouldn't fit in the rectangle
+		MainCanvas.fillStyle = "black";
+		Y = Y + Math.floor(0.66 * (parseInt(MainCanvas.font.substring(0, 2))));
+		if (MainCanvas.measureText(Text).width > Width) {
+		    const words = fragmentText(Text, Width);
+		    let line = '';
+
+		    // Splits the words and draw the text
+		    line = '';
+		    for (let n = 0; n < words.length; n++) {
+			const testLine = line + words[n] + ' ';
+			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
+			    MainCanvas.fillText(line, X + 5, Y);
+			    line = words[n] + ' ';
+			    Y += 46;
+			} else {
+			    line = testLine;
+			}
+		    }
+		    MainCanvas.fillText(line, X + 5, Y);
+
+		} else MainCanvas.fillText(Text, X + 5, Y);
+
+		// Resets the font text size
+		if ((MaxLine != null) && (TextSize != null))
+		    MainCanvas.font = TextSize;
+
+	    }
+
+	    function UBCPreferenceDrawBackNextButton(Left, Top, Width, Height, List, Index) {
+		DrawBackNextButton(Left, Top, Width, Height, List[Index], "White", "",
+		    () => List[PreferenceGetPreviousIndex(List, Index)],
+		    () => List[PreferenceGetNextIndex(List, Index)],
+		);
+	    }
+
+	    function getNewYPos(){
+		let yPos = 200;
+		if (menuElements[UBCPreferenceSubscreen].length > 0){
+		    let lastElement = menuElements[UBCPreferenceSubscreen][menuElements[UBCPreferenceSubscreen].length - 1];
+		    yPos = lastElement.yPos + lastElement.yModifier + 75;
+		}
+		return yPos;
+	    }
+
+	    function addMenuCheckbox(width, height, text, setting, hint, grayedOutReference = "false", xModifier = 0, yModifier = 0, elementText = ""){
+		menuElements[UBCPreferenceSubscreen].push({
+		    type: "Checkbox",
+		    yPos: getNewYPos(),
+		    width: width,
+		    height: height,
+		    text: text,
+		    setting: setting,
+		    hint: hint,
+		    grayedOutReference: grayedOutReference,
+		    xModifier: xModifier,
+		    yModifier: yModifier,
+		    elementText: elementText,
+		});
+	    }
+ 
+	    function addMenuButton(width, height, text, elementText, clickFunction, hint, xModifier = 0, yModifier = 0){
+		menuElements[UBCPreferenceSubscreen].push({
+		    type: "Button",
+		    yPos: getNewYPos(),
+		    width: width, 
+		    height: height,
+		    text: text,
+		    elementText: elementText,
+		    clickFunction: clickFunction,
+		    hint: hint, 
+		    xModifier: xModifier,
+		    yModifier: yModifier,
+		});
+	    }
+
+	    function addMenuInput(width, text, setting, identifier, hint, xModifier = 0, yModifier = 0){
+		menuElements[UBCPreferenceSubscreen].push({
+		    type: "Input",
+		    yPos: getNewYPos(),
+		    width: width,
+		    text: text,
+		    setting: setting,
+		    identifier: identifier,
+		    hint: hint,
+		    xModifier: xModifier,
+		    yModifier: yModifier,
+		});
+		ElementCreateInput(identifier, "text", Player.UBC.ubcSettings[setting], "100");
+	    }
+
+	    function backNextWithBF(setting, backNextOptions) {
+		if (setting == BF_LOCK_NAME || setting == BF_TIMER_LOCK_NAME) {
+		    if((backNextOptions.indexOf(Player.UBC.ubcSettings.ItemPerm[setting]) < 0)) {
+			return 0;
+		    } else {
+			return backNextOptions.indexOf(Player.UBC.ubcSettings.ItemPerm[setting]);
+		    }
+		}
+		if((backNextOptions.indexOf(Player.UBC.ubcSettings[setting]) < 0)) {
+		    return 0;
+		} else {
+		    return backNextOptions.indexOf(Player.UBC.ubcSettings[setting]);
+		}
+	    }
+
+	    function addMenuBackNext(width, height, text, setting, backNextOptions, hint, xModifier = 0, yModifier = 0){
+		menuElements[UBCPreferenceSubscreen].push({
+		    type: "BackNext",
+		    yPos: getNewYPos(),
+		    width: width,
+		    height: height,
+		    text: text,
+		    setting: setting,
+		    backNextOptions: backNextOptions,
+		    hint: hint,
+		    xModifier: xModifier,
+		    yModifier: yModifier,
+		    index: backNextWithBF(setting, backNextOptions),
+		    //(backNextOptions.indexOf(Player.UBC.ubcSettings[setting]) < 0) ? 0 : backNextOptions.indexOf(Player.UBC.ubcSettings[setting])
+		});
+	    }
+
+	    function drawMenuElements(){
+		// Draw the player & controls
+		DrawCharacter(Player, 50, 50, 0.9);
+		DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+			
+		MainCanvas.textAlign = "left";
+		if (PreferenceMessage != "") DrawText(PreferenceMessage, 900, 125, "Red", "Black");
+		DrawText("- " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + " Settings -", 500, 125, "Black", "Gray");
+		if(settingsHint != ""){
+		    DrawTextWrapGood(settingsHint, 1350, 200, 555, 725, ForeColor = UBC_API.HintForeColor, BackColor = UBC_API.HintBackColor, BorderColor = UBC_API.HintBorderColor);
+		}
+
+		let currentElement;
+		for (i = 0; i < menuElements[UBCPreferenceSubscreen].length; i++){
+		    currentElement = menuElements[UBCPreferenceSubscreen][i];
+		    MainCanvas.textAlign = "left";
+		    let textColor = "Black";
+		    if(eval(currentElement?.grayedOutReference) === true) textColor = "Gray";
+		    if(MouseIn(500, currentElement.yPos - 18, MENU_ELEMENT_X_OFFSET - 525, 36)) textColor = "Yellow";
+		    if(currentElement.yPos === currentHint) textColor = "Red";
+		    DrawText(currentElement.text, 500, currentElement.yPos, textColor, "Gray");
+		    switch (currentElement.type) {
+			case "Checkbox":
+			    DrawCheckbox(
+				MENU_ELEMENT_X_OFFSET + currentElement.xModifier,
+				currentElement.yPos - currentElement.height/2,
+				currentElement.width,
+				currentElement.height,
+				currentElement.elementText,
+				(eval(currentElement.grayedOutReference)) ? false : Player.UBC.ubcSettings[currentElement.setting],
+				eval(currentElement.grayedOutReference)
+			    );
+			    break;
+			case "Button":
+			    MainCanvas.textAlign = "center";
+			    DrawButton(
+				MENU_ELEMENT_X_OFFSET + currentElement.xModifier,
+				currentElement.yPos - currentElement.height/2,
+				currentElement.width,
+				currentElement.height,
+				currentElement.elementText,
+				"White",
+				""
+			    );
+			    break;
+			case "Input":
+			    ElementPosition(
+				currentElement.identifier,
+				MENU_ELEMENT_X_OFFSET + currentElement.xModifier + currentElement.width/2,
+				currentElement.yPos,
+				currentElement.width
+			    );
+			    break;
+			case "BackNext":
+			    MainCanvas.textAlign = "center";
+			    UBCPreferenceDrawBackNextButton(
+				MENU_ELEMENT_X_OFFSET + currentElement.xModifier,
+				currentElement.yPos - currentElement.height/2,
+				currentElement.width,
+				currentElement.height,
+				currentElement.backNextOptions,
+				currentElement.index
+			    );
+			    break;
+			default:
+			    break;
+		    }
+		}
+	    }
+
+	    function handleMenuClicks(){
+		// Exit button
+		if (MouseIn(1815, 75, 90, 90)){
+		    CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`)
+		    return;
+		}
+		let currentElement;
+		let foundElement = false;
+		for (i = 0; i < menuElements[UBCPreferenceSubscreen].length; i++){
+		    currentElement = menuElements[UBCPreferenceSubscreen][i];
+		    switch (currentElement.type) {
+			case "Checkbox":
+			    if (eval(currentElement.grayedOutReference) === false){
+				if (MouseIn(MENU_ELEMENT_X_OFFSET + currentElement.xModifier, currentElement.yPos - currentElement.height/2, currentElement.width, currentElement.height)){
+				    Player.UBC.ubcSettings[currentElement.setting] = !Player.UBC.ubcSettings[currentElement.setting];
+				    foundElement = true;
+				}
+			    } 
+			    break;
+			case "Button":
+			    if (MouseIn(MENU_ELEMENT_X_OFFSET + currentElement.xModifier, currentElement.yPos - currentElement.height/2, currentElement.width, currentElement.height)){
+				currentElement.clickFunction();
+				foundElement = true;
+			    }
+			    break;
+			case "BackNext":
+			    if (MouseIn(MENU_ELEMENT_X_OFFSET + currentElement.xModifier, currentElement.yPos - currentElement.height/2, currentElement.width, currentElement.height)){
+			        if (MouseX <= MENU_ELEMENT_X_OFFSET + currentElement.width/2) currentElement.index = PreferenceGetPreviousIndex(currentElement.backNextOptions, currentElement.index);
+				else currentElement.index = PreferenceGetNextIndex(currentElement.backNextOptions, currentElement.index);
+				if(currentElement.setting == BF_LOCK_NAME || currentElement.setting == BF_TIMER_LOCK_NAME) {
+				    Player.UBC.ubcSettings.ItemPerm[currentElement.setting] = currentElement.backNextOptions[currentElement.index];
+				}
+				else Player.UBC.ubcSettings[currentElement.setting] = currentElement.backNextOptions[currentElement.index];
+				foundElement = true;
+			    }
+			    break;
+			default:
+			    break;
+			}
+			// Fontsize = 36
+			if (MouseIn(500, currentElement.yPos - 18, MENU_ELEMENT_X_OFFSET - 525, 36)){
+			    settingsHint = currentElement.hint;
+			    currentHint = currentElement.yPos;
+			}
+			if (foundElement) i = menuElements[UBCPreferenceSubscreen].length;
+		    }
+		}
+
+		function defaultExit(){
+		    menuElements[UBCPreferenceSubscreen] = [];
+		    UBCPreferenceSubscreen = "UBCSettings";
+		    PreferenceMessage = "";
+		    settingsHint = "";
+		    currentHint = 0;
+		    PreferenceExtensionsCurrent = {
+			Identifier: "UBCSettings",
+			click: PreferenceSubscreenUBCSettingsClick,
+			run: PreferenceSubscreenUBCSettingsRun,
+			exit: PreferenceSubscreenUBCSettingsExit,
+			load: PreferenceSubscreenUBCSettingsLoad,
+		    }
+                    PreferenceSubscreenUBCSettingsLoad();
+		}
+
+		PreferenceSubscreenUBCSettingsLoad = function () {
+		    currentPageNumber = 0;
+		};
+
+		PreferenceSubscreenUBCSettingsRun = function () {
+			
+		    // Draw the player & controls
+		    DrawCharacter(Player, 50, 50, 0.9);
+		    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+		    MainCanvas.textAlign = "left";
+		    DrawText("- ULTRA Bondage Club Settings -",	500, 125, "Black", "Gray");
+		    MainCanvas.textAlign = "center";
+		    //Show tips every 10 secs
+		    DrawTextWrapGood(UBC_TIPS[Math.floor(((TimerGetTime()%100000)/100000)*(UBC_TIPS.length))], 1650, 260, 400, 100, ForeColor = UBC_API.HintForeColor);
+
+		    DrawText("ULTRAbc " + UBCver, 1665, 525, "Black", "Gray");
+                    DrawButton(1500, 550, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
+                    DrawImageResize("Icons/Changelog.png", 1510, 565, 60, 60);
+                    DrawTextFit("UBC Changes", 1685, 598, 308, "Black");
+                    DrawButton(1500, 655, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
+                    DrawImageResize("Icons/Introduction.png", 1510, 670, 60, 60);
+                    DrawTextFit("UBC Wiki", 1685, 703, 308, "Black");
+                    DrawText("/uhelp in chat", 1665, 770, "Black", "Gray");
+
+		    //DrawButton(1500, 860, 300, 90, "Reset", "Red", "Icons/Reset.png", "Reset ALL Settings (including best friends list).")
+			
+		    if (PreferenceMessage != "") DrawText(PreferenceMessage, 865, 125, "Red", "Black");
+			
+		    // Draw all the buttons to access the submenus
+		    for (let A = 0; A < ubcSettingsCategories.length; A++) {
+			ControllerIgnoreButton = true;
+			//DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + ubcSettingsCategories[A] + ".png");
+			DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "");
+			ControllerIgnoreButton = false;
+			DrawTextFit(ubcSettingCategoryLabels[ubcSettingsCategories[A]], 700 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
+			if (controllerIsActive()) {
+			    setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
+			}
+		    }
+		};
+
+		/*function resetSettings() {
+		    CommonDynamicFunction("PreferenceSubscreenResetLoad()");
+		    PreferenceExtensionsCurrent = {
+			Identifier: "Reset",
+			click: () => CommonCallFunctionByName(`PreferenceSubscreenResetClick`),
+			run: () => CommonCallFunctionByName(`PreferenceSubscreenResetRun`),
+			exit: () => CommonCallFunctionByName(`PreferenceSubscreenResetExit`),
+			load: () => CommonCallFunctionByName(`PreferenceSubscreenResetLoad`),
+		    }
+		    UBCPreferenceSubscreen = "Reset";
+		    PreferencePageCurrent = 1;
+		}
+  
+		PreferenceSubscreenResetLoad = function () {
+		    currentPageNumber = 1;
+		}
+  
+		PreferenceSubscreenResetRun = function () {
+		    DrawTextWrapGood("Do you want to reset all settings to Defaults?",1000, 200, 800, 100, ForeColor = UBC_API.HintForeColor);
+		    DrawButton(400, 650, 300, 100, "Confirm", "Red","","Confirm Reset and Exit");
+		    DrawButton(1300, 650, 300, 100, "Cancel","White","","Cancel Reset");
+		}
+  
+		PreferenceSubscreenResetClick = function () {
+		    if (MouseIn(400, 650, 300, 100)) {
+			ubcSettingsLoad(reset = true);
+			defaultExit();
+		    }
+		    if (MouseIn(1300, 650, 300, 100)) {
+			defaultExit();
+		    }
+		}
+  
+		PreferenceSubscreenResetExit = function () {
+		    defaultExit();
+		}*/
+		
+		PreferenceSubscreenUBCSettingsClick = function () {
+			
+		    // Exit button
+		    if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenUBCSettingsExit();
+		    if (MouseIn(1450, 650, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+		    if (MouseIn(1450, 755, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+		    //if (MouseIn(1500, 860, 300, 90)) resetSettings();
+		    // Open the selected subscreen
+		    for (let A = 0; A < ubcSettingsCategories.length; A++){
+			if (MouseIn(500 + 500 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
+			    if (typeof window["PreferenceSubscreen" + ubcSettingsCategories[A] + "Load"] === "function")
+			    CommonDynamicFunction("PreferenceSubscreen" + ubcSettingsCategories[A] + "Load()");
+			    PreferenceExtensionsCurrent = {
+				Identifier: ubcSettingsCategories[A],
+				// ButtonText: ubcSettingCategoryLabels[ubcSettingsCategories[A]],
+				click: () => CommonCallFunctionByName(`PreferenceSubscreen${ubcSettingsCategories[A]}Click`),
+				run: () => CommonCallFunctionByName(`PreferenceSubscreen${ubcSettingsCategories[A]}Run`),
+				exit: () => CommonCallFunctionByName(`PreferenceSubscreen${ubcSettingsCategories[A]}Exit`),
+				load: () => CommonCallFunctionByName(`PreferenceSubscreen${ubcSettingsCategories[A]}Load`),
+			    }
+			    UBCPreferenceSubscreen = ubcSettingsCategories[A];
+
+			    PreferencePageCurrent = 1;
+			    break;
+			}
+		    }
+		}
+		
+		PreferenceSubscreenUBCSettingsExit = function () {
+                    let data = Player.UBC.ubcSettings;
+                    ExtbuttonsOn = data.extbuttons;
+                    OutbuttonsOn = data.outbuttons;
+                    SosbuttonsOn = data.sosbuttons;
+                    RglbuttonsOn = data.rglbuttons;
+		    M_MOANER_saveControls();
+		    UBCPreferenceSubscreen = "";
+		    PreferenceMessage = "";
+		    PreferenceSubscreenExtensionsClear();
+		};
+
+                PreferenceSubscreenUBCButtonsLoad = function () {
+		    UBCPreferenceSubscreen = "UBCButtons";
+                    let settings = Player.UBC.ubcSettings;
+		    addMenuCheckbox(64, 64, "Enable EXT button in chat: ", "extbuttons",
+			"The EXT button gives direct access to the Extensions menu. It corresponds to the /xmenu command."
+		    );
+		    addMenuCheckbox(64, 64, "Enable FREE buttons: ", "sosbuttons",
+			"The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command."
+		    );
+		    addMenuCheckbox(64, 64, "Enable OUT buttons: ", "outbuttons",
+			"The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text."
+		    );
+		    addMenuCheckbox(64, 64, "Enable RGL button in chat: ", "rglbuttons",
+			"The RGL button corresponds to the /talk -2 command. It allows to get info about your current garbling level at any moment. This level is based on the currently worn gags and other items restraining talking (including LSCG collar and spells). This info is automatically given when using the emergency buttons, hotkeys or commands to release yourself. You can also use this button as emergency button if you can't talk while not being gagged, in some cases."
+		    );	
+		}
+
+		PreferenceSubscreenUBCButtonsRun = function () {
+		    drawMenuElements();
+		}
+
+		PreferenceSubscreenUBCButtonsClick = function () {
+		    handleMenuClicks();
+		}
+
+		PreferenceSubscreenUBCButtonsExit = function () {
+		    defaultExit();
+		};
+
+		function keyHandler(e) {
+		    if (e.key === "Escape" && !!UBCPreferenceSubscreen && UBCPreferenceSubscreen !== "UBCSettings" ) {
+			CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`);
+			e.stopPropagation();
+			e.preventDefault();
+		    } 
+		}
+	
+		document.addEventListener("keydown", keyHandler, true);
+		document.addEventListener("keypress", keyHandler, true);
+		
+		
+		PreferenceRegisterExtensionSetting(
+		    {
+			Identifier: "UBCSettings",
+			ButtonText: "ULTRAbc Settings",
+			Image: "",
+			click: PreferenceSubscreenUBCSettingsClick,
+			run: PreferenceSubscreenUBCSettingsRun,
+			exit: PreferenceSubscreenUBCSettingsExit,
+			load: PreferenceSubscreenUBCSettingsLoad,
+		    });
+         }
+
+     }
+     // End of section under GPLv3 license
+
+
     //ModSDK Functions
     ULTRAActivityChatRoomArousalSync();
     ULTRAAppearanceClick();
