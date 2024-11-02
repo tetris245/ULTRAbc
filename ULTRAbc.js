@@ -19,7 +19,7 @@
 // Includes a section under GPLv3 license
 /**
  *     BCTweaks
- *  Copyright (C) 2024 agicitag
+ *  Copyright (C) 2024 agicitag - Modified by Nemesea for ULTRAbc
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
