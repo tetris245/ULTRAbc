@@ -1281,7 +1281,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
                 PreferenceSubscreenUBCButtonsLoad = function () {
 		    UBCPreferenceSubscreen = "UBCButtons";
-                    let settings = Player.UBC.ubcSettings;
 		    addMenuCheckbox(64, 64, "Enable EXT button in chat: ", "extbuttons",
 			"The EXT button gives direct access to the Extensions menu. It corresponds to the /xmenu command."
 		    );
@@ -1292,7 +1291,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			"The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text."
 		    );
 		    addMenuCheckbox(64, 64, "Enable RGL button in chat: ", "rglbuttons",
-			"The RGL button corresponds to the /talk -2 command. It allows to get info about your current garbling level at any moment. This level is based on the currently worn gags and other items restraining talking (including LSCG collar and spells). This info is automatically given when using the emergency buttons, hotkeys or commands to release yourself. You can also use this button as emergency button if you can't talk while not being gagged, in some cases."
+			"The RGL button corresponds to the /talk -2 command. It allows to get info about your current Real Garbling Level at any moment. This level is based on the currently worn gags and other items restraining talking (including LSCG collar and spells). This info is automatically given when using the emergency buttons, hotkeys or commands to release yourself. You can also use this button as emergency button if you can't talk while not being gagged, in some cases."
 		    );	
 		}
 
@@ -1310,7 +1309,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	        PreferenceSubscreenUBCHotkeysLoad = function () {
                     UBCPreferenceSubscreen = "UBCHotkeys";
-                    let settings = Player.UBC.ubcSettings;
 		    addMenuCheckbox(64, 64, "Enable hotkeys in chat: ", "hotkeys",
 			"These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = Total Release. If you don't have a numeric pad, use instead the similar command or an UBC button."
 		    );
