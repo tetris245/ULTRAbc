@@ -699,16 +699,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     M_MOANER_saveControls();
                 }
 		if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
+		if (FrkeysOn == null || FrkeysOn == undefined)  FrkeysOn = false;
+                if (HotkeysOn == null || HotkeysOn == undefined)  HotkeysOn = false;
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
                 M_MOANER_saveControls();
 		if (FixpermOn == null || FixpermOn == undefined) {
                     FixpermOn = false;
-                    M_MOANER_saveControls();
-                }
-                if (FrkeysOn == null || FrkeysOn == undefined) {
-                    FrkeysOn = false;
                     M_MOANER_saveControls();
                 }
                 if (frname == null || frname == undefined) {
@@ -793,6 +791,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
  
 	    const UBC_DEFAULT_SETTINGS = {
 	        extbuttons: false,
+		frkeys: false,
+                hotkeys: false,
                 outbuttons: false,
                 sosbuttons: false,
                 rglbuttons: false,	
@@ -845,10 +845,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    await waitFor(() => !!PreferenceRegisterExtensionSetting)
 
 	    const ubcSettingsCategories = [
-                "UBCButtons"
+                "UBCButtons",
+                "UBCHotkeys"
 	    ];
 	    const ubcSettingCategoryLabels = {
-                UBCButtons: "UBC Buttons"
+                UBCButtons: "UBC Buttons", 
+                UBCHotkeys: "UBC Hotkeys"
 	    };
 	    const MENU_ELEMENT_X_OFFSET = 1050;
 		
@@ -1266,6 +1268,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		PreferenceSubscreenUBCSettingsExit = function () {
                     let data = Player.UBC.ubcSettings;
                     ExtbuttonsOn = data.extbuttons;
+		    FrkeysOn = data.frkeys;
+                    HotkeysOn = data.hotkeys;
                     OutbuttonsOn = data.outbuttons;
                     SosbuttonsOn = data.sosbuttons;
                     RglbuttonsOn = data.rglbuttons;
@@ -1304,6 +1308,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    defaultExit();
 		};
 
+	        PreferenceSubscreenUBCHotkeysLoad = function () {
+                    UBCPreferenceSubscreen = "UBCHotkeys";
+                    let settings = Player.UBC.ubcSettings;
+		    addMenuCheckbox(64, 64, "Enable hotkeys in chat: ", "hotkeys",
+			"These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = Total Release. If you don't have a numeric pad, use instead the similar command or an UBC button."
+		    );
+		    addMenuCheckbox(64, 64, "Enable hotkeys in friend list: ", "frkeys",
+			"These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. List of hotkeys: F = female club - G = mixed club - H = male club - J = asylum."
+		    );		    
+		}
+
+		PreferenceSubscreenUBCHotkeysRun = function () {
+		    drawMenuElements();
+		}
+
+		PreferenceSubscreenUBCHotkeysClick = function () {
+		    handleMenuClicks();
+		}
+
+		PreferenceSubscreenUBCHotkeysExit = function () {
+		    defaultExit();
+		};
+
 		function keyHandler(e) {
 		    if (e.key === "Escape" && !!UBCPreferenceSubscreen && UBCPreferenceSubscreen !== "UBCSettings" ) {
 			CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`);
@@ -1314,7 +1341,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	
 		document.addEventListener("keydown", keyHandler, true);
 		document.addEventListener("keypress", keyHandler, true);
-		
 		
 		PreferenceRegisterExtensionSetting(
 		    {
@@ -13515,10 +13541,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
                     "<b>exitmode</b> for exit mode with OUT button \n" +
 		    "<b>fixperm</b> for permissions when using safeword\n" +
-                    "<b>frkeys</b> for hotkeys in friendlist \n" +
                     "<b>fullseed</b> for full solution with intricate and hs locks\n" +
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
-                    "<b>hotkeys</b> for hotkeys on numeric pad \n" +
                     "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
                     "<b>magictoys</b> for toys under locked chastity in traps\n" +
                     "<b>nogarble</b> for ungarble in default BC talk mode\n" +
@@ -13589,25 +13613,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "No automatic change of your general item  permission when using safeword.";
                         infomsg(msg);
                     }
-
-                } else if (setting == "frkeys") {
-                    if (FrkeysOn == true) {
-                        FrkeysOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Hotkeys in friendlist are disabled.";
-                        infomsg(msg);
-                    } else {
-                        FrkeysOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Hotkeys in friendlist are enabled:\n" +
-                            "They allow to get clickable links in another lobby you have access if you are in a lobby (not in a room).\n " +
-                            "You can use them only on the list of current online friends AND if you are not in the search input or send beep zone.\n" +
-                            "F = female club\n" +
-                            "G = mixed club\n" +
-                            "H = male club\n" +
-                            "J = asylum";
-                        infomsg(msg);
-                    }
                 } else if (setting == "fullseed") {
                     if (FullseedOn == true) {
                         FullseedOn = false;
@@ -13632,18 +13637,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ClubCardFameGoal = cfame;
                         M_MOANER_saveControls();
                         let msg = "High fame mode enabled in Bondage Club Card Game.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "hotkeys") {
-                    if (HotkeysOn == true) {
-                        HotkeysOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Hotkeys on numeric pad are disabled.";
-                        infomsg(msg);
-                    } else {
-                        HotkeysOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Hotkeys on numeric pad are enabled: Divide = fast leave - Multiply = Total Release";
                         infomsg(msg);
                     }
                 } else if (setting == "magiccheat") {
