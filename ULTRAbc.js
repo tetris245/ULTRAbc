@@ -702,8 +702,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		if (FrkeysOn == null || FrkeysOn == undefined)  FrkeysOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined)  HotkeysOn = false;
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
+		if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
+		if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
-                if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
                 M_MOANER_saveControls();
 		if (FixpermOn == null || FixpermOn == undefined) {
                     FixpermOn = false;
@@ -794,8 +795,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		frkeys: false,
                 hotkeys: false,
                 outbuttons: false,
-                sosbuttons: false,
-                rglbuttons: false,	
+		rglbuttons: false,
+		slowleave: false,
+                sosbuttons: false,	
 	    };
 
             Player.UBC = {};
@@ -1270,9 +1272,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ExtbuttonsOn = data.extbuttons;
 		    FrkeysOn = data.frkeys;
                     HotkeysOn = data.hotkeys;
-                    OutbuttonsOn = data.outbuttons;
+                    OutbuttonsOn = data.outbuttons; 
+		    RglbuttonsOn = data.rglbuttons;
+		    SlowleaveOn = data.slowleave;
                     SosbuttonsOn = data.sosbuttons;
-                    RglbuttonsOn = data.rglbuttons;
 		    M_MOANER_saveControls();
 		    UBCPreferenceSubscreen = "";
 		    PreferenceMessage = "";
@@ -1293,6 +1296,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    addMenuCheckbox(64, 64, "Enable RGL button in chat: ", "rglbuttons",
 			"The RGL button corresponds to the /talk -2 command. It allows to get info about your current Real Garbling Level at any moment. This level is based on the currently worn gags and other items restraining talking (including LSCG collar and spells). This info is automatically given when using the emergency buttons, hotkeys or commands to release yourself. You can also use this button as emergency button if you can't talk while not being gagged, in some cases."
 		    );	
+		    addMenuCheckbox(64, 64, "Slow exit with OUT button:", "slowleave",
+			"By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players!"
+		    )	
 		}
 
 		PreferenceSubscreenUBCButtonsRun = function () {
@@ -13537,7 +13543,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>autojoin</b> for chat room auto-join feature\n" +
                     "<b>bgall</b> for bgs usable with the buttons in Private Room\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
-                    "<b>exitmode</b> for exit mode with OUT button \n" +
 		    "<b>fixperm</b> for permissions when using safeword\n" +
                     "<b>fullseed</b> for full solution with intricate and hs locks\n" +
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
@@ -13585,18 +13590,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DolltalkOn = true;
                         M_MOANER_saveControls();
                         let msg = "Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "exitmode") {
-                    if (SlowleaveOn == true) {
-                        SlowleaveOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Fast exit mode is activated.";
-                        infomsg(msg);
-                    } else {
-                        SlowleaveOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Slow exit mode is activated.";
                         infomsg(msg);
                     }
                 } else if (setting == "fixperm") {
