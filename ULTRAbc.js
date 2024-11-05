@@ -1032,7 +1032,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			
 		MainCanvas.textAlign = "left";
 		if (PreferenceMessage != "") DrawText(PreferenceMessage, 900, 125, "Red", "Black");
-		DrawText("- " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + " Settings -", 500, 125, "Black", "Gray");
+		DrawText("UBC " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + " - Click on a setting to get more info", 500, 125, "Black", "Gray");
 		if(settingsHint != ""){
 		    DrawTextWrapGood(settingsHint, 1350, 200, 555, 725, ForeColor = UBC_API.HintForeColor, BackColor = UBC_API.HintBackColor, BorderColor = UBC_API.HintBorderColor);
 		}
@@ -1241,8 +1241,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			
 		    // Exit button
 		    if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenUBCSettingsExit();
-		    if (MouseIn(1450, 650, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
-		    if (MouseIn(1450, 755, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+		    if (MouseIn(1450, 550, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+		    if (MouseIn(1450, 655, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
 		    //if (MouseIn(1500, 860, 300, 90)) resetSettings();
 		    // Open the selected subscreen
 		    for (let A = 0; A < ubcSettingsCategories.length; A++){
