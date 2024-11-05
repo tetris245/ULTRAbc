@@ -60,7 +60,7 @@ Changes for future version
 
 * Added a GUI that will give more comfort to change your UBC settings
   - This GUI is based on the BCTweaks GUI and is under GPLv3 license (thanks to agicitag for this powerful code!)
-  - First version of this GUI for UBC comes with the following options: UBC Buttons, UBC Hotkeys
+  - First version of this GUI for UBC comes with the following options: UBC Buttons, UBC Hotkeys, UBC Misc
 * Optimised the bg2 and bg3 commands
-* Removed from the uset command the options that corresponds to the settings available in the GUI (exitmode, extbuttons, frkeys, hotkeys, outbuttons, sosbuttons, rglbuttons)
+* Removed from the uset command the options that corresponds to the settings available in the GUI (bgall, exitmode, extbuttons, fixperm, frkeys, hotkeys, notimeout, npcpunish, outbuttons, sosbuttons, rglbuttons)
   
