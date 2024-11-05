@@ -671,11 +671,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MaptrapOn = false;
                     M_MOANER_saveControls();
                 }
-                if (NPCpunish == true) {
-                    Player.RestrictionSettings.BypassNPCPunishments = false;
-                } else {
-                    Player.RestrictionSettings.BypassNPCPunishments = true;
-                }
                 if (DolltalkOn == null || DolltalkOn == undefined) {
                     DolltalkOn = false;
                     M_MOANER_saveControls();
@@ -694,22 +689,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
-                if (bgall == null || bgall == undefined) {
-                    bgall = false;
-                    M_MOANER_saveControls();
-                }
-		if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
-		if (FrkeysOn == null || FrkeysOn == undefined)  FrkeysOn = false;
+                if (bgall == null || bgall == undefined) bgall = false;		     
+                if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
+                if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
+                if (FrkeysOn == null || FrkeysOn == undefined)  FrkeysOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined)  HotkeysOn = false;
+                if (NotimeoutOn == null || NotimeoutOn == undefined) NotimeoutOn = false;
+                if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
-		if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
-		if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
+                if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
+                if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
                 M_MOANER_saveControls();
-		if (FixpermOn == null || FixpermOn == undefined) {
-                    FixpermOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (frname == null || frname == undefined) {
                     frname = "BrickWall";
                     tcname = "Cell";
@@ -736,10 +727,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MagictoysOn = false;
                     M_MOANER_saveControls();
                 }
-                if (NotimeoutOn == null || NotimeoutOn == undefined) {
-                    NotimeoutOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (reaction == null || reaction == undefined) {
                     reaction = 0;
                     M_MOANER_saveControls();
@@ -751,6 +738,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (rtype == null || rtype == undefined || rtype == "") {
                     rtype = "ALL";
                     M_MOANER_saveControls();
+                }
+		if (NPCpunish == true) {
+                    Player.RestrictionSettings.BypassNPCPunishments = false;
+                } else {
+                    Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
@@ -791,13 +783,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    await waitFor(() => !!Player?.AccountName);
  
 	    const UBC_DEFAULT_SETTINGS = {
+                bgall: false,
 	        extbuttons: false,
-		frkeys: false,
+                fixperm: false,
+                frkeys: false,
                 hotkeys: false,
+                notimeout: false,
+                npcpunish: false,
                 outbuttons: false,
-		rglbuttons: false,
-		slowleave: false,
-                sosbuttons: false,	
+                rglbuttons: false,
+                slowleave: false,
+                sosbuttons: false,
 	    };
 
             Player.UBC = {};
@@ -848,11 +844,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	    const ubcSettingsCategories = [
                 "UBCButtons",
-                "UBCHotkeys"
+                "UBCHotkeys",
+                "UBCMisc"
 	    ];
 	    const ubcSettingCategoryLabels = {
                 UBCButtons: "UBC Buttons", 
-                UBCHotkeys: "UBC Hotkeys"
+                UBCHotkeys: "UBC Hotkeys",
+                UBCMisc: "UBC Misc"
 	    };
 	    const MENU_ELEMENT_X_OFFSET = 1050;
 		
@@ -1269,14 +1267,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		
 		PreferenceSubscreenUBCSettingsExit = function () {
                     let data = Player.UBC.ubcSettings;
+                    bgall = data.bgall;
                     ExtbuttonsOn = data.extbuttons;
-		    FrkeysOn = data.frkeys;
+                    FixpermOn = data.fimperm;
+                    FrkeysOn = data.frkeys;
                     HotkeysOn = data.hotkeys;
-                    OutbuttonsOn = data.outbuttons; 
-		    RglbuttonsOn = data.rglbuttons;
-		    SlowleaveOn = data.slowleave;
+                    NotimeoutOn = data.notimeout;
+                    NPCpunish = data.npcpunish;
+                    OutbuttonsOn = data.outbuttons;
+                    RglbuttonsOn = data.rglbuttons;
+                    SlowleaveOn = data.slowleave;
                     SosbuttonsOn = data.sosbuttons;
 		    M_MOANER_saveControls();
+                    if (NPCpunish == true) {
+                        Player.RestrictionSettings.BypassNPCPunishments = false;
+                    } else {
+                        Player.RestrictionSettings.BypassNPCPunishments = true;
+                    }
 		    UBCPreferenceSubscreen = "";
 		    PreferenceMessage = "";
 		    PreferenceSubscreenExtensionsClear();
@@ -1335,6 +1342,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    defaultExit();
 		};
 
+		PreferenceSubscreenUBCMiscLoad = function () {
+                    UBCPreferenceSubscreen = "UBCMisc";
+		    addMenuCheckbox(64, 64, "Access all backgrounds in Private Room: ", "bgall",
+			"When using this option, you will not be limited to only 43 backgrounds when using the features in the Private Room to change the background of Friend List, Main Hall, Private Room and Timer Cell. You will have access to all standard backgrounds (more than 250!)", false, 120
+		    );
+		    addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
+			"BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
+		    );
+                    addMenuCheckbox(64, 64, "No time out in help provided by TAB: ", "notimeout",
+			"When you use the TAB key to get help about BC commands, the displayed results are removed from the chat after some time. If you don't like that, use this option to prevent the disappearance of the help results.", false, 120
+		    );
+                    addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
+			"By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
+		    );    
+		}
+
+		PreferenceSubscreenUBCMiscRun = function () {
+		    drawMenuElements();
+		}
+
+		PreferenceSubscreenUBCMiscClick = function () {
+		    handleMenuClicks();
+		}
+
+		PreferenceSubscreenUBCMiscExit = function () {
+		    defaultExit();
+		};
+
 		function keyHandler(e) {
 		    if (e.key === "Escape" && !!UBCPreferenceSubscreen && UBCPreferenceSubscreen !== "UBCSettings" ) {
 			CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`);
@@ -1360,7 +1395,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
      }
      // End of section under GPLv3 license
-
 
     //ModSDK Functions
     ULTRAActivityChatRoomArousalSync();
@@ -13541,18 +13575,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
                     "<b>autojoin</b> for chat room auto-join feature\n" +
-                    "<b>bgall</b> for bgs usable with the buttons in Private Room\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
-		    "<b>fixperm</b> for permissions when using safeword\n" +
                     "<b>fullseed</b> for full solution with intricate and hs locks\n" +
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
                     "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
                     "<b>magictoys</b> for toys under locked chastity in traps\n" +
                     "<b>nogarble</b> for ungarble in default BC talk mode\n" +
                     "<b>nostruggle</b> for automatic struggle in mini-games\n" +
-                    "<b>notimeout</b> for toggle time-out in BC TAB help\n" +
-                    "<b>nowhisper</b> for no-whisper mode\n" +
-                    "<b>npcpunish</b> for NPC punishments";
+                    "<b>nowhisper</b> for no-whisper mode";
                 infomsg(msg);
             } else {
                 let setting = args;
@@ -13568,18 +13598,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "Auto-Join feature is enabled.";
                         infomsg(msg);
                     }
-                } else if (setting == "bgall") {
-                    if (bgall == true) {
-                        bgall = false;
-                        M_MOANER_saveControls();
-                        let msg = "Only 43 standard backgrounds can be used with the buttons in Private Room (SP).";
-                        infomsg(msg);
-                    } else {
-                        bgall = true;
-                        M_MOANER_saveControls();
-                        let msg = "All standard backgrounds can be used with the buttons in Private Room.";
-                        infomsg(msg);
-                    }
                 } else if (setting == "dolltalk") {
                     if (DolltalkOn == true) {
                         DolltalkOn = false;
@@ -13590,18 +13608,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DolltalkOn = true;
                         M_MOANER_saveControls();
                         let msg = "Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "fixperm") {
-                    if (FixpermOn == true) {
-                        FixpermOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Automatic change of your general item permission when using safeword."; 
-                        infomsg(msg);
-                    } else {
-                        FixpermOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "No automatic change of your general item  permission when using safeword.";
                         infomsg(msg);
                     }
                 } else if (setting == "fullseed") {
@@ -13720,18 +13726,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                } else if (setting == "notimeout") {
-                    if (NotimeoutOn == true) {
-                        NotimeoutOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Time-out for BC help provided by TAB key is activated.";
-                        infomsg(msg);
-                    } else {
-                        NotimeoutOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Time-out for BC help provided by TAB key is disabled.";
-                        infomsg(msg);
-                    }
                 } else if (setting == "nowhisper") {
                     if (NowhisperOn == true) {
                         NowhisperOn = false;
@@ -13743,21 +13737,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         M_MOANER_saveControls();
                         let msg = "No-whisper mode enabled.";
                         infomsg(msg);
-                    }
-                } else if (setting == "npcpunish") {
-                    if (Player.RestrictionSettings.BypassNPCPunishments == true) {
-                        Player.RestrictionSettings.BypassNPCPunishments = false;
-                        NPCpunish = true;
-                        M_MOANER_saveControls();
-                        let msg = "NPC punishments enabled.";
-                        infomsg(msg);
-                    } else {
-                        Player.RestrictionSettings.BypassNPCPunishments = true;
-                        NPCpunish = false;
-                        M_MOANER_saveControls();
-                        let msg = "NPC punishments disabled.";
-                        infomsg(msg);
-                    }         
+                    } 
                 }
             }
         }
