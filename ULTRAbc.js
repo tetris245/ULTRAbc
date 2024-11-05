@@ -855,7 +855,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    const MENU_ELEMENT_X_OFFSET = 1050;
 		
 	    let menuElements = {};
-	    for (category of ubcSettingsCategories){
+	    for (category of ubcSettingsCategories) {
 		menuElements[category] = [];
 	    }
 
@@ -938,7 +938,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		);
 	    }
 
-	    function getNewYPos(){
+	    function getNewYPos() {
 		let yPos = 200;
 		if (menuElements[UBCPreferenceSubscreen].length > 0){
 		    let lastElement = menuElements[UBCPreferenceSubscreen][menuElements[UBCPreferenceSubscreen].length - 1];
@@ -947,7 +947,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		return yPos;
 	    }
 
-	    function addMenuCheckbox(width, height, text, setting, hint, grayedOutReference = "false", xModifier = 0, yModifier = 0, elementText = ""){
+	    function addMenuCheckbox(width, height, text, setting, hint, grayedOutReference = "false", xModifier = 0, yModifier = 0, elementText = "") {
 		menuElements[UBCPreferenceSubscreen].push({
 		    type: "Checkbox",
 		    yPos: getNewYPos(),
@@ -963,7 +963,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		});
 	    }
  
-	    function addMenuButton(width, height, text, elementText, clickFunction, hint, xModifier = 0, yModifier = 0){
+	    function addMenuButton(width, height, text, elementText, clickFunction, hint, xModifier = 0, yModifier = 0) {
 		menuElements[UBCPreferenceSubscreen].push({
 		    type: "Button",
 		    yPos: getNewYPos(),
@@ -978,7 +978,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		});
 	    }
 
-	    function addMenuInput(width, text, setting, identifier, hint, xModifier = 0, yModifier = 0){
+	    function addMenuInput(width, text, setting, identifier, hint, xModifier = 0, yModifier = 0) {
 		menuElements[UBCPreferenceSubscreen].push({
 		    type: "Input",
 		    yPos: getNewYPos(),
@@ -1008,7 +1008,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		}
 	    }
 
-	    function addMenuBackNext(width, height, text, setting, backNextOptions, hint, xModifier = 0, yModifier = 0){
+	    function addMenuBackNext(width, height, text, setting, backNextOptions, hint, xModifier = 0, yModifier = 0) {
 		menuElements[UBCPreferenceSubscreen].push({
 		    type: "BackNext",
 		    yPos: getNewYPos(),
@@ -1095,7 +1095,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		}
 	    }
 
-	    function handleMenuClicks(){
+	    function handleMenuClicks() {
 		// Exit button
 		if (MouseIn(1815, 75, 90, 90)){
 		    CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`)
@@ -1143,7 +1143,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    }
 		}
 
-		function defaultExit(){
+		function defaultExit() {
 		    menuElements[UBCPreferenceSubscreen] = [];
 		    UBCPreferenceSubscreen = "UBCSettings";
 		    PreferenceMessage = "";
@@ -1198,7 +1198,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			    setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
 			}
 		    }
-		};
+		}
 
 		/*function resetSettings() {
 		    CommonDynamicFunction("PreferenceSubscreenResetLoad()");
@@ -1287,7 +1287,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    UBCPreferenceSubscreen = "";
 		    PreferenceMessage = "";
 		    PreferenceSubscreenExtensionsClear();
-		};
+		}
 
                 PreferenceSubscreenUBCButtonsLoad = function () {
 		    UBCPreferenceSubscreen = "UBCButtons";
@@ -1318,7 +1318,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 		PreferenceSubscreenUBCButtonsExit = function () {
 		    defaultExit();
-		};
+		}
 
 	        PreferenceSubscreenUBCHotkeysLoad = function () {
                     UBCPreferenceSubscreen = "UBCHotkeys";
@@ -1340,12 +1340,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 		PreferenceSubscreenUBCHotkeysExit = function () {
 		    defaultExit();
-		};
+		}
 
 		PreferenceSubscreenUBCMiscLoad = function () {
                     UBCPreferenceSubscreen = "UBCMisc";
 		    addMenuCheckbox(64, 64, "Access all backgrounds in Private Room: ", "bgall",
-			"When using this option, you will not be limited to only 43 backgrounds when using the features in the Private Room to change the background of Friend List, Main Hall, Private Room and Timer Cell. You will have access to all standard backgrounds (more than 250!)", false, 120
+			"With this option, you will not be limited to only 43 backgrounds when using the features in the Private Room to change the background of Friend List, Main Hall, Private Room and Timer Cell. You will have access to all standard backgrounds (more than 250!)", false, 120
 		    );
 		    addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
 			"BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
@@ -1368,7 +1368,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 		PreferenceSubscreenUBCMiscExit = function () {
 		    defaultExit();
-		};
+		}
 
 		function keyHandler(e) {
 		    if (e.key === "Escape" && !!UBCPreferenceSubscreen && UBCPreferenceSubscreen !== "UBCSettings" ) {
