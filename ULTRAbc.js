@@ -1269,7 +1269,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let data = Player.UBC.ubcSettings;
                     bgall = data.bgall;
                     ExtbuttonsOn = data.extbuttons;
-                    FixpermOn = data.fimperm;
+                    FixpermOn = data.fixperm;
                     FrkeysOn = data.frkeys;
                     HotkeysOn = data.hotkeys;
                     NotimeoutOn = data.notimeout;
