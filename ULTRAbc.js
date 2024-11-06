@@ -692,8 +692,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (bgall == null || bgall == undefined) bgall = false;		     
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
+		if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
                 if (FrkeysOn == null || FrkeysOn == undefined)  FrkeysOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined)  HotkeysOn = false;
+		if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
+                if (NogarbleOn == null || NogarbleOn == undefined) NogarbleOn = false;
+                if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (NotimeoutOn == null || NotimeoutOn == undefined) NotimeoutOn = false;
                 if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
@@ -787,7 +791,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	        extbuttons: false,
                 fixperm: false,
                 frkeys: false,
+		fullseed: false,
                 hotkeys: false,
+		magiccheat: false,
+                nogarble: false,
+                nostruggle: false,
                 notimeout: false,
                 npcpunish: false,
                 outbuttons: false,
@@ -844,13 +852,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	    const ubcSettingsCategories = [
                 "UBCButtons",
+                "UBCCheats",
                 "UBCHotkeys",
                 "UBCMisc"
 	    ];
 	    const ubcSettingCategoryLabels = {
-                UBCButtons: "UBC Buttons", 
-                UBCHotkeys: "UBC Hotkeys",
-                UBCMisc: "UBC Misc"
+                UBCButtons: "Buttons", 
+                UBCCheats: "Cheats",
+                UBCHotkeys: "Hotkeys",
+                UBCMisc: "Misc"
 	    };
 	    const MENU_ELEMENT_X_OFFSET = 1050;
 		
@@ -1270,8 +1280,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     bgall = data.bgall;
                     ExtbuttonsOn = data.extbuttons;
                     FixpermOn = data.fixperm;
+		    FullseedOn = data.fullseed;
                     FrkeysOn = data.frkeys;
                     HotkeysOn = data.hotkeys;
+		    MagiccheatOn = data.magiccheat;
+                    NogarbleOn = data.nogarble;
+                    NostruggleOn = data.nostruggle;
                     NotimeoutOn = data.notimeout;
                     NPCpunish = data.npcpunish;
                     OutbuttonsOn = data.outbuttons;
@@ -1279,6 +1293,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     SlowleaveOn = data.slowleave;
                     SosbuttonsOn = data.sosbuttons;
 		    M_MOANER_saveControls();
+		    if (NogarbleOn == true) {
+                        Player.RestrictionSettings.NoSpeechGarble = true;
+                    } else {
+                        Player.RestrictionSettings.NoSpeechGarble = false;
+                    }
+                    if (NostruggleOn == true) {
+                        Player.RestrictionSettings.BypassStruggle = true;
+                    } else {
+                        Player.RestrictionSettings.BypassStruggle = false;
+                    }
                     if (NPCpunish == true) {
                         Player.RestrictionSettings.BypassNPCPunishments = false;
                     } else {
@@ -1317,6 +1341,51 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		}
 
 		PreferenceSubscreenUBCButtonsExit = function () {
+		    defaultExit();
+		}
+
+	        PreferenceSubscreenUBCCheatsLoad = function () {
+                    UBCPreferenceSubscreen = "UBCCheats";
+                    addMenuCheckbox(64, 64, "Enable Bondage Brawl/Magic School cheat: ", "magiccheat",
+		        "With this option, you always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!", false, 160 
+		    );
+		    addMenuCheckbox(64, 64, "Enable full help for intricate and hs locks: ", "fullseed",
+		        "You will become a lockpicking expert with this option! The full solution with the correct order to lockpick intricate and high security locks is displayed on screen.", false, 160
+		    ); 
+                    let gmsg = "This setting allows to ungarble your gagtalk, no matter your game difficulty. However, it is not available when you have enabled the corresponding WCE feature, which has more options."; 
+                    let smsg = "This setting allows automatic struggle in mini-games, no matter your game difficulty. If the autostruggle fails, you need to change solidity of current worn items with the /solidity command and/or enhance your skills with the /boost command. Note that this setting is not available when you have enabled the corresponding WCE feature, which works slightly differently.";
+                    let gbc = 0;
+                    let sbc = 0;
+                    if (Player.FBC != undefined) {
+                        let str = Player.ExtensionSettings.FBC;
+                        let d = LZString.decompressFromBase64(str);
+                        let FBCdata = {};
+                        let decoded = JSON.parse(d);
+                        FBCdata = decoded;
+                        if (FBCdata.antiGarble) gbc = 1;
+                        if (FBCdata.autoStruggle) sbc = 1;
+                    }
+                    if (gbc == 0) {
+                        addMenuCheckbox(64, 64, "Enable ungarbling of your gagtalk: ", "nogarble", gmsg, false, 160);
+                    } else {
+                        addMenuCheckbox(64, 64, "Enable ungarbling of your gagtalk: ", "nogarble", gmsg, true, 160);
+                    }
+                    if (sbc == 0) {
+                        addMenuCheckbox(64, 64, "Enable automatic struggle in mini-games: ", "nostruggle", smsg, false, 160);
+                    } else {
+                        addMenuCheckbox(64, 64, "Enable automatic struggle in mini-games: ", "nostruggle", smsg, true, 160);
+                    }
+		}
+
+		PreferenceSubscreenUBCCheatsRun = function () {
+		    drawMenuElements();
+		}
+
+		PreferenceSubscreenUBCCheatsClick = function () {
+		    handleMenuClicks();
+		}
+
+		PreferenceSubscreenUBCCheatsExit = function () {
 		    defaultExit();
 		}
 
@@ -3499,7 +3568,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function FBCsettings() {
 	let gbc = 0;
         let sbc = 0;
-        if (Player.FBCOtherAddons != undefined) {
+        if (Player.FBC != undefined) {
             let str = Player.ExtensionSettings.FBC;
             let d = LZString.decompressFromBase64(str);
             let FBCdata = {};
@@ -13576,12 +13645,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
                     "<b>autojoin</b> for chat room auto-join feature\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
-                    "<b>fullseed</b> for full solution with intricate and hs locks\n" +
                     "<b>highfame</b> for high fame mode in Club Card Game\n" +
-                    "<b>magiccheat</b> for Bondage Brawl/Magic School cheat\n" +
                     "<b>magictoys</b> for toys under locked chastity in traps\n" +
-                    "<b>nogarble</b> for ungarble in default BC talk mode\n" +
-                    "<b>nostruggle</b> for automatic struggle in mini-games\n" +
                     "<b>nowhisper</b> for no-whisper mode";
                 infomsg(msg);
             } else {
@@ -13610,18 +13675,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.";
                         infomsg(msg);
                     }
-                } else if (setting == "fullseed") {
-                    if (FullseedOn == true) {
-                        FullseedOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Full solution for intricate and high security locks is disabled.";
-                        infomsg(msg);
-                    } else {
-                        FullseedOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Full solution for intricate and high security locks is enabled.";
-                        infomsg(msg);
-                    }
                 } else if (setting == "highfame") {
                     if (HighfameOn == true) {
                         HighfameOn = false;
@@ -13636,18 +13689,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "High fame mode enabled in Bondage Club Card Game.";
                         infomsg(msg);
                     }
-                } else if (setting == "magiccheat") {
-                    if (MagiccheatOn == true) {
-                        MagiccheatOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Cheat mode disabled in Bondage Brawl and Magic School.";
-                        infomsg(msg);
-                    } else {
-                        MagiccheatOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Cheat mode enabled in Bondage Brawl and Magic School.";
-                        infomsg(msg);
-                    }
                 } else if (setting == "magictoys") {
                     if (MagictoysOn == true) {
                         MagictoysOn = false;
@@ -13659,72 +13700,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         M_MOANER_saveControls();
                         let msg = "Toys can be added under locked chastity for trap mode in map rooms.";
                         infomsg(msg);
-                    }
-                } else if (setting == "nogarble") {
-		    let gbc = 0;
-                    if (Player.FBCOtherAddons != undefined) {
-                        let str = Player.ExtensionSettings.FBC;
-                        let d = LZString.decompressFromBase64(str);
-                        let FBCdata = {};
-                        let decoded = JSON.parse(d);
-                        FBCdata = decoded;
-                        if (FBCdata.antiGarble) {
-                            gbc = 1;
-                            Player.RestrictionSettings.NoSpeechGarble = false;
-                            NogarbleOn = false;
-                            M_MOANER_saveControls();
-                            let msg = "BC default talk mode can ungarble messages and whispers according your WCE settings.";
-                            infomsg(msg);
-                        }
-                    }
-                    if (gbc == 0) {
-                        if (Player.RestrictionSettings.NoSpeechGarble == true) {
-                            Player.RestrictionSettings.NoSpeechGarble = false;
-                            NogarbleOn = false;
-                            M_MOANER_saveControls();
-                            let msg = "BC default talk mode will not ungarble messages and whispers.";
-                            infomsg(msg);
-                        } else {
-                            Player.RestrictionSettings.NoSpeechGarble = true;
-                            NogarbleOn = true;
-                            M_MOANER_saveControls();
-                            let msg = "BC default talk mode will ungarble messages and whispers.";
-                            infomsg(msg);
-                        }
-                    }
-                } else if (setting == "nostruggle") {
-		    let sbc = 0;
-                    if (Player.FBCOtherAddons != undefined) {
-                        let str = Player.ExtensionSettings.FBC;
-                        let d = LZString.decompressFromBase64(str);
-                        let FBCdata = {};
-                        let decoded = JSON.parse(d);
-                        FBCdata = decoded;
-                        if (FBCdata.autoStruggle) {
-                            sbc = 1;
-                            Player.RestrictionSettings.BypassStruggle = false;
-                            NostruggleOn = false;
-                            M_MOANER_saveControls();
-                            let msg = "Automatic struggle in mini-games is enabled according your WCE setting.\n" +
-                                "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.";
-                            infomsg(msg);
-                        }
-                    }
-                    if (sbc == 0) {
-                        if (Player.RestrictionSettings.BypassStruggle == true) {
-                            Player.RestrictionSettings.BypassStruggle = false;
-                            NostruggleOn = false;
-                            M_MOANER_saveControls();
-                            let msg = "Automatic struggle in mini-games is disabled.";
-                            infomsg(msg);
-                        } else {
-                            Player.RestrictionSettings.BypassStruggle = true;
-                            NostruggleOn = true;
-                            M_MOANER_saveControls();
-                            let msg = "Automatic struggle in mini-games is enabled.\n" +
-                                "If the autostruggle fails, you need to change solidity of current worn items with the <b>/solidity</b> command.";
-                            infomsg(msg);
-                        }
                     }
                 } else if (setting == "nowhisper") {
                     if (NowhisperOn == true) {
