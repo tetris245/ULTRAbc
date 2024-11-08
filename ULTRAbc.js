@@ -689,11 +689,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
-                if (bgall == null || bgall == undefined) bgall = false;		     
+                if (bgall == null || bgall == undefined) bgall = false;	
+		if (cdesk == null || cdesk == undefined) cdesk = 0;    
+                if (cfame == null || cfame == undefined) cfame = 200;
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
 		if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
                 if (FrkeysOn == null || FrkeysOn == undefined)  FrkeysOn = false;
+		if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined)  HotkeysOn = false;
 		if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
                 if (NogarbleOn == null || NogarbleOn == undefined) NogarbleOn = false;
@@ -773,7 +776,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	await waitFor(() => ServerSocket && ServerIsConnected);
 			
 	const UBC_TIPS = [
-             "Tip: Infos are displayed by clicking on the options.",
+             "Tip: Use the /cardextra command to get all extra reward cards of the Bondage Club Card Game.",
              "Tip: Use the /uhelp command in chat or explore the wiki to better know all the UBC commands.",
 	     "More options in next version of UBC!"
 	]
@@ -788,10 +791,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
  
 	    const UBC_DEFAULT_SETTINGS = {
                 bgall: false,
+		cdesk: 0,
+                cfame: 200,
 	        extbuttons: false,
                 fixperm: false,
                 frkeys: false,
 		fullseed: false,
+		highfame: false,
                 hotkeys: false,
 		magiccheat: false,
                 nogarble: false,
@@ -852,12 +858,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	    const ubcSettingsCategories = [
                 "UBCButtons",
+                "UBCCards",
                 "UBCCheats",
                 "UBCHotkeys",
                 "UBCMisc"
 	    ];
 	    const ubcSettingCategoryLabels = {
                 UBCButtons: "Buttons", 
+                UBCCards: "Cards",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
                 UBCMisc: "Misc"
@@ -1003,7 +1011,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		ElementCreateInput(identifier, "text", Player.UBC.ubcSettings[setting], "100");
 	    }
 
-	    function backNextWithBF(setting, backNextOptions) {
+	    /*function backNextWithBF(setting, backNextOptions) {
 		if (setting == BF_LOCK_NAME || setting == BF_TIMER_LOCK_NAME) {
 		    if((backNextOptions.indexOf(Player.UBC.ubcSettings.ItemPerm[setting]) < 0)) {
 			return 0;
@@ -1033,7 +1041,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    index: backNextWithBF(setting, backNextOptions),
 		    //(backNextOptions.indexOf(Player.UBC.ubcSettings[setting]) < 0) ? 0 : backNextOptions.indexOf(Player.UBC.ubcSettings[setting])
 		});
-	    }
+	    }*/
 
 	    function drawMenuElements(){
 		// Draw the player & controls
@@ -1278,10 +1286,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		PreferenceSubscreenUBCSettingsExit = function () {
                     let data = Player.UBC.ubcSettings;
                     bgall = data.bgall;
+		    cdesk = data.cdesk;
+                    cfame = data.cfame;
                     ExtbuttonsOn = data.extbuttons;
                     FixpermOn = data.fixperm;
 		    FullseedOn = data.fullseed;
                     FrkeysOn = data.frkeys;
+		    HighfameOn = data.highfame;
                     HotkeysOn = data.hotkeys;
 		    MagiccheatOn = data.magiccheat;
                     NogarbleOn = data.nogarble;
@@ -1329,19 +1340,53 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    );	
 		    addMenuCheckbox(64, 64, "Slow exit with OUT button:", "slowleave",
 			"By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players!"
-		    )	
+		    );	
 		}
 
 		PreferenceSubscreenUBCButtonsRun = function () {
 		    drawMenuElements();
 		}
 
-		PreferenceSubscreenUBCButtonsClick = function () {
+		PreferenceSubscreenUBCButtonsClick = function () { 
 		    handleMenuClicks();
 		}
 
 		PreferenceSubscreenUBCButtonsExit = function () {
 		    defaultExit();
+		}
+
+		PreferenceSubscreenUBCCardsLoad = function () {
+		    UBCPreferenceSubscreen = "UBCCards";
+                    addMenuInput(200, "Default card desk (0-8):", "cdesk", "InputDefaultDesk",
+		        "Input a number between 0 and 8 to select one of these desks as default desk: 0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant - 5 Liability - 6 Maid - 7 Porn - 8 Extra."
+                    );		
+		    addMenuCheckbox(64, 64, "Enable High Fame mode: ", "highfame",
+			"BC has fixed the fame you need to reach to win in the Bondage Club Card Game to 100. If you want to play longer and more adventurous games, enable this option, and optionnally set a High Fame level (200 by default)."
+		    );
+                    addMenuInput(200, "High Fame level (200-600):", "cfame", "InputHighFame", 
+			"Input a number between 200 and 600 to set the High Fame level players need to reach to win the game!"	
+                    );              
+		}
+
+		PreferenceSubscreenUBCCardsRun = function () {
+		    drawMenuElements();
+		}
+
+		PreferenceSubscreenUBCCardsClick = function () {
+		    handleMenuClicks();
+		}
+
+		PreferenceSubscreenUBCCardsExit = function () {
+                    let desk = ElementValue("InputDefaultDesk");
+                    let fame = ElementValue("InputHighFame");
+                    if ((CommonIsNumeric(desk)) && (desk > -1) && (desk < 9) && (CommonIsNumeric(fame)) && (fame > 199) && (fame < 601)) {
+		        Player.UBC.ubcSettings.cdesk = desk;
+			Player.UBC.ubcSettings.cfame = fame;
+			ElementRemove ("InputDefaultDesk");				         
+			ElementRemove("InputHighFame");
+			defaultExit();
+		    }
+		    else PreferenceMessage = "Put a valid number";
 		}
 
 	        PreferenceSubscreenUBCCheatsLoad = function () {
@@ -6495,31 +6540,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'carddesk',
-        Description: "(desk): sets a specific desk as default desk for the Bondage Club Card Game.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The carddesk command must be followed by a number between 0 and 8.\n" +
-                    " \n" +
-                    "Available desks:\n" +
-                    "0 Original Default\n" +
-                    "1 ABDL - 2 Asylum - 3 College\n" +
-                    "4 Dominant - 5 Liability - 6 Maid\n" +
-                    "7 Porn - 8 Extra";
-                infomsg(msg);
-            } else {
-                let desk = args;
-                if ((desk > -1) && (desk < 9) && (desk != cdesk)) {
-                    cdesk = desk;
-                    M_MOANER_saveControls();
-                    let msg = "Default desk changed for the Bondage Club Card Game.";
-                    infomsg(msg);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'cardextra',
         Description: ": gives all extra cards of the Bondage Club Card Game.",
         Action: () => {
@@ -6534,25 +6554,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ServerAccountUpdate.QueueData({
                 Game: Player.Game
             }, true);
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'cardfame',
-        Description: "(fame): sets the fame level for the high fame mode of Bondage Club Card Game.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The cardfame command must be followed by a number between 200 and 600.";
-                infomsg(msg);
-            } else {
-                let fame = args;
-                if ((fame > 199) && (fame < 601) && (fame != cfame)) {
-                    cfame = fame;
-                    M_MOANER_saveControls();
-                    let msg = "Fame level changed for the high fame mode of the Bondage Club Card Game.";
-                    infomsg(msg);
-                }
-            }
         }
     }])
 
@@ -13102,9 +13103,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Settings commands - * = more info when using\n" +
                     "<b>/bg4</b> (screen) (background) = selects a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell. *\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
-                    "<b>/carddesk</b> (desk) = changes default desk for Card Game.\n" +
                     "<b>/cardextra</b> = gives all extra cards.\n" +
-                    "<b>/cardfame</b> (fame) = sets high fame level for Card Game.\n" +
                     "<b>/cardnoextra</b> = removes all extra cards.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
@@ -13652,7 +13651,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
                     "<b>autojoin</b> for chat room auto-join feature\n" +
                     "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
-                    "<b>highfame</b> for high fame mode in Club Card Game\n" +
                     "<b>magictoys</b> for toys under locked chastity in traps\n" +
                     "<b>nowhisper</b> for no-whisper mode";
                 infomsg(msg);
@@ -13680,20 +13678,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DolltalkOn = true;
                         M_MOANER_saveControls();
                         let msg = "Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "highfame") {
-                    if (HighfameOn == true) {
-                        HighfameOn = false;
-                        ClubCardFameGoal = 100;
-                        M_MOANER_saveControls();
-                        let msg = "High fame mode disabled in Bondage Club Card Game.";
-                        infomsg(msg);
-                    } else {
-                        HighfameOn = true;
-                        ClubCardFameGoal = cfame;
-                        M_MOANER_saveControls();
-                        let msg = "High fame mode enabled in Bondage Club Card Game.";
                         infomsg(msg);
                     }
                 } else if (setting == "magictoys") {
