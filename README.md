@@ -61,6 +61,7 @@ Changes for future version
 * Added a GUI that will give more comfort to change your UBC settings
   - This GUI is based on the BCTweaks GUI and is under GPLv3 license (thanks to agicitag for this powerful code!)
   - First version of this GUI for UBC comes with the following options: Buttons, Cheats, Hotkeys, Misc
+* Added Bondage Teacher pictures to the bg3 command
 * Optimised the bg2 and bg3 commands
-* Removed from the uset command the options that corresponds to the settings available in the GUI 
+* Removed from the uset command the options that corresponds to settings available in the GUI 
   
