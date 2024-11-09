@@ -1391,7 +1391,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             Game: Player.Game
                         }, true);				
 		    }, 
-			"This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way are removed when this setting acts after a first using to add all extra cards."
+			"This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action."
 		    ); 
 		}
 
