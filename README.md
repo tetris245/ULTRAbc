@@ -63,6 +63,6 @@ Changes for future version
   - First version of this GUI for UBC comes with the following options: Buttons, Cards, Cheats, Hotkeys, Misc
 * Added Bondage Teacher pictures to the bg3 command
 * Optimised the bg2 and bg3 commands
-* Removed the carddesk and cardfame commands (the corresponding settings are now in the GUI)
+* Removed the carddesk, cardextra, cardfame and cardnoextra commands (the corresponding settings are now in the GUI)
 * Removed from the uset command the options that corresponds to settings available in the GUI 
   
