@@ -79,6 +79,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let animal = 0;
     let bgall = false;
     let cdesk = 0;
+    let cextra = false;
     let cfame = 200;
     let frname = "BrickWall";
     let gl = 0;
@@ -411,6 +412,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             animal = 0;
             bgall = false;
             cdesk = 0;
+	    cextra = false;
             cfame = 200;
             frname = "BrickWall";
             gl = 0;
@@ -489,6 +491,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             animal = datas.animal;
             bgall = datas.bgall;
             cdesk = datas.cdesk;
+	    cextra = datas.cextra;
             cfame = datas.cfame;
             frname = datas.frname;
             gl = datas.gaglevel;
@@ -570,6 +573,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "animal": animal,
             "bgall": bgall,
             "cdesk": cdesk,
+            "cextra": cextra,
             "cfame": cfame,
             "frname": frname,
             "gaglevel": gl,
@@ -690,7 +694,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
                 if (bgall == null || bgall == undefined) bgall = false;	
-		if (cdesk == null || cdesk == undefined) cdesk = 0;    
+		if (cdesk == null || cdesk == undefined) cdesk = 0; 
+		if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 200;
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
@@ -776,7 +781,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	await waitFor(() => ServerSocket && ServerIsConnected);
 			
 	const UBC_TIPS = [
-             "Tip: Use the /cardextra command to get all extra reward cards of the Bondage Club Card Game.",
+             "Explore the brand new GUI of ULTRAbc!",
              "Tip: Use the /uhelp command in chat or explore the wiki to better know all the UBC commands.",
 	     "More options in next version of UBC!"
 	]
@@ -792,6 +797,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    const UBC_DEFAULT_SETTINGS = {
                 bgall: false,
 		cdesk: 0,
+		cextra: false,
                 cfame: 200,
 	        extbuttons: false,
                 fixperm: false,
@@ -1287,6 +1293,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let data = Player.UBC.ubcSettings;
                     bgall = data.bgall;
 		    cdesk = data.cdesk;
+		    cextra = data.cextra;
                     cfame = data.cfame;
                     ExtbuttonsOn = data.extbuttons;
                     FixpermOn = data.fixperm;
@@ -1365,7 +1372,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    );
                     addMenuInput(200, "High Fame level (200-600):", "cfame", "InputHighFame", 
 			"Input a number between 200 and 600 to set the High Fame level players need to reach to win the game!"	
-                    );              
+                    ); 
+		    addMenuButton(150, 64, "Add/Remove Extra Cards:", "Toggle", function() {
+                        Player.Game.ClubCard.Reward = "";
+                        if (Player.UBC.ubcSettings.cextra  == false) {
+                            Player.UBC.ubcSettings.cextra = true;
+                            let Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
+                            for (let i = 0; i < Extra.length; i++) {
+                                let Char = String.fromCharCode(Extra[i]);
+                                Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
+                            }
+                            PreferenceMessage = "All extra cards added";
+                        } else {
+                            Player.UBC.ubcSettings.cextra = false;
+                            PreferenceMessage = "All extra cards removed";
+                        }
+                        ServerAccountUpdate.QueueData({
+                            Game: Player.Game
+                        }, true);				
+		    }, 
+			"This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way are removed when this setting acts after a first using to add all extra cards."
+		    ); 
 		}
 
 		PreferenceSubscreenUBCCardsRun = function () {
@@ -6535,42 +6562,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     event.preventDefault();
                     ChatRoomSendChatMessage(text4);
                 }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'cardextra',
-        Description: ": gives all extra cards of the Bondage Club Card Game.",
-        Action: () => {
-            Player.Game.ClubCard.Reward = "";
-            let Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
-            let msg = "All extra cards of the Bondage Club Card Game now added.";
-            infomsg(msg);
-            for (let i = 0; i < Extra.length; i++) {
-                let Char = String.fromCharCode(Extra[i]);
-                Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
-            }
-            ServerAccountUpdate.QueueData({
-                Game: Player.Game
-            }, true);
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'cardnoextra',
-        Description: ": removes all extra cards of the Bondage Club Card Game.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "<b>Warning</b>: You will lose all the extra cards of the Bondage Club Card Game. Confirm by typing: <b>/cardnoextra yes</b>";
-                infomsg(msg);
-            } else if (args === "yes") {
-                let msg = "No more extra cards in the Bondage Club Card Game.";
-                infomsg(msg);
-                Player.Game.ClubCard.Reward = "";
-                ServerAccountUpdate.QueueData({
-                    Game: Player.Game
-                }, true);
             }
         }
     }])
@@ -13103,8 +13094,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Settings commands - * = more info when using\n" +
                     "<b>/bg4</b> (screen) (background) = selects a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell. *\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
-                    "<b>/cardextra</b> = gives all extra cards.\n" +
-                    "<b>/cardnoextra</b> = removes all extra cards.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/roomsize</b> (players) = sets maximum players per room in Chat Search for normal and hybrid rooms.\n" +
