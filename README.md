@@ -61,7 +61,7 @@ Changes for future version
 * Added a GUI that will give more comfort to change your UBC settings
   - This GUI is based on the BCTweaks GUI and is under GPLv3 license (thanks to agicitag for this powerful code!)
   - First version of this GUI for UBC comes with the following options: Buttons, Cards, Cheats, Hotkeys, Misc, Moaner
-* New command: mstatus to display the current status of the Moaner (it replaces the moander status commmand)
+* New command: mstatus to display the current status of the Moaner (it replaces the moaner status commmand)
 * Added Bondage Teacher pictures to the bg3 command
 * Optimised the bg2 and bg3 commands
 * Removed the carddesk, cardextra, cardfame, cardnoextra and moaner commands (the corresponding settings are now in the GUI)
