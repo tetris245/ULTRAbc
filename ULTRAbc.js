@@ -4815,7 +4815,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "Moaner Target",
         Callback: (data, sender, msg, metadata) => {
             if ((data.Content.includes("Vibe")) && (Player.ArousalSettings.Progress >= 10)) {
-                if (M_MOANER_xvibratorActive == true) {
+                if (M_MOANER_xvibratorActive && M_MOANER_scriptOn) {
                     msg = ElementValue("InputChat");
                     reaction = 3;
                     M_MOANER_miscReactions(data);
