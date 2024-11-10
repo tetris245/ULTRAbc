@@ -9961,64 +9961,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'moaner',
-        Description: "(options): moans when horny and stimulated.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "Several actions are possible with the moaner command:\n" +
-                    "<b>/moaner on</b> = starts the moaner\n" +
-                    "<b>/moaner off</b> = stops the moaner\n" +
-                    "<b>/moaner profile</b> (profilename) =  selects a moaner profile. Without profilename, access to moaner profile help\n" +
-                    "<b>/moaner status</b> = displays current moaner status\n" +
-                    " \n" +
-                    "You can also enable/disable parts of the Moaner with:\n" +
-                    "<b>/moaner orgasm</b> = toggles moans when you cum\n" +
-                    "<b>/moaner spank</b> = toggles moans when you are spanked\n" +
-                    "<b>/moaner talk</b> = toggles moans when talking if vibed\n" +
-                    "<b>/moaner tickle</b> = toggles moans when you are tickled\n" +
-                    "<b>/moaner vibe</b> = toggles moans when your vibes settings change\n" +
-                    "<b>/moaner xvibe</b> = toggles moans when vibes settings of other players change";
-                infomsg(msg);
-            } else {
-                let stringMoan1 = args;
-                let stringMoan2 = stringMoan1.split(/[ ,]+/);
-                let feature = stringMoan2[0];
-                if ((feature == "on") || (feature == "off")) {
-                    scriptControl(feature);
-                    M_MOANER_saveControls();
-                } else {
-                    let commande = stringMoan2[1];
-                    if (feature == "orgasm") {
-                        orgasmControl(commande);
-                        M_MOANER_saveControls();
-                    } else if (feature == "profile") {
-                        if (commande == null) {
-                            profilesList();
-                        } else if (commande != null) {
-                            M_MOANER_activerProfile(commande);
-                            M_MOANER_saveControls();
-                        }
-                        showM_MOANER_profileStatus();
-                    } else if (feature == "spank") {
-                        spankControl(commande);
-                        M_MOANER_saveControls();
-                    } else if (feature == "status") {
-                        showStatus();
-                    } else if (feature == "talk") {
-                        talkControl(commande);
-                        M_MOANER_saveControls();
-                    } else if (feature == "tickle") {
-                        tickleControl(commande);
-                        M_MOANER_saveControls();
-                    } else if (feature == "vibe") {
-                        vibeControl(commande);
-                        M_MOANER_saveControls();
-                    } else if (feature == "xvibe") {
-                        xvibeControl(commande);
-                        M_MOANER_saveControls();
-                    }
-                }
-            }
+        Tag: 'mstatus',
+        Description: ": displays current status of the moaner.",
+        Action: () => {  
+            showStatus();
         }
     }])
 
@@ -13050,7 +12996,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes settings of worn High Duty Belt. *\n" +
                     "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
-                    "<b>/moaner</b> (options) = moans when horny and stimulated. *\n" +
                     "<b>/plvibe</b> (options) = changes settings of worn Sci-Fi Pleasure Panties. *\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
@@ -13079,7 +13024,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "misc") {
                 let msg = "Misc commands - * = more info when using\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
-                    "<b>/pmenu</b> = direct access to  Preferences screen.\n" +
+		    "<b>/mstatus</b> = displays current status of the moaner.\n" + 
+                    "<b>/pmenu</b> = direct access to Preferences screen.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n" +
@@ -13107,7 +13053,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
                     "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
-                    "<b>/moaner</b> = moans when horny and stimulated. *\n" +
                     "<b>/ptalk</b> (animal) = forces a specific animal talk mode. *\n" +
                     "<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *\n" +
                     "<b>/stutter</b> (stuttermode) = forces a specific stuttering mode. *\n" +
