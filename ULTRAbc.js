@@ -75,6 +75,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const M_MOANER_moanerKey = "bc_moaner_";
     let M_MOANER_scriptOn = false;
     let M_MOANER_cum = false;
+    let profile;
     let profileName;
     let animal = 0;
     let bgall = false;
@@ -403,6 +404,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             M_MOANER_vibratorActive = true;
             M_MOANER_xvibratorActive = false;
             M_MOANER_cum = false;
+	    profile = 0;
             profileName = "default";
             tmpname = "";
             pronoun1 = "";
@@ -482,6 +484,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             M_MOANER_vibratorActive = datas.vibeMoan;
             M_MOANER_xvibratorActive = datas.xvibeMoan;
             M_MOANER_cum = datas.cum;
+	    profile = datas.profile;
             profileName = datas.moanProfile;
             tmpname = datas.tmpname;
             pronoun1 = datas.pronoun1;
@@ -563,7 +566,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tickleMoan": M_MOANER_tickleActive,
             "vibeMoan": M_MOANER_vibratorActive,
             "xvibeMoan": M_MOANER_xvibratorActive,
-            "cum": M_MOANER_cum,
+            "cum": M_MOANER_cum,    
+            "profile": profile,
             "moanProfile": profileName,
             "tmpname": tmpname,
             "pronoun1": pronoun1,
@@ -704,11 +708,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined)  HotkeysOn = false;
 		if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
+		if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
+                if (M_MOANER_scriptOn == null || M_MOANER_scriptOn == undefined) M_MOANER_scriptOn = false;
+                if (M_MOANER_spankActive == null || M_MOANER_spankActive == undefined) M_MOANER_spankActive = true;
+                if (M_MOANER_talkActive == null || M_MOANER_talkActive == undefined) M_MOANER_talkActive = true;
+                if (M_MOANER_tickleActive == null || M_MOANER_tickleActive == undefined) M_MOANER_tickleActive = true;
+                if (M_MOANER_vibratorActive == null || M_MOANER_vibratorActive == undefined) M_MOANER_vibratorActive = true;  
+                if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;           
+                if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
                 if (NogarbleOn == null || NogarbleOn == undefined) NogarbleOn = false;
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (NotimeoutOn == null || NotimeoutOn == undefined) NotimeoutOn = false;
                 if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
+		if (profileName == null || profileName == undefined) profileName = "default";
+                if (profileName == "default") profile = 0;
+                if (profileName == "bunny") profile = 1;
+                if (profileName == "cow") profile = 2;
+                if (profileName == "dog") profile = 3;
+                if (profileName == "fox") profile = 4;
+                if (profileName == "mouse") profile = 5;
+                if (profileName == "neko") profile = 6;
+                if (profileName == "pig") profile = 7;
+                if (profileName == "pony") profile = 8;
+                if (profileName == "wildfox") profile = 9;
+                if (profileName == "wolf") profile = 10;
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
                 if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
@@ -810,10 +834,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nostruggle: false,
                 notimeout: false,
                 npcpunish: false,
+		orgasmMoan: true,
                 outbuttons: false,
+		profile: 0,
                 rglbuttons: false,
+		script: false,
                 slowleave: false,
                 sosbuttons: false,
+		spankMoan: true,
+                talkMoan: true,
+                tickleMoan: true,
+                vibeMoan: true,
+                xvibeMoan: false,
 	    };
 
             Player.UBC = {};
@@ -867,17 +899,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCCards",
                 "UBCCheats",
                 "UBCHotkeys",
-                "UBCMisc"
+                "UBCMisc",
+                "UBCMoaner"
 	    ];
 	    const ubcSettingCategoryLabels = {
                 UBCButtons: "Buttons", 
                 UBCCards: "Cards",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
-                UBCMisc: "Misc"
+                UBCMisc: "Misc",
+                UBCMoaner: "Moaner"
 	    };
 	    const MENU_ELEMENT_X_OFFSET = 1050;
-		
+	
 	    let menuElements = {};
 	    for (category of ubcSettingsCategories) {
 		menuElements[category] = [];
@@ -1055,7 +1089,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 			
 		MainCanvas.textAlign = "left";
-		if (PreferenceMessage != "") DrawText(PreferenceMessage, 900, 125, "Red", "Black");
+		if (PreferenceMessage != "") DrawText(PreferenceMessage, 1300, 125, "Red", "Black");
 		DrawText("UBC " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + " - Click on a setting to get more info", 500, 125, "Black", "Gray");
 		if(settingsHint != ""){
 		    DrawTextWrapGood(settingsHint, 1350, 200, 555, 725, ForeColor = UBC_API.HintForeColor, BackColor = UBC_API.HintBackColor, BorderColor = UBC_API.HintBorderColor);
@@ -1164,6 +1198,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			    currentHint = currentElement.yPos;
 			}
 			if (foundElement) i = menuElements[UBCPreferenceSubscreen].length;
+			if (Player.UBC.ubcSettings.vibeMoan == false) Player.UBC.ubcSettings.xvibeMoan = false;
 		    }
 		}
 
@@ -1302,14 +1337,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    HighfameOn = data.highfame;
                     HotkeysOn = data.hotkeys;
 		    MagiccheatOn = data.magiccheat;
+		    M_MOANER_orgasmActive = data.orgasmMoan;
+                    M_MOANER_scriptOn = data.script;
+                    M_MOANER_spankActive = data.spankMoan;
+                    M_MOANER_talkActive = data.talkMoan;
+                    M_MOANER_tickleActive = data.tickleMoan;
+                    M_MOANER_vibratorActive = data.vibeMoan;
+                    M_MOANER_xvibratorActive = data.xvibeMoan;
                     NogarbleOn = data.nogarble;
                     NostruggleOn = data.nostruggle;
                     NotimeoutOn = data.notimeout;
                     NPCpunish = data.npcpunish;
                     OutbuttonsOn = data.outbuttons;
+		    profile = data.profile;
                     RglbuttonsOn = data.rglbuttons;
                     SlowleaveOn = data.slowleave;
                     SosbuttonsOn = data.sosbuttons;
+		    if (profile == 0) profileName = "default";
+                    if (profile == 1) profileName = "bunny";
+                    if (profile == 2) profileName = "cow";
+                    if (profile == 3) profileName = "dog";
+                    if (profile == 4) profileName = "fox";
+                    if (profile == 5) profileName = "mouse";
+                    if (profile == 6) profileName = "neko";
+                    if (profile == 7) profileName = "pig";
+                    if (profile == 8) profileName = "pony";
+                    if (profile == 9) profileName = "wildfox";
+                    if (profile == 10) profileName = "wolf";
 		    M_MOANER_saveControls();
 		    if (NogarbleOn == true) {
                         Player.RestrictionSettings.NoSpeechGarble = true;
@@ -1511,6 +1565,52 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    defaultExit();
 		}
 
+		PreferenceSubscreenUBCMoanerLoad = function () {
+                    UBCPreferenceSubscreen = "UBCMoaner";
+		    addMenuCheckbox(64, 64, "Activate the Moaner: ", "script",
+			"Add more fun to Bondage Club with the moans automatically generated by the Moaner!", false, 140
+		    ); 
+                    addMenuInput(200, "Moaning profile (0-10):", "profile", "InputMoanProfile",
+			"Input a number between 0 and 10 to select one of these moaning profiles: 0 Default - 1 Bunny - 2 Cow - 3 Dog  - 4 Fox - 5 Mouse - 6 Neko - 7 Pig - 8 Pony - 9 Wildfox - 10 Wolf.", 6
+                    );
+                    addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan",
+			"When enabled, you will moan while cumming.", false, 140
+		    );
+                    addMenuCheckbox(64, 64, "Enable the spank moan: ", "spankMoan",
+			"When enabled, you will moan while being spanked. Also when bited, kicked, pinched, shocked, slapped. In case of actions triggering a shock, it concerns only actions to punish orgasm, standup or struggle. According your fetishes and your horny state, it can be pain or pleasure.", false, 140
+		    );
+                    addMenuCheckbox(64, 64, "Enable the talk moan: ", "talkMoan",
+			"When enabled, you will moan while speaking if you're vibed. The moans can interrupt your talking.", false, 140
+		    );
+                    addMenuCheckbox(64, 64, "Enable the tickle moan: ", "tickleMoan",
+			"When enabled, you will moan while being tickled. According your fetishes and your horny state, it can be pain or pleasure.", false, 140
+		    );
+                    addMenuCheckbox(64, 64, "Enable the vibes moan: ", "vibeMoan",
+			"When enabled, you will moan if your vibrator's settings change and your arousal level higher or equal to 10. Also when fingered, fisted, masturbated, or when your ears are caressed, kissed, licked, nibbled, or when using LSCG aphrodisiac injector, drink, respirator. Note that when you disable this setting, it automatically disables the xvibes moan too.", false, 140
+		    );
+                    addMenuCheckbox(64, 64, "Also xvibes moan (if vibes moan enabled): ", "xvibeMoan",
+			"When enabled, you will moan when vibes settings of other players in the chat room change, even if you are not yourself vibed (the only condition is an arousal level higher or equal to 10). Note that this setting can't be enabled when the vibes moan is disabled.", false, 140
+		    );
+  	        }
+
+		PreferenceSubscreenUBCMoanerRun = function () {
+		    drawMenuElements();
+		}
+
+		PreferenceSubscreenUBCMoanerClick = function () {
+		    handleMenuClicks();
+		}
+
+		PreferenceSubscreenUBCMoanerExit = function () {
+		    let profile = ElementValue("InputMoanProfile");
+                    if ((CommonIsNumeric(profile)) && (profile > -1) && (profile < 11)) {
+		        Player.UBC.ubcSettings.profile = profile;
+			ElementRemove ("InputMoanProfile");
+			defaultExit();
+		    }
+		    else PreferenceMessage = "Put a valid number";
+		}
+  
 		function keyHandler(e) {
 		    if (e.key === "Escape" && !!UBCPreferenceSubscreen && UBCPreferenceSubscreen !== "UBCSettings" ) {
 			CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`);
