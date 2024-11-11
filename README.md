@@ -38,7 +38,7 @@ After installation, refresh your BC page and relog.
 
 Special thanks to KellyLoveyness for creating the original version of QAM.
 
-Special thanks to agicitag for the powerful code of the BCTwdeaks GUI.
+Special thanks to agicitag for the powerful code of the BCTweaks GUI.
 
 Special thanks to Firefly for giving permission to integrate the BC-Diaper-Wetter script.
 
