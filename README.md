@@ -64,6 +64,7 @@ Changes for future version
 * New command: mstatus to display the current status of the Moaner (it replaces the moaner status commmand)
 * Added Bondage Teacher pictures to the bg3 command
 * Optimised the bg2 and bg3 commands
+* Updated the High Fame mode of the Club Card Game for R110 compatibility
 * Removed the carddesk, cardextra, cardfame, cardnoextra and moaner commands (the corresponding settings are now in the GUI)
 * Removed from the uset command the options that corresponds to settings available in the GUI 
   
