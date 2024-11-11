@@ -2462,64 +2462,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     GameClubCardReset();
 		    ClubCardFocus = null;
 		    return;
-	       }
-               ClubCardTurnEndDraw = Draw;
-               if (Draw) {
-	           const message = TextGet("EndTurnPlayer")
-                      .replace("FAMEMONEY", FameMoneyText)
-                      .replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character))
-                      .replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character));
-		   ClubCardMessagePacketAdd(`${CharacterNickname(CCPlayer.Character)} draws a card.`, ClubCardMessageType.ACTION);
-		   ClubCardMessagePacketAdd(message, ClubCardMessageType.FAMEMONEYINFO);
-		   ClubCardPlayerDrawCard(ClubCardPlayer[ClubCardTurnIndex]);
-	       } else {
-		   const message = TextGet("EndTurnPlayer")
+	        }
+                ClubCardTurnEndDraw = Draw;
+                if (Draw) {
+	            const message = TextGet("EndTurnPlayer")
                        .replace("FAMEMONEY", FameMoneyText)
                        .replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character))
                        .replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character));
+		    ClubCardMessagePacketAdd(`${CharacterNickname(CCPlayer.Character)} draws a card.`, ClubCardMessageType.ACTION);
 		    ClubCardMessagePacketAdd(message, ClubCardMessageType.FAMEMONEYINFO);
-	       }
-               const messageTypesHeadPacker = [ClubCardMessageType.FAMEMONEYINFO, ClubCardMessageType.ACTION, ClubCardMessageType.CARDEFFECT];
-	       const endTurnPacket = ClubCardGetLogPacket(messageTypesHeadPacker);
-	       ClubCardMessagePacketSend(endTurnPacket);
-               ClubCardTurnIndex++;
-	       CCPlayer.ClubCardTurnCounter++;
-	       if (ClubCardTurnIndex >= ClubCardPlayer.length) ClubCardTurnIndex = 0;
-	       ClubCardTurnCardPlayed = 0;
-	       ClubCardAIStart();
-               let turnStartCards = [];
-               CCPlayer = ClubCardPlayer[ClubCardTurnIndex];
-               if (CCPlayer.Board != null) {
-		   for (let Pos = 0; Pos < CCPlayer.Board.length; Pos++) {
-		       let Card = CCPlayer.Board[Pos];
-		       if ((Card.Time != null) && (Card.Time > 0)) Card.Time--;
-		       if (Card.Time <= 0) {
-                           ClubCardRemoveFromBoard(CCPlayer, Card);
-	                   Pos--;
-		       }
-                       if (Card.turnStart != null) {
-		           turnStartCards.push(Card);
-		       }
-	           }	   
-	       }
-               if (CCPlayer.Event != null) {
-                    for (let Pos = 0; Pos < CCPlayer.Event.length; Pos++) {
-                        let Card = CCPlayer.Event[Pos];
-                        if ((Card.Time != null) && (Card.Time > 0)) Card.Time--;
-                        if ((Card.Time == null) || (Card.Time <= 0)) {
-                            ClubCardLogPublish("EventExpired", CCPlayer, null, Card);
-                            CCPlayer.Event.splice(Pos, 1);
-                            CCPlayer.DiscardPile.push(Card);
-                            Pos--;
-                        }
-                        if (Card.turnStart != null) {
-		            Card.turnStart(Card);
-			}
-                    }
-                }
-                for (const Card of turnStartCards) {
-		    Card.turnStart(CCPlayer);
-	        } 
+		    ClubCardPlayerDrawCard(ClubCardPlayer[ClubCardTurnIndex]);
+	        } else {
+		    const message = TextGet("EndTurnPlayer")
+                        .replace("FAMEMONEY", FameMoneyText)
+                        .replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character))
+                        .replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character));
+		     ClubCardMessagePacketAdd(message, ClubCardMessageType.FAMEMONEYINFO);
+	        }
+                const messageTypesHeadPacker = [ClubCardMessageType.FAMEMONEYINFO, ClubCardMessageType.ACTION, ClubCardMessageType.CARDEFFECT];
+	        const endTurnPacket = ClubCardGetLogPacket(messageTypesHeadPacker);
+	        ClubCardMessagePacketSend(endTurnPacket);
+                ClubCardTurnIndex++;
+	        CCPlayer.ClubCardTurnCounter++;
+	        if (ClubCardTurnIndex >= ClubCardPlayer.length) ClubCardTurnIndex = 0;
+	        ClubCardTurnCardPlayed = 0;
+	        ClubCardAIStart();         
                 ClubCardIsStartTurn = false;
                 ClubCardStartTurn(ClubCardStartTurnType.ENDTURN);
                 GameClubCardSyncOnlineData();
