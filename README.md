@@ -38,6 +38,8 @@ After installation, refresh your BC page and relog.
 
 Special thanks to KellyLoveyness for creating the original version of QAM.
 
+Special thanks to agicitag for the powerful code of the BCTwdeaks GUI.
+
 Special thanks to Firefly for giving permission to integrate the BC-Diaper-Wetter script.
 
 Special thanks to Myrhanda and Kimei for giving permission to integrate the Moaner script.
@@ -66,5 +68,5 @@ Changes for future version
 * Optimised the bg2 and bg3 commands
 * Updated the High Fame mode of the Club Card Game for R110 compatibility
 * Removed the carddesk, cardextra, cardfame, cardnoextra and moaner commands (the corresponding settings are now in the GUI)
-* Removed from the uset command the options that corresponds to settings available in the GUI 
+* Removed from the uset command the options that correspond to settings available in the GUI 
   
