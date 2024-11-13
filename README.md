@@ -38,7 +38,7 @@ After installation, refresh your BC page and relog.
 
 Special thanks to KellyLoveyness for creating the original version of QAM.
 
-Special thanks to agicitag for the powerful code of the BCTweaks GUI.
+Special thanks to Julia for the powerful code of the BCTweaks GUI.
 
 Special thanks to Firefly for giving permission to integrate the BC-Diaper-Wetter script.
 
@@ -61,7 +61,7 @@ All else I might not have included.
 Changes for future version 
 
 * Added a GUI that will give more comfort to change your UBC settings
-  - This GUI is based on the BCTweaks GUI and is under GPLv3 license (thanks to agicitag for this powerful code!)
+  - This GUI is based on the BCTweaks GUI and is under GPLv3 license (thanks to Julia for this powerful code!)
   - First version of this GUI for UBC comes with the following options: Buttons, Cards, Cheats, Hotkeys, Misc, Moaner
   - All info about each setting available in the options is given inside the GUI
 * New command: mstatus to display the current status of the Moaner (it replaces the moaner status command)
