@@ -155,7 +155,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //BC Slots
     const body1 = ["Activity", "Blush", "BodyLower", "BodyMarkings", "BodyUpper", "Emoticon", "Eyebrows", "Eyes", "Eyes2", "EyeShadow", "Face", "FacialHair", "Fluids", "HairBack", "HairFront", "Hands", "Head", "Height", "Mouth", "Nipples", "Pronouns", "Pussy"];
 
-    const body2 = ["BodyMarkings2_Luzi", "Liquid2_Luzi", "\u{8EAB}\u{4F53}\u{75D5}\u{8FF9}_Luzi"];
+    const body2 = ["BodyMarkings2_Luzi", " \u{989D}\u{5916}\u{5934}\u{53D1}_Luzi", \u{989D}\u{5916}\u{8EAB}\u{9AD8}_Luzi", "Liquid2_Luzi", "\u{65B0}\u{540E}\u{53D1}_Luzi", "\u{65B0}\u{524D}\u{53D1}_Luzi", "\u{8EAB}\u{4F53}\u{75D5}\u{8FF9}_Luzi"];
 
     const clothes1 = ["Bra", "Bracelet", "Cloth", "ClothAccessory", "ClothLower", "Corset", "Garters", "Glasses", "Gloves", "HairAccessory3", "Hat", "Jewelry", "LeftAnklet", "LeftHand", "Mask", "Necklace", "Panties", "RightAnklet", "RightHand", "Shoes", "Socks", "SocksLeft", "SocksRight", "Suit", "SuitLower"];
 
