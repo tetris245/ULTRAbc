@@ -67,7 +67,7 @@ Changes for future version
 * Added Bondage Teacher pictures to the bg3 command
 * Optimised the bg2 and bg3 commands
 * Updated the High Fame mode of the Club Card Game for R110 compatibility
-* Update the const body2 (new slots added by Echo's mod)
+* Updated the const body2 (new slots added by Echo's mod)
 * Removed the carddesk, cardextra, cardfame, cardnoextra and moaner commands (the corresponding settings are now in the GUI)
 * Removed from the uset command the options that correspond to settings available in the GUI 
   
