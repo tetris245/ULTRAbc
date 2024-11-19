@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 3.8
+Most recent version: 4.0
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version3.8.zip file on the Releases page
+1. Download the ULTRAbc-version4.0.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -60,15 +60,5 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added a GUI that will give more comfort to change your UBC settings
-  - This GUI is based on the BCTweaks GUI and is under GPLv3 license (thanks to Julia for this powerful code!)
-  - First version of this GUI for UBC comes with the following options: Buttons, Cards, Cheats, Hotkeys, Misc, Moaner
-  - All info about each setting available in the options is given inside the GUI
-* New command: mstatus to display the current status of the Moaner (it replaces the moaner status command)
-* Added Bondage Teacher pictures to the bg3 command
-* Optimised the bg2 and bg3 commands
-* Updated the High Fame mode of the Club Card Game for R110 compatibility
-* Updated the const body2 (new slots added by Echo's mod)
-* Removed the carddesk, cardextra, cardfame, cardnoextra and moaner commands (the corresponding settings are now in the GUI)
-* Removed from the uset command the options that correspond to settings available in the GUI 
+(..)
   
