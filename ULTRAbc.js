@@ -2027,6 +2027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (tsp == 2) tsp = 1;
             let nm = 0;
+	    let nw = 0;
             if (tsp == 0) {
                 if (DolltalkOn == true) {
                     if (IsDollTalk(text1) == false) nm = 1;
@@ -2034,6 +2035,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         text2 = "";
                         ElementValue("InputChat", "");
                         let msg = "Your message or whisper can't be sent because it does not respect the rules of doll talk.";
+                        infomsg(msg);
+                    }
+                }
+		if (NowhisperOn == true) {
+                     if (ChatRoomTargetMemberNumber != -1) nw = 1;  
+                     if (nw == 1) {
+                        text2 = "";
+                        ElementValue("InputChat", "");
+                        let msg = "Your whisper can't be sent because you are in no-whisper mode.";
                         infomsg(msg);
                     }
                 }
