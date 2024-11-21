@@ -2012,13 +2012,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSetTarget(-1);
             }
             let text2 = text1;
+	    let nw = 0;
             if (text1.startsWith("/")) {
-                if (!text1.startsWith("//")) {
-                    tsp = 1;
-                    ChatRoomSetTarget(-1);
+                if (text1.startsWith("/whisper")) {
+                    tsp = 0;
+                    if (NowhisperOn == true) nw = 1;
                 } else {
-                    tsp = 2;
-                    text2 = text1.replaceAt(0, "\u200b");
+                    if (!text1.startsWith("//")) {
+                        tsp = 1;
+                        ChatRoomSetTarget(-1);
+                    } else {
+                        tsp = 2;
+                        text2 = text1.replaceAt(0, "\u200b");
+                    }
                 }
             }
             if (text1.startsWith("\\")) {
@@ -2027,7 +2033,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (tsp == 2) tsp = 1;
             let nm = 0;
-	    let nw = 0;
             if (tsp == 0) {
                 if (DolltalkOn == true) {
                     if (IsDollTalk(text1) == false) nm = 1;
