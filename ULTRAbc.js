@@ -1991,7 +1991,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (msg.startsWith(",")) {
                 text1 = "(" + msg.slice(1) + ")";
                 ElementValue("InputChat", text1);
-            } else if ((msg.startsWith("!")) && (Player.ChatSettings.OOCAutoClose == true)) {
+            } else if ((msg.startsWith("(")) && (Player.ChatSettings.OOCAutoClose == true)) {
                 let lr = SpeechGetOOCRanges(msg).pop();
                 if ((lr != undefined) &&
                     (msg.charAt(lr.start + lr.length - 1) != ")") &&
