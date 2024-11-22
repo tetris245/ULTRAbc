@@ -679,10 +679,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MaptrapOn = false;
                     M_MOANER_saveControls();
                 }
-                if (DolltalkOn == null || DolltalkOn == undefined) {
-                    DolltalkOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (animal == null || animal == undefined) {
                     animal = 0;
                     st = 0;
@@ -701,6 +697,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cdesk == null || cdesk == undefined) cdesk = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 200;
+		if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
                 if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
@@ -719,6 +716,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (NogarbleOn == null || NogarbleOn == undefined) NogarbleOn = false;
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (NotimeoutOn == null || NotimeoutOn == undefined) NotimeoutOn = false;
+		if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
                 if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
                 if (profileName == null || profileName == undefined) profileName = "default";
@@ -823,6 +821,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cdesk: 0,
                 cextra: false,
                 cfame: 200,
+		dolltalk: false,
                 extbuttons: false,
                 fixperm: false,
                 frkeys: false,
@@ -833,6 +832,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nogarble: false,
                 nostruggle: false,
                 notimeout: false,
+		nowhisper: false,
                 npcpunish: false,
                 orgasmMoan: true,
                 outbuttons: false,
@@ -900,7 +900,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCCheats",
                 "UBCHotkeys",
                 "UBCMisc",
-                "UBCMoaner"
+                "UBCMoaner",
+		"UBCTalking"
             ];
             const ubcSettingCategoryLabels = {
                 UBCButtons: "Buttons",
@@ -908,7 +909,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
                 UBCMisc: "Misc",
-                UBCMoaner: "Moaner"
+                UBCMoaner: "Moaner",
+		UBCTalking: "Talking"
             };
             const MENU_ELEMENT_X_OFFSET = 1050;
 
@@ -1329,6 +1331,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cdesk = data.cdesk;
                 cextra = data.cextra;
                 cfame = data.cfame;
+		DolltalkOn = data.dolltalk,
                 ExtbuttonsOn = data.extbuttons;
                 FixpermOn = data.fixperm;
                 FullseedOn = data.fullseed;
@@ -1346,6 +1349,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NogarbleOn = data.nogarble;
                 NostruggleOn = data.nostruggle;
                 NotimeoutOn = data.notimeout;
+		NowhisperOn = data.nowhisper;
                 NPCpunish = data.npcpunish;
                 OutbuttonsOn = data.outbuttons;
                 profile = data.profile;
@@ -1606,6 +1610,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputMoanProfile");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
+            }
+
+	    PreferenceSubscreenUBCTalkingLoad = function() {
+                UBCPreferenceSubscreen = "UBCTalking";
+                addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
+                    "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
+                );
+                addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper",
+                    "When enabled, you can't use normal whispers. Only OOC and emote whispers are possible.", false, 120
+                );
+            }
+
+            PreferenceSubscreenUBCTalkingRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCTalkingClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCTalkingExit = function() {
+                defaultExit();
             }
 
             function keyHandler(e) {
@@ -13703,18 +13729,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "Auto-Join feature is enabled.";
                         infomsg(msg);
                     }
-                } else if (setting == "dolltalk") {
-                    if (DolltalkOn == true) {
-                        DolltalkOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Doll talk (and whisper) mode disabled.";
-                        infomsg(msg);
-                    } else {
-                        DolltalkOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Doll talk (and whisper) mode enabled. Maximum 5 words by message or whisper, and you can't use words with more than 6 characters.";
-                        infomsg(msg);
-                    }
                 } else if (setting == "magictoys") {
                     if (MagictoysOn == true) {
                         MagictoysOn = false;
@@ -13725,18 +13739,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         MagictoysOn = true;
                         M_MOANER_saveControls();
                         let msg = "Toys can be added under locked chastity for trap mode in map rooms.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "nowhisper") {
-                    if (NowhisperOn == true) {
-                        NowhisperOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "No-whisper mode disabled.";
-                        infomsg(msg);
-                    } else {
-                        NowhisperOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "No-whisper mode enabled.";
                         infomsg(msg);
                     }
                 }
