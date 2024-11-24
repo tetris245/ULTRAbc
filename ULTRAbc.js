@@ -2038,24 +2038,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSetTarget(-1);
             }
             let text2 = text1;
-	    let nw = 0;
+            let nw = 0;
             if (text1.startsWith("/")) {
-                if (text1.startsWith("/whisper")) {
-                    tsp = 0;
-		    command = text1;
-                    let [, ...parts] = command.split(" ");
-		    let target = parts?.shift();
-		    let message = parts?.join(" ");
-                    text2 = message;
-                    if (NowhisperOn == true) nw = 1;
+                if (!text1.startsWith("//")) {
+                    tsp = 1;
+                    ChatRoomSetTarget(-1);
                 } else {
-                    if (!text1.startsWith("//")) {
-                        tsp = 1;
-                        ChatRoomSetTarget(-1);
-                    } else {
-                        tsp = 2;
-                        text2 = text1.replaceAt(0, "\u200b");
-                    }
+                    tsp = 2;
+                    text2 = text1.replaceAt(0, "\u200b");
                 }
             }
             if (text1.startsWith("\\")) {
