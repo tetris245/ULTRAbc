@@ -2042,6 +2042,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (text1.startsWith("/")) {
                 if (text1.startsWith("/whisper")) {
                     tsp = 0;
+		    command = text1;
+                    let [, ...parts] = command.split(" ");
+		    let target = parts?.shift();
+		    let message = parts?.join(" ");
+                    text2 = message;
                     if (NowhisperOn == true) nw = 1;
                 } else {
                     if (!text1.startsWith("//")) {
