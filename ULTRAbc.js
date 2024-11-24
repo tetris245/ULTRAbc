@@ -2042,7 +2042,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (text1.startsWith("/")) {
                 if (!text1.startsWith("//")) {
                     tsp = 1;
-                    ChatRoomSetTarget(-1);
+                    ChatRoomSetTarget(-1); 
+		    if (text1.startsWith("/whisper")) {
+                        tsp = 0;
+                        if (NowhisperOn == true) nw = 1;
+                    }
                 } else {
                     tsp = 2;
                     text2 = text1.replaceAt(0, "\u200b");
