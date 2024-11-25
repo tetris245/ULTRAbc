@@ -1915,23 +1915,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         tmpname = Player.Nickname;
                     }
-                    if (ini == 1) {
-                        M_MOANER_saveControls();
-                    }
+                    if (ini == 1) M_MOANER_saveControls();
                 } else {
                     if (Player.Nickname != '') {
                         if (tmpname != Player.Nickname) {
                             tmpname = Player.Nickname;
-                            if (ini == 1) {
-                                M_MOANER_saveControls();
-                            }
+                            if (ini == 1) M_MOANER_saveControls();
                         }
                     } else {
                         if (tmpname != Player.Name) {
                             tmpname = Player.Name;
-                            if (ini == 1) {
-                                M_MOANER_saveControls();
-                            }
+                            if (ini == 1) M_MOANER_saveControls();
                         }
                     }
                 }
@@ -1944,25 +1938,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 pronoun2 = "him";
                                 pronoun3 = "his";
                                 pronoun4 = "he";
-                                if (ini == 1) {
-                                    M_MOANER_saveControls();
-                                }
+                                if (ini == 1) M_MOANER_saveControls();
                             } else if (chprn == "SheHer") {
                                 pronoun1 = "She";
                                 pronoun2 = "her";
                                 pronoun3 = "her";
                                 pronoun4 = "she";
-                                if (ini == 1) {
-                                    M_MOANER_saveControls();
-                                }
+                                if (ini == 1) M_MOANER_saveControls();
                             } else {
                                 pronoun1 = "They";
                                 pronoun2 = "them";
                                 pronoun3 = "their";
                                 pronoun4 = "they";
-                                if (ini == 1) {
-                                    M_MOANER_saveControls();
-                                }
+                                if (ini == 1) M_MOANER_saveControls();
                             }
                         }
                     }
