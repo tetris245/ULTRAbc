@@ -4031,20 +4031,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function GarbleTalk(text, garbleWords) {
-        let newText = "";
-        const punctuation = ",.!?";
-        for (const word of text.split(" ")) {
-            const rword = word.split("").reverse().join("");
-            let wordPunctuation = "";
-            if (punctuation.includes(rword[0])) {
-                for (const c of rword.split("")) {
-                    if (punctuation.includes(c)) wordPunctuation += c;
-                }
-                wordPunctuation = wordPunctuation.split("").reverse().join("");
-            }
-            newText += garbleWords[GarbleRandom(0, garbleWords.length - 1)] + wordPunctuation + " ";
+        let message = text;
+        if (text.startsWith("/whisper")) {
+            let [, ...parts] = text.split(" ");
+	    let target = parts?.shift();
+	    message = parts?.join(" ");
         }
-        return newText.trim();
+        if (message != "") {
+            let newmessage = "";
+            let newText = "";
+            const punctuation = ",.!?";
+            for (const word of message.split(" ")) {
+                const rword = word.split("").reverse().join("");
+                let wordPunctuation = "";
+                if (punctuation.includes(rword[0])) {
+                    for (const c of rword.split("")) {
+                        if (punctuation.includes(c)) wordPunctuation += c;
+                    }
+                    wordPunctuation = wordPunctuation.split("").reverse().join("");
+                }
+                newmessage += garbleWords[GarbleRandom(0, garbleWords.length - 1)] + wordPunctuation + " ";
+                newText = newmessage;
+                if (text.startsWith("/whisper")) {
+                    let [, ...parts] = text.split(" ");
+		    let target = parts?.shift();
+                    newText = "/whisper " + target + " " + newmessage;
+                }
+           } 
+           return newText.trim();
+        }
+        return text.trim();
     }
 
     function RealGarblingLevel() {
