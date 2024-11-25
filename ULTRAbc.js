@@ -12207,7 +12207,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             var [mode] = args;
             if (!mode) {
                 let msg = "The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
-                    "Note that it can't be used when you are in a 'permanent' stuttering mode, forced with the <b> /stutter </b> command.\n" +
+                    "Note that it can't be used when you are in a 'permanent' stuttering mode.\n" +
                     " \n" +
                     "Available stuttering modes:\n" +
                     "1 light stuttering\n" +
