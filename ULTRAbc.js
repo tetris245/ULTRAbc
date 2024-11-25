@@ -502,7 +502,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mgl = 0;
             rsize = datas.rsize;
             rtype = datas.rtype;
-            st = datas.stutterlevel;
+            st = datas.stutterlevel * 1;
             tcname = datas.tcname;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
@@ -681,7 +681,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (animal == null || animal == undefined) {
                     animal = 0;
-                    st = 0;
                     M_MOANER_saveControls();
                 }
                 if (animal == 1) AnimalTalk1On = true;
@@ -731,9 +730,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (profileName == "pony") profile = 8;
                 if (profileName == "wildfox") profile = 9;
                 if (profileName == "wolf") profile = 10;
+		if (reaction == null || reaction == undefined) reaction = 0;
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
                 if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
+		if (st == null || st == undefined) st = 0;
                 M_MOANER_saveControls();
                 if (frname == null || frname == undefined) {
                     frname = "BrickWall";
@@ -759,10 +760,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (MagictoysOn == null || MagictoysOn == undefined) {
                     MagictoysOn = false;
-                    M_MOANER_saveControls();
-                }
-                if (reaction == null || reaction == undefined) {
-                    reaction = 0;
                     M_MOANER_saveControls();
                 }
                 if (rsize == null || rsize == undefined) {
@@ -842,6 +839,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 slowleave: false,
                 sosbuttons: false,
                 spankMoan: true,
+		stutterlevel: 0,
                 talkMoan: true,
                 tickleMoan: true,
                 vibeMoan: true,
@@ -1356,6 +1354,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 RglbuttonsOn = data.rglbuttons;
                 SlowleaveOn = data.slowleave;
                 SosbuttonsOn = data.sosbuttons;
+		st = data.stutterlevel * 1; 
                 if (profile == 0) profileName = "default";
                 if (profile == 1) profileName = "bunny";
                 if (profile == 2) profileName = "cow";
@@ -1367,6 +1366,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (profile == 8) profileName = "pony";
                 if (profile == 9) profileName = "wildfox";
                 if (profile == 10) profileName = "wolf";
+		if (st == 0) StutterOn = false;
+                if (st > 0) StutterOn = true;
                 M_MOANER_saveControls();
                 if (NogarbleOn == true) {
                     Player.RestrictionSettings.NoSpeechGarble = true;
@@ -1617,6 +1618,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
                     "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
                 );
+		addMenuInput(200, "Forced stuttering level (0-4):", "stutterlevel", "InputStutterLevel",
+                    "Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).", -16
+                );
                 addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper",
                     "When enabled, you can't use normal whispers. Only OOC and emote whispers are possible.", false, 120
                 );
@@ -1631,7 +1635,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCTalkingExit = function() {
-                defaultExit();
+                let stlevel = ElementValue("InputStutterLevel");
+                if ((CommonIsNumeric(stlevel)) && (stlevel > -1) && (stlevel < 5)) {
+                    Player.UBC.ubcSettings.stutterlevel = stlevel;
+                    ElementRemove("InputStutterLevel");
+                    defaultExit();
+                } else PreferenceMessage = "Put a valid number";
             }
 
             function keyHandler(e) {
@@ -12232,50 +12241,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'stutter',
-        Description: "(stuttermode): forces a specific stuttering mode.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The stutter command must be followed by a number between 0 and 4.\n" +
-                    " \n" +
-                    "Available stuttering modes:\n" +
-                    "0 no stuttering\n" +
-                    "1 light stuttering\n" +
-                    "2 normal stuttering\n" +
-                    "3 heavy stuttering\n" +
-                    "4 total stuttering";
-                infomsg(msg);
-            } else {
-                let stlevel = args * 1;
-                let msg = "";
-                let msg1 = "";
-                let mgs2 = "";
-                let mg3 = "";
-                ElementValue("InputChat", "");
-                if (stlevel == 0) {
-                    msg = "No more stuttering.";
-                    infomsg(msg);
-                    StutterOn = false;
-                    st = stlevel;
-                    M_MOANER_saveControls();
-                } else if ((stlevel > 0) && (stlevel < 5)) {
-                    msg1 = "You are now in ";
-                    if (stlevel == 1) msg2 = "light ";
-                    if (stlevel == 2) msg2 = "normal ";
-                    if (stlevel == 3) msg2 = "heavy ";
-                    if (stlevel == 4) msg2 = "total ";
-                    msg3 = "stuttering mode."
-                    msg = msg1 + msg2 + msg3;
-                    infomsg(msg);
-                    StutterOn = true;
-                    st = stlevel;
-                    M_MOANER_saveControls();
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'superdice',
         Description: "(sides): rolls a superdice. ",
         Action: (args) => {
@@ -13181,7 +13146,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
                     "<b>/ptalk</b> (animal) = forces a specific animal talk mode. *\n" +
                     "<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *\n" +
-                    "<b>/stutter</b> (stuttermode) = forces a specific stuttering mode. *\n" +
                     "<b>/talk</b> (talkmode) = forces a specific talk mode. *";
                 infomsg(msg);
             }
