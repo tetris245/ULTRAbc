@@ -1619,7 +1619,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
                 );
 		addMenuInput(200, "Forced stuttering level (0-4):", "stutterlevel", "InputStutterLevel",
-                    "Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).", -16
+                    "Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).", -16
                 );
                 addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper",
                     "When enabled, you can't use normal whispers. Only OOC and emote whispers are possible.", false, 120
