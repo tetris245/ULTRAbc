@@ -3722,6 +3722,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
+    function showMbsChangeStatus() {
+        let msg = "New MBS Version changelog is disabled.";
+        if (MBSdata.ShowChangelog) msg = "New MBS Version changelog is enabled.";
+        statusmsg(msg);
+    }
+
     //Messages
     function infomsg(msg) {
         ChatRoomSendLocal(
@@ -14001,6 +14007,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showGarblingStatus();
                         showLockedMbsStatus();
                         showLockedWheelStatus();
+			showMbsChangeStatus();
                     }
                 } else if (addon == "rsp") {
                     if (Player.ExtensionSettings.Responsive != null) {
