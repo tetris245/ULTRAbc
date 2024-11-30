@@ -60,5 +60,6 @@ All else I might not have included.
 
 Changes for future version 
 
-(..)
+* Updated the ustatus and xstatus mbs commands
+* Fixed the whispers in animal talk mode when using /whisper or the blue arrow
   
