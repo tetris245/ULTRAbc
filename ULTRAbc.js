@@ -13883,7 +13883,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'xstatus',
         Description: "(add-on): displays status of settings for other add-ons.",
         Action: (args) => {
@@ -13906,8 +13906,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (addon == "bcar") {
                     if (Player.OnlineSettings.BCAR != null) {
                         if (Player.OnlineSettings.BCAR.bcarSettings != null) {
-                            let BCARdata = {};
-                            let str = Player.OnlineSettings.BCAR.bcarSettings;
+                            BCARdata = {};
+                            str = Player.OnlineSettings.BCAR.bcarSettings;
                             BCARdata = str;
                             showAnimalTypeStatus();
                             showAnimationButtonsStatus();
@@ -13922,19 +13922,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "bcr") {
                     if (Player.ExtensionSettings.BCResponsiveData != null) {
-                        let str = Player.ExtensionSettings.BCResponsiveData;
-                        let d = LZString.decompressFromBase64(str);
-                        let BCRdata = {};
-                        let decoded = JSON.parse(d);
+                        str = Player.ExtensionSettings.BCResponsiveData;
+                        d = LZString.decompressFromBase64(str);
+                        BCRdata = {};
+                        decoded = JSON.parse(d);
                         BCRdata = decoded;
                         showBCResponsiveStatus();
                     }
                 } else if (addon == "bctw") {
                     if (Player.OnlineSettings.BCT != null) {
-                        let str = Player.OnlineSettings.BCT;
-                        let d = LZString.decompressFromBase64(str);
-                        let BCTdata = {};
-                        let decoded = JSON.parse(d);
+                        str = Player.OnlineSettings.BCT;
+                        d = LZString.decompressFromBase64(str);
+                        BCTdata = {};
+                        decoded = JSON.parse(d);
                         BCTdata = decoded;
                         showArousalErectionStatus();
                         showArousalProgressStatus();
@@ -13950,8 +13950,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "ebch") {
                     if (Player.OnlineSettings.EBCH != null) {
-                        let EBCHdata = {};
-                        let str = Player.OnlineSettings.EBCH;
+                        EBCHdata = {};
+                        str = Player.OnlineSettings.EBCH;
                         EBCHdata = str;
                         showEbchLogStatus();
                         showEbchNotificationStatus();
@@ -13961,10 +13961,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "lscg") {
                     if (Player.ExtensionSettings.LSCG != null) {
-                        let str = Player.ExtensionSettings.LSCG;
-                        let d = LZString.decompressFromBase64(str);
-                        let LSCGdata = {};
-                        let decoded = JSON.parse(d);
+                        str = Player.ExtensionSettings.LSCG;
+                        d = LZString.decompressFromBase64(str);
+                        LSCGdata = {};
+                        decoded = JSON.parse(d);
                         LSCGdata = decoded;
                         showBcLscgStatus();
                         showBoopReactionsStatus();
@@ -13979,8 +13979,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "mbs") {
                     if (Player.OnlineSharedSettings.MBSVersion != null) {
-                        let d = "";
-                        let str = "";
                         let MBSver = Player.OnlineSharedSettings.MBSVersion;
                         let stringMBSver1 = MBSver;
                         let stringMBSver2 = stringMBSver1.split(".");
@@ -13997,8 +13995,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             d = LZString.decompressFromUTF16(str);
                         }
-                        let MBSdata = {};
-                        let decoded = JSON.parse(d);
+                        MBSdata = {};
+                        decoded = JSON.parse(d);
                         MBSdata = decoded;
                         showGarblingStatus();
                         showLockedMbsStatus();
@@ -14006,10 +14004,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "rsp") {
                     if (Player.ExtensionSettings.Responsive != null) {
-                        let str = Player.ExtensionSettings.Responsive;
-                        let d = LZString.decompressFromBase64(str);
-                        let RSPdata = {};
-                        let decoded = JSON.parse(d);
+                        str = Player.ExtensionSettings.Responsive;
+                        d = LZString.decompressFromBase64(str);
+                        RSPdata = {};
+                        decoded = JSON.parse(d);
                         RSPdata = decoded;
                         showResponsiveStatus();
                         showBcrResponsesStatus();
@@ -14022,10 +14020,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "thm") {
                     if (Player.ExtensionSettings.Themed != null) {
-                        let str = Player.ExtensionSettings.Themed;
-                        let d = LZString.decompressFromBase64(str);
-                        let THMdata = {};
-                        let decoded = JSON.parse(d);
+                        str = Player.ExtensionSettings.Themed;
+                        d = LZString.decompressFromBase64(str);
+                        THMdata = {};
+                        decoded = JSON.parse(d);
                         THMdata = decoded;
                         showBCThemedStatus();
                         showCharacterAbsenceStatus();
@@ -14041,11 +14039,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else if (addon == "wce") {
                     if (Player.ExtensionSettings.FBC != null) {
-                        let str = Player.ExtensionSettings.FBC;
-                        let d = LZString.decompressFromBase64(str);
-                        let WCEdata = {};
-                        let decoded = JSON.parse(d);
-                        WCEdata = decoded;
+                        str = Player.ExtensionSettings.FBC;
+                        d = LZString.decompressFromBase64(str);
+                        WCEdata = {};
+                        decoded = JSON.parse(d);
+                        WCEdata = decoded;       
                         showAnimationStatus();
                         showAntiCheatStatus();
                         showArousalStatus();
@@ -14065,3 +14063,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+ 
