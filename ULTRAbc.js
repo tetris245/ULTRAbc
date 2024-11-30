@@ -3902,16 +3902,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showFeaturesStatus() {
         let msg = "";
         let Autojoin = "";
-        let Background = "";
         let Fullseed = "";
         let Frkeys = "";
         let Hotkeys = "";
         if (AutojoinOn) Autojoin = "Auto-Join - ";
-        if (bgall) Background = "All standard backgrounds usable with the buttons in Private Room (SP) - ";
         if (FullseedOn) Fullseed = "Full solution for intricate/hs locks - ";
         if (FrkeysOn) Frkeys = "Hotkeys in friendlist - "
         if (HotkeysOn) Hotkeys = "Hotkeys on numeric pad"
-        msg = "Features enabled: " + Autojoin + Background + Fullseed + Frkeys + Hotkeys;
+        msg = "Features enabled: " + Autojoin + Fullseed + Frkeys + Hotkeys;
         statusmsg(msg);
     }
 
@@ -3939,21 +3937,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
+    function showMiscUbcStatus() {
+        let msg = "";
+        let msg1 = "Only 43 backgrounds usable in Private Room (SP). ";
+        let msg2 = "Permission change after safeword. ";
+        let msg3 = "Time-out enabled in TAB help. ";
+        let msg4 = "NPC punishments disabled.";
+        if (bgall) msg1 = "All standard backgrounds usable in Private Room (SP). ";
+        if (FixpermOn) msg2 = "No permission change after safeword. ";
+        if (NotimeoutOn) msg3 = "Time-out disabled in TAB help. ";
+        if (NPCpunish) msg4 = "NPC punishments enabled.";
+        msg = msg1 + msg2 + msg3 + msg4;
+        statusmsg(msg);
+    }
+
     function showNostruggleStatus() {
         let msg = "Automatic struggle in mini-games is disabled.";
         if (NostruggleOn) msg = "Automatic struggle in mini-games is enabled.";
-        statusmsg(msg);
-    }
-
-    function showNotimeoutStatus() {
-        let msg = "Time-out enabled in TAB help.";
-        if (NotimeoutOn) msg = "Time-out disabled in TAB help.";
-        statusmsg(msg);
-    }
-
-    function showNpcpunishStatus() {
-        let msg = "NPC punishments disabled.";
-        if (NPCpunish) msg = "NPC punishments enabled.";
         statusmsg(msg);
     }
 
@@ -13729,9 +13729,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             showHighfameStatus();
             showMagiccheatStatus();
             showMaptrapStatus();
+	    showMiscUbcStatus();
             showNostruggleStatus();
-            showNotimeoutStatus();
-            showNpcpunishStatus();
             showSearchRoomStatus();
             showTalkStatus();
         }
