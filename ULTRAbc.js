@@ -1589,7 +1589,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, you will moan while being tickled. According your fetishes and your horny state, it can be pain or pleasure.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable the vibes moan: ", "vibeMoan",
-                    "When enabled, you will moan if your vibrator's settings change and your arousal level higher or equal to 10. Also when fingered, fisted, masturbated, or when your ears are caressed, kissed, licked, nibbled, or when using LSCG aphrodisiac injector, drink, respirator. Note that when you disable this setting, it automatically disables the xvibes moan too.", false, 140
+                    "When enabled, you will moan if your vibrator's settings change and your arousal level is higher or equal to 10. Also when fingered, fisted, masturbated, or when your ears are caressed, kissed, licked, nibbled, or when using LSCG aphrodisiac injector, drink, respirator. Note that when you disable this setting, it automatically disables the xvibes moan too.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Also xvibes moan (if vibes moan enabled): ", "xvibeMoan",
                     "When enabled, you will moan when vibe settings of other players in the chat room change, even if you are not yourself vibed (the only condition is an arousal level higher or equal to 10). Note that this setting can't be enabled when the vibes moan is disabled.", false, 140
