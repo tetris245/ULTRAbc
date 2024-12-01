@@ -84,6 +84,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cfame = 200;
     let frname = "BrickWall";
     let gl = 0;
+    let hearing = 0;
     let onegl = 0;
     let mgl = 0;
     let rsize = 20;
@@ -418,6 +419,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cfame = 200;
             frname = "BrickWall";
             gl = 0;
+	    hearing = 0;
             onegl = 0;
             mgl = 0;
             rsize = 20;
@@ -497,7 +499,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cextra = datas.cextra;
             cfame = datas.cfame;
             frname = datas.frname;
-            gl = datas.gaglevel;
+            gl = datas.gaglevel;  
+	    hearing = 0;
             onegl = 0;
             mgl = 0;
             rsize = datas.rsize;
@@ -698,6 +701,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
                 if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
                 if (FrkeysOn == null || FrkeysOn == undefined) FrkeysOn = false;
+		if (hearing == null || hearing == undefined) hearing = 0;
                 if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined) HotkeysOn = false;
                 if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
@@ -821,6 +825,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 fixperm: false,
                 frkeys: false,
                 fullseed: false,
+		hearing: 0,
                 highfame: false,
                 hotkeys: false,
                 magiccheat: false,
@@ -1333,6 +1338,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 FixpermOn = data.fixperm;
                 FullseedOn = data.fullseed;
                 FrkeysOn = data.frkeys;
+		hearing = data.hearing;
                 HighfameOn = data.highfame;
                 HotkeysOn = data.hotkeys;
                 MagiccheatOn = data.magiccheat;
@@ -1372,6 +1378,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
+		if (hearing == 1) {
+                    GetDeafLevel0();
+                    Player.GetDeafLevel = GetDeafLevel0;
+                }
+                if (hearing == 2) {
+                    GetDeafLevel1();
+                    Player.GetDeafLevel = GetDeafLevel1;
+                }
+                if (hearing == 3) {
+                    GetDeafLevel2();
+                    Player.GetDeafLevel = GetDeafLevel2;
+                }
+                if (hearing == 4) {
+                    GetDeafLevel3();
+                    Player.GetDeafLevel = GetDeafLevel3;
+                }
+                if (hearing == 5) {
+                    GetDeafLevel4();
+                    Player.GetDeafLevel = GetDeafLevel4;
+                }
+                if (hearing == 6) {
+                    GetDeafLevel5();
+                    Player.GetDeafLevel = GetDeafLevel5;
+                }
                 if (profile == 0) profileName = "default";
                 if (profile == 1) profileName = "bunny";
                 if (profile == 2) profileName = "cow";
@@ -1638,6 +1668,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
                     "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
                 );
+		addMenuInput(200, "Forced hearing mode (1-6):", "hearing", "InputHearingMode",
+                    "Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                );
 		addMenuInput(200, "Forced stuttering level (0-4):", "stutterlevel", "InputStutterLevel",
                     "Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).", -16
                 );
@@ -1655,13 +1688,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCTalkingExit = function() {
-		let pmode = ElementValue("InputAnimalMode");
+                let hmode = ElementValue("InputHearingMode");
+                let pmode = ElementValue("InputAnimalMode");
                 let stlevel = ElementValue("InputStutterLevel");
-                if ((CommonIsNumeric(pmode)) && (pmode > -1) && (pmode < 10) &&
+                if ((CommonIsNumeric(hmode)) && (hmode > -1) && (hmode < 7) &&
+                (CommonIsNumeric(pmode)) && (pmode > -1) && (pmode < 10) &&
                 (CommonIsNumeric(stlevel)) && (stlevel > -1) && (stlevel < 5)) {
                     Player.UBC.ubcSettings.animal = pmode;
+                    Player.UBC.ubcSettings.hearing = hmode;
                     Player.UBC.ubcSettings.stutterlevel = stlevel;
-		    ElementRemove("InputAnimalMode");
+                    ElementRemove("InputAnimalMode");
+                    ElementRemove("InputHearingMode");
                     ElementRemove("InputStutterLevel");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
@@ -7872,59 +7909,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'hear',
-        Description: "(hearingmode): forces a specific hearing mode",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The hear command must be followed by a number between 0 and 4.\n" +
-                    "Notes:\n" +
-                    "- a full relog is requested to leave this forced hearing mode\n" +
-                    "- this command can trigger a BCX warning. Just ignore it (close the breaking message)!\n" +
-                    " \n" +
-                    "Available hearing modes:\n" +
-                    "0 normal hearing\n" +
-                    "1 light deafness\n" +
-                    "2 normal deafness\n" +
-                    "3 heavy deafness\n" +
-                    "4 total deafness";
-                infomsg(msg);
-            } else {
-                let dl = args;
-                if (dl == 0) {
-                    GetDeafLevel0();
-                    Player.GetDeafLevel = GetDeafLevel0;
-                    let msg = "Back to normal hearing mode.";
-                    infomsg(msg);
-                }
-                if (dl == 1) {
-                    GetDeafLevel1();
-                    Player.GetDeafLevel = GetDeafLevel1;
-                    let msg = "You are now in light deafness mode.";
-                    infomsg(msg);
-                }
-                if (dl == 2) {
-                    GetDeafLevel2();
-                    Player.GetDeafLevel = GetDeafLevel2;
-                    let msg = "You are now in normal deafness mode.";
-                    infomsg(msg);
-                }
-                if (dl == 3) {
-                    GetDeafLevel3();
-                    Player.GetDeafLevel = GetDeafLevel3;
-                    let msg = "You are now in heavy deafness mode.";
-                    infomsg(msg);
-                }
-                if (dl == 4) {
-                    GetDeafLevel4();
-                    Player.GetDeafLevel = GetDeafLevel4;
-                    let msg = "You are now in total deafness mode.";
-                    infomsg(msg);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'hint',
         Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
         Action: (_, command, args) => {
@@ -13087,7 +13071,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/atalk</b> (stuffhere) = speaks once as an animal. *\n" +
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
-                    "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
                     "<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *\n" +
                     "<b>/talk</b> (talkmode) = forces a specific talk mode. *";
                 infomsg(msg);
