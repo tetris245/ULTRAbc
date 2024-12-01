@@ -679,10 +679,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MaptrapOn = false;
                     M_MOANER_saveControls();
                 }
-                if (animal == null || animal == undefined) {
-                    animal = 0;
-                    M_MOANER_saveControls();
-                }
+                if (animal == null || animal == undefined) animal = 0;
                 if (animal == 1) AnimalTalk1On = true;
                 if (animal == 2) AnimalTalk2On = true;
                 if (animal == 3) AnimalTalk3On = true;
@@ -814,6 +811,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             await waitFor(() => !!Player?.AccountName);
 
             const UBC_DEFAULT_SETTINGS = {
+		animal: 0,
                 bgall: false,
                 cdesk: 0,
                 cextra: false,
@@ -1325,6 +1323,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCSettingsExit = function() {
                 let data = Player.UBC.ubcSettings;
+		animal = data.animal * 1;
                 bgall = data.bgall;
                 cdesk = data.cdesk;
                 cextra = data.cextra;
@@ -1355,6 +1354,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 SlowleaveOn = data.slowleave;
                 SosbuttonsOn = data.sosbuttons;
 		st = data.stutterlevel * 1; 
+		AnimalTalk1On = false;
+                AnimalTalk2On = false;
+                AnimalTalk3On = false;
+                AnimalTalk4On = false;
+                AnimalTalk5On = false;
+                AnimalTalk6On = false;
+                AnimalTalk7On = false;
+                AnimalTalk8On = false;
+                AnimalTalk9On = false;
+                if (animal == 1) AnimalTalk1On = true;
+                if (animal == 2) AnimalTalk2On = true;
+                if (animal == 3) AnimalTalk3On = true;
+                if (animal == 4) AnimalTalk4On = true;
+                if (animal == 5) AnimalTalk5On = true;
+                if (animal == 6) AnimalTalk6On = true;
+                if (animal == 7) AnimalTalk7On = true;
+                if (animal == 8) AnimalTalk8On = true;
+                if (animal == 9) AnimalTalk9On = true;
                 if (profile == 0) profileName = "default";
                 if (profile == 1) profileName = "bunny";
                 if (profile == 2) profileName = "cow";
@@ -1521,7 +1538,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCHotkeysLoad = function() {
                 UBCPreferenceSubscreen = "UBCHotkeys";
                 addMenuCheckbox(64, 64, "Enable hotkeys in chat: ", "hotkeys",
-                    "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = Total Release. If you don't have a numeric pad, use instead the similar command or an UBC button."
+                    "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = total release. If you don't have a numeric pad, use instead the similar command or an UBC button."
                 );
                 addMenuCheckbox(64, 64, "Enable hotkeys in friend list: ", "frkeys",
                     "These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. List of hotkeys: F = female club - G = mixed club - H = male club - J = asylum."
@@ -1615,6 +1632,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	    PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
+		addMenuInput(200, "Animal talk/whisper mode (0-9):", "animal", "InputAnimalMode",
+                    "Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).", -16
+                );
                 addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
                     "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
                 );
@@ -1635,9 +1655,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCTalkingExit = function() {
+		let pmode = ElementValue("InputAnimalMode");
                 let stlevel = ElementValue("InputStutterLevel");
-                if ((CommonIsNumeric(stlevel)) && (stlevel > -1) && (stlevel < 5)) {
+                if ((CommonIsNumeric(pmode)) && (pmode > -1) && (pmode < 10) &&
+                (CommonIsNumeric(stlevel)) && (stlevel > -1) && (stlevel < 5)) {
+                    Player.UBC.ubcSettings.animal = pmode;
                     Player.UBC.ubcSettings.stutterlevel = stlevel;
+		    ElementRemove("InputAnimalMode");
                     ElementRemove("InputStutterLevel");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
@@ -11065,96 +11089,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'ptalk',
-        Description: "(animal): forces a specific animal talk mode",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The ptalk command must be followed by a number between 0 and 9.\n" +
-                    "Note about whispers in animal talk mode: you need to click on the character OR set the target with <b>/whisper</b> without words OR use the FBC/WCE <b>/w</b> command.\n" +
-                    " \n" +
-                    "Available animals:\n" +
-                    "0 human talk\n" +
-                    "1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n" +
-                    "6 pig - 7 pony - 8 puppy - 9 wolfy";
-                infomsg(msg);
-            } else {
-                let pmode = args * 1;
-                if ((pmode > -1) && (pmode < 10)) {
-                    AnimalTalk1On = false;
-                    AnimalTalk2On = false;
-                    AnimalTalk3On = false;
-                    AnimalTalk4On = false;
-                    AnimalTalk5On = false;
-                    AnimalTalk6On = false;
-                    AnimalTalk7On = false;
-                    AnimalTalk8On = false;
-                    AnimalTalk9On = false;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                }
-                if (pmode == 0) {
-                    let msg = "You are now in human talk mode";
-                    infomsg(msg);
-                } else if (pmode == 1) {
-                    AnimalTalk1On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in bunny talk mode";
-                    infomsg(msg);
-                } else if (pmode == 2) {
-                    AnimalTalk2On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in cow talk mode";
-                    infomsg(msg);
-                } else if (pmode == 3) {
-                    AnimalTalk3On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in fox talk mode";
-                    infomsg(msg);
-                } else if (pmode == 4) {
-                    AnimalTalk4On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in kitty talk mode";
-                    infomsg(msg);
-                } else if (pmode == 5) {
-                    AnimalTalk5On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in mouse talk mode";
-                    infomsg(msg);
-                } else if (pmode == 6) {
-                    AnimalTalk6On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in pig talk mode";
-                    infomsg(msg);
-                } else if (pmode == 7) {
-                    AnimalTalk7On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in pony talk mode";
-                    infomsg(msg);
-                } else if (pmode == 8) {
-                    AnimalTalk8On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in puppy talk mode";
-                    infomsg(msg);
-                } else if (pmode == 9) {
-                    AnimalTalk9On = true;
-                    animal = pmode;
-                    M_MOANER_saveControls();
-                    let msg = "You are now in wolfy talk mode";
-                    infomsg(msg);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'ptcode',
         Description: "(target): reveals codes used on items controlled by portal link.",
         Action: (args) => {
@@ -13154,7 +13088,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
                     "<b>/hear</b> (hearingmode) = forces a specific hearing mode. *\n" +
-                    "<b>/ptalk</b> (animal) = forces a specific animal talk mode. *\n" +
                     "<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *\n" +
                     "<b>/talk</b> (talkmode) = forces a specific talk mode. *";
                 infomsg(msg);
