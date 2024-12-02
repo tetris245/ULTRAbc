@@ -5885,7 +5885,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let [mode] = args;
             if (!mode) {
                 let msg = "The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\n" +
-                    "Note that it is recommended to use it only when you are not in a 'permanent' animal talk mode, forced with the <b> /ptalk </b> command, that will not be overrided.\n" +
+                    "Note that it can't be used when you are in a 'permanent' animal talk mode." +
                     " \n" +
                     "Available animals:\n" +
                     "1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n" +
