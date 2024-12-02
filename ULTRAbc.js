@@ -3616,10 +3616,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Gender
     function IsFemale() {
-        if ((InventoryGet(Player, "Pronouns").Asset.Name == "SheHer") &&
-            (InventoryGet(Player, "Pussy").Asset.Name != "Penis") &&
-            (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatSmall") &&
-            (InventoryGet(Player, "BodyUpper").Asset.Name != "FlatMedium")) {
+        if ((InventoryGet(Player, "Pronouns")?.Asset.Name == "SheHer") &&
+            (InventoryGet(Player, "Pussy")?.Asset.Name != "Penis") &&
+            (InventoryGet(Player, "BodyUpper")?.Asset.Name != "FlatSmall") &&
+            (InventoryGet(Player, "BodyUpper")?.Asset.Name != "FlatMedium")) {
             return true;
         } else {
             return false;
@@ -3627,10 +3627,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function IsMale() {
-        if ((InventoryGet(Player, "Pronouns").Asset.Name == "HeHim") &&
-            (InventoryGet(Player, "Pussy").Asset.Name == "Penis") &&
-            ((InventoryGet(Player, "BodyUpper").Asset.Name == "FlatSmall") ||
-                (InventoryGet(Player, "BodyUpper").Asset.Name == "FlatMedium"))) {
+        if ((InventoryGet(Player, "Pronouns")?.Asset.Name == "HeHim") &&
+            (InventoryGet(Player, "Pussy")?.Asset.Name == "Penis") &&
+            ((InventoryGet(Player, "BodyUpper")?.Asset.Name == "FlatSmall") ||
+                (InventoryGet(Player, "BodyUpper")?.Asset.Name == "FlatMedium"))) {
             return true;
         } else {
             return false;
