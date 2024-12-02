@@ -3663,6 +3663,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return deafLevel;
     }
 
+    function GetDeafLevel5() {
+        let deafLevel = 5;
+        return deafLevel;
+    }
+
     //LSCG Status
     function showBcLscgStatus() {
         let msg = "";
