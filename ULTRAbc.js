@@ -13258,7 +13258,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "15 Owner Timer - 16 Timer Password - 17 Best Friend\n" +
                     "18 Best Friend Timer - 19 Family - 20 Portal Link\n" +
                     "21 Lewd Crest - 22 Devious\n" +
-                    "Lock 22 can be removed only if you use a modified version of the DOGS mod.";
+                    "Lock 22 can be removed only if players use a modified version of the DOGS mod.";
                 infomsg(msg);
             } else {
                 let silent = 0;
