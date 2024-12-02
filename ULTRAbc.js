@@ -1333,7 +1333,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cdesk = data.cdesk;
                 cextra = data.cextra;
                 cfame = data.cfame;
-		DolltalkOn = data.dolltalk,
+		DolltalkOn = data.dolltalk;
                 ExtbuttonsOn = data.extbuttons;
                 FixpermOn = data.fixperm;
                 FullseedOn = data.fullseed;
