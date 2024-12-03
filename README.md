@@ -62,7 +62,8 @@ Changes for future version
 
 * Added the Talking page to the GUI
 * Updated the ustatus and xstatus mbs commands
-* Removed the hear, stutter and ptalk commands (the corresponding settings are now in the GUI)
+* Removed the hear, stutter, ptalk and talk commands (the corresponding settings are now in the GUI)
 * Removed the dolltalk and nowhisper options of the uset command (these settings are now in the GUI)
+* Removed the confusing 'permanent' forced RGL gagtalk/whisper mode (you still can use the RGL button to get info or update your forced mode)
 * Fixed the whispers in animal talk mode when using /whisper or the blue arrow
   
