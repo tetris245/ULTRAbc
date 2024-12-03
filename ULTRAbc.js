@@ -702,7 +702,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
                 if (FrkeysOn == null || FrkeysOn == undefined) FrkeysOn = false;
 		if (gl == null || gl == undefined) gl = 0;
-                if (gl == -1) gl = 10;
+                if (gl == -1) gl = 11;
 		if (hearing == null || hearing == undefined) hearing = 0;
                 if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined) HotkeysOn = false;
@@ -747,8 +747,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 BabyTalkOn = false;
                 GagTalkOn = false;
-                if ((gl > 0) && (gl < 10)) GagTalkOn = true;
-                if (gl == 10) BabyTalkOn = true;
+                if (gl != 11) GagTalkOn = true;
+                if (gl == 11) BabyTalkOn = true;
                 if (MagictoysOn == null || MagictoysOn == undefined) {
                     MagictoysOn = false;
                     M_MOANER_saveControls();
@@ -1331,7 +1331,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 FixpermOn = data.fixperm;
                 FullseedOn = data.fullseed;
                 FrkeysOn = data.frkeys;
-		gl = data.gaglevel * 1;
+		gaglevel = data.gaglevel * 1;
+                if (gaglevel < 9) gl = gaglevel; 
+                if (gaglevel == 9) gl = 10;
+                if (gaglevel == 10) gl = 11;
 		hearing = data.hearing;
                 HighfameOn = data.highfame;
                 HotkeysOn = data.hotkeys;
@@ -1376,8 +1379,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
 		GagTalkOn = false;
-                if ((gl > 0) && (gl < 10)) GagTalkOn = true;
-                if (gl == 10) BabyTalkOn = true;
+                if (gl != 11) GagTalkOn = true;
+                if (gl == 11) BabyTalkOn = true;
 		if (hearing == 1) {
                     GetDeafLevel0();
                     Player.GetDeafLevel = GetDeafLevel0;
@@ -4154,7 +4157,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 GagTalkOn = false;
                 BabyTalkOn = true;
-                gl = 10;
+                gl = 11;
                 M_MOANER_saveControls();
             }
         } else {
