@@ -1672,9 +1672,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
                 );
                 addMenuInput(200, "Forced gagtalk/whisper (0-10):", "gaglevel", "InputGagLevel",
-                    "Input a number between 0 and 10 to select a 'permanent' forced level: 0 No gag - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Very heavy gag - 9 Total gag - 10 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once talk with a specific gag level, use the /gtalk command. To talk only once like a baby, use the /btalk command. See also the RGL button.", -16
+                    "Input a number between 0 and 10 to select a 'permanent' forced level: 0 No forced gagtalk/whisper - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Very heavy gag - 9 Total gag - 10 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once talk with a specific gag level, use the /gtalk command. To talk only once like a baby, use the /btalk command. See also the RGL button.", -16
                 );
-                addMenuInput(200, "Forced hearing mode (1-6):", "hearing", "InputHearingMode",
+                addMenuInput(200, "Forced hearing mode (1-6):", "hearing", "InputHearingMode", 
                     "Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
                 );
                 addMenuInput(200, "Forced stuttering level (0-4):", "stutterlevel", "InputStutterLevel",
@@ -4157,6 +4157,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 GagTalkOn = false;
                 BabyTalkOn = true;
+		Player.UBC.ubcSettings.gaglevel = 10;
+                Player.UBC.ubcSettings.notalk = 0;
                 gl = 11;
                 M_MOANER_saveControls();
             }
@@ -4207,6 +4209,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (mgl == 0) {
                 GagTalkOn = false;
+		Player.UBC.ubcSettings.gaglevel = 0;
+                Player.UBC.ubcSettings.notalk = 0;
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in normal talk mode.";
@@ -4214,11 +4218,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             } else {
                 GagTalkOn = true;
+		Player.UBC.ubcSettings.gaglevel = mgl;
+                if (mgl == 10) Player.UBC.ubcSettings.gaglevel = 9;
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in real gag talk mode. Your current garbling level is " + mgl + ".";
                     infomsg(msg);
                     if (notalk == 1) {
+			Player.UBC.ubcSettings.notalk = 1;
                         let msg = "Your very tight collar or a LSCG spell prevents you to talk.";
                         infomsg(msg);
                     }
