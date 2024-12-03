@@ -60,10 +60,12 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added the Talking page to the GUI
+* Added the Talking page to the GUI with some improvements:
+  - Extension of the animal talk modes to all normal whispers, also those entered by using the BC command /whisper or the blue arrow
+  - Synchonisation with the RGL button to display the updated value of the forced gagtalk/whisper level (value 0 means that this mode is not active)
+  - The forced deafness feature is included on this page, with addition of the 5th deafness level
 * Updated the ustatus and xstatus mbs commands
-* Removed the confusing 'permanent' forced RGL gagtalk/whisper mode (you still can use the RGL button to get info or update your forced mode)
 * Removed the hear, stutter, ptalk and talk commands (the corresponding settings are now in the GUI)
 * Removed the dolltalk and nowhisper options of the uset command (these settings are now in the GUI)  
-* Fixed the whispers in animal talk mode when using /whisper or the blue arrow
+
   
