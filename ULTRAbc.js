@@ -4141,32 +4141,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let notalk = 0;
         ElementValue("InputChat", "");
         let bl = 0;
-        if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) {
-            gl = SpeechTransformGagGarbleIntensity(Player);
-            if (gl < 1) bl = 1;
-        }
-        if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) {
-            gl = SpeechTransformGagGarbleIntensity(Player);
-            if (gl < 1) bl = 1;
-        }
-        if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) {
-            gl = SpeechTransformGagGarbleIntensity(Player);
-            if (gl < 1) bl = 1;
-        }
+        if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) bl = 1;         
+        if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) bl = 1;
+        if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) bl = 1;
         if (bl == 1) {
-            if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) {
-                if (window.CurrentScreen == "ChatRoom") {
-                    let msg = "You are now in real baby talk mode.";
-                    infomsg(msg);
-                }
-                GagTalkOn = false;
-                BabyTalkOn = true;
-                Player.UBC.ubcSettings.bl = 1;
-                Player.UBC.ubcSettings.gaglevel = 11;
-                Player.UBC.ubcSettings.notalk = 0;
-                gl = 11;
-                M_MOANER_saveControls();
+            if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) BabyTalkOn = true;
+            if (this.GagTalkOn == true || this.GagTalkOn == undefined) GagTalkOn = false;
+            if (window.CurrentScreen == "ChatRoom") {
+                let msg = "You are now in real baby talk mode.";
+                infomsg(msg);
             }
+            gl = 11;
+            Player.UBC.ubcSettings.bl = 1;
+            Player.UBC.ubcSettings.gaglevel = 11;
+            Player.UBC.ubcSettings.notalk = 0;
+            M_MOANER_saveControls();
         } else {
             if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
                 BabyTalkOn = false;
