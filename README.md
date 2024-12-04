@@ -64,7 +64,7 @@ Changes for future version
   - Extension of the animal talk modes to all normal whispers, also those entered by using the BC command /whisper or the blue arrow
   - Synchonisation with the RGL button to display the updated value of the forced gagtalk/whisper level (value 0 means that this mode is not active - value 11 is used for baby talk)
   - The forced deafness feature is included on this page, with addition of the 5th deafness level
-* Updated the ustatus and xstatus mbs commands
+* Updated the atalk, gtalk, stalk, ustatus and xstatus mbs commands
 * Removed the hear, stutter, ptalk and talk commands (the corresponding settings are now in the GUI)
 * Removed the dolltalk and nowhisper options of the uset command (these settings are now in the GUI)  
 
