@@ -79,6 +79,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let profileName;
     let animal = 0;
     let bgall = false;
+    let bl = 0;
     let cdesk = 0;
     let cextra = false;
     let cfame = 200;
@@ -414,6 +415,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun4 = "";
             animal = 0;
             bgall = false;
+	    bl = 0;
             cdesk = 0;
             cextra = false;
             cfame = 200;
@@ -495,6 +497,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun4 = datas.pronoun4;
             animal = datas.animal;
             bgall = datas.bgall;
+	    bl = datas.bl;
             cdesk = datas.cdesk;
             cextra = datas.cextra;
             cfame = datas.cfame;
@@ -579,6 +582,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun4": pronoun4,
             "animal": animal,
             "bgall": bgall,
+            "bl": bl,
             "cdesk": cdesk,
             "cextra": cextra,
             "cfame": cfame,
@@ -693,6 +697,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
                 if (bgall == null || bgall == undefined) bgall = false;
+		if (bl == null || bl == undefined) bl = 0;
                 if (cdesk == null || cdesk == undefined) cdesk = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 200;
@@ -747,7 +752,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 BabyTalkOn = false;
                 GagTalkOn = false;
-                if (gl != 11) GagTalkOn = true;
+                if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
                 if (MagictoysOn == null || MagictoysOn == undefined) {
                     MagictoysOn = false;
@@ -807,6 +812,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const UBC_DEFAULT_SETTINGS = {
 		animal: 0,
                 bgall: false,
+		bl: 0,
                 cdesk: 0,
                 cextra: false,
                 cfame: 200,
@@ -1323,6 +1329,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let data = Player.UBC.ubcSettings;
 		animal = data.animal * 1;
                 bgall = data.bgall;
+		bl = data.bl;
                 cdesk = data.cdesk;
                 cextra = data.cextra;
                 cfame = data.cfame;
@@ -1331,10 +1338,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 FixpermOn = data.fixperm;
                 FullseedOn = data.fullseed;
                 FrkeysOn = data.frkeys;
-		gaglevel = data.gaglevel * 1;
-                if (gaglevel < 9) gl = gaglevel; 
-                if (gaglevel == 9) gl = 10;
-                if (gaglevel == 10) gl = 11;
+		gl = data.gaglevel * 1;
 		hearing = data.hearing;
                 HighfameOn = data.highfame;
                 HotkeysOn = data.hotkeys;
@@ -1379,7 +1383,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
 		GagTalkOn = false;
-                if (gl != 11) GagTalkOn = true;
+                if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
 		if (hearing == 1) {
                     GetDeafLevel0();
@@ -1451,7 +1455,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text."
                 );
                 addMenuCheckbox(64, 64, "Enable RGL button in chat: ", "rglbuttons",
-                    "The RGL button allows to get info about your current Real Garbling Level at any moment. This level is based on the currently worn gags and other items restraining talking (including LSCG collar and spells). This info is automatically given when using the emergency buttons, hotkeys or commands to release yourself. You can also use this button to adapt your forced gagtalk/whisper level after changes or as emergency button when you can't talk while not being gagged, for example."
+                    "The RGL button gives info about your current Real Garbling Level at any moment, by checking worn gags and other items restraining talking (including LSCG collar and spells). This info is automatically given when using the emergency buttons, hotkeys or commands to release yourself. This button will also force a gagtalk/whisper level (always limited to 10 - value 11 is used for baby talk) and can be used as emergency button when you can't talk while not being gagged, for example."
                 );
                 addMenuCheckbox(64, 64, "Slow exit with OUT button:", "slowleave",
                     "By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players!"
@@ -1671,10 +1675,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
                     "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
                 );
-                addMenuInput(200, "Forced gagtalk/whisper (0-10):", "gaglevel", "InputGagLevel",
-                    "Input a number between 0 and 10 to select a 'permanent' forced level: 0 No forced gagtalk/whisper - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Very heavy gag - 9 Total gag - 10 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once talk with a specific gag level, use the /gtalk command. To talk only once like a baby, use the /btalk command. See also the RGL button.", -16
+                addMenuInput(200, "Forced gagtalk/whisper (0-11):", "gaglevel", "InputGagLevel",
+                    "Input a number between 0 and 11 to select a 'permanent' forced level: 0 Disabled feature - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Better heavy gag - 9 Very heavy gag - 10 Total gag - 11 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once gagtalk, use the /gtalk command. To talk only once like a baby, use /btalk. See also the RGL button.", -16
                 );
-                addMenuInput(200, "Forced hearing mode (1-6):", "hearing", "InputHearingMode", 
+                addMenuInput(200, "Forced hearing mode (1-6):", "hearing", "InputHearingMode",
                     "Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
                 );
                 addMenuInput(200, "Forced stuttering level (0-4):", "stutterlevel", "InputStutterLevel",
@@ -1698,7 +1702,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let hmode = ElementValue("InputHearingMode");
                 let pmode = ElementValue("InputAnimalMode");
                 let stlevel = ElementValue("InputStutterLevel");
-                if ((CommonIsNumeric(glevel)) && (glevel > -1) && (glevel < 11) &&
+                if ((CommonIsNumeric(glevel)) && (glevel > -1) && (glevel < 12) &&
                 (CommonIsNumeric(hmode)) && (hmode > -1) && (hmode < 7) &&
                 (CommonIsNumeric(pmode)) && (pmode > -1) && (pmode < 10) &&
                 (CommonIsNumeric(stlevel)) && (stlevel > -1) && (stlevel < 5)) {
@@ -4157,7 +4161,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 GagTalkOn = false;
                 BabyTalkOn = true;
-		Player.UBC.ubcSettings.gaglevel = 10;
+                Player.UBC.ubcSettings.bl = 1;
+                Player.UBC.ubcSettings.gaglevel = 11;
                 Player.UBC.ubcSettings.notalk = 0;
                 gl = 11;
                 M_MOANER_saveControls();
@@ -4209,7 +4214,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (mgl == 0) {
                 GagTalkOn = false;
-		Player.UBC.ubcSettings.gaglevel = 0;
+                Player.UBC.ubcSettings.bl = 0;
+                Player.UBC.ubcSettings.gaglevel = 0;
                 Player.UBC.ubcSettings.notalk = 0;
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
@@ -4218,14 +4224,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             } else {
                 GagTalkOn = true;
-		Player.UBC.ubcSettings.gaglevel = mgl;
-                if (mgl == 10) Player.UBC.ubcSettings.gaglevel = 9;
+                Player.UBC.ubcSettings.bl = 0;
+                Player.UBC.ubcSettings.gaglevel = mgl;
+                if (mgl > 10) Player.UBC.ubcSettings.gaglevel = 10;
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in real gag talk mode. Your current garbling level is " + mgl + ".";
                     infomsg(msg);
                     if (notalk == 1) {
-			Player.UBC.ubcSettings.notalk = 1;
+                        Player.UBC.ubcSettings.notalk = 1;
                         let msg = "Your very tight collar or a LSCG spell prevents you to talk.";
                         infomsg(msg);
                     }
