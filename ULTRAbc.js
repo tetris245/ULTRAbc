@@ -7788,7 +7788,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(talkmode) (words): speaks once in specified gag talk.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The gtalk command must be followed by a number between 0 and 9, then the words you want to say.\n" +
+                let msg = "The gtalk command must be followed by a number between 0 and 10, then the words you want to say.\n" +
                     " \n" +
                     "Available talk modes:\n" +
                     "0 real gag talk (based on currently worn gags and other items restraining talking)\n" +
@@ -7799,15 +7799,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "5 normal gag talk\n" +
                     "6 medium gag talk\n" +
                     "7 heavy gag talk\n" +
-                    "8 very heavy gag talk\n" +
-                    "9 total gag talk";
+                    "8 better heavy gag talk\n" +
+                    "9 very heavy gag talk\n" +
+                    "10 total gag talk";
                 infomsg(msg);
             } else {
                 let stringGag1 = args;
                 let stringGag2 = stringGag1.split(/[ ,]+/);
                 let gaglevel = stringGag2[0];
                 let nt = 0;
-                if ((gaglevel > -1) && (gaglevel < 10)) {
+                if ((gaglevel > -1) && (gaglevel < 11)) {
                     if (gaglevel == 0) {
                         onegl = SpeechTransformGagGarbleIntensity(Player);
                         mgl = onegl;
@@ -7847,11 +7848,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if ((config != undefined) && (config.active == true)) nt = 1;
                         }
                     } else {
-                        if (gaglevel == 9) {
-                            onegl = 10;
-                        } else {
-                            onegl = gaglevel;
-                        }
+                        onegl = gaglevel;
                     }
                     let nm = 0;
                     if (DolltalkOn == true) {
@@ -7882,7 +7879,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'hdvibe',
         Description: "(crotch shield) (back shield) (modules)(intensity) (orgasm mode): changes the settings of worn Heavy Duty Belt.",
