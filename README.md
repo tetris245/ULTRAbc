@@ -65,7 +65,7 @@ Changes for future version
   - Synchronisation with the RGL button to update value of the forced gagtalk/whisper level with limitation to 10 (value 0 means that this mode is not active - value 11 is used for baby talk)
   - The forced deafness feature is included on this page, with addition of the 5th deafness level
 * Extended the bg4 command to the Club Card Game (you can now change its background!)
-* Updated the atalk, gtalk, stalk, ustatus and xstatus mbs commands
+* Updated the atalk, bg3, gtalk, stalk, ustatus and xstatus mbs commands
 * Removed the hear, stutter, ptalk and talk commands (the corresponding settings are now in the GUI)
 * Removed the dolltalk and nowhisper options of the uset command (these settings are now in the GUI)  
 
