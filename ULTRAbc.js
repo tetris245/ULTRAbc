@@ -80,14 +80,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let animal = 0;
     let bgall = false;
     let bl = 0;
+    let ccname = "ClubCardPlayBoard1";
     let cdesk = 0;
     let cextra = false;
     let cfame = 200;
     let frname = "BrickWall";
     let gl = 0;
     let hearing = 0;
-    let onegl = 0;
     let mgl = 0;
+    let onegl = 0;
     let rsize = 20;
     let rtype = "ALL";
     let st = 0;
@@ -416,14 +417,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             animal = 0;
             bgall = false;
 	    bl = 0;
+	    ccname = "ClubCardPlayBoard1";
             cdesk = 0;
             cextra = false;
             cfame = 200;
             frname = "BrickWall";
             gl = 0;
 	    hearing = 0;
+	    mgl = 0;
             onegl = 0;
-            mgl = 0;
             rsize = 20;
             rtype = "ALL";
             st = 0;
@@ -498,14 +500,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             animal = datas.animal;
             bgall = datas.bgall;
 	    bl = datas.bl;
+	    ccname = datas.ccname;
             cdesk = datas.cdesk;
             cextra = datas.cextra;
             cfame = datas.cfame;
             frname = datas.frname;
             gl = datas.gaglevel;  
 	    hearing = 0;
+	    mgl = 0;
             onegl = 0;
-            mgl = 0;
             rsize = datas.rsize;
             rtype = datas.rtype;
             st = datas.stutterlevel * 1;
@@ -583,6 +586,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "animal": animal,
             "bgall": bgall,
             "bl": bl,
+            "ccname": ccname,
             "cdesk": cdesk,
             "cextra": cextra,
             "cfame": cfame,
@@ -698,6 +702,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 9) AnimalTalk9On = true;
                 if (bgall == null || bgall == undefined) bgall = false;
 		if (bl == null || bl == undefined) bl = 0;
+		if (ccname == null || ccname == undefined) ccname = "ClubCardPlayBoard1";
                 if (cdesk == null || cdesk == undefined) cdesk = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 200;
@@ -706,6 +711,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
                 if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
                 if (FrkeysOn == null || FrkeysOn == undefined) FrkeysOn = false;
+		if (frname == null || frname == undefined) frname = "BrickWall";
 		if (gl == null || gl == undefined) gl = 0;
                 if (gl == -1) gl = 11;
 		if (hearing == null || hearing == undefined) hearing = 0;
@@ -744,12 +750,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
 		if (st == null || st == undefined) st = 0;
+		if (tcname == null || tcname == undefined) tcname = "Cell";
                 M_MOANER_saveControls();
-                if (frname == null || frname == undefined) {
-                    frname = "BrickWall";
-                    tcname = "Cell";
-                    M_MOANER_saveControls();
-                }
                 BabyTalkOn = false;
                 GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
@@ -1766,6 +1768,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardEndTurn();
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
+    ULTRAClubCardRenderBoard();
     UKTRACommandAutoComplete();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
@@ -2644,6 +2647,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (cdesk == 7) ClubCardBuilderDefaultDeck = ClubCardBuilderPornDeck;
             if (cdesk == 8) ClubCardBuilderDefaultDeck = ClubCardBuilderExtraDeck;
             if (cdesk == 0) ClubCardBuilderDefaultDeck = originaldesk;
+            next(args);
+        });
+    }
+
+    async function ULTRAClubCardRenderBoard() {
+        modApi.hookFunction('ClubCardRenderBoard', 4, (args, next) => {
+            ClubCardBackground = ccname;
             next(args);
         });
     }
@@ -6569,14 +6579,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg4',
-        Description: "(screen) (background): selects a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell",
+        Description: "(screen) (background): selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell",
         Action: (args) => {
             if (args === "") {
                 let msg = "The bg4 command must be followed by two numbers:\n" +
                     " \n" +
                     "- a number for the concerned screen:\n" +
-                    "0 = Friend List - 1 = Main Hall\n" +
-                    "2 = Private Room (SP) - 3 = Timer Cell\n" +
+                    "0 = Club Card Game\n" +
+                    "1 = Friend List - 2 = Main Hall\n" +
+                    "3 = Private Room (SP) - 4 = Timer Cell\n" +
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
                     " \n" +
@@ -6590,8 +6601,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringBg1 = args;
                 let stringBg2 = stringBg1.split(/[ ,]+/);
                 let screen = stringBg2[0];
-                if ((screen > -1) && (screen < 4)) {
+                if ((screen > -1) && (screen < 5)) {
                     if (screen == 0) {
+                        let ccbg = stringBg2[1];
+                        let ccback = "";
+                        if ((ccbg > -2) && (ccbg < (BackgroundsList.length - 1))) {
+                            if (ccbg == -1) {
+                                ccback = "ClubCardPlayBoard1";
+                            } else {
+                                ccback = BackgroundsList[ccbg].Name;
+                            }
+                            ccname = ccback;
+                            M_MOANER_saveControls();
+                            let msg = "The background of the Club Card Game is now: " + ccname + ".";
+                            infomsg(msg);
+                        }
+                    }
+                    if (screen == 1) {
                         let frbg = stringBg2[1];
                         let frback = "";
                         if ((frbg > -2) && (frbg < (BackgroundsList.length - 1))) {
@@ -6606,7 +6632,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                    if (screen == 1) {
+                    if (screen == 2) {
                         let mhbg = stringBg2[1];
                         let mhback = "";
                         if ((mhbg > -2) && (mhbg < (BackgroundsList.length - 1))) {
@@ -6623,7 +6649,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                    if (screen == 2) {
+                    if (screen == 3) {
                         let prbg = stringBg2[1];
                         let prback = "";
                         if ((prbg > -2) && (prbg < (BackgroundsList.length - 1))) {
@@ -6641,7 +6667,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                    if (screen == 3) {
+                    if (screen == 4) {
                         let tcbg = stringBg2[1];
                         let tcback = "";
                         if ((tcbg > -2) && (tcbg < (BackgroundsList.length - 1))) {
@@ -13004,7 +13030,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "settings") {
                 let msg = "Settings commands - * = more info when using\n" +
-                    "<b>/bg4</b> (screen) (background) = selects a standard background for the Friend List, the Main Hall, the Private Room (SP) or the Timer Cell. *\n" +
+                    "<b>/bg4</b> (screen) (background) = selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell. *\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
