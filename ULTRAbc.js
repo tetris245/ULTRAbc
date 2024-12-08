@@ -2871,18 +2871,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-     //Orgasm
+    //Orgasm
     async function ULTRAActivityChatRoomArousalSync() {
         modApi.hookFunction('ActivityChatRoomArousalSync', 4, (args, next) => {
-	    if (Player.UBC.ubcSettings != undefined) {
-                if (Player.UBC.ubcSettings.cum == true) {
-                    if (Player.ArousalSettings.OrgasmStage == 2) { 
-                        setTimeout(function() {
-                            Player.ArousalSettings.OrgasmStage = 0;
-                            Player.UBC.ubcSettings.cum = false; 
-                        }, 15000);
-                    }            
-                }
+            if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
+                if (Player.UBC != undefined) {
+	            if (Player.UBC.ubcSettings != undefined) {
+                        if (Player.UBC.ubcSettings.cum == true) {
+                            if (Player.ArousalSettings.OrgasmStage == 2) { 
+                                setTimeout(function() {
+                                    Player.ArousalSettings.OrgasmStage = 0;
+                                    Player.UBC.ubcSettings.cum = false; 
+                                }, 15000);
+                            }            
+                        }
+                    }
+                } 
 	    }    
             next(args);
         });
