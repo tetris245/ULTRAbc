@@ -113,6 +113,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let NPCpunish = false;
     let OutbuttonsOn;
     let RglbuttonsOn;
+    let RglsyncOn;
     let SlowleaveOn;
     let SosbuttonsOn;
 
@@ -449,6 +450,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NPCpunish = false;
             OutbuttonsOn = false;
             RglbuttonsOn = false;
+	    RglsyncOn = false;
             SlowleaveOn = false;
             SosbuttonsOn = false;
             blureffect = false;
@@ -532,6 +534,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NPCpunish = datas.npcpunish;
             OutbuttonsOn = datas.outbuttons;
             RglbuttonsOn = datas.rglbuttons;
+	    RglsyncOn = datas.rglsync;
             SlowleaveOn = datas.slowleave;
             SosbuttonsOn = datas.sosbuttons;
             blureffect = false;
@@ -615,6 +618,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "npcpunish": NPCpunish,
             "outbuttons": OutbuttonsOn,
             "rglbuttons": RglbuttonsOn,
+            "rglsync": RglsyncOn,
             "slowleave": SlowleaveOn,
             "sosbuttons": SosbuttonsOn,
             "blureffect": blureffect,
@@ -748,6 +752,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (profileName == "wolf") profile = 10;
 		if (reaction == null || reaction == undefined) reaction = 0;
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
+		if (RglsyncOn == null || RglsyncOn == undefined) RglsyncOn = false;
                 if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
 		if (st == null || st == undefined) st = 0;
@@ -841,6 +846,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile: 0,
 		reaction: 0,
                 rglbuttons: false,
+		rglsync: false,
                 script: false,
                 slowleave: false,
                 sosbuttons: false,
@@ -1366,6 +1372,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile = data.profile;
 		reaction = data.reaction;
                 RglbuttonsOn = data.rglbuttons;
+		RglsyncOn = data.rglsync;
                 SlowleaveOn = data.slowleave;
                 SosbuttonsOn = data.sosbuttons;
 		st = data.stutterlevel * 1; 
@@ -1452,19 +1459,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCButtonsLoad = function() {
                 UBCPreferenceSubscreen = "UBCButtons";
                 addMenuCheckbox(64, 64, "Enable EXT button in chat: ", "extbuttons",
-                    "The EXT button gives direct access to the Extensions menu. It corresponds to the /xmenu command."
+                    "The EXT button gives direct access to the Extensions menu. It corresponds to the /xmenu command.", false, 150
                 );
                 addMenuCheckbox(64, 64, "Enable FREE buttons: ", "sosbuttons",
-                    "The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command."
+                    "The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command.", false, 150
                 );
                 addMenuCheckbox(64, 64, "Enable OUT buttons: ", "outbuttons",
-                    "The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text."
-                );
-                addMenuCheckbox(64, 64, "Enable RGL button in chat: ", "rglbuttons",
-                    "The RGL button gives info about your current Real Garbling Level at any moment, by checking worn gags and other items restraining talking (including LSCG collar and spells). This info is automatically given when using the emergency buttons, hotkeys or commands to release yourself. This button will also force a gagtalk/whisper level (always limited to 10 - value 11 is used for baby talk) and can be used as emergency button when you can't talk while not being gagged, for example."
+                    "The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text.", false, 150
                 );
                 addMenuCheckbox(64, 64, "Slow exit with OUT button:", "slowleave",
-                    "By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players!"
+                    "By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players!", false, 150
+                );
+                addMenuCheckbox(64, 64, "Enable RGL button in chat: ", "rglbuttons",
+                    "The RGL button gives info about your current Real Garbling Level at any moment, by checking worn gags and other items restraining talking (also LSCG collar and spells). When using the buttons, hotkeys or commands to release yourself, this info is automatically given and synchronized with your forced gagtalk/whisper level as the result is 0. The RGL button can therefore be used as emergency when you can't talk while not being gagged, for example.",false, 150
+                );               
+                addMenuCheckbox(64, 64, "Extended synchronization with RGL button:", "rglsync",
+                    "By default, the synchronization of RGL button with forced level of gaftalk/whisper is automatic when using the emergency buttons, hotkeys or commands to release yourself. This setting allows to extend it to all other situations. The detected level will be limited to 10 for gagtalk (11 is used for baby talk). When enabled, manual changes in your worn gags and other items restraining talking (including LSCG collar and spells) require to click the RGL button again.", false, 150
                 );
             }
 
@@ -4163,31 +4173,80 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function RealGarblingLevel() {
         let notalk = 0;
+        let ntt = 0;
         ElementValue("InputChat", "");
         let bl = 0;
-        if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) bl = 1;         
-        if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) bl = 1;
-        if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) bl = 1;
-        if (bl == 1) {
+        let nbl = 0;
+        let obl = Player.UBC.ubcSettings.bl; 
+        let ogl = Player.UBC.ubcSettings.gaglevel; 
+        let ont = Player.UBC.ubcSettings.notalk;
+        if (Player.ExtensionSettings.LSCG != null) {
+                let str = Player.ExtensionSettings.LSCG;
+                let d = LZString.decompressFromBase64(str);
+                let LSCGdata = {};
+                let decoded = JSON.parse(d);
+                LSCGdata = decoded;
+                if (InventoryGet(Player, "ItemNeck") != null) {
+                    if (LSCGdata.CollarModule.chokeLevel == 4) ntt = 1;
+                }
+                let type = '';
+                let config = "";
+                let states = LSCGdata.StateModule.states;
+                type = 'asleep';
+                config = states.find(s => s.type == type);
+                if ((config != undefined) && (config.active == true)) ntt = 1;
+                type = 'frozen';
+                config = states.find(s => s.type == type);
+                if ((config != undefined) && (config.active == true)) ntt = 1;
+                type = 'gagged';
+                config = states.find(s => s.type == type);
+                if ((config != undefined) && (config.active == true)) ntt = 1;
+                type = 'hypnotized';
+                config = states.find(s => s.type == type);
+                if ((config != undefined) && (config.active == true)) ntt = 1;
+        }   
+        if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) nbl = 1;         
+        if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) nbl = 1;
+        if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) nbl = 1;
+        if (nbl == 1) {
             if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) BabyTalkOn = true;
-            if (this.GagTalkOn == true || this.GagTalkOn == undefined) GagTalkOn = false;
+            if (this.GagTalkOn == true || this.GagTalkOn == undefined) GagTalkOn = false;  
+            if (Player.UBC.ubcSettings.rglsync == true) {
+                bl = 1;
+                gl = 11;
+                Player.UBC.ubcSettings.bl = 1;
+                Player.UBC.ubcSettings.gaglevel = 11;
+            } else {  
+                bl = 0;
+                gl = ogl;   
+                Player.UBC.ubcSettings.bl = obl;
+                Player.UBC.ubcSettings.gaglevel = ogl;
+            } 
+            if (ntt == 1) {
+                if (Player.UBC.ubcSettings.rglsync == true) {
+                    notalk = ntt;
+                    Player.UBC.ubcSettings.notalk = ntt;
+                } else {
+                    notalk = ont;
+                    Player.UBC.ubcSettings.notalk = ont;
+                }
+            } else {
+                notalk = 0;
+                Player.UBC.ubcSettings.notalk = 0;
+            }
             if (window.CurrentScreen == "ChatRoom") {
                 let msg = "You are now in real baby talk mode.";
                 infomsg(msg);
+                if (ntt == 1) {
+                    let msg = "Besides, your very tight collar or a LSCG spell prevents you to talk.";
+                    infomsg(msg);
+                }
             }
-            gl = 11;
-            Player.UBC.ubcSettings.bl = 1;
-            Player.UBC.ubcSettings.gaglevel = 11;
-            Player.UBC.ubcSettings.notalk = 0;
-            M_MOANER_saveControls();
         } else {
-            if (this.GagTalkOn == false || this.GagTalkOn == undefined) {
-                BabyTalkOn = false;
-            } else {
-                GagTalkOn = false;
-            }
-            gl = SpeechTransformGagGarbleIntensity(Player);
-            mgl = gl;
+            if (this.BabyTalkOn == true || this.BabyTalkOn == undefined) BabyTalkOn = false;
+            if (this.GagTalkOn == false || this.GagTalkOn == undefined) GagTalkOn = true;
+            let ngl = SpeechTransformGagGarbleIntensity(Player);
+            mgl = ngl;
             if (Player.ExtensionSettings.MBS != null) {
                 let str = Player.ExtensionSettings.MBS;
                 let d = LZString.decompressFromUTF16(str);
@@ -4195,11 +4254,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let decoded = JSON.parse(d);
                 MBSdata = decoded;
                 if ((MBSdata.AlternativeGarbling) && (ChatRoomTargetMemberNumber == null)) {
-                    gl = 0;
+                    ngl = 0;
                     mgl = SpeechTransformGagGarbleIntensity(Player);
                 }
             }
-            if (gl < 0) gl = 0;
+            if (ngl < 0) ngl = 0;
             if (mgl < 0) mgl = 0;
             if (Player.ExtensionSettings.LSCG != null) {
                 let str = Player.ExtensionSettings.LSCG;
@@ -4207,49 +4266,75 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let LSCGdata = {};
                 let decoded = JSON.parse(d);
                 LSCGdata = decoded;
-                if (LSCGdata.CollarModule.chokeLevel > 1) mgl = (LSCGdata.CollarModule.chokeLevel) * 2 + mgl;
-                if (LSCGdata.CollarModule.chokeLevel == 4) notalk = 1;
-                let type = '';
-                let config = "";
-                let states = LSCGdata.StateModule.states;
-                type = 'asleep';
-                config = states.find(s => s.type == type);
-                if ((config != undefined) && (config.active == true)) notalk = 1;
-                type = 'frozen';
-                config = states.find(s => s.type == type);
-                if ((config != undefined) && (config.active == true)) notalk = 1;
-                type = 'gagged';
-                config = states.find(s => s.type == type);
-                if ((config != undefined) && (config.active == true)) notalk = 1;
-                type = 'hypnotized';
-                config = states.find(s => s.type == type);
-                if ((config != undefined) && (config.active == true)) notalk = 1;
+                if (InventoryGet(Player, "ItemNeck") != null) {           
+                    if (LSCGdata.CollarModule.chokeLevel > 1) {
+                        ngl = (LSCGdata.CollarModule.chokeLevel) * 2 + ngl;
+                        mgl = ngl;
+                    }                  
+                }
             }
             if (mgl == 0) {
+                bl = 0;
+                gl = 0;           
                 GagTalkOn = false;
                 Player.UBC.ubcSettings.bl = 0;
                 Player.UBC.ubcSettings.gaglevel = 0;
-                Player.UBC.ubcSettings.notalk = 0;
+                if (ntt == 1) {
+                    if (Player.UBC.ubcSettings.rglsync == true) {
+                        notalk = ntt;
+                        Player.UBC.ubcSettings.notalk = ntt;
+                    } else {
+                        notalk = ont;
+                        Player.UBC.ubcSettings.notalk = ont;
+                    }
+                } else {
+                    notalk = 0;
+                    Player.UBC.ubcSettings.notalk = 0;
+                }
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in normal talk mode.";
                     infomsg(msg);
-                }
-            } else {
-                GagTalkOn = true;
-                Player.UBC.ubcSettings.bl = 0;
-                Player.UBC.ubcSettings.gaglevel = mgl;
-                if (mgl > 10) Player.UBC.ubcSettings.gaglevel = 10;
-                M_MOANER_saveControls();
-                if (window.CurrentScreen == "ChatRoom") {
-                    let msg = "You are now in real gag talk mode. Your current garbling level is " + mgl + ".";
-                    infomsg(msg);
-                    if (notalk == 1) {
-                        Player.UBC.ubcSettings.notalk = 1;
-                        let msg = "Your very tight collar or a LSCG spell prevents you to talk.";
+                    if (ntt == 1) {
+                        let msg = "However, your very tight collar or a LSCG spell prevents you to talk.";
                         infomsg(msg);
                     }
+                }                 
+            } else {
+                if (Player.UBC.ubcSettings.rglsync == true) {
+                    bl = 0;
+                    gl = mgl;
+                    GagTalkOn = true;
+                    Player.UBC.ubcSettings.bl = 0;
+                    Player.UBC.ubcSettings.gaglevel = mgl;
+                    if (mgl > 10) Player.UBC.ubcSettings.gaglevel = 10;               
+                }  else  {  
+                    bl = 0;
+                    gl = ogl;   
+                    Player.UBC.ubcSettings.bl = 0;
+                    Player.UBC.ubcSettings.gaglevel = ogl;
                 }
+                if (ntt == 1) {
+                    if (Player.UBC.ubcSettings.rglsync == true) {
+                        notalk = ntt;
+                        Player.UBC.ubcSettings.notalk = ntt;
+                    } else {
+                        notalk = ont;
+                        Player.UBC.ubcSettings.notalk = ont;
+                    }
+                } else {
+                    notalk = 0;
+                    Player.UBC.ubcSettings.notalk = 0;
+                }
+                M_MOANER_saveControls();
+                if (window.CurrentScreen == "ChatRoom") {
+                    let msg = "You are now in real gag talk mode. Your current garbling level is " + ngl + ".";
+                    infomsg(msg);
+                    if (ntt == 1) {
+                        let msg = "Besides, your very tight collar or a LSCG spell prevents you to talk.";
+                        infomsg(msg);
+                    }
+                }                
             }
         }
     }
