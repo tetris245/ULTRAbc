@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 4.0
+// @version 4.1
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -45,8 +45,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return;
     }
 
-    const UBCver = "4.0";
-    const UBCver0 = "3.8";
+    const UBCver = "4.1";
+    const UBCver0 = "4.0";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -4102,10 +4102,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let msg4 = "No-whisper mode disabled.";
         let msg5 = "Doll talk (and whisper) mode disabled.";
         let msg6 = "No ungarble with BC default talk mode.";
+	let msg7 = "No extended synchronization with RGL button.";
         if (NowhisperOn) msg4 = "No-whisper mode enabled.";
         if (DolltalkOn) msg5 = "Doll talk (and whisper) mode enabled.";
         if (NogarbleOn) msg6 = "Ungarble with BC default talk mode.";
-        msg = msg1 + " - " + msg2 + " - " + msg3 + " - " + msg4 + " " + msg5 + " " + msg6;
+	if (RglsyncOn) msg7 = "Extended synchronization with RGL button.";
+        msg = msg1 + " - " + msg2 + " - " + msg3 + " - " + msg4 + " " + msg5 + " " + msg6 + " " + msg7;
         statusmsg(msg);
     }
 
