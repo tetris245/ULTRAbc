@@ -13674,9 +13674,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
                     "<b>autojoin</b> for chat room auto-join feature\n" +
-                    "<b>dolltalk</b> for doll talk (and whisper) mode\n" +
-                    "<b>magictoys</b> for toys under locked chastity in traps\n" +
-                    "<b>nowhisper</b> for no-whisper mode";
+                    "<b>magictoys</b> for toys under locked chastity in traps";
                 infomsg(msg);
             } else {
                 let setting = args;
