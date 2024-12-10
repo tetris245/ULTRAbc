@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 4.0
+Most recent version: 4.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version4.0.zip file on the Releases page
+1. Download the ULTRAbc-version4.1.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -60,14 +60,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added the Talking page to the GUI with some improvements:
-  - Extension of the animal talk modes to all normal whispers, also those entered by using the BC command /whisper or the blue arrow
-  - The forced deafness feature is included on this page, with addition of the 5th deafness level
-* Added an option in GUI - Buttons to enable an extended synchronization of RGL button with the forced gagtalk/whisper level including limitation to 10 (value 11 is used for baby talk) - when this option is disabled, the synchronization is made only when the detected level is 0 (= normal talk)
-* Improved the RealGarblingLevel function to better handle the LSCG collar
-* Extended the bg4 command to the Club Card Game (you can now change its background!)
-* Updated the atalk, bg3, gtalk, stalk, ustatus and xstatus mbs commands
-* Removed the hear, stutter, ptalk and talk commands (the corresponding settings are now in the GUI)
-* Removed the dolltalk and nowhisper options of the uset command (these settings are now in the GUI)  
-
-  
+(...)
