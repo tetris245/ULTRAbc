@@ -157,11 +157,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let M_MOANER_xvibratorActive = false;
 
     //BC Slots
-    const body1 = ["Activity", "Blush", "BodyLower", "BodyMarkings", "BodyUpper", "Emoticon", "Eyebrows", "Eyes", "Eyes2", "EyeShadow", "Face", "FacialHair", "Fluids", "HairBack", "HairFront", "Hands", "Head", "Height", "Mouth", "Nipples", "Pronouns", "Pussy"];
+    const body1 = ["Activity", "ArmsLeft", "ArmsRight", "Blush", "BodyLower", "BodyMarkings", "BodyUpper", "Emoticon", "Eyebrows", "Eyes", "Eyes2", "EyeShadow", "Face", "FacialHair", "Fluids", "HairBack", "HairFront", "HandsLeft", "HandsRight", "Head", "Height", "Mouth", "Nipples", "Pronouns", "Pussy"];
 
     const body2 = ["BodyMarkings2_Luzi", "\u{989D}\u{5916}\u{5934}\u{53D1}_Luzi", "\u{989D}\u{5916}\u{8EAB}\u{9AD8}_Luzi", "Liquid2_Luzi", "\u{65B0}\u{540E}\u{53D1}_Luzi", "\u{65B0}\u{524D}\u{53D1}_Luzi", "\u{8EAB}\u{4F53}\u{75D5}\u{8FF9}_Luzi"];
 
-    const clothes1 = ["Bra", "Bracelet", "Cloth", "ClothAccessory", "ClothLower", "Corset", "Garters", "Glasses", "Gloves", "HairAccessory3", "Hat", "Jewelry", "LeftAnklet", "LeftHand", "Mask", "Necklace", "Panties", "RightAnklet", "RightHand", "Shoes", "Socks", "SocksLeft", "SocksRight", "Suit", "SuitLower"];
+    const clothes1 = ["AnkletLeft", "AnkletRight", "Bra", "Bracelet", "Cloth", "ClothAccessory", "ClothLower", "Corset", "Garters", "Glasses", "Gloves", "HairAccessory3", "HandAccessoryLeft", "HandAccessoryRight", "Hat", "Jewelry", "Mask", "Necklace", "Panties", "Shoes", "Socks", "SocksLeft", "SocksRight", "Suit", "SuitLower"];
 
     const clothes2 = ["\u{52A8}\u{7269}\u{8EAB}\u{4F53}_Luzi", "Bra_\u{7B28}\u{7B28}\u{86CB}Luzi", "ClothAccessory_\u{7B28}\u{7B28}\u{86CB}Luzi", "Cloth_\u{7B28}\u{7B28}\u{86CB}Luzi", "Cloth_\u{7B28}\u{7B28}\u{7B28}\u{86CB}Luzi2", "ClothLower_\u{7B28}\u{7B28}\u{86CB}Luzi", "ClothLower_\u{7B28}\u{7B28}\u{7B28}\u{86CB}Luzi2", "Gloves_\u{7B28}\u{7B28}\u{86CB}Luzi", "Hat_\u{7B28}\u{7B28}\u{86CB}Luzi", "\u{957F}\u{8896}\u{5B50}_Luzi", "Mask_\u{7B28}\u{7B28}\u{86CB}Luzi", "Necklace_\u{7B28}\u{7B28}\u{86CB}Luzi", "Panties_\u{7B28}\u{7B28}\u{86CB}Luzi", "Shoes_\u{7B28}\u{7B28}\u{86CB}Luzi"];
 
