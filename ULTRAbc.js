@@ -97,6 +97,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let AutojoinOn;
     let DolltalkOn;
     let ExtbuttonsOn;
+    let ExtrainfoOn;
     let FixpermOn;
     let FrkeysOn;
     let FullseedOn;
@@ -434,6 +435,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             AutojoinOn = false;
             DolltalkOn = false;
             ExtbuttonsOn = false;
+	    ExtrainfoOn = false;
             FixpermOn = false;
             FrkeysOn = false;
             FullseedOn = false;
@@ -518,6 +520,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
+	    ExtrainfoOn = datas.extrainfo;
             FixpermOn = datas.fixperm;
             FrkeysOn = datas.frkeys;
             FullseedOn = datas.fullseed;
@@ -602,6 +605,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
+            "extrainfo": ExtrainfoOn,
             "fixperm": FixpermOn,
             "frkeys": FrkeysOn,
             "fullseed": FullseedOn,
@@ -712,6 +716,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cfame == null || cfame == undefined) cfame = 200;
 		if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
+		if (ExtrainfoOn == null || ExtrainfoOn == undefined) ExtrainfoOn = false;
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
                 if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
                 if (FrkeysOn == null || FrkeysOn == undefined) FrkeysOn = false;
@@ -827,6 +832,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		cum: false,
 		dolltalk: false,
                 extbuttons: false,
+		extrainfo: false
                 fixperm: false,
                 frkeys: false,
                 fullseed: false,
@@ -1346,6 +1352,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cfame = data.cfame;
 		DolltalkOn = data.dolltalk;
                 ExtbuttonsOn = data.extbuttons;
+		ExtrainfoOn = data.extrainfo;
                 FixpermOn = data.fixperm;
                 FullseedOn = data.fullseed;
                 FrkeysOn = data.frkeys;
@@ -1547,6 +1554,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCPreferenceSubscreen = "UBCCheats";
                 addMenuCheckbox(64, 64, "Enable Bondage Brawl/Magic School cheat: ", "magiccheat",
                     "With this option, you always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!", false, 160
+                );
+		addMenuCheckbox(64, 64, "Enable extra info for some locks: ", "extrainfo",
+                    "This setting allows to use the /infolock command and get this way extra info (code, password, time left) about some locks on worn item in a slot selected by clicking on yourself or another player.", false, 160
                 );
                 addMenuCheckbox(64, 64, "Enable full help for intricate and hs locks: ", "fullseed",
                     "You will become a lockpicking expert with this option! The full solution with the correct order to lockpick intricate and high security locks is displayed on screen.", false, 160
@@ -8101,82 +8111,87 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'infolock',
         Description: ": gives info (code, password, time left) for lock used on worn item in selected slot.",
         Action: () => {
-            let msg = "You have 5 seconds to click on yourself or another player. If successful, you will get infos about the lock for the selected slot.";
-            infomsg(msg);
-            setTimeout(function() {
-                if (CurrentCharacter != null) {
-                    let Target = "";
-                    let Inventory = "";
-                    let Lock = "";
-                    let asset = "";
-                    let code = "";
-                    let time = "";
-                    let left = "";
-                    if (CurrentCharacter.FocusGroup.Name) {
-                        Target = CurrentCharacter.FocusGroup.Name;
-                        if (InventoryGet(CurrentCharacter, Target) != null) {
-                            Inventory = InventoryGet(CurrentCharacter, Target);
-                            if (Inventory.Property.LockedBy != null)  {                          
-                               if (Inventory.Property.LockedBy == "CombinationPadlock") {
-                                   Lock = "Combination Padlock";
-                                   asset = Inventory.Asset.Description;
-                                   code = Inventory.Property.CombinationNumber;
-                                   ChatRoomSendLocal("AssetGroup = " + Target);
-                                   ChatRoomSendLocal("Locked with " + Lock);
-                                   ChatRoomSendLocal("" + asset + " = " + code + "");
-                               }                   
-                               if (Inventory.Property.LockedBy == "PortalLinkPadlock") {
-                                   Lock = "Portal Link Padlock";
-                                   asset = Inventory.Asset.Description;
-                                   code = Inventory.Property.PortalLinkCode;
-                                   ChatRoomSendLocal("AssetGroup = " + Target);
-                                   ChatRoomSendLocal("Locked with " + Lock);
-                                   ChatRoomSendLocal("" + asset + " = " + code + "");
-                               }
-                               if ((Inventory.Property.LockedBy == "SafewordPadlock") || (Inventory.Property.LockedBy == "PasswordPadlock") || (Inventory.Property.LockedBy == "TimerPasswordPadlock")) {
-                                   Lock = "Safeword Padlock";
-                                   if (Inventory.Property.LockedBy == "PasswordPadlock") Lock = "Password Padlock";
-                                   if (Inventory.Property.LockedBy == "TimerPasswordPadlock") Lock = "Timer Password Padlock";            
-                                   asset = Inventory.Asset.Description;
-                                   code =  Inventory.Property.Password;
-                                   ChatRoomSendLocal("AssetGroup = " + Target);
-                                   ChatRoomSendLocal("Locked with " + Lock);
-                                   ChatRoomSendLocal("" + asset + " = " + code + "");
-                                   if (Inventory.Property.LockedBy == "TimerPasswordPadlock") {                       
+            if (ExtrainfoOn == false) {
+                let msg = "You can't use this command according your settings.";
+                infomsg(msg);
+            } else {
+                let msg = "You have 5 seconds to click on yourself or another player. If successful, you will get infos about the lock for the selected slot.";
+                infomsg(msg);
+                setTimeout(function() {
+                    if (CurrentCharacter != null) {
+                        let Target = "";
+                        let Inventory = "";
+                        let Lock = "";
+                        let asset = "";
+                        let code = "";
+                        let time = "";
+                        let left = "";
+                        if (CurrentCharacter.FocusGroup.Name) {
+                            Target = CurrentCharacter.FocusGroup.Name;
+                            if (InventoryGet(CurrentCharacter, Target) != null) {
+                                Inventory = InventoryGet(CurrentCharacter, Target);
+                                if (Inventory.Property.LockedBy != null)  {                          
+                                    if (Inventory.Property.LockedBy == "CombinationPadlock") {
+                                       Lock = "Combination Padlock";
+                                       asset = Inventory.Asset.Description;
+                                       code = Inventory.Property.CombinationNumber;
+                                       ChatRoomSendLocal("AssetGroup = " + Target);
+                                       ChatRoomSendLocal("Locked with " + Lock);
+                                       ChatRoomSendLocal("" + asset + " = " + code + "");
+                                   }                   
+                                   if (Inventory.Property.LockedBy == "PortalLinkPadlock") {
+                                       Lock = "Portal Link Padlock";
+                                       asset = Inventory.Asset.Description;
+                                       code = Inventory.Property.PortalLinkCode;
+                                       ChatRoomSendLocal("AssetGroup = " + Target);
+                                       ChatRoomSendLocal("Locked with " + Lock);
+                                       ChatRoomSendLocal("" + asset + " = " + code + "");
+                                   }
+                                   if ((Inventory.Property.LockedBy == "SafewordPadlock") || (Inventory.Property.LockedBy == "PasswordPadlock") || (Inventory.Property.LockedBy == "TimerPasswordPadlock")) {
+                                       Lock = "Safeword Padlock";
+                                       if (Inventory.Property.LockedBy == "PasswordPadlock") Lock = "Password Padlock";
+                                       if (Inventory.Property.LockedBy == "TimerPasswordPadlock") Lock = "Timer Password Padlock";            
+                                       asset = Inventory.Asset.Description;
+                                       code =  Inventory.Property.Password;
+                                       ChatRoomSendLocal("AssetGroup = " + Target);
+                                       ChatRoomSendLocal("Locked with " + Lock);
+                                       ChatRoomSendLocal("" + asset + " = " + code + "");
+                                       if (Inventory.Property.LockedBy == "TimerPasswordPadlock") {                       
+                                           time = Inventory.Property.RemoveTimer;
+                                           left = TimerToString(time - CurrentTime);
+                                           ChatRoomSendLocal("" + asset + " = " + left + "");
+                                       }
+                                   }
+                                   if ((Inventory.Property.LockedBy == "TimerPadlock") || (Inventory.Property.LockedBy == "MistressTimerPadlock") || (Inventory.Property.LockedBy == "LoversTimerPadlock") || (Inventory.Property.LockedBy == "OwnerTimerPadlock")) {
+                                       Lock = "Timer Padlock";
+                                       if (Inventory.Property.LockedBy == "MistressTimerPadlock") Lock = "Mistress Timer Padlock";
+                                       if (Inventory.Property.LockedBy == "LoversTimerPadlock") Lock = "Lovers Timer Padlock";
+                                       if (Inventory.Property.LockedBy == "OwnerTimerPadlock") Lock = "Owner Timer Padlock";
+                                       asset = Inventory.Asset.Description;
                                        time = Inventory.Property.RemoveTimer;
                                        left = TimerToString(time - CurrentTime);
+                                       ChatRoomSendLocal("AssetGroup = " + Target);
+                                       ChatRoomSendLocal("Locked with " + Lock);
                                        ChatRoomSendLocal("" + asset + " = " + left + "");
                                    }
-                               }
-                               if ((Inventory.Property.LockedBy == "TimerPadlock") || (Inventory.Property.LockedBy == "MistressTimerPadlock") || (Inventory.Property.LockedBy == "LoversTimerPadlock") || (Inventory.Property.LockedBy == "OwnerTimerPadlock")) {
-                                   Lock = "Timer Padlock";
-                                   if (Inventory.Property.LockedBy == "MistressTimerPadlock") Lock = "Mistress Timer Padlock";
-                                   if (Inventory.Property.LockedBy == "LoversTimerPadlock") Lock = "Lovers Timer Padlock";
-                                   if (Inventory.Property.LockedBy == "OwnerTimerPadlock") Lock = "Owner Timer Padlock";
-                                   asset = Inventory.Asset.Description;
-                                   time = Inventory.Property.RemoveTimer;
-                                   left = TimerToString(time - CurrentTime);
-                                   ChatRoomSendLocal("AssetGroup = " + Target);
-                                   ChatRoomSendLocal("Locked with " + Lock);
-                                   ChatRoomSendLocal("" + asset + " = " + left + "");
-                               }
-                           }                              
-                           if (Inventory.Property.Name != null)  {
-                               if (Inventory.Property.Name == "Best Friend Timer Padlock") {
-                                   Lock = "Best Friend Timer Padlock";
-                                   asset = Inventory.Asset.Description;
-                                   time = Inventory.Property.RemovalTime;
-                                   left = TimerToString(time - CurrentTime);
-                                   ChatRoomSendLocal("AssetGroup = " + Target);
-                                   ChatRoomSendLocal("Locked with " + Lock);
-                                   ChatRoomSendLocal("" + asset + " = " + left + "");
-                               }                  
+                               }                              
+                               if (Inventory.Property.Name != null)  {
+                                   if (Inventory.Property.Name == "Best Friend Timer Padlock") {
+                                       Lock = "Best Friend Timer Padlock";
+                                       asset = Inventory.Asset.Description;
+                                       time = Inventory.Property.RemovalTime;
+                                       left = TimerToString(time - CurrentTime);
+                                       ChatRoomSendLocal("AssetGroup = " + Target);
+                                       ChatRoomSendLocal("Locked with " + Lock);
+                                       ChatRoomSendLocal("" + asset + " = " + left + "");
+                                   }                               
+                                }           
                             }
+                            DialogLeave();                
                         }
-                        DialogLeave();
                     }
-                }
-            }, 5000);
+                }, 5000);
+            }
         }
     }])
 
