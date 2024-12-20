@@ -11269,8 +11269,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'prison',
-        Description: "(minutes): stays in Pandora prison.",
+        Tag: 'prison1',
+        Description: "(minutes): stays in NPC Pandora prison.",
         Action: (args) => {
             if (args === "") {
                 let msg = "The prison command must be followed by a number higher than 0";
@@ -11288,6 +11288,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     PandoraRestrainPlayer();
                     PandoraPunishmentSentence(minutes);
                     PandoraPunishmentStart();
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'prison2',
+        Description: "(minutes): stays in online Pandora prison.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The prison2 command must be followed by a number higher than 0. Use it in a private room where you are alone.\n" +
+                    "It will be followed by an automatic relog before sending you to prison. If you don't automatically enter a Pandora prison, click on Exit in Chat Search.";
+                infomsg(msg);
+            } else {
+                let minutes = args;
+                if (minutes > 0) {
+                    let msg = "" + tmpname + " gets grabbed by two maids and sent to online Pandora prison for " + minutes + " minutes.";
+                    publicmsg(msg);
+                    DialogLentLockpicks = false;
+                    ChatRoomHideElements();
+                    ServerSend("ChatRoomLeave", "");
+                    CharacterDeleteAllOnline();              
+                    PandoraRestrainPlayer();
+                    InfiltrationPenitentiaryMinutes = parseInt(minutes);
+                    if (Player.Game.Prison == null) Player.Game.Prison = {};
+	               Player.Game.Prison.Timer = Math.round(CurrentTime + (minutes * 60 * 1000));
+	               ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
+                    ServerSocket.close();
+                    ServerSocket.open();
                 }
             }
         }
@@ -13127,9 +13156,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
                     "<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
-                    "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault.\n" +
+                    "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
                     "<b>/mission</b> (missionhere) = forces a specific infiltration mission. *\n" +
-                    "<b>/prison</b> (minutes) = stays in Pandora prison. More than 60 minutes is possible.\n" +
+                    "<b>/prison1</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n" +
+                    "<b>/prison2</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible.\n" +
                     "<b>/store</b> = leaves chatroom, goes to store. Shows hidden items.\n" +
                     "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.";
                 infomsg(msg);
