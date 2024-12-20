@@ -832,7 +832,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		cum: false,
 		dolltalk: false,
                 extbuttons: false,
-		extrainfo: false
+		extrainfo: false,
                 fixperm: false,
                 frkeys: false,
                 fullseed: false,
