@@ -7049,40 +7049,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'code',
-        Description: "(target): reveals codes used on current combination locks.",
-        Action: (args) => {
-            if (args === "") {
-                for (let A = 0; A < Player.Appearance.length; A++)
-                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
-                        if (Player.Appearance[A].Property.LockedBy == "CombinationPadlock") {
-                            let asset = Player.Appearance[A].Asset.Description;
-                            let code = Player.Appearance[A].Property.CombinationNumber;
-                            ChatRoomSendLocal("" + asset + " = " + code + "");
-                        }
-                    }
-            } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if (target[0] != null) {
-                    for (let A = 0; A < target[0].Appearance.length; A++)
-                        if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
-                            if (target[0].Appearance[A].Property.LockedBy == "CombinationPadlock") {
-                                let asset = target[0].Appearance[A].Asset.Description;
-                                let code = target[0].Appearance[A].Property.CombinationNumber;
-                                ChatRoomSendLocal("" + asset + " = " + code + "");
-                            }
-                        }
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'college',
         Description: "enters college, bypasses requirements.",
         Action: () => {
@@ -8124,6 +8090,89 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 ChatRoomSetTarget(-1);
             }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'infolock',
+        Description: ": gives info (code, password, time left) for lock used on worn item in selected slot.",
+        Action: () => {
+            let msg = "You have 5 seconds to click on yourself or another player. If successful, you will get infos about the lock for the selected slot.";
+            infomsg(msg);
+            setTimeout(function() {
+                if (CurrentCharacter != null) {
+                    let Target = "";
+                    let Inventory = "";
+                    let Lock = "";
+                    let asset = "";
+                    let code = "";
+                    let time = "";
+                    let left = "";
+                    if (CurrentCharacter.FocusGroup.Name) {
+                        Target = CurrentCharacter.FocusGroup.Name;
+                        if (InventoryGet(CurrentCharacter, Target) != null) {
+                            Inventory = InventoryGet(CurrentCharacter, Target);
+                            if (Inventory.Property.LockedBy != null)  {                          
+                               if (Inventory.Property.LockedBy == "CombinationPadlock") {
+                                   Lock = "Combination Padlock";
+                                   asset = Inventory.Asset.Description;
+                                   code = Inventory.Property.CombinationNumber;
+                                   ChatRoomSendLocal("AssetGroup = " + Target);
+                                   ChatRoomSendLocal("Locked with " + Lock);
+                                   ChatRoomSendLocal("" + asset + " = " + code + "");
+                               }                   
+                               if (Inventory.Property.LockedBy == "PortalLinkPadlock") {
+                                   Lock = "Portal Link Padlock";
+                                   asset = Inventory.Asset.Description;
+                                   code = Inventory.Property.PortalLinkCode;
+                                                                    ChatRoomSendLocal("AssetGroup = " + Target);
+                                   ChatRoomSendLocal("Locked with " + Lock);
+                                   ChatRoomSendLocal("" + asset + " = " + code + "");
+                               }
+                               if ((Inventory.Property.LockedBy == "SafewordPadlock") || (Inventory.Property.LockedBy == "PasswordPadlock") || (Inventory.Property.LockedBy == "TimerPasswordPadlock")) {
+                                   Lock = "Safeword Padlock";
+                                   if (Inventory.Property.LockedBy == "PasswordPadlock") Lock = "Password Padlock";
+                                   if (Inventory.Property.LockedBy == "TimerPasswordPadlock") Lock = "Timer Password Padlock";            
+                                   asset = Inventory.Asset.Description;
+                                   code =  Inventory.Property.Password;
+                                   ChatRoomSendLocal("AssetGroup = " + Target);
+                                   ChatRoomSendLocal("Locked with " + Lock);
+                                   ChatRoomSendLocal("" + asset + " = " + code + "");
+                                   if (Inventory.Property.LockedBy == "TimerPasswordPadlock") {                       
+                                       time = Inventory.Property.RemoveTimer;
+                                       left = TimerToString(time - CurrentTime);
+                                       ChatRoomSendLocal("" + asset + " = " + left + "");
+                                   }
+                               }
+                               if ((Inventory.Property.LockedBy == "TimerPadlock") || (Inventory.Property.LockedBy == "MistressTimerPadlock") || (Inventory.Property.LockedBy == "LoversTimerPadlock") || (Inventory.Property.LockedBy == "OwnerTimerPadlock")) {
+                                   Lock = "Timer Padlock";
+                                   if (Inventory.Property.LockedBy == "MistressTimerPadlock") Lock = "Mistress Timer Padlock";
+                                   if (Inventory.Property.LockedBy == "LoversTimerPadlock") Lock = "Lovers Timer Padlock";
+                                   if (Inventory.Property.LockedBy == "OwnerTimerPadlock") Lock = "Owner Timer Padlock";
+                                   asset = Inventory.Asset.Description;
+                                   time = Inventory.Property.RemoveTimer;
+                                   left = TimerToString(time - CurrentTime);
+                                   ChatRoomSendLocal("AssetGroup = " + Target);
+                                   ChatRoomSendLocal("Locked with " + Lock);
+                                   ChatRoomSendLocal("" + asset + " = " + left + "");
+                               }
+                           }                              
+                           if (Inventory.Property.Name != null)  {
+                               if (Inventory.Property.Name == "Best Friend Timer Padlock") {
+                                   Lock = "Best Friend Timer Padlock";
+                                   asset = Inventory.Asset.Description;
+                                   time = Inventory.Property.RemovalTime;
+                                   left = TimerToString(time - CurrentTime);
+                                   ChatRoomSendLocal("AssetGroup = " + Target);
+                                   ChatRoomSendLocal("Locked with " + Lock);
+                                   ChatRoomSendLocal("" + asset + " = " + left + "");
+                               }                  
+                            }
+                        }
+                        DialogLeave();
+                    }
+                }
+            }, 5000);
         }
     }])
 
@@ -11245,74 +11294,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'ptcode',
-        Description: "(target): reveals codes used on items controlled by portal link.",
-        Action: (args) => {
-            if (args === "") {
-                for (let A = 0; A < Player.Appearance.length; A++)
-                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.Attribute != null)) {
-                        if (Player.Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
-                            let asset = Player.Appearance[A].Asset.Description;
-                            let ptcode = Player.Appearance[A].Property.PortalLinkCode;
-                            ChatRoomSendLocal("" + asset + " = " + ptcode + "");
-                        }
-                    }
-            } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if (target[0] != null) {
-                    for (let A = 0; A < target[0].Appearance.length; A++)
-                        if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.Attribute != null)) {
-                            if (target[0].Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
-                                let asset = target[0].Appearance[A].Asset.Description;
-                                let ptcode = target[0].Appearance[A].Property.PortalLinkCode;
-                                ChatRoomSendLocal("" + asset + " = " + ptcode + "");
-                            }
-                        }
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'pw',
-        Description: "(target): reveals passwords used on current locks with password.",
-        Action: (args) => {
-            if (args === "") {
-                for (let A = 0; A < Player.Appearance.length; A++)
-                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
-                        if ((Player.Appearance[A].Property.LockedBy == "SafewordPadlock") || (Player.Appearance[A].Property.LockedBy == "PasswordPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                            let asset = Player.Appearance[A].Asset.Description;
-                            let pw = Player.Appearance[A].Property.Password;
-                            ChatRoomSendLocal("" + asset + " = " + pw + "");
-                        }
-                    }
-            } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if (target[0] != null) {
-                    for (let A = 0; A < target[0].Appearance.length; A++)
-                        if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
-                            if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") || (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                                let asset = target[0].Appearance[A].Asset.Description;
-                                let pw = target[0].Appearance[A].Property.Password;
-                                ChatRoomSendLocal("" + asset + " = " + pw + "");
-                            }
-                        }
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'quit',
         Description: "(action): leaves room.",
         Action: (args) => {
@@ -12382,54 +12363,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'timeleft',
-        Description: "(target): reveals remaining time on current timer locks.",
-        Action: (args) => {
-            if (args === "") {
-                for (let A = 0; A < Player.Appearance.length; A++)
-                    if ((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy != null)) {
-                        if ((Player.Appearance[A].Property.LockedBy == "TimerPadlock") || (Player.Appearance[A].Property.LockedBy == "MistressTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "LoversTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "OwnerTimerPadlock") || (Player.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                            let asset = Player.Appearance[A].Asset.Description;
-                            let time = Player.Appearance[A].Property.RemoveTimer;
-                            let left = TimerToString(time - CurrentTime);
-                            ChatRoomSendLocal("" + asset + " = " + left + "");
-                        }
-                        if (Player.Appearance[A].Property.Name == "Best Friend Timer Padlock") {
-                            let asset = Player.Appearance[A].Asset.Description;
-                            let time = Player.Appearance[A].Property.RemovalTime;
-                            let left = TimerToString(time - CurrentTime);
-                            ChatRoomSendLocal("" + asset + " = " + left + "");
-                        }
-                    }
-            } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if (target[0] != null) {
-                    for (let A = 0; A < target[0].Appearance.length; A++)
-                        if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
-                            if ((target[0].Appearance[A].Property.LockedBy == "TimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "MistressTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "LoversTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "OwnerTimerPadlock") || (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                                let asset = target[0].Appearance[A].Asset.Description;
-                                let time = target[0].Appearance[A].Property.RemoveTimer;
-                                let left = TimerToString(time - CurrentTime);
-                                ChatRoomSendLocal("" + asset + " = " + left + "");
-                            }
-                            if (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock") {
-                                let asset = target[0].Appearance[A].Asset.Description;
-                                let time = target[0].Appearance[A].Property.RemovalTime;
-                                let left = TimerToString(time - CurrentTime);
-                                ChatRoomSendLocal("" + asset + " = " + left + "");
-                            }
-                        }
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'timercell',
         Description: "(minutes): stays in the isolation cell.",
         Action: (args) => {
@@ -13088,15 +13021,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "escape") {
                 let msg = "Escape commands - * = more info when using\n" +
                     "<b>/boost</b> = boosts all your skills for one hour.\n" +
-                    "<b>/code</b> (target) = reveals codes for combination locks.\n" +
-                    "<b>/ptcode</b> (target) = reveals portal link codes.\n" +
-                    "<b>/pw</b> (target) = reveals passwords for locks with password.\n" +
+                    "<b>/infolock</b> = gives info (code, password, time left) for lock used on worn item in selected slot.\n" +
                     "<b>/quit</b> (action) = leaves room.\n" +
                     "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
                     "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
                     "<b>/safeworditem</b> = removes specific item. *\n" +
                     "<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Use low values to escape! Value 1 to escape special devices.\n" +
-                    "<b>/timeleft</b> (target) = reveals remaining time on timer locks.\n" +
                     "<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n" +
                     "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. *\n" +
                     "<b>/untie</b> (target) = removes all bindings.";
