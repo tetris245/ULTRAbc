@@ -60,4 +60,6 @@ All else I might not have included.
 
 Changes for future version 
 
+* New command: infolock to give info (code, password, time left) for lock used on worn item in selected slot
 * Added dogs option to the xstatus command
+* Removed the code, ptcode, pw and timeleft commands (they are replaced by the infolock command)
