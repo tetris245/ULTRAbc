@@ -62,7 +62,7 @@ Changes for future version
 
 * New commands:
   - infolock to give info (code, password, time left) for lock used on worn item in selected slot
-  - prison2 (minutes) to be sent to online Pandora prison, after an automatic relog. More than 1 day (1440 minutes) is posible. Note: If you don't automatically enter a Pandora prison after the relog, click on Exit in Chat Search
+  - prison2 (minutes) to be sent to online Pandora prison, after an automatic relog. More than 1 day (1440 minutes) is possible. Note: If you don't automatically enter a Pandora prison after the relog, click on Exit in Chat Search
 * Added dogs option to the xstatus command
 * Renamed the prison command as prison1
 * Removed the code, ptcode, pw and timeleft commands (they are replaced by the infolock command)
