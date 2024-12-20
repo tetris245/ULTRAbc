@@ -8125,7 +8125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                    Lock = "Portal Link Padlock";
                                    asset = Inventory.Asset.Description;
                                    code = Inventory.Property.PortalLinkCode;
-                                                                    ChatRoomSendLocal("AssetGroup = " + Target);
+                                   ChatRoomSendLocal("AssetGroup = " + Target);
                                    ChatRoomSendLocal("Locked with " + Lock);
                                    ChatRoomSendLocal("" + asset + " = " + code + "");
                                }
