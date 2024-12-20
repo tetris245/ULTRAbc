@@ -11298,8 +11298,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(minutes): stays in online Pandora prison.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The prison2 command must be followed by a number higher than 0. Use it in a private room where you are alone.\n" +
-                    "It will be followed by an automatic relog before sending you to prison. If you don't automatically enter a Pandora prison, click on Exit in Chat Search.";
+                let msg = "The prison2 command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\n" +
+                    "If you don't automatically enter a Pandora prison after this relog, leave the current room and/or click on Exit in Chat Search.";
                 infomsg(msg);
             } else {
                 let minutes = args;
