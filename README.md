@@ -60,4 +60,4 @@ All else I might not have included.
 
 Changes for future version 
 
-(...)
+* Added dogs option to the xstatus command
