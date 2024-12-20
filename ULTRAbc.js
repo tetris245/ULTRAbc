@@ -3630,6 +3630,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         RealGarblingLevel();
     }
 
+    //DOGS Status
+    function showDeviousLockStatus() {
+        let msg = "Devious Padlock is disabled.";
+        if (DOGSdata.deviousPadlock.state) msg = "Devious Padlock is enabled.";
+        statusmsg(msg);
+    }
+
+    function showDogsLocalStatus() {
+        let msg = "DOGS local messages are not deleted.";
+        if (DOGSdata.misc.deleteLocalMessages) msg = "DOGS local messages are deleted.";
+        statusmsg(msg);
+    }
+
+    function showDogsVersionStatus() {
+        let msg = "New DOGS Version changelog is disabled.";
+        if (DOGSdata.misc.autoShowChangelog) msg = "New DOGS Version changelog is enabled.";
+        statusmsg(msg);
+    }
+
+    function showRemoteControlStatus() {
+        let msg = "Remote Control is disabled.";
+        if (DOGSdata.remoteControl.state) msg = "Remote Control is enabled.";
+        statusmsg(msg);
+    }
+
     //EBCH Status
     function showEbchLogStatus() {
         let msg = "Chatlogging is enabled.";
@@ -13887,6 +13912,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "bcar for BCAR\n" +
                     "bcr for BC Responsive\n" +
                     "bctw for BCTweaks\n" +
+		    "dogs for DOGS\n" +
                     "ebch for EBCH\n" +
                     "lscg for LSCG\n" +
                     "mbs for MBS\n" +
@@ -13940,6 +13966,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showRoomShareStatus();
                         showSplitStatus();
                         showTailWaggingStatus();
+                    }
+		} else if (addon == "dogs") {
+                    if (Player.ExtensionSettings.DOGS != null) {
+                        str = Player.ExtensionSettings.DOGS;
+                        d = LZString.decompressFromBase64(str);
+                        DOGSdata = {};
+                        decoded = JSON.parse(d);
+                        DOGSdata = decoded;
+                        showDeviousLockStatus();
+                        showDogsLocalStatus();
+                        showDogsVersionStatus();
+                        showRemoteControlStatus();
                     }
                 } else if (addon == "ebch") {
                     if (Player.OnlineSettings.EBCH != null) {
