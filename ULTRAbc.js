@@ -2205,7 +2205,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 text4 = text3;
             } else {
                 if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                    if (ChatRoomTargetMemberNumber == -1) {
+                    if ((ChatRoomTargetMemberNumber == -1) && (!(text1.startsWith("/whisper")))) {
                         text4 = M_MOANER_applyMoanToMsg(Player, text3);
                     } else {
                         if (M_MOANER_whisperActive) {
