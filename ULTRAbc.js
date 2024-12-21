@@ -5383,6 +5383,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (wh == 1) {
                 next = true;
+                wh = 2;
+            } 
+            if (wh == 2) {
+                next = true;
+                wh = 3;
+            } 
+            if (wh == 3) {
+                next = true;
                 wh = 0;
             } 
             let presenceParenthese = M_MOANER_detectParentheses(currentWord);
