@@ -5421,6 +5421,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let currentIndex = 0;
         let stop = false;
         let next = false;
+	let wh = 0;
         let finalTextList = [];
         //get the moans to apply
         //data to generate the moans
@@ -5428,8 +5429,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         while (currentIndex < CDList.length) {
             //if the next word contains a bracket, we stop the repartition of moans
             let currentWord = CDList[currentIndex++];
-            if (currentWord == "/whisper") next = true;
-            if (typeof currentWord === "number") next = true;
+            if (currentWord == "/whisper") {
+                next = true;
+                wh = 1;
+            }
+            if (wh == 1) {
+                next = true;
+                wh = 0;
+            } 
             let presenceParenthese = M_MOANER_detectParentheses(currentWord);
             if (presenceParenthese == 1) stop = true;
             if (stop) {
