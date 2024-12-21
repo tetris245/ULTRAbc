@@ -5420,6 +5420,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let CDList = CD.split(" ");
         let currentIndex = 0;
         let stop = false;
+        let next = false;
         let finalTextList = [];
         //get the moans to apply
         //data to generate the moans
@@ -5427,22 +5428,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         while (currentIndex < CDList.length) {
             //if the next word contains a bracket, we stop the repartition of moans
             let currentWord = CDList[currentIndex++];
+            if (currentWord == "/whisper") next = true;
+            if (typeof currentWord === "number") next = true;
             let presenceParenthese = M_MOANER_detectParentheses(currentWord);
             if (presenceParenthese == 1) stop = true;
             if (stop) {
                 finalTextList.push(currentWord);
-            } else {
-                let random = Math.ceil(Math.random() * 100)
-                let result;
-                if (random <= proportion * 100) {
-                    if (random % 2 == 0) {
-                        result = currentWord + "..." + getMoan(Factor, true, CD.length);
-                    } else {
-                        result = getMoan(Factor, true, CD.length) + " " + currentWord;
-                    }
-                    finalTextList.push(result);
-                } else {
+            } else { 
+                if (next) {
                     finalTextList.push(currentWord);
+                    next = false;
+                } else {   
+                    let random = Math.ceil(Math.random() * 100)
+                    let result;
+                    if (random <= proportion * 100) {
+                        if (random % 2 == 0) {
+                            result = currentWord + "..." + getMoan(Factor, true, CD.length);
+                        } else {
+                            result = getMoan(Factor, true, CD.length) + " " + currentWord;
+                        }
+                        finalTextList.push(result);
+                    } else {
+                        finalTextList.push(currentWord);
+                    }
                 }
             }
             if (presenceParenthese == 2) stop = false;
