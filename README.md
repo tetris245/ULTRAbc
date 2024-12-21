@@ -61,6 +61,7 @@ All else I might not have included.
 Changes for future version 
 
 * New option in GUI - Cheats to have access to the infolock command (see below)
+* New option in GUI - Moaner to handle whisper moans as an extension of talk moans
 * New commands:
   - infolock to give info (code, password, time left) for lock used on worn item in slot selected by clicking on yourself or another player
   - prison2 (minutes) to be sent to online Pandora prison, after an automatic relog. More than 1 day (1440 minutes) is possible. If you don't automatically enter a Pandora prison after the relog, leave the current room and/or click on Exit in Chat Search.
