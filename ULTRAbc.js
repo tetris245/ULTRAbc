@@ -118,7 +118,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let SlowleaveOn;
     let SosbuttonsOn;
 
-    let blureffect;
+    let blureffect = 0;
     let notalk = 0;
     let reaction = 0;
 
@@ -457,7 +457,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    RglsyncOn = false;
             SlowleaveOn = false;
             SosbuttonsOn = false;
-            blureffect = false;
+            blureffect = 0;
             notalk = 0;
             reaction = 0;
             Clothes = "";
@@ -543,7 +543,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    RglsyncOn = datas.rglsync;
             SlowleaveOn = datas.slowleave;
             SosbuttonsOn = datas.sosbuttons;
-            blureffect = false;
+            blureffect = 0;
             notalk = datas.notalk;
             reaction = 0;
             Clothes = datas.clothes;
@@ -714,6 +714,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 9) AnimalTalk9On = true;
                 if (bgall == null || bgall == undefined) bgall = false;
 		if (bl == null || bl == undefined) bl = 0;
+		if (blureffect == null || blureffect == undefined || blureffect == false) blureffect = 0;
 		if (ccname == null || ccname == undefined) ccname = "ClubCardPlayBoard1";
                 if (cdesk == null || cdesk == undefined) cdesk = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
@@ -832,6 +833,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		animal: 0,
                 bgall: false,
 		bl: 0,
+		blureffect: 0,
                 cdesk: 0,
                 cextra: false,
                 cfame: 200,
@@ -924,7 +926,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCHotkeys",
                 "UBCMisc",
                 "UBCMoaner",
-		"UBCTalking"
+		"UBCTalking",
+		"UBCVisual"
             ];
             const ubcSettingCategoryLabels = {
                 UBCButtons: "Buttons",
@@ -933,7 +936,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCHotkeys: "Hotkeys",
                 UBCMisc: "Misc",
                 UBCMoaner: "Moaner",
-		UBCTalking: "Talking"
+		UBCTalking: "Talking",
+		UBCVisual: "Visual"
             };
             const MENU_ELEMENT_X_OFFSET = 1050;
 
@@ -1355,6 +1359,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		animal = data.animal * 1;
                 bgall = data.bgall;
 		bl = data.bl;
+		blureffect = 0;
                 cdesk = data.cdesk;
                 cextra = data.cextra;
                 cfame = data.cfame;
@@ -1752,6 +1757,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputGagLevel");
                     ElementRemove("InputHearingMode");
                     ElementRemove("InputStutterLevel");
+                    defaultExit();
+                } else PreferenceMessage = "Put a valid number";
+            }
+
+	    PreferenceSubscreenUBCVisualLoad = function() {
+                UBCPreferenceSubscreen = "UBCVisual";
+                addMenuInput(200, "Forced global blur level (0-4):", "blureffect", "InputBlurEffect",
+                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blue effect. Note that all will be blurred, also your own character!", -16
+                );
+            }
+
+            PreferenceSubscreenUBCVisualRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCVisualClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCVisualExit = function() {
+                let effect = ElementValue("InputBlurEffect");
+                if ((CommonIsNumeric(effect)) && (effect > -1) && (effect < 5)) {
+                    Player.UBC.ubcSettings.blureffect = effect;
+                    ElementRemove("InputBlurEffect");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
@@ -3212,14 +3241,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Vision
     async function ULTRADrawCharacter() {
         modApi.hookFunction('DrawCharacter', 4, (args, next) => {
-            if (blureffect == true) BlurEffect();
+            if (Player.UBC != undefined) {
+	        if (Player.UBC.ubcSettings != undefined) {
+                    let effect = Player.UBC.ubcSettings.blureffect * 1;
+                    if (effect != 0) BlurEffect();
+                }
+            }
             next(args);
         });
     }
 
     async function ULTRADrawRoomBackground() {
         modApi.hookFunction('DrawRoomBackground', 4, (args, next) => {
-            if (blureffect == true) BlurEffect();
+           if (Player.UBC != undefined) {
+	        if (Player.UBC.ubcSettings != undefined) {
+                    let effect = Player.UBC.ubcSettings.blureffect * 1;
+                    if (effect != 0) BlurEffect();
+                }
+            }
             next(args);
         });
     }
@@ -4728,11 +4767,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Vision
     function BlurEffect() {
+        let effect = Player.UBC.ubcSettings.blureffect * 1;
         let BlurLevel = 0;
-        if (Blur1On == true) BlurLevel = 3;
-        if (Blur2On == true) BlurLevel = 8;
-        if (Blur3On == true) BlurLevel = 20;
-        if (Blur4On == true) BlurLevel = 50;
+        if (effect == 1) BlurLevel = 3;
+        if (effect == 2) BlurLevel = 8;
+        if (effect == 3) BlurLevel = 20;
+        if (effect == 4) BlurLevel = 50;
         MainCanvas.filter = `blur(${BlurLevel}px)`;
     }
 
@@ -6835,47 +6875,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
-    CommandCombine([{
-        Tag: 'blur',
-        Description: "(level): forces a specific blur level.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The blur command must be followed by a number between 0 and 4.\n" +
-                    " \n" +
-                    "Available blur levels:\n" +
-                    "0 no blur effect\n" +
-                    "1 light blur effect\n" +
-                    "2 normal blur effect\n" +
-                    "3 heavy blur effect\n" +
-                    "4 total blur effect";
-                infomsg(msg);
-            } else {
-                let msg = "";
-                Blur1On = false;
-                Blur2On = false;
-                Blur3On = false;
-                Blur4On = false;
-                blureffect = false;
-                let brlevel = args;
-                if (brlevel == 0) msg = "No any forced blur effect.";
-                if (brlevel == 1) msg = "Light blur effect enabled.";
-                if (brlevel == 2) msg = "Normal blur effect enabled.";
-                if (brlevel == 3) msg = "Heavy blur effect enabled.";
-                if (brlevel == 4) msg = "Total blur effect enabled.";
-                if ((brlevel > 0) && (brlevel < 5)) blureffect = true;
-                if (brlevel == 1) Blur1On = true;
-                if (brlevel == 2) Blur2On = true;
-                if (brlevel == 3) Blur3On = true;
-                if (brlevel == 4) Blur4On = true;
-                if ((brlevel > -1) && (brlevel < 5)) {
-                    infomsg(msg);
-                    M_MOANER_saveControls();
-                }
-            }
-        }
-    }])
-
+  
     CommandCombine([{
         Tag: 'boost',
         Description: ": boosts all your skills for one hour.",
@@ -13125,7 +13125,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "visual") {
                 let msg = "Visual commands - * = more info when using\n" +
-                    "<b>/blur</b> (blurlevel) = forces a global blur level.\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
                     "<b>/itemcolor2</b> (colorcode) = changes item color in selected slot. *\n" +
                     "<b>/itempriority</b> (priority) = changes item priority in selected slot. *\n" +
