@@ -67,7 +67,7 @@ Changes for future version
   - infolock to give info (code, password, time left) for lock used on worn item in slot selected by clicking on yourself or another player
   - prison2 (minutes) to be sent to online Pandora prison, after an automatic relog. More than 1 day (1440 minutes) is possible. If you don't automatically enter a Pandora prison after the relog, leave the current room and/or click on Exit in Chat Search.
 * Updated the OutChat function for the case you are an online Pandora prisoner
-* Added dogs option to the xstatus command
+* Added dogs option to the xstatus command and updated the xstatus lscg command
 * Renamed the prison command as prison1
 * Removed the blur and see commands (the corresponding settings are now in the GUI)
 * Removed the code, ptcode, pw and timeleft commands (they are replaced by the infolock command)
