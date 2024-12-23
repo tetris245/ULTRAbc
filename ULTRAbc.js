@@ -3911,8 +3911,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function showCheckRollsStatus() {
-        let msg = "No display of attacker/defender roll values with some activities.";
-        if (LSCGdata.GlobalModule.showCheckRolls) msg = "Display of attacker/defender roll values with some activities.";
+        let msg = "No display of attacker/defender roll values.";
+        if (LSCGdata.GlobalModule.showCheckRolls) msg = "Display of attacker/defender roll values.";
         statusmsg(msg);
     }
 
@@ -3920,13 +3920,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let msg = "";
         let msg1 = "Your public craftings are not shared.";
         let msg2 = "Your shared public craftings are not displayed.";
-        let msg3 = "Tamperproof features are disabled.";
-        if (LSCGdata.GlobalModule.sharePublicCrafting) msg1 = "Your public craftings are shared and can be used by other LSCG players in the chat room.";
+        let msg3 = "Chaotic features are disabled.";
+        let msg4 = "Tamperproof features are disabled.";
+        if (LSCGdata.GlobalModule.sharePublicCrafting) msg1 = "Your public craftings are shared.";
         if (LSCGdata.GlobalModule.seeSharedCrafts) msg2 = "Your shared public craftings are displayed.";
-        if (LSCGdata.GlobalModule.tamperproofEnabled) msg3 = "Tamperproof features are enabled.";
-        msg = msg1 + " " + msg2 + " " + msg3;
-        statusmsg(msg);
-    }
+        if (LSCGdata.ChaoticItemModule.enabled) msg3 = "Chaotic features are enabled.";
+        if (LSCGdata.GlobalModule.tamperproofEnabled) msg4 = "Tamperproof features are enabled.";
+        msg = msg1 + " " + msg2 + " " + msg3 + " " + msg4;
+        statusmsg(msg
 
     function showEdgeBlurStatus() {
         let msg = "No blurring of the screen when you are on edge.";
@@ -3959,16 +3960,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
-
-    function showRestrainedSettingsStatus() {
-        let msg = "LSCG settings can be changed when you are restrained.";
-        if (LSCGdata.GlobalModule.blockSettingsWhileRestrained) msg = "LSCG settings can't be changed when you are restrained.";
-        statusmsg(msg);
-    }
-
+    
     function showResizingStatus() {
         let msg = "LSCG resizing effects will be displayed.";
         if (LSCGdata.GlobalModule.hideResizing) msg = "LSCG resizing effects will not be displayed.";
+        statusmsg(msg);
+    }
+	    
+    function showRestrainedSettingsStatus() {
+        let msg = "";
+        let msg1 = "LSCG settings can be changed when you are restrained.";
+        let msg2 = "Immersive conditions are disabled";
+        if (LSCGdata.GlobalModule.blockSettingsWhileRestrained) msg1 = "LSCG settings can't be changed when you are restrained.";
+        if (LSCGdata.StateModule.immersive) msg2 = "Immersive conditions are enabled";
+        msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
 
@@ -13929,8 +13934,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showErectionStatus();
                         showLipstickStatus();
                         showOpacityStatus();
+			showResizingStatus();
                         showRestrainedSettingsStatus();
-                        showResizingStatus();
                     }
                 } else if (addon == "mbs") {
                     if (Player.OnlineSharedSettings.MBSVersion != null) {
