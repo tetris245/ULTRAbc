@@ -80,6 +80,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let animal = 0;
     let bgall = false;
     let bl = 0;
+    let blindness = 0;
+    let blurmode = 0;
     let ccname = "ClubCardPlayBoard1";
     let cdesk = 0;
     let cextra = false;
@@ -421,6 +423,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             animal = 0;
             bgall = false;
 	    bl = 0;
+	    blindness = 0;
+            blurmode = 0;
 	    ccname = "ClubCardPlayBoard1";
             cdesk = 0;
             cextra = false;
@@ -507,6 +511,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             animal = datas.animal;
             bgall = datas.bgall;
 	    bl = datas.bl;
+	    blindness = 0;
+            blurmode = 0;
 	    ccname = datas.ccname;
             cdesk = datas.cdesk;
             cextra = datas.cextra;
@@ -714,7 +720,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 9) AnimalTalk9On = true;
                 if (bgall == null || bgall == undefined) bgall = false;
 		if (bl == null || bl == undefined) bl = 0;
-		if (blureffect == null || blureffect == undefined || blureffect == false) blureffect = 0;
+		if (blindness == null || blindness == undefined) blindness = 0;
+                if (blureffect == null || blureffect == undefined || blureffect == false) blureffect = 0;
+                if (blurmode == null || blurmode == undefined) blurmode = 0;
 		if (ccname == null || ccname == undefined) ccname = "ClubCardPlayBoard1";
                 if (cdesk == null || cdesk == undefined) cdesk = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
@@ -833,7 +841,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		animal: 0,
                 bgall: false,
 		bl: 0,
-		blureffect: 0,
+		blindness: 0,
+                blureffect: 0,
+                blurmode: 0,
                 cdesk: 0,
                 cextra: false,
                 cfame: 200,
@@ -1359,7 +1369,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		animal = data.animal * 1;
                 bgall = data.bgall;
 		bl = data.bl;
-		blureffect = 0;
+		blindness = data.blindness;
+                blureffect = 0;
+                blurmode = data.blurmode;
                 cdesk = data.cdesk;
                 cextra = data.cextra;
                 cfame = data.cfame;
@@ -1416,6 +1428,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
+		if (blindness == 1) {
+                    GetBlindLevel0();
+                    Player.GetBlindLevel = GetBlindLevel0;
+                } 
+                if (blindness == 2) {
+                    GetBlindLevel1();
+                    Player.GetBlindLevel = GetBlindLevel1;
+                } 
+                if (blindness == 3) {
+                    GetBlindLevel2();
+                    Player.GetBlindLevel = GetBlindLevel2;
+                } 
+                if (blindness == 4) {
+                    GetBlindLevel3();
+                    Player.GetBlindLevel = GetBlindLevel3;
+                } 
+                if (blurmode == 1) {
+                    GetBlurLevel0();
+                    Player.GetBlurLevel = GetBlurLevel0;
+                } 
+                if (blurmode == 2) {
+                    GetBlurLevel1();
+                    Player.GetBlurLevel = GetBlurLevel1;
+                } 
+                if (blurmode == 3) {
+                    GetBlurLevel2();
+                    Player.GetBlurLevel = GetBlurLevel2;
+                } 
+                if (blurmode == 4) {
+                    GetBlurLevel3();
+                    Player.GetBlurLevel = GetBlurLevel3;
+                } 
+                if (blurmode == 5) {
+                    GetBlurLevel4();
+                    Player.GetBlurLevel = GetBlurLevel4;
+                } 
 		GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
@@ -1763,8 +1811,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	    PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
+                addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
+                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                );
+                addMenuInput(200, "Forced blurry vision (1-5):","blurmode", "InputBlurMode",
+                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                );
                 addMenuInput(200, "Forced global blur level (0-4):", "blureffect", "InputBlurEffect",
-                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blue effect. Note that all will be blurred, also your own character!", -16
+                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", -16
                 );
             }
 
@@ -1777,10 +1831,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCVisualExit = function() {
+                let blmode = ElementValue("InputBlindnessMode");
+                let brmode = ElementValue("InputBlurMode");
                 let effect = ElementValue("InputBlurEffect");
-                if ((CommonIsNumeric(effect)) && (effect > -1) && (effect < 5)) {
+                if ((CommonIsNumeric(blmode)) && (blmode > -1) && (blmode < 5) &&
+                (CommonIsNumeric(brmode)) && (brmode > -1) && (brmode < 6) &&
+                (CommonIsNumeric(effect)) && (effect > -1) && (effect < 5)) {
+                    Player.UBC.ubcSettings.blindness = blmode;
                     Player.UBC.ubcSettings.blureffect = effect;
+                    Player.UBC.ubcSettings.blurmode = brmode;
+                    ElementRemove("InputBlindnessMode");
                     ElementRemove("InputBlurEffect");
+                    ElementRemove("InputBlurMode");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
@@ -11903,92 +11965,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'see',
-        Description: "(visionmode) (blurlevel): forces a specific vision mode",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The see command must be followed by a vision mode number and optionally a blur level number.\n" +
-                    "Notes:\n" +
-                    "- a full relog is requested to leave this forced vision mode\n" +
-                    "- this command can trigger a BCX warning. Just ignore it (close the breaking message)!\n" +
-                    " \n" +
-                    "Available vision modes:\n" +
-                    "0 normal vision\n" +
-                    "1 light blindness\n" +
-                    "2 normal blindness\n" +
-                    "3 heavy blindness\n" +
-                    " \n" +
-                    "Available blur levels:\n" +
-                    "0 no blur effect\n" +
-                    "1 light blur effect\n" +
-                    "2 normal blur effect\n" +
-                    "3 heavy blur effect\n" +
-                    "4 total blur effect";
-                infomsg(msg);
-            } else {
-                let stringVision1 = args;
-                let stringVision2 = stringVision1.split(/[ ,]+/);
-                let bl = stringVision2[0];
-                let br = stringVision2[1];
-                if (bl == 0) {
-                    GetBlindLevel0();
-                    Player.GetBlindLevel = GetBlindLevel0;
-                    let msg = "Back to normal vision mode.";
-                    infomsg(msg);
-                }
-                if (bl == 1) {
-                    GetBlindLevel1();
-                    Player.GetBlindLevel = GetBlindLevel1;
-                    let msg = "You are now in light blindness mode.";
-                    infomsg(msg);
-                }
-                if (bl == 2) {
-                    GetBlindLevel2();
-                    Player.GetBlindLevel = GetBlindLevel2;
-                    let msg = "You are now in normal blindness mode.";
-                    infomsg(msg);
-                }
-                if (bl == 3) {
-                    GetBlindLevel3();
-                    Player.GetBlindLevel = GetBlindLevel3;
-                    let msg = "You are now in heavy blindness mode.";
-                    infomsg(msg);
-                }
-                if (br == 0) {
-                    GetBlurLevel0();
-                    Player.GetBlurLevel = GetBlurLevel0;
-                    let msg = "Back to vision without blur effect.";
-                    infomsg(msg);
-                }
-                if (br == 1) {
-                    GetBlurLevel1();
-                    Player.GetBlurLevel = GetBlurLevel1;
-                    let msg = "A light blur effect is applied on your vision.";
-                    infomsg(msg);
-                }
-                if (br == 2) {
-                    GetBlurLevel2();
-                    Player.GetBlurLevel = GetBlurLevel2;
-                    let msg = "A normal blur effect is applied on your vision.";
-                    infomsg(msg);
-                }
-                if (br == 3) {
-                    GetBlurLevel3();
-                    Player.GetBlurLevel = GetBlurLevel3;
-                    let msg = "A heavy blur effect is applied on your vision.";
-                    infomsg(msg);
-                }
-                if (br == 4) {
-                    GetBlurLevel4();
-                    Player.GetBlurLevel = GetBlurLevel4;
-                    let msg = "A total blur effect is applied on your vision.";
-                    infomsg(msg);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'sfchaste',
         Description: "(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.",
         Action: (args) => {
@@ -13133,7 +13109,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/layershow1</b> = color info and saving of Item Slot.\n" +
                     "<b>/layershow2</b> = priority info + saving of Item Slot.\n" +
                     "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
-                    "<b>/see</b> (visionmode) (blurlevel): forces a vision mode. *\n" +
                     "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
                     "<b>/vrsee</b> (background) (mode) (game) = changes the settings of a worn VR Headset. *";
                 infomsg(msg);
