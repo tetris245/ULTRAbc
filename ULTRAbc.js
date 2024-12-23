@@ -3253,7 +3253,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRADrawRoomBackground() {
         modApi.hookFunction('DrawRoomBackground', 4, (args, next) => {
-           if (Player.UBC != undefined) {
+            if (Player.UBC != undefined) {
 	        if (Player.UBC.ubcSettings != undefined) {
                     let effect = Player.UBC.ubcSettings.blureffect * 1;
                     if (effect != 0) BlurEffect();
