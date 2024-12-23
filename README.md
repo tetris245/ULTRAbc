@@ -60,6 +60,7 @@ All else I might not have included.
 
 Changes for future version 
 
+* Added the Visual page to the GUI
 * New option in GUI - Cheats to have access to the infolock command (see below)
 * New option in GUI - Moaner to handle whisper moans as an extension of talk moans
 * New commands:
@@ -68,4 +69,5 @@ Changes for future version
 * Updated the OutChat function for the case you are an online Pandora prisoner
 * Added dogs option to the xstatus command
 * Renamed the prison command as prison1
+* Removed the blur command (the corresponding settings are now in the GUI)
 * Removed the code, ptcode, pw and timeleft commands (they are replaced by the infolock command)
