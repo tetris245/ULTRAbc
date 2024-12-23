@@ -69,5 +69,5 @@ Changes for future version
 * Updated the OutChat function for the case you are an online Pandora prisoner
 * Added dogs option to the xstatus command
 * Renamed the prison command as prison1
-* Removed the blur command (the corresponding settings are now in the GUI)
+* Removed the blur and see commands (the corresponding settings are now in the GUI)
 * Removed the code, ptcode, pw and timeleft commands (they are replaced by the infolock command)
