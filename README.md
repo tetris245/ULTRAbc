@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 4.1
+Most recent version: 4.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version4.1.zip file on the Releases page
+1. Download the ULTRAbc-version4.2.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -60,14 +60,4 @@ All else I might not have included.
 
 Changes for future version 
 
-* Added the Visual page to the GUI
-* New option in GUI - Cheats to have access to the infolock command (see below)
-* New option in GUI - Moaner to handle whisper moans as an extension of talk moans
-* New commands:
-  - infolock to give info (code, password, time left) for lock used on worn item in slot selected by clicking on yourself or another player
-  - prison2 (minutes) to be sent to online Pandora prison, after an automatic relog. More than 1 day (1440 minutes) is possible. If you don't automatically enter a Pandora prison after the relog, leave the current room and/or click on Exit in Chat Search.
-* Updated the OutChat function for the case you are an online Pandora prisoner
-* Added dogs option to the xstatus command and updated the xstatus lscg command
-* Renamed the prison command as prison1
-* Removed the blur and see commands (the corresponding settings are now in the GUI)
-* Removed the code, ptcode, pw and timeleft commands (they are replaced by the infolock command)
+(...)
