@@ -4783,8 +4783,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         CharacterNaked(Player);     
         InventoryWear(Player, "QualityHarnessGag", "ItemMouth3");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "LeatherBlindfold", "ItemHead");
-        
+        InventoryWear(Player, "LeatherBlindfold", "ItemHead");   
         InventoryWear(Player, "LeatherToeCuffs", "ItemBoots");
         if ((InventoryGet(Player, "ItemPelvis") == null) ||
             (InventoryGet(Player, "ItemPelvis").Property == null) ||
