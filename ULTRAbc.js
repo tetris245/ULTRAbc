@@ -4606,7 +4606,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "DeepthroatGag", "ItemMouth");
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "BondageBench") {
+        if (Item != null && Item.Asset.Name == "BondageBench") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 4,
             }, {
@@ -4616,7 +4616,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "VibratingLatexPanties") {
+        if (Item != null && Item.Asset.Name == "VibratingLatexPanties") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4672,7 +4672,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "Kennel", "ItemDevices");
         Target = "ItemNipples";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "VibeNippleClamp") {
+        if (Item != null && Item.Asset.Name == "VibeNippleClamp") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4682,7 +4682,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "ClitoralStimulator") {
+        if (Item != null && Item.Asset.Name == "ClitoralStimulator") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4692,7 +4692,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemMouth";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "DildoPlugGag") {
+        if (Item != null && Item.Asset.Name == "DildoPlugGag") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
             }, {
@@ -4702,7 +4702,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "Kennel") {
+        if (Item != null && Item.Asset.Name == "Kennel") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 d: 1,
                 p: 1,
@@ -4743,7 +4743,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "Locker", "ItemDevices");
         Target = "ItemBreast";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "TickleBra") {
+        if (Item != null && Item.Asset.Name == "TickleBra") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4753,7 +4753,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "Locker") {
+        if (Item != null && Item.Asset.Name == "Locker") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
             }, {
@@ -4800,7 +4800,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "PaddedBlindfold", "ItemHead");
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "HempRopeBelt") {
+        if (Item != null && Item.Asset.Name == "HempRopeBelt") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
