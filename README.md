@@ -60,4 +60,4 @@ All else I might not have included.
 
 Changes for future version 
 
-(...)
+* Added new traps for map rooms in trap mode: display frame, trolley, wooden box (thanks to KitKat!)
