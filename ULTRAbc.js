@@ -2098,6 +2098,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "" + tmpname + " is suddenly trapped in a Locker.";
                         publicmsg(msg);
                     }
+		    if (item2 == "Trolley") {
+                        TrolleyTrap();
+                        let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
+                        publicmsg(msg);
+                    }
 		    if (item2 == "WoodenBox") {
                         WoodenBoxTrap();
                         let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
@@ -4766,6 +4771,84 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
             Item.Property.Opacity = 0.66;
+        }
+        ExclusivePadlock();
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    }
+
+    function TrolleyTrap(){
+        let Target = "";
+        let Item = "";
+        CharacterNaked(Player);     
+        InventoryWear(Player, "QualityHarnessGag", "ItemMouth3");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "LeatherBlindfold", "ItemHead");
+        
+        InventoryWear(Player, "LeatherToeCuffs", "ItemBoots");
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {       
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
+                InventoryWear(Player, "PenisDildo", "ItemVulva");
+            }
+            if ((InventoryGet(Player, "ItemButt") == null) ||
+                (InventoryGet(Player, "ItemButt").Property == null) ||
+                (InventoryGet(Player, "ItemButt").Property.LockedBy == null)) {
+                InventoryWear(Player, "EggVibePlugXXL", "ItemButt");
+            }
+        }
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)){
+            InventoryWear(Player, "PolishedChastityBelt", "ItemPelvis");
+        }
+        InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "ShinyLegBinder", "ItemLegs");
+        InventoryWear(Player, "ShinyStraitjacket", "ItemArms");
+        InventoryWear(Player, "Trolley", "ItemDevices");
+        Target = "ItemMouth3";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "QualityHarnessGag") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemArms";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "ShinyStraitjacket") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemButt";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "EggVibePlugXXL") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "Trolley") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
         }
         ExclusivePadlock();
         CharacterRefresh(Player);
