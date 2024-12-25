@@ -2084,8 +2084,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let item2 = newObject.Style;
                 if ((item1 == "FloorItem") && (item2 != "Blank")) {
                     if (item2 == "BondageBench") {
-                        BondagebenchTrap();
+                        BondageBenchTrap();
                         let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
+                        publicmsg(msg);
+                    }
+		    if (item2 == "TheDisplayFrame") {
+                        DisplayFrameTrap();
+                        let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
                         publicmsg(msg);
                     }
                     if (item2 == "Kennel") {
@@ -2109,7 +2114,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         publicmsg(msg);
                     }
                     if (item2 == "X-Cross") {
-                        XcrossTrap();
+                        XCrossTrap();
                         let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
                         publicmsg(msg);
                     }
@@ -4595,7 +4600,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Traps
-    function BondagebenchTrap() {
+    function BondageBenchTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
@@ -4634,6 +4639,51 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
+        ExclusivePadlock();
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    }
+
+    function DisplayFrameTrap(){
+        let Target = "";
+        let Item = "";
+        CharacterNaked(Player);
+        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
+        InventoryWear(Player, "HarnessBallGag1", "ItemMouth2");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "LewdBlindfold", "ItemHead");
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {        
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
+                InventoryWear(Player, "WiredEgg", "ItemVulva");
+            }
+        }
+        InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "TheDisplayFrame", "ItemDevices");      
+        Target = "ItemMouth2";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "HarnessBallGag1") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemVulva";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "WiredEgg") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }          
         ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
@@ -4933,7 +4983,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     } 
 
-    function XcrossTrap() {
+    function XCrossTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
