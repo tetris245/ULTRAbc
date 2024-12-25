@@ -2098,6 +2098,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "" + tmpname + " is suddenly trapped in a Locker.";
                         publicmsg(msg);
                     }
+		    if (item2 == "WoodenBox") {
+                        WoodenBoxTrap();
+                        let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
+                        publicmsg(msg);
+                    }
                     if (item2 == "X-Cross") {
                         XcrossTrap();
                         let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
@@ -4766,6 +4771,85 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     }
+
+    function WoodenBoxTrap(){
+        let Target = "";
+        let Item = "";
+        CharacterNaked(Player);
+        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
+        InventoryWear(Player, "ClothGag", "ItemMouth2");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "ClothBlindfold", "ItemHead");
+        if ((InventoryGet(Player, "ItemBreast") == null) ||
+            (InventoryGet(Player, "ItemBreast").Property == null) ||
+            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {
+            if ((InventoryGet(Player, "ItemNipples") == null) ||
+                (InventoryGet(Player, "ItemNipples").Property == null) ||
+                (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {
+                InventoryWear(Player, "TapedVibeEggs", "ItemNipples");
+            }
+        }
+        InventoryWear(Player, "ToeTie", "ItemBoots");
+        InventoryWear(Player, "HempRope", "ItemFeet");
+        InventoryWear(Player, "HempRope", "ItemLegs");
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)) {
+            InventoryWear(Player, "HempRope", "ItemPelvis");
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
+                InventoryWear(Player, "WiredEgg", "ItemVulva");
+            }
+        }
+        InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "HempRope", "ItemArms");
+        InventoryWear(Player, "WoodenBox", "ItemDevices"); 
+        Target = "ItemArms";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "HempRope") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemNipples";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "TapedVibeEggs") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemVulva";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "WiredEgg") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "WoodenBox") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                opacity: 0.66,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }            
+        ExclusivePadlock();
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    } 
 
     function XcrossTrap() {
         let Target = "";
