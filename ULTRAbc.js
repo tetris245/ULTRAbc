@@ -95,6 +95,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let rtype = "ALL";
     let st = 0;
     let tcname = "Cell";
+    let tintcolor = "#nnnnnn";
 
     let AutojoinOn;
     let DolltalkOn;
@@ -438,6 +439,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rtype = "ALL";
             st = 0;
             tcname = "Cell";
+	    tintcolor = "#nnnnnn";
             AutojoinOn = false;
             DolltalkOn = false;
             ExtbuttonsOn = false;
@@ -525,7 +527,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rsize = datas.rsize;
             rtype = datas.rtype;
             st = datas.stutterlevel * 1;
-            tcname = datas.tcname;
+            tcname = datas.tcname; 
+	    tintcolor = datas.tintcolor;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
@@ -612,6 +615,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "rtype": rtype,
             "stutterlevel": st,
             "tcname": tcname,
+            "tintcolor": tintcolor,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
@@ -778,6 +782,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
                 if (st == null || st == undefined) st = 0;
                 if (tcname == null || tcname == undefined) tcname = "Cell";
+		if (tintcolor == null || tintcolor == undefined) tintcolor = "#nnnnnn";
                 M_MOANER_saveControls();
                 BabyTalkOn = false;
                 GagTalkOn = false;
@@ -876,6 +881,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 stutterlevel: 0,
                 talkMoan: true,
                 tickleMoan: true,
+		tintcolor: "#nnnnnn",
                 vibeMoan: true,
                 whisperMoan: false,
                 xvibeMoan: false,
@@ -1410,6 +1416,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 SlowleaveOn = data.slowleave;
                 SosbuttonsOn = data.sosbuttons;
                 st = data.stutterlevel * 1;
+		tintcolor = data.tintcolor;
                 AnimalTalk1On = false;
                 AnimalTalk2On = false;
                 AnimalTalk3On = false;
@@ -1521,6 +1528,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
+		TintsEffect();
                 UBCPreferenceSubscreen = "";
                 PreferenceMessage = "";
                 PreferenceSubscreenExtensionsClear();
@@ -1829,16 +1837,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "Put a valid number";
             }
 
-            PreferenceSubscreenUBCVisualLoad = function() {
+	    PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
-                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 140
                 );
                 addMenuInput(200, "Forced blurry vision (1-5):", "blurmode", "InputBlurMode",
-                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 140
                 );
                 addMenuInput(200, "Forced global blur level (0-4):", "blureffect", "InputBlurEffect",
-                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", -16
+                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", 140
+                );
+                addMenuInput(200, "Background tint color (format #000000):", "tintcolor", "InputTintColor",
+                    "Input a color code in the hexadecimal format #000000 to tint most backgrounds in the Bondage Club. To cancel this tint effect, use #nnnnnn", 140
                 );
             }
 
@@ -1854,15 +1865,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let blmode = ElementValue("InputBlindnessMode");
                 let brmode = ElementValue("InputBlurMode");
                 let effect = ElementValue("InputBlurEffect");
+                let regex = /^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i;
+                let ttcolor = ElementValue("InputTintColor");
                 if ((CommonIsNumeric(blmode)) && (blmode > -1) && (blmode < 5) &&
                     (CommonIsNumeric(brmode)) && (brmode > -1) && (brmode < 6) &&
-                    (CommonIsNumeric(effect)) && (effect > -1) && (effect < 5)) {
+                    (CommonIsNumeric(effect)) && (effect > -1) && (effect < 5) && 
+                    (ttcolor.startsWith("#")) && ((ttcolor.match(regex)) || (ttcolor = "#nnnnnn"))) {
                     Player.UBC.ubcSettings.blindness = blmode;
                     Player.UBC.ubcSettings.blureffect = effect;
                     Player.UBC.ubcSettings.blurmode = brmode;
+                    Player.UBC.ubcSettings.tintcolor = ttcolor;
                     ElementRemove("InputBlindnessMode");
                     ElementRemove("InputBlurEffect");
                     ElementRemove("InputBlurMode");
+                    ElementRemove("InputTintColor");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
@@ -2148,6 +2164,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
+	    TintsEffect(); 
             if (kp != 1) {
                 if (tmpname == "") {
                     if (Player.Nickname == '') {
@@ -2658,6 +2675,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
+	    TintsEffect(); 
             KidnapLeagueResetOnlineBountyProgress();
             if (ChatSearchFilterHelpActive) return ChatSearchFilterHelpDraw();
             if (ChatSearchFilterUnhideConfirm) return ChatSearchFilterUnhideConfirmDraw();
@@ -2832,6 +2850,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAFriendListDraw() {
         modApi.hookFunction('FriendListDraw', 4, (args, next) => {
             FriendListBackground = frname;
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -3008,6 +3027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('MainHallRun', 4, (args, next) => {
             ChatRoomActivateView(ChatRoomCharacterViewName);
             MainCanvas.textAlign = "center";
+	    TintsEffect(); 
             DrawText("Chat Rooms", 130, 530, "White", "Black");
             if (IsFemale() == true) {
                 DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
@@ -3147,6 +3167,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PhotographicRun', 4, (args, next) => {
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -3194,6 +3215,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((name != "Extensions") || ((name == "Extensions") && (PreferenceExtensionsCurrent == null))) {
                 DrawButton(1815, 780, 90, 90, "BACK", "White", "");
             }
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -3294,6 +3316,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawImageResize("Icons/FriendList.png", 0, 900, 48, 48);
                 DrawImageResize("Icons/Cell.png", 0, 950, 48, 48);
             }
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -3330,6 +3353,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('CellRun', 4, (args, next) => {
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -5060,6 +5084,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         MainCanvas.filter = `blur(${BlurLevel}px)`;
     }
 
+    function DrawHexToTints(color) {
+        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	color = color.replace(shorthandRegex, function (m, r, g, b) {
+	    return r + r + g + g + b + b;
+        });
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+	return result ? {
+	    r: parseInt(result[1], 16),
+	    g: parseInt(result[2], 16),
+	    b: parseInt(result[3], 16),
+            a: 0.25
+	} : {
+	    r: 0,
+	    g: 0,
+	    b: 0,
+            a: 0
+        };
+    }
+
     function GetBlindLevel0() {
         let blindLevel = 0;
         return blindLevel;
@@ -5103,6 +5146,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function GetBlurLevel4() {
         let blurLevel = 50;
         return blurLevel;
+    }
+
+    function TintsEffect() {   
+        if (tintcolor != "#nnnnnn") {
+            let x = 0;
+            let y = 0;
+            let w = 2000;
+            let h = 1000;
+            let tints = DrawHexToTints(tintcolor);
+            let r = tints.r;
+            let g = tints.g;
+            let b = tints.b;
+            let a = tints.a;
+            DrawRect(x, y, w, h, `rgba(${r},${g},${b},${a})`);
+        }
     }
 
     //WCE Status 
