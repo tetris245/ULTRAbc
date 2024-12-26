@@ -740,6 +740,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined) HotkeysOn = false;
                 if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
+		if (MagictoysOn == null || MagictoysOn == undefined) MagictoysOn = false;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
                 if (M_MOANER_scriptOn == null || M_MOANER_scriptOn == undefined) M_MOANER_scriptOn = false;
@@ -782,10 +783,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
-                if (MagictoysOn == null || MagictoysOn == undefined) {
-                    MagictoysOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (rsize == null || rsize == undefined) {
                     rsize = 20;
                     M_MOANER_saveControls();
@@ -859,6 +856,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 highfame: false,
                 hotkeys: false,
                 magiccheat: false,
+		magictoys: false,
                 nogarble: false,
                 nostruggle: false,
                 notalk: 0,
@@ -934,6 +932,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCCards",
                 "UBCCheats",
                 "UBCHotkeys",
+		"UBCMaps",
                 "UBCMisc",
                 "UBCMoaner",
                 "UBCTalking",
@@ -944,6 +943,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCCards: "Cards",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
+		UBCMaps: "Maps",
                 UBCMisc: "Misc",
                 UBCMoaner: "Moaner",
                 UBCTalking: "Talking",
@@ -1386,6 +1386,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 HighfameOn = data.highfame;
                 HotkeysOn = data.hotkeys;
                 MagiccheatOn = data.magiccheat;
+		MagictoysOn = data.magictoys;
                 M_MOANER_cum = data.cum;
                 M_MOANER_orgasmActive = data.orgasmMoan;
                 M_MOANER_scriptOn = data.script;
@@ -1679,6 +1680,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCHotkeysExit = function() {
+                defaultExit();
+            }
+
+	    PreferenceSubscreenUBCMapsLoad = function() {
+                UBCPreferenceSubscreen = "UBCMaps";
+                addMenuCheckbox(64, 64, "Add toys under locked chastity in traps: ", "magictoys",
+                    "Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!.", false, 140
+                );
+            }
+
+            PreferenceSubscreenUBCMapsRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCMapsClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCMapsExit = function() {
                 defaultExit();
             }
 
@@ -13826,8 +13846,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
-                    "<b>autojoin</b> for chat room auto-join feature\n" +
-                    "<b>magictoys</b> for toys under locked chastity in traps";
+                    "<b>autojoin</b> for chat room auto-join feature";
                 infomsg(msg);
             } else {
                 let setting = args;
@@ -13841,18 +13860,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         AutojoinOn = true;
                         M_MOANER_saveControls();
                         let msg = "Auto-Join feature is enabled.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "magictoys") {
-                    if (MagictoysOn == true) {
-                        MagictoysOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Toys can't be added under locked chastity for trap mode in map rooms.";
-                        infomsg(msg);
-                    } else {
-                        MagictoysOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Toys can be added under locked chastity for trap mode in map rooms.";
                         infomsg(msg);
                     }
                 }
