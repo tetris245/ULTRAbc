@@ -62,5 +62,5 @@ Changes for future version
 
 * Added the Maps page to the GUI
 * Added new traps for map rooms in trap mode: display frame, trolley, wooden box (thanks to KitKat!)
-* New option in GUI - Visual to get a tint effect on  most backgrounds in the Bondage Club
+* New option in GUI - Visual to get a tint effect on  most backgrounds in the Bondage. Note: when combined with the concderned color in Themed, you will get a different tint effect, as both colors are "merged"!
 * Removed the magictoys option from the uset command (this setting is now available in the GUI)
