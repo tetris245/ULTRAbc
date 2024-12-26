@@ -60,4 +60,6 @@ All else I might not have included.
 
 Changes for future version 
 
+* Added the Maps page to the GUI
 * Added new traps for map rooms in trap mode: display frame, trolley, wooden box (thanks to KitKat!)
+* Removed the magictoys option from the uset command (this setting is now available in the GUI)
