@@ -1840,16 +1840,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
-                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 140
+                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
                 );
                 addMenuInput(200, "Forced blurry vision (1-5):", "blurmode", "InputBlurMode",
-                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 140
+                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
                 );
                 addMenuInput(200, "Forced global blur level (0-4):", "blureffect", "InputBlurEffect",
-                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", 140
+                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", 60
                 );
-                addMenuInput(200, "Background tint color (format #000000):", "tintcolor", "InputTintColor",
-                    "Input a color code in the hexadecimal format #000000 to tint most backgrounds in the Bondage Club. To cancel this tint effect, use #nnnnnn", 140
+                addMenuInput(200, "Background tint (format #000000):", "tintcolor", "InputTintColor",
+                    "Input a color code in the hexadecimal format #000000 to tint most backgrounds in the Bondage Club. To cancel this tint effect, use #nnnnnn", 60
                 );
             }
 
