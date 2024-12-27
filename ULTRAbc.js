@@ -5246,10 +5246,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function TintsEffect() {   
         let a1 = "";
-        let x = 0;
-        let y = 0;
-        let w = 2000;
-        let h = 1000;
         let tints = DrawHexToTints(tintcolor);
         let r = tints.r;
         let g = tints.g;
@@ -5259,7 +5255,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (a == 1) a1 = 0.2;
         if (a == 2) a1 = 0.35;
         if (a == 3) a1 = 0.5;   
-        DrawRect(x, y, w, h, `rgba(${r},${g},${b},${a1})`);
+        DrawRect(0, 0, 2000, 1000, `rgba(${r},${g},${b},${a1})`);
         if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {      
             return mbs.css.setStyle({
                 backgroundColor: `rgba(${r},${g},${b},${a1})`, 
