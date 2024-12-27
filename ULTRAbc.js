@@ -4784,7 +4784,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
-    function DisplayFrameTrap(){
+    function DisplayFrameTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
@@ -4829,7 +4829,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
-    function ExclusivePadlock(){
+    function ExclusivePadlock() {
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
@@ -4967,7 +4967,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
-    function TrolleyTrap(){
+    function TrolleyTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);     
@@ -5044,7 +5044,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
-    function WoodenBoxTrap(){
+    function WoodenBoxTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
