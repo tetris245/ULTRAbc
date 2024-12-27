@@ -5190,7 +5190,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    r: parseInt(result[1], 16),
 	    g: parseInt(result[2], 16),
 	    b: parseInt(result[3], 16),
-            a: 0.25
+            a: tintlevel
 	} : {
 	    r: 0,
 	    g: 0,
