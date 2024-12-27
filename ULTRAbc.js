@@ -1971,6 +1971,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
+    ULTRAArcadeRun(); 
+    ULTRACafeRun(); 
+    ULTRAGamblingRun(); 
+    ULTRAInformationSheetRun(); 
+    ULTRAMagicRun(); 
+    ULTRANurseryRun(); 
+    ULTRAOnlineProfileRun();
+    ULTRAPrisonRun();
+    ULTRAStableRun(); 
+    ULTRATitleRun();
+
     //Bondage Brawl
     async function ULTRAPlatformAttack() {
         modApi.hookFunction('PlatformAttack', 4, (args, next) => {
@@ -3373,6 +3384,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Vision
+    async function ULTRAArcadeRun() {
+        modApi.hookFunction('ArcadeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACafeRun() {
+        modApi.hookFunction('CafeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
     async function ULTRADrawCharacter() {
         modApi.hookFunction('DrawCharacter', 4, (args, next) => {
             if (Player.UBC != undefined) {
@@ -3397,19 +3422,63 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Wardrobe
-    async function ULTRAAppearanceRun() {
-        modApi.hookFunction('AppearanceRun', 4, (args, next) => {
-            if (CharacterAppearanceMode == "Wardrobe") {
-                DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
-                DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Clothing + Restraints");
-                DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Clothing + Restraints + Cosplay");
-                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");
-            }
+    async function ULTRAGamblingRun() {
+        modApi.hookFunction('GamblingRun', 4, (args, next) => {          
+            TintsEffect(); 
             next(args);
         });
     }
 
+    async function ULTRAInformationSheetRun() {
+        modApi.hookFunction('InformationSheetRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMagicRun() {
+        modApi.hookFunction('MagicRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRANurseryRun() {
+        modApi.hookFunction('NurseryRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAOnlineProfileRun() {
+        modApi.hookFunction('OnlineProfileRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPrisonRun() {
+        modApi.hookFunction('PrisonRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAStableRun() {
+        modApi.hookFunction('StableRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRATitleRun() {
+        modApi.hookFunction('TitleRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    //Wardrobe
     async function ULTRAAppearanceClick() {
         modApi.hookFunction('AppearanceClick', 4, (args, next) => {
             let C = CharacterAppearanceSelection;
@@ -3557,6 +3626,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     DialogLeave();
                 }
+            }
+            next(args);
+        });
+    }
+
+    async function ULTRAAppearanceRun() {
+        modApi.hookFunction('AppearanceRun', 4, (args, next) => {
+            TintsEffect(); 
+            if (CharacterAppearanceMode == "Wardrobe") {
+                DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
+                DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Clothing + Restraints");
+                DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Clothing + Restraints + Cosplay");
+                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");
             }
             next(args);
         });
