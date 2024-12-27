@@ -95,7 +95,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let rtype = "ALL";
     let st = 0;
     let tcname = "Cell";
-    let tintcolor = "#nnnnnn";
+    let tintcolor = "#000000";
+    let tintlevel = 0;
 
     let AutojoinOn;
     let DolltalkOn;
@@ -439,7 +440,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rtype = "ALL";
             st = 0;
             tcname = "Cell";
-	    tintcolor = "#nnnnnn";
+	    tintcolor = "#000000";
+            tintlevel = 0;
             AutojoinOn = false;
             DolltalkOn = false;
             ExtbuttonsOn = false;
@@ -529,6 +531,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             st = datas.stutterlevel * 1;
             tcname = datas.tcname; 
 	    tintcolor = datas.tintcolor;
+	    tintlevel = datas.tintlevel;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
@@ -616,6 +619,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "stutterlevel": st,
             "tcname": tcname,
             "tintcolor": tintcolor,
+            "tintlevel": tintlevel,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
@@ -782,7 +786,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
                 if (st == null || st == undefined) st = 0;
                 if (tcname == null || tcname == undefined) tcname = "Cell";
-		if (tintcolor == null || tintcolor == undefined) tintcolor = "#nnnnnn";
+		if (tintcolor == null || tintcolor == undefined) tintcolor = "#000000";
+                if (tintlevel == null || tintlevel == undefined) tintlevel = 0;	
                 M_MOANER_saveControls();
                 BabyTalkOn = false;
                 GagTalkOn = false;
@@ -881,7 +886,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 stutterlevel: 0,
                 talkMoan: true,
                 tickleMoan: true,
-		tintcolor: "#nnnnnn",
+		tintcolor: "#000000",
+                tintlevel: 0,
                 vibeMoan: true,
                 whisperMoan: false,
                 xvibeMoan: false,
@@ -1417,6 +1423,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 SosbuttonsOn = data.sosbuttons;
                 st = data.stutterlevel * 1;
 		tintcolor = data.tintcolor;
+		tintlevel = data.tintlevel;
                 AnimalTalk1On = false;
                 AnimalTalk2On = false;
                 AnimalTalk3On = false;
@@ -1848,8 +1855,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Forced global blur level (0-4):", "blureffect", "InputBlurEffect",
                     "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", 60
                 );
-                addMenuInput(200, "Background tint (format #000000):", "tintcolor", "InputTintColor",
-                    "Input a color code in the hexadecimal format #000000 to tint most backgrounds in the Bondage Club. To cancel this tint effect, use #nnnnnn", 60
+                addMenuInput(200, "Tint effect level (0-3):", "tintlevel", "InputTintLevel",
+                    "Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.", 60
+                );
+                addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
+                    "Input a color code in the hexadecimal format #000000 to tint most backgrounds in the Bondage Club. Don't forget to select a tint effect level too! ", 60
                 );
             }
 
@@ -1867,22 +1877,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let effect = ElementValue("InputBlurEffect");
                 let regex = /^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i;
                 let ttcolor = ElementValue("InputTintColor");
+                let ttlevel = ElementValue("InputTintLevel");
                 if ((CommonIsNumeric(blmode)) && (blmode > -1) && (blmode < 5) &&
                     (CommonIsNumeric(brmode)) && (brmode > -1) && (brmode < 6) &&
                     (CommonIsNumeric(effect)) && (effect > -1) && (effect < 5) && 
-                    (ttcolor.startsWith("#")) && ((ttcolor.match(regex)) || (ttcolor = "#nnnnnn"))) {
+                    (CommonIsNumeric(ttlevel)) && (ttlevel > -1) && (ttlevel < 4) && 
+                    (ttcolor.startsWith("#")) && (ttcolor.match(regex))) {
                     Player.UBC.ubcSettings.blindness = blmode;
                     Player.UBC.ubcSettings.blureffect = effect;
                     Player.UBC.ubcSettings.blurmode = brmode;
                     Player.UBC.ubcSettings.tintcolor = ttcolor;
+                    Player.UBC.ubcSettings.tintlevel = ttlevel;
                     ElementRemove("InputBlindnessMode");
                     ElementRemove("InputBlurEffect");
                     ElementRemove("InputBlurMode");
                     ElementRemove("InputTintColor");
+                    ElementRemove("InputTintLevel");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
-
+   
             function keyHandler(e) {
                 if (e.key === "Escape" && !!UBCPreferenceSubscreen && UBCPreferenceSubscreen !== "UBCSettings") {
                     CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`);
