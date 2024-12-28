@@ -5259,7 +5259,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {      
             return mbs.css.setStyle({
                 backgroundColor: `rgba(${r},${g},${b},${a1})`, 
-                buttonColor: `rgba(${r},${g},${b},${a1})`
            }); 
         }
     }
