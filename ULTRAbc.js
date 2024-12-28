@@ -1971,14 +1971,51 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
-    ULTRAArcadeRun(); 
+    ULTRAArcadeRun();
+    ULTRAAsylumBedroomRun();
+    ULTRAAsylumEntranceRun();
+    ULTRAAsylumGGTSRun();
+    ULTRAAsylumMeetingRun();
+    ULTRAAsylumTherapyRun();
     ULTRACafeRun(); 
-    ULTRAGamblingRun(); 
+    ULTRAChatSelectRun();
+    ULTRAClubCardBuilderRun(); 
+    ULTRAClubCardLoungeRun();
+    ULTRAClubCardRun();
+    ULTRACollegeCafeteriaRun(); 
+    ULTRACollegeChessRun(); 
+    ULTRACollegeDetentionRun(); 
+    ULTRACollegeEntranceRun(); 
+    ULTRACollegeTeacherRun(); 
+    ULTRACollegeTennisRun(); 
+    ULTRACollegeTheaterRun(); 
+    ULTRACraftingRun();
+    ULTRAGamblingRun();
+    ULTRAInfiltrationRun();
     ULTRAInformationSheetRun(); 
+    ULTRAIntroductionRun(); 
+    ULTRAKidnapLeagueRun(); 
+    ULTRAKidnapRun(); 
+    ULTRALARPRun();
     ULTRAMagicRun(); 
+    ULTRAMagicSchoolEscapeRun();
+    ULTRAMagicSchoolLaboratoryRun();
+    ULTRAMaidQuartersRun(); 
+    ULTRAManagementRun(); 
+    ULTRAMovieStudioRun(); 
     ULTRANurseryRun(); 
     ULTRAOnlineProfileRun();
+    ULTRAPandoraRun();
+    ULTRAPlatformIntroRun(); 
+    ULTRAPlatformDialogRun(); 
+    ULTRAPlatformProfileRun(); 
+    ULTRAPlatformRun(); 
+    ULTRAPokerRun();
     ULTRAPrisonRun();
+    ULTRAShibariRun(); 
+    ULTRAShopRun();
+    ULTRASlaveMarketRun();
+    ULTRASarahRun();
     ULTRAStableRun(); 
     ULTRATitleRun();
 
@@ -3171,6 +3208,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawText(PandoraWillpower.toString(), 1800, 973, "black", "white");
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
+	    TintsEffect(); 
             return;
         });
     }
@@ -3391,8 +3429,127 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAAsylumBedroomRun() {
+        modApi.hookFunction('AsylumBedroomRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumEntranceRun() {
+        modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumGGTSRun() {
+        modApi.hookFunction('AsylumGGTSRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumMeetingRun() {
+        modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumTherapyRun() {
+        modApi.hookFunction('AsylumTherapyRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
     async function ULTRACafeRun() {
         modApi.hookFunction('CafeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAChatSelectRun() {
+        modApi.hookFunction('ChatSelectRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAClubCardBuilderRun() {
+        modApi.hookFunction('ClubCardBuilderRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAClubCardLoungeRun() {
+        modApi.hookFunction('ClubCardLoungeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAClubCardRun() {
+        modApi.hookFunction('ClubCardRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeCafeteriaRun() {
+        modApi.hookFunction('CollegeCafeteriaRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeChessRun() {
+        modApi.hookFunction('CollegeChessRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeDetentionRun() {
+        modApi.hookFunction('CollegeDetentionRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeEntranceRun() {
+        modApi.hookFunction('CollegeEntranceRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeTeacherRun() {
+        modApi.hookFunction('CollegeTeacherRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeTennisRun() {
+        modApi.hookFunction('CollegeTennisRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeTheaterRun() {
+        modApi.hookFunction('CollegeTheaterRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACraftingRun() {
+        modApi.hookFunction('CraftingRun', 4, (args, next) => {          
             TintsEffect(); 
             next(args);
         });
@@ -3416,7 +3573,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (Player.UBC.ubcSettings != undefined) {
                     let effect = Player.UBC.ubcSettings.blureffect * 1;
                     if (effect != 0) BlurEffect();
-                }
+                }            
             }
             next(args);
         });
@@ -3429,6 +3586,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAInfiltrationRun() {
+        modApi.hookFunction('InfiltrationRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
     async function ULTRAInformationSheetRun() {
         modApi.hookFunction('InformationSheetRun', 4, (args, next) => {          
             TintsEffect(); 
@@ -3436,8 +3600,71 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAIntroductionRun() {
+        modApi.hookFunction('IntroductionRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAKidnapLeagueRun() {
+        modApi.hookFunction('KidnapLeagueRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAKidnapRun() {
+        modApi.hookFunction('KidnapRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRALARPRun() {
+        modApi.hookFunction('LARPRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
     async function ULTRAMagicRun() {
         modApi.hookFunction('MagicRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMagicSchoolEscapeRun() {
+        modApi.hookFunction('MagicSchoolEscapeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMagicSchoolLaboratoryRun() {
+        modApi.hookFunction('MagicSchoolLaboratoryRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMaidQuartersRun() {
+        modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAManagementRun() {
+        modApi.hookFunction('ManagementRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMovieStudioRun() {
+        modApi.hookFunction('MovieStudioRun', 4, (args, next) => {          
             TintsEffect(); 
             next(args);
         });
@@ -3457,8 +3684,78 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAPandoraRun() {
+        modApi.hookFunction('PandoraRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlatformDialogRun() {
+        modApi.hookFunction('PlatformDialogRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlatformIntroRun() {
+        modApi.hookFunction('PlatformIntroRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlatformProfileRun() {
+        modApi.hookFunction('PlatformProfileRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlatformRun() {
+        modApi.hookFunction('PlatformRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPokerRun() {
+        modApi.hookFunction('PokerRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
     async function ULTRAPrisonRun() {
         modApi.hookFunction('PrisonRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRASarahRun() {
+        modApi.hookFunction('SarahRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAShibariRun() {
+        modApi.hookFunction('ShibariRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAShopRun() {
+        modApi.hookFunction('ShopRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRASlaveMarketRun() {
+        modApi.hookFunction('SlaveMarketRun', 4, (args, next) => {          
             TintsEffect(); 
             next(args);
         });
@@ -3477,7 +3774,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
+	
     //Wardrobe
     async function ULTRAAppearanceClick() {
         modApi.hookFunction('AppearanceClick', 4, (args, next) => {
