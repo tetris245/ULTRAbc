@@ -11057,7 +11057,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerSend("ChatRoomLeave", "");
                 ChatRoomSetLastChatRoom("");
                 OnlineGameName = "";
-                ChatRoomhideElements();
+                ChatRoomClearAllElements();
                 CommonSetScreen("Room", "Infiltration");
             }
         }
