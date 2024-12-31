@@ -89,6 +89,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let frname = "BrickWall";
     let gl = 0;
     let hearing = 0;
+    let maptrap1 = 0;
     let mgl = 0;
     let onegl = 0;
     let rsize = 20;
@@ -110,7 +111,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let MagiccheatOn;
     let MagictoysOn;
     let MapfullOn = false;
-    let MaptrapOn;
     let NogarbleOn;
     let NostruggleOn;
     let NotimeoutOn;
@@ -434,6 +434,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             frname = "BrickWall";
             gl = 0;
             hearing = 0;
+	    maptrap1 = 0;
             mgl = 0;
             onegl = 0;
             rsize = 20;
@@ -454,7 +455,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = false;
             MagictoysOn = false;
             MapfullOn = false;
-            MaptrapOn = false;
             NogarbleOn = false;
             NostruggleOn = false;
             NotimeoutOn = false;
@@ -524,6 +524,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             frname = datas.frname;
             gl = datas.gaglevel;
             hearing = 0;
+	    maptrap1 = datas.maptrap1;
             mgl = 0;
             onegl = 0;
             rsize = datas.rsize;
@@ -544,7 +545,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = datas.magiccheat;
             MagictoysOn = datas.magictoys;
             MapfullOn = false;
-            MaptrapOn = datas.maptrap;
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
             NotimeoutOn = datas.notimeout;
@@ -614,6 +614,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cfame": cfame,
             "frname": frname,
             "gaglevel": gl,
+            "maptrap1": maptrap1,
             "rsize": rsize,
             "rtype": rtype,
             "stutterlevel": st,
@@ -632,7 +633,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "magiccheat": MagiccheatOn,
             "magictoys": MagictoysOn,
             "mapfull": MapfullOn,
-            "maptrap": MaptrapOn,
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,
             "notimeout": NotimeoutOn,
@@ -712,10 +712,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
-                if (MaptrapOn == null || MaptrapOn == undefined) {
-                    MaptrapOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (animal == null || animal == undefined) animal = 0;
                 if (animal == 1) AnimalTalk1On = true;
                 if (animal == 2) AnimalTalk2On = true;
@@ -749,6 +745,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (HotkeysOn == null || HotkeysOn == undefined) HotkeysOn = false;
                 if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
 		if (MagictoysOn == null || MagictoysOn == undefined) MagictoysOn = false;
+		if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
                 if (M_MOANER_scriptOn == null || M_MOANER_scriptOn == undefined) M_MOANER_scriptOn = false;
@@ -867,6 +864,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 hotkeys: false,
                 magiccheat: false,
 		magictoys: false,
+		maptrap1: 0,
                 nogarble: false,
                 nostruggle: false,
                 notalk: 0,
@@ -1399,6 +1397,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 HotkeysOn = data.hotkeys;
                 MagiccheatOn = data.magiccheat;
 		MagictoysOn = data.magictoys;
+		maptrap1 = data.maptrap1;
                 M_MOANER_cum = data.cum;
                 M_MOANER_orgasmActive = data.orgasmMoan;
                 M_MOANER_scriptOn = data.script;
@@ -1701,7 +1700,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    PreferenceSubscreenUBCMapsLoad = function() {
                 UBCPreferenceSubscreen = "UBCMaps";
                 addMenuCheckbox(64, 64, "Add toys under locked chastity in traps: ", "magictoys",
-                    "Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!.", false, 140
+                    "Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!", false, 140
+                );
+                addMenuInput(200, "Selected device trap (0-9):", "maptrap1", "InputDeviceTrap",
+                    "Input a number between 0 and 9, except 2, to select a device trap: 0 No device trap - 1 Bondage Bench - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
                 );
             }
 
@@ -1714,7 +1716,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCMapsExit = function() {
-                defaultExit();
+                let device = ElementValue("InputDeviceTrap");
+                if ((CommonIsNumeric(device)) && (profile > -1) && (device < 10) && (device != 2)) {
+                    Player.UBC.ubcSettings.maptrap1 = device;
+                    ElementRemove("InputDeviceTrap");
+                    defaultExit();
+                } else PreferenceMessage = "Put a valid number";
             }
 
             PreferenceSubscreenUBCMiscLoad = function() {
@@ -10439,24 +10446,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'maptrap',
-        Description: ": toggles traps with devices in map rooms.",
-        Action: () => {
-            if (MaptrapOn == true) {
-                MaptrapOn = false;
-                M_MOANER_saveControls();
-                let msg = "No traps with devices in map rooms";
-                infomsg(msg);
-            } else {
-                MaptrapOn = true;
-                M_MOANER_saveControls();
-                let msg = "Traps in map rooms if you 'walk' on devices";
-                infomsg(msg);
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'mapx',
         Description: "(x-position): changes your X coordinate in the map.",
         Action: (args) => {
@@ -13786,7 +13775,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/mapfull</b> = toggles full vision and hearing in map rooms.\n" +
                     "<b>/mapkeys</b> = gives all keys for current map room.\n" +
                     "<b>/maproom</b> = gives infos about players in current map.\n" +
-                    "<b>/maptrap</b> = toggles traps with devices in map rooms.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
