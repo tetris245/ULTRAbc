@@ -2198,45 +2198,43 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatRoomMapViewCalculatePerceptionMasks();
             const newTile = ChatRoomMapViewGetTileAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
             const newObject = ChatRoomMapViewGetObjectAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
-            if (MaptrapOn) {
-                let item1 = newObject.Type;
-                let item2 = newObject.Style;
-                if ((item1 == "FloorItem") && (item2 != "Blank")) {
-                    if (item2 == "BondageBench") {
-                        BondageBenchTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
-                        publicmsg(msg);
-                    }
-		    if (item2 == "TheDisplayFrame") {
-                        DisplayFrameTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
-                        publicmsg(msg);
-                    }
-                    if (item2 == "Kennel") {
-                        KennelTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Kennel.";
-                        publicmsg(msg);
-                    }
-                    if (item2 == "Locker") {
-                        LockerTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Locker.";
-                        publicmsg(msg);
-                    }
-		    if (item2 == "Trolley") {
-                        TrolleyTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
-                        publicmsg(msg);
-                    }
-		    if (item2 == "WoodenBox") {
-                        WoodenBoxTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
-                        publicmsg(msg);
-                    }
-                    if (item2 == "X-Cross") {
-                        XCrossTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
-                        publicmsg(msg);
-                    }
+	    let item1 = newObject.Type;
+            let item2 = newObject.Style;
+            if ((item1 == "FloorItem") && (item2 != "Blank")) {
+                if ((item2 == "BondageBench") && ((maptrap1 == 1) || (maptrap1 == 9))) {
+                    BondageBenchTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "TheDisplayFrame") && ((maptrap1 == 3) || (maptrap1 == 9))) {
+                    DisplayFrameTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Kennel") && ((maptrap1 == 4) || (maptrap1 == 9))) {
+                    KennelTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Kennel.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Locker") && ((maptrap1 == 5) || (maptrap1 == 9))) {
+                    LockerTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Locker.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Trolley") && ((maptrap1 == 6) || (maptrap1 == 9))) {
+                    TrolleyTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "WoodenBox") && ((maptrap1 == 7) || (maptrap1 == 9))) {
+                    WoodenBoxTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "X-Cross") && ((maptrap1 == 8) || (maptrap1 == 9))) {
+                    XCrossTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
+                    publicmsg(msg);
                 }
             }
             if (newTile && newTile.OnEnter) newTile.OnEnter();
