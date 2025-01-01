@@ -62,6 +62,7 @@ Changes for future version
 
 * Added the Maps page to the GUI, with an improvement: you can now select a specific device trap, or all device traps!
 * Added new traps for map rooms in trap mode: display frame, trolley, wooden box (thanks to KitKat!)
+* New option in GUI - Misc to enable/disable Asylum limitations (access to, exit from)
 * New options in GUI - Visual to get a tint effect almost everywhere in the Bondage Club (including most add-ons). You can select a level and a color for this effect.
   - Note: when combined with the concerned color in Themed, you will get a different tint effect, as both colors are "merged"!
 * Removed the maptrap command (this setting is now available in the GUI)
