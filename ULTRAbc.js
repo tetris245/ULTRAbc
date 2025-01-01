@@ -99,6 +99,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tintcolor = "#000000";
     let tintlevel = 0;
 
+    let AsylumLimitOn;
     let AutojoinOn;
     let DolltalkOn;
     let ExtbuttonsOn;
@@ -443,6 +444,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tcname = "Cell";
 	    tintcolor = "#000000";
             tintlevel = 0;
+	    AsylumLimitOn = false;
             AutojoinOn = false;
             DolltalkOn = false;
             ExtbuttonsOn = false;
@@ -533,6 +535,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tcname = datas.tcname; 
 	    tintcolor = datas.tintcolor;
 	    tintlevel = datas.tintlevel;
+	    AsylumLimitOn = datas.asylumlimit;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
@@ -621,6 +624,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tcname": tcname,
             "tintcolor": tintcolor,
             "tintlevel": tintlevel,
+            "asylumlimit": AsylumLimitOn,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
@@ -722,6 +726,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
+		if (AsylumLimitOn == null || AsylumLimitOn == undefined) AsylumLimitOn = false;
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
                 if (blindness == null || blindness == undefined) blindness = 0;
@@ -843,6 +848,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             const UBC_DEFAULT_SETTINGS = {
                 animal: 0,
+		asylumlimit: false,
                 bgall: false,
                 bl: 0,
                 blindness: 0,
@@ -1377,6 +1383,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.UBC.ubcSettings.cum = false;
                 let data = Player.UBC.ubcSettings;
                 animal = data.animal * 1;
+		AsylumLimitOn = data.asylumlimit;
                 bgall = data.bgall;
                 bl = data.bl;
                 blindness = data.blindness;
@@ -1734,6 +1741,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuCheckbox(64, 64, "No time out in help provided by TAB: ", "notimeout",
                     "When you use the TAB key to get help about BC commands, the displayed results are removed from the chat after some time. If you don't like that, use this option to prevent the disappearance of the help results.", false, 120
+                );
+                addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
+                    "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
                     "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
@@ -2719,12 +2729,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatSelectStartSearch(ChatRoomSpace);
             }
             if ((MouseX >= 1515) && (MouseX < 1595) && (MouseY >= 885) && (MouseY < 975)) {
-                if (IsFemale() == true) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
-            if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-            if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+            if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) {
+                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            }
+            if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) { 
+                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+            }
             if ((MouseX >= 1845) && (MouseX < 1935) && (MouseY >= 885) && (MouseY < 975)) {
-                if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+                 if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
             return;
         });
@@ -2738,14 +2752,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(605, 885, 90, 90, "", "White", "Icons/MapTypeHybrid.png", "Hybrid Rooms");
             DrawButton(715, 885, 90, 90, "", "White", "Icons/MapTypeAlways.png", "Map Rooms");
             DrawText("Lobbies", 1405, 940, "White", "Black");
-            if (IsFemale() == true) {
+            if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                 DrawButton(1515, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
             } else {
                 DrawButton(1515, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
             }
-            DrawButton(1625, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
-            DrawButton(1735, 885, 90, 90, "MIXED", "White", "", "Mixed");
-            if (IsMale() == true) {
+            if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum"))  {     
+                DrawButton(1625, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            } else {
+                DrawButton(1625, 885, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+            }
+            if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum")))  {     
+                DrawButton(1735, 885, 90, 90, "MIXED", "White", "", "Mixed");
+            } else {
+                DrawButton(1735, 885, 90, 90, "MIXED", "Gray", "", "Mixed");
+            }
+            if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                 DrawButton(1845, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
             } else {
                 DrawButton(1845, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
