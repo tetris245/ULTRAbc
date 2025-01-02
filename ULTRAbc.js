@@ -2979,7 +2979,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (FrkeysOn == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
                     if (event.code === "KeyF") {
-                        if (IsFemale() == true) {
+                        if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                             ChatRoomSpace = "";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -2988,14 +2988,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyG") {
-                        ChatRoomSpace = "X";
-                        ServerSend("AccountQuery", {
-                            Query: "OnlineFriends"
-                        });
-                        return true;
+                        if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
+                            ChatRoomSpace = "X";
+                            ServerSend("AccountQuery", {
+                                Query: "OnlineFriends"
+                            });
+                            return true;
+                        }
                     }
                     if (event.code === "KeyH") {
-                        if (IsMale() == true) {
+                        if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                             ChatRoomSpace = "M";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3004,11 +3006,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyJ") {
-                        ChatRoomSpace = "Asylum";
-                        ServerSend("AccountQuery", {
-                            Query: "OnlineFriends"
-                        });
-                        return true;
+                        if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
+                            ChatRoomSpace = "Asylum";
+                            ServerSend("AccountQuery", {
+                                Query: "OnlineFriends"
+                            });
+                            return true;
+                        }
                     }
                 }
             }
@@ -3113,7 +3117,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
                 if (IsFemale() == true) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
-            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
+                if (AsylumLimitOn == false) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);  
+            }
             if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
                 if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
@@ -3137,7 +3143,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 DrawButton(240, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
             }
-            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            if (AsylumLimitOn == true) {
+                DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+            } else {
+                DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            } 
             DrawButton(460, 475, 90, 90, "MIXED", "White", "", "Mixed");
             if (IsMale() == true) {
                 DrawButton(570, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
@@ -8511,29 +8521,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "asylum") {
-                setTimeout(function() {
-                    ChatRoomSpace = "Asylum";
-                    CommonSetScreen("Online", "ChatSearch");
-                    ChatRoomSetLastChatRoom("");
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ElementRemove("InputSearch");
-                    ChatRoomHideElements();
-                    FriendListReturn = {
-                        Screen: CurrentScreen,
-                        Module: CurrentModule
-                    };
-                    CommonSetScreen("Character", "FriendList");
-                }, 3000);
-                setTimeout(function() {
-                    FriendListExit();
-                    CommonSetScreen("Online", "ChatRoom");
-                    document.getElementById("InputChat").style.display = "inline";
-                    document.getElementById("TextAreaChatLog").style.display = "inline";
-                }, 15000);
+                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) { 
+                    setTimeout(function() {
+                        ChatRoomSpace = "Asylum";
+                        CommonSetScreen("Online", "ChatSearch");
+                        ChatRoomSetLastChatRoom("");
+                        document.getElementById("InputChat").style.display = "none";
+                        document.getElementById("TextAreaChatLog").style.display = "none";
+                        ElementRemove("InputSearch");
+                        ChatRoomHideElements();
+                        FriendListReturn = {
+                            Screen: CurrentScreen,
+                            Module: CurrentModule
+                        };
+                        CommonSetScreen("Character", "FriendList");
+                    }, 3000);
+                    setTimeout(function() {
+                        FriendListExit();
+                        CommonSetScreen("Online", "ChatRoom");
+                        document.getElementById("InputChat").style.display = "inline";
+                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                    }, 15000);
+                } else {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                }
             }
             if (args === "fclub") {
-                if (IsFemale() == true) {
+                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false)))  {
                     setTimeout(function() {
                         ChatRoomSpace = "";
                         CommonSetScreen("Online", "ChatSearch");
@@ -8555,12 +8570,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    let msg = "Only females have access to this lobby.";
+                    let msg = "No access to this lobby.";
                     infomsg(msg);
                 }
             }
             if (args === "mclub") {
-                if (IsMale() == true) {
+                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false)))  {
                     setTimeout(function() {
                         ChatRoomSpace = "M";
                         CommonSetScreen("Online", "ChatSearch");
@@ -8582,31 +8597,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    let msg = "Only males have access to this lobby.";
+                    let msg = "No access to this lobby.";
                     infomsg(msg);
                 }
             }
             if (args === "xclub") {
-                setTimeout(function() {
-                    ChatRoomSpace = "X";
-                    CommonSetScreen("Online", "ChatSearch");
-                    ChatRoomSetLastChatRoom("");
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ElementRemove("InputSearch");
-                    ChatRoomHideElements();
-                    FriendListReturn = {
-                        Screen: CurrentScreen,
-                        Module: CurrentModule
-                    };
-                    CommonSetScreen("Character", "FriendList");
-                }, 3000);
-                setTimeout(function() {
-                    FriendListExit();
-                    CommonSetScreen("Online", "ChatRoom");
-                    document.getElementById("InputChat").style.display = "inline";
-                    document.getElementById("TextAreaChatLog").style.display = "inline";
-                }, 15000);
+                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
+                    setTimeout(function() {
+                        ChatRoomSpace = "X";
+                        CommonSetScreen("Online", "ChatSearch");
+                        ChatRoomSetLastChatRoom("");
+                        document.getElementById("InputChat").style.display = "none";
+                        document.getElementById("TextAreaChatLog").style.display = "none";
+                        ElementRemove("InputSearch");
+                        ChatRoomHideElements();
+                        FriendListReturn = {
+                            Screen: CurrentScreen,
+                            Module: CurrentModule
+                        };
+                        CommonSetScreen("Character", "FriendList");
+                    }, 3000);
+                    setTimeout(function() {
+                        FriendListExit();
+                        CommonSetScreen("Online", "ChatRoom");
+                        document.getElementById("InputChat").style.display = "inline";
+                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                    }, 15000);
+                } else {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                }
             }
         }
     }])
@@ -12683,28 +12703,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "asylum") {
-                setTimeout(function() {
-                    ChatRoomSpace = "Asylum";
-                    ChatSearchLeaveRoom = "AsylumEntrance";
-                    ChatSearchBackground = "AsylumEntrance";
-                    ChatCreateBackgroundList = BackgroundsTagAsylum;
-                    CommonSetScreen("Online", "ChatSearch");
-                    ChatSelectStartSearch("Asylum");
-                    ChatRoomSetLastChatRoom("");
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ChatRoomHideElements();
-                    ChatSelectStartSearch("Asylum");
-                    ChatRoomSetLastChatRoom("");
-                }, 3000);
-                setTimeout(function() {
-                    CommonSetScreen("Online", "ChatRoom");
-                    document.getElementById("InputChat").style.display = "inline";
-                    document.getElementById("TextAreaChatLog").style.display = "inline";
-                }, 15000);
+                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
+                    setTimeout(function() {
+                        ChatRoomSpace = "Asylum";
+                        ChatSearchLeaveRoom = "AsylumEntrance";
+                        ChatSearchBackground = "AsylumEntrance";
+                        ChatCreateBackgroundList = BackgroundsTagAsylum;
+                        CommonSetScreen("Online", "ChatSearch");
+                        ChatSelectStartSearch("Asylum");
+                        ChatRoomSetLastChatRoom("");
+                        document.getElementById("InputChat").style.display = "none";
+                        document.getElementById("TextAreaChatLog").style.display = "none";
+                        ChatRoomHideElements();
+                        ChatSelectStartSearch("Asylum");
+                        ChatRoomSetLastChatRoom("");
+                    }, 3000);
+                    setTimeout(function() {
+                        CommonSetScreen("Online", "ChatRoom");
+                        document.getElementById("InputChat").style.display = "inline";
+                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                    }, 15000);
+                } else {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                }
             }
             if (args === "fclub") {
-                if (IsFemale() == true) {
+                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
                         ChatSelectStartSearch("");
                         ChatRoomSetLastChatRoom("");
@@ -12720,12 +12745,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    let msg = "Only females have access to this lobby.";
+                    let msg = "No access to this lobby.";
                     infomsg(msg);
                 }
             }
             if (args === "mclub") {
-                if (IsMale() == true) {
+                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
                         ChatSelectStartSearch("M");
                         ChatRoomSetLastChatRoom("");
@@ -12741,25 +12766,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    let msg = "Only males have access to this lobby.";
+                    let msg = "No access to this lobby.";
                     infomsg(msg);
                 }
             }
             if (args === "xclub") {
-                setTimeout(function() {
-                    ChatSelectStartSearch("X");
-                    ChatRoomSetLastChatRoom("");
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ChatRoomHideElements();
-                    ChatSelectStartSearch("X");
-                    ChatRoomSetLastChatRoom("");
-                }, 3000);
-                setTimeout(function() {
-                    CommonSetScreen("Online", "ChatRoom");
-                    document.getElementById("InputChat").style.display = "inline";
-                    document.getElementById("TextAreaChatLog").style.display = "inline";
-                }, 15000);
+                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
+                    setTimeout(function() {
+                        ChatSelectStartSearch("X");
+                        ChatRoomSetLastChatRoom("");
+                        document.getElementById("InputChat").style.display = "none";
+                        document.getElementById("TextAreaChatLog").style.display = "none";
+                        ChatRoomHideElements();
+                        ChatSelectStartSearch("X");
+                        ChatRoomSetLastChatRoom("");
+                    }, 3000);
+                    setTimeout(function() {
+                        CommonSetScreen("Online", "ChatRoom");
+                        document.getElementById("InputChat").style.display = "inline";
+                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                    }, 15000);
+                } else {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                }
             }
         }
     }])
