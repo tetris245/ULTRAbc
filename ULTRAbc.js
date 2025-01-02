@@ -1994,7 +1994,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumGGTSRun();
     ULTRAAsylumMeetingRun();
     ULTRAAsylumTherapyRun();
-    ULTRACafeRun(); 
+    ULTRACafeRun();    
+    ULTRAChatAdminRun();
+    ULTRAChatAdminRoomCustomizationRun(); 
     ULTRAChatSelectRun();
     ULTRAChestLockpickRun(); 
     ULTRAClubCardBuilderRun(); 
@@ -3508,6 +3510,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRACafeRun() {
         modApi.hookFunction('CafeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAChatAdminRun() {
+        modApi.hookFunction('ChatAdminRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAChatAdminRoomCustomizationRun() {
+        modApi.hookFunction('ChatAdminRoomCustomizationRun', 4, (args, next) => {          
             TintsEffect(); 
             next(args);
         });
