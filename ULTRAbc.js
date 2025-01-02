@@ -2119,20 +2119,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             const inputChat = /** @type {HTMLTextAreaElement} */ (document.getElementById("InputChat"));
             const chatHasFocus = inputChat && document.activeElement === inputChat;
+            const modifiers = CommonKey.GetModifiers(event);
             if (chatHasFocus) {
-                if (event.code === "Tab" && !event.shiftKey && inputChat.value.length !== 0) {
-                    CommandAutoComplete(inputChat.value);
-                    return true;
-                } else if (event.key === "Enter" && !event.shiftKey) {
-                    ChatRoomSendChat();
-                    return true;
-                } else if (event.key === "PageUp" || event.key === "PageDown") {
-                    ChatRoomScrollHistory(event.key === "PageUp");
-                    return true;
-                } else if (event.key === "Escape" && !event.shiftKey) {
-                    ElementFocus("MainCanvas");
-                    return true;
-                } else if (HotkeysOn == true) {
+                if (HotkeysOn == true) {
                     if (event.code === "NumpadDivide") {
                         OutChat();
                         return true;
@@ -2142,12 +2131,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         return true;
                     }
                 }
+                if (!modifiers) {
+		    switch (event.key) {
+		        case "Tab":				
+			    if (inputChat.value.length !== 0) {
+			        CommandAutoComplete(inputChat.value);
+				return true;
+			    }
+			    break;
+			case "Enter":
+			    ChatRoomSendChat();
+			    return true;
+			case "PageUp":
+			case "PageDown":				
+			    ChatRoomScrollHistory(event.key === "PageUp");
+			    return true;
+			case "Escape":			
+			    ElementFocus("MainCanvas");
+			    return true;
+                    }
+                }               
             } else if (ChatRoomCommonKeyDown(event)) {
                 return true;
             } else if (ChatRoomActiveView.KeyDown && ChatRoomActiveView.KeyDown(event)) {
                 return true;
             }
-            if (event.key === "Escape" && event.shiftKey) {
+            if (CommonKey.IsPressed(event, "Escape", CommonKey.Shift)) {
                 ChatRoomAttemptLeave();
             }
             if (document.activeElement === null || document.activeElement === document.body || document.activeElement.id === "MainCanvas") {
@@ -2155,29 +2164,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (!chatLog) {
                     return false;
                 }
-                if (!(event.ctrlKey || event.altKey || event.shiftKey || event.metaKey)) {
-                    switch (event.key) {
-                        case "Home":
-                            chatLog.scrollTop = 0;
-                            return true;
-                        case "End":
-                            chatLog.scrollTop = chatLog.scrollHeight;
-                            return true;
-                        case "PageUp":
-                            chatLog.scrollTop = Math.max(0, chatLog.scrollTop - chatLog.clientHeight);
-                            return true;
-                        case "PageDown":
-                            chatLog.scrollTop = Math.min(chatLog.scrollHeight, chatLog.scrollTop + chatLog.clientHeight);
-                            return true;
-                        case "ArrowUp":
-                            chatLog.scrollTop = Math.max(0, chatLog.scrollTop - chatLog.clientHeight * 0.05);
-                            return true;
-                        case "ArrowDown":
-                            chatLog.scrollTop = Math.min(chatLog.scrollHeight, chatLog.scrollTop + chatLog.clientHeight * 0.05);
-                            return true;
-                    }
-                }
-                if ((event.key.length === 1 || event.key === "Enter") && !(event.altKey || event.metaKey || (event.ctrlKey && event.key !== "v"))) {
+                if (CommonKey.NavigationKeyDown(chatLog, event, (el) => el.clientHeight * 0.05)) {
+		    return true;
+		} else if (CommonKey.IsPressed(event, "v", CommonKey.CTRL)) {
+		    return false;
+		} else if ((event.key.length === 1 || event.key === "Enter") && !modifiers) {
                     ElementFocus("InputChat");
                     return event.key === "Enter";
                 }
@@ -2965,13 +2956,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const beepTextArea = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.beepTextArea));
             const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
             if (FriendListBeepTarget !== -1 || beepTextArea) {
-                if (event.key === 'Escape' && !event.shiftKey) {
+                if (CommonKey.IsPressed(event, "Escape")) {
                     FriendListBeepMenuClose();
                     return true;
                 }
             }
             if (beepTextAreaHasFocus) {
-                if (event.key === 'Enter' && event.ctrlKey) {
+                if (event.key === 'Enter' && CommonKey.IsPressed(event, "Enter", CommonKey.CTRL)) {
                     FriendListBeepMenuSend();
                     return true;
                 }
