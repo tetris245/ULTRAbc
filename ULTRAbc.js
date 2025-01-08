@@ -1876,7 +1876,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.", 60
                 );
                 addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
-                    "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. Also you will notice the special case of MBS mod. The final color can be different when mixed with a Themed color.", 60
+                    "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX, MBS and Echo's mod. The final color can be different when mixed with a Themed color.", 60
                 );
             }
 
@@ -5718,11 +5718,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (a == 2) a1 = 0.35;
         if (a == 3) a1 = 0.5;   
         DrawRect(0, 0, 2000, 1000, `rgba(${r},${g},${b},${a1})`);
-        if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {      
-            return mbs.css.setStyle({
-                backgroundColor: `rgba(${r},${g},${b},${a1})`, 
-           }); 
-        }
     }
 
     //WCE Status 
