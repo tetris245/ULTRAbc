@@ -4323,7 +4323,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function OutChat() {
-        if (PandoraPenitentiaryActive(Player)) {
+        if (PandoraPenitentiaryIsInmate(Player)) {
             Player.Game.Prison.Timer = Math.round(CurrentTime);
             ServerAccountUpdate.QueueData({
                 Game: Player.Game
