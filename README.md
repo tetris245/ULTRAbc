@@ -60,4 +60,4 @@ All else I might not have included.
 
 Changes for future version 
 
-(...)
+* Updated the OutChat function for R112 compatibility
