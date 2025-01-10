@@ -61,4 +61,4 @@ All else I might not have included.
 Changes for future version 
 
 * Updated the OutChat function for R112 compatibility
-* Improved some commands with target by using a TargetSearch function and the BC getNickname function
+* Added a TargetSearch function + improved some commands with target by using this function and the BC getNickname function
