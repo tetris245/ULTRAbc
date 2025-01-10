@@ -7924,7 +7924,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body."
+                        let msg = "Magical lasers put random clothes on " + tgpname + "'s body."
                         if (Tclothes != undefined) {
                             if (Tclothes != "") {
                                 if (Tclothes.startsWith("\u0027")) {
