@@ -7891,52 +7891,50 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     CommandCombine([{
         Tag: 'clothes',
         Description: "(target): changes clothes.",
-        Action: (args) => {
+        Action: (args) => {       
+            let target;
             if (args === "") {
-                let msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
-                if (Clothes != undefined) {
-                    if (Clothes != "") {
-                        if (Clothes.startsWith("\u0027")) {
-                            msg = tmpname + Clothes;
-                        } else {
-                            msg = tmpname + ' '.repeat(1) + Clothes;
-                        }
-                    }
-                }
-                if (Clothes != "no message") publicmsg(msg);
-                CharacterAppearanceFullRandom(Player, true);
-                ChatRoomCharacterUpdate(Player);
+                target = Player;     
             } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        let msg = umsg1 + tgpname + umsg2;
-                        infomsg(msg);
-                    } else {
-                        let msg = "Magical lasers put random clothes on " + tgpname + "'s body."
-                        if (Tclothes != undefined) {
-                            if (Tclothes != "") {
-                                if (Tclothes.startsWith("\u0027")) {
-                                    msg = tmpname + Tclothes + ' '.repeat(1) + tgpname;
-                                } else {
-                                    msg = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
-                                }
+                target = TargetSearch(args);
+            }
+            if (target != null) {
+                if (target == Player)  {
+                    let msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
+                    if (Clothes != undefined) {
+                        if (Clothes != "") {
+                            if (Clothes.startsWith("\u0027")) {
+                                msg = tmpname + Clothes;
+                            } else {
+                                msg = tmpname + ' '.repeat(1) + Clothes;
                             }
                         }
-                        if (Tclothes != "no message") publicmsg(msg);
-                        CharacterAppearanceFullRandom(target[0], true);
-                        ChatRoomCharacterUpdate(target[0]);
+                    }
+                    if (Clothes != "no message") publicmsg(msg);
+                    CharacterAppearanceFullRandom(Player, true);
+                    ChatRoomCharacterUpdate(Player);
+                } else {
+                     if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                         tgpname = getNickname(target);     
+                         if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
+                             let msg = umsg1 + tgpname + umsg2;
+                             infomsg(msg);
+                         } else {
+                             let msg = "Magical lasers put random clothes on " + tgpname + "'s body."
+                             if (Tclothes != undefined) {
+                                 if (Tclothes != "") {
+                                     if (Tclothes.startsWith("\u0027")) {
+                                         msg = tmpname + Tclothes + ' '.repeat(1) + tgpname;
+                                     } else {
+                                         msg = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
+                                     }
+                                 }
+                             }
+                             if (Tclothes != "no message") publicmsg(msg);
+                             CharacterAppearanceFullRandom(target, true);            
+                             ChatRoomCharacterUpdate(target);
+                         }
                     }
                 }
                 ChatRoomSetTarget(-1);
