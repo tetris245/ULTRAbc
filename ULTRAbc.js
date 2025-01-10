@@ -7892,12 +7892,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'clothes',
         Description: "(target): changes clothes.",
         Action: (args) => {       
-            let target;
-            if (args === "") {
-                target = Player;     
-            } else {
-                target = TargetSearch(args);
-            }
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
             if (target != null) {
                 if (target == Player)  {
                     let msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
@@ -11237,12 +11233,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'naked',
         Description: "(target): removes clothes.",
         Action: (args) => {
-            let target;
-            if (args === "") {
-                target = Player;     
-            } else {
-                target = TargetSearch(args);
-            }
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
             if (target != null) {
                 if (target == Player)  {
                     let msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
