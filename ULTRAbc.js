@@ -5126,6 +5126,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    //Targets
+    function TargetSearch(value) {
+	  if (!value) return;
+	  return ChatRoomCharacter.find((Character) => {
+		return (
+		    Character.MemberNumber == value ||
+		    Character.Name.toLowerCase() === value ||
+		    Character.Nickname?.toLowerCase() === value
+		);
+	});
+   }
+
     //Themed Status   
     function showBCThemedStatus() {
         let msg = "ThemedBC is disabled.";
@@ -11227,51 +11239,49 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'naked',
         Description: "(target): removes clothes.",
         Action: (args) => {
+            let target;
             if (args === "") {
-                let msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
-                if (Naked != undefined) {
-                    if (Naked != "") {
-                        if (Naked.startsWith("\u0027")) {
-                            msg = tmpname + Naked;
-                        } else {
-                            msg = tmpname + ' '.repeat(1) + Naked;
-                        }
-                    }
-                }
-                if (Naked != "no message") publicmsg(msg);
-                CharacterNaked(Player);
-                ChatRoomCharacterUpdate(Player);
+                target = Player;     
             } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        let msg = umsg1 + tgpname + umsg2;
-                        infomsg(msg);
-                    } else {
-                        let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
-                        if (Tnaked != undefined) {
-                            if (Tnaked != "") {
-                                if (Tnaked.startsWith("\u0027")) {
-                                    msg = tmpname + Tnaked + ' '.repeat(1) + tgpname;
-                                } else {
-                                    msg = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
-                                }
+                target = TargetSearch(args);
+            }
+            if (target != null) {
+                if (target == Player)  {
+                    let msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
+                    if (Naked != undefined) {
+                        if (Naked != "") {
+                            if (Naked.startsWith("\u0027")) {
+                                msg = tmpname + Naked;
+                            } else {
+                                msg = tmpname + ' '.repeat(1) + Naked;
                             }
                         }
-                        if (Tnaked != "no message") publicmsg(msg);
-                        CharacterNaked(target[0]);
-                        ChatRoomCharacterUpdate(target[0]);
+                    } 
+                    if (Naked != "no message") publicmsg(msg);
+                    CharacterNaked(Player);
+                    ChatRoomCharacterUpdate(Player);
+                } else {
+                     if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                         tgpname = getNickname(target);     
+                         if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
+                             let msg = umsg1 + tgpname + umsg2;
+                             infomsg(msg);
+                         } else {
+                             let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
+                             if (Tnaked != undefined) {
+                                 if (Tnaked != "") {
+                                     if (Tnaked.startsWith("\u0027")) {
+                                         msg = tmpname + Tnaked + ' '.repeat(1) + tgpname;
+                                     } else {
+                                         msg = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
+                                     }
+                                 }
+                            }
+                            if (Tnaked != "no message") publicmsg(msg);
+                            CharacterNaked(target);
+                            ChatRoomCharacterUpdate(target);
+                        }
                     }
                 }
                 ChatRoomSetTarget(-1);
