@@ -14565,26 +14565,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomCharacterViewClickCharacter(Player);
                 DialogChangeClothes();
             } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
+                let target = TargetSearch(args);
+                if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);     
+                    if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
-                    } else {
-                        target[0].OnlineSharedSettings.AllowFullWardrobeAccess = true;
-                        target[0].OnlineSharedSettings.BlockBodyCosplay = false;
-                        ChatRoomCharacterViewClickCharacter(target[0]);
+                     } else {
+                        target.OnlineSharedSettings.AllowFullWardrobeAccess = true;
+                        target.OnlineSharedSettings.BlockBodyCosplay = false;
+                        ChatRoomCharacterViewClickCharacter(target);
                         DialogChangeClothes();
                     }
                 }
