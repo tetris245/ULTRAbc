@@ -12867,56 +12867,50 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'sleep',
         Description: "(target): uses the sleeping pill on yourself or another player.",
         Action: (args) => {
-            if (args === "") {
-                let msg = "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + pronoun1 + " falls asleep very quickly.";
-                publicmsg(msg);
-                InventoryWear(Player, "RegularSleepingPill", 'ItemMouth');
-                CharacterSetFacialExpression(Player, "Eyes", "Closed");
-                CharacterSetFacialExpression(Player, "Eyes2", "Closed");
-                CharacterSetFacialExpression(Player, "Emoticon", "Sleep");
-                ChatRoomCharacterUpdate(Player);
-            } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if (InventoryGet(target[0], "Pronouns").Asset.Name == "HeHim") {
-                        tgpr1 = "He";
-                        tgpr2 = "him";
-                        tgpr3 = "his";
-                        tgpr4 = "he";
-                    } else if (InventoryGet(target[0], "Pronouns").Asset.Name == "SheHer") {
-                        tgpr1 = "She";
-                        tgpr2 = "her";
-                        tgpr3 = "her";
-                        tgpr4 = "she";
-                    } else {
-                        tgpr1 = "They";
-                        tgpr2 = "them";
-                        tgpr3 = "their";
-                        tgpr4 = "they";
-                    }
-                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        let msg = umsg1 + tgpname + umsg2;
-                        infomsg(msg);
-                    } else {
-                        let msg = "" + tmpname + " feeds " + tgpname + " a sleeping pill and gives " + tgpr2 + " a glass of water. " + tgpname + " falls asleep very quickly.";
-                        publicmsg(msg);
-                        InventoryWear(target[0], "RegularSleepingPill", 'ItemMouth');
-                        CharacterSetFacialExpression(target[0], "Eyes", "Closed");
-                        CharacterSetFacialExpression(target[0], "Eyes2", "Closed");
-                        CharacterSetFacialExpression(target[0], "Emoticon", "Sleep");
-                        ChatRoomCharacterUpdate(target[0]);
-                    }
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
+            if (target != null) {
+                if (target == Player)  {
+                    let msg = "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + pronoun1 + " falls asleep very quickly.";
+                    publicmsg(msg);
+                    InventoryWear(Player, "RegularSleepingPill", 'ItemMouth');
+                    CharacterSetFacialExpression(Player, "Eyes", "Closed");
+                    CharacterSetFacialExpression(Player, "Eyes2", "Closed");
+                    CharacterSetFacialExpression(Player, "Emoticon", "Sleep");
+                    ChatRoomCharacterUpdate(Player);
+                } else {
+                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                         tgpname = getNickname(target);  
+                         if (InventoryGet(target, "Pronouns").Asset.Name == "HeHim") {
+                             tgpr1 = "He";
+                             tgpr2 = "him";
+                             tgpr3 = "his";
+                             tgpr4 = "he";
+                         } else if (InventoryGet(target, "Pronouns").Asset.Name == "SheHer") {
+                             tgpr1 = "She";
+                             tgpr2 = "her";
+                             tgpr3 = "her";
+                             tgpr4 = "she";
+                         } else {
+                             tgpr1 = "They";
+                             tgpr2 = "them";
+                             tgpr3 = "their";
+                             tgpr4 = "they";
+                         }
+                         if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
+                             let msg = umsg1 + tgpname + umsg2;
+                             infomsg(msg);
+                         } else {
+                             let msg = "" + tmpname + " feeds " + tgpname + " a sleeping pill and gives " + tgpr2 + " a glass of water. " + tgpname + " falls asleep very quickly.";
+                             publicmsg(msg);
+                             InventoryWear(target, "RegularSleepingPill", 'ItemMouth');
+                             CharacterSetFacialExpression(target, "Eyes", "Closed");
+                             CharacterSetFacialExpression(target, "Eyes2", "Closed");
+                             CharacterSetFacialExpression(target, "Emoticon", "Sleep");
+                             ChatRoomCharacterUpdate(target);
+                         }
+                     }
                 }
                 ChatRoomSetTarget(-1);
             }
