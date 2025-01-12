@@ -13040,36 +13040,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The spin command must be followed by the target whose wheel of fortune interests you.";
                 infomsg(msg);
             } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
+                let target = TargetSearch(args);
+                if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);     
+                    if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
-                    } else {
-                        if (!InventoryAvailable(target[0], "WheelFortune", "ItemDevices")) {
-                            let msg = "Bad luck! This player does not have a wheel of fortune.";
-                            infomsg(msg);
-                        } else {
-                            CurrentCharacter = target[0];
-                            ChatRoomHideElements();
-                            WheelFortuneEntryModule = CurrentModule;
-                            WheelFortuneEntryScreen = CurrentScreen;
-                            WheelFortuneBackground = ChatRoomData.Background;
-                            WheelFortuneCharacter = CurrentCharacter;
-                            DialogLeave();
-                            CommonSetScreen("MiniGame", "WheelFortune");
-                        }
+                     } else {
+                         if (!InventoryAvailable(target, "WheelFortune", "ItemDevices")) {
+                             let msg = "Bad luck! This player does not have a wheel of fortune.";
+                             infomsg(msg);
+                         } else {
+                             CurrentCharacter = target;
+                             ChatRoomHideElements();
+                             WheelFortuneEntryModule = CurrentModule;
+                             WheelFortuneEntryScreen = CurrentScreen;
+                             WheelFortuneBackground = ChatRoomData.Background;
+                             WheelFortuneCharacter = CurrentCharacter;
+                             DialogLeave();
+                             CommonSetScreen("MiniGame", "WheelFortune");
+                         }
                     }
                 }
                 ChatRoomSetTarget(-1);
