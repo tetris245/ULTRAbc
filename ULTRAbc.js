@@ -8946,7 +8946,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'hint',
         Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
         Action: (_, command, args) => {
@@ -8957,34 +8957,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let [, , ...message] = command.split(" ");
                 let hint = message?.join(" ");
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true)) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                            (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                        let msg = umsg1 + tgpname + umsg2;
-                        infomsg(msg);
-                    } else {
-                        if (hint != "") {
-                            for (let A = 0; A < target[0].Appearance.length; A++)
-                                if ((target[0].Appearance[A].Property != null) && (target[0].Appearance[A].Property.LockedBy != null)) {
-                                    if ((target[0].Appearance[A].Property.LockedBy == "SafewordPadlock") ||
-                                        (target[0].Appearance[A].Property.LockedBy == "PasswordPadlock") ||
-                                        (target[0].Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
-                                        target[0].Appearance[A].Property.Hint = hint;
-                                        let msg = "A hint has been added to " + tgpname + "'s locks with password.";
-                                        publicmsg(msg);
-                                    }
-                                }
-                            ChatRoomCharacterUpdate(Player);
+                let target = TargetSearch(targetname);       
+                if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);     
+                         if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
+                             let msg = umsg1 + tgpname + umsg2;
+                             infomsg(msg);
+                         } else {
+                             if (hint != "") {
+                                 for (let A = 0; A < target.Appearance.length; A++)
+                                     if ((target.Appearance[A].Property != null) && (target.Appearance[A].Property.LockedBy != null)) {
+                                         if ((target.Appearance[A].Property.LockedBy == "SafewordPadlock") ||
+                                             (target.Appearance[A].Property.LockedBy == "PasswordPadlock") ||
+                                             (target.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
+                                             target.Appearance[A].Property.Hint = hint;
+                                             let msg = "A hint has been added to " + tgpname + "'s locks with password.";
+                                             publicmsg(msg);
+                                         }
+                                     }
+                                 ChatRoomCharacterUpdate(target);
                         }
                     }
                 }
