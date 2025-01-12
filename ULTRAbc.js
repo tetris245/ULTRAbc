@@ -9176,36 +9176,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     publicmsg(msg);
                     ChatRoomCharacterUpdate(Player);
                 } else {
-                    let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                    if (target[0] == null) {
-                        let targetnumber = parseInt(targetname);
-                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                    }
-                    if ((target[0] != null) && (target[0].AllowItem == true) && (color.startsWith("#")) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                        if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                            tgpname = target[0].Name;
-                        } else {
-                            tgpname = target[0].Nickname;
-                        }
-                        if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                                (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            for (let A = 0; A < target[0].Appearance.length; A++)
-                                if (target[0].Appearance[A].Asset.Group.Name != null) {
-                                    if (target[0].Appearance[A].Asset.Group.Name.startsWith("Item")) {
-                                        if (Array.isArray(target[0].Appearance[A].Color)) {
-                                            for (let i = 0; i < 14; i++)
-                                                target[0].Appearance[A].Color[i] = color;
-                                        } else {
-                                            target[0].Appearance[A].Color = color;
+                    let target = TargetSearch(targetname);
+                    if ((target != null) && (color.startsWith("#"))) {
+                        if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                            tgpname = getNickname(target);     
+                            if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
+                                 let msg = umsg1 + tgpname + umsg2;
+                                 infomsg(msg);
+                             } else {         
+                                 for (let A = 0; A < target.Appearance.length; A++)
+                                     if (target.Appearance[A].Asset.Group.Name != null) {
+                                        if (target.Appearance[A].Asset.Group.Name.startsWith("Item")) {
+                                            if (Array.isArray(target.Appearance[A].Color)) {
+                                                for (let i = 0; i < 14; i++)
+                                                    target.Appearance[A].Color[i] = color;
+                                            } else {
+                                                target.Appearance[A].Color = color;
+                                            }
                                         }
                                     }
-                                }
-                            let msg = "New colors are used on " + tgpname + "'s bindings.";
-                            publicmsg(msg);
-                            ChatRoomCharacterUpdate(target[0]);
+                                let msg = "New colors are used on " + tgpname + "'s bindings.";
+                                publicmsg(msg);
+                                ChatRoomCharacterUpdate(target);
+                            }
                         }
                     }
                     ChatRoomSetTarget(-1);
