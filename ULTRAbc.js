@@ -14405,64 +14405,58 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'visible',
         Description: ": (target): goes back or sends back to visible mode.",
         Action: (args) => {
-            if (args === "") {
-                let msg = "" + tmpname + " suddenly is visible for everybody.";
-                if (Visible != undefined) {
-                    if (Visible != "") {
-                        if (Visible.startsWith("\u0027")) {
-                            msg = tmpname + Visible;
-                        } else {
-                            msg = tmpname + ' '.repeat(1) + Visible;
-                        }
-                    }
-                }
-                if (Visible != "no message") publicmsg(msg);
-                InventoryRemove(Player, "ItemScript");
-                CurrentScreen === 'ChatRoom' ?
-                    ChatRoomCharacterUpdate(Player) :
-                    CharacterRefresh(Player);
-            } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if (target[0].OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                        let msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
-                        infomsg(msg);
-                    } else {
-                        if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                                (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "" + tgpname + " suddenly is visible for everybody.";
-                            if (Tvisible != undefined) {
-                                if (Tvisible != "") {
-                                    if (Tvisible.startsWith("\u0027")) {
-                                        msg = tmpname + Tvisible + ' '.repeat(1) + tgpname;
-                                    } else {
-                                        msg = tmpname + ' '.repeat(1) + Tvisible + ' '.repeat(1) + tgpname;
-                                    }
-                                }
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
+            if (target != null) {
+                if (target == Player) {
+                    let msg = "" + tmpname + " suddenly is visible for everybody.";
+                    if (Visible != undefined) {
+                        if (Visible != "") {
+                            if (Visible.startsWith("\u0027")) {
+                                msg = tmpname + Visible;
+                            } else {
+                                msg = tmpname + ' '.repeat(1) + Visible;
                             }
-                            if (Tvisible != "no message") publicmsg(msg);
-                            InventoryRemove(target[0], "ItemScript");
-                            CurrentScreen === 'ChatRoom' ?
-                                ChatRoomCharacterUpdate(target[0]) :
-                                CharacterRefresh(target[0]);
                         }
+                    }
+                    if (Visible != "no message") publicmsg(msg);
+                    InventoryRemove(Player, "ItemScript");
+                    CurrentScreen === 'ChatRoom' ?
+                        ChatRoomCharacterUpdate(Player) :
+                        CharacterRefresh(Player);
+                } else {
+                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                         tgpname = getNickname(target);  
+                         if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
+                             let msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
+                             infomsg(msg);
+                         } else {
+                             if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
+                                 let msg = umsg1 + tgpname + umsg2;
+                                 infomsg(msg);
+                             } else {
+                                 let msg = "" + tgpname + " suddenly is visible for everybody.";
+                                 if (Tvisible != undefined) {
+                                     if (Tvisible != "") {
+                                         if (Tvisible.startsWith("\u0027")) {
+                                             msg = tmpname + Tvisible + ' '.repeat(1) + tgpname;
+                                         } else {
+                                             msg = tmpname + ' '.repeat(1) + Tvisible + ' '.repeat(1) + tgpname;
+                                         }
+                                     }
+                                 }
+                                 if (Tvisible != "no message") publicmsg(msg);
+                                 InventoryRemove(target, "ItemScript");
+                                 CurrentScreen === 'ChatRoom' ?
+                                     ChatRoomCharacterUpdate(target) :
+                                     CharacterRefresh(target);
+                             }
+                         }
                     }
                 }
             }
