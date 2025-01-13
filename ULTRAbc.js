@@ -9053,72 +9053,66 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'invisible',
         Description: "(target): goes or sends to invisible mode (scripts need to be allowed in BC settings).",
         Action: (args) => {
-            if (args === "") {
-                if (Player.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                    let msg = "To use the invisible command on yourself, you need first to allow Scripts in BC settings.";
-                    infomsg(msg);
-                } else {
-                    let msg = "Magical lasers make " + tmpname + " completely invisible.";
-                    if (Invisible != undefined) {
-                        if (Invisible != "") {
-                            if (Invisible.startsWith("\u0027")) {
-                                msg = tmpname + Invisible;
-                            } else {
-                                msg = tmpname + ' '.repeat(1) + Invisible;
-                            }
-                        }
-                    }
-                    if (Invisible != "no message") publicmsg(msg);
-                    InventoryWear(Player, "Script", "ItemScript");
-                    InventoryGet(Player, "ItemScript").Property = {
-                        Hide: echolevel5
-                    }
-                    CurrentScreen === 'ChatRoom' ?
-                        ChatRoomCharacterUpdate(Player) :
-                        CharacterRefresh(Player);
-                }
-            } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && (target[0].AllowItem == true) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
-                    if (target[0].OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                        let msg = "To use the invisible command on other players, they need first to allow Scripts in BC settings.";
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
+            if (target != null) {
+                if (target == Player)  {
+                    if (Player.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
+                        let msg = "To use the invisible command on yourself, you need first to allow Scripts in BC settings.";
                         infomsg(msg);
                     } else {
-                        if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                                (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "Magical lasers make " + tgpname + " completely invisible.";
-                            if (Tinvisible != undefined) {
-                                if (Tinvisible != "") {
-                                    if (Tinvisible.startsWith("\u0027")) {
-                                        msg = tmpname + Tinvisible + ' '.repeat(1) + tgpname;
-                                    } else {
-                                        msg = tmpname + ' '.repeat(1) + Tinvisible + ' '.repeat(1) + tgpname;
-                                    }
+                        let msg = "Magical lasers make " + tmpname + " completely invisible.";
+                        if (Invisible != undefined) {
+                            if (Invisible != "") {
+                                if (Invisible.startsWith("\u0027")) {
+                                    msg = tmpname + Invisible;
+                                } else {
+                                    msg = tmpname + ' '.repeat(1) + Invisible;
                                 }
                             }
-                            if (Tinvisible != "no message") publicmsg(msg);
-                            InventoryWear(target[0], "Script", "ItemScript");
-                            InventoryGet(target[0], "ItemScript").Property = {
-                                Hide: echolevel5
-                            }
-                            CurrentScreen === 'ChatRoom' ?
-                                ChatRoomCharacterUpdate(target[0]) :
-                                CharacterRefresh(target[0]);
                         }
+                        if (Invisible != "no message") publicmsg(msg);
+                        InventoryWear(Player, "Script", "ItemScript");
+                        InventoryGet(Player, "ItemScript").Property = {
+                            Hide: echolevel5
+                        }
+                        CurrentScreen === 'ChatRoom' ?
+                            ChatRoomCharacterUpdate(Player) :
+                            CharacterRefresh(Player);
                     }
+                } else {
+                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                         tgpname = getNickname(target);  
+                         if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
+                             let msg = "To use the invisible command on other players, they need first to allow Scripts in BC settings.";
+                             infomsg(msg);
+                         } else {
+                             if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
+                                 let msg = umsg1 + tgpname + umsg2;
+                                 infomsg(msg);
+                             } else {
+                                 let msg = "Magical lasers make " + tgpname + " completely invisible.";
+                                 if (Tinvisible != undefined) {
+                                     if (Tinvisible != "") {
+                                         if (Tinvisible.startsWith("\u0027")) {
+                                             msg = tmpname + Tinvisible + ' '.repeat(1) + tgpname;
+                                         } else {
+                                             msg = tmpname + ' '.repeat(1) + Tinvisible + ' '.repeat(1) + tgpname;
+                                         }
+                                     }
+                                 }
+                                 if (Tinvisible != "no message") publicmsg(msg);
+                                 InventoryWear(target, "Script", "ItemScript");
+                                 InventoryGet(target, "ItemScript").Property = {
+                                     Hide: echolevel5
+                                 }
+                                 CurrentScreen === 'ChatRoom' ?
+                                     ChatRoomCharacterUpdate(target) :
+                                     CharacterRefresh(target);
+                             }
+                         }
+                     }
                 }
             }
         }
