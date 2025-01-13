@@ -8179,23 +8179,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     } else {
-                        let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                        if (target[0] == null) {
-                            let targetnumber = parseInt(targetname);
-                            target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                        }
-                        if (target[0] != null) {
-                            if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                                tgpname = target[0].Name;
-                            } else {
-                                tgpname = target[0].Nickname;
-                            }
+                        let target = TargetSearch(targetname);
+                        if (target != null) {
+                            tgpname = getNickname(target); 
                             let info = ChatRoomHTMLEntities(tgpname) + " does not have normal diapers!";
-                            if (InventoryGet(target[0], "Panties") == null) {
+                            if (InventoryGet(target, "Panties") == null) {
                                 let msg = info;
                                 infomsg(msg);
-                            } else if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
-                                ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                            } else if (InventoryGet(target, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target, "Panties").Asset.Name === "PoofyDiaper") {
+                                ChatRoomTargetMemberNumber = target.MemberNumber;
                                 let msg = "" + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.";
                                 targetNumber = ChatRoomTargetMemberNumber;
                                 ChatRoomSendWhisper(targetNumber, msg);
@@ -8221,23 +8213,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     } else {
-                        let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                        if (target[0] == null) {
-                            let targetnumber = parseInt(targetname);
-                            target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                        }
-                        if (target[0] != null) {
-                            if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                                tgpname = target[0].Name;
-                            } else {
-                                tgpname = target[0].Nickname;
-                            }
+                        let target = TargetSearch(targetname);
+                        if (target != null) {
+                            tgpname = getNickname(target); 
                             let info = ChatRoomHTMLEntities(tgpname) + " does not have chastity diapers!";
-                            if (InventoryGet(target[0], "ItemPelvis") == null) {
+                            if (InventoryGet(target, "ItemPelvis") == null) {
                                 let msg = info;
                                 infomsg(msg);
-                            } else if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
-                                ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                            } else if (InventoryGet(target, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target, "ItemPelvis").Asset.Name === "PoofyDiaper") {
+                                ChatRoomTargetMemberNumber = target.MemberNumber;
                                 let msg = "" + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.";
                                 targetNumber = ChatRoomTargetMemberNumber;
                                 ChatRoomSendWhisper(targetNumber, msg);
@@ -8283,23 +8267,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         }
                     } else {
-                        let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                        if (target[0] == null) {
-                            let targetnumber = parseInt(targetname);
-                            target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                        }
-                        if (target[0] != null) {
-                            if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                                tgpname = target[0].Name;
-                            } else {
-                                tgpname = target[0].Nickname;
-                            }
-                            if (InventoryGet(target[0], "Pronouns").Asset.Name == "HeHim") {
+                        let target = TargetSearch(targetname);
+                        if (target != null) {
+                            tgpname = getNickname(target); 
+                            if (InventoryGet(target, "Pronouns").Asset.Name == "HeHim") {
                                 tgpr1 = "He";
                                 tgpr2 = "him";
                                 tgpr3 = "his";
                                 tgpr4 = "he";
-                            } else if (InventoryGet(target[0], "Pronouns").Asset.Name == "SheHer") {
+                            } else if (InventoryGet(target, "Pronouns").Asset.Name == "SheHer") {
                                 tgpr1 = "She";
                                 tgpr2 = "her";
                                 tgpr3 = "her";
@@ -8312,29 +8288,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             let info1 = ChatRoomHTMLEntities(tgpname) + " does not have a diaper! Get one on " + tgpr2 + " before " + tgpr4 + " makes a mess!";
                             let info2 = ChatRoomHTMLEntities(tgpname) + " does not have two layers of diapers!";
-                            if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
+                            if ((InventoryGet(target, "Panties") == null) && (InventoryGet(target, "ItemPelvis") == null)) {
                                 let msg = info1;
                                 infomsg(msg);
-                            } else if ((InventoryGet(target[0], "Panties") == null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
-                                if (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper") {
+                            } else if ((InventoryGet(target, "Panties") == null) && (InventoryGet(target, "ItemPelvis") != null)) {
+                                if (InventoryGet(target, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target, "ItemPelvis").Asset.Name === "PoofyDiaper") {
                                     let msg = info2;
                                     infomsg(msg);
                                 } else {
                                     let msg = info1;
                                     infomsg(msg);
                                 }
-                            } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") == null)) {
-                                if (InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") {
+                            } else if ((InventoryGet(target, "Panties") != null) && (InventoryGet(target, "ItemPelvis") == null)) {
+                                if (InventoryGet(target, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target, "Panties").Asset.Name === "PoofyDiaper") {
                                     let msg = info2;
                                     infomsg(msg);
                                 } else {
                                     let msg = info1;
                                     infomsg(msg);
                                 }
-                            } else if ((InventoryGet(target[0], "Panties") != null) && (InventoryGet(target[0], "ItemPelvis") != null)) {
-                                if ((InventoryGet(target[0], "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "Panties").Asset.Name === "PoofyDiaper") &&
-                                    (InventoryGet(target[0], "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target[0], "ItemPelvis").Asset.Name === "PoofyDiaper")) {
-                                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                            } else if ((InventoryGet(target, "Panties") != null) && (InventoryGet(target, "ItemPelvis") != null)) {
+                                if ((InventoryGet(target, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(target, "Panties").Asset.Name === "PoofyDiaper") &&
+                                    (InventoryGet(target, "ItemPelvis").Asset.Name == "BulkyDiaper" || InventoryGet(target, "ItemPelvis").Asset.Name === "PoofyDiaper")) {
+                                    ChatRoomTargetMemberNumber = target.MemberNumber;
                                     let msg = "" + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.";
                                     targetNumber = ChatRoomTargetMemberNumber;
                                     ChatRoomSendWhisper(targetNumber, msg);
@@ -8446,7 +8422,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'difficulty',
         Description: "(number): changes game difficulty.",
