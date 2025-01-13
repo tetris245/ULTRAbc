@@ -14405,7 +14405,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-   CommandCombine([{
+    CommandCombine([{
         Tag: 'visible',
         Description: ": (target): goes back or sends back to visible mode.",
         Action: (args) => {
