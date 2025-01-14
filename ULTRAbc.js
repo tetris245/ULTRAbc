@@ -14036,17 +14036,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringUnlock2 = stringUnlock1.split(/[ ,]+/);
                 let lk = stringUnlock2[1];
                 let targetname = stringUnlock2[0];
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if ((target[0] != null) && ((target[0] == Player) || (target[0].AllowItem == true)) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                    if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                        tgpname = target[0].Name;
-                    } else {
-                        tgpname = target[0].Nickname;
-                    }
+                let target = TargetSearch(targetname);       
+                if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);   
                     if (tmpname == tgpname) {
                         let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
                         if (Unlock != undefined) {
@@ -14060,9 +14052,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if (Unlock == "no message") silent = 1;
                         if (silent == 0) publicmsg(msg);
-                    } else {
-                        if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                                (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
+                    } else {  
+                        if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                            (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
                             uw = 1;
                             let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
@@ -14083,81 +14075,81 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if (uw == 0) {
                         if (lk == null) {
-                            CharacterReleaseFromLock(target[0], "CombinationPadlock");
-                            CharacterReleaseFromLock(target[0], "ExclusivePadlock");
-                            CharacterReleaseFromLock(target[0], "FamilyPadlock");
-                            CharacterReleaseFromLock(target[0], "HighSecurityPadlock");
-                            CharacterReleaseFromLock(target[0], "IntricatePadlock");
-                            CharacterReleaseFromLock(target[0], "LoversPadlock");
-                            CharacterReleaseFromLock(target[0], "LoversTimerPadlock");
-                            CharacterReleaseFromLock(target[0], "MetalPadlock");
-                            CharacterReleaseFromLock(target[0], "MistressPadlock");
-                            CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
-                            CharacterReleaseFromLock(target[0], "OwnerPadlock");
-                            CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
-                            CharacterReleaseFromLock(target[0], "PandoraPadlock");
-                            CharacterReleaseFromLock(target[0], "PasswordPadlock");
-                            CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
-                            CharacterReleaseFromLock(target[0], "SafewordPadlock");
-                            CharacterReleaseFromLock(target[0], "TimerPadlock");
-                            CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
-                            for (let A = 0; A < target[0].Appearance.length; A++)
-                                if ((target[0].Appearance[A].Property != null) &&
-                                    (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi"))
-                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                            CharacterReleaseFromLock(target, "CombinationPadlock");
+                            CharacterReleaseFromLock(target, "ExclusivePadlock");
+                            CharacterReleaseFromLock(target, "FamilyPadlock");
+                            CharacterReleaseFromLock(target, "HighSecurityPadlock");
+                            CharacterReleaseFromLock(target, "IntricatePadlock");
+                            CharacterReleaseFromLock(target, "LoversPadlock");
+                            CharacterReleaseFromLock(target, "LoversTimerPadlock");
+                            CharacterReleaseFromLock(target, "MetalPadlock");
+                            CharacterReleaseFromLock(target, "MistressPadlock");
+                            CharacterReleaseFromLock(target, "MistressTimerPadlock");
+                            CharacterReleaseFromLock(target, "OwnerPadlock");
+                            CharacterReleaseFromLock(target, "OwnerTimerPadlock");
+                            CharacterReleaseFromLock(target, "PandoraPadlock");
+                            CharacterReleaseFromLock(target, "PasswordPadlock");
+                            CharacterReleaseFromLock(target, "PortalLinkPadlock");
+                            CharacterReleaseFromLock(target, "SafewordPadlock");
+                            CharacterReleaseFromLock(target, "TimerPadlock");
+                            CharacterReleaseFromLock(target, "TimerPasswordPadlock");
+                            for (let A = 0; A < target.Appearance.length; A++)
+                                if ((target.Appearance[A].Property != null) &&
+                                    (target.Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi"))
+                                    InventoryUnlock(target, target.Appearance[A]);
                         }
-                        if (lk == 1) CharacterReleaseFromLock(target[0], "MetalPadlock");
-                        if (lk == 2) CharacterReleaseFromLock(target[0], "ExclusivePadlock");
-                        if (lk == 3) CharacterReleaseFromLock(target[0], "IntricatePadlock");
+                        if (lk == 1) CharacterReleaseFromLock(target, "MetalPadlock");
+                        if (lk == 2) CharacterReleaseFromLock(target, "ExclusivePadlock");
+                        if (lk == 3) CharacterReleaseFromLock(target, "IntricatePadlock");
                         if (lk == 4) {
-                            for (let A = 0; A < target[0].Appearance.length; A++)
-                                if ((target[0].Appearance[A].Property != null) &&
-                                    (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
-                                    (target[0].Appearance[A].Property.Name == undefined))
-                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                            for (let A = 0; A < target.Appearance.length; A++)
+                                if ((target.Appearance[A].Property != null) &&
+                                    (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                    (target.Appearance[A].Property.Name == undefined))
+                                    InventoryUnlock(target, target.Appearance[A]);
                         }
-                        if (lk == 5) CharacterReleaseFromLock(target[0], "PandoraPadlock");
-                        if (lk == 6) CharacterReleaseFromLock(target[0], "MistressPadlock");
-                        if (lk == 7) CharacterReleaseFromLock(target[0], "LoversPadlock");
-                        if (lk == 8) CharacterReleaseFromLock(target[0], "OwnerPadlock");
-                        if (lk == 9) CharacterReleaseFromLock(target[0], "TimerPadlock");
-                        if (lk == 10) CharacterReleaseFromLock(target[0], "CombinationPadlock");
-                        if (lk == 11) CharacterReleaseFromLock(target[0], "SafewordPadlock");
-                        if (lk == 12) CharacterReleaseFromLock(target[0], "PasswordPadlock");
-                        if (lk == 13) CharacterReleaseFromLock(target[0], "MistressTimerPadlock");
-                        if (lk == 14) CharacterReleaseFromLock(target[0], "LoversTimerPadlock");
-                        if (lk == 15) CharacterReleaseFromLock(target[0], "OwnerTimerPadlock");
-                        if (lk == 16) CharacterReleaseFromLock(target[0], "TimerPasswordPadlock");
+                        if (lk == 5) CharacterReleaseFromLock(target, "PandoraPadlock");
+                        if (lk == 6) CharacterReleaseFromLock(target, "MistressPadlock");
+                        if (lk == 7) CharacterReleaseFromLock(target, "LoversPadlock");
+                        if (lk == 8) CharacterReleaseFromLock(target, "OwnerPadlock");
+                        if (lk == 9) CharacterReleaseFromLock(target, "TimerPadlock");
+                        if (lk == 10) CharacterReleaseFromLock(target, "CombinationPadlock");
+                        if (lk == 11) CharacterReleaseFromLock(target, "SafewordPadlock");
+                        if (lk == 12) CharacterReleaseFromLock(target, "PasswordPadlock");
+                        if (lk == 13) CharacterReleaseFromLock(target, "MistressTimerPadlock");
+                        if (lk == 14) CharacterReleaseFromLock(target, "LoversTimerPadlock");
+                        if (lk == 15) CharacterReleaseFromLock(target, "OwnerTimerPadlock");
+                        if (lk == 16) CharacterReleaseFromLock(target, "TimerPasswordPadlock");
                         if (lk == 17) {
-                            for (let A = 0; A < target[0].Appearance.length; A++)
-                                if ((target[0].Appearance[A].Property != null) &&
-                                    (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
-                                    (target[0].Appearance[A].Property.Name == "Best Friend Padlock"))
-                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                            for (let A = 0; A < target.Appearance.length; A++)
+                                if ((target.Appearance[A].Property != null) &&
+                                    (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                    (target.Appearance[A].Property.Name == "Best Friend Padlock"))
+                                    InventoryUnlock(target, target.Appearance[A]);
                         }
                         if (lk == 18) {
-                            for (let A = 0; A < target[0].Appearance.length; A++)
-                                if ((target[0].Appearance[A].Property != null) &&
-                                    (target[0].Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
-                                    (target[0].Appearance[A].Property.Name == "Best Friend Timer Padlock"))
-                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                            for (let A = 0; A < target.Appearance.length; A++)
+                                if ((target.Appearance[A].Property != null) &&
+                                    (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                    (target.Appearance[A].Property.Name == "Best Friend Timer Padlock"))
+                                    InventoryUnlock(target, target.Appearance[A]);
                         }
-                        if (lk == 19) CharacterReleaseFromLock(target[0], "FamilyPadlock");
-                        if (lk == 20) CharacterReleaseFromLock(target[0], "PortalLinkPadlock");
+                        if (lk == 19) CharacterReleaseFromLock(target, "FamilyPadlock");
+                        if (lk == 20) CharacterReleaseFromLock(target, "PortalLinkPadlock");
                         if (lk == 21) {
-                            for (let A = 0; A < target[0].Appearance.length; A++)
-                                if ((target[0].Appearance[A].Property != null) &&
-                                    (target[0].Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi"))
-                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                            for (let A = 0; A < target.Appearance.length; A++)
+                                if ((target.Appearance[A].Property != null) &&
+                                    (target.Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi"))
+                                    InventoryUnlock(target, target.Appearance[A]);
                         }
                         if (lk == 22) {
-                            for (let A = 0; A < target[0].Appearance.length; A++)
-                                if ((target[0].Appearance[A].Property != null) &&
-                                    (target[0].Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
-                                    (target[0].Appearance[A].Property.Name == "DeviousPadlock"))
-                                    InventoryUnlock(target[0], target[0].Appearance[A]);
+                            for (let A = 0; A < target.Appearance.length; A++)
+                                if ((target.Appearance[A].Property != null) &&
+                                    (target.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
+                                    (target.Appearance[A].Property.Name == "DeviousPadlock"))
+                                    InventoryUnlock(target, target.Appearance[A]);
                         }
-                        ChatRoomCharacterUpdate(target[0]);
+                        ChatRoomCharacterUpdate(target);
                     }
                 }
                 ChatRoomSetTarget(-1);
