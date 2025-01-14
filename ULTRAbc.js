@@ -12928,26 +12928,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg2 = "The solidity of most current bindings has been changed.";
                         infomsg(msg2);
                     } else {
-                        let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                        if (target[0] == null) {
-                            let targetnumber = parseInt(targetname);
-                            target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                        }
-                        if ((target[0] != null) && (target[0].AllowItem == true) && (solidity > 0) && (solidity < 100) && (target[0].OnlineSharedSettings.UBC != undefined)) {
-                            if ((target[0].Nickname == '') || (target[0].Nickname == undefined)) {
-                                tgpname = target[0].Name;
+                        let target = TargetSearch(targetname);                   
+                        if ((target != null) && (target.AllowItem == true) && (solidity > 0) && (solidity < 100) && (target.OnlineSharedSettings.UBC != undefined)) {
+                            tgpname = getNickname(target);     
+                            if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
+                             (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) { 
+                                 let msg = umsg1 + tgpname + umsg2;
+                                 infomsg(msg);
                             } else {
-                                tgpname = target[0].Nickname;
-                            }
-                            if ((target[0].OnlineSharedSettings.Uwall) && ((target[0].OnlineSharedSettings.Ulist == undefined) ||
-                                    (!(target[0].OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                                let msg = umsg1 + tgpname + umsg2;
-                                infomsg(msg);
-                            } else {
-                                if (InventoryGet(target[0], "ItemDevices") != null) {
-                                    if ((InventoryGet(target[0], "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(target[0], "ItemDevices").Asset.Name == "WoodenRack")) {
+                                if (InventoryGet(target, "ItemDevices") != null) {
+                                    if ((InventoryGet(target, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(target, "ItemDevices").Asset.Name == "WoodenRack")) {
                                         if (solidity == 1) {
-                                            InventoryRemove(target[0], "ItemDevices");
+                                            InventoryRemove(target, "ItemDevices");
                                             let msg1 = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
                                             if (Tsolidity != undefined) {
                                                 if (Tsolidity != "") {
@@ -12962,15 +12954,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         }
                                     }
                                 }
-                                for (let A = 0; A < target[0].Appearance.length; A++)
-                                    if (target[0].Appearance[A].Asset.Group.Name != null) {
-                                        if (target[0].Appearance[A].Asset.Group.Name.startsWith("Item")) {
-                                            target[0].Appearance[A].Difficulty = solidity;
+                                for (let A = 0; A < target.Appearance.length; A++)
+                                    if (target.Appearance[A].Asset.Group.Name != null) {
+                                        if (target.Appearance[A].Asset.Group.Name.startsWith("Item")) {
+                                            target.Appearance[A].Difficulty = solidity;
                                         }
                                     }
                                 let msg2 = "The solidity of most current " + tgpname + "\u0027s bindings has been changed by " + tmpname + ".";
                                 publicmsg(msg2);
-                                ChatRoomCharacterUpdate(target[0]);
+                                ChatRoomCharacterUpdate(target);
                             }
                         }
                         ChatRoomSetTarget(-1);
