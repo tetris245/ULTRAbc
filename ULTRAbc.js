@@ -5709,18 +5709,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return blurLevel;
     }
 
-    function TintsEffect() {   
-        let a1 = "";
-        let tints = DrawHexToTints(tintcolor);
-        let r = tints.r;
-        let g = tints.g;
-        let b = tints.b;
-        let a = tints.a;
-        if (a == 0) a1 = 0;
-        if (a == 1) a1 = 0.2;
-        if (a == 2) a1 = 0.35;
-        if (a == 3) a1 = 0.5;   
-        DrawRect(0, 0, 2000, 1000, `rgba(${r},${g},${b},${a1})`);
+    function TintsEffect() { 
+        if (tintlevel != 0) {  
+            let a1 = "";
+            let tints = DrawHexToTints(tintcolor);
+            let r = tints.r;
+            let g = tints.g;
+            let b = tints.b;
+            let a = tints.a;
+            if (a == 0) a1 = 0;
+            if (a == 1) a1 = 0.2;
+            if (a == 2) a1 = 0.35;
+            if (a == 3) a1 = 0.5;   
+            DrawRect(0, 0, 2000, 1000, `rgba(${r},${g},${b},${a1})`);
+        }
     }
 
     //WCE Status 
