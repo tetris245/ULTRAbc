@@ -1901,9 +1901,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.", 60
                 );
                 addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
-                    "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX, MBS and Echo's mod. The final color can be different when mixed with a Themed color.", 60
+                    "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.", 60
                 );
-		let mbsmsg = "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is not available when MBS is not detected. It is without any effect when the tint level is 0."; 
+                let mbsmsg = "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is not available when MBS is not detected. It is without any effect when the tint level is 0."; 
                 let mbb = 0;
                 let list = PreferenceExtensionsDisplay;
                 for (let i = 0; i < list.length; i++) {
@@ -1915,7 +1915,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, false, 192);
                 }
             }
-
+	    
             PreferenceSubscreenUBCVisualRun = function() {
                 drawMenuElements();
             }
