@@ -1899,7 +1899,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "Put a valid number";
             }
 
-	    PreferenceSubscreenUBCVisualLoad = function() {
+	   PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
                     "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
@@ -1910,13 +1910,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Forced global blur level (0-4):", "blureffect", "InputBlurEffect",
                     "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", 60
                 );
+                addMenuCheckbox(64, 64, "Fully disable all UBC tint settings: ", "tintnever",
+                    "If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 192
+                );
                 addMenuInput(200, "Tint effect level (0-3):", "tintlevel", "InputTintLevel",
                     "Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.", 60
                 );
                 addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
                     "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.", 60
                 );
-                let mbsmsg = "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is not available when MBS is not detected. It is without any effect when the tint level is 0."; 
+                let mbsmsg = "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is not available when MBS is not detected or when all UBC tint setings are fully disabled. It is without any effect when the tint level is 0."; 
                 let mbb = 0;
                 let list = PreferenceExtensionsDisplay;
                 for (let i = 0; i < list.length; i++) {
@@ -1925,13 +1928,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (mbb == 0) {
                     addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, true, 192);
                 } else { 
-                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, false, 192);
+                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, "Player.UBC.ubcSettings.tintnever", 192);
                 }
-		addMenuCheckbox(64, 64, "Fully disable all UBC tint settings: ", "tintnever",
-                    "If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 192
-                );
             }
-	    
+
             PreferenceSubscreenUBCVisualRun = function() {
                 drawMenuElements();
             }
@@ -3384,7 +3384,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             for (let i = 0; i < list.length; i++) {
                if (list[i].Button == "MBS Settings") mbb = 1; 
             }
-            if ((name == "Extensions") && (mbb == 1) && (tintnever == false)) {
+            if ((name == "Extensions") && (PreferenceExtensionsCurrent == null) && (mbb == 1) && (tintnever == false)) {
                 if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
                 if (tintmbs == false) untintMbsColors();
             }
