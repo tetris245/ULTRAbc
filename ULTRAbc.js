@@ -97,7 +97,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let st = 0;
     let tcname = "Cell";
     let tintcolor = "#000000";
-    let tintlevel = 0;
+    let tintlevel = 0;  
+    let tintmbs = false;
+    let tintorg1 = "";
+    let tintorg2 = "";
+    let tintorg3 = "";
+    let tintorg4 = "";
+    let tintorg5 = "";
+    let tintorg6 = "";
 
     let AsylumLimitOn;
     let AutojoinOn;
@@ -443,7 +450,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             st = 0;
             tcname = "Cell";
 	    tintcolor = "#000000";
-            tintlevel = 0;
+            tintlevel = 0;  
+	    tintmbs = false;
+            tintorg1 = "";
+            tintorg2 = "";
+            tintorg3 = "";
+            tintorg4 = "";
+            tintorg5 = "";
+            tintorg6 = "";
 	    AsylumLimitOn = false;
             AutojoinOn = false;
             DolltalkOn = false;
@@ -535,6 +549,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tcname = datas.tcname; 
 	    tintcolor = datas.tintcolor;
 	    tintlevel = datas.tintlevel;
+	    tintmbs = datas.tintmbs;
+            tintorg1 = "";
+            tintorg2 = "";
+            tintorg3 = "";
+            tintorg4 = "";
+            tintorg5 = "";
+            tintorg6 = "";
 	    AsylumLimitOn = datas.asylumlimit;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
@@ -624,6 +645,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tcname": tcname,
             "tintcolor": tintcolor,
             "tintlevel": tintlevel,
+            "tintmbs": tintmbs,
             "asylumlimit": AsylumLimitOn,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
@@ -790,6 +812,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (tcname == null || tcname == undefined) tcname = "Cell";
 		if (tintcolor == null || tintcolor == undefined) tintcolor = "#000000";
                 if (tintlevel == null || tintlevel == undefined) tintlevel = 0;	
+		if (tintmbs == null || tintmbs == undefined) tintmbs = false;
                 M_MOANER_saveControls();
                 BabyTalkOn = false;
                 GagTalkOn = false;
@@ -892,6 +915,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 tickleMoan: true,
 		tintcolor: "#000000",
                 tintlevel: 0,
+		tintmbs: false,
                 vibeMoan: true,
                 whisperMoan: false,
                 xvibeMoan: false,
@@ -1430,6 +1454,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 st = data.stutterlevel * 1;
 		tintcolor = data.tintcolor;
 		tintlevel = data.tintlevel;
+		tintmbs = data.tintmbs;
                 AnimalTalk1On = false;
                 AnimalTalk2On = false;
                 AnimalTalk3On = false;
@@ -1877,6 +1902,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
                     "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX, MBS and Echo's mod. The final color can be different when mixed with a Themed color.", 60
+                );
+		addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs",
+                    "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color.", false, 192
                 );
             }
 
@@ -3326,6 +3354,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let name = PreferenceSubscreen.name;
             if ((name != "Extensions") || ((name == "Extensions") && (PreferenceExtensionsCurrent == null))) {
                 DrawButton(1815, 780, 90, 90, "BACK", "White", "");
+            }
+	    if ((name == "Extensions") && (Player.OnlineSharedSettings.MBS != undefined)) {
+                if (tintmbs == true) tintMbsColors();
+                if (tintmbs == false) untintMbsColors();
             }
 	    TintsEffect(); 
             next(args);
@@ -5700,6 +5732,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return blurLevel;
     }
 
+    function tintMbsColors() {
+        if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {
+           if (Player.Themed != undefined) {
+               tintorg1 = Player.Themed.ColorsModule.base.main;
+               tintorg2 = Player.Themed.ColorsModule.base.element;
+               tintorg3 = Player.Themed.ColorsModule.base.elementHover;
+               tintorg4 = Player.Themed.ColorsModule.base.accent;
+               tintorg5 = Player.Themed.ColorsModule.base.elementHint;
+               tintorg6 = Player.Themed.ColorsModule.base.text;
+           }
+           return mbs.css.setStyle({
+               backgroundColor: tintcolor
+           });
+        }
+    }
+
     function TintsEffect() { 
         if (tintlevel != 0) {  
             let a1 = "";
@@ -5713,6 +5761,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (a == 2) a1 = 0.35;
             if (a == 3) a1 = 0.5;   
             DrawRect(0, 0, 2000, 1000, `rgba(${r},${g},${b},${a1})`);
+        }
+    }
+
+    function untintMbsColors() {
+        if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {
+           if (Player.Themed == undefined) { 
+               return mbs.css.setStyle({
+                   backgroundColor: mbs.css.DEFAULT_STYLE.backgroundColor,
+                   buttonColor: mbs.css.DEFAULT_STYLE.buttonColor,
+                   buttonHoverColor: mbs.css.DEFAULT_STYLE.buttonHoverColor,
+                   borderColor: mbs.css.DEFAULT_STYLE.borderColor,
+                   tooltipColor: mbs.css.DEFAULT_STYLE.tooltipColor,
+                   textColor: mbs.css.DEFAULT_STYLE.textColor
+               });
+           } else {
+               return mbs.css.setStyle({
+                   backgroundColor: tintorg1,
+                   buttonColor: tintorg2,
+                   buttonHoverColor: tintorg3,
+                   borderColor: tintorg4,
+                   tooltipColor: tintorg5,
+                   textColor: tintorg6
+               });
+           }
         }
     }
 
