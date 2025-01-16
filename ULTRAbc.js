@@ -1928,7 +1928,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, false, 192);
                 }
 		addMenuCheckbox(64, 64, "Fully disable all UBC tint settings: ", "tintnever",
-                    "If you check this setting, all tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 192
+                    "If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 192
                 );
             }
 	    
