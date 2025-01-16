@@ -60,7 +60,9 @@ All else I might not have included.
 
 Changes for future version 
 
-* New option in GUI - Visual to use the tint color as background color for the central part of MBS screens
+* New options in GUI - Visual to
+  - use the tint color as background color for the central part of MBS screens
+  - fully disable all UBC tint settings (level, color, MBS); however, a full relog is required to restore the origina or themed colors on the MBS screens
 * Added the coffin trap and improved/optimised the traps with functions, especially to avoid replacement of locked items (thanks to KitKat)
 * Updated the OutChat function for R112 compatibility
 * Added a TargetSearch function with support for member number, name and nickname
