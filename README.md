@@ -60,6 +60,7 @@ All else I might not have included.
 
 Changes for future version 
 
+* Added the coffin trap and improved/optimised the traps with functions, especially to avoid replacement of locked items (thanks to KitKat)
 * Updated the OutChat function for R112 compatibility
 * Added a TargetSearch function with support for member number, name and nickname
 * Improved most commands with target by using the TargetSearch function and the BC getNickname function
