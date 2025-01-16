@@ -1903,9 +1903,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
                     "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX, MBS and Echo's mod. The final color can be different when mixed with a Themed color.", 60
                 );
-		addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs",
-                    "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color.", false, 192
-                );
+		let mbsmsg = "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is not available when MBS is not detected."; 
+                let mbb = 0;
+                let list = PreferenceExtensionsDisplay;
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i].Button == "MBS Settings") mbb = 1; 
+                }
+                if (mbb == 0) {
+                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, true, 192);
+                } else { 
+                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, false, 192);
+                }
             }
 
             PreferenceSubscreenUBCVisualRun = function() {
@@ -3355,7 +3363,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((name != "Extensions") || ((name == "Extensions") && (PreferenceExtensionsCurrent == null))) {
                 DrawButton(1815, 780, 90, 90, "BACK", "White", "");
             }
-	    if ((name == "Extensions") && (Player.OnlineSharedSettings.MBS != undefined)) {
+	    let mbb = 0;
+            let list = PreferenceExtensionsDisplay;
+            for (let i = 0; i < list.length; i++) {
+               if (list[i].Button == "MBS Settings") mbb = 1; 
+            }
+            if ((name == "Extensions") && (mbb == 1)) {
                 if (tintmbs == true) tintMbsColors();
                 if (tintmbs == false) untintMbsColors();
             }
