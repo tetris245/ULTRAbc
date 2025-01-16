@@ -99,6 +99,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tintcolor = "#000000";
     let tintlevel = 0;  
     let tintmbs = false;
+    let tintnever = false;
     let tintorg1 = "";
     let tintorg2 = "";
     let tintorg3 = "";
@@ -452,6 +453,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    tintcolor = "#000000";
             tintlevel = 0;  
 	    tintmbs = false;
+	    tintnever = false;
             tintorg1 = "";
             tintorg2 = "";
             tintorg3 = "";
@@ -550,6 +552,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    tintcolor = datas.tintcolor;
 	    tintlevel = datas.tintlevel;
 	    tintmbs = datas.tintmbs;
+	    tintnever = datas.tintnever;
             tintorg1 = "";
             tintorg2 = "";
             tintorg3 = "";
@@ -646,6 +649,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tintcolor": tintcolor,
             "tintlevel": tintlevel,
             "tintmbs": tintmbs,
+            "tintnever": tintnever,   
             "asylumlimit": AsylumLimitOn,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
@@ -813,6 +817,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		if (tintcolor == null || tintcolor == undefined) tintcolor = "#000000";
                 if (tintlevel == null || tintlevel == undefined) tintlevel = 0;	
 		if (tintmbs == null || tintmbs == undefined) tintmbs = false;
+		if (tintnever == null || tintnever == undefined) tintnever = false;
                 M_MOANER_saveControls();
                 BabyTalkOn = false;
                 GagTalkOn = false;
@@ -916,6 +921,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		tintcolor: "#000000",
                 tintlevel: 0,
 		tintmbs: false,
+		tintnever: false,
                 vibeMoan: true,
                 whisperMoan: false,
                 xvibeMoan: false,
@@ -1406,6 +1412,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCSettingsExit = function() {
                 Player.UBC.ubcSettings.cum = false;
 		if (Player.UBC.ubcSettings.tintlevel == 0) Player.UBC.ubcSettings.tintmbs = false;
+		if (Player.UBC.ubcSettings.tintnever == true) {
+                    Player.UBC.ubcSettings.tintlevel = 0;
+                    Player.UBC.ubcSettings.tintcolor = "#000000";
+                    Player.UBC.ubcSettings.tintmbs = false;
+                }
                 let data = Player.UBC.ubcSettings;
                 animal = data.animal * 1;
 		AsylumLimitOn = data.asylumlimit;
@@ -1456,6 +1467,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		tintcolor = data.tintcolor;
 		tintlevel = data.tintlevel;
 		tintmbs = data.tintmbs;
+		tintnever = data.tintnever;
                 AnimalTalk1On = false;
                 AnimalTalk2On = false;
                 AnimalTalk3On = false;
@@ -1915,6 +1927,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else { 
                     addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, false, 192);
                 }
+		addMenuCheckbox(64, 64, "Fully disable all UBC tint settings: ", "tintnever",
+                    "If you check this setting, all tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 192
+                );
             }
 	    
             PreferenceSubscreenUBCVisualRun = function() {
@@ -3369,7 +3384,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             for (let i = 0; i < list.length; i++) {
                if (list[i].Button == "MBS Settings") mbb = 1; 
             }
-            if ((name == "Extensions") && (mbb == 1)) {
+            if ((name == "Extensions") && (mbb == 1) && (tintnever == false)) {
                 if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
                 if (tintmbs == false) untintMbsColors();
             }
@@ -5777,7 +5792,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function TintsEffect() { 
-        if (tintlevel != 0) {  
+        if ((tintlevel != 0) && (tintnever == false)) {   
             let a1 = "";
             let tints = DrawHexToTints(tintcolor);
             let r = tints.r;
