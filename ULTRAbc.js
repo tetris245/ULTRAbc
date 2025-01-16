@@ -1919,7 +1919,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
                     "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.", 60
                 );
-                let mbsmsg = "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is not available when MBS is not detected or when all UBC tint setings are fully disabled. It is without any effect when the tint level is 0."; 
+                let mbsmsg = "When enabled, the tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is not available when MBS is not detected or when all UBC tint settings are fully disabled. It is without any effect when the tint level is 0."; 
                 let mbb = 0;
                 let list = PreferenceExtensionsDisplay;
                 for (let i = 0; i < list.length; i++) {
