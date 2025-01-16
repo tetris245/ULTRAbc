@@ -1710,7 +1710,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!", false, 140
                 );
                 addMenuInput(200, "Selected device trap (0-9):", "maptrap1", "InputDeviceTrap",
-                    "Input a number between 0 and 9, except 2, to select a device trap: 0 No device trap - 1 Bondage Bench - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
+                    "Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
                 );
             }
 
@@ -1724,7 +1724,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMapsExit = function() {
                 let device = ElementValue("InputDeviceTrap");
-                if ((CommonIsNumeric(device)) && (profile > -1) && (device < 10) && (device != 2)) {
+                if ((CommonIsNumeric(device)) && (profile > -1) && (device < 10)) {
                     Player.UBC.ubcSettings.maptrap1 = device;
                     ElementRemove("InputDeviceTrap");
                     defaultExit();
@@ -2207,6 +2207,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((item2 == "BondageBench") && ((maptrap1 == 1) || (maptrap1 == 9))) {
                     BondageBenchTrap();
                     let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
+                    publicmsg(msg);
+                }
+		if ((item2 == "Coffin") && ((maptrap1 == 2) || (maptrap1 == 9))) {
+                    CoffinTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Coffin";
                     publicmsg(msg);
                 }
                 if ((item2 == "TheDisplayFrame") && ((maptrap1 == 3) || (maptrap1 == 9))) {
@@ -4486,6 +4491,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return deafLevel;
     }
 
+    //Locks
+    function ExclusivePadlock() {
+        setTimeout(function() {
+            for (let A = 0; A < Player.Appearance.length; A++)
+                if (Player.Appearance[A].Asset.AllowLock == true) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
+                    }
+                }
+        }, 2000);
+    }
+
+    function IsItemSlotUnlocked(p, slot){ 
+        return ((InventoryGet(p, slot) == null) ||
+        (InventoryGet(p, slot).Property == null) ||
+        (InventoryGet(p, slot).Property.LockedBy == null));
+    }
+
+    function WearItemIfUnlocked(p, item, slot){
+        if (IsItemSlotUnlocked(p, slot))
+            InventoryWear(p, item, slot);
+    }
+
     //LSCG Status
     function showBcLscgStatus() {
         let msg = "";
@@ -5249,6 +5277,56 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
+    function CoffinTrap() {
+        let Target = "";
+        let Item = "";
+        CharacterNaked(Player);
+        WearItemIfUnlocked(Player, "LatexPostureCollar", "ItemMouth2");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "StuddedBlindfold", "ItemHead");   
+        WearItemIfUnlocked(Player, "BalletWedges", "ItemBoots");
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {                   
+            WearItemIfUnlocked(Player, "PenisDildo", "ItemVulva");      
+            WearItemIfUnlocked(Player, "EggVibePlugXXL", "ItemButt");            
+        }                
+        WearItemIfUnlocked(Player, "ShinyLegBinder", "ItemLegs");
+        WearItemIfUnlocked(Player, "ShinyStraitjacket", "ItemArms");
+        WearItemIfUnlocked(Player, "Coffin", "ItemDevices");    
+        Target = "ItemArms";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "ShinyStraitjacket") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 2,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemLegs";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "ShinyLegBinder") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 3,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemButt";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "EggVibePlugXXL") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }       
+        ExclusivePadlock();
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    }
+
     function DisplayFrameTrap() {
         let Target = "";
         let Item = "";
@@ -5292,17 +5370,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
-    }
-
-    function ExclusivePadlock() {
-        setTimeout(function() {
-            for (let A = 0; A < Player.Appearance.length; A++)
-                if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
-                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
-                    }
-                }
-        }, 2000);
     }
 
     function KennelTrap() {
