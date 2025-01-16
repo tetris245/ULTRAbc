@@ -1405,6 +1405,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCSettingsExit = function() {
                 Player.UBC.ubcSettings.cum = false;
+		if (Player.UBC.ubcSettings.tintlevel == 0) Player.UBC.ubcSettings.tintmbs = false;
                 let data = Player.UBC.ubcSettings;
                 animal = data.animal * 1;
 		AsylumLimitOn = data.asylumlimit;
@@ -3368,8 +3369,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             for (let i = 0; i < list.length; i++) {
                if (list[i].Button == "MBS Settings") mbb = 1; 
             }
-            if ((name == "Extensions") && (mbb == 1) && (tintlevel != 0)) {
-                if (tintmbs == true) tintMbsColors();
+            if ((name == "Extensions") && (mbb == 1)) {
+                if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
                 if (tintmbs == false) untintMbsColors();
             }
 	    TintsEffect(); 
@@ -5754,10 +5755,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                tintorg4 = Player.Themed.ColorsModule.base.accent;
                tintorg5 = Player.Themed.ColorsModule.base.elementHint;
                tintorg6 = Player.Themed.ColorsModule.base.text;
+               return mbs.css.setStyle({
+                   backgroundColor: tintcolor,
+                   buttonColor: tintorg2,
+                   buttonHoverColor: tintorg3,
+                   borderColor: tintorg4,
+                   tooltipColor: tintorg5,
+                   textColor: tintorg6
+              });
+           } else {
+               return mbs.css.setStyle({
+                   backgroundColor: tintcolor,
+                   buttonColor: mbs.css.DEFAULT_STYLE.buttonColor,
+                   buttonHoverColor: mbs.css.DEFAULT_STYLE.buttonHoverColor,
+                   borderColor: mbs.css.DEFAULT_STYLE.borderColor,
+                   tooltipColor: mbs.css.DEFAULT_STYLE.tooltipColor,
+                   textColor: mbs.css.DEFAULT_STYLE.textColor
+               });
            }
-           return mbs.css.setStyle({
-               backgroundColor: tintcolor
-           });
         }
     }
 
