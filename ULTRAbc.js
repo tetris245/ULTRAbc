@@ -5514,11 +5514,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
         WearItemIfUnlocked(Player, "LeatherBlindfold", "ItemHead");   
         WearItemIfUnlocked(Player, "LeatherToeCuffs", "ItemBoots");
-        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {       
-            
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {                
             WearItemIfUnlocked(Player, "PenisDildo", "ItemVulva");      
-            WearItemIfUnlocked(Player, "EggVibePlugXXL", "ItemButt");
-            
+            WearItemIfUnlocked(Player, "EggVibePlugXXL", "ItemButt");        
         }        
         WearItemIfUnlocked(Player, "PolishedChastityBelt", "ItemPelvis");        
         WearItemIfUnlocked(Player, "DuctTape", "ItemHands");
@@ -5585,7 +5583,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         WearItemIfUnlocked(Player, "HempRope", "ItemFeet");
         WearItemIfUnlocked(Player, "HempRope", "ItemLegs");        
         WearItemIfUnlocked(Player, "HempRope", "ItemPelvis");
-        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)){
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {
             WearItemIfUnlocked(Player, "WiredEgg", "ItemVulva");            
         }
         WearItemIfUnlocked(Player, "DuctTape", "ItemHands");
