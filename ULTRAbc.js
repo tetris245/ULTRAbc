@@ -4788,6 +4788,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
+    //Room to Game
+    function RoomToGame() {
+        ServerSend("ChatRoomLeave", "");
+        ChatRoomSetLastChatRoom("");
+        OnlineGameName = "";
+        ChatRoomHideElements(); 
+    }
+
     //Stable
     function StablePonyEnd() {
         CommonSetScreen("Room", "Stable");
@@ -8703,99 +8711,63 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let minigame = args;
                 if (minigame == "carrot") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "Stable");
                     StableDressPonyStart();
                     StableWearPonyEquipment(Player);
                     MiniGameStart("HorseWalk", "Carrot", "StablePonyEnd");
                 } else if (minigame == "cleaning") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "MaidQuarters");
                     GameType = "MaidCleaning";
                     MaidQuartersMaid.Stage = "400";
                 } else if (minigame == "dojo") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "Introduction");
                     IntroductionJobStart("SubDojo", 0)
                     IntroductionJobDojoStart();
                 } else if (minigame == "drinks") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "MaidQuarters");
                     GameType = "MaidDrinks";
                     MaidQuartersMaid.Stage = "200";
                 } else if (minigame == "hurdle") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "Stable");
                     StableDressPonyStart();
                     StableWearPonyEquipment(Player);
                     MiniGameStart("HorseWalk", "Hurdle", "StablePonyEnd");
                 } else if (minigame == "kidnap") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "Introduction");
                     IntroductionJobStart("DomKidnap", 0)
                     IntroductionJobBouncerStart();
                 } else if (minigame == "movie1") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "MovieStudio");
                     MovieStudioDailyMovie = "Interview";
                 } else if (minigame == "movie2") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "MovieStudio");
                     MovieStudioDailyMovie = "OpenHouse";
                 } else if (minigame == "puppy") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "Introduction");
                     IntroductionJobStart("DomPuppy", 0)
                     IntroductionJobPuppyStart();
                 } else if (minigame == "rhythm") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "MaidQuarters");
                     GameType = "RhythmGame";
                     MaidQuartersMaid.Stage = "500";
                 } else if (minigame == "training") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "Stable");
                     StablePlayerAppearance = Player.Appearance.slice();
                     StableWearTrainerEquipment(Player);
                     MiniGameStart("HorseWalk", "HurdleTraining", "StableTrainerEnd");
                 } else if (minigame == "whippony") {
-                    ServerSend("ChatRoomLeave", "");
-                    ChatRoomSetLastChatRoom("");
-                    OnlineGameName = "";
-                    ChatRoomHideElements();
+                    RoomToGame(); 
                     CommonSetScreen("Room", "Stable");
                     StablePlayerAppearance = Player.Appearance.slice();
                     StableWearTrainerEquipment(Player);
