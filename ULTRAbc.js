@@ -725,15 +725,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
                 if (animal == null || animal == undefined) animal = 0;
-                if (animal == 1) AnimalTalk1On = true;
-                if (animal == 2) AnimalTalk2On = true;
-                if (animal == 3) AnimalTalk3On = true;
-                if (animal == 4) AnimalTalk4On = true;
-                if (animal == 5) AnimalTalk5On = true;
-                if (animal == 6) AnimalTalk6On = true;
-                if (animal == 7) AnimalTalk7On = true;
-                if (animal == 8) AnimalTalk8On = true;
-                if (animal == 9) AnimalTalk9On = true;
 		if (AsylumLimitOn == null || AsylumLimitOn == undefined) AsylumLimitOn = false;
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
@@ -1450,25 +1441,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		tintlevel = data.tintlevel;
 		tintmbs = data.tintmbs;
 		tintnever = data.tintnever;
-                AnimalTalk1On = false;
-                AnimalTalk2On = false;
-                AnimalTalk3On = false;
-                AnimalTalk4On = false;
-                AnimalTalk5On = false;
-                AnimalTalk6On = false;
-                AnimalTalk7On = false;
-                AnimalTalk8On = false;
-                AnimalTalk9On = false;
                 BabyTalkOn = false;
-                if (animal == 1) AnimalTalk1On = true;
-                if (animal == 2) AnimalTalk2On = true;
-                if (animal == 3) AnimalTalk3On = true;
-                if (animal == 4) AnimalTalk4On = true;
-                if (animal == 5) AnimalTalk5On = true;
-                if (animal == 6) AnimalTalk6On = true;
-                if (animal == 7) AnimalTalk7On = true;
-                if (animal == 8) AnimalTalk8On = true;
-                if (animal == 9) AnimalTalk9On = true;
                 if (blindness == 1) {
                     GetBlindLevel0();
                     Player.GetBlindLevel = GetBlindLevel0;
@@ -2535,15 +2508,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     texta = text6;
                 } else {
                     texta = text6;
-                    if (this.AnimalTalk1On == true) texta = GarbleTalk(text6, animalmode1);
-                    if (this.AnimalTalk2On == true) texta = GarbleTalk(text6, animalmode2);
-                    if (this.AnimalTalk3On == true) texta = GarbleTalk(text6, animalmode3);
-                    if (this.AnimalTalk4On == true) texta = GarbleTalk(text6, animalmode4);
-                    if (this.AnimalTalk5On == true) texta = GarbleTalk(text6, animalmode5);
-                    if (this.AnimalTalk6On == true) texta = GarbleTalk(text6, animalmode6);
-                    if (this.AnimalTalk7On == true) texta = GarbleTalk(text6, animalmode7);
-                    if (this.AnimalTalk8On == true) texta = GarbleTalk(text6, animalmode8);
-                    if (this.AnimalTalk9On == true) texta = GarbleTalk(text6, animalmode9);
+                    if (animal == 1) texta = GarbleTalk(text6, animalmode1);
+                    if (animal == 2) texta = GarbleTalk(text6, animalmode2);
+                    if (animal == 3) texta = GarbleTalk(text6, animalmode3);
+                    if (animal == 4) texta = GarbleTalk(text6, animalmode4);
+                    if (animal == 5) texta = GarbleTalk(text6, animalmode5);
+                    if (animal == 6) texta = GarbleTalk(text6, animalmode6);
+                    if (animal == 7) texta = GarbleTalk(text6, animalmode7);
+                    if (animal == 8) texta = GarbleTalk(text6, animalmode8);
+                    if (animal == 9) texta = GarbleTalk(text6, animalmode9);
                 }
                 ElementValue("InputChat", text6.replace(text6, texta));
             } else {
@@ -2577,15 +2550,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         texta = text7;
                     } else {
                         texta = text7;
-                        if (this.AnimalTalk1On == true) texta = GarbleTalk(text7, animalmode1);
-                        if (this.AnimalTalk2On == true) texta = GarbleTalk(text7, animalmode2);
-                        if (this.AnimalTalk3On == true) texta = GarbleTalk(text7, animalmode3);
-                        if (this.AnimalTalk4On == true) texta = GarbleTalk(text7, animalmode4);
-                        if (this.AnimalTalk5On == true) texta = GarbleTalk(text7, animalmode5);
-                        if (this.AnimalTalk6On == true) texta = GarbleTalk(text7, animalmode6);
-                        if (this.AnimalTalk7On == true) texta = GarbleTalk(text7, animalmode7);
-                        if (this.AnimalTalk8On == true) texta = GarbleTalk(text7, animalmode8);
-                        if (this.AnimalTalk9On == true) texta = GarbleTalk(text7, animalmode9);
+                        if (animal == 1) texta = GarbleTalk(text7, animalmode1);
+                        if (animal == 2) texta = GarbleTalk(text7, animalmode2);
+                        if (animal == 3) texta = GarbleTalk(text7, animalmode3);
+                        if (animal == 4) texta = GarbleTalk(text7, animalmode4);
+                        if (animal == 5) texta = GarbleTalk(text7, animalmode5);
+                        if (animal == 6) texta = GarbleTalk(text7, animalmode6);
+                        if (animal == 7) texta = GarbleTalk(text7, animalmode7);
+                        if (animal == 8) texta = GarbleTalk(text7, animalmode8);
+                        if (animal == 9) texta = GarbleTalk(text7, animalmode9);
                     }
                     if (texta != "") {
                         targetNumber = ChatRoomTargetMemberNumber;
