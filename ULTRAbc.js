@@ -11205,24 +11205,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             } else {
                 let mission = args;
-                if (mission == "random") {
-                    InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
-                }
-                if (mission == "burglar") {
-                    InfiltrationMissionType = ["CatBurglar"];
-                }
-                if (mission == "kidnap") {
-                    InfiltrationMissionType = ["Kidnap"];
-                }
-                if (mission == "rescue") {
-                    InfiltrationMissionType = ["Rescue"];
-                }
-                if (mission == "retrieve") {
-                    InfiltrationMissionType = ["Retrieve"];
-                }
-                if (mission == "sabotage") {
-                    InfiltrationMissionType = ["ReverseMaid"];
-                }
+                if (mission == "random") InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
+                if (mission == "burglar") InfiltrationMissionType = ["CatBurglar"];
+                if (mission == "kidnap") InfiltrationMissionType = ["Kidnap"];
+                if (mission == "rescue") InfiltrationMissionType = ["Rescue"];
+                if (mission == "retrieve") InfiltrationMissionType = ["Retrieve"];
+                if (mission == "sabotage") InfiltrationMissionType = ["ReverseMaid"];
                 InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
                 ServerSend("ChatRoomLeave", "");
                 ChatRoomSetLastChatRoom("");
