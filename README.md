@@ -64,7 +64,7 @@ Changes for future version
   - use the tint color as background color for the central part of MBS screens
   - fully disable all UBC tint settings (level, color, MBS); however, a full relog is required to restore the original or themed colors on the MBS screens
 * Added the coffin trap and improved/optimised the traps with functions, especially to avoid replacement of locked items (thanks to KitKat)
+* Optimised the game command by using a RoomToGame function and simplified the code for animal talk 
 * Updated the OutChat function for R112 compatibility
 * Added a TargetSearch function with support for member number, name and nickname
 * Improved most commands with target by using the TargetSearch function and the BC getNickname function
-* Optimised the game command and simplified the code for animal talk
