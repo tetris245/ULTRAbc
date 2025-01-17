@@ -100,12 +100,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tintlevel = 0;  
     let tintmbs = false;
     let tintnever = false;
-    let tintorg1 = "";
-    let tintorg2 = "";
-    let tintorg3 = "";
-    let tintorg4 = "";
-    let tintorg5 = "";
-    let tintorg6 = "";
 
     let AsylumLimitOn;
     let AutojoinOn;
@@ -454,12 +448,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tintlevel = 0;  
 	    tintmbs = false;
 	    tintnever = false;
-            tintorg1 = "";
-            tintorg2 = "";
-            tintorg3 = "";
-            tintorg4 = "";
-            tintorg5 = "";
-            tintorg6 = "";
 	    AsylumLimitOn = false;
             AutojoinOn = false;
             DolltalkOn = false;
@@ -553,12 +541,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    tintlevel = datas.tintlevel;
 	    tintmbs = datas.tintmbs;
 	    tintnever = datas.tintnever;
-            tintorg1 = "";
-            tintorg2 = "";
-            tintorg3 = "";
-            tintorg4 = "";
-            tintorg5 = "";
-            tintorg6 = "";
 	    AsylumLimitOn = datas.asylumlimit;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
@@ -5764,31 +5746,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function tintMbsColors() {
         if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {
            if (Player.Themed != undefined) {
-               tintorg1 = Player.Themed.ColorsModule.base.main;
-               tintorg2 = Player.Themed.ColorsModule.base.element;
-               tintorg3 = Player.Themed.ColorsModule.base.elementHover;
-               tintorg4 = Player.Themed.ColorsModule.base.accent;
-               tintorg5 = Player.Themed.ColorsModule.base.elementHint;
-               tintorg6 = Player.Themed.ColorsModule.base.text;
-               return mbs.css.setStyle({
-                   backgroundColor: tintcolor,
-                   buttonColor: tintorg2,
-                   buttonHoverColor: tintorg3,
-                   borderColor: tintorg4,
-                   tooltipColor: tintorg5,
-                   textColor: tintorg6
-              });
+               if (Player.Themed.IntegrationModule.MBS == true) tintMbsColors1();
+               if (Player.Themed.IntegrationModule.MBS == false) tintMbsColors2();           
            } else {
-               return mbs.css.setStyle({
-                   backgroundColor: tintcolor,
-                   buttonColor: mbs.css.DEFAULT_STYLE.buttonColor,
-                   buttonHoverColor: mbs.css.DEFAULT_STYLE.buttonHoverColor,
-                   borderColor: mbs.css.DEFAULT_STYLE.borderColor,
-                   tooltipColor: mbs.css.DEFAULT_STYLE.tooltipColor,
-                   textColor: mbs.css.DEFAULT_STYLE.textColor
-               });
+                tintMbsColors2();   
            }
         }
+    }
+
+    function tintMbsColors1() {
+        return mbs.css.setStyle({
+            backgroundColor: tintcolor,
+            buttonColor: Player.Themed.ColorsModule.base.element,
+            buttonHoverColor: Player.Themed.ColorsModule.base.elementHover,
+            borderColor: Player.Themed.ColorsModule.base.accent,
+            tooltipColor: Player.Themed.ColorsModule.base.elementHint,
+            textColor: Player.Themed.ColorsModule.base.text
+        });
+    }
+
+    function tintMbsColors2() {
+        return mbs.css.setStyle({
+            backgroundColor: tintcolor,
+            buttonColor: mbs.css.DEFAULT_STYLE.buttonColor,
+            buttonHoverColor: mbs.css.DEFAULT_STYLE.buttonHoverColor,
+            borderColor: mbs.css.DEFAULT_STYLE.borderColor,
+            tooltipColor: mbs.css.DEFAULT_STYLE.tooltipColor,
+            textColor: mbs.css.DEFAULT_STYLE.textColor
+        });
     }
 
     function TintsEffect() { 
@@ -5809,26 +5794,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function untintMbsColors() {
         if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {
-           if (Player.Themed == undefined) { 
-               return mbs.css.setStyle({
-                   backgroundColor: mbs.css.DEFAULT_STYLE.backgroundColor,
-                   buttonColor: mbs.css.DEFAULT_STYLE.buttonColor,
-                   buttonHoverColor: mbs.css.DEFAULT_STYLE.buttonHoverColor,
-                   borderColor: mbs.css.DEFAULT_STYLE.borderColor,
-                   tooltipColor: mbs.css.DEFAULT_STYLE.tooltipColor,
-                   textColor: mbs.css.DEFAULT_STYLE.textColor
-               });
+           if (Player.Themed != undefined) {
+               if (Player.Themed.IntegrationModule.MBS == true) untintMbsColors1();
+               if (Player.Themed.IntegrationModule.MBS == false) untintMbsColors2();           
            } else {
-               return mbs.css.setStyle({
-                   backgroundColor: tintorg1,
-                   buttonColor: tintorg2,
-                   buttonHoverColor: tintorg3,
-                   borderColor: tintorg4,
-                   tooltipColor: tintorg5,
-                   textColor: tintorg6
-               });
+                untintMbsColors2();   
            }
         }
+    }
+
+    function untintMbsColors1() {
+        return mbs.css.setStyle({
+            backgroundColor: Player.Themed.ColorsModule.base.main,
+            buttonColor: Player.Themed.ColorsModule.base.element,
+            buttonHoverColor: Player.Themed.ColorsModule.base.elementHover,
+            borderColor: Player.Themed.ColorsModule.base.accent,
+            tooltipColor: Player.Themed.ColorsModule.base.elementHint,
+            textColor: Player.Themed.ColorsModule.base.text
+        });
+    }
+
+    function untintMbsColors2() {
+        return mbs.css.setStyle({
+            backgroundColor: mbs.css.DEFAULT_STYLE.backgroundColor,
+            buttonColor: mbs.css.DEFAULT_STYLE.buttonColor,
+            buttonHoverColor: mbs.css.DEFAULT_STYLE.buttonHoverColor,
+            borderColor: mbs.css.DEFAULT_STYLE.borderColor,
+            tooltipColor: mbs.css.DEFAULT_STYLE.tooltipColor,
+            textColor: mbs.css.DEFAULT_STYLE.textColor
+        });
     }
 
     //WCE Status 
