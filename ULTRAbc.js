@@ -2390,17 +2390,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let text2 = text1;
             let nw = 0;
             if (text1.startsWith("/")) {
-                if (!text1.startsWith("//")) {
-                    tsp = 1;
-                    ChatRoomSetTarget(-1);
-                    if (text1.startsWith("/whisper")) {
-                        tsp = 0;
-                        if (NowhisperOn == true) nw = 1;
-                    }
+                let act = "";
+                if (text1.startsWith("/pandora")) {
+                    act = text1.substring(8);
+                    PandoraPenitentiaryDoActivity(act);
+                    text2 = "";
                 } else {
-                    tsp = 2;
-                    text2 = text1.replaceAt(0, "\u200b");
-                }
+                    if (!text1.startsWith("//")) {
+                        tsp = 1;
+                        ChatRoomSetTarget(-1);
+                        if (text1.startsWith("/whisper")) {
+                            tsp = 0;
+                            if (NowhisperOn == true) nw = 1;
+                        }
+                    } else {
+                        tsp = 2;
+                        text2 = text1.replaceAt(0, "\u200b");
+                    }
+                }  
             }
             if (text1.startsWith("\\")) {
                 tsp = 2;
