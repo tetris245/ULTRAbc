@@ -5177,6 +5177,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Targets
+    function getNickname(target) {
+        return CharacterNickname(target);
+    }
+	
     function TargetSearch(value) {
         if (!value) return;
         return ChatRoomCharacter.find((Character) => {
