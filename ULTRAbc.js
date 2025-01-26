@@ -834,9 +834,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         await waitFor(() => ServerSocket && ServerIsConnected);
 
         const UBC_TIPS = [
-            "Merry Christmas and Happy New Year!",
+            "See more stars with the UBC options!",
             "Tip: Use the /uhelp command in chat or explore the wiki to better know all the UBC commands.",
-            "More options in next version of UBC!"
+            "Enjoy all the UBC options!"
         ]
 
         const ubcSettingsKey = () => "bc_moaner_" + Player.MemberNumber;
@@ -1291,14 +1291,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 //Show tips every 10 secs
                 DrawTextWrapGood(UBC_TIPS[Math.floor(((TimerGetTime() % 100000) / 100000) * (UBC_TIPS.length))], 1650, 260, 400, 100, ForeColor = UBC_API.HintForeColor);
 
-                DrawText("ULTRAbc " + UBCver, 1665, 525, "Black", "Gray");
-                DrawButton(1500, 550, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
-                DrawImageResize("Icons/Changelog.png", 1510, 565, 60, 60);
-                DrawTextFit("UBC Changes", 1685, 598, 308, "Black");
-                DrawButton(1500, 655, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
-                DrawImageResize("Icons/Introduction.png", 1510, 670, 60, 60);
-                DrawTextFit("UBC Wiki", 1685, 703, 308, "Black");
-                DrawText("/uhelp in chat", 1665, 770, "Black", "Gray");
+		DrawText("ULTRAbc " + UBCver, 1665, 525, "Black", "Gray");
+                DrawButton(1500, 550, 315, 90, "", "White", "", "Link to Icons8");
+                DrawImageResize(IMAGES.LOGO, 1510, 565, 60, 60);
+                DrawTextFit("Icon by Icons8", 1690, 598, 308, "Black");
+                DrawButton(1500, 655, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
+                DrawImageResize("Icons/Changelog.png", 1510, 670, 60, 60);
+                DrawTextFit("UBC Changes", 1685, 703, 308, "Black");
+                DrawButton(1500, 760, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
+                DrawImageResize("Icons/Introduction.png", 1510, 775, 60, 60);
+                DrawTextFit("UBC Wiki", 1685, 808, 308, "Black");
+                DrawText("/uhelp in chat", 1665, 880, "Black", "Gray");
 
                 //DrawButton(1500, 860, 300, 90, "Reset", "Red", "Icons/Reset.png", "Reset ALL Settings (including best friends list).")
 
@@ -1355,11 +1358,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		}*/
 
             PreferenceSubscreenUBCSettingsClick = function() {
-
-                // Exit button
                 if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenUBCSettingsExit();
-                if (MouseIn(1450, 550, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
-                if (MouseIn(1450, 655, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+                if (MouseIn(1450, 550, 400, 90)) window.open('https://icons8.com', '_blank');
+                if (MouseIn(1450, 655, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+                if (MouseIn(1450, 760, 400, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
                 //if (MouseIn(1500, 860, 300, 90)) resetSettings();
                 // Open the selected subscreen
                 for (let A = 0; A < ubcSettingsCategories.length; A++) {
