@@ -726,6 +726,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 });
                 if (animal == null || animal == undefined) animal = 0;
                 if (AsylumLimitOn == null || AsylumLimitOn == undefined) AsylumLimitOn = false;
+		if (AutojoinOn == null || AutojoinOn == undefined) AutojoinOn = false;
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
                 if (blindness == null || blindness == undefined) blindness = 0;
@@ -834,9 +835,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         await waitFor(() => ServerSocket && ServerIsConnected);
 
         const UBC_TIPS = [
-            "See more stars with the UBC options!",
+            "See more stars with the UBC options and commands!",
             "Tip: Use the /uhelp command in chat or explore the wiki to better know all the UBC commands.",
-            "Enjoy all the UBC options!"
+            "Enjoy all the UBC options and commands!"
         ]
 
         const ubcSettingsKey = () => "bc_moaner_" + Player.MemberNumber;
@@ -850,6 +851,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const UBC_DEFAULT_SETTINGS = {
                 animal: 0,
                 asylumlimit: false,
+		autojoin: false,
                 bgall: false,
                 bl: 0,
                 blindness: 0,
@@ -949,6 +951,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const ubcSettingsCategories = [
                 "UBCButtons",
                 "UBCCards",
+		"UBCChatSearch",
                 "UBCCheats",
                 "UBCHotkeys",
                 "UBCMaps",
@@ -960,6 +963,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const ubcSettingCategoryLabels = {
                 UBCButtons: "Buttons",
                 UBCCards: "Cards",
+		UBCChatSearch: "Chat Search",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
                 UBCMaps: "Maps",
@@ -1395,6 +1399,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let data = Player.UBC.ubcSettings;
                 animal = data.animal * 1;
                 AsylumLimitOn = data.asylumlimit;
+		AutojoinOn = data.autojoin;
                 bgall = data.bgall;
                 bl = data.bl;
                 blindness = data.blindness;
@@ -1627,6 +1632,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputHighFame");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
+            }
+
+	    PreferenceSubscreenUBCChatSearchLoad = function() {
+                UBCPreferenceSubscreen = "UBCChatSearch";  
+                addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
+                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search."
+                );
+           
+            }
+
+            PreferenceSubscreenUBCChatSearchRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCChatSearchClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCChatSearchExit = function() {
+                defaultExit();
             }
 
             PreferenceSubscreenUBCCheatsLoad = function() {
@@ -13840,8 +13865,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
                     "<b>/roomsize</b> (players) = sets maximum players per room in Chat Search for normal and hybrid rooms.\n" +
-                    "<b>/roomtype</b> (type) = sets room type you want to see in Chat Search. *\n" +
-                    "<b>/uset</b> (setting) = toggles a specific UBC setting. *";
+                    "<b>/roomtype</b> (type) = sets room type you want to see in Chat Search. *";
                 infomsg(msg);
             }
             if (args === "talking") {
@@ -14345,33 +14369,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSendLocal(ubc1 + " - " + ubc2);
                 ChatRoomSendLocal(" ");
                 pl++;
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'uset',
-        Description: "(setting): toggles a specific UBC setting.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
-                    "<b>autojoin</b> for chat room auto-join feature";
-                infomsg(msg);
-            } else {
-                let setting = args;
-                if (setting == "autojoin") {
-                    if (AutojoinOn == true) {
-                        AutojoinOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Auto-Join feature is disabled.";
-                        infomsg(msg);
-                    } else {
-                        AutojoinOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Auto-Join feature is enabled.";
-                        infomsg(msg);
-                    }
-                }
             }
         }
     }])
