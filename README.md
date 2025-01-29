@@ -60,5 +60,7 @@ All else I might not have included.
 Changes for future version
 
 * Added an icon in the Extensions screen for the ULTRAbc Settings and a link to Icons8 in the GUI - Main menu
+* Added the Chat Search page to the GUI
+* Removed the uset command (all its parameters are finally available in the GUI)
 
 
