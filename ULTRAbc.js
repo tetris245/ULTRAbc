@@ -93,6 +93,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let maptrap1 = 0;
     let mgl = 0;
     let onegl = 0;
+    let rchat = false;
+    let rmin = 2;
     let rsize = 20;
     let rtype = "ALL";
     let st = 0;
@@ -443,6 +445,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             maptrap1 = 0;
             mgl = 0;
             onegl = 0;
+	    rchat = false;
+            rmin = 2;
             rsize = 20;
             rtype = "ALL";
             st = 0;
@@ -538,7 +542,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             maptrap1 = datas.maptrap1;
             mgl = 0;
             onegl = 0;
-            rsize = datas.rsize;
+	    rchat = datas.rchat;
+            rmin = datas.rmin * 1;
+            rsize = datas.rsize * 1; 
             rtype = datas.rtype;
             st = datas.stutterlevel * 1;
             tcname = datas.tcname;
@@ -631,6 +637,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "frname": frname,
             "gaglevel": gl,
             "maptrap1": maptrap1,
+            "rchat": rchat,
+            "rmin": rmin,
             "rsize": rsize,
             "rtype": rtype,
             "stutterlevel": st,
@@ -791,9 +799,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (profileName == "pony") profile = 8;
                 if (profileName == "wildfox") profile = 9;
                 if (profileName == "wolf") profile = 10;
+		if (rchat == null || rchat == undefined) rchat = false;
                 if (reaction == null || reaction == undefined) reaction = 0;
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
                 if (RglsyncOn == null || RglsyncOn == undefined) RglsyncOn = false;
+		if (rmin == null || rmin == undefined) rmin = 2;
+                if (rsize == null || rsize == undefined) rsize = 20;                   
+                if (rtype == null || rtype == undefined || rtype == "") rtype = "ALL";
                 if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
                 if (st == null || st == undefined) st = 0;
@@ -808,14 +820,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
-                if (rsize == null || rsize == undefined) {
-                    rsize = 20;
-                    M_MOANER_saveControls();
-                }
-                if (rtype == null || rtype == undefined || rtype == "") {
-                    rtype = "ALL";
-                    M_MOANER_saveControls();
-                }
                 if (NPCpunish == true) {
                     Player.RestrictionSettings.BypassNPCPunishments = false;
                 } else {
@@ -895,9 +899,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 orgasmMoan: true,
                 outbuttons: false,
                 profile: 0,
+		rchat: false,
                 reaction: 0,
                 rglbuttons: false,
                 rglsync: false,
+		rmin: 2,
+                rsize: 20,
+                rtype: "ALL",
                 script: false,
                 slowleave: false,
                 sosbuttons: false,
@@ -1163,7 +1171,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
                 MainCanvas.textAlign = "left";
-                if (PreferenceMessage != "") DrawText(PreferenceMessage, 1300, 125, "Red", "Black");
+                if (PreferenceMessage != "") DrawText(PreferenceMessage, 1400, 125, "Red", "Black");
                 DrawText("UBC " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + " - Click on a setting to get more info", 500, 125, "Black", "Gray");
                 if (settingsHint != "") {
                     DrawTextWrapGood(settingsHint, 1350, 200, 555, 725, ForeColor = UBC_API.HintForeColor, BackColor = UBC_API.HintBackColor, BorderColor = UBC_API.HintBorderColor);
@@ -1451,9 +1459,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NPCpunish = data.npcpunish;
                 OutbuttonsOn = data.outbuttons;
                 profile = data.profile;
+		rchat = data.rchat;
                 reaction = data.reaction;
                 RglbuttonsOn = data.rglbuttons;
                 RglsyncOn = data.rglsync;
+		rmin = data.rmin * 1;
+                rsize = data.rsize * 1;
+                rtype = data.rtype;
                 SlowleaveOn = data.slowleave;
                 SosbuttonsOn = data.sosbuttons;
                 st = data.stutterlevel * 1;
@@ -1661,7 +1673,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
                     "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search."
                 );
-           
+                addMenuCheckbox(64, 64, "Normal/hybrid room size: ", "rchat",
+                    "When enabled, the below parameters will be used in Chat Search for the normal and hybrid rooms."
+                );
+                addMenuInput(200, "Minimum players (2-20):", "rmin", "InputRoomMin",
+                    "Input a number between 2 and 20 as minimum players in normal and hybrid rooms! If this number is higher than the maximum, your Chat Search will fail."
+                );
+                addMenuInput(200, "Maximum players (2-20):", "rsize", "InputRoomMax",
+                    "Input a number between 2 and 20 as maximum players in normal and hybrid rooms! If this number is lower than the minimum, your Chat Search will fail."
+                );
             }
 
             PreferenceSubscreenUBCChatSearchRun = function() {
@@ -1673,7 +1693,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCChatSearchExit = function() {
-                defaultExit();
+                let min = ElementValue("InputRoomMin");
+                let max = ElementValue("InputRoomMax");
+                if ((CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21)) {
+                    Player.UBC.ubcSettings.rmin = min;
+                    Player.UBC.ubcSettings.rsize = max;
+                    ElementRemove("InputRoomMin");
+                    ElementRemove("InputRoomMax");
+                    defaultExit();
+                } else PreferenceMessage = "Put a valid number";
             }
 
             PreferenceSubscreenUBCCheatsLoad = function() {
@@ -2742,7 +2770,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (rtype == "ALL") {
                 let rm = 0;
                 while (rm < ret.length) {
-                    if ((ret[rm].MemberLimit <= rsize) || (ret[rm].MapType == "Always")) {
+                    if (rchat == true) {
+                        if (((ret[rm].MemberLimit >= rmin) && (ret[rm].MemberLimit <= rsize)) || (ret[rm].MapType == "Always")) {
+                            NewResult.push(ret[rm]);
+                        } 
+                    } else {
                         NewResult.push(ret[rm]);
                     }
                     rm++;
@@ -2751,8 +2783,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (rtype == "Never") {
                 let rm = 0;
                 while (rm < ret.length) {
-                    if ((ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Never")) {
-                        NewResult.push(ret[rm]);
+                    if (rchat == true) {
+                        if ((ret[rm].MemberLimit >= rmin)  && (ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Never")) {
+                            NewResult.push(ret[rm]);
+                        }
+                    } else {
+                        if (ret[rm].MapType == "Never") {
+                            NewResult.push(ret[rm]);
+                        }
                     }
                     rm++;
                 }
@@ -2760,9 +2798,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (rtype == "Hybrid") {
                 let rm = 0;
                 while (rm < ret.length) {
-                    if ((ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Hybrid")) {
-                        NewResult.push(ret[rm]);
-                    }
+                    if (rchat == true) {
+                        if ((ret[rm].MemberLimit >= rmin)  && (ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Hybrid")) {
+                            NewResult.push(ret[rm]);
+                        }
+                    } else {
+                        if (ret[rm].MapType == "Hybrid") {
+                            NewResult.push(ret[rm]);
+                        }
+                    } 
                     rm++;
                 }
             }
@@ -2778,7 +2822,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             return NewResult;
         });
     }
-
+ 
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
             if ((MouseX >= 385) && (MouseX < 465) && (MouseY >= 885) && (MouseY < 975)) {
@@ -2800,7 +2844,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 rtype = "Always";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
-            }
+            } 
+	    if ((MouseX >= 1405) && (MouseX < 1485) && (MouseY >= 885) && (MouseY < 975))ExtClick();
             if ((MouseX >= 1515) && (MouseX < 1595) && (MouseY >= 885) && (MouseY < 975)) {
                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
@@ -2824,7 +2869,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawImageResize("Icons/Rectangle/CharacterView.png", 480, 900, 120, 60);
             DrawButton(605, 885, 90, 90, "", "White", "Icons/MapTypeHybrid.png", "Hybrid Rooms");
             DrawButton(715, 885, 90, 90, "", "White", "Icons/MapTypeAlways.png", "Map Rooms");
-            DrawText("Lobbies", 1405, 940, "White", "Black");
+            DrawButton(1405, 885, 90, 90, "EXT", "White", "", "Extensions");
             if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                 DrawButton(1515, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
             } else {
@@ -12640,52 +12685,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'roomsize',
-        Description: "(players): sets the maximum players per room in Chat Search for normal and hybrid rooms.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The roomsize command must be followed by a number between 2 and 20.";
-                infomsg(msg);
-            } else {
-                let size = args;
-                if ((size > 1) && (size < 21) && (size != rsize)) {
-                    rsize = size * 1;
-                    M_MOANER_saveControls();
-                    let msg = "You have modified the maximum players per room in Chat Search for normal and hybrid rooms.";
-                    infomsg(msg);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'roomtype',
-        Description: "(type): sets the room type you want to see in Chat Search.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The roomtype command must be followed by a number between 0 and 3.\n" +
-                    " \n" +
-                    " 0 = All room types\n" +
-                    " 1 = Only normal rooms\n" +
-                    " 2 = Only hybrid rooms\n" +
-                    " 3 = Only map rooms";
-                infomsg(msg);
-            } else {
-                let type = args;
-                if ((type > -1) && (type < 4) && (type != rtype)) {
-                    if (type == 0) rtype = "ALL";
-                    if (type == 1) rtype = "Never";
-                    if (type == 2) rtype = "Hybrid";
-                    if (type == 3) rtype = "Always";
-                    M_MOANER_saveControls();
-                    let msg = "You have modified the room type you want to see in Chat Search.";
-                    infomsg(msg);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'safeworditem',
         Description: ": removes specific item.",
         Action: () => {
@@ -13932,9 +13931,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bg4</b> (screen) (background) = selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell. *\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
-                    "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
-                    "<b>/roomsize</b> (players) = sets maximum players per room in Chat Search for normal and hybrid rooms.\n" +
-                    "<b>/roomtype</b> (type) = sets room type you want to see in Chat Search. *";
+                    "<b>/message</b> (option) (message) = creates custom messages for specific command. *";
                 infomsg(msg);
             }
             if (args === "talking") {
