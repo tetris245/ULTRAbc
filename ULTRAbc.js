@@ -2845,7 +2845,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             } 
-	    if ((MouseX >= 1405) && (MouseX < 1485) && (MouseY >= 885) && (MouseY < 975))ExtClick();
+	    if ((MouseX >= 1405) && (MouseX < 1485) && (MouseY >= 885) && (MouseY < 975)) ExtClick();
             if ((MouseX >= 1515) && (MouseX < 1595) && (MouseY >= 885) && (MouseY < 975)) {
                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
