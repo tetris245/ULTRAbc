@@ -71,6 +71,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tgpr4;
     const umsg1 = "Your command can't be executed because ";
     const umsg2 = " has enabled the Uwall protection.";
+    const umsg3 = "you are in no-escape mode.";
 
     const M_MOANER_moanerKey = "bc_moaner_";
     let M_MOANER_scriptOn = false;
@@ -114,6 +115,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let MagiccheatOn;
     let MagictoysOn;
     let MapfullOn = false;
+    let NoescapeOn;
     let NogarbleOn;
     let NostruggleOn;
     let NotimeoutOn;
@@ -128,6 +130,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let blureffect = 0;
     let notalk = 0;
     let reaction = 0;
+    let unrestrict = 0;
 
     let Clothes = "";
     let Invisible = "";
@@ -461,6 +464,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = false;
             MagictoysOn = false;
             MapfullOn = false;
+	    NoescapeOn = false; 
             NogarbleOn = false;
             NostruggleOn = false;
             NotimeoutOn = false;
@@ -474,6 +478,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             blureffect = 0;
             notalk = 0;
             reaction = 0;
+	    unrestrict = 0;
             Clothes = "";
             Invisible = "";
             Mlock = "";
@@ -554,6 +559,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = datas.magiccheat;
             MagictoysOn = datas.magictoys;
             MapfullOn = false;
+	    NoescapeOn = datas.noescape;
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
             NotimeoutOn = datas.notimeout;
@@ -567,6 +573,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             blureffect = 0;
             notalk = datas.notalk;
             reaction = 0;
+	    unrestrict = 0;
             Clothes = datas.clothes;
             Invisible = datas.invisible;
             Mlock = datas.mlock;
@@ -645,6 +652,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "magiccheat": MagiccheatOn,
             "magictoys": MagictoysOn,
             "mapfull": MapfullOn,
+            "noescape": NoescapeOn,
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,
             "notimeout": NotimeoutOn,
@@ -658,6 +666,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "blureffect": blureffect,
             "notalk": notalk,
             "reaction": reaction,
+            "unrestrict": unrestrict,
             "clothes": Clothes,
             "invisible": Invisible,
             "mlock": Mlock,
@@ -762,6 +771,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
+		if (NoescapeOn == null || NoescapeOn == undefined) NoescapeOn = false;
                 if (NogarbleOn == null || NogarbleOn == undefined) NogarbleOn = false;
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
@@ -792,6 +802,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (tintlevel == null || tintlevel == undefined) tintlevel = 0;
                 if (tintmbs == null || tintmbs == undefined) tintmbs = false;
                 if (tintnever == null || tintnever == undefined) tintnever = false;
+		if (unrestrict == null || unrestrict == undefined) unrestrict = 0;
                 M_MOANER_saveControls();
                 BabyTalkOn = false;
                 GagTalkOn = false;
@@ -874,6 +885,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 magiccheat: false,
                 magictoys: false,
                 maptrap1: 0,
+		noescape: false,
                 nogarble: false,
                 nostruggle: false,
                 notalk: 0,
@@ -1430,6 +1442,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_vibratorActive = data.vibeMoan;
                 M_MOANER_whisperActive = data.whisperMoan;
                 M_MOANER_xvibratorActive = data.xvibeMoan;
+		NoescapeOn = data.noescape;
                 NogarbleOn = data.nogarble;
                 NostruggleOn = data.nostruggle;
                 notalk = data.notalk;
@@ -1541,6 +1554,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
+		if ((NoescapeOn == true) && (unrestrict == 2)) {
+                    ServerSocket.close();
+                    ServerSocket.open();
+                }
                 TintsEffect();
                 UBCPreferenceSubscreen = "";
                 PreferenceMessage = "";
@@ -1553,14 +1570,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "The EXT button gives direct access to the Extensions menu. It corresponds to the /xmenu command.", false, 150
                 );
                 addMenuCheckbox(64, 64, "Enable FREE buttons: ", "sosbuttons",
-                    "The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command.", false, 150
+                    "The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command. This option is not available in no-escape mode.","Player.UBC.ubcSettings.noescape" , 150
                 );
                 addMenuCheckbox(64, 64, "Enable OUT buttons: ", "outbuttons",
-                    "The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text.", false, 150
+                    "The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape", 150
                 );
-                addMenuCheckbox(64, 64, "Slow exit with OUT button:", "slowleave",
-                    "By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players!", "!Player.UBC.ubcSettings.outbuttons", 150
-                );
+                let slowmsg = "By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players! This option is not available in no-escape mode. "; 
+                let noescape = 0;
+                if (Player.UBC.ubcSettings.noescape == false) noescape = 1;  
+                if (noescape == 0) {
+                    addMenuCheckbox(64, 64, "Slow exit with OUT button: ", "slowleave", slowmsg, true, 150);
+                } else {
+                    addMenuCheckbox(64, 64, "Slow exit with OUT button: ", "slowleave", slowmsg, "!Player.UBC.ubcSettings.outbuttons", 150);
+                }     
                 addMenuCheckbox(64, 64, "Enable RGL button in chat: ", "rglbuttons",
                     "The RGL button gives info about your current Real Garbling Level at any moment, by checking worn gags and other items restraining talking (also LSCG collar and spells). When using the buttons, hotkeys or commands to release yourself, this info is automatically given and synchronized with your forced gagtalk/whisper level as the result is 0. The RGL button can therefore be used as emergency when you can't talk while not being gagged, for example.", false, 150
                 );
@@ -1705,7 +1727,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCHotkeysLoad = function() {
                 UBCPreferenceSubscreen = "UBCHotkeys";
                 addMenuCheckbox(64, 64, "Enable hotkeys in chat: ", "hotkeys",
-                    "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = total release. If you don't have a numeric pad, use instead the similar command or an UBC button."
+                    "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = total release. If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape" 
                 );
                 addMenuCheckbox(64, 64, "Enable hotkeys in friend list: ", "frkeys",
                     "These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. List of hotkeys: F = female club - G = mixed club - H = male club - J = asylum."
@@ -1755,18 +1777,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCPreferenceSubscreen = "UBCMisc";
                 addMenuCheckbox(64, 64, "Access all backgrounds in Private Room: ", "bgall",
                     "With this option, you will not be limited to only 43 backgrounds when using the features in the Private Room to change the background of Friend List, Main Hall, Private Room and Timer Cell. You will have access to all standard backgrounds (more than 250!)", false, 120
+                );              
+                addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
+                    "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
+                );
+                addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape",
+                    "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, unrestrict total, untie. If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.", false, 120
+                );
+                addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
+                    "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
                 );
                 addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
                     "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
                 );
                 addMenuCheckbox(64, 64, "No time out in help provided by TAB: ", "notimeout",
                     "When you use the TAB key to get help about BC commands, the displayed results are removed from the chat after some time. If you don't like that, use this option to prevent the disappearance of the help results.", false, 120
-                );
-                addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
-                    "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
-                );
-                addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
-                    "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
                 );
             }
 
@@ -2113,7 +2138,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return;
                 }
             }
-            if (SosbuttonsOn == true) {
+            if ((SosbuttonsOn == true) && (NoescapeOn == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
                     let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
                     if (Totalrelease != undefined) {
@@ -2130,7 +2155,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return;
                 }
             }
-            if (OutbuttonsOn == true) {
+            if ((OutbuttonsOn == true) && (NoescapeOn == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 90) && (MouseY < 135)) {
                     if (SlowleaveOn == true) {
                         let msg = "" + tmpname + " slowly heads for the door.";
@@ -2160,7 +2185,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const chatHasFocus = inputChat && document.activeElement === inputChat;
             const modifiers = CommonKey.GetModifiers(event);
             if (chatHasFocus) {
-                if (HotkeysOn == true) {
+                if ((HotkeysOn == true) && (NoescapeOn == false)) {
                     if (event.code === "NumpadDivide") {
                         OutChat();
                         return true;
@@ -2425,7 +2450,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     act = text1.substring(8);
                     PandoraPenitentiaryDoActivity(act);
                     text2 = "";
-                } else {
+                } 
+                if (((text1.startsWith("/leave")) || (text1.startsWith("/safewordspecific"))) && (Player.BCAR != null) && (NoescapeOn == true)) {
+                    let msg = umsg1 + umsg3;
+                    infomsg(msg);
+                    text2 = "";
+                } 
+                if (text2 != "") {
                     if (!text1.startsWith("//")) {
                         tsp = 1;
                         ChatRoomSetTarget(-1);
@@ -3064,7 +3095,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Help
-    async function UKTRACommandAutoComplete() {
+    async function ULTRACommandAutoComplete() {
         modApi.hookFunction('CommandAutoComplete', 4, (args, next) => {
             msg = ElementValue("InputChat");
             const low = msg.toLowerCase();
@@ -4360,14 +4391,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function OutButtons() {
-        if (window.CurrentScreen == "ChatRoom") {
-            DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
-        } else {
-            if (SlowleaveOn == true) {
-                DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+        if (NoescapeOn == false) {
+            if (window.CurrentScreen == "ChatRoom") {
+                DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
             } else {
-                DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
-            }
+                if (SlowleaveOn == true) {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                } else {
+                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+               }
+           }
         }
     }
 
@@ -4388,26 +4421,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function OutClick() {
-        if (window.CurrentScreen == "Cell") CellLock(0);
-        if (window.CurrentScreen == "PandoraPrison") PandoraPunishmentSentence(0);
-        CharacterRefresh(Player);
-        if (SlowleaveOn == true) {
-            if (window.CurrentScreen == "PandoraPrison") {
-                setTimeout(function() {
+        if (NoescapeOn == false) {
+            if (window.CurrentScreen == "Cell") CellLock(0);
+            if (window.CurrentScreen == "PandoraPrison") PandoraPunishmentSentence(0);
+            CharacterRefresh(Player);
+            if (SlowleaveOn == true) {
+                if (window.CurrentScreen == "PandoraPrison") {
+                    setTimeout(function() {
+                        PandoraPrisonExitPrison();
+                    }, 15000);
+                } else {
+                    setTimeout(function() {
+                        CommonSetScreen("Room", "MainHall");
+                    }, 15000);
+                }
+            } else {
+                if (window.CurrentScreen == "PandoraPrison") {
                     PandoraPrisonExitPrison();
-                }, 15000);
-            } else {
-                setTimeout(function() {
+                } else {
                     CommonSetScreen("Room", "MainHall");
-                }, 15000);
+                }
             }
-        } else {
-            if (window.CurrentScreen == "PandoraPrison") {
-                PandoraPrisonExitPrison();
-            } else {
-                CommonSetScreen("Room", "MainHall");
-            }
-        }
+         }
     }
 
     function PrfClick() {
@@ -4420,17 +4455,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function SosButtons() {
-        if (window.CurrentScreen == "ChatRoom") {
-            DrawButton(955, 45, 45, 45, "FREE", "White", "", "");
-        } else {
-            DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+        if (NoescapeOn == false) {
+            if (window.CurrentScreen == "ChatRoom") {
+                DrawButton(955, 45, 45, 45, "FREE", "White", "", "");
+            } else {
+                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+            }
         }
-    }
+    } 
 
     function SosClick() {
-        CharacterReleaseTotal(Player);
-        if (window.CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
-        RealGarblingLevel();
+        if (NoescapeOn == false) {
+            CharacterReleaseTotal(Player);
+            if (window.CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
+            RealGarblingLevel();
+        } 
     }
 
     //DOGS Status
@@ -7900,19 +7939,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'boost',
         Description: ": boosts all your skills for one hour.",
         Action: () => {
-            SkillSetModifier(Player, "Bondage", +5, 3600000);
-            SkillSetModifier(Player, "Dressage", +5, 3600000);
-            SkillSetModifier(Player, "Evasion", +5, 3600000);
-            SkillSetModifier(Player, "Infiltration", +5, 3600000);
-            SkillSetModifier(Player, "LockPicking", +5, 3600000);
-            SkillSetModifier(Player, "SelfBondage", +5, 3600000);
-            SkillSetModifier(Player, "Willpower", +5, 3600000);
-            let msg = "You feel all your skills boosted. Changes can be seen in information panel.";
-            infomsg(msg);
+            if (NoescapeOn) {
+                let msg = umsg1 + umsg3;
+                infomsg(msg);
+            } else {
+                SkillSetModifier(Player, "Bondage", +5, 3600000);
+                SkillSetModifier(Player, "Dressage", +5, 3600000);
+                SkillSetModifier(Player, "Evasion", +5, 3600000);
+                SkillSetModifier(Player, "Infiltration", +5, 3600000);
+                SkillSetModifier(Player, "LockPicking", +5, 3600000);
+                SkillSetModifier(Player, "SelfBondage", +5, 3600000);
+                SkillSetModifier(Player, "Willpower", +5, 3600000);
+                let msg = "You feel all your skills boosted. Changes can be seen in information panel.";
+                infomsg(msg);
+            }
         }
     }])
 
@@ -12188,13 +12232,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'quit',
         Description: "(action): leaves room.",
         Action: (args) => {
-            if (args === "") {
-                OutChat();
+            if (NoescapeOn) {
+                let msg = umsg1 + umsg3;
+                infomsg(msg);
             } else {
-                let message = ' '.repeat(1) + args;
-                let msg = "" + tmpname + message;
-                publicmsg(msg);
-                OutChat();
+                if (args === "") {
+                    OutChat();
+                } else {   
+                    let message = ' '.repeat(1) + args;
+                    let msg = "" + tmpname + message;
+                    publicmsg(msg);
+                    OutChat();
+                }
             }
         }
     }])
@@ -12644,26 +12693,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             infomsg(msg);
             setTimeout(function() {
                 if (CurrentCharacter != null) {
-                    if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
-                        let uw = 0;
-                        CurrentCharacter.Appearance = CurrentCharacter.Appearance.filter(x => (CurrentCharacter.FocusGroup && CurrentCharacter.FocusGroup.Name) ? x.Asset.Group.Name !=
-                            CurrentCharacter.FocusGroup.Name : true);
-                        if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
+                    if ((NoescapeOn) && (CurrentCharacter == Player)) {
+                        let msg = umsg1 + umsg3;
+                        infomsg(msg);
+                    } else {
+                        if (CurrentCharacter.OnlineSharedSettings.UBC != undefined) {
+                            let uw = 0;
+                            CurrentCharacter.Appearance = CurrentCharacter.Appearance.filter(x => (CurrentCharacter.FocusGroup && CurrentCharacter.FocusGroup.Name) ? x.Asset.Group.Name !=
+                                CurrentCharacter.FocusGroup.Name : true);
+                            if ((CurrentCharacter.OnlineSharedSettings.Uwall == true) && ((CurrentCharacter.OnlineSharedSettings.Ulist == undefined) ||
                                 (!(CurrentCharacter.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
-                            if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
-                                tgpname = CurrentCharacter.Name;
-                            } else {
-                                tgpname = CurrentCharacter.Nickname;
+                                if ((CurrentCharacter.Nickname == '') || (CurrentCharacter.Nickname == undefined)) {
+                                    tgpname = CurrentCharacter.Name;
+                                } else {
+                                    tgpname = CurrentCharacter.Nickname;
+                                }
+                                if (tgpname != tmpname) {
+                                    uw = 1;
+                                    let msg = umsg1 + tgpname + umsg2;
+                                    infomsg(msg);
+                                }
                             }
-                            if (tgpname != tmpname) {
-                                uw = 1;
-                                let msg = umsg1 + tgpname + umsg2;
-                                infomsg(msg);
+                            if (uw == 0) {
+                                ChatRoomCharacterUpdate(CurrentCharacter);
+                                DialogLeave();
                             }
-                        }
-                        if (uw == 0) {
-                            ChatRoomCharacterUpdate(CurrentCharacter);
-                            DialogLeave();
                         }
                     }
                 }
@@ -12902,24 +12956,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'slowleave',
         Description: "(action): slowly leaves the room.",
         Action: (args) => {
-            let message = "";
-            if (args === "") {
-                message = " slowly heads for the door."
+            if (NoescapeOn) {
+                let msg = umsg1 + umsg3;
+                infomsg(msg);
             } else {
-                message = ' '.repeat(1) + args;
+                let message = "";
+                if (args === "") {
+                    message = " slowly heads for the door."
+                } else {
+                    message = ' '.repeat(1) + args;
+                }
+                let msg = "" + tmpname + message;
+                publicmsg(msg);
+                setTimeout(function() {
+                    OutChat();
+                }, 15000);
             }
-            let msg = "" + tmpname + message;
-            publicmsg(msg);
-            setTimeout(function() {
-                OutChat();
-            }, 15000);
         }
     }])
-
+ 
     CommandCombine([{
         Tag: 'solidity',
         Description: "(value) (target): changes the solidity of most current bindings.",
@@ -12937,33 +12996,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     infomsg(msg);
                 } else {
                     if ((targetname == null) && (solidity > 0) && (solidity < 100)) {
-                        if (InventoryGet(Player, "ItemDevices") != null) {
-                            if ((InventoryGet(Player, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(Player, "ItemDevices").Asset.Name == "WoodenRack")) {
-                                if (solidity == 1) {
-                                    InventoryRemove(Player, "ItemDevices");
-                                    let msg1 = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
-                                    if (Solidity != undefined) {
-                                        if (Solidity != "") {
-                                            if (Solidity.startsWith("\u0027")) {
-                                                msg1 = tmpname + Solidity;
-                                            } else {
-                                                msg1 = tmpname + ' '.repeat(1) + Solidity;
+                        if ((NoescapeOn) && (solidity < 20)) {
+                            let msg = umsg1 + umsg3;
+                            infomsg(msg);
+                        } else {
+                            if (InventoryGet(Player, "ItemDevices") != null) {
+                                if ((InventoryGet(Player, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(Player, "ItemDevices").Asset.Name == "WoodenRack")) {
+                                    if (solidity == 1) {
+                                        InventoryRemove(Player, "ItemDevices");
+                                        let msg1 = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
+                                        if (Solidity != undefined) {
+                                            if (Solidity != "") {
+                                                if (Solidity.startsWith("\u0027")) {
+                                                    msg1 = tmpname + Solidity;
+                                                } else {
+                                                    msg1 = tmpname + ' '.repeat(1) + Solidity;
+                                                }
                                             }
                                         }
+                                        if (Solidity != "no message") publicmsg(msg1);
                                     }
-                                    if (Solidity != "no message") publicmsg(msg1);
                                 }
                             }
-                        }
-                        for (let A = 0; A < Player.Appearance.length; A++)
-                            if (Player.Appearance[A].Asset.Group.Name != null) {
-                                if (Player.Appearance[A].Asset.Group.Name.startsWith("Item")) {
-                                    Player.Appearance[A].Difficulty = solidity;
+                            for (let A = 0; A < Player.Appearance.length; A++)
+                                if (Player.Appearance[A].Asset.Group.Name != null) {
+                                    if (Player.Appearance[A].Asset.Group.Name.startsWith("Item")) {
+                                        Player.Appearance[A].Difficulty = solidity;
+                                    }
                                 }
-                            }
-                        ChatRoomCharacterUpdate(Player);
-                        let msg2 = "The solidity of most current bindings has been changed.";
-                        infomsg(msg2);
+                            ChatRoomCharacterUpdate(Player);
+                            let msg2 = "The solidity of most current bindings has been changed.";
+                            infomsg(msg2);
+                        } 
                     } else {
                         let target = TargetSearch(targetname);
                         if ((target != null) && (target.AllowItem == true) && (solidity > 0) && (solidity < 100) && (target.OnlineSharedSettings.UBC != undefined)) {
@@ -13620,18 +13684,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (target != null) {
                 if (target == Player) {
-                    let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
-                    if (Totalrelease != undefined) {
-                        if (Totalrelease != "") {
-                            if (Totalrelease.startsWith("\u0027")) {
-                                msg = tmpname + Totalrelease;
-                            } else {
-                                msg = tmpname + ' '.repeat(1) + Totalrelease;
+                    if (NoescapeOn) {
+                        let msg = umsg1 + umsg3;
+                        infomsg(msg);
+                    } else {
+                        let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
+                        if (Totalrelease != undefined) {
+                            if (Totalrelease != "") {
+                                if (Totalrelease.startsWith("\u0027")) {
+                                    msg = tmpname + Totalrelease;
+                                } else {
+                                    msg = tmpname + ' '.repeat(1) + Totalrelease;
+                                }
                             }
                         }
+                        if (Totalrelease != "no message") publicmsg(msg);
+                        SosClick();
                     }
-                    if (Totalrelease != "no message") publicmsg(msg);
-                    SosClick();
                 } else {
                     if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
                         tgpname = getNickname(target);
@@ -14060,18 +14129,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (tmpname == tgpname) {
-                        let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
-                        if (Unlock != undefined) {
-                            if (Unlock != "") {
-                                if (Unlock.startsWith("\u0027")) {
-                                    msg = tmpname + Unlock;
-                                } else {
-                                    msg = tmpname + ' '.repeat(1) + Unlock;
+                        if (NoescapeOn) {
+                            let msg = umsg1 + umsg3;
+                            infomsg(msg);
+                        } else {
+                            let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
+                            if (Unlock != undefined) {
+                                if (Unlock != "") {
+                                    if (Unlock.startsWith("\u0027")) {
+                                        msg = tmpname + Unlock;
+                                    } else {
+                                        msg = tmpname + ' '.repeat(1) + Unlock;
+                                    }  
                                 }
                             }
+                            if (Unlock == "no message") silent = 1;
+                            if (silent == 0) publicmsg(msg);
                         }
-                        if (Unlock == "no message") silent = 1;
-                        if (silent == 0) publicmsg(msg);
                     } else {
                         if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
                                 (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
@@ -14190,6 +14264,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "- The unrestrict total command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!";
                 infomsg(msg);
             } else if (args === "soft") {
+		unrestrict = 1;
                 InventoryGroupIsBlocked = function(C, GroupName) {
                     return false;
                 }
@@ -14205,80 +14280,86 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Store also includes hidden items. This can only be reset via a full relog.";
                 infomsg(msg);
             } else if (args === "total") {
-                let msg = "Unrestricted totally. Can do many things you couldn't do before.\n" +
-                    "Store also includes hidden items. This can only be reset via a full relog.\n" +
-                    "This command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!";
-                infomsg(msg);
-                Player.CanInteract = function() {
-                    return true;
-                }
-                Player.CanTalk = function() {
-                    return true;
-                }
-                Player.IsPlugged = function() {
-                    return false;
-                }
-                Player.IsVulvaChaste = function() {
-                    return false;
-                }
-                Player.CanChange = function() {
-                    return true;
-                }
-                InventoryGroupIsBlocked = function(C, GroupName) {
-                    return false;
-                }
-                Player.GameplaySettings.BlindDisableExamine = false;
-                Asset.forEach(e => {
-                    if (e.Value < 0) e.Value = 1;
-                });
-                Player.Inventory.forEach(item => item.Asset.Enable = true);
-                ChatRoomMapViewCanEnterTile = function(X, Y) {
-                    return 20;
-                }
-                DialogHasKey = function(C, Item) {
-                    if (C.IsPlayer()) {
+                if (NoescapeOn) {
+                        let msg = umsg1 + umsg3;
+                        infomsg(msg);
+                } else {
+                    unrestrict = 2;
+                    let msg = "Unrestricted totally. Can do many things you couldn't do before.\n" +
+                        "Store also includes hidden items. This can only be reset via a full relog.\n" +
+                        "This command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!";
+                    infomsg(msg);
+                    Player.CanInteract = function() {
                         return true;
-                    } else {
-                        if (C.OnlineSharedSettings.UBC == undefined) {
-                            return false;
+                    }
+                    Player.CanTalk = function() {
+                        return true;
+                    }
+                    Player.IsPlugged = function() {
+                        return false;
+                    }
+                    Player.IsVulvaChaste = function() {
+                        return false;
+                    }
+                    Player.CanChange = function() {
+                        return true;
+                    }
+                    InventoryGroupIsBlocked = function(C, GroupName) {
+                        return false;
+                    }
+                    Player.GameplaySettings.BlindDisableExamine = false;
+                    Asset.forEach(e => {
+                        if (e.Value < 0) e.Value = 1;
+                    });
+                    Player.Inventory.forEach(item => item.Asset.Enable = true);
+                    ChatRoomMapViewCanEnterTile = function(X, Y) {
+                       return 20;
+                    }
+                    DialogHasKey = function(C, Item) {
+                        if (C.IsPlayer()) {
+                            return true;
                         } else {
-                            if (C.OnlineSharedSettings.Uwall) {
-                                if (C.OnlineSharedSettings.Ulist == undefined) {
-                                    return false;
-                                } else {
-                                    if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
-                                }
+                            if (C.OnlineSharedSettings.UBC == undefined) {
+                                return false;
                             } else {
-                                return true;
+                                if (C.OnlineSharedSettings.Uwall) {
+                                    if (C.OnlineSharedSettings.Ulist == undefined) {
+                                        return false;
+                                    } else {
+                                        if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                } else {
+                                    return true;
+                                }
                             }
                         }
                     }
-                }
-                StruggleLockPickProgressStart = function(C, Item) {
-                    InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                    ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                    DialogLeave();
-                }
-                StruggleProgressStart = function(C, PrevItem, NextItem) {
-                    if (InventoryGet(CurrentCharacter, CurrentCharacter.FocusGroup.Name) == null) {
-                        if (C != Player || PrevItem == null || ((PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && ((Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Mounted", true)) || StruggleStrengthGetDifficulty(C, PrevItem, NextItem).auto >= 0))) {
-                            StruggleProgressCurrentMinigame = "Strength";
-                            StruggleStrengthStart(C, PrevItem, NextItem);
-                        }
-                    } else {
+                    StruggleLockPickProgressStart = function(C, Item) {
                         InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                        InventoryRemove(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
                         ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
+                        DialogLeave();
+                    }
+                    StruggleProgressStart = function(C, PrevItem, NextItem) {
+                        if (InventoryGet(CurrentCharacter, CurrentCharacter.FocusGroup.Name) == null) {
+                            if (C != Player || PrevItem == null || ((PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && ((Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Mounted", true)) || StruggleStrengthGetDifficulty(C, PrevItem, NextItem).auto >= 0))) {
+                                StruggleProgressCurrentMinigame = "Strength";
+                                StruggleStrengthStart(C, PrevItem, NextItem);
+                            }
+                        } else {
+                            InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
+                            InventoryRemove(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
+                            ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
+                        }
                     }
                 }
             }
         }
     }])
-
+            
     CommandCombine([{
         Tag: 'untie',
         Description: "(target): removes all bindings.",
@@ -14287,20 +14368,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (target != null) {
                 if (target == Player) {
-                    let msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
-                    if (Untie != undefined) {
-                        if (Untie != "") {
-                            if (Untie.startsWith("\u0027")) {
-                                msg = tmpname + Untie;
-                            } else {
-                                msg = tmpname + ' '.repeat(1) + Untie;
+                    if (NoescapeOn) {
+                        let msg = umsg1 + umsg3;
+                        infomsg(msg);
+                    } else {
+                        let msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
+                        if (Untie != undefined) {
+                            if (Untie != "") {
+                                if (Untie.startsWith("\u0027")) {
+                                    msg = tmpname + Untie;
+                                } else {
+                                    msg = tmpname + ' '.repeat(1) + Untie;
+                                }
                             }
                         }
+                        if (Untie != "no message") publicmsg(msg);
+                        CharacterRelease(Player);
+                        ChatRoomCharacterUpdate(Player);
+                        RealGarblingLevel();
                     }
-                    if (Untie != "no message") publicmsg(msg);
-                    CharacterRelease(Player);
-                    ChatRoomCharacterUpdate(Player);
-                    RealGarblingLevel();
                 } else {
                     if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
                         tgpname = getNickname(target);
