@@ -7939,7 +7939,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-   CommandCombine([{
+    CommandCombine([{
         Tag: 'boost',
         Description: ": boosts all your skills for one hour.",
         Action: () => {
@@ -12956,7 +12956,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-   CommandCombine([{
+    CommandCombine([{
         Tag: 'slowleave',
         Description: "(action): slowly leaves the room.",
         Action: (args) => {
