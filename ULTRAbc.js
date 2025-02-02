@@ -1673,7 +1673,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
                     "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search."
                 );
-                addMenuCheckbox(64, 64, "Normal/hybrid room size: ", "rchat",
+                addMenuCheckbox(64, 64, "Control normal/hybrid room size: ", "rchat",
                     "When enabled, the below parameters will be used in Chat Search for the normal and hybrid rooms."
                 );
                 addMenuInput(200, "Minimum players (2-20):", "rmin", "InputRoomMin",
