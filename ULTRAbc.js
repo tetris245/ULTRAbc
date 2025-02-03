@@ -7957,6 +7957,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'bgshow',
+        Description: "(bgnumber): displays link to a specific standard background. When used with WCE feature, the picture can be embedded in the chat.",   
+        Action: (args) => {
+            let BCver = GameVersion;
+            if (BCver.includes("Beta")) {
+                let beta1 = BCver.slice(0, 4);
+                let beta2 = beta1.slice(-3);
+                let beta3 = beta2 - 1;
+                BCver = "R" + beta3;
+            }
+            if (args === "") {
+                let msg = "The bgshow command must be followed by a number (use /bglist to get available numbers).";
+                infomsg(msg);
+            } else {
+                if ((args > -1) && (args < BackgroundsList.length)) {
+                    let name = BackgroundsList[args].Name;
+                    let msg = "https://www.bondage-europe.com/" + BCver + "/BondageClub/Backgrounds/" + name +".jpg";
+                    ChatRoomSendChatMessage(msg);
+                }
+            } 
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'bio',
         Description: "(target): gives direct access to the profile description of any player in the chat room.",
         Action: (args) => {
@@ -13925,6 +13949,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Settings commands - * = more info when using\n" +
                     "<b>/bg4</b> (screen) (background) = selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell. *\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
+		    "<b>/bgshow</b> (bgnumber) = displays link to a specific standard background. Embedding possible if used with WCE feature.\n" +  
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *";
                 infomsg(msg);
