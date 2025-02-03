@@ -7967,16 +7967,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 OnlineProfileRun();
                 CommonSetScreen("Character", "OnlineProfile")
             } else {
-                let targetname = args;
-                let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                if (target[0] == null) {
-                    let targetnumber = parseInt(targetname);
-                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                }
-                if (target[0] != null) {
+                let target = TargetSearch(args);    
+                if (target != null) {
                     ChatRoomSetLastChatRoom("");
                     ChatRoomHideElements();
-                    InformationSheetLoadCharacter(target[0]);
+                    InformationSheetLoadCharacter(target);
                     OnlineProfileRun();
                     CommonSetScreen("Character", "OnlineProfile");
                 }
