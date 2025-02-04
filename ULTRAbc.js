@@ -2053,7 +2053,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardRenderBoard();
-    UKTRACommandAutoComplete();
+    ULTRACommandAutoComplete();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
     ULTRAFriendListDraw();
