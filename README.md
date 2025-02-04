@@ -67,8 +67,10 @@ Changes for future version
   - This mode disables the FREE/OUT buttons and hotkeys.
   - It prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, unrestrict total, untie.
   - If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.
-* New command: bgshow (bgnumber) to display the link to a specific standard background (when used with WCE feature, the picture can be embedded in the chat)
-   - Tip: use the bglist command to get the list of all available background numbers
+* New commands:
+  - bgshow1 (bgnumber) to display locally link to a specific standard background (when used with WCE feature, the picture can be embedded in the chat)
+  - bgshow2 (bgnumber) to display in chat link to a specific standard background (when used with WCE feature, the link is clickable and the picture can be embedded in the chat)
+  - Tip: use the bglist command to get the list of all available background numbers
 * Removed the roomsize and uset commands (all the settings are now in the GUI)
 * Removed the roomtype command (as it's easier to use the buttons in Chat Search)
 
