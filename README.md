@@ -69,7 +69,7 @@ Changes for future version
   - If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.
 * New commands:
   - bgshow1 (bgnumber) to display locally clickable link to a specific standard background and embedded picture
-  - bgshow2 (bgnumber) to display in chat link to a specific standard background (when used with WCE feature, the link is clickable and the picture can be embedded in the chat)
+  - bgshow2 (bgnumber) to send in chat link to a specific standard background (when used with WCE feature, the link is clickable and the picture can be embedded in the chat)
   - Tip: use the bglist command to get the list of all available standard background numbers
 * Removed the roomsize and uset commands (all the settings are now in the GUI)
 * Removed the roomtype command (as it's easier to use the buttons in Chat Search)
