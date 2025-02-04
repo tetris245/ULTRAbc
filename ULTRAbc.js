@@ -7958,7 +7958,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bgshow1',
-        Description: "(bgnumber): sends locally clickable link to a specific standard background. When used with WCE feature, the picture can be embedded in the chat.",   
+        Description: "(bgnumber): displays locally clickable link to a specific standard background.",   
         Action: (args) => {
             let BCver = GameVersion;
             if (BCver.includes("Beta")) {
@@ -7973,29 +7973,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 if ((args > -1) && (args < BackgroundsList.length)) {
                     let name = BackgroundsList[args].Name;
-                    let url = 'https://www.bondage-europe.com/' + BCver + '/BondageClub/Backgrounds/' + name + '.jpg';
-                    let bgc = 0;
-                    if (Player.FBC != undefined) {
-                        let str = Player.ExtensionSettings.FBC;
-                        let d = LZString.decompressFromBase64(str);
-                        let FBCdata = {};
-                        let decoded = JSON.parse(d);
-                        FBCdata = decoded
-                        if (FBCdata.augmentChat) bgc = 1;
-                    }
-                    if (bgc == 0) {
-                        let msg = '<a href="'+url+'" target="_blank">'+url+'</a>';
-                        let txt = "( " + msg + " )";
-                        infomsg(txt);
-                    } else {
-                        let msg = "( " + url + " )";
-                        ChatRoomSendLocal(msg); 
-                    }
+                    let url = 'https://www.bondage-europe.com/' + BCver + '/BondageClub/Backgrounds/' + name + '.jpg';        
+                    let msg = '<a href="'+url+'" target="_blank">'+url+'</a>';
+                    let txt = "( " + msg + " )";
+                    infomsg(txt);                  
                 }
             } 
         }
     }])
-
+  
     CommandCombine([{
         Tag: 'bgshow2',
         Description: "(bgnumber): sends in chat link to a specific standard background. When used with WCE feature, the link is clickable and the picture can be embedded in the chat.",   
@@ -13990,8 +13976,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Settings commands - * = more info when using\n" +
                     "<b>/bg4</b> (screen) (background) = selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell. *\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
-		    "<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background. Embedding possible if used with WCE feature.\n" + 
-		    "<b>/bgshow2</b> (bgnumber) = displays in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n" + 
+		    "<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background.\n" + 
+		    "<b>/bgshow2</b> (bgnumber) = sends in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n" + 
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
                     "<b>/message</b> (option) (message) = creates custom messages for specific command. *";
                 infomsg(msg);
