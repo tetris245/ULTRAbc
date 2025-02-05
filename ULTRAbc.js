@@ -803,7 +803,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (reaction == null || reaction == undefined) reaction = 0;
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
                 if (RglsyncOn == null || RglsyncOn == undefined) RglsyncOn = false;
-		if (rmin == null || rmin == undefined) rmin = 2;
+		if (rmin == null || rmin == undefined || rmin == 0) rmin = 2;
                 if (rsize == null || rsize == undefined) rsize = 20;                   
                 if (rtype == null || rtype == undefined || rtype == "") rtype = "ALL";
                 if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
