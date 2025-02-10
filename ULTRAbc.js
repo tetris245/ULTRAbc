@@ -14337,6 +14337,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Asset.forEach(e => {
                     if (e.Value < 0) e.Value = 1;
                 });
+		InventoryAdd(Player, "BountySuitcase", "ItemMisc");
+                InventoryAdd(Player, "FourLimbsShackles", "ItemArms");
+                InventoryAdd(Player, "MilkCan", "ItemDevices");
+                InventoryAdd(Player, "WaterCell", "ItemDevices");            
+                InventoryAdd(Player, "WoodenMaidTray", "ItemMisc");
+                InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
+                InventoryAdd(Player, "WoodenPaddle", "ItemMisc");
                 Player.Inventory.forEach(item => item.Asset.Enable = true);
                 ChatRoomMapViewCanEnterTile = function(X, Y) {
                     return 20;
@@ -14376,6 +14383,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Asset.forEach(e => {
                         if (e.Value < 0) e.Value = 1;
                     });
+		    InventoryAdd(Player, "BountySuitcase", "ItemMisc");
+                    InventoryAdd(Player, "FourLimbsShackles", "ItemArms");
+                    InventoryAdd(Player, "MilkCan", "ItemDevices");
+                    InventoryAdd(Player, "WaterCell", "ItemDevices");            
+                    InventoryAdd(Player, "WoodenMaidTray", "ItemMisc");
+                    InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
+                    InventoryAdd(Player, "WoodenPaddle", "ItemMisc");
                     Player.Inventory.forEach(item => item.Asset.Enable = true);
                     ChatRoomMapViewCanEnterTile = function(X, Y) {
                        return 20;
