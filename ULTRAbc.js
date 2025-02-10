@@ -14338,8 +14338,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (e.Value < 0) e.Value = 1;
                 });
 		InventoryAdd(Player, "BountySuitcase", "ItemMisc");
+                InventoryAdd(Player, "BountySuitcaseEmpty", "ItemMisc");
+                InventoryAdd(Player, "ClubSlaveCollar", "ItemNeck");
                 InventoryAdd(Player, "FourLimbsShackles", "ItemArms");
                 InventoryAdd(Player, "MilkCan", "ItemDevices");
+                InventoryAdd(Player, "SlaveCollar", "ItemNeck");
                 InventoryAdd(Player, "WaterCell", "ItemDevices");            
                 InventoryAdd(Player, "WoodenMaidTray", "ItemMisc");
                 InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
@@ -14384,8 +14387,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (e.Value < 0) e.Value = 1;
                     });
 		    InventoryAdd(Player, "BountySuitcase", "ItemMisc");
+                    InventoryAdd(Player, "BountySuitcaseEmpty", "ItemMisc");
+                    InventoryAdd(Player, "ClubSlaveCollar", "ItemNeck");
                     InventoryAdd(Player, "FourLimbsShackles", "ItemArms");
                     InventoryAdd(Player, "MilkCan", "ItemDevices");
+                    InventoryAdd(Player, "SlaveCollar", "ItemNeck");
                     InventoryAdd(Player, "WaterCell", "ItemDevices");            
                     InventoryAdd(Player, "WoodenMaidTray", "ItemMisc");
                     InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
