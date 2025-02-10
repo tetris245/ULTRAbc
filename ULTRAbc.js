@@ -2939,6 +2939,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Club Card Game
     async function ULTRAClubCardEndTurn(Draw = false) {
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
+            if (HighfameOn == false) ClubCardFameGoal = 100;
             if (HighfameOn == true) {
                 ClubCardFameGoal = cfame;
                 let nmg = "";
@@ -2964,46 +2965,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 FameMoneyText = ((CCPlayer.LastFamePerTurn >= 0) ? "+" : "") + CCPlayer.LastFamePerTurn.toString() + " Fame, " + ((CCPlayer.LastMoneyPerTurn >= 0) ? "+" : "") + CCPlayer.LastMoneyPerTurn.toString() + " Money";
                 if (CCPlayer.Fame >= ClubCardFameGoal) {
+                    ClubCardFocus = null;
                     MiniGameVictory = (CCPlayer.Control == "Player");
                     MiniGameEnded = true;
-                    const infoMessage = TextGet("EndTurnPlayer")
-                        .replace("FAMEMONEY", FameMoneyText)
-                        .replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character))
-                        .replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character));
-                    ClubCardMessagePacketAdd(infoMessage, ClubCardMessageType.FAMEMONEYINFO);
+                    ClubCardMessageAdd(ClubCardMessageType.FAMEMONEYINFO, "EndTurnPlayer", {[ClubCardPlaceholderKeys.FAMEMONEY]: FameMoneyText}, CCPlayer);
+		    const textGetKey = ClubCardIsOnline()
+		        ? "VictoryFor" + CCPlayer.Control
+			: "VictoryOnline";
+		    ClubCardMessageAdd(ClubCardMessageType.VICTORYINFO, textGetKey);
+		    ClubCardMessageSendAll();
+		    GameClubCardSyncOnlineData();
+		    if (ClubCardIsOnline()) {
+			const Dictionary = new DictionaryBuilder().sourceCharacter(Player).build();
+			Dictionary.push({Tag: "SourceCharacter", Text: CharacterNickname(Player), MemberNumber: Player.MemberNumber});
+			ServerSend("ChatRoomChat", { Content: "ClubCardGameEnd", Type: "Action" , Dictionary: Dictionary});
+		    }
                     let nmg = TextGet("VictoryFor" + CCPlayer.Control);
                     if (ClubCardIsOnline()) nmg = TextGet("VictoryOnline").replace("PLAYERNAME", CharacterNickname(CCPlayer.Character));
                     Msg = nmg.replace("100", cfame);
                     ClubCardCreatePopup("TEXT", Msg, TextGet("Return"), null, "ClubCardEndGame()", null);
-                    ClubCardMessagePacketAdd(Msg, ClubCardMessageType.VICTORYINFO);
-                    const messageVictoryTypesHeadPacker = [ClubCardMessageType.FAMEMONEYINFO, ClubCardMessageType.VICTORYINFO];
-                    const victoryEndTurnPacket = ClubCardGetLogPacket(messageVictoryTypesHeadPacker);
-                    ClubCardMessagePacketSend(victoryEndTurnPacket);
                     if (MiniGameVictory && (ClubCardReward != null)) ClubCardGetReward();
                     GameClubCardSyncOnlineData();
                     GameClubCardReset();
-                    ClubCardFocus = null;
                     return;
                 }
                 ClubCardTurnEndDraw = Draw;
                 if (Draw) {
-                    const message = TextGet("EndTurnPlayer")
-                        .replace("FAMEMONEY", FameMoneyText)
-                        .replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character))
-                        .replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character));
-                    ClubCardMessagePacketAdd(`${CharacterNickname(CCPlayer.Character)} draws a card.`, ClubCardMessageType.ACTION);
-                    ClubCardMessagePacketAdd(message, ClubCardMessageType.FAMEMONEYINFO);
-                    ClubCardPlayerDrawCard(ClubCardPlayer[ClubCardTurnIndex]);
-                } else {
-                    const message = TextGet("EndTurnPlayer")
-                        .replace("FAMEMONEY", FameMoneyText)
-                        .replace("SOURCEPLAYER", CharacterNickname(CCPlayer.Character))
-                        .replace("OPPONENTPLAYER", CharacterNickname(Opponent.Character));
-                    ClubCardMessagePacketAdd(message, ClubCardMessageType.FAMEMONEYINFO);
+                    ClubCardMessageAdd(ClubCardMessageType.FAMEMONEYINFO, "EndDrawPlayer", {[ClubCardPlaceholderKeys.FAMEMONEY]: FameMoneyText}, CCPlayer);
+		    ClubCardPlayerDrawCard(ClubCardPlayer[ClubCardTurnIndex]);
+		    ClubCardOnDrawAction(CCPlayer); 
+                } else {               	
+		    ClubCardMessageAdd(ClubCardMessageType.FAMEMONEYINFO, "EndTurnPlayer", {[ClubCardPlaceholderKeys.FAMEMONEY]: FameMoneyText}, CCPlayer);
                 }
-                const messageTypesHeadPacker = [ClubCardMessageType.FAMEMONEYINFO, ClubCardMessageType.ACTION, ClubCardMessageType.CARDEFFECT];
-                const endTurnPacket = ClubCardGetLogPacket(messageTypesHeadPacker);
-                ClubCardMessagePacketSend(endTurnPacket);
+                ClubCardMessageSendAll();
                 ClubCardTurnIndex++;
                 CCPlayer.ClubCardTurnCounter++;
                 if (ClubCardTurnIndex >= ClubCardPlayer.length) ClubCardTurnIndex = 0;
