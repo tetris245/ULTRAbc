@@ -59,6 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Updated the high fame mode of the Club Card Game (for R113 compatibility)
 
 
