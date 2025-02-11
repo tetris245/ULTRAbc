@@ -59,6 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
+* New option in GUI - Chat Search to hide the locked rooms in Chat Search
 * Updated the high fame mode of the Club Card Game (for R113 compatibility)
 
 
