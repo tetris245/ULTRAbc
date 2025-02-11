@@ -94,6 +94,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mgl = 0;
     let onegl = 0;
     let rchat = false;
+    let rhide = false;
     let rmin = 2;
     let rsize = 20;
     let rtype = "ALL";
@@ -446,6 +447,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mgl = 0;
             onegl = 0;
 	    rchat = false;
+	    rhide = false;
             rmin = 2;
             rsize = 20;
             rtype = "ALL";
@@ -542,7 +544,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             maptrap1 = datas.maptrap1;
             mgl = 0;
             onegl = 0;
-	    rchat = datas.rchat;
+            rchat = datas.rchat;
+            rhide = datas.rhide;
             rmin = datas.rmin * 1;
             rsize = datas.rsize * 1; 
             rtype = datas.rtype;
@@ -638,6 +641,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gaglevel": gl,
             "maptrap1": maptrap1,
             "rchat": rchat,
+            "rhide": rhide,
             "rmin": rmin,
             "rsize": rsize,
             "rtype": rtype,
@@ -803,6 +807,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (reaction == null || reaction == undefined) reaction = 0;
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
                 if (RglsyncOn == null || RglsyncOn == undefined) RglsyncOn = false;
+		if (rhide == null || rhide == undefined) rhide = false;
 		if (rmin == null || rmin == undefined || rmin == 0) rmin = 2;
                 if (rsize == null || rsize == undefined) rsize = 20;                   
                 if (rtype == null || rtype == undefined || rtype == "") rtype = "ALL";
@@ -903,6 +908,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 reaction: 0,
                 rglbuttons: false,
                 rglsync: false,
+		rhide: false,
 		rmin: 2,
                 rsize: 20,
                 rtype: "ALL",
@@ -1463,6 +1469,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 reaction = data.reaction;
                 RglbuttonsOn = data.rglbuttons;
                 RglsyncOn = data.rglsync;
+		rhide = data.rhide;
 		rmin = data.rmin * 1;
                 rsize = data.rsize * 1;
                 rtype = data.rtype;
@@ -1674,13 +1681,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search."
                 );
                 addMenuCheckbox(64, 64, "Control normal/hybrid room size: ", "rchat",
-                    "When enabled, the below parameters will be used in Chat Search for the normal and hybrid rooms."
+                    "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms."
                 );
                 addMenuInput(200, "Minimum players (2-20):", "rmin", "InputRoomMin",
                     "Input a number between 2 and 20 as minimum players in normal and hybrid rooms! If this number is higher than the maximum, your Chat Search will fail."
                 );
                 addMenuInput(200, "Maximum players (2-20):", "rsize", "InputRoomMax",
                     "Input a number between 2 and 20 as maximum players in normal and hybrid rooms! If this number is lower than the minimum, your Chat Search will fail."
+                );
+		addMenuCheckbox(64, 64, "Hide locked rooms: ", "rhide",
+                    "When enabled, the locked rooms will not be displayed in Chat Search."
                 );
             }
 
@@ -2763,7 +2773,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
             const ret = next(args);
             let NewResult = [];
-            if (rtype == "ALL") {
+            if ((rtype == "ALL") && (rhide == false)) {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (rchat == true) {
@@ -2776,7 +2786,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rm++;
                 }
             }
-            if (rtype == "Never") {
+            if ((rtype == "Never") && (rhide == false)) {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (rchat == true) {
@@ -2791,7 +2801,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rm++;
                 }
             }
-            if (rtype == "Hybrid") {
+            if ((rtype == "Hybrid") && (rhide == false)) {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (rchat == true) {
@@ -2806,10 +2816,64 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rm++;
                 }
             }
-            if (rtype == "Always") {
+            if ((rtype == "Always") && (rhide == false)) {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (ret[rm].MapType == "Always") {
+                        NewResult.push(ret[rm]);
+                    }
+                    rm++;
+                }
+            }  
+            if ((rtype == "ALL") && (rhide == true)) {
+                let rm = 0;
+                while (rm < ret.length) {
+                    if (rchat == true) {
+                        if ((((ret[rm].MemberLimit >= rmin) && (ret[rm].MemberLimit <= rsize)) || (ret[rm].MapType == "Always")) && (ret[rm].Locked == false)) {
+                            NewResult.push(ret[rm]);
+                        } 
+                    } else {
+                        if (ret[rm].Locked == false) {
+                            NewResult.push(ret[rm]);
+                        }
+                    }
+                    rm++;
+                }
+            }
+            if ((rtype == "Never") && (rhide == true)) {
+                let rm = 0;
+                while (rm < ret.length) {
+                    if (rchat == true) {
+                        if ((ret[rm].MemberLimit >= rmin)  && (ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Never") && (ret[rm].Locked == false)) { 
+                            NewResult.push(ret[rm]);
+                        }
+                    } else {
+                        if ((ret[rm].MapType == "Never") && (ret[rm].Locked == false)) {
+                            NewResult.push(ret[rm]);
+                        }
+                    }
+                    rm++;
+                }
+            }
+            if ((rtype == "Hybrid") && (rhide == true)) {
+                let rm = 0;
+                while (rm < ret.length) {
+                    if (rchat == true) {
+                        if ((ret[rm].MemberLimit >= rmin)  && (ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Hybrid") && (ret[rm].Locked == false)) { 
+                            NewResult.push(ret[rm]);
+                        }
+                    } else {
+                        if ((ret[rm].MapType == "Hybrid") && (ret[rm].Locked == false)) {
+                            NewResult.push(ret[rm]);
+                        }
+                    } 
+                    rm++;
+                }
+            }
+            if ((rtype == "Always") && (rhide == true)) {
+                let rm = 0;
+                while (rm < ret.length) {
+                    if ((ret[rm].MapType == "Always") && (ret[rm].Locked == false)) {
                         NewResult.push(ret[rm]);
                     }
                     rm++;
@@ -2818,7 +2882,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             return NewResult;
         });
     }
- 
+
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
             if ((MouseX >= 385) && (MouseX < 465) && (MouseY >= 885) && (MouseY < 975)) {
