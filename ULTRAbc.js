@@ -1690,7 +1690,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 2 and 20 as maximum players in normal and hybrid rooms! If this number is lower than the minimum, your Chat Search will fail."
                 );
 		addMenuCheckbox(64, 64, "Hide locked rooms: ", "rhide",
-                    "When enabled, the locked rooms will not be displayed in Chat Search."
+                    "When enabled, the locked rooms will not be displayed in Chat Search, even those you have access. Tip: Use the Friend List to see the locked rooms where some of your friends are. If you can't enter, beep them and ask to be added to the white list of the room."
                 );
             }
 
