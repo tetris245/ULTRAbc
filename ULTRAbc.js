@@ -5061,7 +5061,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let msg = "";
         let msg1 = "No traps with devices in map rooms.";
         let msg2 = "No magic toys added under locked chastity for trap mode.";
-        if (MaptrapOn) msg1 = "Traps in map rooms if you 'walk' on devices.";
+        if (maptrap1) msg1 = "Traps in map rooms if you 'walk' on devices.";
         if (MagictoysOn) msg2 = "Magic toys added under locked chastity for trap mode.";
         msg = msg1 + " " + msg2;
         statusmsg(msg);
