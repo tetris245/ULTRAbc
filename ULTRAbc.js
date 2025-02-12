@@ -14584,23 +14584,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 let number = ChatRoomCharacter[pl].MemberNumber;
                 ChatRoomSendLocal(name + " (" + aka + ") - " + number);
-                let ubc1 = "";
-                let ubc2 = "";
-                if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == undefined) {
-                    ubc1 = "Does not use ULTRAbc.";
-                } else {
+                let ubc1 = "Does not use ULTRAbc.";
+                let ubc2 = "Does not use Uwall.";
+                if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC != undefined) {
                     if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0)) {
                         ubc1 = "Is an ULTRAbc user.";
                         if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape != undefined) {
                             if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape == true) ubc1 = "UBC in no-escape mode";
                        } 
-                    } else {
-                        ubc1 = "Does not use ULTRAbc.";
-                    }
+                    } 
                 }
-                if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
-                    ubc2 = "Does not use Uwall.";
-                } else {
+                if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall != undefined) {
                     if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
                         ubc2 = "Has enabled Uwall.";
                     } else {
@@ -14613,7 +14607,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-  
+
     CommandCombine([{
         Tag: 'ustatus',
         Description: ": displays status of UBC settings.",
