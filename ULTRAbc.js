@@ -5016,16 +5016,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let OUT = "";
         let RGL = "";
         if (ExtbuttonsOn) EXT = "EXT - ";
-        if (SosbuttonsOn) FREE = "FREE - ";
-        if (OutbuttonsOn) OUT = "OUT - ";
+        if ((SosbuttonsOn) && (NoescapeOn == false)) FREE = "FREE - ";
+        if ((OutbuttonsOn) && (NoescapeOn == false)) OUT = "OUT - ";
         if (RglbuttonsOn) RGL = "RGL";
         msg = "Buttons activated: " + EXT + FREE + OUT + RGL;
-        statusmsg(msg);
-    }
-
-    function showExitmodeStatus() {
-        let msg = "Fast exit mode is activated.";
-        if (SlowleaveOn) msg = "Slow exit mode is activated.";
         statusmsg(msg);
     }
 
@@ -5036,9 +5030,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Frkeys = "";
         let Hotkeys = "";
         if (AutojoinOn) Autojoin = "Auto-Join - ";
-        if (FullseedOn) Fullseed = "Full solution for intricate/hs locks - ";
-        if (FrkeysOn) Frkeys = "Hotkeys in friendlist - "
-        if (HotkeysOn) Hotkeys = "Hotkeys on numeric pad"
+        if (FullseedOn) Fullseed = "Full solution for intr/hs locks - ";
+        if (FrkeysOn) Frkeys = "Friendlist hotkeys - "
+        if (HotkeysOn) Hotkeys = "Numeric pad hotkeys"
         msg = "Features enabled: " + Autojoin + Fullseed + Frkeys + Hotkeys;
         statusmsg(msg);
     }
@@ -5081,6 +5075,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
+    function showModesStatus() {
+        let msg1 = "Fast exit mode is activated.";
+        let msg2 = "No-escape mode is disabled.";
+        if (SlowleaveOn) msg1 = "Slow exit mode is activated. ";
+        if (NoescapeOn) {
+            msg1 = "";
+            msg2 = "No-escape mode is enabled.";
+        }
+        msg = msg1 + msg2;
+        statusmsg(msg);
+    }
+
     function showNostruggleStatus() {
         let msg = "Automatic struggle in mini-games is disabled.";
         if (NostruggleOn) msg = "Automatic struggle in mini-games is enabled.";
@@ -5095,8 +5101,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (rtype == "Never") msg2 = "Normal rooms. ";
         if (rtype == "Hybrid") msg2 = "Hybrid rooms. ";
         if (rtype == "Always") msg2 = "Mapped rooms. ";
-        let msg3 = "Max players for normal/hybrid rooms: ";
-        msg = msg1 + msg2 + msg3 + rsize + ".";
+        let msg3 = "Min (n/h): ";
+        let msg4 = "Max (n/h): ";
+        let msg5 = "Locked rooms are shown.";
+        if (rhide) msg5 = "Locked rooms are hidden.";
+        msg = msg1 + msg2 + msg3 + rmin + ". " + msg4 + rsize + ". " + msg5;
         statusmsg(msg);
     }
 
@@ -14607,12 +14616,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": displays status of UBC settings.",
         Action: () => {
             showButtonsStatus();
-            showExitmodeStatus();
             showFeaturesStatus();
             showHighfameStatus();
             showMagiccheatStatus();
             showMaptrapStatus();
             showMiscUbcStatus();
+	    showModesStatus();
             showNostruggleStatus();
             showSearchRoomStatus();
             showTalkStatus();
