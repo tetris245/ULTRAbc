@@ -7545,34 +7545,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Tag: [BackgroundsTagIndoor]
                 });
                 BackgroundsList.push({
-                    Name: "Pandora/Underground/Cell0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Cell1",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Cell2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Cell3",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Cell4",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Cell5",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Cell6",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
                     Name: "Pandora/Underground/Entrance",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -7927,9 +7899,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
                     " \n" +
-                    "If you don't use BCX: 0 to 164 for official BC backgrounds, 165 to 259 are added if you use the /bg1 command.\n" +
+                    "If you don't use BCX: 0 to 171 for official BC backgrounds, 172 to 259 are added if you use the /bg1 command.\n" +
                     " \n" +
-                    "If you use BCX: 0 to 164 for official BC backgrounds, 165 to 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
+                    "If you use BCX: 0 to 171 for official BC backgrounds, 172 to 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
                     " \n" +
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
                 infomsg(msg);
