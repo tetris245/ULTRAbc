@@ -742,6 +742,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (Player.OnlineSharedSettings.Ulist == undefined) {
                     Player.OnlineSharedSettings.Ulist = [];
                 }
+		if (NoescapeOn == null || NoescapeOn == undefined) NoescapeOn = false;
+                if (NoescapeOn == true) {
+                    Player.OnlineSharedSettings.Unoescape = true;
+                } else {
+                    Player.OnlineSharedSettings.Unoescape = false;
+                }
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
@@ -783,7 +789,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
-		if (NoescapeOn == null || NoescapeOn == undefined) NoescapeOn = false;
                 if (NogarbleOn == null || NogarbleOn == undefined) NogarbleOn = false;
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
@@ -1558,6 +1563,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 M_MOANER_saveControls();
+		if (NoescapeOn == true) {
+                    Player.OnlineSharedSettings.Unoescape = true;
+                } else {
+                    Player.OnlineSharedSettings.Unoescape = false;
+                }
+                ServerAccountUpdate.QueueData({
+                    OnlineSharedSettings: Player.OnlineSharedSettings
+                });
                 if (NogarbleOn == true) {
                     Player.RestrictionSettings.NoSpeechGarble = true;
                 } else {
@@ -14578,8 +14591,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0)) {
                         ubc1 = "Is an ULTRAbc user.";
+                        if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape != undefined) {
+                            if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape == true) ubc1 = "UBC in no-escape mode";
+                       } 
                     } else {
-                        ubc1 = "Does not use ULTRAbc";
+                        ubc1 = "Does not use ULTRAbc.";
                     }
                 }
                 if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == undefined) {
@@ -14597,7 +14613,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+  
     CommandCombine([{
         Tag: 'ustatus',
         Description: ": displays status of UBC settings.",
