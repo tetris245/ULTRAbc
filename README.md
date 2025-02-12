@@ -62,5 +62,6 @@ Changes for future version
 * New option in GUI - Chat Search to hide the locked rooms in Chat Search
 * Improved the maproom, mbsroom and uroom commands by adding detection of UBC no-escape mode
 * Updated the high fame mode of the Club Card Game (for R113 compatibility)
+* Updated the ustatus command
 
 
