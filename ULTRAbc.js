@@ -1598,7 +1598,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCButtonsLoad = function() {
                 UBCPreferenceSubscreen = "UBCButtons";
-                addMenuCheckbox(64, 64, "Enable EXT button in chat: ", "extbuttons",
+                addMenuCheckbox(64, 64, "Enable EXT buttons: ", "extbuttons",
                     "The EXT button gives direct access to the Extensions menu. It corresponds to the /xmenu command.", false, 150
                 );
                 addMenuCheckbox(64, 64, "Enable FREE buttons: ", "sosbuttons",
