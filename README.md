@@ -60,6 +60,7 @@ All else I might not have included.
 Changes for future version
 
 * New option in GUI - Chat Search to hide the locked rooms in Chat Search
+  - Note: if you want to enter a specific locked room for which you have access, you need first to disable this option.
 * Improved the maproom, mbsroom and uroom commands by adding detection of UBC no-escape mode
 * Updated the high fame mode of the Club Card Game (for R113 compatibility)
 * Updated the bg1, bg4 and ustatus commands
