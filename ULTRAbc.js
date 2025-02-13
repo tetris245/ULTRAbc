@@ -3105,19 +3105,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const searchInput = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.searchInput));
             const searchInputHasFocus = searchInput && document.activeElement === searchInput;
             const beepTextArea = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.beepTextArea));
-            const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
-            if (FriendListBeepTarget !== -1 || beepTextArea) {
-                if (CommonKey.IsPressed(event, "Escape")) {
-                    FriendListBeepMenuClose();
-                    return true;
-                }
-            }
-            if (beepTextAreaHasFocus) {
-                if (event.key === 'Enter' && CommonKey.IsPressed(event, "Enter", CommonKey.CTRL)) {
-                    FriendListBeepMenuSend();
-                    return true;
-                }
-            }
+            const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;           
             if (FrkeysOn == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
                     if (event.code === "KeyF") {
@@ -3157,9 +3145,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
-            }
-            return false;
-            return;
+            }            
+            next(args);
         });
     }
 
