@@ -63,5 +63,6 @@ Changes for future version
 * Improved the maproom, mbsroom and uroom commands by adding detection of UBC no-escape mode
 * Updated the high fame mode of the Club Card Game (for R113 compatibility)
 * Updated the bg1, bglist and ustatus commands
+* Optimised patches of KeyDown functions
 
 
