@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 4.5
+Most recent version: 4.5.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version4.5.zip file on the Releases page
+1. Download the ULTRAbc-version4.5.1zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,11 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-* New option in GUI - Chat Search to hide the locked rooms in Chat Search
-  - Note: if you want to enter a specific locked room for which you have access, you need first to disable this option.
-* Improved the maproom, mbsroom and uroom commands by adding detection of UBC no-escape mode
-* Updated the high fame mode of the Club Card Game (for R113 compatibility)
-* Updated the bg1, bg4 and ustatus commands
-* Optimised patches of KeyDown functions
+(...)
 
 
