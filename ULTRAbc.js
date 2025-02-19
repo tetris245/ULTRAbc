@@ -1691,10 +1691,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCChatSearchLoad = function() {
                 UBCPreferenceSubscreen = "UBCChatSearch";
                 addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
-                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search."
+                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search.", false, 130
                 );
                 addMenuCheckbox(64, 64, "Control normal/hybrid room size: ", "rchat",
-                    "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms."
+                    "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms.", false, 130
                 );
                 addMenuInput(200, "Minimum players (2-20):", "rmin", "InputRoomMin",
                     "Input a number between 2 and 20 as minimum players in normal and hybrid rooms! If this number is higher than the maximum, your Chat Search will fail."
