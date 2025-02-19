@@ -50,7 +50,7 @@ Thanks for special assistance:
 Shyness, Ada, huzpsb, Lilly, Nikky90506, Tarram1010, harmony, KitKat.
 
 Thanks for general assistance:
-Brianna, Better, Miyako, Zeltron, Selina, Estsanatlehi, okatakab.
+Brianna, Better, Miyako, Zeltron, Selina, Estsanatlehi, okatakab, Lera.
 All else I might not have included.
 
 
