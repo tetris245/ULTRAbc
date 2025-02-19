@@ -1702,8 +1702,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Maximum players (2-20):", "rsize", "InputRoomMax",
                     "Input a number between 2 and 20 as maximum players in normal and hybrid rooms! If this number is lower than the minimum, your Chat Search will fail."
                 );
-                addMenuCheckbox(64, 64, "Hide locked rooms: ", "rhide",
-                    "When enabled, the locked rooms will not be displayed in Chat Search, even those you have access. Note: if you want to enter a specific locked room for which you have access, you need first to disable this option."
+                addMenuCheckbox(64, 64, "Hide locked rooms without access: ", "rhide",
+                    "When enabled, the locked rooms without direct personal access will not be displayed in Chat Search. Note: if a room you have access is private but not visible, you need to enter its correct name in Chat Search.", false, 130
                 );
             }
 
@@ -2069,6 +2069,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
     ULTRAChatSearchParseResponse();
+    ULTRAChatSearchQuery();
     ULTRAChatSearchRoomSpaceSelectClick();
     ULTRAChatSearchRoomSpaceSelectDraw();
     ULTRAChatSearchRun();
@@ -2746,7 +2747,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
             const ret = next(args);
             let NewResult = [];
-            if ((rtype == "ALL") && (rhide == false)) {
+            if (rtype == "ALL") {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (rchat == true) {
@@ -2759,7 +2760,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rm++;
                 }
             }
-            if ((rtype == "Never") && (rhide == false)) {
+            if (rtype == "Never") {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (rchat == true) {
@@ -2774,7 +2775,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rm++;
                 }
             }
-            if ((rtype == "Hybrid") && (rhide == false)) {
+            if (rtype == "Hybrid") {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (rchat == true) {
@@ -2789,7 +2790,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rm++;
                 }
             }
-            if ((rtype == "Always") && (rhide == false)) {
+            if (rtype == "Always") {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (ret[rm].MapType == "Always") {
@@ -2798,61 +2799,48 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rm++;
                 }
             }
-            if ((rtype == "ALL") && (rhide == true)) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    if (rchat == true) {
-                        if ((((ret[rm].MemberLimit >= rmin) && (ret[rm].MemberLimit <= rsize)) || (ret[rm].MapType == "Always")) && (ret[rm].Locked == false)) {
-                            NewResult.push(ret[rm]);
-                        }
-                    } else {
-                        if (ret[rm].Locked == false) {
-                            NewResult.push(ret[rm]);
-                        }
-                    }
-                    rm++;
-                }
-            }
-            if ((rtype == "Never") && (rhide == true)) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    if (rchat == true) {
-                        if ((ret[rm].MemberLimit >= rmin) && (ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Never") && (ret[rm].Locked == false)) {
-                            NewResult.push(ret[rm]);
-                        }
-                    } else {
-                        if ((ret[rm].MapType == "Never") && (ret[rm].Locked == false)) {
-                            NewResult.push(ret[rm]);
-                        }
-                    }
-                    rm++;
-                }
-            }
-            if ((rtype == "Hybrid") && (rhide == true)) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    if (rchat == true) {
-                        if ((ret[rm].MemberLimit >= rmin) && (ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Hybrid") && (ret[rm].Locked == false)) {
-                            NewResult.push(ret[rm]);
-                        }
-                    } else {
-                        if ((ret[rm].MapType == "Hybrid") && (ret[rm].Locked == false)) {
-                            NewResult.push(ret[rm]);
-                        }
-                    }
-                    rm++;
-                }
-            }
-            if ((rtype == "Always") && (rhide == true)) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    if ((ret[rm].MapType == "Always") && (ret[rm].Locked == false)) {
-                        NewResult.push(ret[rm]);
-                    }
-                    rm++;
-                }
-            }
             return NewResult;
+        });
+    }
+
+    async function ULTRAChatSearchQuery() {
+        modApi.hookFunction('ChatSearchQuery', 4, (args, next) => {       
+           ChatSearchMessage = "";   
+           if (PandoraPenitentiaryIsInmate(Player)) return;
+           var Query = ChatSearchMode == "Filter" ? "" : ElementValue("InputSearch").toUpperCase().trim();
+	   let FullRooms = (Player.OnlineSettings && Player.OnlineSettings.SearchShowsFullRooms);
+           if (ChatRoomJoinLeash != null && ChatRoomJoinLeash != "") {
+	       Query = ChatRoomJoinLeash.toUpperCase().trim();
+	   } else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom.Name != "") {
+	       if (Player.ImmersionSettings.ReturnToChatRoom) {
+	           Query = Player.LastChatRoom.Name.toUpperCase().trim();
+		   FullRooms = true;
+	       } else {
+		   ChatRoomSetLastChatRoom(null);
+	       }
+	   } else {
+	       ChatSearchRejoinIncrement = 1; 
+	   }
+           if (rhide == true) {
+               /** @type {ServerChatRoomSearchRequest} */
+               const SearchData = { Query: Query, Language: ChatSearchLanguage, Space: ChatRoomSpace, Game: ChatRoomGame, FullRooms: FullRooms, ShowLocked: false };
+               if (!CommonObjectEqual(ChatSearchLastSearchDataJSON, SearchData) || (ChatSearchLastQuerySearchTime + 2000 < CommonTime())) {
+		   ChatSearchLastQuerySearchTime = CommonTime();
+		   ChatSearchLastSearchDataJSON = SearchData;
+		   ChatSearchResult = [];
+		   ServerSend("ChatRoomSearch", SearchData);
+	        }
+           } else {
+               /** @type {ServerChatRoomSearchRequest} */
+               const SearchData = { Query: Query, Language: ChatSearchLanguage, Space: ChatRoomSpace, Game: ChatRoomGame, FullRooms: FullRooms, ShowLocked: true };
+               if (!CommonObjectEqual(ChatSearchLastSearchDataJSON, SearchData) || (ChatSearchLastQuerySearchTime + 2000 < CommonTime())) {
+		   ChatSearchLastQuerySearchTime = CommonTime();
+		   ChatSearchLastSearchDataJSON = SearchData;
+		   ChatSearchResult = [];
+		   ServerSend("ChatRoomSearch", SearchData);
+	       }
+           }
+           return;
         });
     }
 
