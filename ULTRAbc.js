@@ -5502,7 +5502,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         WearItemIfUnlocked(Player, "HarnessBallGag1", "ItemMouth2");
         WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
         WearItemIfUnlocked(Player, "LewdBlindfold", "ItemHead");
-        if (IsItemSlotUnlocked(p, "ItemPelvis") || (MagictoysOn == true)) {
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {
             WearItemIfUnlocked(Player, "WiredEgg", "ItemVulva");
         }
         WearItemIfUnlocked(Player, "DuctTape", "ItemHands");
