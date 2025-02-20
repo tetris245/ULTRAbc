@@ -8704,7 +8704,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 PreferenceDifficultyLevel = args * 1;
             }
-            if ((PreferenceDifficultyLevel > -1) && (PreferenceDifficultyLevel < 4) && (PreferenceDifficultyLevel != Player.Difficulty.Level)) {
+            let currentlevel = Player.GetDifficulty();
+            if ((PreferenceDifficultyLevel > -1) && (PreferenceDifficultyLevel < 4) && (PreferenceDifficultyLevel != currentlevel)) {
                 PreferenceDifficultyAccept = true;
                 Player.Difficulty = {
                     LastChange: CurrentTime,
