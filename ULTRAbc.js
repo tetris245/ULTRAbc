@@ -8102,6 +8102,71 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'cgame',
+        Description: "(zone): launches a Club Card Game against a specific NPC.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The cgame command must include a zone.\n" +
+                    "Available zone:\n" +
+                    "asylum, cafe, infiltration, introduction, larp,\n" +
+                    "lounge, movie, shibari, stable.\n" +
+                    "You need to click on the concerned NPC, then on the appropriate option.";
+                infomsg(msg);
+            } else {
+                let minigame = args;
+                if (minigame == "asylum") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "AsylumMeeting");
+                    AsylumEntranceIsWearingNurseClothes = function() {
+                        return true
+                    };
+                    InventoryRemove(AsylumMeetingPatientRight, "ItemArms");
+                    InventoryRemove(AsylumMeetingPatientRight, "ItemHead");
+                    InventoryRemove(AsylumMeetingPatientRight, "ItemMouth");
+                    AsylumMeetingPatientRight.Stage = "20";
+                } else if (minigame == "cafe") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Cafe");
+                    CafeMaid.Stage = "50";
+                } else if (minigame == "infiltration") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Infiltration");
+                    InfiltrationSupervisor.Stage = "80";
+                } else if (minigame == "introduction") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Introduction");
+                    IntroductionMaid.Stage = "90";
+                } else if (minigame == "larp") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "LARP");
+                    LARPOrganiser.Stage = "70";
+                } else if (minigame == "lounge") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "ClubCardLounge");
+                    ClubCardLoungeTutor.Stage = "40";
+                } else if (minigame == "movie") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "MovieStudio");
+                    MovieStudioDirector.Stage = "90";              
+                } else if (minigame == "shibari") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Shibari");
+                    InventoryRemove(ShibariStudent, "ItemArms");
+                    InventoryRemove(ShibariStudent, "ItemFeet");
+                    InventoryRemove(ShibariStudent, "ItemLegs");
+                    InventoryRemove(ShibariStudent, "ItemMouth");
+                    InventoryRemove(ShibariStudent, "ItemTorso");
+                    ShibariStudent.Stage = "0";
+                } else if (minigame == "stable") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Stable");
+                    StableTrainer.Stage = "80";
+                } 
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'chess',
         Description: "(difficulty): starts chess.",
         Action: (args) => {
@@ -14020,14 +14085,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
                     "<b>/chess</b> (difficulty) = starts chess, must specify difficulty first (1 easy - 2 normal - 3 hard).\n" +
+                    "<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
                     "<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
-                    "<b>/mission</b> (missionhere) = forces a specific infiltration mission. *\n" +
+                    "<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
                     "<b>/prison1</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n" +
                     "<b>/prison2</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible.\n" +
-                    "<b>/store</b> = leaves chatroom, goes to store. Shows hidden items.\n" +
+                    "<b>/store</b> = Goes to store. Shows hidden items.\n" +
                     "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.";
                 infomsg(msg);
             }
