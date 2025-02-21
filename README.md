@@ -59,6 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+- New command: cgame (zone) to launch a Club Card Game against a specific NPC
 
 
