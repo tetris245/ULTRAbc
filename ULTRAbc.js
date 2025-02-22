@@ -1923,9 +1923,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Forced stuttering level (0-4):", "stutterlevel", "InputStutterLevel",
                     "Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).", -16
                 );
-                addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper",
-                    "When enabled, you can't use normal whispers. Only OOC and emote whispers are possible.", false, 120
-                );
+                let wmsg = "When enabled, you can't use normal whispers. Only OOC and emote whispers are possible. This option is not available when a similar BCX rule is detected as active. In this case, UBC will apply the BCX whisper restrictions, but will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed.";
+                let wbc = 0;
+                if (Player.OnlineSettings.BCX != undefined) { 
+                    let str = Player.OnlineSettings.BCX;
+                    let d = LZString.decompressFromBase64(str);
+                    let BCXdata = {};
+                    let decoded = JSON.parse(d);
+                    BCXdata = decoded;
+                    BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send;
+                    if (BCXwh1.active) wbc = 1;
+                }
+                if (wbc == 0) {
+                    addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper", wmsg, false, 120);
+                } else {
+                    addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper", wmsg, true, 120);
+                }
             }
 
             PreferenceSubscreenUBCTalkingRun = function() {
@@ -2484,6 +2497,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (tsp == 2) tsp = 1;
             let nm = 0;
+	    let wh1 = 0;
+            if (Player.OnlineSettings.BCX != undefined) { 
+                if (IsBcxWhisperAllowed(ChatRoomTargetMemberNumber) == false) wh1 = 1;          
+            }
             if (tsp == 0) {
                 if (DolltalkOn == true) {
                     if (IsDollTalk(text1) == false) nm = 1;
@@ -2494,12 +2511,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     }
                 }
-                if (NowhisperOn == true) {
+                if ((NowhisperOn == true) || (wh1 == 1)) {
                     if (ChatRoomTargetMemberNumber != -1) nw = 1;
                     if (nw == 1) {
                         text2 = "";
                         ElementValue("InputChat", "");
                         let msg = "Your whisper can't be sent because you are in no-whisper mode.";
+                        if (wh1 == 1) msg = "Your whisper can't be sent because a BCX rule prevents you to whisper to this player.";
                         infomsg(msg);
                     }
                 }
@@ -2596,7 +2614,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 ElementValue("InputChat", text6.replace(text6, texta));
             } else {
-                if (NowhisperOn == false) {
+                if ((NowhisperOn == false) || (wh1 == 0)) {
                     let text6 = "";
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         text6 = text5;
@@ -5086,6 +5104,47 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Talking
+    function IsBcxWhisperAllowed (target) {
+        let wh1 = 0;
+        let wh1ex = [];
+        let wh2ex = [];
+        let wh3ex = [];
+        let wh4ex = [];
+        let wh5ex = [];
+        let wh6ex = [];
+        let bcxlist = [];
+        let lovers = [];
+        if ((Player.Ownership != null) || (Player.Ownership != undefined)) wh1ex = Player.Ownership.MemberNumber;
+        for (let n = 0; n < Player.Lovership.length; n++) {          
+            lovers.push(Player.Lovership[n].MemberNumber); 
+        }
+        let str = Player.OnlineSettings.BCX;
+        let d = LZString.decompressFromBase64(str);
+        let BCXdata = {};
+        let decoded = JSON.parse(d);
+        BCXdata = decoded;
+        BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send;
+        if (BCXwh1.active) {
+            wh1 = 1;
+            wh1data = BCXwh1.data.customData.minimumPermittedRole;
+            if (wh1data == 1) bcxlist = wh1ex;
+            wh2ex = (BCXdata.owners).concat(wh1ex);
+            if (wh1data == 2) bcxlist = wh2ex;
+            wh3ex = lovers.concat(wh2ex);
+            if (wh1data == 3) bcxlist = wh3ex;
+            wh4ex = (BCXdata.mistresses).concat(wh3ex);   
+            if (wh1data == 4) bcxlist = wh4ex;
+            wh5ex = (Player.WhiteList).concat(wh4ex);
+            if (wh1data == 5) bcxlist = wh5ex;
+            wh6ex = (Player.FriendList).concat(wh5ex);
+            if (wh1data == 6) bcxlist = wh6ex;
+            if (wh1data == 7) wh1 = 0; 
+            if  (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+        }
+        if (wh1 == 0) return true;
+        if (wh1 == 1) return false;
+    }
+
     function IsDollTalk(text) {
         let nn = 0;
         let segmenter = new Intl.Segmenter([], {
