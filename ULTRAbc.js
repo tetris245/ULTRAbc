@@ -1691,10 +1691,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCChatSearchLoad = function() {
                 UBCPreferenceSubscreen = "UBCChatSearch";
                 addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
-                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search.", false, 130
+                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search.", false, 134
                 );
                 addMenuCheckbox(64, 64, "Control normal/hybrid room size: ", "rchat",
-                    "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms.", false, 130
+                    "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms.", false, 134
                 );
                 addMenuInput(200, "Minimum players (2-20):", "rmin", "InputRoomMin",
                     "Input a number between 2 and 20 as minimum players in normal and hybrid rooms! If this number is higher than the maximum, your Chat Search will fail."
@@ -1703,7 +1703,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 2 and 20 as maximum players in normal and hybrid rooms! If this number is lower than the minimum, your Chat Search will fail."
                 );
                 addMenuCheckbox(64, 64, "Hide locked rooms without access: ", "rhide",
-                    "When enabled, the locked rooms without direct personal access will not be displayed in Chat Search. Note: if a room you have access is private but not visible, you need to enter its correct name in Chat Search.", false, 130
+                    "When enabled, the locked rooms without direct personal access will not be displayed in Chat Search. Note: if a room you have access is private but not visible, you need to enter its correct name in Chat Search.", false, 134
                 );
             }
 
@@ -5139,7 +5139,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             wh6ex = (Player.FriendList).concat(wh5ex);
             if (wh1data == 6) bcxlist = wh6ex;
             if (wh1data == 7) wh1 = 0; 
-            if  (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+            if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
         }
         if (wh1 == 0) return true;
         if (wh1 == 1) return false;
