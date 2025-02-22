@@ -72,6 +72,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const umsg1 = "Your command can't be executed because ";
     const umsg2 = " has enabled the Uwall protection.";
     const umsg3 = "you are in no-escape mode.";
+    const umsg4 = "Your message can't be sent because it does not respect the rules of doll talk.";
 
     const M_MOANER_moanerKey = "bc_moaner_";
     let M_MOANER_scriptOn = false;
@@ -7272,7 +7273,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (DolltalkOn == true) {
                         if (IsDollTalk(msg) == false) nm = 1;
                         if (nm == 1) {
-                            msg = "Your message can't be sent because it does not respect the rules of doll talk.";
+                            msg = umsg4;
                             infomsg(msg);
                         }
                     }
@@ -9208,7 +9209,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let text = args.substring(2).trim();
                         if (IsDollTalk(text) == false) nm = 1;
                         if (nm == 1) {
-                            let msg = "Your message can't be sent because it does not respect the rules of doll talk.";
+                            let msg = umsg4;
                             infomsg(msg);
                         }
                     }
@@ -13317,7 +13318,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (DolltalkOn == true) {
                         if (IsDollTalk(msg) == false) nm = 1;
                         if (nm == 1) {
-                            let msg = "Your message can't be sent because it does not respect the rules of doll talk.";
+                            msg = umsg4;
                             infomsg(msg);
                         }
                     }
