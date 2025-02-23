@@ -118,6 +118,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let HotkeysOn;
     let MagiccheatOn;
     let MagictoysOn;
+    let MapcheatOn;
     let MapfullOn = false;
     let NoescapeOn;
     let NogarbleOn;
@@ -470,6 +471,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HotkeysOn = false;
             MagiccheatOn = false;
             MagictoysOn = false;
+	    MapcheatOn = false;
             MapfullOn = false;
             NoescapeOn = false;
             NogarbleOn = false;
@@ -568,6 +570,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HotkeysOn = datas.hotkeys;
             MagiccheatOn = datas.magiccheat;
             MagictoysOn = datas.magictoys;
+	    MapcheatOn = datas.mapcheat;
             MapfullOn = false;
             NoescapeOn = datas.noescape;
             NogarbleOn = datas.nogarble;
@@ -664,6 +667,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "hotkeys": HotkeysOn,
             "magiccheat": MagiccheatOn,
             "magictoys": MagictoysOn,
+            "mapcheat": MapcheatOn,
             "mapfull": MapfullOn,
             "noescape": NoescapeOn,
             "nogarble": NogarbleOn,
@@ -778,6 +782,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (HotkeysOn == null || HotkeysOn == undefined) HotkeysOn = false;
                 if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
                 if (MagictoysOn == null || MagictoysOn == undefined) MagictoysOn = false;
+		if (MapcheatOn == null || MapcheatOn == undefined) MapcheatOn = false;
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
@@ -899,6 +904,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 hotkeys: false,
                 magiccheat: false,
                 magictoys: false,
+		mapcheat: false,
                 maptrap1: 0,
                 noescape: false,
                 nogarble: false,
@@ -1452,6 +1458,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 HotkeysOn = data.hotkeys;
                 MagiccheatOn = data.magiccheat;
                 MagictoysOn = data.magictoys;
+		MapcheatOn = data.mapcheat;
                 maptrap1 = data.maptrap1;
                 M_MOANER_cum = data.cum;
                 M_MOANER_orgasmActive = data.orgasmMoan;
@@ -1806,6 +1813,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Selected device trap (0-9):", "maptrap1", "InputDeviceTrap",
                     "Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
                 );
+		addMenuCheckbox(64, 64, "Enable magic walk in maps: ", "mapcheat",
+                    "When enabled, you can go everywhere on the map, also pass through walls, while not being an administrator!", false, 140
+                );
             }
 
             PreferenceSubscreenUBCMapsRun = function() {
@@ -2078,6 +2088,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomClick();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
+    ULTRAChatRoomMapViewCanEnterTile();
     ULTRAChatRoomMapViewMovementProcess();
     ULTRAChatRoomMenuDraw();
     ULTRAChatRoomSafewordRevert();
@@ -2275,6 +2286,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return;
             }
             next(args);
+        });
+    }
+
+    async function ULTRAChatRoomMapViewCanEnterTile() {
+        modApi.hookFunction('ChatRoomMapViewCanEnterTile', 4, (args, next) => {  
+             const ret = next(args);
+             if (MapcheatOn) return 20;
+             return ret;
         });
     }
 
@@ -14470,9 +14489,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
                 InventoryAdd(Player, "WoodenPaddle", "ItemMisc");
                 Player.Inventory.forEach(item => item.Asset.Enable = true);
-                ChatRoomMapViewCanEnterTile = function(X, Y) {
-                    return 20;
-                }
                 let msg = "Unrestricted softly. Can do some things you couldn't do before.\n" +
                     "Store also includes hidden items. This can only be reset via a full relog.";
                 infomsg(msg);
@@ -14519,9 +14535,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
                     InventoryAdd(Player, "WoodenPaddle", "ItemMisc");
                     Player.Inventory.forEach(item => item.Asset.Enable = true);
-                    ChatRoomMapViewCanEnterTile = function(X, Y) {
-                        return 20;
-                    }
                     DialogHasKey = function(C, Item) {
                         if (C.IsPlayer()) {
                             return true;
