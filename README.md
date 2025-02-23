@@ -59,9 +59,11 @@ All else I might not have included.
 
 Changes for future version
 
+* New option in GUI - Maps to enable magic walk in maps (also through walls) even while not being administrator
 * New command: cgame (zone) to launch a Club Card Game against a specific NPC
 * Added support for BCX rule restricting whispers sent by the player
   - when this rule is detected as active, the UBC option "Enable no-whisper mode" is not available and UBC will apply the BCX whisper restrictions
   - Note: UBC will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed
+* Removed the magic walk in maps from the unrestrict command (as it's now available in the GUI)
 
 
