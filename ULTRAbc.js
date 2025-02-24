@@ -88,6 +88,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cdesk = 0;
     let cextra = false;
     let cfame = 200;
+    let drname = "AbandonedBuilding";
     let frname = "BrickWall";
     let gl = 0;
     let hearing = 0;
@@ -442,6 +443,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cdesk = 0;
             cextra = false;
             cfame = 200;
+	    drname = "AbandonedBuilding";
             frname = "BrickWall";
             gl = 0;
             hearing = 0;
@@ -541,6 +543,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cdesk = datas.cdesk;
             cextra = datas.cextra;
             cfame = datas.cfame;
+	    drname = datas.drname;
             frname = datas.frname;
             gl = datas.gaglevel;
             hearing = 0;
@@ -641,6 +644,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cdesk": cdesk,
             "cextra": cextra,
             "cfame": cfame,
+            "drname": drname,
             "frname": frname,
             "gaglevel": gl,
             "maptrap1": maptrap1,
@@ -769,6 +773,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 200;
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
+		if (drname == null || drname == undefined) drname = "AbandonedBuilding";
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (ExtrainfoOn == null || ExtrainfoOn == undefined) ExtrainfoOn = false;
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
@@ -2091,6 +2096,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRACellClick();
     ULTRACellLoad();
     ULTRACellRun();
+    ULTRAChatAdminLoad();
     ULTRAChatRoomClick();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
@@ -2215,6 +2221,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Room (+ name/nickname/pronouns management for player)
+    async function ULTRAChatAdminLoad() {
+        modApi.hookFunction('ChatAdminLoad', 4, (args, next) => {
+            ChatAdminData.Background = drname;
+            next(args);
+        });
+    }
+
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (ExtbuttonsOn == true) {
@@ -7931,16 +7944,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The bg4 command must be followed by two numbers:\n" +
-                    " \n" +
                     "- a number for the concerned screen:\n" +
                     "0 = Club Card Game\n" +
                     "1 = Friend List - 2 = Main Hall\n" +
                     "3 = Private Room (SP) - 4 = Timer Cell\n" +
+                    "5 = Creation of New Room (default)\n" +
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
                     " \n" +
                     "If you don't use BCX: 0 to 171 for official BC backgrounds, 172 to 259 are added if you use the /bg1 command.\n" +
-                    " \n" +
                     "If you use BCX: 0 to 171 for official BC backgrounds, 172 to 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
                     " \n" +
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
@@ -7949,7 +7961,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringBg1 = args;
                 let stringBg2 = stringBg1.split(/[ ,]+/);
                 let screen = stringBg2[0];
-                if ((screen > -1) && (screen < 5)) {
+                if ((screen > -1) && (screen < 6)) {
                     if (screen == 0) {
                         let ccbg = stringBg2[1];
                         let ccback = "";
@@ -8027,6 +8039,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             tcname = tcback;
                             M_MOANER_saveControls();
                             let msg = "The background of the timer cell is now: " + tcname + ".";
+                            infomsg(msg);
+                        }
+                    }
+                    if (screen == 5) {
+                        let drbg = stringBg2[1];
+                        let drback = "";
+                        if ((drbg > -2) && (drbg < (BackgroundsList.length - 1))) {
+                            if (drbg == -1) {
+                                drback = "AbandonedBuilding";
+                            } else {
+                                drback = BackgroundsList[drbg].Name;
+                            }
+                            drname = drback;
+                            M_MOANER_saveControls();
+                            let msg = "The default background when creating a new room is now: " + drname + ".";
                             infomsg(msg);
                         }
                     }
@@ -14118,7 +14145,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "settings") {
                 let msg = "Settings commands - * = more info when using\n" +
-                    "<b>/bg4</b> (screen) (background) = selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell. *\n" +
+                    "<b>/bg4</b> (screen) (background) = selects a standard background for the some specific BC rooms. *\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
                     "<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background and embedded picture.\n" +
                     "<b>/bgshow2</b> (bgnumber) = sends in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n" +
