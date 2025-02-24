@@ -119,7 +119,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let MagiccheatOn;
     let MagictoysOn;
     let MapcheatOn;
-    let MapfullOn = false;
+    let MapfullOn;
     let NoescapeOn;
     let NogarbleOn;
     let NostruggleOn;
@@ -571,7 +571,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = datas.magiccheat;
             MagictoysOn = datas.magictoys;
 	    MapcheatOn = datas.mapcheat;
-            MapfullOn = false;
+            MapfullOn = datas.mapfull;
             NoescapeOn = datas.noescape;
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
@@ -783,6 +783,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
                 if (MagictoysOn == null || MagictoysOn == undefined) MagictoysOn = false;
 		if (MapcheatOn == null || MapcheatOn == undefined) MapcheatOn = false;
+		if (MapfullOn == null || MapfullOn == undefined) MapfullOn = false;
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
@@ -905,6 +906,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 magiccheat: false,
                 magictoys: false,
 		mapcheat: false,
+                mapfull: false,
                 maptrap1: 0,
                 noescape: false,
                 nogarble: false,
@@ -1459,6 +1461,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 MagiccheatOn = data.magiccheat;
                 MagictoysOn = data.magictoys;
 		MapcheatOn = data.mapcheat;
+		MapfullOn = data.mapfull;
                 maptrap1 = data.maptrap1;
                 M_MOANER_cum = data.cum;
                 M_MOANER_orgasmActive = data.orgasmMoan;
@@ -1812,6 +1815,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuInput(200, "Selected device trap (0-9):", "maptrap1", "InputDeviceTrap",
                     "Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
+                );
+		addMenuCheckbox(64, 64, "Enable full vision/hearing in maps: ", "mapfull",
+                    "When enabled, you can see the entire map rooms without fog and there's no any limitation to your hearing. Notes: the /mapfrog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you have used /mapfog before enabling this setting, the fog will come back when disabling it.", false, 140
                 );
 		addMenuCheckbox(64, 64, "Enable magic walk in maps: ", "mapcheat",
                     "When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!", false, 140
@@ -2280,12 +2286,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomMapViewCalculatePerceptionMasks() {
         modApi.hookFunction('ChatRoomMapViewCalculatePerceptionMasks', 4, (args, next) => {
+            const ret = next(args);
             if (MapfullOn) {
+                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) return;
                 ChatRoomMapViewVisibilityMask.fill(true);
                 ChatRoomMapViewAudibilityMask.fill(true);
                 return;
             }
-            next(args);
+            return ret;
         });
     }
 
@@ -10706,34 +10714,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 if ((ChatRoomData.MapData.Fog == true || ChatRoomData.MapData.Fog == undefined)) {
                     ChatRoomData.MapData.Fog = false;
-                    let msg = "Fog in current mapped room is disabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.";
+                    let msg = "Fog in current mapped room is disabled. No visible effect if you have enabled full vision and hearing in mapped rooms.";
                     infomsg(msg);
                 } else {
                     ChatRoomData.MapData.Fog = true;
-                    let msg = "Fog in current mapped room is enabled. No visible effect if mapfull command has enabled full vision and hearing in mapped rooms.";
-                    infomsg(msg);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'mapfull',
-        Description: ": toggles full vision and hearing in mapped rooms.",
-        Action: () => {
-            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                let msg = "This room does not use the map feature.";
-                infomsg(msg);
-            } else {
-                if (MapfullOn == true) {
-                    MapfullOn = false;
-                    M_MOANER_saveControls();
-                    let msg = "Full vision and hearing in mapped rooms is disabled. Fog is also back if not disabled with mapfog command";
-                    infomsg(msg);
-                } else {
-                    MapfullOn = true;
-                    M_MOANER_saveControls();
-                    let msg = "Full vision and hearing in mapped rooms is enabled. Fog is also removed. Will be disabled if you use this toggle again or relog";
+                    let msg = "Fog in current mapped room is enabled. No visible effect if you have enabled full vision and hearing in mapped rooms.";
                     infomsg(msg);
                 }
             }
@@ -14045,7 +14030,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
                     "<b>/mapfog</b> = toggles fog in current map room.\n" +
-                    "<b>/mapfull</b> = toggles full vision and hearing in map rooms.\n" +
                     "<b>/mapkeys</b> = gives all keys for current map room.\n" +
                     "<b>/maproom</b> = gives infos about players in current map.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
