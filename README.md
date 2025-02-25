@@ -67,6 +67,7 @@ Changes for future version
 * Added support for BCX rule restricting whispers sent by the player
   - when this rule is detected as active, the UBC option "Enable no-whisper mode" is not available and UBC will apply the BCX whisper restrictions
   - Note: UBC will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed
+* Optimised the patch of the PrivateClick function
 * Removed the mapfull command (as the corresponding feature is now available in the GUI)
 * Removed the magic walk in maps from the unrestrict command (as this feature is now available in the GUI)
 
