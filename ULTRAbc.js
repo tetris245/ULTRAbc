@@ -14160,8 +14160,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "zones") {
                 let msg = "Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
+		    "<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n" +
                     "<b>/chess</b> (difficulty) = starts chess, must specify difficulty first (1 easy - 2 normal - 3 hard).\n" +
-                    "<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
                     "<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
