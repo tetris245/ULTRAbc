@@ -8207,7 +8207,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The cgame command must include a zone.\n" +
-                    "Available zone:\n" +
+                    "Available zones:\n" +
                     "asylum, cafe, infiltration, introduction, larp,\n" +
                     "lounge, movie, shibari, stable.\n" +
                     "You need to click on the concerned NPC, then on the appropriate option.";
