@@ -2223,7 +2223,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Chat Room (+ name/nickname/pronouns management for player)
     async function ULTRAChatAdminLoad() {
         modApi.hookFunction('ChatAdminLoad', 4, (args, next) => {
-            ChatAdminData.Background = drname;
+            if (!ChatAdminData.Background) {
+	        ChatAdminData.Background = drname;
+	    }
             next(args);
         });
     }
