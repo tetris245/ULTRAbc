@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 4.5.2
+Most recent version: 4.6
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -59,16 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-* New options in GUI - Maps
-  - to enable full vision and hearing in all map rooms
-  - to enable magic walk in maps (also through walls) even while not being administrator
-* New command: cgame (zone) to launch a Club Card Game against a specific NPC
-* Extended the bg4 command to the default background when creating a new room
-* Added support for BCX rule restricting whispers sent by the player
-  - when this rule is detected as active, the UBC option "Enable no-whisper mode" is not available and UBC will apply the BCX whisper restrictions
-  - Note: UBC will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed
-* Optimised the patch of the PrivateClick function
-* Removed the mapfull command (as the corresponding feature is now available in the GUI)
-* Removed the magic walk in maps from the unrestrict command (as this feature is now available in the GUI)
+(...)
 
 
