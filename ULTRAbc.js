@@ -7935,7 +7935,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "- a number between -1 and a maximum that can vary:\n" +
                     " \n" +
                     "If you don't use BCX: 0 to 171 for official BC backgrounds, 172 to 259 are added if you use the /bg1 command.\n" +
-                    "If you use BCX: 0 to 171 for official BC backgrounds, 172 to 257 are added by BCX, 258 and 259 are added if you use the /bg1 command.\n" +
+                    "If you use BCX: 0 to 171 for official BC backgrounds, 172 to 264 are added by BCX, 265 and 266 are added if you use the /bg1 command.\n" +
                     " \n" +
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
                 infomsg(msg);
