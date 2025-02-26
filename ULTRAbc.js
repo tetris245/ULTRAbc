@@ -1953,9 +1953,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let BCXdata = {};
                     let decoded = JSON.parse(d);
                     BCXdata = decoded;
-                    if (BCXdata.conditions.rules.conditions.speech_restrict_whisper_send != undefined) {
-                        BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send;
-                        if (BCXwh1.active) wbc = 1;
+                    if (BCXdata.conditions != undefined) {
+                        if (BCXdata.conditions.rules != undefined) { 
+                            if (BCXdata.conditions.rules.conditions != undefined) {
+                                if (BCXdata.conditions.rules.conditions.speech_restrict_whisper_send != undefined) {
+                                    BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send; 
+                                    if (BCXwh1.active) wbc = 1;
+                                }
+                            }
+                        }
                     }
                 }
                 if (wbc == 0) {
@@ -5148,30 +5154,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let BCXdata = {};
         let decoded = JSON.parse(d);
         BCXdata = decoded;
-        if (BCXdata.conditions.rules.conditions.speech_restrict_whisper_send != undefined) {
-            BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send; 
-            if (BCXwh1.active) {
-                wh1 = 1;
-                wh1data = BCXwh1.data.customData.minimumPermittedRole;
-                if (wh1data == 1) bcxlist = wh1ex;
-                wh2ex = (BCXdata.owners).concat(wh1ex);
-                if (wh1data == 2) bcxlist = wh2ex;
-                wh3ex = lovers.concat(wh2ex);
-                if (wh1data == 3) bcxlist = wh3ex;
-                wh4ex = (BCXdata.mistresses).concat(wh3ex);   
-                if (wh1data == 4) bcxlist = wh4ex;
-                wh5ex = (Player.WhiteList).concat(wh4ex);
-                if (wh1data == 5) bcxlist = wh5ex;
-                wh6ex = (Player.FriendList).concat(wh5ex);
-                if (wh1data == 6) bcxlist = wh6ex;
-                if (wh1data == 7) wh1 = 0; 
-                if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
-            }
+	if (BCXdata.conditions != undefined) {
+            if (BCXdata.conditions.rules != undefined) { 
+                if (BCXdata.conditions.rules.conditions != undefined) {
+                    if (BCXdata.conditions.rules.conditions.speech_restrict_whisper_send != undefined) {
+                        BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send; 
+                        if (BCXwh1.active) {
+                            wh1 = 1;
+                            wh1data = BCXwh1.data.customData.minimumPermittedRole;
+                            if (wh1data == 1) bcxlist = wh1ex;
+                            wh2ex = (BCXdata.owners).concat(wh1ex);
+                            if (wh1data == 2) bcxlist = wh2ex;
+                            wh3ex = lovers.concat(wh2ex);
+                            if (wh1data == 3) bcxlist = wh3ex;
+                            wh4ex = (BCXdata.mistresses).concat(wh3ex);   
+                            if (wh1data == 4) bcxlist = wh4ex;
+                            wh5ex = (Player.WhiteList).concat(wh4ex);
+                            if (wh1data == 5) bcxlist = wh5ex;
+                            wh6ex = (Player.FriendList).concat(wh5ex);
+                            if (wh1data == 6) bcxlist = wh6ex;
+                            if (wh1data == 7) wh1 = 0; 
+                            if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+                       }
+                    }
+                 }
+             }
          }
          if (wh1 == 0) return true;
          if (wh1 == 1) return false;
     }
-
+     
     function IsDollTalk(text) {
         let nn = 0;
         let segmenter = new Intl.Segmenter([], {
