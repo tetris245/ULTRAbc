@@ -5145,7 +5145,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let wh6ex = [];
         let bcxlist = [];
         let lovers = [];
-        if ((Player.Ownership != null) || (Player.Ownership != undefined)) wh1ex = Player.Ownership.MemberNumber;
+        if ((Player.Ownership != null) || (Player.Ownership != undefined)) {
+            if (!Player.Ownership.Name.startsWith("NPC")) {
+                wh1ex = Player.Ownership.MemberNumber;
+            }
+        }
         for (let n = 0; n < Player.Lovership.length; n++) {
             if (!Player.Lovership[n].Name.startsWith("NPC")) {         
                 lovers.push(Player.Lovership[n].MemberNumber); 
