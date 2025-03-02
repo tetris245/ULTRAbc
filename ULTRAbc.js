@@ -13669,20 +13669,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (title == "magician") {
                     if ((ReputationGet("HouseVincula") < 50) || (ReputationGet("HouseVincula") > 99)) {
-                        DialogSetReputation("HouseAmplector", 0);
-                        DialogSetReputation("HouseCorporis", 0);
-                        DialogSetReputation("HouseMaiestas", 0);
-                        LogDelete("Mastery", "MagicSchool");
+                        ResetHousesReputation(); 
                         DialogSetReputation("HouseVincula", 50);
                     }
                     TitleSet("MagicSchoolMagician");
                 }
                 if (title == "magus") {
                     if (ReputationGet("HouseMaiestas") < 100) {
-                        DialogSetReputation("HouseAmplector", 0);
-                        DialogSetReputation("HouseCorporis", 0);
-                        DialogSetReputation("HouseVincula", 0);
-                        LogDelete("Mastery", "MagicSchool");
+                        ResetHousesReputation(); 
                         DialogSetReputation("HouseMaiestas", 100);
                     }
                     TitleSet("MagicSchoolMagus");
@@ -13745,10 +13739,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (title == "oracle") {
                     if (ReputationGet("HouseAmplector") < 100) {
-                        DialogSetReputation("HouseCorporis", 0);
-                        DialogSetReputation("HouseMaiestas", 0);
-                        DialogSetReputation("HouseVincula", 0);
-                        LogDelete("Mastery", "MagicSchool");
+                        ResetHousesReputation(); 
                         DialogSetReputation("HouseAmplector", 100);
                     }
                     TitleSet("MagicSchoolOracle");
@@ -13772,10 +13763,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "puppy") TitleSet("Puppy");
                 if (title == "sage") {
                     if ((ReputationGet("HouseAmplector") < 50) || (ReputationGet("HouseAmplector") > 99)) {
-                        DialogSetReputation("HouseCorporis", 0);
-                        DialogSetReputation("HouseMaiestas", 0);
-                        DialogSetReputation("HouseVincula", 0);
-                        LogDelete("Mastery", "MagicSchool");
+                        ResetHousesReputation(); 
                         DialogSetReputation("HouseAmplector", 50);
                     }
                     TitleSet("MagicSchoolSage");
@@ -13789,10 +13777,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "sissy") TitleSet("Sissy");
                 if (title == "sorcerer") {
                     if (ReputationGet("HouseVincula") < 100) {
-                        DialogSetReputation("HouseAmplector", 0);
-                        DialogSetReputation("HouseCorporis", 0);
-                        DialogSetReputation("HouseMaiestas", 0);
-                        LogDelete("Mastery", "MagicSchool");
+                        ResetHousesReputation(); 
                         DialogSetReputation("HouseVincula", 100);
                     }
                     TitleSet("MagicSchoolSorcerer");
@@ -13816,10 +13801,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "tomboy") TitleSet("Tomboy");
                 if (title == "warlock") {
                     if (ReputationGet("HouseCorporis") < 100) {
-                        DialogSetReputation("HouseAmplector", 0);
-                        DialogSetReputation("HouseMaiestas", 0);
-                        DialogSetReputation("HouseVincula", 0);
-                        LogDelete("Mastery", "MagicSchool");
+                        ResetHousesReputation(); 
                         DialogSetReputation("HouseCorporis", 100);
                     }
                     TitleSet("MagicSchoolWarlock");
@@ -13838,20 +13820,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (title == "witch") {
                     if ((ReputationGet("HouseCorporis") < 50) || (ReputationGet("HouseCorporis") > 99)) {
-                        DialogSetReputation("HouseAmplector", 0);
-                        DialogSetReputation("HouseMaiestas", 0);
-                        DialogSetReputation("HouseVincula", 0);
-                        LogDelete("Mastery", "MagicSchool");
+                        ResetHousesReputation(); 
                         DialogSetReputation("HouseCorporis", 50);
                     }
                     TitleSet("MagicSchoolWitch");
                 }
                 if (title == "wizard") {
                     if ((ReputationGet("HouseMaiestas") < 50) || (ReputationGet("HouseMaiestas") > 99)) {
-                        DialogSetReputation("HouseAmplector", 0);
-                        DialogSetReputation("HouseCorporis", 0);
-                        DialogSetReputation("HouseVincula", 0);
-                        LogDelete("Mastery", "MagicSchool");
+                        ResetHousesReputation(); 
                         DialogSetReputation("HouseMaiestas", 50);
                     }
                     TitleSet("MagicSchoolWizard");
