@@ -4582,6 +4582,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    //Character
+    function ResetHousesReputation() {
+        DialogSetReputation("HouseAmplector", 0);
+        DialogSetReputation("HouseCorporis", 0);
+        DialogSetReputation("HouseMaiestas", 0);
+        DialogSetReputation("HouseVincula", 0);
+        LogDelete("Mastery", "MagicSchool");
+    }
+
     //DOGS Status
     function showDeviousLockStatus() {
         let msg = "Devious Padlock is disabled.";
@@ -12614,49 +12623,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringReputation2 = stringReputation1.split(/[ ,]+/);
                 let reputation = stringReputation2[0];
                 let level = stringReputation2[1];
-                if (reputation == "abdl") {
-                    DialogSetReputation("ABDL", level);
-                } else if (reputation == "amplector") {
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                if (reputation == "abdl") DialogSetReputation("ABDL", level);
+                if (reputation == "amplector") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseAmplector", level);
-                } else if (reputation == "corporis") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (reputation == "corporis") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseCorporis", level);
-                } else if (reputation == "dominant") {
-                    DialogSetReputation("Dominant", level);
-                } else if (reputation == "gambling") {
-                    DialogSetReputation("Gambling", level);
-                } else if (reputation == "gaming") {
-                    DialogSetReputation("Gaming", level);
-                } else if (reputation == "kidnap") {
-                    DialogSetReputation("Kidnap", level);
-                } else if (reputation == "larp") {
-                    DialogSetReputation("LARP", level);
-                } else if (reputation == "maid") {
-                    DialogSetReputation("Maid", level);
-                } else if (reputation == "maiestas") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (reputation == "dominant") DialogSetReputation("Dominant", level);
+                if (reputation == "gambling") DialogSetReputation("Gambling", level);
+                if (reputation == "gaming") DialogSetReputation("Gaming", level);
+                if (reputation == "kidnap") DialogSetReputation("Kidnap", level);
+                if (reputation == "larp") DialogSetReputation("LARP", level);
+                if (reputation == "maid") DialogSetReputation("Maid", level);
+                if (reputation == "maiestas") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseMaiestas", level);
-                } else if (reputation == "nurse") {
-                    DialogSetReputation("Asylum", level);
-                } else if (reputation == "patient") {
-                    DialogSetReputation("Asylum", -level);
-                } else if (reputation == "submissive") {
-                    DialogSetReputation("Dominant", -level);
-                } else if (reputation == "vincula") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (reputation == "nurse") DialogSetReputation("Asylum", level);
+                if (reputation == "patient") DialogSetReputation("Asylum", -level);
+                if (reputation == "submissive") DialogSetReputation("Dominant", -level);
+                if (reputation == "vincula") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseVincula", level);
                 }
             }
