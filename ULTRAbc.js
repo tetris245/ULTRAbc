@@ -12751,81 +12751,60 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             } else {
                 let role = args;
-                if (role == "clubmistress") {
-                    LogAdd("ClubMistress", "Management");
-                } else if (role == "clubslave") {
-                    LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
-                } else if (role == "doctor") {
+                if (role == "clubmistress") LogAdd("ClubMistress", "Management");
+                if (role == "clubslave") LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
+                if (role == "doctor") {
                     LogAdd("Committed", "Asylum", CurrentTime);
                     ReputationChange('Asylum', 200);
-                } else if (role == "escapedpatient") {
-                    LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
-                } else if (role == "headmaid") {
-                    LogAdd("LeadSorority", "Maid");
-                } else if (role == "kidnapper") {
-                    DialogSetReputation("Kidnap", 50);
-                } else if (role == "magician") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (role == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
+                if (role == "headmaid") LogAdd("LeadSorority", "Maid");
+                if (role == "kidnapper") DialogSetReputation("Kidnap", 50);
+                if (role == "magician") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseVincula", 50);
-                } else if (role == "magus") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (role == "magus") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseMaiestas", 100);
-                } else if (role == "maid") {
+                } 
+                if (role == "maid") {
                     LogDelete("LeadSorority", "Maid");
                     LogAdd("JoinedSorority", "Management");
-                } else if (role == "masterkidnapper") {
-                    ReputationChange("Kidnap", 100);
-                } else if (role == "mistress") {
+                } 
+                if (role == "masterkidnapper") ReputationChange("Kidnap", 100);
+                if (role == "mistress") {
                     LogAdd("ClubMistress", "Management");
                     ReputationChange("Dominant", 200);
-                } else if (role == "nurse") {
+                } 
+                if (role == "nurse") {
                     LogAdd("Committed", "Asylum", CurrentTime);
                     DialogSetReputation("Asylum", 50);
-                } else if (role == "oracle") {
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (role == "oracle") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseAmplector", 100);
-                } else if (role == "patient") {
-                    DialogSetReputation("Asylum", -50);
-                } else if (role == "permanentpatient") {
-                    ReputationChange('Asylum', -200);
-                } else if (role == "sage") {
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (role == "patient") DialogSetReputation("Asylum", -50);
+                if (role == "permanentpatient") ReputationChange('Asylum', -200);
+                if (role == "sage") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseAmplector", 50);
-                } else if (role == "sorcerer") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (role == "sorcerer") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseVincula", 100);
-                } else if (role == "warlock") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (role == "warlock") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseCorporis", 100);
-                } else if (role == "witch") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseMaiestas", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (role == "witch") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseCorporis", 50);
-                } else if (role == "wizard") {
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseCorporis", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    LogDelete("Mastery", "MagicSchool");
+                } 
+                if (role == "wizard") {
+                    ResetHousesReputation(); 
                     DialogSetReputation("HouseMaiestas", 50);
                 }
             }
@@ -12855,7 +12834,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     LogAdd("Escaped", "Asylum", CurrentTime);
                     LogAdd("Committed", "Asylum", CurrentTime);
                     DialogSetReputation("Asylum", 0);
-                } else if (role == "clubslave") {
+                } 
+                if (role == "clubslave") {
                     LogAdd("ClubSlave", "Management", CurrentTime);
                     LogAdd("BlockChange", "Rule", CurrentTime);
                     ManagementIsClubSlave = function() {
@@ -12863,7 +12843,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     ManagementClubSlaveDialog = function(Player) {}
                     ManagementFinishClubSlave()
-                } else if (role == "ggts") {
+                } 
+                if (role == "ggts") {
                     ChatRoomHideElements();
                     ServerSend("ChatRoomLeave", "");
                     CharacterDeleteAllOnline();
@@ -12873,25 +12854,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerAccountUpdate.QueueData({
                         Game: Player.Game
                     });
-                } else if (role == "kidnapper") {
-                    DialogSetReputation("Kidnap", 0)
-                } else if (role == "magician") {
-                    DialogSetReputation("HouseMaiestas", 0);
-                    DialogSetReputation("HouseVincula", 0);
-                    DialogSetReputation("HouseAmplector", 0);
-                    DialogSetReputation("HouseCorporis", 0);
-                    LogDelete("Mastery", "MagicSchool");
-                } else if ((role == "management") || (role == "mistress")) {
+                } 
+                if (role == "kidnapper") DialogSetReputation("Kidnap", 0)
+                if (role == "magician") ResetHousesReputation(); 
+                if ((role == "management") || (role == "mistress")) {
                     LogDelete("ClubMistress", "Management");
                     LogDelete("Mistress", "Management");
-                } else if ((role == "sorority") || (role == "maid")) {
+                } 
+                if ((role == "sorority") || (role == "maid")) {
                     LogDelete("JoinedSorority", "Management");
                     LogDelete("LeadSorority", "Maid");
                 }
             }
         }
     }])
-
+ 
     CommandCombine([{
         Tag: 'safeworditem',
         Description: ": removes specific item.",
