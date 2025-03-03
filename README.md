@@ -59,6 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Optimised several functions using character reputation by creating a function to reset the reputation for all magic houses
+* Optimised several commands using character reputation by creating a function to reset the reputation for all magic houses
 
 
