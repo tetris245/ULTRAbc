@@ -59,6 +59,11 @@ All else I might not have included.
 
 Changes for future version
 
+* New options in GUI - Misc
+  - to enable the unrestrict soft mode
+  - to enable the unrestrict total mode (not available if you are in no-escape mode)
+  Note: A full relog is required to leave these unrestrict modes
+* Removed the unrestrict command (as its features are now available in the GUI)
 * Optimised several commands using character reputation by creating a function to reset the reputation for all magic houses
 
 
