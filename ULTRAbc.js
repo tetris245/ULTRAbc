@@ -137,6 +137,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let notalk = 0;
     let reaction = 0;
     let unrestrict = 0;
+    let usoft = false;
+    let utotal = false;
 
     let Clothes = "";
     let Invisible = "";
@@ -490,6 +492,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             notalk = 0;
             reaction = 0;
             unrestrict = 0;
+	    usoft = false;
+            utotal = false;
             Clothes = "";
             Invisible = "";
             Mlock = "";
@@ -588,8 +592,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             SosbuttonsOn = datas.sosbuttons;
             blureffect = 0;
             notalk = datas.notalk;
-            reaction = 0;
+            reaction = 0; 
             unrestrict = 0;
+	    usoft = false;
+            utotal = false;
             Clothes = datas.clothes;
             Invisible = datas.invisible;
             Mlock = datas.mlock;
@@ -837,6 +843,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (tintmbs == null || tintmbs == undefined) tintmbs = false;
                 if (tintnever == null || tintnever == undefined) tintnever = false;
                 if (unrestrict == null || unrestrict == undefined) unrestrict = 0;
+		if (usoft == null || usoft == undefined) usoft = false;
+                if (utotal == null || utotal == undefined) utotal = false;
                 M_MOANER_saveControls();
                 BabyTalkOn = false;
                 GagTalkOn = false;
@@ -942,6 +950,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 tintlevel: 0,
                 tintmbs: false,
                 tintnever: false,
+		usoft: false,
+                utotal: false,
                 vibeMoan: true,
                 whisperMoan: false,
                 xvibeMoan: false,
@@ -1501,6 +1511,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 tintlevel = data.tintlevel;
                 tintmbs = data.tintmbs;
                 tintnever = data.tintnever;
+		usoft = data.usoft;
+                utotal = data.utotal;
                 BabyTalkOn = false;
                 if (blindness == 1) {
                     GetBlindLevel0();
@@ -1578,6 +1590,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (profile == 10) profileName = "wolf";
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
+		if ((usoft == true) && (unrestrict == 0)) softUnrestrict();
+                if ((utotal == true) && (unrestrict != 2)) totalUnrestrict();
                 M_MOANER_saveControls();
                 if (NoescapeOn == true) {
                     Player.OnlineSharedSettings.Unoescape = true;
@@ -1855,10 +1869,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape",
-                    "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, unrestrict total, untie. If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.", false, 120
+                    "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
                     "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
+                );
+                addMenuCheckbox(64, 64, "Enable unrestrict soft mode: ", "usoft",
+                    "This mode adds all hidden items to your inventory, allows to use special items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and preserves the examine feature when you are blind if you don't have choosen Total sensory deprivation. It does not remove the conditions to use assets. All these effects are also included in the unrestrict total mode. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 120
+                );
+                addMenuCheckbox(64, 64, "Enable unrestrict total mode: ", "utotal",
+                    "Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).", "Player.UBC.ubcSettings.noescape", 120
                 );
                 addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
                     "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
@@ -14167,7 +14187,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n" +
                     "<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n" +
                     "<b>/ulistshow</b> = displays the list of players allowed to bypass Uwall.\n" +
-                    "<b>/unrestrict</b> =  partially removes restrictions from game. *\n" +
                     "<b>/uroom</b> = gives infos about UBC users and Uwall protection in current room.\n" +
                     "<b>/ustatus</b> = displays status of ULTRAbc settings.";
                 infomsg(msg);
@@ -14497,38 +14516,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
-        Tag: 'unrestrict',
-        Description: "(option): partially removes restrictions from game.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The unrestrict command partially removes restrictions from game. It must be followed by an option.\n" +
-                    "Submissives: type <b>/unrestrict soft</b>\n" +
-                    "Other players: type <b>/unrestrict total</b>\n" +
-                    "Notes: \n" +
-                    "- On request from BC main coder, and because some developers act like the BC 'asset' police, a feature removing conditions (except those related to gender) to use assets is no more included in this command.\n" +
-                    "- The unrestrict total command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!";
-                infomsg(msg);
-            } else if (args === "soft") { 
-                softUnrestrict(); 
-                let msg = "Unrestricted softly. Can do some things you couldn't do before.\n" +
-                    "Store also includes hidden items. This can only be reset via a full relog.";
-                infomsg(msg);
-            } else if (args === "total") {
-                if (NoescapeOn) {
-                    let msg = umsg1 + umsg3;
-                    infomsg(msg);
-                } else {
-                    totalUnrestrict(); 
-                    let msg = "Unrestricted totally. Can do many things you couldn't do before.\n" +
-                        "Store also includes hidden items. This can only be reset via a full relog.\n" +
-                        "This command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!";
-                    infomsg(msg);
-                }
-            }
-        }
-    }])
-	
     CommandCombine([{
         Tag: 'untie',
         Description: "(target): removes all bindings.",
