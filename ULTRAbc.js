@@ -5910,6 +5910,92 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
+    //Unrestrict
+    function softUnrestrict() {
+        unrestrict = 1;
+        InventoryGroupIsBlocked = function(C, GroupName) {
+            return false;
+        }
+        Player.GameplaySettings.BlindDisableExamine = false;
+        Asset.forEach(e => {
+            if (e.Value < 0) e.Value = 1;
+        });
+        InventoryAdd(Player, "BountySuitcase", "ItemMisc");
+        InventoryAdd(Player, "BountySuitcaseEmpty", "ItemMisc");
+        InventoryAdd(Player, "ClubSlaveCollar", "ItemNeck");
+        InventoryAdd(Player, "FourLimbsShackles", "ItemArms");
+        InventoryAdd(Player, "MilkCan", "ItemDevices");
+        InventoryAdd(Player, "SlaveCollar", "ItemNeck");
+        InventoryAdd(Player, "WaterCell", "ItemDevices");
+        InventoryAdd(Player, "WoodenMaidTray", "ItemMisc");
+        InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
+        InventoryAdd(Player, "WoodenPaddle", "ItemMisc");
+        Player.Inventory.forEach(item => item.Asset.Enable = true);
+    }
+
+    function totalUnrestrict() {
+        softUnrestrict();
+        unrestrict = 2;
+        Player.CanInteract = function() {
+            return true;
+        }
+        Player.CanTalk = function() {
+            return true;
+        }
+        Player.IsPlugged = function() {
+            return false;
+        }
+        Player.IsVulvaChaste = function() {
+            return false;
+        }
+        Player.CanChange = function() {
+            return true;
+        }
+        InventoryGroupIsBlocked = function(C, GroupName) {
+            return false;
+        }
+        DialogHasKey = function(C, Item) {
+            if (C.IsPlayer()) {
+                return true;
+            } else {
+                if (C.OnlineSharedSettings.UBC == undefined) {
+                    return false;
+                } else {
+                    if (C.OnlineSharedSettings.Uwall) {
+                        if (C.OnlineSharedSettings.Ulist == undefined) {
+                            return false;
+                        } else {
+                            if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+                    } else {
+                        return true;
+                    }
+                }
+            }
+        }
+        StruggleLockPickProgressStart = function(C, Item) {
+            InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
+            ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);          
+            DialogLeave();
+        }
+        StruggleProgressStart = function(C, PrevItem, NextItem) {
+            if (InventoryGet(CurrentCharacter, CurrentCharacter.FocusGroup.Name) == null) {
+                if (C != Player || PrevItem == null || ((PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && ((Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Mounted", true)) || StruggleStrengthGetDifficulty(C, PrevItem, NextItem).auto >= 0))) {
+                     StruggleProgressCurrentMinigame = "Strength";                  
+                     StruggleStrengthStart(C, PrevItem, NextItem);
+                 }
+             } else {
+                 InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
+                 InventoryRemove(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
+                 ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);        
+             }
+         }
+     }
+
     //Vision
     function BlurEffect() {
         let effect = Player.UBC.ubcSettings.blureffect * 1;
@@ -14423,26 +14509,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "- On request from BC main coder, and because some developers act like the BC 'asset' police, a feature removing conditions (except those related to gender) to use assets is no more included in this command.\n" +
                     "- The unrestrict total command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!";
                 infomsg(msg);
-            } else if (args === "soft") {
-                unrestrict = 1;
-                InventoryGroupIsBlocked = function(C, GroupName) {
-                    return false;
-                }
-                Player.GameplaySettings.BlindDisableExamine = false;
-                Asset.forEach(e => {
-                    if (e.Value < 0) e.Value = 1;
-                });
-                InventoryAdd(Player, "BountySuitcase", "ItemMisc");
-                InventoryAdd(Player, "BountySuitcaseEmpty", "ItemMisc");
-                InventoryAdd(Player, "ClubSlaveCollar", "ItemNeck");
-                InventoryAdd(Player, "FourLimbsShackles", "ItemArms");
-                InventoryAdd(Player, "MilkCan", "ItemDevices");
-                InventoryAdd(Player, "SlaveCollar", "ItemNeck");
-                InventoryAdd(Player, "WaterCell", "ItemDevices");
-                InventoryAdd(Player, "WoodenMaidTray", "ItemMisc");
-                InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
-                InventoryAdd(Player, "WoodenPaddle", "ItemMisc");
-                Player.Inventory.forEach(item => item.Asset.Enable = true);
+            } else if (args === "soft") { 
+                softUnrestrict(); 
                 let msg = "Unrestricted softly. Can do some things you couldn't do before.\n" +
                     "Store also includes hidden items. This can only be reset via a full relog.";
                 infomsg(msg);
@@ -14451,89 +14519,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let msg = umsg1 + umsg3;
                     infomsg(msg);
                 } else {
-                    unrestrict = 2;
+                    totalUnrestrict(); 
                     let msg = "Unrestricted totally. Can do many things you couldn't do before.\n" +
                         "Store also includes hidden items. This can only be reset via a full relog.\n" +
                         "This command can trigger a BCX warning. Just ignore it (close the breaking message) and enjoy your goddess powers!";
                     infomsg(msg);
-                    Player.CanInteract = function() {
-                        return true;
-                    }
-                    Player.CanTalk = function() {
-                        return true;
-                    }
-                    Player.IsPlugged = function() {
-                        return false;
-                    }
-                    Player.IsVulvaChaste = function() {
-                        return false;
-                    }
-                    Player.CanChange = function() {
-                        return true;
-                    }
-                    InventoryGroupIsBlocked = function(C, GroupName) {
-                        return false;
-                    }
-                    Player.GameplaySettings.BlindDisableExamine = false;
-                    Asset.forEach(e => {
-                        if (e.Value < 0) e.Value = 1;
-                    });
-                    InventoryAdd(Player, "BountySuitcase", "ItemMisc");
-                    InventoryAdd(Player, "BountySuitcaseEmpty", "ItemMisc");
-                    InventoryAdd(Player, "ClubSlaveCollar", "ItemNeck");
-                    InventoryAdd(Player, "FourLimbsShackles", "ItemArms");
-                    InventoryAdd(Player, "MilkCan", "ItemDevices");
-                    InventoryAdd(Player, "SlaveCollar", "ItemNeck");
-                    InventoryAdd(Player, "WaterCell", "ItemDevices");
-                    InventoryAdd(Player, "WoodenMaidTray", "ItemMisc");
-                    InventoryAdd(Player, "WoodenMaidTrayFull", "ItemMisc");
-                    InventoryAdd(Player, "WoodenPaddle", "ItemMisc");
-                    Player.Inventory.forEach(item => item.Asset.Enable = true);
-                    DialogHasKey = function(C, Item) {
-                        if (C.IsPlayer()) {
-                            return true;
-                        } else {
-                            if (C.OnlineSharedSettings.UBC == undefined) {
-                                return false;
-                            } else {
-                                if (C.OnlineSharedSettings.Uwall) {
-                                    if (C.OnlineSharedSettings.Ulist == undefined) {
-                                        return false;
-                                    } else {
-                                        if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
-                                    }
-                                } else {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                    StruggleLockPickProgressStart = function(C, Item) {
-                        InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                        ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                        DialogLeave();
-                    }
-                    StruggleProgressStart = function(C, PrevItem, NextItem) {
-                        if (InventoryGet(CurrentCharacter, CurrentCharacter.FocusGroup.Name) == null) {
-                            if (C != Player || PrevItem == null || ((PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && ((Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Mounted", true)) || StruggleStrengthGetDifficulty(C, PrevItem, NextItem).auto >= 0))) {
-                                StruggleProgressCurrentMinigame = "Strength";
-                                StruggleStrengthStart(C, PrevItem, NextItem);
-                            }
-                        } else {
-                            InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                            InventoryRemove(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                            ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                        }
-                    }
                 }
             }
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'untie',
         Description: "(target): removes all bindings.",
