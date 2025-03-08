@@ -70,5 +70,6 @@ Changes for future version
   - Note: modes a and r disable the roleplay option
 * Added Armbinder Suit as special case in solidity command (release with value 1)
 * Optimised several commands using character reputation by creating a function to reset the reputation for all magic houses
+* Removed the diaper command and the Diaper Wetter script - if you like ABDL game, you are invited to install the new mod ABCL, which has more features and a nice interface - see https://github.com/zoe-64/ABCL/
 * Removed the unrestrict command (as its features are now available in the GUI)
 
