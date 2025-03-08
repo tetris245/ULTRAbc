@@ -13275,14 +13275,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }, 15000);
             }
         }
-    }])
+    }]) 
 
     CommandCombine([{
         Tag: 'solidity',
         Description: "(value) (target): changes the solidity of most current bindings.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The solidity command must be followed by a number between 1 and 99, and optionally a target.";
+                let msg = "The solidity command must be followed by a number between 1 and 99, and optionally a target.\n" +
+                    "To escape special restraints (Futuristic Crate, Wooden Rack, Armbinder Suit), use the value 1.";
                 infomsg(msg);
             } else {
                 let stringSol1 = args;
@@ -13298,23 +13299,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let msg = umsg1 + umsg3;
                             infomsg(msg);
                         } else {
+                            let extrasol = 0;
                             if (InventoryGet(Player, "ItemDevices") != null) {
-                                if ((InventoryGet(Player, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(Player, "ItemDevices").Asset.Name == "WoodenRack")) {
-                                    if (solidity == 1) {
-                                        InventoryRemove(Player, "ItemDevices");
-                                        let msg1 = "Magical lasers make disappear the device in which " + tmpname + " was prisoner.";
-                                        if (Solidity != undefined) {
-                                            if (Solidity != "") {
-                                                if (Solidity.startsWith("\u0027")) {
-                                                    msg1 = tmpname + Solidity;
-                                                } else {
-                                                    msg1 = tmpname + ' '.repeat(1) + Solidity;
-                                                }
-                                            }
+                                if ((InventoryGet(Player, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(Player, "ItemDevices").Asset.Name == "WoodenRack")) extrasol = 1;
+                            }
+                            if (InventoryGet(Player, "ItemArms") != null) {
+                                if (InventoryGet(Player, "ItemArms").Asset.Name == "ArmbinderSuit") extrasol = 2;
+                            }
+                            if ((extrasol != 0) && (solidity == 1)) { 
+                                if (extrasol == 1) InventoryRemove(Player, "ItemDevices"); 
+                                if (extrasol == 2) InventoryRemove(Player, "ItemArms");                                       
+                                let msg1 = "Magical lasers make disappear the special restraints that kept " + tmpname + " prisoner.";
+                                if (Solidity != undefined) {
+                                    if (Solidity != "") {
+                                        if (Solidity.startsWith("\u0027")) {
+                                            msg1 = tmpname + Solidity;
+                                        } else {
+                                            msg1 = tmpname + ' '.repeat(1) + Solidity;
                                         }
-                                        if (Solidity != "no message") publicmsg(msg1);
-                                    }
-                                }
+                                     }
+                                 }
+                                 if (Solidity != "no message") publicmsg(msg1);
                             }
                             for (let A = 0; A < Player.Appearance.length; A++)
                                 if (Player.Appearance[A].Asset.Group.Name != null) {
@@ -13335,23 +13340,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 let msg = umsg1 + tgpname + umsg2;
                                 infomsg(msg);
                             } else {
+                                let extrasol = 0;
                                 if (InventoryGet(target, "ItemDevices") != null) {
-                                    if ((InventoryGet(target, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(target, "ItemDevices").Asset.Name == "WoodenRack")) {
-                                        if (solidity == 1) {
-                                            InventoryRemove(target, "ItemDevices");
-                                            let msg1 = "Magical lasers make disappear the device in which " + tgpname + " was prisoner.";
-                                            if (Tsolidity != undefined) {
-                                                if (Tsolidity != "") {
-                                                    if (Tsolidity.startsWith("\u0027")) {
-                                                        msg1 = tmpname + Tsolidity + ' '.repeat(1) + tgpname;
-                                                    } else {
-                                                        msg1 = tmpname + ' '.repeat(1) + Tsolidity + ' '.repeat(1) + tgpname;
-                                                    }
-                                                }
-                                            }
-                                            if (Tsolidity != "no message") publicmsg(msg1);
-                                        }
-                                    }
+                                    if ((InventoryGet(target, "ItemDevices").Asset.Name == "FuturisticCrate") || (InventoryGet(target, "ItemDevices").Asset.Name == "WoodenRack")) extrasol = 1;
+                                }
+                                if (InventoryGet(target, "ItemArms") != null) {
+                                    if (InventoryGet(target, "ItemArms").Asset.Name == "ArmbinderSuit") extrasol = 2;
+                                }
+                                if ((extrasol != 0) && (solidity == 1)) { 
+                                    if (extrasol == 1) InventoryRemove(target, "ItemDevices"); 
+                                    if  (extrasol == 2) InventoryRemove(target, "ItemArms");                               
+                                    let msg1 = "Magical lasers make disappear the special restraints that kept " + tgpname + " prisoner.";                            
+                                     if (Tsolidity != undefined) {
+                                         if (Tsolidity != "") {
+                                             if (Tsolidity.startsWith("\u0027")) {
+                                                 msg1 = tmpname + Tsolidity + ' '.repeat(1) + tgpname;
+                                             } else {
+                                                 msg1 = tmpname + ' '.repeat(1) + Tsolidity + ' '.repeat(1) + tgpname;
+                                             }
+                                          }
+                                      }
+                                      if (Tsolidity != "no message") publicmsg(msg1);
                                 }
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if (target.Appearance[A].Asset.Group.Name != null) {
@@ -13370,7 +13379,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'spin',
         Description: "(target) (option): allows access to target's wheel of fortune, even when not displayed.",
