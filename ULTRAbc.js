@@ -2569,8 +2569,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (tsp == 2) tsp = 1;
             let nm = 0;
 	    let wh1 = 0;
-            if (Player.OnlineSettings.BCX != undefined) { 
-                if (IsBcxWhisperAllowed(ChatRoomTargetMemberNumber) == false) wh1 = 1;          
+            if ((window.BCX_Loaded == true) && (ChatRoomTargetMemberNumber != -1)) {
+                if (Player.OnlineSettings.BCX != undefined) {   
+                    if (IsBcxWhisperAllowed(ChatRoomTargetMemberNumber) == false) wh1 = 1;    
+                }
             }
             if (tsp == 0) {
                 if (DolltalkOn == true) {
