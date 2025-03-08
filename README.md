@@ -65,7 +65,7 @@ Changes for future version
   - Note: A full relog is required to leave these unrestrict modes
 * Extended the spin command with optional modes, its syntax is now /spin (target) (mode):
   - a = automatic real spinning (only the options selected by the wheel creator)
-  - i = info about the maximum of options on the wheel (recommended before using option r)
+  - i = info about the maximum of options on the wheel (recommended before using r mode)
   - r = full random spinning (includes also the options not selected by the wheel creator)
   - Note: modes a and r disable the roleplay option
 * Optimised several commands using character reputation by creating a function to reset the reputation for all magic houses
