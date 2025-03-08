@@ -13413,11 +13413,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (option == "a") {
                                 WheelFortuneRoleplay = false;
                                 WheelFortuneForced = false;
-		                     WheelFortuneVelocity = WheelFortuneVelocity + 3000 + (Math.random() * 3000);
-		                     WheelFortuneVelocityTime = CommonTime();
-		                     let Msg = TextGet("Spin");
-		                     Msg = Msg.replace("CharacterName", CharacterNickname(WheelFortuneCharacter));
-		                     ServerSend("ChatRoomChat", { Content: Msg, Type: "Emote" });
+		                WheelFortuneVelocity = WheelFortuneVelocity + 3000 + (Math.random() * 3000);
+		                WheelFortuneVelocityTime = CommonTime();
+		                let Msg = TextGet("Spin");
+		                Msg = Msg.replace("CharacterName", CharacterNickname(WheelFortuneCharacter));
+		                ServerSend("ChatRoomChat", { Content: Msg, Type: "Emote" });
                              } 
                              if (option == "i") {
                                  WheelFortuneExit();
