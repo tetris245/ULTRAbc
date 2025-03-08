@@ -13382,7 +13382,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "i = info about the maximum of options on the wheel\n" +
                     "r = full random spinning (includes also the options not selected by the wheel creator)\n" +
                     "Tip: use the i mode before the r mode, it will correctly initialise the messages.\n" +
-                    "Note that roleplay is disabled by modes a and r!";
+                    "Note that roleplay is disabled by a and r modes!";
                 infomsg(msg);
             } else {
                 let stringSol1 = args;
