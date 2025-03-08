@@ -13365,13 +13365,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'spin',
-        Description: "(target): allows access to target's wheel of fortune, even when not displayed.",
+        Description: "(target) (option): allows access to target's wheel of fortune, even when not displayed.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The spin command must be followed by the target whose wheel of fortune interests you.";
+                let msg = "The spin command must be followed by the target whose wheel of fortune interests you, and optionally an option.\n" +
+                    "Available options:\n" +
+                    "a = automatic real spinning (only the options selected by the wheel creator\n" +
+                    "i = info about the maximum of options on the wheel\n" +
+                    "r = full random spinning (includes also the options not selected by the wheel creator)\n" +
+                    "Tip: use the i option before the r option, it will correctly initialise the messages.\n" +
+                    "Note that roleplay is disabled by options a and r!";
                 infomsg(msg);
             } else {
-                let target = TargetSearch(args);
+                let stringSol1 = args;
+                let stringSol2 = stringSol1.split(/[ ,]+/);
+                let targetname = stringSol2[0];
+                let option = stringSol2[1];
+                let target = TargetSearch(targetname);
                 if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) ||
@@ -13390,7 +13400,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             WheelFortuneBackground = ChatRoomData.Background;
                             WheelFortuneCharacter = CurrentCharacter;
                             DialogLeave();
-                            CommonSetScreen("MiniGame", "WheelFortune");
+                            CommonSetScreen("MiniGame", "WheelFortune"); 
+                            let maxwh = WheelFortuneOption.length - 1;
+                            if (option == "a") {
+                                WheelFortuneRoleplay = false;
+                                WheelFortuneForced = false;
+		                     WheelFortuneVelocity = WheelFortuneVelocity + 3000 + (Math.random() * 3000);
+		                     WheelFortuneVelocityTime = CommonTime();
+		                     let Msg = TextGet("Spin");
+		                     Msg = Msg.replace("CharacterName", CharacterNickname(WheelFortuneCharacter));
+		                     ServerSend("ChatRoomChat", { Content: Msg, Type: "Emote" });
+                             } 
+                             if (option == "i") {
+                                 WheelFortuneExit();
+                                 let msg = "The options on this wheel go from 0 to " + maxwh + ".";
+                                 infomsg(msg);
+                             } 
+                             if (option == "r") { 
+                                 WheelFortuneRoleplay = false;
+                                 const Result = [];
+                                 let Roll = Math.floor(Math.random() * WheelFortuneOption.length);
+                                 Result.push(Roll);
+                                 let msg = tmpname + " randomly forces an option of " + tgpname + "'s wheel.";
+                                 publicmsg(msg);
+                                 WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[Result];
+                                 WheelFortuneResult();
+                            }
                         }
                     }
                 }
@@ -14082,7 +14117,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n" +
                     "<b>/restrain</b> (target) = adds random restraints.\n" +
                     "<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Value must be between 1 and 99.\n" +
-                    "<b>/spin</b> (target) = access to any wheel of fortune, even hidden.";
+                    "<b>/spin</b> (target) (option) = access to any wheel of fortune, even hidden. *";
                 infomsg(msg);
             }
             if (args === "character") {
