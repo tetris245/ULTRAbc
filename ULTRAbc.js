@@ -5209,7 +5209,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             wh6ex = (Player.FriendList).concat(wh5ex);
                             if (wh1data == 6) bcxlist = wh6ex;
                             if (wh1data == 7) wh1 = 0; 
-                            if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+                            if (ChatRoomTargetMemberNumber == Player.Ownership.MemberNumber) {
+                                wh1 = 0;
+                            } else {
+                                if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+                            }
                        }
                     }
                  }
