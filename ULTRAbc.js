@@ -13368,13 +13368,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(target) (option): allows access to target's wheel of fortune, even when not displayed.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The spin command must be followed by the target whose wheel of fortune interests you, and optionally an option.\n" +
-                    "Available options:\n" +
-                    "a = automatic real spinning (only the options selected by the wheel creator\n" +
+                let msg = "The spin command must be followed by the target whose wheel of fortune interests you, and optionally a mode.\n" +
+                    "Available modes:\n" +
+                    "a = automatic real spinning (only the options selected by the wheel creator)\n" +
                     "i = info about the maximum of options on the wheel\n" +
                     "r = full random spinning (includes also the options not selected by the wheel creator)\n" +
-                    "Tip: use the i option before the r option, it will correctly initialise the messages.\n" +
-                    "Note that roleplay is disabled by options a and r!";
+                    "Tip: use the i mode before the r mode, it will correctly initialise the messages.\n" +
+                    "Note that roleplay is disabled by modes a and r!";
                 infomsg(msg);
             } else {
                 let stringSol1 = args;
