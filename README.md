@@ -63,7 +63,11 @@ Changes for future version
   - to enable the unrestrict soft mode
   - to enable the unrestrict total mode (not available if you are in no-escape mode)
   - Note: A full relog is required to leave these unrestrict modes
-* Removed the unrestrict command (as its features are now available in the GUI)
+* Extended the spin command with optional modes, its syntax is now /spin (target) (mode):
+  - a = automatic real spinning (only the options selected by the wheel creator)
+  - i = info about the maximum of options on the wheel (recommended before using option r)
+  - r = full random spinning (includes also the options not selected by the wheel creator)
+  - Note: modes a and r disable the roleplay option
 * Optimised several commands using character reputation by creating a function to reset the reputation for all magic houses
-
+* Removed the unrestrict command (as its features are now available in the GUI)
 
