@@ -68,6 +68,7 @@ Changes for future version
   - i = info about the maximum of options on the wheel (recommended before using r mode)
   - r = full random spinning (includes also the options not selected by the wheel creator)
   - Note: modes a and r disable the roleplay option
+* Added Armbinder Suit as special case in solidity command (release with value 1)
 * Optimised several commands using character reputation by creating a function to reset the reputation for all magic houses
 * Removed the unrestrict command (as its features are now available in the GUI)
 
