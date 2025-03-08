@@ -5214,9 +5214,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (ChatRoomTargetMemberNumber == Player.Ownership.MemberNumber) {
                                 wh1 = 0;
                             } else {
-                                if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+                                if ((wh1data > 1) && (wh1data < 7)) {
+                                    if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+                                }
                             }
-                       }
+                        }
                     }
                  }
              }
