@@ -2771,11 +2771,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchExit() {
         modApi.hookFunction('ChatSearchExit', 4, (args, next) => {
             if (ChatRoomSpace == "Asylum") {
-                ChatSearchLeaveSpace = "Room";
-                ChatSearchLeaveRoom = "AsylumEntrance";
+                ChatSearchReturnScreen = ["Room", "AsylumEntrance"];
             } else {
-                ChatSearchLeaveSpace = "Room";
-                ChatSearchLeaveRoom = "MainHall";
+                ChatSearchReturnScreen = ["Room", "MainHall"];
             }
             next(args);
         });
