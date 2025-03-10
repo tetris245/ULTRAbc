@@ -12650,8 +12650,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             CurrentCharacter = target;
                             ChatRoomHideElements();
-                            WheelFortuneEntryModule = CurrentModule;
-                            WheelFortuneEntryScreen = CurrentScreen;
+                            WheelFortuneReturnScreen = CommonGetScreen();
                             WheelFortuneBackground = ChatRoomData.Background;
                             WheelFortuneCharacter = CurrentCharacter;
                             DialogLeave();
