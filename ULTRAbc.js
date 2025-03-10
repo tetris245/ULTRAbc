@@ -5005,13 +5005,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    //Room to Game
+    //Room Connections
+    function BackToRoom() {
+        CommonSetScreen("Online", "ChatRoom");
+        document.getElementById("InputChat").style.display = "inline";
+        document.getElementById("TextAreaChatLog").style.display = "inline";
+    }
+
     function RoomToGame() {
         ServerSend("ChatRoomLeave", "");
         ChatRoomSetLastChatRoom("");
         OnlineGameName = "";
         ChatRoomHideElements();
     }
+
+     function RoomToSearch() {
+        ChatRoomSetLastChatRoom("");
+        document.getElementById("InputChat").style.display = "none";
+        document.getElementById("TextAreaChatLog").style.display = "none";
+        ChatRoomHideElements();
+     }
 
     //Stable
     function StablePonyEnd() {
@@ -8439,11 +8452,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     setTimeout(function() {
                         ChatRoomSpace = "Asylum";
                         CommonSetScreen("Online", "ChatSearch");
-                        ChatRoomSetLastChatRoom("");
-                        document.getElementById("InputChat").style.display = "none";
-                        document.getElementById("TextAreaChatLog").style.display = "none";
-                        ElementRemove("InputSearch");
-                        ChatRoomHideElements();
+                        RoomToSearch();
                         FriendListReturn = {
                             Screen: CurrentScreen,
                             Module: CurrentModule
@@ -8452,9 +8461,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
-                        CommonSetScreen("Online", "ChatRoom");
-                        document.getElementById("InputChat").style.display = "inline";
-                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                        BackToRoom();
                     }, 15000);
                 } else {
                     let msg = "No access to this lobby.";
@@ -8466,11 +8473,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     setTimeout(function() {
                         ChatRoomSpace = "";
                         CommonSetScreen("Online", "ChatSearch");
-                        ChatRoomSetLastChatRoom("");
-                        document.getElementById("InputChat").style.display = "none";
-                        document.getElementById("TextAreaChatLog").style.display = "none";
-                        ElementRemove("InputSearch");
-                        ChatRoomHideElements();
+                        RoomToSearch();
                         FriendListReturn = {
                             Screen: CurrentScreen,
                             Module: CurrentModule
@@ -8479,9 +8482,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
-                        CommonSetScreen("Online", "ChatRoom");
-                        document.getElementById("InputChat").style.display = "inline";
-                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                        BackToRoom();                     
                     }, 15000);
                 } else {
                     let msg = "No access to this lobby.";
@@ -8493,11 +8494,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     setTimeout(function() {
                         ChatRoomSpace = "M";
                         CommonSetScreen("Online", "ChatSearch");
-                        ChatRoomSetLastChatRoom("");
-                        document.getElementById("InputChat").style.display = "none";
-                        document.getElementById("TextAreaChatLog").style.display = "none";
-                        ElementRemove("InputSearch");
-                        ChatRoomHideElements();
+                        RoomToSearch();
                         FriendListReturn = {
                             Screen: CurrentScreen,
                             Module: CurrentModule
@@ -8506,9 +8503,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
-                        CommonSetScreen("Online", "ChatRoom");
-                        document.getElementById("InputChat").style.display = "inline";
-                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                        BackToRoom();
                     }, 15000);
                 } else {
                     let msg = "No access to this lobby.";
@@ -8520,11 +8515,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     setTimeout(function() {
                         ChatRoomSpace = "X";
                         CommonSetScreen("Online", "ChatSearch");
-                        ChatRoomSetLastChatRoom("");
-                        document.getElementById("InputChat").style.display = "none";
-                        document.getElementById("TextAreaChatLog").style.display = "none";
-                        ElementRemove("InputSearch");
-                        ChatRoomHideElements();
+                        RoomToSearch();
                         FriendListReturn = {
                             Screen: CurrentScreen,
                             Module: CurrentModule
@@ -8533,9 +8524,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
-                        CommonSetScreen("Online", "ChatRoom");
-                        document.getElementById("InputChat").style.display = "inline";
-                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                        BackToRoom();
                     }, 15000);
                 } else {
                     let msg = "No access to this lobby.";
@@ -8544,7 +8533,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'game',
         Description: "(minigame): launches a minigame.",
@@ -12390,17 +12379,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatCreateBackgroundList = BackgroundsTagAsylum;
                         CommonSetScreen("Online", "ChatSearch");
                         ChatSelectStartSearch("Asylum");
-                        ChatRoomSetLastChatRoom("");
-                        document.getElementById("InputChat").style.display = "none";
-                        document.getElementById("TextAreaChatLog").style.display = "none";
-                        ChatRoomHideElements();
+                        RoomToSearch();
                         ChatSelectStartSearch("Asylum");
                         ChatRoomSetLastChatRoom("");
                     }, 3000);
                     setTimeout(function() {
-                        CommonSetScreen("Online", "ChatRoom");
-                        document.getElementById("InputChat").style.display = "inline";
-                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                        BackToRoom();  
                     }, 15000);
                 } else {
                     let msg = "No access to this lobby.";
@@ -12411,17 +12395,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
                         ChatSelectStartSearch("");
-                        ChatRoomSetLastChatRoom("");
-                        document.getElementById("InputChat").style.display = "none";
-                        document.getElementById("TextAreaChatLog").style.display = "none";
-                        ChatRoomHideElements();
+                        RoomToSearch();
                         ChatSelectStartSearch("");
                         ChatRoomSetLastChatRoom("");
                     }, 3000);
                     setTimeout(function() {
-                        CommonSetScreen("Online", "ChatRoom");
-                        document.getElementById("InputChat").style.display = "inline";
-                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                        BackToRoom();  
                     }, 15000);
                 } else {
                     let msg = "No access to this lobby.";
@@ -12432,17 +12411,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
                         ChatSelectStartSearch("M");
-                        ChatRoomSetLastChatRoom("");
-                        document.getElementById("InputChat").style.display = "none";
-                        document.getElementById("TextAreaChatLog").style.display = "none";
-                        ChatRoomHideElements();
+                        RoomToSearch();
                         ChatSelectStartSearch("M");
                         ChatRoomSetLastChatRoom("");
                     }, 3000);
                     setTimeout(function() {
-                        CommonSetScreen("Online", "ChatRoom");
-                        document.getElementById("InputChat").style.display = "inline";
-                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                       BackToRoom(); 
                     }, 15000);
                 } else {
                     let msg = "No access to this lobby.";
@@ -12453,17 +12427,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
                     setTimeout(function() {
                         ChatSelectStartSearch("X");
-                        ChatRoomSetLastChatRoom("");
-                        document.getElementById("InputChat").style.display = "none";
-                        document.getElementById("TextAreaChatLog").style.display = "none";
-                        ChatRoomHideElements();
+                        RoomToSearch();
                         ChatSelectStartSearch("X");
                         ChatRoomSetLastChatRoom("");
                     }, 3000);
                     setTimeout(function() {
-                        CommonSetScreen("Online", "ChatRoom");
-                        document.getElementById("InputChat").style.display = "inline";
-                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                        BackToRoom();
                     }, 15000);
                 } else {
                     let msg = "No access to this lobby.";
