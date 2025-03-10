@@ -8463,65 +8463,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The frlist command must be followed by the lobby for which you want to have clickable links.\n" +
                     "Available options: asylum, fclub, mclub, xclub.";
                 infomsg(msg);
-            }
-            if (args === "asylum") {
-                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
+            } else {
+                let frlist = "noaccess";
+                if (args === "asylum") {
+                    if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) frlist = "Asylum";
+                }
+                if (args === "fclub") {
+                    if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) frlist = "";
+                }
+                if (args === "mclub") {
+                    if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) frlist = "M";
+                }
+                if (args === "xclub") {
+                    if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) frlist = "X";
+                }
+                if (frlist == "noaccess") {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                } else {
                     setTimeout(function() {
-                        ChatRoomSpace = "Asylum";
+                        ChatRoomSpace = frlist;
                         RoomToFriends();
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
                         BackToRoom();
                     }, 15000);
-                } else {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
-                }
-            }
-            if (args === "fclub") {
-                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
-                    setTimeout(function() {
-                        ChatRoomSpace = "";
-                        RoomToFriends();              
-                    }, 3000);
-                    setTimeout(function() {
-                        FriendListExit();
-                        BackToRoom();                     
-                    }, 15000);
-                } else {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
-                }
-            }
-            if (args === "mclub") {
-                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
-                    setTimeout(function() {
-                        ChatRoomSpace = "M";
-                        RoomToFriends();               
-                    }, 3000);
-                    setTimeout(function() {
-                        FriendListExit();
-                        BackToRoom();
-                    }, 15000);
-                } else {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
-                }
-            }
-            if (args === "xclub") {
-                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
-                    setTimeout(function() {
-                        ChatRoomSpace = "X";
-                        RoomToFriends();                    
-                    }, 3000);
-                    setTimeout(function() {
-                        FriendListExit();
-                        BackToRoom();
-                    }, 15000);
-                } else {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
                 }
             }
         }
