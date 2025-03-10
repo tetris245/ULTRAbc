@@ -4605,6 +4605,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Character
+    function CharacterBio(target) {
+        ChatRoomSetLastChatRoom("");
+        ChatRoomHideElements();
+        InformationSheetLoadCharacter(target);
+        OnlineProfileRun();
+        CommonSetScreen("Character", "OnlineProfile");
+    }
+	
     function ResetHousesReputation() {
         DialogSetReputation("HouseAmplector", 0);
         DialogSetReputation("HouseCorporis", 0);
@@ -7957,21 +7965,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'bio',
         Description: "(target): gives direct access to the profile description of any player in the chat room.",
         Action: (args) => {
+            let target = "";
             if (args === "") {
-                ChatRoomSetLastChatRoom("");
-                ChatRoomHideElements();
-                InformationSheetLoadCharacter(Player);
-                OnlineProfileRun();
-                CommonSetScreen("Character", "OnlineProfile")
+                CharacterBio(Player);       
             } else {
                 let target = TargetSearch(args);
-                if (target != null) {
-                    ChatRoomSetLastChatRoom("");
-                    ChatRoomHideElements();
-                    InformationSheetLoadCharacter(target);
-                    OnlineProfileRun();
-                    CommonSetScreen("Character", "OnlineProfile");
-                }
+                if (target != null) CharacterBio(target);
             }
         }
     }])
