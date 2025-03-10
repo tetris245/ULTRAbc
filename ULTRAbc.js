@@ -5037,6 +5037,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
      }
 
      function RoomToSearch(club) {
+         if (club == "Asylum") {
+             ChatRoomSpace = "Asylum";
+             ChatSearchLeaveRoom = "AsylumEntrance";
+             ChatSearchBackground = "AsylumEntrance";
+             ChatCreateBackgroundList = BackgroundsTagAsylum;
+             CommonSetScreen("Online", "ChatSearch");
+         }
          ChatSelectStartSearch(club);
          RoomToOut();
          ChatSelectStartSearch(club);
@@ -12329,67 +12336,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The search command must be followed by the lobby you want to explore.\n" +
                     "Available options: asylum, fclub, mclub, xclub.";
                 infomsg(msg);
-            }
-            if (args === "asylum") {
-                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
+            } else {
+                let search = "noaccess";
+                if (args === "asylum") {
+                    if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) search = "Asylum";
+                }
+                if (args === "fclub") {
+                    if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) search = "";
+                }
+                if (args === "mclub") {
+                    if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) search = "M";
+                }
+                if (args === "xclub") {
+                    if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) search = "X";
+                }
+                if (search == "noaccess") {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                } else {  
                     setTimeout(function() {
-                        ChatRoomSpace = "Asylum";
-                        ChatSearchLeaveRoom = "AsylumEntrance";
-                        ChatSearchBackground = "AsylumEntrance";
-                        ChatCreateBackgroundList = BackgroundsTagAsylum;
-                        CommonSetScreen("Online", "ChatSearch");
-                        RoomToSearch("Asylum");
+                        RoomToSearch(search);                  
                     }, 3000);
                     setTimeout(function() {
                         BackToRoom();  
                     }, 15000);
-                } else {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
-                }
-            }
-            if (args === "fclub") {
-                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
-                    setTimeout(function() {
-                        RoomToSearch("");                  
-                    }, 3000);
-                    setTimeout(function() {
-                        BackToRoom();  
-                    }, 15000);
-                } else {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
-                }
-            }
-            if (args === "mclub") {
-                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
-                    setTimeout(function() {
-                        RoomToSearch("M");                
-                    }, 3000);
-                    setTimeout(function() {
-                       BackToRoom(); 
-                    }, 15000);
-                } else {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
-                }
-            }
-            if (args === "xclub") {
-                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
-                    setTimeout(function() {
-                        RoomToSearch("X");            
-                    }, 3000);
-                    setTimeout(function() {
-                        BackToRoom();
-                    }, 15000);
-                } else {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
                 }
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'sfchaste',
         Description: "(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.",
