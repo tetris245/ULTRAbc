@@ -5012,6 +5012,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         document.getElementById("TextAreaChatLog").style.display = "inline";
     }
 
+    function RoomToFriends() { 
+        CommonSetScreen("Online", "ChatSearch");
+        RoomToOut();
+        FriendListReturn = {
+            Screen: CurrentScreen,
+            Module: CurrentModule
+        };
+        CommonSetScreen("Character", "FriendList");
+    }
+
     function RoomToGame() {
         ServerSend("ChatRoomLeave", "");
         ChatRoomSetLastChatRoom("");
@@ -5019,11 +5029,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomHideElements();
     }
 
-     function RoomToSearch() {
+     function RoomToOut() {
         ChatRoomSetLastChatRoom("");
         document.getElementById("InputChat").style.display = "none";
         document.getElementById("TextAreaChatLog").style.display = "none";
         ChatRoomHideElements();
+     }
+
+     function RoomToSearch(club) {
+         ChatSelectStartSearch(club);
+         RoomToOut();
+         ChatSelectStartSearch(club);
+         ChatRoomSetLastChatRoom("");
      }
 
     //Stable
@@ -8451,13 +8468,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
                     setTimeout(function() {
                         ChatRoomSpace = "Asylum";
-                        CommonSetScreen("Online", "ChatSearch");
-                        RoomToSearch();
-                        FriendListReturn = {
-                            Screen: CurrentScreen,
-                            Module: CurrentModule
-                        };
-                        CommonSetScreen("Character", "FriendList");
+                        RoomToFriends();
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
@@ -8472,13 +8483,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
                         ChatRoomSpace = "";
-                        CommonSetScreen("Online", "ChatSearch");
-                        RoomToSearch();
-                        FriendListReturn = {
-                            Screen: CurrentScreen,
-                            Module: CurrentModule
-                        };
-                        CommonSetScreen("Character", "FriendList");
+                        RoomToFriends();              
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
@@ -8493,13 +8498,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
                         ChatRoomSpace = "M";
-                        CommonSetScreen("Online", "ChatSearch");
-                        RoomToSearch();
-                        FriendListReturn = {
-                            Screen: CurrentScreen,
-                            Module: CurrentModule
-                        };
-                        CommonSetScreen("Character", "FriendList");
+                        RoomToFriends();               
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
@@ -8514,13 +8513,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
                     setTimeout(function() {
                         ChatRoomSpace = "X";
-                        CommonSetScreen("Online", "ChatSearch");
-                        RoomToSearch();
-                        FriendListReturn = {
-                            Screen: CurrentScreen,
-                            Module: CurrentModule
-                        };
-                        CommonSetScreen("Character", "FriendList");
+                        RoomToFriends();                    
                     }, 3000);
                     setTimeout(function() {
                         FriendListExit();
@@ -12378,10 +12371,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatSearchBackground = "AsylumEntrance";
                         ChatCreateBackgroundList = BackgroundsTagAsylum;
                         CommonSetScreen("Online", "ChatSearch");
-                        ChatSelectStartSearch("Asylum");
-                        RoomToSearch();
-                        ChatSelectStartSearch("Asylum");
-                        ChatRoomSetLastChatRoom("");
+                        RoomToSearch("Asylum");
                     }, 3000);
                     setTimeout(function() {
                         BackToRoom();  
@@ -12394,10 +12384,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "fclub") {
                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
-                        ChatSelectStartSearch("");
-                        RoomToSearch();
-                        ChatSelectStartSearch("");
-                        ChatRoomSetLastChatRoom("");
+                        RoomToSearch("");                  
                     }, 3000);
                     setTimeout(function() {
                         BackToRoom();  
@@ -12410,10 +12397,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "mclub") {
                 if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
-                        ChatSelectStartSearch("M");
-                        RoomToSearch();
-                        ChatSelectStartSearch("M");
-                        ChatRoomSetLastChatRoom("");
+                        RoomToSearch("M");                
                     }, 3000);
                     setTimeout(function() {
                        BackToRoom(); 
@@ -12426,10 +12410,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "xclub") {
                 if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
                     setTimeout(function() {
-                        ChatSelectStartSearch("X");
-                        RoomToSearch();
-                        ChatSelectStartSearch("X");
-                        ChatRoomSetLastChatRoom("");
+                        RoomToSearch("X");            
                     }, 3000);
                     setTimeout(function() {
                         BackToRoom();
@@ -12441,7 +12422,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'sfchaste',
         Description: "(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.",
