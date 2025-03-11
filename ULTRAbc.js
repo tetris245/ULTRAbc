@@ -125,6 +125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let NogarbleOn;
     let NostruggleOn;
     let NotimeoutOn;
+    let NoubccolorOn;
     let NowhisperOn = false;
     let NPCpunish = false;
     let OutbuttonsOn;
@@ -481,6 +482,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NogarbleOn = false;
             NostruggleOn = false;
             NotimeoutOn = false;
+	    NoubccolorOn = false;
             NowhisperOn = false;
             NPCpunish = false;
             OutbuttonsOn = false;
@@ -583,6 +585,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
             NotimeoutOn = datas.notimeout;
+	    NoubccolorOn = datas.noubccolor;
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
             OutbuttonsOn = datas.outbuttons;
@@ -683,6 +686,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,
             "notimeout": NotimeoutOn,
+            "noubccolor": NoubccolorOn,
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
             "outbuttons": OutbuttonsOn,
@@ -811,6 +815,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (NotimeoutOn == null || NotimeoutOn == undefined) NotimeoutOn = false;
+		if (NoubccolorOn == null || NoubccolorOn == undefined) NoubccolorOn = false;
                 if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
                 if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
@@ -926,6 +931,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nostruggle: false,
                 notalk: 0,
                 notimeout: false,
+		noubccolor: false,
                 nowhisper: false,
                 npcpunish: false,
                 orgasmMoan: true,
@@ -1492,6 +1498,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NostruggleOn = data.nostruggle;
                 notalk = data.notalk;
                 NotimeoutOn = data.notimeout;
+		NoubccolorOn = data.noubccolor;
                 NowhisperOn = data.nowhisper;
                 NPCpunish = data.npcpunish;
                 OutbuttonsOn = data.outbuttons;
@@ -2022,6 +2029,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
+		addMenuCheckbox(64, 64, "Disable background color for UBC messages: ", "noubccolor",
+                    "If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.", false, 192
+                );
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
                     "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
                 );
@@ -4887,9 +4897,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Messages
     function infomsg(msg) {
-        ChatRoomSendLocal(
-            "<p style='background-color:#5fbd7a'>ULTRAbc: " + msg + "</p>"
-        );
+        if (NoubccolorOn) {
+            ChatRoomSendLocal("ULTRAbc: " + msg);
+        } else {
+            ChatRoomSendLocal(
+                "<p style='background-color:#5fbd7a'>ULTRAbc: " + msg + "</p>"
+            );
+        }
     }
 
     function publicmsg(msg) {
