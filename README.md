@@ -63,6 +63,7 @@ Changes for future version
   - to enable the unrestrict soft mode
   - to enable the unrestrict total mode (not available if you are in no-escape mode)
   - Note: A full relog is required to leave these unrestrict modes
+* New option in GUI - Visual to disable background color for UBC local messages
 * Extended the spin command with optional modes, its syntax is now /spin (target) (mode) with 3 available modes:
   - a = automatic real spinning (only the options selected by the wheel creator)
   - i = info about the maximum of options on the wheel (recommended before using r mode)
