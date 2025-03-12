@@ -64,12 +64,13 @@ Changes for future version
   - to enable the unrestrict total mode (not available if you are in no-escape mode)
   - Note: A full relog is required to leave these unrestrict modes
 * New option in GUI - Visual to disable background color for UBC local messages
+* Fixed the options related to stable in the game command
+* Added Armbinder Suit as special case in solidity command (release with value 1)
 * Extended the spin command with optional modes, its syntax is now /spin (target) (mode) with 3 available modes:
   - a = automatic real spinning (only the options selected by the wheel creator)
   - i = info about the maximum of options on the wheel (recommended before using r mode)
   - r = full random spinning (includes also the options not selected by the wheel creator)
   - Note: modes a and r disable the roleplay option
-* Added Armbinder Suit as special case in solidity command (release with value 1)
 * Updated the patch applied to ChatSearchExit function (for R114 compatibility)
 * Optimised several commands using character reputation + the bio, frlist and search commands
 * Removed the diaper command and the Diaper Wetter script - if you like ABDL game, you are invited to install the new mod ABCL, which has more features and a nice interface - see https://github.com/zoe-64/ABCL/
