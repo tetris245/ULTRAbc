@@ -90,6 +90,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cfame = 200;
     let drname = "AbandonedBuilding";
     let frname = "BrickWall";
+    let gamestable = false;
     let gl = 0;
     let hearing = 0;
     let maptrap1 = 0;
@@ -448,6 +449,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cfame = 200;
 	    drname = "AbandonedBuilding";
             frname = "BrickWall";
+	    gamestable = false;
             gl = 0;
             hearing = 0;
             maptrap1 = 0;
@@ -551,6 +553,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cfame = datas.cfame;
 	    drname = datas.drname;
             frname = datas.frname;
+	    gamestable = datas.gamestable;
             gl = datas.gaglevel;
             hearing = 0;
             maptrap1 = datas.maptrap1;
@@ -655,6 +658,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cfame": cfame,
             "drname": drname,
             "frname": frname,
+            "gamestable": gamestable,
             "gaglevel": gl,
             "maptrap1": maptrap1,
             "rchat": rchat,
@@ -790,6 +794,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
                 if (FrkeysOn == null || FrkeysOn == undefined) FrkeysOn = false;
                 if (frname == null || frname == undefined) frname = "BrickWall";
+		if (gamestable == null || gamestable == undefined) gamestable = false;
                 if (gl == null || gl == undefined) gl = 0;
                 if (gl == -1) gl = 11;
                 if (hearing == null || hearing == undefined) hearing = 0;
@@ -2174,6 +2179,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceRun();
     ULTRAPrivateClick();
     ULTRAPrivateRun();
+    ULTRAStablePlayerTrainingCarrotsEnd();
+    ULTRAStablePlayerTrainingHurdlesEnd();
+    ULTRAStableRun();
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
@@ -2235,7 +2243,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAShopRun();
     ULTRASlaveAuctionRun();
     ULTRASlaveMarketRun();
-    ULTRAStableRun();
     ULTRATennisRun();
     ULTRATherapyRun();
     ULTRATitleRun();
@@ -3657,6 +3664,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    //Stable
+    async function ULTRAStablePlayerTrainingCarrotsEnd() {
+        modApi.hookFunction('StablePlayerTrainingCarrotsEnd', 4, (args, next) => {
+            if (gamestable) StablePonyEnd();
+            next(args);
+        });
+    }
+
+    async function ULTRAStablePlayerTrainingHurdlesEnd() {
+        modApi.hookFunction('StablePlayerTrainingHurdlesEnd', 4, (args, next) => {
+            if (gamestable) StablePonyEnd();
+            next(args);
+        });
+    }
+
+    async function ULTRAStableRun() {
+        modApi.hookFunction('StableRun', 4, (args, next) => {
+            TintsEffect();
+            next(args);
+        });
+    }
+
     //Timer Cell
     async function ULTRACellClick() {
         modApi.hookFunction('CellClick', 4, (args, next) => {
@@ -4120,13 +4149,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRASlaveMarketRun() {
         modApi.hookFunction('SlaveMarketRun', 4, (args, next) => {
-            TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRAStableRun() {
-        modApi.hookFunction('StableRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
@@ -5072,26 +5094,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Stable
     function StablePonyEnd() {
+        gamestable = false;
+        M_MOANER_saveControls();
         CommonSetScreen("Room", "Stable");
-        CharacterSetCurrent(StableTrainer);
+        CharacterSetCurrent(StableTrainer); 
         StableTrainer.Stage = "StableTrainingRunOut";
-        CharacterRelease(Player);
-        CharacterNaked(Player);
-        for (let E = Player.Appearance.length - 1; E >= 0; E--)
-            if ((Player.Appearance[E].Asset.Group.Name == "ItemTorso") || (Player.Appearance[E].Asset.Group.Name == "Hat") || (Player.Appearance[E].Asset.Group.Name == "ItemButt")) {
-                Player.Appearance.splice(E, 1);
-            }
-        CharacterDress(Player, StablePlayerAppearance);
-        CharacterRefresh(Player);
-    }
-
-    function StableTrainerEnd() {
-        CommonSetScreen("Room", "Stable");
-        CharacterSetCurrent(StableTrainer);
-        StableTrainer.Stage = "StableExamTPass";
-        CharacterNaked(Player);
-        CharacterDress(Player, StablePlayerAppearance);
-        CharacterRefresh(Player);
+        StablePlayerTrainingLessons = 6;       
     }
 
     //Status
@@ -8511,7 +8519,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-	
+
     CommandCombine([{
         Tag: 'game',
         Description: "(minigame): launches a minigame.",
@@ -8527,11 +8535,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let minigame = args;
                 if (minigame == "carrot") {
+                    gamestable = true;
+                    M_MOANER_saveControls();
                     RoomToGame();
                     CommonSetScreen("Room", "Stable");
                     StableDressPonyStart();
                     StableWearPonyEquipment(Player);
-                    MiniGameStart("HorseWalk", "Carrot", "StablePonyEnd");
+                    MiniGameStart("HorseWalk", "Carrot", "StablePlayerTrainingCarrotsEnd");         
                 } else if (minigame == "cleaning") {
                     RoomToGame();
                     CommonSetScreen("Room", "MaidQuarters");
@@ -8548,11 +8558,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     GameType = "MaidDrinks";
                     MaidQuartersMaid.Stage = "200";
                 } else if (minigame == "hurdle") {
+                    gamestable = true;
+                    M_MOANER_saveControls();
                     RoomToGame();
                     CommonSetScreen("Room", "Stable");
                     StableDressPonyStart();
                     StableWearPonyEquipment(Player);
-                    MiniGameStart("HorseWalk", "Hurdle", "StablePonyEnd");
+                    MiniGameStart("HorseWalk", "Hurdle", "StablePlayerTrainingHurdlesEnd");
                 } else if (minigame == "kidnap") {
                     RoomToGame();
                     CommonSetScreen("Room", "Introduction");
@@ -8576,18 +8588,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     CommonSetScreen("Room", "MaidQuarters");
                     GameType = "RhythmGame";
                     MaidQuartersMaid.Stage = "500";
-                } else if (minigame == "training") {
+                } else if (minigame == "training") {  
                     RoomToGame();
                     CommonSetScreen("Room", "Stable");
                     StablePlayerAppearance = Player.Appearance.slice();
                     StableWearTrainerEquipment(Player);
-                    MiniGameStart("HorseWalk", "HurdleTraining", "StableTrainerEnd");
+                    MiniGameStart("HorseWalk", "HurdleTraining", "StablePonyTrainingHurdlesEnd");
                 } else if (minigame == "whippony") {
                     RoomToGame();
                     CommonSetScreen("Room", "Stable");
                     StablePlayerAppearance = Player.Appearance.slice();
                     StableWearTrainerEquipment(Player);
-                    MiniGameStart("HorseWalk", "WhipPony", "StableTrainerEnd");
+                    MiniGameStart("HorseWalk", "WhipPony", "StableTrainerWhipEnd");     
                 }
             }
         }
