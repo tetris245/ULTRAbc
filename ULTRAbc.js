@@ -2370,7 +2370,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Y: posY
             } = Player.MapData.Pos;
             const ret = next(args);
-            if ((posX !== Player.MapData.Pos.X || posY !== Player.MapData.Pos.Y) && (!posX < 0) && (!posY < 0) && (posX < 40) && (posY < 40)) {
+            if (Player.MapData.Pos.X < 0) Player.MapData.Pos.X = Player.MapData.Pos.X+1;
+            if (Player.MapData.Pos.Y < 0) Player.MapData.Pos.Y = Player.MapData.Pos.Y+1;
+            if (Player.MapData.Pos.X > 39) Player.MapData.Pos.X = Player.MapData.Pos.X-1;
+            if (Player.MapData.Pos.Y > 39) Player.MapData.Pos.Y = Player.MapData.Pos.Y-1;
+            if (posX !== Player.MapData.Pos.X || posY !== Player.MapData.Pos.Y) {
                 const newTile = ChatRoomMapViewGetTileAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
                 const newObject = ChatRoomMapViewGetObjectAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
                 let item1 = newObject.Type;
