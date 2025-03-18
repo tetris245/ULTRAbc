@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 4.6
+Most recent version: 4.7
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version4.6.zip file on the Releases page
+1. Download the ULTRAbc-version4.7.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,20 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* New options in GUI - Misc
-  - to enable the unrestrict soft mode
-  - to enable the unrestrict total mode (not available if you are in no-escape mode)
-  - Note: A full relog is required to leave these unrestrict modes
-* New option in GUI - Visual to disable background color for UBC local messages
-* Fixed the options related to stable in the game command
-* Added Armbinder Suit as special case in solidity command (release with value 1)
-* Extended the spin command with optional modes, its syntax is now /spin (target) (mode) with 3 available modes:
-  - a = automatic real spinning (only the options selected by the wheel creator)
-  - i = info about the maximum of options on the wheel (recommended before using r mode)
-  - r = full random spinning (includes also the options not selected by the wheel creator)
-  - Note: modes a and r disable the roleplay option
-* Updated the patch applied to ChatSearchExit function (for R114 compatibility)
-* Optimised several commands using character reputation + the bio, frlist and search commands
-* Removed the diaper command and the Diaper Wetter script - if you like ABDL game, you are invited to install the new mod ABCL, which has more features and a nice interface - see https://github.com/zoe-64/ABCL/
-* Removed the unrestrict command (as its features are now available in the GUI)
-
+(...)
