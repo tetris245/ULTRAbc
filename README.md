@@ -40,7 +40,7 @@ Special thanks to KellyLoveyness for creating the original version of QAM.
 
 Special thanks to Julia for the powerful code of the BCTweaks GUI.
 
-Special thanks to Firefly for giving permission to integrate the BC-Diaper-Wetter script.
+Special thanks to Firefly for giving permission to integrate the BC-Diaper-Wetter script (removed since version 4.7 - if you like ABDL game, you are invited to install the new mod ABCL, which has more features and a nice interface - see https://github.com/zoe-64/ABCL/)
 
 Special thanks to Myrhanda and Kimei for giving permission to integrate the Moaner script.
 
