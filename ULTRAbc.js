@@ -9938,7 +9938,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "password is limited to 8 characters.\n" +
                     "portal code must include 8 characters, using only 0-9 and a-f.\n" +
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
-                    "10080 minutes for locks 14, 15 and 18\n" +
+                    "10080 minutes for locks 14, 15 and 18\n" + 
+		    "Use ? if you want a time randomly choosen by the game";
                     " \n" +
                     "Optional parameters:\n" +
                     "h to hide the timer,\n" +
@@ -9999,8 +10000,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (lk == 14) Lock = "LoversTimerPadlock";
                 if (lk == 15) Lock = "OwnerTimerPadlock";
                 if ((lk == 13) || (lk == 14) || (lk == 15)) {
-                    minutes = stringLock2[2];
+                    let maxtime = 240;
+                    if (lk != 13) maxtime = 10080;
+                    minutes = 5;
+                    if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
+                       const Result = [];
+                       let Roll = Math.floor(Math.random() * maxtime);
+                       Result.push(Roll); 
+                       if (Result < 5) Result = 5;
+                       minutes = Result;
+                    }
+                    if (CommonIsNumeric(stringLock2[2])) {
+                        minutes = stringLock2[2];
+                        if (minutes < 5) minutes = 5;
+                        if (minutes > maxtime) minutes = maxtime;
+                    }
                     time = (minutes - 5);
+                    if (time < 1) time = 1;        
                     hidetimer = stringLock2[3];
                     enableinput = stringLock2[4];
                     removeitem = stringLock2[5];
@@ -10010,8 +10026,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     PS = /^[A-Z]+$/;
                     pw = "PASSWORD";
                     if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
-                    minutes = stringLock2[3];
+                    let maxtime = 240;
+                    minutes = 5;
+                    if ((!CommonIsNumeric(stringLock2[3])) && (stringLock2[3] == "?")) {
+                       const Result = [];
+                       let Roll = Math.floor(Math.random() * maxtime);
+                       Result.push(Roll); 
+                       if (Result < 5) Result = 5;
+                       minutes = Result;
+                    }
+                    if (CommonIsNumeric(stringLock2[3])) {
+                        minutes = stringLock2[2];
+                        if (minutes < 5) minutes = 5;
+                        if (minutes > maxtime) minutes = maxtime;
+                    }
                     time = (minutes - 5);
+                    if (time < 1) time = 1;           
                     hidetimer = stringLock2[4];
                     enableinput = stringLock2[5];
                     removeitem = stringLock2[6];
@@ -10019,16 +10049,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (lk == 17) Lock = "Best Friend Padlock";
                 if (lk == 18) {
                     Lock = "Best Friend Timer Padlock";
-                    if (stringLock2[2] == null) {
-                        minutes = 1;
-                    } else {
+                    let maxtime = 10080;
+                    minutes = 5;
+                    if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
+                       const Result = [];
+                       let Roll = Math.floor(Math.random() * maxtime);
+                       Result.push(Roll); 
+                       if (Result < 1) Result = 1;
+                       minutes = Result;
+                    }
+                    if (CommonIsNumeric(stringLock2[2])) {
                         minutes = stringLock2[2];
+                        if (minutes < 5) minutes = 5;
+                        if (minutes > maxtime) minutes = maxtime;
                     }
-                    if (minutes > 10080) {
-                        time = 100800;
-                    } else {
-                        time = (minutes + 5);
-                    }
+                    time = (minutes + 5);                  
                     hidetimer = stringLock2[3];
                     enableinput = stringLock2[4];
                     removeitem = stringLock2[5];
