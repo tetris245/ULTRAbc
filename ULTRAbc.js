@@ -73,6 +73,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const umsg2 = " has enabled the Uwall protection.";
     const umsg3 = "you are in no-escape mode.";
     const umsg4 = "Your message can't be sent because it does not respect the rules of doll talk.";
+    const umsg5 = "This room does not use the map feature.";
+    const umsg6 = " Better use the <b>/uroom</b> command.";
 
     const M_MOANER_moanerKey = "bc_moaner_";
     let M_MOANER_scriptOn = false;
@@ -10225,8 +10227,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mapfog',
         Description: ": toggles fog in current mapped room.",
         Action: () => {
-            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                let msg = "This room does not use the map feature.";
+            if (IsMapRoom() == false) {
+                let msg = umsg5;
                 infomsg(msg);
             } else {
                 if ((ChatRoomData.MapData.Fog == true || ChatRoomData.MapData.Fog == undefined)) {
@@ -10246,8 +10248,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mapkeys',
         Description: ": gives all keys for current mapped chat room.",
         Action: () => {
-            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                let msg = "This room does not use the map feature.";
+            if (IsMapRoom() == false) {
+                let msg = umsg5;
                 infomsg(msg);
             } else {
                 if (Player.MapData == undefined) {
@@ -10268,8 +10270,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'maproom',
         Description: ": gives infos about location of players in current mapped chat room.",
         Action: () => {
-            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                let msg = "This room does not use the map feature. Better use the <b>/uroom</b> command.";
+            if (IsMapRoom() == false) {
+                let msg = umsg5 + umsg6;
                 infomsg(msg);
             } else {
                 let pl = 0;
@@ -10341,8 +10343,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The mapx command must be followed by a number between 0 and 39.";
                 infomsg(msg);
             } else {
-                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    let msg = "This room does not use the map feature.";
+                if (IsMapRoom() == false) {
+                    let msg = umsg5;
                     infomsg(msg);
                 } else {
                     let plx = args;
@@ -10382,11 +10384,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(y-position): changes your Y coordinate in the map.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The mapy command must be followed by a number between 0 and 39.";
+                let msg = "The mapx command must be followed by a number between 0 and 39.";
                 infomsg(msg);
             } else {
-                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                    let msg = "This room does not use the map feature.";
+                if (IsMapRoom() == false) {
+                    let msg = umsg5;
                     infomsg(msg);
                 } else {
                     let ply = args;
@@ -10425,8 +10427,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mapz',
         Description: "(target): gives coordinates in the map.",
         Action: (args) => {
-            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
-                let msg = "This room does not use the map feature.";
+            if (IsMapRoom() == false) {
+                let msg = umsg5;
                 infomsg(msg);
             } else {
                 if (args === "") {
