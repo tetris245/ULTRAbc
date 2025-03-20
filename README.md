@@ -60,4 +60,4 @@ All else I might not have included.
 Changes for future version
 
 * Improved the lock command to allow time randomly choosen by the game when you use timer locks: for that, you need to use ? instead of specifying the number of minutes
-* Improved the maproom command by adding info about the keys found in the map if you are the player using the command
+* Improved the maproom command by adding info about the keys found in the map only for the player using the command
