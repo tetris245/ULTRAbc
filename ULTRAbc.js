@@ -10317,6 +10317,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         }
                         ChatRoomSendLocal("X = " + ChatRoomCharacter[pl].MapData.Pos.X + " - Y = " + ChatRoomCharacter[pl].MapData.Pos.Y + " - " + exinfo);
+			if (ChatRoomCharacter[pl] == Player) {
+                            if (ChatRoomCharacter[pl].MapData.PrivateState.HasKeyGold) key1 = "Gold";
+                            if (ChatRoomCharacter[pl].MapData.PrivateState.HasKeySilver) key2 = "Silver";
+                            if (ChatRoomCharacter[pl].MapData.PrivateState.HasKeyBronze) key3 = "Bronze";
+                            ChatRoomSendLocal("Keys found: " + key1 + " - " + key2 + " - " + key3 + ".");
+                        }
                     } else {
                         ChatRoomSendLocal("Does not have entered map");
                     }
