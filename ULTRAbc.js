@@ -2915,7 +2915,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rm++;
                 }
             }
-            if (rtype == "Never") {
+            if ((rtype == "Never") || (rtype == "Hybrid")) {
                 let rm = 0;
                 while (rm < ret.length) {
                     let good = 0;
@@ -2925,21 +2925,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
                     if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
                     if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;              
-                    if ((good == 1) && (ret[rm].MapType == "Never")) NewResult.push(ret[rm]);
-                    rm++;
-                }
-            }
-            if (rtype == "Hybrid") {
-                let rm = 0;
-                while (rm < ret.length) {
-                    let good = 0;
-                    let room = ret[rm].MemberLimit;
-                    let player = ret[rm].MemberCount;
-                    if ((rchat == false) && (pchat == false)) good = 1;
-                    if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
-                    if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                    if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;              
-                    if ((good == 1) && (ret[rm].MapType == "Hybrid")) NewResult.push(ret[rm]);
+                    if ((good == 1) && (ret[rm].MapType == rtype)) NewResult.push(ret[rm]);
                     rm++;
                 }
             }
