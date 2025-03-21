@@ -12902,7 +12902,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available titles:\n" +
-                    "Available titles:\n" +
                     "admiral, agent, alien, angel, baby, bondagebaby,\n" +
                     "bondagemaid, brat, bunny, captain, clubslave,\n" +
                     "coldbloodhorse, collegestudent, concubus, demon,\n" +
