@@ -98,6 +98,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let maptrap1 = 0;
     let mgl = 0;
     let onegl = 0;
+    let pchat = false;
+    let pmin = 2;
+    let pmax = 20;
     let rchat = false;
     let rhide = false;
     let rmin = 2;
@@ -457,6 +460,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             maptrap1 = 0;
             mgl = 0;
             onegl = 0;
+	    pchat = false;
+            pmin = 2;
+            pmax = 20;
             rchat = false;
             rhide = false;
             rmin = 2;
@@ -561,6 +567,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             maptrap1 = datas.maptrap1;
             mgl = 0;
             onegl = 0;
+	    pchat = datas.pchat;
+            pmin = datas.pmin * 1;
+            pmax = datas.pmax * 1;
             rchat = datas.rchat;
             rhide = datas.rhide;
             rmin = datas.rmin * 1;
@@ -663,6 +672,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gamestable": gamestable,
             "gaglevel": gl,
             "maptrap1": maptrap1,
+            "pchat": pchat,
+            "pmin": pmin,
+            "pmax": pmax,
             "rchat": rchat,
             "rhide": rhide,
             "rmin": rmin,
@@ -826,6 +838,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
                 if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
+		if (pchat == null || pchat == undefined) pchat = false;
+                if (pmin == null || pmin == undefined || pmin == 0) pmin = 2;
+                if (pmax == null || pmax == undefined || pmax == 0) pmax = 20;
                 if (profileName == null || profileName == undefined) profileName = "default";
                 if (profileName == "default") profile = 0;
                 if (profileName == "bunny") profile = 1;
@@ -943,6 +958,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 npcpunish: false,
                 orgasmMoan: true,
                 outbuttons: false,
+		pchat: false,
+                pmin: 2,
+                pmax: 20,
                 profile: 0,
                 rchat: false,
                 reaction: 0,
@@ -1509,6 +1527,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NowhisperOn = data.nowhisper;
                 NPCpunish = data.npcpunish;
                 OutbuttonsOn = data.outbuttons;
+		pchat = data.pchat;
+                pmin = data.pmin * 1;
+                pmax = data.pmax * 1;
                 profile = data.profile;
                 rchat = data.rchat;
                 reaction = data.reaction;
@@ -1741,10 +1762,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms.", false, 134
                 );
                 addMenuInput(200, "Minimum players (2-20):", "rmin", "InputRoomMin",
-                    "Input a number between 2 and 20 as minimum players in normal and hybrid rooms! If this number is higher than the maximum, your Chat Search will fail."
+                    "Input a number between 2 and 20 as minimum possible players in normal and hybrid rooms! If this number is higher than the maximum, your Chat Search will fail."
                 );
                 addMenuInput(200, "Maximum players (2-20):", "rsize", "InputRoomMax",
-                    "Input a number between 2 and 20 as maximum players in normal and hybrid rooms! If this number is lower than the minimum, your Chat Search will fail."
+                    "Input a number between 2 and 20 as maximum possible players in normal and hybrid rooms! If this number is lower than the minimum, your Chat Search will fail."
+                );
+                addMenuCheckbox(64, 64, "Present players in chat rooms: ", "pchat",
+                    "When enabled, the two below parameters will be used in Chat Search for all chat rooms, no matter the type.", false, 134
+                );
+                addMenuInput(200, "Minimum present players (2-20):", "pmin", "InputPlayerMin",
+                    "Input a number between 2 and 20 as minimum players present in chat rooms! If this number is higher than the maximum, your Chat Search will fail."
+                );
+                addMenuInput(200, "Maximum present players (2-20):", "pmax", "InputPlayerMax",
+                    "Input a number between 2 and 20 as maximum present players in chat rooms! If this number is lower than the minimum, your Chat Search will fail."
                 );
                 addMenuCheckbox(64, 64, "Hide locked rooms without access: ", "rhide",
                     "When enabled, the locked rooms without direct personal access will not be displayed in Chat Search. Note: if a room you have access is private but not visible, you need to enter its correct name in Chat Search.", false, 134
@@ -1762,11 +1792,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCChatSearchExit = function() {
                 let min = ElementValue("InputRoomMin");
                 let max = ElementValue("InputRoomMax");
-                if ((CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21)) {
+                let min2 = ElementValue("InputPlayerMin");
+                let max2 = ElementValue("InputPlayerMax");
+                if ((CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21) 
+                    && (CommonIsNumeric(min2)) && (min2 > 1) && (min2 < 21) && (CommonIsNumeric(max2)) && (max2 > 1) && (max2 < 21)) {
                     Player.UBC.ubcSettings.rmin = min;
                     Player.UBC.ubcSettings.rsize = max;
+                    Player.UBC.ubcSettings.pmin = min2;
+                    Player.UBC.ubcSettings.pmax = max2;
                     ElementRemove("InputRoomMin");
                     ElementRemove("InputRoomMax");
+                    ElementRemove("InputPlayerMin");
+                    ElementRemove("InputPlayerMax");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
@@ -2862,52 +2899,58 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (rtype == "ALL") {
                 let rm = 0;
                 while (rm < ret.length) {
-                    if (rchat == true) {
-                        if (((ret[rm].MemberLimit >= rmin) && (ret[rm].MemberLimit <= rsize)) || (ret[rm].MapType == "Always")) {
-                            NewResult.push(ret[rm]);
-                        }
+                    let good = 0;
+                    let room = ret[rm].MemberLimit;
+                    let player = ret[rm].MemberCount;
+                    if (ret[rm].MapType == "Always") {
+                        if (pchat == false) good = 1;
+                        if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1; 
                     } else {
-                        NewResult.push(ret[rm]);
-                    }
+                        if ((rchat == false) && (pchat == false)) good = 1;
+                        if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
+                        if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
+                        if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
+                    } 
+                    if (good == 1) NewResult.push(ret[rm]);            
                     rm++;
                 }
             }
             if (rtype == "Never") {
                 let rm = 0;
                 while (rm < ret.length) {
-                    if (rchat == true) {
-                        if ((ret[rm].MemberLimit >= rmin) && (ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Never")) {
-                            NewResult.push(ret[rm]);
-                        }
-                    } else {
-                        if (ret[rm].MapType == "Never") {
-                            NewResult.push(ret[rm]);
-                        }
-                    }
+                    let good = 0;
+                    let room = ret[rm].MemberLimit;
+                    let player = ret[rm].MemberCount;
+                    if ((rchat == false) && (pchat == false)) good = 1;
+                    if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
+                    if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
+                    if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;              
+                    if ((good == 1) && (ret[rm].MapType == "Never")) NewResult.push(ret[rm]);
                     rm++;
                 }
             }
             if (rtype == "Hybrid") {
                 let rm = 0;
                 while (rm < ret.length) {
-                    if (rchat == true) {
-                        if ((ret[rm].MemberLimit >= rmin) && (ret[rm].MemberLimit <= rsize) && (ret[rm].MapType == "Hybrid")) {
-                            NewResult.push(ret[rm]);
-                        }
-                    } else {
-                        if (ret[rm].MapType == "Hybrid") {
-                            NewResult.push(ret[rm]);
-                        }
-                    }
+                    let good = 0;
+                    let room = ret[rm].MemberLimit;
+                    let player = ret[rm].MemberCount;
+                    if ((rchat == false) && (pchat == false)) good = 1;
+                    if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
+                    if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
+                    if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;              
+                    if ((good == 1) && (ret[rm].MapType == "Hybrid")) NewResult.push(ret[rm]);
                     rm++;
                 }
             }
             if (rtype == "Always") {
                 let rm = 0;
                 while (rm < ret.length) {
-                    if (ret[rm].MapType == "Always") {
-                        NewResult.push(ret[rm]);
-                    }
+                    let good = 0;
+                    let player = ret[rm].MemberCount;
+                    if (pchat == false) good = 1;
+                    if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1; 
+                    if ((good == 1) && (ret[rm].MapType == "Always")) NewResult.push(ret[rm]);
                     rm++;
                 }
             }
