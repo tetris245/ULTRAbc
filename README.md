@@ -62,3 +62,4 @@ Changes for future version
 * New options in GUI - Chat Search to display only the rooms with a minimum and maximum of present players 
 * Improved the lock command to allow time randomly choosen by the game when you use timer locks: for that, you need to use ? instead of specifying the number of minutes
 * Improved the maproom command by adding info about the keys found in the map only for the player using the command
+* Optimised the detection of Uwall/Ulist protection and chat room type
