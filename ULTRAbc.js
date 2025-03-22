@@ -564,7 +564,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    gamestable = datas.gamestable;
             gl = datas.gaglevel;
             hearing = 0;
-            maptrap1 = datas.maptrap1;
+            maptrap1 = datas.maptrap1 * 1;
             mgl = 0;
             onegl = 0;
 	    pchat = datas.pchat;
@@ -1508,7 +1508,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 MagictoysOn = data.magictoys;
 		MapcheatOn = data.mapcheat;
 		MapfullOn = data.mapfull;
-                maptrap1 = data.maptrap1;
+                maptrap1 = data.maptrap1 * 1;
                 M_MOANER_cum = data.cum;
                 M_MOANER_orgasmActive = data.orgasmMoan;
                 M_MOANER_scriptOn = data.script;
@@ -5124,135 +5124,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         StableTrainer.Stage = "StableTrainingRunOut";
         StablePlayerTrainingLessons = 6;       
     }
-
-    //Status
-    function showButtonsStatus() {
-        let msg = "";
-        let EXT = "";
-        let FREE = "";
-        let OUT = "";
-        let RGL = "";
-        if (ExtbuttonsOn) EXT = "EXT - ";
-        if ((SosbuttonsOn) && (NoescapeOn == false)) FREE = "FREE - ";
-        if ((OutbuttonsOn) && (NoescapeOn == false)) OUT = "OUT - ";
-        if (RglbuttonsOn) RGL = "RGL";
-        msg = "Buttons activated: " + EXT + FREE + OUT + RGL;
-        statusmsg(msg);
-    }
-
-    function showFeaturesStatus() {
-        let msg = "";
-        let Autojoin = "";
-        let Fullseed = "";
-        let Frkeys = "";
-        let Hotkeys = "";
-        if (AutojoinOn) Autojoin = "Auto-Join - ";
-        if (FullseedOn) Fullseed = "Full solution for intr/hs locks - ";
-        if (FrkeysOn) Frkeys = "Friendlist hotkeys - "
-        if (HotkeysOn) Hotkeys = "Numeric pad hotkeys"
-        msg = "Features enabled: " + Autojoin + Fullseed + Frkeys + Hotkeys;
-        statusmsg(msg);
-    }
-
-    function showHighfameStatus() {
-        let msg = "";
-        let msg1 = "High fame mode disabled in Bondage Club Card Game.";
-        if (HighfameOn) msg1 = "High fame mode enabled in Bondage Club Card Game.";
-        msg = msg1 + " Current high fame: " + cfame + ". Current default desk: " + cdesk + ".";
-        statusmsg(msg);
-    }
-
-    function showMagiccheatStatus() {
-        let msg = "Cheat mode disabled in B. Brawl and Magic School.";
-        if (MagiccheatOn) msg = "Cheat mode enabled in B. Brawl and Magic School.";
-        statusmsg(msg);
-    }
-
-    function showMaptrapStatus() {
-        let msg = "";
-        let msg1 = "No traps with devices in map rooms.";
-        let msg2 = "No magic toys added under locked chastity for trap mode.";
-        if (maptrap1) msg1 = "Traps in map rooms if you 'walk' on devices.";
-        if (MagictoysOn) msg2 = "Magic toys added under locked chastity for trap mode.";
-        msg = msg1 + " " + msg2;
-        statusmsg(msg);
-    }
-
-    function showMiscUbcStatus() {
-        let msg = "";
-        let msg1 = "Only 43 backgrounds usable in Private Room (SP). ";
-        let msg2 = "Permission change after safeword. ";
-        let msg3 = "Time-out enabled in TAB help. ";
-        let msg4 = "NPC punishments disabled.";
-        if (bgall) msg1 = "All standard backgrounds usable in Private Room (SP). ";
-        if (FixpermOn) msg2 = "No permission change after safeword. ";
-        if (NotimeoutOn) msg3 = "Time-out disabled in TAB help. ";
-        if (NPCpunish) msg4 = "NPC punishments enabled.";
-        msg = msg1 + msg2 + msg3 + msg4;
-        statusmsg(msg);
-    }
-
-    function showModesStatus() {
-        let msg1 = "Fast exit mode is activated.";
-        let msg2 = "No-escape mode is disabled.";
-        if (SlowleaveOn) msg1 = "Slow exit mode is activated. ";
-        if (NoescapeOn) {
-            msg1 = "";
-            msg2 = "No-escape mode is enabled.";
-        }
-        msg = msg1 + msg2;
-        statusmsg(msg);
-    }
-
-    function showNostruggleStatus() {
-        let msg = "Automatic struggle in mini-games is disabled.";
-        if (NostruggleOn) msg = "Automatic struggle in mini-games is enabled.";
-        statusmsg(msg);
-    }
-
-    function showSearchRoomStatus() {
-        let msg = "";
-        let msg1 = "Chat Search type: ";
-        let msg2 = "";
-        if (rtype == "ALL") msg2 = "All rooms. ";
-        if (rtype == "Never") msg2 = "Normal rooms. ";
-        if (rtype == "Hybrid") msg2 = "Hybrid rooms. ";
-        if (rtype == "Always") msg2 = "Mapped rooms. ";
-        let msg3 = "Min (n/h): ";
-        let msg4 = "Max (n/h): ";
-        let msg5 = "Locked rooms are shown.";
-        if (rhide) msg5 = "Locked rooms are hidden.";
-        msg = msg1 + msg2 + msg3 + rmin + ". " + msg4 + rsize + ". " + msg5;
-        statusmsg(msg);
-    }
-
-    function showTalkStatus() {
-        let msg = "";
-        let msg1 = "";
-        if (animal == 0) msg1 = "Human talk mode";
-        if (animal == 1) msg1 = "Bunny talk mode";
-        if (animal == 2) msg1 = "Cow talk mode";
-        if (animal == 3) msg1 = "Fox talk mode";
-        if (animal == 4) msg1 = "Kitty talk mode";
-        if (animal == 5) msg1 = "Mouse talk mode";
-        if (animal == 6) msg1 = "Pig talk mode";
-        if (animal == 7) msg1 = "Pony talk mode";
-        if (animal == 8) msg1 = "Puppy talk mode";
-        if (animal == 9) msg1 = "Wolfy talk mode";
-        let msg2 = "Forced stuttering level: " + st;
-        let msg3 = "Forced gag level: " + gl;
-        let msg4 = "No-whisper mode disabled.";
-        let msg5 = "Doll talk (and whisper) mode disabled.";
-        let msg6 = "No ungarble with BC default talk mode.";
-        let msg7 = "No extended synchronization with RGL button.";
-        if (NowhisperOn) msg4 = "No-whisper mode enabled.";
-        if (DolltalkOn) msg5 = "Doll talk (and whisper) mode enabled.";
-        if (NogarbleOn) msg6 = "Ungarble with BC default talk mode.";
-        if (RglsyncOn) msg7 = "Extended synchronization with RGL button.";
-        msg = msg1 + " - " + msg2 + " - " + msg3 + " - " + msg4 + " " + msg5 + " " + msg6 + " " + msg7;
-        statusmsg(msg);
-    }
-
+	
     //Talking
     function IsBcxWhisperAllowed (target) {
         let wh1 = 0;
@@ -13438,10 +13310,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>chat</b> = commands with extra features in chat room.\n" +
                     "<b>clothing</b> = commands related to the clothes.\n" +
                     "<b>escape</b> = commands related to escape.\n" +
-                    "<b>extra</b> = commands for info about other add-ons.\n" +
                     "<b>fun</b> = commands related to fun, pain and pleasure.\n" +
                     "<b>kd</b> = info about kd command (for Kinky Dungeon).\n" +
-                    "<b>misc</b> = special commands.\n" +
+                    "<b>misc</b> = help, info, login and Ulist commands.\n" +
                     "<b>settings</b> = commands to customize ULTRAbc.\n" +
                     "<b>talking</b> = commands related to talking.\n" +
                     "<b>visual</b> = commands related to animations and background.\n" +
@@ -13524,13 +13395,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/untie</b> (target) = removes all bindings.";
                 infomsg(msg);
             }
-            if (args === "extra") {
-                let msg = "Extra commands:\n" +
-                    "<b>/mbsroom</b> = gives infos about MBS wheels of fortune in current chat room.\n" +
-                    "<b>/xmenu</b> = direct access to Extensions screen.\n" +
-                    "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. Available options with /xstatus.";
-                infomsg(msg);
-            }
             if (args === "fun") {
                 let msg = "Fun commands - * = more info when using\n" +
                     "** = scripts must be allowed in BC settings\n" +
@@ -13565,6 +13429,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "misc") {
                 let msg = "Misc commands - * = more info when using\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
+                    "<b>/mbsroom</b> = gives infos about MBS wheels of fortune in current chat room.\n" +
                     "<b>/mstatus</b> = displays current status of the moaner.\n" +
                     "<b>/pmenu</b> = direct access to Preferences screen.\n" +
                     "<b>/relog</b> = relogs.\n" +
@@ -13573,7 +13438,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n" +
                     "<b>/ulistshow</b> = displays the list of players allowed to bypass Uwall.\n" +
                     "<b>/uroom</b> = gives infos about UBC users and Uwall protection in current room.\n" +
-                    "<b>/ustatus</b> = displays status of ULTRAbc settings.";
+                    "<b>/xmenu</b> = direct access to Extensions screen.\n" +
+                    "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. Available options with /xstatus.";    
                 infomsg(msg);
             }
             if (args === "settings") {
@@ -13991,23 +13857,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSendLocal(" ");
                 pl++;
             }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'ustatus',
-        Description: ": displays status of UBC settings.",
-        Action: () => {
-            showButtonsStatus();
-            showFeaturesStatus();
-            showHighfameStatus();
-            showMagiccheatStatus();
-            showMaptrapStatus();
-            showMiscUbcStatus();
-            showModesStatus();
-            showNostruggleStatus();
-            showSearchRoomStatus();
-            showTalkStatus();
         }
     }])
 
