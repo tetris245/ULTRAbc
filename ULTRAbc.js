@@ -8558,7 +8558,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The game command must include a minigame.\n" +
                     "Available minigames:\n" +
                     "carrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\n" +
-                    "movie2, puppy, rhythm, training, whippony.\n" +
+                    "movie2, puppy, rhythm, tennis1, tennis2, tennis3,\n" +
+                    "training, whippony.\n" +
+                    "Tennis1 = easy, tennis2 = normal, tennis 3 = hard\n" +
                     "Training is the trainer version of the hurdle game.\n" +
                     "You need to click on the maid in the Maid Quarters for the cleaning, drinks and rhythm games.";
                 infomsg(msg);
@@ -8618,6 +8620,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     CommonSetScreen("Room", "MaidQuarters");
                     GameType = "RhythmGame";
                     MaidQuartersMaid.Stage = "500";
+		} else if (minigame == "tennis1") {  
+                    RoomToGame(); 
+                    CommonSetScreen("Room", "CollegeTennis");   
+                    CollegeTennisJennifer.Stage = "1000";
+                    CollegeTennisGameStart("Easy");
+                } else if (minigame == "tennis2") {  
+                    RoomToGame(); 
+                    CommonSetScreen("Room", "CollegeTennis");   
+                    CollegeTennisJennifer.Stage = "1000";
+                    CollegeTennisGameStart("Normal");
+                } else if (minigame == "tennis3") {  
+                    RoomToGame(); 
+                    CommonSetScreen("Room", "CollegeTennis");   
+                    CollegeTennisJennifer.Stage = "1000";
+                    CollegeTennisGameStart("Hard");
                 } else if (minigame == "training") {  
                     RoomToGame();
                     CommonSetScreen("Room", "Stable");
