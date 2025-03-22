@@ -4264,9 +4264,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             tgpname = C.Nickname;
                         }
                         if ((tmpname != tgpname) && (IsTargetProtected (C))) { 
-                            (C.OnlineSharedSettings.Uwall == true) &&
-                            ((C.OnlineSharedSettings.Ulist == undefined) ||
-                                (!(C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
                             let msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
                             infomsg(msg);
                         } else {
