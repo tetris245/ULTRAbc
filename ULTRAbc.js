@@ -8560,7 +8560,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "carrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\n" +
                     "movie2, puppy, rhythm, tennis1, tennis2, tennis3,\n" +
                     "training, whippony.\n" +
-                    "Tennis1 = easy, tennis2 = normal, tennis 3 = hard\n" +
+                    "Tennis1 = easy, tennis2 = normal, tennis3 = hard\n" +
                     "Training is the trainer version of the hurdle game.\n" +
                     "You need to click on the maid in the Maid Quarters for the cleaning, drinks and rhythm games.";
                 infomsg(msg);
