@@ -60,6 +60,7 @@ All else I might not have included.
 Changes for future version
 
 * New options in GUI - Chat Search to display only the rooms with a minimum and maximum of present players
+* New command: vibe (slot) (mode) to change mode of worn vibe in a specific slot, even when you are bound
 * Added the tennis1, tennis2 and tennis3 options to the game command
 * Improved the lock command to allow time randomly choosen by the game when you use timer locks: for that, you need to use ? instead of specifying the number of minutes
 * Improved the maproom command by adding info about the keys found in the map only for the player using the command
