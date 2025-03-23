@@ -13868,14 +13868,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "The vibe command must be followed by two numbers:\n" +
                     "- a number for the concerned slot:\n" +
-                    "0 = Boots - 1 = Breast - 2 = Butt\n" + 
-                    "3 = Clitoris/Gland - 4 = Nipples - 5 = Nipples Piercings\n" +
-                    "6 = Vulva/Penis\n" +
+                    "0 = Boots - 1 = Breast - 2 = Butt - 3 = Clitoris/Gland\n" + 
+                    "4 = Nipples - 5 = Nipples Piercings - 6 = Vulva/Penis\n" +
                     " \n" +
                     "- a number for the mode of the vibe in this slot:\n" +
-                    "0 = Off - 1 = Low - 2 = Medium - 3 = High\n" +
-                    "4 = Maximum - 5 = Random - 6 = Escalate - 7 = Tease\n" +
-                    "8 = Deny - 9 = Edge\n" +
+                    "0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n" +
+                    "5 = Random - 6 = Escalate - 7 = Tease - 8 = Deny - 9 = Edge\n" +
                     "Note that modes 5 to 9 are not available on some vibes!";
                 infomsg(msg);
             } else {
@@ -13885,89 +13883,101 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringSol2 = stringSol1.split(/[ ,]+/);
                 let slot = stringSol2[0];
                 let mode = stringSol2[1];
-                let msg = "";
-                if (slot == 0) Target = "ItemBoots";
-                if (slot == 1) Target = "ItemBreast";
-                if (slot == 2) Target = "ItemButt";
-                if (slot == 3) Target = "ItemVulvaPiercings";
-                if (slot == 4) Target = "ItemNipples";
-                if (slot == 5) Target = "ItemNipplesPiercings";
-                if (slot == 6) Target = "ItemVulva";
-                Item = InventoryGet(Player, Target);
-                if (Item != null) {
-                    if (Item.Asset.Name == "ClitAndDildoVibratorbelt") {
-                        if ((mode > -1) && (mode < 5)) {
-                                 ExtendedItemSetOptionByRecord(Player, Item, {
-                                 d: mode,
-                                 e: mode,
-                            }, {
-                                push: true,
-                                refresh: true,
-                            });
+                let msg = "Mode changed for one of your vibes!";
+                if ((slot > -1) && (slot < 7)) {
+                    if (slot == 0) Target = "ItemBoots";
+                    if (slot == 1) Target = "ItemBreast";
+                    if (slot == 2) Target = "ItemButt";
+                    if (slot == 3) Target = "ItemVulvaPiercings";
+                    if (slot == 4) Target = "ItemNipples";
+                    if (slot == 5) Target = "ItemNipplesPiercings";
+                    if (slot == 6) Target = "ItemVulva";
+                    Item = InventoryGet(Player, Target);
+                    if (Item != null) {
+                        if (Item.Asset.Name == "ClitAndDildoVibratorbelt") {
+                            if ((mode > -1) && (mode < 5)) {
+                                     ExtendedItemSetOptionByRecord(Player, Item, {
+                                     d: mode,
+                                     e: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                           }
                         }
-                    }
-                    if ((Item.Asset.Name == "InflatableVibeDildo") || (Item.Asset.Name == "InflatableVibratingPanties") || (Item.Asset.Name == "InflVibeButtPlug")) {
-                        if ((mode > -1) && (mode < 5)) {
-                            ExtendedItemSetOptionByRecord(Player, Item, {
-                                 i: mode,
-                            }, {
-                                push: true,
-                                refresh: true,
-                            });
+                        if ((Item.Asset.Name == "InflatableVibeDildo") || (Item.Asset.Name == "InflatableVibratingPanties") || (Item.Asset.Name == "InflVibeButtPlug")) {
+                            if ((mode > -1) && (mode < 5)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     i: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
                         }
-                    }
-                    if (Item.Asset.Name == "TormentHeels") {
-                        if ((mode > -1) && (mode < 5)) {
-                                 ExtendedItemSetOptionByRecord(Player, Item, {
-                                 v: mode,
-                            }, {
-                                push: true,
-                                refresh: true,
-                            });
+                        if (Item.Asset.Name == "TormentHeels") {
+                            if ((mode > -1) && (mode < 5)) {
+                                     ExtendedItemSetOptionByRecord(Player, Item, {
+                                     v: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
                         }
-                    }
-                    if (Item.Asset.Name == "\u{66F4}\u{591A}\u{6709}\u{7EBF}\u{8DF3}\u{86CB}_Luzi") {
-                        if ((mode > -1) && (mode < 5)) {
-                            ExtendedItemSetOptionByRecord(Player, Item, {
-                                 o: mode,
-                            }, {
-                                push: true,
-                                refresh: true,
-                            });
+                        if (Item.Asset.Name == "\u{66F4}\u{591A}\u{6709}\u{7EBF}\u{8DF3}\u{86CB}_Luzi") {
+                            if ((mode > -1) && (mode < 5)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     o: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
                         }
-                    }
-                    if ((Item.Asset.Name == "BunnyTailVibePlug") ||
-                        (Item.Asset.Name == "ClitoralStimulator") ||
-                        (Item.Asset.Name == "EggVibePlugXXL") ||
-                        (Item.Asset.Name == "FullLatexSuitWand") ||
-                        (Item.Asset.Name == "FuturisticVibrator") ||
-                        (Item.Asset.Name == "HempRopeBelt") ||
-                        (Item.Asset.Name == "LatexNudge") || 
-                        (Item.Asset.Name == "LockingVibePlug") || 
-                        (Item.Asset.Name == "NippleVibe") || 
-                        (Item.Asset.Name == "TapedClitEgg") || 
-                        (Item.Asset.Name == "TapedVibeEgg") ||
-                        (Item.Asset.Name == "TickleBra") ||
-                        (Item.Asset.Name == "VibeEggGland") ||
-                        (Item.Asset.Name == "VibeEggPenisBase") ||
-                        (Item.Asset.Name == "VibeHeartClitPiercing") ||
-                        (Item.Asset.Name == "VibeHeartPiercings") ||
-                        (Item.Asset.Name == "VibeNippleClamp") ||
-                        (Item.Asset.Name == "VibratingButtplug") || 
-                        (Item.Asset.Name == "VibratingDildo") || 
-                        (Item.Asset.Name == "VibratingDildoPlug") || 
-                        (Item.Asset.Name == "VibratingEgg") || 
-                        (Item.Asset.Name == "VibratingLatexPanties") ||
-                        (Item.Asset.Name == "WandBelt") ||  
-                        (Item.Asset.Name == "WiredEgg") ||
-                        (Item.Asset.Name == "\u{4E73}\u{5939}_Luzi")) {
-                        if ((mode > -1) && (mode < 10)) {
-                            ExtendedItemSetOptionByRecord(Player, Item, {
-                                vibrating: mode,
-                            }, {
-                                push: true,
-                                refresh: true,
-                           });
+                        if ((Item.Asset.Name == "BunnyTailVibePlug") ||
+                            (Item.Asset.Name == "ClitoralStimulator") ||
+                            (Item.Asset.Name == "EggVibePlugXXL") ||
+                            (Item.Asset.Name == "FullLatexSuitWand") ||
+                            (Item.Asset.Name == "FuturisticVibrator") ||
+                            (Item.Asset.Name == "HempRopeBelt") ||
+                            (Item.Asset.Name == "LatexNudge") || 
+                            (Item.Asset.Name == "LockingVibePlug") || 
+                            (Item.Asset.Name == "NippleVibe") || 
+                            (Item.Asset.Name == "TapedClitEgg") || 
+                            (Item.Asset.Name == "TapedVibeEgg") ||
+                            (Item.Asset.Name == "TickleBra") ||
+                            (Item.Asset.Name == "VibeEggGland") ||
+                            (Item.Asset.Name == "VibeEggPenisBase") ||
+                            (Item.Asset.Name == "VibeHeartClitPiercing") ||
+                            (Item.Asset.Name == "VibeHeartPiercings") ||
+                            (Item.Asset.Name == "VibeNippleClamp") ||
+                            (Item.Asset.Name == "VibratingButtplug") || 
+                            (Item.Asset.Name == "VibratingDildo") || 
+                            (Item.Asset.Name == "VibratingDildoPlug") || 
+                            (Item.Asset.Name == "VibratingEgg") || 
+                            (Item.Asset.Name == "VibratingLatexPanties") ||
+                            (Item.Asset.Name == "WandBelt") ||  
+                            (Item.Asset.Name == "WiredEgg") ||
+                            (Item.Asset.Name == "\u{4E73}\u{5939}_Luzi")) {
+                            if ((mode > -1) && (mode < 10)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                    vibrating: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                               });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
                         }
                     }
                 } 
