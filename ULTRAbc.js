@@ -4895,12 +4895,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
-
-    function showResizingStatus() {
-        let msg = "LSCG resizing effects will be displayed.";
-        if (LSCGdata.GlobalModule.hideResizing) msg = "LSCG resizing effects will not be displayed.";
-        statusmsg(msg);
-    }
 	
     function showRemoteStatus() {
         let msg = "";
@@ -4912,6 +4906,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (LSCGdata.HypnoModule.remoteAccess) msg3 = "Hypnosis - ";           
         if (LSCGdata.MagicModule.remoteAccess) msg4 = "Magic";
         msg = msg1 + msg2 + msg3 + msg4;
+        statusmsg(msg);
+    }
+
+    function showResizingStatus() {
+        let msg = "LSCG resizing effects will be displayed.";
+        if (LSCGdata.GlobalModule.hideResizing) msg = "LSCG resizing effects will not be displayed.";
         statusmsg(msg);
     }
 
@@ -14240,8 +14240,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showErectionStatus();
                         showLipstickStatus();
                         showOpacityStatus();
-                        showResizingStatus();
 			showRemoteStatus();
+                        showResizingStatus();
                         showRestrainedSettingsStatus();
                     }
                 } else if (addon == "mbs") {
