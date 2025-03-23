@@ -64,5 +64,6 @@ Changes for future version
 * Added the tennis1, tennis2 and tennis3 options to the game command
 * Improved the lock command to allow time randomly choosen by the game when you use timer locks: for that, you need to use ? instead of specifying the number of minutes
 * Improved the maproom command by adding info about the keys found in the map only for the player using the command
+* Updated and improved the xstatus lscg commmand to include info about enabled remote control
 * Optimised the detection of Uwall/Ulist protection and chat room type
 * Removed the ustatus command and the extra option of the uhelp command; all 'extra' commands are moved to /uhelp misc
