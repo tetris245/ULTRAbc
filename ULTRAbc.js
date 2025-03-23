@@ -5437,6 +5437,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return CharacterNickname(target);
     }
 
+    function getPronoun1(target) {
+        let name = InventoryGet(target,"Pronouns").Asset.Name; 
+        tgpr1 = "They";
+        if (name == "HeHim") tgpr1 = "He";
+        if (name == "SheHer") tgpr1 = "She";
+        return tgpr1;
+    }
+        
+    function getPronoun2(target) {
+        let name = InventoryGet(target,"Pronouns").Asset.Name; 
+        tgpr2 = "them";
+        if (name == "HeHim") tgpr2 = "him";
+        if (name == "SheHer") tgpr2 = "her";
+        return tgpr2;
+    }
+
+    function getPronoun3(target) {
+        let name = InventoryGet(target,"Pronouns").Asset.Name; 
+        tgpr3 = "their";
+        if (name == "HeHim") tgpr3 = "his";
+        if (name == "SheHer") tgpr3 = "her";
+        return tgpr3;
+    }
+
+    function getPronoun4(target) {
+        let name = InventoryGet(target,"Pronouns").Asset.Name; 
+        tgpr4 = "they";
+        if (name == "HeHim") tgpr4 = "he";
+        if (name == "SheHer") tgpr4 = "she";
+        return tgpr4;
+    }
+
     function IsTargetProtected (target) {
         if ((target.OnlineSharedSettings.Uwall) && ((target.OnlineSharedSettings.Ulist == undefined) || (!(target.OnlineSharedSettings.Ulist.includes(Player.MemberNumber))))) {
             return true;
@@ -11671,22 +11703,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let target = TargetSearch(targetname);
                     if ((target != null) && (target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
                         tgpname = getNickname(target);
-                        if (InventoryGet(target, "Pronouns").Asset.Name == "HeHim") {
-                            tgpr1 = "He";
-                            tgpr2 = "him";
-                            tgpr3 = "his";
-                            tgpr4 = "he";
-                        } else if (InventoryGet(target, "Pronouns").Asset.Name == "SheHer") {
-                            tgpr1 = "She";
-                            tgpr2 = "her";
-                            tgpr3 = "her";
-                            tgpr4 = "she";
-                        } else {
-                            tgpr1 = "They";
-                            tgpr2 = "them";
-                            tgpr3 = "their";
-                            tgpr4 = "they";
-                        }
+                        tgpr1 = getPronoun1 (target);
+                        tgpr2 = getPronoun2 (target);
+                        tgpr3 = getPronoun3 (target);
+                        tgpr4 = getPronoun4 (target);
                         if (IsTargetProtected (target)) { 
                             let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
@@ -12446,22 +12466,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
                         tgpname = getNickname(target);
-                        if (InventoryGet(target, "Pronouns").Asset.Name == "HeHim") {
-                            tgpr1 = "He";
-                            tgpr2 = "him";
-                            tgpr3 = "his";
-                            tgpr4 = "he";
-                        } else if (InventoryGet(target, "Pronouns").Asset.Name == "SheHer") {
-                            tgpr1 = "She";
-                            tgpr2 = "her";
-                            tgpr3 = "her";
-                            tgpr4 = "she";
-                        } else {
-                            tgpr1 = "They";
-                            tgpr2 = "them";
-                            tgpr3 = "their";
-                            tgpr4 = "they";
-                        }
+                        tgpr1 = getPronoun1 (target);
+                        tgpr2 = getPronoun2 (target);
+                        tgpr3 = getPronoun3 (target);
+                        tgpr4 = getPronoun4 (target);
                         if (IsTargetProtected (target)) { 
                             let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
