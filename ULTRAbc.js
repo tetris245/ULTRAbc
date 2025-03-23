@@ -11262,49 +11262,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'plvibe',
-        Description: "(crotch shield) (intensity) (orgasm mode) (shock level): changes the settings of worn Sci-Fi Pleasure Panties.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The plvibe command must be followed by 4 numbers for crotch shield, intensity, orgasm mode and shock level.\n" +
-                    " \n" +
-                    "Available crotch shields: \n" +
-                    "0 No shield - 1 Front shield\n" +
-                    "2 Back shield - 3 Both shields\n" +
-                    " \n" +
-                    "Available intensities:\n" +
-                    "0 Off - 1 Low - 2 Medium - 3 High - 4 Maximum\n" +
-                    " \n" +
-                    "Available orgasm modes:\n" +
-                    "0 Normal - 1 Edge - 2 Denial\n" +
-                    " \n" +
-                    "Available shock levels:\n" +
-                    "0 Low - 1 Medium - 2 High";
-                infomsg(msg);
-            } else {
-                if (InventoryGet(Player, "ItemPelvis") != null) {
-                    if (InventoryGet(Player, "ItemPelvis").Asset.Name == "SciFiPleasurePanties") {
-                        let stringPLpanties1 = args;
-                        let stringPLpanties2 = stringPLpanties1.split(/[ ,]+/);
-                        let cpl = stringPLpanties2[0];
-                        let ipl = stringPLpanties2[1];
-                        let opl = stringPLpanties2[2];
-                        let spl = stringPLpanties2[3];
-                        if ((cpl > -1) && (cpl < 4) && (ipl > -1) && (ipl < 5) && (opl > -1) && (opl < 3) && (spl > -1) && (spl < 3)) {
-                            const SciFiPleasurePanties = InventoryGet(Player, "ItemPelvis");
-                            const SciFiPleasurePantiesConfig = ModularItemDataLookup.ItemPelvisSciFiPleasurePanties;
-                            SciFiPleasurePanties.Property = ModularItemMergeModuleValues(SciFiPleasurePantiesConfig, [cpl, ipl, opl, spl]);
-                            ChatRoomCharacterUpdate(Player);
-                            let msg = "The settings of your Sci-Fi Pleasure Panties have been modified.";
-                            infomsg(msg);
-                        }
-                    }
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'pmenu',
         Description: ": direct access to Preferences menu.",
         Action: () => {
@@ -13425,7 +13382,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/cum</b> = causes an orgasm.\n" +
                     "<b>/hdvibe</b> (options) = changes settings of worn High Duty Belt. *\n" +
                     "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
-                    "<b>/plvibe</b> (options) = changes settings of worn Sci-Fi Pleasure Panties. *\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill.\n" +
@@ -13894,13 +13850,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "- a number for the concerned slot:\n" +
                     "0 = Boots - 1 = Breast - 2 = Butt - 3 = Clitoris/Gland\n" + 
                     "4 = Devices - 5 = Nipples - 6 = Nipples Piercings\n" +
-                    "7 = Vulva/Penis\n" +
+                    "7 = Pelvis - 8 = Vulva/Penis\n" +
                     " \n" +
                     "- a number for the mode of the vibe in this slot:\n" +
                     "0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n" +
                     "5 = Random - 6 = Escalate - 7 = Tease - 8 = Deny - 9 = Edge\n" +
                     "Note that modes 5 to 9 are not available on some vibes!\n" +
-                    "With the Glass Jar: 5, 6 or 7 = Allow orgasm";
+                    "With the Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm";
                 infomsg(msg);
             } else {
                 let Target = "";
@@ -13910,7 +13866,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let slot = stringSol2[0];
                 let mode = stringSol2[1];
                 let msg = "Mode changed for one of your vibes!";
-                if ((slot > -1) && (slot < 8)) {
+                if ((slot > -1) && (slot < 9)) {
                     if (slot == 0) Target = "ItemBoots";
                     if (slot == 1) Target = "ItemBreast";
                     if (slot == 2) Target = "ItemButt";
@@ -13918,7 +13874,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (slot == 4) Target = "ItemDevices";
                     if (slot == 5) Target = "ItemNipples";
                     if (slot == 6) Target = "ItemNipplesPiercings";
-                    if (slot == 7) Target = "ItemVulva";
+                    if (slot == 7) Target = "ItemPelvis";
+                    if (slot == 8) Target = "ItemVulva";
                     Item = InventoryGet(Player, Target);
                     if (Item != null) {
                         if (Item.Asset.Name == "ClitAndDildoVibratorbelt") {
@@ -13969,6 +13926,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ChatRoomCharacterUpdate(Player);
                                 infomsg(msg);
                             }
+                        }
+                        if (Item.Asset.Name == "SciFiPleasurePanties") {
+                            if ((mode > -1) && (mode < 10)) {
+                                if ((mode > -1) && (mode < 5)) {
+                                    ExtendedItemSetOptionByRecord(Player, Item, {
+                                         i: mode,
+                                    }, {
+                                        push: true,
+                                        refresh: true,
+                                    });
+                                }
+                                if ((mode > 4) && (mode <10)) {  
+                                    let smode = "";
+                                    if ((mode > 4) && (mode < 18)) smode = 0;
+                                    if (mode == 8) smode = 1;
+                                    if (mode == 9) smode = 2;
+                                    ExtendedItemSetOptionByRecord(Player, Item, {
+                                             o: smode,
+                                        }, {
+                                            push: true,
+                                            refresh: true,
+                                        });
+                                }
+                                ChatRoomCharacterUpdate(Player);        
+                                infomsg(msg);
+                           } 
                         }
                         if (Item.Asset.Name == "\u{73BB}\u{7483}\u{7F50}\u{5B50}_Luzi") {
                             if ((mode > -1) && (mode < 10)) {
@@ -14051,7 +14034,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         } 
     }])
-
+	
     CommandCombine([{
         Tag: 'visible',
         Description: ": (target): goes back or sends back to visible mode.",
