@@ -4820,6 +4820,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Hypnosis = "";
         let Leashing = "";
         let Magic = "";
+        let Splatter = "";
         let msg1 = "LSCG is disabled.";
         if (LSCGdata.GlobalModule.enabled) msg1 = "LSCG is enabled.";
         if (LSCGdata.ActivityModule.enabled) Activities = "Activities - ";
@@ -4829,9 +4830,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (LSCGdata.MiscModule.gagChokeEnabled) Gagchoke = "Gag Choking - ";
         if (LSCGdata.MiscModule.handChokeEnabled) Handchoke = "Hand Choking - ";
         if (LSCGdata.HypnoModule.enabled) Hypnosis = "Hypnosis - ";
+        if (LSCGdata.HypnoModule.allowSuggestions) Hypnosis = "Hypnosis including Suggestions - "; 
         if (LSCGdata.LeashingModule.enabled) Leashing = "Leashing - ";
-        if (LSCGdata.MagicModule.enabled) Magic = "Magic";
-        msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Drugs + Gagchoke + Handchoke + Hypnosis + Leashing + Magic
+        if (LSCGdata.MagicModule.enabled) Magic = "Magic - ";
+        if (LSCGdata.SplatterModule.enabled) Splatter = "Splatters";
+        msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Drugs + Gagchoke + Handchoke + Hypnosis + Leashing + Magic + Splatter;
         statusmsg(msg);
     }
 
@@ -4896,6 +4899,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showResizingStatus() {
         let msg = "LSCG resizing effects will be displayed.";
         if (LSCGdata.GlobalModule.hideResizing) msg = "LSCG resizing effects will not be displayed.";
+        statusmsg(msg);
+    }
+	
+    function showRemoteStatus() {
+        let msg = "";
+        let msg1 = "Remote control enabled for: ";
+        let msg2 = "";
+        let msg3 = "";
+        let msg4 = "";
+        if (LSCGdata.CollarModule.remoteAccess) msg2 = "Breathplay - ";
+        if (LSCGdata.HypnoModule.remoteAccess) msg3 = "Hypnosis - ";           
+        if (LSCGdata.MagicModule.remoteAccess) msg4 = "Magic";
+        msg = msg1 + msg2 + msg3 + msg4;
         statusmsg(msg);
     }
 
@@ -14225,6 +14241,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showLipstickStatus();
                         showOpacityStatus();
                         showResizingStatus();
+			showRemoteStatus();
                         showRestrainedSettingsStatus();
                     }
                 } else if (addon == "mbs") {
