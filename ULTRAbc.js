@@ -13856,7 +13856,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n" +
                     "5 = Random - 6 = Escalate - 7 = Tease - 8 = Deny - 9 = Edge\n" +
                     "Note that modes 5 to 9 are not available on some vibes!\n" +
-                    "With the Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm";
+                    "For Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm\n" +
+                    "This command does not support the Futuristic Training Belt and the Lewd Crest";
                 infomsg(msg);
             } else {
                 let Target = "";
@@ -13880,7 +13881,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (Item != null) {
                         if (Item.Asset.Name == "ClitAndDildoVibratorbelt") {
                             if ((mode > -1) && (mode < 5)) {
-                                     ExtendedItemSetOptionByRecord(Player, Item, {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
                                      d: mode,
                                      e: mode,
                                 }, {
@@ -13893,7 +13894,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((Item.Asset.Name == "FuturisticCrate") && (Item.Property.TypeRecord.d == 1)) {
                             if ((mode > -1) && (mode < 10)) {
-                                     ExtendedItemSetOptionByRecord(Player, Item, {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
                                      d1: mode,
                                 }, {
                                     push: true,
@@ -13915,9 +13916,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 infomsg(msg);
                             }
                         }
+			if ((Item.Asset.Name == "LoveChastityBelt") && (Item.Property.TypeRecord.f == 2)) {
+                            if ((mode > -1) && (mode < 5)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     i: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                           }
+                        }
                         if ((Item.Asset.Name == "OneBarGirl") || (Item.Asset.Name == "TormentHeels")) {
                             if ((mode > -1) && (mode < 5)) {
-                                     ExtendedItemSetOptionByRecord(Player, Item, {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
                                      v: mode,
                                 }, {
                                     push: true,
