@@ -13849,8 +13849,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The vibe command must be followed by two numbers:\n" +
                     "- a number for the concerned slot:\n" +
                     "0 = Boots - 1 = Breast - 2 = Butt - 3 = Clitoris/Gland\n" + 
-                    "4 = Devices - 5 = Nipples - 6 = Nipples Piercings\n" +
-                    "7 = Pelvis - 8 = Vulva/Penis\n" +
+                    "4 = Devices - 5 = Feet - 6 = Nipples\n" +
+                    "7 = Nipples Piercings - 8 = Pelvis - 9 = Vulva/Penis\n" +
                     " \n" +
                     "- a number for the mode of the vibe in this slot:\n" +
                     "0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n" +
@@ -13867,16 +13867,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let slot = stringSol2[0];
                 let mode = stringSol2[1];
                 let msg = "Mode changed for one of your vibes!";
-                if ((slot > -1) && (slot < 9)) {
+                if ((slot > -1) && (slot < 10)) {
                     if (slot == 0) Target = "ItemBoots";
                     if (slot == 1) Target = "ItemBreast";
                     if (slot == 2) Target = "ItemButt";
                     if (slot == 3) Target = "ItemVulvaPiercings";
                     if (slot == 4) Target = "ItemDevices";
-                    if (slot == 5) Target = "ItemNipples";
-                    if (slot == 6) Target = "ItemNipplesPiercings";
-                    if (slot == 7) Target = "ItemPelvis";
-                    if (slot == 8) Target = "ItemVulva";
+                    if (slot == 5) Target = "ItemFeet";
+                    if (slot == 6) Target = "ItemNipples";
+                    if (slot == 7) Target = "ItemNipplesPiercings";
+                    if (slot == 8) Target = "ItemPelvis";
+                    if (slot == 9) Target = "ItemVulva";
                     Item = InventoryGet(Player, Target);
                     if (Item != null) {
                         if (Item.Asset.Name == "ClitAndDildoVibratorbelt") {
@@ -13916,7 +13917,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 infomsg(msg);
                             }
                         }
-			if ((Item.Asset.Name == "LoveChastityBelt") && (Item.Property.TypeRecord.f == 2)) {
+                        if ((Item.Asset.Name == "LoveChastityBelt") && (Item.Property.TypeRecord.f == 2)) {
                             if ((mode > -1) && (mode < 5)) {
                                 ExtendedItemSetOptionByRecord(Player, Item, {
                                      i: mode,
@@ -14004,6 +14005,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 infomsg(msg);
                             }
                         }
+                        if (Item.Asset.Name == "FuturisticTrainingBelt") {
+                            if ((mode > -1) && (mode < 5)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                    vibrating: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                               });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
+                        }
                         if ((Item.Asset.Name == "BunnyTailVibePlug") ||
                             (Item.Asset.Name == "ClitoralStimulator") ||
                             (Item.Asset.Name == "EggVibePlugXXL") ||
@@ -14014,6 +14027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             (Item.Asset.Name == "LatexNudge") || 
                             (Item.Asset.Name == "LockingVibePlug") || 
                             (Item.Asset.Name == "NippleVibe") || 
+                            (Item.Asset.Name == "SpreaderVibratingDildoBar") ||
                             (Item.Asset.Name == "Sybian") ||
                             (Item.Asset.Name == "TapedClitEgg") || 
                             (Item.Asset.Name == "TapedVibeEgg") ||
@@ -14047,7 +14061,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         } 
     }])
-	
+
     CommandCombine([{
         Tag: 'visible',
         Description: ": (target): goes back or sends back to visible mode.",
