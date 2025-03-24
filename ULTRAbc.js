@@ -8707,53 +8707,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'hdvibe',
-        Description: "(crotch shield) (back shield) (modules)(intensity) (orgasm mode): changes the settings of worn Heavy Duty Belt.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The hdvibe command must be followed by 5 numbers for crotch shield, back shield, modules, intensity and orgasm mode.\n" +
-                    " \n" +
-                    "Available crotch shields:\n" +
-                    "0 Open - 1 Transparent - 2 Metal\n" +
-                    " \n" +
-                    "Available back shields:\n" +
-                    "0 Open - 1 Closed\n" +
-                    " \n" +
-                    "Available modules:\n" +
-                    "0 No module - 1 Cage/Spreader\n" +
-                    "2 Brushes - 3 Both modules \n" +
-                    " \n" +
-                    "Available intensities:\n" +
-                    "0 Off - 1 Low - 2 Medium - 3 High - 4 Maximum\n" +
-                    " \n" +
-                    "Available orgasm modes:\n" +
-                    "0 Normal - 1 Edge - 2 Denial";
-                infomsg(msg);
-            } else {
-                if (InventoryGet(Player, "ItemPelvis") != null) {
-                    if (InventoryGet(Player, "ItemPelvis").Asset.Name == "HeavyDutyBelt") {
-                        let stringHDbelt1 = args;
-                        let stringHDbelt2 = stringHDbelt1.split(/[ ,]+/);
-                        let chd = stringHDbelt2[0];
-                        let bhd = stringHDbelt2[1];
-                        let mhd = stringHDbelt2[2];
-                        let ihd = stringHDbelt2[3];
-                        let ohd = stringHDbelt2[4];
-                        if ((chd > -1) && (chd < 3) && (bhd > -1) && (bhd < 2) && (mhd > -1) && (mhd < 4) && (ihd > -1) && (ihd < 5) && (ohd > -1) && (ohd < 3)) {
-                            const HeavyDutyBelt = InventoryGet(Player, "ItemPelvis");
-                            const HeavyDutyBeltConfig = ModularItemDataLookup.ItemPelvisHeavyDutyBelt;
-                            HeavyDutyBelt.Property = ModularItemMergeModuleValues(HeavyDutyBeltConfig, [chd, bhd, mhd, ihd, ohd]);
-                            ChatRoomCharacterUpdate(Player);
-                            let msg = "The settings of your Heavy Duty Belt have been modified.";
-                            infomsg(msg);
-                        }
-                    }
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'hint',
         Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
         Action: (_, command, args) => {
@@ -13380,7 +13333,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Fun commands - * = more info when using\n" +
                     "** = scripts must be allowed in BC settings\n" +
                     "<b>/cum</b> = causes an orgasm.\n" +
-                    "<b>/hdvibe</b> (options) = changes settings of worn High Duty Belt. *\n" +
                     "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
@@ -13856,8 +13808,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n" +
                     "5 = Random - 6 = Escalate - 7 = Tease - 8 = Deny - 9 = Edge\n" +
                     "Note that modes 5 to 9 are not available on some vibes!\n" +
-                    "For Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm\n" +
-                    "This command does not support the Futuristic Training Belt and the Lewd Crest";
+                    "For Heavy Duty Belt, Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm\n" +
+                    "This command does not support the Futuristic Training Belt and the Lewd Crest.";
                 infomsg(msg);
             } else {
                 let Target = "";
@@ -13882,7 +13834,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (Item != null) {
                         if (Item.Asset.Name == "ClitAndDildoVibratorbelt") {
                             if ((mode > -1) && (mode < 5)) {
-                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     ExtendedItemSetOptionByRecord(Player, Item, {
                                      d: mode,
                                      e: mode,
                                 }, {
@@ -13895,7 +13847,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                         if ((Item.Asset.Name == "FuturisticCrate") && (Item.Property.TypeRecord.d == 1)) {
                             if ((mode > -1) && (mode < 10)) {
-                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     ExtendedItemSetOptionByRecord(Player, Item, {
                                      d1: mode,
                                 }, {
                                     push: true,
@@ -13905,43 +13857,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 infomsg(msg);
                            }
                         }
-                        if ((Item.Asset.Name == "InflatableVibeDildo") || (Item.Asset.Name == "InflatableVibratingPanties") || (Item.Asset.Name == "InflVibeButtPlug")) {
-                            if ((mode > -1) && (mode < 5)) {
-                                ExtendedItemSetOptionByRecord(Player, Item, {
-                                     i: mode,
-                                }, {
-                                    push: true,
-                                    refresh: true,
-                                });
-                                ChatRoomCharacterUpdate(Player);
-                                infomsg(msg);
-                            }
-                        }
-                        if ((Item.Asset.Name == "LoveChastityBelt") && (Item.Property.TypeRecord.f == 2)) {
-                            if ((mode > -1) && (mode < 5)) {
-                                ExtendedItemSetOptionByRecord(Player, Item, {
-                                     i: mode,
-                                }, {
-                                    push: true,
-                                    refresh: true,
-                                });
-                                ChatRoomCharacterUpdate(Player);
-                                infomsg(msg);
-                           }
-                        }
-                        if ((Item.Asset.Name == "OneBarGirl") || (Item.Asset.Name == "TormentHeels")) {
-                            if ((mode > -1) && (mode < 5)) {
-                                ExtendedItemSetOptionByRecord(Player, Item, {
-                                     v: mode,
-                                }, {
-                                    push: true,
-                                    refresh: true,
-                                });
-                                ChatRoomCharacterUpdate(Player);
-                                infomsg(msg);
-                            }
-                        }
-                        if (Item.Asset.Name == "SciFiPleasurePanties") {
+                        if ((Item.Asset.Name == "HeavyDutyBelt") || (Item.Asset.Namer == "SciFiPleasurePanties")) {
                             if ((mode > -1) && (mode < 10)) {
                                 if ((mode > -1) && (mode < 5)) {
                                     ExtendedItemSetOptionByRecord(Player, Item, {
@@ -13967,6 +13883,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 infomsg(msg);
                            } 
                         }
+                        if ((Item.Asset.Name == "InflatableVibeDildo") || (Item.Asset.Name == "InflatableVibratingPanties") || (Item.Asset.Name == "InflVibeButtPlug")) {
+                            if ((mode > -1) && (mode < 5)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     i: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
+                        }
+                        if ((Item.Asset.Name == "LoveChastityBelt") && (Item.Property.TypeRecord.f == 2)) {
+                            if ((mode > -1) && (mode < 5)) {
+                                     ExtendedItemSetOptionByRecord(Player, Item, {
+                                     i: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                           }
+                        }
+                        if ((Item.Asset.Name == "OneBarGirl") || (Item.Asset.Name == "TormentHeels")) {
+                            if ((mode > -1) && (mode < 5)) {
+                                     ExtendedItemSetOptionByRecord(Player, Item, {
+                                     v: mode,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
+                        }                     
                         if (Item.Asset.Name == "\u{73BB}\u{7483}\u{7F50}\u{5B50}_Luzi") {
                             if ((mode > -1) && (mode < 10)) {
                                 if ((mode > -1) && (mode < 5)) {
