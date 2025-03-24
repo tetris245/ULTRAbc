@@ -13857,7 +13857,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 infomsg(msg);
                            }
                         }
-                        if ((Item.Asset.Name == "HeavyDutyBelt") || (Item.Asset.Namer == "SciFiPleasurePanties")) {
+                        if ((Item.Asset.Name == "HeavyDutyBelt") || (Item.Asset.Name == "ModularChastityBelt") || (Item.Asset.Namer == "SciFiPleasurePanties")) {
                             if ((mode > -1) && (mode < 10)) {
                                 if ((mode > -1) && (mode < 5)) {
                                     ExtendedItemSetOptionByRecord(Player, Item, {
