@@ -66,5 +66,6 @@ Changes for future version
 * Improved the maproom command by adding info about the keys found in the map only for the player using the command
 * Updated and improved the xstatus lscg command to include info about enabled remote control
 * Optimised the detection of Uwall/Ulist protection, chat room typê and target pronouns
+* Removed the hdvibe command ((use instead the new vibe command!)
 * Removed the plvibe command (use instead the new vibe command!)
 * Removed the ustatus command and the extra option of the uhelp command; all 'extra' commands are moved to /uhelp misc
