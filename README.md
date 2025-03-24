@@ -61,7 +61,7 @@ Changes for future version
 
 * New options in GUI - Chat Search to display only the rooms with a minimum and maximum of present players 
 * New commands:
-  - shock (slot) (sensibility) (intensity) to change mode of worn device shock in a specific slot, even when you are bound (for most shock devices, the last parameter is not required as as they refer to a level combining sensibility and intensity!)
+  - shock (slot) (sensibility) (intensity) to change mode of worn device shock in a specific slot, even when you are bound (for most shock devices, the last parameter is not required as they refer to a level combining sensibility and intensity!)
   - vibe (slot) (mode) to change mode of worn vibe in a specific slot, even when you are bound
   - Note: these commands don't support the Futuristic Chastity Belt, the Futuristic Training Belt and the Lewd Crest
 * Added the tennis1, tennis2 and tennis3 options to the game command
