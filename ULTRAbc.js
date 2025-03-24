@@ -13479,7 +13479,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
-	            "<b>/shock (slot) (sensibility) (intensity) = changes mode of worn device shock in a specific slot. *\n" +
+	            "<b>/shock</b> (slot) (sensibility) (intensity) = changes mode of worn device shock in a specific slot. *\n" +
                     "<b>/sleep</b> (target) = uses the sleeping pill.\n" +
                     "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
