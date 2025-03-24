@@ -70,5 +70,5 @@ Changes for future version
 * Updated and improved the xstatus lscg command to include info about enabled remote control
 * Optimised the detection of Uwall/Ulist protection, chat room typê and target pronouns
 * Removed the hdvibe command ((use instead the new vibe command!)
-* Removed the plvibe command (use instead the new vibe command!)
+* Removed the plvibe command (use instead the new shock and vibe commands!)
 * Removed the ustatus command and the extra option of the uhelp command; all 'extra' commands are moved to /uhelp misc
