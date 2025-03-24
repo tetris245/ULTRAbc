@@ -12330,6 +12330,149 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'shock',
+        Description: ": (slot) (sensibility) (intensity): changes mode of worn vibe in a specific slot.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The shock command must be followed by two (or three) numbers:\n" +
+                    "- a number for the concerned slot:\n" +
+                    "0 = Arms - 1 = Breast - 2 = Butt - 3 = Devices - 4 = Neck - 5 = Neck Accessories - 6 = Nipples - 7 = Pelvis - 8 = Vulva\n" + 
+                    " \n" +
+                    "- a number for the sensibility of the shock device in this slot:\n" +
+                    "0 = Off - 1 = Low - 2 = Medium - 3 = High \n" +
+                    "- a number for the intensity of the shocks:\n" +
+                    "1 = Low - 2 = Medium - 3 = High \n" +
+                    "Note that most devices don't need the last parameter as they refer to a level combining sensibility and intensity!\n" +
+                    "Several devices can't be disabled. For the Obedience Belt, use 0 (disabled) or 1 (enabled).\n" +
+                    "This command does not support the Futuristic Chastity Belt and the Futuristic Training Belt.";
+                infomsg(msg);
+            } else {
+                let Target = "";
+                let Item = "";
+                let stringSol1 = args;
+                let stringSol2 = stringSol1.split(/[ ,]+/);
+                let slot = stringSol2[0];
+                let ms = stringSol2[1];
+                let mi = stringSol2[2];
+                let msg = "Settings changed for one of your shock devices!";
+                if ((slot > -1) && (slot < 9)) {
+                    if (slot == 0) Target = "ItemArms";
+                    if (slot == 1) Target = "ItemBreast";
+                    if (slot == 2) Target = "ItemButt";
+                    if (slot == 3) Target = "ItemDevices";
+                    if (slot == 4) Target = "ItemNeck";
+                    if (slot == 5) Target = "ItemNeckAccessories";
+                    if (slot == 6) Target = "ItemNipples";
+                    if (slot == 7) Target = "ItemPelvis";
+                    if (slot == 8) Target = "ItemVulva";
+                    Item = InventoryGet(Player, Target);
+                    if (Item != null) {
+                        if ((Item.Asset.Name == "AutoShockCollar") || (Item.Asset.Name == "CollarAutoShockUnit")) {
+                            if ((ms > -1) && (ms < 4) && (mi > 0) && (mi < 4)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     s: (mi -1),
+                                     y: ms,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                           }
+                        }
+                        if ((Item.Asset.Name == "CollarShockUnit") || (Item.Asset.Name == "ShockClamps") || (Item.Asset.Name == "ShockDildo") || (Item.Asset.Name == "ShockPlug")) {
+                            if ((ms > 0) && (ms < 4)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     typed: (ms -1),
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
+                        }
+                        if ((Item.Asset.Name == "ForbiddenChastityBelt") || (Item.Asset.Name == "ModularChastityBelt")) {
+                            if ((ms > -1) && (ms < 4)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     s: ms,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                }); 
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
+                        }
+                        if (Item.Asset.Name == "ForbiddenChastityBra") {
+                            if ((ms > -1) && (ms < 4)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     typed: ms,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
+                        }                      
+                        if (Item.Asset.Name == "PetSuitShockCollar") {
+                            let smode = "";
+                            if (ms == 0) smode = 0;
+                            if ((ms > 0) && (ms < 4)) smode = 1;
+                                                         ExtendedItemSetOptionByRecord(Player, Item, {
+                                 s: smode,
+                            }, {
+                                push: true,
+                                refresh: true,
+                            });
+                            if (ms > 0) Item.Property.ShockLevel = (ms -1);
+                                                        ChatRoomCharacterUpdate(Player);
+                            infomsg(msg);
+                        }
+                        if ((Item.Asset.Name == "LoveChastityBelt") || (Item.Asset.Name == "PrisonLockdownSuit") || (Item.Asset.Name == "SciFiPleasurePanties")) {
+                            if ((ms > 0) && (ms < 4)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     s: (ms -1),
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
+                        }
+                        if (Item.Asset.Name == "ObedienceBelt") {
+                            if ((ms > -1) && (ms < 2)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     s: ms,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }
+                        }
+                        if (Item.Asset.Name == "\u{73BB}\u{7483}\u{7F50}\u{5B50}_Luzi") {
+                            if ((ms > -1) && (ms < 4)) {
+                                ExtendedItemSetOptionByRecord(Player, Item, {
+                                     d: ms,
+                                }, {
+                                    push: true,
+                                    refresh: true,
+                                });
+                                ChatRoomCharacterUpdate(Player);
+                                infomsg(msg);
+                            }      
+                        }
+                    }
+                } 
+            }
+        } 
+    }])
+
+    CommandCombine([{
         Tag: 'skill',
         Description: "(skill) (level): changes a skill. ",
         Action: (args) => {
@@ -13929,7 +14072,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         refresh: true,
                                     });
                                 }
-                                if ((mode > 4) && (mode <10)) {  
+                                if ((mode > 4) && (mode < 10)) {  
                                     let smode = "";
                                     if ((mode > 4) && (mode < 18)) smode = 0;
                                     if (mode == 8) smode = 1;
