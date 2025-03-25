@@ -2630,7 +2630,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let nm = 0;
 	    let wh1 = 0;
             if ((window.BCX_Loaded == true) && (ChatRoomTargetMemberNumber != -1)) {
-                if (Player.OnlineSettings.BCX != undefined) {   
+                if (Player.ExtensionSettings.BCX != undefined) {   
                     if (IsBcxWhisperAllowed(ChatRoomTargetMemberNumber) == false) wh1 = 1;    
                 }
             }
@@ -5170,47 +5170,52 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 lovers.push(Player.Lovership[n].MemberNumber); 
             }
         }
-        let str = Player.OnlineSettings.BCX;
-        let d = LZString.decompressFromBase64(str);
-        let BCXdata = {};
-        let decoded = JSON.parse(d);
-        BCXdata = decoded;
-	if (BCXdata.conditions != undefined) {
-            if (BCXdata.conditions.rules != undefined) { 
-                if (BCXdata.conditions.rules.conditions != undefined) {
-                    if (BCXdata.conditions.rules.conditions.speech_restrict_whisper_send != undefined) {
-                        BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send; 
-                        if (BCXwh1.active) {
-                            wh1 = 1;
-                            wh1data = BCXwh1.data.customData.minimumPermittedRole;
-                            if (wh1data == 1) bcxlist = wh1ex;
-                            wh2ex = (BCXdata.owners).concat(wh1ex);
-                            if (wh1data == 2) bcxlist = wh2ex;
-                            wh3ex = lovers.concat(wh2ex);
-                            if (wh1data == 3) bcxlist = wh3ex;
-                            wh4ex = (BCXdata.mistresses).concat(wh3ex);   
-                            if (wh1data == 4) bcxlist = wh4ex;
-                            wh5ex = (Player.WhiteList).concat(wh4ex);
-                            if (wh1data == 5) bcxlist = wh5ex;
-                            wh6ex = (Player.FriendList).concat(wh5ex);
-                            if (wh1data == 6) bcxlist = wh6ex;
-                            if (wh1data == 7) wh1 = 0; 
-                            if (ChatRoomTargetMemberNumber == Player.Ownership.MemberNumber) {
-                                wh1 = 0;
-                            } else {
-                                if ((wh1data > 1) && (wh1data < 7)) {
-                                    if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+        let str = Player.ExtensionSettings.BCX;
+        if (/^[0-9]+:/.test(str)) {
+            const parts = str.split(":");
+            const saveVersion = Number.parseInt(parts[0], 10);
+            if ((saveVersion === 2) && (parts.length === 3)) {
+	        str = parts[1];
+                let d = LZString.decompressFromBase64(str);
+                let BCXdata = {};
+                let decoded = JSON.parse(d);
+                BCXdata = decoded;	
+                if (BCXdata.conditions != undefined) {             
+                    if (BCXdata.conditions.rules.conditions != undefined) {
+                        if (BCXdata.conditions.rules.conditions.speech_restrict_whisper_send != undefined) {
+                            BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send; 
+                            if (BCXwh1.active) {
+                                wh1 = 1;
+                                wh1data = BCXwh1.data.customData.minimumPermittedRole;
+                                if (wh1data == 1) bcxlist = wh1ex;
+                                wh2ex = (BCXdata.owners).concat(wh1ex);
+                                if (wh1data == 2) bcxlist = wh2ex;
+                                wh3ex = lovers.concat(wh2ex);
+                                if (wh1data == 3) bcxlist = wh3ex;
+                                wh4ex = (BCXdata.mistresses).concat(wh3ex);   
+                                if (wh1data == 4) bcxlist = wh4ex;
+                                wh5ex = (Player.WhiteList).concat(wh4ex);
+                                if (wh1data == 5) bcxlist = wh5ex;
+                                wh6ex = (Player.FriendList).concat(wh5ex);
+                                if (wh1data == 6) bcxlist = wh6ex;
+                                if (wh1data == 7) wh1 = 0; 
+                                if (ChatRoomTargetMemberNumber == Player.Ownership.MemberNumber) {
+                                    wh1 = 0;
+                                } else {
+                                    if ((wh1data > 1) && (wh1data < 7)) {
+                                        if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+                                    }
                                 }
                             }
                         }
-                    }
+                     }
                  }
              }
          }
          if (wh1 == 0) return true;
          if (wh1 == 1) return false;
     }
-     
+
     function IsDollTalk(text) {
         let nn = 0;
         let segmenter = new Intl.Segmenter([], {
