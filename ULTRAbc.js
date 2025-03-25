@@ -5093,6 +5093,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         document.getElementById("TextAreaChatLog").style.display = "inline";
     }
 
+    function IsMapRoom() {
+        if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     function RoomToFriends() { 
         CommonSetScreen("Online", "ChatSearch");
         RoomToOut();
@@ -10229,6 +10237,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         }
                         ChatRoomSendLocal("X = " + ChatRoomCharacter[pl].MapData.Pos.X + " - Y = " + ChatRoomCharacter[pl].MapData.Pos.Y + " - " + exinfo);
+			let key1 = "";
+                        let key2 = "";
+                        let key3 = "";
 			if (ChatRoomCharacter[pl] == Player) {
                             if (ChatRoomCharacter[pl].MapData.PrivateState.HasKeyGold) key1 = "Gold";
                             if (ChatRoomCharacter[pl].MapData.PrivateState.HasKeySilver) key2 = "Silver";
