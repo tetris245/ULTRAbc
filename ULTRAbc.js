@@ -3059,6 +3059,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
             TintsEffect();
+            PandoraPenitentiaryCreate();
             KidnapLeagueResetOnlineBountyProgress();
             if (ChatSearchFilterHelpActive) return ChatSearchFilterHelpDraw();
             if (ChatSearchFilterUnhideConfirm) return ChatSearchFilterUnhideConfirmDraw();
@@ -3079,12 +3080,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return;
             }
             ElementPositionFixed("InputSearch", 25, 45, 620);
-            DrawTextFit(ChatSearchMessage != "" ? TextGet(ChatSearchMessage) : "", 1050, 935, 490, "White", "Gray");
+            DrawTextFit(ChatSearchMessage != "" ? TextGet(ChatSearchMessage) : "", 1000, 935, 490, "White", "Gray");
             let ChatSearchPageCount = Math.floor((Result.length + ChatSearchRoomsPerPage - 1) / ChatSearchRoomsPerPage).toString();
             let ChatSearchCurrentPage = (ChatSearchResultOffset / ChatSearchRoomsPerPage + 1).toString();
             DrawTextFit(`${ChatSearchCurrentPage}/${ChatSearchPageCount}`, 1175, 75, 90, "White", "Gray");
             DrawButton(905, 25, 90, 90, "", ChatSearchMode != "Filter" ? "White" : "Lime", "Icons/Private.png", TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode"));
-            DrawButton(25, 898, 350, 64, TextGet("Language" + ChatSearchLanguageTemp), "White");
+            const languageLabel = TranslationGetLanguageName(ChatSearchLanguageTemp, true) || TextGet("Language" + ChatSearchLanguageTemp);
+            DrawButton(25, 898, 350, 64, languageLabel, "White");
             DrawButton(685, 25, 90, 90, "", "White", "Icons/Accept.png", ChatSearchMode == "" ? TextGet("SearchRoom") : TextGet("ApplyFilter"));
             DrawButton(795, 25, 90, 90, "", "White", "Icons/Cancel.png", ChatSearchMode == "" ? TextGet("ClearFilter") : TextGet("LoadFilter"));
             if (ChatSearchMode == "") {
@@ -3101,7 +3103,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             return;
         });
     }
-
+    
     //Club Card Game
     async function ULTRAClubCardEndTurn(Draw = false) {
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
