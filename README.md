@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Optimised the mapz command, including info about the found keys if it concerns the user of the command
