@@ -10248,9 +10248,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let key2 = "";
                         let key3 = "";
 			if (ChatRoomCharacter[pl] == Player) {
-                            if (ChatRoomCharacter[pl].MapData.PrivateState.HasKeyGold) key1 = "Gold";
-                            if (ChatRoomCharacter[pl].MapData.PrivateState.HasKeySilver) key2 = "Silver";
-                            if (ChatRoomCharacter[pl].MapData.PrivateState.HasKeyBronze) key3 = "Bronze";
+                            if (Player.MapData.PrivateState.HasKeyGold) key1 = "Gold";
+                            if (Player.MapData.PrivateState.HasKeySilver) key2 = "Silver";
+                            if (Player.MapData.PrivateState.HasKeyBronze) key3 = "Bronze";
                             ChatRoomSendLocal("Keys found: " + key1 + " - " + key2 + " - " + key3 + ".");
                         }
                     } else {
@@ -10359,13 +10359,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = umsg5;
                 infomsg(msg);
             } else {
-                if (args === "") {
-                    if (Player.MapData != undefined) {
+                let target = Player;
+                if (args != "") target = TargetSearch(args);
+                if (target != null) {
+                    if (target.MapData != undefined) {
                         let exinfo = "";
                         if (ChatRoomData.MapData.Type == "Always") exinfo = "Real presence in map: YES";
                         if (ChatRoomData.MapData.Type == "Hybrid") {
-                            if (Player.OnlineSharedSettings.Inmap != undefined) {
-                                if (Player.OnlineSharedSettings.Inmap == true) {
+                            if (target.OnlineSharedSettings.Inmap != undefined) {
+                                if (target.OnlineSharedSettings.Inmap == true) {
                                     exinfo = "Real presence in map: YES";
                                 } else {
                                     exinfo = "Real presence in map: NO";
@@ -10374,40 +10376,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 exinfo = "Real presence in map: ?";
                             }
                         }
-                        ChatRoomSendLocal("X = " + Player.MapData.Pos.X + " - Y = " + Player.MapData.Pos.Y + " - " + exinfo);
+                        ChatRoomSendLocal("X = " + target.MapData.Pos.X + " - Y = " + target.MapData.Pos.Y + " - " + exinfo);              
+                        let key1 = "";
+                        let key2 = "";
+                        let key3 = "";
+			        if (target == Player) {
+                            if (Player.MapData.PrivateState.HasKeyGold) key1 = "Gold";
+                            if (Player.MapData.PrivateState.HasKeySilver) key2 = "Silver";
+                            if (Player.MapData.PrivateState.HasKeyBronze) key3 = "Bronze";
+                            ChatRoomSendLocal("Keys found: " + key1 + " - " + key2 + " - " + key3 + ".");
+                        }
                         ChatRoomSendLocal(" ");
                     } else {
                         ChatRoomSendLocal("Does not have entered map");
                         ChatRoomSendLocal(" ");
-                    }
-                } else {
-                    let targetname = args;
-                    let target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
-                    if (target[0] == null) {
-                        let targetnumber = parseInt(targetname);
-                        target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
-                    }
-                    if (target[0] != null) {
-                        if (target[0].MapData != undefined) {
-                            let exinfo = "";
-                            if (ChatRoomData.MapData.Type == "Always") exinfo = "Real presence in map: YES";
-                            if (ChatRoomData.MapData.Type == "Hybrid") {
-                                if (target[0].OnlineSharedSettings.Inmap != undefined) {
-                                    if (target[0].OnlineSharedSettings.Inmap == true) {
-                                        exinfo = "Real presence in map: YES";
-                                    } else {
-                                        exinfo = "Real presence in map: NO";
-                                    }
-                                } else {
-                                    exinfo = "Real presence in map: ?";
-                                }
-                            }
-                            ChatRoomSendLocal("X = " + target[0].MapData.Pos.X + " - Y = " + target[0].MapData.Pos.Y + " - " + exinfo);
-                            ChatRoomSendLocal(" ");
-                        } else {
-                            ChatRoomSendLocal("Does not have entered map");
-                            ChatRoomSendLocal(" ");
-                        }
                     }
                 }
             }
