@@ -3062,51 +3062,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
             TintsEffect();
-            PandoraPenitentiaryCreate();
-            KidnapLeagueResetOnlineBountyProgress();
-            if (ChatSearchFilterHelpActive) return ChatSearchFilterHelpDraw();
-            if (ChatSearchFilterUnhideConfirm) return ChatSearchFilterUnhideConfirmDraw();
-            if (ChatSearchMode == "") {
-                ChatSearchNormalDraw();
-                ElementSetAttribute("InputSearch", "placeholder", TextGet("EnterName"));
-            } else if (ChatSearchMode == "Filter") {
-                ChatSearchPermissionDraw();
-                ElementSetAttribute("InputSearch", "placeholder", TextGet("FilterExcludeTerms"));
-            }
-            const Result = ChatSearchShowHiddenRoomsActive ? ChatSearchHiddenResult : ChatSearchResult;
-            if (Result.length > ChatSearchRoomsPerPage) {
-                DrawButton(1035, 25, 90, 90, "", "White", "Icons/Prev.png", TextGet("Prev"));
-                DrawButton(1225, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
-            }
-            if (ChatSearchShowHiddenRoomsActive) {
-                DrawButton(1885, 25, 90, 90, "", "White", "Icons/DialogNormalMode.png", TextGet("NormalFilterMode"));
-                return;
-            }
-            ElementPositionFixed("InputSearch", 25, 45, 620);
-            DrawTextFit(ChatSearchMessage != "" ? TextGet(ChatSearchMessage) : "", 1000, 935, 490, "White", "Gray");
-            let ChatSearchPageCount = Math.floor((Result.length + ChatSearchRoomsPerPage - 1) / ChatSearchRoomsPerPage).toString();
-            let ChatSearchCurrentPage = (ChatSearchResultOffset / ChatSearchRoomsPerPage + 1).toString();
-            DrawTextFit(`${ChatSearchCurrentPage}/${ChatSearchPageCount}`, 1175, 75, 90, "White", "Gray");
-            DrawButton(905, 25, 90, 90, "", ChatSearchMode != "Filter" ? "White" : "Lime", "Icons/Private.png", TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode"));
-            const languageLabel = TranslationGetLanguageName(ChatSearchLanguageTemp, true) || TextGet("Language" + ChatSearchLanguageTemp);
-            DrawButton(25, 898, 350, 64, languageLabel, "White");
-            DrawButton(685, 25, 90, 90, "", "White", "Icons/Accept.png", ChatSearchMode == "" ? TextGet("SearchRoom") : TextGet("ApplyFilter"));
-            DrawButton(795, 25, 90, 90, "", "White", "Icons/Cancel.png", ChatSearchMode == "" ? TextGet("ClearFilter") : TextGet("LoadFilter"));
-            if (ChatSearchMode == "") {
-                DrawButton(1665, 25, 90, 90, "", "White", "Icons/Plus.png", TextGet("CreateRoom"));
-                DrawButton(1775, 25, 90, 90, "", "White", "Icons/FriendList.png", TextGet("FriendList"));
-                DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Exit"));
-            } else {
-                DrawButton(1555, 25, 90, 90, "", !ChatSearchGhostPlayerOnClickActive ? "Lime" : "White", "Icons/Trash.png", TextGet("TempHideOnClick"));
-                DrawButton(1665, 25, 90, 90, "", ChatSearchGhostPlayerOnClickActive ? "Lime" : "White", "Icons/GhostList.png", TextGet("GhostPlayerOnClick"));
-                DrawButton(1775, 25, 90, 90, "", "White", "Icons/InspectLock.png", TextGet("ShowHiddenRooms"));
-                DrawButton(1885, 25, 90, 90, "", "White", "Icons/Question.png", TextGet("Help"));
-            }
-            ChatSearchRoomSpaceSelectDraw();
-            return;
+            next(args);
         });
     }
-    
+
     //Club Card Game
     async function ULTRAClubCardEndTurn(Draw = false) {
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
