@@ -2516,7 +2516,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
-            if (ExtbuttonsOn == true) DrawButton(955, 0, 45, 45, "EXT", "White", "", "");
+            if (ExtbuttonsOn == true) {
+                DrawButton(955, 0, 45, 45, "", "White", "", "");
+                DrawImageResize("Icons/Extensions.png", 960, 5, 40, 40);
+            }
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
             if (RglbuttonsOn == true) DrawButton(955, 135, 45, 45, "RGL", "White", "", "");
@@ -3031,7 +3034,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawImageResize("Icons/Rectangle/CharacterView.png", 480, 900, 120, 60);
             DrawButton(605, 885, 90, 90, "", "White", "Icons/MapTypeHybrid.png", "Hybrid Rooms");
             DrawButton(715, 885, 90, 90, "", "White", "Icons/MapTypeAlways.png", "Map Rooms");
-            DrawButton(1405, 885, 90, 90, "EXT", "White", "", "Extensions");
+            DrawButton(1405, 885, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
             if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                 DrawButton(1515, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
             } else {
@@ -3043,9 +3046,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1625, 885, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
             }
             if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
-                DrawButton(1735, 885, 90, 90, "MIXED", "White", "", "Mixed");
+                DrawButton(1735, 885, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
             } else {
-                DrawButton(1735, 885, 90, 90, "MIXED", "Gray", "", "Mixed");
+                DrawButton(1735, 885, 90, 90, "", "Gray", "Icons/Gender.png", "Mixed");
             }
             if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                 DrawButton(1845, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
@@ -3425,7 +3428,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
             }
-            DrawButton(460, 475, 90, 90, "MIXED", "White", "", "Mixed");
+            DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
             if (IsMale() == true) {
                 DrawButton(570, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
             } else {
@@ -3442,7 +3445,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(240, 695, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
             DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
             DrawTextFit("UBC Wiki", 425, 743, 308, "Black");
-            DrawButton(570, 695, 90, 90, "EXT", "White", "", "Extensions");
+            DrawButton(570, 695, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
             next(args);
         });
     }
