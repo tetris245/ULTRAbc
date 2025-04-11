@@ -60,3 +60,4 @@ All else I might not have included.
 Changes for future version
 
 * Optimised the mapz command + included info about the found keys if it concerns the user of the command
+* Used official icons for Mixed lobby and access to Extensions settings
