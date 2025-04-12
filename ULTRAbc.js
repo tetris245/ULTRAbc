@@ -2839,7 +2839,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if (texta != "") {
                         targetNumber = ChatRoomTargetMemberNumber;
-                        ChatRoomSendWhisper(targetNumber, texta);
+                        const targetChar = ChatRoomCharacter.find(C => C.MemberNumber === targetNumber);
+                        if (!targetChar) return "target-gone";
+                        if (ChatRoomMapViewIsActive() && !ChatRoomMapViewCharacterOnWhisperRange(targetChar)) {
+		            return "target-out-of-range";
+	                }
+                        const replyId = ChatRoomMessageGetReplyId();
+                        let data = "";
+                        if (texta.startsWith("*")) {
+                            let Dictionary = [];                          
+                            if (replyId) {
+		                Dictionary.push({ ReplyId: replyId, Tag: "ReplyId" });
+		                ChatRoomMessageReplyStop();
+	                    }
+                            data = { Content: texta, Type: "Whisper", Dictionary };
+                        } else {
+                            data = ChatRoomGenerateChatRoomChatMessage("Whisper", texta, replyId);
+                        }
+	                data.Target = targetNumber;
+	                ServerSend("ChatRoomChat", data);
+                        if (targetChar.IsPlayer()) return true;
+	                data.Sender = Player.MemberNumber;
+	                ChatRoomMessage(data);
                         ElementValue("InputChat", "");
                     }
                 }
