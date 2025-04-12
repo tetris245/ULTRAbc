@@ -2766,12 +2766,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (text6.startsWith("*")) {
                         if (text6.startsWith("**")) {
                             text7 = text6.slice(1);
+                        } else if (text6.startsWith("*%")) {
+                            let stringAction1 = text6;
+                            let stringAction2 = stringAction1.split(/[ ,]+/);  
+                            let percent = stringAction2[0].slice(2);
+                            let action = text6.slice(2 + percent.length);
+                            let chance = 50;
+                            if (percent != "") chance = percent;
+			    if (chance < 0) chance = 0;
+                            if (chance > 100) chance = 100;
+                            const random = parseInt(Math.random() * 100);
+                            text7 = "*" + tmpname + action;
+                            const attemptSucceeded = random <= chance;
+                            text7 += attemptSucceeded ? ": \u2714" : ": \u274c";
+	                    text7 += " (" + chance + "%)";
                         } else {
                             text7 = "*" + tmpname + text6.slice(1);
                         }
                     } else {
                         text7 = text6;
                     }
+
                     let texta = "";
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         texta = text7;
