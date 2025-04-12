@@ -59,6 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Improved the emotes in whispers: they will remain ungarbled and you can also use the reply feature for these special whispers
+* Improved the emotes in whispers: they will remain ungarbled now, just like the normal emotes
 * Optimised the mapz command + included info about the found keys if it concerns the user of the command
 * Used official icons for Mixed lobby and access to Extensions settings
