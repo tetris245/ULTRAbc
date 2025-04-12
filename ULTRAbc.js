@@ -2362,9 +2362,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function ULTRAChatRoomKeyDown() {
-       modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
-           const ret = next(args);
-           if ((HotkeysOn == true) && (NoescapeOn == false)) {
+        modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
+            const ret = next(args);
+            if ((HotkeysOn == true) && (NoescapeOn == false)) {
                 if (event.code === "NumpadDivide") {
                     OutChat();
                     return true;
