@@ -2365,6 +2365,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             const inputChat = /** @type {HTMLTextAreaElement} */ (document.getElementById("InputChat"));
             const chatHasFocus = inputChat && document.activeElement === inputChat;
+            const modifiers = CommonKey.GetModifiers(event);
             if (chatHasFocus) {
                 if ((HotkeysOn == true) && (NoescapeOn == false)) {
                     if (event.code === "NumpadDivide") {
@@ -2376,8 +2377,54 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         return true;
                     }
                 }
-            }
-            next(args);
+                if (!modifiers) {
+		    switch (event.key) {
+		        case "Tab":
+                            if (inputChat.value.length !== 0) {
+			        CommandAutoComplete(inputChat.value);
+				return true;
+			    } 
+			    break;
+                        case "Enter":
+                            ChatRoomSendChat();
+			    return true;
+                        case "PageUp":
+			case "PageDown":
+                            ChatRoomScrollHistory(event.key === "PageUp");
+			    return true;
+                        case "Escape":
+                            ElementFocus("MainCanvas");
+			    return true;
+                    }
+                }
+            } else if (ChatRoomCommonKeyDown(event)) {
+	        return true;
+	    } else if (ChatRoomActiveView.KeyDown && ChatRoomActiveView.KeyDown(event)) {
+	        return true;
+	    }  
+            if (CommonKey.IsPressed(event, "Escape", CommonKey.Shift)) {
+	        ChatRoomAttemptLeave();
+	    }
+            if (
+	        document.activeElement === null
+		|| document.activeElement === document.body
+		|| document.activeElement.id === "MainCanvas"
+	    ) {
+                const chatLog = /** @type {HTMLDivElement} */(document.getElementById("TextAreaChatLog"));
+		    if (!chatLog) {
+		        return false;
+		    }
+		    if (CommonKey.NavigationKeyDown(chatLog, event, (el) => el.clientHeight * 0.05)) {
+		        return true;
+		    } else if (CommonKey.IsPressed(event, "v", CommonKey.CTRL)) {
+			return false;
+		    } else if ((event.key.length === 1 || event.key === "Enter") && !modifiers) {
+			ElementFocus("InputChat");
+		        return event.key === "Enter";
+		    }
+	    }
+	    return false;    
+            return;
         });
     }
 
