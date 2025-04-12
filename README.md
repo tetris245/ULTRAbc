@@ -62,6 +62,6 @@ Changes for future version
 * Improved the emotes in whispers: they will remain ungarbled now, just like the normal emotes
 * Added support for attempt emotes in whispers: the format must be *%(percentage) (action), percentage (between 0 and 100) is optional (default is 50) and must be directly after % (not before), without any space.
   - Example: *%40 is trying to jump on the tail of the cute kittie
-  - Note: If you want to switch to normal attempt emotes, use the /attempt BC command.
+  - Note: If you want to switch to normal attempt emotes, use the /attempt (percentage)% (action) BC command
 * Optimised the mapz command + included info about the found keys if it concerns the user of the command
 * Used official icons for Mixed lobby and access to Extensions settings
