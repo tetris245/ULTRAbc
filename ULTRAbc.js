@@ -2766,15 +2766,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (text6.startsWith("*")) {
                         if (text6.startsWith("**")) {
                             text7 = text6.slice(1);
-                        } else if (text6.startsWith("*%")) {
-                            let stringAction1 = text6;
-                            let stringAction2 = stringAction1.split(/[ ,]+/);  
-                            let percent = stringAction2[0].slice(2);
-                            let action = text6.slice(2 + percent.length);
-                            let chance = 50;
-                            if (percent != "") chance = percent;
-			    if (chance < 0) chance = 0;
-                            if (chance > 100) chance = 100;
+                        } else if (text6.match(/^(\*|\ )(\d{0,2}|100)%(.+)/)) {
+                            let match = text6.match(/^(\*|\ )(\d{0,2}|100)%(.+)/);
+                            text6 = text6.replace(/^(\*|\ )(\d{0,2}|100)%/, "");
+	                    let action = text6.trim();   
+                            const chance = parseInt(match[2] ? match[2] : 50);
                             const random = parseInt(Math.random() * 100);
                             text7 = "*" + tmpname + action;
                             const attemptSucceeded = random <= chance;
@@ -2786,7 +2782,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         text7 = text6;
                     }
-
                     let texta = "";
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         texta = text7;
