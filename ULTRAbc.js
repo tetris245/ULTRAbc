@@ -10041,7 +10041,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     PTS = /^[0-9a-f]+$/;
                     ptcode = stringLock2[2];
                 }
-                if (lk == 21) Lock = "\u{6DEB}\u{7EB9}\u{9501}_Luzi";
+                if (lk == 21) Lock = "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock";
                 if (lk == 22) Lock = "DeviousPadlock";
                 if (lk != 22) dogs = 0;
                 let targetname = stringLock2[0];
@@ -10146,7 +10146,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         }
                                         if (lk == 17) target.Appearance[A].Property.Name = "Best Friend Padlock";
                                         if (lk == 18) target.Appearance[A].Property.Name = "Best Friend Timer Padlock";
-                                        if (lk == 21) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}_Luzi";
+                                        if (lk == 21) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock";
                                         if (lk == 22) {
                                             target.Appearance[A].Property.LockedBy = "ExclusivePadlock";
                                             target.Appearance[A].Property.Name = "DeviousPadlock";
