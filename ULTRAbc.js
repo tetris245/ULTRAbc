@@ -9906,7 +9906,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "portal code must include 8 characters, using only 0-9 and a-f.\n" +
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
                     "10080 minutes for locks 14, 15 and 18\n" + 
-		    "Use ? if you want a time randomly choosen by the game";
+		    "Use ? if you want a time randomly choosen by the game\n" +
                     " \n" +
                     "Optional parameters:\n" +
                     "h to hide the timer,\n" +
