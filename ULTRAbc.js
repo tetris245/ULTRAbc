@@ -2019,7 +2019,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).", -16
                 );
 		addMenuCheckbox(64, 64, "Enable hybrid talk/whisper mode: ", "ahybrid",
-                    "When enabled and combined with an animal talk mode, all your chat messages and whispers will combine animal words and human words!", false, 120
+                    "When enabled and associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
                     "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
