@@ -81,6 +81,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let M_MOANER_cum = false;
     let profile;
     let profileName;
+    let ahybrid = false;
     let animal = 0;
     let bgall = false;
     let bl = 0;
@@ -450,6 +451,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun2 = "";
             pronoun3 = "";
             pronoun4 = "";
+	    ahybrid = false;
             animal = 0;
             bgall = false;
             bl = 0;
@@ -557,6 +559,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun2 = datas.pronoun2;
             pronoun3 = datas.pronoun3;
             pronoun4 = datas.pronoun4;
+	    ahybrid = datas.ahybrid;
             animal = datas.animal;
             bgall = datas.bgall;
             bl = datas.bl;
@@ -667,6 +670,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun2": pronoun2,
             "pronoun3": pronoun3,
             "pronoun4": pronoun4,
+            "ahybrid": ahybrid,
             "animal": animal,
             "bgall": bgall,
             "bl": bl,
@@ -795,6 +799,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
+		if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (animal == null || animal == undefined) animal = 0;
                 if (AsylumLimitOn == null || AsylumLimitOn == undefined) AsylumLimitOn = false;
                 if (AutojoinOn == null || AutojoinOn == undefined) AutojoinOn = false;
@@ -928,6 +933,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             await waitFor(() => !!Player?.AccountName);
 
             const UBC_DEFAULT_SETTINGS = {
+		ahybrid: false,
                 animal: 0,
                 asylumlimit: false,
                 autojoin: false,
@@ -1490,6 +1496,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.UBC.ubcSettings.tintmbs = false;
                 }
                 let data = Player.UBC.ubcSettings;
+		ahybrid = data.ahybrid;
                 animal = data.animal * 1;
                 AsylumLimitOn = data.asylumlimit;
                 AutojoinOn = data.autojoin;
@@ -2010,6 +2017,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCPreferenceSubscreen = "UBCTalking";
                 addMenuInput(200, "Animal talk/whisper mode (0-9):", "animal", "InputAnimalMode",
                     "Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).", -16
+                );
+		addMenuCheckbox(64, 64, "Enable hybrid talk/whisper mode: ", "ahybrid",
+                    "When enabled and combined with an animal talk mode, all your chat messages and whispers will combine animal words and human words!", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
                     "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
@@ -5312,7 +5322,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     wordPunctuation = wordPunctuation.split("").reverse().join("");
                 }
-                newmessage += garbleWords[GarbleRandom(0, garbleWords.length - 1)] + wordPunctuation + " ";
+                if (ahybrid == false) {
+                    newmessage += garbleWords[GarbleRandom(0, garbleWords.length - 1)] + wordPunctuation + " ";
+                } else {
+                    newmessage += garbleWords[GarbleRandom(0, garbleWords.length - 1)] + word + wordPunctuation + " ";
+                }
                 newText = newmessage;
                 if (text.startsWith("/whisper")) {
                     let [, ...parts] = text.split(" ");
