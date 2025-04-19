@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* New option in GUI - Talking to enable a hybrid mode: When associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words! 
