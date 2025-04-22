@@ -59,4 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
+* Added the Special Modes page to the GUI:
+  - Moved there the No-escape, Unrestrict soft and Unrestrict total modes
 * New option in GUI - Talking to enable a hybrid mode: When associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words! 
