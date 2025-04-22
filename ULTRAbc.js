@@ -1056,6 +1056,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCMaps",
                 "UBCMisc",
                 "UBCMoaner",
+                "UBCSpecialModes",
                 "UBCTalking",
                 "UBCVisual"
             ];
@@ -1068,6 +1069,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCMaps: "Maps",
                 UBCMisc: "Misc",
                 UBCMoaner: "Moaner",
+		UBCSpecialModes: "Special Modes",
                 UBCTalking: "Talking",
                 UBCVisual: "Visual"
             };
@@ -1925,7 +1927,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "Put a valid number";
             }
 
-            PreferenceSubscreenUBCMiscLoad = function() {
+	    PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
                 addMenuCheckbox(64, 64, "Access all backgrounds in Private Room: ", "bgall",
                     "With this option, you will not be limited to only 43 backgrounds when using the features in the Private Room to change the background of Friend List, Main Hall, Private Room and Timer Cell. You will have access to all standard backgrounds (more than 250!)", false, 120
@@ -1933,18 +1935,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
                 );
-                addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape",
-                    "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.", false, 120
-                );
                 addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
                     "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
-                );
-                addMenuCheckbox(64, 64, "Enable unrestrict soft mode: ", "usoft",
-                    "This mode adds all hidden items to your inventory, allows to use special items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and preserves the examine feature when you are blind if you don't have choosen Total sensory deprivation. It does not remove the conditions to use assets. All these effects are also included in the unrestrict total mode. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 120
-                );
-                addMenuCheckbox(64, 64, "Enable unrestrict total mode: ", "utotal",
-                    "Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).", "Player.UBC.ubcSettings.noescape", 120
-                );
+                );               
                 addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
                     "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
                 );
@@ -1952,7 +1945,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When you use the TAB key to get help about BC commands, the displayed results are removed from the chat after some time. If you don't like that, use this option to prevent the disappearance of the help results.", false, 120
                 );
             }
-
+  
             PreferenceSubscreenUBCMiscRun = function() {
                 drawMenuElements();
             }
@@ -2011,6 +2004,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputMoanProfile");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
+            }
+
+	    PreferenceSubscreenUBCSpecialModesLoad = function() {
+                UBCPreferenceSubscreen = "UBCSpecialModes";              
+                addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape",
+                    "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.", false, 120
+                );             
+                addMenuCheckbox(64, 64, "Enable unrestrict soft mode: ", "usoft",
+                    "This mode adds all hidden items to your inventory, allows to use special items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and preserves the examine feature when you are blind if you don't have choosen Total sensory deprivation. It does not remove the conditions to use assets. All these effects are also included in the unrestrict total mode. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 120
+                );
+                addMenuCheckbox(64, 64, "Enable unrestrict total mode: ", "utotal",
+                    "Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).", "Player.UBC.ubcSettings.noescape", 120
+                );
+            }
+
+            PreferenceSubscreenUBCSpecialModesRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCSpecialModesClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCSpecialModesExit = function() {
+                defaultExit();
             }
 
             PreferenceSubscreenUBCTalkingLoad = function() {
