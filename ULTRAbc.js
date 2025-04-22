@@ -2789,12 +2789,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	                    let action = text6.trim();   
                             const chance = parseInt(match[2] ? match[2] : 50);
                             const random = parseInt(Math.random() * 100);
-                            text7 = "*" + tmpname + action;
+                            text7 = "*" + tmpname + " " + action;
                             const attemptSucceeded = random <= chance;
                             text7 += attemptSucceeded ? ": \u2714" : ": \u274c";
 	                    text7 += " (" + chance + "%)";
                         } else {
-                            text7 = "*" + tmpname + text6.slice(1);
+                            text7 = "*" + tmpname + " " + text6.slice(1);
                         }
                     } else {
                         text7 = text6;
