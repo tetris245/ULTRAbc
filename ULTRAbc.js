@@ -104,6 +104,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let pmin = 2;
     let pmax = 20;
     let rchat = false;
+    let rgame = 0;
     let rhide = false;
     let rmin = 2;
     let rsize = 20;
@@ -475,6 +476,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pmin = 2;
             pmax = 20;
             rchat = false;
+	    rgame = 0;
             rhide = false;
             rmin = 2;
             rsize = 20;
@@ -584,6 +586,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pmin = datas.pmin * 1;
             pmax = datas.pmax * 1;
             rchat = datas.rchat;
+	    rgame = datas.rgame;
             rhide = datas.rhide;
             rmin = datas.rmin * 1;
             rsize = datas.rsize * 1;
@@ -691,6 +694,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pmin": pmin,
             "pmax": pmax,
             "rchat": rchat,
+            "rgame": rgame,
             "rhide": rhide,
             "rmin": rmin,
             "rsize": rsize,
@@ -872,6 +876,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (profileName == "wolf") profile = 10;
                 if (rchat == null || rchat == undefined) rchat = false;
                 if (reaction == null || reaction == undefined) reaction = 0;
+		if (rgame == null || rgame == undefined) rgame = 0;
                 if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
                 if (RglsyncOn == null || RglsyncOn == undefined) RglsyncOn = false;
                 if (rhide == null || rhide == undefined) rhide = false;
@@ -983,6 +988,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile: 0,
                 rchat: false,
                 reaction: 0,
+		rgame: 0,
                 rglbuttons: false,
                 rglsync: false,
                 rhide: false,
@@ -1556,6 +1562,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile = data.profile;
                 rchat = data.rchat;
                 reaction = data.reaction;
+		rgame = data.rgame;
                 RglbuttonsOn = data.rglbuttons;
                 RglsyncOn = data.rglsync;
                 rhide = data.rhide;
@@ -1783,6 +1790,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
                     "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search.", false, 134
                 );
+		addMenuInput(200, "Selected room game (0-5):", "rgame", "InputRoomGame",
+                    "Input a number between 0 and 5 to select a room game: 0 No limitation to a specific room game - 1 Only Club Card Game - 2 Only GGTS Game - 3 Only LARP Game - 4 Only Magic Battle Game - 5 Only Pandora Prison Game. If you choose a number between 1 and 5, the limitations about room type, room size and number of present players in room will not be applied."
+                );
                 addMenuCheckbox(64, 64, "Control normal/hybrid room size: ", "rchat",
                     "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms.", false, 134
                 );
@@ -1815,16 +1825,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCChatSearchExit = function() {
+                let game = ElementValue("InputRoomGame");
                 let min = ElementValue("InputRoomMin");
                 let max = ElementValue("InputRoomMax");
                 let min2 = ElementValue("InputPlayerMin");
                 let max2 = ElementValue("InputPlayerMax");
-                if ((CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21) 
+                if ((CommonIsNumeric(game)) && (game > -1) && (game < 6) 
+                    && (CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21) 
                     && (CommonIsNumeric(min2)) && (min2 > 1) && (min2 < 21) && (CommonIsNumeric(max2)) && (max2 > 1) && (max2 < 21)) {
+                    Player.UBC.ubcSettings.rgame = game;
                     Player.UBC.ubcSettings.rmin = min;
                     Player.UBC.ubcSettings.rsize = max;
                     Player.UBC.ubcSettings.pmin = min2;
                     Player.UBC.ubcSettings.pmax = max2;
+                    ElementRemove("InputRoomGame");
                     ElementRemove("InputRoomMin");
                     ElementRemove("InputRoomMax");
                     ElementRemove("InputPlayerMin");
@@ -1832,7 +1846,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
-
+		
             PreferenceSubscreenUBCCheatsLoad = function() {
                 UBCPreferenceSubscreen = "UBCCheats";
                 addMenuCheckbox(64, 64, "Enable Bondage Brawl/Magic School cheat: ", "magiccheat",
@@ -2971,51 +2985,65 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchParseResponse() {
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
-            if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
             const ret = next(args);
             let NewResult = [];
-            if (rtype == "ALL") {
+            if (rgame != 0) {
+                let game = "";
+                if (rgame == 1) game = "ClubCard";
+                if (rgame == 2) game = "GGTS";
+                if (rgame == 3) game = "LARP";
+                if (rgame == 4) game = "MagicBattle";
+                if (rgame == 5) game = "Prison";
                 let rm = 0;
                 while (rm < ret.length) {
-                    let good = 0;
-                    let room = ret[rm].MemberLimit;
-                    let player = ret[rm].MemberCount;
-                    if (ret[rm].MapType == "Always") {
-                        if (pchat == false) good = 1;
-                        if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1; 
-                    } else {
+                    if (ret[rm].Game == game) NewResult.push(ret[rm]);
+                    rm++;
+                }         
+            } else {
+                if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
+                if (rtype == "ALL") {
+                    let rm = 0;
+                    while (rm < ret.length) {
+                        let good = 0;
+                        let room = ret[rm].MemberLimit;
+                        let player = ret[rm].MemberCount;
+                        if (ret[rm].MapType == "Always") {
+                            if (pchat == false) good = 1;
+                            if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1; 
+                        } else {
+                            if ((rchat == false) && (pchat == false)) good = 1;
+                            if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
+                            if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
+                            if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
+                        } 
+                        if (good == 1) NewResult.push(ret[rm]);            
+                        rm++;
+                    }
+                }
+                if ((rtype == "Never") || (rtype == "Hybrid")) {
+                    let rm = 0;
+                    while (rm < ret.length) {
+                        let good = 0;
+                        let room = ret[rm].MemberLimit;
+                        let player = ret[rm].MemberCount;
                         if ((rchat == false) && (pchat == false)) good = 1;
                         if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
                         if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                        if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
-                    } 
-                    if (good == 1) NewResult.push(ret[rm]);            
-                    rm++;
+                        if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;              
+                        if ((good == 1) && (ret[rm].MapType == rtype)) NewResult.push(ret[rm]);
+                        rm++;
+                    }
                 }
-            }
-            if ((rtype == "Never") || (rtype == "Hybrid")) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    let good = 0;
-                    let room = ret[rm].MemberLimit;
-                    let player = ret[rm].MemberCount;
-                    if ((rchat == false) && (pchat == false)) good = 1;
-                    if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
-                    if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                    if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;              
-                    if ((good == 1) && (ret[rm].MapType == rtype)) NewResult.push(ret[rm]);
-                    rm++;
-                }
-            }
-            if (rtype == "Always") {
-                let rm = 0;
-                while (rm < ret.length) {
-                    let good = 0;
-                    let player = ret[rm].MemberCount;
-                    if (pchat == false) good = 1;
-                    if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1; 
-                    if ((good == 1) && (ret[rm].MapType == "Always")) NewResult.push(ret[rm]);
-                    rm++;
+                if (rtype == "Always") {
+                    let rm = 0;
+                    while (rm < ret.length) {
+                        let good = 0;
+                        let player = ret[rm].MemberCount;
+                        if (pchat == false) good = 1;
+                        if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1; 
+                        if ((good == 1) && (ret[rm].MapType == "Always")) NewResult.push(ret[rm]);
+                        rm++;
+                    }
                 }
             }
             return NewResult;
