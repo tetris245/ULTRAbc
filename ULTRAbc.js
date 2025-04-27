@@ -7879,8 +7879,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "17 to 26 Library - 27, 28 Lockers\n" +
                     "29 Running Track - 30, 31 Showers - 32 Theater\n" +
                     "BONDAGE TEACHER\n" +
-                    "33, 34 Beach - 35, 36 Briefcase\n" +
-                    "37, 38 Class - 39 Office";
+                    "33, 34 Beach - 35, 36 Briefcase - 37 Bullseye\n" +
+                    "38, 39 Class - 40 College - 41 Office";
                 infomsg(msg);
             } else {
                 let bg = "";
@@ -7923,14 +7923,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (args == 34) bg = url3 + "Screen/Character/Picture/Background/TeacherBeach2.jpg";
                 if (args == 35) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseInside.jpg";
                 if (args == 36) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseOutside.jpg";
-                if (args == 37) bg = url3 + "Image/Background/TeacherClassStandingAlone.jpg";
-                if (args == 38) bg = url3 + "Image/Background/TeacherClassStandingAloneCuffed.jpg";
-                if (args == 39) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/TeacherLookOffice.jpg";
-                if ((args > 0) && (args < 40)) ChatAdminRoomCustomizationCommand("Image", bg);
+                if (args == 37) bg = url3 + "Image/Cheat/Bullseye.png";
+                if (args == 38) bg = url3 + "Image/Background/TeacherClassStandingAlone.jpg";
+                if (args == 39) bg = url3 + "Image/Background/TeacherClassStandingAloneCuffed.jpg";
+                if (args == 40) bg = url3 + "Image/Background/TeacherCollegeSingle.jpg";
+                if (args == 41) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/TeacherLookOffice.jpg";
+                if ((args > 0) && (args < 42)) ChatAdminRoomCustomizationCommand("Image", bg);
             }
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'bg4',
         Description: "(screen) (background): selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell",
