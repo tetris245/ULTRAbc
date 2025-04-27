@@ -64,3 +64,4 @@ Changes for future version
   - Added the silent mode that prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible.
 * New option in GUI - Chat Search to limit the search to rooms with a specific game (Club Card, GGTS, LARP, Magic Battle, Pandora Prison). In this case, the limitations about room type, room size and number of present players in room will not be applied.
 * New option in GUI - Talking to enable a hybrid mode: When associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words! 
+* Updated the support for extra slots in the wardrobe, that are added by Echo's mod
