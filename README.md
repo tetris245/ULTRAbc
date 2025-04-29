@@ -66,3 +66,4 @@ Changes for future version
 * New option in GUI - Talking to enable a hybrid mode: When associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!
 * Updated the bg3 command with a few new backgrounds from Bondage Teacher 
 * Updated the support for extra slots in the wardrobe, that are added by Echo's mod
+* Removed exercise and roof options of pose2 command (maintenance impossible with all the BC changes related to poses)
