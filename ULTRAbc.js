@@ -5168,6 +5168,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    //Poses
+    function PoseChangeFocusToGroup(C, Group) {
+        /** @type {null | AssetGroup} */
+	   let G = null;
+	   if (typeof Group === "string") {
+		  G = AssetGroupGet(C.AssetFamily, /** @type {AssetGroupName} */ (Group));
+		  if (!Group) return;
+	   } else {
+		  G = Group;
+	   }
+         DialogLeaveFocusItem(false);
+         AudioDialogStop();
+         const previousGroup = C.FocusGroup;
+         C.FocusGroup = /** @type {AssetItemGroup} */ (G);
+         if (C.FocusGroup) {
+             DialogChangeMode("items", true);
+         } else {
+             DialogChangeMode("dialog");
+         }
+    }
+	
     //Preferences 
     function FBCsettings() {
         let gbc = 0;
@@ -11625,6 +11646,145 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ChatRoomCharacterUpdate(Player) :
                                 CharacterRefresh(Player);
                         }, 4000);
+                        // Workout
+		    } else if (pose == "exercise") {
+                        let Region = undefined;
+                        let msg1 = "";
+                        if (InventoryGet(Player, "ItemButt") == null) {
+                            InventoryWear(Player, "AnalHook", "ItemButt", "#272727");
+                            Region = "ItemButt";
+                        } else if (InventoryGet(Player, "ItemButt").Asset.Name == "AnalHook") {
+                            Region = "ItemButt";
+                        } else if (InventoryGet(Player, "ItemTorso") == null) {
+                            InventoryWear(Player, "HempRopeHarness", "ItemTorso", "#272727");
+                            InventoryGet(Player, "ItemTorso").Property = {
+                                Type: "Waist"
+                            };
+                            Region = "ItemTorso";
+                        } else if (InventoryGet(Player, "ItemTorso").Asset.Name == "HempRopeHarness") {
+                            InventoryGet(Player, "ItemTorso").Property = {
+                                Type: "Waist"
+                            };
+                            Region = "ItemTorso";
+                        } else if (InventoryGet(Player, "ItemPelvis") == null) {
+                            InventoryWear(Player, "HempRope", "ItemPelvis", "#272727");
+                            Region = "ItemPelvis";
+                        } else if (InventoryGet(Player, "ItemPelvis").Asset.Name == "HempRope") {
+                            Region = "ItemPelvis";
+                        } else {
+                            msg1 = "You're too heavily tied to exercise.";
+                            infomsg(msg1);
+                        }
+                        if (msg1 == "") {
+                            let msg2 = "" + tmpname + " makes " + pronoun3 + " workout.";
+                            publicmsg(msg2);
+                            PoseSetActive(Player, null);
+                            ChatRoomCharacterUpdate(Player);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "OverTheHead");
+                                ChatRoomCharacterUpdate(Player);
+                            }, 500);
+                            setTimeout(function() {
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 100
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 1000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "Kneel");
+                            }, 2000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "Yoked");
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 350
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 3000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "OverTheHead");
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 100
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 4000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "Yoked");
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 350
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 5000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "OverTheHead");
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 100
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 6000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "Yoked");
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 350
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 7000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "OverTheHead");
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 100
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 8000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "Yoked");
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 350
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 9000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, "OverTheHead");
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = {
+                                    Height: 100
+                                };
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 10000);
+                            setTimeout(function() {
+                                PoseSetActive(Player, null);
+                                Player.FocusGroup = AssetGroupGet("Female3DCG", Region);
+                                DialogExtendItem(InventoryGet(Player, Region));
+                                DialogFocusItem.Property.OverrideHeight = undefined;
+                                ChatRoomCharacterUpdate(Player);
+                                PoseChangeFocusToGroup(Player, null);
+                            }, 10000);
+                        }
                         // reset	 
                     } else if (pose == "reset") {
                         PoseSetActive(Player, null);
