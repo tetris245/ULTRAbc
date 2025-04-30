@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 4.8.1
+// @version 4.9
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -45,8 +45,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return;
     }
 
-    const UBCver = "4.8.1";
-    const UBCver0 = "4.8";
+    const UBCver = "4.9";
+    const UBCver0 = "4.8.1";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -11466,7 +11466,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "kneel1, kneel2, legsclosed, legsopen, pet,\n" +
                     "spreadarms1, spreadarms2, spreadeagle1\n" +
                     "spreadeagle2, spreadlegs, stand, suspension,\n" +
-                    "tapedhands. Only on yourself: jump.\n" +
+                    "tapedhands. Only on yourself: exercise, jump.\n" +
                     "Use <b>/pose2 reset</b> (target) to back to neutral pose.\n" +
                     "If WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.";
                 infomsg(msg);
