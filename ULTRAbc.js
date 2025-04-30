@@ -5171,22 +5171,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Poses
     function PoseChangeFocusToGroup(C, Group) {
         /** @type {null | AssetGroup} */
-	   let G = null;
-	   if (typeof Group === "string") {
-		  G = AssetGroupGet(C.AssetFamily, /** @type {AssetGroupName} */ (Group));
-		  if (!Group) return;
-	   } else {
-		  G = Group;
-	   }
-         DialogLeaveFocusItem(false);
-         AudioDialogStop();
-         const previousGroup = C.FocusGroup;
-         C.FocusGroup = /** @type {AssetItemGroup} */ (G);
-         if (C.FocusGroup) {
-             DialogChangeMode("items", true);
-         } else {
-             DialogChangeMode("dialog");
-         }
+	let G = null;
+	if (typeof Group === "string") {
+	    G = AssetGroupGet(C.AssetFamily, /** @type {AssetGroupName} */ (Group));
+	    if (!Group) return;
+	} else {
+	    G = Group;
+	}
+        DialogLeaveFocusItem(false);
+        AudioDialogStop();
+        const previousGroup = C.FocusGroup;
+        C.FocusGroup = /** @type {AssetItemGroup} */ (G);
+        if (C.FocusGroup) {
+            DialogChangeMode("items", true);
+        } else {
+            DialogChangeMode("dialog");
+        }
     }
 	
     //Preferences 
