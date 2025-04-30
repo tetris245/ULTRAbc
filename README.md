@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 4.8.1
+Most recent version: 4.9
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version4.8.1.zip file on the Releases page
+1. Download the ULTRAbc-version4.9.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,12 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added the Special Modes page to the GUI:
-  - Moved there the no-escape, unrestrict soft and unrestrict total modes
-  - Added the silent mode that prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible.
-* New option in GUI - Chat Search to limit the search to rooms with a specific game (Club Card, GGTS, LARP, Magic Battle, Pandora Prison). In this case, the limitations about room type, room size and number of present players in room will not be applied.
-* New option in GUI - Talking to enable a hybrid mode: When associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!
-* Updated the bg3 command with a few new backgrounds from Bondage Teacher 
-* Updated the support for extra slots in the wardrobe, that are added by Echo's mod
-* Fixed the exercise option of pose2 command by using a function that is a modified version of a BC function
-* Removed the roof option of pose2 command (is incompatible with all the BC changes related to poses)
+(...)
