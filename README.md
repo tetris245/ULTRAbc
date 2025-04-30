@@ -67,4 +67,4 @@ Changes for future version
 * Updated the bg3 command with a few new backgrounds from Bondage Teacher 
 * Updated the support for extra slots in the wardrobe, that are added by Echo's mod
 * Fixed the exercise option of pose2 command by using a function that is a modified version of a BC function
-* Removed the roof option of pose2 command (maintenance impossible with all the BC changes related to poses)
+* Removed the roof option of pose2 command (is incompatible with all the BC changes related to poses)
