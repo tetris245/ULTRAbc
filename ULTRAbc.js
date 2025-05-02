@@ -2387,13 +2387,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (ExtbuttonsOn == true) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 45)) {
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
                     ExtClick();
                     return;
                 }
             }
             if ((SosbuttonsOn == true) && (NoescapeOn == false)) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 45) && (MouseY < 90)) {
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 315) && (MouseY < 360)) {
                     let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
                     if (Totalrelease != undefined) {
                         if (Totalrelease != "") {
@@ -2410,7 +2410,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if ((OutbuttonsOn == true) && (NoescapeOn == false)) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 90) && (MouseY < 135)) {
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) 
                     if (SlowleaveOn == true) {
                         let msg = "" + tmpname + " slowly heads for the door.";
                         publicmsg(msg);
@@ -2424,7 +2424,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if (RglbuttonsOn == true) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 135) && (MouseY < 180)) {
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 405) && (MouseY < 450)) {
                     RealGarblingLevel();
                     return;
                 }
@@ -2586,12 +2586,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if (ExtbuttonsOn == true) {
-                DrawButton(955, 0, 45, 45, "", "White", "", "");
-                DrawImageResize("Icons/Extensions.png", 960, 5, 40, 40);
+                DrawButton(955, 270, 45, 45, "", "White", "", "");
+                DrawImageResize("Icons/Extensions.png", 960, 275, 40, 40);
             }
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
-            if (RglbuttonsOn == true) DrawButton(955, 135, 45, 45, "RGL", "White", "", "");
+            if (RglbuttonsOn == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
             let chmap = ChatRoomCharacterViewIsActive();
             if ((chmap == false) && (Player.OnlineSharedSettings.Inmap == false)) {
                 Player.OnlineSharedSettings.Inmap = true;
@@ -4718,7 +4718,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function OutButtons() {
         if (NoescapeOn == false) {
             if (window.CurrentScreen == "ChatRoom") {
-                DrawButton(955, 90, 45, 45, "OUT", "White", "", "");
+                DrawButton(955, 360, 45, 45, "OUT", "White", "", "");
             } else {
                 if (SlowleaveOn == true) {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
@@ -4782,7 +4782,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function SosButtons() {
         if (NoescapeOn == false) {
             if (window.CurrentScreen == "ChatRoom") {
-                DrawButton(955, 45, 45, 45, "FREE", "White", "", "");
+                DrawButton(955, 315, 45, 45, "FREE", "White", "", "");
             } else {
                 DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
             }
