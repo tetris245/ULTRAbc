@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Improved the location of UBC buttons in chat rooms, so you will always be able to know if other players use Echo's mod
