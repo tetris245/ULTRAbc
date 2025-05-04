@@ -9771,10 +9771,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     CommandCombine([{
         Tag: 'layerset1',
         Description: "(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot",
-        Action: (args) => {
+        Action: (args) => {     
             if (args === "") {
                 let msg = "First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
-                    "The layerset1 command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.";
+                    "The layerset1 command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.\n" +                
+                    "If you enter a non-numeric layer, it will be interpreted as 0 (zero). If the entered color does not exist, you will go back to the default color.";
                 infomsg(msg);
             } else {
                 let stringLys1 = args;
@@ -9793,6 +9794,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (Archetype == "typed") ak = 1;
                             if (Archetype == "modular") ak = 2;
                         }
+			let Asset = InventoryGet(Player, Target).Asset;
+                        if (!CommonIsNumeric(layer)) layer = 0; 
+                        if (layer < -1) layer = 0;
+                        if (layer > Asset.Layer.length) layer = 0;
                         if (ak < 2) {
                             if (layer == -1) {
                                 for (let A = 0; A < Asset.Layer.length; A++)
@@ -9814,8 +9819,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 InventoryGet(Player, Target).Color[ColorIndex] = color;
                             }
                         }
-                        ChatRoomCharacterUpdate(Player);
-                        let msg = "Layer color changed.";
+                        ChatRoomCharacterUpdate(Player);      
+                        let msg = "Layer color changed for layer " + layer + ".";
+                        if (layer == -1) msg = "Layer color changed for all layers.";
                         infomsg(msg);
                     }
                 }
@@ -9829,13 +9835,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "First use the <b>/layershow2</b> command to click on worn item, get useful info about layer priorities and save Item Slot.\n" +
-                    "The layerset2 command must be followed by a layer number and a priority number (between -99 and 99) for the worn item in the previously saved Item Slot.";
+                    "The layerset2 command must be followed by a layer number and a priority number (between -99 and 99) for the worn item in the previously saved Item Slot.\n" +
+                    "If you enter a non-numeric layer and/or priority, it will be interpreted as 0 (zero).";
                 infomsg(msg);
             } else {
                 let stringLys3 = args;
                 let stringLys4 = stringLys3.split(/[ ,]+/);
                 let layer = stringLys4[0];
                 let priority = stringLys4[1] * 1;
+		if (!CommonIsNumeric(priority)) priority = 0; 
                 if (priority > 99) priority = 99;
                 if (priority < -99) priority = -99;
                 if (this.saveditemslot == undefined) {
@@ -9851,6 +9859,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (Archetype == "modular") ak = 2;
                         }
                         let Asset = InventoryGet(Player, Target).Asset;
+			if (!CommonIsNumeric(layer)) layer = 0; 
+                        if (layer < 0) layer = 0;
+                        if (layer > Asset.Layer.length) layer = 0;
                         let Property = InventoryGet(Player, Target).Property;
                         let Name = "";
                         if (ak == 0) {
@@ -9859,14 +9870,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else {
                                 Name = Asset.Layer[layer].Name;
                             }
-                            if ((Property == undefined) || (Property.OverridePriority == undefined)) {
+                            if (Property == undefined) {
                                 Property = {};
                                 let OverridePriority = {};
                                 OverridePriority[Name] = priority;
                                 Property.OverridePriority = OverridePriority;
+                                InventoryGet(Player, Target).Property = Property; 
+                            } else if (Property.OverridePriority == undefined) { 
+                                let OverridePriority = {};
+                                OverridePriority[Name] = priority;
+                                Property.OverridePriority = OverridePriority;
+                                InventoryGet(Player, Target).Property = Property;           
                             } else {
                                 Property.OverridePriority[Name] = priority;
-                            }
+                                InventoryGet(Player, Target).Property = Property; 
+                            } 
                         }
                         if (ak == 1) {
                             if ((Asset.Layer.length == 1) || (Asset.Layer[layer].Name == null)) {
@@ -9878,8 +9896,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 let OverridePriority = {};
                                 OverridePriority[Name] = priority;
                                 Property.OverridePriority = OverridePriority;
+                                InventoryGet(Player, Target).Property = Property; 
                             } else {
                                 Property.OverridePriority[Name] = priority;
+                                InventoryGet(Player, Target).Property = Property; 
                             }
                         }
                         if (ak == 2) {
@@ -9888,7 +9908,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             InventoryGet(Player, Target).Property.OverridePriority[Name2] = priority;
                         }
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "Layer priority changed.";
+                        let msg = "Layer priority changed for layer " + layer + ".";
                         infomsg(msg);
                     }
                 }
@@ -9983,7 +10003,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let Asset = InventoryGet(Player, Target).Asset;
                             let Property = InventoryGet(Player, Target).Property;
                             if (ak == 0) {
-                                let Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
+                                let Priority = "";
+                                if (Asset.DrawingPriority != undefined) {
+                                    Priority = InventoryGet(Player, Target).Asset.DrawingPriority;
+                                } else {
+                                    Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
+                                }
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
                                     if (ly == 0) {
@@ -10006,7 +10031,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                             }
                             if (ak == 1) {
-                                let Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
+                                let Priority = "";
+                                if (Asset.DrawingPriority != undefined) {
+                                    Priority = InventoryGet(Player, Target).Asset.DrawingPriority;
+                                } else {
+                                    Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
+                                }
                                 let ly = 0;
                                 while (ly < Asset.Layer.length) {
                                     if ((Asset.Layer.length == 1) || (Asset.Layer[ly].Name == null)) {
