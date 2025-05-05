@@ -9797,7 +9797,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			let Asset = InventoryGet(Player, Target).Asset;
                         if (!CommonIsNumeric(layer)) layer = 0; 
                         if (layer < -1) layer = 0;
-                        if (layer > Asset.Layer.length) layer = 0;
+                        if (layer > Asset.Layer.length - 1) layer = 0;
                         if (ak < 2) {
                             if (layer == -1) {
                                 for (let A = 0; A < Asset.Layer.length; A++)
@@ -9861,7 +9861,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let Asset = InventoryGet(Player, Target).Asset;
 			if (!CommonIsNumeric(layer)) layer = 0; 
                         if (layer < 0) layer = 0;
-                        if (layer > Asset.Layer.length) layer = 0;
+                        if (layer > Asset.Layer.length - 1) layer = 0;
                         let Property = InventoryGet(Player, Target).Property;
                         let Name = "";
                         if (ak == 0) {
