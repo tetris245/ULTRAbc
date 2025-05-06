@@ -2587,7 +2587,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (ExtbuttonsOn == true) {
                 DrawButton(955, 270, 45, 45, "", "White", "", "");
-                DrawImageResize("Icons/Extensions.png", 960, 275, 40, 40);
+                DrawImageResize("Icons/Extensions.png", 960, 272, 40, 40);
             }
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
