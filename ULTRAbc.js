@@ -13950,7 +13950,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             CharacterReleaseFromLock(target, "TimerPasswordPadlock");
                             for (let A = 0; A < target.Appearance.length; A++)
                                 if ((target.Appearance[A].Property != null) &&
-                                    (target.Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi"))
+                                    (target.Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock"))
                                     InventoryUnlock(target, target.Appearance[A]);
                         }
                         if (lk == 1) CharacterReleaseFromLock(target, "MetalPadlock");
@@ -13994,7 +13994,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (lk == 21) {
                             for (let A = 0; A < target.Appearance.length; A++)
                                 if ((target.Appearance[A].Property != null) &&
-                                    (target.Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi"))
+                                    (target.Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock"))
                                     InventoryUnlock(target, target.Appearance[A]);
                         }
                         if (lk == 22) {
