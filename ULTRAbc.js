@@ -239,6 +239,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     const petitems3 = ["CowtailStrap", "FoxTailsStrap", "FoxTailStrap1", "FoxTailStrap2", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"];
 
+    //Locks
+    const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "PortalLinkPadlock", "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock", "DeviousPadlock"];
+
     //Animal Talk Profiles
     let animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"];
     let animalmode2 = ["mo", "moo", "mooo", "mu", "muu", "moooo"];
@@ -10143,40 +10146,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringLock1 = args;
                 let stringLock2 = stringLock1.split(/[ ,]+/);
                 let lk = stringLock2[1];
-                let Lock = "";
-                if (lk == 1) Lock = "MetalPadlock";
-                if (lk == 2) Lock = "ExclusivePadlock";
-                if (lk == 3) Lock = "IntricatePadlock";
-                if (lk == 4) Lock = "HighSecurityPadlock";
-                if (lk == 5) Lock = "PandoraPadlock";
-                if (lk == 6) Lock = "MistressPadlock";
-                if (lk == 7) Lock = "LoversPadlock";
-                if (lk == 8) Lock = "OwnerPadlock";
-                if (lk == 9) {
-                    Lock = "TimerPadlock";
-                    removeitem = stringLock2[2];
-                }
-                if (lk == 10) {
-                    Lock = "CombinationPadlock";
-                    code = stringLock2[2];
-                }
+                let Lock = locks[lk];
+                if (lk == 9) removeitem = stringLock2[2];
+                if (lk == 10) code = stringLock2[2];
                 if (lk == 11) {
-                    Lock = "SafewordPadlock";
                     PS = /^[A-Z]+$/;
                     pw = "PLEASE";
                     if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
                     removeitem = stringLock2[3];
                 }
                 if (lk == 12) {
-                    Lock = "PasswordPadlock";
                     PS = /^[A-Z]+$/;
                     pw = "PASSWORD";
                     if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
                     removeitem = stringLock2[3];
                 }
-                if (lk == 13) Lock = "MistressTimerPadlock";
-                if (lk == 14) Lock = "LoversTimerPadlock";
-                if (lk == 15) Lock = "OwnerTimerPadlock";
                 if ((lk == 13) || (lk == 14) || (lk == 15)) {
                     let maxtime = 240;
                     if (lk != 13) maxtime = 10080;
@@ -10200,7 +10184,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     removeitem = stringLock2[5];
                 }
                 if (lk == 16) {
-                    Lock = "TimerPasswordPadlock";
                     PS = /^[A-Z]+$/;
                     pw = "PASSWORD";
                     if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
@@ -10224,9 +10207,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     enableinput = stringLock2[5];
                     removeitem = stringLock2[6];
                 }
-                if (lk == 17) Lock = "Best Friend Padlock";
                 if (lk == 18) {
-                    Lock = "Best Friend Timer Padlock";
                     let maxtime = 10080;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
@@ -10246,14 +10227,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     enableinput = stringLock2[4];
                     removeitem = stringLock2[5];
                 }
-                if (lk == 19) Lock = "FamilyPadlock";
                 if (lk == 20) {
-                    Lock = "PortalLinkPadlock";
                     PTS = /^[0-9a-f]+$/;
                     ptcode = stringLock2[2];
                 }
-                if (lk == 21) Lock = "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock";
-                if (lk == 22) Lock = "DeviousPadlock";
                 if (lk != 22) dogs = 0;
                 let targetname = stringLock2[0];
                 let target = TargetSearch(targetname);
