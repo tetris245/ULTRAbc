@@ -10150,12 +10150,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (lk == 9) removeitem = stringLock2[2];
                 if (lk == 10) code = stringLock2[2];
                 if (lk == 11) pw = "PLEASE";
-                if (lk == 12) pw = "PASSWORD";
-                if ((lk == 11) || (lk == 12)) {
+                if ((lk == 11) || (lk == 12)) removeitem = stringLock2[3];
+                if ((lk == 12) || (lk == 16)) pw = "PASSWORD";
+                if ((lk == 11) || (lk == 12) || (lk == 16)) {
                     PS = /^[A-Z]+$/;
                     if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
-                    removeitem = stringLock2[3];
-                }
+                } 
                 if ((lk == 13) || (lk == 14) || (lk == 15)) {
                     let maxtime = 240;
                     if (lk != 13) maxtime = 10080;
@@ -10179,9 +10179,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     removeitem = stringLock2[5];
                 }
                 if (lk == 16) {
-                    PS = /^[A-Z]+$/;
-                    pw = "PASSWORD";
-                    if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
                     let maxtime = 240;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[3])) && (stringLock2[3] == "?")) {
