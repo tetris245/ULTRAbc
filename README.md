@@ -61,5 +61,5 @@ Changes for future version
 
 * Improved the location of UBC buttons in chat rooms, so you will always be able to see icons above characters, especially the Echo's skirt
 * Changes in the lock command:
-  - Removed the portal link lock (was broken since it's mandatory to manage it with the special remote)
+  - Removed the portal link lock (was broken since it's mandatory to manage it with the special tablet)
   - Made the metal lock as default lock when you don't specify the lock type or enter a wrong value
