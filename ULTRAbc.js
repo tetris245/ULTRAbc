@@ -240,7 +240,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const petitems3 = ["CowtailStrap", "FoxTailsStrap", "FoxTailStrap1", "FoxTailStrap2", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"];
 
     //Locks
-    const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "PortalLinkPadlock", "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock", "DeviousPadlock"];
+    const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock", "DeviousPadlock", "PortalLinkPadlock"];
 
     //Animal Talk Profiles
     let animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"];
@@ -10096,28 +10096,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8, 17, 19, 21, 22\n" +
+                    "/lock (target) (locktype) for locks 1 to 8, 17, 19 to 21\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
-                    "/lock (target) (locktype) (code/ptcode) for locks 10 and 20\n" +
+                    "/lock (target) (locktype) (code) for lock 10\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
                     "/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15, 18\n" +
                     "/lock (target) (locktype) (password) (minutes) (h) (i) (r) - lock 16\n" +
                     "ALWAYS SPECIFY THE TARGET. Lock types:\n" +
-                    "1 Metal - 2 Exclusive - 3 Intricate - 4 High Security\n" +
-                    "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
-                    "9 Five Minutes - 10 Combination - 11 Safeword\n" +
-                    "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
-                    "15 Owner Timer - 16 Timer Password - 17 Best Friend\n" +
-                    "18 Best Friend Timer - 19 Family - 20 Portal Link\n" +
-                    "21 Lewd Crest - 22 Devious (if enabled)\n" +
-                    "Locks 17, 18, 21 and 22 require a specific mod\n" +
+                    "1 Metal (default when not specified) - 2 Exclusive\n" +
+                    "3 Intricate - 4 High Security - 5 Pandora\n" +
+                    "6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n" +
+                    "10 Combination - 11 Safeword - 12 Password\n" +
+                    "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
+                    "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
+                    "19 Family - 20 Lewd Crest - 21 Devious (if enabled)\n" +
+                    "Locks 17, 18, 20 and 21 require a specific mod\n" +
                     "Use <b>/lock par</b> for info about other parameters";
                 infomsg(msg);
             } else if (args === "par") {
                 let msg = "Special parameters of lock command:\n" +
                     "code must be between 0 and 9999.\n" +
                     "password is limited to 8 characters.\n" +
-                    "portal code must include 8 characters, using only 0-9 and a-f.\n" +
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
                     "10080 minutes for locks 14, 15 and 18\n" +
                     "Use ? if you want a time randomly choosen by the game\n" +
@@ -10137,7 +10136,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let hidetimer = "";
                 let minutes = 0;
                 let PS = "";
-                let ptcode = "";
                 let pw = "";
                 let removeitem = "";
                 let silent = 0;
@@ -10146,6 +10144,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringLock1 = args;
                 let stringLock2 = stringLock1.split(/[ ,]+/);
                 let lk = stringLock2[1];
+                if (!CommonIsNumeric(lk)) lk = 1; 
+                if ((lk < 1) || (lk > 21)) lk = 1;
                 let Lock = locks[lk];
                 if (lk == 9) removeitem = stringLock2[2];
                 if (lk == 10) code = stringLock2[2];
@@ -10155,7 +10155,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((lk == 11) || (lk == 12) || (lk == 16)) {
                     PS = /^[A-Z]+$/;
                     if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
-                } 
+                }             
                 if ((lk == 13) || (lk == 14) || (lk == 15)) {
                     let maxtime = 240;
                     if (lk != 13) maxtime = 10080;
@@ -10178,7 +10178,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     enableinput = stringLock2[4];
                     removeitem = stringLock2[5];
                 }
-                if (lk == 16) {
+                if (lk == 16) {           
                     let maxtime = 240;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[3])) && (stringLock2[3] == "?")) {
@@ -10218,15 +10218,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     hidetimer = stringLock2[3];
                     enableinput = stringLock2[4];
                     removeitem = stringLock2[5];
-                }
-                if (lk == 20) {
-                    PTS = /^[0-9a-f]+$/;
-                    ptcode = stringLock2[2];
-                }
-                if (lk != 22) dogs = 0;
+                }            
+                if (lk != 21) dogs = 0;
                 let targetname = stringLock2[0];
                 let target = TargetSearch(targetname);
-                if ((target != null) && (lk == 22)) {
+                if ((target != null) && (lk == 21)) {
                     if (target == Player) {
                         if (Player.ExtensionSettings.DOGS != null) {
                             let str = Player.ExtensionSettings.DOGS;
@@ -10279,15 +10275,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             for (let A = 0; A < target.Appearance.length; A++)
                                 if (target.Appearance[A].Asset.AllowLock == true) {
                                     if (((target.Appearance[A].Property != null) && (target.Appearance[A].Property.LockedBy == null)) || (target.Appearance[A].Property == null)) {
-                                        if (lk != 20) {
-                                            InventoryLock(target, target.Appearance[A], Lock, mn);
-                                        } else {
-                                            if (target.Appearance[A].Property.Attribute != null) {
-                                                if (target.Appearance[A].Property.Attribute.includes("PortalLinkLockable")) {
-                                                    InventoryLock(target, target.Appearance[A], Lock, mn);
-                                                }
-                                            }
-                                        }
+                                        InventoryLock(target, target.Appearance[A], Lock, mn);                                                             
                                         if (removeitem == "r") {
                                             target.Appearance[A].Property.RemoveOnUnlock = true;
                                             target.Appearance[A].Property.RemoveItem = true;
@@ -10303,7 +10291,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         if (hidetimer == "h") target.Appearance[A].Property.ShowTimer = false;
                                         if (enableinput == "i") target.Appearance[A].Property.EnableRandomInput = true;
                                         if ((lk == 10) && (code != null) && (code > -1) && (code < 10000)) target.Appearance[A].Property.CombinationNumber = code;
-                                        if ((lk == 20) && (ptcode != null) && (ptcode.length == 8) && (ptcode.match(PTS))) target.Appearance[A].Property.PortalLinkCode = ptcode;
                                         if (((lk == 11) || (lk == 12) || (lk == 16)) && (pw != null) && (pw.length <= 8) && (pw.match(PS))) target.Appearance[A].Property.Password = pw;
                                         if ((lk == 17) || (lk == 18)) {
                                             target.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
@@ -10320,8 +10307,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         }
                                         if (lk == 17) target.Appearance[A].Property.Name = "Best Friend Padlock";
                                         if (lk == 18) target.Appearance[A].Property.Name = "Best Friend Timer Padlock";
-                                        if (lk == 21) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock";
-                                        if (lk == 22) {
+                                        if (lk == 20) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}_Luzi_Padlock";
+                                        if (lk == 21) {
                                             target.Appearance[A].Property.LockedBy = "ExclusivePadlock";
                                             target.Appearance[A].Property.Name = "DeviousPadlock";
                                         }
