@@ -10096,7 +10096,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8, 17, 19 to 21\n" +
+                    "/lock (target) (locktype) for locks 1 to 8, 17, 19 to 22\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
                     "/lock (target) (locktype) (code) for lock 10\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
@@ -10109,7 +10109,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "10 Combination - 11 Safeword - 12 Password\n" +
                     "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
                     "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
-                    "19 Family - 20 Lewd Crest - 21 Devious (if enabled)\n" +
+                    "19 Family - 20 Lewd Crest - 21 Devious (if enabled)\n" +  
+		    "22 Portal Link (only for specific item)\n" +
                     "Locks 17, 18, 20 and 21 require a specific mod\n" +
                     "Use <b>/lock par</b> for info about other parameters";
                 infomsg(msg);
@@ -10120,6 +10121,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
                     "10080 minutes for locks 14, 15 and 18\n" +
                     "Use ? if you want a time randomly choosen by the game\n" +
+		    "Use the portal options to set the code of Portal Link lock\n" +
                     " \n" +
                     "Optional parameters:\n" +
                     "h to hide the timer,\n" +
@@ -10145,7 +10147,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringLock2 = stringLock1.split(/[ ,]+/);
                 let lk = stringLock2[1];
                 if (!CommonIsNumeric(lk)) lk = 1; 
-                if ((lk < 1) || (lk > 21)) lk = 1;
+                if ((lk < 1) || (lk > 22)) lk = 1;
                 let Lock = locks[lk];
                 if (lk == 9) removeitem = stringLock2[2];
                 if (lk == 10) code = stringLock2[2];
