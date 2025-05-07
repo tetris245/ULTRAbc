@@ -10149,15 +10149,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let Lock = locks[lk];
                 if (lk == 9) removeitem = stringLock2[2];
                 if (lk == 10) code = stringLock2[2];
-                if (lk == 11) {
+                if (lk == 11) pw = "PLEASE";
+                if (lk == 12) pw = "PASSWORD";
+                if ((lk == 11) || (lk == 12)) {
                     PS = /^[A-Z]+$/;
-                    pw = "PLEASE";
-                    if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
-                    removeitem = stringLock2[3];
-                }
-                if (lk == 12) {
-                    PS = /^[A-Z]+$/;
-                    pw = "PASSWORD";
                     if (stringLock2[2] != null) pw = stringLock2[2].toUpperCase();
                     removeitem = stringLock2[3];
                 }
