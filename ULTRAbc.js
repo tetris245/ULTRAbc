@@ -10191,7 +10191,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         minutes = Result;
                     }
                     if (CommonIsNumeric(stringLock2[3])) {
-                        minutes = stringLock2[2];
+                        minutes = stringLock2[3];
                         if (minutes < 5) minutes = 5;
                         if (minutes > maxtime) minutes = maxtime;
                     }
