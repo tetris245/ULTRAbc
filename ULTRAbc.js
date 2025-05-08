@@ -12868,11 +12868,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 WheelFortuneRoleplay = false;
                                 const Result = [];
                                 let Roll = Math.floor(Math.random() * WheelFortuneOption.length);
-                                Result.push(Roll);
-                                let msg = tmpname + " randomly forces an option of " + tgpname + "'s wheel.";
-                                publicmsg(msg);
-                                WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[Result];
-                                WheelFortuneResult();
+                                let id = WheelFortuneOption[Roll].ID;
+                                if ((id != "j") && (id != "k") && (id != "l") && (id != "m")) {                                         
+                                    Result.push(Roll);
+                                    let msg = tmpname + " randomly forces an option of " + tgpname + "'s wheel.";
+                                    publicmsg(msg);
+                                    WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[Result];
+                                    WheelFortuneResult();
+                                } else {
+                                     WheelFortuneExit();
+                                     let msg = "No result! Try again!";
+                                     infomsg(msg);
+                                }
                             }
                         }
                     }
