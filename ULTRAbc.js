@@ -92,7 +92,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cdesk = 0;
     let cextra = false;
     let cfame = 200;
-    let drname = "AbandonedBuilding";
     let frname = "BrickWall";
     let gamestable = false;
     let gl = 0;
@@ -478,7 +477,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cdesk = 0;
             cextra = false;
             cfame = 200;
-            drname = "AbandonedBuilding";
             frname = "BrickWall";
             gamestable = false;
             gl = 0;
@@ -588,7 +586,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cdesk = datas.cdesk;
             cextra = datas.cextra;
             cfame = datas.cfame;
-            drname = datas.drname;
             frname = datas.frname;
             gamestable = datas.gamestable;
             gl = datas.gaglevel;
@@ -699,7 +696,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cdesk": cdesk,
             "cextra": cextra,
             "cfame": cfame,
-            "drname": drname,
             "frname": frname,
             "gamestable": gamestable,
             "gaglevel": gl,
@@ -836,7 +832,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 200;
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
-                if (drname == null || drname == undefined) drname = "AbandonedBuilding";
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (ExtrainfoOn == null || ExtrainfoOn == undefined) ExtrainfoOn = false;
                 if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
@@ -2251,7 +2246,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRACellClick();
     ULTRACellLoad();
     ULTRACellRun();
-    ULTRAChatAdminLoad();
     ULTRAChatRoomClick();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
@@ -2378,15 +2372,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Room (+ name/nickname/pronouns management for player)
-    async function ULTRAChatAdminLoad() {
-        modApi.hookFunction('ChatAdminLoad', 4, (args, next) => {
-            if (!ChatAdminData.Background) {
-                ChatAdminData.Background = drname;
-            }
-            next(args);
-        });
-    }
-
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (ExtbuttonsOn == true) {
@@ -7464,22 +7449,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Tag: [BackgroundsTagIndoor]
                 });
                 BackgroundsList.push({
-                    Name: "CollegeCafeteria",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "CollegeClass2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "CollegeDetention",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "CollegeEntrance",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
                     Name: "CollegeTeacherLounge",
                     Tag: [BackgroundsTagIndoor]
                 });
@@ -7992,8 +7961,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
                     " \n" +
-                    "If you don't use BCX: 0 to 171 for official BC backgrounds, 172 to 259 are added if you use the /bg1 command.\n" +
-                    "If you use BCX: 0 to 171 for official BC backgrounds, 172 to 264 are added by BCX, 265 and 266 are added if you use the /bg1 command.\n" +
+                    "If you don't use BCX: 0 to 176 for official BC backgrounds, 177 to 261 are added if you use the /bg1 command.\n" +
+                    "If you use BCX: 0 to 176 for official BC backgrounds, 177 to 274 are added by BCX, 275 and 276 are added if you use the /bg1 command.\n" +
                     " \n" +
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
                 infomsg(msg);
@@ -8087,13 +8056,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let drback = "";
                         if ((drbg > -2) && (drbg < (BackgroundsList.length - 1))) {
                             if (drbg == -1) {
-                                drback = "AbandonedBuilding";
+                                drback = "CosyChalet";
                             } else {
                                 drback = BackgroundsList[drbg].Name;
                             }
-                            drname = drback;
-                            M_MOANER_saveControls();
-                            let msg = "The default background when creating a new room is now: " + drname + ".";
+                            PreferenceOnlineDefaultBackground = drback;
+                            Player.OnlineSettings.DefaultChatRoomBackground = drback;
+                            ServerAccountUpdate.QueueData({
+                                OnlineSettings: Player.OnlineSettings
+                            });
+                            let msg = "The background of the main hall is now: " + drback + ".";
                             infomsg(msg);
                         }
                     }
