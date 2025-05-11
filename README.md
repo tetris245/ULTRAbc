@@ -65,4 +65,4 @@ Changes for future version
   - Made the metal lock as default lock when you don't specify the lock type or enter a wrong value
 * Made the metal lock as default lock in the unlock command if you enter a wrong value
 * Optimised the general working of the lock and unlock commands by using a constant that contains all lock types
-* Updated the bg1 and bg4 commands for R116 compatibility
+* Updated the bg1 and bg4 commands + the patch of the PrivateClick function for R116 compatibility
