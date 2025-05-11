@@ -2285,6 +2285,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPlatformDialogEvent();
     ULTRAPreferenceClick();
     ULTRAPreferenceRun();
+    ULTRAPreferenceSubscreenOnlineClick();
+    ULTRAPreferenceSubscreenOnlineRun();
     ULTRAPrivateClick();
     ULTRAPrivateRun();
     ULTRAStablePlayerTrainingCarrotsEnd();
@@ -3745,6 +3747,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
+
+    async function ULTRAPreferenceSubscreenOnlineClick() {
+        modApi.hookFunction('PreferenceSubscreenOnlineClick', 4, (args, next) => {
+           if (PreferencePageCurrent === 2) {
+               if ((MouseIn(1260, 330, 60, 60) )) {
+                   let Roll = Math.floor(Math.random() * BackgroundsTagList.length);
+                   let name = BackgroundsList[Roll].Name;
+                   PreferenceOnlineDefaultBackground = name;
+                   Player.OnlineSettings.DefaultChatRoomBackground = name;
+                   PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
+		   CommonSetScreen("Character", "Preference");
+		   PreferenceSubscreen = PreferenceSubscreens.find(s => s.name === "Online");
+		   PreferenceSubscreen?.load();
+		   PreferencePageCurrent = 2;
+	       }
+           } 
+           next(args);
+       });
+   }
+
+    async function ULTRAPreferenceSubscreenOnlineRun() {
+        modApi.hookFunction('PreferenceSubscreenOnlineRun', 4, (args, next) => {
+           if (PreferencePageCurrent === 2) {
+               DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
+               DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
+           }
+           next(args);
+       });
+   }
 
     //Private Room
     async function ULTRAPrivateClick() {
