@@ -8065,7 +8065,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 OnlineSettings: Player.OnlineSettings
                             });
-                            let msg = "The background of the main hall is now: " + drback + ".";
+                            let msg = "The default background when creating a new room is now: " + drback + ".";
                             infomsg(msg);
                         }
                     }
