@@ -1961,8 +1961,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
-                addMenuCheckbox(64, 64, "Access all backgrounds in Private Room: ", "bgall",
-                    "With this option, you will not be limited to only 43 backgrounds when using the features in the Private Room to change the background of Friend List, Main Hall, Private Room and Timer Cell. You will have access to all standard backgrounds (more than 250!)", false, 120
+                addMenuCheckbox(64, 64, "Access all backgrounds: ", "bgall",
+                    "With this option, you will not be limited to only 41 backgrounds in the Private Cell to change several backgrounds (Main Hall, Friend List, Private Room and Timer Cell), or to 177 backgrounds in Online preferences to change the default Chatroom background. You will have access to all standard backgrounds (more than 250!)", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
