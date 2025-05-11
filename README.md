@@ -59,6 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
+* Added RANDOM button to choose default chatroom background in Online settings
 * Improved the location of UBC buttons in chat rooms, so you will always be able to see icons above characters, especially the Echo's skirt
 * Changes in the lock command:
   - Removed the code part for the portal link lock (better use the graphical screen with the portal options)
