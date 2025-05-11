@@ -3752,7 +3752,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PreferenceSubscreenOnlineClick', 4, (args, next) => {
            if (PreferencePageCurrent === 2) {
                if ((MouseIn(1260, 330, 60, 60) )) {
-                   let Roll = Math.floor(Math.random() * BackgroundsTagList.length);
+                   let listbg = PreferenceOnlineDefaultBackgroundList.length;
+                   if (bgall) listbg = BackgroundsList.length;
+                   let Roll = Math.floor(Math.random() * listbg);
                    let name = BackgroundsList[Roll].Name;
                    PreferenceOnlineDefaultBackground = name;
                    Player.OnlineSettings.DefaultChatRoomBackground = name;
