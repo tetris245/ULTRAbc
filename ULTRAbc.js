@@ -1961,7 +1961,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
-                addMenuCheckbox(64, 64, "Access all backgrounds: ", "bgall",
+                addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
                     "With this option, you will not be limited to only 41 backgrounds in the Private Cell to change several backgrounds (Main Hall, Friend List, Private Room and Timer Cell), or to 177 backgrounds in Online preferences to change the default Chatroom background. You will have access to all standard backgrounds (more than 250!)", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
