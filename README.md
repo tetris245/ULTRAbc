@@ -65,4 +65,5 @@ Changes for future version
   - Made the metal lock as default lock when you don't specify the lock type or enter a wrong value
 * Made the metal lock as default lock in the unlock command if you enter a wrong value
 * Updated the bg1 and bg4 commands + the patch of the PrivateClick function for R116 compatibility
+* Extended the access to all standard backgrounds: it will also be activated for the new screen in Online settings, related to the default chatroom background
 * Optimised the general working of the lock and unlock commands by using a constant 
