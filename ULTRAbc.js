@@ -3766,47 +3766,53 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(1885, PrivateButtonTop(3), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChangeOwnClothes()) CharacterAppearanceLoadCharacter(Player);
             if (MouseIn(1885, PrivateButtonTop(4), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChangeOwnClothes() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
             if (MouseIn(1885, PrivateButtonTop(5), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage) && PrivateBedActive()) CommonSetScreen("Room", "PrivateBed");
-            if (MouseIn(1885, PrivateButtonTop(6), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset + 4 == PrivateCharacterMax) ? 0 : PrivateCharacterOffset + 4;
-            let backgrounds = BackgroundsGenerateList(BackgroundsPrivateRoomTagList);
-            if (bgall == true) backgrounds = BackgroundsGenerateList(BackgroundsTagList);
-            if (Player.VisualSettings == null) Player.VisualSettings = {};
+            if (MouseIn(1885, PrivateButtonTop(6), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset + 4 == PrivateCharacterMax) ? 0 : PrivateCharacterOffset + 4; 
+            let backgrounds = BackgroundsPrivateRoomTagList;
+            if (bgall) backgrounds = BackgroundsTagList;
             if (MouseIn(1885, PrivateButtonTop(7), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
-                let index = backgrounds.indexOf(MainHallBackground);
-                if (index < 0) index = 0;
-                BackgroundSelectionMake(backgrounds, index, Name => {
-                    Player.VisualSettings.MainHallBackground = Name;
-                    ServerAccountUpdate.QueueData({
-                        VisualSettings: Player.VisualSettings
-                    });
-                });
-            }
+                BackgroundSelectionMake(backgrounds, MainHallBackground, (Name, setBackground) => {
+	            if (setBackground) {
+		        if (Name !== "MainHall") {
+			    Player.VisualSettings.MainHallBackground = Name;
+		        } else {
+			    delete Player.VisualSettings.MainHallBackground;
+			}
+			ServerAccountUpdate.QueueData({ VisualSettings: Player.VisualSettings });
+		    }
+		    CommonSetScreen("Room", "Private");
+	        });
+            }       
             if (MouseIn(1885, PrivateButtonTop(8), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
-                let index = backgrounds.indexOf(PrivateBackground);
-                if (index < 0) index = 0;
-                BackgroundSelectionMake(backgrounds, index, Name => {
-                    Player.VisualSettings.PrivateRoomBackground = Name;
-                    PrivateBackground = Name;
-                    ServerAccountUpdate.QueueData({
-                        VisualSettings: Player.VisualSettings
-                    });
-
-                });
-            }
+                BackgroundSelectionMake(backgrounds, PrivateBackground, (Name, setBackground) => {
+		    if (setBackground) {
+                        PrivateBackground = Name;
+			if (Name !== "MainHall") {
+			    Player.VisualSettings.PrivateRoomBackground = Name;   
+			} else {
+			    delete Player.VisualSettings.PrivateRoomBackground;
+			}
+			ServerAccountUpdate.QueueData({ VisualSettings: Player.VisualSettings });
+		    }
+		    CommonSetScreen("Room", "Private");
+	        });
+            }                             
             if (MouseIn(0, 900, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
-                let index = backgrounds.indexOf(frname);
-                if (index < 0) index = 0;
-                BackgroundSelectionMake(backgrounds, index, Name => {
-                    frname = Name;
-                    M_MOANER_saveControls();
-                });
-            }
+                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+		    if (setBackground) { 
+                        frname = Name;
+                        M_MOANER_saveControls();
+                    }
+		    CommonSetScreen("Room", "Private");
+	        });
+            }  
             if (MouseIn(0, 950, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
-                let index = backgrounds.indexOf(tcname);
-                if (index < 0) index = 0;
-                BackgroundSelectionMake(backgrounds, index, Name => {
-                    tcname = Name;
-                    M_MOANER_saveControls();
-                });
+                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+		    if (setBackground) {
+                        tcname = Name;
+                        M_MOANER_saveControls();
+                    }
+		    CommonSetScreen("Room", "Private");
+	        });    
             }
             if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage)) PrivateClickCharacter();
             if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
