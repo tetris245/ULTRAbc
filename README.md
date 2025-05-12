@@ -61,9 +61,10 @@ Changes for future version
 
 * Added Club Card Game button in Chat Search to get only the rooms with this game in the current lobby
   - Note: It's independant from the setting in UBC Chat Search, and it's automatically disabled when clicking on any other bottom buttons (except Extensions) in Chat Search
+* Added RANDOM button in the Chat Room creation screen to randomly select one currently available background 
 * Added RANDOM button in Main Hall to randomly select one currently available background 
 * Added RANDOM button in Online settings to choose default chatroom background
-* Removed the buttons in Main Hall and Chat Search, that correspond to lobbies (Only F - Only M) you can't access
+* Removed the buttons in Chat Search and Main Hall, that correspond to lobbies (Only F - Only M) you can't access
 * Extended the access to all standard backgrounds: it will also be activated for the new screen in Online settings, related to the default chatroom background
 * Improved the location of UBC buttons in chat rooms, so you will always be able to see icons above characters, especially the Echo's skirt
 * Changes in the lock command:
