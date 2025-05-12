@@ -2251,6 +2251,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRACellClick();
     ULTRACellLoad();
     ULTRACellRun();
+    ULTRAChatAdminClick();
+    ULTRAChatAdminRun();
     ULTRAChatRoomClick();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
@@ -2307,7 +2309,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumMeetingRun();
     ULTRAAsylumTherapyRun();
     ULTRACafeRun();
-    ULTRAChatAdminRun();
     ULTRAChatAdminRoomCustomizationRun();
     ULTRAChatSelectRun();
     ULTRAChestLockpickRun();
@@ -2379,6 +2380,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Room (+ name/nickname/pronouns management for player)
+    async function ULTRAChatAdminClick() {
+        modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
+            if (ChatAdminCanEdit()) { 
+                 if (MouseIn(1230, 450, 60, 60)) { 
+                     let listbg = BackgroundsList.length;
+                     let Roll = Math.floor(Math.random() * listbg);
+                     let name = BackgroundsList[Roll].Name;
+                     ChatAdminData.Background = ChatAdminBackgroundList[Roll];
+		     return;
+                 }
+            }
+            next(args);
+        });
+    }
+
+    async function ULTRAChatAdminRun() {
+        modApi.hookFunction('ChatAdminRun', 4, (args, next) => {
+            TintsEffect();
+            DrawButton(1230, 450, 60, 60, "", "White", "", "Random background");
+            DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
+            next(args);
+        });
+    }
+
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (ExtbuttonsOn == true) {
