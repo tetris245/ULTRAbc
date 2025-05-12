@@ -61,7 +61,7 @@ Changes for future version
 
 * Added Club Card Game button in Chat Search to get only the rooms with this game in the current lobby
   - Note: It's independant from the setting in UBC Chat Search, and it's automatically disabled when clicking on any other bottom buttons (except Extensions) in Chat Search
-* Added RANDOM button in Main Hall to randomly selecting one currently available background 
+* Added RANDOM button in Main Hall to randomly select one currently available background 
 * Added RANDOM button in Online settings to choose default chatroom background
 * Removed the buttons in Main Hall and Chat Search, that correspond to lobbies (Only F - Only M) you can't acess
 * Extended the access to all standard backgrounds: it will also be activated for the new screen in Online settings, related to the default chatroom background
