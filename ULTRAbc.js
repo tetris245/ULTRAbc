@@ -2430,7 +2430,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if ((OutbuttonsOn == true) && (NoescapeOn == false)) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) 
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) {
                     if (SlowleaveOn == true) {
                         let msg = "" + tmpname + " slowly heads for the door.";
                         publicmsg(msg);
