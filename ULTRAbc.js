@@ -3521,14 +3521,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(1645, 145, 90, 90)) MainHallMoveToChatSelect();
             if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
                 if (IsFemale() == true) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+                if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
             if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
                 if (AsylumLimitOn == false) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
             }
             if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
-                if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-            }
+                if (BackgroundsList != undefined) {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    let name = BackgroundsList[Roll].Name;
+                    Player.VisualSettings.MainHallBackground = name;
+                    ServerAccountUpdate.QueueData({
+                        VisualSettings: Player.VisualSettings
+                    }); 
+                    MainHallLoad();
+                }
+            } 
             if (MouseIn(240, 585, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
             if (MouseIn(240, 695, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) PrfClick();
@@ -3543,22 +3553,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MainCanvas.textAlign = "center";
             TintsEffect();
             DrawText("Chat Rooms", 130, 530, "White", "Black");
-            if (IsFemale() == true) {
-                DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            } else {
-                DrawButton(240, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            }
+            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
+            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
             if (AsylumLimitOn == true) {
                 DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
             } else {
                 DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
             }
             DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
-            if (IsMale() == true) {
-                DrawButton(570, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            } else {
-                DrawButton(570, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            }
+            DrawButton(570, 475, 90, 90, "", "White", "Icons/Random.png", "Random background");         
             DrawText("ULTRAbc", 130, 615, "White", "Black");
             DrawText(UBCver, 140, 655, "White", "Black");
             DrawButton(240, 585, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
