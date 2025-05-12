@@ -59,7 +59,8 @@ All else I might not have included.
 
 Changes for future version
 
-* Added RANDOM button to choose default chatroom background in Online settings
+* Added RANDOM button in Main Hall to randomly selecting one currently available background (+ removed buttons corresponding to lobbies you can't accessà
+* Added RANDOM button in Online settings to choose default chatroom background
 * Extended the access to all standard backgrounds: it will also be activated for the new screen in Online settings, related to the default chatroom background
 * Improved the location of UBC buttons in chat rooms, so you will always be able to see icons above characters, especially the Echo's skirt
 * Changes in the lock command:
