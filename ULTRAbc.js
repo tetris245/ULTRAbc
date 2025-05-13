@@ -2398,7 +2398,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatAdminRun() {
         modApi.hookFunction('ChatAdminRun', 4, (args, next) => {
             TintsEffect();
-            DrawButton(1230, 450, 60, 60, "", "White", "", "Random background");
+            if (ChatAdminCanEdit()) { 
+                DrawButton(1230, 450, 60, 60, "", "White", "", "Random background");
+            } else {
+                DrawButton(1230, 450, 60, 60, "", "Gray", "", "Random background");
+            } 
             DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
             next(args);
         });
