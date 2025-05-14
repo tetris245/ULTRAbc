@@ -7810,7 +7810,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": adds hidden backgrounds to the selection screen.",
         Action: () => {
             morebg();         
-            let msg = "You can use more standard backgrounds now.";
+            let msg = "You can use more standard backgrounds now. In addition, if you use BCX, the backgrouds added and hidden by this mod are now directly visible.";
             infomsg(msg);
         }
     }])
