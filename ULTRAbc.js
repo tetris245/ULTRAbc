@@ -1968,7 +1968,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
                 addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
-                    "With this option, you will not be limited to only 41 backgrounds in the Private Cell to change several backgrounds (Main Hall, Friend List, Private Room and Timer Cell), or to 177 backgrounds in Online preferences to change the default Chatroom background. You will have access to all standard backgrounds (more than 250!). This option also unhides the backgrounds hidden by BCX in the background selection screen. Note: if you disable it later, the list of available backgrounds will be updated only after a full relog.", false, 120
+                    "With this option, you will not be limited to 41 backgrounds in Private Cell or 177 backgrounds in Online preferences to change several backgrounds. You will have access to all standard backgrounds (more than 250!). This option also unhides the backgrounds hidden by BCX in the background selection screen. Note: if you disable it later, the concerned backgrounds will be hidden again only after a full relog.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
@@ -1983,7 +1983,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When you use the TAB key to get help about BC commands, the displayed results are removed from the chat after some time. If you don't like that, use this option to prevent the disappearance of the help results.", false, 120
                 );
             }
-
+	
             PreferenceSubscreenUBCMiscRun = function() {
                 drawMenuElements();
             }
