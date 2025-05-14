@@ -922,6 +922,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 ini = 1;
+		if (bgall) morebg();
                 FBCsettings();
                 runUBC();
             } catch (err) {
@@ -1967,7 +1968,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
                 addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
-                    "With this option, you will not be limited to only 41 backgrounds in the Private Cell to change several backgrounds (Main Hall, Friend List, Private Room and Timer Cell), or to 177 backgrounds in Online preferences to change the default Chatroom background. You will have access to all standard backgrounds (more than 250!)", false, 120
+                    "With this option, you will not be limited to only 41 backgrounds in the Private Cell to change several backgrounds (Main Hall, Friend List, Private Room and Timer Cell), or to 177 backgrounds in Online preferences to change the default Chatroom background. You will have access to all standard backgrounds (more than 250!). This option also unhides the backgrounds hidden by BCX in the background selection screen. Note: if you disable it later, the list of available backgrounds will be updated only after a full relog.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
@@ -4580,6 +4581,342 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Other functions
 
     //Background
+    function morebg() {
+        BackgroundsList.push({
+            Name: "AmandaCollarIntro",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "AmandaIntro",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "AsylumBedroom",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "AsylumEntrance",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "AsylumGGTSRoom",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "AsylumGGTSRoomAlert",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "AsylumMeeting",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "AsylumTherapy",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Bar",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "BrickWall",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Cell",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "ClubCardLounge",
+            Tag: [BackgroundsTagIndoor]
+            });  
+        BackgroundsList.push({
+            Name: "CollegeTeacherLounge",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "CollegeTennisPlay",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "CraftingWorkshop",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Dressing",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Gambling",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "grey",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "HorseStableLight",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Magic",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "MagicSchoolEscape",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "MagicSchoolLaboratory",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "/Orig/Entrance",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "/Orig/Lounge",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "OutsideCells",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "PaddedCell",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "PaddedCell2",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Ground/Entrance",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Cell0",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Cell1",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Cell2",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Cell3",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Cell4",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Cell5",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Cell6",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Entrance",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Fork0",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Fork1",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Fork2",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Fork3",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Fork4",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Fork5",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Fork6",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Rest0",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Tunnel0",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Tunnel1",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Tunnel2",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Tunnel3",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Tunnel4",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Tunnel5",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Second/Tunnel6",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Entrance",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Fork0",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Fork1",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Fork2",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Fork3",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Fork4",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Fork5",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Fork6",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Rest0",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Tunnel0",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Tunnel1",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Tunnel2",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Tunnel3",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Tunnel4",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Tunnel5",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Pandora/Underground/Tunnel6",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Prison",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "RhythmGame",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "RhythmGameLoading",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "SarahBedroom0",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "SarahBedroom1",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "SarahBedroom2",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "SarahBedroom3",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "SarahIntro",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Sheet",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "SheetWhite",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "Shop",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "SlaveMarket",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "SophieIntro",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "White",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "HypnoSpiral2",
+            Tag: [BackgroundsTagIndoor]
+        });
+        BackgroundsList.push({
+            Name: "HypnoticSpiral",
+            Tag: [BackgroundsTagIndoor]
+        });
+        ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
+    }
+	
     function updateBackground() {
         let UpdatedRoom = {
             Name: ChatRoomData.Name,
@@ -7473,345 +7810,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'bg1',
         Description: ": adds hidden backgrounds to the selection screen.",
         Action: () => {
-            if (!window.BCX_Loaded == true) {
-                BackgroundsList.push({
-                    Name: "AmandaCollarIntro",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "AmandaIntro",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "AsylumBedroom",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "AsylumEntrance",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "AsylumGGTSRoom",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "AsylumGGTSRoomAlert",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "AsylumMeeting",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "AsylumTherapy",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Bar",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "BrickWall",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Cell",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "ClubCardLounge",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "ClubCardPlayBoard1",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "CollegeTeacherLounge",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "CollegeTennisPlay",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "CraftingWorkshop",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Dressing",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Gambling",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "grey",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "HorseStableLight",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Magic",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "MagicSchoolEscape",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "MagicSchoolLaboratory",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "/Orig/Entrance",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "/Orig/Lounge",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "OutsideCells",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "PaddedCell",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "PaddedCell2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Ground/Entrance",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Cell0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Cell1",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Cell2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Cell3",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Cell4",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Cell5",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Cell6",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Entrance",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Fork0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Fork1",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Fork2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Fork3",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Fork4",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Fork5",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Fork6",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Rest0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Tunnel0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Tunnel1",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Tunnel2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Tunnel3",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Tunnel4",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Tunnel5",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Second/Tunnel6",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Entrance",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Fork0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Fork1",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Fork2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Fork3",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Fork4",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Fork5",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Fork6",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Rest0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Tunnel0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Tunnel1",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Tunnel2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Tunnel3",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Tunnel4",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Tunnel5",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Pandora/Underground/Tunnel6",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Prison",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "RhythmGame",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "RhythmGameLoading",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "SarahBedroom0",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "SarahBedroom1",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "SarahBedroom2",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "SarahBedroom3",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "SarahIntro",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Sheet",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "SheetWhite",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "Shop",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "SlaveMarket",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "SophieIntro",
-                    Tag: [BackgroundsTagIndoor]
-                });
-                BackgroundsList.push({
-                    Name: "White",
-                    Tag: [BackgroundsTagIndoor]
-                });
-            }
-            BackgroundsList.push({
-                Name: "HypnoSpiral2",
-                Tag: [BackgroundsTagIndoor]
-            });
-            BackgroundsList.push({
-                Name: "HypnoticSpiral",
-                Tag: [BackgroundsTagIndoor]
-            });
-            ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
+            morebg();         
             let msg = "You can use more standard backgrounds now.";
             infomsg(msg);
         }
@@ -8038,9 +8037,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "5 = Creation of New Room (default)\n" +
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
-                    " \n" +
-                    "If you don't use BCX: 0 to 176 for official BC backgrounds, 177 to 261 are added if you use the /bg1 command.\n" +
-                    "If you use BCX: 0 to 176 for official BC backgrounds, 177 to 274 are added by BCX, 275 and 276 are added if you use the /bg1 command.\n" +
+                    "Without BCX: 0 to 187 for official BC backgrounds, 188 to 270 are added if you use the /bg1 command or have enabled Access all standard backgrounds.\n" +
+                    "With BCX: 0 to 187 for official BC backgrounds, 188 to 275 are added by BCX, 276 to 358 are added if you use the /bg1 command or have enabled Access all standard backgrounds (some backgrounds have two numbers).\n" +
                     " \n" +
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
                 infomsg(msg);
