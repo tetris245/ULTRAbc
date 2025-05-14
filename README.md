@@ -71,5 +71,6 @@ Changes for future version
   - Removed the code part for the portal link lock (better use the graphical screen with the portal options)
   - Made the metal lock as default lock when you don't specify the lock type or enter a wrong value
 * Made the metal lock as default lock in the unlock command if you enter a wrong value
-* Updated the bg1 and bg4 commands + the patch of the PrivateClick function for R116 compatibility
+* Updated and modified the bg1 command, so it will also unhide the backgrounds added by BCX if you use this mod
+* Updated the bg4 command + the patch of the PrivateClick function for R116 compatibility
 * Optimised the general working of the lock and unlock commands by using a constant 
