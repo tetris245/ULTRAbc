@@ -922,7 +922,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 ini = 1;
-		if (bgall) morebg();
                 FBCsettings();
                 runUBC();
             } catch (err) {
@@ -1968,7 +1967,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
                 addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
-                    "With this option, you will not be limited to 41 backgrounds in Private Cell or 177 backgrounds in Online preferences to change several backgrounds. You will have access to all standard backgrounds (more than 250!). This option also unhides the backgrounds hidden by BCX in the background selection screen, but only after a full relog (also required to hide them again if you disable later this option).", false, 120
+                    "With this option, you will not be limited to 41 backgrounds in Private Cell or 177 backgrounds in Online preferences to change several backgrounds. You will have access to all standard backgrounds (more than 250!).", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
