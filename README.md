@@ -65,7 +65,9 @@ Changes for future version
 * Added RANDOM button in Main Hall to randomly select one currently available background 
 * Added RANDOM button in Online settings to choose default chatroom background
 * Removed the buttons in Chat Search and Main Hall, that correspond to lobbies (Only F - Only M) you can't access
-* Extended the access to all standard backgrounds: it will also be activated for the new screen in Online settings, related to the default chatroom background
+* Extended the access to all standard backgrounds:
+  - it will also be activated for the new screen in Online settings, related to the default chatroom background
+  - this setting will also unhide the backgrounds hidden by BCX in the background selection screen
 * Improved the location of UBC buttons in chat rooms, so you will always be able to see icons above characters, especially the Echo's skirt
 * Changes in the lock command:
   - Removed the code part for the portal link lock (better use the graphical screen with the portal options)
