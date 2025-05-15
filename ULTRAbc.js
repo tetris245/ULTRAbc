@@ -4589,30 +4589,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Name: "AmandaIntro",
             Tag: [BackgroundsTagIndoor]
         });
-        BackgroundsList.push({
-            Name: "AsylumBedroom",
-            Tag: [BackgroundsTagIndoor]
-        });
-        BackgroundsList.push({
-            Name: "AsylumEntrance",
-            Tag: [BackgroundsTagIndoor]
-        });
-        BackgroundsList.push({
-            Name: "AsylumGGTSRoom",
-            Tag: [BackgroundsTagIndoor]
-        });
-        BackgroundsList.push({
-            Name: "AsylumGGTSRoomAlert",
-            Tag: [BackgroundsTagIndoor]
-        });
-        BackgroundsList.push({
-            Name: "AsylumMeeting",
-            Tag: [BackgroundsTagIndoor]
-        });
-        BackgroundsList.push({
-            Name: "AsylumTherapy",
-            Tag: [BackgroundsTagIndoor]
-        });
+	if (!window.BCX_Loaded == true) {
+            BackgroundsList.push({
+                Name: "AsylumBedroom",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
+                Name: "AsylumEntrance",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
+                Name: "AsylumGGTSRoom",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
+                Name: "AsylumGGTSRoomAlert",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
+                Name: "AsylumMeeting",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
+                Name: "AsylumTherapy",
+                Tag: [BackgroundsTagIndoor]
+            });
+        }
         BackgroundsList.push({
             Name: "Bar",
             Tag: [BackgroundsTagIndoor]
@@ -4677,18 +4679,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Name: "/Orig/Lounge",
             Tag: [BackgroundsTagIndoor]
         });
-        BackgroundsList.push({
-            Name: "OutsideCells",
-            Tag: [BackgroundsTagIndoor]
-        });
-        BackgroundsList.push({
-            Name: "PaddedCell",
-            Tag: [BackgroundsTagIndoor]
-        });
-        BackgroundsList.push({
-            Name: "PaddedCell2",
-            Tag: [BackgroundsTagIndoor]
-        });
+	if (!window.BCX_Loaded == true) {
+            BackgroundsList.push({
+                Name: "OutsideCells",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
+                Name: "PaddedCell",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
+                Name: "PaddedCell2",
+                Tag: [BackgroundsTagIndoor]
+            });
+        }
         BackgroundsList.push({
             Name: "Pandora/Ground/Entrance",
             Tag: [BackgroundsTagIndoor]
@@ -8037,7 +8041,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
                     "Without BCX: 0 to 187 for official BC backgrounds, 188 to 270 are added if you use the /bg1 command.\n" +
-                    "With BCX: 0 to 187 for official BC backgrounds, 188 to 275 are added by BCX, 276 to 358 are added if you use the /bg1 command (some backgrounds have two numbers).\n" +
+                    "With BCX: 0 to 187 for official BC backgrounds, 188 to 275 are added by BCX, 276 to 349 are added if you use the /bg1 command (some backgrounds have two numbers).\n" +
                     " \n" +
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
                 infomsg(msg);
