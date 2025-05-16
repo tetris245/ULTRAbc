@@ -2384,7 +2384,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
             if (ChatAdminCanEdit()) { 
                  if (MouseIn(1230, 450, 60, 60)) { 
-                     let listbg = BackgroundsList.length;
+                     let listbg = BackgroundsList.length - 1;
                      let Roll = Math.floor(Math.random() * listbg);
                      let name = BackgroundsList[Roll].Name;
                      ChatAdminData.Background = ChatAdminBackgroundList[Roll];
@@ -3572,7 +3572,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
                 if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
+                    let listbg = BackgroundsList.length - 1;
                     let Roll = Math.floor(Math.random() * listbg);
                     let name = BackgroundsList[Roll].Name;
                     Player.VisualSettings.MainHallBackground = name;
@@ -3798,8 +3798,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PreferenceSubscreenOnlineClick', 4, (args, next) => {
            if (PreferencePageCurrent === 2) {
                if ((MouseIn(1260, 330, 60, 60) )) {
-                   let listbg = PreferenceOnlineDefaultBackgroundList.length;
-                   if (bgall) listbg = BackgroundsList.length;
+                   let listbg = PreferenceOnlineDefaultBackgroundList.length - 1;
+                   if (bgall) listbg = BackgroundsList.length - 1;
                    let Roll = Math.floor(Math.random() * listbg);
                    let name = BackgroundsList[Roll].Name;
                    PreferenceOnlineDefaultBackground = name;
