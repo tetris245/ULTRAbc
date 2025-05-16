@@ -2384,9 +2384,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
             if (ChatAdminCanEdit()) { 
                  if (MouseIn(1230, 450, 60, 60)) { 
-                     let listbg = BackgroundsList.length - 1;
+                     let listbg = BackgroundsList.length;
                      let Roll = Math.floor(Math.random() * listbg);
-                     let name = BackgroundsList[Roll].Name;
+                     let name = BackgroundsList[Roll - 1].Name;
                      ChatAdminData.Background = ChatAdminBackgroundList[Roll];
 		     return;
                  }
@@ -3572,9 +3572,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
                 if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length - 1;
+                    let listbg = BackgroundsList.length;
                     let Roll = Math.floor(Math.random() * listbg);
-                    let name = BackgroundsList[Roll].Name;
+                    let name = BackgroundsList[Roll - 1].Name;
                     Player.VisualSettings.MainHallBackground = name;
                     ServerAccountUpdate.QueueData({
                         VisualSettings: Player.VisualSettings
@@ -3798,10 +3798,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PreferenceSubscreenOnlineClick', 4, (args, next) => {
            if (PreferencePageCurrent === 2) {
                if ((MouseIn(1260, 330, 60, 60) )) {
-                   let listbg = PreferenceOnlineDefaultBackgroundList.length - 1;
-                   if (bgall) listbg = BackgroundsList.length - 1;
+                   let listbg = PreferenceOnlineDefaultBackgroundList.length;
+                   if (bgall) listbg = BackgroundsList.length;
                    let Roll = Math.floor(Math.random() * listbg);
-                   let name = BackgroundsList[Roll].Name;
+                   let name = BackgroundsList[Roll - 1].Name;
                    PreferenceOnlineDefaultBackground = name;
                    Player.OnlineSettings.DefaultChatRoomBackground = name;
                    PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
@@ -12919,9 +12919,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 WheelFortuneRoleplay = false;
                                 const Result = [];
                                 let Roll = Math.floor(Math.random() * WheelFortuneOption.length);
-                                let id = WheelFortuneOption[Roll].ID;
+                                let id = WheelFortuneOption[Roll - 1].ID;
                                 if ((id != "j") && (id != "k") && (id != "l") && (id != "m")) {                                         
-                                    Result.push(Roll);
+                                    Result.push(Roll - 1);
                                     let msg = tmpname + " randomly forces an option of " + tgpname + "'s wheel.";
                                     publicmsg(msg);
                                     WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[Result];
