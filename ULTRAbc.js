@@ -2386,6 +2386,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  if (MouseIn(1230, 450, 60, 60)) { 
                      let listbg = BackgroundsList.length;
                      let Roll = Math.floor(Math.random() * listbg);
+		     if (Roll == 0) Roll = 1;
                      let name = BackgroundsList[Roll - 1].Name;
                      ChatAdminData.Background = ChatAdminBackgroundList[Roll];
 		     return;
@@ -3574,6 +3575,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (BackgroundsList != undefined) {
                     let listbg = BackgroundsList.length;
                     let Roll = Math.floor(Math.random() * listbg);
+		    if (Roll == 0) Roll = 1;
                     let name = BackgroundsList[Roll - 1].Name;
                     Player.VisualSettings.MainHallBackground = name;
                     ServerAccountUpdate.QueueData({
@@ -3801,6 +3803,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                    let listbg = PreferenceOnlineDefaultBackgroundList.length;
                    if (bgall) listbg = BackgroundsList.length;
                    let Roll = Math.floor(Math.random() * listbg);
+		   if (Roll == 0) Roll = 1;
                    let name = BackgroundsList[Roll - 1].Name;
                    PreferenceOnlineDefaultBackground = name;
                    Player.OnlineSettings.DefaultChatRoomBackground = name;
@@ -12919,6 +12922,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 WheelFortuneRoleplay = false;
                                 const Result = [];
                                 let Roll = Math.floor(Math.random() * WheelFortuneOption.length);
+				if (Roll == 0) Roll = 1;
                                 let id = WheelFortuneOption[Roll - 1].ID;
                                 if ((id != "j") && (id != "k") && (id != "l") && (id != "m")) {                                         
                                     Result.push(Roll - 1);
