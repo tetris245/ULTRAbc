@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 4.9
+Most recent version: 5.0
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version4.9.zip file on the Releases page
+1. Download the ULTRAbc-version5.0.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,18 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added Club Card Game button in Chat Search to get only the rooms with this game in the current lobby
-  - Note: It's independant from the setting in UBC Chat Search, and it's automatically disabled when clicking on any other bottom buttons (except Extensions) in Chat Search
-* Added RANDOM button in the Chat Room creation screen to randomly select one currently available background 
-* Added RANDOM button in Main Hall to randomly select one currently available background 
-* Added RANDOM button in Online settings to choose default chatroom background
-* Removed the buttons in Chat Search and Main Hall, that correspond to lobbies (Only F - Only M) you can't access
-* Extended the access to all standard backgrounds: it will also be activated for the new screen in Online settings, related to the default chatroom background
-* Improved the location of UBC buttons in chat rooms, so you will always be able to see icons above characters, especially the Echo's skirt
-* Changes in the lock command:
-  - Removed the code part for the portal link lock (better use the graphical screen with the portal options)
-  - Made the metal lock as default lock when you don't specify the lock type or enter a wrong value
-* Made the metal lock as default lock in the unlock command if you enter a wrong value
-* Updated and modified the bg1 command, so it will also unhide the backgrounds added by BCX if you use this mod
-* Updated the bg4 command + the patch of the PrivateClick function for R116 compatibility
-* Optimised the general working of the lock and unlock commands by using a constant 
+(...)
