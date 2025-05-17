@@ -3406,6 +3406,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAClubCardRenderBoard() {
         modApi.hookFunction('ClubCardRenderBoard', 4, (args, next) => {
+	    Player.Game.ClubCard.Background = ccname;
             ClubCardBackground = ccname;
             next(args);
         });
