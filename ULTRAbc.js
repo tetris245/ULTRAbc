@@ -3230,8 +3230,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
             TintsEffect();
+	    KidnapLeagueResetOnlineBountyProgress();
             PandoraPenitentiaryCreate();
-            KidnapLeagueResetOnlineBountyProgress();
             if (ChatSearchFilterHelpActive) return ChatSearchFilterHelpDraw();
             if (ChatSearchFilterUnhideConfirm) return ChatSearchFilterUnhideConfirmDraw();
             if (ChatSearchMode == "") {
@@ -3267,8 +3267,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 DrawButton(1555, 25, 90, 90, "", !ChatSearchGhostPlayerOnClickActive ? "Lime" : "White", "Icons/Trash.png", TextGet("TempHideOnClick"));
                 DrawButton(1665, 25, 90, 90, "", ChatSearchGhostPlayerOnClickActive ? "Lime" : "White", "Icons/GhostList.png", TextGet("GhostPlayerOnClick"));
-                DrawButton(1775, 898, 90, 90, "", "White", "Icons/InspectLock.png", TextGet("ShowHiddenRooms"));
-                DrawButton(1885, 898, 90, 90, "", "White", "Icons/Question.png", TextGet("Help"));
+                DrawButton(1775, 25, 90, 90, "", "White", "Icons/InspectLock.png", TextGet("ShowHiddenRooms"));
+                DrawButton(1885, 25, 90, 90, "", "White", "Icons/Question.png", TextGet("Help"));
             }
             ChatSearchRoomSpaceSelectDraw();
             return;
