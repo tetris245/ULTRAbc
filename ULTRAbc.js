@@ -3153,32 +3153,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
-            if ((MouseX >= 385) && (MouseX < 465) && (MouseY >= 885) && (MouseY < 975)) {
+            if ((MouseX >= 385) && (MouseX < 475) && (MouseY >= 885) && (MouseY < 975)) {
                 clubcard = false;
                 rtype = "ALL";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
-            if ((MouseX >= 495) && (MouseX < 575) && (MouseY >= 885) && (MouseY < 975)) {
+            if ((MouseX >= 495) && (MouseX < 585) && (MouseY >= 885) && (MouseY < 975)) {
                 clubcard = false;
                 rtype = "Never";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
-            if ((MouseX >= 605) && (MouseX < 685) && (MouseY >= 885) && (MouseY < 975)) {
+            if ((MouseX >= 605) && (MouseX < 695) && (MouseY >= 885) && (MouseY < 975)) {
                 clubcard = false;
                 rtype = "Hybrid";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
-            if ((MouseX >= 715) && (MouseX < 795) && (MouseY >= 885) && (MouseY < 975)) {
+            if ((MouseX >= 715) && (MouseX < 805) && (MouseY >= 885) && (MouseY < 975)) {
                 clubcard = false;
                 rtype = "Always";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
-            if ((MouseX >= 1405) && (MouseX < 1485) && (MouseY >= 885) && (MouseY < 975)) ExtClick();
-            if ((MouseX >= 1515) && (MouseX < 1595) && (MouseY >= 885) && (MouseY < 975)) { 
+            if ((MouseX >= 1405) && (MouseX < 1495) && (MouseY >= 885) && (MouseY < 975)) ExtClick();
+            if ((MouseX >= 1515) && (MouseX < 1605) && (MouseY >= 885) && (MouseY < 975)) { 
                 clubcard = false;
                 M_MOANER_saveControls();   
                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
