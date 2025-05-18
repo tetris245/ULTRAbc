@@ -92,7 +92,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cdesk = 0;
     let cextra = false;
     let cfame = 200;
-    let clubcard = false;
     let frname = "BrickWall";
     let gamestable = false;
     let gl = 0;
@@ -478,7 +477,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cdesk = 0;
             cextra = false;
             cfame = 200;
-	    clubcard = false;
             frname = "BrickWall";
             gamestable = false;
             gl = 0;
@@ -588,7 +586,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             cdesk = datas.cdesk;
             cextra = datas.cextra;
             cfame = datas.cfame;
-	    clubcard = datas.clubcard;
             frname = datas.frname;
             gamestable = datas.gamestable;
             gl = datas.gaglevel;
@@ -699,7 +696,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cdesk": cdesk,
             "cextra": cextra,
             "cfame": cfame,
-            "clubcard": clubcard,
             "frname": frname,
             "gamestable": gamestable,
             "gaglevel": gl,
@@ -835,7 +831,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cdesk == null || cdesk == undefined) cdesk = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 200;
-		if (clubcard == null || clubcard == undefined) clubcard = false;
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (ExtrainfoOn == null || ExtrainfoOn == undefined) ExtrainfoOn = false;
@@ -1002,7 +997,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile: 0,
                 rchat: false,
                 reaction: 0,
-                rgame: 0,
                 rglbuttons: false,
                 rglsync: false,
                 rhide: false,
@@ -1576,7 +1570,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile = data.profile;
                 rchat = data.rchat;
                 reaction = data.reaction;
-                rgame = data.rgame;
                 RglbuttonsOn = data.rglbuttons;
                 RglsyncOn = data.rglsync;
                 rhide = data.rhide;
@@ -1804,9 +1797,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
                     "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search.", false, 134
                 );
-                addMenuInput(200, "Selected room game (0-5):", "rgame", "InputRoomGame",
-                    "Input a number between 0 and 5 to select a room game: 0 No limitation to a specific room game - 1 Only Club Card Game - 2 Only GGTS Game - 3 Only LARP Game - 4 Only Magic Battle Game - 5 Only Pandora Prison Game. If you choose a number between 1 and 5, the limitations about room type, room size and number of present players in room will not be applied."
-                );
                 addMenuCheckbox(64, 64, "Control normal/hybrid room size: ", "rchat",
                     "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms.", false, 134
                 );
@@ -1839,20 +1829,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCChatSearchExit = function() {
-                let game = ElementValue("InputRoomGame");
                 let min = ElementValue("InputRoomMin");
                 let max = ElementValue("InputRoomMax");
                 let min2 = ElementValue("InputPlayerMin");
                 let max2 = ElementValue("InputPlayerMax");
-                if ((CommonIsNumeric(game)) && (game > -1) && (game < 6) &&
-                    (CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21) &&
+                if ((CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21) &&
                     (CommonIsNumeric(min2)) && (min2 > 1) && (min2 < 21) && (CommonIsNumeric(max2)) && (max2 > 1) && (max2 < 21)) {
-                    Player.UBC.ubcSettings.rgame = game;
                     Player.UBC.ubcSettings.rmin = min;
                     Player.UBC.ubcSettings.rsize = max;
                     Player.UBC.ubcSettings.pmin = min2;
                     Player.UBC.ubcSettings.pmax = max2;
-                    ElementRemove("InputRoomGame");
                     ElementRemove("InputRoomMin");
                     ElementRemove("InputRoomMax");
                     ElementRemove("InputPlayerMin");
@@ -2987,7 +2973,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             TextArea.setAttribute("ID", "AutoJoinAlert");
                             document.body.appendChild(TextArea);
                             ElementValue("AutoJoinAlert", "AutoJoining...");
-                            ElementPosition("AutoJoinAlert", 1030, 970, 350);
+                            ElementPosition("AutoJoinAlert", 200, 970, 250);
                         }
                         if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
                             var RoomName = ChatSearchResult[C].Name;
@@ -3031,14 +3017,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const ret = next(args);
             let NewResult = [];
             let game = "";
-            if (clubcard == true) game = "ClubCard";
-            if ((clubcard == false) && (rgame != 0)) {
-                if (rgame == 1) game = "ClubCard";
-                if (rgame == 2) game = "GGTS";
-                if (rgame == 3) game = "LARP";
-                if (rgame == 4) game = "MagicBattle";
-                if (rgame == 5) game = "Prison";
-            }
+            if (rgame == 1) game = "ClubCard";
+            if (rgame == 2) game = "GGTS";
+            if (rgame == 3) game = "LARP";
+            if (rgame == 4) game = "MagicBattle";
+            if (rgame == 5) game = "Prison";
             if (game != "") {
                 let rm = 0;
                 while (rm < ret.length) {
@@ -3153,56 +3136,76 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
+            if ((MouseX >= 1390) && (MouseX < 1480) && (MouseY >= 25) && (MouseY < 115)) ExtClick();
             if ((MouseX >= 385) && (MouseX < 475) && (MouseY >= 885) && (MouseY < 975)) {
-                clubcard = false;
+                rgame = 0;
                 rtype = "ALL";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
             if ((MouseX >= 495) && (MouseX < 585) && (MouseY >= 885) && (MouseY < 975)) {
-                clubcard = false;
+                rgame = 0;
                 rtype = "Never";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
             if ((MouseX >= 605) && (MouseX < 695) && (MouseY >= 885) && (MouseY < 975)) {
-                clubcard = false;
+                rgame = 0;
                 rtype = "Hybrid";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
             if ((MouseX >= 715) && (MouseX < 805) && (MouseY >= 885) && (MouseY < 975)) {
-                clubcard = false;
+                rgame = 0;
                 rtype = "Always";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
-            if ((MouseX >= 1405) && (MouseX < 1495) && (MouseY >= 885) && (MouseY < 975)) ExtClick();
-            if ((MouseX >= 1515) && (MouseX < 1605) && (MouseY >= 885) && (MouseY < 975)) { 
-                clubcard = false;
+            if ((MouseX >= 950) && (MouseX < 1040) && (MouseY >= 885) && (MouseY < 975)) { 
+                rgame = 0;
                 M_MOANER_saveControls();   
                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
                 if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
-            if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) {
-                clubcard = false;
+            if ((MouseX >= 1060) && (MouseX < 1150) && (MouseY >= 885) && (MouseY < 975)) {
+                rgame = 0;
                 M_MOANER_saveControls();     
                 if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
             }
-            if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) {
-                clubcard = false;
+            if ((MouseX >= 1170) && (MouseX < 1260) && (MouseY >= 885) && (MouseY < 975)) {
+                rgame = 0;
                 M_MOANER_saveControls();   
                 if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             }
-            if ((MouseX >= 1845) && (MouseX < 1935) && (MouseY >= 885) && (MouseY < 975)) {
-                clubcard = true;
+            if ((MouseX >= 1405) && (MouseX < 1495) && (MouseY >= 885) && (MouseY < 975)) {
+                rgame = 1;
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
-            }   
+            } 
+            if ((MouseX >= 1515) && (MouseX < 1605) && (MouseY >= 885) && (MouseY < 975)) {
+                rgame = 2;
+                M_MOANER_saveControls();
+                ChatSelectStartSearch(ChatRoomSpace);
+            } 
+            if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) {
+                rgame = 3;
+                M_MOANER_saveControls();
+                ChatSelectStartSearch(ChatRoomSpace);
+            }
+            if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) {
+                rgame = 4;
+                M_MOANER_saveControls();
+                ChatSelectStartSearch(ChatRoomSpace);
+            }
+            if ((MouseX >= 1845) && (MouseX < 1935) && (MouseY >= 885) && (MouseY < 975)) {
+                rgame = 5;
+                M_MOANER_saveControls();
+                ChatSelectStartSearch(ChatRoomSpace);
+            }
             return;
         });
     }
-
+  
     async function ULTRAChatSearchRoomSpaceSelectDraw() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectDraw', 4, (args, next) => {
             DrawButton(385, 885, 90, 90, "ALL", "White", "", "All Room Types");
@@ -3210,20 +3213,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawImageResize("Icons/Rectangle/CharacterView.png", 480, 900, 120, 60);
             DrawButton(605, 885, 90, 90, "", "White", "Icons/MapTypeHybrid.png", "Hybrid Rooms");
             DrawButton(715, 885, 90, 90, "", "White", "Icons/MapTypeAlways.png", "Map Rooms");
-            DrawButton(1405, 885, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
-            if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) DrawButton(1515, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) DrawButton(1515, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
+            if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
+            if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
             if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
-                DrawButton(1625, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+                DrawButton(1060, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
             } else {
-                DrawButton(1625, 885, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+                DrawButton(1060, 885, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
             }
             if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
-                DrawButton(1735, 885, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
+                DrawButton(1170, 885, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
             } else {
-                DrawButton(1735, 885, 90, 90, "", "Gray", "Icons/Gender.png", "Mixed");
-            }  
-            DrawButton(1845, 885, 90, 90, "", "White", "Icons/ClubCard.png", "Club Card Game");      
+                DrawButton(1170, 885, 90, 90, "", "Gray", "Icons/Gender.png", "Mixed");
+            }
+            DrawButton(1405, 885, 90, 90, "", "White", "Icons/ClubCard.png", "Club Card");
+            DrawButton(1515, 885, 90, 90, "", "White", "Icons/GGTS.png", "GGTS");
+            DrawButton(1625, 885, 90, 90, "", "White", "Icons/Battle.png", "LARP");
+            DrawButton(1735, 885, 90, 90, "", "White", "Icons/MagicSchool.png", "Magic Battle");
+            DrawButton(1845, 885, 90, 90, "", "White", "Icons/Infiltration.png", "Pandora Prison");    
             return;
         });
     }
@@ -3251,16 +3257,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1885, 25, 90, 90, "", "White", "Icons/DialogNormalMode.png", TextGet("NormalFilterMode"));
                 return;
             }
-            ElementPositionFixed("InputSearch", 25, 45, 620);
-            DrawTextFit(ChatSearchMessage != "" ? TextGet(ChatSearchMessage) : "", 1050, 935, 490, "White", "Gray");
+            ElementPositionFixed("InputSearch", 25, 35, 620);
+            DrawTextFit(ChatSearchMessage != "" ? TextGet(ChatSearchMessage) : "", 300, 105, 490, "White", "Gray");
             let ChatSearchPageCount = Math.floor((Result.length + ChatSearchRoomsPerPage - 1) / ChatSearchRoomsPerPage).toString();
             let ChatSearchCurrentPage = (ChatSearchResultOffset / ChatSearchRoomsPerPage + 1).toString();
             DrawTextFit(`${ChatSearchCurrentPage}/${ChatSearchPageCount}`, 1175, 75, 90, "White", "Gray");
             DrawButton(905, 25, 90, 90, "", ChatSearchMode != "Filter" ? "White" : "Lime", "Icons/Private.png", TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode"));
             const languageLabel = TranslationGetLanguageName(ChatSearchLanguageTemp, true) || TextGet("Language" + ChatSearchLanguageTemp);
-            DrawButton(25, 898, 350, 64, languageLabel, "White");
+            DrawButton(25, 888, 350, 54, languageLabel, "White");
             DrawButton(685, 25, 90, 90, "", "White", "Icons/Accept.png", ChatSearchMode == "" ? TextGet("SearchRoom") : TextGet("ApplyFilter"));
             DrawButton(795, 25, 90, 90, "", "White", "Icons/Cancel.png", ChatSearchMode == "" ? TextGet("ClearFilter") : TextGet("LoadFilter"));
+	    DrawButton(1390, 25, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
             if (ChatSearchMode == "") {
                 DrawButton(1665, 25, 90, 90, "", "White", "Icons/Plus.png", TextGet("CreateRoom"));
                 DrawButton(1775, 25, 90, 90, "", "White", "Icons/FriendList.png", TextGet("FriendList"));
