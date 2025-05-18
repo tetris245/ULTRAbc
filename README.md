@@ -59,4 +59,8 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Relooked the Chat Search screen:
+  - Moved the BC messages under the Search Input box, and the AutoJoin message under the Languages selector
+  - Moved the Extensions button to the top after the Next button, and the lobby buttons to the center bottom
+  - Moved the Club Card button and added the buttons corresponding to other games in rooms (GGTS, LARP, Magic Battle, Pandora Prison)
+* Removed the setting in GUI - Chat Search to limit the search to rooms with a specific game (as it now handled by buttons)
