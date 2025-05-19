@@ -12073,14 +12073,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = umsg1 + umsg3;
                 infomsg(msg);
             } else {
+                let message = "";
                 if (args === "") {
-                    OutChat();
+                    message = " heads for the door."
                 } else {
-                    let message = ' '.repeat(1) + args;
-                    let msg = "" + tmpname + message;
-                    publicmsg(msg);
-                    OutChat();
+                    message = ' '.repeat(1) + args;
                 }
+                let msg = "" + tmpname + message;
+                publicmsg(msg);
+                setTimeout(function() {
+                    OutChat();
+                }, 5000);
             }
         }
     }])
