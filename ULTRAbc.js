@@ -3183,9 +3183,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatSelectStartSearch(ChatRoomSpace);
             } 
             if ((MouseX >= 1515) && (MouseX < 1605) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 2;
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
+                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {   
+                    rgame = 2;
+                    M_MOANER_saveControls();
+                    ChatSelectStartSearch(ChatRoomSpace);
+                }
             } 
             if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) {
                 rgame = 3;
@@ -3217,8 +3219,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
             if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
                 DrawButton(1060, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+		DrawButton(1515, 885, 90, 90, "", "White", "Icons/GGTS.png", "GGTS"); 
             } else {
                 DrawButton(1060, 885, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+		DrawButton(1515, 885, 90, 90, "", "Gray", "Icons/GGTS.png", "GGTS");
             }
             if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
                 DrawButton(1170, 885, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
@@ -3226,7 +3230,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1170, 885, 90, 90, "", "Gray", "Icons/Gender.png", "Mixed");
             }
             DrawButton(1405, 885, 90, 90, "", "White", "Icons/ClubCard.png", "Club Card");
-            DrawButton(1515, 885, 90, 90, "", "White", "Icons/GGTS.png", "GGTS");
             DrawButton(1625, 885, 90, 90, "", "White", "Icons/Battle.png", "LARP");
             DrawButton(1735, 885, 90, 90, "", "White", "Icons/MagicSchool.png", "Magic Battle");
             DrawButton(1845, 885, 90, 90, "", "White", "Icons/Infiltration.png", "Pandora Prison");    
