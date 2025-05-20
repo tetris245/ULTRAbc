@@ -59,11 +59,10 @@ All else I might not have included.
 
 Changes for future version
 
-* Relooked the Chat Search screen:
+* Relooked the Chat Search screen (and removed the option related to games in GUI - Chat Search):
   - Moved the BC messages under the Search Input box, and the AutoJoin message under the Languages selector
   - Moved the Extensions button to the top after the Next button, and the lobby buttons to the center bottom
   - Moved the Club Card button and added the buttons corresponding to other games in rooms (GGTS, LARP, Magic Battle, Pandora Prison)
-* Removed the setting in GUI - Chat Search to limit the search to rooms with a specific game (as it now handled by buttons)
 * Improved the online Pandora Prison as following if you have enabled the appropriate Immersion settings to recreate the room after full relog): 
   - if you decide to be a prisoner, a new room will always be created, and you will get admin powers after a full relog
   - if you decide to be a guardian and choose the new room option, you can also get admin powers after a full relog, but unfortunaly, the room will not work as intended for the prisoners
