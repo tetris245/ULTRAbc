@@ -65,5 +65,5 @@ Changes for future version
   - Moved the Club Card button and added the buttons corresponding to other games in rooms (GGTS, LARP, Magic Battle, Pandora Prison)
 * Improved the online Pandora Prison as following (you need to enable the appropriate Immersion settings to recreate the room after full relog): 
   - if you decide to be a prisoner, a new room will always be created, and you will get admin powers after a full relog
-  - if you decide to be a guardian and choose the new room option, you can also get admin powers after a full relog, but the room will not work as intended for the prisoners
-  - You can also directly create a 'Pandora prison' room, others players can enter there before using the prison2 command
+  - if you decide to be a guardian and choose the new room option, you can also get admin powers after a full relog, others UBC users can enter there before using the prison2 command to be prisoner after a full relog
+  - You can also directly create a 'Pandora prison' room, others UBC users can enter there before using the prison2 command to be prisoner after a full relog
