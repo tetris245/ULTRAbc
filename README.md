@@ -64,7 +64,7 @@ Changes for future version
   - Moved the Extensions button to the top after the Next button, and the lobby buttons to the center bottom
   - Moved the Club Card button and added the buttons corresponding to other games in rooms (GGTS, LARP, Magic Battle, Pandora Prison)
 * Improved the online Pandora Prison as following (you need to enable the appropriate Immersion settings to recreate the room after full relog): 
-  - If you decide to be a prisoner, a new room will always be created, and you will get admin powers after a full relog
-  - If you decide to be a guardian and choose the new room option, you can also get admin powers after a full relog
-  - You can also directly create a Pandora room
+  - If you decide to be a prisoner in Infiltration dialog, a new room will always be created, and you will get admin powers after a full relog
+  - If you decide to be a guardian in Infiltration dialog and choose the new room option, you can also get admin powers after a full relog
+  - You can also directly create a Pandora room in any BC lobby
   - To join a specific existing Pandora room as prisoner, first enter it as 'normal player', then use the prison2 command to be prisoner after the full automatic relog provoked by this command
