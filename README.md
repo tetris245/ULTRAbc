@@ -68,3 +68,4 @@ Changes for future version
   - If you decide to be a guardian in Infiltration dialog and choose the new room option, you can also get admin powers after a full relog
   - You can also directly create a Pandora room in any BC lobby (what's not possible with the Infiltration method, that is limited to the Mixed lobby)
   - To join a specific existing Pandora room as prisoner, first enter it as 'normal player', then use the prison2 command to be prisoner after the full automatic relog provoked by this command
+* Updated the info about the prison2 command
