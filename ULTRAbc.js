@@ -3740,18 +3740,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAPandoraPrisonClick() {
-        modApi.hookFunction('PandoraPrisonClick', 4, (args, next) => {
-            if (SosbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
-            }
-            if (OutbuttonsOn == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
-            }
-            next(args);
-        });
-    }
-
     async function ULTRAPandoraPrisonRun() {
         modApi.hookFunction('PandoraPrisonRun', 4, (args, next) => {
             if ((Player.Infiltration.Punishment.Timer < CurrentTime) && (CurrentCharacter == null) && !PandoraPrisonEscaped)
