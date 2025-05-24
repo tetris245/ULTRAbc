@@ -12099,14 +12099,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The prison2 command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\n" +
-                    "It will be a new room automatically created, except if you use it in a Pandora room that you have first entered as normal player.\n" +
-		    "For a correct working in all cases, be sure to have enabled the appropriate Immersion settings to auto-remake rooms."
+                    "If you use it when you are alone in a room, it will be a new room automatically created.\n" +
+                    "It is recommended to use it in an existing Pandora room that you have first entered as normal player.\n" +
+                    "If you use it in an existing non-Pandora room, there will be no any timer, but the Pandora guards will be active though during the requested time.\n" +
+	            "For a correct working in all cases, be sure to have enabled the appropriate Immersion settings to auto-remake rooms."
                 infomsg(msg);
             } else {
                 let minutes = args;
                 if (minutes > 0) {
-                    let msg = "" + tmpname + " gets grabbed by two maids and sent to online Pandora prison for " + minutes + " minutes.";
-                    publicmsg(msg);
                     DialogLentLockpicks = false;
                     ChatRoomHideElements();
                     ServerSend("ChatRoomLeave", "");
