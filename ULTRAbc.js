@@ -12099,7 +12099,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The prison2 command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\n" +
-                    "If you don't automatically enter a Pandora prison after this relog, leave the current room and/or click on Exit in Chat Search.";
+                    "It will be a new room automatically created, except if you use it in a Pandora room that you have first entered as normal player.\n" +
+		    "For a correct working in all cases, be sure to have enabled the appropriate Immersion settings to auto-remake rooms."
                 infomsg(msg);
             } else {
                 let minutes = args;
