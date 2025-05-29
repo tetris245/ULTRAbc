@@ -2498,6 +2498,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (posX !== Player.MapData.Pos.X || posY !== Player.MapData.Pos.Y) {
                 const newTile = ChatRoomMapViewGetTileAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
                 const newObject = ChatRoomMapViewGetObjectAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
+		if (!newObject) return ret;
                 let item1 = newObject.Type;
                 let item2 = newObject.Style;
                 if ((item1 == "FloorItem") && (item2 != "Blank")) {
