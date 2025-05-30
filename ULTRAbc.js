@@ -2234,6 +2234,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAActivityChatRoomArousalSync();
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
+    ULTRAAsylumEntranceStartChat();
     ULTRACellClick();
     ULTRACellLoad();
     ULTRACellRun();
@@ -2367,16 +2368,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Room (+ name/nickname/pronouns management for player)
+    async function ULTRAAsylumEntranceStartChat() {
+        modApi.hookFunction('AsylumEntranceStartChat', 4, (args, next) => {
+            if (AsylumLimitOn == true) {
+                ChatRoomStart("Asylum", "", "AsylumEntrance", "Room", "AsylumEntrance", [BackgroundsTagAsylum]);
+            } else {
+                ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            }
+            return;
+        });
+    }
+
     async function ULTRAChatAdminClick() {
         modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
             if (ChatAdminCanEdit()) { 
                  if (MouseIn(1230, 450, 60, 60)) { 
-                     let listbg = BackgroundsList.length;
-                     let Roll = Math.floor(Math.random() * listbg);
-		     if (Roll == 0) Roll = 1;
-                     let name = BackgroundsList[Roll - 1].Name;
-                     ChatAdminData.Background = ChatAdminBackgroundList[Roll];
-		     return;
+                     if ((AsylumLimitOn == true) && (ChatRoomSpace == "Asylum")) {
+                         let AsylumList = BackgroundsGenerateList([BackgroundsTagAsylum]);
+                         let listbg = AsylumList.length;
+                         let Roll = Math.floor(Math.random() * listbg);
+                         if (Roll == 0) Roll = 1;
+                         let name = AsylumList[Roll - 1].Name;
+                         ChatAdminData.Background = ChatAdminBackgroundList[Roll];          
+                     } else {
+                         let listbg = BackgroundsList.length;
+                         let Roll = Math.floor(Math.random() * listbg);
+		         if (Roll == 0) Roll = 1;
+                         let name = BackgroundsList[Roll - 1].Name;
+                         ChatAdminData.Background = ChatAdminBackgroundList[Roll];
+                     }
+                     return;
                  }
             }
             next(args);
