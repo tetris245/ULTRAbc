@@ -3715,7 +3715,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	        let Result = [];
 		PandoraPenitentiaryStartNewRoom = false;
 	    } 
-            ChatRoomSpace = ChatRoomSpaceType.MIXED;
+            let space = ChatRoomSpaceType.MIXED;
+            if (ChatRoomSpace == "") space = ChatRoomSpaceType.FEMALE_ONLY;
+            if (ChatRoomSpace == "M") space = ChatRoomSpaceType.MALE_ONLY;
+            if (ChatRoomSpace == "Asylum") space = ChatRoomSpaceType.ASYLUM;
             ChatSearchReturnToScreen = null;
             PandoraPenitentiaryCreateTimer = CommonTime() + 10000;
             let ban = [];
@@ -3739,7 +3742,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Access: ChatRoomAccessMode.PUBLIC,
 		BlockCategory: ["Leashing"],
 		Language: ChatAdminDefaultLanguage,
-                Space: ChatRoomSpaceType.MIXED,
+                Space: space,
                 MapData: { Type: "Never" },
 	    };
 	    ServerSend("ChatRoomCreate", PrisonRoom);
