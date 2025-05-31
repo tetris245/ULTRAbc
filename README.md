@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Removed the kd command as version of Kinky Dungeon in BC is no more updated and leads to crashes
