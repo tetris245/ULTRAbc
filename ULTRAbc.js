@@ -2234,7 +2234,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAActivityChatRoomArousalSync();
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
-    ULTRAAsylumEntranceStartChat();
+    ULTRAAsylumEntranceStartChat(); 
+    ULTRABackgroundsTextGet();
     ULTRACellClick();
     ULTRACellLoad();
     ULTRACellRun();
@@ -2351,6 +2352,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRATherapyRun();
     ULTRATitleRun();
     ULTRAWheelFortuneRun();
+
+    //Backgrounds
+    async function ULTRABackgroundsTextGet(msg) {
+        modApi.hookFunction('BackgroundsTextGet', 4, (args, next) => {      
+            let fixname = next(args);
+            if (fixname.startsWith("MISSING")) {
+                let background = BackgroundsList.find(bg => bg === args[0]);
+                return `${background ?? args[0]}`;               
+            }
+            return fixname;
+        });
+    }
 
     //Bondage Brawl
     async function ULTRAPlatformAttack() {
@@ -4755,11 +4768,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Tag: [BackgroundsTagIndoor]
         });
         BackgroundsList.push({
-            Name: "/Orig/Entrance",
+            Name: "Orig/Entrance",
             Tag: [BackgroundsTagIndoor]
         });
         BackgroundsList.push({
-            Name: "/Orig/Lounge",
+            Name: "Orig/Lounge",
             Tag: [BackgroundsTagIndoor]
         });
 	if (!window.BCX_Loaded == true) {
