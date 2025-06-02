@@ -804,20 +804,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
                 console.log("ULTRAbc loaded: Version " + UBCver);
-                Player.OnlineSharedSettings.UBC = UBCver;
-                Player.OnlineSharedSettings.Inmap = false;
-                if (Player.OnlineSharedSettings.Ulist == undefined) {
-                    Player.OnlineSharedSettings.Ulist = [];
-                }
-                if (NoescapeOn == null || NoescapeOn == undefined) NoescapeOn = false;
-                if (NoescapeOn == true) {
-                    Player.OnlineSharedSettings.Unoescape = true;
-                } else {
-                    Player.OnlineSharedSettings.Unoescape = false;
-                }
-                ServerAccountUpdate.QueueData({
-                    OnlineSharedSettings: Player.OnlineSharedSettings
-                });
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (animal == null || animal == undefined) animal = 0;
                 if (AsylumLimitOn == null || AsylumLimitOn == undefined) AsylumLimitOn = false;
@@ -917,6 +903,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 ini = 1;
+		UBCsettings();
                 FBCsettings();
                 runUBC();
             } catch (err) {
@@ -5839,6 +5826,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.RestrictionSettings.BypassStruggle = false;
             }
         }
+    }
+
+    function UBCsettings() {
+        Player.OnlineSharedSettings.UBC = UBCver;
+        Player.OnlineSharedSettings.Inmap = false;
+        if (Player.OnlineSharedSettings.Ulist == undefined) {
+            Player.OnlineSharedSettings.Ulist = [];
+        }
+        if (NoescapeOn == null || NoescapeOn == undefined) NoescapeOn = false;
+        if (NoescapeOn == true) {
+            Player.OnlineSharedSettings.Unoescape = true;
+        } else {
+            Player.OnlineSharedSettings.Unoescape = false;
+        }
+        ServerAccountUpdate.QueueData({
+            OnlineSharedSettings: Player.OnlineSharedSettings
+        });
     }
 
     //Responsive Status
