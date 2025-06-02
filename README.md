@@ -59,4 +59,5 @@ All else I might not have included.
 
 Changes for future version
 
+* Added a button in Chat Search to hide/show the locked rooms you can't access (and removed the option related to games in GUI - Chat Search)
 * Removed the kd command as version of Kinky Dungeon in BC is no more updated and leads to crashes
