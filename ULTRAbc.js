@@ -6380,6 +6380,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let msg = "The time is displayed according your system settings.";
         if (THMdata.GlobalModule.doShowLocaleTime) msg = "The time is displayed according your locale settings.";
         statusmsg(msg);
+    } 
+
+    function showLoginStatus() { 
+        let msg = "";
+        let msg1 = "The credits are displayed on login screen.";
+        let msg2 = "The npc characters are displayed on login screen.";
+        if (ThemedLocalData.loginOptions.hideCredits) msg1 = "The credits are not displayed on login screen.";
+        if (ThemedLocalData.loginOptions.hideDummy) msg2 = "The npc characters are not displayed on login screen.";
+        msg = msg1 + " " + msg2;
+        statusmsg(msg);
     }
 
     function showMiscDetailsStatus() {
@@ -14325,6 +14335,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showGuiOverhaulStatus();
                         showInputZonesStatus();
                         showLocalTimeStatus();
+			showLoginStatus();
                         showMiscDetailsStatus();
                         showThemedVersionStatus();
                     }
