@@ -12783,30 +12783,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(options) shows/hides Credits and/or NPCs on login screen, when Themed mod used",
         Action: (args) => {
             if (args === "") {
-                let msg = "The thmlogin command must be followed by a number between 1 and 3.\n" +
+                let msg = "The thmlogin command can be used only if Themed mod is enabled.\n" +
+                     "It must be followed by a number between 1 and 3.\n" +
                      "1 = Credits - 2 = NPCs - 3 = 1 + 2.\n" +
-                     "Current status:";
+                     "";
+                if (Player.Themed != undefined) msg = msg + "Current status:";
                 infomsg(msg);
-                showLoginStatus();
+                if (Player.Themed != undefined) showLoginStatus();
             } else {
-                if ((args == 1) || (args == 3)) {   
-                    if (ThemedLocalData.loginOptions.hideCredits) {
-                        ThemedLocalData.loginOptions.hideCredits = false;
-                    } else {
-                        ThemedLocalData.loginOptions.hideCredits = true;
+                if (Player.Themed != undefined) {
+                    if ((args == 1) || (args == 3)) {   
+                        if (ThemedLocalData.loginOptions.hideCredits) {
+                            ThemedLocalData.loginOptions.hideCredits = false;
+                        } else {
+                            ThemedLocalData.loginOptions.hideCredits = true;
+                        }
                     }
-                }
-                if ((args == 2) || (args == 3)) {   
-                    if (ThemedLocalData.loginOptions.hideDummy) {
-                        ThemedLocalData.loginOptions.hideDummy = false;
-                    } else {
-                        ThemedLocalData.loginOptions.hideDummy = true;
+                    if ((args == 2) || (args == 3)) {   
+                        if (ThemedLocalData.loginOptions.hideDummy) {
+                            ThemedLocalData.loginOptions.hideDummy = false;
+                        } else {
+                            ThemedLocalData.loginOptions.hideDummy = true;
+                        }
                     }
-                }
-                if ((args > 0) && (args < 4)){ 
-                    localStorage.setItem('ThemedLocalData', JSON.stringify(window.ThemedLocalData));  
-                    let msg = "Settings for login screen modified!";
-                    infomsg(msg);
+                    if ((args > 0) && (args < 4)){ 
+                        localStorage.setItem('ThemedLocalData', JSON.stringify(window.ThemedLocalData));  
+                        let msg = "Settings for login screen modified!";
+                        infomsg(msg);
+                    }
                 }
             }
         }
@@ -14370,7 +14374,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showGuiOverhaulStatus();
                         showInputZonesStatus();
                         showLocalTimeStatus();
-			showLoginStatus();
+			if (Player.Themed != undefined) showLoginStatus();
                         showMiscDetailsStatus();
                         showThemedVersionStatus();
                     }
