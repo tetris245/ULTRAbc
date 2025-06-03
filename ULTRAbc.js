@@ -12779,6 +12779,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'thmlogin',
+        Description: "(options) shows/hides Credits and/or NPCs on login screen, when Themed mod used",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The thmlogin command must be followed by a number between 1 and 3.\n" +
+                     "1 = Credits - 2 = NPCs - 3 = 1 + 2.\n" +
+                     "Current status:";
+                infomsg(msg);
+                showLoginStatus();
+            } else {
+                if ((args == 1) || (args == 3)) {   
+                    if (ThemedLocalData.loginOptions.hideCredits) {
+                        ThemedLocalData.loginOptions.hideCredits = false;
+                    } else {
+                        ThemedLocalData.loginOptions.hideCredits = true;
+                    }
+                }
+                if ((args == 2) || (args == 3)) {   
+                    if (ThemedLocalData.loginOptions.hideDummy) {
+                        ThemedLocalData.loginOptions.hideDummy = false;
+                    } else {
+                        ThemedLocalData.loginOptions.hideDummy = true;
+                    }
+                }
+                if ((args > 0) && (args < 4)){ 
+                    localStorage.setItem('ThemedLocalData', JSON.stringify(window.ThemedLocalData));  
+                    let msg = "Settings for login screen modified!";
+                    infomsg(msg);
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'timercell',
         Description: "(minutes): stays in the isolation cell.",
         Action: (args) => {
@@ -13428,17 +13462,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "misc") {
                 let msg = "Misc commands - * = more info when using\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
-                    "<b>/mbsroom</b> = gives infos about MBS wheels of fortune in current chat room.\n" +
+                    "<b>/mbsroom</b> = infos about MBS wheels in current room.\n" +
                     "<b>/mstatus</b> = displays current status of the moaner.\n" +
                     "<b>/pmenu</b> = direct access to Preferences screen.\n" +
                     "<b>/relog</b> = relogs.\n" +
+                    "<b>/thmlogin</b> (options) shows/hides Credits and/or NPCs on login screen, when Themed mod used. *\n" +
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n" +
                     "<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n" +
                     "<b>/ulistshow</b> = displays the list of players allowed to bypass Uwall.\n" +
-                    "<b>/uroom</b> = gives infos about UBC users and Uwall protection in current room.\n" +
+                    "<b>/uroom</b> = infos about UBC users and Uwall in current room.\n" +
                     "<b>/xmenu</b> = direct access to Extensions screen.\n" +
-                    "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. Available options with /xstatus.";
+                    "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. *";
                 infomsg(msg);
             }
             if (args === "settings") {
@@ -13484,7 +13519,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
                     "<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
                     "<b>/prison1</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n" +
-                    "<b>/prison2</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible.\n" +
+                    "<b>/prison2</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
                     "<b>/store</b> = Goes to store. Shows hidden items.\n" +
                     "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.";
                 infomsg(msg);
