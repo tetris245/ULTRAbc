@@ -62,4 +62,5 @@ Changes for future version
 * More changes in Chat Search screen:
   - Added a button to direct access to Wardrobe (only if you are in normal mode of Chat Search)
   - Added a button to hide/show the listed locked rooms you can't access (and removed the equivalent option in GUI - Chat Search)
+* Updated the xstatus thm command
 * Removed the kd command as version of Kinky Dungeon in BC is no more updated and leads to crashes
