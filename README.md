@@ -59,6 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
+* New command: thmlogin (options) to show/hide Credits and/or NPCs on login screen, when Themed mod used (Options: 1 = Credits - 2 = NPCs - 3 = 1 + 2).
 * More changes in Chat Search screen:
   - Added a button to direct access to Wardrobe (only if you are in normal mode of Chat Search)
   - Added a button to hide/show the listed locked rooms you can't access (and removed the equivalent option in GUI - Chat Search)
