@@ -89,6 +89,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let blindness = 0;
     let blurmode = 0;
     let ccname = "ClubCardPlayBoard1";
+    let ccards = 30;
     let cdesk = 0;
     let cextra = false;
     let cfame = 200;
@@ -474,6 +475,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             blindness = 0;
             blurmode = 0;
             ccname = "ClubCardPlayBoard1";
+	    ccards = 30;
             cdesk = 0;
             cextra = false;
             cfame = 200;
@@ -583,6 +585,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             blindness = 0;
             blurmode = 0;
             ccname = datas.ccname;
+	    ccards = datas.ccards;
             cdesk = datas.cdesk;
             cextra = datas.cextra;
             cfame = datas.cfame;
@@ -693,6 +696,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "bgall": bgall,
             "bl": bl,
             "ccname": ccname,
+            "ccards": ccards,
             "cdesk": cdesk,
             "cextra": cextra,
             "cfame": cfame,
@@ -814,6 +818,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (blureffect == null || blureffect == undefined || blureffect == false) blureffect = 0;
                 if (blurmode == null || blurmode == undefined) blurmode = 0;
                 if (ccname == null || ccname == undefined) ccname = "ClubCardPlayBoard1";
+		if (ccards == null || ccards == undefined) ccards = 30;
                 if (cdesk == null || cdesk == undefined) cdesk = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 200;
@@ -949,6 +954,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 blindness: 0,
                 blureffect: 0,
                 blurmode: 0,
+		ccards: 30,
                 cdesk: 0,
                 cextra: false,
                 cfame: 200,
@@ -1513,7 +1519,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 bl = data.bl;
                 blindness = data.blindness;
                 blureffect = 0;
-                blurmode = data.blurmode;
+                blurmode = data.blurmode;	
+                ccards = data.ccards;
                 cdesk = data.cdesk;
                 cextra = data.cextra;
                 cfame = data.cfame;
@@ -1729,6 +1736,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Default card desk (0-8):", "cdesk", "InputDefaultDesk",
                     "Input a number between 0 and 8 to select one of these desks as default desk: 0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant - 5 Liability - 6 Maid - 7 Porn - 8 Extra."
                 );
+                addMenuInput(200, "Cards in desk (30-40):", "ccards", "InputMaxCards",
+                    "Input a number between 30 and 40 to set the number of cards in the preselected desks. It will also influence the game against NPCs."
+                );
                 addMenuCheckbox(64, 64, "Enable High Fame mode: ", "highfame",
                     "BC has fixed the fame you need to reach to win in the Bondage Club Card Game to 100. If you want to play longer and more adventurous games, enable this option, and optionnally set a High Fame level (200 by default)."
                 );
@@ -1767,11 +1777,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCCardsExit = function() {
                 let desk = ElementValue("InputDefaultDesk");
+                let cards = ElementValue("InputMaxCards");
                 let fame = ElementValue("InputHighFame");
-                if ((CommonIsNumeric(desk)) && (desk > -1) && (desk < 9) && (CommonIsNumeric(fame)) && (fame > 199) && (fame < 601)) {
+                if ((CommonIsNumeric(desk)) && (desk > -1) && (desk < 9) 
+		    && (CommonIsNumeric(cards)) && (cards > 29) && (cards < 41) 
+		    && (CommonIsNumeric(fame)) && (fame > 199) && (fame < 601)) {
                     Player.UBC.ubcSettings.cdesk = desk;
+                    Player.UBC.ubcSettings.cards = cards;
                     Player.UBC.ubcSettings.cfame = fame;
                     ElementRemove("InputDefaultDesk");
+                    ElementRemove("InputMaxCards");
                     ElementRemove("InputHighFame");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
