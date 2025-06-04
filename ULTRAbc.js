@@ -92,7 +92,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let ccards = 30;
     let cdesk = 0;
     let cextra = false;
-    let cfame = 200;
+    let cfame = 150;
     let frname = "BrickWall";
     let gamestable = false;
     let gl = 0;
@@ -478,7 +478,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    ccards = 30;
             cdesk = 0;
             cextra = false;
-            cfame = 200;
+            cfame = 150;
             frname = "BrickWall";
             gamestable = false;
             gl = 0;
@@ -821,7 +821,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		if (ccards == null || ccards == undefined) ccards = 30;
                 if (cdesk == null || cdesk == undefined) cdesk = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
-                if (cfame == null || cfame == undefined) cfame = 200;
+                if (cfame == null || cfame == undefined) cfame = 150;
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (ExtrainfoOn == null || ExtrainfoOn == undefined) ExtrainfoOn = false;
@@ -957,7 +957,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		ccards: 30,
                 cdesk: 0,
                 cextra: false,
-                cfame: 200,
+                cfame: 150,
                 cum: false,
                 dolltalk: false,
                 extbuttons: false,
@@ -1740,10 +1740,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 30 and 40 to set the number of cards in the preselected desks. It will also influence the game against NPCs."
                 );
                 addMenuCheckbox(64, 64, "Enable High Fame mode: ", "highfame",
-                    "BC has fixed the fame you need to reach to win in the Bondage Club Card Game to 100. If you want to play longer and more adventurous games, enable this option, and optionnally set a High Fame level (200 by default)."
+                    "BC has fixed the fame you need to reach to win in the Bondage Club Card Game to 100. If you want to play longer and more adventurous games, enable this option, and optionnally set a High Fame level (150 by default)."
                 );
-                addMenuInput(200, "High Fame level (200-600):", "cfame", "InputHighFame",
-                    "Input a number between 200 and 600 to set the High Fame level players need to reach to win the game!"
+                addMenuInput(200, "High Fame level (150-450):", "cfame", "InputHighFame",
+                    "Input a number between 150 and 450 to set the High Fame level players need to reach to win the game!"
                 );
                 addMenuButton(150, 64, "Add/Remove Extra Cards:", "Toggle", function() {
                         Player.Game.ClubCard.Reward = "";
@@ -1781,7 +1781,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let fame = ElementValue("InputHighFame");
                 if ((CommonIsNumeric(desk)) && (desk > -1) && (desk < 9) 
 		    && (CommonIsNumeric(cards)) && (cards > 29) && (cards < 41) 
-		    && (CommonIsNumeric(fame)) && (fame > 199) && (fame < 601)) {
+		    && (CommonIsNumeric(fame)) && (fame > 149) && (fame < 451)) {
                     Player.UBC.ubcSettings.cdesk = desk;
                     Player.UBC.ubcSettings.cards = cards;
                     Player.UBC.ubcSettings.cfame = fame;
