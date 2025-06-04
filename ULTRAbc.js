@@ -3522,17 +3522,75 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAClubCardLoadDeckNumber() {
         modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
-            let originaldesk = ClubCardBuilderDefaultDeck;
+            ClubCardBuilderDefaultDeckDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 8000, 8002, 8003, 8004, 13001, 30000, 30014, 30016, 31000, 31004];
+            let DefaultDeckPlus = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
+            let originaldeck = ClubCardBuilderDefaultDeck;
+            ClubCardBuilderABDLDeck = [1000, 1001, 1004, 1007, 1008, 1013, 1016, 4001, 4003, 6000, 6001, 6002, 7000, 7001, 7002, 10000, 10001, 10002, 10003, 10004, 10005, 11004, 11005, 11007, 30000, 30015, 30017, 30018, 30019, 30020];
+            let ABDLDeckPlus = [1017, 1018, 3012, 4008, 10006, 10007, 10008, 10009, 31007, 31009];      
+            ClubCardBuilderAsylumDeck = [1000, 1001, 1004, 1007, 1010, 1011, 1013, 5000, 6000, 6003, 7000, 7001, 7002, 7003, 7004, 7005, 7006, 7007, 10000, 10001, 11004, 11005, 30001, 30003, 30008, 30009, 30016, 30018, 31004, 31005];
+            let AsylumDeckPlus = [7008, 7009, 7010, 7011, 11013, 12001, 30015, 30017, 30019, 31011];
+            ClubCardBuilderCollegeDeck = [1000, 1001, 1010, 1011, 1014, 1016, 2000, 2001, 2002, 2004, 3006, 5000, 5002, 6001, 6004, 8001, 9003, 2005, 9004, 9006, 11004, 11005, 11006, 11007, 30000, 30001, 30002, 30006, 30010, 30011]; 
+            let CollegeDeckPlus = [11000, 11001, 11002, 11003, 11008, 11009, 11010, 11011, 11012, 31008];
+            ClubCardBuilderDominantDeck = [1000, 1001, 1002, 1003, 1009, 1012, 1013, 1014, 2001, 2004, 2005, 3000, 3003, 3006, 4002, 4004, 4005, 8000, 8001, 8002, 8003, 8004, 9007, 9008, 30000, 30006, 30007, 30013, 31000, 31001]; 
+            let DominantDeckPlus = [2000, 2002, 2003, 8005, 10004, 10009, 11012, 12003, 30021, 31012];
+            ClubCardBuilderLiabilityDeck = [2000, 2001, 2002, 3001, 3002, 3003, 3004, 3005, 3007, 4002, 4004, 5000, 7001, 8001, 8002, 8003, 8004, 9000, 9001, 9002, 9003, 9004, 9005, 9006, 9007, 9008, 30018, 30019, 31000, 31002];
+            let LiabilityDeckPlus = [1018, 4001, 4008, 4009, 4011, 6005, 6007, 7009, 7010, 10008];
+            let ClubCardBuilderMaidDeck = [1004, 1005, 1006, 1007, 1008, 1010, 1011, 1013, 1014, 2000, 2001, 2002, 3000, 3006, 4000, 6000, 6001, 6002, 6003, 6004, 9005, 10000, 10001, 10002, 30001, 30002, 30006, 30009, 30010, 30020];
+            let MaidDeckPlus = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003];
+            ClubCardBuilderPornDeck = [1002, 1003, 1016, 2003, 3001, 3002, 4003, 4006, 5000, 5001, 5002, 5003, 5004, 6000, 6001, 8000, 9000, 9001, 9002, 9006, 30004, 30005, 30014, 30015, 30016, 31002, 31003, 31004, 31005, 31006];
+            let PornDeckPlus = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];
             let ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
-            if (cdesk == 1) ClubCardBuilderDefaultDeck = ClubCardBuilderABDLDeck;
-            if (cdesk == 2) ClubCardBuilderDefaultDeck = ClubCardBuilderAsylumDeck;
-            if (cdesk == 3) ClubCardBuilderDefaultDeck = ClubCardBuilderCollegeDeck;
-            if (cdesk == 4) ClubCardBuilderDefaultDeck = ClubCardBuilderDominantDeck;
-            if (cdesk == 5) ClubCardBuilderDefaultDeck = ClubCardBuilderLiabilityDeck;
-            if (cdesk == 6) ClubCardBuilderDefaultDeck = ClubCardBuilderMaidDeck;
-            if (cdesk == 7) ClubCardBuilderDefaultDeck = ClubCardBuilderPornDeck;
-            if (cdesk == 8) ClubCardBuilderDefaultDeck = ClubCardBuilderExtraDeck;
-            if (cdesk == 0) ClubCardBuilderDefaultDeck = originaldesk;
+            let ExtraDeckPlus = [4009, 7008, 9004, 10004, 12003, 12005, 12006, 12007, 12008, 14003];
+            let initialdesk = [];
+            let plusdesk = [];
+            if (cdesk == 0) {
+                initialdeck = originaldeck;
+                plusdeck = DefaultDeckPlus;
+            }
+            if (cdesk == 1) {
+                initialdeck = ClubCardBuilderABDLDeck;
+                plusdeck = ABDLDeckPlus;
+            }
+            if (cdesk == 2) {
+                initialdeck = ClubCardBuilderAsylumDeck;
+                plusdeck = AsylumDeckPlus;
+            }
+            if (cdesk == 3) {
+                initialdeck = ClubCardBuilderCollegeDeck;
+                plusdeck = CollegeDeckPlus;
+            }
+            if (cdesk == 4) {
+                initialdeck = ClubCardBuilderDominantDeck;
+                plusdeck = DominantDeckPlus;
+            }
+            if (cdesk == 5) {
+                initialdeck = ClubCardBuilderLiabilityDeck;
+                plusdeck = LiabilityDeckPlus;
+            }
+            if (cdesk == 6) {
+                initialdeck = ClubCardBuilderMaidDeck;
+                plusdeck = MaidDeckPlus;
+            }
+            if (cdesk == 7) {
+                initialdeck = ClubCardBuilderPornDeck;
+                plusdeck = PornDeckPlus;
+            }
+            if (cdesk == 8) {
+                initialdeck = ClubCardBuilderExtraDeck;
+                plusdeck = ExtraDeckPlus;
+            }
+            ClubCardBuilderMinDeckSize = ccards;
+            if (ccards == 30) ClubCardBuilderDefaultDeck = initialdeck;
+            if (ccards > 30) ClubCardBuilderDefaultDeck = initialdeck.concat(plusdeck[0]);
+            if (ccards > 31) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[1]);
+            if (ccards > 32) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[2]);
+            if (ccards > 33) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[3]); 
+            if (ccards > 34) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[4]);  
+            if (ccards > 35) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[5]); 
+            if (ccards > 36) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[6]);
+            if (ccards > 37) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[7]);
+            if (ccards > 38) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[8]);
+            if (ccards > 39) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[9]);            
             next(args);
         });
     }
