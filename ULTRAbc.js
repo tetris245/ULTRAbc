@@ -3417,7 +3417,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (CCPlayer.Fame == null) CCPlayer.Fame = 0;
             if (CCPlayer == Player) {
                 if (HighfameOn == false) ClubCardFameGoal = 100;
-                if (HighfameOn == true) ClubCardFameGoal = cfame;      }
+                if (HighfameOn == true) ClubCardFameGoal = cfame;      
+	    }
             if (CCPlayer.Fame >= ClubCardFameGoal) {
 		ClubCardFocus = null;
 		MiniGameVictory = (CCPlayer.Control == "Player");
