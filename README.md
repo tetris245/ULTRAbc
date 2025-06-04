@@ -51,7 +51,7 @@ Shyness, Ada, huzpsb, Lilly, Nikky90506, Tarram1010, harmony, KitKat.
 
 Thanks for general assistance:
 Brianna, Better, Miyako, Zeltron, Selina, Estsanatlehi, okatakab, Lera.
-All else I might not have included.
+All else I might not have included. 
 
 
 
@@ -59,9 +59,13 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: thmlogin (options) to show/hide Credits and/or NPCs on login screen, when Themed mod used (Options: 1 = Credits - 2 = NPCs - 3 = 1 + 2).
 * More changes in Chat Search screen:
   - Added a button to direct access to Wardrobe (only if you are in normal mode of Chat Search)
   - Added a button to hide/show the listed locked rooms you can't access (and removed the equivalent option in GUI - Chat Search)
+* Changes for the Club Card Game:
+  - Added a new option in the GUI to set the number of cards (between 30 and 40) for the built-in preselected card desks
+  - Recalibrated the high fame mode: default value is now 150, maximum value is 450
+  - Adapted the built-in preselected card desks to include between 30 and 40 cards
+* New command: thmlogin (options) to show/hide Credits and/or NPCs on login screen, when Themed mod used (Options: 1 = Credits - 2 = NPCs - 3 = 1 + 2).
 * Updated the xstatus thm command
 * Removed the kd command as version of Kinky Dungeon in BC is no more updated and leads to crashes
