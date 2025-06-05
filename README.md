@@ -64,7 +64,8 @@ Changes for future version
   - Added a button to hide/show the listed locked rooms you can't access (and removed the equivalent option in GUI - Chat Search)
 * Changes for the Club Card Game:
   - Added a new option in the GUI to set the number of cards (between 30 and 40) for the built-in preselected card desks
-  - Recalibrated the high fame mode: default value is now 150, maximum value is 450
+  - Added a button to switch from Normal mode to High Fame mode (or the contrary) on the deck selection screen
+  - Recalibrated the High Fame mode: default value is now 150, maximum value is 450
   - Adapted the built-in preselected card desks to include between 30 and 40 cards
 * New command: thmlogin (options) to show/hide Credits and/or NPCs on login screen, when Themed mod used (Options: 1 = Credits - 2 = NPCs - 3 = 1 + 2).
 * Updated the xstatus thm command
