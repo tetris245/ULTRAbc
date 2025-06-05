@@ -900,11 +900,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
-                if (NPCpunish == true) {
-                    Player.RestrictionSettings.BypassNPCPunishments = false;
-                } else {
-                    Player.RestrictionSettings.BypassNPCPunishments = true;
-                }
                 if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 ini = 1;
@@ -5867,8 +5862,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ServerAccountUpdate.QueueData({
             OnlineSharedSettings: Player.OnlineSharedSettings
         });
+	if (NPCpunish == true) {
+            Player.RestrictionSettings.BypassNPCPunishments = false;
+        } else {
+            Player.RestrictionSettings.BypassNPCPunishments = true;
+        }
     }
-
+    
     //Responsive Status
     function showResponsiveStatus() {
         let msg = "Responsive is disabled.";
