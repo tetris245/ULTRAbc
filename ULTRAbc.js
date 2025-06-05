@@ -2250,10 +2250,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchRoomSpaceSelectDraw();
     ULTRAChatSearchRun();
     ULTRAClubCardCheckVictory();
+    ULTRAClubCardClick();
     ULTRAClubCardEndTurn();
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardRenderBoard();
+    ULTRAClubCardRenderPanel();
     ULTRACommandAutoComplete();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
@@ -3435,6 +3437,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAClubCardClick() {
+        modApi.hookFunction('ClubCardClick', 4, (args, next) => {
+           if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
+                if (MouseIn(35, 35, 90, 90)) {
+                    if (HighfameOn) {
+                        HighfameOn = false;
+                        highfame = false;  
+                        M_MOANER_saveControls();
+                    } else {
+                        HighfameOn = true;
+                        highfame = true;
+                        M_MOANER_saveControls();  
+                    }
+                }
+            }
+            next(args);
+        });
+    }
+
     async function ULTRAClubCardEndTurn(Draw = false) {
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
             if (HighfameOn == false) ClubCardFameGoal = 100;
@@ -3547,6 +3568,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAClubCardRenderPanel() {
+        modApi.hookFunction('ClubCardRenderPanel', 4, (args, next) => {
+	      if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
+                if (HighfameOn) {
+                    DrawButton(35, 35, 90, 90, "HF", "White", "", "Switch to Normal mode");
+                } else {
+                    DrawButton(35, 35, 90, 90, "NHF", "White", "", "Switch to High Fame mode");
+                }
+            }
+            next(args);
+        });
+    }
+	
     //Friendlist 
     async function ULTRAFriendListDraw() {
         modApi.hookFunction('FriendListDraw', 4, (args, next) => {
