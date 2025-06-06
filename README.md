@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.1
+Most recent version: 5.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version5.1.zip file on the Releases page
+1. Download the ULTRAbc-version5.2.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,14 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* More changes in Chat Search screen:
-  - Added a button to direct access to Wardrobe (only if you are in normal mode of Chat Search)
-  - Added a button to hide/show the listed locked rooms you can't access (and removed the equivalent option in GUI - Chat Search)
-* Changes for the Club Card Game:
-  - Added a new option in the GUI to set the number of cards (between 30 and 40) for the built-in preselected card desks
-  - Added a button to switch from Normal mode to High Fame mode (or the contrary) on the deck selection screen
-  - Recalibrated the High Fame mode: default value is now 150, maximum value is 450
-  - Adapted the built-in preselected card desks to include between 30 and 40 cards
-* New command: thmlogin (options) to show/hide Credits and/or NPCs on login screen, when Themed mod used (Options: 1 = Credits - 2 = NPCs - 3 = 1 + 2).
-* Updated the xstatus thm command
-* Removed the kd command as version of Kinky Dungeon in BC is no more updated and leads to crashes
+(..)
