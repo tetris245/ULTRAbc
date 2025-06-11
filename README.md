@@ -59,4 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
+* Added the no-toast mode in the GUI - Special modes
+  - This mode disables all toast messages and audio notifications (Back to 'normal' mode only after a full relog)
 * Updated the bg4 command
