@@ -146,6 +146,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     let blureffect = 0;
     let notalk = 0;
+    let notoast = false;
     let reaction = 0;
     let unrestrict = 0;
     let usoft = false;
@@ -530,6 +531,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             SosbuttonsOn = false;
             blureffect = 0;
             notalk = 0;
+	    notoast = false;
             reaction = 0;
             unrestrict = 0;
             usoft = false;
@@ -640,6 +642,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             SosbuttonsOn = datas.sosbuttons;
             blureffect = 0;
             notalk = datas.notalk;
+	    notoast = false;
             reaction = 0;
             unrestrict = 0;
             usoft = false;
@@ -748,6 +751,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "sosbuttons": SosbuttonsOn,
             "blureffect": blureffect,
             "notalk": notalk,
+            "notoast": notoast,
             "reaction": reaction,
             "unrestrict": unrestrict,
             "clothes": Clothes,
@@ -855,6 +859,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (NotimeoutOn == null || NotimeoutOn == undefined) NotimeoutOn = false;
+		if (notoast == null || notoast == undefined) notoast = false;
                 if (NoubccolorOn == null || NoubccolorOn == undefined) NoubccolorOn = false;
                 if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
                 if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
@@ -974,6 +979,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nostruggle: false,
                 notalk: 0,
                 notimeout: false,
+                notoast: false,
                 noubccolor: false,
                 nowhisper: false,
                 npcpunish: false,
@@ -1548,6 +1554,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NostruggleOn = data.nostruggle;
                 notalk = data.notalk;
                 NotimeoutOn = data.notimeout;
+		notoast = data.notoast;
                 NoubccolorOn = data.noubccolor;
                 NowhisperOn = data.nowhisper;
                 NPCpunish = data.npcpunish;
@@ -1637,6 +1644,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     GetDeafLevel5();
                     Player.GetDeafLevel = GetDeafLevel5;
                 }
+		if (notoast == true) hidetoast();  
                 if (profile == 0) profileName = "default";
                 if (profile == 1) profileName = "bunny";
                 if (profile == 2) profileName = "cow";
@@ -2025,6 +2033,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCPreferenceSubscreen = "UBCSpecialModes";
                 addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape",
                     "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.", false, 120
+                );
+		addMenuCheckbox(64, 64, "Enable no-toast mode: ", "notoast",
+                    "This mode disables all the toast messages, so you can play BC without being annoyed by these pop-ups. The audio notifications are also disabled. To keep contact with the other players, select 'Show beep notifications in the chat' in BC Chat settings. If you are not in a chat room, think to check from time to time if you don't have received messages from friends! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable silent mode: ", "silent",
                     "This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.", false, 120
@@ -5721,6 +5732,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Messages
+    function hidetoast() {
+        ServerShowBeep = function() {    
+        }
+    }
+
     function infomsg(msg) {
         if (NoubccolorOn) {
             ChatRoomSendLocal("ULTRAbc: " + msg);
