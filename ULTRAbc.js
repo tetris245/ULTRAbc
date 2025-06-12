@@ -3649,18 +3649,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!low || !low.startsWith(CommandsKey) || low.length <= CommandsKey.length) return;
             if (low.substring(CommandsKey.length).startsWith(CommandsKey)) return;
             const [key, ...forward] = low.replace(/\s{2,}/g, ' ').split(' ');
-            const CS = GetCommands().filter(C => (CommandsKey + C.Tag).indexOf(key) == 0);
+            const tag = key.substring(CommandsKey.length);
+            if (forward.length > 0) {
+                const cmds = GetCommands().filter(C => C.Tag == tag);
+                if (cmds.length == 1 && cmds[0].AutoComplete) {
+                    cmds[0].AutoComplete.call(cmds[0], forward, low, msg);
+                }
+		return;
+            }
+            const CS = GetCommands().filter(C => C.Tag.startsWith(tag));
             if (CS.length == 0) return;
             if (CS.length == 1) {
-                if (key != (CommandsKey + CS[0].Tag)) {
+                if (tag != CS[0].Tag) {
                     ElementValue("InputChat", CommandsKey + CS[0].Tag + " ");
                     ElementFocus("InputChat");
                 } else if (CS[0].AutoComplete) {
                     CS[0].AutoComplete.call(CS[0], forward, low, msg);
                 }
-                return;
-            }
-            if (forward.length > 0) return;
+		return;
+	    }
             let complete = low;
             for (let I = low.length - CommandsKey.length;; ++I) {
                 const TSI = CS.map(C => C.Tag[I]);
