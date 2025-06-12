@@ -62,3 +62,4 @@ Changes for future version
 * Added a button on Login screen to disable all toast messages
   - This mode disables also the audio notifications (Back to 'normal' mode only after a full relog)
 * Updated the bg4 command
+* Updated a patched function related to commands
