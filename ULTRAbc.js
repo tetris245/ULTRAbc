@@ -3667,16 +3667,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		return false;
 	    }
 	    C.Action.call(C, low.substring(C.Tag.length + 2), msg, parsed);
-            if (C.Clear == null || C.Clear) {
-		ElementValue("InputChat", "");
-		ElementFocus("InputChat");
-                document.getElementById("InputChat").dispatchEvent(new Event("input"));
+            if ((msg != "/bcc leave") && (msg != "/leave") && (msg != "/quit")) {
+                if (C.Clear == null || C.Clear) {
+		    ElementValue("InputChat", "");
+		    ElementFocus("InputChat");
+                    document.getElementById("InputChat").dispatchEvent(new Event("input"));
+                }
             }
-	    return true;
+	    return true; 
             return;
         });
     }
-	
+
     //Friendlist 
     async function ULTRAFriendListDraw() {
         modApi.hookFunction('FriendListDraw', 4, (args, next) => {
@@ -11920,17 +11922,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = umsg1 + umsg3;
                 infomsg(msg);
             } else {
-                let message = "";
                 if (args === "") {
-                    message = " heads for the door."
-                } else {
-                    message = ' '.repeat(1) + args;
-                }
-                let msg = "" + tmpname + message;
-                publicmsg(msg);
-                setTimeout(function() {
                     OutChat();
-                }, 5000);
+                } else {
+                    let message = ' '.repeat(1) + args;
+                    let msg = "" + tmpname + message;
+                    publicmsg(msg);
+                    OutChat();
+                }
             }
         }
     }])
