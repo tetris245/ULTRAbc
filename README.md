@@ -64,3 +64,4 @@ Changes for future version
 * New option in GUI - Misc to prevent disappearance of error message after a command that is wrong or impossible according the context
 * Updated the bg4 command
 * Updated the patched CommandAutoComplete function
+* Patched the CommandExecute function to prevent 'fake crash' when using a command that forces exit from current chat room
