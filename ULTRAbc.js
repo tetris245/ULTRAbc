@@ -587,7 +587,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             blindness = 0;
             blurmode = 0;
             ccname = datas.ccname;
-	    ccards = datas.ccards;
+	    ccards = datas.ccards * 1;
             cdesk = datas.cdesk;
             cextra = datas.cextra;
             cfame = datas.cfame;
@@ -1521,7 +1521,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 blindness = data.blindness;
                 blureffect = 0;
                 blurmode = data.blurmode;	
-                ccards = data.ccards;
+                ccards = data.ccards * 1;
                 cdesk = data.cdesk;
                 cextra = data.cextra;
                 cfame = data.cfame;
@@ -1785,7 +1785,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    && (CommonIsNumeric(cards)) && (cards > 29) && (cards < 41) 
 		    && (CommonIsNumeric(fame)) && (fame > 149) && (fame < 451)) {
                     Player.UBC.ubcSettings.cdesk = desk;
-                    Player.UBC.ubcSettings.cards = cards;
+                    Player.UBC.ubcSettings.ccards = cards;
                     Player.UBC.ubcSettings.cfame = fame;
                     ElementRemove("InputDefaultDesk");
                     ElementRemove("InputMaxCards");
