@@ -135,7 +135,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let NogarbleOn;
     let NostruggleOn;
     let NotimeoutOn;
-    let notimeout2;
     let NoubccolorOn;
     let NowhisperOn = false;
     let NPCpunish = false;
@@ -521,7 +520,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NogarbleOn = false;
             NostruggleOn = false;
             NotimeoutOn = false;
-	    notimeout2 = false;
             NoubccolorOn = false;
             NowhisperOn = false;
             NPCpunish = false;
@@ -632,7 +630,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
             NotimeoutOn = datas.notimeout;    
-            notimeout2 = datas.notimeout2;
             NoubccolorOn = datas.noubccolor;
             NowhisperOn = datas.nowhisper;
             NPCpunish = datas.npcpunish;
@@ -741,7 +738,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,
             "notimeout": NotimeoutOn,
-            "notimeout2": notimeout2,
             "noubccolor": NoubccolorOn,
             "nowhisper": NowhisperOn,
             "npcpunish": NPCpunish,
@@ -859,7 +855,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (NotimeoutOn == null || NotimeoutOn == undefined) NotimeoutOn = false;
-		if (notimeout2 == null || notimeout2 == undefined) notimeout2 = false;
                 if (NoubccolorOn == null || NoubccolorOn == undefined) NoubccolorOn = false;
                 if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
                 if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
@@ -979,7 +974,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nostruggle: false,
                 notalk: 0,
                 notimeout: false,
-		notimeout2: false,
                 noubccolor: false,
                 nowhisper: false,
                 npcpunish: false,
@@ -1554,7 +1548,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NostruggleOn = data.nostruggle;
                 notalk = data.notalk;
                 NotimeoutOn = data.notimeout;
-		notimeout2 = data.notimeout2;
                 NoubccolorOn = data.noubccolor;
                 NowhisperOn = data.nowhisper;
                 NPCpunish = data.npcpunish;
@@ -1962,9 +1955,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
                     "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
-                );
-		addMenuCheckbox(64, 64, "No time out for wrong commands: ", "notimeout2",
-                    "When you enter a command that is wrong or impossible according the context, the error message is removed after some time. If you don't like that, use this option to prevent the disappearance of the error message.", false, 120
                 );
                 addMenuCheckbox(64, 64, "No time out in help provided by TAB: ", "notimeout",
                     "When you use the TAB key to get help about BC commands, the displayed results are removed from the chat after some time. If you don't like that, use this option to prevent the disappearance of the help results.", false, 120
@@ -3644,38 +3634,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRACommandExecute() {
         modApi.hookFunction('CommandExecute', 4, (args, next) => {
             msg = ElementValue("InputChat");
-            const low = msg.toLowerCase();
-	    const [key, ...parsed] = low.replace(/\s{2,}/g, ' ').split(' ');
-	    const flt = GetCommands().filter(cmd => key.indexOf(CommandsKey + cmd.Tag) == 0);
-	    let C = flt[0];
-            if (flt.length > 1) C = null;
-	    if (C && C.Reference) C = GetCommands().find(D => D.Tag == C.Reference);
-	    if (C == null) {
-                if (notimeout2 == true) {
-                    ChatRoomSendLocal(`${msg} ${TextGet("CommandNoSuchCommand")}`);
-                } else {
-		    ChatRoomSendLocal(`${msg} ${TextGet("CommandNoSuchCommand")}`, 10_000);
-                }
-		return false;
-	    }
-            if (C.Prerequisite && C.Prerequisite.call(C) == false) {
-                if (notimeout2 == true) {
-                    ChatRoomSendLocal(`${msg} ${TextGet("CommandPrerequisiteFailed")}`);
-                } else {
-		    ChatRoomSendLocal(`${msg} ${TextGet("CommandPrerequisiteFailed")}`, 10_000);
-                }
-		return false;
-	    }
-	    C.Action.call(C, low.substring(C.Tag.length + 2), msg, parsed);
-            if ((msg != "/bcc leave") && (msg != "/leave") && (msg != "/quit")) {
-                if (C.Clear == null || C.Clear) {
-		    ElementValue("InputChat", "");
-		    ElementFocus("InputChat");
-                    document.getElementById("InputChat").dispatchEvent(new Event("input"));
-                }
+            if ((msg == "/bcc leave") || (msg == "/leave") || (msg == "/quit")) {
+                const low = msg.toLowerCase();
+                const [key, ...parsed] = low.replace(/\s{2,}/g, ' ').split(' ');
+	        const flt = GetCommands().filter(cmd => key.indexOf(CommandsKey + cmd.Tag) == 0);
+	        let C = flt[0];
+                if (flt.length > 1) C = null;
+                C.Action.call(C, low.substring(C.Tag.length + 2), msg, parsed);         
+                return false;
             }
-	    return true; 
-            return;
+            next(args);
         });
     }
 
