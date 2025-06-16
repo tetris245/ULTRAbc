@@ -63,4 +63,5 @@ Changes for future version
   - This mode disables also the audio notifications (Back to 'normal' mode only after a full relog)
 * Updated the bg4 command
 * Updated the patched CommandAutoComplete function
+* Patched the ClubCardCommonLoad function to fix a bug introduced in BC R117
 * Patched the CommandExecute function to prevent 'fake crash' when using a command that forces exit from current chat room
