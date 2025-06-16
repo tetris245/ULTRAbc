@@ -2251,6 +2251,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchRun();
     ULTRAClubCardCheckVictory();
     ULTRAClubCardClick();
+    ULTRAClubCardCommonLoad();
     ULTRAClubCardEndTurn();
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
@@ -3455,6 +3456,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             next(args);
+        });
+    }
+
+    async function ULTRAClubCardCommonLoad() {
+        modApi.hookFunction('ClubCardCommonLoad', 4, (args, next) => {
+            if (Player.Game == null) Player.Game = {};
+	    if (Player.Game.ClubCard == null) Player.Game.ClubCard = { Deck: [] };
+	    if (Player.Game.ClubCard.Reward == null) Player.Game.ClubCard.Reward = "";
+	    ClubCardList[0].Title = null;
+            CommonReadCSV(ScreenFileGetTranslation("MiniGame", "ClubCard", "Text_ClubCard"));	    
+            return;
         });
     }
 
