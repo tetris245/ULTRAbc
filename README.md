@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.2
+Most recent version: 5.2.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -59,9 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added a button on Login screen to disable all toast messages
-  - This mode disables also the audio notifications (Back to 'normal' mode only after a full relog)
-* Updated the bg4 command and the clothes1 constant
-* Updated the patched CommandAutoComplete function
-* Patched the ClubCardCommonLoad function to fix a bug introduced in BC R117
-* Patched the CommandExecute function to prevent 'fake crash' when using a command that forces exit from current chat room
+(...)
