@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* New option in GUI - Misc to prevent disappearance of error messages after wrong or impossible command
+* New option in GUI - Misc to prevent disappearance of error messages after some time for wrong or impossible commands
