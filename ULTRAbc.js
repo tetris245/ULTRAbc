@@ -138,7 +138,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let notimeout2;
     let NoubccolorOn;
     let NowhisperOn = false;
-    let NPCpunish = false;
+    let npcpunish = false;
     let OutbuttonsOn;
     let RglbuttonsOn;
     let RglsyncOn;
@@ -524,7 +524,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    notimeout2 = false;
             NoubccolorOn = false;
             NowhisperOn = false;
-            NPCpunish = false;
+            npcpunish = false;
             OutbuttonsOn = false;
             RglbuttonsOn = false;
             RglsyncOn = false;
@@ -635,7 +635,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    notimeout2 = datas.notimeout2; 
             NoubccolorOn = datas.noubccolor;
             NowhisperOn = datas.nowhisper;
-            NPCpunish = datas.npcpunish;
+            npcpunish = datas.npcpunish;
             OutbuttonsOn = datas.outbuttons;
             RglbuttonsOn = datas.rglbuttons;
             RglsyncOn = datas.rglsync;
@@ -744,7 +744,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "notimeout2": notimeout2,
             "noubccolor": NoubccolorOn,
             "nowhisper": NowhisperOn,
-            "npcpunish": NPCpunish,
+            "npcpunish": npcpunish,
             "outbuttons": OutbuttonsOn,
             "rglbuttons": RglbuttonsOn,
             "rglsync": RglsyncOn,
@@ -874,7 +874,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		if (notimeout2 == null || notimeout2 == undefined) notimeout2 = false;
                 if (NoubccolorOn == null || NoubccolorOn == undefined) NoubccolorOn = false;
                 if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
-                if (NPCpunish == null || NPCpunish == undefined) NPCpunish = false;
+                if (npcpunish == null || npcpunish == undefined) {
+                    if (NPCpunish == null || NPCpunish == undefined) {
+                        npcpunish = false;
+                    } else {
+                        npcpunish = NPCpunish;
+                    }
+                }
                 if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
                 if (pchat == null || pchat == undefined) pchat = false;
                 if (pmin == null || pmin == undefined || pmin == 0) pmin = 2;
@@ -1569,7 +1575,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		notimeout2 = data.notimeout2;
                 NoubccolorOn = data.noubccolor;
                 NowhisperOn = data.nowhisper;
-                NPCpunish = data.npcpunish;
+                npcpunish = data.npcpunish;
                 OutbuttonsOn = data.outbuttons;
                 pchat = data.pchat;
                 pmin = data.pmin * 1;
@@ -1691,7 +1697,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassStruggle = false;
                 }
-                if (NPCpunish == true) {
+                if (npcpunish == true) {
                     Player.RestrictionSettings.BypassNPCPunishments = false;
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
@@ -5977,7 +5983,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ServerAccountUpdate.QueueData({
             OnlineSharedSettings: Player.OnlineSharedSettings
         });
-	if (NPCpunish == true) {
+	if (npcpunish == true) {
             Player.RestrictionSettings.BypassNPCPunishments = false;
         } else {
             Player.RestrictionSettings.BypassNPCPunishments = true;
