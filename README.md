@@ -60,3 +60,5 @@ All else I might not have included.
 Changes for future version
 
 * New option in GUI - Misc to prevent disappearance of error messages after some time for wrong or impossible commands
+* New command: ping (MemberNumber) (Message) to send a beep to a player
+  - It's actually the same as the BC beep command (without WCE), but the error messages will not disappear after some time.
