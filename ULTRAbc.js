@@ -862,7 +862,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (NotimeoutOn == null || NotimeoutOn == undefined) {
                         notimeout = false;
                     } else {
-                        notimeout = NotimeOut;
+                        notimeout = NotimeoutOn;
                     }
                 } 
 		if (notimeout2 == null || notimeout2 == undefined) notimeout2 = false;
