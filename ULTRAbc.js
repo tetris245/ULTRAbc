@@ -3651,9 +3651,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let C = flt[0];
             if (flt.length > 1) C = null;
             if (C && C.Reference) C = GetCommands().find(D => D.Tag == C.Reference);
-            if ((msg == "/bcc leave") || (msg == "/leave") || (msg == "/quit")) {
-                C.Action.call(C, low.substring(C.Tag.length + 2), msg, parsed);         
-                return false;
+            if (C != null) {
+                if ((msg == "/bcc leave") || (msg == "/leave") || (msg == "/quit")) {
+                    C.Action.call(C, low.substring(C.Tag.length + 2), msg, parsed);         
+                    return false;
+                } 
             }
             if (C == null) {
 	        if (notimeout2 == true) {
