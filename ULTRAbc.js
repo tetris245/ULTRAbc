@@ -122,7 +122,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let DolltalkOn;
     let ExtbuttonsOn;
     let ExtrainfoOn;
-    let FixpermOn;
+    let fixperm;
     let FrkeysOn;
     let FullseedOn;
     let HighfameOn;
@@ -508,7 +508,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DolltalkOn = false;
             ExtbuttonsOn = false;
             ExtrainfoOn = false;
-            FixpermOn = false;
+            fixperm = false;
             FrkeysOn = false;
             FullseedOn = false;
             HighfameOn = false;
@@ -619,7 +619,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
             ExtrainfoOn = datas.extrainfo;
-            FixpermOn = datas.fixperm;
+            fixperm = datas.fixperm;
             FrkeysOn = datas.frkeys;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
@@ -728,7 +728,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
             "extrainfo": ExtrainfoOn,
-            "fixperm": FixpermOn,
+            "fixperm": fixperm,
             "frkeys": FrkeysOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
@@ -829,7 +829,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
                 if (ExtrainfoOn == null || ExtrainfoOn == undefined) ExtrainfoOn = false;
-                if (FixpermOn == null || FixpermOn == undefined) FixpermOn = false;
+                if (fixperm == null || fixperm == undefined) {
+                    if (FixpermOn == null || FixpermOn == undefined) {
+                        fixperm = false;
+                    } else {
+                        fixperm = FixpermOn;
+                    }
+                }
                 if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
                 if (FrkeysOn == null || FrkeysOn == undefined) FrkeysOn = false;
                 if (frname == null || frname == undefined) frname = "BrickWall";
@@ -1534,7 +1540,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DolltalkOn = data.dolltalk;
                 ExtbuttonsOn = data.extbuttons;
                 ExtrainfoOn = data.extrainfo;
-                FixpermOn = data.fixperm;
+                fixperm = data.fixperm;
                 FullseedOn = data.fullseed;
                 FrkeysOn = data.frkeys;
                 gl = data.gaglevel * 1;
@@ -2685,7 +2691,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Type: "Action",
                     Dictionary
                 });
-                if ((Player.ItemPermission < 3) && (FixpermOn == false)) {
+                if ((Player.ItemPermission < 3) && (fixperm == false)) {
                     Player.ItemPermission = 3;
                     ServerAccountUpdate.QueueData({
                         ItemPermission: Player.ItemPermission
