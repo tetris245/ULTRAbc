@@ -134,7 +134,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let NoescapeOn;
     let NogarbleOn;
     let NostruggleOn;
-    let NotimeoutOn; 
+    let notimeout;
     let notimeout2;
     let NoubccolorOn;
     let NowhisperOn = false;
@@ -520,7 +520,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NoescapeOn = false;
             NogarbleOn = false;
             NostruggleOn = false;
-            NotimeoutOn = false;
+            notimeout = false;
 	    notimeout2 = false;
             NoubccolorOn = false;
             NowhisperOn = false;
@@ -631,7 +631,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NoescapeOn = datas.noescape;
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
-            NotimeoutOn = datas.notimeout;  
+            notimeout = datas.notimeout;   
 	    notimeout2 = datas.notimeout2; 
             NoubccolorOn = datas.noubccolor;
             NowhisperOn = datas.nowhisper;
@@ -740,7 +740,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "noescape": NoescapeOn,
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,
-            "notimeout": NotimeoutOn,
+            "notimeout": notimeout,
             "notimeout2": notimeout2,
             "noubccolor": NoubccolorOn,
             "nowhisper": NowhisperOn,
@@ -858,7 +858,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (NogarbleOn == null || NogarbleOn == undefined) NogarbleOn = false;
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
-                if (NotimeoutOn == null || NotimeoutOn == undefined) NotimeoutOn = false;
+                if (notimeout == null || notimeout == undefined) {
+                    if (NotimeoutOn == null || NotimeoutOn == undefined) {
+                        notimeout = false;
+                    } else {
+                        notimeout = NotimeOut;
+                    }
+                } 
 		if (notimeout2 == null || notimeout2 == undefined) notimeout2 = false;
                 if (NoubccolorOn == null || NoubccolorOn == undefined) NoubccolorOn = false;
                 if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
@@ -1553,7 +1559,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NogarbleOn = data.nogarble;
                 NostruggleOn = data.nostruggle;
                 notalk = data.notalk;
-                NotimeoutOn = data.notimeout;
+                notimeout = data.notimeout;
 		notimeout2 = data.notimeout2;
                 NoubccolorOn = data.noubccolor;
                 NowhisperOn = data.nowhisper;
@@ -3631,7 +3637,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ElementValue("InputChat", complete);
                 ElementFocus("InputChat");
             } else {
-                if (NotimeoutOn == true) {
+                if (notimeout == true) {
                     CommandPrintHelpFor(CS);
                 } else {
                     CommandPrintHelpFor(CS, 5000);
