@@ -127,7 +127,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let FullseedOn;
     let HighfameOn;
     let hotkeys;
-    let MagiccheatOn;
+    let magiccheat;
     let magictoys;
     let mapcheat;
     let mapfull;
@@ -513,7 +513,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             FullseedOn = false;
             HighfameOn = false;
             hotkeys = false;
-            MagiccheatOn = false;
+            magiccheat = false;
             magictoys = false;
             mapcheat = false;
             mapfull = false;
@@ -624,7 +624,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
             hotkeys = datas.hotkeys;
-            MagiccheatOn = datas.magiccheat;
+            magiccheat = datas.magiccheat;
             magictoys = datas.magictoys;
             mapcheat = datas.mapcheat;
             mapfull = datas.mapfull;
@@ -733,7 +733,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
             "hotkeys": hotkeys,
-            "magiccheat": MagiccheatOn,
+            "magiccheat": magiccheat,
             "magictoys": magictoys,
             "mapcheat": mapcheat,
             "mapfull": mapfull,
@@ -863,7 +863,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         hotkeys = HotkeysOn;
                     }
                 } 
-                if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
+                if (magiccheat == null || magiccheat == undefined) {
+                    if (MagiccheatOn == null || MagiccheatOn == undefined) {
+                        magiccheat = false;
+                    } else {
+                        magiccheat = MagiccheatOn;
+                    }
+                } 
                 if (magictoys == null || magictoys == undefined) {
                     if (MagictoysOn == null || MagictoysOn == undefined) {
                         magictoys = false;
@@ -1589,7 +1595,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 hearing = data.hearing;
                 HighfameOn = data.highfame;
                 hotkeys = data.hotkeys;
-                MagiccheatOn = data.magiccheat;
+                magiccheat = data.magiccheat;
                 magictoys = data.magictoys;
                 MapcheatOn = data.mapcheat;
                 mapfull = data.mapfull;
@@ -2430,14 +2436,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Bondage Brawl
     async function ULTRAPlatformAttack() {
         modApi.hookFunction('PlatformAttack', 4, (args, next) => {
-            if (MagiccheatOn == true) BrawlCheat();
+            if (magiccheat == true) BrawlCheat();
             next(args);
         });
     }
 
     async function ULTRAPlatformDialogEvent() {
         modApi.hookFunction('PlatformDialogEvent', 4, (args, next) => {
-            if (MagiccheatOn == true) BrawlCheat();
+            if (magiccheat == true) BrawlCheat();
             next(args);
         });
     }
@@ -3829,7 +3835,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Magic School
     async function ULTRAMagicPuzzleRun() {
         modApi.hookFunction('MagicPuzzleRun', 4, (args, next) => {
-            if (MagiccheatOn == true) {
+            if (magiccheat == true) {
                 if (MiniGameEnded) MiniGameVictory = true;
             }
             next(args);
@@ -3838,7 +3844,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAMagicSchoolEscapeSpellEnd() {
         modApi.hookFunction('MagicSchoolEscapeSpellEnd', 4, (args, next) => {
-            if (MagiccheatOn == true) {
+            if (magiccheat == true) {
                 MagicSchoolEscapeTimer > CommonTime();
                 MiniGameVictory = true;
             }
