@@ -130,7 +130,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let MagiccheatOn;
     let magictoys;
     let MapcheatOn;
-    let MapfullOn;
+    let mapfull;
     let NoescapeOn;
     let NogarbleOn;
     let NostruggleOn;
@@ -516,7 +516,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = false;
             magictoys = false;
             MapcheatOn = false;
-            MapfullOn = false;
+            mapfull = false;
             NoescapeOn = false;
             NogarbleOn = false;
             NostruggleOn = false;
@@ -627,7 +627,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = datas.magiccheat;
             magictoys = datas.magictoys;
             MapcheatOn = datas.mapcheat;
-            MapfullOn = datas.mapfull;
+            mapfull = datas.mapfull;
             NoescapeOn = datas.noescape;
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
@@ -736,7 +736,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "magiccheat": MagiccheatOn,
             "magictoys": magictoys,
             "mapcheat": MapcheatOn,
-            "mapfull": MapfullOn,
+            "mapfull": mapfull,
             "noescape": NoescapeOn,
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,
@@ -860,7 +860,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } 
                 if (MapcheatOn == null || MapcheatOn == undefined) MapcheatOn = false;
-                if (MapfullOn == null || MapfullOn == undefined) MapfullOn = false;
+                if (mapfull== null || mapfull == undefined) {
+                    if (MapfullOn == null || MapfullOn == undefined) {
+                        mapfull = false;
+                    } else {
+                        mapfull = MapfullOn;
+                    }
+                } 
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
@@ -1568,7 +1574,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 MagiccheatOn = data.magiccheat;
                 magictoys = data.magictoys;
                 MapcheatOn = data.mapcheat;
-                MapfullOn = data.mapfull;
+                mapfull = data.mapfull;
                 maptrap1 = data.maptrap1 * 1;
                 M_MOANER_cum = data.cum;
                 M_MOANER_orgasmActive = data.orgasmMoan;
@@ -2538,7 +2544,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomMapViewCalculatePerceptionMasks() {
         modApi.hookFunction('ChatRoomMapViewCalculatePerceptionMasks', 4, (args, next) => {
             const ret = next(args);
-            if (MapfullOn) {
+            if (mapfull) {
                 if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) return;
                 ChatRoomMapViewVisibilityMask.fill(true);
                 ChatRoomMapViewAudibilityMask.fill(true);
