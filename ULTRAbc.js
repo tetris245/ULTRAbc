@@ -126,7 +126,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let FrkeysOn;
     let FullseedOn;
     let HighfameOn;
-    let HotkeysOn;
+    let hotkeys;
     let MagiccheatOn;
     let magictoys;
     let mapcheat;
@@ -512,7 +512,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             FrkeysOn = false;
             FullseedOn = false;
             HighfameOn = false;
-            HotkeysOn = false;
+            hotkeys = false;
             MagiccheatOn = false;
             magictoys = false;
             mapcheat = false;
@@ -623,7 +623,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             FrkeysOn = datas.frkeys;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
-            HotkeysOn = datas.hotkeys;
+            hotkeys = datas.hotkeys;
             MagiccheatOn = datas.magiccheat;
             magictoys = datas.magictoys;
             mapcheat = datas.mapcheat;
@@ -732,7 +732,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "frkeys": FrkeysOn,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
-            "hotkeys": HotkeysOn,
+            "hotkeys": hotkeys,
             "magiccheat": MagiccheatOn,
             "magictoys": magictoys,
             "mapcheat": mapcheat,
@@ -850,7 +850,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (gl == -1) gl = 11;
                 if (hearing == null || hearing == undefined) hearing = 0;
                 if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
-                if (HotkeysOn == null || HotkeysOn == undefined) HotkeysOn = false;
+                if (hotkeys == null || hotkeys == undefined) {
+                    if (HotkeysOn == null || HotkeysOn == undefined) {
+                        hotkeys = false;
+                    } else {
+                        hotkeys = HotkeysOn;
+                    }
+                } 
                 if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
                 if (magictoys == null || magictoys == undefined) {
                     if (MagictoysOn == null || MagictoysOn == undefined) {
@@ -1576,7 +1582,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 gl = data.gaglevel * 1;
                 hearing = data.hearing;
                 HighfameOn = data.highfame;
-                HotkeysOn = data.hotkeys;
+                hotkeys = data.hotkeys;
                 MagiccheatOn = data.magiccheat;
                 magictoys = data.magictoys;
                 MapcheatOn = data.mapcheat;
@@ -2533,7 +2539,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             const ret = next(args);
-            if ((HotkeysOn == true) && (NoescapeOn == false)) {
+            if ((hotkeys == true) && (NoescapeOn == false)) {
                 if (event.code === "NumpadDivide") {
                     OutChat();
                     return true;
