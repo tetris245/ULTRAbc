@@ -132,7 +132,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mapcheat;
     let mapfull;
     let NoescapeOn;
-    let NogarbleOn;
+    let nogarble;
     let NostruggleOn;
     let notimeout;
     let notimeout2;
@@ -518,7 +518,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mapcheat = false;
             mapfull = false;
             NoescapeOn = false;
-            NogarbleOn = false;
+            nogarble = false;
             NostruggleOn = false;
             notimeout = false;
 	    notimeout2 = false;
@@ -629,7 +629,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mapcheat = datas.mapcheat;
             mapfull = datas.mapfull;
             NoescapeOn = datas.noescape;
-            NogarbleOn = datas.nogarble;
+            nogarble = datas.nogarble;
             NostruggleOn = datas.nostruggle;
             notimeout = datas.notimeout;   
 	    notimeout2 = datas.notimeout2; 
@@ -738,7 +738,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "mapcheat": mapcheat,
             "mapfull": mapfull,
             "noescape": NoescapeOn,
-            "nogarble": NogarbleOn,
+            "nogarble": nogarble,
             "nostruggle": NostruggleOn,
             "notimeout": notimeout,
             "notimeout2": notimeout2,
@@ -915,7 +915,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
-                if (NogarbleOn == null || NogarbleOn == undefined) NogarbleOn = false;
+                if (nogarble == null || nogarble == undefined) {
+                    if (NogarbleOn == null || NogarbleOn == undefined) {
+                        nogarble = false;
+                    } else {
+                        nogarble = NogarbleOn;
+                    }
+                }   
                 if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (notimeout == null || notimeout == undefined) {
@@ -1622,7 +1628,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_whisperActive = data.whisperMoan;
                 M_MOANER_xvibratorActive = data.xvibeMoan;
                 NoescapeOn = data.noescape;
-                NogarbleOn = data.nogarble;
+                nogarble = data.nogarble;
                 NostruggleOn = data.nostruggle;
                 notalk = data.notalk;
                 notimeout = data.notimeout;
@@ -1741,7 +1747,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
-                if (NogarbleOn == true) {
+                if (nogarble == true) {
                     Player.RestrictionSettings.NoSpeechGarble = true;
                 } else {
                     Player.RestrictionSettings.NoSpeechGarble = false;
@@ -5988,7 +5994,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (FBCdata.antiGarble) {
                 gbc = 1;
                 Player.RestrictionSettings.NoSpeechGarble = false;
-                NogarbleOn = false;
+                nogarble = false;
                 M_MOANER_saveControls();
             }
             if (FBCdata.autoStruggle) {
@@ -5999,11 +6005,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         if (gbc == 0) {
-            if (NogarbleOn == null || NogarbleOn == undefined) {
-                NogarbleOn = false;
+            if (nogarble == null || nogarble == undefined) {
+                nogarble = false;
                 M_MOANER_saveControls();
             }
-            if (NogarbleOn == true) {
+            if (nogarble == true) {
                 Player.RestrictionSettings.NoSpeechGarble = true;
             } else {
                 Player.RestrictionSettings.NoSpeechGarble = false;
