@@ -124,7 +124,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let extrainfo;
     let fixperm;
     let frkeys;
-    let FullseedOn;
+    let fullseed;
     let HighfameOn;
     let hotkeys;
     let magiccheat;
@@ -510,7 +510,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             extrainfo = false;
             fixperm = false;
             frkeys = false;
-            FullseedOn = false;
+            fullseed = false;
             HighfameOn = false;
             hotkeys = false;
             magiccheat = false;
@@ -621,7 +621,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             extrainfo = datas.extrainfo;
             fixperm = datas.fixperm;
             frkeys = datas.frkeys;
-            FullseedOn = datas.fullseed;
+            fullseed = datas.fullseed;
             HighfameOn = datas.highfame;
             hotkeys = datas.hotkeys;
             magiccheat = datas.magiccheat;
@@ -730,7 +730,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "extrainfo": extrainfo,
             "fixperm": fixperm,
             "frkeys": frkeys,
-            "fullseed": FullseedOn,
+            "fullseed": fullseed,
             "highfame": HighfameOn,
             "hotkeys": hotkeys,
             "magiccheat": magiccheat,
@@ -848,7 +848,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         fixperm = FixpermOn;
                     }
                 }
-                if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
+                if (fullseed == null || fullseed == undefined) {
+                    if (FullseedOn == null || FullseedOn == undefined) {
+                        fullseed = false;
+                    } else {
+                        fullseed = FullseedOn;
+                    }
+                }
                 if (frkeys == null || frkeys == undefined) {
                     if (FrkeysOn == null || FrkeysOn == undefined) {
                         frkeys = false;
@@ -1595,7 +1601,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ExtbuttonsOn = data.extbuttons;
                 extrainfo = data.extrainfo;
                 fixperm = data.fixperm;
-                FullseedOn = data.fullseed;
+                fullseed = data.fullseed;
                 frkeys = data.frkeys;
                 gl = data.gaglevel * 1;
                 hearing = data.hearing;
@@ -3805,7 +3811,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Lockpicking
     async function ULTRAStruggleMinigameWasInterrupted() {
         modApi.hookFunction('StruggleMinigameWasInterrupted', 4, (args, next) => {
-            if (FullseedOn == true) {
+            if (fullseed == true) {
                 if (StruggleProgressCurrentMinigame === "LockPick") {
                     let seed = parseInt(StruggleLockPickOrder.join(""));
                     let tips = StruggleLockPickOrder.map((a) => {
