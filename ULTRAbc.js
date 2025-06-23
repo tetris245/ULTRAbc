@@ -6040,12 +6040,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Room Connections
-    function BackToRoom() {
-        CommonSetScreen("Online", "ChatRoom");
-        document.getElementById("InputChat").style.display = "inline";
-        document.getElementById("TextAreaChatLog").style.display = "inline";
-    }
-
     function IsMapRoom() {
         if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) {
             return false;
@@ -9065,7 +9059,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'frlist',
-        Description: "(lobby): gives access to friendlist with clickable links in specified lobby during 15 seconds.",
+        Description: "(lobby): gives access to friendlist in specified lobby.",
         Action: (args) => {
             if (args === "") {
                 let msg = "The frlist command must be followed by the lobby for which you want to have clickable links.\n" +
@@ -9092,11 +9086,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     setTimeout(function() {
                         ChatRoomSpace = frlist;
                         RoomToFriends();
-                    }, 3000);
-                    setTimeout(function() {
-                        FriendListExit();
-                        BackToRoom();
-                    }, 15000);
+                    }, 1000);
                 }
             }
         }
@@ -12382,7 +12372,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'search',
-        Description: "(lobby): opens room search for 15 seconds in specified lobby.",
+        Description: "(lobby): opens chat search in specified lobby.",
         Action: (args) => {
             if (args === "") {
                 let msg = "The search command must be followed by the lobby you want to explore.\n" +
@@ -12408,10 +12398,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     setTimeout(function() {
                         RoomToSearch(search);
-                    }, 3000);
-                    setTimeout(function() {
-                        BackToRoom();
-                    }, 15000);
+                    }, 1000);
                 }
             }
         }
@@ -13609,14 +13596,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
-                    "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby with clickable links during 15 seconds. *\n" +
+                    "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby. *\n" +
                     "<b>/mapfog</b> = toggles fog in current map room.\n" +
                     "<b>/mapkeys</b> = gives all keys for current map room.\n" +
                     "<b>/maproom</b> = gives infos about players in current map.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
-                    "<b>/search</b> (lobby) = opens room search for 15 seconds in specified lobby. *\n" +
+                    "<b>/search</b> (lobby) = opens chat search in specified lobby. *\n" +
                     "<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.";
                 infomsg(msg);
             }
