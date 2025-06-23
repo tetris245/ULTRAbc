@@ -117,7 +117,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tintmbs = false;
     let tintnever = false;
 
-    let AsylumLimitOn;
+    let asylumlimit;
     let AutojoinOn;
     let DolltalkOn;
     let ExtbuttonsOn;
@@ -503,7 +503,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tintlevel = 0;
             tintmbs = false;
             tintnever = false;
-            AsylumLimitOn = false;
+            asylumlimit = false;
             AutojoinOn = false;
             DolltalkOn = false;
             ExtbuttonsOn = false;
@@ -614,7 +614,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tintlevel = datas.tintlevel;
             tintmbs = datas.tintmbs;
             tintnever = datas.tintnever;
-            AsylumLimitOn = datas.asylumlimit;
+            asylumlimit = datas.asylumlimit;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
@@ -723,7 +723,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tintlevel": tintlevel,
             "tintmbs": tintmbs,
             "tintnever": tintnever,
-            "asylumlimit": AsylumLimitOn,
+            "asylumlimit": asylumlimit,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
@@ -814,7 +814,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 console.log("ULTRAbc loaded: Version " + UBCver);
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (animal == null || animal == undefined) animal = 0;
-                if (AsylumLimitOn == null || AsylumLimitOn == undefined) AsylumLimitOn = false;
+                if (asylumlimit == null || asylumlimit == undefined) {
+                    if (AsylumLimitOn == null || AsylumLimitOn == undefined) {
+                        asylumlimit = false;
+                    } else {
+                        asylumlimit = AsylumLimitOn; 
+                    }
+                } 
                 if (AutojoinOn == null || AutojoinOn == undefined) AutojoinOn = false;
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
@@ -1532,7 +1538,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let data = Player.UBC.ubcSettings;
                 ahybrid = data.ahybrid;
                 animal = data.animal * 1;
-                AsylumLimitOn = data.asylumlimit;
+                asylumlimit = data.asylumlimit;
                 AutojoinOn = data.autojoin;
                 bgall = data.bgall;
                 bl = data.bl;
@@ -2409,7 +2415,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Chat Room (+ name/nickname/pronouns management for player)
     async function ULTRAAsylumEntranceStartChat() {
         modApi.hookFunction('AsylumEntranceStartChat', 4, (args, next) => {
-            if (AsylumLimitOn == true) {
+            if (asylumlimit == true) {
                 ChatRoomStart("Asylum", "", "AsylumEntrance", "Room", "AsylumEntrance", [BackgroundsTagAsylum]);
             } else {
                 ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
@@ -2422,7 +2428,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
             if (ChatAdminCanEdit()) { 
                  if (MouseIn(1230, 450, 60, 60)) { 
-                     if ((AsylumLimitOn == true) && (ChatRoomSpace == "Asylum")) {
+                     if ((asylumlimit == true) && (ChatRoomSpace == "Asylum")) {
                          let AsylumList = BackgroundsGenerateList([BackgroundsTagAsylum]);
                          let listbg = AsylumList.length;
                          let Roll = Math.floor(Math.random() * listbg);
@@ -3307,18 +3313,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((MouseX >= 950) && (MouseX < 1040) && (MouseY >= 885) && (MouseY < 975)) { 
                 rgame = 0;
                 M_MOANER_saveControls();   
-                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
             if ((MouseX >= 1060) && (MouseX < 1150) && (MouseY >= 885) && (MouseY < 975)) {
                 rgame = 0;
                 M_MOANER_saveControls();     
-                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+                if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
             }
             if ((MouseX >= 1170) && (MouseX < 1260) && (MouseY >= 885) && (MouseY < 975)) {
                 rgame = 0;
                 M_MOANER_saveControls();   
-                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+                if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             }
             if ((MouseX >= 1405) && (MouseX < 1495) && (MouseY >= 885) && (MouseY < 975)) {
                 rgame = 1;
@@ -3326,7 +3332,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatSelectStartSearch(ChatRoomSpace);
             } 
             if ((MouseX >= 1515) && (MouseX < 1605) && (MouseY >= 885) && (MouseY < 975)) {
-                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {   
+                if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) {   
                     rgame = 2;
                     M_MOANER_saveControls();
                     ChatSelectStartSearch(ChatRoomSpace);
@@ -3365,16 +3371,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(807, 885, 90, 90, "", "White", "", "Show Locked Rooms");
                 DrawImageResize("Icons/Locked.png", 812, 885, 80, 80);
             }
-            if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
+            if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
+            if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
+            if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) {
                 DrawButton(1060, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
 		DrawButton(1515, 885, 90, 90, "", "White", "Icons/GGTS.png", "GGTS"); 
             } else {
                 DrawButton(1060, 885, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
 		DrawButton(1515, 885, 90, 90, "", "Gray", "Icons/GGTS.png", "GGTS");
             }
-            if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
+            if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) {
                 DrawButton(1170, 885, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
             } else {
                 DrawButton(1170, 885, 90, 90, "", "Gray", "Icons/Gender.png", "Mixed");
@@ -3713,7 +3719,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (FrkeysOn == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
                     if (event.code === "KeyF") {
-                        if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
+                        if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
                             ChatRoomSpace = "";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3722,7 +3728,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyG") {
-                        if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
+                        if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) {
                             ChatRoomSpace = "X";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3731,7 +3737,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyH") {
-                        if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
+                        if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
                             ChatRoomSpace = "M";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3740,7 +3746,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyJ") {
-                        if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
+                        if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) {
                             ChatRoomSpace = "Asylum";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3819,7 +3825,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
             if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
-                if (AsylumLimitOn == false) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+                if (asylumlimit == false) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
             }
             if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
@@ -3851,7 +3857,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawText("Chat Rooms", 130, 530, "White", "Black");
             if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
             if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            if (AsylumLimitOn == true) {
+            if (asylumlimit == true) {
                 DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
             } else {
                 DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
@@ -9068,16 +9074,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let frlist = "noaccess";
                 if (args === "asylum") {
-                    if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) frlist = "Asylum";
+                    if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) frlist = "Asylum";
                 }
                 if (args === "fclub") {
-                    if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) frlist = "";
+                    if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) frlist = "";
                 }
                 if (args === "mclub") {
-                    if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) frlist = "M";
+                    if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) frlist = "M";
                 }
                 if (args === "xclub") {
-                    if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) frlist = "X";
+                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) frlist = "X";
                 }
                 if (frlist == "noaccess") {
                     let msg = "No access to this lobby.";
@@ -12381,16 +12387,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let search = "noaccess";
                 if (args === "asylum") {
-                    if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) search = "Asylum";
+                    if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) search = "Asylum";
                 }
                 if (args === "fclub") {
-                    if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) search = "";
+                    if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) search = "";
                 }
                 if (args === "mclub") {
-                    if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) search = "M";
+                    if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) search = "M";
                 }
                 if (args === "xclub") {
-                    if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) search = "X";
+                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) search = "X";
                 }
                 if (search == "noaccess") {
                     let msg = "No access to this lobby.";
