@@ -123,7 +123,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let ExtbuttonsOn;
     let ExtrainfoOn;
     let fixperm;
-    let FrkeysOn;
+    let frkeys;
     let FullseedOn;
     let HighfameOn;
     let hotkeys;
@@ -509,7 +509,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ExtbuttonsOn = false;
             ExtrainfoOn = false;
             fixperm = false;
-            FrkeysOn = false;
+            frkeys = false;
             FullseedOn = false;
             HighfameOn = false;
             hotkeys = false;
@@ -620,7 +620,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ExtbuttonsOn = datas.extbuttons;
             ExtrainfoOn = datas.extrainfo;
             fixperm = datas.fixperm;
-            FrkeysOn = datas.frkeys;
+            frkeys = datas.frkeys;
             FullseedOn = datas.fullseed;
             HighfameOn = datas.highfame;
             hotkeys = datas.hotkeys;
@@ -729,7 +729,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "extbuttons": ExtbuttonsOn,
             "extrainfo": ExtrainfoOn,
             "fixperm": fixperm,
-            "frkeys": FrkeysOn,
+            "frkeys": frkeys,
             "fullseed": FullseedOn,
             "highfame": HighfameOn,
             "hotkeys": hotkeys,
@@ -843,7 +843,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (FullseedOn == null || FullseedOn == undefined) FullseedOn = false;
-                if (FrkeysOn == null || FrkeysOn == undefined) FrkeysOn = false;
+                if (frkeys == null || frkeys == undefined) {
+                    if (FrkeysOn == null || FrkeysOn == undefined) {
+                        frkeys = false;
+                    } else {
+                        frkeys = FrkeysOn;
+                    }
+                } 
                 if (frname == null || frname == undefined) frname = "BrickWall";
                 if (gamestable == null || gamestable == undefined) gamestable = false;
                 if (gl == null || gl == undefined) gl = 0;
@@ -1578,7 +1584,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ExtrainfoOn = data.extrainfo;
                 fixperm = data.fixperm;
                 FullseedOn = data.fullseed;
-                FrkeysOn = data.frkeys;
+                frkeys = data.frkeys;
                 gl = data.gaglevel * 1;
                 hearing = data.hearing;
                 HighfameOn = data.highfame;
@@ -3740,7 +3746,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const searchInputHasFocus = searchInput && document.activeElement === searchInput;
             const beepTextArea = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.beepTextArea));
             const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
-            if (FrkeysOn == true) {
+            if (frkeys == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
                     if (event.code === "KeyF") {
                         if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
