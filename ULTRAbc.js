@@ -121,7 +121,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let AutojoinOn;
     let DolltalkOn;
     let ExtbuttonsOn;
-    let ExtrainfoOn;
+    let extrainfo;
     let fixperm;
     let frkeys;
     let FullseedOn;
@@ -507,7 +507,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             AutojoinOn = false;
             DolltalkOn = false;
             ExtbuttonsOn = false;
-            ExtrainfoOn = false;
+            extrainfo = false;
             fixperm = false;
             frkeys = false;
             FullseedOn = false;
@@ -618,7 +618,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
-            ExtrainfoOn = datas.extrainfo;
+            extrainfo = datas.extrainfo;
             fixperm = datas.fixperm;
             frkeys = datas.frkeys;
             FullseedOn = datas.fullseed;
@@ -727,7 +727,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
-            "extrainfo": ExtrainfoOn,
+            "extrainfo": extrainfo,
             "fixperm": fixperm,
             "frkeys": frkeys,
             "fullseed": FullseedOn,
@@ -834,7 +834,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cfame == null || cfame == undefined) cfame = 150;
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
                 if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
-                if (ExtrainfoOn == null || ExtrainfoOn == undefined) ExtrainfoOn = false;
+                if (extrainfo == null || extrainfo == undefined) {
+                    if (ExtrainfoOn == null || ExtrainfoOn == undefined) {
+                        extrainfo = false;
+                    } else {
+                        extrainfo = ExtrainfoOn;
+                    }
+                }
                 if (fixperm == null || fixperm == undefined) {
                     if (FixpermOn == null || FixpermOn == undefined) {
                         fixperm = false;
@@ -1587,7 +1593,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cfame = data.cfame;
                 DolltalkOn = data.dolltalk;
                 ExtbuttonsOn = data.extbuttons;
-                ExtrainfoOn = data.extrainfo;
+                extrainfo = data.extrainfo;
                 fixperm = data.fixperm;
                 FullseedOn = data.fullseed;
                 frkeys = data.frkeys;
@@ -9412,7 +9418,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'infolock',
         Description: ": gives info (code, password, time left) for lock used on worn item in selected slot.",
         Action: () => {
-            if (ExtrainfoOn == false) {
+            if (extrainfo == false) {
                 let msg = "You can't use this command according your settings.";
                 infomsg(msg);
             } else {
