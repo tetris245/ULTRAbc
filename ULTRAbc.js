@@ -129,7 +129,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let HotkeysOn;
     let MagiccheatOn;
     let magictoys;
-    let MapcheatOn;
+    let mapcheat;
     let mapfull;
     let NoescapeOn;
     let NogarbleOn;
@@ -515,7 +515,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HotkeysOn = false;
             MagiccheatOn = false;
             magictoys = false;
-            MapcheatOn = false;
+            mapcheat = false;
             mapfull = false;
             NoescapeOn = false;
             NogarbleOn = false;
@@ -626,7 +626,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             HotkeysOn = datas.hotkeys;
             MagiccheatOn = datas.magiccheat;
             magictoys = datas.magictoys;
-            MapcheatOn = datas.mapcheat;
+            mapcheat = datas.mapcheat;
             mapfull = datas.mapfull;
             NoescapeOn = datas.noescape;
             NogarbleOn = datas.nogarble;
@@ -735,7 +735,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "hotkeys": HotkeysOn,
             "magiccheat": MagiccheatOn,
             "magictoys": magictoys,
-            "mapcheat": MapcheatOn,
+            "mapcheat": mapcheat,
             "mapfull": mapfull,
             "noescape": NoescapeOn,
             "nogarble": NogarbleOn,
@@ -859,8 +859,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         magictoys = MagictoysOn;
                     }
                 } 
-                if (MapcheatOn == null || MapcheatOn == undefined) MapcheatOn = false;
-                if (mapfull== null || mapfull == undefined) {
+                if (mapcheat == null || mapcheat == undefined) {
+                    if (MapcheatOn == null || MapcheatOn == undefined) {
+                        mapcheat = false;
+                    } else {
+                        mapcheat = MapcheatOn;
+                    }
+                } 
+                if (mapfull == null || mapfull == undefined) {
                     if (MapfullOn == null || MapfullOn == undefined) {
                         mapfull = false;
                     } else {
@@ -2557,7 +2563,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomMapViewCanEnterTile() {
         modApi.hookFunction('ChatRoomMapViewCanEnterTile', 4, (args, next) => {
             const ret = next(args);
-            if (MapcheatOn) return 20;
+            if (mapcheat) return 20;
             return ret;
         });
     }
