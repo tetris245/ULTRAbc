@@ -133,7 +133,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mapfull;
     let NoescapeOn;
     let nogarble;
-    let NostruggleOn;
+    let nostruggle;
     let notimeout;
     let notimeout2;
     let NoubccolorOn;
@@ -519,7 +519,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mapfull = false;
             NoescapeOn = false;
             nogarble = false;
-            NostruggleOn = false;
+            nostruggle = false;
             notimeout = false;
 	    notimeout2 = false;
             NoubccolorOn = false;
@@ -630,7 +630,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mapfull = datas.mapfull;
             NoescapeOn = datas.noescape;
             nogarble = datas.nogarble;
-            NostruggleOn = datas.nostruggle;
+            nostruggle = datas.nostruggle;
             notimeout = datas.notimeout;   
 	    notimeout2 = datas.notimeout2; 
             NoubccolorOn = datas.noubccolor;
@@ -739,7 +739,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "mapfull": mapfull,
             "noescape": NoescapeOn,
             "nogarble": nogarble,
-            "nostruggle": NostruggleOn,
+            "nostruggle": nostruggle,
             "notimeout": notimeout,
             "notimeout2": notimeout2,
             "noubccolor": NoubccolorOn,
@@ -922,7 +922,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         nogarble = NogarbleOn;
                     }
                 }   
-                if (NostruggleOn == null || NostruggleOn == undefined) NostruggleOn = false;
+                if (nostruggle == null || nostruggle == undefined) {
+                    if (NostruggleOn == null || NostruggleOn == undefined) {
+                        nostruggle = false;
+                    } else {
+                        nostruggle = NostruggleOn;
+                    }
+                } 
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (notimeout == null || notimeout == undefined) {
                     if (NotimeoutOn == null || NotimeoutOn == undefined) {
@@ -1629,7 +1635,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_xvibratorActive = data.xvibeMoan;
                 NoescapeOn = data.noescape;
                 nogarble = data.nogarble;
-                NostruggleOn = data.nostruggle;
+                nostruggle = data.nostruggle;
                 notalk = data.notalk;
                 notimeout = data.notimeout;
 		notimeout2 = data.notimeout2;
@@ -1752,7 +1758,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.NoSpeechGarble = false;
                 }
-                if (NostruggleOn == true) {
+                if (nostruggle == true) {
                     Player.RestrictionSettings.BypassStruggle = true;
                 } else {
                     Player.RestrictionSettings.BypassStruggle = false;
@@ -6000,7 +6006,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (FBCdata.autoStruggle) {
                 sbc = 1;
                 Player.RestrictionSettings.BypassStruggle = false;
-                NostruggleOn = false;
+                nostruggle = false;
                 M_MOANER_saveControls();
             }
         }
@@ -6016,11 +6022,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         if (sbc == 0) {
-            if (NostruggleOn == null || NostruggleOn == undefined) {
-                NostruggleOn = false;
+            if (nostruggle == null || nostruggle == undefined) {
+                nostruggle = false;
                 M_MOANER_saveControls();
             }
-            if (NostruggleOn == true) {
+            if (nostruggle == true) {
                 Player.RestrictionSettings.BypassStruggle = true;
             } else {
                 Player.RestrictionSettings.BypassStruggle = false;
