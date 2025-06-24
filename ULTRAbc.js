@@ -136,7 +136,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let nostruggle;
     let notimeout;
     let notimeout2;
-    let NoubccolorOn;
+    let noubccolor;
     let NowhisperOn = false;
     let npcpunish = false;
     let outbuttons;
@@ -522,7 +522,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             nostruggle = false;
             notimeout = false;
 	    notimeout2 = false;
-            NoubccolorOn = false;
+            noubccolor = false;
             NowhisperOn = false;
             npcpunish = false;
             outbuttons = false;
@@ -633,7 +633,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             nostruggle = datas.nostruggle;
             notimeout = datas.notimeout;   
 	    notimeout2 = datas.notimeout2; 
-            NoubccolorOn = datas.noubccolor;
+            noubccolor = datas.noubccolor;
             NowhisperOn = datas.nowhisper;
             npcpunish = datas.npcpunish;
             outbuttons = datas.outbuttons;
@@ -742,7 +742,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nostruggle": nostruggle,
             "notimeout": notimeout,
             "notimeout2": notimeout2,
-            "noubccolor": NoubccolorOn,
+            "noubccolor": noubccolor,
             "nowhisper": NowhisperOn,
             "npcpunish": npcpunish,
             "outbuttons": outbuttons,
@@ -956,7 +956,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } 
 		if (notimeout2 == null || notimeout2 == undefined) notimeout2 = false;
-                if (NoubccolorOn == null || NoubccolorOn == undefined) NoubccolorOn = false;
+                if (noubccolor == null || noubccolor == undefined) {
+                    if (NoubccolorOn == null || NoubccolorOn == undefined) {
+                        noubccolor = false;
+                    } else {
+                        noubccolor = NoubccolorOn;
+                    }
+                } 
                 if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
                 if (npcpunish == null || npcpunish == undefined) {
                     if (NPCpunish == null || NPCpunish == undefined) {
@@ -1687,7 +1693,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 notalk = data.notalk;
                 notimeout = data.notimeout;
 		notimeout2 = data.notimeout2;
-                NoubccolorOn = data.noubccolor;
+                noubccolor = data.noubccolor;
                 NowhisperOn = data.nowhisper;
                 npcpunish = data.npcpunish;
                 outbuttons = data.outbuttons;
@@ -5922,7 +5928,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function infomsg(msg) {
-        if (NoubccolorOn) {
+        if (noubccolor) {
             ChatRoomSendLocal("ULTRAbc: " + msg);
         } else {
             ChatRoomSendLocal(
