@@ -118,7 +118,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tintnever = false;
 
     let asylumlimit;
-    let AutojoinOn;
+    let autojoin;
     let DolltalkOn;
     let ExtbuttonsOn;
     let extrainfo;
@@ -504,7 +504,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tintmbs = false;
             tintnever = false;
             asylumlimit = false;
-            AutojoinOn = false;
+            autojoin = false;
             DolltalkOn = false;
             ExtbuttonsOn = false;
             extrainfo = false;
@@ -615,7 +615,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tintmbs = datas.tintmbs;
             tintnever = datas.tintnever;
             asylumlimit = datas.asylumlimit;
-            AutojoinOn = datas.autojoin;
+            autojoin = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
             extrainfo = datas.extrainfo;
@@ -724,7 +724,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tintmbs": tintmbs,
             "tintnever": tintnever,
             "asylumlimit": asylumlimit,
-            "autojoin": AutojoinOn,
+            "autojoin": autojoin,
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
             "extrainfo": extrainfo,
@@ -821,7 +821,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         asylumlimit = AsylumLimitOn; 
                     }
                 } 
-                if (AutojoinOn == null || AutojoinOn == undefined) AutojoinOn = false;
+                if (autojoin == null || autojoin == undefined) {
+                    if (AutojoinOn == null || AutojoinOn == undefined) {
+                        autojoin = false;
+                    } else {
+                        autojoin = AutojoinOn;
+                    }
+                }
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
                 if (blindness == null || blindness == undefined) blindness = 0;
@@ -1599,7 +1605,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ahybrid = data.ahybrid;
                 animal = data.animal * 1;
                 asylumlimit = data.asylumlimit;
-                AutojoinOn = data.autojoin;
+                autojoin = data.autojoin;
                 bgall = data.bgall;
                 bl = data.bl;
                 blindness = data.blindness;
@@ -3159,7 +3165,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchJoin() {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
-            if (AutojoinOn == true) {
+            if (autojoin == true) {
                 var X = ChatSearchPageX;
                 var Y = ChatSearchPageY;
                 for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
