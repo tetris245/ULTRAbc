@@ -140,7 +140,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let NowhisperOn = false;
     let npcpunish = false;
     let outbuttons;
-    let RglbuttonsOn;
+    let rglbuttons;
     let RglsyncOn;
     let slowleave;
     let sosbuttons;
@@ -526,7 +526,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NowhisperOn = false;
             npcpunish = false;
             outbuttons = false;
-            RglbuttonsOn = false;
+            rglbuttons = false;
             RglsyncOn = false;
             slowleave = false;
             sosbuttons = false;
@@ -637,7 +637,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NowhisperOn = datas.nowhisper;
             npcpunish = datas.npcpunish;
             outbuttons = datas.outbuttons;
-            RglbuttonsOn = datas.rglbuttons;
+            rglbuttons = datas.rglbuttons;
             RglsyncOn = datas.rglsync;
             slowleave = datas.slowleave;
             sosbuttons = datas.sosbuttons;
@@ -746,7 +746,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nowhisper": NowhisperOn,
             "npcpunish": npcpunish,
             "outbuttons": outbuttons,
-            "rglbuttons": RglbuttonsOn,
+            "rglbuttons": rglbuttons,
             "rglsync": RglsyncOn,
             "slowleave": slowleave,
             "sosbuttons": sosbuttons,
@@ -990,7 +990,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (rchat == null || rchat == undefined) rchat = false;
                 if (reaction == null || reaction == undefined) reaction = 0;
                 if (rgame == null || rgame == undefined) rgame = 0;
-                if (RglbuttonsOn == null || RglbuttonsOn == undefined) RglbuttonsOn = false;
+                if (rglbuttons == null || rglbuttons == undefined) {
+                    if (RglbuttonsOn == null || RglbuttonsOn == undefined) {
+                        rglbuttons = false;
+                    } else {
+                        rglbuttons = RglbuttonsOn;
+                    }
+                }
                 if (RglsyncOn == null || RglsyncOn == undefined) RglsyncOn = false;
                 if (rhide == null || rhide == undefined) rhide = false;
                 if (rmin == null || rmin == undefined || rmin == 0) rmin = 2;
@@ -1685,7 +1691,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile = data.profile;
                 rchat = data.rchat;
                 reaction = data.reaction;
-                RglbuttonsOn = data.rglbuttons;
+                rglbuttons = data.rglbuttons;
                 RglsyncOn = data.rglsync;
                 rmin = data.rmin * 1;
                 rsize = data.rsize * 1;
@@ -2598,7 +2604,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
-            if (RglbuttonsOn == true) {
+            if (rglbuttons == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 405) && (MouseY < 450)) {
                     RealGarblingLevel();
                     return;
@@ -2767,7 +2773,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
-            if (RglbuttonsOn == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
+            if (rglbuttons == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
             let chmap = ChatRoomCharacterViewIsActive();
             if ((chmap == false) && (Player.OnlineSharedSettings.Inmap == false)) {
                 Player.OnlineSharedSettings.Inmap = true;
