@@ -139,7 +139,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let NoubccolorOn;
     let NowhisperOn = false;
     let npcpunish = false;
-    let OutbuttonsOn;
+    let outbuttons;
     let RglbuttonsOn;
     let RglsyncOn;
     let SlowleaveOn;
@@ -525,7 +525,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NoubccolorOn = false;
             NowhisperOn = false;
             npcpunish = false;
-            OutbuttonsOn = false;
+            outbuttons = false;
             RglbuttonsOn = false;
             RglsyncOn = false;
             SlowleaveOn = false;
@@ -636,7 +636,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             NoubccolorOn = datas.noubccolor;
             NowhisperOn = datas.nowhisper;
             npcpunish = datas.npcpunish;
-            OutbuttonsOn = datas.outbuttons;
+            outbuttons = datas.outbuttons;
             RglbuttonsOn = datas.rglbuttons;
             RglsyncOn = datas.rglsync;
             SlowleaveOn = datas.slowleave;
@@ -745,7 +745,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "noubccolor": NoubccolorOn,
             "nowhisper": NowhisperOn,
             "npcpunish": npcpunish,
-            "outbuttons": OutbuttonsOn,
+            "outbuttons": outbuttons,
             "rglbuttons": RglbuttonsOn,
             "rglsync": RglsyncOn,
             "slowleave": SlowleaveOn,
@@ -965,7 +965,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         npcpunish = NPCpunish;
                     }
                 }
-                if (OutbuttonsOn == null || OutbuttonsOn == undefined) OutbuttonsOn = false;
+                if (outbuttons == null || outbuttons == undefined) {
+                    if (OutbuttonsOn == null || OutbuttonsOn == undefined) {
+                        outbuttons = false;
+                    } else {
+                        outbuttons = OutbuttonsOn;
+                    }
+                }
                 if (pchat == null || pchat == undefined) pchat = false;
                 if (pmin == null || pmin == undefined || pmin == 0) pmin = 2;
                 if (pmax == null || pmax == undefined || pmax == 0) pmax = 20;
@@ -1666,7 +1672,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NoubccolorOn = data.noubccolor;
                 NowhisperOn = data.nowhisper;
                 npcpunish = data.npcpunish;
-                OutbuttonsOn = data.outbuttons;
+                outbuttons = data.outbuttons;
                 pchat = data.pchat;
                 pmin = data.pmin * 1;
                 pmax = data.pmax * 1;
@@ -1792,7 +1798,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
-                if ((NoescapeOn == true) && (unrestrict == 2)) {
+                if ((NoescapeOn == true) && (unrestrict == 2)) {<
                     ServerSocket.close();
                     ServerSocket.open();
                 }
@@ -2572,7 +2578,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return;
                 }
             }
-            if ((OutbuttonsOn == true) && (NoescapeOn == false)) {
+            if ((outbuttons == true) && (NoescapeOn == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) {
                     if (SlowleaveOn == true) {
                         let msg = "" + tmpname + " slowly heads for the door.";
@@ -2754,7 +2760,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawImageResize("Icons/Extensions.png", 960, 272, 40, 40);
             }
             if (sosbuttons == true) SosButtons();
-            if (OutbuttonsOn == true) OutButtons();
+            if (outbuttons == true) OutButtons();
             if (RglbuttonsOn == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
             let chmap = ChatRoomCharacterViewIsActive();
             if ((chmap == false) && (Player.OnlineSharedSettings.Inmap == false)) {
@@ -4063,7 +4069,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (sosbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
-            if (OutbuttonsOn == true) {
+            if (outbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
             }
             next(args);
@@ -4096,7 +4102,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawProgressBar(1610, 954, 380, 36, Math.round(PandoraWillpower / PandoraMaxWillpower * 100));
             DrawText(PandoraWillpower.toString(), 1800, 973, "black", "white");
             if (sosbuttons == true) SosButtons();
-            if (OutbuttonsOn == true) OutButtons();
+            if (outbuttons == true) OutButtons();
             TintsEffect();
             return;
         });
@@ -4108,7 +4114,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (sosbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
-            if (OutbuttonsOn == true) {
+            if (outbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
             }
             next(args);
@@ -4118,7 +4124,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAPhotographicRun() {
         modApi.hookFunction('PhotographicRun', 4, (args, next) => {
             if (sosbuttons == true) SosButtons();
-            if (OutbuttonsOn == true) OutButtons();
+            if (outbuttons == true) OutButtons();
             TintsEffect();
             next(args);
         });
@@ -4331,7 +4337,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (sosbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
-            if (OutbuttonsOn == true) {
+            if (outbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
             }
             next(args);
@@ -4353,7 +4359,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRACellRun() {
         modApi.hookFunction('CellRun', 4, (args, next) => {
             if (sosbuttons == true) SosButtons();
-            if (OutbuttonsOn == true) OutButtons();
+            if (outbuttons == true) OutButtons();
             TintsEffect();
             next(args);
         });
