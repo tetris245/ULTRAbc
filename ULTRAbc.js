@@ -1798,7 +1798,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
-                if ((NoescapeOn == true) && (unrestrict == 2)) {<
+                if ((NoescapeOn == true) && (unrestrict == 2)) {
                     ServerSocket.close();
                     ServerSocket.open();
                 }
