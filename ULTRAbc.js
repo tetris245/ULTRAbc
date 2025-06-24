@@ -141,7 +141,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let npcpunish = false;
     let outbuttons;
     let rglbuttons;
-    let RglsyncOn;
+    let rglsync;
     let slowleave;
     let sosbuttons;
 
@@ -527,7 +527,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             npcpunish = false;
             outbuttons = false;
             rglbuttons = false;
-            RglsyncOn = false;
+            rglsync = false;
             slowleave = false;
             sosbuttons = false;
             blureffect = 0;
@@ -638,7 +638,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             npcpunish = datas.npcpunish;
             outbuttons = datas.outbuttons;
             rglbuttons = datas.rglbuttons;
-            RglsyncOn = datas.rglsync;
+            rglsync = datas.rglsync;
             slowleave = datas.slowleave;
             sosbuttons = datas.sosbuttons;
             blureffect = 0;
@@ -747,7 +747,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "npcpunish": npcpunish,
             "outbuttons": outbuttons,
             "rglbuttons": rglbuttons,
-            "rglsync": RglsyncOn,
+            "rglsync": rglsync,
             "slowleave": slowleave,
             "sosbuttons": sosbuttons,
             "blureffect": blureffect,
@@ -997,7 +997,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         rglbuttons = RglbuttonsOn;
                     }
                 }
-                if (RglsyncOn == null || RglsyncOn == undefined) RglsyncOn = false;
+                if (rglsync == null || rglsync == undefined) {
+                    if (RglsyncOn == null || RglsyncOn == undefined) {
+                        rglsync = false;
+                    } else {
+                        rglsync = RglsyncOn;
+                    }
+                }
                 if (rhide == null || rhide == undefined) rhide = false;
                 if (rmin == null || rmin == undefined || rmin == 0) rmin = 2;
                 if (rsize == null || rsize == undefined || rsize == 0) rsize = 20;
@@ -1692,7 +1698,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 rchat = data.rchat;
                 reaction = data.reaction;
                 rglbuttons = data.rglbuttons;
-                RglsyncOn = data.rglsync;
+                rglsync = data.rglsync;
                 rmin = data.rmin * 1;
                 rsize = data.rsize * 1;
                 rtype = data.rtype;
