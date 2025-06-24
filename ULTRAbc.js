@@ -143,7 +143,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let RglbuttonsOn;
     let RglsyncOn;
     let SlowleaveOn;
-    let SosbuttonsOn;
+    let sosbuttons;
 
     let blureffect = 0;
     let notalk = 0;
@@ -529,7 +529,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             RglbuttonsOn = false;
             RglsyncOn = false;
             SlowleaveOn = false;
-            SosbuttonsOn = false;
+            sosbuttons = false;
             blureffect = 0;
             notalk = 0;
             reaction = 0;
@@ -640,7 +640,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             RglbuttonsOn = datas.rglbuttons;
             RglsyncOn = datas.rglsync;
             SlowleaveOn = datas.slowleave;
-            SosbuttonsOn = datas.sosbuttons;
+            sosbuttons = datas.sosbuttons;
             blureffect = 0;
             notalk = datas.notalk;
             reaction = 0;
@@ -749,7 +749,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "rglbuttons": RglbuttonsOn,
             "rglsync": RglsyncOn,
             "slowleave": SlowleaveOn,
-            "sosbuttons": SosbuttonsOn,
+            "sosbuttons": sosbuttons,
             "blureffect": blureffect,
             "notalk": notalk,
             "reaction": reaction,
@@ -991,7 +991,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (rsize == null || rsize == undefined || rsize == 0) rsize = 20;
                 if (rtype == null || rtype == undefined || rtype == "") rtype = "ALL";
                 if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
-                if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
+                if (sosbuttons == null || sosbuttons == undefined) {
+                    if (SosbuttonsOn == null || SosbuttonsOn == undefined) {
+                        sosbuttons = false;
+                    } else {
+                        sosbuttons = SosbuttonsOn;
+                    }
+                }
                 if (silent == null || silent == undefined) silent = false;
                 if (st == null || st == undefined) st = 0;
                 if (tcname == null || tcname == undefined) tcname = "Cell";
@@ -1674,7 +1680,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 rtype = data.rtype;
                 silent = data.silent;
                 SlowleaveOn = data.slowleave;
-                SosbuttonsOn = data.sosbuttons;
+                sosbuttons = data.sosbuttons;
                 st = data.stutterlevel * 1;
                 tintcolor = data.tintcolor;
                 tintlevel = data.tintlevel;
@@ -2549,7 +2555,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return;
                 }
             }
-            if ((SosbuttonsOn == true) && (NoescapeOn == false)) {
+            if ((sosbuttons == true) && (NoescapeOn == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 315) && (MouseY < 360)) {
                     let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
                     if (Totalrelease != undefined) {
@@ -2747,7 +2753,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(955, 270, 45, 45, "", "White", "", "");
                 DrawImageResize("Icons/Extensions.png", 960, 272, 40, 40);
             }
-            if (SosbuttonsOn == true) SosButtons();
+            if (sosbuttons == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
             if (RglbuttonsOn == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
             let chmap = ChatRoomCharacterViewIsActive();
@@ -4054,7 +4060,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPandoraPrisonClick() {
         modApi.hookFunction('PandoraPrisonClick', 4, (args, next) => {
-            if (SosbuttonsOn == true) {
+            if (sosbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
@@ -4089,7 +4095,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             DrawProgressBar(1610, 954, 380, 36, Math.round(PandoraWillpower / PandoraMaxWillpower * 100));
             DrawText(PandoraWillpower.toString(), 1800, 973, "black", "white");
-            if (SosbuttonsOn == true) SosButtons();
+            if (sosbuttons == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
             TintsEffect();
             return;
@@ -4099,7 +4105,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Photographic Room
     async function ULTRAPhotographicClick() {
         modApi.hookFunction('PhotographicClick', 4, (args, next) => {
-            if (SosbuttonsOn == true) {
+            if (sosbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
@@ -4111,7 +4117,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPhotographicRun() {
         modApi.hookFunction('PhotographicRun', 4, (args, next) => {
-            if (SosbuttonsOn == true) SosButtons();
+            if (sosbuttons == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
             TintsEffect();
             next(args);
@@ -4322,7 +4328,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (CellOpenTimer < CurrentTime) {
                 if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
             }
-            if (SosbuttonsOn == true) {
+            if (sosbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
             }
             if (OutbuttonsOn == true) {
@@ -4346,7 +4352,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRACellRun() {
         modApi.hookFunction('CellRun', 4, (args, next) => {
-            if (SosbuttonsOn == true) SosButtons();
+            if (sosbuttons == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
             TintsEffect();
             next(args);
