@@ -120,7 +120,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let asylumlimit;
     let autojoin;
     let DolltalkOn;
-    let ExtbuttonsOn;
+    let extbuttons;
     let extrainfo;
     let fixperm;
     let frkeys;
@@ -506,7 +506,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             asylumlimit = false;
             autojoin = false;
             DolltalkOn = false;
-            ExtbuttonsOn = false;
+            extbuttons = false;
             extrainfo = false;
             fixperm = false;
             frkeys = false;
@@ -617,7 +617,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             asylumlimit = datas.asylumlimit;
             autojoin = datas.autojoin;
             DolltalkOn = datas.dolltalk;
-            ExtbuttonsOn = datas.extbuttons;
+            extbuttons = datas.extbuttons;
             extrainfo = datas.extrainfo;
             fixperm = datas.fixperm;
             frkeys = datas.frkeys;
@@ -726,7 +726,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "asylumlimit": asylumlimit,
             "autojoin": autojoin,
             "dolltalk": DolltalkOn,
-            "extbuttons": ExtbuttonsOn,
+            "extbuttons": extbuttons,
             "extrainfo": extrainfo,
             "fixperm": fixperm,
             "frkeys": frkeys,
@@ -839,7 +839,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 150;
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
-                if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) ExtbuttonsOn = false;
+                if (extbuttons == null || extbuttons == undefined) {
+                    if (ExbuttonsOn == null || ExtbuttonsOn == undefined) {
+                        extbuttons = false;
+                    } else {
+                        extbuttons = ExtbuttonsOn;
+                    }
+                }
                 if (extrainfo == null || extrainfo == undefined) {
                     if (ExtrainfoOn == null || ExtrainfoOn == undefined) {
                         extrainfo = false;
@@ -1622,7 +1628,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cextra = data.cextra;
                 cfame = data.cfame;
                 DolltalkOn = data.dolltalk;
-                ExtbuttonsOn = data.extbuttons;
+                extbuttons = data.extbuttons;
                 extrainfo = data.extrainfo;
                 fixperm = data.fixperm;
                 fullseed = data.fullseed;
@@ -2537,7 +2543,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
-            if (ExtbuttonsOn == true) {
+            if (extbuttons == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
                     ExtClick();
                     return;
@@ -2737,7 +2743,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
-            if (ExtbuttonsOn == true) {
+            if (extbuttons == true) {
                 DrawButton(955, 270, 45, 45, "", "White", "", "");
                 DrawImageResize("Icons/Extensions.png", 960, 272, 40, 40);
             }
