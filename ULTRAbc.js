@@ -840,7 +840,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cfame == null || cfame == undefined) cfame = 150;
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
                 if (extbuttons == null || extbuttons == undefined) {
-                    if (ExbuttonsOn == null || ExtbuttonsOn == undefined) {
+                    if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) {
                         extbuttons = false;
                     } else {
                         extbuttons = ExtbuttonsOn;
