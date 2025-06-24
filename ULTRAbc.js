@@ -142,7 +142,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let outbuttons;
     let RglbuttonsOn;
     let RglsyncOn;
-    let SlowleaveOn;
+    let slowleave;
     let sosbuttons;
 
     let blureffect = 0;
@@ -528,7 +528,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             outbuttons = false;
             RglbuttonsOn = false;
             RglsyncOn = false;
-            SlowleaveOn = false;
+            slowleave = false;
             sosbuttons = false;
             blureffect = 0;
             notalk = 0;
@@ -639,7 +639,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             outbuttons = datas.outbuttons;
             RglbuttonsOn = datas.rglbuttons;
             RglsyncOn = datas.rglsync;
-            SlowleaveOn = datas.slowleave;
+            slowleave = datas.slowleave;
             sosbuttons = datas.sosbuttons;
             blureffect = 0;
             notalk = datas.notalk;
@@ -748,7 +748,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "outbuttons": outbuttons,
             "rglbuttons": RglbuttonsOn,
             "rglsync": RglsyncOn,
-            "slowleave": SlowleaveOn,
+            "slowleave": slowleave,
             "sosbuttons": sosbuttons,
             "blureffect": blureffect,
             "notalk": notalk,
@@ -996,7 +996,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (rmin == null || rmin == undefined || rmin == 0) rmin = 2;
                 if (rsize == null || rsize == undefined || rsize == 0) rsize = 20;
                 if (rtype == null || rtype == undefined || rtype == "") rtype = "ALL";
-                if (SlowleaveOn == null || SlowleaveOn == undefined) SlowleaveOn = false;
+                if (slowleave == null || slowleave == undefined) {
+                    if (SlowleaveOn == null || SlowleaveOn == undefined) {
+                        slowleave = false;
+                    } else {
+                        slowleave = SlowleaveOn;
+                    }
+                }
                 if (sosbuttons == null || sosbuttons == undefined) {
                     if (SosbuttonsOn == null || SosbuttonsOn == undefined) {
                         sosbuttons = false;
@@ -1685,7 +1691,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 rsize = data.rsize * 1;
                 rtype = data.rtype;
                 silent = data.silent;
-                SlowleaveOn = data.slowleave;
+                slowleave = data.slowleave;
                 sosbuttons = data.sosbuttons;
                 st = data.stutterlevel * 1;
                 tintcolor = data.tintcolor;
@@ -2580,7 +2586,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if ((outbuttons == true) && (NoescapeOn == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) {
-                    if (SlowleaveOn == true) {
+                    if (slowleave == true) {
                         let msg = "" + tmpname + " slowly heads for the door.";
                         publicmsg(msg);
                         setTimeout(function() {
@@ -5520,7 +5526,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (window.CurrentScreen == "ChatRoom") {
                 DrawButton(955, 360, 45, 45, "OUT", "White", "", "");
             } else {
-                if (SlowleaveOn == true) {
+                if (slowleave == true) {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
                 } else {
                     DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
@@ -5550,7 +5556,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (window.CurrentScreen == "Cell") CellLock(0);
             if (window.CurrentScreen == "PandoraPrison") PandoraPunishmentSentence(0);
             CharacterRefresh(Player);
-            if (SlowleaveOn == true) {
+            if (slowleave == true) {
                 if (window.CurrentScreen == "PandoraPrison") {
                     setTimeout(function() {
                         PandoraPrisonExitPrison();
