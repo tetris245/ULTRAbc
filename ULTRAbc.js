@@ -125,7 +125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let fixperm;
     let frkeys;
     let fullseed;
-    let HighfameOn;
+    let highfame;
     let hotkeys;
     let magiccheat;
     let magictoys;
@@ -511,7 +511,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             fixperm = false;
             frkeys = false;
             fullseed = false;
-            HighfameOn = false;
+            highfame = false;
             hotkeys = false;
             magiccheat = false;
             magictoys = false;
@@ -622,7 +622,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             fixperm = datas.fixperm;
             frkeys = datas.frkeys;
             fullseed = datas.fullseed;
-            HighfameOn = datas.highfame;
+            highfame = datas.highfame;
             hotkeys = datas.hotkeys;
             magiccheat = datas.magiccheat;
             magictoys = datas.magictoys;
@@ -731,7 +731,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "fixperm": fixperm,
             "frkeys": frkeys,
             "fullseed": fullseed,
-            "highfame": HighfameOn,
+            "highfame": highfame,
             "hotkeys": hotkeys,
             "magiccheat": magiccheat,
             "magictoys": magictoys,
@@ -873,7 +873,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (gl == null || gl == undefined) gl = 0;
                 if (gl == -1) gl = 11;
                 if (hearing == null || hearing == undefined) hearing = 0;
-                if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
+                if (highfame == null || highfame == undefined) {
+                    if (HighfameOn == null || HighfameOn == undefined) {
+                        highfame = false;
+                    } else {
+                        highfame = HighfameOn;
+                    }
+                } 
                 if (hotkeys == null || hotkeys == undefined) {
                     if (HotkeysOn == null || HotkeysOn == undefined) {
                         hotkeys = false;
@@ -1623,7 +1629,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 frkeys = data.frkeys;
                 gl = data.gaglevel * 1;
                 hearing = data.hearing;
-                HighfameOn = data.highfame;
+                highfame = data.highfame;
                 hotkeys = data.hotkeys;
                 magiccheat = data.magiccheat;
                 magictoys = data.magictoys;
@@ -3515,8 +3521,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let CCPlayer = ClubCardPlayer[ClubCardTurnIndex];
             if (CCPlayer.Fame == null) CCPlayer.Fame = 0;
             if (CCPlayer == Player) {
-                if (HighfameOn == false) ClubCardFameGoal = 100;
-                if (HighfameOn == true) ClubCardFameGoal = cfame;      
+                ClubCardFameGoal = 100;
+                if (highfame == true) ClubCardFameGoal = cfame;      
 	    }
             if (CCPlayer.Fame >= ClubCardFameGoal) {
 		ClubCardFocus = null;
@@ -3525,7 +3531,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		let nmg = TextGet("VictoryFor" + CCPlayer.Control);
 		if (ClubCardIsOnline()) nmg = TextGet("VictoryOnline").replace("PLAYERNAME", CharacterNickname(CCPlayer.Character));
                 let Msg = nmg;
-                if (HighfameOn) Msg = nmg.replace("100", cfame);
+                if (highfame) Msg = nmg.replace("100", cfame);
 		ClubCardCreatePopup("TEXT", Msg, TextGet("Return"), null, "ClubCardEndGame()", null);
 		ClubCardGameEnded = true;
 		if (MiniGameVictory && (ClubCardReward != null)) ClubCardGetReward();
@@ -3543,12 +3549,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ClubCardClick', 4, (args, next) => {
            if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
                 if (MouseIn(35, 35, 90, 90)) {
-                    if (HighfameOn) {
-                        HighfameOn = false;
+                    if (highfame) {
                         highfame = false;  
                         M_MOANER_saveControls();
                     } else {
-                        HighfameOn = true;
                         highfame = true;
                         M_MOANER_saveControls();  
                     }
@@ -3560,15 +3564,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAClubCardEndTurn(Draw = false) {
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
-            if (HighfameOn == false) ClubCardFameGoal = 100;
-            if (HighfameOn == true) ClubCardFameGoal = cfame;      
+            ClubCardFameGoal = 100;
+            if (highfame == true) ClubCardFameGoal = cfame;      
             next(args);
         });
     }
 
     async function ULTRAClubCardGetReward() {
         modApi.hookFunction('ClubCardGetReward', 4, (args, next) => {
-            if (HighfameOn == true) {
+            if (highfame == true) {
                 ClubCardFameGoal = cfame;
                 let nmg = "";
                 let Char = String.fromCharCode(ClubCardReward.ID);
@@ -3673,7 +3677,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAClubCardRenderPanel() {
         modApi.hookFunction('ClubCardRenderPanel', 4, (args, next) => {
 	      if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
-                if (HighfameOn) {
+                if (highfame) {
                     DrawButton(35, 35, 90, 90, "HF", "White", "", "Switch to Normal mode");
                 } else {
                     DrawButton(35, 35, 90, 90, "NHF", "White", "", "Switch to High Fame mode");
