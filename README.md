@@ -67,6 +67,6 @@ Changes for future version
 * New commands:
   - murmur (MemberNumber|Name|Nickname) (Message) to send a beep to a player (actually the same as the BC beep whisper, but the error messages will not disappear after some time)
   - ping (MemberNumber) (Message) to send a beep to a player (actually the same as the BC beep command without WCE, but the beep errors will not disappear after some time)
-* New option in GUI - Maps to enable full whispering in maps, without range limitation (when using the standard BC command /whisper)
+* New option in GUI - Maps to enable full whispering in maps, without range limitation (when using the standard BC command /whisper or the UBC command /murmur)
 * New option in GUI - Misc to prevent disappearance of error messages after some time for wrong or impossible commands
 
