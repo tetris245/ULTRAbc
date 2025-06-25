@@ -90,7 +90,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let blurmode = 0;
     let ccname = "ClubCardPlayBoard1";
     let ccards = 30;
-    let cdesk = 0;
+    let cdeck = 0;
     let cextra = false;
     let cfame = 150;
     let frname = "BrickWall";
@@ -477,7 +477,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             blurmode = 0;
             ccname = "ClubCardPlayBoard1";
 	    ccards = 30;
-            cdesk = 0;
+            cdeck = 0;
             cextra = false;
             cfame = 150;
             frname = "BrickWall";
@@ -588,7 +588,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             blurmode = 0;
             ccname = datas.ccname;
 	    ccards = datas.ccards * 1;
-            cdesk = datas.cdesk;
+            cdeck = datas.cdeck * 1;
             cextra = datas.cextra;
             cfame = datas.cfame;
             frname = datas.frname;
@@ -700,7 +700,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "bl": bl,
             "ccname": ccname,
             "ccards": ccards,
-            "cdesk": cdesk,
+            "cdeck": cdeck,
             "cextra": cextra,
             "cfame": cfame,
             "frname": frname,
@@ -835,7 +835,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (blurmode == null || blurmode == undefined) blurmode = 0;
                 if (ccname == null || ccname == undefined) ccname = "ClubCardPlayBoard1";
 		if (ccards == null || ccards == undefined) ccards = 30;
-                if (cdesk == null || cdesk == undefined) cdesk = 0;
+                if (cdeck == null || cdeck == undefined) {
+                    if (cdesk == null || cdesk == undefined) {
+                        cdeck = 0;
+                    } else {
+                        cdeck = cdesk;
+                    }
+                }
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 150;
                 if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
@@ -1093,7 +1099,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 blureffect: 0,
                 blurmode: 0,
 		ccards: 30,
-                cdesk: 0,
+                cdeck: 0,
                 cextra: false,
                 cfame: 150,
                 cum: false,
@@ -1201,7 +1207,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             const ubcSettingsCategories = [
                 "UBCButtons",
-                "UBCCards",
                 "UBCChatSearch",
                 "UBCCheats",
                 "UBCHotkeys",
@@ -1214,7 +1219,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ];
             const ubcSettingCategoryLabels = {
                 UBCButtons: "Buttons",
-                UBCCards: "Cards",
                 UBCChatSearch: "Chat Search",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
@@ -1660,7 +1664,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 blureffect = 0;
                 blurmode = data.blurmode;	
                 ccards = data.ccards * 1;
-                cdesk = data.cdesk;
+                cdeck = data.cdeck * 1;
                 cextra = data.cextra;
                 cfame = data.cfame;
                 DolltalkOn = data.dolltalk;
@@ -1871,67 +1875,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 defaultExit();
             }
 
-            PreferenceSubscreenUBCCardsLoad = function() {
-                UBCPreferenceSubscreen = "UBCCards";
-                addMenuInput(200, "Default card desk (0-8):", "cdesk", "InputDefaultDesk",
-                    "Input a number between 0 and 8 to select one of these desks as default desk: 0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant - 5 Liability - 6 Maid - 7 Porn - 8 Extra."
-                );
-                addMenuInput(200, "Cards in desk (30-40):", "ccards", "InputMaxCards",
-                    "Input a number between 30 and 40 to set the number of cards in the preselected desks. It will also influence the game against NPCs."
-                );
-                addMenuCheckbox(64, 64, "Enable High Fame mode: ", "highfame",
-                    "BC has fixed the fame you need to reach to win in the Bondage Club Card Game to 100. If you want to play longer and more adventurous games, enable this option, and optionnally set a High Fame level (150 by default)."
-                );
-                addMenuInput(200, "High Fame level (150-450):", "cfame", "InputHighFame",
-                    "Input a number between 150 and 450 to set the High Fame level players need to reach to win the game!"
-                );
-                addMenuButton(150, 64, "Add/Remove Extra Cards:", "Toggle", function() {
-                        Player.Game.ClubCard.Reward = "";
-                        if (Player.UBC.ubcSettings.cextra == false) {
-                            Player.UBC.ubcSettings.cextra = true;
-                            let Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
-                            for (let i = 0; i < Extra.length; i++) {
-                                let Char = String.fromCharCode(Extra[i]);
-                                Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
-                            }
-                            PreferenceMessage = "All extra cards added";
-                        } else {
-                            Player.UBC.ubcSettings.cextra = false;
-                            PreferenceMessage = "All extra cards removed";
-                        }
-                        ServerAccountUpdate.QueueData({
-                            Game: Player.Game
-                        }, true);
-                    },
-                    "This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action."
-                );
-            }
-
-            PreferenceSubscreenUBCCardsRun = function() {
-                drawMenuElements();
-            }
-
-            PreferenceSubscreenUBCCardsClick = function() {
-                handleMenuClicks();
-            }
-
-            PreferenceSubscreenUBCCardsExit = function() {
-                let desk = ElementValue("InputDefaultDesk");
-                let cards = ElementValue("InputMaxCards");
-                let fame = ElementValue("InputHighFame");
-                if ((CommonIsNumeric(desk)) && (desk > -1) && (desk < 9) 
-		    && (CommonIsNumeric(cards)) && (cards > 29) && (cards < 41) 
-		    && (CommonIsNumeric(fame)) && (fame > 149) && (fame < 451)) {
-                    Player.UBC.ubcSettings.cdesk = desk;
-                    Player.UBC.ubcSettings.ccards = cards;
-                    Player.UBC.ubcSettings.cfame = fame;
-                    ElementRemove("InputDefaultDesk");
-                    ElementRemove("InputMaxCards");
-                    ElementRemove("InputHighFame");
-                    defaultExit();
-                } else PreferenceMessage = "Put a valid number";
-            }
-
             PreferenceSubscreenUBCChatSearchLoad = function() {
                 UBCPreferenceSubscreen = "UBCChatSearch";
                 addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
@@ -1986,6 +1929,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCCheatsLoad = function() {
                 UBCPreferenceSubscreen = "UBCCheats";
+		addMenuButton(150, 64, "Add/Remove Extra Cards for Card Game:", "Toggle", function() {
+                        Player.Game.ClubCard.Reward = "";
+                        if (Player.UBC.ubcSettings.cextra == false) {
+                            Player.UBC.ubcSettings.cextra = true;
+                            let Extra = [1015, 1017, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
+                            for (let i = 0; i < Extra.length; i++) {
+                                let Char = String.fromCharCode(Extra[i]);
+                                Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
+                            }
+                            PreferenceMessage = "All extra cards added";
+                        } else {
+                            Player.UBC.ubcSettings.cextra = false;
+                            PreferenceMessage = "All extra cards removed";
+                        }
+                        ServerAccountUpdate.QueueData({
+                            Game: Player.Game
+                        }, true);
+                    },
+                    "This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action.", 160
+                );
                 addMenuCheckbox(64, 64, "Enable Bondage Brawl/Magic School cheat: ", "magiccheat",
                     "With this option, you always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!", false, 160
                 );
@@ -3635,6 +3598,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAClubCardLoadDeckNumber() {
         modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
+            let fame = ElementValue("InputHighFame");
+            let cards = ElementValue("InputMaxCards");
+            let deck = ElementValue("InputDefaultDeck");
+            Player.UBC.ubcSettings.cfame = fame;
+            Player.UBC.ubcSettings.ccards = cards;
+            Player.UBC.ubcSettings.cdeck = deck;
+            ElementRemove("InputHighFame");
+            ElementRemove("InputMaxCards");
+            ElementRemove("InputDefaultDeck");
+            PreferenceSubscreenUBCSettingsExit(); 
             ClubCardBuilderDefaultDeckDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 8000, 8002, 8003, 8004, 13001, 30000, 30014, 30016, 31000, 31004];
             let DefaultDeckPlus = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
             let originaldeck = ClubCardBuilderDefaultDeck;
@@ -3654,41 +3627,41 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let PornDeckPlus = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];
             let ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
             let ExtraDeckPlus = [4009, 7008, 9004, 10004, 12003, 12005, 12006, 12007, 12008, 14003];
-            let initialdesk = [];
-            let plusdesk = [];
-            if (cdesk == 0) {
+            let initialdeck = [];
+            let plusdeck = [];
+            if (cdeck == 0) {
                 initialdeck = originaldeck;
                 plusdeck = DefaultDeckPlus;
             }
-            if (cdesk == 1) {
+            if (cdeck == 1) {
                 initialdeck = ClubCardBuilderABDLDeck;
                 plusdeck = ABDLDeckPlus;
             }
-            if (cdesk == 2) {
+            if (cdeck == 2) {
                 initialdeck = ClubCardBuilderAsylumDeck;
                 plusdeck = AsylumDeckPlus;
             }
-            if (cdesk == 3) {
+            if (cdeck == 3) {
                 initialdeck = ClubCardBuilderCollegeDeck;
                 plusdeck = CollegeDeckPlus;
             }
-            if (cdesk == 4) {
+            if (cdeck == 4) {
                 initialdeck = ClubCardBuilderDominantDeck;
                 plusdeck = DominantDeckPlus;
             }
-            if (cdesk == 5) {
+            if (cdeck == 5) {
                 initialdeck = ClubCardBuilderLiabilityDeck;
                 plusdeck = LiabilityDeckPlus;
             }
-            if (cdesk == 6) {
+            if (cdeck == 6) {
                 initialdeck = ClubCardBuilderMaidDeck;
                 plusdeck = MaidDeckPlus;
             }
-            if (cdesk == 7) {
+            if (cdeck == 7) {
                 initialdeck = ClubCardBuilderPornDeck;
                 plusdeck = PornDeckPlus;
             }
-            if (cdesk == 8) {
+            if (cdeck == 8) {
                 initialdeck = ClubCardBuilderExtraDeck;
                 plusdeck = ExtraDeckPlus;
             }
@@ -3719,17 +3692,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAClubCardRenderPanel() {
         modApi.hookFunction('ClubCardRenderPanel', 4, (args, next) => {
 	      if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
-		DrawText("Current Mode", 120, 35, "White", "Black");
+                DrawText("Current Mode", 120, 35, "White", "Black");
                 if (highfame) {
                     DrawButton(65, 60, 90, 90, "HF", "White", "", "Switch to Normal mode");
                 } else {
                     DrawButton(65, 60, 90, 90, "NHF", "White", "", "Switch to High Fame mode");
                 }
+                DrawText("Available options for Default card deck:", 1000, 35, "White", "Gray");
+                DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
+                DrawText("5 Liability - 6 Maid - 7 Porn - 8 Extra", 985, 195, "White", "Gray");
+                const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
+                fameInput.setAttribute("min", "150");
+                fameInput.setAttribute("max", "550");
+                fameInput.setAttribute("autocomplete", "off");
+                DrawText("High Fame level", 145, 190, "White", "Gray");
+                ElementPosition("InputHighFame", 420, 185, 250);
+                const cardsInput = ElementCreateInput("InputMaxCards", "number", ccards);
+	        cardsInput.setAttribute("min", "30");
+	        cardsInput.setAttribute("max", "40");
+	        cardsInput.setAttribute("autocomplete", "off");
+                DrawText("Cards in deck", 130, 270, "White", "Gray");
+	        ElementPosition("InputMaxCards", 420, 265, 250);
+                const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
+                deckInput.setAttribute("min", "0");
+                deckInput.setAttribute("max", "8");
+                deckInput.setAttribute("autocomplete", "off");
+                DrawText("Default card deck", 145, 350, "White", "Gray");
+                ElementPosition("InputDefaultDeck", 420, 345, 250);
             }
             next(args);
         });
     }
-
+	
     //Commands
     async function ULTRACommandAutoComplete() {
         modApi.hookFunction('CommandAutoComplete', 4, (args, next) => {
