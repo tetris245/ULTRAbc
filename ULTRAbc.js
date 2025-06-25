@@ -2036,7 +2036,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, you can see the entire map rooms without fog and there's no any limitation to your hearing. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.", false, 140
                 );
 		addMenuCheckbox(64, 64, "Enable full whispering in maps: ", "nowhrange",
-                    "When enabled, you can whisper to any player in the map, no matter the distance that is between you and this player. It will work with the standard BC command /whisper.", false, 140
+                    "When enabled, you can whisper to any player in the map, no matter the distance that is between you and this player. It will work with the standard BC command /whisper and the UBC command /murmur.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable magic walk in maps: ", "mapcheat",
                     "When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!", false, 140
@@ -11217,6 +11217,58 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'murmur',
+        Description: "(MemberNumber|Name|Nickname)(Message): sends a message to a player.",
+        Action: (args, command) => {
+            const [, ...parts] = command.split(" ");
+            const target = parts?.shift();
+            const message = parts?.join(" ");
+            if (!target) {
+                if (ChatRoomTargetMemberNumber >= 0) {
+                    ChatRoomSetTarget(-1);
+                    ChatRoomSendLocal(`${TextGet("CommandWhisperStopSuccess")}`);
+                } else {
+                     ChatRoomSendLocal(`${TextGet("CommandNoWhisperTargetSelected")}`);   
+                }
+                return;
+           }
+           const matchingMembers = ChatRoomCharacter.filter((C) => {
+                const memberNumber = parseInt(target); 
+                return (
+                    !C.IsPlayer() &&
+                    (
+                        C.MemberNumber == memberNumber ||
+                        C.Nickname?.toLowerCase() == target.toLowerCase() ||
+                        C.Name.toLowerCase() == target.toLowerCase()
+                    )
+                );
+           });
+           if (!matchingMembers.length) {      
+               ChatRoomSendLocal(`${TextGet("CommandNoWhisperTarget")} ${target}.`);
+           } else if (matchingMembers.length > 1) {
+               const mappedMembers = matchingMembers
+                   .map((C) => `&emsp;• <strong style="cursor: pointer;" onclick='window.CommandSet("whisper ${C.MemberNumber}")'>${CharacterNickname(C)} (${C.MemberNumber})</strong>`)
+                   .join("<br>") + "<br>";
+               const Targets = `<br>${mappedMembers}`;
+               ChatRoomSendLocal(`${TextGet("CommandMultipleWhisperTargets").replace("$Targets", Targets)}`);
+           } else if (matchingMembers.length == 1 && !message) {
+               ChatRoomSendLocal(`${TextGet("CommandWhisperTargetSuccess")} ${CharacterNickname(matchingMembers[0])} (${matchingMembers[0].MemberNumber})`);
+               ChatRoomSetTarget(matchingMembers[0].MemberNumber);
+           } else {
+               const targetMember = matchingMembers[0];
+               const status = ChatRoomSendWhisper(targetMember.MemberNumber, message);
+               if (status === "target-gone") {
+                   ChatRoomSendLocal(`<span style="color: red">${TextGet("WhisperTargetGone")}</span>`);
+                   return;
+               } else if (status === "target-out-of-range") {
+                   ChatRoomSendLocal(`<span style="color: red">${TextGet("WhisperTargetOutOfRange")}</span>`);
+                   return;
+               }
+           }
+       }
+    }])
+
+    CommandCombine([{
         Tag: 'naked',
         Description: "(target): removes clothes.",
         Action: (args) => {
@@ -13809,6 +13861,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/atalk</b> (stuffhere) = speaks once as an animal. *\n" +
                     "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
                     "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
+		    "<b>/murmur</b> (MemberNumber|Name|Nickname) (Message) = sends a whisper to a player. Error messages will not disappear.\n" +
 		    "<b>/ping</b> (MemberNumber) (Message) = sends a beep to a player. Beep errors will not disappear.\n" +
                     "<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *";
                 infomsg(msg);
