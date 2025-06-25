@@ -138,6 +138,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let notimeout2;
     let noubccolor;
     let NowhisperOn = false;
+    let nowhrange;
     let npcpunish = false;
     let outbuttons;
     let rglbuttons;
@@ -524,6 +525,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    notimeout2 = false;
             noubccolor = false;
             NowhisperOn = false;
+	    nowhrange = false;
             npcpunish = false;
             outbuttons = false;
             rglbuttons = false;
@@ -635,6 +637,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    notimeout2 = datas.notimeout2; 
             noubccolor = datas.noubccolor;
             NowhisperOn = datas.nowhisper;
+	    nowhrange = datas.nowhrange;
             npcpunish = datas.npcpunish;
             outbuttons = datas.outbuttons;
             rglbuttons = datas.rglbuttons;
@@ -744,6 +747,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "notimeout2": notimeout2,
             "noubccolor": noubccolor,
             "nowhisper": NowhisperOn,
+            "nowhrange": nowhrange,
             "npcpunish": npcpunish,
             "outbuttons": outbuttons,
             "rglbuttons": rglbuttons,
@@ -970,6 +974,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } 
                 if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
+		if (nowhrange == null || nowhrange == undefined) nowhrange = false;
                 if (npcpunish == null || npcpunish == undefined) {
                     if (NPCpunish == null || NPCpunish == undefined) {
                         npcpunish = false;
@@ -1126,6 +1131,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		notimeout2: false,
                 noubccolor: false,
                 nowhisper: false,
+		nowhrange: false,
                 npcpunish: false,
                 orgasmMoan: true,
                 outbuttons: false,
@@ -1699,6 +1705,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		notimeout2 = data.notimeout2;
                 noubccolor = data.noubccolor;
                 NowhisperOn = data.nowhisper;
+		nowhrange = data.nowhrange;
                 npcpunish = data.npcpunish;
                 outbuttons = data.outbuttons;
                 pchat = data.pchat;
@@ -2028,6 +2035,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable full vision/hearing in maps: ", "mapfull",
                     "When enabled, you can see the entire map rooms without fog and there's no any limitation to your hearing. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.", false, 140
                 );
+		addMenuCheckbox(64, 64, "Enable full whispering in maps: ", "nowhrange",
+                    "When enabled, you can whisper to any player in the map, no matter the distance that is between you and this player. It will work with the standard BC command /whisper.", false, 140
+                );
                 addMenuCheckbox(64, 64, "Enable magic walk in maps: ", "mapcheat",
                     "When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!", false, 140
                 );
@@ -2348,6 +2358,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
     ULTRAChatRoomMapViewCanEnterTile();
+    ULTRAChatRoomMapViewCharacterOnWhisperRange();
     ULTRAChatRoomMapViewMovementProcess();
     ULTRAChatRoomMenuDraw();
     ULTRAChatRoomSafewordRevert();
@@ -2623,6 +2634,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatRoomMapViewCanEnterTile', 4, (args, next) => {
             const ret = next(args);
             if (mapcheat) return 20;
+            return ret;
+        });
+    }
+ 
+    async function ULTRAChatRoomMapViewCharacterOnWhisperRange() {
+        modApi.hookFunction('ChatRoomMapViewCharacterOnWhisperRange', 4, (args, next) => {
+            const ret = next(args);
+            if (nowhrange) return true;
             return ret;
         });
     }
