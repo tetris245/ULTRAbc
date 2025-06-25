@@ -62,7 +62,7 @@ Changes for future version
 * Changes for the Club Card Game:
   - moved the Extra Cards toggle to GUI - Cheats
   - integrated all the UBC Card options in the deck selection screen
-  - modified the maximum High Fame (550 indtead of 450)
+  - modified the maximum High Fame (550 instead of 450)
   - fixed a typo ("desk" was used instead of "deck")
 * New option in GUI - Misc to prevent disappearance of error messages after some time for wrong or impossible commands
 * New command: ping (MemberNumber) (Message) to send a beep to a player
