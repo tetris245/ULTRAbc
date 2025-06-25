@@ -119,7 +119,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     let asylumlimit;
     let autojoin;
-    let DolltalkOn;
+    let dolltalk;
     let extbuttons;
     let extrainfo;
     let fixperm;
@@ -506,7 +506,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tintnever = false;
             asylumlimit = false;
             autojoin = false;
-            DolltalkOn = false;
+            dolltalk = false;
             extbuttons = false;
             extrainfo = false;
             fixperm = false;
@@ -618,7 +618,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tintnever = datas.tintnever;
             asylumlimit = datas.asylumlimit;
             autojoin = datas.autojoin;
-            DolltalkOn = datas.dolltalk;
+            dolltalk = datas.dolltalk;
             extbuttons = datas.extbuttons;
             extrainfo = datas.extrainfo;
             fixperm = datas.fixperm;
@@ -728,7 +728,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tintnever": tintnever,
             "asylumlimit": asylumlimit,
             "autojoin": autojoin,
-            "dolltalk": DolltalkOn,
+            "dolltalk": dolltalk,
             "extbuttons": extbuttons,
             "extrainfo": extrainfo,
             "fixperm": fixperm,
@@ -848,7 +848,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 150;
-                if (DolltalkOn == null || DolltalkOn == undefined) DolltalkOn = false;
+                if (dolltalk == null || dolltalk == undefined) {
+                    if (DolltalkOn == null || DolltalkOn == undefined) {
+                        dolltalk = false;
+                    } else {
+                        dolltalk = DolltalkOn;
+                    }
+                }
                 if (extbuttons == null || extbuttons == undefined) {
                     if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) {
                         extbuttons = false;
@@ -1679,7 +1685,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cdeck = data.cdeck * 1;
                 cextra = data.cextra;
                 cfame = data.cfame;
-                DolltalkOn = data.dolltalk;
+                dolltalk = data.dolltalk;
                 extbuttons = data.extbuttons;
                 extrainfo = data.extrainfo;
                 fixperm = data.fixperm;
@@ -2889,7 +2895,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             if (tsp == 0) {
-                if (DolltalkOn == true) {
+                if (dolltalk == true) {
                     if (IsDollTalk(text1) == false) nm = 1;
                     if (nm == 1) {
                         text2 = "";
@@ -8220,7 +8226,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let [, , ...message] = command.split(" ");
                     let msg = message?.join(" ");
                     let nm = 0;
-                    if (DolltalkOn == true) {
+                    if (dolltalk == true) {
                         if (IsDollTalk(msg) == false) nm = 1;
                         if (nm == 1) {
                             msg = umsg4;
@@ -8747,7 +8753,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let text = args;
                 let nm = 0;
-                if (DolltalkOn == true) {
+                if (dolltalk == true) {
                     if (IsDollTalk(text) == false) nm = 1;
                     if (nm == 1) {
                         let msg = "Your message can't be sent because it does not respect the rules of doll talk";
@@ -9437,7 +9443,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         onegl = gaglevel;
                     }
                     let nm = 0;
-                    if (DolltalkOn == true) {
+                    if (dolltalk == true) {
                         let text = args.substring(2).trim();
                         if (IsDollTalk(text) == false) nm = 1;
                         if (nm == 1) {
@@ -13073,7 +13079,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let [, , ...message] = command.split(" ");
                     let msg = message?.join(" ");
                     let nm = 0;
-                    if (DolltalkOn == true) {
+                    if (dolltalk == true) {
                         if (IsDollTalk(msg) == false) nm = 1;
                         if (nm == 1) {
                             msg = umsg4;
