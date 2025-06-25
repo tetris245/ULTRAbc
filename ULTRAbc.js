@@ -137,7 +137,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let notimeout;
     let notimeout2;
     let noubccolor;
-    let NowhisperOn = false;
+    let nowhisper = false;
     let nowhrange;
     let npcpunish = false;
     let outbuttons;
@@ -524,7 +524,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             notimeout = false;
 	    notimeout2 = false;
             noubccolor = false;
-            NowhisperOn = false;
+            nowhisper = false;
 	    nowhrange = false;
             npcpunish = false;
             outbuttons = false;
@@ -636,7 +636,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             notimeout = datas.notimeout;   
 	    notimeout2 = datas.notimeout2; 
             noubccolor = datas.noubccolor;
-            NowhisperOn = datas.nowhisper;
+            nowhisper = datas.nowhisper;
 	    nowhrange = datas.nowhrange;
             npcpunish = datas.npcpunish;
             outbuttons = datas.outbuttons;
@@ -746,7 +746,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "notimeout": notimeout,
             "notimeout2": notimeout2,
             "noubccolor": noubccolor,
-            "nowhisper": NowhisperOn,
+            "nowhisper": nowhisper,
             "nowhrange": nowhrange,
             "npcpunish": npcpunish,
             "outbuttons": outbuttons,
@@ -973,7 +973,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         noubccolor = NoubccolorOn;
                     }
                 } 
-                if (NowhisperOn == null || NowhisperOn == undefined) NowhisperOn = false;
+                if (nowhisper == null || nowhisper == undefined) {
+                    if (NowhisperOn == null || NowhisperOn == undefined) {
+                        nowhisper = false;
+                    } else {
+                        nowhisper = NowhisperOn;
+                    }
+                }
 		if (nowhrange == null || nowhrange == undefined) nowhrange = false;
                 if (npcpunish == null || npcpunish == undefined) {
                     if (NPCpunish == null || NPCpunish == undefined) {
@@ -1704,7 +1710,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 notimeout = data.notimeout;
 		notimeout2 = data.notimeout2;
                 noubccolor = data.noubccolor;
-                NowhisperOn = data.nowhisper;
+                nowhisper = data.nowhisper;
 		nowhrange = data.nowhrange;
                 npcpunish = data.npcpunish;
                 outbuttons = data.outbuttons;
@@ -2860,9 +2866,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (!text1.startsWith("//")) {
                         tsp = 1;
                         ChatRoomSetTarget(-1);
-                        if (text1.startsWith("/whisper")) {
+                        if ((text1.startsWith("/whisper")) || (text1.startsWith("/murmur"))) {
                             tsp = 0;
-                            if (NowhisperOn == true) nw = 1;
+                            if (nowhisper == true) nw = 1;
                         }
                     } else {
                         tsp = 2;
@@ -2892,7 +2898,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     }
                 }
-                if ((NowhisperOn == true) || (wh1 == 1)) {
+                if ((nowhisper == true) || (wh1 == 1)) {
                     if (ChatRoomTargetMemberNumber != -1) nw = 1;
                     if (nw == 1) {
                         text2 = "";
@@ -2919,7 +2925,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 text4 = text3;
             } else {
                 if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) {
-                    if ((ChatRoomTargetMemberNumber == -1) && (!(text1.startsWith("/whisper")))) {
+                    if ((ChatRoomTargetMemberNumber == -1) && (!(text1.startsWith("/whisper"))) && (!(text1.startsWith("/murmur")))) {
                         text4 = M_MOANER_applyMoanToMsg(Player, text3);
                     } else {
                         if (M_MOANER_whisperActive) {
@@ -2995,7 +3001,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 ElementValue("InputChat", text6.replace(text6, texta));
             } else {
-                if ((NowhisperOn == false) || (wh1 == 0)) {
+                if ((nowhisper == false) || (wh1 == 0)) {
                     let text6 = "";
                     if ((tsp == 1) || (notalk == 1) || (nm == 1)) {
                         text6 = text5;
