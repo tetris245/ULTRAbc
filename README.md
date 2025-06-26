@@ -62,6 +62,7 @@ Changes for future version
 * Changes for the Club Card Game:
   - moved the Extra Cards toggle to GUI - Cheats
   - integrated all the other UBC Card options in the deck selection screen
+  - added a Shibari deck as default deck
   - modified the maximum High Fame (550 instead of 450)
   - fixed a typo ("desk" was used instead of "deck")
 * New commands:
