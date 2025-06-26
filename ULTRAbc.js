@@ -3453,6 +3453,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let MaidDeckPlus = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003];
             ClubCardBuilderPornDeck = [1002, 1003, 1016, 2003, 3001, 3002, 4003, 4006, 5000, 5001, 5002, 5003, 5004, 6000, 6001, 8000, 9000, 9001, 9002, 9006, 30004, 30005, 30014, 30015, 30016, 31002, 31003, 31004, 31005, 31006];
             let PornDeckPlus = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];
+	    let ClubCardBuilderShibariDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 4007, 4009, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 12003, 13000, 13001, 13002, 13003, 13004, 13005, 13006]; 
+            let ShibariDeckPlus = [30013, 31013, 31014, 31015, 31016, 31017, 31018, 31019, 31020, 31021];
             let ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
             let ExtraDeckPlus = [4009, 7008, 9004, 10004, 12003, 12005, 12006, 12007, 12008, 14003];
             let initialdeck = [];
@@ -3488,8 +3490,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (cdeck == 7) {
                 initialdeck = ClubCardBuilderPornDeck;
                 plusdeck = PornDeckPlus;
-            }
+            }  
             if (cdeck == 8) {
+                initialdeck = ClubCardBuilderShibariDeck;
+                plusdeck = ShibariDeckPlus;
+            }
+            if (cdeck == 9) {
                 initialdeck = ClubCardBuilderExtraDeck;
                 plusdeck = ExtraDeckPlus;
             }
@@ -3528,7 +3534,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 DrawText("Available options for Default card deck:", 1000, 35, "White", "Gray");
                 DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
-                DrawText("5 Liability - 6 Maid - 7 Porn - 8 Extra", 985, 195, "White", "Gray");
+                DrawText("5 Liability - 6 Maid - 7 Porn - 8 Shibari - 9 Extra", 1070, 195, "White", "Gray");
                 const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
                 fameInput.setAttribute("min", "150");
                 fameInput.setAttribute("max", "550");
@@ -3543,7 +3549,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	        ElementPosition("InputMaxCards", 420, 265, 250);
                 const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
                 deckInput.setAttribute("min", "0");
-                deckInput.setAttribute("max", "8");
+                deckInput.setAttribute("max", "9");
                 deckInput.setAttribute("autocomplete", "off");
                 DrawText("Default card deck", 145, 350, "White", "Gray");
                 ElementPosition("InputDefaultDeck", 420, 345, 250);
