@@ -3381,10 +3381,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
            if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
                 if (MouseIn(65, 60, 90, 90)) {
                     if (highfame) {
-                        highfame = false;  
+                        highfame = false; 
+			Player.UBC.ubcSettings.highfame = false;
                         M_MOANER_saveControls();
                     } else {
                         highfame = true;
+			Player.UBC.ubcSettings.highfame = true;
                         M_MOANER_saveControls();  
                     }
                 }
