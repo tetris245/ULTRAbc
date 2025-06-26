@@ -538,32 +538,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             unrestrict = 0;
             usoft = false;
             utotal = false;
-            Clothes = "";
-            Invisible = "";
-            Mlock = "";
-            Naked = "";
-            Pet = "";
-            Randomize = "";
-            Restrain = "";
-            Solidity = "";
-            Tclothes = "";
-            Tinvisible = "";
-            Tlock = "";
-            Tnaked = "";
-            Totalrelease = "";
-            Tpet = "";
-            Trandomize = "";
-            Trestrain = "";
-            Tsolidity = "";
-            Ttotalrelease = "";
-            Tunderwear = "";
-            Tunlock = "";
-            Tuntie = "";
-            Tvisible = "";
-            Underwear = "";
-            Unlock = "";
-            Untie = "";
-            Visible = "";
+            MessageDefault();
             M_MOANER_saveControls();
         } else {
             M_MOANER_orgasmActive = data.orgasmMoan;
@@ -5971,6 +5946,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Unlock = data.unlock;
         Untie = data.untie;
         Visible = data.visible;
+    }
+
+    function messageDefault() {  
+        Clothes = "";
+        Invisible = "";
+        Mlock = "";
+        Naked = "";
+        Pet = "";
+        Randomize = "";
+        Restrain = "";
+        Solidity = "";
+        Tclothes = "";
+        Tinvisible = "";
+        Tlock = "";
+        Tnaked = "";
+        Totalrelease = "";
+        Tpet = "";
+        Trandomize = "";
+        Trestrain = "";
+        Tsolidity = "";
+        Ttotalrelease = "";
+        Tunderwear = "";
+        Tunlock = "";
+        Tuntie = "";
+        Tvisible = "";
+        Underwear = "";
+        Unlock = "";
+        Untie = "";
+        Visible = "";
     }
 
     function publicmsg(msg) {
