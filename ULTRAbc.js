@@ -3451,6 +3451,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let LiabilityDeckPlus = [1018, 4001, 4008, 4009, 4011, 6005, 6007, 7009, 7010, 10008];
             let ClubCardBuilderMaidDeck = [1004, 1005, 1006, 1007, 1008, 1010, 1011, 1013, 1014, 2000, 2001, 2002, 3000, 3006, 4000, 6000, 6001, 6002, 6003, 6004, 9005, 10000, 10001, 10002, 30001, 30002, 30006, 30009, 30010, 30020];
             let MaidDeckPlus = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003];
+	    let ClubCardBuilderPetDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 4010, 4011, 6000, 6001, 6002, 6003, 6004, 6008, 6008, 8000, 12005, 14000, 14001, 14002, 14003, 14004, 14005];
+            let PetDeckPlus = [14006, 14007, 14008, 14009, 14010, 14011, 14012, 14013, 31022, 31026];
             ClubCardBuilderPornDeck = [1002, 1003, 1016, 2003, 3001, 3002, 4003, 4006, 5000, 5001, 5002, 5003, 5004, 6000, 6001, 8000, 9000, 9001, 9002, 9006, 30004, 30005, 30014, 30015, 30016, 31002, 31003, 31004, 31005, 31006];
             let PornDeckPlus = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];
 	    let ClubCardBuilderShibariDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 4007, 4009, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 12003, 13000, 13001, 13002, 13003, 13004, 13005, 13006]; 
@@ -3488,14 +3490,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 plusdeck = MaidDeckPlus;
             }
             if (cdeck == 7) {
+                initialdeck = ClubCardBuilderPetDeck;
+                plusdeck = PetDeckPlus;
+            }
+            if (cdeck == 8) {
                 initialdeck = ClubCardBuilderPornDeck;
                 plusdeck = PornDeckPlus;
-            }  
-            if (cdeck == 8) {
+            }
+            if (cdeck == 9) {
                 initialdeck = ClubCardBuilderShibariDeck;
                 plusdeck = ShibariDeckPlus;
             }
-            if (cdeck == 9) {
+            if (cdeck == 10) {
                 initialdeck = ClubCardBuilderExtraDeck;
                 plusdeck = ExtraDeckPlus;
             }
@@ -3534,7 +3540,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 DrawText("Available options for Default card deck:", 1000, 35, "White", "Gray");
                 DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
-                DrawText("5 Liability - 6 Maid - 7 Porn - 8 Shibari - 9 Extra", 1070, 195, "White", "Gray");
+                DrawText("5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
                 const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
                 fameInput.setAttribute("min", "150");
                 fameInput.setAttribute("max", "550");
@@ -3549,7 +3555,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	        ElementPosition("InputMaxCards", 420, 265, 250);
                 const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
                 deckInput.setAttribute("min", "0");
-                deckInput.setAttribute("max", "9");
+                deckInput.setAttribute("max", "10");
                 deckInput.setAttribute("autocomplete", "off");
                 DrawText("Default card deck", 145, 350, "White", "Gray");
                 ElementPosition("InputDefaultDeck", 420, 345, 250);
