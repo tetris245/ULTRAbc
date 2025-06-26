@@ -6994,9 +6994,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         autojoin = data.autojoin;
         bgall = data.bgall;
         bl = data.bl;
-        blindness = data.blindness;
-        blureffect = 0;
-        blurmode = data.blurmode;	
+        blureffect = 0;	
         ccards = data.ccards * 1;
         cdeck = data.cdeck * 1;
         cextra = data.cextra;
@@ -7008,7 +7006,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         fullseed = data.fullseed;
         frkeys = data.frkeys;
         gl = data.gaglevel * 1;
-        hearing = data.hearing;
         highfame = data.highfame;
         hotkeys = data.hotkeys;
         magiccheat = data.magiccheat;
@@ -7031,7 +7028,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         pmin = data.pmin * 1;
         pmax = data.pmax * 1;
         rchat = data.rchat;
-        reaction = data.reaction;
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
         rmin = data.rmin * 1;
