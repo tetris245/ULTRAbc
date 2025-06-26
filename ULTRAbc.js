@@ -650,32 +650,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             unrestrict = 0;
             usoft = false;
             utotal = false;
-            Clothes = data.clothes;
-            Invisible = data.invisible;
-            Mlock = data.mlock;
-            Naked = data.naked;
-            Pet = data.pet;
-            Randomize = data.randomize;
-            Restrain = data.restrain;
-            Solidity = data.solidity;
-            Tclothes = data.tclothes;
-            Tinvisible = data.tinvisible;
-            Tlock = data.tlock;
-            Tnaked = data.tnaked;
-            Totalrelease = data.totalrelease;
-            Tpet = data.tpet;
-            Trandomize = data.trandomize;
-            Trestrain = data.trestrain;
-            Tsolidity = data.tsolidity;
-            Ttotalrelease = data.ttotalrelease;
-            Tunderwear = data.tunderwear;
-            Tunlock = data.tunlock;
-            Tuntie = data.tuntie;
-            Tvisible = data.visible;
-            Underwear = data.underwear;
-            Unlock = data.unlock;
-            Untie = data.untie;
-            Visible = data.visible;
+            messageData(data);
         }
     }
    
@@ -5967,6 +5942,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "<p style='background-color:#5fbd7a'>ULTRAbc: " + msg + "</p>"
             );
         }
+    }
+
+    function messageData(data) {  
+        Clothes = data.clothes;
+        Invisible = data.invisible;
+        Mlock = data.mlock;
+        Naked = data.naked;
+        Pet = data.pet;
+        Randomize = data.randomize;
+        Restrain = data.restrain;
+        Solidity = data.solidity;
+        Tclothes = data.tclothes;
+        Tinvisible = data.tinvisible;
+        Tlock = data.tlock;
+        Tnaked = data.tnaked;
+        Totalrelease = data.totalrelease;
+        Tpet = data.tpet;
+        Trandomize = data.trandomize;
+        Trestrain = data.trestrain;
+        Tsolidity = data.tsolidity;
+        Ttotalrelease = data.ttotalrelease;
+        Tunderwear = data.tunderwear;
+        Tunlock = data.tunlock;
+        Tuntie = data.tuntie;
+        Tvisible = data.visible;
+        Underwear = data.underwear;
+        Unlock = data.unlock;
+        Untie = data.untie;
+        Visible = data.visible;
     }
 
     function publicmsg(msg) {
