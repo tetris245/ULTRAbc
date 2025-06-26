@@ -131,7 +131,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let magictoys;
     let mapcheat;
     let mapfull;
-    let NoescapeOn;
+    let noescape;
     let nogarble;
     let nostruggle;
     let notimeout;
@@ -518,7 +518,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             magictoys = false;
             mapcheat = false;
             mapfull = false;
-            NoescapeOn = false;
+            noescape = false;
             nogarble = false;
             nostruggle = false;
             notimeout = false;
@@ -630,7 +630,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             magictoys = datas.magictoys;
             mapcheat = datas.mapcheat;
             mapfull = datas.mapfull;
-            NoescapeOn = datas.noescape;
+            noescape = datas.noescape;
             nogarble = datas.nogarble;
             nostruggle = datas.nostruggle;
             notimeout = datas.notimeout;   
@@ -740,7 +740,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "magictoys": magictoys,
             "mapcheat": mapcheat,
             "mapfull": mapfull,
-            "noescape": NoescapeOn,
+            "noescape": noescape,
             "nogarble": nogarble,
             "nostruggle": nostruggle,
             "notimeout": notimeout,
@@ -949,6 +949,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
+		if (noescape == null || noescape == undefined) {
+                    if (NoescapeOn == null || NoescapeOn == undefined) {
+                        noescape = false;
+                    } else {
+                        noescape = NoescapeOn;
+                    }
+                } 
                 if (nogarble == null || nogarble == undefined) {
                     if (NogarbleOn == null || NogarbleOn == undefined) {
                         nogarble = false;
@@ -1697,7 +1704,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 hotkeys = data.hotkeys;
                 magiccheat = data.magiccheat;
                 magictoys = data.magictoys;
-                MapcheatOn = data.mapcheat;
+                mapcheat = data.mapcheat;
                 mapfull = data.mapfull;
                 maptrap1 = data.maptrap1 * 1;
                 M_MOANER_cum = data.cum;
@@ -1709,7 +1716,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_vibratorActive = data.vibeMoan;
                 M_MOANER_whisperActive = data.whisperMoan;
                 M_MOANER_xvibratorActive = data.xvibeMoan;
-                NoescapeOn = data.noescape;
+                noescape = data.noescape;
                 nogarble = data.nogarble;
                 nostruggle = data.nostruggle;
                 notalk = data.notalk;
@@ -1822,7 +1829,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((utotal == true) && (unrestrict != 2)) totalUnrestrict();
                 silentMode();
                 M_MOANER_saveControls();
-                if (NoescapeOn == true) {
+                if (noescape == true) {
                     Player.OnlineSharedSettings.Unoescape = true;
                 } else {
                     Player.OnlineSharedSettings.Unoescape = false;
@@ -1845,7 +1852,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
-                if ((NoescapeOn == true) && (unrestrict == 2)) {
+                if ((noescape == true) && (unrestrict == 2)) {
                     ServerSocket.close();
                     ServerSocket.open();
                 }
@@ -1867,9 +1874,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape", 150
                 );
                 let slowmsg = "By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players! This option is not available in no-escape mode. ";
-                let noescape = 0;
-                if (Player.UBC.ubcSettings.noescape == false) noescape = 1;
-                if (noescape == 0) {
+                let notesc = 0;
+                if (Player.UBC.ubcSettings.noescape == false) notesc = 1;
+                if (notesc == 0) {
                     addMenuCheckbox(64, 64, "Slow exit with OUT button: ", "slowleave", slowmsg, true, 150);
                 } else {
                     addMenuCheckbox(64, 64, "Slow exit with OUT button: ", "slowleave", slowmsg, "!Player.UBC.ubcSettings.outbuttons", 150);
@@ -2571,7 +2578,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return;
                 }
             }
-            if ((sosbuttons == true) && (NoescapeOn == false)) {
+            if ((sosbuttons == true) && (noescape == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 315) && (MouseY < 360)) {
                     let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
                     if (Totalrelease != undefined) {
@@ -2588,7 +2595,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return;
                 }
             }
-            if ((outbuttons == true) && (NoescapeOn == false)) {
+            if ((outbuttons == true) && (noescape == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) {
                     if (slowleave == true) {
                         let msg = "" + tmpname + " slowly heads for the door.";
@@ -2615,7 +2622,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             const ret = next(args);
-            if ((hotkeys == true) && (NoescapeOn == false)) {
+            if ((hotkeys == true) && (noescape == false)) {
                 if (event.code === "NumpadDivide") {
                     OutChat();
                     return true;
@@ -2863,7 +2870,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     PandoraPenitentiaryDoActivity(act);
                     text2 = "";
                 }
-                if (((text1.startsWith("/leave")) || (text1.startsWith("/safewordspecific"))) && (Player.BCAR != null) && (NoescapeOn == true)) {
+                if (((text1.startsWith("/leave")) || (text1.startsWith("/safewordspecific"))) && (Player.BCAR != null) && (noescape == true)) {
                     let msg = umsg1 + umsg3;
                     infomsg(msg);
                     text2 = "";
@@ -5565,7 +5572,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function OutButtons() {
-        if (NoescapeOn == false) {
+        if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
                 DrawButton(955, 360, 45, 45, "OUT", "White", "", "");
             } else {
@@ -5595,7 +5602,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function OutClick() {
-        if (NoescapeOn == false) {
+        if (noescape == false) {
             if (window.CurrentScreen == "Cell") CellLock(0);
             if (window.CurrentScreen == "PandoraPrison") PandoraPunishmentSentence(0);
             CharacterRefresh(Player);
@@ -5629,7 +5636,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function SosButtons() {
-        if (NoescapeOn == false) {
+        if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
                 DrawButton(955, 315, 45, 45, "FREE", "White", "", "");
             } else {
@@ -5639,7 +5646,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function SosClick() {
-        if (NoescapeOn == false) {
+        if (noescape == false) {
             CharacterReleaseTotal(Player);
             if (window.CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
             RealGarblingLevel();
@@ -6118,8 +6125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Player.OnlineSharedSettings.Ulist == undefined) {
             Player.OnlineSharedSettings.Ulist = [];
         }
-        if (NoescapeOn == null || NoescapeOn == undefined) NoescapeOn = false;
-        if (NoescapeOn == true) {
+        if (noescape == true) {
             Player.OnlineSharedSettings.Unoescape = true;
         } else {
             Player.OnlineSharedSettings.Unoescape = false;
@@ -8726,7 +8732,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'boost',
         Description: ": boosts all your skills for one hour.",
         Action: () => {
-            if (NoescapeOn) {
+            if (noescape) {
                 let msg = umsg1 + umsg3;
                 infomsg(msg);
             } else {
@@ -12176,7 +12182,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'quit',
         Description: "(action): leaves room.",
         Action: (args) => {
-            if (NoescapeOn) {
+            if (noescape) {
                 let msg = umsg1 + umsg3;
                 infomsg(msg);
             } else {
@@ -12535,7 +12541,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             infomsg(msg);
             setTimeout(function() {
                 if (CurrentCharacter != null) {
-                    if ((NoescapeOn) && (CurrentCharacter == Player)) {
+                    if ((noescape) && (CurrentCharacter == Player)) {
                         let msg = umsg1 + umsg3;
                         infomsg(msg);
                     } else {
@@ -12864,7 +12870,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'slowleave',
         Description: "(action): slowly leaves the room.",
         Action: (args) => {
-            if (NoescapeOn) {
+            if (noescape) {
                 let msg = umsg1 + umsg3;
                 infomsg(msg);
             } else {
@@ -12901,7 +12907,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     infomsg(msg);
                 } else {
                     if ((targetname == null) && (solidity > 0) && (solidity < 100)) {
-                        if ((NoescapeOn) && (solidity < 20)) {
+                        if ((noescape) && (solidity < 20)) {
                             let msg = umsg1 + umsg3;
                             infomsg(msg);
                         } else {
@@ -13647,7 +13653,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (target != null) {
                 if (target == Player) {
-                    if (NoescapeOn) {
+                    if (noescape) {
                         let msg = umsg1 + umsg3;
                         infomsg(msg);
                     } else {
@@ -14057,7 +14063,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (tmpname == tgpname) {
-                        if (NoescapeOn) {
+                        if (noescape) {
                             let msg = umsg1 + umsg3;
                             infomsg(msg);
                         } else {
@@ -14157,7 +14163,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (target != null) {
                 if (target == Player) {
-                    if (NoescapeOn) {
+                    if (noescape) {
                         let msg = umsg1 + umsg3;
                         infomsg(msg);
                     } else {
