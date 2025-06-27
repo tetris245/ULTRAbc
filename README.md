@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.2.1
+Most recent version: 5.3
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -59,16 +59,5 @@ All else I might not have included.
 
 Changes for future version
 
-* Changes for the Club Card Game:
-  - moved the Extra Cards toggle to GUI - Cheats
-  - integrated all the other UBC Card options in the deck selection screen
-  - added 2 new default decks: Pet and Shibari
-  - modified the maximum High Fame (550 instead of 450)
-  - fixed a typo ("desk" was used instead of "deck")
-* New commands:
-  - murmur (MemberNumber|Name|Nickname) (Message) to send a whisper to a player (actually the same as the BC beep whisper, but the error messages will not disappear after some time)
-  - ping (MemberNumber) (Message) to send a beep to a player (actually the same as the BC beep command without WCE, but the beep errors will not disappear after some time)
-* New option in GUI - Maps to enable full whispering in maps, without range limitation (when using the standard BC command /whisper or the UBC command /murmur)
-* New option in GUI - Misc to prevent disappearance of error messages after some time for wrong or impossible commands
-* Harmonised the UBC variables inside and outside the GUI (it does not include the Moaner variables) and optimised their updating
+(...)
 
