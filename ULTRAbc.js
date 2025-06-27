@@ -11221,7 +11221,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'murmur',
-        Description: "(MemberNumber|Name|Nickname)(Message): sends a message to a player.",
+        Description: "(MemberNumber|Name|Nickname)(Message): sends a whisper to a player.",
         Action: (args, command) => {
             const [, ...parts] = command.split(" ");
             const target = parts?.shift();
