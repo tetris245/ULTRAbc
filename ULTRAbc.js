@@ -3625,7 +3625,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (flt.length > 1) C = null;
             if (C && C.Reference) C = GetCommands().find(D => D.Tag == C.Reference);
             if (C != null) {
-                if ((msg == "/bcc leave") || (msg == "/leave") || (msg == "/quit")) {
+                if ((msg == "/bcc leave") || (msg == "/leave") || (msg.startsWith("/quit")) || (msg.startsWith("/wcegotoroom"))) {
                     C.Action.call(C, low.substring(C.Tag.length + 2), msg, parsed);
                     return false;
                 }
