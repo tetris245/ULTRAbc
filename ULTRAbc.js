@@ -2183,6 +2183,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardEndTurn();
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
+    ULTRAClubCardLoungePraticeGameStart();
     ULTRAClubCardRenderBoard();
     ULTRAClubCardRenderPanel();
     ULTRACommandAutoComplete();
@@ -3520,6 +3521,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (ccards > 38) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[8]);
             if (ccards > 39) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[9]);
             next(args);
+        });
+    }
+
+    async function ULTRAClubCardLoungePraticeGameStart() {
+        modApi.hookFunction('ClubCardLoungePraticeGameStart', 4, (args, next) => {  
+            ClubCardOpponent = ClubCardLoungeTutor;
+	    ClubCardOpponentDeck = ClubCardBuilderDefaultDeck; 
+            let initialdeck = ClubCardOpponentDeck;
+            let plusdeck = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
+            if (ccards > 30) ClubCardOpponentDeck = initialdeck.concat(plusdeck[0]);
+            if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
+            if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
+            if (ccards > 33) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[3]);
+            if (ccards > 34) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[4]);
+            if (ccards > 35) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[5]);
+            if (ccards > 36) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[6]);
+            if (ccards > 37) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[7]);
+            if (ccards > 38) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[8]);
+            if (ccards > 39) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[9]);
+            MiniGameStart("ClubCard", 0, "ClubCardLoungePraticeGameEnd");
+            return;
         });
     }
 
