@@ -2302,6 +2302,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceSubscreenOnlineRun();
     ULTRAPrivateClick();
     ULTRAPrivateRun();
+    ULTRAStableClubCardStart();
     ULTRAStablePlayerTrainingCarrotsEnd();
     ULTRAStablePlayerTrainingHurdlesEnd();
     ULTRAStableRun();
@@ -3689,6 +3690,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('IntroductionClubCardStart', 4, (args, next) => { 
             moreMaidCards();
             MiniGameStart("ClubCard", 0, "IntroductionClubCardEnd");
+            return;
+        });
+    }
+
+    async function ULTRAStableClubCardStart() {
+        modApi.hookFunction('StableClubCardStart', 4, (args, next) => { 
+            moreABDLCards();
+            MiniGameStart("ClubCard", 0, "StableClubCardEnd");
             return;
         });
     }
@@ -5630,6 +5639,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
         };
+    }
+
+    function moreABDLCards() {       
+        ClubCardOpponent = CurrentCharacter;
+	ClubCardOpponentDeck = ClubCardBuilderABDLDeck;
+        let initialdeck = ClubCardOpponentDeck;
+        let plusdeck = [1017, 1018, 3012, 4008, 10006, 10007, 10008, 10009, 31007, 31009];    
+        if (ccards > 30) ClubCardOpponentDeck = initialdeck.concat(plusdeck[0]);
+        if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
+        if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
+        if (ccards > 33) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[3]);
+        if (ccards > 34) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[4]);
+        if (ccards > 35) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[5]);
+        if (ccards > 36) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[6]);
+        if (ccards > 37) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[7]);
+        if (ccards > 38) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[8]);
+        if (ccards > 39) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[9]);
     }
 
     function moreMaidCards() {       
