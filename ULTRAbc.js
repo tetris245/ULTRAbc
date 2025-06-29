@@ -5939,35 +5939,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Visible = data.visible;
     }
 
-    function messageDefault() {
-        Clothes = "";
-        Invisible = "";
-        Mlock = "";
-        Naked = "";
-        Pet = "";
-        Randomize = "";
-        Restrain = "";
-        Solidity = "";
-        Tclothes = "";
-        Tinvisible = "";
-        Tlock = "";
-        Tnaked = "";
-        Totalrelease = "";
-        Tpet = "";
-        Trandomize = "";
-        Trestrain = "";
-        Tsolidity = "";
-        Ttotalrelease = "";
-        Tunderwear = "";
-        Tunlock = "";
-        Tuntie = "";
-        Tvisible = "";
-        Underwear = "";
-        Unlock = "";
-        Untie = "";
-        Visible = "";
-    }
-
     function publicmsg(msg) {
         ServerSend("ChatRoomChat", {
             Content: "Beep",
@@ -7142,64 +7113,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         tintnever = data.tintnever;
         usoft = data.usoft;
         utotal = data.utotal;
-    }
-
-    function UBCdefault() {
-        ahybrid = false;
-        animal = 0;
-        asylumlimit = false;
-        autojoin = false;
-        bgall = false;
-        bl = 0;
-        blureffect = 0;
-        ccards = 30;
-        cdeck = 0;
-        cextra = false;
-        cfame = 150;
-        dolltalk = false;
-        extbuttons = false;
-        extrainfo = false;
-        fixperm = false;
-        fullseed = false;
-        frkeys = false;
-        gl = 0;
-        highfame = false;
-        hotkeys = false;
-        magiccheat = false;
-        magictoys = false;
-        mapcheat = false;
-        mapfull = false;
-        maptrap1 = 0;
-        noescape = false;
-        nogarble = false;
-        nostruggle = false;
-        notalk = 0;
-        notimeout = false;
-        notimeout2 = false;
-        noubccolor = false;
-        nowhisper = false;
-        nowhrange = false;
-        npcpunish = false;
-        outbuttons = false;
-        pchat = false;
-        pmin = 2;
-        pmax = 20;
-        rchat = false;
-        rglbuttons = false;
-        rglsync = false;
-        rmin = 2;
-        rsize = 20;
-        rtype = "ALL";
-        silent = false;
-        slowleave = false;
-        sosbuttons = false;
-        st = 0;
-        tintcolor = "#000000";
-        tintlevel = 0;
-        tintmbs = false;
-        tintnever = false;
-        usoft = false;
-        utotal = false;
     }
 
     //Unrestrict
