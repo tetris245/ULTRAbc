@@ -3646,8 +3646,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ClubCardOpponent = CurrentCharacter;
 	      ClubCardOpponentDeck = ClubCardBuilderMaidDeck;
             let initialdeck = ClubCardOpponentDeck;
-            //let plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003]; - bug when 6011 played by NPC
-            let plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 12001, 12002, 14003];
+            let plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003];
             if (ccards > 30) ClubCardOpponentDeck = initialdeck.concat(plusdeck[0]);
             if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
             if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
@@ -5610,6 +5609,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DialogSetReputation("HouseMaiestas", 0);
         DialogSetReputation("HouseVincula", 0);
         LogDelete("Mastery", "MagicSchool");
+    } 
+
+    //Club Card Game
+    const targetCard = ClubCardList.find(card => card.ID === 6011 && card.Name === "Vintage Maid");
+    if (targetCard) {
+        targetCard.OnPlay = function(CCPlayer) {
+            if (CCPlayer.Control == 'AI') {
+                if (CCPlayer.DiscardPile.length > 0) {
+                    const randomCard = CCPlayer.DiscardPile[Math.floor(Math.random() * CCPlayer.DiscardPile.length)];
+                    CCPlayer.Hand.push(ClubCardGetCopyCardByName(randomCard.Name));
+                    CCPlayer.DiscardPile.splice(CCPlayer.DiscardPile.findIndex(value => value.ID === randomCard.ID), 1);                 
+                }
+            } else {
+                if (ClubCardSelection == null && CCPlayer.DiscardPile.filter(card => card.Type !== "Event").length > 0) {
+                    ClubCardCreatePopup("SEARCH", null, null, null, null, null, CCPlayer.DiscardPile.filter(card => card.Type !== "Event"));
+                    return;
+                }
+                if (ClubCardSelection) {
+                    CCPlayer.DiscardPile.splice(CCPlayer.DiscardPile.findIndex(value => value.ID === ClubCardSelection.ID), 1);
+                    CCPlayer.Hand.push(ClubCardGetCopyCardByName(ClubCardSelection.Name));
+                } else {
+                    ClubCardPlayCard(CCPlayer, this, false);
+                }
+            }
+        };
     }
 
     //DOGS Status
