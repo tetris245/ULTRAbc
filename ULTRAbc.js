@@ -2279,10 +2279,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
     ULTRAFriendListDraw();
-    ULTRAFriendListKeyDown();
-    ULTRAInfiltrationPrepareMission();
-    ULTRAInformationSheetExit();
-    ULTRAIntroductionClubCardStart();
+    ULTRAFriendListKeyDown(); 
+    ULTRALARPClubCardStart();
     ULTRALoginClick();
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
@@ -3690,6 +3688,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('IntroductionClubCardStart', 4, (args, next) => { 
             moreMaidCards();
             MiniGameStart("ClubCard", 0, "IntroductionClubCardEnd");
+            return;
+        });
+    }
+
+    async function ULTRALARPClubCardStart() {
+        modApi.hookFunction('LARPClubCardStart', 4, (args, next) => { 
+            moreABDLCards();
+            MiniGameStart("ClubCard", 0, "LARPClubCardEnd");
             return;
         });
     }
