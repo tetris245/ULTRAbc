@@ -2194,6 +2194,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAFriendListKeyDown();
     ULTRAInfiltrationPrepareMission();
     ULTRAInformationSheetExit();
+    ULTRAIntroductionClubCardStart();
     ULTRALoginClick();
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
@@ -3550,6 +3551,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Player.Game.ClubCard.Background = ccname;
             ClubCardBackground = ccname;
             next(args);
+        });
+    }
+
+    async function ULTRAIntroductionClubCardStart() {
+        modApi.hookFunction('IntroductionClubCardStart', 4, (args, next) => {  
+            ClubCardOpponent = CurrentCharacter;
+	      ClubCardOpponentDeck = ClubCardBuilderMaidDeck;
+            let initialdeck = ClubCardOpponentDeck;
+            //let plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003]; - bug when 6011 played by NPC
+            let plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 12001, 12002, 14003];
+            if (ccards > 30) ClubCardOpponentDeck = initialdeck.concat(plusdeck[0]);
+            if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
+            if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
+            if (ccards > 33) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[3]);
+            if (ccards > 34) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[4]);
+            if (ccards > 35) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[5]);
+            if (ccards > 36) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[6]);
+            if (ccards > 37) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[7]);
+            if (ccards > 38) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[8]);
+            if (ccards > 39) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[9]);
+            MiniGameStart("ClubCard", 0, "IntroductionClubCardEnd");
+            return;
         });
     }
 
