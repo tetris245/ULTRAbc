@@ -2287,6 +2287,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAMagicSchoolEscapeSpellEnd();
     ULTRAMainHallClick();
     ULTRAMainHallRun();
+    ULTRAMovieStudioClubCardStart();
     ULTRAPandoraPenitentiaryResult();
     ULTRAPandoraPrisonClick();
     ULTRAPandoraPrisonRun();
@@ -3696,6 +3697,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('LARPClubCardStart', 4, (args, next) => { 
             moreABDLCards();
             MiniGameStart("ClubCard", 0, "LARPClubCardEnd");
+            return;
+        });
+    }
+
+    async function ULTRAMovieStudioClubCardStart() {
+        modApi.hookFunction('MovieStudioClubCardStart', 4, (args, next) => { 
+            morePornCards();
+            MiniGameStart("ClubCard", 0, "MovieStudioClubCardEnd");
             return;
         });
     }
@@ -5669,6 +5678,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	ClubCardOpponentDeck = ClubCardBuilderMaidDeck;
         let initialdeck = ClubCardOpponentDeck;
         let plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003];          
+        if (ccards > 30) ClubCardOpponentDeck = initialdeck.concat(plusdeck[0]);
+        if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
+        if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
+        if (ccards > 33) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[3]);
+        if (ccards > 34) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[4]);
+        if (ccards > 35) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[5]);
+        if (ccards > 36) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[6]);
+        if (ccards > 37) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[7]);
+        if (ccards > 38) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[8]);
+        if (ccards > 39) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[9]);
+    }
+
+    function morePornCards() {       
+        ClubCardOpponent = CurrentCharacter;
+	ClubCardOpponentDeck = ClubCardBuilderPornDeck;
+        let initialdeck = ClubCardOpponentDeck;
+        let plusdeck = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];          
         if (ccards > 30) ClubCardOpponentDeck = initialdeck.concat(plusdeck[0]);
         if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
         if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
