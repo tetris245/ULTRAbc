@@ -3623,25 +3623,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAClubCardLoungePraticeGameStart() {
         modApi.hookFunction('ClubCardLoungePraticeGameStart', 4, (args, next) => {  
-            ClubCardOpponent = ClubCardLoungeTutor;
-	    ClubCardOpponentDeck = ClubCardBuilderDefaultDeck; 
-            let initialdeck = ClubCardOpponentDeck;
-            let plusdeck = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
-            if (ccards > 30) ClubCardOpponentDeck = initialdeck.concat(plusdeck[0]);
-            if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
-            if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
-            if (ccards > 33) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[3]);
-            if (ccards > 34) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[4]);
-            if (ccards > 35) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[5]);
-            if (ccards > 36) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[6]);
-            if (ccards > 37) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[7]);
-            if (ccards > 38) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[8]);
-            if (ccards > 39) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[9]);
+            moreDefaultCards();
             MiniGameStart("ClubCard", 0, "ClubCardLoungePraticeGameEnd");
             return;
         });
     }
-
+	
     async function ULTRAClubCardRenderBoard() {
         modApi.hookFunction('ClubCardRenderBoard', 4, (args, next) => {
             Player.Game.ClubCard.Background = ccname;
@@ -5665,6 +5652,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function moreCards(data) {
         let plusdeck = [];
         if (data == "ABDL") plusdeck = [1017, 1018, 3012, 4008, 10006, 10007, 10008, 10009, 31007, 31009]; 
+	if (data == "Default") plusdeck = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
         if (data == "Maid") plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003]; 
         if (data == "Porn") plusdeck = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];          
         if (ccards > 30) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[0]);
@@ -5678,6 +5666,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (ccards > 38) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[8]);
         if (ccards > 39) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[9]);
     }   
+
+    function moreDefaultCards() {       
+        ClubCardOpponent = ClubCardLoungeTutor;
+	  ClubCardOpponentDeck = ClubCardBuilderDefaultDeck;
+        moreCards("Default");     
+    }
 
     function moreMaidCards() {       
         ClubCardOpponent = CurrentCharacter;
