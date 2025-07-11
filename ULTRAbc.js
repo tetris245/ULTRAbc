@@ -10520,32 +10520,37 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let msg = umsg5;
                     infomsg(msg);
                 } else {
-                    let plx = args;
-                    if ((plx > -1) && (plx < 40) && (plx != Player.MapData.Pos.X)) {
-                        if (plx < Player.MapData.Pos.X) {
-                            D = "West";
-                            m = (Player.MapData.Pos.X - plx);
-                        }
-                        if (plx > Player.MapData.Pos.X) {
-                            D = "East";
-                            m = (plx - Player.MapData.Pos.X);
-                        }
-                        let X = Player.MapData.Pos.X + ((D == "West") ? -m : 0) + ((D == "East") ? m : 0);
-                        let Y = Player.MapData.Pos.Y;
-                        let Time = ChatRoomMapViewCanEnterTile(X, Y);
-                        if (Time > 0) {
-                            ChatRoomMapViewMovement = {
-                                X: X,
-                                Y: Y,
-                                Direction: D,
-                                TimeStart: CommonTime(),
-                                TimeEnd: CommonTime() + Time
-                            };
-                        }
-                        ChatRoomMapViewUpdatePlayerNext = null;
-                        ServerAccountUpdate.QueueData({
-                            MapData: Player.MapData
-                        }, true);
+                    if (Player.MapData != undefined) {
+                        let plx = args;
+                        if ((plx > -1) && (plx < 40) && (plx != Player.MapData.Pos.X)) {
+                            if (plx < Player.MapData.Pos.X) {
+                                D = "West";
+                                m = (Player.MapData.Pos.X - plx);
+                            }
+                            if (plx > Player.MapData.Pos.X) {
+                                D = "East";
+                                m = (plx - Player.MapData.Pos.X);
+                            }
+                            let X = Player.MapData.Pos.X + ((D == "West") ? -m : 0) + ((D == "East") ? m : 0);
+                            let Y = Player.MapData.Pos.Y;
+                            let Time = ChatRoomMapViewCanEnterTile(X, Y);
+                            if (Time > 0) {
+                                ChatRoomMapViewMovement = {
+                                    X: X,
+                                    Y: Y,
+                                    Direction: D,
+                                    TimeStart: CommonTime(),
+                                    TimeEnd: CommonTime() + Time
+                                };
+                            }
+                            ChatRoomMapViewUpdatePlayerNext = null;
+                            ServerAccountUpdate.QueueData({
+                                MapData: Player.MapData
+                            }, true);
+                        } 
+                    } else {
+                        ChatRoomSendLocal("Does not have entered map");
+                        ChatRoomSendLocal(" ");
                     }
                 }
             }
@@ -10564,32 +10569,37 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let msg = umsg5;
                     infomsg(msg);
                 } else {
-                    let ply = args;
-                    if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Pos.Y)) {
-                        if (ply < Player.MapData.Pos.Y) {
-                            D = "North";
-                            m = (Player.MapData.Pos.Y - ply);
-                        }
-                        if (ply > Player.MapData.Pos.Y) {
-                            D = "South";
-                            m = (ply - Player.MapData.Pos.Y);
-                        }
-                        let X = Player.MapData.Pos.X;
-                        let Y = Player.MapData.Pos.Y + ((D == "North") ? -m : 0) + ((D == "South") ? m : 0);
-                        let Time = ChatRoomMapViewCanEnterTile(X, Y);
-                        if (Time > 0) {
-                            ChatRoomMapViewMovement = {
-                                X: X,
-                                Y: Y,
-                                Direction: D,
-                                TimeStart: CommonTime(),
-                                TimeEnd: CommonTime() + Time
-                            };
-                        }
-                        ChatRoomMapViewUpdatePlayerNext = null;
-                        ServerAccountUpdate.QueueData({
-                            MapData: Player.MapData
-                        }, true);
+                    if (Player.MapData != undefined) {
+                        let ply = args;
+                        if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Pos.Y)) {
+                            if (ply < Player.MapData.Pos.Y) {
+                                D = "North";
+                                m = (Player.MapData.Pos.Y - ply);
+                            }
+                            if (ply > Player.MapData.Pos.Y) {
+                                D = "South";
+                                m = (ply - Player.MapData.Pos.Y);
+                            }
+                            let X = Player.MapData.Pos.X;
+                            let Y = Player.MapData.Pos.Y + ((D == "North") ? -m : 0) + ((D == "South") ? m : 0);
+                            let Time = ChatRoomMapViewCanEnterTile(X, Y);
+                            if (Time > 0) {
+                                ChatRoomMapViewMovement = {
+                                    X: X,
+                                    Y: Y,
+                                    Direction: D,
+                                    TimeStart: CommonTime(),
+                                    TimeEnd: CommonTime() + Time
+                                };
+                            }
+                            ChatRoomMapViewUpdatePlayerNext = null;
+                            ServerAccountUpdate.QueueData({
+                                MapData: Player.MapData
+                            }, true);
+                        } 
+                    } else {
+                        ChatRoomSendLocal("Does not have entered map");
+                        ChatRoomSendLocal(" ");
                     }
                 }
             }
