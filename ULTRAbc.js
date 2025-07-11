@@ -807,22 +807,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
                 console.log("ULTRAbc loaded: Version " + UBCver);
-                if (ahybrid == null || ahybrid == undefined) ahybrid = false;
+		if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (animal == null || animal == undefined) animal = 0;
-                if (asylumlimit == null || asylumlimit == undefined) {
-                    if (AsylumLimitOn == null || AsylumLimitOn == undefined) {
-                        asylumlimit = false;
-                    } else {
-                        asylumlimit = AsylumLimitOn;
-                    }
-                }
-                if (autojoin == null || autojoin == undefined) {
-                    if (AutojoinOn == null || AutojoinOn == undefined) {
-                        autojoin = false;
-                    } else {
-                        autojoin = AutojoinOn;
-                    }
-                }
+                if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;                   
+                if (autojoin == null || autojoin == undefined) autojoin = false;                  
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
                 if (blindness == null || blindness == undefined) blindness = 0;
@@ -830,104 +818,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (blurmode == null || blurmode == undefined) blurmode = 0;
                 if (ccname == null || ccname == undefined) ccname = "ClubCardPlayBoard1";
                 if (ccards == null || ccards == undefined) ccards = 30;
-                if (cdeck == null || cdeck == undefined) {
-                    if (cdesk == null || cdesk == undefined) {
-                        cdeck = 0;
-                    } else {
-                        cdeck = cdesk;
-                    }
-                }
+                if (cdeck == null || cdeck == undefined) cdeck = 0;                  
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 150;
-                if (dolltalk == null || dolltalk == undefined) {
-                    if (DolltalkOn == null || DolltalkOn == undefined) {
-                        dolltalk = false;
-                    } else {
-                        dolltalk = DolltalkOn;
-                    }
-                }
-                if (extbuttons == null || extbuttons == undefined) {
-                    if (ExtbuttonsOn == null || ExtbuttonsOn == undefined) {
-                        extbuttons = false;
-                    } else {
-                        extbuttons = ExtbuttonsOn;
-                    }
-                }
-                if (extrainfo == null || extrainfo == undefined) {
-                    if (ExtrainfoOn == null || ExtrainfoOn == undefined) {
-                        extrainfo = false;
-                    } else {
-                        extrainfo = ExtrainfoOn;
-                    }
-                }
-                if (fixperm == null || fixperm == undefined) {
-                    if (FixpermOn == null || FixpermOn == undefined) {
-                        fixperm = false;
-                    } else {
-                        fixperm = FixpermOn;
-                    }
-                }
-                if (fullseed == null || fullseed == undefined) {
-                    if (FullseedOn == null || FullseedOn == undefined) {
-                        fullseed = false;
-                    } else {
-                        fullseed = FullseedOn;
-                    }
-                }
-                if (frkeys == null || frkeys == undefined) {
-                    if (FrkeysOn == null || FrkeysOn == undefined) {
-                        frkeys = false;
-                    } else {
-                        frkeys = FrkeysOn;
-                    }
-                }
+                if (dolltalk == null || dolltalk == undefined) dolltalk = false;               
+                if (extbuttons == null || extbuttons == undefined) extbuttons = false;                  
+                if (extrainfo == null || extrainfo == undefined) extrainfo = false;                   
+                if (fixperm == null || fixperm == undefined) fixperm = false;                  
+                if (fullseed == null || fullseed == undefined) fullseed = false;                
+                if (frkeys == null || frkeys == undefined) frkeys = false;
                 if (frname == null || frname == undefined) frname = "BrickWall";
                 if (gamestable == null || gamestable == undefined) gamestable = false;
                 if (gl == null || gl == undefined) gl = 0;
                 if (gl == -1) gl = 11;
                 if (hearing == null || hearing == undefined) hearing = 0;
-                if (highfame == null || highfame == undefined) {
-                    if (HighfameOn == null || HighfameOn == undefined) {
-                        highfame = false;
-                    } else {
-                        highfame = HighfameOn;
-                    }
-                }
-                if (hotkeys == null || hotkeys == undefined) {
-                    if (HotkeysOn == null || HotkeysOn == undefined) {
-                        hotkeys = false;
-                    } else {
-                        hotkeys = HotkeysOn;
-                    }
-                }
-                if (magiccheat == null || magiccheat == undefined) {
-                    if (MagiccheatOn == null || MagiccheatOn == undefined) {
-                        magiccheat = false;
-                    } else {
-                        magiccheat = MagiccheatOn;
-                    }
-                }
-                if (magictoys == null || magictoys == undefined) {
-                    if (MagictoysOn == null || MagictoysOn == undefined) {
-                        magictoys = false;
-                    } else {
-                        magictoys = MagictoysOn;
-                    }
-                }
-                if (mapcheat == null || mapcheat == undefined) {
-                    if (MapcheatOn == null || MapcheatOn == undefined) {
-                        mapcheat = false;
-                    } else {
-                        mapcheat = MapcheatOn;
-                    }
-                }
-                if (mapfull == null || mapfull == undefined) {
-                    if (MapfullOn == null || MapfullOn == undefined) {
-                        mapfull = false;
-                    } else {
-                        mapfull = MapfullOn;
-                    }
-                }
+                if (highfame == null || highfame == undefined) highfame = false;                  
+                if (hotkeys == null || hotkeys == undefined) hotkeys = false;                  
+                if (magiccheat == null || magiccheat == undefined) magiccheat = false;               
+                if (magictoys == null || magictoys == undefined) magictoys = false;                
+                if (mapcheat == null || mapcheat == undefined) mapcheat = false;                   
+                if (mapfull == null || mapfull == undefined) mapfull = false;                  
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
@@ -940,66 +850,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
-                if (noescape == null || noescape == undefined) {
-                    if (NoescapeOn == null || NoescapeOn == undefined) {
-                        noescape = false;
-                    } else {
-                        noescape = NoescapeOn;
-                    }
-                }
-                if (nogarble == null || nogarble == undefined) {
-                    if (NogarbleOn == null || NogarbleOn == undefined) {
-                        nogarble = false;
-                    } else {
-                        nogarble = NogarbleOn;
-                    }
-                }
-                if (nostruggle == null || nostruggle == undefined) {
-                    if (NostruggleOn == null || NostruggleOn == undefined) {
-                        nostruggle = false;
-                    } else {
-                        nostruggle = NostruggleOn;
-                    }
-                }
+                if (noescape == null || noescape == undefined) noescape = false;                  
+                if (nogarble == null || nogarble == undefined) nogarble = false;                   
+                if (nostruggle == null || nostruggle == undefined) nostruggle = false;                
                 if (notalk == null || notalk == undefined) notalk = 0;
-		if (noteleport == null || noteleport == undefined) noteleport = false;
-                if (notimeout == null || notimeout == undefined) {
-                    if (NotimeoutOn == null || NotimeoutOn == undefined) {
-                        notimeout = false;
-                    } else {
-                        notimeout = NotimeoutOn;
-                    }
-                }
+                if (noteleport == null || noteleport == undefined) noteleport = false;
+                if (notimeout == null || notimeout == undefined) notimeout = false;               
                 if (notimeout2 == null || notimeout2 == undefined) notimeout2 = false;
-                if (noubccolor == null || noubccolor == undefined) {
-                    if (NoubccolorOn == null || NoubccolorOn == undefined) {
-                        noubccolor = false;
-                    } else {
-                        noubccolor = NoubccolorOn;
-                    }
-                }
-                if (nowhisper == null || nowhisper == undefined) {
-                    if (NowhisperOn == null || NowhisperOn == undefined) {
-                        nowhisper = false;
-                    } else {
-                        nowhisper = NowhisperOn;
-                    }
-                }
+                if (noubccolor == null || noubccolor == undefined) noubccolor = false;                
+                if (nowhisper == null || nowhisper == undefined) nowhisper = false;                 
                 if (nowhrange == null || nowhrange == undefined) nowhrange = false;
-                if (npcpunish == null || npcpunish == undefined) {
-                    if (NPCpunish == null || NPCpunish == undefined) {
-                        npcpunish = false;
-                    } else {
-                        npcpunish = NPCpunish;
-                    }
-                }
-                if (outbuttons == null || outbuttons == undefined) {
-                    if (OutbuttonsOn == null || OutbuttonsOn == undefined) {
-                        outbuttons = false;
-                    } else {
-                        outbuttons = OutbuttonsOn;
-                    }
-                }
+                if (npcpunish == null || npcpunish == undefined) npcpunish = false;                  
+                if (outbuttons == null || outbuttons == undefined) outbuttons = false;                  
                 if (pchat == null || pchat == undefined) pchat = false;
                 if (pmin == null || pmin == undefined || pmin == 0) pmin = 2;
                 if (pmax == null || pmax == undefined || pmax == 0) pmax = 20;
@@ -1018,38 +880,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (rchat == null || rchat == undefined) rchat = false;
                 if (reaction == null || reaction == undefined) reaction = 0;
                 if (rgame == null || rgame == undefined) rgame = 0;
-                if (rglbuttons == null || rglbuttons == undefined) {
-                    if (RglbuttonsOn == null || RglbuttonsOn == undefined) {
-                        rglbuttons = false;
-                    } else {
-                        rglbuttons = RglbuttonsOn;
-                    }
-                }
-                if (rglsync == null || rglsync == undefined) {
-                    if (RglsyncOn == null || RglsyncOn == undefined) {
-                        rglsync = false;
-                    } else {
-                        rglsync = RglsyncOn;
-                    }
-                }
+                if (rglbuttons == null || rglbuttons == undefined) rglbuttons = false;                 
+                if (rglsync == null || rglsync == undefined) rglsync = false;                 
                 if (rhide == null || rhide == undefined) rhide = false;
                 if (rmin == null || rmin == undefined || rmin == 0) rmin = 2;
                 if (rsize == null || rsize == undefined || rsize == 0) rsize = 20;
                 if (rtype == null || rtype == undefined || rtype == "") rtype = "ALL";
-                if (slowleave == null || slowleave == undefined) {
-                    if (SlowleaveOn == null || SlowleaveOn == undefined) {
-                        slowleave = false;
-                    } else {
-                        slowleave = SlowleaveOn;
-                    }
-                }
-                if (sosbuttons == null || sosbuttons == undefined) {
-                    if (SosbuttonsOn == null || SosbuttonsOn == undefined) {
-                        sosbuttons = false;
-                    } else {
-                        sosbuttons = SosbuttonsOn;
-                    }
-                }
+                if (slowleave == null || slowleave == undefined) slowleave = false;                
+                if (sosbuttons == null || sosbuttons == undefined) sosbuttons = false;               
                 if (silent == null || silent == undefined) silent = false;
                 if (st == null || st == undefined) st = 0;
                 if (tcname == null || tcname == undefined) tcname = "Cell";
@@ -1077,7 +915,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             await new Promise(r => setTimeout(r, 2000));
         }
     }
-
+            
     //Section under GPLv3 license
     //GUI 
     const UBC_API = {
