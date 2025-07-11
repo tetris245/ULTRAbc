@@ -60,7 +60,7 @@ All else I might not have included.
 Changes for future version
 
 * Changes in Club Card Game:
-  - Adjusted the number of cards that NPCs can have to be the same as your own number of cards (currently made for Cafe, Club Card Lounge, Introduction, LARP, Movie Studio and LARP)
+  - Adjusted the number of cards that NPCs can have to be the same as your own number of cards (currently made for Cafe, Club Card Lounge, Introduction, LARP, Movie Studio and Stable)
   - Fixed an issue that happened when a NPC used the Vintage Maid card (thanks to Moon!)
 * New options in GUI - Maps:
   - to handle separately full hearing and full vision in map rooms
