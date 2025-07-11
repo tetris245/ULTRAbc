@@ -59,13 +59,16 @@ All else I might not have included.
 
 Changes for future version
 
-* New options in GUI - Maps
+* Changes in Club Card Game:
+  - Adjusted the number of cards that NPCs can have to be the same as your own number of cards (currently made for Cafe, Club Card Lounge, Introduction, LARP, Movie Studio and LARP)
+  - Fixed an issue that happened when a NPC used the Vintage Maid card (thanks to Moon!)
+* New options in GUI - Maps:
   - to handle separately full hearing and full vision in map rooms
   - to prevent that BC commands teleport you in map rooms, except if at least one admin of the chat room is on your Tplist (see new commands below)
 * New commands:
   - tplistadd (membernumber) to add a player to the list allowing to teleport you
   - tplistremove (membernumber) to remove a player from the list allowing to teleport you
   - tplistshow to display the list of players allowed to teleport you
- * Restructured the uhelp command to include a maps category
+* Restructured the uhelp command to include a maps category
   
 
