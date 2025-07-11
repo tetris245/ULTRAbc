@@ -59,5 +59,11 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* New option in GUI - Maps to prevent that BC commands teleport you in map room, except if at least one admin of the chat room is on your Tplist (see new commands below)
+* New commands:
+  - tplistadd (membernumber) to add a player to the list allowing to teleport you
+  - tplistremove (membernumber) to remove a player from the list allowing to teleport you
+  - tplistshow to display the list of players allowed to teleport you
+ * Restructured the uhelp command to include a maps category
+  
 
