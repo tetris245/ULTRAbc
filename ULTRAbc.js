@@ -6082,6 +6082,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function UBCsettings() {
         Player.OnlineSharedSettings.UBC = UBCver;
         Player.OnlineSharedSettings.Inmap = false;
+	if (Player.OnlineSharedSettings.Tplist == undefined) {
+            Player.OnlineSharedSettings.Tplist = [];
+        }
         if (Player.OnlineSharedSettings.Ulist == undefined) {
             Player.OnlineSharedSettings.Ulist = [];
         }
@@ -13654,6 +13657,77 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 ChatRoomSetTarget(-1);
             }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'tplistadd',
+        Description: "(membernumber): adds a player to the list allowing to teleport you.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The tplistadd command must be followed by the member number of the player that you allow to teleport you.";
+                infomsg(msg);
+            } else {
+                let member = args * 1;
+                let List;
+                if (Player.OnlineSharedSettings.Tplist == undefined) {
+                    List = [];
+                } else {
+                    List = Player.OnlineSharedSettings.Tplist;
+                }
+                if ((member > 0) && (member != Player.MemberNumber) && (!isNaN(member))) {
+                    List.push(member);
+                    Player.OnlineSharedSettings.Tplist = List;
+                    ServerAccountUpdate.QueueData({
+                        OnlineSharedSettings: Player.OnlineSharedSettings
+                    });
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'tplistremove',
+        Description: "(membernumber): removes a player from the list allowing to teleport you.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The tplistremove command must be followed by the member number of the player who is no more allowed to teleport you.";
+                infomsg(msg);
+            } else {
+                let member = args * 1;
+                let List;
+                if (Player.OnlineSharedSettings.Tplist != undefined) {
+                    List = Player.OnlineSharedSettings.Tplist;
+                    if ((member > 0) && (member != Player.MemberNumber) && (!isNaN(member))) {
+                        let NewList = [];
+                        let rm = 0;
+                        while (rm < List.length) {
+                            if (List[rm] != member) {
+                                NewList.push(List[rm]);
+                            }
+                            rm++;
+                        }
+                        Player.OnlineSharedSettings.Tplist = NewList;
+                        ServerAccountUpdate.QueueData({
+                            OnlineSharedSettings: Player.OnlineSharedSettings
+                        });
+                    }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'tplistshow',
+        Description: "displays the list of players allowed to teleport you.",
+        Action: (args) => {
+            let List;
+            if (Player.OnlineSharedSettings.Tplist == undefined) {
+                List = [];
+            } else {
+                List = Player.OnlineSharedSettings.Tplist;
+            }
+            ChatRoomSendLocal("Tplist: " + JSON.stringify(List));
         }
     }])
 
