@@ -1835,7 +1835,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
                 );
                 addMenuCheckbox(64, 64, "Enable full hearing in maps: ", "mapfull2",
-                    "When enabled, there's no any limitation to your hearing in the map rooùs",false, 140
+                    "When enabled, there's no any limitation to your hearing in the map rooms",false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable full vision in maps: ", "mapfull",
                     "When enabled, you can see the entire map rooms without fog. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.", false, 140
