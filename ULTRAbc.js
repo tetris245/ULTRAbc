@@ -134,6 +134,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let noescape;
     let nogarble;
     let nostruggle;
+    let noteleport;
     let notimeout;
     let notimeout2;
     let noubccolor;
@@ -481,6 +482,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nogarble = false;
         nostruggle = false;
         notalk = 0;
+	noteleport = false;
         notimeout = false;
         notimeout2 = false;
         noubccolor = false;
@@ -536,6 +538,65 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Unlock = "";
         Untie = "";
         Visible = "";
+    }
+
+    function UBCdata(data) {
+        ahybrid = data.ahybrid;
+        animal = data.animal * 1;
+        asylumlimit = data.asylumlimit;
+        autojoin = data.autojoin;
+        bgall = data.bgall;
+        bl = data.bl;
+        blureffect = 0;
+        ccards = data.ccards * 1;
+        cdeck = data.cdeck * 1;
+        cextra = data.cextra;
+        cfame = data.cfame;
+        dolltalk = data.dolltalk;
+        extbuttons = data.extbuttons;
+        extrainfo = data.extrainfo;
+        fixperm = data.fixperm;
+        fullseed = data.fullseed;
+        frkeys = data.frkeys;
+        gl = data.gaglevel * 1;
+        highfame = data.highfame;
+        hotkeys = data.hotkeys;
+        magiccheat = data.magiccheat;
+        magictoys = data.magictoys;
+        mapcheat = data.mapcheat;
+        mapfull = data.mapfull;
+        maptrap1 = data.maptrap1 * 1;
+        noescape = data.noescape;
+        nogarble = data.nogarble;
+        nostruggle = data.nostruggle;
+        notalk = data.notalk;
+        noteleport = data.noteleport;
+        notimeout = data.notimeout;
+        notimeout2 = data.notimeout2;
+        noubccolor = data.noubccolor;
+        nowhisper = data.nowhisper;
+        nowhrange = data.nowhrange;
+        npcpunish = data.npcpunish;
+        outbuttons = data.outbuttons;
+        pchat = data.pchat;
+        pmin = data.pmin * 1;
+        pmax = data.pmax * 1;
+        rchat = data.rchat;
+        rglbuttons = data.rglbuttons;
+        rglsync = data.rglsync;
+        rmin = data.rmin * 1;
+        rsize = data.rsize * 1;
+        rtype = data.rtype;
+        silent = data.silent;
+        slowleave = data.slowleave;
+        sosbuttons = data.sosbuttons;
+        st = data.stutterlevel * 1;
+        tintcolor = data.tintcolor;
+        tintlevel = data.tintlevel;
+        tintmbs = data.tintmbs;
+        tintnever = data.tintnever;
+        usoft = data.usoft;
+        utotal = data.utotal;
     }
 
     function M_MOANER_initControls() {
@@ -672,6 +733,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "noescape": noescape,
             "nogarble": nogarble,
             "nostruggle": nostruggle,
+            "noteleport": noteleport,
             "notimeout": notimeout,
             "notimeout2": notimeout2,
             "noubccolor": noubccolor,
@@ -900,6 +962,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (notalk == null || notalk == undefined) notalk = 0;
+		if (noteleport == null || noteleport == undefined) noteleport = false;
                 if (notimeout == null || notimeout == undefined) {
                     if (NotimeoutOn == null || NotimeoutOn == undefined) {
                         notimeout = false;
@@ -1075,6 +1138,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nogarble: false,
                 nostruggle: false,
                 notalk: 0,
+		noteleport: false,
                 notimeout: false,
                 notimeout2: false,
                 noubccolor: false,
@@ -1935,6 +1999,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable magic walk in maps: ", "mapcheat",
                     "When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!", false, 140
                 );
+		addMenuCheckbox(64, 64, "No forced teleportation in maps: ", "noteleport",
+                    "When checked, the BC commands related to forced teleportation in the maps will not work on you.", false, 140
+                );
             }
 
             PreferenceSubscreenUBCMapsRun = function() {
@@ -2255,6 +2322,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomMapViewCanEnterTile();
     ULTRAChatRoomMapViewCharacterOnWhisperRange();
     ULTRAChatRoomMapViewMovementProcess();
+    ULTRAChatRoomMapViewTeleportHiddenMessage();
     ULTRAChatRoomMenuDraw();
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
@@ -2604,6 +2672,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             return ret;
+        });
+    }
+
+    async function ULTRAChatRoomMapViewTeleportHiddenMessage() {
+        modApi.hookFunction('ChatRoomMapViewTeleportHiddenMessage', 4, (args, next) => {
+             if (noteleport) {
+                 let msg = "A teleportation attempt has been cancelled because not allowed.";
+                 publicmsg(msg);
+                 return; 
+             }
+             next(args);
         });
     }
 
@@ -7127,65 +7206,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
-    }
-
-    //UBC Variables
-    function UBCdata(data) {
-        ahybrid = data.ahybrid;
-        animal = data.animal * 1;
-        asylumlimit = data.asylumlimit;
-        autojoin = data.autojoin;
-        bgall = data.bgall;
-        bl = data.bl;
-        blureffect = 0;
-        ccards = data.ccards * 1;
-        cdeck = data.cdeck * 1;
-        cextra = data.cextra;
-        cfame = data.cfame;
-        dolltalk = data.dolltalk;
-        extbuttons = data.extbuttons;
-        extrainfo = data.extrainfo;
-        fixperm = data.fixperm;
-        fullseed = data.fullseed;
-        frkeys = data.frkeys;
-        gl = data.gaglevel * 1;
-        highfame = data.highfame;
-        hotkeys = data.hotkeys;
-        magiccheat = data.magiccheat;
-        magictoys = data.magictoys;
-        mapcheat = data.mapcheat;
-        mapfull = data.mapfull;
-        maptrap1 = data.maptrap1 * 1;
-        noescape = data.noescape;
-        nogarble = data.nogarble;
-        nostruggle = data.nostruggle;
-        notalk = data.notalk;
-        notimeout = data.notimeout;
-        notimeout2 = data.notimeout2;
-        noubccolor = data.noubccolor;
-        nowhisper = data.nowhisper;
-        nowhrange = data.nowhrange;
-        npcpunish = data.npcpunish;
-        outbuttons = data.outbuttons;
-        pchat = data.pchat;
-        pmin = data.pmin * 1;
-        pmax = data.pmax * 1;
-        rchat = data.rchat;
-        rglbuttons = data.rglbuttons;
-        rglsync = data.rglsync;
-        rmin = data.rmin * 1;
-        rsize = data.rsize * 1;
-        rtype = data.rtype;
-        silent = data.silent;
-        slowleave = data.slowleave;
-        sosbuttons = data.sosbuttons;
-        st = data.stutterlevel * 1;
-        tintcolor = data.tintcolor;
-        tintlevel = data.tintlevel;
-        tintmbs = data.tintmbs;
-        tintnever = data.tintnever;
-        usoft = data.usoft;
-        utotal = data.utotal;
     }
 
     //Unrestrict
