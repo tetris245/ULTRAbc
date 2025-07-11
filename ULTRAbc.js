@@ -13788,6 +13788,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>clothing</b> = commands related to the clothes.\n" +
                     "<b>escape</b> = commands related to escape.\n" +
                     "<b>fun</b> = commands related to fun, pain and pleasure.\n" +
+                    "<b>maps</b> = commands related to hybrid and map rooms.\n" +
                     "<b>misc</b> = help, info, login and Ulist commands.\n" +
                     "<b>settings</b> = commands to customize ULTRAbc.\n" +
                     "<b>talking</b> = commands related to talking.\n" +
@@ -13837,13 +13838,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
-                    "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby. *\n" +
-                    "<b>/mapfog</b> = toggles fog in current map room.\n" +
-                    "<b>/mapkeys</b> = gives all keys for current map room.\n" +
-                    "<b>/maproom</b> = gives infos about players in current map.\n" +
-                    "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
-                    "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
-                    "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
+                    "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby. *\n" +                   
                     "<b>/search</b> (lobby) = opens chat search in specified lobby. *\n" +
                     "<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.";
                 infomsg(msg);
@@ -13884,6 +13879,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
                     "<b>/vibe</b> (slot) (mode) = changes mode of worn vibe in a specific slot. *\n" +
                     "<b>/visible</b> (target) = goes or sends back to visible mode. **";
+                infomsg(msg);
+            }
+            if (args === "maps") {
+                let msg = "Maps commands\n" +
+                    "<b>/mapfog</b> = toggles fog in current map room.\n" +
+                    "<b>/mapkeys</b> = gives all keys for current map room.\n" +
+                    "<b>/maproom</b> = gives infos about players in current map.\n" +
+                    "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
+                    "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
+                    "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
+                    "<b>/tplistadd</b> (membernumber) = adds a player to the list allowing to teleport you.\n" +
+                    "<b>/tplistremove</b> (membernumber) = removes a player from the list allowing to teleport you.\n" +
+                    "<b>/tplistshow</b> = displays the list of players allowed to teleport you.";
                 infomsg(msg);
             }
             if (args === "misc") {
