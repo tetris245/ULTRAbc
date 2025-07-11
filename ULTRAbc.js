@@ -1838,7 +1838,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!", false, 140
                 );
 		addMenuCheckbox(64, 64, "No forced teleportation in maps: ", "noteleport",
-                    "When checked, the BC commands related to forced teleportation in the maps will not work on you.", false, 140
+                    "When checked, the BC commands related to forced teleportation in the maps will not work on you, except if at least one admin of the chat room is in your Tplist (see the commands /tplistadd, /tplistremove and /tplistshow).", false, 140
                 );
             }
 
@@ -2516,9 +2516,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomMapViewTeleportHiddenMessage() {
         modApi.hookFunction('ChatRoomMapViewTeleportHiddenMessage', 4, (args, next) => {
              if (noteleport) {
-                 let msg = "A teleportation attempt has been cancelled because not allowed.";
-                 publicmsg(msg);
-                 return; 
+                let bltp = 1;
+                if (Player.OnlineSharedSettings.Tplist != undefined) {
+                    let adm = 0;
+                    while (adm < ChatRoomData.Admin.length) {
+                        if (Player.OnlineSharedSettings.Tplist.includes(ChatRoomData.Admin[adm])) bltp = 0;
+                        adm++;
+                    }
+                 }
+                 if (bltp == 1) {
+                     let msg = "A teleportation attempt has been cancelled because not allowed.";
+                     publicmsg(msg);
+                     return; 
+                 }
              }
              next(args);
         });
