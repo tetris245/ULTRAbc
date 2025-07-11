@@ -131,6 +131,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let magictoys;
     let mapcheat;
     let mapfull;
+    let mapfull2;
     let noescape;
     let nogarble;
     let nostruggle;
@@ -477,6 +478,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         magictoys = false;
         mapcheat = false;
         mapfull = false;
+	mapfull2 = false;
         maptrap1 = 0;
         noescape = false;
         nogarble = false;
@@ -565,6 +567,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         magictoys = data.magictoys;
         mapcheat = data.mapcheat;
         mapfull = data.mapfull;
+	mapfull2 = data.mapfull2;
         maptrap1 = data.maptrap1 * 1;
         noescape = data.noescape;
         nogarble = data.nogarble;
@@ -730,6 +733,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "magictoys": magictoys,
             "mapcheat": mapcheat,
             "mapfull": mapfull,
+            "mapfull2": mapfull2,
             "noescape": noescape,
             "nogarble": nogarble,
             "nostruggle": nostruggle,
@@ -837,7 +841,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (magiccheat == null || magiccheat == undefined) magiccheat = false;               
                 if (magictoys == null || magictoys == undefined) magictoys = false;                
                 if (mapcheat == null || mapcheat == undefined) mapcheat = false;                   
-                if (mapfull == null || mapfull == undefined) mapfull = false;                  
+                if (mapfull == null || mapfull == undefined) mapfull = false;   
+		if (mapfull2 == null || mapfull2 == undefined) mapfull2 = false; 
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
@@ -971,6 +976,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 magictoys: false,
                 mapcheat: false,
                 mapfull: false,
+		mapfull2: false,
                 maptrap1: 0,
                 noescape: false,
                 nogarble: false,
@@ -1828,8 +1834,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Selected device trap (0-9):", "maptrap1", "InputDeviceTrap",
                     "Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
                 );
-                addMenuCheckbox(64, 64, "Enable full vision/hearing in maps: ", "mapfull",
-                    "When enabled, you can see the entire map rooms without fog and there's no any limitation to your hearing. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.", false, 140
+                addMenuCheckbox(64, 64, "Enable full hearing in maps: ", "mapfull2",
+                    "When enabled, there's no any limitation to your hearing in the map rooùs",false, 140
+                );
+                addMenuCheckbox(64, 64, "Enable full vision in maps: ", "mapfull",
+                    "When enabled, you can see the entire map rooms without fog. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable full whispering in maps: ", "nowhrange",
                     "When enabled, you can whisper to any player in the map, no matter the distance that is between you and this player. It will work with the standard BC command /whisper and the UBC command /murmur, between all players who have enabled this option.", false, 140
@@ -1837,7 +1846,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable magic walk in maps: ", "mapcheat",
                     "When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!", false, 140
                 );
-		addMenuCheckbox(64, 64, "No forced teleportation in maps: ", "noteleport",
+                addMenuCheckbox(64, 64, "No forced teleportation in maps: ", "noteleport",
                     "When checked, the BC commands related to forced teleportation in the maps will not work on you, except if at least one admin of the chat room is in your Tplist (see the commands /tplistadd, /tplistremove and /tplistshow).", false, 140
                 );
             }
@@ -2423,10 +2432,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatRoomMapViewCalculatePerceptionMasks() {
         modApi.hookFunction('ChatRoomMapViewCalculatePerceptionMasks', 4, (args, next) => {
             const ret = next(args);
-            if (mapfull) {
+            if ((mapfull) || (mapfull2)) {
                 if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) return;
-                ChatRoomMapViewVisibilityMask.fill(true);
-                ChatRoomMapViewAudibilityMask.fill(true);
+                if (mapfull) ChatRoomMapViewVisibilityMask.fill(true);
+                if (mapfull2) ChatRoomMapViewAudibilityMask.fill(true);
                 return;
             }
             return ret;
