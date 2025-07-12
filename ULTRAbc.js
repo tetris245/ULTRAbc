@@ -10663,6 +10663,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'mapzoom',
+        Description: "(value): changes zoom level in the map rooms.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The mapzoom command must be followed by a number between 7 and 50.";
+                infomsg(msg);
+            } else {
+                if (IsMapRoom() == false) {
+                    let msg = umsg5;
+                    infomsg(msg);
+                } else {
+                    let zoom = args;
+                    if ((zoom > 6) && (zoom < 51)) {
+                        ChatRoomMapViewPerceptionRangeMax = zoom;
+                        let msg = "Zoom level modified! Use the top arrows and enjoy!";
+                        infomsg(msg);
+                    }
+                }
+            }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'maxstatistics',
         Description: ": gives max statistics.",
         Action: () => {
@@ -13920,6 +13943,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
+		    "<b>/mapzoom</b> (value) = changes zoom level in map rooms.\n" +
                     "<b>/tplistadd</b> (membernumber) = adds a player to the list allowing to teleport you.\n" +
                     "<b>/tplistremove</b> (membernumber) = removes a player from the list allowing to teleport you.\n" +
                     "<b>/tplistshow</b> = displays the list of players allowed to teleport you.";
