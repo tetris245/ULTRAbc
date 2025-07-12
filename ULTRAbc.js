@@ -5761,6 +5761,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Activities = "";
         let Collar = "";
         let Chloroform = "";
+        let Cursed = "";
         let Drugs = "";
         let Gagchoke = "";
         let Handchoke = "";
@@ -5773,6 +5774,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (LSCGdata.ActivityModule.enabled) Activities = "Activities - ";
         if (LSCGdata.CollarModule.enabled) Collar = "Breathplay (Collar) - ";
         if (LSCGdata.MiscModule.chloroformEnabled) Chloroform = "Chloroform - ";
+        if (LSCGdata.CursedItemModule.enabled) Cursed = "Cursed Items - ";
         if (LSCGdata.InjectorModule.enabled) Drugs = "Drugs + Net Gun - ";
         if (LSCGdata.MiscModule.gagChokeEnabled) Gagchoke = "Gag Choking - ";
         if (LSCGdata.MiscModule.handChokeEnabled) Handchoke = "Hand Choking - ";
@@ -5781,7 +5783,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (LSCGdata.LeashingModule.enabled) Leashing = "Leashing - ";
         if (LSCGdata.MagicModule.enabled) Magic = "Magic - ";
         if (LSCGdata.SplatterModule.enabled) Splatter = "Splatters";
-        msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Drugs + Gagchoke + Handchoke + Hypnosis + Leashing + Magic + Splatter;
+        msg = msg1 + " Features activated when LSCG is enabled: " + Activities + Collar + Chloroform + Cursed + Drugs + Gagchoke + Handchoke + Hypnosis + Leashing + Magic + Splatter;
         statusmsg(msg);
     }
 
