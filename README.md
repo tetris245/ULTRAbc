@@ -69,6 +69,7 @@ Changes for future version
   - tplistadd (membernumber) to add a player to the list allowing to teleport you
   - tplistremove (membernumber) to remove a player from the list allowing to teleport you
   - tplistshow to display the list of players allowed to teleport you
+* Updated the bg4 and xstatus lscg commands
 * Restructured the uhelp command to include a maps category
   
 
