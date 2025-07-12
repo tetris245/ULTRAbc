@@ -66,6 +66,7 @@ Changes for future version
   - to handle separately full hearing and full vision in map rooms
   - to prevent that BC commands teleport you in map rooms, except if at least one admin of the chat room is on your Tplist (see new commands below)
 * New commands:
+  - mapzoom (value) to change zoom level in map rooms; value must be between 7 and 50 (thanks to Sin!)
   - tplistadd (membernumber) to add a player to the list allowing to teleport you
   - tplistremove (membernumber) to remove a player from the list allowing to teleport you
   - tplistshow to display the list of players allowed to teleport you
