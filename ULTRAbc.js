@@ -10677,7 +10677,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let zoom = args;
                     if ((zoom > 6) && (zoom < 51)) {
                         ChatRoomMapViewPerceptionRangeMax = zoom;
-                        let msg = "Zoom level modified! Use the top arrows and enjoy!";
+                        let msg = "Zoom level modified! Use the +/- buttons and enjoy!";
                         infomsg(msg);
                     }
                 }
