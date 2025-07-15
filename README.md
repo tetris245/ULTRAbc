@@ -62,6 +62,7 @@ Changes for future version
 * Changes in Club Card Game:
   - Adjusted the number of cards that NPCs can have to be the same as your own number of cards (currently made for Cafe, Club Card Lounge, Introduction, LARP, Movie Studio and Stable)
   - Fixed an issue that happened when a NPC used the Vintage Maid card (thanks to Moon!)
+  - Fixed the bg4 command when selecting background for Club Card Game (works now as the BC corresponding setting)
 * New options in GUI - Maps:
   - to handle separately full hearing and full vision in map rooms
   - to prevent that BC commands teleport you in map rooms, except if at least one admin of the chat room is on your Tplist (see new commands below)
