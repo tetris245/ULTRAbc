@@ -88,7 +88,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let bl = 0;
     let blindness = 0;
     let blurmode = 0;
-    let ccname = "ClubCardPlayBoard1";
     let ccards = 30;
     let cdeck = 0;
     let cextra = false;
@@ -624,7 +623,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun4 = "";
             blindness = 0;
             blurmode = 0;
-            ccname = "ClubCardPlayBoard1";
             frname = "BrickWall";
             gamestable = false;
             hearing = 0;
@@ -657,7 +655,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun4 = data.pronoun4;
             blindness = 0;
             blurmode = 0;
-            ccname = data.ccname;
             frname = data.frname;
             gamestable = data.gamestable;
             hearing = 0;
@@ -694,7 +691,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "animal": animal,
             "bgall": bgall,
             "bl": bl,
-            "ccname": ccname,
             "ccards": ccards,
             "cdeck": cdeck,
             "cextra": cextra,
@@ -820,7 +816,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (blindness == null || blindness == undefined) blindness = 0;
                 if (blureffect == null || blureffect == undefined || blureffect == false) blureffect = 0;
                 if (blurmode == null || blurmode == undefined) blurmode = 0;
-                if (ccname == null || ccname == undefined) ccname = "ClubCardPlayBoard1";
                 if (ccards == null || ccards == undefined) ccards = 30;
                 if (cdeck == null || cdeck == undefined) cdeck = 0;                  
                 if (cextra == null || cextra == undefined) cextra = false;
@@ -2187,7 +2182,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardLoungePraticeGameStart();
-    ULTRAClubCardRenderBoard();
     ULTRAClubCardRenderPanel();
     ULTRACommandAutoComplete();
     ULTRACommandExecute();
@@ -3565,14 +3559,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 	
-    async function ULTRAClubCardRenderBoard() {
-        modApi.hookFunction('ClubCardRenderBoard', 4, (args, next) => {
-            Player.Game.ClubCard.Background = ccname;
-            ClubCardBackground = ccname;
-            next(args);
-        });
-    }
-
     async function ULTRAClubCardRenderPanel() {
         modApi.hookFunction('ClubCardRenderPanel', 4, (args, next) => {
             if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
@@ -8524,12 +8510,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             } else {
                                 ccback = BackgroundsList[ccbg].Name;
                             }
-                            ccname = ccback;
-                            M_MOANER_saveControls();
-                            let msg = "The background of the Club Card Game is now: " + ccname + ".";
+                            Player.Game.ClubCard.Background = ccback;
+			    ServerAccountUpdate.QueueData({
+                                Game: Player.Game 
+                            });
+                            let msg = "The background of the Club Card Game is now: " + ccback + ".";
                             infomsg(msg);
                         }
                     }
+
                     if (screen == 1) {
                         let frbg = stringBg2[1];
                         let frback = "";
