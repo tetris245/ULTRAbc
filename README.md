@@ -61,6 +61,7 @@ Changes for future version
 
 * Changes in Club Card Game:
   - Adjusted the number of cards that NPCs can have to be the same as your own number of cards (currently made for Cafe, Club Card Lounge, Introduction, LARP, Movie Studio and Stable)
+  - Extended the access to all standard backgrounds: it will also be activated for the background selection in the Club Card Game editor
   - Modified the ClubCardBuilderLoad function to apply the selected background also on the intro screen of the Club Card Game editor
   - Fixed an issue that happened when a NPC used the Vintage Maid card (thanks to Moon!)
   - Fixed the bg4 command when selecting background for Club Card Game (works now as the BC corresponding setting)
