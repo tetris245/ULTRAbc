@@ -2176,6 +2176,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchRoomSpaceSelectClick();
     ULTRAChatSearchRoomSpaceSelectDraw();
     ULTRAChatSearchRun();
+    ULTRAClubCardBuilderLoad();
     ULTRAClubCardCheckVictory();
     ULTRAClubCardClick();
     ULTRAClubCardEndTurn();
@@ -3370,6 +3371,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Club Card Game
+    async function ULTRAClubCardBuilderLoad() {
+        modApi.hookFunction('ClubCardBuilderLoad', 4, (args, next) => { 
+            ClubCardBuilderBackground = Player.Game.ClubCard.Background;
+            next(args);
+        });
+    }
+
     async function ULTRACafeClubCardStart() {
         modApi.hookFunction('CafeClubCardStart', 4, (args, next) => { 
             moreMaidCards();
