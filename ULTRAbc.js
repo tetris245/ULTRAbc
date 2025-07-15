@@ -1866,7 +1866,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
                 addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
-                    "With this option, you will not be limited to 41 backgrounds in Private Cell or 177 backgrounds in Online preferences to change several backgrounds. You will have access to all standard backgrounds (more than 250!).", false, 120
+                    "With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
@@ -2176,6 +2176,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchRoomSpaceSelectClick();
     ULTRAChatSearchRoomSpaceSelectDraw();
     ULTRAChatSearchRun();
+    ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
     ULTRAClubCardCheckVictory();
     ULTRAClubCardClick();
@@ -3371,6 +3372,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Club Card Game
+    async function ULTRAClubCardBuilderClick() {
+        modApi.hookFunction('ClubCardBuilderClick', 4, (args, next) => { 
+            const ret = next(args);
+            if ((ClubCardBuilderDeckIndex == -1) && MouseIn(1655, 25, 90, 90)) {
+                let background = Player.Game?.ClubCard?.Background ?? "ClubCardPlayBoard1";
+                let backgrounds = BackgroundsClubCardsTagList;
+                if (bgall) backgrounds = BackgroundsTagList;
+                BackgroundSelectionMake(backgrounds, background, (Name, setBackground) => {
+		    if (setBackground) {
+		        Player.Game.ClubCard.Background = Name;
+			ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
+		    }
+		    CommonSetScreen("MiniGame", "ClubCardBuilder");
+		});
+            }
+            return ret;
+        });
+    }
+	
     async function ULTRAClubCardBuilderLoad() {
         modApi.hookFunction('ClubCardBuilderLoad', 4, (args, next) => { 
             ClubCardBuilderBackground = Player.Game.ClubCard.Background;
