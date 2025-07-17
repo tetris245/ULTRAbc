@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.3
+Most recent version: 5.4
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version5.3.zip file on the Releases page
+1. Download the ULTRAbc-version5.4.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,21 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Changes in Club Card Game:
-  - Adjusted the number of cards that NPCs can have to be the same as your own number of cards (currently made for Cafe, Club Card Lounge, Introduction, LARP, Movie Studio and Stable)
-  - Extended the access to all standard backgrounds: it will also be activated for the background selection in the Club Card Game editor
-  - Modified the ClubCardBuilderLoad function to apply the selected background also on the intro screen of the Club Card Game editor
-  - Fixed an issue that happened when a NPC used the Vintage Maid card (thanks to Moon!)
-  - Fixed the bg4 command when selecting background for Club Card Game (works now as the BC corresponding setting)
-* New options in GUI - Maps:
-  - to handle separately full hearing and full vision in map rooms
-  - to prevent that BC commands teleport you in map rooms, except if at least one admin of the chat room is on your Tplist (see new commands below)
-* New commands:
-  - mapzoom (value) to change zoom level in map rooms; value must be between 7 and 50 (thanks to Sin!)
-  - tplistadd (membernumber) to add a player to the list allowing to teleport you
-  - tplistremove (membernumber) to remove a player from the list allowing to teleport you
-  - tplistshow to display the list of players allowed to teleport you
-* Updated the bg4 and xstatus lscg commands
-* Restructured the uhelp command to include a maps category
-  
-
+(...)
