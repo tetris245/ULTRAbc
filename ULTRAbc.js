@@ -2891,7 +2891,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Chat Search (including Auto-Join)
     async function ULTRAChatSearchClick() {
-        modApi.hookFunction('ChatSearchClick', 4, (args, next) => {
+        modApi.hookFunction('ChatSearchClick', 3, (args, next) => {
             if (ChatSearchFilterUnhideConfirm) {
                 if (MouseIn(620, 898, 280, 64)) ChatSearchFilterUnhideConfirm = null;
                 if (MouseIn(1100, 898, 280, 64)) {
