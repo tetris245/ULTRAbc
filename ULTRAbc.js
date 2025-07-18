@@ -1064,7 +1064,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             const ubcSettingsCategories = [
                 "UBCButtons",
-                "UBCChatSearch",
                 "UBCCheats",
                 "UBCHotkeys",
                 "UBCMaps",
@@ -1076,7 +1075,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ];
             const ubcSettingCategoryLabels = {
                 UBCButtons: "Buttons",
-                UBCChatSearch: "Chat Search",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
                 UBCMaps: "Maps",
@@ -1679,58 +1677,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 defaultExit();
             }
 
-            PreferenceSubscreenUBCChatSearchLoad = function() {
-                UBCPreferenceSubscreen = "UBCChatSearch";
-                addMenuCheckbox(64, 64, "Enable Autojoin feature: ", "autojoin",
-                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search.", false, 134
-                );
-                addMenuCheckbox(64, 64, "Control normal/hybrid room size: ", "rchat",
-                    "When enabled, the two below parameters will be used in Chat Search for the normal and hybrid rooms.", false, 134
-                );
-                addMenuInput(200, "Minimum players (2-20):", "rmin", "InputRoomMin",
-                    "Input a number between 2 and 20 as minimum possible players in normal and hybrid rooms! If this number is higher than the maximum, your Chat Search will fail."
-                );
-                addMenuInput(200, "Maximum players (2-20):", "rsize", "InputRoomMax",
-                    "Input a number between 2 and 20 as maximum possible players in normal and hybrid rooms! If this number is lower than the minimum, your Chat Search will fail."
-                );
-                addMenuCheckbox(64, 64, "Present players in chat rooms: ", "pchat",
-                    "When enabled, the two below parameters will be used in Chat Search for all chat rooms, no matter the type.", false, 134
-                );
-                addMenuInput(200, "Minimum present players (2-20):", "pmin", "InputPlayerMin",
-                    "Input a number between 2 and 20 as minimum players present in chat rooms! If this number is higher than the maximum, your Chat Search will fail."
-                );
-                addMenuInput(200, "Maximum present players (2-20):", "pmax", "InputPlayerMax",
-                    "Input a number between 2 and 20 as maximum present players in chat rooms! If this number is lower than the minimum, your Chat Search will fail."
-                );
-            }
-
-            PreferenceSubscreenUBCChatSearchRun = function() {
-                drawMenuElements();
-            }
-
-            PreferenceSubscreenUBCChatSearchClick = function() {
-                handleMenuClicks();
-            }
-
-            PreferenceSubscreenUBCChatSearchExit = function() {
-                let min = ElementValue("InputRoomMin");
-                let max = ElementValue("InputRoomMax");
-                let min2 = ElementValue("InputPlayerMin");
-                let max2 = ElementValue("InputPlayerMax");
-                if ((CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21) &&
-                    (CommonIsNumeric(min2)) && (min2 > 1) && (min2 < 21) && (CommonIsNumeric(max2)) && (max2 > 1) && (max2 < 21)) {
-                    Player.UBC.ubcSettings.rmin = min;
-                    Player.UBC.ubcSettings.rsize = max;
-                    Player.UBC.ubcSettings.pmin = min2;
-                    Player.UBC.ubcSettings.pmax = max2;
-                    ElementRemove("InputRoomMin");
-                    ElementRemove("InputRoomMax");
-                    ElementRemove("InputPlayerMin");
-                    ElementRemove("InputPlayerMax");
-                    defaultExit();
-                } else PreferenceMessage = "Put a valid number";
-            }
-
             PreferenceSubscreenUBCCheatsLoad = function() {
                 UBCPreferenceSubscreen = "UBCCheats";
                 addMenuButton(150, 64, "Add/Remove Extra Cards for Card Game:", "Toggle", function() {
@@ -2176,6 +2122,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchRoomSpaceSelectClick();
     ULTRAChatSearchRoomSpaceSelectDraw();
     ULTRAChatSearchRun();
+    ULTRAChatSearchUnload(); 
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
     ULTRAClubCardCheckVictory();
@@ -2953,7 +2900,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 return;
             }
-            if ((MouseX >= ChatSearchPageX) && (MouseX < 1975) && (MouseY >= ChatSearchPageY) && (MouseY < 875)) {
+            if ((MouseX >= ChatSearchPageX) && (MouseX < 1975) && (MouseY >= ChatSearchPageY) && (MouseY < 778)) {
                 if (ChatSearchMode == "Filter") ChatSearchClickPermission();
                 if (ChatSearchMode == "") ChatSearchJoin();
             }
@@ -3026,7 +2973,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function ULTRAChatSearchJoin() {
-        modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
+        modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {            
             if (autojoin == true) {
                 var X = ChatSearchPageX;
                 var Y = ChatSearchPageY;
@@ -3081,6 +3028,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
             const ret = next(args);
             let NewResult = [];
+            let min = ElementValue("InputRoomMin");
+            let max = ElementValue("InputRoomMax");
+            let min2 = ElementValue("InputPlayerMin");
+            let max2 = ElementValue("InputPlayerMax");
+            Player.UBC.ubcSettings.rmin = min;
+            Player.UBC.ubcSettings.rsize = max;
+            Player.UBC.ubcSettings.pmin = min2;
+            Player.UBC.ubcSettings.pmax = max2;
+            PreferenceSubscreenUBCSettingsExit();
             let game = "";
             if (rgame == 1) game = "ClubCard";
             if (rgame == 2) game = "GGTS";
@@ -3200,9 +3156,46 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function ULTRAChatSearchRoomSpaceSelectClick() {
-        modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
+        modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {          
             if ((MouseX >= 1390) && (MouseX < 1480) && (MouseY >= 25) && (MouseY < 115)) ExtClick();
             if ((MouseX >= 1500) && (MouseX < 1590) && (MouseY >= 25) && (MouseY < 115) && (ChatSearchMode == "")) CharacterAppearanceLoadCharacter(Player);
+            if ((MouseX >= 275) && (MouseX < 339) && (MouseY >= 800) && (MouseY < 864)) {
+                if (rchat == true) {
+                    rchat = false;
+                    Player.UBC.ubcSettings.rchat = false;
+                    M_MOANER_saveControls();
+                    ChatSelectStartSearch(ChatRoomSpace);
+                } else {
+                    rchat = true;
+                    Player.UBC.ubcSettings.rchat = true;
+                    M_MOANER_saveControls();
+                    ChatSelectStartSearch(ChatRoomSpace);
+                }
+            }
+            if ((MouseX >= 1095) && (MouseX < 1159) && (MouseY >= 800) && (MouseY < 864)) {
+                if (autojoin == true) {
+                    autojoin = false;
+                    Player.UBC.ubcSettings.autojoin = false;
+                    M_MOANER_saveControls();
+                } else {
+                    autojoin = true;
+                    Player.UBC.ubcSettings.autojoin = true;
+                    M_MOANER_saveControls();
+                }
+            }
+            if ((MouseX >= 1450) && (MouseX < 1514) && (MouseY >= 800) && (MouseY < 864)) {
+                if (pchat == true) {
+                    pchat = false;
+                    Player.UBC.ubcSettings.pchat = false;
+                    M_MOANER_saveControls();
+                    ChatSelectStartSearch(ChatRoomSpace);
+                } else {
+                    pchat = true;
+                    Player.UBC.ubcSettings.pchat = true;
+                    M_MOANER_saveControls();
+                    ChatSelectStartSearch(ChatRoomSpace);
+                }
+            }
             if ((MouseX >= 335) && (MouseX < 475) && (MouseY >= 885) && (MouseY < 975)) {
                 rgame = 0;
                 rtype = "ALL";
@@ -3287,6 +3280,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRoomSpaceSelectDraw() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectDraw', 4, (args, next) => {
+            DrawText("Normal/Hybrid", 140, 810, "White", "Gray");
+            DrawText("Room Size", 130, 850, "White", "Gray");
+            DrawCheckbox(275, 800, 64, 64,"", rchat);
+            const roomminInput = ElementCreateInput("InputRoomMin", "number", rmin);
+            roomminInput.setAttribute("min", "2");
+            roomminInput.setAttribute("max", "20");
+            roomminInput.setAttribute("autocomplete", "off");
+            DrawText("Minimum", 475, 800, "White", "Gray");
+            ElementPosition("InputRoomMin", 475, 840, 200);
+            const roommaxInput = ElementCreateInput("InputRoomMax", "number", rsize);
+            roommaxInput.setAttribute("min", "2");
+            roommaxInput.setAttribute("max", "20");
+            roommaxInput.setAttribute("autocomplete", "off");
+            DrawText("Maximum", 700, 800, "White", "Gray");
+            ElementPosition("InputRoomMax", 700, 840, 200);
+            DrawText("AutoJoin", 1000, 830, "White", "Gray");
+            DrawCheckbox(1095, 800, 64, 64,"", autojoin);
+            DrawText("Players", 1360, 810, "White", "Gray");
+            DrawText("In Room", 1360, 850, "White", "Gray");
+            DrawCheckbox(1450, 800, 64, 64,"", pchat);
+            const playerminInput = ElementCreateInput("InputPlayerMin", "number", pmin);
+            playerminInput.setAttribute("min", "2");
+            playerminInput.setAttribute("max", "20");
+            playerminInput.setAttribute("autocomplete", "off");
+            DrawText("Minimum", 1650, 800, "White", "Gray");
+            ElementPosition("InputPlayerMin", 1650, 840, 200);
+            const playermaxInput = ElementCreateInput("InputPlayerMax", "number", pmax);
+            playermaxInput.setAttribute("min", "2");
+            playermaxInput.setAttribute("max", "20");
+            playermaxInput.setAttribute("autocomplete", "off");
+            DrawText("Maximum", 1875, 800, "White", "Gray");
+            ElementPosition("InputPlayerMax", 1875, 840, 200);
             DrawButton(335, 885, 90, 90, "ALL", "White", "", "All Room Types");
             DrawButton(445, 885, 90, 90, "", "White", "", "Normal Rooms");
             DrawImageResize("Icons/Rectangle/CharacterView.png", 430, 900, 120, 60);
@@ -3323,6 +3348,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
+            ChatSearchListParams = {
+	           x: ChatSearchPageX,
+	           y: ChatSearchPageY,
+	           width: MainCanvasWidth - 2 * ChatSearchPageX,
+	           height: 582,
+	           itemWidth: 630,
+	           itemHeight: 85,
+	           minMarginY: 24,
+            };
+            ChatSearchRoomsPerPage = 18;
             TintsEffect();
             KidnapLeagueResetOnlineBountyProgress();
             PandoraPenitentiaryCreate();
@@ -3368,6 +3403,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             ChatSearchRoomSpaceSelectDraw();
             return;
+        });
+    }
+
+    async function ULTRAChatSearchUnload() {
+        modApi.hookFunction('ChatSearchUnload', 4, (args, next) => {
+            ElementRemove("InputRoomMin");
+            ElementRemove("InputRoomMax");
+            ElementRemove("InputPlayerMin");
+            ElementRemove("InputPlayerMax");
+            next(args);
         });
     }
 
