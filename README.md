@@ -64,5 +64,5 @@ Changes for future version
   - Included these settings: Minimum and maximum for Normal/Hybrid Room Size and Players In Room + AutoJoin
   - Note: When you want to change minimum/maximum, always enable the setting, make the changes, then click on the green top button
 * Removed the GUI - Chat Search page
-* Changed priority of patched ChatSearchClick function (for compatibility with EBCH hidden feature)
+
    
