@@ -63,6 +63,7 @@ Changes for future version
   - Limited to 18 the number of rooms per page
   - Included these settings: Minimum and maximum for Normal/Hybrid Room Size and Players In Room + AutoJoin
   - Note: When you want to change minimum/maximum, always enable the setting, make the changes, then click on the green top button
+* Extended the adjustment of card decks used by NPCs to Pandora and Shibari
 * Removed the GUI - Chat Search page
 
    
