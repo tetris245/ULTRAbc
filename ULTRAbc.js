@@ -2146,6 +2146,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAMovieStudioClubCardStart();
+    ULTRAPandoraClubCardStart();
     ULTRAPandoraPenitentiaryResult();
     ULTRAPandoraPrisonClick();
     ULTRAPandoraPrisonRun();
@@ -2159,6 +2160,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceSubscreenOnlineRun();
     ULTRAPrivateClick();
     ULTRAPrivateRun();
+    ULTRAShibariClubCardStart(); 
     ULTRAStableClubCardStart();
     ULTRAStablePlayerTrainingCarrotsEnd();
     ULTRAStablePlayerTrainingHurdlesEnd();
@@ -3687,6 +3689,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('MovieStudioClubCardStart', 4, (args, next) => { 
             morePornCards();
             MiniGameStart("ClubCard", 0, "MovieStudioClubCardEnd");
+            return;
+        });
+    }
+
+    async function ULTRAPandoraClubCardStart() {
+        modApi.hookFunction('PandoraClubCardStart', 4, (args, next) => { 
+            PandoraFightCharacter = CurrentCharacter;
+            moreDominantCards();
+            MiniGameStart("ClubCard", 0, "PandoraClubCardEnd");
+            return;
+        });
+    }
+
+    async function ULTRAShibariClubCardStart() {
+        modApi.hookFunction('ShibariClubCardStart', 4, (args, next) => { 
+            moreDominantCards();
+            MiniGameStart("ClubCard", 0, "ShibariClubCardEnd");
             return;
         });
     }
@@ -5648,6 +5667,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let plusdeck = [];
         if (data == "ABDL") plusdeck = [1017, 1018, 3012, 4008, 10006, 10007, 10008, 10009, 31007, 31009]; 
 	if (data == "Default") plusdeck = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
+	if (data == "Dominant") plusdeck = [2000, 2002, 2003, 8005, 10004, 10009, 11012, 12003, 30021, 31012];
         if (data == "Maid") plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003]; 
         if (data == "Porn") plusdeck = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];          
         if (ccards > 30) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[0]);
@@ -5664,8 +5684,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function moreDefaultCards() {       
         ClubCardOpponent = ClubCardLoungeTutor;
-	  ClubCardOpponentDeck = ClubCardBuilderDefaultDeck;
+	ClubCardOpponentDeck = ClubCardBuilderDefaultDeck;
         moreCards("Default");     
+    }
+
+    function moreDominantCards() {       
+        ClubCardOpponent = CurrentCharacter;
+	ClubCardOpponentDeck = ClubCardBuilderDominantDeck;
+        moreCards("Dominant");     
     }
 
     function moreMaidCards() {       
