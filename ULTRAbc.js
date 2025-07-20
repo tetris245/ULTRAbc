@@ -98,6 +98,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let hearing = 0;
     let maptrap1 = 0;
     let mgl = 0;
+    let npcdeck = -1;
     let onegl = 0;
     let pchat = false;
     let pmin = 2;
@@ -489,6 +490,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noubccolor = false;
         nowhisper = false;
         nowhrange = false;
+	npcdeck = -1;
         npcpunish = false;
         outbuttons = false;
         pchat = false;
@@ -578,6 +580,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noubccolor = data.noubccolor;
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
+	npcdeck = data.npcdeck;
         npcpunish = data.npcpunish;
         outbuttons = data.outbuttons;
         pchat = data.pchat;
@@ -699,6 +702,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gamestable": gamestable,
             "gaglevel": gl,
             "maptrap1": maptrap1,
+            "npcdeck": npcdeck,
             "pchat": pchat,
             "pmin": pmin,
             "pmax": pmax,
@@ -860,6 +864,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (noubccolor == null || noubccolor == undefined) noubccolor = false;                
                 if (nowhisper == null || nowhisper == undefined) nowhisper = false;                 
                 if (nowhrange == null || nowhrange == undefined) nowhrange = false;
+		if (npcdeck == null || npcdeck == undefined) npcdeck = -1;
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;                  
                 if (outbuttons == null || outbuttons == undefined) outbuttons = false;                  
                 if (pchat == null || pchat == undefined) pchat = false;
@@ -983,6 +988,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 noubccolor: false,
                 nowhisper: false,
                 nowhrange: false,
+		npcdeck: -1,
                 npcpunish: false,
                 orgasmMoan: true,
                 outbuttons: false,
@@ -3535,16 +3541,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAClubCardLoadDeckNumber() {
         modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
-            let fame = ElementValue("InputHighFame");
-            let cards = ElementValue("InputMaxCards");
-            let deck = ElementValue("InputDefaultDeck");
-            Player.UBC.ubcSettings.cfame = fame;
-            Player.UBC.ubcSettings.ccards = cards;
-            Player.UBC.ubcSettings.cdeck = deck;
-            ElementRemove("InputHighFame");
-            ElementRemove("InputMaxCards");
-            ElementRemove("InputDefaultDeck");
-            PreferenceSubscreenUBCSettingsExit();
+            if (Player.UBC != undefined) {
+                if (Player.UBC.ubcSettings != undefined) {
+                    let fame = ElementValue("InputHighFame");
+                    let cards = ElementValue("InputMaxCards");
+                    let deck = ElementValue("InputDefaultDeck");
+                    Player.UBC.ubcSettings.cfame = fame;
+                    Player.UBC.ubcSettings.ccards = cards;
+                    Player.UBC.ubcSettings.cdeck = deck;
+                    ElementRemove("InputHighFame");
+                    ElementRemove("InputMaxCards");
+                    ElementRemove("InputDefaultDeck");
+                    if (ClubCardIsOnline() == false) {
+                        let ndeck = ElementValue("InputNpcDeck");
+                        Player.UBC.ubcSettings.npcdeck = ndeck;
+                        ElementRemove("InputNpcDeck");
+                    }
+                    PreferenceSubscreenUBCSettingsExit();
+                }
+            }
             ClubCardBuilderDefaultDeckDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 8000, 8002, 8003, 8004, 13001, 30000, 30014, 30016, 31000, 31004];
             let DefaultDeckPlus = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
             let originaldeck = ClubCardBuilderDefaultDeck;
@@ -3650,6 +3665,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawText("Available options for Default card deck:", 1000, 35, "White", "Gray");
                 DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
                 DrawText("5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
+		if (ClubCardIsOnline() == false) DrawText("Only for NPC: -1 = Deck defined by original BC code", 1140, 275, "White", "Gray");
                 const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
                 fameInput.setAttribute("min", "150");
                 fameInput.setAttribute("max", "550");
@@ -3668,6 +3684,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 deckInput.setAttribute("autocomplete", "off");
                 DrawText("Default card deck", 145, 350, "White", "Gray");
                 ElementPosition("InputDefaultDeck", 420, 345, 250);
+		if (ClubCardIsOnline() == false) { 
+                    const npcdeckInput = ElementCreateInput("InputNpcDeck", "number", npcdeck);
+                    npcdeckInput.setAttribute("min", "-1");
+                    npcdeckInput.setAttribute("max", "10");
+                    npcdeckInput.setAttribute("autocomplete", "off");
+                    DrawText("NPC card deck", 145, 430, "White", "Gray");
+                    ElementPosition("InputNpcDeck", 420, 425, 250);
+                }
             }
             next(args);
         });
@@ -5663,51 +5687,173 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function moreABDLCards() {       
         ClubCardOpponent = CurrentCharacter;
-	ClubCardOpponentDeck = ClubCardBuilderABDLDeck;
-        moreCards("ABDL");     
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderABDLDeck;
+            moreCards("ABDL"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
+    }
+
+    function moreAsylumCards() {       
+        ClubCardOpponent = CurrentCharacter;
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderAsylumDeck;
+            moreCards("Asylum"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
     }
 
     function moreCards(data) {
         let plusdeck = [];
+        if (data == "Default") plusdeck = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
         if (data == "ABDL") plusdeck = [1017, 1018, 3012, 4008, 10006, 10007, 10008, 10009, 31007, 31009]; 
-	if (data == "Default") plusdeck = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
-	if (data == "Dominant") plusdeck = [2000, 2002, 2003, 8005, 10004, 10009, 11012, 12003, 30021, 31012];
+        if (data == "Asylum") plusdeck = [7008, 7009, 7010, 7011, 11013, 12001, 30015, 30017, 30019, 31011];
+	if (data == "College") plusdeck = [11000, 11001, 11002, 11003, 11008, 11009, 11010, 11011, 11012, 31008];
+        if (data == "Dominant") plusdeck = [2000, 2002, 2003, 8005, 10004, 10009, 11012, 12003, 30021, 31012];
+        if (data == "Liability") plusdeck = [1018, 4001, 4008, 4009, 4011, 6005, 6007, 7009, 7010, 10008]; 
         if (data == "Maid") plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003]; 
-        if (data == "Porn") plusdeck = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];          
+        if (data == "Pet") plusdeck = [14006, 14007, 14008, 14009, 14010, 14011, 14012, 14013, 31022, 31026];
+        if (data == "Porn") plusdeck = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031]; 
+        if (data == "Shibari") plusdeck = [30013, 31013, 31014, 31015, 31016, 31017, 31018, 31019, 31020, 31021];
+        if (data == "Extra") plusdeck = [4009, 7008, 9004, 10004, 12003, 12005, 12006, 12007, 12008, 14003];
         if (ccards > 30) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[0]);
         if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
         if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
-        if (ccards > 33) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[3]);
+        if (ccards > 33) ClubCardOpponentDeck =  ClubCardOpponentDeck.concat(plusdeck[3]);
         if (ccards > 34) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[4]);
         if (ccards > 35) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[5]);
         if (ccards > 36) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[6]);
         if (ccards > 37) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[7]);
         if (ccards > 38) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[8]);
         if (ccards > 39) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[9]);
-    }   
+    } 
+
+    function moreCollegeCards() {       
+        ClubCardOpponent = CurrentCharacter;
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderCollegeDeck;
+            moreCards("College"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
+    }
 
     function moreDefaultCards() {       
-        ClubCardOpponent = ClubCardLoungeTutor;
-	ClubCardOpponentDeck = ClubCardBuilderDefaultDeck;
-        moreCards("Default");     
+        ClubCardOpponent = ClubCardLoungeTutor; 
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderDefaultDeck;
+            moreCards("Default"); 
+        }
+	   if (npcdeck != -1) setNpcDeck();    
     }
 
     function moreDominantCards() {       
         ClubCardOpponent = CurrentCharacter;
-	ClubCardOpponentDeck = ClubCardBuilderDominantDeck;
-        moreCards("Dominant");     
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderDominantDeck;
+            moreCards("Dominant"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
     }
 
+    function moreExtraCards() {       
+        ClubCardOpponent = CurrentCharacter;
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderExtraDeck;
+            moreCards("Extra"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
+    }
+
+    function moreLiabilityCards() {       
+        ClubCardOpponent = CurrentCharacter;
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderLiabilityDeck;
+            moreCards("Liability"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
+    }
+ 
     function moreMaidCards() {       
         ClubCardOpponent = CurrentCharacter;
-	ClubCardOpponentDeck = ClubCardBuilderMaidDeck;
-        moreCards("Maid");     
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderMaidDeck;
+            moreCards("Maid"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
+    }
+
+    function morePetCards() {       
+        ClubCardOpponent = CurrentCharacter;
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderPetDeck;
+            moreCards("Pet"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
     }
 
     function morePornCards() {       
         ClubCardOpponent = CurrentCharacter;
-	ClubCardOpponentDeck = ClubCardBuilderPornDeck;
-        moreCards("Porn");     
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderPornDeck;
+            moreCards("Porn"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
+    }
+
+    function moreShibariCards() {       
+        ClubCardOpponent = CurrentCharacter;
+        if (npcdeck == -1) {
+            ClubCardOpponentDeck = ClubCardBuilderShibariDeck;
+            moreCards("Shibari"); 
+        }
+        if (npcdeck != -1) setNpcDeck();    
+    }
+
+    function setNpcDeck() {
+        if (npcdeck == 0) {
+            ClubCardOpponentDeck = ClubCardBuilderDefaultDeck;
+            moreCards("Default"); 
+        }
+        if (npcdeck == 1) {
+            ClubCardOpponentDeck = ClubCardBuilderABDLDeck;
+            moreCards("ABDL"); 
+        }
+        if (npcdeck == 2) {
+            ClubCardOpponentDeck = ClubCardBuilderAsylumDeck;
+            moreCards("Asylum"); 
+        }
+        if (npcdeck == 3) {
+            ClubCardOpponentDeck = ClubCardBuilderCollegeDeck;
+            moreCards("College"); 
+        }
+        if (npcdeck == 4) {
+            ClubCardOpponentDeck = ClubCardBuilderDominantDeck;
+            moreCards("Dominant"); 
+        }
+        if (npcdeck == 5) {
+            ClubCardOpponentDeck = ClubCardBuilderLiabilityDeck;
+            moreCards("Liability"); 
+        }
+        if (npcdeck == 6) {
+            ClubCardOpponentDeck = ClubCardBuilderMaidDeck;
+            moreCards("Maid"); 
+        }
+        if (npcdeck == 7) {
+            ClubCardOpponentDeck = ClubCardBuilderPetDeck;
+            moreCards("Pet"); 
+        }
+        if (npcdeck == 8) {
+            ClubCardOpponentDeck = ClubCardBuilderPornDeck;
+            moreCards("Porn"); 
+        }
+        if (npcdeck == 9) {
+            ClubCardOpponentDeck = ClubCardBuilderShibariDeck;
+            moreCards("Shibari"); 
+        }
+        if (npcdeck == 10) {
+            ClubCardOpponentDeck = ClubCardBuilderExtraDeck;
+            moreCards("Extra"); 
+        }
     }
 
     //DOGS Status
