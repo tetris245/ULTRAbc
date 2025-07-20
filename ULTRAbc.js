@@ -2122,6 +2122,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceStartChat();
+    ULTRAAsylumMeetingClubCardStart();
     ULTRABackgroundsTextGet();
     ULTRACafeClubCardStart();
     ULTRACellClick();
@@ -2163,6 +2164,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRADrawRoomBackground();
     ULTRAFriendListDraw();
     ULTRAFriendListKeyDown(); 
+    ULTRAInfiltrationClubCardStart();
+    ULTRAIntroductionClubCardStart();
+    ULTRAKidnapLeagueRandomClubCardStart();
     ULTRALARPClubCardStart();
     ULTRALoginClick();
     ULTRALoginRun();
@@ -2244,7 +2248,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPokerRun();
     ULTRAPrisonRun();
     ULTRAPuppyWalkerRun();
-    ULTRARhythmGameRun()
+    ULTRARhythmGameRun();
     ULTRASarahRun();
     ULTRAShibariRun();
     ULTRAShopRun();
@@ -3448,6 +3452,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Club Card Game
+    async function ULTRAAsylumMeetingClubCardStart() {
+        modApi.hookFunction('AsylumMeetingClubCardStart', 4, (args, next) => { 
+            moreAsylumCards();
+            MiniGameStart("ClubCard", 0, "AsylumMeetingClubCardEnd");
+            return;
+        });
+    }
+
     async function ULTRAClubCardBuilderClick() {
         modApi.hookFunction('ClubCardBuilderClick', 4, (args, next) => { 
             const ret = next(args);
@@ -3694,10 +3706,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAInfiltrationClubCardStart() {
+        modApi.hookFunction('InfiltrationClubCardStart', 4, (args, next) => { 
+            moreLiabilityCards();
+            MiniGameStart("ClubCard", 0, "InfiltrationClubCardEnd");
+            return;
+        });
+    }
+
     async function ULTRAIntroductionClubCardStart() {
         modApi.hookFunction('IntroductionClubCardStart', 4, (args, next) => { 
             moreMaidCards();
             MiniGameStart("ClubCard", 0, "IntroductionClubCardEnd");
+            return;
+        });
+    }  
+
+    async function ULTRAKidnapLeagueRandomClubCardStart() {
+        modApi.hookFunction('KidnapLeagueRandomClubCardStart', 4, (args, next) => { 
+            morePornCards();
+            MiniGameStart("ClubCard", 0, "KidnapLeagueRandomClubCardEnd");
             return;
         });
     }
