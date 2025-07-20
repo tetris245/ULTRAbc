@@ -3659,7 +3659,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     DrawButton(65, 60, 90, 90, "NHF", "White", "", "Switch to High Fame mode");
                 }
-                DrawText("Available options for Default card deck:", 1000, 35, "White", "Gray");
+                DrawText("Available options for Default and NPC card decks:", 1140, 35, "White", "Gray");
                 DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
                 DrawText("5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
 		if (ClubCardIsOnline() == false) DrawText("Only for NPC: -1 = Deck defined by original BC code", 1140, 275, "White", "Gray");
