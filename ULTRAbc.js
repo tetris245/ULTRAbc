@@ -236,6 +236,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const echolevel4 = echolevel3.concat(restraints);
     const echolevel5 = echolevel4.concat(toys);
 
+    //Club Card Game
+    const ClubCardBuilderPetDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 4010, 4011, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 8000, 12005, 14000, 14001, 14002, 14003, 14004, 14005];
+          
+    constClubCardBuilderShibariDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 4007, 4009, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 12003, 13000, 13001, 13002, 13003, 13004, 13005, 13006];
+
+    const ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
+
+    const DefaultDeckPlus = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
+    const ABDLDeckPlus = [1017, 1018, 3012, 4008, 10006, 10007, 10008, 10009, 31007, 31009];
+    const AsylumDeckPlus = [7008, 7009, 7010, 7011, 11013, 12001, 30015, 30017, 30019, 31011];
+    const CollegeDeckPlus = [11000, 11001, 11002, 11003, 11008, 11009, 11010, 11011, 11012, 31008];          
+    const DominantDeckPlus = [2000, 2002, 2003, 8005, 10004, 10009, 11012, 12003, 30021, 31012];
+    const LiabilityDeckPlus = [1018, 4001, 4008, 4009, 4011, 6005, 6007, 7009, 7010, 10008];
+    const MaidDeckPlus = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003];
+    const PetDeckPlus = [14006, 14007, 14008, 14009, 14010, 14011, 14012, 14013, 31022, 31026];
+    const PornDeckPlus = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];
+    const ShibariDeckPlus = [30013, 31013, 31014, 31015, 31016, 31017, 31018, 31019, 31020, 31021];          
+    const ExtraDeckPlus = [4009, 7008, 9004, 10004, 12003, 12005, 12006, 12007, 12008, 14003];
+
     //Items for pet command
     const petitems1 = ["ArmbinderJacket", "BitchSuit", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "PantyhoseBody", "PantyhoseBodyOpen", "SeamlessStraitDress", "SeamlessStraitDressOpen", "StraitLeotard", "StrictLeatherPetCrawler"];
 
@@ -3560,29 +3579,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     PreferenceSubscreenUBCSettingsExit();
                 }
             }
-            ClubCardBuilderDefaultDeckDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 8000, 8002, 8003, 8004, 13001, 30000, 30014, 30016, 31000, 31004];
-            let DefaultDeckPlus = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
             let originaldeck = ClubCardBuilderDefaultDeck;
-            ClubCardBuilderABDLDeck = [1000, 1001, 1004, 1007, 1008, 1013, 1016, 4001, 4003, 6000, 6001, 6002, 7000, 7001, 7002, 10000, 10001, 10002, 10003, 10004, 10005, 11004, 11005, 11007, 30000, 30015, 30017, 30018, 30019, 30020];
-            let ABDLDeckPlus = [1017, 1018, 3012, 4008, 10006, 10007, 10008, 10009, 31007, 31009];
-            ClubCardBuilderAsylumDeck = [1000, 1001, 1004, 1007, 1010, 1011, 1013, 5000, 6000, 6003, 7000, 7001, 7002, 7003, 7004, 7005, 7006, 7007, 10000, 10001, 11004, 11005, 30001, 30003, 30008, 30009, 30016, 30018, 31004, 31005];
-            let AsylumDeckPlus = [7008, 7009, 7010, 7011, 11013, 12001, 30015, 30017, 30019, 31011];
-            ClubCardBuilderCollegeDeck = [1000, 1001, 1010, 1011, 1014, 1016, 2000, 2001, 2002, 2004, 3006, 5000, 5002, 6001, 6004, 8001, 9003, 2005, 9004, 9006, 11004, 11005, 11006, 11007, 30000, 30001, 30002, 30006, 30010, 30011];
-            let CollegeDeckPlus = [11000, 11001, 11002, 11003, 11008, 11009, 11010, 11011, 11012, 31008];
-            ClubCardBuilderDominantDeck = [1000, 1001, 1002, 1003, 1009, 1012, 1013, 1014, 2001, 2004, 2005, 3000, 3003, 3006, 4002, 4004, 4005, 8000, 8001, 8002, 8003, 8004, 9007, 9008, 30000, 30006, 30007, 30013, 31000, 31001];
-            let DominantDeckPlus = [2000, 2002, 2003, 8005, 10004, 10009, 11012, 12003, 30021, 31012];
-            ClubCardBuilderLiabilityDeck = [2000, 2001, 2002, 3001, 3002, 3003, 3004, 3005, 3007, 4002, 4004, 5000, 7001, 8001, 8002, 8003, 8004, 9000, 9001, 9002, 9003, 9004, 9005, 9006, 9007, 9008, 30018, 30019, 31000, 31002];
-            let LiabilityDeckPlus = [1018, 4001, 4008, 4009, 4011, 6005, 6007, 7009, 7010, 10008];
-            let ClubCardBuilderMaidDeck = [1004, 1005, 1006, 1007, 1008, 1010, 1011, 1013, 1014, 2000, 2001, 2002, 3000, 3006, 4000, 6000, 6001, 6002, 6003, 6004, 9005, 10000, 10001, 10002, 30001, 30002, 30006, 30009, 30010, 30020];
-            let MaidDeckPlus = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003];
-            let ClubCardBuilderPetDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 4010, 4011, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 8000, 12005, 14000, 14001, 14002, 14003, 14004, 14005];
-            let PetDeckPlus = [14006, 14007, 14008, 14009, 14010, 14011, 14012, 14013, 31022, 31026];
-            ClubCardBuilderPornDeck = [1002, 1003, 1016, 2003, 3001, 3002, 4003, 4006, 5000, 5001, 5002, 5003, 5004, 6000, 6001, 8000, 9000, 9001, 9002, 9006, 30004, 30005, 30014, 30015, 30016, 31002, 31003, 31004, 31005, 31006];
-            let PornDeckPlus = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031];
-            let ClubCardBuilderShibariDeck = [1000, 1001, 1004, 1006, 1007, 1010, 1011, 1012, 1014, 1020, 2000, 2002, 4000, 4007, 4009, 6000, 6001, 6002, 6003, 6004, 6006, 6008, 12003, 13000, 13001, 13002, 13003, 13004, 13005, 13006];
-            let ShibariDeckPlus = [30013, 31013, 31014, 31015, 31016, 31017, 31018, 31019, 31020, 31021];
-            let ClubCardBuilderExtraDeck = [1000, 1001, 1002, 1003, 1004, 1006, 1007, 1015, 1017, 2000, 3008, 5005, 6005, 7007, 8005, 11000, 11001, 11002, 11003, 11008, 11009, 11010, 12000, 12001, 12002, 12004, 30012, 30013, 30021, 30022];
-            let ExtraDeckPlus = [4009, 7008, 9004, 10004, 12003, 12005, 12006, 12007, 12008, 14003];
             let initialdeck = [];
             let plusdeck = [];
             if (cdeck == 0) {
@@ -5705,17 +5702,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function moreCards(data) {
         let plusdeck = [];
-        if (data == "Default") plusdeck = [4007, 4009, 12003, 13000, 13002, 13003, 13004, 13005, 13006, 30013];
-        if (data == "ABDL") plusdeck = [1017, 1018, 3012, 4008, 10006, 10007, 10008, 10009, 31007, 31009]; 
-        if (data == "Asylum") plusdeck = [7008, 7009, 7010, 7011, 11013, 12001, 30015, 30017, 30019, 31011];
-	if (data == "College") plusdeck = [11000, 11001, 11002, 11003, 11008, 11009, 11010, 11011, 11012, 31008];
-        if (data == "Dominant") plusdeck = [2000, 2002, 2003, 8005, 10004, 10009, 11012, 12003, 30021, 31012];
-        if (data == "Liability") plusdeck = [1018, 4001, 4008, 4009, 4011, 6005, 6007, 7009, 7010, 10008]; 
-        if (data == "Maid") plusdeck = [1017, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 12002, 14003]; 
-        if (data == "Pet") plusdeck = [14006, 14007, 14008, 14009, 14010, 14011, 14012, 14013, 31022, 31026];
-        if (data == "Porn") plusdeck = [4002, 4007, 5005, 5006, 5007, 5008, 31028, 31029, 31030, 31031]; 
-        if (data == "Shibari") plusdeck = [30013, 31013, 31014, 31015, 31016, 31017, 31018, 31019, 31020, 31021];
-        if (data == "Extra") plusdeck = [4009, 7008, 9004, 10004, 12003, 12005, 12006, 12007, 12008, 14003];
+        if (data == "Default") plusdeck = DefaultDeckPlus;
+        if (data == "ABDL") plusdeck = ABDLDeckPlus; 
+        if (data == "Asylum") plusdeck = AsylumDeckPlus;
+	if (data == "College") plusdeck = CollegeDeckPlus;
+        if (data == "Dominant") plusdeck = DominantDeckPlus;
+        if (data == "Liability") plusdeck = LiabilityDeckPlus;
+        if (data == "Maid") plusdeck = MaidDeckPlus;
+        if (data == "Pet") plusdeck = PetDeckPlus;
+        if (data == "Porn") plusdeck = PornDeckPlus;
+        if (data == "Shibari") plusdeck = ShibariDeckPlus;
+        if (data == "Extra") plusdeck = ExtraDeckPlus;
         if (ccards > 30) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[0]);
         if (ccards > 31) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[1]);
         if (ccards > 32) ClubCardOpponentDeck = ClubCardOpponentDeck.concat(plusdeck[2]);
