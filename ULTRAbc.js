@@ -9008,7 +9008,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "The cgame command must include a zone.\n" +
                     "Available zones:\n" +
-                    "asylum, cafe, infiltration, introduction, larp,\n" +
+                    "asylum, cafe, infiltration, introduction, kidnap, larp,\n" +
                     "lounge, movie, shibari, stable.\n" +
                     "You need to click on the concerned NPC, then on the appropriate option.";
                 infomsg(msg);
@@ -9036,6 +9036,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     RoomToGame();
                     CommonSetScreen("Room", "Introduction");
                     IntroductionMaid.Stage = "90";
+		} else if (minigame == "kidnap") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "KidnapLeague");
+                    KidnapLeagueBackground = "MainHall";
+	            CharacterDelete(KidnapLeagueRandomKidnapper, false);
+	            KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
+	            CharacterSetCurrent(KidnapLeagueRandomKidnapper);
+                    KidnapLeagueRandomKidnapperScenario = "1";
+                    KidnapLeagueRandomKidnapper.Stage = KidnapLeagueRandomKidnapperScenario.toString();
+		    KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario); 
                 } else if (minigame == "larp") {
                     RoomToGame();
                     CommonSetScreen("Room", "LARP");
