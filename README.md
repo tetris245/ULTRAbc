@@ -65,7 +65,7 @@ Changes for future version
   - Note: When you want to change minimum/maximum, always enable the setting, make the changes, then click on the green top button
 * More changes in Club Card Game:
   - Added a new setting when you play against a NPC: you can choose for the NPC another card deck than the one defined by the original BC code
-  - Extended the adjustment of card decks used by NPCs to Pandora and Shibari
+  - Extended the adjustment of card decks used by NPCs to Asylum, Infiltration, Kidnap, Pandora and Shibari
 * Added the kidnap option to the cgame command
 * Removed the GUI - Chat Search page
 
