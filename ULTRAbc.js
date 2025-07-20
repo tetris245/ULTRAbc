@@ -3030,15 +3030,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
             const ret = next(args);
             let NewResult = [];
-            let min = ElementValue("InputRoomMin");
-            let max = ElementValue("InputRoomMax");
-            let min2 = ElementValue("InputPlayerMin");
-            let max2 = ElementValue("InputPlayerMax");
-            Player.UBC.ubcSettings.rmin = min;
-            Player.UBC.ubcSettings.rsize = max;
-            Player.UBC.ubcSettings.pmin = min2;
-            Player.UBC.ubcSettings.pmax = max2;
-            PreferenceSubscreenUBCSettingsExit();
+            if (Player.UBC != undefined) {
+                if (Player.UBC.ubcSettings != undefined) {
+                    let min = ElementValue("InputRoomMin");
+                    let max = ElementValue("InputRoomMax");
+                    let min2 = ElementValue("InputPlayerMin");
+                    let max2 = ElementValue("InputPlayerMax");
+                    Player.UBC.ubcSettings.rmin = min;
+                    Player.UBC.ubcSettings.rsize = max;
+                    Player.UBC.ubcSettings.pmin = min2;
+                    Player.UBC.ubcSettings.pmax = max2;
+                    PreferenceSubscreenUBCSettingsExit();
+                 }
+            }
             let game = "";
             if (rgame == 1) game = "ClubCard";
             if (rgame == 2) game = "GGTS";
