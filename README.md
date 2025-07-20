@@ -59,11 +59,13 @@ All else I might not have included.
 
 Changes for future version
 
-* Relooked again the Chat Search screen:
+* Modified the Chat Search screen to have all related settings on the same screen:
   - Limited to 18 the number of rooms per page
   - Included these settings: Minimum and maximum for Normal/Hybrid Room Size and Players In Room + AutoJoin
   - Note: When you want to change minimum/maximum, always enable the setting, make the changes, then click on the green top button
-* Extended the adjustment of card decks used by NPCs to Pandora and Shibari
+* More changes in Club Card Game:
+  - Added a new setting when you play against a NPC: you can choose for the NPC another card deck than the one defined by the original BC code
+  - Extended the adjustment of card decks used by NPCs to Pandora and Shibari
 * Removed the GUI - Chat Search page
 
    
