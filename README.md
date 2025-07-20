@@ -66,6 +66,7 @@ Changes for future version
 * More changes in Club Card Game:
   - Added a new setting when you play against a NPC: you can choose for the NPC another card deck than the one defined by the original BC code
   - Extended the adjustment of card decks used by NPCs to Pandora and Shibari
+* Added the kidnap option to the cgame command
 * Removed the GUI - Chat Search page
 
    
