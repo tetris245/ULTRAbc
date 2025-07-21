@@ -3536,7 +3536,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         M_MOANER_saveControls();
                     }
                 }
-                if (MouseIn(415, 60, 90, 90)) {
+                if (MouseIn(385, 60, 90, 90)) {
                     let fame = ElementValue("InputHighFame");
                     let cards = ElementValue("InputMaxCards");
                     let deck = ElementValue("InputDefaultDeck");
