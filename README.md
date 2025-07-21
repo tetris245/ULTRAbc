@@ -66,7 +66,7 @@ Changes for future version
 * More changes in Club Card Game:
   - Added a new setting when you play against a NPC: you can choose for the NPC another card deck than the one defined by the original BC code
   - Added an actualisation/exit button: use it to apply modified parameters other than the mode (after the exit, just come back to the game!)
-  - Extended the adjustment of card decks used by NPCs to Asylum, Infiltration, Kidnap, Pandora and Shibari (when you use more than 30 cards)
+  - Extended the adjustment of card decks used by NPCs to Asylum, Infiltration, Kidnap, Pandora, Private Room and Shibari (when you use more than 30 cards)
 * Added the kidnap option to the cgame command
 * Removed the GUI - Chat Search page
 
