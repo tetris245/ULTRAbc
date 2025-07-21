@@ -1876,9 +1876,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Moaning profile (0-10):", "profile", "InputMoanProfile",
                     "Input a number between 0 and 10 to select one of these moaning profiles: 0 Default - 1 Bunny - 2 Cow - 3 Dog - 4 Fox - 5 Mouse - 6 Neko - 7 Pig - 8 Pony - 9 Wildfox - 10 Wolf.", 6
                 );
-                addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan",
-                    "When enabled, you will moan while cumming.", false, 140
-                );
+                let omsg = "When enabled, you will moan while cumming. It is not possible to enable it when the LSCG Splatter feature is detected as enabled.";
+                let spl = 0;
+                if (Player.ExtensionSettings.LSCG != null) {
+                    let str = Player.ExtensionSettings.LSCG;
+                    let d = LZString.decompressFromBase64(str);
+                    let LSCGdata = {};
+                    let decoded = JSON.parse(d);
+                    LSCGdata = decoded;
+                    if (LSCGdata.SplatterModule.enabled) spl = 1;
+                }
+                if (spl == 0) {
+                    addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan", omsg, false, 140);
+                } else {
+                    addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan", omsg, true, 140);
+                    
+                }
                 addMenuCheckbox(64, 64, "Enable the spank moan: ", "spankMoan",
                     "When enabled, you will moan while being spanked. Also when bitten, kicked, pinched, shocked, slapped. In case of actions triggering a shock, it concerns only actions to punish orgasm, stand up or struggle. According your fetishes and your horny state, it can be pain or pleasure.", false, 140
                 );
@@ -6444,6 +6457,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.RestrictionSettings.BypassStruggle = false;
             }
         }
+        let spl = 0;
+        if (Player.ExtensionSettings.LSCG != null) {
+            let str = Player.ExtensionSettings.LSCG;
+            let d = LZString.decompressFromBase64(str);
+            let LSCGdata = {};
+            let decoded = JSON.parse(d);
+            LSCGdata = decoded;
+            if (LSCGdata.SplatterModule.enabled) spl = 1;
+        }
+        if (spl == 1) {
+            M_MOANER_orgasmActive = false;
+            M_MOANER_saveControls();
+        }
     }
 
     function UBCsettings() {
@@ -7937,6 +7963,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     function M_MOANER_reactionOrgasm(Player) {
+	let spl = 0;
+        if (Player.ExtensionSettings.LSCG != null) {
+            let str = Player.ExtensionSettings.LSCG;
+            let d = LZString.decompressFromBase64(str);
+            let LSCGdata = {};
+            let decoded = JSON.parse(d);
+            LSCGdata = decoded;
+            if (LSCGdata.SplatterModule.enabled) spl = 1;
+        }
+        if (spl == 1 && M_MOANER_orgasmActive) { 
+            Player.UBC.ubcSettings.orgasmMoan = false;
+            M_MOANER_orgasmActive = false;
+            M_MOANER_saveControls();
+        }
         if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
             if ((Player.ID == 0) && (Player.ArousalSettings.OrgasmStage == 2)) {
                 let moan;
