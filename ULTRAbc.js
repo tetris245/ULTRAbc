@@ -2188,6 +2188,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceSubscreenOnlineClick();
     ULTRAPreferenceSubscreenOnlineRun();
     ULTRAPrivateClick();
+    ULTRAPrivateClubCardVsFriendStart();
+    ULTRAPrivateClubCardVsOwnerStart();
+    ULTRAPrivateClubCardVsSubStart();
+    ULTRAPrivateGetClubCardDeck();
     ULTRAPrivateRun();
     ULTRAShibariClubCardStart(); 
     ULTRAStableClubCardStart();
@@ -3759,6 +3763,63 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             moreDominantCards();
             MiniGameStart("ClubCard", 0, "PandoraClubCardEnd");
             return;
+        });
+    }
+
+    async function ULTRAPrivateClubCardVsFriendStart() {
+        modApi.hookFunction('PrivateClubCardVsFriendStart', 4, (args, next) => { 
+            morePrivateCards();
+            MiniGameStart("ClubCard", 0, "PrivateClubCardVsFriendEnd");
+            return;
+        });
+    }
+ 
+    async function ULTRAPrivateClubCardVsOwnerStart() {
+        modApi.hookFunction('PrivateClubCardVsOwnerStart', 4, (args, next) => { 
+            morePrivateCards();
+            MiniGameStart("ClubCard", 0, "PrivateClubCardVsOwnerEnd");
+            return;
+        });
+    }
+
+    async function ULTRAPrivateClubCardVsSubStart() {
+        modApi.hookFunction('PrivateClubCardVsSubStart', 4, (args, next) => { 
+            morePrivateCards();
+            MiniGameStart("ClubCard", 0, "PrivateClubCardVsSubEnd");
+            return;
+        });
+    }
+
+    async function ULTRAPrivateGetClubCardDeck(C) {
+        modApi.hookFunction('PrivateGetClubCardDeck', 4, (args, next) => { 
+            if (npcdeck == -1) {
+                if (["Amanda", "Sarah", "Sidney", "Sarah", "Jennifer", "Julia", "Yuki", "Mildred"].includes(C.Name) ) return ClubCardBuilderCollegeDeck;
+	        if ((C.Title === "Mistress") || (C.Title == "Dominatrix")) return ClubCardBuilderDominantDeck;
+	        if (C.Title === "Maid") return ClubCardBuilderMaidDeck;
+	        let Horny = NPCTraitGet(C, "Horny");
+	        let Dominant = NPCTraitGet(C, "Dominant");
+	        let Playful = NPCTraitGet(C, "Playful");
+	        let Violent = NPCTraitGet(C, "Violent");
+	        let Wise = NPCTraitGet(C, "Wise");
+	        if ((Horny > 0) && (Horny >= Dominant) && (Horny >= Playful) && (Horny >= Violent) && (Horny >= Wise)) return ClubCardBuilderPornDeck;
+	        if ((Dominant > 0) && (Dominant >= Horny) && (Dominant >= Playful) && (Dominant >= Violent) && (Dominant >= Wise)) return ClubCardBuilderDominantDeck;
+	        if ((Playful > 0) && (Playful >= Horny) && (Playful >= Dominant) && (Playful >= Violent) && (Playful >= Wise)) return ClubCardBuilderABDLDeck;
+	        if ((Violent > 0) && (Violent >= Horny) && (Violent >= Dominant) && (Violent >= Playful) && (Violent >= Wise)) return ClubCardBuilderLiabilityDeck;
+	        if ((Wise > 0) && (Wise >= Horny) && (Wise >= Dominant) && (Wise >= Playful) && (Wise >= Violent)) return ClubCardBuilderAsylumDeck;
+	        return ClubCardBuilderDefaultDeck;
+           }
+           if (npcdeck == 0) return ClubCardBuilderDefaultDeck;     
+           if (npcdeck == 1) return ClubCardBuilderABDLDeck; 
+           if (npcdeck == 2) return ClubCardBuilderAsylumDeck; 
+           if (npcdeck == 3) return ClubCardBuilderCollegeDeck; 
+           if (npcdeck == 4) return ClubCardBuilderDominantDeck; 
+           if (npcdeck == 5) return ClubCardBuilderLiabilityDeck;
+           if (npcdeck == 6) return ClubCardBuilderMaidDeck;
+           if (npcdeck == 7) return ClubCardBuilderPetDeck; 
+           if (npcdeck == 8) return ClubCardBuilderPornDeck; 
+           if (npcdeck == 9) return ClubCardBuilderShibariDeck; 
+           if (npcdeck == 10) return ClubCardBuilderExtraDeck; 
+           return;
         });
     }
 
@@ -5830,6 +5891,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             moreCards("Porn"); 
         }
         if (npcdeck != -1) setNpcDeck();    
+    }
+
+    function morePrivateCards() {
+        ClubCardOpponent = CurrentCharacter;
+        ClubCardOpponentDeck = PrivateGetClubCardDeck(CurrentCharacter);
+        let data = "";
+        if (ClubCardOpponentDeck == ClubCardBuilderDefaultDeck) data = "Default"; 
+        if (ClubCardOpponentDeck == ClubCardBuilderABDLDeck) data = "ABDL"; 
+        if (ClubCardOpponentDeck == ClubCardBuilderAsylumDeck) data = "Asylum"; 
+        if (ClubCardOpponentDeck == ClubCardBuilderCollegeDeck) data = "College"; 
+        if (ClubCardOpponentDeck == ClubCardBuilderDominantDeck) data = "Dominant";
+        if (ClubCardOpponentDeck == ClubCardBuilderLiabilityDeck) data = "Liability";  
+        if (ClubCardOpponentDeck == ClubCardBuilderMaidDeck) data = "Maid"; 
+        if (ClubCardOpponentDeck == ClubCardBuilderPetDeck) data = "Pet"; 
+        if (ClubCardOpponentDeck == ClubCardBuilderPornDeck) data = "Porn"; 
+        if (ClubCardOpponentDeck == ClubCardBuilderShibariDeck) data = "Shibari"; 
+        if (ClubCardOpponentDeck == ClubCardBuilderExtraDeck) data = "Extra"; 
+        moreCards(data);
     }
 
     function moreShibariCards() {       
