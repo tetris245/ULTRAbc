@@ -599,7 +599,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noubccolor = data.noubccolor;
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
-	npcdeck = data.npcdeck;
+	npcdeck = data.npcdeck * 1;
         npcpunish = data.npcpunish;
         outbuttons = data.outbuttons;
         pchat = data.pchat;
@@ -3536,6 +3536,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         M_MOANER_saveControls();
                     }
                 }
+                if (MouseIn(415, 60, 90, 90)) {
+                    let fame = ElementValue("InputHighFame");
+                    let cards = ElementValue("InputMaxCards");
+                    let deck = ElementValue("InputDefaultDeck");
+                    Player.UBC.ubcSettings.cfame = fame;
+                    Player.UBC.ubcSettings.ccards = cards;
+                    Player.UBC.ubcSettings.cdeck = deck;
+                    ElementRemove("InputHighFame");
+                    ElementRemove("InputMaxCards");
+                    ElementRemove("InputDefaultDeck");
+                    if (ClubCardIsOnline() == false) {
+                        let ndeck = ElementValue("InputNpcDeck");
+                        Player.UBC.ubcSettings.npcdeck = ndeck;
+                        ElementRemove("InputNpcDeck");
+                    }
+                    PreferenceSubscreenUBCSettingsExit();
+                    ClubCardEndGame(false);
+                }
             }
             next(args);
         });
@@ -3572,25 +3590,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAClubCardLoadDeckNumber() {
         modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
-            if (Player.UBC != undefined) {
-                if (Player.UBC.ubcSettings != undefined) {
-                    let fame = ElementValue("InputHighFame");
-                    let cards = ElementValue("InputMaxCards");
-                    let deck = ElementValue("InputDefaultDeck");
-                    Player.UBC.ubcSettings.cfame = fame;
-                    Player.UBC.ubcSettings.ccards = cards;
-                    Player.UBC.ubcSettings.cdeck = deck;
-                    ElementRemove("InputHighFame");
-                    ElementRemove("InputMaxCards");
-                    ElementRemove("InputDefaultDeck");
-                    if (ClubCardIsOnline() == false) {
-                        let ndeck = ElementValue("InputNpcDeck");
-                        Player.UBC.ubcSettings.npcdeck = ndeck;
-                        ElementRemove("InputNpcDeck");
-                    }
-                    PreferenceSubscreenUBCSettingsExit();
-                }
-            }
+            ElementRemove("InputHighFame");
+            ElementRemove("InputMaxCards");
+            ElementRemove("InputDefaultDeck");
+            if (ClubCardIsOnline() == false) ElementRemove("InputNpcDeck");
             let originaldeck = ClubCardBuilderDefaultDeck;
             let initialdeck = [];
             let plusdeck = [];
@@ -3671,10 +3674,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     DrawButton(65, 60, 90, 90, "NHF", "White", "", "Switch to High Fame mode");
                 }
+		DrawText("Actualisation", 430, 35, "White", "Black");
+                DrawButton(385, 60, 90, 90, "", "White", "Icons/Exit.png");
                 DrawText("Available options for Default and NPC card decks:", 1140, 35, "White", "Gray");
                 DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
                 DrawText("5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
 		if (ClubCardIsOnline() == false) DrawText("Only for NPC: -1 = Deck defined by original BC code", 1140, 275, "White", "Gray");
+		DrawText("If you change other parameters than the mode,", 1140, 750, "White", "Black");
+                DrawText("click the Exit button, then come back to play", 1140, 830, "White", "Black");
                 const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
                 fameInput.setAttribute("min", "150");
                 fameInput.setAttribute("max", "550");
