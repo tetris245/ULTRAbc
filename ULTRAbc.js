@@ -6677,26 +6677,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (wh1 == 1) return false;
     }
 
-    function IsDollTalk(text) {
-        let nn = 0;
-        let segmenter = new Intl.Segmenter([], {
-            granularity: 'word'
-        });
-        let segmentedText = segmenter.segment(text);
-        let words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
-        let ln = words.length;
-        if (ln > 5) nn = 1;
-        let i = 0;
-        while (i < ln) {
-            let lw = words[i].length;
-            if (lw > 6) nn = 1;
-            i++;
+   function IsDollTalk(text) {
+        const segmenter = new Intl.Segmenter([], { granularity: 'word' });
+        const words = [...segmenter.segment(text)].filter(s => s.isWordLike).map(s => s.segment);
+        if (words.length > 5) return false;
+        for (const word of words) {
+            if (word.length > 6) return false;
         }
-        if (nn == 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return true;
     }
 
     function GarbleRandom(min, max) {
