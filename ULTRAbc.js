@@ -6605,76 +6605,58 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Talking
     function IsBcxWhisperAllowed(target) {
         let wh1 = 0;
-        let wh1ex = [];
-        let wh2ex = [];
-        let wh3ex = [];
-        let wh4ex = [];
-        let wh5ex = [];
-        let wh6ex = [];
-        let bcxlist = [];
         let lovers = [];
-        if ((Player.Ownership != null) || (Player.Ownership != undefined)) {
-            if (!Player.Ownership.Name.startsWith("NPC")) {
-                wh1ex = Player.Ownership.MemberNumber;
-            }
-        }
+        let bcxlist = [];
+        let ownershipMember = (Player.Ownership && !Player.Ownership.Name.startsWith("NPC"))
+            ? [Player.Ownership.MemberNumber]
+            : [];
         for (let n = 0; n < Player.Lovership.length; n++) {
             if (!Player.Lovership[n].Name.startsWith("NPC")) {
                 lovers.push(Player.Lovership[n].MemberNumber);
             }
         }
         let str = Player.ExtensionSettings.BCX;
-        if (str != undefined) {
-            if (/^[0-9]+:/.test(str)) {
-                const parts = str.split(":");
-                const saveVersion = Number.parseInt(parts[0], 10);
-                if ((saveVersion === 2) && (parts.length === 3)) {
-                    str = parts[1];
-                    let d = LZString.decompressFromBase64(str);
-                    let BCXdata = {};
-                    let decoded = JSON.parse(d);
-                    BCXdata = decoded;
-                    let keys1 = Object.keys(BCXdata);
-                    if (keys1.includes("conditions")) {
-                        let keys2 = Object.keys(BCXdata.conditions);
-                        if (keys2.includes("rules")) {
-                            let keys3 = Object.keys(BCXdata.conditions.rules);
-                            if (keys3.includes("conditions")) {
-                                let keys4 = Object.keys(BCXdata.conditions.rules.conditions);
-                                if (keys4.includes("speech_restrict_whisper_send")) {
-                                    BCXwh1 = BCXdata.conditions.rules.conditions.speech_restrict_whisper_send;
-                                    if (BCXwh1.active) {
-                                        wh1 = 1;
-                                        wh1data = BCXwh1.data.customData.minimumPermittedRole;
-                                        if (wh1data == 1) bcxlist = wh1ex;
-                                        wh2ex = (BCXdata.owners).concat(wh1ex);
-                                        if (wh1data == 2) bcxlist = wh2ex;
-                                        wh3ex = lovers.concat(wh2ex);
-                                        if (wh1data == 3) bcxlist = wh3ex;
-                                        wh4ex = (BCXdata.mistresses).concat(wh3ex);
-                                        if (wh1data == 4) bcxlist = wh4ex;
-                                        wh5ex = (Player.WhiteList).concat(wh4ex);
-                                        if (wh1data == 5) bcxlist = wh5ex;
-                                        wh6ex = (Player.FriendList).concat(wh5ex);
-                                        if (wh1data == 6) bcxlist = wh6ex;
-                                        if (wh1data == 7) wh1 = 0;
-                                        if (ChatRoomTargetMemberNumber == Player.Ownership.MemberNumber) {
-                                            wh1 = 0;
-                                        } else {
-                                            if ((wh1data > 1) && (wh1data < 7)) {
-                                                if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+        if (str && /^[0-9]+:/.test(str)) {
+            const parts = str.split(":");
+            const saveVersion = Number.parseInt(parts[0], 10);
+            if (saveVersion === 2 && parts.length === 3) {
+                let decoded = JSON.parse(LZString.decompressFromBase64(parts[1]));
+                let rules = decoded?.conditions?.rules?.conditions?.speech_restrict_whisper_send;
+                if (rules && rules.active) {
+                    wh1 = 1;
+                    let wh1data = rules.data.customData.minimumPermittedRole;
+                    switch (wh1data) {
+                        case 1:
+                            bcxlist = ownershipMember;
+                            break;
+                        case 2:
+                            bcxlist = (decoded.owners || []).concat(ownershipMember);
+                            break;
+                        case 3:
+                            bcxlist = lovers.concat((decoded.owners || []).concat(ownershipMember));
+                            break;
+                        case 4:
+                            bcxlist = (decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)));
+                            break;
+                        case 5:
+                            bcxlist = (Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember))));
+                            break;
+                        case 6:
+                            bcxlist = (Player.FriendList || []).concat((Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)))));
+                            break;
+                        case 7:
+                            wh1 = 0;
+                            break;
+                    }
+                    if (ChatRoomTargetMemberNumber === Player.Ownership?.MemberNumber) {
+                        wh1 = 0;
+                    } else if (wh1data > 1 && wh1data < 7 && bcxlist.includes(ChatRoomTargetMemberNumber)) {
+                        wh1 = 0;
                     }
                 }
             }
         }
-        if (wh1 == 0) return true;
-        if (wh1 == 1) return false;
+        return wh1 === 0;
     }
 
    function IsDollTalk(text) {
