@@ -6694,40 +6694,37 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function GarbleTalk(text, garbleWords) {
+        const punctuation = ",.!?";
         let message = text;
-        if (text.startsWith("/whisper")) {
-            let [, ...parts] = text.split(" ");
-            let target = parts?.shift();
-            message = parts?.join(" ");
+        let isWhisper = false;
+        let target = "";
+        if ((text.startsWith("/whisper")) || (text.startsWith("/murmur"))) {
+            const [, tgt, ...parts] = text.split(" ");
+            target = tgt;
+            message = parts.join(" ");
+            isWhisper = true;
         }
-        if (message != "") {
-            let newmessage = "";
-            let newText = "";
-            const punctuation = ",.!?";
-            for (const word of message.split(" ")) {
-                const rword = word.split("").reverse().join("");
-                let wordPunctuation = "";
-                if (punctuation.includes(rword[0])) {
-                    for (const c of rword.split("")) {
-                        if (punctuation.includes(c)) wordPunctuation += c;
-                    }
-                    wordPunctuation = wordPunctuation.split("").reverse().join("");
-                }
-                if (ahybrid == false) {
-                    newmessage += garbleWords[GarbleRandom(0, garbleWords.length - 1)] + wordPunctuation + " ";
-                } else {
-                    newmessage += garbleWords[GarbleRandom(0, garbleWords.length - 1)] + word + wordPunctuation + " ";
-                }
-                newText = newmessage;
-                if (text.startsWith("/whisper")) {
-                    let [, ...parts] = text.split(" ");
-                    let target = parts?.shift();
-                    newText = "/whisper " + target + " " + newmessage;
-                }
+        if (!message) return text.trim();
+        let newWords = [];
+        for (const word of message.split(" ")) {
+            let baseWord = word;
+            let wordPunctuation = "";
+            while (baseWord && punctuation.includes(baseWord[baseWord.length - 1])) {
+                wordPunctuation = baseWord[baseWord.length - 1] + wordPunctuation;
+                baseWord = baseWord.slice(0, -1);
             }
-            return newText.trim();
+            const garbleWord = garbleWords[GarbleRandom(0, garbleWords.length - 1)];
+            if (typeof ahybrid !== "undefined" && ahybrid) {
+                newWords.push(garbleWord + word + wordPunctuation);
+            } else {
+                newWords.push(garbleWord + wordPunctuation);
+            }
         }
-        return text.trim();
+        let newMessage = newWords.join(" ");
+        if (isWhisper) {
+            newMessage = `/whisper ${target} ${newMessage}`;
+        }
+        return newMessage.trim();
     }
 
     function RealGarblingLevel() {
