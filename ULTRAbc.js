@@ -2809,15 +2809,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     texta = text6;
                 } else {
                     texta = text6;
-                    if (animal == 1) texta = GarbleTalk(text6, animalmode1);
-                    if (animal == 2) texta = GarbleTalk(text6, animalmode2);
-                    if (animal == 3) texta = GarbleTalk(text6, animalmode3);
-                    if (animal == 4) texta = GarbleTalk(text6, animalmode4);
-                    if (animal == 5) texta = GarbleTalk(text6, animalmode5);
-                    if (animal == 6) texta = GarbleTalk(text6, animalmode6);
-                    if (animal == 7) texta = GarbleTalk(text6, animalmode7);
-                    if (animal == 8) texta = GarbleTalk(text6, animalmode8);
-                    if (animal == 9) texta = GarbleTalk(text6, animalmode9);
+                    if (animal != 0) texta = GarbleTalk(text6, animalModes[animal]);
                 }
                 ElementValue("InputChat", text6.replace(text6, texta));
             } else {
@@ -2861,15 +2853,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         texta = text7;
                     } else {
                         texta = text7;
-                        if (animal == 1) texta = GarbleTalk(text7, animalmode1);
-                        if (animal == 2) texta = GarbleTalk(text7, animalmode2);
-                        if (animal == 3) texta = GarbleTalk(text7, animalmode3);
-                        if (animal == 4) texta = GarbleTalk(text7, animalmode4);
-                        if (animal == 5) texta = GarbleTalk(text7, animalmode5);
-                        if (animal == 6) texta = GarbleTalk(text7, animalmode6);
-                        if (animal == 7) texta = GarbleTalk(text7, animalmode7);
-                        if (animal == 8) texta = GarbleTalk(text7, animalmode8);
-                        if (animal == 9) texta = GarbleTalk(text7, animalmode9);
+                        if (animal != 0) texta = GarbleTalk(text7, animalModes[animal]);
                     }
                     if (texta != "") {
                         targetNumber = ChatRoomTargetMemberNumber;
