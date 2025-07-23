@@ -9701,40 +9701,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (gaglevel == 0) {
                         onegl = SpeechTransformGagGarbleIntensity(Player);
                         mgl = onegl;
-                        if (Player.ExtensionSettings.MBS != null) {
-                            let str = Player.ExtensionSettings.MBS;
-                            let d = LZString.decompressFromUTF16(str);
-                            let MBSdata = {};
-                            let decoded = JSON.parse(d);
-                            MBSdata = decoded;
+			let MBS = Player.ExtensionSettings.MBS;
+                        if (MBS) {
+                            let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                             if (MBSdata.AlternativeGarbling) {
                                 onegl = 0;
                                 mgl = SpeechTransformGagGarbleIntensity(Player);
                             }
                         }
-                        if (Player.ExtensionSettings.LSCG != null) {
-                            let str = Player.ExtensionSettings.LSCG;
-                            let d = LZString.decompressFromBase64(str);
-                            let LSCGdata = {};
-                            let decoded = JSON.parse(d);
-                            LSCGdata = decoded;
-                            if (LSCGdata.CollarModule.chokeLevel > 1) onegl = (LSCGdata.CollarModule.chokeLevel) * 2 + onegl;
-                            if (LSCGdata.CollarModule.chokeLevel == 4) nt = 1;
-                            let type = '';
-                            let config = "";
-                            let states = LSCGdata.StateModule.states;
-                            type = 'asleep';
-                            config = states.find(s => s.type == type);
-                            if ((config != undefined) && (config.active == true)) nt = 1;
-                            type = 'frozen';
-                            config = states.find(s => s.type == type);
-                            if ((config != undefined) && (config.active == true)) nt = 1;
-                            type = 'gagged';
-                            config = states.find(s => s.type == type);
-                            if ((config != undefined) && (config.active == true)) nt = 1;
-                            type = 'hypnotized';
-                            config = states.find(s => s.type == type);
-                            if ((config != undefined) && (config.active == true)) nt = 1;
+                        let LSCG = Player.ExtensionSettings.LSCG;
+                        if (LSCG) {
+                            let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
+                            let states = LSCGdata.StateModule.states || [];
+                            let neck = InventoryGet(Player, "ItemNeck");
+                            if (neck && LSCGdata.CollarModule.chokeLevel > 1) onegl = (LSCGdata.CollarModule.chokeLevel) * 2 + onegl;
+                            if (neck && LSCGdata.CollarModule.chokeLevel == 4) nt = 1;
+                            if (["asleep", "frozen", "gagged", "hypnotized"]         
+                                .some(type => states.find(s => s.type === type && s.active))) nt = 1;
                         }
                     } else {
                         onegl = gaglevel;
