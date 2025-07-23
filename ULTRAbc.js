@@ -5469,61 +5469,61 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //BCAR Status
-    function showAnimalTypeStatus() {
+    function showAnimalTypeStatus(BCARdata) {
         let msg = "Current Animal Type: " + BCARdata.animal;
         statusmsg(msg);
     }
 
-    function showAnimationButtonsStatus() {
+    function showAnimationButtonsStatus(BCARdata) {
         let msg = "Animation Buttons disabled.";
         if (BCARdata.animationButtonsEnable) msg = "Animation Buttons enabled.";
         statusmsg(msg);
     }
 
-    function showArousalManipulationStatus() {
+    function showArousalManipulationStatus(BCARdata) {
         let msg = "Arousal Manipulation disabled.";
         if (BCARdata.arousalEnable) msg = "Arousal Manipulation enabled.";
         statusmsg(msg);
     }
 
-    function showBCARExpressionsStatus() {
+    function showBCARExpressionsStatus(BCARdata) {
         let msg = "BCAR Expressions disabled.";
         if (BCARdata.expressionsEnable) msg = "BCAR Expressions enabled.";
         statusmsg(msg);
     }
 
-    function showEarAnimationStatus() {
+    function showEarAnimationStatus(BCARdata) {
         let msg = "Ear Animation disabled.";
         if (BCARdata.earWigglingEnable) msg = "Ear Animation enabled.";
         statusmsg(msg);
     }
 
-    function showEarEmoteStatus() {
+    function showEarEmoteStatus(BCARdata) {
         let msg = "Ear Emote disabled.";
         if (BCARdata.earEmoteEnable) msg = "Ear Emote enabled.";
         statusmsg(msg);
     }
 
-    function showTailAnimationStatus() {
+    function showTailAnimationStatus(BCARdata) {
         let msg = "Tail Animation disabled.";
         if (BCARdata.tailWaggingEnable) msg = "Tail Animation enabled.";
         statusmsg(msg);
     }
 
-    function showTailEmoteStatus() {
+    function showTailEmoteStatus(BCARdata) {
         let msg = "Tail Emote disabled.";
         if (BCARdata.tailEmoteEnable) msg = "Tail Emote enabled.";
         statusmsg(msg);
     }
 
-    function showWingAnimationStatus() {
+    function showWingAnimationStatus(BCARdata) {
         let msg = "Wing Animation disabled.";
         if (BCARdata.wingFlappingEnable) msg = "Wing Animation enabled.";
         statusmsg(msg);
     }
 
     //BC Responsive Status	
-    function showBCResponsiveStatus() {
+    function showBCResponsiveStatus(BCRdata) {
         let msg = "";
         let msg1 = "BC Responsive is disabled.";
         if (BCRdata.settings.enabled) msg1 = "BC Responsive is enabled.";
@@ -5546,67 +5546,67 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //BCTweaks Status
-    function showArousalErectionStatus() {
+    function showArousalErectionStatus(BCTdata) {
         let msg = "Arousal can't affect male erection.";
         if (BCTdata.arousalAffectsErection) msg = "Arousal can affect male erection.";
         statusmsg(msg);
     }
 
-    function showArousalProgressStatus() {
+    function showArousalProgressStatus(BCTdata) {
         let msg = "Arousal can't affect orgasm progress.";
         if (BCTdata.arousalAffectsOrgasmProgress) msg = "Arousal can affect orgasm progress.";
         statusmsg(msg);
     }
 
-    function showBCIconsStatus() {
+    function showBCIconsStatus(BCTdata) {
         let msg = "BC Icons are always displayed.";
         if (BCTdata.allIconOnlyShowOnHover) msg = "BC Icons are displayed only when the mouse hovers above you.";
         statusmsg(msg);
     }
 
-    function showBCTChangelogStatus() {
+    function showBCTChangelogStatus(BCTdata) {
         let msg = "BCT Changelog feature is disabled.";
         if (BCTdata.showChangelog) msg = "BCT Changelog feature is enabled.";
         statusmsg(msg);
     }
 
-    function showBCTIconStatus() {
+    function showBCTIconStatus(BCTdata) {
         let msg = "BCT Icon is always displayed.";
         if (BCTdata.bctIconOnlyShowOnHover) msg = "BCT Icon is displayed only when the mouse hovers above you.";
         statusmsg(msg);
     }
 
-    function showBestFriendsStatus() {
+    function showBestFriendsStatus(BCTdata) {
         let msg = "Best Friends feature is disabled.";
         if (BCTdata.bestFriendsEnabled) msg = "Best Friends feature is enabled.";
         statusmsg(msg);
     }
 
-    function showFriendlistSlotsStatus() {
+    function showFriendlistSlotsStatus(BCTdata) {
         let msg = "No extra infos in Friendlist.";
         if (BCTdata.friendlistSlotsEnabled) msg = "Extra infos in Friendlist.";
         statusmsg(msg);
     }
 
-    function showLockConversionStatus() {
+    function showLockConversionStatus(BCTdata) {
         let msg = "High security locks can't become Best Friend locks.";
         if (BCTdata.hsToBFLockconvert) msg = "High security locks can become Best Friend locks.";
         statusmsg(msg);
     }
 
-    function showRoomShareStatus() {
+    function showRoomShareStatus(BCTdata) {
         let msg = "Best Friends can't share private room names.";
         if (BCTdata.bestFriendsRoomShare) msg = "Best Friends can share private room names.";
         statusmsg(msg);
     }
 
-    function showSplitStatus() {
+    function showSplitStatus(BCTdata) {
         let msg = "Only the standard arousal + orgasm bar.";
         if (BCTdata.splitOrgasmArousal) msg = "Two bars for arousal and orgasm.";
         statusmsg(msg);
     }
 
-    function showTailWaggingStatus() {
+    function showTailWaggingStatus(BCTdata) {
         let msg = "Tail Wagging feature is disabled.";
         if (BCTdata.tailWaggingEnable) msg = "Tail Wagging feature is enabled.";
         statusmsg(msg);
@@ -5960,57 +5960,57 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //DOGS Status
-    function showDeviousLockStatus() {
+    function showDeviousLockStatus(DOGSdata) {
         let msg = "Devious Padlock is disabled.";
         if (DOGSdata.deviousPadlock.state) msg = "Devious Padlock is enabled.";
         statusmsg(msg);
     }
 
-    function showDogsLocalStatus() {
+    function showDogsLocalStatus(DOGSdata) {
         let msg = "DOGS local messages are not deleted.";
         if (DOGSdata.misc.deleteLocalMessages) msg = "DOGS local messages are deleted.";
         statusmsg(msg);
     }
 
-    function showDogsVersionStatus() {
+    function showDogsVersionStatus(DOGSdata) {
         let msg = "New DOGS Version changelog is disabled.";
         if (DOGSdata.misc.autoShowChangelog) msg = "New DOGS Version changelog is enabled.";
         statusmsg(msg);
     }
 
-    function showRemoteControlStatus() {
+    function showRemoteControlStatus(DOGSdata) {
         let msg = "Remote Control is disabled.";
         if (DOGSdata.remoteControl.state) msg = "Remote Control is enabled.";
         statusmsg(msg);
     }
 
     //EBCH Status
-    function showEbchLogStatus() {
+    function showEbchLogStatus(EBCHdata) {
         let msg = "Chatlogging is enabled.";
         if (EBCHdata[4] == 0) msg = "Chatlogging is disabled.";
         statusmsg(msg);
     }
 
-    function showEbchNotificationStatus() {
+    function showEbchNotificationStatus(EBCHdata) {
         let msg = "Custom notifications are enabled.";
         if (EBCHdata[8] == 0) msg = "Custom notifications are disabled.";
         statusmsg(msg);
     }
 
-    function showEbchPoseStatus() {
+    function showEbchPoseStatus(EBCHdata) {
         let msg = "Pose menu is automatically displayed.";
         if (EBCHdata[6] == 0) msg = "Pose menu is not automatically displayed.";
         statusmsg(msg);
     }
 
-    function showEbchUngarbleStatus() {
+    function showEbchUngarbleStatus(EBCHdata) {
         let msg = "All messages are ungarbled.";
         if (EBCHdata[2] == 0) msg = "Messages are not ungarbled.";
         if (EBCHdata[2] == 1) msg = "Messages from white list are ungarbled.";
         statusmsg(msg);
     }
 
-    function showEbchWelcomeStatus() {
+    function showEbchWelcomeStatus(EBCHdata) {
         let msg = "EBCH Welcome message.";
         if (EBCHdata[20] == 0) msg = "No EBCH Welcome message.";
         statusmsg(msg);
@@ -6094,7 +6094,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //LSCG Status
-    function showBcLscgStatus() {
+    function showBcLscgStatus(LSCGdata) {
         let msg = "";
         let Activities = "";
         let Collar = "";
@@ -6125,19 +6125,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showBoopReactionsStatus() {
+    function showBoopReactionsStatus(LSCGdata) {
         let msg = "No auto-react when booped.";
         if (LSCGdata.BoopsModule.enabled) msg = "Auto-react when booped.";
         statusmsg(msg);
     }
 
-    function showCheckRollsStatus() {
+    function showCheckRollsStatus(LSCGdata) {
         let msg = "No display of attacker/defender roll values.";
         if (LSCGdata.GlobalModule.showCheckRolls) msg = "Display of attacker/defender roll values.";
         statusmsg(msg);
     }
 
-    function showCraftingStatus() {
+    function showCraftingStatus(LSCGdata) {
         let msg = "";
         let msg1 = "Your public craftings are not shared.";
         let msg2 = "Your shared public craftings are not displayed.";
@@ -6151,19 +6151,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showEdgeBlurStatus() {
+    function showEdgeBlurStatus(LSCGdata) {
         let msg = "No blurring of the screen when you are on edge.";
         if (LSCGdata.GlobalModule.edgeBlur) msg = "Blurring of the screen when you are on edge.";
         statusmsg(msg);
     }
 
-    function showErectionStatus() {
+    function showErectionStatus(LSCGdata) {
         let msg = "No private message when you feel an erection under your clothes.";
         if (LSCGdata.GlobalModule.erectionDetection) msg = "Private message when you feel an erection under your clothes.";
         statusmsg(msg);
     }
 
-    function showLipstickStatus() {
+    function showLipstickStatus(LSCGdata) {
         let msg = "";
         let msg1 = "No lipstick mark on your face or neck when someone kisses you.";
         let msg2 = "Lipstick marks possible when you kiss someone.";
@@ -6173,7 +6173,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showOpacityStatus() {
+    function showOpacityStatus(LSCGdata) {
         let msg = "";
         let msg1 = "Effects bypassing opacity are not applied.";
         let msg2 = "Other players can't change the opacity of your wardrobe items.";
@@ -6183,7 +6183,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showRemoteStatus() {
+    function showRemoteStatus(LSCGdata) {
         let msg = "";
         let msg1 = "Remote control enabled for: ";
         let msg2 = "";
@@ -6196,13 +6196,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showResizingStatus() {
+    function showResizingStatus(LSCGdata) {
         let msg = "LSCG resizing effects will be displayed.";
         if (LSCGdata.GlobalModule.hideResizing) msg = "LSCG resizing effects will not be displayed.";
         statusmsg(msg);
     }
 
-    function showRestrainedSettingsStatus() {
+    function showRestrainedSettingsStatus(LSCGdata) {
         let msg = "";
         let msg1 = "LSCG settings can be changed when you are restrained.";
         let msg2 = "Immersive conditions are disabled";
@@ -6213,7 +6213,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //MBS Status
-    function showGarblingStatus() {
+    function showGarblingStatus(MBSdata) {
         let msg = "";
         let msg1 = "Alternative garbling disabled.";
         let msg2 = "Reduction of trailing characters with heavy gags is disabled.";
@@ -6225,19 +6225,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showLockedMbsStatus() {
+    function showLockedMbsStatus(MBSdata) {
         let msg = "You can always change MBS settings, even when you are restrained.";
         if (MBSdata.LockedWhenRestrained) msg = "MBS settings are locked when you are restrained.";
         statusmsg(msg);
     }
 
-    function showLockedWheelStatus() {
+    function showLockedWheelStatus(MBSdata) {
         let msg = "Wheel of fortune is locked when you are restrained.";
         if (MBSdata.RollWhenRestrained) msg = "You can always spin a wheel of fortune, even when you are restrained.";
         statusmsg(msg);
     }
 
-    function showMbsChangeStatus() {
+    function showMbsChangeStatus(MBSdata) {
         let msg = "New MBS Version changelog is disabled.";
         if (MBSdata.ShowChangelog) msg = "New MBS Version changelog is enabled.";
         statusmsg(msg);
@@ -6473,49 +6473,49 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Responsive Status
-    function showResponsiveStatus() {
+    function showResponsiveStatus(RSPdata) {
         let msg = "Responsive is disabled.";
         if (RSPdata.GlobalModule.ResponsiveEnabled) msg = "Responsive is enabled.";
         statusmsg(msg);
     }
 
-    function showBcrResponsesStatus() {
+    function showBcrResponsesStatus(RSPdata) {
         let msg = "Responses feature is disabled.";
         if (RSPdata.GlobalModule.responsesEnabled) msg = "Responses feature is enabled.";
         statusmsg(msg);
     }
 
-    function showCharacterTalkStatus() {
+    function showCharacterTalkStatus(RSPdata) {
         let msg = "Character Talk is disabled.";
         if (RSPdata.GlobalModule.CharTalkEnabled) msg = "Character Talk is enabled.";
         statusmsg(msg);
     }
 
-    function showInterceptMessageStatus() {
+    function showInterceptMessageStatus(RSPdata) {
         let msg = "Responses can't interrupt and send messages.";
         if (RSPdata.GlobalModule.doMessageInterruption) msg = "Responses can interrupt and send messages.";
         statusmsg(msg);
     }
 
-    function showLeaveMessageStatus() {
+    function showLeaveMessageStatus(RSPdata) {
         let msg = "The message being written is not sent when leashed out of the room.";
         if (RSPdata.GlobalModule.doLeaveMessage) msg = "The message being written is sent when leashed out of the room.";
         statusmsg(msg);
     }
 
-    function showMoansStatus() {
+    function showMoansStatus(RSPdata) {
         let msg = "Moans are not added to responses when highly aroused.";
         if (RSPdata.GlobalModule.doAddMoansOnHighArousal) msg = "Moans are added to responses when highly aroused.";
         statusmsg(msg);
     }
 
-    function showNewVersionStatus() {
+    function showNewVersionStatus(RSPdata) {
         let msg = "New Responsive Version feature is disabled.";
         if (RSPdata.GlobalModule.doShowNewVersionMessage) msg = "New Responsive Version feature is enabled.";
         statusmsg(msg);
     }
 
-    function showRulesStatus() {
+    function showRulesStatus(RSPdata) {
         let msg = "BCX rules can't prevent message sending.";
         if (RSPdata.GlobalModule.doPreventMessageIfBcxBlock) msg = "BCX rules can prevent message sending.";
         statusmsg(msg);
@@ -6887,37 +6887,37 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Themed Status   
-    function showBCThemedStatus() {
+    function showBCThemedStatus(THMdata) {
         let msg = "ThemedBC is disabled.";
         if (THMdata.GlobalModule.themedEnabled) msg = "Themed is enabled.";
         statusmsg(msg);
     }
 
-    function showCharacterAbsenceStatus() {
+    function showCharacterAbsenceStatus(THMdata) {
         let msg = "Absence's indicator is disabled.";
         if (THMdata.GlobalModule.doIndicateCharacterAbsence) msg = "Absence's indicator is enabled.";
         statusmsg(msg);
     }
 
-    function showAdvancedColoringStatus() {
+    function showAdvancedColoringStatus(THMdata) {
         let msg = "Advanced coloring is disabled";
         if (THMdata.GlobalModule.doUseAdvancedColoring) msg = "Advanced coloring is enabled.";
         statusmsg(msg);
     }
 
-    function showChatStatus() {
+    function showChatStatus(THMdata) {
         let msg = "The chat uses the default BC colors.";
         if (THMdata.IntegrationModule.chat) msg = "The chat uses colors selected in Themed.";
         statusmsg(msg);
     }
 
-    function showFlatColorStatus() {
+    function showFlatColorStatus(THMdata) {
         let msg = "Coloring sheet enabled in settings.";
         if (THMdata.GlobalModule.doUseFlatColor) msg = "Flat color enabled in settings.";
         statusmsg(msg);
     }
 
-    function showFriendListStatus() {
+    function showFriendListStatus(THMdata) {
         let msg = "";
         let msg1 = "The friend list uses the default BC colors.";
         let msg2 = "No blur effect on friend list background.";
@@ -6927,25 +6927,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showGuiOverhaulStatus() {
+    function showGuiOverhaulStatus(THMdata) {
         let msg = "The interface uses the default BC colors.";
         if (THMdata.GlobalModule.doVanillaGuiOverhaul) msg = "The interface uses colors selected in Themed.";
         statusmsg(msg);
     }
 
-    function showInputZonesStatus() {
+    function showInputZonesStatus(THMdata) {
         let msg = "The input zones use the default BC colors.";
         if (THMdata.IntegrationModule.inputs) msg = "The input zones use colors selected in Themed.";
         statusmsg(msg);
     }
 
-    function showLocalTimeStatus() {
+    function showLocalTimeStatus(THMdata) {
         let msg = "The time is displayed according your system settings.";
         if (THMdata.GlobalModule.doShowLocaleTime) msg = "The time is displayed according your locale settings.";
         statusmsg(msg);
     }
 
-    function showLoginStatus() {
+    function showLoginStatus(THMdata) {
         let msg = "";
         let msg1 = "The credits are displayed on login screen.";
         let msg2 = "The npc characters are displayed on login screen.";
@@ -6955,7 +6955,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showMiscDetailsStatus() {
+    function showMiscDetailsStatus(THMdata) {
         let msg = "";
         let msg1 = "Scrollbar uses the default BC colors.";
         let msg2 = "Text selection is not colored.";
@@ -6965,7 +6965,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showThemedVersionStatus() {
+    function showThemedVersionStatus(THMdata) {
         let msg = "New Themed Version feature is disabled.";
         if (THMdata.GlobalModule.doShowNewVersionMessage) msg = "New Themed Version feature is enabled.";
         statusmsg(msg);
@@ -7606,13 +7606,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //WCE Status 
-    function showAnimationStatus() {
+    function showAnimationStatus(WCEdata) {
         let msg = "Animation Engine disabled.";
         if (WCEdata.animationEngine) msg = "Animation Engine enabled.";
         statusmsg(msg);
     }
 
-    function showAntiCheatStatus() {
+    function showAntiCheatStatus(WCEdata) {
         let msg = "";
         let msg1 = "Anti-Cheat disabled.";
         let msg2 = "No automatic blacklist for detected cheaters.";
@@ -7624,7 +7624,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showArousalStatus() {
+    function showArousalStatus(WCEdata) {
         let msg = "";
         let msg1 = "No alternate arousal system.";
         let msg2 = "No numeric arousal meter.";
@@ -7634,7 +7634,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showCheatStatus() {
+    function showCheatStatus(WCEdata) {
         let msg = "";
         let msg1 = "No help for lockpicking.";
         let msg2 = "No automatic struggle.";
@@ -7646,7 +7646,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showColorStatus() {
+    function showColorStatus(WCEdata) {
         let msg = "";
         let msg1 = "No copy color option.";
         let msg2 = "No improved colors in chat.";
@@ -7656,13 +7656,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showEmbeddingStatus() {
+    function showEmbeddingStatus(WCEdata) {
         let msg = "No clickable links and image embeds.";
         if (WCEdata.augmentChat) msg = "Clickable links and image embeds.";
         statusmsg(msg);
     }
 
-    function showImmersionStatus() {
+    function showImmersionStatus(WCEdata) {
         let msg = "";
         let msg1 = "No blind without glasses.";
         let msg2 = "No leashing without leashable items.";
@@ -7674,7 +7674,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showLayeringStatus() {
+    function showLayeringStatus(WCEdata) {
         let msg = "";
         let msg1 = "No configuration for layer hiding.";
         let msg2 = "No layering menus when bound.";
@@ -7686,7 +7686,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showMiscStatus() {
+    function showMiscStatus(WCEdata) {
         let msg = "";
         let msg1 = "No instant messager.";
         let msg2 = "No saving of profiles.";
@@ -7700,7 +7700,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showPerformanceStatus() {
+    function showPerformanceStatus(WCEdata) {
         let msg = "";
         let msg1 = "No automatic clearing of drawing cache.";
         let msg2 = "No drawing cache button.";
@@ -7712,7 +7712,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showWardrobeStatus() {
+    function showWardrobeStatus(WCEdata) {
         let msg = "";
         let msg1 = "No extended wardrobe.";
         let msg2 = "No local wardrobe.";
@@ -7726,7 +7726,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
-    function showWceTalkingStatus() {
+    function showWceTalkingStatus(WCEdata) {
         let msg = "";
         let msg1 = "Anti-garble system disabled.";
         let msg2 = "Anti-deafen system disabled.";
@@ -14956,7 +14956,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'xstatus',
         Description: "(add-on): displays status of settings for other add-ons.",
         Action: (args) => {
@@ -14978,91 +14978,78 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let addon = args;
                 if (addon == "bcar") {
-                    if (Player.OnlineSettings.BCAR != null) {
-                        if (Player.OnlineSettings.BCAR.bcarSettings != null) {
-                            BCARdata = {};
-                            str = Player.OnlineSettings.BCAR.bcarSettings;
-                            BCARdata = str;
-                            showAnimalTypeStatus();
-                            showAnimationButtonsStatus();
-                            showArousalManipulationStatus();
-                            showBCARExpressionsStatus();
-                            showEarAnimationStatus();
-                            showEarEmoteStatus();
-                            showTailAnimationStatus();
-                            showTailEmoteStatus();
-                            showWingAnimationStatus();
+                    let str = Player.OnlineSettings.BCAR;
+                    if (str) {
+                        let BCAR = Player.OnlineSettings.BCAR.bcarSettings;
+                        if (BCAR) {
+                            let BCARdata = Player.OnlineSettings.BCAR.bcarSettings;
+                            showAnimalTypeStatus(BCARdata);
+                            showAnimationButtonsStatus(BCARdata);
+                            showArousalManipulationStatus(BCARdata);
+                            showBCARExpressionsStatus(BCARdata);
+                            showEarAnimationStatus(BCARdata);
+                            showEarEmoteStatus(BCARdata);
+                            showTailAnimationStatus(BCARdata);
+                            showTailEmoteStatus(BCARdata);
+                            showWingAnimationStatus(BCARdata);
                         }
                     }
                 } else if (addon == "bcr") {
-                    if (Player.ExtensionSettings.BCResponsiveData != null) {
-                        str = Player.ExtensionSettings.BCResponsiveData;
-                        d = LZString.decompressFromBase64(str);
-                        BCRdata = {};
-                        decoded = JSON.parse(d);
-                        BCRdata = decoded;
-                        showBCResponsiveStatus();
+                    let BCR = Player.ExtensionSettings.BCResponsiveData;
+                    if (BCR) {
+                        let BCRdata = JSON.parse(LZString.decompressFromBase64(BCR));              
+                        showBCResponsiveStatus(BCRdata);
                     }
                 } else if (addon == "bctw") {
-                    if (Player.OnlineSettings.BCT != null) {
-                        str = Player.OnlineSettings.BCT;
-                        d = LZString.decompressFromBase64(str);
-                        BCTdata = {};
-                        decoded = JSON.parse(d);
-                        BCTdata = decoded;
-                        showArousalErectionStatus();
-                        showArousalProgressStatus();
-                        showBCIconsStatus();
-                        showBCTChangelogStatus();
-                        showBCTIconStatus();
-                        showBestFriendsStatus();
-                        showFriendlistSlotsStatus();
-                        showLockConversionStatus();
-                        showRoomShareStatus();
-                        showSplitStatus();
-                        showTailWaggingStatus();
+                    let BCT = Player.ExtensionSettings.Themed;
+                    if (BCT) {
+                        let BCTdata = JSON.parse(LZString.decompressFromBase64(BCT));
+                        showArousalErectionStatus(BCTdata);
+                        showArousalProgressStatus(BCTdata);
+                        showBCIconsStatus(BCTdata);
+                        showBCTChangelogStatus(BCTdata);
+                        showBCTIconStatus(BCTdata);
+                        showBestFriendsStatus(BCTdata);
+                        showFriendlistSlotsStatus(BCTdata);
+                        showLockConversionStatus(BCTdata);
+                        showRoomShareStatus(BCTdata);
+                        showSplitStatus(BCTdata);
+                        showTailWaggingStatus(BCTdata);
                     }
                 } else if (addon == "dogs") {
-                    if (Player.ExtensionSettings.DOGS != null) {
-                        str = Player.ExtensionSettings.DOGS;
-                        d = LZString.decompressFromBase64(str);
-                        DOGSdata = {};
-                        decoded = JSON.parse(d);
-                        DOGSdata = decoded;
-                        showDeviousLockStatus();
-                        showDogsLocalStatus();
-                        showDogsVersionStatus();
-                        showRemoteControlStatus();
+                    let DOGS = Player.ExtensionSettings.DOGS;
+                    if (DOGS) {
+                        let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
+                        showDeviousLockStatus(DOGSdata);
+                        showDogsLocalStatus(DOGSdata);
+                        showDogsVersionStatus(DOGSdata);
+                        showRemoteControlStatus(DOGSdata);
                     }
                 } else if (addon == "ebch") {
-                    if (Player.OnlineSettings.EBCH != null) {
-                        EBCHdata = {};
-                        str = Player.OnlineSettings.EBCH;
-                        EBCHdata = str;
-                        showEbchLogStatus();
-                        showEbchNotificationStatus();
-                        showEbchPoseStatus();
-                        showEbchUngarbleStatus();
-                        showEbchWelcomeStatus();
+                    let EBCH = Player.OnlineSettings.EBCH;
+                    if (EBCH) {
+                        EBCHdata = Player.OnlineSettings.EBCH;
+                        showEbchLogStatus(EBCHdata);
+                        showEbchNotificationStatus(EBCHdata);
+                        showEbchPoseStatus(EBCHdata);
+                        showEbchUngarbleStatus(EBCHdata);
+                        showEbchWelcomeStatus(EBCHdata);
                     }
                 } else if (addon == "lscg") {
-                    if (Player.ExtensionSettings.LSCG != null) {
-                        str = Player.ExtensionSettings.LSCG;
-                        d = LZString.decompressFromBase64(str);
-                        LSCGdata = {};
-                        decoded = JSON.parse(d);
-                        LSCGdata = decoded;
-                        showBcLscgStatus();
-                        showBoopReactionsStatus();
-                        showCheckRollsStatus();
-                        showCraftingStatus();
-                        showEdgeBlurStatus();
-                        showErectionStatus();
-                        showLipstickStatus();
-                        showOpacityStatus();
-                        showRemoteStatus();
-                        showResizingStatus();
-                        showRestrainedSettingsStatus();
+                    let LSCG = Player.ExtensionSettings.LSCG;
+                    if (LSCG) {
+                        let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
+                        showBcLscgStatus(LSCGdata);
+                        showBoopReactionsStatus(LSCGdata);
+                        showCheckRollsStatus(LSCGdata);
+                        showCraftingStatus(LSCGdata);
+                        showEdgeBlurStatus(LSCGdata);
+                        showErectionStatus(LSCGdata);
+                        showLipstickStatus(LSCGdata);
+                        showOpacityStatus(LSCGdata);
+                        showRemoteStatus(LSCGdata);
+                        showResizingStatus(LSCGdata);
+                        showRestrainedSettingsStatus(LSCGdata);
                     }
                 } else if (addon == "mbs") {
                     if (Player.OnlineSharedSettings.MBSVersion != null) {
@@ -15072,6 +15059,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let MBS1 = stringMBSver2[0];
                         let MBS2 = stringMBSver2[1];
                         let MBS3 = stringMBSver2[2];
+                        let str = "";
+                        let d = "";
                         if ((MBS1 == 0) || (MBSver == "1.0.0") || (MBSver == "1.0.1")) {
                             str = Player.OnlineSettings.MBS;
                         } else {
@@ -15082,69 +15071,58 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else {
                             d = LZString.decompressFromUTF16(str);
                         }
-                        MBSdata = {};
-                        decoded = JSON.parse(d);
-                        MBSdata = decoded;
-                        showGarblingStatus();
-                        showLockedMbsStatus();
-                        showLockedWheelStatus();
-                        showMbsChangeStatus();
+                        let MBSdata = JSON.parse(d);
+                        showGarblingStatus(MBSdata);
+                        showLockedMbsStatus(MBSdata);
+                        showLockedWheelStatus(MBSdata);
+                        showMbsChangeStatus(MBSdata);
                     }
                 } else if (addon == "rsp") {
-                    if (Player.ExtensionSettings.Responsive != null) {
-                        str = Player.ExtensionSettings.Responsive;
-                        d = LZString.decompressFromBase64(str);
-                        RSPdata = {};
-                        decoded = JSON.parse(d);
-                        RSPdata = decoded;
-                        showResponsiveStatus();
-                        showBcrResponsesStatus();
-                        showCharacterTalkStatus();
-                        showInterceptMessageStatus();
-                        showLeaveMessageStatus();
-                        showMoansStatus();
-                        showNewVersionStatus();
-                        showRulesStatus();
+                    let RSP = Player.ExtensionSettings.Responsive;
+                    if (RSP) {
+                        let RSPdata = JSON.parse(LZString.decompressFromBase64(RSP));
+                        showResponsiveStatus(RSPdata);
+                        showBcrResponsesStatus(RSPdata);
+                        showCharacterTalkStatus(RSPdata);
+                        showInterceptMessageStatus(RSPdata);
+                        showLeaveMessageStatus(RSPdata);
+                        showMoansStatus(RSPdata);
+                        showNewVersionStatus(RSPdata);
+                        showRulesStatus(RSPdata);
                     }
                 } else if (addon == "thm") {
-                    if (Player.ExtensionSettings.Themed != null) {
-                        str = Player.ExtensionSettings.Themed;
-                        d = LZString.decompressFromBase64(str);
-                        THMdata = {};
-                        decoded = JSON.parse(d);
-                        THMdata = decoded;
-                        showBCThemedStatus();
-                        showCharacterAbsenceStatus();
-                        showAdvancedColoringStatus();
-                        showChatStatus();
-                        showFlatColorStatus();
-                        showFriendListStatus();
-                        showGuiOverhaulStatus();
-                        showInputZonesStatus();
-                        showLocalTimeStatus();
-                        if (Player.Themed != undefined) showLoginStatus();
-                        showMiscDetailsStatus();
-                        showThemedVersionStatus();
+                    let THM = Player.ExtensionSettings.Themed;
+                    if (THM) {
+                        let THMdata = JSON.parse(LZString.decompressFromBase64(THM));
+                        showBCThemedStatus(THMdata);
+                        showCharacterAbsenceStatus(THMdata);
+                        showAdvancedColoringStatus(THMdata);
+                        showChatStatus(THMdata);
+                        showFlatColorStatus(THMdata);
+                        showFriendListStatus(THMdata);
+                        showGuiOverhaulStatus(THMdata);
+                        showInputZonesStatus(THMdata);
+                        showLocalTimeStatus(THMdata);
+                        if (Player.Themed != undefined) showLoginStatus(THMdata);
+                        showMiscDetailsStatus(THMdata);
+                        showThemedVersionStatus(THMdata);
                     }
                 } else if (addon == "wce") {
-                    if (Player.ExtensionSettings.FBC != null) {
-                        str = Player.ExtensionSettings.FBC;
-                        d = LZString.decompressFromBase64(str);
-                        WCEdata = {};
-                        decoded = JSON.parse(d);
-                        WCEdata = decoded;
-                        showAnimationStatus();
-                        showAntiCheatStatus();
-                        showArousalStatus();
-                        showCheatStatus();
-                        showColorStatus();
-                        showEmbeddingStatus();
-                        showImmersionStatus();
-                        showLayeringStatus();
-                        showMiscStatus();
-                        showPerformanceStatus();
-                        showWardrobeStatus();
-                        showWceTalkingStatus();
+                    let WCE = Player.ExtensionSettings.FBC;
+                    if (WCE) {
+                        let WCEdata = JSON.parse(LZString.decompressFromBase64(WCE));
+                        showAnimationStatus(WCEdata);
+                        showAntiCheatStatus(WCEdata);
+                        showArousalStatus(WCEdata);
+                        showCheatStatus(WCEdata);
+                        showColorStatus(WCEdata);
+                        showEmbeddingStatus(WCEdata);
+                        showImmersionStatus(WCEdata);
+                        showLayeringStatus(WCEdata);
+                        showMiscStatus(WCEdata);
+                        showPerformanceStatus(WCEdata);
+                        showWardrobeStatus(WCEdata);
+                        showWceTalkingStatus(WCEdata);
                     }
                 }
             }
