@@ -6718,34 +6718,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let obl = Player.UBC.ubcSettings.bl;
         let ogl = Player.UBC.ubcSettings.gaglevel;
         let ont = Player.UBC.ubcSettings.notalk;
-        if (Player.ExtensionSettings.LSCG != null) {
-            let str = Player.ExtensionSettings.LSCG;
-            let d = LZString.decompressFromBase64(str);
-            let LSCGdata = {};
-            let decoded = JSON.parse(d);
-            LSCGdata = decoded;
-            if (InventoryGet(Player, "ItemNeck") != null) {
-                if (LSCGdata.CollarModule.chokeLevel == 4) ntt = 1;
-            }
-            let type = '';
-            let config = "";
-            let states = LSCGdata.StateModule.states;
-            type = 'asleep';
-            config = states.find(s => s.type == type);
-            if ((config != undefined) && (config.active == true)) ntt = 1;
-            type = 'frozen';
-            config = states.find(s => s.type == type);
-            if ((config != undefined) && (config.active == true)) ntt = 1;
-            type = 'gagged';
-            config = states.find(s => s.type == type);
-            if ((config != undefined) && (config.active == true)) ntt = 1;
-            type = 'hypnotized';
-            config = states.find(s => s.type == type);
-            if ((config != undefined) && (config.active == true)) ntt = 1;
+        let LSCG = Player.ExtensionSettings.LSCG;
+        if (LSCG) {
+            let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
+            let states = LSCGdata.StateModule.states || [];
+            let neck = InventoryGet(Player, "ItemNeck");
+            if (neck && LSCGdata.CollarModule.chokeLevel == 4) ntt = 1;
+            if (["asleep", "frozen", "gagged", "hypnotized"]         
+                .some(type => states.find(s => s.type === type && s.active))) ntt = 1;
         }
-        if ((InventoryGet(Player, "ItemMouth") != null) && (InventoryGet(Player, "ItemMouth").Asset.Name == "RegressedMilk")) nbl = 1;
-        if ((InventoryGet(Player, "ItemMouth2") != null) && (InventoryGet(Player, "ItemMouth2").Asset.Name == "RegressedMilk")) nbl = 1;
-        if ((InventoryGet(Player, "ItemMouth3") != null) && (InventoryGet(Player, "ItemMouth3").Asset.Name == "RegressedMilk")) nbl = 1;
+        let mouthSlots = ["ItemMouth", "ItemMouth2", "ItemMouth3"];
+        nbl = mouthSlots.some(slot => {
+            let item = InventoryGet(Player, slot);
+            return item && item.Asset.Name === "RegressedMilk";
+        }) ? 1 : 0;
         if (nbl == 1) {
             if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) BabyTalkOn = true;
             if (this.GagTalkOn == true || this.GagTalkOn == undefined) GagTalkOn = false;
@@ -6785,12 +6771,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (this.GagTalkOn == false || this.GagTalkOn == undefined) GagTalkOn = true;
             let ngl = SpeechTransformGagGarbleIntensity(Player);
             mgl = ngl;
-            if (Player.ExtensionSettings.MBS != null) {
-                let str = Player.ExtensionSettings.MBS;
-                let d = LZString.decompressFromUTF16(str);
-                let MBSdata = {};
-                let decoded = JSON.parse(d);
-                MBSdata = decoded;
+            let MBS = Player.ExtensionSettings.MBS;
+            if (MBS) {
+                let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                 if ((MBSdata.AlternativeGarbling) && (ChatRoomTargetMemberNumber == null)) {
                     ngl = 0;
                     mgl = SpeechTransformGagGarbleIntensity(Player);
@@ -6798,17 +6781,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (ngl < 0) ngl = 0;
             if (mgl < 0) mgl = 0;
-            if (Player.ExtensionSettings.LSCG != null) {
-                let str = Player.ExtensionSettings.LSCG;
-                let d = LZString.decompressFromBase64(str);
-                let LSCGdata = {};
-                let decoded = JSON.parse(d);
-                LSCGdata = decoded;
-                if (InventoryGet(Player, "ItemNeck") != null) {
-                    if (LSCGdata.CollarModule.chokeLevel > 1) {
-                        ngl = (LSCGdata.CollarModule.chokeLevel) * 2 + ngl;
-                        mgl = ngl;
-                    }
+            if (LSCG) {
+                let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
+                let neck = InventoryGet(Player, "ItemNeck");
+                if (neck && LSCGdata.CollarModule.chokeLevel > 1) {
+                    ngl += LSCGdata.CollarModule.chokeLevel * 2;
+                    mgl = ngl;
                 }
             }
             if (mgl == 0) {
