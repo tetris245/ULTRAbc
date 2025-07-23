@@ -276,6 +276,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];
     let animalmode9 = ["owo", "owoo", "whoo", "owoooo", "howl", "howll", "hoowl"];
 
+    const animalModes = [null, animalmode1, animalmode2, animalmode3, animalmode4, animalmode5, animalmode6, animalmode7, animalmode8, animalmode9];
+
     //Moaner Default Profile
     let M_MOANER_profileName = "default";
 
@@ -8533,44 +8535,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'atalk',
         Description: "(animal) (words): speaks once as a specified animal.",
         Action: (_, command, args) => {
+            let help = "The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\n" +
+                "Note that it can't be used when you are in a 'permanent' animal talk mode.\n" +
+                "Available animals:\n" +
+                "1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n" +
+                "6 pig - 7 pony - 8 puppy - 9 wolfy";
             let [mode] = args;
-            if (!mode) {
-                let msg = "The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\n" +
-                    "Note that it can't be used when you are in a 'permanent' animal talk mode." +
-                    " \n" +
-                    "Available animals:\n" +
-                    "1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n" +
-                    "6 pig - 7 pony - 8 puppy - 9 wolfy";
-                infomsg(msg);
-            } else {
-                if ((mode > 0) && (mode < 10)) {
-                    let [, , ...message] = command.split(" ");
-                    let msg = message?.join(" ");
-                    let nm = 0;
-                    if (dolltalk == true) {
-                        if (IsDollTalk(msg) == false) nm = 1;
-                        if (nm == 1) {
-                            msg = umsg4;
-                            infomsg(msg);
-                        }
-                    }
-                    if (nm == 0) {
-                        if (mode == 1) content = GarbleTalk(msg, animalmode1);
-                        if (mode == 2) content = GarbleTalk(msg, animalmode2);
-                        if (mode == 3) content = GarbleTalk(msg, animalmode3);
-                        if (mode == 4) content = GarbleTalk(msg, animalmode4);
-                        if (mode == 5) content = GarbleTalk(msg, animalmode5);
-                        if (mode == 6) content = GarbleTalk(msg, animalmode6);
-                        if (mode == 7) content = GarbleTalk(msg, animalmode7);
-                        if (mode == 8) content = GarbleTalk(msg, animalmode8);
-                        if (mode == 9) content = GarbleTalk(msg, animalmode9);
-                        ElementValue("InputChat", content);
-                        event.preventDefault();
-                        ChatRoomSendChat();
-                    }
-                }
+            if (!mode || isNaN(mode) || mode < 1 || mode > 9) {
+                infomsg(help);
+                return;
             }
-        }
+            let [, , ...message] = command.split(" ");
+            let msg = message?.join(" ");
+            if (!msg) {
+                infomsg("Please include words to say after the animal number.");
+                return;
+             }
+             if (dolltalk === true && IsDollTalk(msg) === false) {
+                infomsg(umsg4);
+                return;
+             }
+             let content = GarbleTalk(msg, animalModes[mode]);
+             ElementValue("InputChat", content);
+             if (typeof event !== "undefined" && event.preventDefault) {
+                 event.preventDefault();
+             }
+             ChatRoomSendChat();
+         }
     }])
 
     CommandCombine([{
