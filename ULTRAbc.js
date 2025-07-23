@@ -2756,12 +2756,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             ElementValue("InputChat", text3.replace(text3, text4));
             let mb = 0;
-            if (Player.ExtensionSettings.MBS != null) {
-                let str = Player.ExtensionSettings.MBS;
-                let d = LZString.decompressFromUTF16(str);
-                let MBSdata = {};
-                let decoded = JSON.parse(d);
-                MBSdata = decoded;
+            let MBS = Player.ExtensionSettings.MBS;
+            if (MBS) {
+                let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                 if (MBSdata.AlternativeGarbling) mb = 1;
             }
             let text5 = "";
@@ -7920,12 +7917,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (this.StutterOn == true) moan2 = SpeechTransformStutter(moan, st);
                 ElementValue("InputChat", moan.replace(moan, moan2));
                 let mb = 0;
-                if (Player.ExtensionSettings.MBS != null) {
-                    let str = Player.ExtensionSettings.MBS;
-                    let d = LZString.decompressFromUTF16(str);
-                    let MBSdata = {};
-                    let decoded = JSON.parse(d);
-                    MBSdata = decoded;
+                let MBS = Player.ExtensionSettings.MBS;
+                if (MBS) {
+                    let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                     if (MBSdata.AlternativeGarbling) mb = 1;
                 }
                 let moan3;
@@ -8135,12 +8129,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (this.StutterOn == true) moan2 = SpeechTransformStutter(moan, st);
         ElementValue("InputChat", moan.replace(moan, moan2));
         let mb = 0;
-        if (Player.ExtensionSettings.MBS != null) {
-            let str = Player.ExtensionSettings.MBS;
-            let d = LZString.decompressFromUTF16(str);
-            let MBSdata = {};
-            let decoded = JSON.parse(d);
-            MBSdata = decoded;
+        let MBS = Player.ExtensionSettings.MBS;
+        if (MBS) {
+            let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
             if (MBSdata.AlternativeGarbling) mb = 1;
         }
         let moan3;
