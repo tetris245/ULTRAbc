@@ -1880,19 +1880,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 let omsg = "When enabled, you will moan while cumming. It is not possible to enable it when the LSCG Splatter feature is detected as enabled.";
                 let spl = 0;
-                if (Player.ExtensionSettings.LSCG != null) {
-                    let str = Player.ExtensionSettings.LSCG;
-                    let d = LZString.decompressFromBase64(str);
-                    let LSCGdata = {};
-                    let decoded = JSON.parse(d);
-                    LSCGdata = decoded;
+                let LSCG = Player.ExtensionSettings.LSCG;
+                if (LSCG) {
+                    let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                     if (LSCGdata.SplatterModule.enabled) spl = 1;
                 }
                 if (spl == 0) {
                     addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan", omsg, false, 140);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan", omsg, true, 140);
-                    
+                    addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan", omsg, true, 140);    
                 }
                 addMenuCheckbox(64, 64, "Enable the spank moan: ", "spankMoan",
                     "When enabled, you will moan while being spanked. Also when bitten, kicked, pinched, shocked, slapped. In case of actions triggering a shock, it concerns only actions to punish orgasm, stand up or struggle. According your fetishes and your horny state, it can be pain or pleasure.", false, 140
@@ -6444,12 +6440,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         let spl = 0;
-        if (Player.ExtensionSettings.LSCG != null) {
-            let str = Player.ExtensionSettings.LSCG;
-            let d = LZString.decompressFromBase64(str);
-            let LSCGdata = {};
-            let decoded = JSON.parse(d);
-            LSCGdata = decoded;
+        let LSCG = Player.ExtensionSettings.LSCG;
+        if (LSCG) {
+            let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.SplatterModule.enabled) spl = 1;
         }
         if (spl == 1) {
@@ -7894,12 +7887,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_reactionOrgasm(Player) {
 	let spl = 0;
-        if (Player.ExtensionSettings.LSCG != null) {
-            let str = Player.ExtensionSettings.LSCG;
-            let d = LZString.decompressFromBase64(str);
-            let LSCGdata = {};
-            let decoded = JSON.parse(d);
-            LSCGdata = decoded;
+        let LSCG = Player.ExtensionSettings.LSCG;
+        if (LSCG) {
+            let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.SplatterModule.enabled) spl = 1;
         }
         if (spl == 1 && M_MOANER_orgasmActive) { 
@@ -8000,13 +7990,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
-            if (Player.ExtensionSettings.LSCG != null) {
-                let lvibe = 0;
-                let str = Player.ExtensionSettings.LSCG;
-                let d = LZString.decompressFromBase64(str);
-                let LSCGdata = {};
-                let decoded = JSON.parse(d);
-                LSCGdata = decoded;
+	    let lvibe = 0;
+            let LSCG = Player.ExtensionSettings.LSCG;
+            if (LSCG) {
+                let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                 if ((data.Content.includes("SipItem")) || (data.Content.includes("LSCG_FunnelPour"))) lvibe = 1;
                 if (data.Content.includes("Inject")) {
                     if (data.Content.includes("Gears")) {
@@ -8191,12 +8178,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Player.ArousalSettings.Progress >= 10) {
             return true;
         }
-        if (Player.ExtensionSettings.LSCG != null) {
-            let str = Player.ExtensionSettings.LSCG;
-            let d = LZString.decompressFromBase64(str);
-            let LSCGdata = {};
-            let decoded = JSON.parse(d);
-            LSCGdata = decoded;
+        let LSCG = Player.ExtensionSettings.LSCG;
+        if (LSCG) {
+            let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.InjectorModule.enableHorny == true) {
                 if (LSCGdata.InjectorModule.hornyLevel >= 40) {
                     return true;
@@ -8472,12 +8456,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
         }
-        if (Player.ExtensionSettings.LSCG != null) {
-            let str = Player.ExtensionSettings.LSCG;
-            let d = LZString.decompressFromBase64(str);
-            let LSCGdata = {};
-            let decoded = JSON.parse(d);
-            LSCGdata = decoded;
+        let LSCG = Player.ExtensionSettings.LSCG;
+        if (LSCG) {
+            let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.InjectorModule.enableHorny == true) {
                 if (LSCGdata.InjectorModule.hornyLevel >= 40) {
                     return true;
