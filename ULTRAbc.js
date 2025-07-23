@@ -6710,8 +6710,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let states = LSCGdata.StateModule.states || [];
             let neck = InventoryGet(Player, "ItemNeck");
             if (neck && LSCGdata.CollarModule.chokeLevel == 4) ntt = 1;
-            if (["asleep", "frozen", "gagged", "hypnotized"]         
-                .some(type => states.find(s => s.type === type && s.active))) ntt = 1;
+            if (states.some(s => ["asleep", "frozen", "gagged", "hypnotized"].includes(s.type) && s.active)) ntt = 1;
         }
         let mouthSlots = ["ItemMouth", "ItemMouth2", "ItemMouth3"];
         nbl = mouthSlots.some(slot => {
@@ -9716,8 +9715,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let neck = InventoryGet(Player, "ItemNeck");
                             if (neck && LSCGdata.CollarModule.chokeLevel > 1) onegl = (LSCGdata.CollarModule.chokeLevel) * 2 + onegl;
                             if (neck && LSCGdata.CollarModule.chokeLevel == 4) nt = 1;
-                            if (["asleep", "frozen", "gagged", "hypnotized"]         
-                                .some(type => states.find(s => s.type === type && s.active))) nt = 1;
+                            if (states.some(s => ["asleep", "frozen", "gagged", "hypnotized"].includes(s.type) && s.active)) nt = 1;
                         }
                     } else {
                         onegl = gaglevel;
