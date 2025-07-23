@@ -9045,36 +9045,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     CommandCombine([{
         Tag: 'btalk',
         Description: "(words): speaks once as a baby.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The btalk command must be followed by the words you want to say.";
-                infomsg(msg);
-            } else {
-                let text = args;
-                let nm = 0;
-                if (dolltalk == true) {
-                    if (IsDollTalk(text) == false) nm = 1;
-                    if (nm == 1) {
-                        let msg = "Your message can't be sent because it does not respect the rules of doll talk";
-                        infomsg(msg);
-                    }
-                }
-                if (nm == 0) {
-                    let text2 = SpeechTransformBabyTalk(text);
-                    ElementValue("InputChat", text2);
-                    let text3 = text2;
-                    if (this.StutterOn == true) text3 = SpeechTransformStutter(text2, st);
-                    ElementValue("InputChat", text2.replace(text2, text3));
-                    let text4 = text3;
-                    if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) text4 = M_MOANER_applyMoanToMsg(Player, text3);
-                    ElementValue("InputChat", text3.replace(text3, text4));
-                    event.preventDefault();
-                    ChatRoomSendChatMessage(text4);
-                }
+        Action: function(args) {
+            if (!args) {
+                infomsg("The btalk command must be followed by the words you want to say.");
+                return;
             }
+            if (dolltalk === true && !IsDollTalk(args)) {
+                infomsg("Your message can't be sent because it does not respect the rules of doll talk");
+                return;
+            }
+            let msg = SpeechTransformBabyTalk(args);
+            if (this.StutterOn) msg = SpeechTransformStutter(msg, st);
+            if (M_MOANER_talkActive && M_MOANER_scriptOn && IsStimulated(Player)) msg = M_MOANER_applyMoanToMsg(Player, msg);
+            ElementValue("InputChat", msg);
+            event.preventDefault();
+            ChatRoomSendChatMessage(msg);
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'cgame',
         Description: "(zone): launches a Club Card Game against a specific NPC.",
