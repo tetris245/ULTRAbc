@@ -76,6 +76,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const umsg5 = "This room does not use the map feature.";
     const umsg6 = " Better use the <b>/uroom</b> command.";
     const umsg7 = "you are in silent mode.";
+    const umsg8 = "Your very tight collar or a LSCG spell prevents you to talk.";
 
     const M_MOANER_moanerKey = "bc_moaner_";
     let M_MOANER_scriptOn = false;
@@ -6476,11 +6477,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             updateNoTalk(ntt, ont);
             if (window.CurrentScreen == "ChatRoom") {
                 let msg = "You are now in real baby talk mode.";
+		if (ntt == 1) msg = msg + " " + umsg8;
                 infomsg(msg);
-                if (ntt == 1) {
-                    let msg = "Besides, your very tight collar or a LSCG spell prevents you to talk.";
-                    infomsg(msg);
-                }
             }
         } else {
             BabyTalkOn = false;
@@ -6514,12 +6512,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 updateNoTalk(ntt, ont);
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
-                    let msg = "You are now in normal talk mode.";
-                    infomsg(msg);
-                    if (ntt == 1) {
-                        let msg = "However, your very tight collar or a LSCG spell prevents you to talk.";
-                        infomsg(msg);
-                    }
+                    let msg = "You are now in normal talk mode."; 
+		    if (ntt == 1) msg = msg + " " + umsg8;
+                    infomsg(msg);      
                 }
             } else {
                 if (Player.UBC.ubcSettings.rglsync == true) {
@@ -6539,11 +6534,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in real gag talk mode. Your current garbling level is " + ngl + ".";
+		    if (ntt == 1) msg = msg + " " + umsg8;
                     infomsg(msg);
-                    if (ntt == 1) {
-                        let msg = "Besides, your very tight collar or a LSCG spell prevents you to talk.";
-                        infomsg(msg);
-                    }
                 }
             }
         }
