@@ -13103,9 +13103,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'stalk',
         Description: "(stuttermode) (words): speaks once in a specified stuttering mode.",
         Action: (_, command, args) => {
-            var [mode] = args;
-            if (!mode) {
-                let msg = "The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
+           if (StutterOn) return; 
+           let help = "The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
                     "Note that it can't be used when you are in a 'permanent' stuttering mode.\n" +
                     " \n" +
                     "Available stuttering modes:\n" +
@@ -13113,31 +13112,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "2 normal stuttering\n" +
                     "3 heavy stuttering\n" +
                     "4 total stuttering";
-                infomsg(msg);
-            } else {
-                if ((mode > 0) && (mode < 5) && (StutterOn == false)) {
-                    let [, , ...message] = command.split(" ");
-                    let msg = message?.join(" ");
-                    let nm = 0;
-                    if (dolltalk == true) {
-                        if (IsDollTalk(msg) == false) nm = 1;
-                        if (nm == 1) {
-                            msg = umsg4;
-                            infomsg(msg);
-                        }
-                    }
-                    if (nm == 0) {
-                        if (mode == 1) content = SpeechTransformStutter(msg, 1);
-                        if (mode == 2) content = SpeechTransformStutter(msg, 2);
-                        if (mode == 3) content = SpeechTransformStutter(msg, 3);
-                        if (mode == 4) content = SpeechTransformStutter(msg, 4);
-                        ElementValue("InputChat", content);
-                        event.preventDefault();
-                        ChatRoomSendChat();
-                    }
-                }
+            let [mode] = args;
+            if (!mode || isNaN(mode) || mode < 1 || mode > 4) {
+                infomsg(help);
+                return;
             }
-        }
+            let [, , ...message] = command.split(" ");
+            let msg = message?.join(" ");
+            if (!msg) {
+                infomsg("Please include words to say after the stuttering mode.");
+                return;
+             }
+             if (dolltalk === true && IsDollTalk(msg) === false) {
+                infomsg(umsg4);
+                return;
+             }
+             let content = "";
+             if (mode == 1) content = SpeechTransformStutter(msg, 1);
+             if (mode == 2) content = SpeechTransformStutter(msg, 2);
+             if (mode == 3) content = SpeechTransformStutter(msg, 3);
+             if (mode == 4) content = SpeechTransformStutter(msg, 4);
+             ElementValue("InputChat", content);
+             event.preventDefault();
+             ChatRoomSendChat();
+         }
     }])
 
     CommandCombine([{
