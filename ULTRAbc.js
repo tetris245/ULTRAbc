@@ -8266,9 +8266,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
              }
              let content = GarbleTalk(msg, animalModes[mode]);
              ElementValue("InputChat", content);
-             if (typeof event !== "undefined" && event.preventDefault) {
-                 event.preventDefault();
-             }
+             event.preventDefault();
              ChatRoomSendChat();
          }
     }])
@@ -8770,7 +8768,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     CommandCombine([{
         Tag: 'btalk',
         Description: "(words): speaks once as a baby.",
-        Action: function(args) {
+        Action: (args) => {
             if (!args) {
                 infomsg("The btalk command must be followed by the words you want to say.");
                 return;
