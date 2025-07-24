@@ -6434,7 +6434,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         let newMessage = newWords.join(" ");
         if (isWhisper) {
-            newMessage = `/whisper ${target} ${newMessage}`;
+            if (text.startsWith("/whisper")) newMessage = `/whisper ${target} ${newMessage}`;
+            if (text.startsWith("/murmur")) newMessage = `/murmur ${target} ${newMessage}`;
         }
         return newMessage.trim();
     }
@@ -7954,7 +7955,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         while (currentIndex < CDList.length) {
             //if the next word contains a bracket, we stop the repartition of moans
             let currentWord = CDList[currentIndex++];
-            if (currentWord == "/whisper") {
+            if ((currentWord == "/whisper") || (currentWord == "/murmur")) {
                 next = true;
                 wh = 1;
             }
