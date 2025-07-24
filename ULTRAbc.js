@@ -9399,79 +9399,64 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     CommandCombine([{
         Tag: 'gtalk',
         Description: "(talkmode) (words): speaks once in specified gag talk.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The gtalk command must be followed by a number between 0 and 10, then the words you want to say.\n" +
-                    " \n" +
-                    "Available talk modes:\n" +
-                    "0 real gag talk (based on currently worn gags and other items restraining talking)\n" +
-                    "1 almost no gag talk\n" +
-                    "2 very light gag talk\n" +
-                    "3 light gag talk\n" +
-                    "4 easy gag talk\n" +
-                    "5 normal gag talk\n" +
-                    "6 medium gag talk\n" +
-                    "7 heavy gag talk\n" +
-                    "8 better heavy gag talk\n" +
-                    "9 very heavy gag talk\n" +
-                    "10 total gag talk";
-                infomsg(msg);
-            } else {
-                let stringGag1 = args;
-                let stringGag2 = stringGag1.split(/[ ,]+/);
-                let gaglevel = stringGag2[0];
-                let nt = 0;
-                if ((gaglevel > -1) && (gaglevel < 11)) {
-                    if (gaglevel == 0) {
-                        onegl = SpeechTransformGagGarbleIntensity(Player);
-                        mgl = onegl;
-			let MBS = Player.ExtensionSettings.MBS;
-                        if (MBS) {
-                            let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
-                            if (MBSdata.AlternativeGarbling) {
-                                onegl = 0;
-                                mgl = SpeechTransformGagGarbleIntensity(Player);
-                            }
-                        }
-                        let LSCG = Player.ExtensionSettings.LSCG;
-                        if (LSCG) {
-                            let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
-                            let states = LSCGdata.StateModule.states || [];
-                            let neck = InventoryGet(Player, "ItemNeck");
-                            if (neck && LSCGdata.CollarModule.chokeLevel > 1) onegl = (LSCGdata.CollarModule.chokeLevel) * 2 + onegl;
-                            if (neck && LSCGdata.CollarModule.chokeLevel == 4) nt = 1;
-                            if (states.some(s => ["asleep", "frozen", "gagged", "hypnotized"].includes(s.type) && s.active)) nt = 1;
-                        }
-                    } else {
-                        onegl = gaglevel;
-                    }
-                    let nm = 0;
-                    if (dolltalk == true) {
-                        let text = args.substring(2).trim();
-                        if (IsDollTalk(text) == false) nm = 1;
-                        if (nm == 1) {
-                            let msg = umsg4;
-                            infomsg(msg);
-                        }
-                    }
-                    if (nm == 0) {
-                        let content = SpeechTransformGagGarble(args.substring(2).trim(), onegl);
-                        let content2 = "";
-                        if (nt == 1) {
-                            content2 = content;
-                        } else {
-                            if (onegl != 0) {
-                                content2 = content;
-                            } else {
-                                content2 = args.substring(2).trim();
-                            }
-                        }
-                        ElementValue("InputChat", content.replace(content, content2));
-                        event.preventDefault();
-                        ChatRoomSendChat();
+        Action: (_, command, args) => {
+            let help = "The gtalk command must be followed by a number between 0 and 10, then the words you want to say.\n" +
+                " \n" +
+                "Available talk modes:\n" +
+                "0 real gag talk (based on currently worn gags and other items restraining talking)\n" +
+                "1 almost no gag talk\n" +
+                "2 very light gag talk\n" +
+                "3 light gag talk\n" +
+                "4 easy gag talk\n" +
+                "5 normal gag talk\n" +
+                "6 medium gag talk\n" +
+                "7 heavy gag talk\n" +
+                "8 better heavy gag talk\n" +
+                "9 very heavy gag talk\n" +
+                "10 total gag talk";
+            let [gaglevel] = args;
+            if (!gaglevel || isNaN(gaglevel) || gaglevel < 0 || gaglevel > 10) {
+                infomsg(help);
+                return;
+            }
+            let [, , ...message] = command.split(" ");
+            let msg = message?.join(" ");
+            if (!msg) {
+                infomsg("Please include words to say after the gagtalk level.");
+                return;
+            }
+            if (dolltalk === true && IsDollTalk(msg) === false) {
+                infomsg(umsg4);
+                return;
+            }
+            let onegl = gaglevel;
+            let nt = 0;
+            if (gaglevel == 0) {
+                onegl = SpeechTransformGagGarbleIntensity(Player);
+                let mgl = onegl;
+                let MBS = Player.ExtensionSettings.MBS;
+                if (MBS) {
+                    let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
+                    if (MBSdata.AlternativeGarbling) {
+                        onegl = 0;
+                        mgl = SpeechTransformGagGarbleIntensity(Player);
                     }
                 }
-            }
+                let LSCG = Player.ExtensionSettings.LSCG;
+                if (LSCG) {
+                    let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
+                    let states = LSCGdata.StateModule.states || [];
+                    let neck = InventoryGet(Player, "ItemNeck");
+                    if (neck && LSCGdata.CollarModule.chokeLevel > 1) onegl = (LSCGdata.CollarModule.chokeLevel) * 2 + onegl;
+                    if (neck && LSCGdata.CollarModule.chokeLevel == 4) nt = 1;
+                    if (states.some(s => ["asleep", "frozen", "gagged", "hypnotized"].includes(s.type) && s.active)) nt = 1;            
+                }
+            } 
+            let content = SpeechTransformGagGarble(msg, onegl);
+            let content2 = (nt === 1 || onegl !== 0) ? content : msg;
+            ElementValue("InputChat", content2);
+            event.preventDefault();
+            ChatRoomSendChat();
         }
     }])
 
