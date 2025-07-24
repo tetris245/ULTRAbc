@@ -925,11 +925,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (usoft == null || usoft == undefined) usoft = false;
                 if (utotal == null || utotal == undefined) utotal = false;
                 M_MOANER_saveControls();
-                BabyTalkOn = false;
-                GagTalkOn = false;
+                let BabyTalkOn = false;
+                let GagTalkOn = false;
+                let StutterOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
-                if (st == 0) StutterOn = false;
                 if (st > 0) StutterOn = true;
                 ini = 1;
                 UBCsettings();
@@ -6441,14 +6441,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function RealGarblingLevel() {
-        let notalk = 0;
-        let ntt = 0;
-        ElementValue("InputChat", "");
-        let bl = 0;
-        let nbl = 0;
+        let bl = 0, nbl = 0, notalk = 0, ntt = 0;
         let obl = Player.UBC.ubcSettings.bl;
         let ogl = Player.UBC.ubcSettings.gaglevel;
         let ont = Player.UBC.ubcSettings.notalk;
+        ElementValue("InputChat", "");
         let LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
@@ -6463,8 +6460,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             return item && item.Asset.Name === "RegressedMilk";
         }) ? 1 : 0;
         if (nbl == 1) {
-            if (this.BabyTalkOn == false || this.BabyTalkOn == undefined) BabyTalkOn = true;
-            if (this.GagTalkOn == true || this.GagTalkOn == undefined) GagTalkOn = false;
+            BabyTalkOn = true;
+            GagTalkOn = false;
             if (Player.UBC.ubcSettings.rglsync == true) {
                 bl = 1;
                 gl = 11;
@@ -6476,18 +6473,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.UBC.ubcSettings.bl = obl;
                 Player.UBC.ubcSettings.gaglevel = ogl;
             }
-            if (ntt == 1) {
-                if (Player.UBC.ubcSettings.rglsync == true) {
-                    notalk = ntt;
-                    Player.UBC.ubcSettings.notalk = ntt;
-                } else {
-                    notalk = ont;
-                    Player.UBC.ubcSettings.notalk = ont;
-                }
-            } else {
-                notalk = 0;
-                Player.UBC.ubcSettings.notalk = 0;
-            }
+            updateNoTalk(ntt, ont);
             if (window.CurrentScreen == "ChatRoom") {
                 let msg = "You are now in real baby talk mode.";
                 infomsg(msg);
@@ -6497,14 +6483,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
         } else {
-            if (this.BabyTalkOn == true || this.BabyTalkOn == undefined) BabyTalkOn = false;
-            if (this.GagTalkOn == false || this.GagTalkOn == undefined) GagTalkOn = true;
+            BabyTalkOn = false;
+            GagTalkOn = true;
             let ngl = SpeechTransformGagGarbleIntensity(Player);
             mgl = ngl;
             let MBS = Player.ExtensionSettings.MBS;
             if (MBS) {
                 let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
-                if ((MBSdata.AlternativeGarbling) && (ChatRoomTargetMemberNumber == null)) {
+                if (MBSdata.AlternativeGarbling && ChatRoomTargetMemberNumber == null) {
                     ngl = 0;
                     mgl = SpeechTransformGagGarbleIntensity(Player);
                 }
@@ -6525,18 +6511,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 GagTalkOn = false;
                 Player.UBC.ubcSettings.bl = 0;
                 Player.UBC.ubcSettings.gaglevel = 0;
-                if (ntt == 1) {
-                    if (Player.UBC.ubcSettings.rglsync == true) {
-                        notalk = ntt;
-                        Player.UBC.ubcSettings.notalk = ntt;
-                    } else {
-                        notalk = ont;
-                        Player.UBC.ubcSettings.notalk = ont;
-                    }
-                } else {
-                    notalk = 0;
-                    Player.UBC.ubcSettings.notalk = 0;
-                }
+                updateNoTalk(ntt, ont);
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in normal talk mode.";
@@ -6560,18 +6535,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.UBC.ubcSettings.bl = 0;
                     Player.UBC.ubcSettings.gaglevel = ogl;
                 }
-                if (ntt == 1) {
-                    if (Player.UBC.ubcSettings.rglsync == true) {
-                        notalk = ntt;
-                        Player.UBC.ubcSettings.notalk = ntt;
-                    } else {
-                        notalk = ont;
-                        Player.UBC.ubcSettings.notalk = ont;
-                    }
-                } else {
-                    notalk = 0;
-                    Player.UBC.ubcSettings.notalk = 0;
-                }
+                updateNoTalk(ntt, ont);
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in real gag talk mode. Your current garbling level is " + ngl + ".";
@@ -6582,6 +6546,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
+        }
+    }
+
+    function updateNoTalk(ntt, ont) {
+        if (ntt == 1) {
+            if (Player.UBC.ubcSettings.rglsync == true) {
+                notalk = ntt;
+                Player.UBC.ubcSettings.notalk = ntt;
+            } else {
+                notalk = ont;
+                Player.UBC.ubcSettings.notalk = ont;
+            }
+        } else {
+            notalk = 0;
+            Player.UBC.ubcSettings.notalk = 0;
         }
     }
 
