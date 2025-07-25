@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.4
+Most recent version: 5.5
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers**
-1. Download the ULTRAbc-version5.4.zip file on the Releases page
+1. Download the ULTRAbc-version5.5.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,17 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Modified the Chat Search screen to have all related settings on the same screen:
-  - Limited the number of rooms per page to 18
-  - Included these settings: Minimum and maximum for Normal/Hybrid Room Size and Players In Room + AutoJoin
-  - Note: When you want to change minimum/maximum, always enable the setting, make the changes, then click on the green top button
-* More changes in Club Card Game:
-  - Added a new setting when you play against a NPC: you can choose for the NPC another card deck than the one defined by the original BC code
-  - Added an actualisation/exit button: use it to apply modified parameters other than the mode (after the exit, just come back to the game!)
-  - Extended the adjustment of card decks used by NPCs to Asylum, Infiltration, Kidnap, Pandora, Private Room and Shibari (when you use more than 30 cards)
-* Change in the Moaner: the orgasm moan will automatically be disabled when the LSCG splatter feature is detected as enabled
-* Added the kidnap option to the cgame command
-* Improved or optimised several commands and functions related to background and talking
-* Removed the GUI - Chat Search page
+(...)
 
    
