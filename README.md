@@ -69,6 +69,7 @@ Changes for future version
   - Extended the adjustment of card decks used by NPCs to Asylum, Infiltration, Kidnap, Pandora, Private Room and Shibari (when you use more than 30 cards)
 * Change in the Moaner: the orgasm moan will automatically be disabled when the LSCG splatter feature is detected as enabled
 * Added the kidnap option to the cgame command
+* Improved or optimised several commands and functions related to background and talking
 * Removed the GUI - Chat Search page
 
    
