@@ -60,7 +60,7 @@ All else I might not have included.
 Changes for future version
 
 * Modified the Chat Search screen to have all related settings on the same screen:
-  - Limited to 18 the number of rooms per page
+  - Limited the number of rooms per page to 18
   - Included these settings: Minimum and maximum for Normal/Hybrid Room Size and Players In Room + AutoJoin
   - Note: When you want to change minimum/maximum, always enable the setting, make the changes, then click on the green top button
 * More changes in Club Card Game:
