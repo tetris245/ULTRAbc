@@ -3065,7 +3065,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
             const ret = next(args);
             let NewResult = [];
-            if (Player.UBC != undefined) {
+            if ((Player.UBC != undefined) && (rgame == 6)) {
                 if (Player.UBC.ubcSettings != undefined) {
                     let min = ElementValue("InputRoomMin");
                     let max = ElementValue("InputRoomMax");
@@ -3084,13 +3084,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (rgame == 3) game = "LARP";
             if (rgame == 4) game = "MagicBattle";
             if (rgame == 5) game = "Prison";
-            if (game != "") {
+            if (rgame != 0) {
                 let rm = 0;
                 while (rm < ret.length) {
                     if (ret[rm].Game == game) NewResult.push(ret[rm]);
                     rm++;
                 }
-            } else {
+                return NewResult;
+            }
+            if (rgame == 0) {
                 if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
                 if (rtype == "ALL") {
                     let rm = 0;
@@ -3136,11 +3138,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         rm++;
                     }
                 }
+                return NewResult;
             }
-            return NewResult;
         });
     }
-
+                    
     async function ULTRAChatSearchQuery() {
         modApi.hookFunction('ChatSearchQuery', 4, (args, next) => {
             ChatSearchMessage = "";
@@ -3203,11 +3205,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (hidefilt == false) {
                 if ((MouseX >= 275) && (MouseX < 339) && (MouseY >= 800) && (MouseY < 864)) {
                     if (rchat == true) {
+			rgame = 6;
                         rchat = false;
                         Player.UBC.ubcSettings.rchat = false;
                         M_MOANER_saveControls();
                         ChatSelectStartSearch(ChatRoomSpace);
                     } else {
+			rgame = 6;
                         rchat = true;
                         Player.UBC.ubcSettings.rchat = true;
                         M_MOANER_saveControls();
@@ -3227,11 +3231,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((MouseX >= 1450) && (MouseX < 1514) && (MouseY >= 800) && (MouseY < 864)) {
                     if (pchat == true) {
+			rgame = 6;
                         pchat = false;
                         Player.UBC.ubcSettings.pchat = false;
                         M_MOANER_saveControls();
                         ChatSelectStartSearch(ChatRoomSpace);
                     } else {
+			rgame = 6;
                         pchat = true;
                         Player.UBC.ubcSettings.pchat = true;
                         M_MOANER_saveControls();
