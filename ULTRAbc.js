@@ -3066,17 +3066,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const ret = next(args);
             let NewResult = [];
             if ((Player.UBC != undefined) && (rgame == 6)) {
-                if (Player.UBC.ubcSettings != undefined) {
-                    let min = ElementValue("InputRoomMin");
-                    let max = ElementValue("InputRoomMax");
-                    let min2 = ElementValue("InputPlayerMin");
-                    let max2 = ElementValue("InputPlayerMax");
-                    Player.UBC.ubcSettings.rmin = min;
-                    Player.UBC.ubcSettings.rsize = max;
-                    Player.UBC.ubcSettings.pmin = min2;
-                    Player.UBC.ubcSettings.pmax = max2;
-                    PreferenceSubscreenUBCSettingsExit();
-                 }
+                let min = ElementValue("InputRoomMin");
+                let max = ElementValue("InputRoomMax");
+                let min2 = ElementValue("InputPlayerMin");
+                let max2 = ElementValue("InputPlayerMax");
+                Player.UBC.ubcSettings.rmin = min;
+                Player.UBC.ubcSettings.rsize = max;
+                Player.UBC.ubcSettings.pmin = min2;
+                Player.UBC.ubcSettings.pmax = max2;
+                rmin = min;
+                rsize = max;
+                pmin = min2;
+                pmax = max2;
+                M_MOANER_saveControls();
             }
             let game = "";
             if (rgame == 1) game = "ClubCard";
