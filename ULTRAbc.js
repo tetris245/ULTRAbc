@@ -4341,7 +4341,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
                 if (tintmbs == false) untintMbsColors();
             }
-            TintsEffect();
+            if (name != "Online") TintsEffect();
             next(args);
         });
     }
@@ -4370,6 +4370,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPreferenceSubscreenOnlineRun() {
         modApi.hookFunction('PreferenceSubscreenOnlineRun', 4, (args, next) => {
+	    TintsEffect();
             if (PreferencePageCurrent === 2) {
                 DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
                 DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
