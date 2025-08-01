@@ -8789,7 +8789,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatRoomSendChatMessage(msg);
         }
     }])
-	
+
+    CommandCombine([{
+        Tag: 'callubc',
+        Description: ": installation of UBC GUI (to be used if it has failed during the initialisation).",
+        Action: () => {
+            runUBC();
+        }
+    }])
+
     CommandCombine([{
         Tag: 'cgame',
         Description: "(zone): launches a Club Card Game against a specific NPC.",
