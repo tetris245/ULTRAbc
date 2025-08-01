@@ -8794,6 +8794,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'callubc',
         Description: ": installation of UBC GUI (to be used if it has failed during the initialisation).",
         Action: () => {
+	    let msg = "Check now the Extensions page!";
+            infomsg(msg);
             runUBC();
         }
     }])
@@ -13958,6 +13960,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "misc") {
                 let msg = "Misc commands - * = more info when using\n" +
+                    "<b>/callubc</b> = installs UBC GUI (to be used if it has failed during initialisation).\n" +
                     "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
                     "<b>/mbsroom</b> = infos about MBS wheels in current room.\n" +
                     "<b>/mstatus</b> = displays current status of the moaner.\n" +
@@ -13967,8 +13970,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n" +
                     "<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n" +
-                    "<b>/ulistshow</b> = displays the list of players allowed to bypass Uwall.\n" +
-                    "<b>/uroom</b> = infos about UBC users and Uwall in current room.\n" +
+                    "<b>/ulistshow</b> = displays list of players in your Ulist.\n" +
+                    "<b>/uroom</b> = infos about UBC/Uwall users in current room.\n" +
                     "<b>/xmenu</b> = direct access to Extensions screen.\n" +
                     "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. *";
                 infomsg(msg);
@@ -14877,3 +14880,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
