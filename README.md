@@ -60,7 +60,8 @@ All else I might not have included.
 Changes for future version
 
 * Changed the location of the UBC message on the Login screen
-* Removed the Extensions button in Main Hall
+* Removed the Extensions button in Main Hall and the chat rooms
 * Replaced the Extensions button in Chat Search by a Preferences button
+* Removed the xmenu command
 
    
