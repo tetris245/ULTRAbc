@@ -10714,77 +10714,59 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mbsroom',
         Description: ": gives infos about MBS wheels of fortune in current chat room.",
         Action: () => {
-            let pl = 0;
-            while (pl < ChatRoomCharacter.length) {
-                let name = "";
-                let aka = "";
-                if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
-                    name = ChatRoomCharacter[pl].Name;
-                } else {
-                    name = ChatRoomCharacter[pl].Nickname;
-                    aka = ChatRoomCharacter[pl].Name;
-                }
-                let number = ChatRoomCharacter[pl].MemberNumber;
-                ChatRoomSendLocal(name + " (" + aka + ") - " + number);
-                let ubc1 = "Does not use ULTRAbc.";
-                let ubc2 = "Does not use Uwall.";
-                if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC != undefined) {
-                    if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0)) {
-                        ubc1 = "Is an ULTRAbc user.";
-                        if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape != undefined) {
-                            if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape == true) ubc1 = "UBC in no-escape mode";
-                        }
-                    }
-                }
-                if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall != undefined) {
-                    if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
-                        ubc2 = "Has enabled Uwall.";
-                    } else {
-                        ubc2 = "Has disabled Uwall.";
-                    }
-                }
-                ChatRoomSendLocal(ubc1 + " - " + ubc2);
-                if (!InventoryAvailable(ChatRoomCharacter[pl], "WheelFortune", "ItemDevices")) {
+            ChatRoomCharacter.forEach(character => {
+                const { Nickname, Name, MemberNumber, OnlineSharedSettings = {} } = character;
+                const command = "mbsroom";
+                UBCinfo(character, command);
+                if (!InventoryAvailable(character, "WheelFortune", "ItemDevices")) {
                     ChatRoomSendLocal("Does not have a wheel of fortune.");
+                    ChatRoomSendLocal(" ");
+                    return;
+                }
+                const MBS = OnlineSharedSettings.MBS;
+                const MBSVersion = OnlineSharedSettings.MBSVersion;
+                if (!MBS) {
+                    ChatRoomSendLocal("Does not have a MBS wheel of fortune.");
+                    ChatRoomSendLocal(" ");
+                    return;
+                }
+                ChatRoomSendLocal("Has a MBS wheel of fortune.");
+                if (MBS.Version !== undefined) {
+                    ChatRoomSendLocal("Does not have custom options on this wheel.");
+                    ChatRoomSendLocal(" ");
+                    return;
+                }
+                let decompressed;
+                if (MBSVersion) {
+                    const [MBS1, MBS2, MBS3] = MBSVersion.split(".").map(Number);
+                    decompressed = ((MBS1 === 0) && (MBS2 <= 6) && (MBS3 <= 22))
+                        ? LZString.decompressFromBase64(MBS)
+                        : LZString.decompressFromUTF16(MBS);
                 } else {
-                    if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS == undefined) {
-                        ChatRoomSendLocal("Does not have a MBS wheel of fortune.");
-                    }
-                    if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS != undefined) {
-                        ChatRoomSendLocal("Has a MBS wheel of fortune.");
-                        if (ChatRoomCharacter[pl].OnlineSharedSettings.MBS.Version != undefined) {
-                            ChatRoomSendLocal("Does not have custom options on this wheel.");
-                        } else {
-                            let d = "";
-                            let str = ChatRoomCharacter[pl].OnlineSharedSettings.MBS;
-                            let stringMBSver1 = ChatRoomCharacter[pl].OnlineSharedSettings.MBSVersion;
-                            let stringMBSver2 = stringMBSver1.split(".");
-                            let MBS1 = stringMBSver2[0];
-                            let MBS2 = stringMBSver2[1];
-                            let MBS3 = stringMBSver2[2];
-                            if ((MBS1 == 0) && (MBS2 <= 6) && (MBS3 <= 22)) {
-                                d = LZString.decompressFromBase64(str);
-                            } else {
-                                d = LZString.decompressFromUTF16(str);
-                            }
-                            let MBSwhdata = {};
-                            let decoded = JSON.parse(d);
-                            MBSwhdata = decoded;
-                            let j = 0;
-                            for (let i = 0; i < 32; i++)
-                                if (MBSwhdata.FortuneWheelItemSets[i] != null) {
-                                    j = j + 1;
-                                    ChatRoomSendLocal(i + " - " + MBSwhdata.FortuneWheelItemSets[i].name);
-                                }
-                            if (j == 0) {
-                                ChatRoomSendLocal("Does not have custom options on this wheel.");
-                            }
+                    decompressed = LZString.decompressFromUTF16(MBS);
+                }
+                let MBSwhdata;
+                try {
+                    MBSwhdata = JSON.parse(decompressed);
+                } catch {
+                    ChatRoomSendLocal("Error reading custom options.");
+                    ChatRoomSendLocal(" ");
+                    return;
+                }
+                let found = false;
+                if (MBSwhdata && MBSwhdata.FortuneWheelItemSets) {
+                    MBSwhdata.FortuneWheelItemSets.forEach((item, i) => {
+                        if (item != null) {
+                            found = true;
+                            ChatRoomSendLocal(i + " - " + item.name);
                         }
-                    }
+                    });
+                }
+                if (!found) {
+                    ChatRoomSendLocal("Does not have custom options on this wheel.");
                 }
                 ChatRoomSendLocal(" ");
-                pl++;
-            }
+            });
         }
     }])
 
@@ -14840,5 +14822,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
