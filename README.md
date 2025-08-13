@@ -61,5 +61,6 @@ Changes for future version
 
 * Changed the location of the UBC message on the Login screen
 * Removed the Extensions button in Main Hall
+* Replaced the Extensions button in Chat Search by a Preferences button
 
    
