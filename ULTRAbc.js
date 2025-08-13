@@ -10479,75 +10479,43 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'maproom',
         Description: ": gives infos about location of players in current mapped chat room.",
         Action: () => {
-            if (IsMapRoom() == false) {
-                let msg = umsg5 + umsg6;
-                infomsg(msg);
-            } else {
-                let pl = 0;
-                while (pl < ChatRoomCharacter.length) {
-                    let name = "";
-                    let aka = "";
-                    if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
-                        name = ChatRoomCharacter[pl].Name;
-                    } else {
-                        name = ChatRoomCharacter[pl].Nickname;
-                        aka = ChatRoomCharacter[pl].Name;
-                    }
-                    let number = ChatRoomCharacter[pl].MemberNumber;
-                    ChatRoomSendLocal(name + " (" + aka + ") - " + number);
-                    let ubc1 = "Does not use ULTRAbc.";
-                    let ubc2 = "Does not use Uwall.";
-                    if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC != undefined) {
-                        if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0)) {
-                            ubc1 = "Is an ULTRAbc user.";
-                            if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape != undefined) {
-                                if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape == true) ubc1 = "UBC in no-escape mode";
-                            }
-                        }
-                    }
-                    if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall != undefined) {
-                        if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
-                            ubc2 = "Has enabled Uwall.";
-                        } else {
-                            ubc2 = "Has disabled Uwall.";
-                        }
-                    }
-                    ChatRoomSendLocal(ubc1 + " - " + ubc2);
-                    if (ChatRoomCharacter[pl].MapData != undefined) {
-                        let exinfo = "";
-                        if (ChatRoomData.MapData.Type == "Always") exinfo = "Real presence in map: YES";
-                        if (ChatRoomData.MapData.Type == "Hybrid") {
-                            if (ChatRoomCharacter[pl].OnlineSharedSettings.Inmap != undefined) {
-                                if (ChatRoomCharacter[pl].OnlineSharedSettings.Inmap == true) {
-                                    exinfo = "Real presence in map: YES";
-                                } else {
-                                    exinfo = "Real presence in map: NO";
-                                }
-                            } else {
-                                exinfo = "Real presence in map: ?";
-                            }
-                        }
-                        ChatRoomSendLocal("X = " + ChatRoomCharacter[pl].MapData.Pos.X + " - Y = " + ChatRoomCharacter[pl].MapData.Pos.Y + " - " + exinfo);
-                        let key1 = "";
-                        let key2 = "";
-                        let key3 = "";
-                        if (ChatRoomCharacter[pl] == Player) {
-                            if (Player.MapData.PrivateState.HasKeyGold) key1 = "Gold";
-                            if (Player.MapData.PrivateState.HasKeySilver) key2 = "Silver";
-                            if (Player.MapData.PrivateState.HasKeyBronze) key3 = "Bronze";
-                            ChatRoomSendLocal("Keys found: " + key1 + " - " + key2 + " - " + key3 + ".");
-                        }
-                    } else {
-                        ChatRoomSendLocal("Does not have entered map");
-                    }
-                    ChatRoomSendLocal(" ");
-                    pl++;
-                }
+            if (!IsMapRoom()) {
+                infomsg(umsg5 + umsg6);
+                return;
             }
+            ChatRoomCharacter.forEach(character => {
+                const { Nickname, Name, MemberNumber, OnlineSharedSettings = {}, MapData } = character;
+                const command = "maproom";
+                UBCinfo(character, command);              
+                if (MapData) {
+                    let exinfo = "";
+                    if (ChatRoomData.MapData.Type === "Always") {
+                        exinfo = "Real presence in map: YES";
+                    } else if (ChatRoomData.MapData.Type === "Hybrid") {
+                        if (typeof OnlineSharedSettings.Inmap === "boolean") {
+                            exinfo = `Real presence in map: ${OnlineSharedSettings.Inmap ? "YES" : "NO"}`;
+                        } else {
+                            exinfo = "Real presence in map: ?";
+                        }
+                    }
+                    const { X, Y } = MapData.Pos;
+                    ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
+                    if (character === Player) {
+                        const keys = [];
+                        if (Player.MapData.PrivateState.HasKeyGold) keys.push("Gold");
+                        if (Player.MapData.PrivateState.HasKeySilver) keys.push("Silver");
+                        if (Player.MapData.PrivateState.HasKeyBronze) keys.push("Bronze");
+                        ChatRoomSendLocal(`Keys found: ${keys.join(" - ") || "None"}.`);
+                    }
+                } else {
+                    ChatRoomSendLocal("Does not have entered map");
+                }
+                ChatRoomSendLocal(" ");
+            });
         }
     }])
 
@@ -14872,4 +14840,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
