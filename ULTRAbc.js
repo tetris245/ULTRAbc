@@ -495,26 +495,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         fullseed = false;
         frkeys = false;
         gl = 0;
-	hidefilt = false;
+	    hidefilt = false;
         highfame = false;
         hotkeys = false;
         magiccheat = false;
         magictoys = false;
         mapcheat = false;
         mapfull = false;
-	mapfull2 = false;
+	    mapfull2 = false;
         maptrap1 = 0;
         noescape = false;
         nogarble = false;
         nostruggle = false;
         notalk = 0;
-	noteleport = false;
+	    noteleport = false;
         notimeout = false;
         notimeout2 = false;
         noubccolor = false;
         nowhisper = false;
         nowhrange = false;
-	npcdeck = -1;
+	    npcdeck = -1;
         npcpunish = false;
         outbuttons = false;
         pchat = false;
@@ -586,14 +586,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         fullseed = data.fullseed;
         frkeys = data.frkeys;
         gl = data.gaglevel * 1;
-	hidefilt = data.hidefilt;
+	    hidefilt = data.hidefilt;
         highfame = data.highfame;
         hotkeys = data.hotkeys;
         magiccheat = data.magiccheat;
         magictoys = data.magictoys;
         mapcheat = data.mapcheat;
         mapfull = data.mapfull;
-	mapfull2 = data.mapfull2;
+	    mapfull2 = data.mapfull2;
         maptrap1 = data.maptrap1 * 1;
         noescape = data.noescape;
         nogarble = data.nogarble;
@@ -605,7 +605,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noubccolor = data.noubccolor;
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
-	npcdeck = data.npcdeck * 1;
+	    npcdeck = data.npcdeck * 1;
         npcpunish = data.npcpunish;
         outbuttons = data.outbuttons;
         pchat = data.pchat;
@@ -752,7 +752,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "fixperm": fixperm,
             "frkeys": frkeys,
             "fullseed": fullseed,
-	    "hidefilt": hidefilt,
+	        "hidefilt": hidefilt,
             "highfame": highfame,
             "hotkeys": hotkeys,
             "magiccheat": magiccheat,
@@ -837,7 +837,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
                 console.log("ULTRAbc loaded: Version " + UBCver);
-		if (ahybrid == null || ahybrid == undefined) ahybrid = false;
+		        if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (animal == null || animal == undefined) animal = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;                   
                 if (autojoin == null || autojoin == undefined) autojoin = false;                  
@@ -861,14 +861,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (gl == null || gl == undefined) gl = 0;
                 if (gl == -1) gl = 11;
                 if (hearing == null || hearing == undefined) hearing = 0;
-		if (hidefilt == null || hidefilt == undefined) hidefilt = false;
+		        if (hidefilt == null || hidefilt == undefined) hidefilt = false;
                 if (highfame == null || highfame == undefined) highfame = false;                  
                 if (hotkeys == null || hotkeys == undefined) hotkeys = false;                  
                 if (magiccheat == null || magiccheat == undefined) magiccheat = false;               
                 if (magictoys == null || magictoys == undefined) magictoys = false;                
                 if (mapcheat == null || mapcheat == undefined) mapcheat = false;                   
                 if (mapfull == null || mapfull == undefined) mapfull = false;   
-		if (mapfull2 == null || mapfull2 == undefined) mapfull2 = false; 
+		        if (mapfull2 == null || mapfull2 == undefined) mapfull2 = false; 
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
@@ -891,7 +891,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (noubccolor == null || noubccolor == undefined) noubccolor = false;                
                 if (nowhisper == null || nowhisper == undefined) nowhisper = false;                 
                 if (nowhrange == null || nowhrange == undefined) nowhrange = false;
-		if (npcdeck == null || npcdeck == undefined) npcdeck = -1;
+		        if (npcdeck == null || npcdeck == undefined) npcdeck = -1;
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;                  
                 if (outbuttons == null || outbuttons == undefined) outbuttons = false;                  
                 if (pchat == null || pchat == undefined) pchat = false;
@@ -997,26 +997,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 fullseed: false,
                 gaglevel: 0,
                 hearing: 0,
-		hidefilt: false,
+		        hidefilt: false,
                 highfame: false,
                 hotkeys: false,
                 magiccheat: false,
                 magictoys: false,
                 mapcheat: false,
                 mapfull: false,
-		mapfull2: false,
+		        mapfull2: false,
                 maptrap1: 0,
                 noescape: false,
                 nogarble: false,
                 nostruggle: false,
                 notalk: 0,
-		noteleport: false,
+		        noteleport: false,
                 notimeout: false,
                 notimeout2: false,
                 noubccolor: false,
                 nowhisper: false,
                 nowhrange: false,
-		npcdeck: -1,
+		        npcdeck: -1,
                 npcpunish: false,
                 orgasmMoan: true,
                 outbuttons: false,
@@ -14880,3 +14880,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
