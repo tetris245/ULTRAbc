@@ -6545,7 +6545,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in normal talk mode."; 
-		    if (ntt == 1) msg = msg + " " + umsg8;
+		            if (ntt == 1) msg = msg + " " + umsg8;
                     infomsg(msg);      
                 }
             } else {
@@ -6566,7 +6566,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
                     let msg = "You are now in real gag talk mode. Your current garbling level is " + ngl + ".";
-		    if (ntt == 1) msg = msg + " " + umsg8;
+		            if (ntt == 1) msg = msg + " " + umsg8;
                     infomsg(msg);
                 }
             }
@@ -14880,4 +14880,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
