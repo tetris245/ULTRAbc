@@ -3202,7 +3202,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {          
-            if ((MouseX >= 1390) && (MouseX < 1480) && (MouseY >= 25) && (MouseY < 115)) ExtClick();
+            if ((MouseX >= 1390) && (MouseX < 1480) && (MouseY >= 25) && (MouseY < 115)) PrfClick();
             if ((MouseX >= 1500) && (MouseX < 1590) && (MouseY >= 25) && (MouseY < 115) && (ChatSearchMode == "")) CharacterAppearanceLoadCharacter(Player);
             if (hidefilt == false) {
                 if ((MouseX >= 275) && (MouseX < 339) && (MouseY >= 800) && (MouseY < 864)) {
@@ -3450,7 +3450,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(25, 888, 300, 54, languageLabel, "White");
             DrawButton(685, 25, 90, 90, "", "White", "Icons/Accept.png", ChatSearchMode == "" ? TextGet("SearchRoom") : TextGet("ApplyFilter"));
             DrawButton(795, 25, 90, 90, "", "White", "Icons/Cancel.png", ChatSearchMode == "" ? TextGet("ClearFilter") : TextGet("LoadFilter"));
-            DrawButton(1390, 25, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
+            DrawButton(1390, 25, 90, 90, "", "White", "Icons/Preference.png", "Preferences");
             if (ChatSearchMode == "") {
                 DrawButton(1500, 25, 90, 90, "", "White", "Icons/Dress.png", "Wardrobe");
                 DrawButton(1665, 25, 90, 90, "", "White", "Icons/Plus.png", TextGet("CreateRoom"));
@@ -14820,5 +14820,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
