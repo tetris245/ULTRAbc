@@ -2612,13 +2612,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Type: "Action",
                     Dictionary
                 });
-                if ((Player.ItemPermission < 3) && (fixperm == false)) {
-                    Player.ItemPermission = 3;
-                    ServerAccountUpdate.QueueData({
-                        ItemPermission: Player.ItemPermission
-                    }, true);
-                    setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
-                }
+                if ((Player.AllowedInteractions < AllowedInteractions.OwnerLoversWhitelistOnly) && (fixperm == false)) {
+			        Player.AllowedInteractions = AllowedInteractions.OwnerLoversWhitelistOnly;
+			        ServerAccountUpdate.QueueData({
+                        AllowedInteractions: Player.AllowedInteractions, 
+                        ItemPermission: Player.AllowedInteractions }, true);
+			        setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
+		        }
             }
             return;
         });
@@ -11415,10 +11415,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let perm = args * 1;
                 if ((perm > -1) && (perm < 6)) {
-                    Player.ItemPermission = perm;
-                    ServerAccountUpdate.QueueData({
-                        ItemPermission: Player.ItemPermission
-                    });
+                    Player.AllowedInteractions = perm;
+                    ServerAccountUpdate.QueueData({ 
+                        AllowedInteractions: Player.AllowedInteractions, 
+                        ItemPermission: Player.AllowedInteractions }, true);
                 }
             }
         }
@@ -14766,6 +14766,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
