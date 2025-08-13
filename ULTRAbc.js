@@ -4071,6 +4071,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(240, 585, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
             if (MouseIn(240, 695, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) PrfClick();
+			if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 695) && (MouseY < 785)) {
+                FriendListReturn = {
+                    Screen: CurrentScreen,
+                    Module: CurrentModule
+                };
+                CommonSetScreen("Character", "FriendList");
+            }
             next(args);
         });
     }
@@ -4101,6 +4108,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(240, 695, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
             DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
             DrawTextFit("UBC Wiki", 425, 743, 308, "Black");
+			DrawButton(570, 695, 90, 90, "", "White", "Icons/FriendList.png", "Friends");
             next(args);
         });
     }
@@ -14766,6 +14774,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
