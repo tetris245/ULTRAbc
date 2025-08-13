@@ -8558,14 +8558,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ccback = BackgroundsList[ccbg].Name;
                             }
                             Player.Game.ClubCard.Background = ccback;
-			    ServerAccountUpdate.QueueData({
+			                ServerAccountUpdate.QueueData({
                                 Game: Player.Game 
                             });
                             let msg = "The background of the Club Card Game is now: " + ccback + ".";
                             infomsg(msg);
                         }
                     }
-
                     if (screen == 1) {
                         let frbg = stringBg2[1];
                         let frback = "";
@@ -14880,5 +14879,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
