@@ -4036,7 +4036,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 120, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "", "");
+            DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "", "");
             DrawButton(1910, 780, 90, 90, "NO TOAST", "White", "", "Click here to hide all toasts");
             next(args);
         });
@@ -14822,3 +14822,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
