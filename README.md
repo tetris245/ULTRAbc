@@ -59,6 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Changed the location of the UBC message on the Login screen
+* Removed the Extensions button in Main Hall
 
    
