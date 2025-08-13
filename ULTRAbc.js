@@ -3207,13 +3207,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (hidefilt == false) {
                 if ((MouseX >= 275) && (MouseX < 339) && (MouseY >= 800) && (MouseY < 864)) {
                     if (rchat == true) {
-			rgame = 6;
+			            rgame = 6;
                         rchat = false;
                         Player.UBC.ubcSettings.rchat = false;
                         M_MOANER_saveControls();
                         ChatSelectStartSearch(ChatRoomSpace);
                     } else {
-			rgame = 6;
+			            rgame = 6;
                         rchat = true;
                         Player.UBC.ubcSettings.rchat = true;
                         M_MOANER_saveControls();
@@ -3233,13 +3233,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((MouseX >= 1450) && (MouseX < 1514) && (MouseY >= 800) && (MouseY < 864)) {
                     if (pchat == true) {
-			rgame = 6;
+			            rgame = 6;
                         pchat = false;
                         Player.UBC.ubcSettings.pchat = false;
                         M_MOANER_saveControls();
                         ChatSelectStartSearch(ChatRoomSpace);
                     } else {
-			rgame = 6;
+			            rgame = 6;
                         pchat = true;
                         Player.UBC.ubcSettings.pchat = true;
                         M_MOANER_saveControls();
@@ -3498,7 +3498,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 BackgroundSelectionMake(backgrounds, background, (Name, setBackground) => {
 		    if (setBackground) {
 		        Player.Game.ClubCard.Background = Name;
-			ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
+			    ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 		    }
 		    CommonSetScreen("MiniGame", "ClubCardBuilder");
 		});
@@ -3702,13 +3702,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     DrawButton(65, 60, 90, 90, "NHF", "White", "", "Switch to High Fame mode");
                 }
-		DrawText("Actualisation", 430, 35, "White", "Black");
+		        DrawText("Actualisation", 430, 35, "White", "Black");
                 DrawButton(385, 60, 90, 90, "", "White", "Icons/Exit.png");
                 DrawText("Available options for Default and NPC card decks:", 1140, 35, "White", "Gray");
                 DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
                 DrawText("5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
-		if (ClubCardIsOnline() == false) DrawText("Only for NPC: -1 = Deck defined by original BC code", 1140, 275, "White", "Gray");
-		DrawText("If you change other parameters than the mode,", 1140, 750, "White", "Black");
+		        if (ClubCardIsOnline() == false) DrawText("Only for NPC: -1 = Deck defined by original BC code", 1140, 275, "White", "Gray");
+		        DrawText("If you change other parameters than the mode,", 1140, 750, "White", "Black");
                 DrawText("click the Exit button, then come back to play", 1140, 830, "White", "Black");
                 const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
                 fameInput.setAttribute("min", "150");
@@ -3728,7 +3728,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 deckInput.setAttribute("autocomplete", "off");
                 DrawText("Default card deck", 145, 350, "White", "Gray");
                 ElementPosition("InputDefaultDeck", 420, 345, 250);
-		if (ClubCardIsOnline() == false) { 
+		        if (ClubCardIsOnline() == false) { 
                     const npcdeckInput = ElementCreateInput("InputNpcDeck", "number", npcdeck);
                     npcdeckInput.setAttribute("min", "-1");
                     npcdeckInput.setAttribute("max", "10");
@@ -14880,4 +14880,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
