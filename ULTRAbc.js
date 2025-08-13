@@ -14315,46 +14315,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'uroom',
         Description: ": gives infos about UBC users and Uwall protection in current chat room.",
         Action: () => {
-            let pl = 0;
-            while (pl < ChatRoomCharacter.length) {
-                let name = "";
-                let aka = "";
-                if ((ChatRoomCharacter[pl].Nickname == '') || (ChatRoomCharacter[pl].Nickname == undefined)) {
-                    name = ChatRoomCharacter[pl].Name;
-                } else {
-                    name = ChatRoomCharacter[pl].Nickname;
-                    aka = ChatRoomCharacter[pl].Name;
-                }
-                let number = ChatRoomCharacter[pl].MemberNumber;
-                ChatRoomSendLocal(name + " (" + aka + ") - " + number);
+            ChatRoomCharacter.forEach(character => {
+                const name = character.Nickname || character.Name;
+                const aka = character.Nickname ? character.Name : "";
+                const number = character.MemberNumber;
+                ChatRoomSendLocal(`${name}${aka ? " (" + aka + ")" : ""} - ${number}`);
                 let ubc1 = "Does not use ULTRAbc.";
                 let ubc2 = "Does not use Uwall.";
-                if (ChatRoomCharacter[pl].OnlineSharedSettings.UBC != undefined) {
-                    if ((ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver) || (ChatRoomCharacter[pl].OnlineSharedSettings.UBC == UBCver0)) {
-                        ubc1 = "Is an ULTRAbc user.";
-                        if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape != undefined) {
-                            if (ChatRoomCharacter[pl].OnlineSharedSettings.Unoescape == true) ubc1 = "UBC in no-escape mode";
-                        }
+                const shared = character.OnlineSharedSettings || {};
+                if (shared.UBC === UBCver || shared.UBC === UBCver0) {
+                    ubc1 = "Is an ULTRAbc user.";
+                    if (shared.Unoescape === true) {
+                        ubc1 = "UBC in no-escape mode";
                     }
                 }
-                if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall != undefined) {
-                    if (ChatRoomCharacter[pl].OnlineSharedSettings.Uwall == true) {
-                        ubc2 = "Has enabled Uwall.";
-                    } else {
-                        ubc2 = "Has disabled Uwall.";
-                    }
+                if (typeof shared.Uwall === "boolean") {
+                    ubc2 = shared.Uwall ? "Has enabled Uwall." : "Has disabled Uwall.";
                 }
-                ChatRoomSendLocal(ubc1 + " - " + ubc2);
+                ChatRoomSendLocal(`${ubc1} - ${ubc2}`);
                 ChatRoomSendLocal(" ");
-                pl++;
-            }
+            });
         }
-    }])
-
+    }]);
+ 
     CommandCombine([{
         Tag: 'vibe',
         Description: ": (slot) (mode): changes mode of worn vibe in a specific slot.",
@@ -14879,4 +14866,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
