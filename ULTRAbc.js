@@ -8834,16 +8834,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     RoomToGame();
                     CommonSetScreen("Room", "Introduction");
                     IntroductionMaid.Stage = "90";
-		} else if (minigame == "kidnap") {
+		        } else if (minigame == "kidnap") {
                     RoomToGame();
                     CommonSetScreen("Room", "KidnapLeague");
                     KidnapLeagueBackground = "MainHall";
-	            CharacterDelete(KidnapLeagueRandomKidnapper, false);
-	            KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
-	            CharacterSetCurrent(KidnapLeagueRandomKidnapper);
+	                CharacterDelete(KidnapLeagueRandomKidnapper, false);
+	                KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
+	                CharacterSetCurrent(KidnapLeagueRandomKidnapper);
                     KidnapLeagueRandomKidnapperScenario = "1";
                     KidnapLeagueRandomKidnapper.Stage = KidnapLeagueRandomKidnapperScenario.toString();
-		    KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario); 
+		            KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario); 
                 } else if (minigame == "larp") {
                     RoomToGame();
                     CommonSetScreen("Room", "LARP");
@@ -14879,3 +14879,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
