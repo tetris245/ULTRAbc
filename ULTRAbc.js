@@ -121,6 +121,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let asylumlimit;
     let autojoin;
     let dolltalk;
+	let extbuttons;
     let extrainfo;
     let fixperm;
     let frkeys;
@@ -488,6 +489,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cextra = false;
         cfame = 150;
         dolltalk = false;
+		extbuttons = false;
         extrainfo = false;
         fixperm = false;
         fullseed = false;
@@ -578,6 +580,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cextra = data.cextra;
         cfame = data.cfame;
         dolltalk = data.dolltalk;
+		extbuttons = data.extbuttons;
         extrainfo = data.extrainfo;
         fixperm = data.fixperm;
         fullseed = data.fullseed;
@@ -744,6 +747,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "asylumlimit": asylumlimit,
             "autojoin": autojoin,
             "dolltalk": dolltalk,
+            "extbuttons": extbuttons,
             "extrainfo": extrainfo,
             "fixperm": fixperm,
             "frkeys": frkeys,
@@ -846,7 +850,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cdeck == null || cdeck == undefined) cdeck = 0;                  
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 150;
-                if (dolltalk == null || dolltalk == undefined) dolltalk = false;                                
+                if (dolltalk == null || dolltalk == undefined) dolltalk = false; 
+				if (extbuttons == null || extbuttons == undefined) extbuttons = false;             
                 if (extrainfo == null || extrainfo == undefined) extrainfo = false;                   
                 if (fixperm == null || fixperm == undefined) fixperm = false;                  
                 if (fullseed == null || fullseed == undefined) fullseed = false;                
@@ -985,6 +990,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cfame: 150,
                 cum: false,
                 dolltalk: false,
+				extbuttons: false,
                 extrainfo: false,
                 fixperm: false,
                 frkeys: false,
@@ -1668,6 +1674,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCButtonsLoad = function() {
                 UBCPreferenceSubscreen = "UBCButtons";
+				addMenuCheckbox(64, 64, "Enable Preferences button in chat rooms: ", "extbuttons",
+                    "When checked, a Preferences button will be added in the chat rooms.", false, 150
+                );          
                 addMenuCheckbox(64, 64, "Enable FREE buttons: ", "sosbuttons",
                     "The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape", 150
                 );
@@ -2355,6 +2364,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
+			if (extbuttons == true) {
+                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
+                    PrfClick();
+                    return;
+                }
+            }         
             if ((sosbuttons == true) && (noescape == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 315) && (MouseY < 360)) {
                     let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
@@ -2577,6 +2592,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
+            }
+			if (extbuttons == true) {
+                DrawButton(955, 270, 45, 45, "", "White", "", "");
+                DrawImageResize("Icons/Preference.png", 960, 272, 40, 40);
             }
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
@@ -14774,6 +14793,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
