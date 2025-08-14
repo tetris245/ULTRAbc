@@ -12973,79 +12973,77 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'spin',
         Description: "(target) (option): allows access to target's wheel of fortune, even when not displayed.",
         Action: (args) => {
-            if (args === "") {
-                let msg = "The spin command must be followed by the target whose wheel of fortune interests you, and optionally a mode.\n" +
+            if (!args || args.trim() === "") {
+                infomsg(
+                    "The spin command must be followed by the target whose wheel of fortune interests you, and optionally a mode.\n" +
                     "Available modes:\n" +
                     "a = automatic real spinning (only the options selected by the wheel creator)\n" +
                     "i = info about the maximum of options on the wheel\n" +
                     "r = full random spinning (includes also the options not selected by the wheel creator)\n" +
                     "Tip: use the i mode before the r mode, it will correctly initialise the messages.\n" +
-                    "Note that roleplay is disabled by a and r modes!";
-                infomsg(msg);
-            } else {
-                let stringSol1 = args;
-                let stringSol2 = stringSol1.split(/[ ,]+/);
-                let targetname = stringSol2[0];
-                let option = stringSol2[1];
-                let target = TargetSearch(targetname);
-                if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
-                    tgpname = getNickname(target);
-                    if (IsTargetProtected(target)) {
-                        let msg = umsg1 + tgpname + umsg2;
-                        infomsg(msg);
-                    } else {
-                        if (!InventoryAvailable(target, "WheelFortune", "ItemDevices")) {
-                            let msg = "Bad luck! This player does not have a wheel of fortune.";
-                            infomsg(msg);
-                        } else {
-                            CurrentCharacter = target;
-                            ChatRoomHideElements();
-                            WheelFortuneReturnScreen = CommonGetScreen();
-                            WheelFortuneBackground = ChatRoomData.Background;
-                            WheelFortuneCharacter = CurrentCharacter;
-                            DialogLeave();
-                            CommonSetScreen("MiniGame", "WheelFortune");
-                            let maxwh = WheelFortuneOption.length - 1;
-                            if (option == "a") {
-                                WheelFortuneRoleplay = false;
-                                WheelFortuneForced = false;
-                                WheelFortuneVelocity = WheelFortuneVelocity + 3000 + (Math.random() * 3000);
-                                WheelFortuneVelocityTime = CommonTime();
-                                let Msg = TextGet("Spin");
-                                Msg = Msg.replace("CharacterName", CharacterNickname(WheelFortuneCharacter));
-                                ServerSend("ChatRoomChat", {
-                                    Content: Msg,
-                                    Type: "Emote"
-                                });
-                            }
-                            if (option == "i") {
-                                WheelFortuneExit();
-                                let msg = "The options on this wheel go from 0 to " + maxwh + ".";
-                                infomsg(msg);
-                            }
-                            if (option == "r") {
-                                WheelFortuneRoleplay = false;
-                                const Result = [];
-                                let Roll = Math.floor(Math.random() * WheelFortuneOption.length);
-                                if (Roll == 0) Roll = 1;
-                                let id = WheelFortuneOption[Roll - 1].ID;
-                                if ((id != "j") && (id != "k") && (id != "l") && (id != "m")) {
-                                    Result.push(Roll - 1);
-                                    let msg = tmpname + " randomly forces an option of " + tgpname + "'s wheel.";
-                                    publicmsg(msg);
-                                    WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[Result];
-                                    WheelFortuneResult();
-                                } else {
-                                    WheelFortuneExit();
-                                    let msg = "No result! Try again!";
-                                    infomsg(msg);
-                                }
-                            }
-                        }
-                    }
-                }
-                ChatRoomSetTarget(-1);
+                    "Note that roleplay is disabled by a and r modes!"
+                );
+                return;
             }
+            const [targetname, option = ""] = args.split(/[ ,]+/);
+            const target = TargetSearch(targetname);
+            if (!target || !target.OnlineSharedSettings?.UBC) {
+                infomsg("Target not found or does not have UBC settings.");
+                return;
+            }
+            const nickname = getNickname(target);
+            if (IsTargetProtected(target)) {
+                infomsg(`${umsg1}${nickname}${umsg2}`);
+                return;
+            }
+            if (!InventoryAvailable(target, "WheelFortune", "ItemDevices")) {
+                infomsg("Bad luck! This player does not have a wheel of fortune.");
+                return;
+            }
+            CurrentCharacter = target;
+            ChatRoomHideElements();
+            WheelFortuneReturnScreen = CommonGetScreen();
+            WheelFortuneBackground = ChatRoomData.Background;
+            WheelFortuneCharacter = CurrentCharacter;
+            DialogLeave();
+            CommonSetScreen("MiniGame", "WheelFortune");
+            const maxIndex = WheelFortuneOption.length - 1;
+            switch (option) {
+                case "a": {
+                    WheelFortuneRoleplay = false;
+                    WheelFortuneForced = false;
+                    WheelFortuneVelocity += 3000 + Math.random() * 3000;
+                    WheelFortuneVelocityTime = CommonTime();
+                    let msg = TextGet("Spin").replace("CharacterName", CharacterNickname(WheelFortuneCharacter));
+                    ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" });
+                    break;
+                }
+                case "i": {
+                    WheelFortuneExit();
+                    infomsg(`The options on this wheel go from 0 to ${maxIndex}.`);
+                    break;
+                }
+                case "r": {
+                    WheelFortuneRoleplay = false;
+                    let roll = Math.floor(Math.random() * WheelFortuneOption.length);
+                    roll = roll === 0 ? 1 : roll;
+                    const opt = WheelFortuneOption[roll - 1];
+                    const forbiddenIDs = new Set(["j", "k", "l", "m"]);
+                    if (opt && !forbiddenIDs.has(opt.ID)) {
+                        publicmsg(`${tmpname} randomly forces an option of ${nickname}'s wheel.`);
+                        WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[roll - 1];
+                        WheelFortuneResult();
+                    } else {
+                        WheelFortuneExit();
+                        infomsg("No result! Try again!");
+                    }
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+            ChatRoomSetTarget(-1);
         }
     }])
 
@@ -14793,6 +14791,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
