@@ -62,6 +62,7 @@ Changes for future version
 * Changed the location of the UBC message on the Login screen
 * Replaced the Extensions button in Chat Search and chat rooms by a Preferences button
 * Replaced the Extensions button in Main Hall by a Friendlist button
+* Improved or optimised the maproom, mbsroom, spin and uroom commands
 * Updated the permission command and the ChatRoomSafewordRevert function
 * Removed the xmenu command
 
