@@ -63,7 +63,7 @@ Changes for future version
 * Replaced the Extensions button in Chat Search and chat rooms by a Preferences button
 * Replaced the Extensions button in Main Hall by a Friendlist button
 * Improved or optimised the maproom, mbsroom, spin and uroom commands
-* Updated the permission command and the ChatRoomSafewordRevert function
+* Updated the invisible and permission commands + the ChatRoomSafewordRevert function
 * Removed the xmenu command
 
    
