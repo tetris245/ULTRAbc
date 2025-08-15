@@ -4109,7 +4109,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 FriendListReturn = {
                     Screen: CurrentScreen,
                     Module: CurrentModule
-                }
+                };
                 CommonSetScreen("Character", "FriendList");
             }
             next(args);
@@ -14806,5 +14806,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
