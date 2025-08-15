@@ -69,6 +69,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tgpr2;
     let tgpr3;
     let tgpr4;
+	let backto = false;
     const umsg1 = "Your command can't be executed because ";
     const umsg2 = " has enabled the Uwall protection.";
     const umsg3 = "you are in no-escape mode.";
@@ -2184,6 +2185,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
     ULTRAFriendListDraw();
+	ULTRAFriendListExit(); 
     ULTRAFriendListKeyDown(); 
     ULTRAInfiltrationClubCardStart();
     ULTRAIntroductionClubCardStart();
@@ -3409,6 +3411,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
+			if (backto == true) ChatSearchExit();
             ChatSearchListParams = {
 	           x: ChatSearchPageX,
 	           y: ChatSearchPageY,
@@ -3956,6 +3959,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	async function ULTRAFriendListExit() {
+        modApi.hookFunction('FriendListExit', 4, (args, next) => {
+            if (backto == true) {
+                backto = false;
+                CommonSetScreen("Room", "MainHall");
+            }
+            next(args);
+        });
+    }
+
     async function ULTRAFriendListKeyDown() {
         modApi.hookFunction('FriendListKeyDown', 4, (args, next) => {
             const searchInput = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.searchInput));
@@ -4091,10 +4104,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(240, 695, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) PrfClick();
 			if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 695) && (MouseY < 785)) {
+                backto = true;           
+				ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
                 FriendListReturn = {
                     Screen: CurrentScreen,
                     Module: CurrentModule
-                };
+                }
                 CommonSetScreen("Character", "FriendList");
             }
             next(args);
@@ -14791,4 +14806,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
