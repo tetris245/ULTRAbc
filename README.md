@@ -60,7 +60,7 @@ All else I might not have included.
 Changes for future version
 
 * Improved the mapkeys command that has a new syntax: mapkeys (keynumber) (action)
-  - keynumber is 1 = Bronze key - 2 = Silver key - 3 = Gold key
+  - keynumber is 1 = Bronze key - 2 = Silver key - 3 = Gold key - 4 = All keys
   - action is 1 = Find - 2 = Lose
 * Changed the location of the UBC message on the Login screen
 * Replaced the Extensions button in Chat Search and chat rooms by a Preferences button
