@@ -6171,27 +6171,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function showCraftingStatus(LSCGdata) {
         let msg = "";
-        let msg1 = "Your public craftings are not shared.";
-        let msg2 = "Your shared public craftings are not displayed.";
-        let msg3 = "Chaotic features are disabled.";
-        let msg4 = "Tamperproof features are disabled.";
-        if (LSCGdata.GlobalModule.sharePublicCrafting) msg1 = "Your public craftings are shared.";
-        if (LSCGdata.GlobalModule.seeSharedCrafts) msg2 = "Your shared public craftings are displayed.";
-        if (LSCGdata.ChaoticItemModule.enabled) msg3 = "Chaotic features are enabled.";
-        if (LSCGdata.GlobalModule.tamperproofEnabled) msg4 = "Tamperproof features are enabled.";
+        let msg1 = "Public craftings not shared.";
+        let msg2 = "Shared craftings not displayed.";
+        let msg3 = "Chaotic features disabled.";
+        let msg4 = "Tamperproof features disabled.";
+        if (LSCGdata.GlobalModule.sharePublicCrafting) msg1 = "Public craftings shared.";
+        if (LSCGdata.GlobalModule.seeSharedCrafts) msg2 = "Shared craftings displayed.";
+        if (LSCGdata.ChaoticItemModule.enabled) msg3 = "Chaotic features enabled.";
+        if (LSCGdata.GlobalModule.tamperproofEnabled) msg4 = "Tamperproof features enabled.";
         msg = msg1 + " " + msg2 + " " + msg3 + " " + msg4;
         statusmsg(msg);
     }
 
+    function showDogsLockStatus(LSCGdata) {
+        let msg = "No conversion of devious locks into exclusive locks by curses and spells.";
+        if (LSCGdata.GlobalModule.blockDOGS) msg = "Conversion of devious locks into exclusive locks by curses and spells.";
+        statusmsg(msg);
+    }
+
     function showEdgeBlurStatus(LSCGdata) {
-        let msg = "No blurring of the screen when you are on edge.";
-        if (LSCGdata.GlobalModule.edgeBlur) msg = "Blurring of the screen when you are on edge.";
+        let msg = "No blurring when on edge.";
+        if (LSCGdata.GlobalModule.edgeBlur) msg = "Blurring when on edge.";
         statusmsg(msg);
     }
 
     function showErectionStatus(LSCGdata) {
-        let msg = "No private message when you feel an erection under your clothes.";
-        if (LSCGdata.GlobalModule.erectionDetection) msg = "Private message when you feel an erection under your clothes.";
+        let msg = "No private message when erection under your clothes.";
+        if (LSCGdata.GlobalModule.erectionDetection) msg = "Private message when erection under your clothes.";
         statusmsg(msg);
     }
 
@@ -14947,6 +14953,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showBoopReactionsStatus(LSCGdata);
                         showCheckRollsStatus(LSCGdata);
                         showCraftingStatus(LSCGdata);
+						showDogsLockStatus(LSCGdata);
                         showEdgeBlurStatus(LSCGdata);
                         showErectionStatus(LSCGdata);
                         showLipstickStatus(LSCGdata);
