@@ -10435,10 +10435,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mapfog',
         Description: ": toggles fog in current mapped room.",
         Action: () => {
-            if (!IsMapRoom()) {
-                infomsg(umsg5);
-                return;
-            }
+            if (!IsMapRoom()) return infomsg(umsg5);
             const fogEnabled = !!ChatRoomData.MapData.Fog;
             ChatRoomData.MapData.Fog = !fogEnabled;
             const status = fogEnabled ? "disabled" : "enabled";
@@ -10446,36 +10443,46 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'mapkeys',
-        Description: ": gives all keys for current mapped chat room.",
-        Action: () => {
-            if (IsMapRoom() == false) {
-                let msg = umsg5;
-                infomsg(msg);
-            } else {
-                if (Player.MapData == undefined) {
-                    let msg = "You don't have entered the map.";
-                    infomsg(msg);
-                } else {
-                    Player.MapData.PrivateState.HasKeyGold = true;
-                    Player.MapData.PrivateState.HasKeySilver = true;
-                    Player.MapData.PrivateState.HasKeyBronze = true;
-                    let msg = "You have now the three keys.";
-                    infomsg(msg);
-                }
+        Description: "(keynumber) (action): finds or loses all keys or a specific key for current mapped chat room.",
+        Action: (args) => {
+            if (!IsMapRoom()) return infomsg(umsg5);
+            if (!args) {
+                return infomsg(
+                    "The mapkeys command must be followed by two numbers.\n" +
+                    "1st number: 1 = Bronze key - 2 = Silver key - 3 = Gold key - 4 = All keys.\n" +
+                    "2nd number: 1 = Find - 2 = Lose."
+                );
             }
+            if (!Player.MapData) return infomsg("You haven't entered the map.");
+            const [keynrStr, actionStr] = args.split(/[ ,]+/);
+            const keynr = Number(keynrStr);
+            const action = Number(actionStr);
+            if (![1, 2, 3, 4].includes(keynr) || ![1, 2].includes(action)) return;
+            const keys = [
+                { name: "Bronze", prop: "HasKeyBronze" },
+                { name: "Silver", prop: "HasKeySilver" },
+                { name: "Gold", prop: "HasKeyGold" }
+            ];
+            keys.forEach((key, idx) => {
+                if (keynr === idx + 1 || keynr === 4) {
+                    Player.MapData.PrivateState[key.prop] = (action === 1);
+                }
+            });
+            const foundKeys = keys
+                .filter(key =>     
+					Player.MapData.PrivateState[key.prop])
+                .map(key => key.name);
+            ChatRoomSendLocal(`Keys found: ${foundKeys.join(" - ") || "None"}.`);
         }
     }])
-
+  
 	CommandCombine([{
         Tag: 'maproom',
         Description: ": gives infos about location of players in current mapped chat room.",
         Action: () => {
-            if (!IsMapRoom()) {
-                infomsg(umsg5 + umsg6);
-                return;
-            }
+            if (!IsMapRoom()) return infomsg(umsg5 + umsg6);
             ChatRoomCharacter.forEach(character => {
                 const { Nickname, Name, MemberNumber, OnlineSharedSettings = {}, MapData } = character;
                 const command = "maproom";
@@ -13903,14 +13910,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "maps") {
-                let msg = "Maps commands\n" +
+                let msg = "Maps commands - * = more info when using\n" +
                     "<b>/mapfog</b> = toggles fog in current map room.\n" +
-                    "<b>/mapkeys</b> = gives all keys for current map room.\n" +
+                    "<b>/mapkeys</b> (keynumber) (action) = finds or loses all keys or a specific key for current map room. *\n" +
                     "<b>/maproom</b> = gives infos about players in current map.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
-		    "<b>/mapzoom</b> (value) = changes zoom level in map rooms.\n" +
+		            "<b>/mapzoom</b> (value) = changes zoom level in map rooms.\n" +
                     "<b>/tplistadd</b> (membernumber) = adds a player to the list allowing to teleport you.\n" +
                     "<b>/tplistremove</b> (membernumber) = removes a player from the list allowing to teleport you.\n" +
                     "<b>/tplistshow</b> = displays the list of players allowed to teleport you.";
@@ -14800,7 +14807,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
