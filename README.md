@@ -59,7 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
-* Improved the mapkeys commands that has a new syntax: mapkeys (keynumber) (action)
+* Improved the mapkeys command that has a new syntax: mapkeys (keynumber) (action)
   - keynumber is 1 = Bronze key - 2 = Silver key - 3 = Gold key
   - action is 1 = Find - 2 = Lose
 * Changed the location of the UBC message on the Login screen
