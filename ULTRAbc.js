@@ -6351,6 +6351,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
 	//Room Info
+    function keysinfo(Player) {
+         const keys = [];
+         if (Player.MapData.PrivateState.HasKeyGold) keys.push("Gold");
+         if (Player.MapData.PrivateState.HasKeySilver) keys.push("Silver");
+         if (Player.MapData.PrivateState.HasKeyBronze) keys.push("Bronze");
+         ChatRoomSendLocal(`Keys found: ${keys.join(" - ") || "None"}.`);
+     }
+
 	function UBCinfo(character, command) {
         const name = character.Nickname || character.Name;
         const aka = character.Nickname ? character.Name : "";
@@ -10461,9 +10469,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const action = Number(actionStr);
             if (![1, 2, 3, 4].includes(keynr) || ![1, 2].includes(action)) return;
             const keys = [
-                { name: "Bronze", prop: "HasKeyBronze" },
+                { name: "Gold", prop: "HasKeyGold" },
                 { name: "Silver", prop: "HasKeySilver" },
-                { name: "Gold", prop: "HasKeyGold" }
+                { name: "Bronze", prop: "HasKeyBronze" }
             ];
             keys.forEach((key, idx) => {
                 if (keynr === idx + 1 || keynr === 4) {
@@ -10475,9 +10483,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 					Player.MapData.PrivateState[key.prop])
                 .map(key => key.name);
             ChatRoomSendLocal(`Keys found: ${foundKeys.join(" - ") || "None"}.`);
+            ChatRoomSendLocal(" ");
         }
     }])
-  
+
 	CommandCombine([{
         Tag: 'maproom',
         Description: ": gives infos about location of players in current mapped chat room.",
@@ -10500,13 +10509,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     const { X, Y } = MapData.Pos;
                     ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
-                    if (character === Player) {
-                        const keys = [];
-                        if (Player.MapData.PrivateState.HasKeyGold) keys.push("Gold");
-                        if (Player.MapData.PrivateState.HasKeySilver) keys.push("Silver");
-                        if (Player.MapData.PrivateState.HasKeyBronze) keys.push("Bronze");
-                        ChatRoomSendLocal(`Keys found: ${keys.join(" - ") || "None"}.`);
-                    }
+                    if (character === Player) keysinfo(Player);                                             
                 } else {
                     ChatRoomSendLocal("Does not have entered map");
                 }
@@ -10581,48 +10584,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'mapz',
         Description: "(target): gives coordinates in the map.",
         Action: (args) => {
-            if (IsMapRoom() == false) {
-                let msg = umsg5;
-                infomsg(msg);
-            } else {
-                let target = Player;
-                if (args != "") target = TargetSearch(args);
-                if (target != null) {
-                    if (target.MapData != undefined) {
-                        let exinfo = "";
-                        if (ChatRoomData.MapData.Type == "Always") exinfo = "Real presence in map: YES";
-                        if (ChatRoomData.MapData.Type == "Hybrid") {
-                            if (target.OnlineSharedSettings.Inmap != undefined) {
-                                if (target.OnlineSharedSettings.Inmap == true) {
-                                    exinfo = "Real presence in map: YES";
-                                } else {
-                                    exinfo = "Real presence in map: NO";
-                                }
-                            } else {
-                                exinfo = "Real presence in map: ?";
-                            }
-                        }
-                        ChatRoomSendLocal("X = " + target.MapData.Pos.X + " - Y = " + target.MapData.Pos.Y + " - " + exinfo);
-                        let key1 = "";
-                        let key2 = "";
-                        let key3 = "";
-                        if (target == Player) {
-                            if (Player.MapData.PrivateState.HasKeyGold) key1 = "Gold";
-                            if (Player.MapData.PrivateState.HasKeySilver) key2 = "Silver";
-                            if (Player.MapData.PrivateState.HasKeyBronze) key3 = "Bronze";
-                            ChatRoomSendLocal("Keys found: " + key1 + " - " + key2 + " - " + key3 + ".");
-                        }
-                        ChatRoomSendLocal(" ");
-                    } else {
-                        ChatRoomSendLocal("Does not have entered map");
-                        ChatRoomSendLocal(" ");
-                    }
-                }
+            if (!IsMapRoom()) return infomsg(umsg5);
+            const target = args ? TargetSearch(args) : Player;
+            if (!target) return;
+            const mapData = target.MapData;
+            if (!mapData) {
+                ChatRoomSendLocal("Does not have entered map");
+                ChatRoomSendLocal(" ");
+                return;
             }
+            let exinfo = "";
+            const mapType = ChatRoomData?.MapData?.Type;
+            if (mapType === "Always") {
+                exinfo = "Real presence in map: YES";
+            } else if (mapType === "Hybrid") {
+                const inmap = target.OnlineSharedSettings?.Inmap;
+                exinfo = "Real presence in map: " + 
+                    (inmap === true ? "YES" : inmap === false ? "NO" : "?");
+            }
+            ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
+            if (target === Player) keysinfo(Player);              
+            ChatRoomSendLocal(" ");
         }
     }])
 
@@ -10630,22 +10616,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mapzoom',
         Description: "(value): changes zoom level in the map rooms.",
         Action: (args) => {
-            if (args === "") {
-                let msg = "The mapzoom command must be followed by a number between 7 and 50.";
-                infomsg(msg);
-            } else {
-                if (IsMapRoom() == false) {
-                    let msg = umsg5;
-                    infomsg(msg);
-                } else {
-                    let zoom = args;
-                    if ((zoom > 6) && (zoom < 51)) {
-                        ChatRoomMapViewPerceptionRangeMax = zoom;
-                        let msg = "Zoom level modified! Enjoy!";
-                        infomsg(msg);
-                    }
-                }
+            const plz = Number(args);
+            if (args === "" || isNaN(plz) || plz < 7 || plz > 50) {
+                infomsg("The mapzoom command must be followed by a number between 7 and 50.");
+                return;
             }
+            if (!IsMapRoom()) return infomsg(umsg5);
+            ChatRoomMapViewPerceptionRangeMax = plz;
+            infomsg("Zoom level modified! Enjoy!");
         }
     }])
 
@@ -14775,4 +14753,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
