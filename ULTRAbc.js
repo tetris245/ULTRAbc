@@ -10519,48 +10519,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mapx',
         Description: "(x-position): changes your X coordinate in the map.",
         Action: (args) => {
-            if (args === "") {
-                let msg = "The mapx command must be followed by a number between 0 and 39.";
-                infomsg(msg);
-            } else {
-                if (IsMapRoom() == false) {
-                    let msg = umsg5;
-                    infomsg(msg);
-                } else {
-                    if (Player.MapData != undefined) {
-                        let plx = args;
-                        if ((plx > -1) && (plx < 40) && (plx != Player.MapData.Pos.X)) {
-                            if (plx < Player.MapData.Pos.X) {
-                                D = "West";
-                                m = (Player.MapData.Pos.X - plx);
-                            }
-                            if (plx > Player.MapData.Pos.X) {
-                                D = "East";
-                                m = (plx - Player.MapData.Pos.X);
-                            }
-                            let X = Player.MapData.Pos.X + ((D == "West") ? -m : 0) + ((D == "East") ? m : 0);
-                            let Y = Player.MapData.Pos.Y;
-                            let Time = ChatRoomMapViewCanEnterTile(X, Y);
-                            if (Time > 0) {
-                                ChatRoomMapViewMovement = {
-                                    X: X,
-                                    Y: Y,
-                                    Direction: D,
-                                    TimeStart: CommonTime(),
-                                    TimeEnd: CommonTime() + Time
-                                };
-                            }
-                            ChatRoomMapViewUpdatePlayerNext = null;
-                            ServerAccountUpdate.QueueData({
-                                MapData: Player.MapData
-                            }, true);
-                        } 
-                    } else {
-                        ChatRoomSendLocal("Does not have entered map");
-                        ChatRoomSendLocal(" ");
-                    }
-                }
+            const plx = Number(args);
+            if (args === "" || isNaN(plx) || plx < 0 || plx > 39) {
+                infomsg("The mapx command must be followed by a number between 0 and 39.");
+                return;
             }
+            if (!IsMapRoom()) return infomsg(umsg5);
+            if (!Player.MapData) return infomsg("You don't have entered map!");
+            if (plx === Player.MapData.Pos.X) return;
+            const D = plx < Player.MapData.Pos.X ? "West" : "East";
+            const m = Math.abs(plx - Player.MapData.Pos.X);
+            const X = plx;
+            const Y = Player.MapData.Pos.Y;
+            const Time = ChatRoomMapViewCanEnterTile(X, Y);
+            if (Time > 0) {
+                ChatRoomMapViewMovement = {
+                    X,
+                    Y,
+                    Direction: D,
+                    TimeStart: CommonTime(),
+                    TimeEnd: CommonTime() + Time
+                };
+            }
+            ChatRoomMapViewUpdatePlayerNext = null;
+            ServerAccountUpdate.QueueData({ 
+                MapData: Player.MapData
+            }, true);
         }
     }])
 
@@ -10568,48 +10552,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mapy',
         Description: "(y-position): changes your Y coordinate in the map.",
         Action: (args) => {
-            if (args === "") {
-                let msg = "The mapx command must be followed by a number between 0 and 39.";
-                infomsg(msg);
-            } else {
-                if (IsMapRoom() == false) {
-                    let msg = umsg5;
-                    infomsg(msg);
-                } else {
-                    if (Player.MapData != undefined) {
-                        let ply = args;
-                        if ((ply > -1) && (ply < 40) && (ply != Player.MapData.Pos.Y)) {
-                            if (ply < Player.MapData.Pos.Y) {
-                                D = "North";
-                                m = (Player.MapData.Pos.Y - ply);
-                            }
-                            if (ply > Player.MapData.Pos.Y) {
-                                D = "South";
-                                m = (ply - Player.MapData.Pos.Y);
-                            }
-                            let X = Player.MapData.Pos.X;
-                            let Y = Player.MapData.Pos.Y + ((D == "North") ? -m : 0) + ((D == "South") ? m : 0);
-                            let Time = ChatRoomMapViewCanEnterTile(X, Y);
-                            if (Time > 0) {
-                                ChatRoomMapViewMovement = {
-                                    X: X,
-                                    Y: Y,
-                                    Direction: D,
-                                    TimeStart: CommonTime(),
-                                    TimeEnd: CommonTime() + Time
-                                };
-                            }
-                            ChatRoomMapViewUpdatePlayerNext = null;
-                            ServerAccountUpdate.QueueData({
-                                MapData: Player.MapData
-                            }, true);
-                        } 
-                    } else {
-                        ChatRoomSendLocal("Does not have entered map");
-                        ChatRoomSendLocal(" ");
-                    }
-                }
+            const ply = Number(args);
+            if (args === "" || isNaN(ply) || ply < 0 || ply > 39) {
+                infomsg("The mapy command must be followed by a number between 0 and 39.");
+                return;
             }
+            if (!IsMapRoom()) return infomsg(umsg5);
+            if (!Player.MapData) return infomsg("You don't have entered map!");
+            if (ply === Player.MapData.Pos.Y) return;
+            const D = ply < Player.MapData.Pos.Y ? "North" : "South";
+            const m = Math.abs(ply - Player.MapData.Pos.Y);
+            const X = Player.MapData.Pos.X;
+            const Y = ply;
+            const Time = ChatRoomMapViewCanEnterTile(X, Y);
+            if (Time > 0) {
+                ChatRoomMapViewMovement = {
+                    X,
+                    Y,
+                    Direction: D,
+                    TimeStart: CommonTime(),
+                    TimeEnd: CommonTime() + Time
+                };
+            }
+            ChatRoomMapViewUpdatePlayerNext = null;
+            ServerAccountUpdate.QueueData({ 
+                MapData: Player.MapData
+            }, true);
         }
     }])
 
@@ -14807,3 +14775,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
