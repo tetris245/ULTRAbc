@@ -10435,20 +10435,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'mapfog',
         Description: ": toggles fog in current mapped room.",
         Action: () => {
-            if (IsMapRoom() == false) {
-                let msg = umsg5;
-                infomsg(msg);
-            } else {
-                if ((ChatRoomData.MapData.Fog == true || ChatRoomData.MapData.Fog == undefined)) {
-                    ChatRoomData.MapData.Fog = false;
-                    let msg = "Fog in current mapped room is disabled. No visible effect if you have enabled full vision and hearing in mapped rooms.";
-                    infomsg(msg);
-                } else {
-                    ChatRoomData.MapData.Fog = true;
-                    let msg = "Fog in current mapped room is enabled. No visible effect if you have enabled full vision and hearing in mapped rooms.";
-                    infomsg(msg);
-                }
+            if (!IsMapRoom()) {
+                infomsg(umsg5);
+                return;
             }
+            const fogEnabled = !!ChatRoomData.MapData.Fog;
+            ChatRoomData.MapData.Fog = !fogEnabled;
+            const status = fogEnabled ? "disabled" : "enabled";
+            infomsg(`Fog in current mapped room is ${status}. No visible effect if you have enabled full vision in mapped rooms.`);
         }
     }])
 
@@ -14806,6 +14800,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
