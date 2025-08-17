@@ -66,7 +66,7 @@ Changes for future version
 * Replaced the Extensions button in Chat Search and chat rooms by a Preferences button
 * Replaced the Extensions button in Main Hall by a Friendlist button
 * Improved or optimised several commands related to maps, rooms and wheel of fortune
-* Updated the invisible, permission and xstatus lscg commands + the ChatRoomSafewordRevert function
+* Updated the bg4, invisible, permission and xstatus lscg commands + the ChatRoomSafewordRevert function
 * Fixed a bug in the Moaner concerning spank (+ assimilated activities) and tickle mixed with pleasure
 * Removed the xmenu command
 
