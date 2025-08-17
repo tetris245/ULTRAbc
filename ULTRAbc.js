@@ -8330,7 +8330,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Taste == 2 || Taste == 12 || Taste == 22 || Taste == 32 || Taste == 42) activitySelf = 2;
         if (Taste == 3 || Taste == 13 || Taste == 23 || Taste == 33 || Taste == 43) activitySelf = 3;
         if (Taste == 4 || Taste == 14 || Taste == 24 || Taste == 34 || Taste == 44) activitySelf = 4;
-        let seuilDouleur = Math.min(10, (4 - activitySelf) * 25);
+        let seuilDouleur = Math.max(10, (4 - activitySelf) * 25);
         let seuilPlaisir = seuilDouleur + 40;
         let douleur = Player.ArousalSettings.Progress <= seuilDouleur;
         let plaisir = Player.ArousalSettings.Progress > seuilPlaisir;
@@ -8354,7 +8354,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Taste == 2 || Taste == 12 || Taste == 22 || Taste == 32 || Taste == 42) activitySelf = 2;
         if (Taste == 3 || Taste == 13 || Taste == 23 || Taste == 33 || Taste == 43) activitySelf = 3;
         if (Taste == 4 || Taste == 14 || Taste == 24 || Taste == 34 || Taste == 44) activitySelf = 4;
-        let seuilDouleur = Math.min(10, (4 - activitySelf) * 25);
+        let seuilDouleur = Math.max(10, (4 - activitySelf) * 25);
         let seuilPlaisir = seuilDouleur + 40;
         let douleur = Player.ArousalSettings.Progress <= seuilDouleur;
         let plaisir = Player.ArousalSettings.Progress > seuilPlaisir;
@@ -15041,3 +15041,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
