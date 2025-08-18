@@ -5740,7 +5740,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomHideElements();
         InformationSheetLoadCharacter(Player);
         PreferenceSubscreen = "Main";
-        PreferenceRun();
         CommonSetScreen("Character", "Preference");
     }
 
@@ -5763,12 +5762,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Character
-    function CharacterBio(target) {
+    async function CharacterBio(target) {
         ChatRoomSetLastChatRoom("");
         ChatRoomHideElements();
         InformationSheetLoadCharacter(target);
-        OnlineProfileRun();
-        CommonSetScreen("Character", "OnlineProfile");
+        await CommonSetScreen("Character", "InformationSheet");
+        ProfileCharacter = function() {
+            ElementCreateTextArea("DescriptionInput");
+            CommonSetScreen("Character", "OnlineProfile");
+       };
+       ProfileCharacter();
     }
 
     function ResetHousesReputation() {
@@ -15043,7 +15046,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
