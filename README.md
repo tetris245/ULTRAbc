@@ -69,6 +69,6 @@ Changes for future version
 * Updated the bg4, invisible, permission and xstatus lscg commands
 * Updated the CharacterBio and ChatRoomSafewordRevert functions
 * Fixed a bug in the Moaner concerning spank (+ assimilated activities) and tickle mixed with pleasure
-* Removed the xmenu command
+* Removed the cgame, game, mission and xmenu commands (are broken in R119)
 
    
