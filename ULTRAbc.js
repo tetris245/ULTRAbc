@@ -9089,82 +9089,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             runUBC();
         }
     }])
-
-    CommandCombine([{
-        Tag: 'cgame',
-        Description: "(zone): launches a Club Card Game against a specific NPC.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The cgame command must include a zone.\n" +
-                    "Available zones:\n" +
-                    "asylum, cafe, infiltration, introduction, kidnap, larp,\n" +
-                    "lounge, movie, shibari, stable.\n" +
-                    "You need to click on the concerned NPC, then on the appropriate option.";
-                infomsg(msg);
-            } else {
-                let minigame = args;
-                if (minigame == "asylum") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "AsylumMeeting");
-                    AsylumEntranceIsWearingNurseClothes = function() {
-                        return true
-                    };
-                    InventoryRemove(AsylumMeetingPatientRight, "ItemArms");
-                    InventoryRemove(AsylumMeetingPatientRight, "ItemHead");
-                    InventoryRemove(AsylumMeetingPatientRight, "ItemMouth");
-                    AsylumMeetingPatientRight.Stage = "20";
-                } else if (minigame == "cafe") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Cafe");
-                    CafeMaid.Stage = "50";
-                } else if (minigame == "infiltration") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Infiltration");
-                    InfiltrationSupervisor.Stage = "80";
-                } else if (minigame == "introduction") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Introduction");
-                    IntroductionMaid.Stage = "90";
-                } else if (minigame == "kidnap") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "KidnapLeague");
-                    KidnapLeagueBackground = "MainHall";
-                    CharacterDelete(KidnapLeagueRandomKidnapper, false);
-                    KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
-                    CharacterSetCurrent(KidnapLeagueRandomKidnapper);
-                    KidnapLeagueRandomKidnapperScenario = "1";
-                    KidnapLeagueRandomKidnapper.Stage = KidnapLeagueRandomKidnapperScenario.toString();
-                    KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario);
-                } else if (minigame == "larp") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "LARP");
-                    LARPOrganiser.Stage = "70";
-                } else if (minigame == "lounge") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "ClubCardLounge");
-                    ClubCardLoungeTutor.Stage = "40";
-                } else if (minigame == "movie") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "MovieStudio");
-                    MovieStudioDirector.Stage = "90";
-                } else if (minigame == "shibari") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Shibari");
-                    InventoryRemove(ShibariStudent, "ItemArms");
-                    InventoryRemove(ShibariStudent, "ItemFeet");
-                    InventoryRemove(ShibariStudent, "ItemLegs");
-                    InventoryRemove(ShibariStudent, "ItemMouth");
-                    InventoryRemove(ShibariStudent, "ItemTorso");
-                    ShibariStudent.Stage = "0";
-                } else if (minigame == "stable") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Stable");
-                    StableTrainer.Stage = "80";
-                }
-            }
-        }
-    }])
-
+  
     CommandCombine([{
         Tag: 'chess',
         Description: "(difficulty): starts chess.",
@@ -9555,108 +9480,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSpace = frlist;
                         RoomToFriends();
                     }, 1000);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'game',
-        Description: "(minigame): launches a minigame.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The game command must include a minigame.\n" +
-                    "Available minigames:\n" +
-                    "carrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\n" +
-                    "movie2, puppy, rhythm, tennis1, tennis2, tennis3,\n" +
-                    "training, whippony.\n" +
-                    "Tennis1 = easy, tennis2 = normal, tennis3 = hard\n" +
-                    "Training is the trainer version of the hurdle game.\n" +
-                    "You need to click on the maid in the Maid Quarters for the cleaning, drinks and rhythm games.";
-                infomsg(msg);
-            } else {
-                let minigame = args;
-                if (minigame == "carrot") {
-                    gamestable = true;
-                    M_MOANER_saveControls();
-                    RoomToGame();
-                    CommonSetScreen("Room", "Stable");
-                    StableDressPonyStart();
-                    StableWearPonyEquipment(Player);
-                    MiniGameStart("HorseWalk", "Carrot", "StablePlayerTrainingCarrotsEnd");
-                } else if (minigame == "cleaning") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "MaidQuarters");
-                    GameType = "MaidCleaning";
-                    MaidQuartersMaid.Stage = "400";
-                } else if (minigame == "dojo") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Introduction");
-                    IntroductionJobStart("SubDojo", 0)
-                    IntroductionJobDojoStart();
-                } else if (minigame == "drinks") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "MaidQuarters");
-                    GameType = "MaidDrinks";
-                    MaidQuartersMaid.Stage = "200";
-                } else if (minigame == "hurdle") {
-                    gamestable = true;
-                    M_MOANER_saveControls();
-                    RoomToGame();
-                    CommonSetScreen("Room", "Stable");
-                    StableDressPonyStart();
-                    StableWearPonyEquipment(Player);
-                    MiniGameStart("HorseWalk", "Hurdle", "StablePlayerTrainingHurdlesEnd");
-                } else if (minigame == "kidnap") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Introduction");
-                    IntroductionJobStart("DomKidnap", 0)
-                    IntroductionJobBouncerStart();
-                } else if (minigame == "movie1") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "MovieStudio");
-                    MovieStudioDailyMovie = "Interview";
-                } else if (minigame == "movie2") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "MovieStudio");
-                    MovieStudioDailyMovie = "OpenHouse";
-                } else if (minigame == "puppy") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Introduction");
-                    IntroductionJobStart("DomPuppy", 0)
-                    IntroductionJobPuppyStart();
-                } else if (minigame == "rhythm") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "MaidQuarters");
-                    GameType = "RhythmGame";
-                    MaidQuartersMaid.Stage = "500";
-                } else if (minigame == "tennis1") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "CollegeTennis");
-                    CollegeTennisJennifer.Stage = "1000";
-                    CollegeTennisGameStart("Easy");
-                } else if (minigame == "tennis2") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "CollegeTennis");
-                    CollegeTennisJennifer.Stage = "1000";
-                    CollegeTennisGameStart("Normal");
-                } else if (minigame == "tennis3") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "CollegeTennis");
-                    CollegeTennisJennifer.Stage = "1000";
-                    CollegeTennisGameStart("Hard");
-                } else if (minigame == "training") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Stable");
-                    StablePlayerAppearance = Player.Appearance.slice();
-                    StableWearTrainerEquipment(Player);
-                    MiniGameStart("HorseWalk", "HurdleTraining", "StablePonyTrainingHurdlesEnd");
-                } else if (minigame == "whippony") {
-                    RoomToGame();
-                    CommonSetScreen("Room", "Stable");
-                    StablePlayerAppearance = Player.Appearance.slice();
-                    StableWearTrainerEquipment(Player);
-                    MiniGameStart("HorseWalk", "WhipPony", "StableTrainerWhipEnd");
                 }
             }
         }
@@ -11423,34 +11246,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'mission',
-        Description: "(mission): goes to infiltration room and forces a specific mission.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The mission command must include a mission.\n" +
-                    "Available missions:\n" +
-                    "burglar, kidnap, rescue, retrieve, sabotage.\n" +
-                    "Full random mission with random.";
-                infomsg(msg);
-            } else {
-                let mission = args;
-                if (mission == "random") InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
-                if (mission == "burglar") InfiltrationMissionType = ["CatBurglar"];
-                if (mission == "kidnap") InfiltrationMissionType = ["Kidnap"];
-                if (mission == "rescue") InfiltrationMissionType = ["Rescue"];
-                if (mission == "retrieve") InfiltrationMissionType = ["Retrieve"];
-                if (mission == "sabotage") InfiltrationMissionType = ["ReverseMaid"];
-                InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
-                ServerSend("ChatRoomLeave", "");
-                ChatRoomSetLastChatRoom("");
-                OnlineGameName = "";
-                ChatRoomClearAllElements();
-                CommonSetScreen("Room", "Infiltration");
             }
         }
     }])
@@ -14215,13 +14010,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "zones") {
                 let msg = "Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
-                    "<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n" +
                     "<b>/chess</b> (difficulty) = starts chess, must specify difficulty first (1 easy - 2 normal - 3 hard).\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
-                    "<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
-                    "<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
                     "<b>/prison1</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n" +
                     "<b>/prison2</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
                     "<b>/store</b> = Goes to store. Shows hidden items.\n" +
@@ -15046,3 +14838,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
