@@ -9091,58 +9091,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
   
     CommandCombine([{
-        Tag: 'chess',
-        Description: "(difficulty): starts chess.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The chess command must be followed by a number between 1 and 3.\n" +
-                    " \n" +
-                    "Available difficulty modes:\n" +
-                    "1 easy\n" +
-                    "2 normal\n" +
-                    "3 hard";
-                infomsg(msg);
-            } else {
-                CollegeChessGameEndALT = function() {
-                    document.removeEventListener("chessOnMove", CollegeChessGameProgress);
-                    MiniGameEnded = true;
-                    ChessEndStatus = "Draw";
-                    ElementRemove("DivChessBoard");
-                    CommonDynamicFunction(MiniGameReturnFunction + "()");
-                    CommonSetScreen("Online", "ChatRoom");
-                    CurrentScreen = "ChatRoom";
-                    ChatRoomCharacterViewDraw();
-                    ChatRoomMenuBuild();
-                    DrawRoomBackground();
-                    ChatRoomLoad();
-                    ChatRoomClearAllElements();
-                };
-                CollegeChessGameStartALT = function(Difficulty) {
-                    CollegeChessDifficulty = parseInt(Difficulty);
-                    const playerStarts = Math.random() < 0.5;
-                    ChessCharacterWhite = playerStarts ? Player : CollegeChessOpponent;
-                    ChessCharacterBlack = playerStarts ? CollegeChessOpponent : Player;
-                    MiniGameStart("Chess", CollegeChessDifficulty, "CollegeChessGameEndALT");
-                    document.addEventListener("chessOnMove", CollegeChessGameProgress);
-                };
-                let chessdifficulty = args;
-                if (this.ChessOn == false || this.ChessOn == undefined) {
-                    ChessOn = true;
-                    CommonSetScreen("Room", "CollegeChess");
-                    CollegeChessGameStartALT(chessdifficulty);
-                    setTimeout(function() {
-                        CommonSetScreen("Online", "ChatRoom");
-                        ElementPositionFix("DivChessBoard", null, -1100, 0);
-                    }, 2000);
-                } else {
-                    ChessOn = false;
-                    CollegeChessGameEndALT();
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'clothes',
         Description: "(target): changes clothes.",
         Action: (args) => {
@@ -9481,43 +9429,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         RoomToFriends();
                     }, 1000);
                 }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'ggts',
-        Description: "(minutes) (level):  enters ggts training in asylum for the specified time and level.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The ggts command must be followed by two numbers to  specify minutes and level (1-6).";
-                infomsg(msg);
-            } else {
-                let stringGgts1 = args;
-                let stringGgts2 = stringGgts1.split(/[ ,]+/);
-                let minutes = stringGgts2[0];
-                let level = stringGgts2[1];
-                let msg = "" + tmpname + " gets grabbed by two maids and locked in the asylum for " + minutes + " minutes of training with the Good Girl Training System Level " + level + ".";
-                publicmsg(msg);
-                DialogLentLockpicks = false;
-                ChatRoomClearAllElements();
-                ServerSend("ChatRoomLeave", "");
-                CharacterDeleteAllOnline();
-                AsylumGGTSLock(minutes, TextGet("GGTSIntro"));
-                Level = parseInt(level);
-                if (Player.Game == null) Player.Game = {};
-                Player.Game.GGTS = {
-                    Level: Level,
-                    Time: 0,
-                    Strike: 0,
-                    Rule: []
-                };
-                AsylumGGTSSAddItems();
-                if (Level == 6) CharacterChangeMoney(Player, 1000);
-                else if (Level >= 2) CharacterChangeMoney(Player, 100 * (Level - 1));
-                ServerAccountUpdate.QueueData({
-                    Game: Player.Game
-                }, true);
             }
         }
     }])
@@ -12152,31 +12063,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'prison1',
-        Description: "(minutes): stays in NPC Pandora prison.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The prison1 command must be followed by a number higher than 0";
-                infomsg(msg);
-            } else {
-                let minutes = args;
-                if (minutes > 0) {
-                    let msg = "" + tmpname + " gets grabbed by two maids and sent to NPC Pandora prison for " + minutes + " minutes.";
-                    publicmsg(msg);
-                    DialogLentLockpicks = false;
-                    ChatRoomHideElements();
-                    ServerSend("ChatRoomLeave", "");
-                    CharacterDeleteAllOnline();
-                    PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 7).toString();
-                    PandoraRestrainPlayer();
-                    PandoraPunishmentSentence(minutes);
-                    PandoraPunishmentStart();
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'prison2',
         Description: "(minutes): stays in online Pandora prison.",
         Action: (args) => {
@@ -13230,28 +13116,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'timercell',
-        Description: "(minutes): stays in the isolation cell.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The timercell command must be followed by a number higher than 0.";
-                infomsg(msg);
-            } else {
-                let minutes = args;
-                if (minutes > 0) {
-                    let msg = "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes.";
-                    publicmsg(msg);
-                    DialogLentLockpicks = false;
-                    ChatRoomHideElements();
-                    ServerSend("ChatRoomLeave", "");
-                    CharacterDeleteAllOnline();
-                    CellLock(minutes);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'title1',
         Description: "(title): chooses a new title (from A to K).",
         Action: (args) => {
@@ -14010,14 +13874,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "zones") {
                 let msg = "Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
-                    "<b>/chess</b> (difficulty) = starts chess, must specify difficulty first (1 easy - 2 normal - 3 hard).\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
-                    "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
-                    "<b>/prison1</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n" +
                     "<b>/prison2</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
-                    "<b>/store</b> = Goes to store. Shows hidden items.\n" +
-                    "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.";
+                    "<b>/store</b> = Goes to store. Shows hidden items.";
                 infomsg(msg);
             }
         }
@@ -14838,4 +14698,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
