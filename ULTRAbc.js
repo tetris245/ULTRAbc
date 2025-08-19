@@ -12107,11 +12107,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'prison2',
+        Tag: 'prison',
         Description: "(minutes): stays in online Pandora prison.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The prison2 command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\n" +
+                let msg = "The prison command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\n" +
                     "If you use it when you are alone in a room, it will be a new room automatically created.\n" +
                     "It is recommended to use it in an existing Pandora room that you have first entered as normal player.\n" +
                     "If you use it in an existing non-Pandora room, there will be no any timer, but the Pandora guards will be active though during the requested time.\n" +
@@ -13883,7 +13883,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
-                    "<b>/prison2</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
+                    "<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
                     "<b>/store</b> = Goes to store. Shows hidden items.";
                 infomsg(msg);
             }
@@ -14705,4 +14705,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
