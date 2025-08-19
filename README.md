@@ -68,7 +68,7 @@ Changes for future version
 * Updated, improved or optimised several commands related to maps, rooms and wheel of fortune
 * Updated the bg4, invisible, permission and xstatus lscg commands
 * Updated the CharacterBio and ChatRoomSafewordRevert functions
-* Fixed a bug in the Moaner concerning spank (+ assimilated activities) and tickle mixed with pleasure
+* Renamed the prison2 command as prison
 * Removed the chess, cgame, game, ggts, mission, prison1, timercell and xmenu commands (are broken in R119)
-
+* Fixed a bug in the Moaner concerning spank (+ assimilated activities) and tickle mixed with pleasure
    
