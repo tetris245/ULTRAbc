@@ -7816,10 +7816,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (Roll == 0) Roll = 1;
                 let id = WheelFortuneOption[Roll - 1].ID;
                 if ((id != "j") && (id != "k") && (id != "l") && (id != "m")) {
-                    Result.push(Roll - 1);
-                    let msg = tmpname + " randomly forces an option of " + tgpname + "'s wheel.";
-                    publicmsg(msg);
-                    WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[Result];
+                     Result.push(Roll - 1);
+                     let msg = tmpname + " randomly forces an option of " + tgpname + "'s wheel.";
+                     publicmsg(msg);
+                     WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[Result];
                      WheelFortuneResult();
                 } else {
                      WheelFortuneExit();
