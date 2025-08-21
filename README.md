@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.5
+Most recent version: 5.5.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.5.zip file on the Releases page
+1. Download the ULTRAbc-version5.5.1.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,16 +59,5 @@ All else I might not have included.
 
 Changes for future version
 
-* Improved the mapkeys command that has a new syntax: mapkeys (keynumber) (action)
-  - keynumber is 1 = Bronze key - 2 = Silver key - 3 = Gold key - 4 = All keys
-  - action is 1 = Find - 2 = Lose
-* Changed the location of the UBC message on the Login screen
-* Replaced the Extensions button in Chat Search and chat rooms by a Preferences button
-* Replaced the Extensions button in Main Hall by a Friendlist button
-* Updated, improved or optimised several commands related to maps, rooms and wheel of fortune
-* Updated the bg4, invisible, permission and xstatus lscg commands
-* Updated the CharacterBio and ChatRoomSafewordRevert functions
-* Renamed the prison2 command as prison
-* Removed the cgame, chess, game, ggts, mission, prison1, timercell and xmenu commands (are broken in R119 or provoke weird issues after their using)
-* Fixed a bug in the Moaner concerning spank (+ assimilated activities) and tickle mixed with pleasure
+(...)
    
