@@ -6047,6 +6047,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         statusmsg(msg);
     }
 
+	//Effects
+    function applySleepEffect(character, name, pronoun2) {
+        publicmsg(
+            character === Player
+                ? `${tmpname} swallows a sleeping pill and drinks a glass of water. ${pronoun1} falls asleep very quickly.`
+                : `${tmpname} feeds ${name} a sleeping pill and gives ${pronoun2} a glass of water. ${name} falls asleep very quickly.`
+        );
+        InventoryWear(character, "RegularSleepingPill", 'ItemMouth');
+        CharacterSetFacialExpression(character, "Eyes", "Closed");
+        CharacterSetFacialExpression(character, "Eyes2", "Closed");
+        CharacterSetFacialExpression(character, "Emoticon", "Sleep");
+        ChatRoomCharacterUpdate(character);
+    }
+	
     //Gender
     function IsFemale() {
         if ((InventoryGet(Player, "Pronouns")?.Asset.Name == "SheHer") &&
@@ -12783,36 +12797,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'sleep',
         Description: "(target): uses the sleeping pill on yourself or another player.",
         Action: (args) => {
-            let target = Player;
-            if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    let msg = "" + tmpname + " swallows a sleeping pill and drinks a glass of water. " + pronoun1 + " falls asleep very quickly.";
-                    publicmsg(msg);
-                    InventoryWear(Player, "RegularSleepingPill", 'ItemMouth');
-                    CharacterSetFacialExpression(Player, "Eyes", "Closed");
-                    CharacterSetFacialExpression(Player, "Eyes2", "Closed");
-                    CharacterSetFacialExpression(Player, "Emoticon", "Sleep");
-                    ChatRoomCharacterUpdate(Player);
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        tgpr1 = getPronoun1(target);
-                        tgpr2 = getPronoun2(target);
-                        tgpr3 = getPronoun3(target);
-                        tgpr4 = getPronoun4(target);
-                        if (IsTargetProtected(target)) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "" + tmpname + " feeds " + tgpname + " a sleeping pill and gives " + tgpr2 + " a glass of water. " + tgpname + " falls asleep very quickly.";
-                            publicmsg(msg);
-                            InventoryWear(target, "RegularSleepingPill", 'ItemMouth');
-                            CharacterSetFacialExpression(target, "Eyes", "Closed");
-                            CharacterSetFacialExpression(target, "Eyes2", "Closed");
-                            CharacterSetFacialExpression(target, "Emoticon", "Sleep");
-                            ChatRoomCharacterUpdate(target);
-                        }
+            let target = args !== "" ? TargetSearch(args) : Player;
+            if (target) {
+                if (target === Player) {
+                    applySleepEffect(Player, tmpname, pronoun1);
+                } else if (target.AllowItem === true && target.OnlineSharedSettings.UBC !== undefined) {
+                    const tgpname = getNickname(target);
+                    const tgpr2 = getPronoun2(target);
+                    if (IsTargetProtected(target)) {
+                        infomsg(umsg1 + tgpname + umsg2);
+                    } else {
+                        applySleepEffect(target, tgpname, tgpr2);
                     }
                 }
                 ChatRoomSetTarget(-1);
@@ -14699,4 +14694,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
