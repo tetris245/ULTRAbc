@@ -59,5 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Added the 'Also check Descriptions' parameter in Chat Search
+* Optimised the sleep command
    
