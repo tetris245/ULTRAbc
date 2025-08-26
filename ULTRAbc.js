@@ -108,6 +108,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let pmin = 2;
     let pmax = 20;
     let rchat = false;
+	let rdesc = false;
     let rgame = 0;
     let rhide = false;
     let rmin = 2;
@@ -524,6 +525,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         pmin = 2;
         pmax = 20;
         rchat = false;
+		rdesc = false;
         rglbuttons = false;
         rglsync = false;
         rmin = 2;
@@ -615,6 +617,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         pmin = data.pmin * 1;
         pmax = data.pmax * 1;
         rchat = data.rchat;
+		rdesc = data.rdesc;
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
         rmin = data.rmin * 1;
@@ -735,6 +738,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pmin": pmin,
             "pmax": pmax,
             "rchat": rchat,
+            "rdesc": rdesc,
             "rgame": rgame,
             "rhide": rhide,
             "rmin": rmin,
@@ -913,6 +917,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (profileName == "wildfox") profile = 9;
                 if (profileName == "wolf") profile = 10;
                 if (rchat == null || rchat == undefined) rchat = false;
+				if (rdesc == null || rdesc == undefined) rdesc = false;
                 if (reaction == null || reaction == undefined) reaction = 0;
                 if (rgame == null || rgame == undefined) rgame = 0;
                 if (rglbuttons == null || rglbuttons == undefined) rglbuttons = false;
@@ -1028,6 +1033,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 pmax: 20,
                 profile: 0,
                 rchat: false,
+				rdesc: false,
                 reaction: 0,
                 rglbuttons: false,
                 rglsync: false,
@@ -1858,7 +1864,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Hide some filters in Chat Search: ", "hidefilt",
-                    "When checked, the filters according the room size or the number of players in rooms, and the AutoJoin button will not be displayed in Chat Search. Note that these settings are still applied if they were enabled before being hidden.", false, 120
+                    "When checked, the filters according the room size or the number of players in rooms, also the AutoJoin and Descriptions buttons will not be displayed in Chat Search. Note that these settings are still applied if they were enabled before being hidden.", false, 120
                 );
                 addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
                     "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
@@ -3068,8 +3074,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchParseResponse() {
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
-            const ret = next(args);
+            let ret = next(args);
             let NewResult = [];
+			let NewResult2 = [];
             if ((Player.UBC != undefined) && (rgame == 6)) {
                 let min = ElementValue("InputRoomMin");
                 let max = ElementValue("InputRoomMax");
@@ -3101,6 +3108,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (rgame == 0) {
                 if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
+				if (rdesc == true) {
+                    desc = ElementValue("InputSearch").toUpperCase().trim();
+                    let rm = 0;              
+                    while (rm < ret.length) {
+                        if ((ret[rm].Name.includes(desc)) || (ret[rm].Description.includes(desc))) NewResult.push(ret[rm]);
+                        rm++;
+                    }
+                } else {
+                    NewResult = ret;
+                }
+                ret = NewResult;
                 if (rtype == "ALL") {
                     let rm = 0;
                     while (rm < ret.length) {
@@ -3116,7 +3134,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
                             if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
                         }
-                        if (good == 1) NewResult.push(ret[rm]);
+                        if (good == 1) NewResult2.push(ret[rm]);
                         rm++;
                     }
                 }
@@ -3130,7 +3148,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
                         if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
                         if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
-                        if ((good == 1) && (ret[rm].MapType == rtype)) NewResult.push(ret[rm]);
+                        if ((good == 1) && (ret[rm].MapType == rtype)) NewResult2.push(ret[rm]);
                         rm++;
                     }
                 }
@@ -3141,11 +3159,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let player = ret[rm].MemberCount;
                         if (pchat == false) good = 1;
                         if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                        if ((good == 1) && (ret[rm].MapType == "Always")) NewResult.push(ret[rm]);
+                        if ((good == 1) && (ret[rm].MapType == "Always")) NewResult2.push(ret[rm]);
                         rm++;
                     }
                 }
-                return NewResult;
+                return NewResult2;
             }
         });
     }
@@ -3153,8 +3171,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchQuery() {
         modApi.hookFunction('ChatSearchQuery', 4, (args, next) => {
             ChatSearchMessage = "";
+			let desc = "";
             if (PandoraPenitentiaryIsInmate(Player)) return;
-            var Query = ChatSearchMode == "Filter" ? "" : ElementValue("InputSearch").toUpperCase().trim();
+            if (rdesc == false) {
+                var Query = ChatSearchMode == "Filter" ? "" : ElementValue("InputSearch").toUpperCase().trim();
+            } else {
+                desc = ElementValue("InputSearch").toUpperCase().trim();
+                var Query = ChatSearchMode == "Filter" ? "" : "";
+            }
             let FullRooms = (Player.OnlineSettings && Player.OnlineSettings.SearchShowsFullRooms);
             if (ChatRoomJoinLeash != null && ChatRoomJoinLeash != "") {
                 Query = ChatRoomJoinLeash.toUpperCase().trim();
@@ -3225,7 +3249,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatSelectStartSearch(ChatRoomSpace);
                     }
                 }
-                if ((MouseX >= 1095) && (MouseX < 1159) && (MouseY >= 800) && (MouseY < 864)) {
+                if ((MouseX >= 930) && (MouseX < 994) && (MouseY >= 800) && (MouseY < 864)) {
+                    if (rdesc == true) {
+                        rdesc = false;
+                        Player.UBC.ubcSettings.rdesc = false;
+                        M_MOANER_saveControls();
+                    } else {
+                        rdesc = true;
+                        Player.UBC.ubcSettings.rdesc = true;
+                        M_MOANER_saveControls();
+                    }
+                }
+                if ((MouseX >= 1270) && (MouseX < 1334) && (MouseY >= 800) && (MouseY < 864)) {
                     if (autojoin == true) {
                         autojoin = false;
                         Player.UBC.ubcSettings.autojoin = false;
@@ -3236,7 +3271,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         M_MOANER_saveControls();
                     }
                 }
-                if ((MouseX >= 1450) && (MouseX < 1514) && (MouseY >= 800) && (MouseY < 864)) {
+                if ((MouseX >= 1625) && (MouseX < 1689) && (MouseY >= 800) && (MouseY < 864)) {
                     if (pchat == true) {
                         rgame = 6;
                         pchat = false;
@@ -3346,37 +3381,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             roomminInput.setAttribute("max", "20");
             roomminInput.setAttribute("autocomplete", "off");
             if (hidefilt == false) {
-                DrawText("Minimum", 475, 800, "White", "Gray");
-                ElementPosition("InputRoomMin", 475, 840, 200);
+                DrawText("Min", 410, 800, "White", "Gray");
+                ElementPosition("InputRoomMin", 410, 840, 100);
             }
             const roommaxInput = ElementCreateInput("InputRoomMax", "number", rsize);
             roommaxInput.setAttribute("min", "2");
             roommaxInput.setAttribute("max", "20");
             roommaxInput.setAttribute("autocomplete", "off");
             if (hidefilt == false) {
-                DrawText("Maximum", 700, 800, "White", "Gray");
-                ElementPosition("InputRoomMax", 700, 840, 200);
-                DrawText("AutoJoin", 1000, 830, "White", "Gray");
-                DrawCheckbox(1095, 800, 64, 64, "", autojoin);
-                DrawText("Players", 1360, 810, "White", "Gray");
-                DrawText("In Room", 1360, 850, "White", "Gray");
-                DrawCheckbox(1450, 800, 64, 64, "", pchat);
+                DrawText("Max", 525, 800, "White", "Gray");
+                ElementPosition("InputRoomMax", 525, 840, 100);
+                DrawText("Also check", 810, 810, "White", "Gray");
+                DrawText("Descriptions", 800, 850, "White", "Gray");
+                DrawCheckbox(930, 800, 64, 64, "", rdesc);
+                DrawText("AutoJoin", 1175, 830, "White", "Gray");
+                DrawCheckbox(1270, 800, 64, 64, "", autojoin);
+                DrawText("Players", 1530, 810, "White", "Gray");
+                DrawText("In Room", 1530, 850, "White", "Gray");
+                DrawCheckbox(1625, 800, 64, 64, "", pchat);
             }
             const playerminInput = ElementCreateInput("InputPlayerMin", "number", pmin);
             playerminInput.setAttribute("min", "2");
             playerminInput.setAttribute("max", "20");
             playerminInput.setAttribute("autocomplete", "off");
             if (hidefilt == false) {
-                DrawText("Minimum", 1650, 800, "White", "Gray");
-                ElementPosition("InputPlayerMin", 1650, 840, 200);
+                DrawText("Min", 1760, 800, "White", "Gray");
+                ElementPosition("InputPlayerMin", 1760, 840, 100);
             }
             const playermaxInput = ElementCreateInput("InputPlayerMax", "number", pmax);
             playermaxInput.setAttribute("min", "2");
             playermaxInput.setAttribute("max", "20");
             playermaxInput.setAttribute("autocomplete", "off");
             if (hidefilt == false) {
-                DrawText("Maximum", 1875, 800, "White", "Gray");
-                ElementPosition("InputPlayerMax", 1875, 840, 200);
+                DrawText("Max", 1875, 800, "White", "Gray");
+                ElementPosition("InputPlayerMax", 1875, 840, 100);
             }
             DrawButton(335, 885, 90, 90, "ALL", "White", "", "All Room Types");
             DrawButton(445, 885, 90, 90, "", "White", "", "Normal Rooms");
@@ -14694,6 +14732,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
