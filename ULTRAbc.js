@@ -5712,6 +5712,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Buttons
+    async function ExtClick() {
+        ChatRoomSetLastChatRoom("");
+        ChatRoomHideElements();
+        InformationSheetLoadCharacter(Player);
+        PreferenceSubscreen = "Extensions";
+        await CommonSetScreen("Character", "Preference");
+        PreferenceSubscreen = PreferenceSubscreens.find(s => s.name === "Extensions");
+        PreferenceSubscreen?.load();
+    }
+
     function OutButtons() {
         if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
@@ -13868,6 +13878,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n" +
                     "<b>/ulistshow</b> = displays list of players in your Ulist.\n" +
                     "<b>/uroom</b> = infos about UBC/Uwall users in current room.\n" +
+					"<b>/xmenu</b> = direct access to Extensions screen.\n" +
                     "<b>/xstatus</b> (add-on) = displays status of main settings for other add-ons. *";
                 infomsg(msg);
             }
@@ -14557,6 +14568,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'xmenu',
+        Description: ": direct access to Extensions menu.",
+        Action: () => {
+            ExtClick();
+        }
+    }])
+
     CommandCombine([{
         Tag: 'xstatus',
         Description: "(add-on): displays status of settings for other add-ons.",
@@ -14732,7 +14751,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
