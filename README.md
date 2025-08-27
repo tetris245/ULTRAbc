@@ -60,6 +60,5 @@ All else I might not have included.
 Changes for future version
 
 * Added the 'Also check Descriptions' parameter in Chat Search
+* Restored the xmenu command and the Extensions button in chat rooms
 * Optimised the sleep command
-* Restored the xmenu command
-   
