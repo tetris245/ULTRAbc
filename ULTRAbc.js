@@ -1684,7 +1684,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCButtonsLoad = function() {
                 UBCPreferenceSubscreen = "UBCButtons";
                 addMenuCheckbox(64, 64, "Enable Preferences button in chat rooms: ", "extbuttons",
-                    "When checked, a Preferences button will be added in the chat rooms.", false, 150
+                    "When checked, an Extensions button will be added in the chat rooms.", false, 150
                 );
                 addMenuCheckbox(64, 64, "Enable FREE buttons: ", "sosbuttons",
                     "The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape", 150
@@ -2376,7 +2376,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (extbuttons == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
-                    PrfClick();
+                    ExtClick();
                     return;
                 }
             }
@@ -2605,7 +2605,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (extbuttons == true) {
                 DrawButton(955, 270, 45, 45, "", "White", "", "");
-                DrawImageResize("Icons/Preference.png", 960, 272, 40, 40);
+                DrawImageResize("Icons/Extensions.png", 960, 272, 40, 40);
             }
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
@@ -14751,3 +14751,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
