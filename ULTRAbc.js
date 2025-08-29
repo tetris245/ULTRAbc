@@ -10868,7 +10868,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let change = 0;
                 let option2 = "";
                 if (msgcommand.includes(option)) change = 1;
-                if ((option.startsWith("t")) && (option != "totalrelease")) option2 = option.slice(1);
+                if ((option.startsWith("t")) && (option != "totalrelease")) {
+                    change = 2;
+                    option2 = option.slice(1);
+                }
                 let msg1 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option + " command on yourself.</p>";
                 let msg2 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option + " command on yourself.</p>"
                 let msg3 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option + " command on yourself.</p>"
@@ -10876,318 +10879,149 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg5 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option2 + " command on other players.</p>";
                 let msg6 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option2 + " command on other players.</p>";
                 if (option == "clothes") {
-                    if (custom == "!") {
-                        Clothes = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Clothes = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Clothes = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Clothes = custom;
+                    if (custom == "!") Clothes = "no message";
+                    if (custom == "?") Clothes = "";
                 }
                 if (option == "invisible") {
-                    if (custom == "!") {
-                        Invisible = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Invisible = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Invisible = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Invisible = custom;
+                    if (custom == "!") Invisible = "no message";
+                    if (custom == "?") Invisible = "";
                 }
                 if (option == "lock") {
-                    if (custom == "!") {
-                       Mlock = "no message";
-                       ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                       Mlock = "";
-                       ChatRoomSendLocal(msg2);
-                    } else {
-                       Mlock = custom;
-                       ChatRoomSendLocal(msg3);
-                    }
+                    Mlock = custom;
+                    if (custom == "!") Mlock = "no message";
+                    if (custom == "?") Mlock = "";
                 }
                 if (option == "naked") {
-                    if (custom == "!") {
-                        Naked = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Naked = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                       Naked = custom;
-                       ChatRoomSendLocal(msg3);
-                    }
+                    Naked = custom;
+                    if (custom == "!") Naked = "no message";
+                    if (custom == "?") Naked = "";
                 }
                 if (option == "pet") {
-                    if (custom == "!") {
-                        Pet = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Pet = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Pet = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Pet = custom;
+                    if (custom == "!") Pet = "no message";
+                    if (custom == "?") Pet = "";
                 }
                 if (option == "randomize") {
-                    if (custom == "!") {
-                        Randomize = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Randomize = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Randomize = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Randomize = custom;
+                    if (custom == "!") Randomize = "no message";
+                    if (custom == "?") Randomize = "";
                 }
                 if (option == "restrain") {
-                    if (custom == "!") {
-                       Restrain = "no message";
-                       ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                       Restrain = "";
-                       ChatRoomSendLocal(msg2);
-                    } else {
-                       Restrain = custom;
-                       ChatRoomSendLocal(msg3);
-                    }
+                    Restrain = custom;
+                    if (custom == "!") Restrain = "no message";
+                    if (custom == "?") Restrain = "";
                 }
                 if (option == "solidity") {
-                    if (custom == "!") {
-                        Solidity = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Solidity = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Solidity = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Solidity = custom;
+                    if (custom == "!") Solidity = "no message";
+                    if (custom == "?") Solidity = "";
                 }
                 if (option == "tclothes") {
-                   if (custom == "!") {
-                       Tclothes = "no message";
-                       ChatRoomSendLocal(msg4);
-                   } else if (custom == "?") {
-                       Tclothes = "";
-                       ChatRoomSendLocal(msg5);
-                   } else {
-                       Tclothes = custom;
-                       ChatRoomSendLocal(msg6);
-                   }
+                    Tclothes = custom;
+                    if (custom == "!") Tclothes = "no message";
+                    if (custom == "?") Tclothes = "";
                }
                if (option == "tinvisible") {
-                    if (custom == "!") {
-                        Tinvisible = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tinvisible = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Tinvisible = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tinvisible = custom;
+                    if (custom == "!") Tinvisible = "no message";
+                    if (custom == "?") Tinvisible = "";
                 }
                 if (option == "tlock") {
-                    if (custom == "!") {
-                        Tlock = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tlock = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Tlock = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tlock = custom;
+                    if (custom == "!") Tlock = "no message";
+                    if (custom == "?") Tlock = "";
                 }
                 if (option == "tnaked") {
-                    if (custom == "!") {
-                        Tnaked = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tnaked = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Tnaked = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tnaked = custom;
+                    if (custom == "!") Tnaked = "no message";
+                    if (custom == "?") Tnaked = "";
                 }
                 if (option == "totalrelease") {
-                    if (custom == "!") {
-                        Totalrelease = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Totalrelease = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Totalrelease = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Totalrelease = custom;
+                    if (custom == "!") Totalrelease = "no message";
+                    if (custom == "?") Totalrelease = "";
                 }
                 if (option == "tpet") {
-                    if (custom == "!") {
-                        Tpet = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tpet = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Tpet = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tpet = custom;
+                    if (custom == "!") Tpet = "no message";
+                    if (custom == "?") Tpet = "";
                 }
                 if (option == "trandomize") {
-                    if (custom == "!") {
-                        Trandomize = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Trandomize = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Trandomize = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Trandomize = custom;
+                    if (custom == "!") Trandomize = "no message";
+                    if (custom == "?") Trandomize = "";
                 }
                 if (option == "trestrain") {
-                    if (custom == "!") {
-                        Trestrain = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Trestrain = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Trestrain = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Trestrain = custom;
+                    if (custom == "!") Trestrain = "no message";
+                    if (custom == "?") Trestrain = "";
                 }
                 if (option == "tsolidity") {
-                    if (custom == "!") {
-                        Tsolidity = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tsolidity = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Tsolidity = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tsolidity = custom;
+                    if (custom == "!") Tsolidity = "no message";
+                    if (custom == "?") Tsolidity = "";
                 }
                 if (option == "ttotalrelease") {
-                    if (custom == "!") {
-                        Ttotalrelease = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Ttotalrelease = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Ttotalrelease = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Ttotalrelease = custom;
+                    if (custom == "!") Ttotalrelease = "no message";
+                    if (custom == "?") Ttotalrelease = "";
                 }
                 if (option == "tunderwear") {
-                    if (custom == "!") {
-                        Tunderwear = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tunderwear = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Tunderwear = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tunderwear = custom;
+                    if (custom == "!") Tunderwear = "no message";
+                    if (custom == "?") Tunderwear = "";
                 }
                 if (option == "tunlock") {
-                    if (custom == "!") {
-                        Tunlock = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tunlock = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Tunlock = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tunlock = custom;
+                    if (custom == "!") Tunlock = "no message";
+                    if (custom == "?") Tunlock = "";
                 }
                 if (option == "tuntie") {
-                    if (custom == "!") {
-                        Tuntie = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tuntie = "";
-                        ChatRoomSendLocal(msg5);
-                    } else {
-                        Tuntie = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tuntie = custom;
+                    if (custom == "!") Tuntie = "no message";
+                    if (custom == "?") Tuntie = "";
                 }
                 if (option == "tvisible") {
-                    if (custom == "!") {
-                        Tvisible = "no message";
-                        ChatRoomSendLocal(msg4);
-                    } else if (custom == "?") {
-                        Tvisible = "";
-                            ChatRoomSendLocal(msg5);
-                    } else {
-                        Tvisible = custom;
-                        ChatRoomSendLocal(msg6);
-                    }
+                    Tvisible = custom;
+                    if (custom == "!") Tvisible = "no message";
+                    if (custom == "?") Tvisible = "";
                 }
                 if (option == "underwear") {
-                    if (custom == "!") {
-                        Underwear = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Underwear = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Underwear = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Underwear = custom;
+                    if (custom == "!") Underwear = "no message";
+                    if (custom == "?") Underwear = ""; 
                 }
                 if (option == "unlock") {
-                    if (custom == "!") {
-                        Unlock = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Unlock = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Unlock = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Unlock = custom;
+                    if (custom == "!") Unlock = "no message";
+                    if (custom == "?") Unlock = "";
                 }
                 if (option == "untie") {
-                    if (custom == "!") {
-                        Untie = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Untie = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Untie = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Untie = custom;
+                    if (custom == "!") Untie = "no message";
+                    if (custom == "?") Untie = "";
                 }
                 if (option == "visible") {
-                    if (custom == "!") {
-                        Visible = "no message";
-                        ChatRoomSendLocal(msg1);
-                    } else if (custom == "?") {
-                        Visible = "";
-                        ChatRoomSendLocal(msg2);
-                    } else {
-                        Visible = custom;
-                        ChatRoomSendLocal(msg3);
-                    }
+                    Visible = custom;
+                    if (custom == "!") Visible = "no message";
+                    if (custom == "?") Visible = "";        
                 }
-                if (change == 1) M_MOANER_saveControls();
+                if (change == 1) {
+                    let msf = msg3;
+                    if (custom == "!") msf = msg1;
+                    if (custom == "?") msf = msg2;
+                    ChatRoomSendLocal(msf);
+                    M_MOANER_saveControls();
+                } 
+                if (change == 2) {
+                    let msf = msg6;
+                    if (custom == "!") msf = msg4;
+                    if (custom == "?") msf = msg5;
+                    ChatRoomSendLocal(msf);
+                    M_MOANER_saveControls();
+                }              
             }
         }
     }])
@@ -14682,5 +14516,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
