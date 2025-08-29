@@ -59,7 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
-* Added the 'Also check Descriptions' parameter in Chat Search
+* Added the 'Also check Descriptions' parameter in Chat Search - Note: When this parameter is checked, the links to rooms from friendlist will not work
 * Restored the Extensions button in Main Hall while keeping the Preferences button
 * Restored the xmenu command and the Extensions button in chat rooms
 * Optimised the sleep command
