@@ -10853,12 +10853,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The message command must be followed by an option and the message you want instead of the default message.\n" +
                     "Each option corresponds to a command, a 't' prefix being added for using on other players.\n" +
                     "Options on yourself: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\n" +
-                     "Options on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n" +
-                      " \n" +
-                      "When writing your message, don't forget that your name or nickname will be added before it\n" +
-                      "When acting on another player, the target name or nickname will be added after the message\n" +
-                      "Use ? as message to go back to default message\n" +
-                      "Use ! as message to select silent mode (no message)";
+                    "Options on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n" +
+                    " \n" +
+                    "When writing your message, don't forget that your name or nickname will be added before it\n" +
+                    "When acting on another player, the target name or nickname will be added after the message\n" +
+                    "Use ? as message to go back to default message\n" +
+                    "Use ! as message to select silent mode (no message)";
                 infomsg(msg);
                 return;
             } 
