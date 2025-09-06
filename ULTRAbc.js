@@ -3079,7 +3079,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
             let ret = next(args);
             let NewResult = [];
-			let DescResult = [];
+	        let DescResult = [];
+            let RsizeResult = [];
+            let PchatResult = [];
             if ((Player.UBC != undefined) && (rgame == 6)) {
                 let min = ElementValue("InputRoomMin");
                 let max = ElementValue("InputRoomMax");
@@ -3109,7 +3111,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 return NewResult;
             }
-			if ((game == 0) && (rdesc == true)) {             
+		    if ((rgame == 0) && (rdesc == true)) {             
                 let desc =  ElementValue("InputSearch").toUpperCase().trim();
                 let rm = 0;              
                 while (rm < ret.length) {
@@ -3125,58 +3127,47 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                      rm++;
                 }
                 ret = DescResult;
-             }          
+             } 
+             if ((rgame == 0) && (rchat == true)) {          
+                 let rm = 0;              
+                 while (rm < ret.length) {
+                     if (ret[rm].Maptype == "Always") {
+                         RsizeResult.push(ret[rm]);
+                     } else {
+                         let room = ret[rm].MemberLimit;
+                         if ((room >= rmin) && (room <= rsize)) RsizeResult.push(ret[rm]);
+                     }
+                     rm++;
+                  }
+                  ret = RsizeResult;
+              }         
+              if ((rgame == 0) && (pchat == true)) {          
+                  let rm = 0;              
+                  while (rm < ret.length) {
+                      let player = ret[rm].MemberCount;
+                      if ((player >= pmin) && (player <= pmax)) PchatResult.push(ret[rm]);
+                      rm++;
+                   }
+                   ret = PchatResult;
+              }         
              if (rgame == 0) {
                 if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
                 if (rtype == "ALL") {
+                    NewResult = ret;  
+                }
+                if ((rtype == "Never") || (rtype == "Hybrid") || (rtype === "Always")) {
                     let rm = 0;
                     while (rm < ret.length) {
-                        let good = 0;
-                        let room = ret[rm].MemberLimit;
-                        let player = ret[rm].MemberCount;
-                        if (ret[rm].MapType == "Always") {
-                            if (pchat == false) good = 1;
-                            if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                        } else {
-                            if ((rchat == false) && (pchat == false)) good = 1;
-                            if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
-                            if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                            if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
-                        }
-                        if (good == 1) NewResult.push(ret[rm]);
+                        let good = 0;                     
+                        if (ret[rm].MapType == rtype) NewResult.push(ret[rm]);
                         rm++;
                     }
-                }
-                if ((rtype == "Never") || (rtype == "Hybrid")) {
-                    let rm = 0;
-                    while (rm < ret.length) {
-                        let good = 0;
-                        let room = ret[rm].MemberLimit;
-                        let player = ret[rm].MemberCount;
-                        if ((rchat == false) && (pchat == false)) good = 1;
-                        if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
-                        if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                        if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
-                        if ((good == 1) && (ret[rm].MapType == rtype)) NewResult.push(ret[rm]);
-                        rm++;
-                    }
-                }
-                if (rtype == "Always") {
-                    let rm = 0;
-                    while (rm < ret.length) {
-                        let good = 0;
-                        let player = ret[rm].MemberCount;
-                        if (pchat == false) good = 1;
-                        if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                        if ((good == 1) && (ret[rm].MapType == "Always")) NewResult.push(ret[rm]);
-                        rm++;
-                    }
-                }
-                return NewResult;
+                }              
+                return NewResult;  
             }                
         });
     }
-       
+   
     async function ULTRAChatSearchQuery() {
         modApi.hookFunction('ChatSearchQuery', 4, (args, next) => {
             ChatSearchMessage = "";
@@ -3385,16 +3376,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawCheckbox(275, 800, 64, 64, "", rchat);
             }
             const roomminInput = ElementCreateInput("InputRoomMin", "number", rmin);
-            roomminInput.setAttribute("min", "2");
-            roomminInput.setAttribute("max", "20");
+            roomminInput.setAttribute("min1", "2");
+            roomminInput.setAttribute("max1", "20");
             roomminInput.setAttribute("autocomplete", "off");
             if (hidefilt == false) {
                 DrawText("Min", 410, 800, "White", "Gray");
                 ElementPosition("InputRoomMin", 410, 840, 100);
             }
             const roommaxInput = ElementCreateInput("InputRoomMax", "number", rsize);
-            roommaxInput.setAttribute("min", "2");
-            roommaxInput.setAttribute("max", "20");
+            roommaxInput.setAttribute("min2", "2");
+            roommaxInput.setAttribute("max2", "20");
             roommaxInput.setAttribute("autocomplete", "off");
             if (hidefilt == false) {
                 DrawText("Max", 525, 800, "White", "Gray");
@@ -3409,16 +3400,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawCheckbox(1625, 800, 64, 64, "", pchat);
             }
             const playerminInput = ElementCreateInput("InputPlayerMin", "number", pmin);
-            playerminInput.setAttribute("min", "2");
-            playerminInput.setAttribute("max", "20");
+            playerminInput.setAttribute("min3", "2");
+            playerminInput.setAttribute("max3", "20");
             playerminInput.setAttribute("autocomplete", "off");
             if (hidefilt == false) {
                 DrawText("Min", 1760, 800, "White", "Gray");
                 ElementPosition("InputPlayerMin", 1760, 840, 100);
             }
             const playermaxInput = ElementCreateInput("InputPlayerMax", "number", pmax);
-            playermaxInput.setAttribute("min", "2");
-            playermaxInput.setAttribute("max", "20");
+            playermaxInput.setAttribute("min4", "2");
+            playermaxInput.setAttribute("max4", "20");
             playermaxInput.setAttribute("autocomplete", "off");
             if (hidefilt == false) {
                 DrawText("Max", 1875, 800, "White", "Gray");
@@ -14521,4 +14512,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
