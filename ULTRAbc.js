@@ -3079,7 +3079,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
             let ret = next(args);
             let NewResult = [];
-			let NewResult2 = [];
+			let DescResult = [];
             if ((Player.UBC != undefined) && (rgame == 6)) {
                 let min = ElementValue("InputRoomMin");
                 let max = ElementValue("InputRoomMax");
@@ -3109,19 +3109,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 return NewResult;
             }
-            if (rgame == 0) {
-                if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
-				if (rdesc == true) {
-                    desc = ElementValue("InputSearch").toUpperCase().trim();
-                    let rm = 0;              
-                    while (rm < ret.length) {
-                        if ((ret[rm].Name.includes(desc)) || (ret[rm].Description.includes(desc))) NewResult.push(ret[rm]);
-                        rm++;
-                    }
-                } else {
-                    NewResult = ret;
+			if ((game == 0) && (rdesc == true)) {             
+                let desc =  ElementValue("InputSearch").toUpperCase().trim();
+                let rm = 0;              
+                while (rm < ret.length) {
+                    let name = ret[rm].Name.toUpperCase(); 
+                    if (name.includes(desc)) {
+                        DescResult.push(ret[rm]); 
+                    } else {
+                        let dname = ret[rm].Description.toUpperCase(); 
+                        if (dname.includes(desc)) {
+                            DescResult.push(ret[rm]); 
+                        }
+                     }
+                     rm++;
                 }
-                ret = NewResult;
+                ret = DescResult;
+             }          
+             if (rgame == 0) {
+                if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
                 if (rtype == "ALL") {
                     let rm = 0;
                     while (rm < ret.length) {
@@ -3137,7 +3143,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
                             if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
                         }
-                        if (good == 1) NewResult2.push(ret[rm]);
+                        if (good == 1) NewResult.push(ret[rm]);
                         rm++;
                     }
                 }
@@ -3151,7 +3157,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if ((rchat == true) && (pchat == false) && (room >= rmin) && (room <= rsize)) good = 1;
                         if ((rchat == false) && (pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
                         if ((rchat == true) && (pchat == true) && (room >= rmin) && (room <= rsize) && (player >= pmin) && (player <= pmax)) good = 1;
-                        if ((good == 1) && (ret[rm].MapType == rtype)) NewResult2.push(ret[rm]);
+                        if ((good == 1) && (ret[rm].MapType == rtype)) NewResult.push(ret[rm]);
                         rm++;
                     }
                 }
@@ -3162,15 +3168,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let player = ret[rm].MemberCount;
                         if (pchat == false) good = 1;
                         if ((pchat == true) && (player >= pmin) && (player <= pmax)) good = 1;
-                        if ((good == 1) && (ret[rm].MapType == "Always")) NewResult2.push(ret[rm]);
+                        if ((good == 1) && (ret[rm].MapType == "Always")) NewResult.push(ret[rm]);
                         rm++;
                     }
                 }
-                return NewResult2;
-            }
+                return NewResult;
+            }                
         });
     }
-
+       
     async function ULTRAChatSearchQuery() {
         modApi.hookFunction('ChatSearchQuery', 4, (args, next) => {
             ChatSearchMessage = "";
@@ -3179,7 +3185,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (rdesc == false) {
                 var Query = ChatSearchMode == "Filter" ? "" : ElementValue("InputSearch").toUpperCase().trim();
             } else {
-                desc = ElementValue("InputSearch").toUpperCase().trim();
                 var Query = ChatSearchMode == "Filter" ? "" : "";
             }
             let FullRooms = (Player.OnlineSettings && Player.OnlineSettings.SearchShowsFullRooms);
@@ -14516,3 +14521,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
