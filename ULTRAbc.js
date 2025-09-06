@@ -3098,11 +3098,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_saveControls();
             }
             let game = "";
+			if (rgame == 0) game = 0;
             if (rgame == 1) game = "ClubCard";
             if (rgame == 2) game = "GGTS";
             if (rgame == 3) game = "LARP";
             if (rgame == 4) game = "MagicBattle";
             if (rgame == 5) game = "Prison";
+			if (rgame == 6) game = 0;
             if (rgame != 0) {
                 let rm = 0;
                 while (rm < ret.length) {
@@ -3111,7 +3113,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 return NewResult;
             }
-		    if ((rgame == 0) && (rdesc == true)) {             
+		    if ((game == 0) && (rdesc == true)) {             
                 let desc =  ElementValue("InputSearch").toUpperCase().trim();
                 let rm = 0;              
                 while (rm < ret.length) {
@@ -3127,34 +3129,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                      rm++;
                 }
                 ret = DescResult;
-             } 
-             if ((rgame == 0) && (rchat == true)) {          
-                 let rm = 0;              
-                 while (rm < ret.length) {
-                     if (ret[rm].Maptype == "Always") {
-                         RsizeResult.push(ret[rm]);
-                     } else {
-                         let room = ret[rm].MemberLimit;
-                         if ((room >= rmin) && (room <= rsize)) RsizeResult.push(ret[rm]);
-                     }
-                     rm++;
-                  }
-                  ret = RsizeResult;
-              }         
-              if ((rgame == 0) && (pchat == true)) {          
-                  let rm = 0;              
-                  while (rm < ret.length) {
-                      let player = ret[rm].MemberCount;
-                      if ((player >= pmin) && (player <= pmax)) PchatResult.push(ret[rm]);
-                      rm++;
-                   }
-                   ret = PchatResult;
-              }         
-             if (rgame == 0) {
-                if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
-                if (rtype == "ALL") {
-                    NewResult = ret;  
+            } 
+            if ((game == 0) && (rchat == true)) {          
+                let rm = 0;              
+                while (rm < ret.length) {
+                    if (ret[rm].Maptype == "Always") {
+                        RsizeResult.push(ret[rm]);
+                    } else {
+                        let room = ret[rm].MemberLimit;
+                        if ((room >= rmin) && (room <= rsize)) RsizeResult.push(ret[rm]);
+                    }
+                    rm++;
                 }
+                ret = RsizeResult;
+            }         
+            if ((game == 0) && (pchat == true)) {          
+                let rm = 0;              
+                while (rm < ret.length) {
+                    let player = ret[rm].MemberCount;
+                    if ((player >= pmin) && (player <= pmax)) PchatResult.push(ret[rm]);
+                    rm++;
+                }
+                ret = PchatResult;
+            }         
+            if (rgame == 0) {
+                if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
+                if (rtype == "ALL") NewResult = ret;  
                 if ((rtype == "Never") || (rtype == "Hybrid") || (rtype === "Always")) {
                     let rm = 0;
                     while (rm < ret.length) {
@@ -14512,5 +14512,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
