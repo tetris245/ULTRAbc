@@ -60,7 +60,7 @@ All else I might not have included.
 Changes for future version
 
 * Added the 'Also check Descriptions' parameter in Chat Search
-  - Note: The first search after login for a specific word used for the chat rooms must be done with this parameter disabled, then you can enable it and click on the green button to get a more complete list of rooms
+  - Note: To initialize it, make a first search for a specific word used for the chat rooms when it's disabled, then enable it and click on the green button
 * Restored the Extensions button in Main Hall while keeping the Preferences button
 * Restored the xmenu command and the Extensions button in chat rooms
 * Optimised the message and sleep commands
