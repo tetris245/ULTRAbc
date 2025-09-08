@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name ULTRAbc
 // @namespace https://www.bondageprojects.com/
-// @version 5.5.1
+// @version 5.5.2
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
 // @match https://www.bondageprojects.elementfx.com/*
 // @match https://bondage-europe.com/*
 // @match https://www.bondage-europe.com/*
-// @match https://bondage-asia.com/Club/*
+// @match https://bondage-asia.com/club/*
 // @match https://www.bondage-asia.com/Club/*
 // @match https://bondageprojects.com/*
 // @match https://www.bondageprojects.com/*
@@ -28,5 +28,6 @@ setTimeout(
 	}, 
         10000
 );
+
 
 
