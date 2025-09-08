@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.5.1
+Most recent version: 5.5.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -59,8 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added the 'Also check Descriptions' parameter in Chat Search
-  - Note: To initialize it, make a first search for a specific word used for the chat rooms when it's disabled, then enable it and click on the green button
-* Restored the Extensions button in Main Hall while keeping the Preferences button
-* Restored the xmenu command and the Extensions button in chat rooms
-* Optimised the message and sleep commands
+(...)
