@@ -9,7 +9,7 @@
 // @match https://bondage-europe.com/*
 // @match https://www.bondage-europe.com/*
 // @match https://bondage-asia.com/club/*
-// @match https://www.bondage-asia.com/Club/*
+// @match https://www.bondage-asia.com/club/*
 // @match https://bondageprojects.com/*
 // @match https://www.bondageprojects.com/*
 // @match http://localhost:*/*
@@ -28,6 +28,7 @@ setTimeout(
 	}, 
         10000
 );
+
 
 
 
