@@ -6345,6 +6345,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Messages
     function hidetoast() {
+        ChatSearchSendToast = function() {}
         ServerShowBeep = function() {}
         ToastManager.dismissAll();
     }
@@ -14508,5 +14509,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
+
 
 })();
