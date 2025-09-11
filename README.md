@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Extended the NO TOAST effect to the Chat Search toasts
