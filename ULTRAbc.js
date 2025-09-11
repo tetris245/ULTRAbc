@@ -104,16 +104,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mgl = 0;
     let npcdeck = -1;
     let onegl = 0;
-    let pchat = false;
-    let pmin = 2;
-    let pmax = 20;
-    let rchat = false;
-    let rdesc = false;
-    let rgame = 0;
-    let rhide = false;
-    let rmin = 2;
-    let rsize = 20;
-    let rtype = "ALL";
     let silent = false;
     let st = 0;
     let tcname = "Cell";
@@ -130,7 +120,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let fixperm;
     let frkeys;
     let fullseed;
-    let hidefilt;
     let highfame;
     let hotkeys;
     let magiccheat;
@@ -502,7 +491,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         fullseed = false;
         frkeys = false;
         gl = 0;
-        hidefilt = false;
         highfame = false;
         hotkeys = false;
         magiccheat = false;
@@ -524,16 +512,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         npcdeck = -1;
         npcpunish = false;
         outbuttons = false;
-        pchat = false;
-        pmin = 2;
-        pmax = 20;
-        rchat = false;
-        rdesc = false;
         rglbuttons = false;
         rglsync = false;
-        rmin = 2;
-        rsize = 20;
-        rtype = "ALL";
         silent = false;
         slowleave = false;
         sosbuttons = false;
@@ -594,7 +574,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         fullseed = data.fullseed;
         frkeys = data.frkeys;
         gl = data.gaglevel * 1;
-        hidefilt = data.hidefilt;
         highfame = data.highfame;
         hotkeys = data.hotkeys;
         magiccheat = data.magiccheat;
@@ -616,16 +595,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         npcdeck = data.npcdeck * 1;
         npcpunish = data.npcpunish;
         outbuttons = data.outbuttons;
-        pchat = data.pchat;
-        pmin = data.pmin * 1;
-        pmax = data.pmax * 1;
-        rchat = data.rchat;
-        rdesc = data.rdesc;
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
-        rmin = data.rmin * 1;
-        rsize = data.rsize * 1;
-        rtype = data.rtype;
         silent = data.silent;
         slowleave = data.slowleave;
         sosbuttons = data.sosbuttons;
@@ -666,8 +637,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mgl = 0;
             onegl = 0;
             reaction = 0;
-            rgame = 0;
-            rhide = false;
             tcname = "Cell";
             unrestrict = 0;
             messageDefault();
@@ -698,8 +667,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mgl = 0;
             onegl = 0;
             reaction = 0;
-            rgame = data.rgame;
-            rhide = data.rhide;
             tcname = data.tcname;
             unrestrict = 0;
             messageData(data);
@@ -737,16 +704,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gaglevel": gl,
             "maptrap1": maptrap1,
             "npcdeck": npcdeck,
-            "pchat": pchat,
-            "pmin": pmin,
-            "pmax": pmax,
-            "rchat": rchat,
-            "rdesc": rdesc,
-            "rgame": rgame,
-            "rhide": rhide,
-            "rmin": rmin,
-            "rsize": rsize,
-            "rtype": rtype,
             "silent": silent,
             "stutterlevel": st,
             "tcname": tcname,
@@ -762,7 +719,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "fixperm": fixperm,
             "frkeys": frkeys,
             "fullseed": fullseed,
-            "hidefilt": hidefilt,
             "highfame": highfame,
             "hotkeys": hotkeys,
             "magiccheat": magiccheat,
@@ -871,7 +827,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (gl == null || gl == undefined) gl = 0;
                 if (gl == -1) gl = 11;
                 if (hearing == null || hearing == undefined) hearing = 0;
-                if (hidefilt == null || hidefilt == undefined) hidefilt = false;
                 if (highfame == null || highfame == undefined) highfame = false;
                 if (hotkeys == null || hotkeys == undefined) hotkeys = false;
                 if (magiccheat == null || magiccheat == undefined) magiccheat = false;
@@ -904,9 +859,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (npcdeck == null || npcdeck == undefined) npcdeck = -1;
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;
                 if (outbuttons == null || outbuttons == undefined) outbuttons = false;
-                if (pchat == null || pchat == undefined) pchat = false;
-                if (pmin == null || pmin == undefined || pmin == 0) pmin = 2;
-                if (pmax == null || pmax == undefined || pmax == 0) pmax = 20;
                 if (profileName == null || profileName == undefined) profileName = "default";
                 if (profileName == "default") profile = 0;
                 if (profileName == "bunny") profile = 1;
@@ -919,16 +871,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (profileName == "pony") profile = 8;
                 if (profileName == "wildfox") profile = 9;
                 if (profileName == "wolf") profile = 10;
-                if (rchat == null || rchat == undefined) rchat = false;
-                if (rdesc == null || rdesc == undefined) rdesc = false;
                 if (reaction == null || reaction == undefined) reaction = 0;
-                if (rgame == null || rgame == undefined) rgame = 0;
                 if (rglbuttons == null || rglbuttons == undefined) rglbuttons = false;
                 if (rglsync == null || rglsync == undefined) rglsync = false;
-                if (rhide == null || rhide == undefined) rhide = false;
-                if (rmin == null || rmin == undefined || rmin == 0) rmin = 2;
-                if (rsize == null || rsize == undefined || rsize == 0) rsize = 20;
-                if (rtype == null || rtype == undefined || rtype == "") rtype = "ALL";
                 if (slowleave == null || slowleave == undefined) slowleave = false;
                 if (sosbuttons == null || sosbuttons == undefined) sosbuttons = false;
                 if (silent == null || silent == undefined) silent = false;
@@ -1008,7 +953,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 fullseed: false,
                 gaglevel: 0,
                 hearing: 0,
-                hidefilt: false,
                 highfame: false,
                 hotkeys: false,
                 magiccheat: false,
@@ -1031,18 +975,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 npcpunish: false,
                 orgasmMoan: true,
                 outbuttons: false,
-                pchat: false,
-                pmin: 2,
-                pmax: 20,
                 profile: 0,
-                rchat: false,
-                rdesc: false,
                 reaction: 0,
                 rglbuttons: false,
                 rglsync: false,
-                rmin: 2,
-                rsize: 20,
-                rtype: "ALL",
                 script: false,
                 silent: false,
                 slowleave: false,
@@ -1866,9 +1802,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
                     "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
                 );
-                addMenuCheckbox(64, 64, "Hide some filters in Chat Search: ", "hidefilt",
-                    "When checked, the filters according the room size or the number of players in rooms, also the AutoJoin and Descriptions buttons will not be displayed in Chat Search. Note that these settings are still applied if they were enabled before being hidden.", false, 120
-                );
                 addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
                     "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
                 );
@@ -2151,7 +2084,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     // End of section under GPLv3 license
 
     //ModSDK Functions
-    ULTRAActivityChatRoomArousalSync();
+	ULTRAActivityChatRoomArousalSync();
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceStartChat();
@@ -2173,15 +2106,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomMenuDraw();
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
-    ULTRAChatSearchClick();
     ULTRAChatSearchExit();
-    ULTRAChatSearchJoin();
-    ULTRAChatSearchParseResponse();
     ULTRAChatSearchQuery();
     ULTRAChatSearchRoomSpaceSelectClick();
-    ULTRAChatSearchRoomSpaceSelectDraw();
     ULTRAChatSearchRun();
-    ULTRAChatSearchUnload();
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
     ULTRAClubCardCheckVictory();
@@ -2940,80 +2868,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Chat Search (including Auto-Join)
-    async function ULTRAChatSearchClick() {
-        modApi.hookFunction('ChatSearchClick', 3, (args, next) => {
-            if (ChatSearchFilterUnhideConfirm) {
-                if (MouseIn(620, 898, 280, 64)) ChatSearchFilterUnhideConfirm = null;
-                if (MouseIn(1100, 898, 280, 64)) {
-                    ChatSearchClickUnhideRoom(ChatSearchFilterUnhideConfirm.Index, true);
-                    ChatSearchFilterUnhideConfirm = null;
-                }
-                return;
-            }
-            if ((MouseX >= ChatSearchPageX) && (MouseX < 1975) && (MouseY >= ChatSearchPageY) && (MouseY < 778)) {
-                if (ChatSearchMode == "Filter") ChatSearchClickPermission();
-                if (ChatSearchMode == "") ChatSearchJoin();
-            }
-            if (MouseIn(1035, 25, 90, 90)) {
-                ChatSearchResultOffset -= ChatSearchRoomsPerPage;
-                if (ChatSearchResultOffset < 0)
-                    ChatSearchResultOffset = Math.floor(((ChatSearchShowHiddenRoomsActive ? ChatSearchHiddenResult : ChatSearchResult).length - 1) / ChatSearchRoomsPerPage) * ChatSearchRoomsPerPage;
-            }
-            if (MouseIn(1225, 25, 90, 90)) {
-                ChatSearchResultOffset += ChatSearchRoomsPerPage;
-                if (ChatSearchResultOffset >= (ChatSearchShowHiddenRoomsActive ? ChatSearchHiddenResult : ChatSearchResult).length)
-                    ChatSearchResultOffset = 0;
-            }
-            if (ChatSearchShowHiddenRoomsActive) {
-                if (MouseIn(1885, 25, 90, 90)) ChatSearchToggleHiddenMode();
-                return;
-            }
-            if (MouseIn(905, 25, 90, 90)) {
-                ChatSearchToggleSearchMode();
-                ChatSearchQuery();
-            }
-            if (MouseIn(25, 898, 300, 64)) {
-                let Pos = !ChatSearchLanguageTemp ? 0 : ChatAdminLanguageList.indexOf(ChatSearchLanguageTemp) + 1;
-                if (Pos >= ChatAdminLanguageList.length) {
-                    ChatSearchLanguageTemp = "";
-                } else {
-                    ChatSearchLanguageTemp = ChatAdminLanguageList[Pos];
-                }
-                ChatSearchSaveLanguageFiltering();
-                ChatSearchQuery();
-            }
-            if (ChatSearchMode == "") {
-                if (MouseIn(685, 25, 90, 90)) ChatSearchQuery();
-                if (MouseIn(795, 25, 90, 90)) {
-                    ElementValue("InputSearch", "");
-                    ChatSearchQuery();
-                }
-                if (MouseIn(1665, 25, 90, 90)) ChatAdminShowCreate();
-                if (MouseIn(1775, 25, 90, 90)) {
-                    ElementRemove("InputSearch");
-                    FriendListReturn = {
-                        Screen: CurrentScreen,
-                        Module: CurrentModule
-                    };
-                    CommonSetScreen("Character", "FriendList");
-                }
-                if (MouseIn(1885, 25, 90, 90)) ChatSearchExit();
-            } else {
-                if (MouseIn(685, 25, 90, 90)) ChatSearchSaveLanguageAndFilterTerms();
-                if (MouseIn(795, 25, 90, 90)) ChatSearchLoadLanguageAndFilterTerms();
-                if (MouseIn(1555, 25, 90, 90)) ChatSearchGhostPlayerOnClickActive = false;
-                if (MouseIn(1665, 25, 90, 90)) ChatSearchGhostPlayerOnClickActive = true;
-                if (MouseIn(1775, 25, 90, 90)) ChatSearchToggleHiddenMode();
-                if (MouseIn(1885, 25, 90, 90)) ChatSearchToggleHelpMode();
-            }
-            ChatSearchRoomSpaceSelectClick();
-            return;
-        });
-    }
-
+	//Chat Search 
     async function ULTRAChatSearchExit() {
-        modApi.hookFunction('ChatSearchExit', 4, (args, next) => {
+        modApi.hookFunction('ChatSearchExit', 4, (args, next) => {          
             if (ChatRoomSpace == "Asylum") {
                 ChatSearchReturnScreen = ["Room", "AsylumEntrance"];
             } else {
@@ -3022,163 +2879,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
-    async function ULTRAChatSearchJoin() {
-        modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
-            if (autojoin == true) {
-                var X = ChatSearchPageX;
-                var Y = ChatSearchPageY;
-                for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
-                    if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
-                        if (this.IsOn == undefined || this.IsOn == false) {
-                            IsOn = true;
-                            var TextArea = document.createElement("TextArea");
-                            TextArea.setAttribute("ID", "AutoJoinAlert");
-                            document.body.appendChild(TextArea);
-                            ElementValue("AutoJoinAlert", "AutoJoining...");
-                            ElementPosition("AutoJoinAlert", 177, 970, 250);
-                        }
-                        if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
-                            var RoomName = ChatSearchResult[C].Name;
-                            AutoJoin = function() {
-                                this.AutoJoinOn = true;
-                                setTimeout(function() {
-                                    AutoJoin()
-                                }, 1300);
-                                ChatSearchLastQueryJoinTime = CommonTime();
-                                ChatSearchLastQueryJoin = RoomName;
-                                ChatRoomPlayerCanJoin = true;
-                                ServerSend("ChatRoomJoin", {
-                                    Name: RoomName
-                                });
-                                ChatRoomPingLeashedPlayers();
-                                if (CurrentScreen == "ChatRoom") {
-                                    AutoJoin = function() {};
-                                    this.AutoJoinOn = false;
-                                    ElementRemove("AutoJoinAlert");
-                                    IsOn = false;
-                                }
-                            }
-                            if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
-                                AutoJoin();
-                            }
-                        }
-                    }
-                    X = X + 660;
-                    if (X > 1500) {
-                        X = 25;
-                        Y = Y + 109;
-                    }
-                }
-            }
-            next(args);
-        });
-    }
-
-    async function ULTRAChatSearchParseResponse() {
-        modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
-            let ret = next(args);
-            let NewResult = [];
-            let DescResult = [];
-            let RsizeResult = [];
-            let PchatResult = [];
-            if ((Player.UBC != undefined) && (rgame == 6)) {
-                let min = ElementValue("InputRoomMin");
-                let max = ElementValue("InputRoomMax");
-                let min2 = ElementValue("InputPlayerMin");
-                let max2 = ElementValue("InputPlayerMax");
-                Player.UBC.ubcSettings.rmin = min;
-                Player.UBC.ubcSettings.rsize = max;
-                Player.UBC.ubcSettings.pmin = min2;
-                Player.UBC.ubcSettings.pmax = max2;
-                rmin = min;
-                rsize = max;
-                pmin = min2;
-                pmax = max2;
-                M_MOANER_saveControls();
-            }
-            let game = "";
-            if (rgame == 0) game = 0;
-            if (rgame == 1) game = "ClubCard";
-            if (rgame == 2) game = "GGTS";
-            if (rgame == 3) game = "LARP";
-            if (rgame == 4) game = "MagicBattle";
-            if (rgame == 5) game = "Prison";
-            if (rgame == 6) game = 0;
-            if (rgame != 0) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    if (ret[rm].Game == game) NewResult.push(ret[rm]);
-                    rm++;
-                }
-                return NewResult;
-            }
-            if ((game == 0) && (rdesc == true)) {
-                let desc = ElementValue("InputSearch").toUpperCase().trim();
-                let rm = 0;
-                while (rm < ret.length) {
-                    let name = ret[rm].Name.toUpperCase();
-                    if (name.includes(desc)) {
-                        DescResult.push(ret[rm]);
-                    } else {
-                        let dname = ret[rm].Description.toUpperCase();
-                        if (dname.includes(desc)) {
-                            DescResult.push(ret[rm]);
-                        }
-                    }
-                    rm++;
-                }
-                ret = DescResult;
-            }
-            if ((game == 0) && (rchat == true)) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    if (ret[rm].Maptype == "Always") {
-                        RsizeResult.push(ret[rm]);
-                    } else {
-                        let room = ret[rm].MemberLimit;
-                        if ((room >= rmin) && (room <= rsize)) RsizeResult.push(ret[rm]);
-                    }
-                    rm++;
-                }
-                ret = RsizeResult;
-            }
-            if ((game == 0) && (pchat == true)) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    let player = ret[rm].MemberCount;
-                    if ((player >= pmin) && (player <= pmax)) PchatResult.push(ret[rm]);
-                    rm++;
-                }
-                ret = PchatResult;
-            }
-            if (rgame == 0) {
-                if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
-                if (rtype == "ALL") NewResult = ret;
-                if ((rtype == "Never") || (rtype == "Hybrid") || (rtype === "Always")) {
-                    let rm = 0;
-                    while (rm < ret.length) {
-                        let good = 0;
-                        if (ret[rm].MapType == rtype) NewResult.push(ret[rm]);
-                        rm++;
-                    }
-                }
-                return NewResult;
-            }
-        });
-    }
-
+	
     async function ULTRAChatSearchQuery() {
         modApi.hookFunction('ChatSearchQuery', 4, (args, next) => {
-            ChatSearchMessage = "";
-            let desc = "";
             if (PandoraPenitentiaryIsInmate(Player)) return;
-            if (rdesc == false) {
-                var Query = ChatSearchMode == "Filter" ? "" : ElementValue("InputSearch").toUpperCase().trim();
-            } else {
-                var Query = ChatSearchMode == "Filter" ? "" : "";
-            }
-            let FullRooms = (Player.OnlineSettings && Player.OnlineSettings.SearchShowsFullRooms);
+            let Query = ChatSearchMode == "Filter" ? "" : Player.ChatSearchSettings.Query.toUpperCase().trim();     
             if (ChatRoomJoinLeash != null && ChatRoomJoinLeash != "") {
                 Query = ChatRoomJoinLeash.toUpperCase().trim();
             } else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom.Name != "") {
@@ -3190,334 +2895,44 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             } else {
                 ChatSearchRejoinIncrement = 1;
-            }
-            if (rhide == true) {
-                /** @type {ServerChatRoomSearchRequest} */
-                const SearchData = {
-                    Query: Query,
-                    Language: ChatSearchLanguage,
-                    Space: ChatRoomSpace,
-                    Game: ChatRoomGame,
-                    FullRooms: FullRooms,
-                    ShowLocked: false
-                };
-                if (!CommonObjectEqual(ChatSearchLastSearchDataJSON, SearchData) || (ChatSearchLastQuerySearchTime + 2000 < CommonTime())) {
-                    ChatSearchLastQuerySearchTime = CommonTime();
-                    ChatSearchLastSearchDataJSON = SearchData;
-                    ChatSearchResult = [];
-                    ServerSend("ChatRoomSearch", SearchData);
-                }
-            } else {
-                /** @type {ServerChatRoomSearchRequest} */
-                const SearchData = {
-                    Query: Query,
-                    Language: ChatSearchLanguage,
-                    Space: ChatRoomSpace,
-                    Game: ChatRoomGame,
-                    FullRooms: FullRooms,
-                    ShowLocked: true
-                };
-                if (!CommonObjectEqual(ChatSearchLastSearchDataJSON, SearchData) || (ChatSearchLastQuerySearchTime + 2000 < CommonTime())) {
-                    ChatSearchLastQuerySearchTime = CommonTime();
-                    ChatSearchLastSearchDataJSON = SearchData;
-                    ChatSearchResult = [];
-                    ServerSend("ChatRoomSearch", SearchData);
-                }
-            }
-            return;
+            }         
+            /** @type {ServerChatRoomSearchRequest} */
+            const SearchData = {
+                Query: Query,
+                Language: Player.ChatSearchSettings.Language,
+                Space: Player.ChatSearchSettings.Space,
+                Game: Player.ChatSearchSettings.Game,
+                FullRooms: Player.ChatSearchSettings.FullRooms,
+                ShowLocked: Player.ChatSearchSettings.ShowLocked,
+                MapTypes: [Player.ChatSearchSettings.MapTypes],
+                SearchDescs: Player.ChatSearchSettings.SearchDescriptions,
+             };
+             const isEqual = CommonObjectEqual(ChatSearchLastSearchDataJSON, SearchData);
+             if (!isEqual || (ChatSearchLastQuerySearchTime + 2000 < CommonTime())) {
+                 ChatSearchLastQuerySearchTime = CommonTime();
+                 ChatSearchLastSearchDataJSON = SearchData;
+                 ChatSearchResult = [];
+                 ServerSend("ChatRoomSearch", SearchData);
+             }
+             if (!isEqual) ChatSearchUpdateSearchSettings();
+             return;
         });
     }
 
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
             if ((MouseX >= 1390) && (MouseX < 1480) && (MouseY >= 25) && (MouseY < 115)) PrfClick();
-            if ((MouseX >= 1500) && (MouseX < 1590) && (MouseY >= 25) && (MouseY < 115) && (ChatSearchMode == "")) CharacterAppearanceLoadCharacter(Player);
-            if (hidefilt == false) {
-                if ((MouseX >= 275) && (MouseX < 339) && (MouseY >= 800) && (MouseY < 864)) {
-                    if (rchat == true) {
-                        rgame = 6;
-                        rchat = false;
-                        Player.UBC.ubcSettings.rchat = false;
-                        M_MOANER_saveControls();
-                        ChatSelectStartSearch(ChatRoomSpace);
-                    } else {
-                        rgame = 6;
-                        rchat = true;
-                        Player.UBC.ubcSettings.rchat = true;
-                        M_MOANER_saveControls();
-                        ChatSelectStartSearch(ChatRoomSpace);
-                    }
-                }
-                if ((MouseX >= 930) && (MouseX < 994) && (MouseY >= 800) && (MouseY < 864)) {
-                    if (rdesc == true) {
-                        rdesc = false;
-                        Player.UBC.ubcSettings.rdesc = false;
-                        M_MOANER_saveControls();
-                    } else {
-                        rdesc = true;
-                        Player.UBC.ubcSettings.rdesc = true;
-                        M_MOANER_saveControls();
-                    }
-                }
-                if ((MouseX >= 1270) && (MouseX < 1334) && (MouseY >= 800) && (MouseY < 864)) {
-                    if (autojoin == true) {
-                        autojoin = false;
-                        Player.UBC.ubcSettings.autojoin = false;
-                        M_MOANER_saveControls();
-                    } else {
-                        autojoin = true;
-                        Player.UBC.ubcSettings.autojoin = true;
-                        M_MOANER_saveControls();
-                    }
-                }
-                if ((MouseX >= 1625) && (MouseX < 1689) && (MouseY >= 800) && (MouseY < 864)) {
-                    if (pchat == true) {
-                        rgame = 6;
-                        pchat = false;
-                        Player.UBC.ubcSettings.pchat = false;
-                        M_MOANER_saveControls();
-                        ChatSelectStartSearch(ChatRoomSpace);
-                    } else {
-                        rgame = 6;
-                        pchat = true;
-                        Player.UBC.ubcSettings.pchat = true;
-                        M_MOANER_saveControls();
-                        ChatSelectStartSearch(ChatRoomSpace);
-                    }
-                }
-            }
-            if ((MouseX >= 335) && (MouseX < 475) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 0;
-                rtype = "ALL";
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
-            }
-            if ((MouseX >= 445) && (MouseX < 585) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 0;
-                rtype = "Never";
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
-            }
-            if ((MouseX >= 555) && (MouseX < 695) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 0;
-                rtype = "Hybrid";
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
-            }
-            if ((MouseX >= 665) && (MouseX < 805) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 0;
-                rtype = "Always";
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
-            }
-            if ((MouseX >= 807) && (MouseX < 897) && (MouseY >= 885) && (MouseY < 975)) {
-                if (rhide == true) {
-                    rhide = false;
-                    M_MOANER_saveControls();
-                    ChatSelectStartSearch(ChatRoomSpace);
-                } else {
-                    rhide = true;
-                    M_MOANER_saveControls();
-                    ChatSelectStartSearch(ChatRoomSpace);
-                }
-            }
-            if ((MouseX >= 950) && (MouseX < 1040) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 0;
-                M_MOANER_saveControls();
-                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-            }
-            if ((MouseX >= 1060) && (MouseX < 1150) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 0;
-                M_MOANER_saveControls();
-                if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-            }
-            if ((MouseX >= 1170) && (MouseX < 1260) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 0;
-                M_MOANER_saveControls();
-                if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
-            }
-            if ((MouseX >= 1405) && (MouseX < 1495) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 1;
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
-            }
-            if ((MouseX >= 1515) && (MouseX < 1605) && (MouseY >= 885) && (MouseY < 975)) {
-                if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) {
-                    rgame = 2;
-                    M_MOANER_saveControls();
-                    ChatSelectStartSearch(ChatRoomSpace);
-                }
-            }
-            if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 3;
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
-            }
-            if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 4;
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
-            }
-            if ((MouseX >= 1845) && (MouseX < 1935) && (MouseY >= 885) && (MouseY < 975)) {
-                rgame = 5;
-                M_MOANER_saveControls();
-                ChatSelectStartSearch(ChatRoomSpace);
-            }
-            return;
-        });
-    }
-
-    async function ULTRAChatSearchRoomSpaceSelectDraw() {
-        modApi.hookFunction('ChatSearchRoomSpaceSelectDraw', 4, (args, next) => {
-            if (hidefilt == false) {
-                DrawText("Normal/Hybrid", 140, 810, "White", "Gray");
-                DrawText("Room Size", 130, 850, "White", "Gray");
-                DrawCheckbox(275, 800, 64, 64, "", rchat);
-            }
-            const roomminInput = ElementCreateInput("InputRoomMin", "number", rmin);
-            roomminInput.setAttribute("min1", "2");
-            roomminInput.setAttribute("max1", "20");
-            roomminInput.setAttribute("autocomplete", "off");
-            if (hidefilt == false) {
-                DrawText("Min", 410, 800, "White", "Gray");
-                ElementPosition("InputRoomMin", 410, 840, 100);
-            }
-            const roommaxInput = ElementCreateInput("InputRoomMax", "number", rsize);
-            roommaxInput.setAttribute("min2", "2");
-            roommaxInput.setAttribute("max2", "20");
-            roommaxInput.setAttribute("autocomplete", "off");
-            if (hidefilt == false) {
-                DrawText("Max", 525, 800, "White", "Gray");
-                ElementPosition("InputRoomMax", 525, 840, 100);
-                DrawText("Also check", 810, 810, "White", "Gray");
-                DrawText("Descriptions", 800, 850, "White", "Gray");
-                DrawCheckbox(930, 800, 64, 64, "", rdesc);
-                DrawText("AutoJoin", 1175, 830, "White", "Gray");
-                DrawCheckbox(1270, 800, 64, 64, "", autojoin);
-                DrawText("Players", 1530, 810, "White", "Gray");
-                DrawText("In Room", 1530, 850, "White", "Gray");
-                DrawCheckbox(1625, 800, 64, 64, "", pchat);
-            }
-            const playerminInput = ElementCreateInput("InputPlayerMin", "number", pmin);
-            playerminInput.setAttribute("min3", "2");
-            playerminInput.setAttribute("max3", "20");
-            playerminInput.setAttribute("autocomplete", "off");
-            if (hidefilt == false) {
-                DrawText("Min", 1760, 800, "White", "Gray");
-                ElementPosition("InputPlayerMin", 1760, 840, 100);
-            }
-            const playermaxInput = ElementCreateInput("InputPlayerMax", "number", pmax);
-            playermaxInput.setAttribute("min4", "2");
-            playermaxInput.setAttribute("max4", "20");
-            playermaxInput.setAttribute("autocomplete", "off");
-            if (hidefilt == false) {
-                DrawText("Max", 1875, 800, "White", "Gray");
-                ElementPosition("InputPlayerMax", 1875, 840, 100);
-            }
-            DrawButton(335, 885, 90, 90, "ALL", "White", "", "All Room Types");
-            DrawButton(445, 885, 90, 90, "", "White", "", "Normal Rooms");
-            DrawImageResize("Icons/Rectangle/CharacterView.png", 430, 900, 120, 60);
-            DrawButton(555, 885, 90, 90, "", "White", "Icons/MapTypeHybrid.png", "Hybrid Rooms");
-            DrawButton(665, 885, 90, 90, "", "White", "Icons/MapTypeAlways.png", "Map Rooms");
-            if (rhide == false) {
-                DrawButton(807, 885, 90, 90, "", "White", "", "Hide Locked Rooms");
-                DrawImageResize("Icons/Unlocked.png", 812, 885, 80, 80);
-            } else {
-                DrawButton(807, 885, 90, 90, "", "White", "", "Show Locked Rooms");
-                DrawImageResize("Icons/Locked.png", 812, 885, 80, 80);
-            }
-            if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) DrawButton(950, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) {
-                DrawButton(1060, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
-                DrawButton(1515, 885, 90, 90, "", "White", "Icons/GGTS.png", "GGTS");
-            } else {
-                DrawButton(1060, 885, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
-                DrawButton(1515, 885, 90, 90, "", "Gray", "Icons/GGTS.png", "GGTS");
-            }
-            if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) {
-                DrawButton(1170, 885, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
-            } else {
-                DrawButton(1170, 885, 90, 90, "", "Gray", "Icons/Gender.png", "Mixed");
-            }
-            DrawButton(1405, 885, 90, 90, "", "White", "Icons/ClubCard.png", "Club Card");
-            DrawButton(1625, 885, 90, 90, "", "White", "Icons/Battle.png", "LARP");
-            DrawButton(1735, 885, 90, 90, "", "White", "Icons/MagicSchool.png", "Magic Battle");
-            DrawButton(1845, 885, 90, 90, "", "White", "Icons/Infiltration.png", "Pandora Prison");
-            return;
+            if ((MouseX >= 1500) && (MouseX < 1590) && (MouseY >= 25) && (MouseY < 115) && (ChatSearchMode == "")) CharacterAppearanceLoadCharacter(Player);         
+            next(args);
         });
     }
 
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
             if (backto == true) ChatSearchExit();
-            ChatSearchListParams = {
-                x: ChatSearchPageX,
-                y: ChatSearchPageY,
-                width: MainCanvasWidth - 2 * ChatSearchPageX,
-                height: 582,
-                itemWidth: 630,
-                itemHeight: 85,
-                minMarginY: 24,
-            };
-            ChatSearchRoomsPerPage = 18;
             TintsEffect();
-            KidnapLeagueResetOnlineBountyProgress();
-            PandoraPenitentiaryCreate();
-            if (ChatSearchFilterHelpActive) return ChatSearchFilterHelpDraw();
-            if (ChatSearchFilterUnhideConfirm) return ChatSearchFilterUnhideConfirmDraw();
-            if (ChatSearchMode == "") {
-                ChatSearchNormalDraw();
-                ElementSetAttribute("InputSearch", "placeholder", TextGet("EnterName"));
-            } else if (ChatSearchMode == "Filter") {
-                ChatSearchPermissionDraw();
-                ElementSetAttribute("InputSearch", "placeholder", TextGet("FilterExcludeTerms"));
-            }
-            const Result = ChatSearchShowHiddenRoomsActive ? ChatSearchHiddenResult : ChatSearchResult;
-            if (Result.length > ChatSearchRoomsPerPage) {
-                DrawButton(1035, 25, 90, 90, "", "White", "Icons/Prev.png", TextGet("Prev"));
-                DrawButton(1225, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
-            }
-            if (ChatSearchShowHiddenRoomsActive) {
-                DrawButton(1885, 25, 90, 90, "", "White", "Icons/DialogNormalMode.png", TextGet("NormalFilterMode"));
-                return;
-            }
-            ElementPositionFixed("InputSearch", 25, 35, 620);
-            DrawTextFit(ChatSearchMessage != "" ? TextGet(ChatSearchMessage) : "", 300, 105, 490, "White", "Gray");
-            let ChatSearchPageCount = Math.floor((Result.length + ChatSearchRoomsPerPage - 1) / ChatSearchRoomsPerPage).toString();
-            let ChatSearchCurrentPage = (ChatSearchResultOffset / ChatSearchRoomsPerPage + 1).toString();
-            DrawTextFit(`${ChatSearchCurrentPage}/${ChatSearchPageCount}`, 1175, 75, 90, "White", "Gray");
-            DrawButton(905, 25, 90, 90, "", ChatSearchMode != "Filter" ? "White" : "Lime", "Icons/Private.png", TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode"));
-            const languageLabel = TranslationGetLanguageName(ChatSearchLanguageTemp, true) || TextGet("Language" + ChatSearchLanguageTemp);
-            DrawButton(25, 888, 300, 54, languageLabel, "White");
-            DrawButton(685, 25, 90, 90, "", "White", "Icons/Accept.png", ChatSearchMode == "" ? TextGet("SearchRoom") : TextGet("ApplyFilter"));
-            DrawButton(795, 25, 90, 90, "", "White", "Icons/Cancel.png", ChatSearchMode == "" ? TextGet("ClearFilter") : TextGet("LoadFilter"));
-            DrawButton(1390, 25, 90, 90, "", "White", "Icons/Preference.png", "Preferences");
-            if (ChatSearchMode == "") {
-                DrawButton(1500, 25, 90, 90, "", "White", "Icons/Dress.png", "Wardrobe");
-                DrawButton(1665, 25, 90, 90, "", "White", "Icons/Plus.png", TextGet("CreateRoom"));
-                DrawButton(1775, 25, 90, 90, "", "White", "Icons/FriendList.png", TextGet("FriendList"));
-                DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Exit"));
-            } else {
-                DrawButton(1555, 25, 90, 90, "", !ChatSearchGhostPlayerOnClickActive ? "Lime" : "White", "Icons/Trash.png", TextGet("TempHideOnClick"));
-                DrawButton(1665, 25, 90, 90, "", ChatSearchGhostPlayerOnClickActive ? "Lime" : "White", "Icons/GhostList.png", TextGet("GhostPlayerOnClick"));
-                DrawButton(1775, 25, 90, 90, "", "White", "Icons/InspectLock.png", TextGet("ShowHiddenRooms"));
-                DrawButton(1885, 25, 90, 90, "", "White", "Icons/Question.png", TextGet("Help"));
-            }
-            ChatSearchRoomSpaceSelectDraw();
-            return;
-        });
-    }
-
-    async function ULTRAChatSearchUnload() {
-        modApi.hookFunction('ChatSearchUnload', 4, (args, next) => {
-            if (hidefilt == false) {
-                ElementRemove("InputRoomMin");
-                ElementRemove("InputRoomMax");
-                ElementRemove("InputPlayerMin");
-                ElementRemove("InputPlayerMax");
-            }
+            DrawButton(1390, 25, 90, 90, "", "White", "Icons/Preference.png", "");
+            if (ChatSearchMode == "") DrawButton(1500, 25, 90, 90, "", "White", "Icons/Dress.png", "");                 
             next(args);
         });
     }
@@ -14515,4 +13930,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
