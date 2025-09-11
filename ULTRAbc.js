@@ -4360,6 +4360,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PreferenceClick', 4, (args, next) => {
             let event;
             if (MouseIn(1815, 780, 90, 90)) {
+				if ((InformationSheetReturnScreen[0] == "Online") && (InformationSheetReturnScreen[1] == "ChatSearch")) return;                     
                 let name = PreferenceSubscreen.name;
                 if (name == "Arousal") PreferenceSubscreenArousalExit();
                 if (name == "Audio") PreferenceSubscreenAudioExit();
@@ -4389,7 +4390,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MainCanvas.textAlign = "center";
             let name = PreferenceSubscreen.name;
             if ((name != "Extensions") || ((name == "Extensions") && (PreferenceExtensionsCurrent == null))) {
-                DrawButton(1815, 780, 90, 90, "BACK", "White", "");
+                if (InformationSheetReturnScreen != undefined) {
+                    if ((InformationSheetReturnScreen[0] != "Online") && (InformationSheetReturnScreen[1] != "ChatSearch")) DrawButton(1815, 780, 90, 90, "BACK", "White", "");           
+                 }
             }
             let mbb = 0;
             let list = PreferenceExtensionsDisplay;
@@ -14512,3 +14515,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
