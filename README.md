@@ -60,3 +60,4 @@ All else I might not have included.
 Changes for future version
 
 * Extended the NO TOAST effect to the Chat Search toasts
+* Removed the display of a BACK button in Preferences screen if you come from Chat Search (this to avoid weird issues later with the Chat Search menu)
