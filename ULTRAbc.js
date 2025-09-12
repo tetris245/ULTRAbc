@@ -104,6 +104,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mgl = 0;
     let npcdeck = -1;
     let onegl = 0;
+	let pchat = false;
+    let pmin = 2;
+    let pmax = 20;
     let silent = false;
     let st = 0;
     let tcname = "Cell";
@@ -512,6 +515,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         npcdeck = -1;
         npcpunish = false;
         outbuttons = false;
+		pchat = false;
+        pmin = 2;
+        pmax = 20;
         rglbuttons = false;
         rglsync = false;
         silent = false;
@@ -595,6 +601,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         npcdeck = data.npcdeck * 1;
         npcpunish = data.npcpunish;
         outbuttons = data.outbuttons;
+		pchat = data.pchat;
+        pmin = data.pmin * 1;
+        pmax = data.pmax * 1;
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
         silent = data.silent;
@@ -703,6 +712,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gamestable": gamestable,
             "gaglevel": gl,
             "maptrap1": maptrap1,
+            "pchat": pchat,
+            "pmin": pmin,
+            "pmax": pmax,
             "npcdeck": npcdeck,
             "silent": silent,
             "stutterlevel": st,
@@ -859,6 +871,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (npcdeck == null || npcdeck == undefined) npcdeck = -1;
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;
                 if (outbuttons == null || outbuttons == undefined) outbuttons = false;
+				if (pchat == null || pchat == undefined) pchat = false;
+                if (pmin == null || pmin == undefined || pmin == 0) pmin = 2;
+                if (pmax == null || pmax == undefined || pmax == 0) pmax = 20; 
                 if (profileName == null || profileName == undefined) profileName = "default";
                 if (profileName == "default") profile = 0;
                 if (profileName == "bunny") profile = 1;
@@ -975,6 +990,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 npcpunish: false,
                 orgasmMoan: true,
                 outbuttons: false,
+				pchat: false,
+                pmin: 2,
+                pmax: 20,
                 profile: 0,
                 reaction: 0,
                 rglbuttons: false,
@@ -1046,6 +1064,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             const ubcSettingsCategories = [
                 "UBCButtons",
+                "UBCChatSearch",	
                 "UBCCheats",
                 "UBCHotkeys",
                 "UBCMaps",
@@ -1057,6 +1076,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ];
             const ubcSettingCategoryLabels = {
                 UBCButtons: "Buttons",
+				UBCChatSearch: "Chat Search",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
                 UBCMaps: "Maps",
@@ -1659,6 +1679,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 defaultExit();
             }
 
+			PreferenceSubscreenUBCChatSearchLoad = function() {
+                UBCPreferenceSubscreen = "UBCChatSearch";               
+                addMenuCheckbox(64, 64, "Present players in chat rooms: ", "pchat",
+                    "When enabled, the two below parameters will be used in Chat Search for all chat rooms, no matter the type.", false, 134
+                );
+                addMenuInput(200, "Minimum present players (2-20):", "pmin", "InputPlayerMin",
+                    "Input a number between 2 and 20 as minimum players present in chat rooms! If this number is higher than the maximum, your Chat Search will fail."
+                );
+                addMenuInput(200, "Maximum present players (2-20):", "pmax", "InputPlayerMax",
+                    "Input a number between 2 and 20 as maximum present players in chat rooms! If this number is lower than the minimum, your Chat Search will fail."
+                );
+            }
+
+            PreferenceSubscreenUBCChatSearchRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCChatSearchClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCChatSearchExit = function() {             
+                let min = ElementValue("InputPlayerMin");
+                let max = ElementValue("InputPlayerMax");
+                if ((CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21)) {
+                    Player.UBC.ubcSettings.pmin = min;
+                    Player.UBC.ubcSettings.pmax = max;                 
+                    ElementRemove("InputPlayerMin");
+                    ElementRemove("InputPlayerMax");
+                    defaultExit();
+                } else PreferenceMessage = "Put a valid number";
+            }
+
             PreferenceSubscreenUBCCheatsLoad = function() {
                 UBCPreferenceSubscreen = "UBCCheats";
                 addMenuButton(150, 64, "Add/Remove Extra Cards for Card Game:", "Toggle", function() {
@@ -2107,9 +2160,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
     ULTRAChatSearchExit();
+	ULTRAChatSearchParseResponse();
     ULTRAChatSearchQuery();
     ULTRAChatSearchRoomSpaceSelectClick();
     ULTRAChatSearchRun();
+	ULTRAChatSelectClick();
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
     ULTRAClubCardCheckVictory();
@@ -2879,7 +2934,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-	
+
+	async function ULTRAChatSearchParseResponse() {
+        modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
+            const ret = next(args);
+            let NewResult = [];
+            if (pchat == true) {
+                let rm = 0;
+                while (rm < ret.length) {
+                    let player = ret[rm].MemberCount;
+                    if ((player >= pmin) && (player <= pmax)) NewResult.push(ret[rm]);
+                    rm++;
+                }
+            } else {
+                NewResult = ret;
+            }
+            return NewResult;
+        });
+    }
+
     async function ULTRAChatSearchQuery() {
         modApi.hookFunction('ChatSearchQuery', 4, (args, next) => {
             if (PandoraPenitentiaryIsInmate(Player)) return;
@@ -2938,6 +3011,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
+
+	async function ULTRAChatSelectClick() {
+        modApi.hookFunction('ChatSelectClick', 4, (args, next) => {
+	        if (MouseIn(1895, 215, 90, 90)) InformationSheetLoadCharacter(Player);
+	        if (MouseIn(1895, 15, 90, 90)) ChatSelectExit();
+	        if (MouseIn(1895, 115, 90, 90) && Player.CanChangeOwnClothes()) CharacterAppearanceLoadCharacter(Player);
+	        if (MouseIn(100, 45, 510, 125) && ChatSelectAllowedInFemaleOnly) {
+                Player.ChatSearchSettings.Space = "";
+                ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+          	}
+	        if (MouseIn(100, 420, 510, 125)) {
+                Player.ChatSearchSettings.Space = "X";               
+		        ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+	        }
+	        if (MouseIn(100, 800, 510, 125) && ChatSelectAllowedInMaleOnly) {
+                Player.ChatSearchSettings.Space = "M";                  
+		        ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+	        }
+            return;
+        });
+    }
+
 
     //Club Card Game
     async function ULTRAAsylumMeetingClubCardStart() {
@@ -13932,6 +14027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
