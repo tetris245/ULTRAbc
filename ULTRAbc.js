@@ -2921,8 +2921,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
-            if ((MouseX >= 1390) && (MouseX < 1480) && (MouseY >= 25) && (MouseY < 115)) PrfClick();
-            if ((MouseX >= 1500) && (MouseX < 1590) && (MouseY >= 25) && (MouseY < 115) && (ChatSearchMode == "")) CharacterAppearanceLoadCharacter(Player);         
+            if ((MouseX >= 1295) && (MouseX < 1385) && (MouseY >= 25) && (MouseY < 115)) PrfClick();
+            if ((MouseX >= 1405) && (MouseX < 1495) && (MouseY >= 25) && (MouseY < 115)) ExtClick();
+            if ((MouseX >= 1515) && (MouseX < 1605) && (MouseY >= 25) && (MouseY < 115) && (ChatSearchMode == "")) CharacterAppearanceLoadCharacter(Player);         
             next(args);
         });
     }
@@ -2931,8 +2932,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
             if (backto == true) ChatSearchExit();
             TintsEffect();
-            DrawButton(1390, 25, 90, 90, "", "White", "Icons/Preference.png", "");
-            if (ChatSearchMode == "") DrawButton(1500, 25, 90, 90, "", "White", "Icons/Dress.png", "");                 
+            DrawButton(1295, 25, 90, 90, "", "White", "Icons/Preference.png", "");
+            DrawButton(1405, 25, 90, 90, "", "White", "Icons/Extensions.png", "");
+            if (ChatSearchMode == "") DrawButton(1515, 25, 90, 90, "", "White", "Icons/Dress.png", "");                 
             next(args);
         });
     }
@@ -13930,5 +13932,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
