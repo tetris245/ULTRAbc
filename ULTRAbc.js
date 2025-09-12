@@ -3527,6 +3527,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
                     if (event.code === "KeyF") {
                         if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
+                            Player.ChatSearchSettings.Space = "";
                             ChatRoomSpace = "";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3536,6 +3537,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if (event.code === "KeyG") {
                         if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) {
+                            Player.ChatSearchSettings.Space = "X";
                             ChatRoomSpace = "X";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3545,6 +3547,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if (event.code === "KeyH") {
                         if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
+                            Player.ChatSearchSettings.Space = "M";
                             ChatRoomSpace = "M";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3554,6 +3557,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if (event.code === "KeyJ") {
                         if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) {
+                            Player.ChatSearchSettings.Space = "Asylum";
                             ChatRoomSpace = "Asylum";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -3628,13 +3632,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('MainHallClick', 4, (args, next) => {
             if (MouseIn(1645, 145, 90, 90)) MainHallMoveToChatSelect();
             if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
-                if (IsFemale() == true) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-                if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+                if (IsFemale() == true) {
+                    Player.ChatSearchSettings.Space = "";
+                    ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+                }
+                if (IsMale() == true) {
+                    Player.ChatSearchSettings.Space = "M";
+                    ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+                }
             }
             if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
-                if (asylumlimit == false) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+                if (asylumlimit == false) {
+                    Player.ChatSearchSettings.Space = "Asylum";
+                    ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+                }
             }
-            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) {
+                Player.ChatSearchSettings.Space = "X";
+                ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+
+            }
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
                 if (BackgroundsList != undefined) {
                     let listbg = BackgroundsList.length;
@@ -3664,7 +3681,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
+	
     async function ULTRAMainHallRun() {
         modApi.hookFunction('MainHallRun', 4, (args, next) => {
             ChatRoomActivateView(ChatRoomCharacterViewName);
@@ -9013,7 +9030,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'frlist',
         Description: "(lobby): gives access to friendlist in specified lobby.",
         Action: (args) => {
@@ -9040,6 +9057,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     infomsg(msg);
                 } else {
                     setTimeout(function() {
+                        Player.ChatSearchSettings.Space = frlist;
                         ChatRoomSpace = frlist;
                         RoomToFriends();
                     }, 1000);
@@ -11863,7 +11881,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'search',
         Description: "(lobby): opens chat search in specified lobby.",
         Action: (args) => {
@@ -11890,6 +11908,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     infomsg(msg);
                 } else {
                     setTimeout(function() {
+                        Player.ChatSearchSettings.Space = search;
                         RoomToSearch(search);
                     }, 1000);
                 }
@@ -14027,6 +14046,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
