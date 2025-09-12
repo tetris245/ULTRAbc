@@ -2140,6 +2140,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	ULTRAActivityChatRoomArousalSync();
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
+	ULTRAAsylumEntranceClick(); 
+    ULTRAAsylumEntranceRun();
     ULTRAAsylumEntranceStartChat();
     ULTRAAsylumMeetingClubCardStart();
     ULTRABackgroundsTextGet();
@@ -2220,7 +2222,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     ULTRAArcadeRun();
     ULTRAAsylumBedroomRun();
-    ULTRAAsylumEntranceRun();
     ULTRAAsylumGGTSRun();
     ULTRAAsylumMeetingRun();
     ULTRAAsylumTherapyRun();
@@ -2279,6 +2280,51 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRATherapyRun();
     ULTRATitleRun();
     ULTRAWheelFortuneRun();
+
+	//Asylum
+	async function ULTRAAsylumEntranceClick() {
+        modApi.hookFunction('AsylumEntranceClick', 4, (args, next) => {
+            if (asylumlimit == false) {
+                if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
+                    if (IsFemale() == true) {
+                        Player.ChatSearchSettings.Space = "";
+                        ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+                    }
+                    if (IsMale() == true) {
+                        Player.ChatSearchSettings.Space = "M";
+                        ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+                    }
+                }
+                if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 585) && (MouseY < 675)) {
+                    Player.ChatSearchSettings.Space = "X";
+                    ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+                }             
+            }
+            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
+                Player.ChatSearchSettings.Space = "Asylum";
+                ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            }
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumEntranceRun() {
+        modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {
+            TintsEffect();
+            DrawText("Chat Rooms", 130, 530, "White", "Black");
+            if (asylumlimit == false) {
+                if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
+                if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
+                DrawButton(240, 585, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
+            } else {
+                if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
+                if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
+                DrawButton(240, 585, 90, 90, "", "Gray", "Icons/Gender.png", "Mixed");
+            }
+            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            next(args);
+        });
+    }
 
     //Backgrounds
     async function ULTRABackgroundsTextGet(msg) {
@@ -4135,14 +4181,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
-    async function ULTRAAsylumEntranceRun() {
-        modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {
-            TintsEffect();
-            next(args);
-        });
-    }
-
+	
     async function ULTRAAsylumGGTSRun() {
         modApi.hookFunction('AsylumGGTSRun', 4, (args, next) => {
             TintsEffect();
@@ -14050,6 +14089,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
