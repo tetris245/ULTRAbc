@@ -60,7 +60,7 @@ All else I might not have included.
 Changes for future version
 
 * Added a new button on Login screen to disable all Chat Search toasts (only a full relog can enable them again)
-  - Note: there is currently no any way to disable only a part of the beep toasts and the Chat Search toasts
+  - Note: there is currently no any way to disable only a part of the beep toasts and Chat Search toasts
 * Added an Extensions button in Chat Search
 * Moved the "Players in Room" parameter to the restored Chat Search page of the UBC GUI
 * Removed the Autojoin feature (as it's incompatible with the new BC Chat Search and its toast system)
