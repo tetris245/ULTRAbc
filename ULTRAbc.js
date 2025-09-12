@@ -3652,7 +3652,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) {
                 Player.ChatSearchSettings.Space = "X";
                 ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
-
             }
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
                 if (BackgroundsList != undefined) {
@@ -14051,6 +14050,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
