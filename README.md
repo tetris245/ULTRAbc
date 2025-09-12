@@ -65,3 +65,4 @@ Changes for future version
 * Removed the Autojoin feature (as it's incompatible with the new BC Chat Search and its toast system)
 * Removed most other UBC Chat Search features (as BC provides now an advanced Chat Search menu)
 * Removed the display of a BACK button in Preferences screen if you come from Chat Search (this to avoid weird issues later with the Chat Search menu)
+* Updated the effect of lobby icons in Main Hall, the hotkeys in Friend List + the frlist and search commands for R120 compatibility
