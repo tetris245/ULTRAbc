@@ -68,3 +68,5 @@ Changes for future version
 * Removed most other UBC Chat Search features (as BC provides now an advanced Chat Search menu)
 * Removed the display of a BACK button in Preferences screen if you come from Chat Search (this to avoid weird issues later with the Chat Search menu)
 * Updated the effect of lobby icons in Main Hall, the hotkeys in Friend List + the frlist and search commands for R120 compatibility
+* Updated the patch of the CommandExecute function
+* Removed the option in GUI - Misc "No time out in help provided by TAB" (as BC has replaced this time out by a button for help deletion)
