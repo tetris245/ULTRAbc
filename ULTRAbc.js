@@ -116,7 +116,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tintnever = false;
 
     let asylumlimit;
-    let autojoin;
     let dolltalk;
     let extbuttons;
     let extrainfo;
@@ -478,7 +477,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ahybrid = false;
         animal = 0;
         asylumlimit = false;
-        autojoin = false;
         bgall = false;
         bl = 0;
         blureffect = 0;
@@ -563,7 +561,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ahybrid = data.ahybrid;
         animal = data.animal * 1;
         asylumlimit = data.asylumlimit;
-        autojoin = data.autojoin;
         bgall = data.bgall;
         bl = data.bl;
         blureffect = 0;
@@ -721,7 +718,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tintmbs": tintmbs,
             "tintnever": tintnever,
             "asylumlimit": asylumlimit,
-            "autojoin": autojoin,
             "dolltalk": dolltalk,
             "extbuttons": extbuttons,
             "extrainfo": extrainfo,
@@ -814,7 +810,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (animal == null || animal == undefined) animal = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;
-                if (autojoin == null || autojoin == undefined) autojoin = false;
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
                 if (blindness == null || blindness == undefined) blindness = 0;
@@ -944,7 +939,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ahybrid: false,
                 animal: 0,
                 asylumlimit: false,
-                autojoin: false,
                 bgall: false,
                 bl: 0,
                 blindness: 0,
@@ -14059,6 +14053,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
