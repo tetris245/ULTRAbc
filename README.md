@@ -66,7 +66,7 @@ Changes for future version
 * Moved the "Players in Room" parameter to the restored Chat Search page of the UBC GUI
 * Removed the Autojoin feature (as it's incompatible with the new BC Chat Search and its toast system)
 * Removed most other UBC Chat Search features (as BC provides now an advanced Chat Search menu)
-* Removed the BACK button in Preferences screen (this to avoid several issues with Chat Search or when relogging)
+* Removed the BACK button in Preferences screens (this to avoid issues with Chat Search or when relogging)
 * Updated the effect of lobby icons in Main Hall, the hotkeys in Friend List + the frlist and search commands for R120 compatibility
 * Updated the patch of the CommandExecute function
 * Removed the option in GUI - Misc "No time out in help provided by TAB" (as BC has replaced this time out by a button for help deletion)
