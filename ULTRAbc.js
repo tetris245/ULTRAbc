@@ -3477,9 +3477,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }       
             if (command.some(c => c.Prerequisite && !c.Prerequisite())) {               
                 if (notimeout2 == true) {
-                    ChatRoomSendLocal(`${msg} ${TextGet("CommandPrerequisiteFailed")}`);
+                    ChatRoomSendLocal(`${commandMessage} ${TextGet("CommandPrerequisiteFailed")}`);
                 } else {
-                    ChatRoomSendLocal(`${msg} ${TextGet("CommandPrerequisiteFailed")}`, 10_000);
+                    ChatRoomSendLocal(`${commandMessage} ${TextGet("CommandPrerequisiteFailed")}`, 10_000);
                 }
                 return false;
             }
@@ -14059,6 +14059,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
