@@ -2148,10 +2148,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSendChat();
     ULTRAChatSearchExit();
 	ULTRAChatSearchParseResponse();
-    ULTRAChatSearchQuery();
     ULTRAChatSearchRoomSpaceSelectClick();
     ULTRAChatSearchRun();
-	ULTRAChatSelectClick();
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
     ULTRAClubCardCheckVictory();
@@ -2982,45 +2980,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchQuery() {
-        modApi.hookFunction('ChatSearchQuery', 4, (args, next) => {
-            if (PandoraPenitentiaryIsInmate(Player)) return;
-            let Query = ChatSearchMode == "Filter" ? "" : Player.ChatSearchSettings.Query.toUpperCase().trim();     
-            if (ChatRoomJoinLeash != null && ChatRoomJoinLeash != "") {
-                Query = ChatRoomJoinLeash.toUpperCase().trim();
-            } else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom.Name != "") {
-                if (Player.ImmersionSettings.ReturnToChatRoom) {
-                    Query = Player.LastChatRoom.Name.toUpperCase().trim();
-                    FullRooms = true;
-                } else {
-                    ChatRoomSetLastChatRoom(null);
-                }
-            } else {
-                ChatSearchRejoinIncrement = 1;
-            }         
-            /** @type {ServerChatRoomSearchRequest} */
-            const SearchData = {
-                Query: Query,
-                Language: Player.ChatSearchSettings.Language,
-                Space: Player.ChatSearchSettings.Space,
-                Game: Player.ChatSearchSettings.Game,
-                FullRooms: Player.ChatSearchSettings.FullRooms,
-                ShowLocked: Player.ChatSearchSettings.ShowLocked,
-                MapTypes: [Player.ChatSearchSettings.MapTypes],
-                SearchDescs: Player.ChatSearchSettings.SearchDescriptions,
-             };
-             const isEqual = CommonObjectEqual(ChatSearchLastSearchDataJSON, SearchData);
-             if (!isEqual || (ChatSearchLastQuerySearchTime + 2000 < CommonTime())) {
-                 ChatSearchLastQuerySearchTime = CommonTime();
-                 ChatSearchLastSearchDataJSON = SearchData;
-                 ChatSearchResult = [];
-                 ServerSend("ChatRoomSearch", SearchData);
-             }
-             if (!isEqual) ChatSearchUpdateSearchSettings();
-             return;
-        });
-    }
-
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
             if ((MouseX >= 1295) && (MouseX < 1385) && (MouseY >= 25) && (MouseY < 115)) PrfClick();
@@ -3038,27 +2997,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(1405, 25, 90, 90, "", "White", "Icons/Extensions.png", "");
             if (ChatSearchMode == "") DrawButton(1515, 25, 90, 90, "", "White", "Icons/Dress.png", "");                 
             next(args);
-        });
-    }
-
-	async function ULTRAChatSelectClick() {
-        modApi.hookFunction('ChatSelectClick', 4, (args, next) => {
-	        if (MouseIn(1895, 215, 90, 90)) InformationSheetLoadCharacter(Player);
-	        if (MouseIn(1895, 15, 90, 90)) ChatSelectExit();
-	        if (MouseIn(1895, 115, 90, 90) && Player.CanChangeOwnClothes()) CharacterAppearanceLoadCharacter(Player);
-	        if (MouseIn(100, 45, 510, 125) && ChatSelectAllowedInFemaleOnly) {
-                Player.ChatSearchSettings.Space = "";
-                ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-          	}
-	        if (MouseIn(100, 420, 510, 125)) {
-                Player.ChatSearchSettings.Space = "X";               
-		        ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
-	        }
-	        if (MouseIn(100, 800, 510, 125) && ChatSelectAllowedInMaleOnly) {
-                Player.ChatSearchSettings.Space = "M";                  
-		        ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-	        }
-            return;
         });
     }
 
@@ -14015,3 +13953,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
