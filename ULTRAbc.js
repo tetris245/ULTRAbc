@@ -2186,7 +2186,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPhotographicRun();
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
-    ULTRAPreferenceClick();
     ULTRAPreferenceRun();
     ULTRAPreferenceSubscreenOnlineClick();
     ULTRAPreferenceSubscreenOnlineRun();
@@ -3895,45 +3894,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
-    async function ULTRAPreferenceClick() {
-        modApi.hookFunction('PreferenceClick', 4, (args, next) => {
-            let event;
-            if (MouseIn(1815, 780, 90, 90)) {
-				if ((InformationSheetReturnScreen[0] == "Online") && (InformationSheetReturnScreen[1] == "ChatSearch")) return;                     
-                let name = PreferenceSubscreen.name;
-                if (name == "Arousal") PreferenceSubscreenArousalExit();
-                if (name == "Audio") PreferenceSubscreenAudioExit();
-                if (name == "CensoredWords") PreferenceSubscreenCensoredWordsExit();
-                if (name == "Chat") PreferenceSubscreenChatExit();
-                if (name == "Controller") PreferenceSubscreenControllerExit();
-                if (name == "Difficulty") PreferenceSubscreenExit();
-                if ((name == "Extensions") && (PreferenceExtensionsCurrent == null)) PreferenceSubscreenExtensionsExit();
-                if (name == "Gender") PreferenceSubscreenExit();
-                if (name == "General") PreferenceSubscreenGeneralExit();
-                if (name == "Graphics") PreferenceSubscreenGraphicsExit();
-                if (name == "Immersion") PreferenceSubscreenExit();
-                if (name == "Notifications") PreferenceSubscreenNotificationsExit();
-                if (name == "Online") PreferenceSubscreenExit();
-                if (name == "Restriction") PreferenceSubscreenExit();
-                if (name == "Scripts") PreferenceSubscreenScriptsExit();
-                if (name == "Security") PreferenceSubscreenSecurityExit();
-                PreferenceExit();
-                InformationSheetExit();
-            }
-            next(args);
-        });
-    }
-
+ 
     async function ULTRAPreferenceRun() {
         modApi.hookFunction('PreferenceRun', 4, (args, next) => {
-            MainCanvas.textAlign = "center";
-            let name = PreferenceSubscreen.name;
-            if ((name != "Extensions") || ((name == "Extensions") && (PreferenceExtensionsCurrent == null))) {
-                if (InformationSheetReturnScreen != undefined) {
-                    if ((InformationSheetReturnScreen[0] != "Online") && (InformationSheetReturnScreen[1] != "ChatSearch")) DrawButton(1815, 780, 90, 90, "BACK", "White", "");           
-                 }
-            }
             let mbb = 0;
             let list = PreferenceExtensionsDisplay;
             for (let i = 0; i < list.length; i++) {
@@ -14051,17 +14014,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-
 })();
-
-
-
-
-
-
-
-
-
-
-
-
