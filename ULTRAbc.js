@@ -134,7 +134,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let nogarble;
     let nostruggle;
     let noteleport;
-    let notimeout;
     let notimeout2;
     let noubccolor;
     let nowhisper = false;
@@ -507,7 +506,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nostruggle = false;
         notalk = 0;
         noteleport = false;
-        notimeout = false;
         notimeout2 = false;
         noubccolor = false;
         nowhisper = false;
@@ -593,7 +591,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nostruggle = data.nostruggle;
         notalk = data.notalk;
         noteleport = data.noteleport;
-        notimeout = data.notimeout;
         notimeout2 = data.notimeout2;
         noubccolor = data.noubccolor;
         nowhisper = data.nowhisper;
@@ -742,7 +739,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nogarble": nogarble,
             "nostruggle": nostruggle,
             "noteleport": noteleport,
-            "notimeout": notimeout,
             "notimeout2": notimeout2,
             "noubccolor": noubccolor,
             "nowhisper": nowhisper,
@@ -863,7 +859,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (nostruggle == null || nostruggle == undefined) nostruggle = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (noteleport == null || noteleport == undefined) noteleport = false;
-                if (notimeout == null || notimeout == undefined) notimeout = false;
                 if (notimeout2 == null || notimeout2 == undefined) notimeout2 = false;
                 if (noubccolor == null || noubccolor == undefined) noubccolor = false;
                 if (nowhisper == null || nowhisper == undefined) nowhisper = false;
@@ -981,7 +976,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nostruggle: false,
                 notalk: 0,
                 noteleport: false,
-                notimeout: false,
                 notimeout2: false,
                 noubccolor: false,
                 nowhisper: false,
@@ -1861,9 +1855,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "No time out for wrong commands: ", "notimeout2",
                     "When you enter a command that is wrong or impossible according the context, the error message is removed after some time. If you don't like that, use this option to prevent the disappearance of the error message.", false, 120
                 );
-                addMenuCheckbox(64, 64, "No time out in help provided by TAB: ", "notimeout",
-                    "When you use the TAB key to get help about BC commands, the displayed results are removed from the chat after some time. If you don't like that, use this option to prevent the disappearance of the help results.", false, 120
-                );
             }
 
             PreferenceSubscreenUBCMiscRun = function() {
@@ -2176,7 +2167,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardLoungePraticeGameStart();
     ULTRAClubCardRenderPanel();
-    ULTRACommandAutoComplete();
     ULTRACommandExecute();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
@@ -3079,7 +3069,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-
     //Club Card Game
     async function ULTRAAsylumMeetingClubCardStart() {
         modApi.hookFunction('AsylumMeetingClubCardStart', 4, (args, next) => {
@@ -3467,72 +3456,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Commands
-    async function ULTRACommandAutoComplete() {
-        modApi.hookFunction('CommandAutoComplete', 4, (args, next) => {
-            msg = ElementValue("InputChat");
-            const low = msg.toLowerCase();
-            if (!low || !low.startsWith(CommandsKey) || low.length <= CommandsKey.length) return;
-            if (low.substring(CommandsKey.length).startsWith(CommandsKey)) return;
-            const [key, ...forward] = low.replace(/\s{2,}/g, ' ').split(' ');
-            const tag = key.substring(CommandsKey.length);
-            if (forward.length > 0) {
-                const cmds = GetCommands().filter(C => C.Tag == tag);
-                if (cmds.length == 1 && cmds[0].AutoComplete) {
-                    cmds[0].AutoComplete.call(cmds[0], forward, low, msg);
-                }
-                return;
-            }
-            const CS = GetCommands().filter(C => C.Tag.startsWith(tag));
-            if (CS.length == 0) return;
-            if (CS.length == 1) {
-                if (tag != CS[0].Tag) {
-                    ElementValue("InputChat", CommandsKey + CS[0].Tag + " ");
-                    ElementFocus("InputChat");
-                } else if (CS[0].AutoComplete) {
-                    CS[0].AutoComplete.call(CS[0], forward, low, msg);
-                }
-                return;
-            }
-            let complete = low;
-            for (let I = low.length - CommandsKey.length;; ++I) {
-                const TSI = CS.map(C => C.Tag[I]);
-                if (TSI.some(TI => TI == null)) break;
-                if (new Set(TSI).size != 1) break;
-                complete += TSI[0];
-            }
-            if (low.length != complete.length) {
-                ElementValue("InputChat", complete);
-                ElementFocus("InputChat");
-            } else {
-                if (notimeout == true) {
-                    CommandPrintHelpFor(CS);
-                } else {
-                    CommandPrintHelpFor(CS, 5000);
-                }
-            }
-            return;
-        });
-    }
-
     async function ULTRACommandExecute() {
         modApi.hookFunction('CommandExecute', 4, (args, next) => {
             msg = ElementValue("InputChat");
-            const low = msg.toLowerCase();
-            const [key, ...parsed] = low.replace(/\s{2,}/g, ' ').split(' ');
-            let flt = GetCommands().filter(cmd => key.indexOf(CommandsKey + cmd.Tag) == 0);
-            if (Player.FBC != undefined) flt = GetCommands().filter(cmd => key.substring(1) === cmd.Tag);
-            let C = flt[0];
-            if (flt.length > 1) C = null;
-            if (C && C.Reference) C = GetCommands().find(D => D.Tag == C.Reference);
-            if (C == null) {
+            const tokens = CommonTokenize(msg, { delimiters: [['"', '"'], ['\'', '\'']] });
+            let [key, ...parsed] = tokens;
+            let commandDepth = 0;
+            const matchedCommand = GetCommands().find(cmd =>
+                key.toLowerCase() === `${CommandsKey}${cmd.Tag}`.toLowerCase()
+            );
+            let command = resolveCommandChain(matchedCommand, parsed);
+            const commandMessage = `${key} ${parsed.slice(0, commandDepth).join(' ')}`;
+            if (!command) {
                 if (notimeout2 == true) {
-                    ChatRoomSendLocal(`${msg} ${TextGet("CommandNoSuchCommand")}`);
+                    ChatRoomSendLocal(`${commandMessage} ${TextGet("CommandNoSuchCommand")}`);
                 } else {
-                    ChatRoomSendLocal(`${msg} ${TextGet("CommandNoSuchCommand")}`, 10_000);
+                    ChatRoomSendLocal(`${commandMessage} ${TextGet("CommandNoSuchCommand")}`, 10_000);
                 }
                 return false;
-            }
-            if (C.Prerequisite && C.Prerequisite.call(C) == false) {
+            }       
+            if (command.some(c => c.Prerequisite && !c.Prerequisite())) {               
                 if (notimeout2 == true) {
                     ChatRoomSendLocal(`${msg} ${TextGet("CommandPrerequisiteFailed")}`);
                 } else {
@@ -3540,7 +3483,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 return false;
             }
-            next(args);
+            if (command.every(c => c.PreserveCase === null || c.PreserveCase === false)) {
+                parsed = parsed.map(arg => arg.toLowerCase());
+            }
+            const currentCommandParsed = parsed.slice(commandDepth);
+            const args2 = currentCommandParsed.join(' ');
+            command[commandDepth].Action?.call(command, args2, msg, currentCommandParsed);
+            if (command[commandDepth].Clear !== false) CommandChangeChatInputContent('');
+            return true;
+            function resolveCommandChain(candidate, parsedArgs) {
+                if (!candidate) return null;
+                let depth = 0;
+                let current = candidate;
+                const commandChain = [candidate];
+                while (current) {
+                    while (current.Reference) {
+                        current = GetCommands().find(c => c.Tag === current.Reference) || current;
+                    }
+                    if (depth >= parsedArgs.length) break;
+                    const nextCmd = current.Subcommands?.find(c => c.Tag === parsedArgs[depth]);
+                    if (!nextCmd) break;
+                    current = nextCmd;
+                    commandChain.push(current);
+                    depth++;
+                }
+                commandDepth = depth;
+                return commandChain;
+            }
+            return;
         });
     }
 
@@ -14089,6 +14059,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
