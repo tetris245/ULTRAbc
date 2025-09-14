@@ -61,6 +61,7 @@ Changes for future version
 
 * Added a new button on Login screen to disable all Chat Search toasts (only a full relog can enable them again)
   - Note: the current only way to disable a part of the beep toasts and Chat Search toasts is by entering modified functions in the console
+* Added 2 examples in the Wiki (Settings page) to remove specific toasts by using the console
 * Added lobbies buttons in the Asylum Entrance (only the Asylum button will work if you have enabled the Asylum limitations)
 * Added an Extensions button in Chat Search
 * Moved the "Players in Room" parameter to the restored Chat Search page of the UBC GUI
