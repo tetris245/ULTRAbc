@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.5.2
+Most recent version: 5.5.3
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -59,15 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added a new button on Login screen to disable all Chat Search toasts (only a full relog can enable them again)
-  - Note: the current only way to disable a part of the beep toasts and Chat Search toasts is by entering modified functions in the console
-* Added 2 examples in the Wiki (Settings page) to remove specific toasts by using the console: https://github.com/tetris245/ULTRAbc/wiki/BC-settings-commands#tips-to-remove-specific-toasts
-* Added lobbies buttons in the Asylum Entrance (only the Asylum button will work if you have enabled the Asylum limitations)
-* Added an Extensions button in Chat Search
-* Moved the "Players in Room" parameter to the restored Chat Search page of the UBC GUI
-* Removed the Autojoin feature (as it's incompatible with the new BC Chat Search and its toast system)
-* Removed most other UBC Chat Search features (as BC provides now an advanced Chat Search menu)
-* Removed the BACK button in Preferences screens (this to avoid issues with Chat Search or when relogging)
-* Updated the effect of lobby icons in Main Hall, the hotkeys in Friend List + the frlist and search commands for R120 compatibility
-* Updated the patch of the CommandExecute function
-* Removed the option in GUI - Misc "No time out in help provided by TAB" (as BC has replaced this time out by a button for help deletion)
+(...)
