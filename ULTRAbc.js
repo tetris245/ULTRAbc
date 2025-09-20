@@ -116,6 +116,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tintnever = false;
 
     let asylumlimit;
+	let autojoin;
     let dolltalk;
     let extbuttons;
     let extrainfo;
@@ -477,6 +478,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ahybrid = false;
         animal = 0;
         asylumlimit = false;
+		autojoin = false;
         bgall = false;
         bl = 0;
         blureffect = 0;
@@ -561,6 +563,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ahybrid = data.ahybrid;
         animal = data.animal * 1;
         asylumlimit = data.asylumlimit;
+		autojoin = data.autojoin;
         bgall = data.bgall;
         bl = data.bl;
         blureffect = 0;
@@ -718,6 +721,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tintmbs": tintmbs,
             "tintnever": tintnever,
             "asylumlimit": asylumlimit,
+            "autojoin": autojoin,
             "dolltalk": dolltalk,
             "extbuttons": extbuttons,
             "extrainfo": extrainfo,
@@ -810,6 +814,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (animal == null || animal == undefined) animal = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;
+				if (autojoin == null || autojoin == undefined) autojoin = false;
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
                 if (blindness == null || blindness == undefined) blindness = 0;
@@ -939,6 +944,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ahybrid: false,
                 animal: 0,
                 asylumlimit: false,
+				autojoin: false,
                 bgall: false,
                 bl: 0,
                 blindness: 0,
@@ -1668,7 +1674,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
 			PreferenceSubscreenUBCChatSearchLoad = function() {
-                UBCPreferenceSubscreen = "UBCChatSearch";               
+                UBCPreferenceSubscreen = "UBCChatSearch";  
+				addMenuCheckbox(64, 64, "Enable AutoJoin feature: ", "autojoin",
+                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search.", false, 134
+                );
                 addMenuCheckbox(64, 64, "Present players in chat rooms: ", "pchat",
                     "When enabled, the two below parameters will be used in Chat Search for all chat rooms, no matter the type.", false, 134
                 );
@@ -5248,7 +5257,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InformationSheetLoadCharacter(target);
         await CommonSetScreen("Character", "InformationSheet");
         ProfileCharacter = function() {
-            ElementCreateTextArea("DescriptionInput");
+            ElementCreateTextArea("DescriptionInput");<
             CommonSetScreen("Character", "OnlineProfile");
         };
         ProfileCharacter();
@@ -5262,6 +5271,145 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         LogDelete("Mastery", "MagicSchool");
     }
 
+	//Chat Search - Autojoin
+    ChatSearchCreateGridRoom = function(room,index) {
+        const isBlocked = CharacterHasBlockedItem(Player, room.BlockCategory);
+        const hasTooltip = room.Friends.length > 0 || room.MemberCount >= room.MemberLimit || room.Game != "" || room.BlockCategory.length > 0;
+        const icons = ChatSearchGridRoomGetIcons(room);
+	    /**@type {(null | undefined | string | Node | HTMLOptions<keyof HTMLElementTagNameMap>)[]} */
+        const content = [
+		    ElementButton.Create(`chat-search-room-join-button-${room.Order}`, () => {
+			    RoomJoin(room);
+		    }, {
+			    tooltipPosition: "bottom",
+			    tooltip: hasTooltip ? ChatSearchCreateGridRoomTooltip(room, index) : undefined,
+		    }, {
+			    button: {
+				    classList: ["chat-search-room-join-button"],
+				    attributes: {
+					    autofocus: true,
+				    },
+				    dataAttributes: {
+					    locked: !room.CanJoin ? "true" : "false",
+					    full: room.MemberCount >= room.MemberLimit ? "true" : "false",
+					    withFriends: room.Friends.length > 0 ? "true" : "false",
+					    blocked: isBlocked ? "true" : "false",
+					    game: room.Game != "" ? "true" : "false",
+				    },
+			    },
+		    }),
+		    icons.length > 0 ? {
+			    tag: "div",
+			    classList: ["chat-search-room-icons"],
+			    children: [
+				    ...icons.map((value) => ElementCreate({
+					    tag: "img",
+					    classList: ["chat-search-room-icon"],
+					    attributes: {src: value ?? ""},
+				    })),
+			    ],
+		    } : undefined,
+		    {
+			    tag: "p",
+			    classList: ["chat-search-room-title"],
+			    children: [
+				    {
+					    tag: "span",
+					    classList: ["chat-search-room-name"],
+					    children: [room.Name]
+				    },
+				    "-",
+				    {
+					    tag: "span",
+					    classList: ["chat-search-room-creator"],
+					    children: [`${room.Creator}`]
+				    },
+				    {
+					    tag: "span",
+					    classList: ["chat-search-room-members"],
+					    children: [`${room.MemberCount}/${room.MemberLimit}`]
+				    },
+			    ],
+		    },
+		    {
+			    tag: "p",
+			    classList: ["chat-search-room-description"],
+			    children: [room.Description]
+		    },
+		    ElementButton.Create(`chat-search-room-page-button-${room.Order}`, () => {
+			    ChatSearchShowRoomPage(room);
+		    }, {
+			    tooltipPosition: "bottom",
+			    tooltip: TextGet("ShowRoomPage"),
+			    image: "Icons/Information.svg",
+		    }, {
+			    button: {
+				    classList: ["chat-search-room-page-button"],
+			    },
+		    }),
+	    ];
+	    ElementCreate(
+		    {
+			    tag: "div",
+			    classList: ["chat-search-room"],
+			    attributes: {
+				    id: `chat-search-room-${room.Order}`,
+			    },
+			    children: content,
+			    parent: ChatSearchRoomGrid,
+		    }
+	    );
+    }
+
+    function RoomJoin(room){ 
+       if (autojoin == false) {
+           ServerSend("ChatRoomJoin", { Name: room.Name });
+           return;
+        }
+        if (autojoin == true) {  
+            if (room.MemberCount < room.MemberLimit) { 
+                ServerSend("ChatRoomJoin", { Name: room.Name });
+                return;
+            }
+	        if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {    
+	            if (this.IsOn == undefined || this.IsOn == false) {
+                    IsOn = true;
+                    var TextArea = document.createElement("TextArea");
+                    TextArea.setAttribute("ID", "AutoJoinAlert");
+                    document.body.appendChild(TextArea);          
+                    ElementValue("AutoJoinAlert", "AutoJoining...");
+                    ElementPosition("AutoJoinAlert", 1450, 35, 350);
+                }
+                if (room.Name != undefined) {               
+                     var RoomName = room.Name;
+                     AutoJoin = function() {
+                         this.AutoJoinOn = true;
+                         setTimeout(function() {
+                             AutoJoin()
+                         }, 1300);
+                         ChatSearchLastQueryJoinTime = CommonTime();
+                         ChatSearchLastQueryJoin = RoomName;
+                         ChatRoomPlayerCanJoin = true;
+                         ServerSend("ChatRoomJoin", {                              
+                             Name: RoomName                              
+                         });
+                         ChatRoomPingLeashedPlayers();                                
+                         if (CurrentScreen == "ChatRoom") {
+                              AutoJoin = function() {};                   
+                              this.AutoJoinOn = false;                                
+                              ElementRemove("AutoJoinAlert");                                
+                              IsOn = false;                            
+                          }                      
+                    }                       
+                    if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {                                    
+                        AutoJoin();
+                    }
+                }
+            }
+            return;
+        }
+    }
+	
     //Club Card Game
     const targetCard = ClubCardList.find(card => card.ID === 6011 && card.Name === "Vintage Maid");
     if (targetCard) {
@@ -13952,4 +14100,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
