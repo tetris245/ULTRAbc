@@ -5257,7 +5257,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InformationSheetLoadCharacter(target);
         await CommonSetScreen("Character", "InformationSheet");
         ProfileCharacter = function() {
-            ElementCreateTextArea("DescriptionInput");<
+            ElementCreateTextArea("DescriptionInput");
             CommonSetScreen("Character", "OnlineProfile");
         };
         ProfileCharacter();
@@ -14100,5 +14100,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
