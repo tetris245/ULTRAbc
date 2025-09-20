@@ -5279,6 +5279,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    /**@type {(null | undefined | string | Node | HTMLOptions<keyof HTMLElementTagNameMap>)[]} */
         const content = [
 		    ElementButton.Create(`chat-search-room-join-button-${room.Order}`, () => {
+				if (ChatSearchMode == "Filter") {
+				    if (ChatSearchShowHiddenRoomsActive) return ChatSearchClickUnhideRoom(room, false);
+				    if (ChatSearchHiddenResult.includes(room)) return ChatSearchClickUnhideRoom(room, false);
+				    ChatSearchHiddenResult.push(room);
+				    const roomIdx = ChatSearchResult.findIndex(r => r.Name === room.Name);
+				    if (roomIdx >= 0) ChatSearchResult.splice(roomIdx, 1);
+				    document.getElementById(`chat-search-room-join-button-${room.Order}`).setAttribute("data-temporary-hidden", "true");
+				    if (ChatSearchGhostPlayerOnClickActive) return ChatRoomListManipulation(Player.GhostList, true, "" + room.CreatorMemberNumber);
+				    ChatSearchTempHiddenRooms.push(room.CreatorMemberNumber);
+				    return;
+			    }
 			    RoomJoin(room);
 		    }, {
 			    tooltipPosition: "bottom",
@@ -5295,6 +5306,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 					    withFriends: room.Friends.length > 0 ? "true" : "false",
 					    blocked: isBlocked ? "true" : "false",
 					    game: room.Game != "" ? "true" : "false",
+						temporaryHidden: ChatSearchHiddenResult.includes(room) ? "true" : "false",
 				    },
 			    },
 		    }),
@@ -14100,6 +14112,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
