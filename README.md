@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Restored the AutoJoin feature (you can enable/disable it in the GUI - Chat Search page)
