@@ -3870,10 +3870,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     PreferenceOnlineDefaultBackground = name;
                     Player.OnlineSettings.DefaultChatRoomBackground = name;
                     PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
-                    CommonSetScreen("Character", "Preference");
-                    PreferenceSubscreen = PreferenceSubscreens.find(s => s.name === "Online");
-                    PreferenceSubscreen?.load();
-                    PreferencePageCurrent = 2;
+                    PreferenceOpenSubscreen("Online", 2); 
                 }
             }
             next(args);
@@ -12391,7 +12388,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'stalk',
         Description: "(stuttermode) (words): speaks once in a specified stuttering mode.",
         Action: (_, command, args) => {
-            if (StutterOn) return;
             let help = "The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
                 "Note that it can't be used when you are in a 'permanent' stuttering mode.\n" +
                 " \n" +
@@ -12403,6 +12399,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let [mode] = args;
             if (!mode || isNaN(mode) || mode < 1 || mode > 4) {
                 infomsg(help);
+                return;
+            }
+			if (st != 0) { 
+                infomsg("You can't use this command because you are in a 'permanent' stuttering mode");
                 return;
             }
             let [, , ...message] = command.split(" ");
@@ -14112,6 +14112,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
