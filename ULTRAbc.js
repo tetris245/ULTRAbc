@@ -3625,16 +3625,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(240, 585, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
             if (MouseIn(240, 695, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) PrfClick();
-            if ((MouseX >= 680) && (MouseX < 770) && (MouseY >= 585) && (MouseY < 675)) ExtClick();
-            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 695) && (MouseY < 785)) {
-                backto = true;
-                ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
-                FriendListReturn = {
-                    Screen: CurrentScreen,
-                    Module: CurrentModule
-                };
-                CommonSetScreen("Character", "FriendList");
-            }
+            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 695) && (MouseY < 785)) ExtClick();
             next(args);
         });
     }
@@ -3660,13 +3651,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawImageResize("Icons/Changelog.png", 250, 600, 60, 60);
             DrawTextFit("UBC Changes", 425, 633, 308, "Black");
             DrawButton(570, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferences");
-            DrawButton(680, 585, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
+            DrawButton(570, 695, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
             DrawText("/uhelp", 145, 725, "White", "Black");
             DrawText("in chat", 140, 765, "White", "Black");
             DrawButton(240, 695, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
             DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
             DrawTextFit("UBC Wiki", 425, 743, 308, "Black");
-            DrawButton(570, 695, 90, 90, "", "White", "Icons/FriendList.png", "Friends");
             next(args);
         });
     }
@@ -14112,6 +14102,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
