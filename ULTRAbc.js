@@ -3526,7 +3526,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRALoginClick() {
         modApi.hookFunction('LoginClick', 4, (args, next) => {
             if (MouseIn(1910, 670, 90, 90)) hidetoast1();
-            if (MouseIn(1910, 780, 90, 90)) hidetoast2();
             next(args);
         });
     }
@@ -3535,7 +3534,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('LoginRun', 4, (args, next) => {
             DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "", "");
             DrawButton(1910, 670, 90, 90, "NO BEEP TOAST", "White", "", "Click here to hide all beep toasts");
-            DrawButton(1910, 780, 90, 90, "NO CS TOAST", "White", "", "Click here to hide all Chat Search toasts");
             next(args);
         });
     }
@@ -5907,10 +5905,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function hidetoast1() {
         ServerShowBeep = function() {}
         ToastManager.dismissAll();
-    }
-
-    function hidetoast2() {
-        ChatSearchSendToast = function() {}      
     }
 
     function infomsg(msg) {
@@ -14078,6 +14072,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
