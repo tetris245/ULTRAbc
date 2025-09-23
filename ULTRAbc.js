@@ -1675,7 +1675,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			PreferenceSubscreenUBCChatSearchLoad = function() {
                 UBCPreferenceSubscreen = "UBCChatSearch";  
 				addMenuCheckbox(64, 64, "Enable AutoJoin feature: ", "autojoin",
-                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search.", false, 134
+                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search. Note that it will not work for locked rooms you can't enter even when they are not full. This feature disables the corresponding toast and also prevents to see toasts related to AlreadyInRoom, RoomBanned, RoomKicked, RoomLocked, because they are all in the same BC category at the moment.", false, 134
                 );
                 addMenuCheckbox(64, 64, "Present players in chat rooms: ", "pchat",
                     "When enabled, the two below parameters will be used in Chat Search for all chat rooms, no matter the type.", false, 134
@@ -2156,6 +2156,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSendChat();
     ULTRAChatSearchExit();
 	ULTRAChatSearchParseResponse();
+	ULTRAChatSearchSendToast(); 
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
     ULTRAClubCardCheckVictory();
@@ -2982,6 +2983,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NewResult = ret;
             }
             return NewResult;
+        });
+    }
+
+	async function ULTRAChatSearchSendToast() {
+        modApi.hookFunction('ChatSearchSendToast', 4, (args, next) => {
+            let ajoin = Player.UBC.ubcSettings.autojoin;
+            if (ajoin == true) return;
+            return next(args);
         });
     }
 
@@ -5335,7 +5344,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (room.MemberCount < room.MemberLimit) { 
                 ServerSend("ChatRoomJoin", { Name: room.Name });
                 return;
-            }
+            }	
+            if ((room.Locked == true) && (room.CanJoin == false)) return;
 	        if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {    
 	            if (this.IsOn == undefined || this.IsOn == false) {
                     IsOn = true;
@@ -14068,6 +14078,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
