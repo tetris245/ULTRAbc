@@ -60,3 +60,5 @@ All else I might not have included.
 Changes for future version
 
 * Restored the AutoJoin feature (you can enable/disable it in the GUI - Chat Search page)
+  - Note 1: It will not work for locked rooms you can't enter even when they are not full
+  - Note 2: It disables the corresponding toast and also prevents to see toasts related to AlreadyInRoom, RoomBanned, RoomKicked, RoomLocked, because they are all in the same BC category at the moment
