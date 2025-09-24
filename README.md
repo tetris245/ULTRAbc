@@ -62,10 +62,11 @@ Changes for future version
 * Restored the AutoJoin feature (you can enable/disable it in the GUI - Chat Search page)
   - Note 1: It will not work for locked rooms you can't enter even when they are not full
   - Note 2: It disables the corresponding toast and also prevents to see toasts related to AlreadyInRoom, RoomBanned, RoomKicked, RoomLocked, because they are all in the same BC category at the moment
-* Added hotkeys in Chat search (you can enable/disable them in the GUI - Hotkeys page)
+* Added hotkeys in Chat Search (you can enable/disable them in the GUI - Hotkeys page)
   - Left Alt = access to BC Settings
   - Right Arrow = access to Extensions Settings
   - Left Ctrl = access to Wardrobe
+* Extended the bg4 command: you can now change the Chat Search background
 * Removed the NO CS TOAST button on Login screen
 * Removed the Settings, Extensions and Wardrobe buttons in the Chat Search screen (they are replaced by hotkeys)
 * Fixed the tints effect on Online subscreen and MBS screens
