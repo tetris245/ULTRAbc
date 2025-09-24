@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.5.3
+Most recent version: 5.5.4
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.5.2.zip file on the Releases page
+1. Download the ULTRAbc-version5.5.4.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,14 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Restored the AutoJoin feature (you can enable/disable it in the GUI - Chat Search page)
-  - Note 1: It will not work for locked rooms you can't enter even when they are not full
-  - Note 2: It disables the corresponding toast and also prevents to see toasts related to AlreadyInRoom, RoomBanned, RoomKicked, RoomLocked, because they are all in the same BC category at the moment
-* Added hotkeys in Chat Search (you can enable/disable them in the GUI - Hotkeys page)
-  - Left Alt = access to BC Settings
-  - Right Arrow = access to Extensions Settings
-  - Left Ctrl = access to Wardrobe
-* Extended the bg4 command: you can now change the Chat Search background
-* Removed the NO CS TOAST button on Login screen
-* Removed the Settings, Extensions and Wardrobe buttons in the Chat Search screen (they are replaced by hotkeys)
-* Fixed the tints effect on Online subscreen and MBS screens
+(...)
