@@ -64,4 +64,4 @@ Changes for future version
   - Note 2: It disables the corresponding toast and also prevents to see toasts related to AlreadyInRoom, RoomBanned, RoomKicked, RoomLocked, because they are all in the same BC category at the moment
 * Removed the NO CS TOAST button on Login screen
 * Removed the Settings, Extensions and Wardrobe buutons in the Chat Search screen
-* Fixed the tints effect on Online subscreen
+* Fixed the tints effect on Online subscreen and MBS screens
