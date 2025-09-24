@@ -3812,11 +3812,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             for (let i = 0; i < list.length; i++) {
                 if (list[i].Button == "MBS Settings") mbb = 1;
             }
+			let name = PreferenceSubscreen.name;
             if ((name == "Extensions") && (PreferenceExtensionsCurrent == null) && (mbb == 1) && (tintnever == false)) {
                 if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
                 if (tintmbs == false) untintMbsColors();
             }
-            if (name != "Online") TintsEffect();
+            TintsEffect();
             next(args);
         });
     }
@@ -3842,7 +3843,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPreferenceSubscreenOnlineRun() {
         modApi.hookFunction('PreferenceSubscreenOnlineRun', 4, (args, next) => {
-            if (PreferencePageCurrent === 0) TintsEffect();
             if (PreferencePageCurrent === 2) {
                 DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
                 DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
@@ -14072,13 +14072,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
-
-
-
-
-
-
