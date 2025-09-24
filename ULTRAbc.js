@@ -2166,6 +2166,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchExit();
 	ULTRAChatSearchKeyDown();
 	ULTRAChatSearchParseResponse();
+	ULTRAChatSearchRun();
 	ULTRAChatSearchSendToast(); 
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
@@ -3002,6 +3003,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NewResult = ret;
             }
             return NewResult;
+        });
+    }
+
+	async function ULTRAChatSearchRun() {
+        modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
+            TintsEffect();
+            next(args);
         });
     }
 
@@ -14091,4 +14099,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
