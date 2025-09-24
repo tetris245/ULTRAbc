@@ -95,6 +95,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cdeck = 0;
     let cextra = false;
     let cfame = 150;
+	let csname = "Introduction";
     let frname = "BrickWall";
     let gamestable = false;
     let gl = 0;
@@ -639,6 +640,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun4 = "";
             blindness = 0;
             blurmode = 0;
+			csname = "Introduction";
             frname = "BrickWall";
             gamestable = false;
             hearing = 0;
@@ -669,6 +671,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun4 = data.pronoun4;
             blindness = 0;
             blurmode = 0;
+			csname = data.csname;
             frname = data.frname;
             gamestable = data.gamestable;
             hearing = 0;
@@ -707,6 +710,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cdeck": cdeck,
             "cextra": cextra,
             "cfame": cfame,
+            "csname": csname,
             "frname": frname,
             "gamestable": gamestable,
             "gaglevel": gl,
@@ -828,6 +832,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 150;
 				if (cskeys == null || cskeys == undefined) cskeys = false;
+				if (csname == null || csname == undefined) csname = "Introduction";
                 if (dolltalk == null || dolltalk == undefined) dolltalk = false;
                 if (extbuttons == null || extbuttons == undefined) extbuttons = false;
                 if (extrainfo == null || extrainfo == undefined) extrainfo = false;
@@ -3008,6 +3013,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
+			ChatSearchBackground = csname;
             TintsEffect();
             next(args);
         });
@@ -8500,17 +8506,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'bg4',
         Description: "(screen) (background): selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell",
         Action: (args) => {
             if (args === "") {
                 let msg = "The bg4 command must be followed by two numbers:\n" +
                     "- a number for the concerned screen:\n" +
-                    "0 = Club Card Game\n" +
-                    "1 = Friend List - 2 = Main Hall\n" +
-                    "3 = Private Room (SP) - 4 = Timer Cell\n" +
-                    "5 = Creation of New Room (default)\n" +
+                    "0 = Chat Search - 1 = Club Card Game\n" +
+                    "2 = Friend List - 3 = Main Hall\n" +
+                    "4 = Private Room (SP) - 5 = Timer Cell\n" +
+                    "6 = Creation of New Room (default)\n" +
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
                     "Without BCX: 0 to 202 for official BC backgrounds, 203 to 285 are added if you use the /bg1 command.\n" +
@@ -8522,8 +8528,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringBg1 = args;
                 let stringBg2 = stringBg1.split(/[ ,]+/);
                 let screen = stringBg2[0];
-                if ((screen > -1) && (screen < 6)) {
+                if ((screen > -1) && (screen < 7)) {
                     if (screen == 0) {
+                        let csbg = stringBg2[1];
+                        let csback = "";
+                        if ((csbg > -2) && (csbg < (BackgroundsList.length - 1))) {
+                            if (csbg == -1) {
+                                csback = "Introduction";
+                            } else {
+                                csback = BackgroundsList[csbg].Name;
+                            }
+                            csname = csback;
+                            M_MOANER_saveControls();
+                            let msg = "The background of Chat Search is now: " + csname + ".";
+                            infomsg(msg);
+                        }
+                    }
+                    if (screen == 1) {
                         let ccbg = stringBg2[1];
                         let ccback = "";
                         if ((ccbg > -2) && (ccbg < (BackgroundsList.length - 1))) {
@@ -8540,7 +8561,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                    if (screen == 1) {
+                    if (screen == 2) {
                         let frbg = stringBg2[1];
                         let frback = "";
                         if ((frbg > -2) && (frbg < (BackgroundsList.length - 1))) {
@@ -8555,7 +8576,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                    if (screen == 2) {
+                    if (screen == 3) {
                         let mhbg = stringBg2[1];
                         let mhback = "";
                         if ((mhbg > -2) && (mhbg < (BackgroundsList.length - 1))) {
@@ -8572,7 +8593,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                    if (screen == 3) {
+                    if (screen == 4) {
                         let prbg = stringBg2[1];
                         let prback = "";
                         if ((prbg > -2) && (prbg < (BackgroundsList.length - 1))) {
@@ -8590,7 +8611,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                    if (screen == 4) {
+                    if (screen == 5) {
                         let tcbg = stringBg2[1];
                         let tcback = "";
                         if ((tcbg > -2) && (tcbg < (BackgroundsList.length - 1))) {
@@ -8605,7 +8626,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         }
                     }
-                    if (screen == 5) {
+                    if (screen == 6) {
                         let drbg = stringBg2[1];
                         let drback = "";
                         if ((drbg > -2) && (drbg < (BackgroundsList.length - 1))) {
@@ -14099,5 +14120,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
