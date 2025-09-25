@@ -135,7 +135,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let nogarble;
     let nostruggle;
     let noteleport;
-    let notimeout2;
     let noubccolor;
     let nowhisper = false;
     let nowhrange;
@@ -508,7 +507,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nostruggle = false;
         notalk = 0;
         noteleport = false;
-        notimeout2 = false;
         noubccolor = false;
         nowhisper = false;
         nowhrange = false;
@@ -594,7 +592,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nostruggle = data.nostruggle;
         notalk = data.notalk;
         noteleport = data.noteleport;
-        notimeout2 = data.notimeout2;
         noubccolor = data.noubccolor;
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
@@ -746,7 +743,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nogarble": nogarble,
             "nostruggle": nostruggle,
             "noteleport": noteleport,
-            "notimeout2": notimeout2,
             "noubccolor": noubccolor,
             "nowhisper": nowhisper,
             "nowhrange": nowhrange,
@@ -868,7 +864,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (nostruggle == null || nostruggle == undefined) nostruggle = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (noteleport == null || noteleport == undefined) noteleport = false;
-                if (notimeout2 == null || notimeout2 == undefined) notimeout2 = false;
                 if (noubccolor == null || noubccolor == undefined) noubccolor = false;
                 if (nowhisper == null || nowhisper == undefined) nowhisper = false;
                 if (nowhrange == null || nowhrange == undefined) nowhrange = false;
@@ -986,7 +981,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nostruggle: false,
                 notalk: 0,
                 noteleport: false,
-                notimeout2: false,
                 noubccolor: false,
                 nowhisper: false,
                 nowhrange: false,
@@ -1868,9 +1862,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
                     "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
                 );
-                addMenuCheckbox(64, 64, "No time out for wrong commands: ", "notimeout2",
-                    "When you enter a command that is wrong or impossible according the context, the error message is removed after some time. If you don't like that, use this option to prevent the disappearance of the error message.", false, 120
-                );
             }
 
             PreferenceSubscreenUBCMiscRun = function() {
@@ -2182,7 +2173,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardLoungePraticeGameStart();
     ULTRAClubCardRenderPanel();
-    ULTRACommandExecute();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
     ULTRAFriendListDraw();
@@ -3410,65 +3400,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             moreABDLCards();
             MiniGameStart("ClubCard", 0, "StableClubCardEnd");
             return;
-        });
-    }
-
-    //Commands
-    async function ULTRACommandExecute() {
-        modApi.hookFunction('CommandExecute', 4, (args, next) => {
-            msg = ElementValue("InputChat");
-            const tokens = CommonTokenize(msg, { delimiters: [['"', '"'], ['\'', '\'']] });
-            let [key, ...parsed] = tokens;
-            let commandDepth = 0;
-            const matchedCommand = GetCommands().find(cmd =>
-                key.toLowerCase() === `${CommandsKey}${cmd.Tag}`.toLowerCase()
-            );
-            let command = resolveCommandChain(matchedCommand, parsed);
-            const commandMessage = `${key} ${parsed.slice(0, commandDepth).join(' ')}`;
-            if (!command) {
-                if (notimeout2 == true) {
-                    ChatRoomSendLocal(`${commandMessage} ${TextGet("CommandNoSuchCommand")}`);
-                } else {
-                    ChatRoomSendLocal(`${commandMessage} ${TextGet("CommandNoSuchCommand")}`, 10_000);
-                }
-                return false;
-            }       
-            if (command.some(c => c.Prerequisite && !c.Prerequisite())) {               
-                if (notimeout2 == true) {
-                    ChatRoomSendLocal(`${commandMessage} ${TextGet("CommandPrerequisiteFailed")}`);
-                } else {
-                    ChatRoomSendLocal(`${commandMessage} ${TextGet("CommandPrerequisiteFailed")}`, 10_000);
-                }
-                return false;
-            }
-            if (command.every(c => c.PreserveCase === null || c.PreserveCase === false)) {
-                parsed = parsed.map(arg => arg.toLowerCase());
-            }
-            const currentCommandParsed = parsed.slice(commandDepth);
-            const args2 = currentCommandParsed.join(' ');
-            command[commandDepth].Action?.call(command, args2, msg, currentCommandParsed);
-            if (command[commandDepth].Clear !== false) CommandChangeChatInputContent('');
-            return true;
-            function resolveCommandChain(candidate, parsedArgs) {
-                if (!candidate) return null;
-                let depth = 0;
-                let current = candidate;
-                const commandChain = [candidate];
-                while (current) {
-                    while (current.Reference) {
-                        current = GetCommands().find(c => c.Tag === current.Reference) || current;
-                    }
-                    if (depth >= parsedArgs.length) break;
-                    const nextCmd = current.Subcommands?.find(c => c.Tag === parsedArgs[depth]);
-                    if (!nextCmd) break;
-                    current = nextCmd;
-                    commandChain.push(current);
-                    depth++;
-                }
-                commandDepth = depth;
-                return commandChain;
-            }
-            next(args);
         });
     }
 
@@ -14120,5 +14051,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
