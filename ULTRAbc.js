@@ -3468,7 +3468,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 commandDepth = depth;
                 return commandChain;
             }
-            return;
+            next(args);
         });
     }
 
@@ -14120,4 +14120,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
