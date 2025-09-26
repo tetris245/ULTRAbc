@@ -3011,8 +3011,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	async function ULTRAChatSearchSendToast() {
         modApi.hookFunction('ChatSearchSendToast', 4, (args, next) => {
-            let ajoin = Player.UBC.ubcSettings.autojoin;
-            if (ajoin == true) return;
+            if (Player.UBC != undefined) {
+                if (Player.UBC.ubcSettings != undefined) {
+                    let ajoin = Player.UBC.ubcSettings.autojoin;
+                    if (ajoin == true) return;
+                }
+            }
             return next(args);
         });
     }
@@ -14051,3 +14055,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
