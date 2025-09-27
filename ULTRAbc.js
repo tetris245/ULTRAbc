@@ -6510,7 +6510,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return ChatRoomCharacter.find((Character) => {
             return (
                 Character.MemberNumber == value ||
+                Character.Name == value ||
                 Character.Name.toLowerCase() === value ||
+                Character.Nickname === value ||
                 Character.Nickname?.toLowerCase() === value
             );
         });
@@ -14055,4 +14057,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
