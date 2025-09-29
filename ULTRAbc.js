@@ -1685,8 +1685,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Present players in chat rooms: ", "pchat",
                     "When enabled, the two below parameters will be used in Chat Search for all chat rooms, no matter the type.", false, 134
                 );
-                addMenuInput(200, "Minimum present players (2-20):", "pmin", "InputPlayerMin",
-                    "Input a number between 2 and 20 as minimum players present in chat rooms! If this number is higher than the maximum, your Chat Search will fail."
+                addMenuInput(200, "Minimum present players (1-20):", "pmin", "InputPlayerMin",
+                    "Input a number between 1 and 20 as minimum players present in chat rooms! If this number is higher than the maximum, your Chat Search will fail. Also note that a number different from 1 will prevent to see rooms with only one player, what's often the case with the leashing system to a private room, or when your friend is alone in a private room, even if you enter the correct name of such room."
                 );
                 addMenuInput(200, "Maximum present players (2-20):", "pmax", "InputPlayerMax",
                     "Input a number between 2 and 20 as maximum present players in chat rooms! If this number is lower than the minimum, your Chat Search will fail."
@@ -1704,7 +1704,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCChatSearchExit = function() {             
                 let min = ElementValue("InputPlayerMin");
                 let max = ElementValue("InputPlayerMax");
-                if ((CommonIsNumeric(min)) && (min > 1) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21)) {
+                if ((CommonIsNumeric(min)) && (min > 0) && (min < 21) && (CommonIsNumeric(max)) && (max > 1) && (max < 21)) {
                     Player.UBC.ubcSettings.pmin = min;
                     Player.UBC.ubcSettings.pmax = max;                 
                     ElementRemove("InputPlayerMin");
@@ -14057,5 +14057,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
