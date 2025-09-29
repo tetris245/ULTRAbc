@@ -105,7 +105,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let npcdeck = -1;
     let onegl = 0;
 	let pchat = false;
-    let pmin = 2;
+    let pmin = 1;
     let pmax = 20;
     let silent = false;
     let st = 0;
@@ -514,7 +514,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         npcpunish = false;
         outbuttons = false;
 		pchat = false;
-        pmin = 2;
+        pmin = 1;
         pmax = 20;
         rglbuttons = false;
         rglsync = false;
@@ -871,7 +871,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;
                 if (outbuttons == null || outbuttons == undefined) outbuttons = false;
 				if (pchat == null || pchat == undefined) pchat = false;
-                if (pmin == null || pmin == undefined || pmin == 0) pmin = 2;
+                if (pmin == null || pmin == undefined || pmin == 0) pmin = 1;
                 if (pmax == null || pmax == undefined || pmax == 0) pmax = 20; 
                 if (profileName == null || profileName == undefined) profileName = "default";
                 if (profileName == "default") profile = 0;
@@ -989,7 +989,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 orgasmMoan: true,
                 outbuttons: false,
 				pchat: false,
-                pmin: 2,
+                pmin: 1,
                 pmax: 20,
                 profile: 0,
                 reaction: 0,
@@ -14057,3 +14057,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
