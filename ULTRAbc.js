@@ -102,6 +102,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let hearing = 0;
     let maptrap1 = 0;
     let mgl = 0;
+	let mission = "";
     let npcdeck = -1;
     let onegl = 0;
 	let pchat = false;
@@ -502,6 +503,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mapfull = false;
         mapfull2 = false;
         maptrap1 = 0;
+		mission = "";
         noescape = false;
         nogarble = false;
         nostruggle = false;
@@ -587,6 +589,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mapfull = data.mapfull;
         mapfull2 = data.mapfull2;
         maptrap1 = data.maptrap1 * 1;
+		mission = data.mission;
         noescape = data.noescape;
         nogarble = data.nogarble;
         nostruggle = data.nostruggle;
@@ -711,7 +714,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "frname": frname,
             "gamestable": gamestable,
             "gaglevel": gl,
-            "maptrap1": maptrap1,
+            "maptrap1": maptrap1,	
+            "mission": mission,
             "pchat": pchat,
             "pmin": pmin,
             "pmax": pmax,
@@ -848,6 +852,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (mapfull == null || mapfull == undefined) mapfull = false;
                 if (mapfull2 == null || mapfull2 == undefined) mapfull2 = false;
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
+				if (mission == null || mission == undefined) mission = "";
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
                 if (M_MOANER_scriptOn == null || M_MOANER_scriptOn == undefined) M_MOANER_scriptOn = false;
@@ -2178,6 +2183,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAFriendListDraw();
     ULTRAFriendListKeyDown();
     ULTRAInfiltrationClubCardStart();
+	ULTRAInfiltrationRun();
     ULTRAIntroductionClubCardStart();
     ULTRAKidnapLeagueRandomClubCardStart();
     ULTRALARPClubCardStart();
@@ -2237,7 +2243,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAGamblingRun();
     ULTRAGetUpRun();
     ULTRAHorseWalkRun();
-    ULTRAInfiltrationRun();
     ULTRAInformationSheetRun();
     ULTRAIntroductionRun();
     ULTRAKidnapLeagueRun();
@@ -3625,11 +3630,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Pandora Infiltration
     async function ULTRAInfiltrationPrepareMission() {
-        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {
-            if (InfiltrationMission == "") {
-                let InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
-                InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
-            }
+        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {         
+            InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
             if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
                 InfiltrationTarget = {
                     Type: "NPC",
@@ -3651,6 +3653,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+    async function ULTRAInfiltrationRun() {
+        modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
+            TintsEffect();
+            if ((mission == "") || (mission == "random")) InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
+            if (mission == "burglar") InfiltrationMissionType = ["CatBurglar"];
+            if (mission == "kidnap") InfiltrationMissionType = ["Kidnap"];
+            if (mission == "rescue") InfiltrationMissionType = ["Rescue"];
+            if (mission == "retrieve") InfiltrationMissionType = ["Retrieve"];
+            if (mission == "sabotage") InfiltrationMissionType = ["ReverseMaid"];
+            next(args);
+        });
+    }
+	
     //Pandora Prison
     async function ULTRAPandoraPenitentiaryResult() {
         modApi.hookFunction('PandoraPenitentiaryResult', 4, (args, next) => {
@@ -4157,13 +4172,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAHorseWalkRun() {
         modApi.hookFunction('HorseWalkRun', 4, (args, next) => {
-            TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRAInfiltrationRun() {
-        modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
@@ -10563,6 +10571,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'mission',
+        Description: "(mission): goes to infiltration room and forces a specific mission.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The mission command must include a mission.\n" +
+                    "Available missions:\n" +
+                    "burglar, kidnap, rescue, retrieve, sabotage.\n" +
+                    "Full random mission with random.";
+                infomsg(msg);            
+            } else {
+                mission = args;
+                M_MOANER_saveControls();
+                ServerSend("ChatRoomLeave", "");
+                ChatRoomSetLastChatRoom("");
+                OnlineGameName = "";
+                ChatRoomClearAllElements();
+                CommonSetScreen("Room", "Infiltration");
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'mstatus',
         Description: ": displays current status of the moaner.",
@@ -13227,6 +13257,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
+					"<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
                     "<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
                     "<b>/store</b> = Goes to store. Shows hidden items.";
                 infomsg(msg);
@@ -14057,4 +14088,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
