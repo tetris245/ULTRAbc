@@ -2652,6 +2652,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
             }
+			Player.ChatSearchSettings.Game = "";
             next(args);
         });
     }
@@ -2990,7 +2991,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	async function ULTRAChatSearchParseResponse() {
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
-            const ret = next(args);
+            let ret = next(args);
             let NewResult = [];
             if (pchat == true) {
                 let rm = 0;
@@ -3002,7 +3003,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 NewResult = ret;
             }
-            return NewResult;
+            ret = NewResult;
+            let NewResult2 = [];
+            let game = Player.ChatSearchSettings.Game; 
+            if (game != "") {
+                let rm = 0;
+                while (rm < ret.length) {
+                    let rgame = ret[rm].Game;
+                    if (rgame == game) NewResult2.push(ret[rm]);
+                    rm++;
+                }
+            } else {
+                NewResult2 = ret;
+            }
+            return NewResult2;
         });
     }
 
@@ -14087,4 +14101,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
