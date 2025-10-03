@@ -2185,6 +2185,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAFriendListDraw();
     ULTRAFriendListKeyDown();
     ULTRAInfiltrationClubCardStart();
+	ULTRAInfiltrationPrepareMission();
     ULTRAInfiltrationRun();
     ULTRAIntroductionClubCardStart();
     ULTRAKidnapLeagueRandomClubCardStart();
@@ -3646,6 +3647,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Pandora Infiltration
+	async function ULTRAInfiltrationPrepareMission() {
+        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {
+            mission = "";
+            M_MOANER_saveControls();
+            next(args);
+        });
+    }
+	
     async function ULTRAInfiltrationRun() {
         modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
             TintsEffect();
@@ -14082,5 +14091,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
