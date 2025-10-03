@@ -2970,7 +2970,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	//Chat Search 
     async function ULTRAChatSearchExit() {
-        modApi.hookFunction('ChatSearchExit', 4, (args, next) => {          
+        modApi.hookFunction('ChatSearchExit', 4, (args, next) => {  
+			Player.ChatSearchSettings.Game = "";
             if (ChatRoomSpace == "Asylum") {
                 ChatSearchReturnScreen = ["Room", "AsylumEntrance"];
             } else {
@@ -14101,6 +14102,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
