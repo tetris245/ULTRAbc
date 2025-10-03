@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.5.4
+Most recent version: 5.5.5
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.5.4.zip file on the Releases page
+1. Download the ULTRAbc-version5.5.5.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,7 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Restored the mission command (that allows to enter the Infiltration room and force a specific mission)
-* Extended the AutoJoin feature to the accessible rooms mentioned in Chat Search with less than 4 free slots, this to reduce the number of cases you can't enter a room and see no any message 
-* Fixed the search of rooms with a mini-game (that is broken in BC)
-  - Note: The value corresponding to the selected game is put back to "" when you enter a room or leave Chat Search, it means that you will find back a normal full search when exiting the room for example
+(...)
