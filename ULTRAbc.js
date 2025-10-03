@@ -10602,10 +10602,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 mission = args;
                 M_MOANER_saveControls();
-                ServerSend("ChatRoomLeave", "");
-                ChatRoomSetLastChatRoom("");
-                OnlineGameName = "";
-                ChatRoomClearAllElements();
+                RoomToGame();
                 CommonSetScreen("Room", "Infiltration");
             }
         }
@@ -14104,5 +14101,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
+
 
 })();
