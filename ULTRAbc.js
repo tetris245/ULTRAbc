@@ -677,6 +677,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             gamestable = data.gamestable;
             hearing = 0;
             mgl = 0;
+			mission = "";
             onegl = 0;
             reaction = 0;
             tcname = data.tcname;
@@ -3648,7 +3649,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAInfiltrationRun() {
         modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
             TintsEffect();
-			DrawText("ULTRAbc: To avoid weird issues, make a full relog after end or cancelling of your mission", 940, 35, "White", "Gray");
+			if (mission != "") DrawText("ULTRAbc: To avoid weird issues, make a full relog after end or cancelling of your mission", 940, 35, "White", "Gray");
             if ((mission == "") || (mission == "random")) InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
             if (mission == "burglar") InfiltrationMissionType = ["CatBurglar"];
             if (mission == "kidnap") InfiltrationMissionType = ["Kidnap"];
@@ -14081,4 +14082,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
