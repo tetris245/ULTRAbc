@@ -62,4 +62,4 @@ Changes for future version
 * Restored the mission command (that allows to enter the Infiltration room and force a specific mission)
 * Extended the AutoJoin feature to the accessible rooms mentioned in Chat Search with less than 4 free slots, this to reduce the number of cases you can't enter a room and see no any message 
 * Fixed the search of rooms with a mini-game (that is broken in BC)
-  - Note: The value corresponding to the selected game is put back to "" when you enter a room or leave Chat Search, it means that you will find back a normal full search when exiting the room or after a full relog
+  - Note: The value corresponding to the selected game is put back to "" when you enter a room or leave Chat Search, it means that you will find back a normal full search when exiting the room for example
