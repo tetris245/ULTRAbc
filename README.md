@@ -60,3 +60,4 @@ All else I might not have included.
 Changes for future version
 
 * Restored the mission command
+* Extended the AutoJoin feature to the accessible rooms mentioned in Chat Search with less than 4 free slots, this to reduce the number of cases you can't enter a room and see no any message 
