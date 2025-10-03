@@ -5101,8 +5101,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InformationSheetLoadCharacter(Player);
         PreferenceSubscreen = "Extensions";
         await CommonSetScreen("Character", "Preference");
-        PreferenceSubscreen = PreferenceSubscreens.find(s => s.name === "Extensions");
-        PreferenceSubscreen?.load();
+        PreferenceOpenSubscreen("Extensions");     
     }
 
     function OutButtons() {
@@ -5315,7 +5314,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
            return;
         }
         if (autojoin == true) {  
-            if (room.MemberCount < room.MemberLimit) { 
+            if (room.MemberCount < room.MemberLimit - 3) { 
                 ServerSend("ChatRoomJoin", { Name: room.Name });
                 return;
             }	
@@ -14088,3 +14087,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
