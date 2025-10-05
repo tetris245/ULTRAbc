@@ -3648,23 +3648,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Pandora Infiltration
 	async function ULTRAInfiltrationPrepareMission() {
-        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {
+        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => { 
+            if (mission == "") InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
+            if (mission == "burglar") InfiltrationMission = "CatBurglar";
+            if (mission == "kidnap") InfiltrationMission = "Kidnap";
+            if (mission == "rescue") InfiltrationMission = "Rescue";
+            if (mission == "retrieve") InfiltrationMission = "Retrieve";
+            if (mission == "sabotage") InfiltrationMission = "ReverseMaid";
+            if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
+		        InfiltrationTarget = {
+			        Type: "NPC",
+			        Name: CharacterGenerateRandomName(),
+			        PrivateRoom: false
+		         };
+	        } else {
+		         const PreviousTarget = InfiltrationTarget && InfiltrationTarget.Type || "";
+		         const Type = /** @type {InfiltrationTargetType} */(CommonRandomItemFromList(PreviousTarget, InfiltrationObjectType));
+		         InfiltrationTarget = {
+			         Type: Type,
+			         Name: DialogFind(InfiltrationSupervisor, "Object" + Type),
+		         };
+	        }
+	        InfiltrationSupervisor.Stage = InfiltrationMission;
+	        InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
+	        InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
             mission = "";
             M_MOANER_saveControls();
-            next(args);
+            return;
         });
     }
-	
+
     async function ULTRAInfiltrationRun() {
         modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
-            TintsEffect();
-			if (mission != "") DrawText("ULTRAbc: To avoid weird issues, make a full relog after end or cancelling of your mission", 940, 35, "White", "Gray");
-            if ((mission == "") || (mission == "random")) InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "CatBurglar", "ReverseMaid"];
-            if (mission == "burglar") InfiltrationMissionType = ["CatBurglar"];
-            if (mission == "kidnap") InfiltrationMissionType = ["Kidnap"];
-            if (mission == "rescue") InfiltrationMissionType = ["Rescue"];
-            if (mission == "retrieve") InfiltrationMissionType = ["Retrieve"];
-            if (mission == "sabotage") InfiltrationMissionType = ["ReverseMaid"];
+            TintsEffect();           
             next(args);
         });
     }
@@ -10588,6 +10604,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             } else {
                 mission = args;
+				if (mission == "random") mission = "";
                 M_MOANER_saveControls();
                 RoomToGame();
                 CommonSetScreen("Room", "Infiltration");
@@ -14091,6 +14108,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
