@@ -3009,15 +3009,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             ret = NewResult;
             let NewResult2 = [];
-            let game = Player.ChatSearchSettings.Game;
-            if (game != "") {
-                let rm = 0;
-                while (rm < ret.length) {
-                    let rgame = ret[rm].Game;
-                    if (rgame == game) NewResult2.push(ret[rm]);
-                    rm++;
-                }
-            } else {
+            if (GameVersion == "R120") {
+                let game = Player.ChatSearchSettings.Game;
+                if (game != "") {
+                    let rm = 0;
+                    while (rm < ret.length) {
+                        let rgame = ret[rm].Game;
+                        if (rgame == game) NewResult2.push(ret[rm]);
+                        rm++;
+                    }
+                 } else{ 
+                    NewResult2 = ret;
+                 }
+            } else {               
                 NewResult2 = ret;
             }
             return NewResult2;
@@ -14108,6 +14112,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
