@@ -6203,7 +6203,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ServerSend("ChatRoomLeave", "");
         ChatRoomSetLastChatRoom("");
         OnlineGameName = "";
-        ChatRoomHideElements();
+        ChatRoomGame = "";
+        ChatRoomData = null;     
+        ChatRoomClearAllElements();
     }
 
     function RoomToOut() {
@@ -14112,8 +14114,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
-
-
-
-
-
