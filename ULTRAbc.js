@@ -3701,7 +3701,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (ChatSearchSpace == "") space = ChatRoomSpaceType.FEMALE_ONLY;
             if (ChatSearchSpace == "M") space = ChatRoomSpaceType.MALE_ONLY;
             if (ChatSearchSpace == "Asylum") space = ChatRoomSpaceType.ASYLUM;
-            ChatSearchReturnToScreen = null;
+            ChatSearchReturnScreen = ["Online", "ChatSearch"];
             PandoraPenitentiaryCreateTimer = CommonTime() + 10000;
             let ban = [];
             if (Player.OnlineSettings.AutoBanBlackList) ban.push("BlackList");
@@ -14115,6 +14115,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
