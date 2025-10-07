@@ -2370,7 +2370,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
             if (ChatAdminCanEdit()) {
                 if (MouseIn(1230, 450, 60, 60)) {
-                    if ((asylumlimit == true) && (ChatRoomSpace == "Asylum")) {
+                    if ((asylumlimit == true) && (ChatSearchSpace == "Asylum")) {
                         let AsylumList = BackgroundsGenerateList([BackgroundsTagAsylum]);
                         let listbg = AsylumList.length;
                         let Roll = Math.floor(Math.random() * listbg);
@@ -2975,7 +2975,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchExit() {
         modApi.hookFunction('ChatSearchExit', 4, (args, next) => {
             Player.ChatSearchSettings.Game = "";
-            if (ChatRoomSpace == "Asylum") {
+            if (ChatSearchSpace == "Asylum") {
                 ChatSearchReturnScreen = ["Room", "AsylumEntrance"];
             } else {
                 ChatSearchReturnScreen = ["Room", "MainHall"];
@@ -3698,9 +3698,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 PandoraPenitentiaryStartNewRoom = false;
             }
             let space = ChatRoomSpaceType.MIXED;
-            if (ChatRoomSpace == "") space = ChatRoomSpaceType.FEMALE_ONLY;
-            if (ChatRoomSpace == "M") space = ChatRoomSpaceType.MALE_ONLY;
-            if (ChatRoomSpace == "Asylum") space = ChatRoomSpaceType.ASYLUM;
+            if (ChatSearchSpace == "") space = ChatRoomSpaceType.FEMALE_ONLY;
+            if (ChatSearchSpace == "M") space = ChatRoomSpaceType.MALE_ONLY;
+            if (ChatSearchSpace == "Asylum") space = ChatRoomSpaceType.ASYLUM;
             ChatSearchReturnToScreen = null;
             PandoraPenitentiaryCreateTimer = CommonTime() + 10000;
             let ban = [];
@@ -6217,7 +6217,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function RoomToSearch(club) {
         if (club == "Asylum") {
-            ChatRoomSpace = "Asylum";
+            ChatSearchSpace = "Asylum";
             ChatSearchLeaveRoom = "AsylumEntrance";
             ChatSearchBackground = "AsylumEntrance";
             ChatCreateBackgroundList = BackgroundsTagAsylum;
@@ -9085,16 +9085,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let frlist = "noaccess";
                 if (args === "asylum") {
-                    if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) frlist = "Asylum";
+                    if ((asylumlimit == false) || (ChatSearchSpace == "Asylum")) frlist = "Asylum";
                 }
                 if (args === "fclub") {
-                    if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) frlist = "";
+                    if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) frlist = "";
                 }
                 if (args === "mclub") {
-                    if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) frlist = "M";
+                    if ((IsMale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) frlist = "M";
                 }
                 if (args === "xclub") {
-                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) frlist = "X";
+                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatSearchSpace != "Asylum"))) frlist = "X";
                 }
                 if (frlist == "noaccess") {
                     let msg = "No access to this lobby.";
@@ -9102,7 +9102,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     setTimeout(function() {
                         Player.ChatSearchSettings.Space = frlist;
-                        ChatRoomSpace = frlist;
+                        ChatSearchSpace = frlist;
                         RoomToFriends();
                     }, 1000);
                 }
@@ -11956,16 +11956,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let search = "noaccess";
                 if (args === "asylum") {
-                    if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) search = "Asylum";
+                    if ((asylumlimit == false) || (ChatSearchSpace == "Asylum")) search = "Asylum";
                 }
                 if (args === "fclub") {
-                    if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) search = "";
+                    if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) search = "";
                 }
                 if (args === "mclub") {
-                    if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) search = "M";
+                    if ((IsMale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) search = "M";
                 }
                 if (args === "xclub") {
-                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) search = "X";
+                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatSearchSpace != "Asylum"))) search = "X";
                 }
                 if (search == "noaccess") {
                     let msg = "No access to this lobby.";
@@ -11973,6 +11973,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     setTimeout(function() {
                         Player.ChatSearchSettings.Space = search;
+						ChatSearchSpace = search;
                         RoomToSearch(search);
                     }, 1000);
                 }
@@ -14114,5 +14115,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
