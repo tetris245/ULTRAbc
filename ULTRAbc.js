@@ -5153,7 +5153,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         CommonSetScreen("Online", "ChatSearch");
         ChatRoomClearAllElements();
         OnlineGameName = "";
-        ChatRoomGame = "";
+        ChatSearchGame = "";
         ChatRoomData = null;
     }
 
@@ -6203,7 +6203,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ServerSend("ChatRoomLeave", "");
         ChatRoomSetLastChatRoom("");
         OnlineGameName = "";
-        ChatRoomGame = "";
+        ChatSearchGame = "";
         ChatRoomData = null;     
         ChatRoomClearAllElements();
     }
@@ -14115,6 +14115,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
