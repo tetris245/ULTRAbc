@@ -3452,7 +3452,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (frkeys == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
                     if (event.code === "KeyF") {
-                        if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
+                        if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) {
                             Player.ChatSearchSettings.Space = "";
                             ChatSearchSpace = "";
                             ServerSend("AccountQuery", {
@@ -3462,7 +3462,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyG") {
-                        if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) {
+                        if ((asylumlimit == false) || ((asylumlimit == true) && (ChatSearchSpace != "Asylum"))) {
                             Player.ChatSearchSettings.Space = "X";
                             ChatSearchSpace = "X";
                             ServerSend("AccountQuery", {
@@ -3472,7 +3472,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyH") {
-                        if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
+                        if ((IsMale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) {
                             Player.ChatSearchSettings.Space = "M";
                             ChatSearchSpace = "M";
                             ServerSend("AccountQuery", {
@@ -3482,7 +3482,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyJ") {
-                        if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) {
+                        if ((asylumlimit == false) || (ChatSearchSpace == "Asylum")) {
                             Player.ChatSearchSettings.Space = "Asylum";
                             ChatSearchSpace = "Asylum";
                             ServerSend("AccountQuery", {
@@ -14114,4 +14114,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
