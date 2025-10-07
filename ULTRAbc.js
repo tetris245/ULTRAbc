@@ -3454,7 +3454,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (event.code === "KeyF") {
                         if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
                             Player.ChatSearchSettings.Space = "";
-                            ChatRoomSpace = "";
+                            ChatSearchSpace = "";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
                             });
@@ -3464,7 +3464,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (event.code === "KeyG") {
                         if ((asylumlimit == false) || ((asylumlimit == true) && (ChatRoomSpace != "Asylum"))) {
                             Player.ChatSearchSettings.Space = "X";
-                            ChatRoomSpace = "X";
+                            ChatSearchSpace = "X";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
                             });
@@ -3474,7 +3474,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (event.code === "KeyH") {
                         if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (asylumlimit == false))) {
                             Player.ChatSearchSettings.Space = "M";
-                            ChatRoomSpace = "M";
+                            ChatSearchSpace = "M";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
                             });
@@ -3484,7 +3484,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (event.code === "KeyJ") {
                         if ((asylumlimit == false) || (ChatRoomSpace == "Asylum")) {
                             Player.ChatSearchSettings.Space = "Asylum";
-                            ChatRoomSpace = "Asylum";
+                            ChatSearchSpace = "Asylum";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
                             });
@@ -14114,3 +14114,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
