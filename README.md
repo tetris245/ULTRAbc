@@ -65,5 +65,5 @@ Changes for future version
   - No more option, because BC R121 always forces search results and clickable links in current lobby
     * Use hotkeys in Friend List to get clickable links in a different lobby
     * Use the Chat Search menu or go back to Main Hall or Asylum Entrance to select a different lobby
-  - Modified codes to avoid issues with the Chat Search menu
+  - Modified code to avoid issues with the Chat Search menu
 * Removed the fix for search of rooms with a mini-game (as it is now fixed in BC)
