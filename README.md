@@ -59,6 +59,8 @@ All else I might not have included.
 
 Changes for future version
 
+* Partially restored the game command (to force a specific minigame)
+  - Available options: dojo, kidnap, movie1, movie2, puppy, tennis1, tennis2, tennis3
 * Fixed, updated and simplified the frlist and search commands:
   - No more delay, the effect will be immediate
   - No more option, because BC R121 always forces search results and clickable links in current lobby
