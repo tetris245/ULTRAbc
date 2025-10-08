@@ -6172,16 +6172,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-    function RoomToFriends() {
-        CommonSetScreen("Online", "ChatSearch");
-        RoomToOut();
-        FriendListReturn = {
-            Screen: CurrentScreen,
-            Module: CurrentModule
-        };
-        CommonSetScreen("Character", "FriendList");
-    }
-
     function RoomToGame() {
         ServerSend("ChatRoomLeave", "");
         ChatRoomSetLastChatRoom("");
@@ -6196,20 +6186,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         document.getElementById("InputChat").style.display = "none";
         document.getElementById("TextAreaChatLog").style.display = "none";
         ChatRoomHideElements();
-    }
-
-    function RoomToSearch(club) {
-        if (club == "Asylum") {
-            ChatSearchSpace = "Asylum";
-            ChatSearchLeaveRoom = "AsylumEntrance";
-            ChatSearchBackground = "AsylumEntrance";
-            ChatCreateBackgroundList = BackgroundsTagAsylum;
-            CommonSetScreen("Online", "ChatSearch");
-        }
-        ChatSelectStartSearch(club);
-        RoomToOut();
-        ChatSelectStartSearch(club);
-        ChatRoomSetLastChatRoom("");
     }
 
     //Room Info
@@ -9059,37 +9035,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'frlist',
-        Description: "(lobby): gives access to friendlist in specified lobby.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The frlist command must be followed by the lobby for which you want to have clickable links.\n" +
-                    "Available options: asylum, fclub, mclub, xclub.";
-                infomsg(msg);
-            } else {
-                let frlist = "noaccess";
-                if (args === "asylum") {
-                    if ((asylumlimit == false) || (ChatSearchSpace == "Asylum")) frlist = "Asylum";
-                }
-                if (args === "fclub") {
-                    if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) frlist = "";
-                }
-                if (args === "mclub") {
-                    if ((IsMale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) frlist = "M";
-                }
-                if (args === "xclub") {
-                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatSearchSpace != "Asylum"))) frlist = "X";
-                }
-                if (frlist == "noaccess") {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
-                } else {
-                    setTimeout(function() {
-                        Player.ChatSearchSettings.Space = frlist;
-                        ChatSearchSpace = frlist;
-                        RoomToFriends();
-                    }, 1000);
-                }
-            }
+        Description: "(lobby): gives access to friendlist in current lobby.",
+        Action: () => {            
+            RoomToGame();
+            CommonSetScreen("Online", "ChatSearch");
+            FriendListReturn = {
+                Screen: CurrentScreen,
+                Module: CurrentModule
+            };
+            CommonSetScreen("Character", "FriendList");
         }
     }])
 
@@ -11930,37 +11884,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'search',
-        Description: "(lobby): opens chat search in specified lobby.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The search command must be followed by the lobby you want to explore.\n" +
-                    "Available options: asylum, fclub, mclub, xclub.";
-                infomsg(msg);
-            } else {
-                let search = "noaccess";
-                if (args === "asylum") {
-                    if ((asylumlimit == false) || (ChatSearchSpace == "Asylum")) search = "Asylum";
-                }
-                if (args === "fclub") {
-                    if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) search = "";
-                }
-                if (args === "mclub") {
-                    if ((IsMale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) search = "M";
-                }
-                if (args === "xclub") {
-                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatSearchSpace != "Asylum"))) search = "X";
-                }
-                if (search == "noaccess") {
-                    let msg = "No access to this lobby.";
-                    infomsg(msg);
-                } else {
-                    setTimeout(function() {
-                        Player.ChatSearchSettings.Space = search;
-						ChatSearchSpace = search;
-                        RoomToSearch(search);
-                    }, 1000);
-                }
-            }
+        Description: ": opens chat search in current lobby.",
+        Action: () => {
+            RoomToGame();
+            CommonSetScreen("Online", "ChatSearch");  
         }
     }])
 
@@ -13152,8 +13079,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
                     "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
-                    "<b>/frlist</b> (lobby) = gives access to friendlist in specified lobby. *\n" +
-                    "<b>/search</b> (lobby) = opens chat search in specified lobby. *\n" +
+                    "<b>/frlist</b> = gives access to friendlist in current lobby." +
+                    "<b>/search</b> = opens chat search in current lobby." +
                     "<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.";
                 infomsg(msg);
             }
@@ -14096,11 +14023,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-
 })();
-
-
-
-
-
-
