@@ -2132,7 +2132,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceRegisterExtensionSetting({
                 Identifier: "UBCSettings",
-                ButtonText: "ULTRAbc Settings",
+                ButtonText: "ULTRAbc",
                 Image: IMAGES.LOGO,
                 click: PreferenceSubscreenUBCSettingsClick,
                 run: PreferenceSubscreenUBCSettingsRun,
@@ -14140,5 +14140,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
