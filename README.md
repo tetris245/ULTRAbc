@@ -60,4 +60,10 @@ All else I might not have included.
 Changes for future version
 
 * Updated the hotkeys in Friend List (for R121 compatibility)
+* Fixed, updated and simplified the frlist and search commands:
+  - No more delay, the effect will be immediate
+  - No more option, because BC R121 always forces search results and clickable links in current lobby
+    * Use hotkeys in Friend List to get clickable links in a different lobby
+    * Use the Chat Search menu or go back to Main Hall or Asylum Entrance to select a different lobby
+  - Modified codes to avoid issues with the Chat Search menu
 * Removed the fix for search of rooms with a mini-game (as it is now fixed in BC)
