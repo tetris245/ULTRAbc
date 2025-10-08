@@ -68,5 +68,6 @@ Changes for future version
     * Use the Chat Search menu or go back to Main Hall or Asylum Entrance to select a different lobby
   - Modified code to avoid issues with the Chat Search menu
 * Added background name in page 2 of Online Preferences
+* Improved the display of background name when using the bg4 and bglist commands
 * Updated some parts of the code and the hotkeys in Friend List (for R121 compatibility)
 * Removed the fix for search of rooms with a mini-game (as it is now fixed in BC)
