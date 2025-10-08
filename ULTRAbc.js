@@ -3449,6 +3449,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (minigame == "tennis3") {
                 minigame == "";
                 M_MOANER_saveControls();
+				if (CollegeTennisJennifer.Name != "Jennifer") CharacterChangeMoney(Player, -25);
                 MiniGameStart("Tennis", "Hard", "CollegeTennisGameEnd");
             }
             return;
@@ -14139,4 +14140,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
