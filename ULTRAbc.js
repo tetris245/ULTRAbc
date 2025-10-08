@@ -3926,6 +3926,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAPreferenceSubscreenOnlineRun() {
         modApi.hookFunction('PreferenceSubscreenOnlineRun', 4, (args, next) => {
             if (PreferencePageCurrent === 2) {
+                MainCanvas.textAlign = "left";
+                DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");
                 DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
                 DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
             }
@@ -14140,6 +14142,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
