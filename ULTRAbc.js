@@ -103,6 +103,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let hearing = 0;
     let maptrap1 = 0;
     let mgl = 0;
+	let minigame = "";
     let mission = "";
     let npcdeck = -1;
     let onegl = 0;
@@ -504,6 +505,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mapfull = false;
         mapfull2 = false;
         maptrap1 = 0;
+		minigame = "";
         mission = "";
         noescape = false;
         nogarble = false;
@@ -590,6 +592,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mapfull = data.mapfull;
         mapfull2 = data.mapfull2;
         maptrap1 = data.maptrap1 * 1;
+		minigame = data.minigame;
         mission = data.mission;
         noescape = data.noescape;
         nogarble = data.nogarble;
@@ -677,6 +680,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             gamestable = data.gamestable;
             hearing = 0;
             mgl = 0;
+			minigame = "";
 			mission = "";
             onegl = 0;
             reaction = 0;
@@ -717,6 +721,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gamestable": gamestable,
             "gaglevel": gl,
             "maptrap1": maptrap1,
+            "minigame": minigame,
             "mission": mission,
             "pchat": pchat,
             "pmin": pmin,
@@ -854,6 +859,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (mapfull == null || mapfull == undefined) mapfull = false;
                 if (mapfull2 == null || mapfull2 == undefined) mapfull2 = false;
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
+				if (minigame == null || minigame == undefined) minigame = "";
                 if (mission == null || mission == undefined) mission = "";
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
@@ -2180,6 +2186,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardLoungePraticeGameStart();
     ULTRAClubCardRenderPanel();
+	ULTRACollegeTennisGameStart();
     ULTRADrawCharacter();
     ULTRADrawRoomBackground();
     ULTRAFriendListDraw();
@@ -2188,6 +2195,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	ULTRAInfiltrationPrepareMission();
     ULTRAInfiltrationRun();
     ULTRAIntroductionClubCardStart();
+	ULTRAIntroductionJobAnyAvailable();
     ULTRAKidnapLeagueRandomClubCardStart();
     ULTRALARPClubCardStart();
     ULTRALoginClick();
@@ -2197,6 +2205,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAMovieStudioClubCardStart();
+	ULTRAMovieStudioRun();
     ULTRAPandoraClubCardStart();
     ULTRAPandoraPenitentiaryResult();
     ULTRAPandoraPrisonClick();
@@ -2259,7 +2268,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAMaidDrinksRun();
     ULTRAMaidQuartersRun();
     ULTRAManagementRun();
-    ULTRAMovieStudioRun();
     ULTRANurseryRun();
     ULTRAOnlineProfileRun();
     ULTRAPandoraRun();
@@ -3417,6 +3425,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	//College Tennis
+    async function ULTRACollegeTennisGameStart() {
+        modApi.hookFunction('CollegeTennisGameStart', 4, (args, next) => {
+            InventoryWear(Player, "TennisRacket", "ItemHandheld");       
+            CharacterRefresh(Player);
+            if (minigame == "") {
+                if ((Difficulty == "Hard") && (CollegeTennisJennifer.Name != "Jennifer")) CharacterChangeMoney(Player, -25);
+            }
+            TennisCharacterLeft = Player;
+            TennisCharacterRight = CollegeTennisJennifer;
+            if (minigame == "") MiniGameStart("Tennis", Difficulty, "CollegeTennisGameEnd");
+            if (minigame == "tennis1") {
+                minigame == "";
+                M_MOANER_saveControls();
+                MiniGameStart("Tennis", "Easy", "CollegeTennisGameEnd");
+            }
+            if (minigame == "tennis2") {
+                minigame == "";
+                M_MOANER_saveControls();
+                MiniGameStart("Tennis", "Normal", "CollegeTennisGameEnd"); 
+            }
+            if (minigame == "tennis3") {
+                minigame == "";
+                M_MOANER_saveControls();
+                MiniGameStart("Tennis", "Hard", "CollegeTennisGameEnd");
+            }
+            return;
+        });
+    }
+
     //Friendlist 
     async function ULTRAFriendListDraw() {
         modApi.hookFunction('FriendListDraw', 4, (args, next) => {
@@ -3477,6 +3515,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             next(args);
+        });
+    }
+
+	//Introduction Job
+    async function ULTRAIntroductionJobAnyAvailable() {
+        modApi.hookFunction('IntroductionJobAnyAvailable', 4, (args, next) => {
+           if (minigame == "") {
+                for (let J = 0; J < IntroductionJobList.length; J++)
+                    if (IntroductionJobAvailable(IntroductionJobList[J])) return true;
+                return false;
+            }
+            if (minigame == "dojo") {
+                minigame == "";
+                M_MOANER_saveControls();
+                IntroductionJobList = ["SubDojo"];
+                IntroductionJobStart("SubDojo", 0)
+                IntroductionJobDojoStart();
+                return true;
+            }
+            if (minigame == "kidnap") {
+                minigame == "";
+                M_MOANER_saveControls();
+                IntroductionJobList = ["DomKidnap"];
+                IntroductionJobStart("DomKidnap", 0)
+                IntroductionJobBouncerStart();      
+                return true;
+            }
+            if (minigame == "puppy") {
+                minigame == "";
+                M_MOANER_saveControls();
+                IntroductionJobList = ["DomPuppy"];
+                IntroductionJobStart("DomPuppy", 0)
+                IntroductionJobPuppyStart();
+                return true;
+            }
+            return;
         });
     }
 
@@ -3608,6 +3682,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(240, 695, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
             DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
             DrawTextFit("UBC Wiki", 425, 743, 308, "Black");
+            next(args);
+        });
+    }
+
+	//Movie Studio
+    async function ULTRAMovieStudioRun() {
+        modApi.hookFunction('MovieStudioRun', 4, (args, next) => {
+            TintsEffect();
+            if (minigame == "movie1") {
+                minigame == "";
+                M_MOANER_saveControls();
+                MovieStudioDailyMovie = "Interview";
+            }
+            if (minigame == "movie2") {
+                minigame == "";
+                M_MOANER_saveControls();
+                MovieStudioDailyMovie = "OpenHouse";
+            }
             next(args);
         });
     }
@@ -4269,13 +4361,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAManagementRun() {
         modApi.hookFunction('ManagementRun', 4, (args, next) => {
-            TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRAMovieStudioRun() {
-        modApi.hookFunction('MovieStudioRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
@@ -9047,6 +9132,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'game',
+        Description: "(minigame): launches a minigame.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The game command must include a minigame.\n" +
+                    "Available minigames:\n" +
+                    "dojo, kidnap, movie1, movie2, puppy, tennis1, tennis2, tennis3.\n" +
+                    "Tennis1 = easy, tennis2 = normal, tennis3 = hard";
+                 infomsg(msg);
+             } else {
+                 minigame = args;
+                 M_MOANER_saveControls();
+                 if ((minigame == "dojo") || (minigame == "kidnap") || (minigame == "puppy")) {
+                     RoomToGame();
+                     CommonSetScreen("Room", "Introduction");           
+                 }
+                 if ((minigame == "movie1") || (minigame == "movie2")) {
+                     RoomToGame();
+                     CommonSetScreen("Room", "MovieStudio");
+                 }
+                 if ((minigame == "tennis1") || (minigame == "tennis2") || (minigame == "tennis3")) {
+                     RoomToGame();
+                     CommonSetScreen("Room", "CollegeTennis");
+                 }
+              }
+          }
+    }])
+
     CommandCombine([{
         Tag: 'gtalk',
         Description: "(talkmode) (words): speaks once in specified gag talk.",
@@ -13192,6 +13306,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
+					"<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
                     "<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
                     "<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
@@ -14024,3 +14139,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
