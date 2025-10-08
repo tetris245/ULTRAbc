@@ -8525,7 +8525,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'bg4',
         Description: "(screen) (background): selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell",
         Action: (args) => {
@@ -8559,7 +8559,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             csname = csback;
                             M_MOANER_saveControls();
-                            let msg = "The background of Chat Search is now: " + csname + ".";
+                            let msg = "The background of Chat Search is now: " + BackgroundsTextGet(csname) + ".";
                             infomsg(msg);
                         }
                     }
@@ -8576,7 +8576,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 Game: Player.Game
                             });
-                            let msg = "The background of the Club Card Game is now: " + ccback + ".";
+                            let msg = "The background of the Club Card Game is now: " + BackgroundsTextGet(ccback) + ".";
                             infomsg(msg);
                         }
                     }
@@ -8591,7 +8591,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             frname = frback;
                             M_MOANER_saveControls();
-                            let msg = "The background of the friend list is now: " + frname + ".";
+                            let msg = "The background of the friend list is now: " + BackgroundsTextGet(frname) + ".";
                             infomsg(msg);
                         }
                     }
@@ -8608,7 +8608,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 VisualSettings: Player.VisualSettings
                             });
-                            let msg = "The background of the main hall is now: " + mhback + ".";
+                            let msg = "The background of the main hall is now: " + BackgroundsTextGet(mhback) + ".";
                             infomsg(msg);
                         }
                     }
@@ -8626,7 +8626,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 VisualSettings: Player.VisualSettings
                             });
-                            let msg = "The background of your private room (SP) is now: " + prback + ".";
+                            let msg = "The background of your private room (SP) is now: " + BackgroundsTextGet(prback) + ".";
                             infomsg(msg);
                         }
                     }
@@ -8659,7 +8659,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 OnlineSettings: Player.OnlineSettings
                             });
-                            let msg = "The default background when creating a new room is now: " + drback + ".";
+                            let msg = "The default background when creating a new room is now: " + BackgroundsTextGet(drback) + ".";
                             infomsg(msg);
                         }
                     }
@@ -8673,7 +8673,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": displays list of all available standard backgrounds",
         Action: () => {
             for (let i = 0; i < BackgroundsList.length; i++)
-                ChatRoomSendLocal(i + " - " + BackgroundsList[i].Name);
+                ChatRoomSendLocal(i + " - " + BackgroundsTextGet(BackgroundsList[i].Name));
         }
     }])
 
@@ -14142,6 +14142,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
