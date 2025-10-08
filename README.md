@@ -60,4 +60,4 @@ All else I might not have included.
 Changes for future version
 
 * Updated the hotkeys in Friend List (for R121 compatibility)
- 
+* Removed the fix for search of rooms with a mini-game (as it is now fixed in BC)
