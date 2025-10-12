@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.5.5.zip file on the Releases page
+1. Download the ULTRAbc-version5.5.6.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,15 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Partially restored the game command (to force a specific minigame)
-  - Available options: dojo, kidnap, movie1, movie2, puppy, tennis1, tennis2, tennis3
-* Fixed, updated and simplified the frlist and search commands:
-  - No more delay, the effect will be immediate
-  - No more option, because BC R121 always forces search results and clickable links in current lobby
-    * Use hotkeys in Friend List to get clickable links in a different lobby
-    * Use the Chat Search menu or go back to Main Hall or Asylum Entrance to select a different lobby
-  - Modified code to avoid issues with the Chat Search menu
-* Added background name in page 2 of Online Preferences
-* Improved the display of background name when using the bg4 and bglist commands
-* Updated some parts of the code and the hotkeys in Friend List (for R121 compatibility)
-* Removed the fix for search of rooms with a mini-game (as it is now fixed in BC)
+(...)
