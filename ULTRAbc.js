@@ -1873,7 +1873,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!", false, 120
                 );
 				addMenuCheckbox(64, 64, "Alphabetic order in Preferences: ", "alfaprf",
-                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: Chat Preferences.", false, 120
+                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: Chat Preferences, Online Preferences.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
@@ -2226,6 +2226,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceRun();
 	ULTRAPreferenceSubscreenChatLoad();
     ULTRAPreferenceSubscreenOnlineClick();
+	ULTRAPreferenceSubscreenOnlineLoad();
     ULTRAPreferenceSubscreenOnlineRun();
     ULTRAPrivateClick();
     ULTRAPrivateClubCardVsFriendStart();
@@ -4048,6 +4049,98 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	async function ULTRAPreferenceSubscreenOnlineLoad() {
+        modApi.hookFunction('PreferenceSubscreenOnlineLoad', 4, (args, next) => {  
+            if (!PreferenceOnlineDefaultBackground) PreferenceOnlineDefaultBackground = Player.OnlineSettings.DefaultChatRoomBackground;
+	        PreferenceOnlineDefaultBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
+	        PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
+            let Boxcheck2 = PreferenceSubscreenOnlineCheckboxes;
+            if (alfaprf == true) Boxcheck2 = AltPreferenceSubscreenOnlineCheckboxes;
+	        const checkboxElements = Boxcheck2.map((checkbox) => {
+		        const checked = checkbox.check();
+		        const label = TextGet(checkbox.label);
+		        return ElementCheckbox.CreateLabelled(`${checkbox.label}-checkbox`, label, checkbox.click, {
+			        checked
+		        });
+	        });
+            const dropdownOptions = [0, 1, 2, 3].map((e) => /** @type {Omit<HTMLOptions<"option">, "tag">} */ ({attributes: { value: e.toString(), label: TextGet("RoomCustomizationLevel" + e.toString()), selected: e === Player.OnlineSettings.ShowRoomCustomization }}));
+	        const dropdown = ElementCreate({
+		        tag: "div",
+		        classList: ["preference-settings-dropdown"],
+		        attributes: {
+			        id: `RoomCustomizationLevel-dropdown-container`
+		        },
+		        children: [
+			        {
+				        tag: "label",
+				        children: [TextGet("RoomCustomizationLabel")],
+				        attributes: { for: "RoomCustomizationLevel" },
+			        },
+                    ElementCreateDropdown("RoomCustomizationLevel", dropdownOptions, (ev) => {
+				        ev.preventDefault();
+				        const value = parseInt(/** @type {HTMLSelectElement} */ (ev.target).value);
+				        if (!value) return;
+				        Player.OnlineSettings.ShowRoomCustomization = /** @type {0 | 1 | 2 | 3} */ (value);
+			        })
+		        ]
+	        });
+            const grid = ElementCreate({
+		        tag: "div",
+		        classList: ["preference-settings-grid", "scroll-box"],
+		        attributes: { id: PreferenceSubscreenOnlineIDs.grid },
+		        children: [
+                    dropdown,
+                    ...checkboxElements		
+		        ]
+	        });
+	        ElementWrap(PreferenceIDs.subscreen).append(grid);
+	        const subtitle = ElementCreate({
+		        tag: "label",
+		        attributes: { id: PreferenceSubscreenOnlineIDs.subtitle, for: PreferenceSubscreenOnlineIDs.selection },
+		        children: [TextGet("DefaultChatRoomBackground")],
+	        });
+            const selection = ElementButton.Create(PreferenceSubscreenOnlineIDs.selection, () => {
+		        BackgroundSelectionMake(BackgroundsTagList, PreferenceOnlineDefaultBackground, (Name, setBackground) => {
+			        if (setBackground) {
+				        PreferenceOnlineDefaultBackground = Name;
+				        Player.OnlineSettings.DefaultChatRoomBackground = Name;
+				        PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
+			        }
+			        PreferenceOpenSubscreen("Online", 2);
+		        });
+	        }, {
+		        image: "Icons/Preference.png",
+	        });
+	        const grid2 = ElementCreate({
+		        tag: "div",
+		        classList: ["preference-settings-grid", "scroll-box"],
+		        attributes: { id: PreferenceSubscreenOnlineIDs.grid2 },
+		        children: [
+			        subtitle,
+			        selection
+		        ]
+	        });
+	        ElementWrap(PreferenceIDs.subscreen).append(grid2);
+            return;
+        });
+    }
+
+    /** @type {PreferenceChatCheckboxOption[]} */
+    const AltPreferenceSubscreenOnlineCheckboxes = [
+        { label: "AllowFullWardrobeAccess", check: () => Player.OnlineSharedSettings.AllowFullWardrobeAccess, click: () => Player.OnlineSharedSettings.AllowFullWardrobeAccess = !Player.OnlineSharedSettings.AllowFullWardrobeAccess },
+        { label: "AutoBanBlackList", check: () => Player.OnlineSettings.AutoBanBlackList, click: () => Player.OnlineSettings.AutoBanBlackList = !Player.OnlineSettings.AutoBanBlackList },
+	    { label: "AutoBanGhostList", check: () => Player.OnlineSettings.AutoBanGhostList, click: () => Player.OnlineSettings.AutoBanGhostList = !Player.OnlineSettings.AutoBanGhostList },
+        { label: "DisableAnimations", check: () => Player.OnlineSettings.DisableAnimations, click: () => Player.OnlineSettings.DisableAnimations = !Player.OnlineSettings.DisableAnimations },
+	    { label: "SearchFriendsFirst", check: () => Player.OnlineSettings.SearchFriendsFirst, click: () => Player.OnlineSettings.SearchFriendsFirst = !Player.OnlineSettings.SearchFriendsFirst },
+        { label: "BlockBodyCosplay", check: () => Player.OnlineSharedSettings.BlockBodyCosplay, click: () => Player.OnlineSharedSettings.BlockBodyCosplay = !Player.OnlineSharedSettings.BlockBodyCosplay },
+        { label: "SendStatus", check: () => Player.OnlineSettings.SendStatus, click: () => Player.OnlineSettings.SendStatus = !Player.OnlineSettings.SendStatus },
+	    { label: "EnableAfkTimer", check: () => Player.OnlineSettings.EnableAfkTimer, click: () => {
+		    Player.OnlineSettings.EnableAfkTimer = !Player.OnlineSettings.EnableAfkTimer;
+		    AfkTimerSetEnabled(Player.OnlineSettings.EnableAfkTimer);
+	    }},
+	    { label: "ShowStatus", check: () => Player.OnlineSettings.ShowStatus, click: () => Player.OnlineSettings.ShowStatus = !Player.OnlineSettings.ShowStatus },
+    ];
+					
     async function ULTRAPreferenceSubscreenOnlineRun() {
         modApi.hookFunction('PreferenceSubscreenOnlineRun', 4, (args, next) => {
             if (PreferencePageCurrent === 2) {
@@ -14267,4 +14360,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
