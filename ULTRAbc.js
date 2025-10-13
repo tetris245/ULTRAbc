@@ -88,6 +88,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let profileName;
     let ahybrid = false;
 	let alfaprf = false;
+	let alfmenu = false;
     let animal = 0;
     let bgall = false;
     let bl = 0;
@@ -481,6 +482,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function UBCdefault() {
         ahybrid = false;
 		alfaprf = false;
+		alfmenu = false;
         animal = 0;
         asylumlimit = false;
         autojoin = false;
@@ -569,6 +571,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function UBCdata(data) {
         ahybrid = data.ahybrid;
 		alfaprf = data.alfaprf;
+		alfmenu = data.alfmenu;
         animal = data.animal * 1;
         asylumlimit = data.asylumlimit;
         autojoin = data.autojoin;
@@ -713,6 +716,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun4": pronoun4,
             "ahybrid": ahybrid,
             "alfaprf": alfaprf,
+            "alfmenu": alfmenu,
             "animal": animal,
             "bgall": bgall,
             "bl": bl,
@@ -831,6 +835,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 console.log("ULTRAbc loaded: Version " + UBCver);
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
 				if (alfaprf == null || alfaprf == undefined) alfaprf = false;
+				if (alfmenu == null || alfmenu == undefined) alfmenu = false;
                 if (animal == null || animal == undefined) animal = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;
                 if (autojoin == null || autojoin == undefined) autojoin = false;
@@ -965,6 +970,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const UBC_DEFAULT_SETTINGS = {
                 ahybrid: false,
 				alfaprf: false,
+				alfmenu: false,
                 animal: 0,
                 asylumlimit: false,
                 autojoin: false,
@@ -1872,8 +1878,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
                     "With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!", false, 120
                 );
-				addMenuCheckbox(64, 64, "Alphabetic order in Preferences: ", "alfaprf",
-                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: Chat Preferences, Online Preferences.", false, 120
+				addMenuCheckbox(64, 64, "Alphabetic order in  Preferences menu: ", "alfmenu",
+                    "When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.", false, 120
+                );
+                addMenuCheckbox(64, 64, "Alphabetic order for Preferences: ", "alfaprf",
+                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: Chat, Immersion and Online. Probably a few other screens will be ordered in the future.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
@@ -2226,6 +2235,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceRun();
 	ULTRAPreferenceSubscreenChatLoad();
 	ULTRAPreferenceSubscreenImmersionLoad();
+	ULTRAPreferenceSubscreenMainLoad();
     ULTRAPreferenceSubscreenOnlineClick();
 	ULTRAPreferenceSubscreenOnlineLoad();
     ULTRAPreferenceSubscreenOnlineRun();
@@ -4200,6 +4210,178 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    click: (value) => Player.OnlineSharedSettings.AllowRename = value,
 		    disabled: (disableButtons) => disableButtons || !CharacterCanChangeNickname(Player)
 	    },	
+    ];
+
+	async function ULTRAPreferenceSubscreenMainLoad() {
+        modApi.hookFunction('PreferenceSubscreenMainLoad', 4, (args, next) => {  
+            let prfscr = PreferenceSubscreens;
+            if (alfmenu == true) prfscr = AltPreferenceSubscreens;
+            const subscreenButtons = prfscr.filter(s => !s.hidden);
+	        const buttons = ElementCreate({
+		        tag: "div",
+		        classList: ["preference-button-grid", "scroll-box"],
+		        attributes: { id: MainSubscreenIDs.grid },
+		        children:
+			        subscreenButtons.map((screen) => {
+				        return ElementButton.Create(`preference-main-${screen.name}`,
+				        () => {
+						    PreferenceOpenSubscreen(screen.name);
+					    },
+					    {
+					        image: screen.icon || `Icons/${screen.name}.png`,
+						    label: screen.description || TextGet(`Homepage${screen.name}`),
+						    labelPosition: "right",
+					    });
+			        }),
+	            });
+	            ElementWrap(PreferenceIDs.subscreen).append(buttons);
+                return;
+        });
+    }
+
+    const AltPreferenceSubscreens = [
+	    {
+		    name: "Main",
+		    hidden: true,
+		    load: () => PreferenceSubscreenMainLoad(),
+		    run: () => PreferenceSubscreenMainRun(),
+		    click: () => PreferenceSubscreenMainClick(),
+		    resize: () => PreferenceSubscreenMainResize(),
+		    unload: () => PreferenceSubscreenMainUnload(),
+		    exit: () => PreferenceSubscreenMainExit(),
+	    },
+	    {
+		    name: "General",
+		    load: () => PreferenceSubscreenGeneralLoad(),
+		    run: () => PreferenceSubscreenGeneralRun(),
+		    click: () => PreferenceSubscreenGeneralClick(),
+		    exit: () => PreferenceSubscreenGeneralExit(),
+		    unload: () => PreferenceSubscreenGeneralUnload(),
+	    },
+        {
+		    name: "Arousal",
+		    load: () => PreferenceSubscreenArousalLoad(),
+		    run: () => PreferenceSubscreenArousalRun(),
+		    click: () => PreferenceSubscreenArousalClick(),
+		    exit: () => PreferenceSubscreenArousalExit(),
+		    unload: () => PreferenceSubscreenArousalUnload(),
+	    },
+        {
+		    name: "Audio",
+		    load: () => PreferenceSubscreenAudioLoad(),
+		    run: () => PreferenceSubscreenAudioRun(),
+		    click: () => PreferenceSubscreenAudioClick(),
+		    exit: () => PreferenceSubscreenAudioExit(),
+		    unload: () => PreferenceSubscreenAudioUnload(),
+		    resize: () => PreferenceSubscreenAudioResize(),
+	    },
+        {
+		    name: "CensoredWords",
+		    load: () => PreferenceSubscreenCensoredWordsLoad(),
+		    run: () => PreferenceSubscreenCensoredWordsRun(),
+		    click: () => PreferenceSubscreenCensoredWordsClick(),
+		    exit: () => PreferenceSubscreenCensoredWordsExit(),
+		    unload: () => PreferenceSubscreenCensoredWordsUnload(),
+		    resize: () => PreferenceSubscreenCensoredWordsResize(),
+	    },
+        {
+		    name: "Chat",
+		    load: () => PreferenceSubscreenChatLoad(),
+		    run: () => PreferenceSubscreenChatRun(),
+		    click: () => PreferenceSubscreenChatClick(),
+		    exit: () => PreferenceSubscreenChatExit(),
+		    resize: () => PreferenceSubscreenChatResize(),
+	    },
+        {
+		    name: "Controller",
+		    load: () => PreferenceSubscreenControllerLoad(),
+		    run: () => PreferenceSubscreenControllerRun(),
+		    click: () => PreferenceSubscreenControllerClick(),
+		    exit: () => PreferenceSubscreenControllerExit(),
+		    unload: () => PreferenceSubscreenControllerUnload(),
+	    },
+	    {
+		    name: "Difficulty",
+		    run: () => PreferenceSubscreenDifficultyRun(),
+		    click: () => PreferenceSubscreenDifficultyClick(),
+		    exit: () => PreferenceSubscreenDifficultyExit(),
+	    },
+        {
+		    name: "Extensions",
+		    load: () => PreferenceSubscreenExtensionsLoad(),
+		    run: () => PreferenceSubscreenExtensionsRun(),
+		    click: () => PreferenceSubscreenExtensionsClick(),
+		    exit: () => PreferenceSubscreenExtensionsExit(),
+		    unload: () => PreferenceSubscreenExtensionsUnload(),
+		    resize: () => PreferenceSubscreenExtensionsResize(),
+	    },
+        {
+		    name: "Gender",
+		    run: () => PreferenceSubscreenGenderRun(),
+		    click: () => PreferenceSubscreenGenderClick(),
+	    },
+        {
+		    name: "Graphics",
+		    load: () => PreferenceSubscreenGraphicsLoad(),
+		    run: () => PreferenceSubscreenGraphicsRun(),
+		    click: () => PreferenceSubscreenGraphicsClick(),
+		    exit: () => PreferenceSubscreenGraphicsExit(),
+		    unload: () => PreferenceSubscreenGraphicsUnload(),
+	    },
+        {
+	        name: "Immersion",
+		    load: () => PreferenceSubscreenImmersionLoad(),
+		    run: () => PreferenceSubscreenImmersionRun(),
+		    click: () => PreferenceSubscreenImmersionClick(),
+		    resize: () => PreferenceSubscreenImmersionResize(),
+	    },
+        {
+		    name: "Visibility",
+		    load: () => PreferenceSubscreenVisibilityLoad(),
+		    run: () => PreferenceSubscreenVisibilityRun(),
+		    click: () => PreferenceSubscreenVisibilityClick(),
+		    exit: () => PreferenceSubscreenVisibilityExit(),
+		    unload: () => PreferenceSubscreenVisibilityUnload(),
+	    },		
+        {
+		    name: "Notifications",
+		    load: () => PreferenceSubscreenNotificationsLoad(),
+		    run: () => PreferenceSubscreenNotificationsRun(),
+		    click: () => PreferenceSubscreenNotificationsClick(),
+		    exit: () => PreferenceSubscreenNotificationsExit(),
+		    unload: () => PreferenceSubscreenNotificationsUnload(),
+	    },
+        {
+		    name: "Online",
+		    load: () => PreferenceSubscreenOnlineLoad(),
+		    run: () => PreferenceSubscreenOnlineRun(),
+		    click: () => PreferenceSubscreenOnlineClick(),
+		    resize: () => PreferenceSubscreenOnlineResize(),
+	    },
+	    {
+		    name: "Restriction",
+		    load: () => PreferenceSubscreenRestrictionLoad(),
+		    run: () => PreferenceSubscreenRestrictionRun(),
+		    click: () => PreferenceSubscreenRestrictionClick(),
+		    resize: () => PreferenceSubscreenRestrictionResize(),
+	    },
+        {
+		    name: "Scripts",
+		    load: () => PreferenceSubscreenScriptsLoad(),
+		    run: () => PreferenceSubscreenScriptsRun(),
+		    click: () => PreferenceSubscreenScriptsClick(),
+		    exit: () => PreferenceSubscreenScriptsExit(),
+		    unload: () => PreferenceSubscreenScriptsUnload(),
+	    },	
+	    {
+		    name: "Security",
+		    load: () => PreferenceSubscreenSecurityLoad(),
+		    run: () => PreferenceSubscreenSecurityRun(),
+		    click: () => PreferenceSubscreenSecurityClick(),
+		    exit: () => PreferenceSubscreenSecurityExit(),
+		    unload: () => PreferenceSubscreenSecurityUnload(),
+		    resize: () => PreferenceSubscreenSecurityResize(),
+	    },		
     ];
 
     async function ULTRAPreferenceSubscreenOnlineClick() {
@@ -14532,6 +14714,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
