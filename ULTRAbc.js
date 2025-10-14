@@ -14626,7 +14626,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showBCResponsiveStatus(BCRdata);
                     }
                 } else if (addon == "bctw") {
-                    let BCT = Player.ExtensionSettings.Themed;
+                    let BCT = Player.ExtensionSettings.BCT;
                     if (BCT) {
                         let BCTdata = JSON.parse(LZString.decompressFromBase64(BCT));
                         showArousalErectionStatus(BCTdata);
@@ -14756,3 +14756,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
