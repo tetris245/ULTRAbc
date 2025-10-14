@@ -59,8 +59,9 @@ All else I might not have included.
 
 Changes for future version
 
-* Added 2 new settings in GUI - Misc, that allow to get
+* Added 3 new settings in GUI - Misc, that allow to get
   - the Preferences Main menu in alphabetical order, with exception for the General Preferences
-  - most parameters in Chat, Immersion and Online Preferences in alphabetical order 
+  - most parameters in Chat, Immersion and Online Preferences in alphabetical order
+  - the Title menu in alphabetical order, with exception for the None option
 * Restored the cleaning/drinks/rhythm options of the game command
 * Updated the xstatus ebch command
