@@ -13278,7 +13278,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "coldbloodhorse, collegestudent, concubus, demon,\n" +
                     "diaperlover, doctor, doll, drone, duchess, duke,\n" +
                     "escapedpatient, farmhorse, femboy, flyingpegasus, foal,\n" +
-                    "foxy, goodboy, goodone, goodgirl, goodslave,\n" +
+                    "foxy, goodboy, goodgirl, goodone, goodslave,\n" +
                     "goodslaveboy, goodslavegirl, headmaid, hotbloodhorse,\n" +
                     "houdini, incubus, infiltrator, kidnapper, kitten.";
                 infomsg(msg);
@@ -13402,7 +13402,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("GoodBoy");
                 }
-                if (title == "goodone") TitleSet("Good One");
                 if (title == "goodgirl") {
                     if (AsylumGGTSGetLevel(Player) < 4) {
                         Level = parseInt(4);
@@ -13413,6 +13412,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("GoodGirl");
                 }
+				if (title == "goodone") TitleSet("Good One");
                 if (title == "goodslave") {
                     if (AsylumGGTSGetLevel(Player) < 6) {
                         Level = parseInt(6);
@@ -14857,5 +14857,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
