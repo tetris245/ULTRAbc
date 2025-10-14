@@ -63,3 +63,4 @@ Changes for future version
   - the Preferences Main menu in alphabetical order, with exception for the General Preferences
   - most parameters in Chat, Immersion and Online Preferences in alphabetical order 
 * Restored the cleaning/drinks/rhythm options of the game command
+* Updated the xstatus ebch command
