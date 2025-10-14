@@ -89,6 +89,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let ahybrid = false;
 	let alfaprf = false;
 	let alfmenu = false;
+	let alftitle = false;
     let animal = 0;
     let bgall = false;
     let bl = 0;
@@ -483,6 +484,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ahybrid = false;
 		alfaprf = false;
 		alfmenu = false;
+		alftitle = false;
         animal = 0;
         asylumlimit = false;
         autojoin = false;
@@ -572,6 +574,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ahybrid = data.ahybrid;
 		alfaprf = data.alfaprf;
 		alfmenu = data.alfmenu;
+		alftitle = data.alftitle;
         animal = data.animal * 1;
         asylumlimit = data.asylumlimit;
         autojoin = data.autojoin;
@@ -717,6 +720,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "ahybrid": ahybrid,
             "alfaprf": alfaprf,
             "alfmenu": alfmenu,
+            "alftitle": alftitle,
             "animal": animal,
             "bgall": bgall,
             "bl": bl,
@@ -836,6 +840,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
 				if (alfaprf == null || alfaprf == undefined) alfaprf = false;
 				if (alfmenu == null || alfmenu == undefined) alfmenu = false;
+				if (alftitle == null || alftitle == undefined) alftitle = false;
                 if (animal == null || animal == undefined) animal = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;
                 if (autojoin == null || autojoin == undefined) autojoin = false;
@@ -971,6 +976,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ahybrid: false,
 				alfaprf: false,
 				alfmenu: false,
+				alftitle: false,
                 animal: 0,
                 asylumlimit: false,
                 autojoin: false,
@@ -1878,11 +1884,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
                     "With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!", false, 120
                 );
-				addMenuCheckbox(64, 64, "Alphabetic order in  Preferences menu: ", "alfmenu",
+				addMenuCheckbox(64, 64, "Alphabetic order in Preferences menu: ", "alfmenu",
                     "When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Alphabetic order for Preferences: ", "alfaprf",
                     "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: Chat, Immersion and Online. Probably a few other screens will be ordered in the future.", false, 120
+                );
+				addMenuCheckbox(64, 64, "Alphabetic order in Title menu: ", "alftitle",
+                    "When enabled, all the options of the Title menu will be ordered in alphabetic order, with exception for None.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
@@ -2253,6 +2262,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAStableRun();
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
+	ULTRATitleLoad();
 
     ULTRAArcadeRun();
     ULTRAAsylumBedroomRun();
@@ -4525,6 +4535,97 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");
                 DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
                 DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
+            }
+            next(args);
+        });
+    }
+
+	async function ULTRATitleLoad() {
+        modApi.hookFunction('TitleLoad', 4, (args, next) => {
+            if (alftitle == true) {
+                TitleList = [
+                    { Name: "None", Requirement: function () { return true; } },
+                    { Name: "Admiral", Requirement: function () { return true; } },
+                    { Name: "InfilrationAgent", Requirement: function () { return ((SkillGetLevel(Player, "Infiltration") == 6) || (SkillGetLevel(Player, "Infiltration") == 7)); }, Earned: true },
+	                { Name: "Alien", Requirement: function () { return true; } },
+                    { Name: "Angel", Requirement: function () { return true; } },
+	                { Name: "Baby", Requirement: function () { return (ReputationGet("ABDL") >= 1); }, Earned: true },
+                    { Name: "BondageBaby", Requirement: function () { return ((SkillGetLevel(Player, "Evasion")) >= 10 && (ReputationGet("ABDL") >= 1)); }, Earned: true },
+                    { Name: "BondageMaid", Requirement: function () { return ((LogQuery("JoinedSorority", "Maid") || LogQuery("LeadSorority", "Maid")) && SkillGetLevel(Player, "Evasion") >= 10); }, Earned: true },
+                    { Name: "Brat", Requirement: function () { return true; } },
+                    { Name: "Bunny", Requirement: function () { return true; } },
+                    { Name: "Captain", Requirement: function () { return true; } },
+                    { Name: "ClubSlave", Requirement: function () { return ManagementIsClubSlave(); }, Force: true },
+                    { Name: "PonyCold", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 3); }, Earned: true },
+                    { Name: "CollegeStudent", Requirement: function () { return LogQuery("BondageCollege", "Import"); }, Earned: true },
+                    { Name: "Concubus", Requirement: function () { return true; } },
+                    { Name: "Demon", Requirement: function () { return true; } },
+                    { Name: "DL", Requirement: function () { return (ReputationGet("ABDL") >= 1); }, Earned: true },
+                    { Name: "Doctor", Requirement: function () { return (ReputationGet("Asylum") >= 100); }, Earned: true },
+                    { Name: "Doll", Requirement: function () { return true; } },
+                    { Name: "Drone", Requirement: function () { return (AsylumGGTSGetLevel(Player) >= 6); }, Earned: true },
+                    { Name: "Duchess", Requirement: function () { return LogQuery("KidnapSophie", "Sarah") && !Player.GenderSettings.HideTitles.Female; }, Earned: true },
+	                { Name: "Duke", Requirement: function () { return LogQuery("KidnapSophie", "Sarah") && !Player.GenderSettings.HideTitles.Male; }, Earned: true },
+                    { Name: "EscapedPatient", Requirement: function () { return (LogValue("Escaped", "Asylum") >= CurrentTime); }, Force: true },
+                    { Name: "PonyFarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 2); }, Earned: true },
+                    { Name: "Femboy", Requirement: function () { return !Player.GenderSettings.HideTitles.Male; } }, 
+                    { Name: "PonyPegasus", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 8) && (SkillGetLevel(Player, "Dressage") <= 9)); }, Earned: true },
+                    { Name: "PonyFoal", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") == 1) || ((SkillGetLevel(Player, "Dressage") >= 1) && (ReputationGet("ABDL") >= 1))); }, Earned: true },
+                    { Name: "Foxy", Requirement: function () { return true; } }, 
+                    { Name: "GoodBoy", Requirement: function () { return (AsylumGGTSGetLevel(Player) >= 4) && !Player.GenderSettings.HideTitles.Male; }, Earned: true },
+                    { Name: "GoodGirl", Requirement: function () { return (AsylumGGTSGetLevel(Player) >= 4) && !Player.GenderSettings.HideTitles.Female; }, Earned: true },
+					{ Name: "GoodOne", Requirement: function () { return true; } }, 
+                    { Name: "GoodSlave", Requirement: function () { return (AsylumGGTSGetLevel(Player) >= 6); }, Earned: true },       
+                    { Name: "GoodSlaveBoy", Requirement: function () { return (AsylumGGTSGetLevel(Player) >= 5) && !Player.GenderSettings.HideTitles.Male; }, Earned: true },                             
+                    { Name: "GoodSlaveGirl", Requirement: function () { return (AsylumGGTSGetLevel(Player) >= 5) && !Player.GenderSettings.HideTitles.Female; }, Earned: true },                   
+                    { Name: "HeadMaid", Requirement: function () { return LogQuery("LeadSorority", "Maid"); }, Earned: true },
+                    { Name: "PonyHot", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 5); }, Earned: true },
+                    { Name: "Houdini", Requirement: function () { return (SkillGetLevel(Player, "Evasion") >= 10); }, Earned: true },                     
+                    { Name: "Incubus", Requirement: function () { return !Player.GenderSettings.HideTitles.Male; } },
+                    { Name: "InfilrationInfiltrator", Requirement: function () { return ((SkillGetLevel(Player, "Infiltration") == 4) || (SkillGetLevel(Player, "Infiltration") == 5)); }, Earned: true },
+                    { Name: "Kidnapper", Requirement: function () { return ((ReputationGet("Kidnap") >= 50) && (ReputationGet("Kidnap") < 100)); }, Earned: true },
+                    { Name: "Kitten", Requirement: function () { return true; } }, 
+                    { Name: "LadyLuck", Requirement: function () { return (ReputationGet("Gambling") >= 100) && !Player.GenderSettings.HideTitles.Female; }, Earned: true }, 
+                    { Name: "Liege", Requirement: function () { return true; } },
+                    { Name: "LittleOne", Requirement: function () { return (ReputationGet("ABDL") >= 1); }, Earned: true },
+                    { Name: "LordFortune", Requirement: function () { return (ReputationGet("Gambling") >= 100) && !Player.GenderSettings.HideTitles.Male; }, Earned: true },
+                    { Name: "MagicSchoolMagician", Requirement: function () { return (ReputationGet("HouseVincula") >= 50); }, Earned: true },
+                    { Name: "MagicSchoolMagus", Requirement: function () { return (ReputationGet("HouseMaiestas") >= 100); }, Earned: true },
+                    { Name: "Maid", Requirement: function () { return (LogQuery("JoinedSorority", "Maid") && !LogQuery("LeadSorority", "Maid")); }, Earned: true },
+                    { Name: "PonyAlicorn", Requirement: function () { return (SkillGetLevel(Player, "Dressage") >= 10); }, Earned: true },
+                    { Name: "Majesty", Requirement: function () { return true; } },
+                    { Name: "Master", Requirement: function () { return LogQuery("ClubMistress", "Management") && !Player.GenderSettings.HideTitles.Male; }, Earned: true },
+                    { Name: "MasterKidnapper", Requirement: function () { return (ReputationGet("Kidnap") >= 100); }, Earned: true },
+                    { Name: "Missy", Requirement: function () { return !Player.GenderSettings.HideTitles.Female; } },
+                    { Name: "Mistree", Requirement: function () { return LogQuery("ClubMistress", "Management"); }, Earned: true },
+                    { Name: "Mistress", Requirement: function () { return LogQuery("ClubMistress", "Management") && !Player.GenderSettings.HideTitles.Female; }, Earned: true },
+                    { Name: "InfilrationMole", Requirement: function () { return ((SkillGetLevel(Player, "Infiltration") == 2) || (SkillGetLevel(Player, "Infiltration") == 3)); }, Earned: true },                 
+                    { Name: "Nawashi", Requirement: function () { return (SkillGetLevel(Player, "Bondage") >= 10); }, Earned: true },
+                    { Name: "Nurse", Requirement: function () { return ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") < 100)); }, Earned: true }, 
+                    { Name: "InfilrationOperative", Requirement: function () { return ((SkillGetLevel(Player, "Infiltration") == 8) || (SkillGetLevel(Player, "Infiltration") == 9)); }, Earned: true }, 
+                    { Name: "MagicSchoolOracle", Requirement: function () { return (ReputationGet("HouseAmplector") >= 100); }, Earned: true },                       	                 { Name: "Patient", Requirement: function () { return ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") > -100)); }, Earned: true },
+                    { Name: "Patron", Requirement: function () { return CheatAllow; }, Earned: true },
+                    { Name: "PermanentPatient", Requirement: function () { return (ReputationGet("Asylum") <= -100); }, Earned: true },	
+                    { Name: "Pet", Requirement: function () { return true; } },
+                    { Name: "Prince", Requirement: function () { return !Player.GenderSettings.HideTitles.Male; } }, 
+                    { Name: "Princess", Requirement: function () { return !Player.GenderSettings.HideTitles.Female; } },
+                    { Name: "Puppy", Requirement: function () { return true; } },                      	
+                    { Name: "MagicSchoolSage", Requirement: function () { return (ReputationGet("HouseAmplector") >= 50); }, Earned: true },
+                    { Name: "PonyUnicorn", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 7); }, Earned: true },
+                    { Name: "Sissy", Requirement: function () { return !Player.GenderSettings.HideTitles.Male; } },
+                    { Name: "MagicSchoolSorcerer", Requirement: function () { return (ReputationGet("HouseVincula") >= 100); }, Earned: true },
+                    { Name: "Succubus", Requirement: function () { return !Player.GenderSettings.HideTitles.Female; } },
+                    { Name: "AnimeBoy", Requirement: function () { return InventoryAvailable(Player, "AnimeGirl", "Cloth") && !Player.GenderSettings.HideTitles.Male; }, Earned: true },
+                    { Name: "AnimeGirl", Requirement: function () { return InventoryAvailable(Player, "AnimeGirl", "Cloth") && !Player.GenderSettings.HideTitles.Female; }, Earned: true },
+                    { Name: "InfilrationSuperspy", Requirement: function () { return (SkillGetLevel(Player, "Infiltration") >= 10); }, Earned: true },
+                    { Name: "Switch", Requirement: function () { return true; } },
+                    { Name: "Tomboy", Requirement: function () { return !Player.GenderSettings.HideTitles.Female; } },                
+                    { Name: "MagicSchoolWarlock", Requirement: function () { return (ReputationGet("HouseCorporis") >= 100); }, Earned: true },	
+	                { Name: "PonyWarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 4); }, Earned: true },
+                    { Name: "PonyWild", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 6); }, Earned: true },
+                    { Name: "MagicSchoolWitch", Requirement: function () { return (ReputationGet("HouseCorporis") >= 50); }, Earned: true },
+                    { Name: "MagicSchoolWizard", Requirement: function () { return (ReputationGet("HouseMaiestas") >= 50); }, Earned: true }
+                ];
             }
             next(args);
         });
@@ -14756,4 +14857,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
