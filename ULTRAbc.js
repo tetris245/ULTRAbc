@@ -6284,33 +6284,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //EBCH Status
     function showEbchLogStatus(EBCHdata) {
-        let msg = "Chatlogging is enabled.";
-        if (EBCHdata[4] == 0) msg = "Chatlogging is disabled.";
+        let msg = "Chatlogging is disabled.";
+        if (EBCHdata.logChatRooms) msg = "Chatlogging is enabled.";
         statusmsg(msg);
     }
 
     function showEbchNotificationStatus(EBCHdata) {
-        let msg = "Custom notifications are enabled.";
-        if (EBCHdata[8] == 0) msg = "Custom notifications are disabled.";
+        let msg = "Custom notifications are disabled.";
+        if (EBCHdata.notifs) msg = "Custom notifications are enabled.";
         statusmsg(msg);
     }
 
     function showEbchPoseStatus(EBCHdata) {
-        let msg = "Pose menu is automatically displayed.";
-        if (EBCHdata[6] == 0) msg = "Pose menu is not automatically displayed.";
+        let msg = "Pose menu is not automatically displayed.";
+        if (EBCHdata.showPoseMenu) msg = "Pose menu is automatically displayed.";
         statusmsg(msg);
     }
 
     function showEbchUngarbleStatus(EBCHdata) {
         let msg = "All messages are ungarbled.";
-        if (EBCHdata[2] == 0) msg = "Messages are not ungarbled.";
-        if (EBCHdata[2] == 1) msg = "Messages from white list are ungarbled.";
+        if (EBCHdata.ungarble = "off") msg = "Messages are not ungarbled.";
+        if (EBCHdata.ungarble = "on") msg = "Messages from white list are ungarbled.";
         statusmsg(msg);
     }
 
     function showEbchWelcomeStatus(EBCHdata) {
-        let msg = "EBCH Welcome message.";
-        if (EBCHdata[20] == 0) msg = "No EBCH Welcome message.";
+        let msg = "No EBCH Welcome message.";
+        if (EBCHdata.showWelcome) msg = "EBCH Welcome message.";
         statusmsg(msg);
     }
 
@@ -14651,9 +14651,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showRemoteControlStatus(DOGSdata);
                     }
                 } else if (addon == "ebch") {
-                    let EBCH = Player.OnlineSettings.EBCH;
+                    EBCH = Player.ExtensionSettings.EBCH;
                     if (EBCH) {
-                        EBCHdata = Player.OnlineSettings.EBCH;
+                        let EBCHdata = JSON.parse(EBCH);
                         showEbchLogStatus(EBCHdata);
                         showEbchNotificationStatus(EBCHdata);
                         showEbchPoseStatus(EBCHdata);
@@ -14756,8 +14756,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
-
