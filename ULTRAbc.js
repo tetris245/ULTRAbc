@@ -2220,6 +2220,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
     ULTRAMagicSchoolEscapeSpellEnd();
+	ULTRAMaidQuartersRun();
     ULTRAMainHallClick();
     ULTRAMainHallRun();
     ULTRAMovieStudioClubCardStart();
@@ -2288,7 +2289,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAMagicSchoolLaboratoryRun();
     ULTRAMaidCleaningRun();
     ULTRAMaidDrinksRun();
-    ULTRAMaidQuartersRun();
     ULTRAManagementRun();
     ULTRANurseryRun();
     ULTRAOnlineProfileRun();
@@ -3633,6 +3633,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	//Maid Quarters
+    async function ULTRAMaidQuartersRun() {
+        modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {      
+            TintsEffect();    
+            if (minigame == "cleaning") {
+                minigame == "";
+                M_MOANER_saveControls();
+                MaidCleaning();            
+            } 
+            if (minigame == "drinks") {
+                minigame == "";
+                M_MOANER_saveControls();
+                MaidDrinks();
+            }  
+            if (minigame == "rhythm") {
+                minigame == "";
+                M_MOANER_saveControls();
+                MaidRhythm();
+            }          
+            next(args);
+        });
+    }
+
     //Main Hall
     async function ULTRAMainHallClick() {
         modApi.hookFunction('MainHallClick', 4, (args, next) => {
@@ -4926,14 +4949,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
-    async function ULTRAMaidQuartersRun() {
-        modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {
-            TintsEffect();
-            next(args);
-        });
-    }
-
+	
     async function ULTRAManagementRun() {
         modApi.hookFunction('ManagementRun', 4, (args, next) => {
             TintsEffect();
@@ -6512,6 +6528,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (LSCGdata.StateModule.immersive) msg2 = "Immersive conditions are enabled";
         msg = msg1 + " " + msg2;
         statusmsg(msg);
+    }
+
+	//Maid games
+    async function MaidCleaning() {
+       await CommonSetScreen("Room", "MaidQuarters");         
+       GameType = "MaidCleaning";
+       MaidQuartersMaid.Stage = "400";          
+    }
+
+    async function MaidDrinks() {
+       await CommonSetScreen("Room", "MaidQuarters");         
+       GameType = "MaidDrinks";
+       MaidQuartersMaid.Stage = "200";          
+    }
+
+    async function MaidRhythm() {
+       await CommonSetScreen("Room", "MaidQuarters");         
+       GameType = "RhythmGame";
+       MaidQuartersMaid.Stage = "500";
     }
 
     //MBS Status
@@ -9714,12 +9749,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "The game command must include a minigame.\n" +
                     "Available minigames:\n" +
-                    "dojo, kidnap, movie1, movie2, puppy, tennis1, tennis2, tennis3.\n" +
-                    "Tennis1 = easy, tennis2 = normal, tennis3 = hard";
+                    "cleaning, dojo, drinks,\n" +
+                    "kidnap, movie1, movie2, puppy, rhythm,\n" +
+                    "tennis1, tennis2, tennis3.\n" +
+                    "1 = easy, 2 = normal, 3 = hard\n" +
+                    ""; 
                  infomsg(msg);
              } else {
                  minigame = args;
                  M_MOANER_saveControls();
+				 if ((minigame == "cleaning") || (minigame == "drinks") || (minigame == "rhythm")) {
+                     RoomToGame();
+                     CommonSetScreen("Room", "MaidQuarters");   
+                 }
                  if ((minigame == "dojo") || (minigame == "kidnap") || (minigame == "puppy")) {
                      RoomToGame();
                      CommonSetScreen("Room", "Introduction");           
@@ -14714,6 +14756,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
