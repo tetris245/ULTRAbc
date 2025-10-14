@@ -62,3 +62,4 @@ Changes for future version
 * Added 2 new settings in GUI - Misc, that allow to get
   - the Preferences Main menu in alphabetical order, with exception for the General Preferences
   - most parameters in Chat, Immersion and Online Preferences in alphabetical order 
+* Restored the cleaning/drinks/rhythm options of the game command
