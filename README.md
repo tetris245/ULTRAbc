@@ -63,8 +63,8 @@ Changes for future version
   - the Preferences Main menu in alphabetical order, with exception for the General Preferences
   - most parameters in Chat, Immersion and Online Preferences in alphabetical order
   - the Title menu in alphabetical order, with exception for the None option
-* Limited the number of rooms per page in Chat Search to 21, this to avoid invisible infos for rooms on 8th row
-* Added info about the UBC hotkeys on this liberated space in Chat Search
+* Limited the number of rooms per page in Chat Search to 21, this to reduce the risk of invisible infos for rooms on 8th row
+* Added info about the UBC hotkeys on this liberated space in Chat Search (this will not hide info related to rooms on 7th row)
 * Restored the remaining missing options of the game command
   - these options are: carrot, cleaning, drinks, hurdle, rhythm, training, whippony
   - note that a full relog is required to really stop the games in the stable
