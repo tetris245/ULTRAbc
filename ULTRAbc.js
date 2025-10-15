@@ -4750,6 +4750,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAStableRun() {
         modApi.hookFunction('StableRun', 4, (args, next) => {
             TintsEffect();
+            if (minigame == "carrot") {
+                minigame == "";
+                M_MOANER_saveControls();
+                StableCarrot();            
+            } 
+            if (minigame == "hurdle") {
+                minigame == "";
+                M_MOANER_saveControls();
+                StableHurdle();            
+            } 
+            if (minigame == "training") {
+                minigame == "";
+                M_MOANER_saveControls();
+                StableTraining();            
+            } 
+            if (minigame == "whippony") {
+                minigame == "";
+                M_MOANER_saveControls();
+                StableWhip();            
+            } 
             next(args);
         });
     }
@@ -7025,6 +7045,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Stable
+    async function StableCarrot() {
+       await CommonSetScreen("Room", "Stable");         
+       StableDressPonyStart();
+       StableWearPonyEquipment(Player);
+       MiniGameStart("HorseWalk", "Carrot", "StablePlayerTrainingCarrotsEnd");
+    }
+
+    async function StableHurdle() {
+       await CommonSetScreen("Room", "Stable");         
+       StableDressPonyStart();
+       StableWearPonyEquipment(Player);
+       MiniGameStart("HorseWalk", "Hurdle", "StablePlayerTrainingHurdlesEnd");
+    }
+
     function StablePonyEnd() {
         gamestable = false;
         M_MOANER_saveControls();
@@ -7032,6 +7066,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         CharacterSetCurrent(StableTrainer);
         StableTrainer.Stage = "StableTrainingRunOut";
         StablePlayerTrainingLessons = 6;
+    }
+
+    async function StableTraining() {
+       await CommonSetScreen("Room", "Stable");         
+       StablePlayerAppearance = Player.Appearance.slice();
+       StableWearTrainerEquipment(Player);
+       MiniGameStart("HorseWalk", "HurdleTraining", "StablePonyTrainingHurdlesEnd");
+    }
+
+    async function StableWhip() {
+       await CommonSetScreen("Room", "Stable");         
+       StablePlayerAppearance = Player.Appearance.slice();
+       StableWearTrainerEquipment(Player);
+       MiniGameStart("HorseWalk", "WhipPony", "StableTrainerWhipEnd");
     }
 
     //Talking
@@ -9853,23 +9901,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-	CommandCombine([{
+    CommandCombine([{
         Tag: 'game',
         Description: "(minigame): launches a minigame.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The game command must include a minigame.\n" +
+                let msg = "The game command must include a minigame.\n" +               
                     "Available minigames:\n" +
-                    "cleaning, dojo, drinks,\n" +
-                    "kidnap, movie1, movie2, puppy, rhythm,\n" +
-                    "tennis1, tennis2, tennis3.\n" +
-                    "1 = easy, 2 = normal, 3 = hard\n" +
-                    ""; 
+                    "carrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\n" +
+                    "movie2, puppy, rhythm, tennis1, tennis2, tennis3,\n" +
+                    "training, whippony.\n" +
+                    "Tennis1 = easy, tennis2 = normal, tennis3 = hard\n" +
+                    "Training is the trainer version of the hurdle game.\n" +
+                    "You need generally to click on the NPC and select the appropriate options in the dialogs.\n" +
+                    "Note that a full relog is required to really stop the games in the stable.";
                  infomsg(msg);
              } else {
                  minigame = args;
-                 M_MOANER_saveControls();
-				 if ((minigame == "cleaning") || (minigame == "drinks") || (minigame == "rhythm")) {
+                 M_MOANER_saveControls(); 
+                 if ((minigame == "carrot") || (minigame == "hurdle") || (minigame == "training") || (minigame == "whippony")) {
+                    gamestable = true;
+                    M_MOANER_saveControls();
+                    RoomToGame();
+                    CommonSetScreen("Room", "Stable");
+                 }            
+                 if ((minigame == "cleaning") || (minigame == "drinks") || (minigame == "rhythm")) {
                      RoomToGame();
                      CommonSetScreen("Room", "MaidQuarters");   
                  }
@@ -14912,4 +14968,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
