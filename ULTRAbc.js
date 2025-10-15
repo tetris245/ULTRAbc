@@ -9921,7 +9921,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Tennis1 = easy, tennis2 = normal, tennis3 = hard\n" +
                     "Training is the trainer version of the hurdle game.\n" +
                     "You need generally to click on the NPC and select the appropriate options in the dialogs.\n" +
-                    "Note that a full relog is required to really stop the games in the stable.";
+                    "Note that a full relog is required to really end the games in the stable (the 'leave' option in dialog will start a new game!)";
                  infomsg(msg);
              } else {
                  minigame = args;
@@ -14975,3 +14975,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
