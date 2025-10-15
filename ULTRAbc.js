@@ -12752,9 +12752,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ManagementFinishClubSlave()
                 }
                 if (role == "ggts") {
-                    ChatRoomHideElements();
-                    ServerSend("ChatRoomLeave", "");
-                    CharacterDeleteAllOnline();
+                    RoomToGame();
+                    CommonSetScreen("Room", "AsylumEntrance");
                     AsylumGGTSLock(0);
                     Level = parseInt(0);
                     Player.Game.GGTS.Level = 0;
@@ -14980,6 +14979,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
