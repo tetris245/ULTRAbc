@@ -3509,6 +3509,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAFriendListDraw() {
         modApi.hookFunction('FriendListDraw', 4, (args, next) => {
             FriendListBackground = frname;
+			DrawButton(825, 5, 775, 70, "UBC Hotkeys for clickable links to lobbies: F - G - H - J", "White", "");
             TintsEffect();
             next(args);
         });
@@ -14975,4 +14976,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
