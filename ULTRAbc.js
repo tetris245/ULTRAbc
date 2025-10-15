@@ -13273,6 +13273,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'timercell',
+        Description: "(minutes): stays in the isolation cell.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The timercell command must be followed by a number higher than 0.";
+                infomsg(msg);
+            } else {
+                let minutes = args;
+                if (minutes > 0) {
+                    let msg = "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes.";
+                    publicmsg(msg);
+                    DialogLentLockpicks = false;
+                    RoomToGame();                   
+                    CellLock(minutes);
+                }
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'title1',
         Description: "(title): chooses a new title (from A to K).",
@@ -14037,8 +14057,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 					"<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
                     "<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
-                    "<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
-                    "<b>/store</b> = Goes to store. Shows hidden items.";
+                    "<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible.\n" +
+                    "<b>/store</b> = Goes to store. Shows hidden items.\n" +
+                    "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.";
                 infomsg(msg);
             }
         }
@@ -14867,7 +14888,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
