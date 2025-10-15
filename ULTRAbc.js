@@ -3511,9 +3511,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             FriendListBackground = frname;	
 			TintsEffect();
             if (frkeys == true) {
-                DrawButton(825, 5, 775, 70, "UBC Hotkeys for clickable links to lobbies: F - G - H - J", "White", "");
+                DrawButton(825, 5, 775, 40, "UBC Hotkeys for clickable links to lobbies: F - G - H - J", "White", "");
             } else {
-                DrawButton(825, 5, 775, 70, "Enable UBC Hotkeys to change lobby for clickable links!", "White", "");
+                DrawButton(825, 5, 775, 40, "Enable UBC Hotkeys to change lobby for clickable links!", "White", "");
             } 
             next(args);
         });
@@ -14980,6 +14980,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
