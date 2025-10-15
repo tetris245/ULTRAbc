@@ -67,7 +67,7 @@ Changes for future version
 * Added info about the UBC hotkeys on this liberated space in Chat Search (this will not hide info related to rooms on 7th row)
 * Restored the remaining missing options of the game command
   - these options are: carrot, cleaning, drinks, hurdle, rhythm, training, whippony
-  - note that a full relog is required to really stop the games in the stable
+  - note that a full relog is required to really end the games in the stable (the 'leave' option in dialog will start a new game!)
 * Restored the old prison1 command under a new name: npcprison
 * Restored the timercell command
 * Updated the xstatus ebch command
