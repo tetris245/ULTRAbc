@@ -3065,6 +3065,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 minMarginY: 24,
             };
             ChatSearchRoomsPerPage = 21;
+			DrawButton(25, 880, 450, 90, "UBC Hotkeys (if enabled):", "White", "");
+            DrawButton(490, 880, 90, 90, "", "White", "Icons/Dress.png", "");
+            DrawButton(580, 880, 360, 90, "Left Ctrl = Wardrobe", "White", "");
+            DrawButton(955, 880, 90, 90, "", "White", "Icons/Preference.png", "");
+            DrawButton(1045, 880, 410, 90, "Left Alt = Preferences", "White", "");
+            DrawButton(1470, 880, 90, 90, "", "White", "Icons/Extensions.png", "");
+            DrawButton(1560, 880, 410, 90, "Right Arrow = Extensions", "White", "");           
             next(args);
         });
     }
@@ -14968,5 +14975,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
