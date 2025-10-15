@@ -65,6 +65,7 @@ Changes for future version
   - the Title menu in alphabetical order, with exception for the None option
 * Limited the number of rooms per page in Chat Search to 21, this to reduce the risk of invisible infos for rooms on 8th row
 * Added info about the UBC hotkeys on this liberated space in Chat Search (this will not hide info related to rooms on 7th row)
+* Added info about the UBC hotkeys in the Friend List 
 * Restored the remaining missing options of the game command
   - these options are: carrot, cleaning, drinks, hurdle, rhythm, training, whippony
   - note that a full relog is required to really end the games in the stable (the 'leave' option in dialog will start a new game!)
