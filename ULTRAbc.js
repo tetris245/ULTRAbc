@@ -11500,6 +11500,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'npcprison',
+        Description: "(minutes): stays in NPC Pandora prison.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The npcprison command must be followed by a number higher than 0";
+                infomsg(msg);
+            } else {
+                let minutes = args;
+                if (minutes > 0) {
+                    let msg = "" + tmpname + " gets grabbed by two maids and sent to NPC Pandora prison for " + minutes + " minutes.";
+                    publicmsg(msg);
+                    DialogLentLockpicks = false;
+                    RoomToGame();
+                    PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 7).toString();
+                    PandoraRestrainPlayer();
+                    PandoraPunishmentSentence(minutes);
+                    PandoraPunishmentStart();
+                }
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'outfit',
         Description: "(parameter): restores/saves/loads outfit (including restraints).",
@@ -14057,6 +14080,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 					"<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
                     "<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
+					"<b>/npcprison</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n" +
                     "<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible.\n" +
                     "<b>/store</b> = Goes to store. Shows hidden items.\n" +
                     "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.";
@@ -14888,3 +14912,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
