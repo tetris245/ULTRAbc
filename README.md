@@ -65,5 +65,6 @@ Changes for future version
   - the Title menu in alphabetical order, with exception for the None option
 * Limited the number of rooms per page in Chat Search to 21, this to avoid invisible infos for rooms on 8th row
 * Restored the cleaning/drinks/rhythm options of the game command
+* Restored the old prison1 command under a new name: npcprison
 * Restored the timercell command
 * Updated the xstatus ebch command
