@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.5.6
+Most recent version: 5.6
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.5.6.zip file on the Releases page
+1. Download the ULTRAbc-version5.6.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,16 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added 3 new settings in GUI - Misc, that allow to get
-  - the Preferences Main menu in alphabetical order, with exception for the General Preferences
-  - most parameters in Chat, Immersion and Online Preferences in alphabetical order
-  - the Title menu in alphabetical order, with exception for the None option
-* Limited the number of rooms per page in Chat Search to 21, this to reduce the risk of invisible infos for rooms on 8th row
-* Added info about the UBC hotkeys on this liberated space in Chat Search (this will not hide info related to rooms on 7th row)
-* Added info about the UBC hotkeys in the Friend List 
-* Restored the remaining missing options of the game command
-  - these options are: carrot, cleaning, drinks, hurdle, rhythm, training, whippony
-  - note that a full relog is required to really end the games in the stable (the 'leave' option in dialog will start a new game!)
-* Restored the ggts and timercell commands
-* Restored the old prison1 command under a new name: npcprison  
-* Updated the xstatus ebch command
+(...)
