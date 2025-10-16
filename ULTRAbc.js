@@ -2181,6 +2181,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumEntranceClick();
     ULTRAAsylumEntranceRun();
     ULTRAAsylumEntranceStartChat();
+	ULTRAAsylumGGTSLoad();
     ULTRAAsylumMeetingClubCardStart();
     ULTRABackgroundsTextGet();
     ULTRACafeClubCardStart();
@@ -3570,6 +3571,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             next(args);
+        });
+    }
+
+	//GGTS
+    async function ULTRAAsylumGGTSLoad() {
+        modApi.hookFunction('AsylumGGTSLoad', 4, (args, next) => {
+            ChatSearchRoomSpaces = ["ASYLUM"];
+	        AsylumGGTSIntroDone = false;
+	        AsylumGGTSTask = null;
+	        if (AsylumGGTSComputer == null) {
+		        AsylumGGTSComputer = CharacterLoadNPC("NPC_AsylumGGTS_Computer");
+		        AsylumGGTSComputer.AllowItem = false;
+		        AsylumGGTSComputer.Stage = "0";
+                let Level = "";
+                if (minigame == "") {
+                    Level = AsylumGGTSGetLevel(Player);
+                } else {
+                    Level = minigame;              
+                }               
+		        if (Level == 1) AsylumGGTSComputer.Stage = "100";
+		        if (Level == 2) AsylumGGTSComputer.Stage = "1000";
+		        if (Level == 3) AsylumGGTSComputer.Stage = "2000";
+		        if (Level == 4) AsylumGGTSComputer.Stage = "3000";
+		        if (Level == 5) AsylumGGTSComputer.Stage = "4000";
+		        if (Level >= 6) AsylumGGTSComputer.Stage = "5000";
+		        if (Level >= 6) Player.Game.GGTS.Strike = 0;              
+		        AsylumGGTSComputerImage(Level);
+            } 
+            return;
         });
     }
 
@@ -9957,6 +9987,43 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
           }
     }])
 
+	Tag: 'ggts',
+        Description: "(minutes) (level):  enters ggts training in asylum for the specified time and level.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The ggts command must be followed by two numbers to  specify minutes and level (1-6).";
+                infomsg(msg);
+            } else {
+                let stringGgts1 = args;
+                let stringGgts2 = stringGgts1.split(/[ ,]+/);
+                let minutes = stringGgts2[0];
+                let level = stringGgts2[1];
+                minigame = level;
+                M_MOANER_saveControls(); 
+                let msg = "" + tmpname + " gets grabbed by two maids and locked in the asylum for " + minutes + " minutes of training with the Good Girl Training System Level " + level + ".";
+                publicmsg(msg);
+                DialogLentLockpicks = false;
+                RoomToGame();
+                CommonSetScreen("Room", "AsylumEntrance");  
+                AsylumGGTSLock(minutes, TextGet("GGTSIntro")); 
+                Level = parseInt(level);
+                if (Player.Game == null) Player.Game = {};
+                Player.Game.GGTS = {
+                    Level: Level,
+                    Time: 0,
+                    Strike: 0,
+                    Rule: []
+                };
+                AsylumGGTSSAddItems();
+                if (Level == 6) CharacterChangeMoney(Player, 1000);
+                else if (Level >= 2) CharacterChangeMoney(Player, 100 * (Level - 1));
+                ServerAccountUpdate.QueueData({
+                    Game: Player.Game
+                }, true);
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'gtalk',
         Description: "(talkmode) (words): speaks once in specified gag talk.",
@@ -14146,6 +14213,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
 					"<b>/game</b> (minigame) = launches a minigame. *\n" +
+					"<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
                     "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
                     "<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
 					"<b>/npcprison</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n" +
@@ -14980,10 +15048,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
-
-
-
