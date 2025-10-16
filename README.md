@@ -69,6 +69,6 @@ Changes for future version
 * Restored the remaining missing options of the game command
   - these options are: carrot, cleaning, drinks, hurdle, rhythm, training, whippony
   - note that a full relog is required to really end the games in the stable (the 'leave' option in dialog will start a new game!)
-* Restored the old prison1 command under a new name: npcprison
-* Restored the timercell command
+* Restored the ggts and timercell commands
+* Restored the old prison1 command under a new name: npcprison  
 * Updated the xstatus ebch command
