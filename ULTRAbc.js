@@ -10245,40 +10245,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    let msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
-                    if (Clothes != undefined) {
-                        if (Clothes != "") {
-                            msg = tmpname + ' '.repeat(1) + Clothes;
-                            if (Clothes.startsWith("\u0027")) msg = tmpname + Clothes;
-                        }
-                    }
-                    if (Clothes != "no message") publicmsg(msg);
-                    CharacterAppearanceFullRandom(Player, true);
-                    ChatRoomCharacterUpdate(Player);
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        if (IsTargetProtected(target)) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "Magical lasers put random clothes on " + tgpname + "'s body."
-                            if (Tclothes != undefined) {
-                                if (Tclothes != "") {
-                                    msg = tmpname + ' '.repeat(1) + Tclothes + ' '.repeat(1) + tgpname;
-                                    if (Tclothes.startsWith("\u0027")) msg = tmpname + Tclothes + ' '.repeat(1) + tgpname;
-                                }
-                            }
-                            if (Tclothes != "no message") publicmsg(msg);
-                            CharacterAppearanceFullRandom(target, true);
-                            ChatRoomCharacterUpdate(target);
-                        }
+            if (!target) return;
+            if (target == Player) {
+                let msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
+                targetMessage(Clothes, msg, 1);         
+                CharacterAppearanceFullRandom(Player, true);
+                ChatRoomCharacterUpdate(Player);
+            } else {
+                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
+                        infomsg(msg);
+                    } else {
+                        let msg = "Magical lasers put random clothes on " + tgpname + "'s body."
+                        targetMessage(Tclothes, msg, 2);
+                        CharacterAppearanceFullRandom(target, true);
+                        ChatRoomCharacterUpdate(target);
                     }
                 }
-                ChatRoomSetTarget(-1);
             }
+            ChatRoomSetTarget(-1);
         }
     }])
 
@@ -15652,6 +15639,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-
 })();
-
