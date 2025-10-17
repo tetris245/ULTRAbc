@@ -10258,7 +10258,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers put random clothes on " + tgpname + "'s body."
+                        let msg = "Magical lasers put random clothes on " + tgpname + "'s body.";
                         targetMessage(Tclothes, msg, 2);
                         CharacterAppearanceFullRandom(target, true);
                         ChatRoomCharacterUpdate(target);
@@ -14888,46 +14888,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'underwear',
         Description: "(target): changes underwear.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    let msg = "Magical lasers put " + tmpname + " in random underwear.";
-                    if (Underwear != undefined) {
-                        if (Underwear != "") {
-                            msg = tmpname + ' '.repeat(1) + Underwear;
-                            if (Underwear.startsWith("\u0027")) msg = tmpname + Underwear;
-                        }
-                    }
-                    if (Underwear != "no message") publicmsg(msg);
-                    CharacterRandomUnderwear(Player);
-                    ChatRoomCharacterUpdate(Player);
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        if (IsTargetProtected(target)) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "Magical lasers put " + tgpname + " in random underwear.";
-                            if (Tunderwear != undefined) {
-                                if (Tunderwear != "") {
-                                    msg = tmpname + ' '.repeat(1) + Tunderwear + ' '.repeat(1) + tgpname;
-                                    if (Tunderwear.startsWith("\u0027")) msg = tmpname + Tunderwear + ' '.repeat(1) + tgpname;
-                                }
-                            }
-                            if (Tunderwear != "no message") publicmsg(msg);
-                            CharacterRandomUnderwear(target);
-                            ChatRoomCharacterUpdate(target);
-                        }
+            if (!target) return;
+            if (target == Player) {
+                let msg = "Magical lasers put " + tmpname + " in random underwear.";
+                targetMessage(Underwear, msg, 1);         
+                CharacterRandomUnderwear(Player);
+                ChatRoomCharacterUpdate(Player);
+            } else {
+                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
+                        infomsg(msg);
+                    } else {
+                        let msg = "Magical lasers put " + tgpname + " in random underwear.";
+                        targetMessage(Tunderwear, msg, 2);
+                        CharacterRandomUnderwear(target);
+                        ChatRoomCharacterUpdate(target);
                     }
                 }
-                ChatRoomSetTarget(-1);
             }
+            ChatRoomSetTarget(-1);
         }
     }])
 
@@ -15640,3 +15627,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
