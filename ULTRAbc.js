@@ -12210,49 +12210,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'naked',
         Description: "(target): removes clothes.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    let msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
-                    if (Naked != undefined) {
-                        if (Naked != "") {
-                            msg = tmpname + ' '.repeat(1) + Naked;
-                            if (Naked.startsWith("\u0027")) msg = tmpname + Naked;
-                        }
-                    }
-                    if (Naked != "no message") publicmsg(msg);
-                    CharacterNaked(Player);
-                    ChatRoomCharacterUpdate(Player);
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        if (IsTargetProtected(target)) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
-                            if (Tnaked != undefined) {
-                                if (Tnaked != "") {
-                                    msg = tmpname + ' '.repeat(1) + Tnaked + ' '.repeat(1) + tgpname;
-                                    if (Tnaked.startsWith("\u0027")) msg = tmpname + Tnaked + ' '.repeat(1) + tgpname;
-                                }
-                            }
-                            if (Tnaked != "no message") publicmsg(msg);
-                            CharacterNaked(target);
-                            ChatRoomCharacterUpdate(target);
-                        }
+            if (!target) return;
+            if (target == Player) {
+                let msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
+                targetMessage(Naked, msg, 1);         
+                CharacterNaked(Player);
+                ChatRoomCharacterUpdate(Player);
+            } else {
+                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
+                        infomsg(msg);
+                    } else {
+                        let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
+                        targetMessage(Tnaked, msg, 2);                    
+                        CharacterNaked(target);
+                        ChatRoomCharacterUpdate(target);
                     }
                 }
-                ChatRoomSetTarget(-1);
             }
+            ChatRoomSetTarget(-1);
         }
     }])
-
+ 
     CommandCombine([{
         Tag: 'npcprison',
         Description: "(minutes): stays in NPC Pandora prison.",
@@ -15667,3 +15654,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
