@@ -7481,6 +7481,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	function targetMessage(type, msg, number) {
+        if (type != undefined) {
+             if (type != "") {
+                 if (number == 1) {
+                     msg = tmpname + ' '.repeat(1) + type;
+                     if (type.startsWith("\u0027")) msg = tmpname + type;
+                 }
+                 if (number == 2) {          
+                     msg = tmpname + ' '.repeat(1) + type + ' '.repeat(1) + tgpname;
+                     if (type.startsWith("\u0027")) msg = tmpname + type + ' '.repeat(1) + tgpname;
+                 }
+             }
+        }
+        if (type != "no message") publicmsg(msg);    
+    }
+
     //Poses
     function PoseChangeFocusToGroup(C, Group) {
         /** @type {null | AssetGroup} */
@@ -15648,5 +15664,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
+
 
 })();
