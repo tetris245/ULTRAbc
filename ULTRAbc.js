@@ -12394,58 +12394,45 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'pet',
         Description: "(target): becomes a fully restrained pet.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    let msg = "" + tmpname + " becomes a cute pet.";
-                    if (Pet != undefined) {
-                        if (Pet != "") {
-                            msg = tmpname + ' '.repeat(1) + Pet;
-                            if (Pet.startsWith("\u0027")) msg = tmpname + Pet;
-                        }
-                    }
-                    if (Pet != "no message") publicmsg(msg);
-                    CharacterNaked(Player);
-                    InventoryWearRandom(Player, "ItemArms", 8, null, false, true, petitems1, true);
-                    InventoryWearRandom(Player, "HairAccessory1", 8, null, false, true, petitems2, true);
-                    InventoryWearRandom(Player, "TailStraps", 8, null, false, true, petitems3, true);
-                    if (InventoryGet(Player, "ItemMouth") == null) InventoryWearRandom(Player, "ItemMouth", 8);
-                    if (InventoryGet(Player, "ItemNeck") == null) InventoryWearRandom(Player, "ItemNeck", 8);
-                    if (InventoryGet(Player, "ItemNeckRestraints") == null) InventoryWear(Player, "ChainLeash", "ItemNeckRestraints", null, 8);
-                    PoseSetActive(Player, "Kneel", true);
-                    CharacterRefresh(Player);
-                    ChatRoomCharacterUpdate(Player);
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        if (IsTargetProtected(target)) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "" + tgpname + " becomes a cute pet.";
-                            if (Tpet != undefined) {
-                                if (Tpet != "") {
-                                    msg = tmpname + ' '.repeat(1) + Tpet + ' '.repeat(1) + tgpname;
-                                    if (Tpet.startsWith("\u0027")) msg = tmpname + Tpet + ' '.repeat(1) + tgpname;
-                                }
-                            }
-                            if (Tpet != "no message") publicmsg(msg);
-                            CharacterNaked(target);
-                            InventoryWearRandom(target, "ItemArms", 8, null, false, true, petitems1, true);
-                            InventoryWearRandom(target, "HairAccessory1", 8, null, false, true, petitems2, true);
-                            InventoryWearRandom(target, "TailStraps", 8, null, false, true, petitems3, true);
-                            if (InventoryGet(target, "ItemMouth") == null) InventoryWearRandom(target, "ItemMouth", 8);
-                            if (InventoryGet(target, "ItemNeck") == null) InventoryWearRandom(target, "ItemNeck", 8);
-                            if (InventoryGet(target, "ItemNeckRestraints") == null) InventoryWear(target, "ChainLeash", "ItemNeckRestraints", null, 8);
-                            PoseSetActive(target, "Kneel", true);
-                            CharacterRefresh(target);
-                            ChatRoomCharacterUpdate(target);
-                        }
+            if (!target) return;
+            if (target == Player) {
+                let msg = "" + tmpname + " becomes a cute pet.";
+                targetMessage(Pet, msg, 1);            
+                CharacterNaked(Player);
+                InventoryWearRandom(Player, "ItemArms", 8, null, false, true, petitems1, true);
+                InventoryWearRandom(Player, "HairAccessory1", 8, null, false, true, petitems2, true);
+                InventoryWearRandom(Player, "TailStraps", 8, null, false, true, petitems3, true);
+                if (InventoryGet(Player, "ItemMouth") == null) InventoryWearRandom(Player, "ItemMouth", 8);
+                if (InventoryGet(Player, "ItemNeck") == null) InventoryWearRandom(Player, "ItemNeck", 8);
+                if (InventoryGet(Player, "ItemNeckRestraints") == null) InventoryWear(Player, "ChainLeash", "ItemNeckRestraints", null, 8);
+                PoseSetActive(Player, "Kneel", true);
+                CharacterRefresh(Player);
+                ChatRoomCharacterUpdate(Player);
+            } else {
+                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
+                        infomsg(msg);
+                    } else {
+                        let msg = "" + tgpname + " becomes a cute pet.";
+                        targetMessage(Tpet, msg, 2);                     
+                        CharacterNaked(target);
+                        InventoryWearRandom(target, "ItemArms", 8, null, false, true, petitems1, true);
+                        InventoryWearRandom(target, "HairAccessory1", 8, null, false, true, petitems2, true);
+                        InventoryWearRandom(target, "TailStraps", 8, null, false, true, petitems3, true);
+                        if (InventoryGet(target, "ItemMouth") == null) InventoryWearRandom(target, "ItemMouth", 8);
+                        if (InventoryGet(target, "ItemNeck") == null) InventoryWearRandom(target, "ItemNeck", 8);
+                        if (InventoryGet(target, "ItemNeckRestraints") == null) InventoryWear(target, "ChainLeash", "ItemNeckRestraints", null, 8);
+                        PoseSetActive(target, "Kneel", true);
+                        CharacterRefresh(target);
+                        ChatRoomCharacterUpdate(target);
                     }
                 }
                 ChatRoomSetTarget(-1);
