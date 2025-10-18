@@ -14466,50 +14466,37 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'totalrelease',
         Description: "(target): removes all bindings, collar, harness, chastity, toys.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    if (noescape) {
-                        let msg = umsg1 + umsg3;
+            if (!target) return;
+            if (target == Player) {
+                if (noescape) {
+                    let msg = umsg1 + umsg3;
+                    infomsg(msg);        
+                } else {
+                    let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
+                    targetMessage(Totalrelease, msg, 1);         
+                    SosClick();
+                 }
+            } else {
+                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
-                        if (Totalrelease != undefined) {
-                            if (Totalrelease != "") {
-                                msg = tmpname + ' '.repeat(1) + Totalrelease;
-                                if (Totalrelease.startsWith("\u0027")) msg = tmpname + Totalrelease;
-                            }
-                        }
-                        if (Totalrelease != "no message") publicmsg(msg);
-                        SosClick();
-                    }
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        if (IsTargetProtected(target)) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body.";
-                            if (Ttotalrelease != undefined) {
-                                if (Ttotalrelease != "") {
-                                    msg = tmpname + ' '.repeat(1) + Ttotalrelease + ' '.repeat(1) + tgpname;
-                                    if (Ttotalrelease.startsWith("\u0027")) msg = tmpname + Ttotalrelease + ' '.repeat(1) + tgpname;
-                                }
-                            }
-                            if (Ttotalrelease != "no message") publicmsg(msg);
-                            CharacterReleaseTotal(target);
-                            ChatRoomCharacterUpdate(target);
-                        }
+                        let msg = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body.";
+                        targetMessage(Ttotalrelease, msg, 2);
+                        CharacterReleaseTotal(target);
+                        ChatRoomCharacterUpdate(target);
                     }
                 }
-                ChatRoomSetTarget(-1);
             }
+            ChatRoomSetTarget(-1);
         }
     }])
 
