@@ -13263,40 +13263,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    let msg = "Magical lasers apply random restraints on " + tmpname + "'s body.";
-                    if (Restrain != undefined) {
-                        if (Restrain != "") {
-                            msg = tmpname + ' '.repeat(1) + Restrain;
-                            if (Restrain.startsWith("\u0027")) msg = tmpname + Restrain;
-                        }
-                    }
-                    if (Restrain != "no message") publicmsg(msg);
-                    CharacterFullRandomRestrain(Player, "ALL");
-                    ChatRoomCharacterUpdate(Player);
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        if (IsTargetProtected(target)) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "Magical lasers apply random restraints on " + tgpname + "'s body.";
-                            if (Trestrain != undefined) {
-                                if (Trestrain != "") {
-                                    msg = tmpname + ' '.repeat(1) + Trestrain + ' '.repeat(1) + tgpname;
-                                    if (Trestrain.startsWith("\u0027")) msg = tmpname + Trestrain + ' '.repeat(1) + tgpname;
-                                }
-                            }
-                            if (Trestrain != "no message") publicmsg(msg);
-                            CharacterFullRandomRestrain(target, "ALL");
-                            ChatRoomCharacterUpdate(target);
-                        }
+            if (!target) return;
+            if (target == Player) {
+                let msg = "Magical lasers apply random restraints on " + tmpname + "'s body.";
+                targetMessage(Restrain, msg, 1);         
+                CharacterFullRandomRestrain(Player, "ALL");
+                ChatRoomCharacterUpdate(Player);
+            } else {
+                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
+                        infomsg(msg);
+                    } else {
+                        let msg = "Magical lasers apply random restraints on " + tgpname + "'s body.";
+                        targetMessage(Trestrain, msg, 2);                    
+                        CharacterFullRandomRestrain(target, "ALL");
+                        ChatRoomCharacterUpdate(target);
                     }
                 }
-                ChatRoomSetTarget(-1);
             }
+            ChatRoomSetTarget(-1);
         }
     }])
 
