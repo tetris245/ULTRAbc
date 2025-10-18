@@ -15048,46 +15048,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    if (noescape) {
-                        let msg = umsg1 + umsg3;
+            if (!target) return;
+            if (target == Player) {
+                if (noescape) {
+                    let msg = umsg1 + umsg3;
+                    infomsg(msg);        
+                } else {
+                    let msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
+                    targetMessage(Untie, msg, 1);         
+                    CharacterRelease(Player);
+                    ChatRoomCharacterUpdate(Player);
+                    RealGarblingLevel();
+                 }
+            } else {
+                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
-                        if (Untie != undefined) {
-                            if (Untie != "") {
-                                msg = tmpname + ' '.repeat(1) + Untie;
-                                if (Untie.startsWith("\u0027")) msg = tmpname + Untie;
-                            }
-                        }
-                        if (Untie != "no message") publicmsg(msg);
-                        CharacterRelease(Player);
-                        ChatRoomCharacterUpdate(Player);
-                        RealGarblingLevel();
-                    }
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        if (IsTargetProtected(target)) {
-                            let msg = umsg1 + tgpname + umsg2;
-                            infomsg(msg);
-                        } else {
-                            let msg = "Magical lasers make disappear the bindings on " + tgpname + "'s body.";
-                            if (Tuntie != undefined) {
-                                if (Tuntie != "") {
-                                    msg = tmpname + ' '.repeat(1) + Tuntie + ' '.repeat(1) + tgpname;
-                                    if (Tuntie.startsWith("\u0027")) msg = tmpname + Tuntie + ' '.repeat(1) + tgpname;
-                                }
-                            }
-                            if (Tuntie != "no message") publicmsg(msg);
-                            CharacterRelease(target);
-                            ChatRoomCharacterUpdate(target);
-                        }
+                        let msg = "Magical lasers make disappear the bindings on " + tgpname + "'s body.";
+                        targetMessage(Tuntie, msg, 2);
+                        CharacterRelease(target);
+                        ChatRoomCharacterUpdate(target);
                     }
                 }
-                ChatRoomSetTarget(-1);
             }
+            ChatRoomSetTarget(-1);
         }
     }])
 
@@ -15627,4 +15614,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
