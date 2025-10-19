@@ -15269,45 +15269,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
-            if (target != null) {
-                if (target == Player) {
-                    let msg = "" + tmpname + " suddenly is visible for everybody.";
-                    if (Visible != undefined) {
-                        if (Visible != "") {
-                            msg = tmpname + ' '.repeat(1) + Visible;
-                            if (Visible.startsWith("\u0027")) msg = tmpname + Visible;
-                        }
-                    }
-                    if (Visible != "no message") publicmsg(msg);
-                    InventoryRemove(Player, "ItemScript");
-                    CurrentScreen === 'ChatRoom' ?
-                        ChatRoomCharacterUpdate(Player) :
-                        CharacterRefresh(Player);
-                } else {
-                    if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                        tgpname = getNickname(target);
-                        if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                            let msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
-                            infomsg(msg);
-                        } else {
-                            if (IsTargetProtected(target)) {
-                                let msg = umsg1 + tgpname + umsg2;
-                                infomsg(msg);
-                            } else {
-                                let msg = "" + tgpname + " suddenly is visible for everybody.";
-                                if (Tvisible != undefined) {
-                                    if (Tvisible != "") {
-                                        msg = tmpname + ' '.repeat(1) + Tvisible + ' '.repeat(1) + tgpname;
-                                        if (Tvisible.startsWith("\u0027")) msg = tmpname + Tvisible + ' '.repeat(1) + tgpname;
-                                    }
-                                }
-                                if (Tvisible != "no message") publicmsg(msg);
-                                InventoryRemove(target, "ItemScript");
-                                CurrentScreen === 'ChatRoom' ?
-                                    ChatRoomCharacterUpdate(target) :
-                                    CharacterRefresh(target);
-                            }
-                        }
+            if (!target) return;
+            if (target == Player) {
+                let msg = "" + tmpname + " suddenly is visible for everybody.";
+                targetMessage(Visible, msg, 1);          
+                InventoryRemove(Player, "ItemScript");
+                CurrentScreen === 'ChatRoom' ?
+                    ChatRoomCharacterUpdate(Player) :
+                    CharacterRefresh(Player);
+            } else {
+                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
+                        let msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
+                        infomsg(msg);
+                        return;
+                    } 
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
+                        infomsg(msg);
+                    } else {
+                        let msg = "" + tgpname + " suddenly is visible for everybody.";
+                         targetMessage(Tvisible, msg, 2); 
+                         InventoryRemove(target, "ItemScript");
+                         CurrentScreen === 'ChatRoom' ?
+                             ChatRoomCharacterUpdate(target) :
+                             CharacterRefresh(target);
                     }
                 }
             }
@@ -15567,8 +15554,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
-
