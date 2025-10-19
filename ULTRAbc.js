@@ -9645,6 +9645,83 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ///////////////////////////////////////////////////////////////				
     //Commands
 
+	CommandCombine([{
+        Tag: 'allcolor',
+        Description: "(colorcode) (category) (target): changes color on current elements in specified category.",
+        Action: (args) => {
+            args = (args || "").trim();
+            if (!args) {
+                let msg = "The allcolor command must be followed by a color code, a number corresponding to a category and optionally a target.\n" +
+                    " \n" +
+                    "The color code must be in hex format: #RRGGBB or #RGB.\n"+
+                    " \n" +
+                    "The numbers for the categories are: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories.";
+                infomsg(msg);
+                return;
+            }
+            const parts = args.split(/\s+/);
+            const color = parts[0];
+            const category = parts[1];
+            const targetname = parts[2];
+            const isValidColor = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color);
+            if (!isValidColor) {
+                infomsg("Invalid color. Use hex format like #RRGGBB or #RGB.");
+                return;
+            }
+            if ((category < 1) && (category > 5)) {
+                infomsg("Invalid category. Use a number between 1 and 5, for the category you want to color: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories.");
+                return;
+            }
+            let catname = "";
+            if (category == 1) catname = "items.";
+            if (category == 2) catname = "clothes.";
+            if (category == 3) catname = "cosplay.";
+            if (category == 4) catname = "body.";
+            if (category == 5) catname = "items, clothes, cosplay and body.";
+            const applyColorToAppearance = (appearanceArray, color) => {
+                for (const part of appearanceArray) {
+                    if (!part || !part.Asset || !part.Asset.Group || !part.Asset.Group.Name) continue;
+                    let name = part.Asset.Group.Name;
+                    if ((category == 1) && (!name.startsWith("Item"))) continue;
+                    if ((category > 1) && (category < 5) && (name.startsWith("Item"))) continue;
+                    if ((category == 2) && (!allclothes.includes(name))) continue;
+                    if ((category == 3) && (!allcosplay.includes(name))) continue;
+                    if ((category == 4) && (!allbody.includes(name))) continue;
+                    if (Array.isArray(part.Color)) {                  
+                        for (let i = 0; i < 14; i++) part.Color[i] = color;
+                    } else {
+                        part.Color = color;
+                    }
+                }
+            };
+            if (!targetname) {
+                applyColorToAppearance(Player.Appearance, color);           
+                publicmsg("New colors are used on " + tmpname + "'s " + catname);
+                ChatRoomCharacterUpdate(Player);
+                return;
+            }
+            const target = TargetSearch(targetname);
+            if (!target) {
+                ChatRoomSetTarget(-1);
+                return;
+            }
+            if (!target.AllowItem || target.OnlineSharedSettings.UBC === undefined) {
+                ChatRoomSetTarget(-1);
+                return;
+            }
+            const tgpname = getNickname(target);
+            if (IsTargetProtected(target)) {
+                infomsg(umsg1 + tgpname + umsg2);
+                ChatRoomSetTarget(-1);
+                return;
+            }
+            applyColorToAppearance(target.Appearance, color);
+            publicmsg("New colors are used on " + tgpname + "'s " + catname);
+            ChatRoomCharacterUpdate(target);
+            ChatRoomSetTarget(-1);
+        }
+    }])
+
     CommandCombine([{
         Tag: 'asylum',
         Description: "(minutes): enters asylum, bypasses requirements.",
@@ -10882,70 +10959,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'itemcolor1',
-        Description: "(colorcode) (target): changes color on all current bindings.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The itemcolor1 command must be followed by a color code in the format #000000 and optionally a target.";
-                infomsg(msg);
-            } else {
-                let stringItc1 = args;
-                let stringItc2 = stringItc1.split(/[ ,]+/);
-                let color = stringItc2[0];
-                let targetname = stringItc2[1];
-                if ((targetname == null) && (color.startsWith("#"))) {
-                    for (let A = 0; A < Player.Appearance.length; A++)
-                        if (Player.Appearance[A].Asset.Group.Name != null) {
-                            if (Player.Appearance[A].Asset.Group.Name.startsWith("Item")) {
-                                if (Array.isArray(Player.Appearance[A].Color)) {
-                                    for (let i = 0; i < 14; i++)
-                                        Player.Appearance[A].Color[i] = color;
-                                } else {
-                                    Player.Appearance[A].Color = color;
-                                }
-                            }
-                        }
-                    let msg = "New colors are used on " + tmpname + "'s bindings.";
-                    publicmsg(msg);
-                    ChatRoomCharacterUpdate(Player);
-                } else {
-                    let target = TargetSearch(targetname);
-                    if ((target != null) && (color.startsWith("#"))) {
-                        if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
-                            tgpname = getNickname(target);
-                            if (IsTargetProtected(target)) {
-                                let msg = umsg1 + tgpname + umsg2;
-                                infomsg(msg);
-                            } else {
-                                for (let A = 0; A < target.Appearance.length; A++)
-                                    if (target.Appearance[A].Asset.Group.Name != null) {
-                                        if (target.Appearance[A].Asset.Group.Name.startsWith("Item")) {
-                                            if (Array.isArray(target.Appearance[A].Color)) {
-                                                for (let i = 0; i < 14; i++)
-                                                    target.Appearance[A].Color[i] = color;
-                                            } else {
-                                                target.Appearance[A].Color = color;
-                                            }
-                                        }
-                                    }
-                                let msg = "New colors are used on " + tgpname + "'s bindings.";
-                                publicmsg(msg);
-                                ChatRoomCharacterUpdate(target);
-                            }
-                        }
-                    }
-                    ChatRoomSetTarget(-1);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'itemcolor2',
+        Tag: 'itemcolor',
         Description: "(colorcode): changes color of worn item in selected slot.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The itemcolor2 command needs to be followed by a color code in the format #000000 to change the color of a worn item in a slot selected by mouse click.";
+                let msg = "The itemcolor command needs to be followed by a color code in the format #000000 to change the color of a worn item in a slot selected by mouse click.";
                 infomsg(msg);
             } else {
                 let color = args;
@@ -14610,7 +14628,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "bondage") {
                 let msg = "Bondage commands - * = more info when using\n" +
                     "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
-                    "<b>/itemcolor1</b> (colorcode) (target) = changes color on all current bindings. Color code must be in the format #000000\n" +
                     "<b>/lock</b> = adds locks on all lockable items. *.\n" +
                     "<b>/outfit</b> = restores/saves/loads outfit (including restraints). *\n" +
                     "<b>/pet</b> (target) = becomes a fully restrained pet.\n" +
@@ -14736,8 +14753,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "visual") {
                 let msg = "Visual commands - * = more info when using\n" +
+                    "<b>/allcolor</b> (colorcode) (category) (target) = changes color on current elements in specified category. *\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
-                    "<b>/itemcolor2</b> (colorcode) = changes item color in selected slot. *\n" +
+                    "<b>/itemcolor</b> (colorcode) = changes item color in selected slot. *\n" +
                     "<b>/itempriority</b> (priority) = changes item priority in selected slot. *\n" +
                     "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" +
                     "<b>/layerset2</b> (layernumber) (priority) = changes layer priority of item in saved Item Slot. *\n" +
@@ -15562,4 +15580,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
