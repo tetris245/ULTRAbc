@@ -9668,7 +9668,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg("Invalid color. Use hex format like #RRGGBB or #RGB.");
                 return;
             }
-            if ((category < 1) && (category > 5)) {
+            if ((category < 1) || (category > 5)) {
                 infomsg("Invalid category. Use a number between 1 and 5, for the category you want to color: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories.");
                 return;
             }
@@ -15580,5 +15580,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
