@@ -59,7 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: allcolor (colorcode) (category) (target) to changs color on current elements in specified category.
+* New command: allcolor (colorcode) (category) (target) to changs color on current elements in specified category
   - The color code must be in hex format: #RRGGBB or #RGB
   - The category is specified by a number:  1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories
   - This command can be submitted to the Uwall/Ulist limitations
