@@ -59,4 +59,5 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Moved Decals to the cosplay category
+* Optimised several commands with target by creating and using a targetMessage function
