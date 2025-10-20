@@ -159,6 +159,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let usoft = false;
     let utotal = false;
 
+	let Allcolor = "";
     let Clothes = "";
     let Invisible = "";
     let Mlock = "";
@@ -173,6 +174,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let Untie = "";
     let Visible = "";
 
+	let Tallcolor = "";
     let Tclothes = "";
     let Tinvisible = "";
     let Tlock = "";
@@ -259,9 +261,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const ShibariDeckPlus = [30013, 31013, 31014, 31015, 31016, 31017, 31018, 31019, 31020, 31021];
     const ExtraDeckPlus = [4009, 7008, 9004, 10004, 12003, 12005, 12006, 12007, 12008, 14003];
 
-    //Options for message command
-    const msgcommand = ["clothes", "invisible", "lock", "naked", "pet", "randomize", "restrain", "solidity", "tclothes", "tinvisible", "tlock", "tnaked", "totalrelease", "tpet", "trandomize", "trestrain", "tsolidity", "ttotalrelease", "tunderwear", "tunlock", "tuntie", "tvisible", "underwear", "unlock", "untie", "visible"];
-
+	//Options for message command
+    const msgcommand = ["allcolor", "clothes", "invisible", "lock", "naked", "pet", "randomize", "restrain", "solidity", "tallcolor", "tclothes", "tinvisible", "tlock", "tnaked", "totalrelease", "tpet", "trandomize", "trestrain", "tsolidity", "ttotalrelease", "tunderwear", "tunlock", "tuntie", "tvisible", "underwear", "unlock", "untie", "visible"];
+    
     //Items for pet command
     const petitems1 = ["ArmbinderJacket", "BitchSuit", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "PantyhoseBody", "PantyhoseBodyOpen", "SeamlessStraitDress", "SeamlessStraitDressOpen", "StraitLeotard", "StrictLeatherPetCrawler"];
 
@@ -543,6 +545,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function messageDefault() {
+		Allcolor = "";
         Clothes = "";
         Invisible = "";
         Mlock = "";
@@ -551,6 +554,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Randomize = "";
         Restrain = "";
         Solidity = "";
+		Tallcolor = "";
         Tclothes = "";
         Tinvisible = "";
         Tlock = "";
@@ -780,6 +784,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "notalk": notalk,
             "reaction": reaction,
             "unrestrict": unrestrict,
+            "allcolor": Allcolor,
             "clothes": Clothes,
             "invisible": Invisible,
             "mlock": Mlock,
@@ -788,6 +793,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "randomize": Randomize,
             "restrain": Restrain,
             "solidity": Solidity,
+            "tallcolor": Tallcolor,
             "tclothes": Tclothes,
             "tinvisible": Tinvisible,
             "tlock": Tlock,
@@ -7371,6 +7377,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function messageData(data) {
+		Allcolor = data.allcolor;
         Clothes = data.clothes;
         Invisible = data.invisible;
         Mlock = data.mlock;
@@ -7379,6 +7386,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Randomize = data.randomize;
         Restrain = data.restrain;
         Solidity = data.solidity;
+		Tallcolor = data.tallcolor;
         Tclothes = data.tclothes;
         Tinvisible = data.tinvisible;
         Tlock = data.tlock;
@@ -7412,6 +7420,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function silentMode() {
         if (silent == true) {
+			Allcolor = "no message";
             Clothes = "no message";
             Invisible = "no message";
             Mlock = "no message";
@@ -7420,6 +7429,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Randomize = "no message";
             Restrain = "no message";
             Solidity = "no message";
+			Tallcolor = "no message";
             Totalrelease = "no message";
             Underwear = "no message";
             Unlock = "no message";
@@ -7440,6 +7450,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Tvisible = "no message";
         }
         if (silent == false) {
+			if (Allcolor == "no message") Allcolor = "";
             if (Clothes == "no message") Clothes = "";
             if (Invisible == "no message") Invisible = "";
             if (Mlock == "no message") Mlock = "";
@@ -7453,6 +7464,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (Unlock == "no message") Unlock = "";
             if (Untie == "no message") Untie = "";
             if (Visible == "no message") Visible = "";
+			if (Tallcolor == "no message") Tallcolor = "";
             if (Tclothes == "no message") Tclothes = "";
             if (Tinvisible == "no message") Tinvisible = "";
             if (Tlock == "no message") Tlock = "";
@@ -9696,7 +9708,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             };
             if (!targetname) {
                 applyColorToAppearance(Player.Appearance, color);           
-                publicmsg("New colors are used on " + tmpname + "'s " + catname);
+                let msg = "New colors are used on " + tmpname + "'s " + catname;
+                targetMessage(Allcolor, msg, 1); 
                 ChatRoomCharacterUpdate(Player);
                 return;
             }
@@ -9716,7 +9729,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return;
             }
             applyColorToAppearance(target.Appearance, color);
-            publicmsg("New colors are used on " + tgpname + "'s " + catname);
+            let msg = "New colors are used on " + tgpname + "'s " + catname;
+            targetMessage(Tallcolor, msg, 2); 
             ChatRoomCharacterUpdate(target);
             ChatRoomSetTarget(-1);
         }
@@ -11974,6 +11988,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg4 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option2 + " command on other players.</p>";
                 let msg5 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option2 + " command on other players.</p>";
                 let msg6 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option2 + " command on other players.</p>";
+				if (option == "allcolor") {
+                    Allcolor = custom;
+                    if (custom == "!") Allcolor = "no message";
+                    if (custom == "?") Allcolor = "";
+                }
                 if (option == "clothes") {
                     Clothes = custom;
                     if (custom == "!") Clothes = "no message";
@@ -12013,6 +12032,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Solidity = custom;
                     if (custom == "!") Solidity = "no message";
                     if (custom == "?") Solidity = "";
+                }
+				if (option == "tallcolor") {
+                    Tallcolor = custom;
+                    if (custom == "!") Tallcolor = "no message";
+                    if (custom == "?") Tallcolor = "";
                 }
                 if (option == "tclothes") {
                     Tclothes = custom;
@@ -15554,3 +15578,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
