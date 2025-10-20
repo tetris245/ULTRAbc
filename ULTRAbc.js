@@ -14905,7 +14905,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Lock 21 can be removed only if players use a modified version of the DOGS mod.";
                 infomsg(msg);
             } else {
-                let silent = 0;
                 let uw = 0;
                 let stringUnlock1 = args;
                 let stringUnlock2 = stringUnlock1.split(/[ ,]+/);
@@ -14920,14 +14919,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         } else {
                             let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
-                            if (Unlock != undefined) {
-                                if (Unlock != "") {
-                                    msg = tmpname + ' '.repeat(1) + Unlock;
-                                    if (Unlock.startsWith("\u0027")) msg = tmpname + Unlock;
-                                }
-                            }
-                            if (Unlock == "no message") silent = 1;
-                            if (silent == 0) publicmsg(msg);
+                            targetMessage(Unlock, msg, 1);                         
                         }
                     } else {
                         if (IsTargetProtected(target)) {
@@ -14936,14 +14928,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             infomsg(msg);
                         } else {
                             let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
-                            if (Tunlock != undefined) {
-                                if (Tunlock != "") {
-                                    msg = tmpname + ' '.repeat(1) + Tunlock + ' '.repeat(1) + tgpname;
-                                    if (Tunlock.startsWith("\u0027")) msg = tmpname + Tunlock + ' '.repeat(1) + tgpname;
-                                }
-                            }
-                            if (Tunlock == "no message") silent = 1;
-                            if (silent == 0) publicmsg(msg);
+                            targetMessage(Tunlock, msg, 2);
                         }
                     }
                     if (uw == 0) {
