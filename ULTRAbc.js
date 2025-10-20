@@ -13770,13 +13770,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 if (extrasol == 1) InventoryRemove(Player, "ItemDevices");
                                 if (extrasol == 2) InventoryRemove(Player, "ItemArms");
                                 let msg1 = "Magical lasers make disappear the special restraints that kept " + tmpname + " prisoner.";
-                                if (Solidity != undefined) {
-                                    if (Solidity != "") {
-                                        msg1 = tmpname + ' '.repeat(1) + Solidity;
-                                        if (Solidity.startsWith("\u0027")) msg1 = tmpname + Solidity;
-                                    }
-                                }
-                                if (Solidity != "no message") publicmsg(msg1);
+                                targetMessage(Solidity, msg1, 1);
                             }
                             for (let A = 0; A < Player.Appearance.length; A++)
                                 if (Player.Appearance[A].Asset.Group.Name != null) {
@@ -13807,13 +13801,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     if (extrasol == 1) InventoryRemove(target, "ItemDevices");
                                     if (extrasol == 2) InventoryRemove(target, "ItemArms");
                                     let msg1 = "Magical lasers make disappear the special restraints that kept " + tgpname + " prisoner.";
-                                    if (Tsolidity != undefined) {
-                                        if (Tsolidity != "") {
-                                            msg1 = tmpname + ' '.repeat(1) + Tsolidity + ' '.repeat(1) + tgpname;
-                                            if (Tsolidity.startsWith("\u0027")) msg1 = tmpname + Tsolidity + ' '.repeat(1) + tgpname;
-                                        }
-                                    }
-                                    if (Tsolidity != "no message") publicmsg(msg1);
+                                    targetMessage(Tsolidity, msg1, 2);
                                 }
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if (target.Appearance[A].Asset.Group.Name != null) {
@@ -15578,4 +15566,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
