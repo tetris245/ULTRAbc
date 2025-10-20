@@ -11444,7 +11444,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let PS = "";
                 let pw = "";
                 let removeitem = "";
-                let silent = 0;
                 let time = 0;
                 let uw = 0;
                 let stringLock1 = args;
@@ -11551,14 +11550,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (dogs == 0) {
                         if (tmpname == tgpname) {
                             let msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
-                            if (Mlock != undefined) {
-                                if (Mlock != "") {
-                                    msg = tmpname + ' '.repeat(1) + Mlock;
-                                    if (Mlock.startsWith("\u0027")) msg = tmpname + Mlock;
-                                }
-                            }
-                            if (Mlock == "no message") silent = 1;
-                            if (silent == 0) publicmsg(msg);
+                            targetMessage(Mlock, msg, 1);  
                         } else {
                             if (IsTargetProtected(target)) {
                                 uw = 1;
@@ -11566,14 +11558,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 infomsg(msg);
                             } else {
                                 let msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
-                                if (Tlock != undefined) {
-                                    if (Tlock != "") {
-                                        msg = tmpname + ' '.repeat(1) + Tlock + ' '.repeat(1) + tgpname;
-                                        if (Tlock.startsWith("\u0027")) msg = tmpname + Tlock + ' '.repeat(1) + tgpname;
-                                    }
-                                }
-                                if (Tlock == "no message") silent = 1;
-                                if (silent == 0) publicmsg(msg);
+                                targetMessage(Tlock, msg, 2);
                             }
                         }
                         if (uw == 0) {
@@ -15551,3 +15536,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
