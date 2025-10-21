@@ -64,7 +64,10 @@ Changes for future version
   - The category is specified by a number:  1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories
   - This command is submitted to the Uwall/Ulist limitations
 * Added the allcolor and tallcolor options to the message command
-* Restored the cgame and chess commands 
+* Restored the cgame and chess commands
+* Changes for the hotkeys in Chat Search:
+  - Replaced Left Ctrl by Left Arrow to access the wardrobe
+  - Replaced the text about the hotkeys by an invitation to enable them when they are disabled
 * Removed the itemcolor1 command (as it is replaced by the allcolor command)
 * Renamed the itemcolor2 command as itemcolor
 * Moved Decals to the cosplay category
