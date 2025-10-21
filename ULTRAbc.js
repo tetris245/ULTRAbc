@@ -3809,6 +3809,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAMovieStudioRun() {
         modApi.hookFunction('MovieStudioRun', 4, (args, next) => {
             TintsEffect();
+			if (minigame == "movie") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
             if (minigame == "movie1") {
                 minigame == "";
                 M_MOANER_saveControls();
@@ -3879,6 +3883,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAInfiltrationRun() {
         modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
             TintsEffect();
+			if (minigame == "infiltration") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
             next(args);
         });
     }
@@ -5402,6 +5410,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_saveControls();
                 StableHurdle();
             }
+			if (minigame == "stable") {
+                minigame == "";
+                M_MOANER_saveControls();
+            }
             if (minigame == "training") {
                 minigame == "";
                 M_MOANER_saveControls();
@@ -5478,6 +5490,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAAsylumMeetingRun() {
         modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {
             TintsEffect();
+			if (minigame == "asylum") {
+                minigame == "";
+                M_MOANER_saveControls(); 
+                AsylumEntranceIsWearingNurseClothes = function() {
+                        return true
+                    };
+                InventoryRemove(AsylumMeetingPatientRight, "ItemArms");
+                InventoryRemove(AsylumMeetingPatientRight, "ItemHead");
+                InventoryRemove(AsylumMeetingPatientRight, "ItemMouth");            
+            }
             next(args);
         });
     }
@@ -5492,6 +5514,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRACafeRun() {
         modApi.hookFunction('CafeRun', 4, (args, next) => {
             TintsEffect();
+			if (minigame == "cafe") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
             next(args);
         });
     }
@@ -5527,6 +5553,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAClubCardLoungeRun() {
         modApi.hookFunction('ClubCardLoungeRun', 4, (args, next) => {
             TintsEffect();
+			if (minigame == "lounge") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
             next(args);
         });
     }
@@ -5656,6 +5686,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAIntroductionRun() {
         modApi.hookFunction('IntroductionRun', 4, (args, next) => {
             TintsEffect();
+			if (minigame == "introduction") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
             next(args);
         });
     }
@@ -5677,6 +5711,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRALARPRun() {
         modApi.hookFunction('LARPRun', 4, (args, next) => {
             TintsEffect();
+			if (minigame == "larp") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
             next(args);
         });
     }
@@ -5722,13 +5760,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
-    /*async function ULTRAMaidQuartersRun() {
-        modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {
-            TintsEffect();
-            next(args);
-        });
-    }*/
 
     async function ULTRAManagementRun() {
         modApi.hookFunction('ManagementRun', 4, (args, next) => {
@@ -5831,6 +5862,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAShibariRun() {
         modApi.hookFunction('ShibariRun', 4, (args, next) => {
             TintsEffect();
+			if (minigame == "shibari") {
+                minigame == "";
+                M_MOANER_saveControls(); 
+                InventoryRemove(ShibariStudent, "ItemArms");
+                InventoryRemove(ShibariStudent, "ItemFeet");
+                InventoryRemove(ShibariStudent, "ItemLegs");
+                InventoryRemove(ShibariStudent, "ItemMouth");
+                InventoryRemove(ShibariStudent, "ItemTorso");
+            }
             next(args);
         });
     }
@@ -10330,6 +10370,60 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'cgame',
+        Description: "(zone): launches a Club Card Game against a specific NPC.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The cgame command must include a zone.\n" +
+                    "Available zones:\n" +
+                    "asylum, cafe, infiltration, introduction, larp,\n" +
+                    "lounge, movie, shibari, stable.\n" +
+                    "You need to click on the concerned NPC, then on the appropriate option.";
+                infomsg(msg);
+            } else {
+                minigame = args;
+                M_MOANER_saveControls();
+                if (minigame == "asylum") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "AsylumMeeting");
+                } 
+                if (minigame == "cafe") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Cafe");
+                }
+                if (minigame == "infiltration") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Infiltration");
+                }
+                if (minigame == "introduction") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Introduction");
+                } 
+                if (minigame == "larp") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "LARP");
+                } 
+                if (minigame == "lounge") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "ClubCardLounge");
+                }
+                if (minigame == "movie") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "MovieStudio");
+                }
+                if (minigame == "shibari") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Shibari");              
+                }
+                if (minigame == "stable") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "Stable");
+                }
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'clothes',
         Description: "(target): changes clothes.",
@@ -14753,6 +14847,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "zones") {
                 let msg = "Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
+					"<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
                     "<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
@@ -15536,4 +15631,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
