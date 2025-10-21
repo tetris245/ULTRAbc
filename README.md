@@ -68,4 +68,5 @@ Changes for future version
 * Removed the itemcolor1 command (as it is replaced by the allcolor command)
 * Renamed the itemcolor2 command as itemcolor
 * Moved Decals to the cosplay category
+* Updated the item lists used by the pet command
 * Optimised several commands with target by creating and using a targetMessage function
