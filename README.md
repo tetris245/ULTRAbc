@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.6
+Most recent version: 5.6.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -59,17 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: allcolor (colorcode) (category) (target) to change color on current elements in specified category
-  - The color code must be in hex format: #RRGGBB or #RGB
-  - The category is specified by a number:  1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories
-  - This command is submitted to the Uwall/Ulist limitations
-* Added the allcolor and tallcolor options to the message command
-* Restored the cgame and chess commands
-* Changes for the hotkeys in Chat Search:
-  - Replaced Left Ctrl by Left Arrow to access the wardrobe
-  - Replaced the text about the hotkeys by an invitation to enable them when they are disabled
-* Removed the itemcolor1 command (as it is replaced by the allcolor command)
-* Renamed the itemcolor2 command as itemcolor
-* Moved Decals to the cosplay category
-* Updated the item lists used by the pet command
-* Optimised several commands with target by creating and using a targetMessage function
+(...)
