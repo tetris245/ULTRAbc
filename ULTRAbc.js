@@ -1825,7 +1825,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = total release. If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape"
                 );
                 addMenuCheckbox(64, 64, "Enable hotkeys in chat search: ", "cskeys",
-                    "These hotkeys allow to have fast access to Settings, Extensions and Wardrobe. Use the Left Alt key to access the BC Settings, the Right Arrow key to access the Extensions Settings, and the Left Ctrl key to access the Wardrobe."
+                    "These hotkeys allow to have fast access to Settings, Extensions and Wardrobe. Use the Left Alt key to access the BC Settings, the Right Arrow key to access the Extensions Settings, and the Left Arrow key to access the Wardrobe."
                 );
                 addMenuCheckbox(64, 64, "Enable hotkeys in friend list: ", "frkeys",
                     "These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. List of hotkeys: F = female club - G = mixed club - H = male club - J = asylum."
@@ -3040,7 +3040,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchKeyDown', 4, (args, next) => {
             if ((cskeys == true) && (event.code === "AltLeft")) PrfClick();
             if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
-            if ((cskeys == true) && (event.code === "ControlLeft")) CharacterAppearanceLoadCharacter(Player);
+            if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);
             next(args);
         });
     }
@@ -3077,13 +3077,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 minMarginY: 24,
             };
             ChatSearchRoomsPerPage = 21;
-            DrawButton(25, 880, 450, 90, "UBC Hotkeys (if enabled):", "White", "");
-            DrawButton(490, 880, 90, 90, "", "White", "Icons/Dress.png", "");
-            DrawButton(580, 880, 360, 90, "Left Ctrl = Wardrobe", "White", "");
-            DrawButton(955, 880, 90, 90, "", "White", "Icons/Preference.png", "");
-            DrawButton(1045, 880, 410, 90, "Left Alt = Preferences", "White", "");
-            DrawButton(1470, 880, 90, 90, "", "White", "Icons/Extensions.png", "");
-            DrawButton(1560, 880, 410, 90, "Right Arrow = Extensions", "White", "");
+            if (cskeys == true) {
+                DrawButton(25, 880, 450, 90, "UBC Hotkeys (if enabled):", "White", "");
+                DrawButton(490, 880, 90, 90, "", "White", "Icons/Dress.png", "");
+                DrawButton(580, 880, 360, 90, "Left Arrow = Wardrobe", "White", "");
+                DrawButton(955, 880, 90, 90, "", "White", "Icons/Preference.png", "");
+                DrawButton(1045, 880, 410, 90, "Left Alt = Preferences", "White", "");
+                DrawButton(1470, 880, 90, 90, "", "White", "Icons/Extensions.png", "");
+                DrawButton(1560, 880, 410, 90, "Right Arrow = Extensions", "White", "");
+            } else {
+                DrawButton(25, 880, 1950,90, "Tip: Enable the UBC Hotkeys to enhance your comfort in Bondage Club!", "White", "");
+            }
             next(args);
         });
     }
@@ -15699,4 +15703,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
