@@ -3100,6 +3100,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	//Chess Game
+    async function GameChess() {
+       await CommonSetScreen("Room", "CollegeChess");
+       CollegeChessGameStartALT = function(Difficulty) {
+           CollegeChessDifficulty = parseInt(Difficulty);
+           const playerStarts = Math.random() < 0.5;
+           ChessCharacterWhite = playerStarts ? Player : CollegeChessOpponent;
+           ChessCharacterBlack = playerStarts ? CollegeChessOpponent : Player;
+           MiniGameStart("Chess", CollegeChessDifficulty, "CollegeChessGameEndALT");
+           document.addEventListener("chessOnMove", CollegeChessGameProgress);
+       };
+       if (this.ChessOn == false || this.ChessOn == undefined) {
+           ChessOn = true;
+           if (minigame == "easy") chessdifficulty = 1;
+           if (minigame == "normal") chessdifficulty = 2;
+           if (minigame == "hard") chessdifficulty = 3;
+           CollegeChessGameStartALT(chessdifficulty);
+           setTimeout(function() {
+               CommonSetScreen("Online", "ChatRoom");
+               ElementPositionFix("DivChessBoard", null, -1100, 0);
+            }, 2000);
+        } else {
+            minigame = "";
+            M_MOANER_saveControls();
+        }
+   } 
+
     //Club Card Game
     async function ULTRAAsylumMeetingClubCardStart() {
         modApi.hookFunction('AsylumMeetingClubCardStart', 4, (args, next) => {
@@ -10424,6 +10451,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'chess',
+        Description: "(difficulty): starts chess.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The chess command must be followed by a number between 1 and 3.\n" +
+                    " \n" +
+                    "Available difficulty modes:\n" +
+                    "1 easy\n" +
+                    "2 normal\n" +
+                    "3 hard\n" +
+                    "Note that a full relog is required at the end of a chess game.";
+                infomsg(msg);
+            } else {
+                let chessdifficulty = args;
+                if (chessdifficulty == 1) minigame =  "easy";
+                if (chessdifficulty == 2) minigame =  "normal";
+                if (chessdifficulty == 3) minigame =  "hard";
+                M_MOANER_saveControls();                
+                CommonSetScreen("Room", "CollegeChess");
+                GameChess();             
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'clothes',
         Description: "(target): changes clothes.",
@@ -14848,6 +14900,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Zones commands - * = more info when using\n" +
                     "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
 					"<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n" +
+					"<b>/chess</b> (difficulty) = starts chess game. *\n" +
                     "<b>/college</b> = enters college, bypasses requirements.\n" +
                     "<b>/game</b> (minigame) = launches a minigame. *\n" +
                     "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
