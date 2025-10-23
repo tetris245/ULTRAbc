@@ -5729,16 +5729,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('KidnapLeagueRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "kidnap") {
-                 minigame == "";
-                 M_MOANER_saveControls();               
+                minigame == "";
+                M_MOANER_saveControls();               
+                KidnapLeagueBackground = "MainHall";
+                CharacterDelete(KidnapLeagueRandomKidnapper, false);
+                KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
+                CharacterSetCurrent(KidnapLeagueRandomKidnapper);
+                KidnapLeagueRandomKidnapperScenario = "1";
+                KidnapLeagueRandomKidnapper.Stage = KidnapLeagueRandomKidnapperScenario.toString();
+                KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario); 
             }
-            KidnapLeagueBackground = "MainHall";
-            CharacterDelete(KidnapLeagueRandomKidnapper, false);
-            KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
-            CharacterSetCurrent(KidnapLeagueRandomKidnapper);
-            KidnapLeagueRandomKidnapperScenario = "1";
-            KidnapLeagueRandomKidnapper.Stage = KidnapLeagueRandomKidnapperScenario.toString();
-            KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario); 
             next(args);
         });
     }
@@ -15703,4 +15703,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
