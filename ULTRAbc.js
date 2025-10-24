@@ -115,6 +115,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let pmin = 1;
     let pmax = 20;
     let silent = false;
+	let silsafe = false;
     let st = 0;
     let tcname = "Cell";
     let tintcolor = "#000000";
@@ -533,6 +534,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         rglbuttons = false;
         rglsync = false;
         silent = false;
+		silsafe = false;
         slowleave = false;
         sosbuttons = false;
         st = 0;
@@ -625,6 +627,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
         silent = data.silent;
+		silsafe = data.silsafe;
         slowleave = data.slowleave;
         sosbuttons = data.sosbuttons;
         st = data.stutterlevel * 1;
@@ -745,6 +748,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pmax": pmax,
             "npcdeck": npcdeck,
             "silent": silent,
+            "silsafe": silsafe,
             "stutterlevel": st,
             "tcname": tcname,
             "tintcolor": tintcolor,
@@ -926,6 +930,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (slowleave == null || slowleave == undefined) slowleave = false;
                 if (sosbuttons == null || sosbuttons == undefined) sosbuttons = false;
                 if (silent == null || silent == undefined) silent = false;
+				if (silsafe == null || silsafe == undefined) silsafe = false;
                 if (st == null || st == undefined) st = 0;
                 if (tcname == null || tcname == undefined) tcname = "Cell";
                 if (tintcolor == null || tintcolor == undefined) tintcolor = "#000000";
@@ -1035,6 +1040,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 rglsync: false,
                 script: false,
                 silent: false,
+				silsafe: false,
                 slowleave: false,
                 sosbuttons: false,
                 spankMoan: true,
@@ -1986,7 +1992,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable silent mode: ", "silent",
-                    "This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.", false, 120
+                    "This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.", false, 120
+                );
+                addMenuCheckbox(64, 64, "Extend silent mode to safeword: ", "silsafe",
+                    "When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course only if the safeword is enabled!", "!Player.UBC.ubcSettings.silent", 120
                 );
                 addMenuCheckbox(64, 64, "Enable unrestrict soft mode: ", "usoft",
                     "This mode adds all hidden items to your inventory, allows to use special items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and preserves the examine feature when you are blind if you don't have choosen Total sensory deprivation. It does not remove the conditions to use assets. All these effects are also included in the unrestrict total mode. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 120
@@ -2271,8 +2280,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
     ULTRATitleLoad();
-
-    //ULTRAAsylumGGTSLock();
 
     ULTRAArcadeRun();
     ULTRAAsylumBedroomRun();
@@ -2719,14 +2726,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.ActivePoseMapping = ChatSearchSafewordPose;
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
-                const Dictionary = new DictionaryBuilder()
-                    .sourceCharacter(Player)
-                    .build();
-                ServerSend("ChatRoomChat", {
-                    Content: "ActionActivateSafewordRevert",
-                    Type: "Action",
-                    Dictionary
-                });
+                if (silsafe == false) {
+                    const Dictionary = new DictionaryBuilder()
+                        .sourceCharacter(Player)
+                        .build();
+                    ServerSend("ChatRoomChat", {
+                        Content: "ActionActivateSafewordRevert",
+                        Type: "Action",
+                        Dictionary
+                    });
+                }
                 if ((Player.AllowedInteractions < AllowedInteractions.OwnerLoversWhitelistOnly) && (fixperm == false)) {
                     Player.AllowedInteractions = AllowedInteractions.OwnerLoversWhitelistOnly;
                     ServerAccountUpdate.QueueData({
@@ -15703,5 +15712,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
