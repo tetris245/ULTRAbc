@@ -1988,14 +1988,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCSpecialModesLoad = function() {
                 UBCPreferenceSubscreen = "UBCSpecialModes";
-                addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape",
-                    "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If you are in unrestrict total mode when selecting this option, an automatic relog will disable the special goddess mode.", false, 120
-                );
+                let nmsg = "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. When this mode is enabled, it can't be disabled if you are bound. If you are in unrestrict total mode when enabling this option, an automatic relog will disable the special goddess mode.";
+                if ((Player.IsRestrained() == true) && (noescape == true)) {
+                    addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, true, 120
+                    );
+                } else {
+                    addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, false, 120
+                    );
+                } 
                 addMenuCheckbox(64, 64, "Enable silent mode: ", "silent",
                     "This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Extend silent mode to safeword: ", "silsafe",
-                    "When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course only if the safeword is enabled!", "!Player.UBC.ubcSettings.silent", 120
+                    "When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course useful only if the safeword is enabled!", "!Player.UBC.ubcSettings.silent", 120
                 );
                 addMenuCheckbox(64, 64, "Enable unrestrict soft mode: ", "usoft",
                     "This mode adds all hidden items to your inventory, allows to use special items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and preserves the examine feature when you are blind if you don't have choosen Total sensory deprivation. It does not remove the conditions to use assets. All these effects are also included in the unrestrict total mode. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 120
@@ -15712,3 +15717,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
