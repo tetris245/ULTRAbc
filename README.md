@@ -60,3 +60,4 @@ All else I might not have included.
 Changes for future version
 
 * Added an option in GUI - Special Modes to extend the Silent Mode to the BC safeword
+* Improved the enabled No-Escape mode by preventing to disable it when you are bound
