@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Added an option in GUI - Special Modes to extend the Silent Mode to the BC safeword
