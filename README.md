@@ -62,4 +62,4 @@ Changes for future version
 * Added an option in GUI - Special Modes to extend the Silent Mode to the BC safeword
 * Improved the enabled No-Escape mode by preventing to disable it when you are bound
 * Refactored the ChatSearchLoad function to use smaller functions that can more easily be modified
-* Patched the ChatSearchCreateSearchMenu function to include all lobbies you can access according your gender (if you don't have enabled the Asylum limitations)
+* Patched the ChatSearchCreateSearchMenu function to include in the Chat Search Menu all lobbies you can access according your gender (if you don't have enabled the Asylum limitations)
