@@ -2223,6 +2223,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSendChat();
     ULTRAChatSearchExit();
     ULTRAChatSearchKeyDown();
+	ULTRAChatSearchLoad();
     ULTRAChatSearchParseResponse();
     ULTRAChatSearchRun();
     ULTRAChatSearchSendToast();
@@ -3056,6 +3057,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
             if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);
             next(args);
+        });
+    }
+
+	async function ULTRAChatSearchLoad() {
+        modApi.hookFunction('ChatSearchLoad', 4, (args, next) => {
+            ChatSearchInitState(); 
+            ChatSearchCreatePageCountElement();
+            const { minRoomSizeInput, maxRoomSizeInput } = ChatSearchCreateRoomSizeInputs();
+            const { searchInput, clearButton } = ChatSearchCreateSearchControls();
+            ChatSearchCreateHeader(searchInput, clearButton, minRoomSizeInput, maxRoomSizeInput);           
+            ChatSearchCreateGrid();
+            ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput);
+            ChatSearchCreateFilterHelpDialog();
+            ChatSearchQuery(ChatSearchQueryString);
+	        ChatRoomNotificationReset();
+	        ChatSearchRejoinIncrement = 1;
+	        TextPrefetch("Character", "FriendList");
+	        TextPrefetch("Online", "ChatAdmin");
+	        TextPrefetch("Online", "ChatRoom");
+	        return;
+            return; 
         });
     }
 
@@ -6917,6 +6939,673 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             return;
         }
+    }
+
+	//Chat Search - Screen + Menu
+	function ChatSearchCreateGrid() {    
+	    ChatSearchSearchBodyElement = ElementCreateDiv("chat-search-body");
+	    ChatSearchRoomGrid = ElementCreateDiv("chat-search-room-grid");
+    }
+
+	function ChatSearchCreateFilterHelpDialog() {
+	    ChatSearchFilterHelpScreenElement = ElementCreate({
+		    tag: "dialog",
+		    attributes: {
+			    id: "chat-search-filter-help-screen",
+		    },
+		    children: [
+			    {
+				    tag: "ul",
+				    classList: ["chat-search-filter-help-screen-content"],
+				    children: [
+					    {
+						    tag: "li",
+						    children: [TextGet("HelpText1")],
+					    },
+					    {
+						    tag: "li",
+						    children: [TextGet("HelpText2")],
+					    },
+					    {
+						    tag: "li",
+						    children: [TextGet("HelpText4")],
+					    },
+					    {
+						    tag: "li",
+						    children: [TextGet("HelpText5")],
+					    },
+					    {
+						    tag: "li",
+						    children: [TextGet("HelpText6")],
+					    },
+					    {
+						    tag: "li",
+						    children: [TextGet("HelpText7")],
+					    },
+				    ],
+			    },
+			    ElementButton.Create("chat-search-filter-help-screen-close", function () {
+				    ChatSearchFilterHelpScreenElement.close();
+			    }, null, {
+				    button: {
+					    classList: ["chat-search-filter-help-screen-close-button"],
+					    children: [
+						    TextGet("CloseHelp"),
+					    ],
+				    },
+			    }),
+		    ],
+		    parent: document.body,
+	    });
+    }
+
+	function ChatSearchCreateHeader(searchInput, clearButton, minRoomSizeInput, maxRoomSizeInput) {
+	    ChatSearchRoomHeader = ElementCreate(
+		    {
+			    tag: "div",
+			    attributes: {id: "chat-search-room-header"},
+			    children: [
+				    {
+					    tag: "div",
+					    attributes: {
+						    id: "chat-search-room-search-section",
+					    },
+					    classList: ["chat-search-room-header-section"],
+					    children: [
+						    {
+							    tag: "div",
+							    attributes: { id: "chat-search-input-search" },
+							    children: [
+								    searchInput,
+								    clearButton,
+							    ],
+						    },
+						    ElementButton.Create(
+							    "chat-search-room-search-button",
+							    () => {
+								    if (ChatSearchSearchMenuButton.getAttribute("aria-expanded") === "true") {
+									    ChatSearchSearchMenuButton.click();
+								    }
+								    ChatSearchQuery(ChatSearchQueryString);
+							    },
+							    {
+								    tooltip: TextGet("Search"),
+								    tooltipPosition: "bottom",
+								    image: "Icons/Search.png",
+							    },
+							    {
+								    button: {classList: ["chat-search-room-button"]},
+							    },
+						    ),
+						    ChatSearchSearchMenuButton,
+						    ElementButton.Create(
+							    "chat-search-room-prev-page",
+							    () => ChatSearchSetPageRelative(-1),
+							    {
+								    tooltip: TextGet("Prev"),
+								    tooltipPosition: "bottom",
+								    image: "Icons/Prev.png",
+							    },
+							    {
+								    button: {
+									    classList: ["chat-search-room-button"],
+									    attributes: { "aria-controls": "chat-search-room-grid" },
+								    },
+							    },
+						    ),
+						    ChatSearchPageCountElement,
+						    ElementButton.Create(
+							    "chat-search-room-next-page",
+							    () => ChatSearchSetPageRelative(1),
+							    {
+								    tooltip: TextGet("Next"),
+								    tooltipPosition: "bottom",
+								    image: "Icons/Next.png",
+							    },
+							    {
+								    button: {
+									    classList: ["chat-search-room-button"],
+									    attributes: { "aria-controls": "chat-search-room-grid" },
+								    },
+							    },
+						    ),
+						    ElementButton.Create("chat-search-hide-rooms", function () {
+							    ChatSearchToggleSearchMode();
+							    ChatSearchQuery(ChatSearchQueryString);
+							    document.getElementById('chat-search-room-filter-section').hidden = ChatSearchMode != "Filter";
+							    document.getElementById('chat-search-room-navigation-section').hidden = ChatSearchMode == "Filter";
+							    this.querySelector(".button-tooltip").textContent = TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode");
+							    this.dataset.mode = ChatSearchMode == "Filter" ? "FilterMode" : "NormalMode";
+						    }, {
+							    tooltip: TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode"),
+							    tooltipPosition: "bottom",
+							    role: "checkbox",
+							    image: "Icons/Private.png",
+						    }, {
+							    button: {
+								    classList: ["chat-search-room-button"],
+								    dataAttributes: {
+									    mode: ChatSearchMode == "Filter" ? "FilterMode" : "NormalMode",
+								    },
+							    },
+						    }),
+					    ],
+				    },
+				    {
+					    tag: "div",
+					    attributes: {
+						    id: "chat-search-room-filter-section",
+						    role:"radiogroup",
+						    "aria-required": "true",
+						    hidden: true
+					    },
+					    classList: ["chat-search-room-header-section"],
+					    children: [
+						    ElementButton.Create("chat-search-temp-hide-button", function () {
+							    ChatSearchGhostPlayerOnClickActive = false;
+						    }, {
+							    role: "radio",
+							    tooltip: TextGet("TempHideOnClick"),
+							    tooltipPosition: "bottom",
+							    image: "Icons/Trash.png",
+						    }, {
+							    button: {
+								    classList: ["chat-search-room-button"],
+								    attributes: {
+									    "aria-checked": !ChatSearchGhostPlayerOnClickActive ? "true" : "false",
+								    },
+							    },
+						    }),
+						    ElementButton.Create("chat-search-ghost-list-button", function () {
+							    ChatSearchGhostPlayerOnClickActive = true;
+						    }, {
+							    role: "radio",
+							    tooltip: TextGet("GhostPlayerOnClick"),
+							    tooltipPosition: "bottom",
+							    image: "Icons/GhostList.png",
+						    }, {
+							    button: {
+								    classList: ["chat-search-room-button"],
+								    attributes: {
+									    "aria-checked": ChatSearchGhostPlayerOnClickActive ? "true" : "false",
+								    },
+							    },
+						    }),
+						    ElementButton.Create(
+							    "chat-search-room-show-hidden-rooms-button",
+							    () => ChatSearchToggleHiddenMode(),
+							    {
+								    role: "checkbox",
+								    tooltip: TextGet("ShowHiddenRooms"),
+								    tooltipPosition: "bottom",
+								    image: "Icons/InspectLock.png",
+							    },
+							    {
+								    button: {classList: ["chat-search-room-button"]},
+							    },
+						    ),
+						    ElementButton.Create(
+							    "chat-search-room-help-button",
+							    () => {
+								    if (ChatSearchFilterHelpScreenElement.getAttribute("open") == "true") return ChatSearchFilterHelpScreenElement.close();
+								    ChatSearchFilterHelpScreenElement.showModal();
+								    ElementPositionFixed(ChatSearchFilterHelpScreenElement, 25, 135, 1900, 800);
+								    ChatSearchFilterHelpScreenElement.addEventListener("keydown", (ev) => {
+									    if (ev.key === "Escape") {
+										    ChatSearchFilterHelpScreenElement.close();
+										    return;
+									    }
+								    }, { once: true });
+								    ChatSearchFilterHelpScreenElement.focus();
+							    },
+							    {
+								    tooltip: TextGet("Help"),
+								    tooltipPosition: "bottom",
+								    image: "Icons/Question.png",
+							    },
+							    {
+								    button: {classList: ["chat-search-room-button"]},
+							    },
+						    ),
+					    ],
+				    },
+				    {
+					    tag: "div",
+					    attributes: {id: "chat-search-room-navigation-section"},
+					    classList: ["chat-search-room-header-section"],
+					    children: [
+						    ElementButton.Create(
+							    "chat-search-room-create-room-button",
+							    () => ChatAdminShowCreate(),
+							    {
+								    tooltip: TextGet("CreateRoom"),
+								    tooltipPosition: "bottom",
+								    image: "Icons/Plus.png",
+							    },
+							    {
+								    button: {classList: ["chat-search-room-button"]},
+							    },
+						    ),
+						    ElementButton.Create(
+							    "chat-search-room-friend-list-button",
+							    () => {
+								    FriendListReturn = { Screen: CurrentScreen, Module: CurrentModule };
+								    CommonSetScreen("Character", "FriendList");
+							    },
+							    {
+								    tooltip: TextGet("FriendList"),
+								    tooltipPosition: "bottom",
+								    image: "Icons/FriendList.png",
+							    },
+							    {
+								    button: {classList: ["chat-search-room-button"]},
+							    },
+						    ),
+						    ElementButton.Create(
+							    "chat-search-room-exit-button",
+							    () => ChatSearchExit(false),
+							    {
+								    tooltip: TextGet("Exit"),
+								    tooltipPosition: "bottom",
+								    image: "Icons/Exit.png",
+							    },
+							    {
+								    button: {classList: ["chat-search-room-button"]},
+							    },
+						    ),
+					    ],
+				    },
+			    ],
+			    parent: document.body,
+		    }
+	    );
+    }
+
+    function ChatSearchCreatePageCountElement() {
+        ChatSearchPageCountElement = ElementCreate({
+	       tag: "div",
+		  attributes: {
+			id: "chat-search-page-count",
+		  },
+		  children: [
+			`0 / 0`,
+		  ],
+	   });
+    }
+
+    function ChatSearchCreateRoomSizeInputs() {
+	    const minRoomSizeInput = ElementCreate({
+		    tag: "input",
+		    attributes: {
+			    id: "chat-search-search-menu-room-size-min",
+			    type: "number",
+			    inputmode: "numeric",
+			    value: Player.ChatSearchSettings.RoomMinSize,
+			    min: 2,
+			    max: 20,
+			    step: 1,
+			    required: true,
+		    },
+		    classList: ["chat-search-room-size-input"],
+		    eventListeners: {
+			    change: () => {
+				    const min = parseInt(minRoomSizeInput.value, 10);
+				    if (!minRoomSizeInput.validity.valid) return;
+				    Player.ChatSearchSettings.RoomMinSize = min;
+				    minRoomSizeInput.valueAsNumber = min;
+				    maxRoomSizeInput.min = String(min);
+				    ChatSearchUpdateSearchSettings();
+			    }
+		    }
+	    });
+	    const maxRoomSizeInput = ElementCreate({
+		    tag: "input",
+		    attributes: {
+			    id: "chat-search-search-menu-room-size-max",
+			    type: "number",
+			    inputmode: "numeric",
+			    value: Player.ChatSearchSettings.RoomMaxSize,
+			    min: 1,
+			    max: 20,
+			    step: 1,
+			    required: true,
+		    },
+		    classList: ["chat-search-room-size-input"],
+		    eventListeners: {
+			    change: () => {
+				    let max = parseInt(maxRoomSizeInput.value, 10);
+				    if (!maxRoomSizeInput.validity.valid) return;
+				    Player.ChatSearchSettings.RoomMaxSize = max;
+				    maxRoomSizeInput.valueAsNumber = max;
+				    minRoomSizeInput.max = String(max);
+				    ChatSearchUpdateSearchSettings();
+			    }
+		    }
+	    });
+	    return { minRoomSizeInput, maxRoomSizeInput };
+    }
+ 
+    function ChatSearchCreateSearchControls() {
+	    if (!Player.ChatSearchSettings.Space.includes(ChatSearchGetSpace())) Player.ChatSearchSettings.Space = ChatSearchGetSpace();
+	    const searchInput = ElementCreateSearchInput("InputSearch", () => {
+		    const rooms = ChatSearchShowHiddenRoomsActive ? ChatSearchHiddenResult : ChatSearchResult;
+		    return rooms.map(i => i.DisplayName).sort();
+	    }, { maxLength: 200, value: ChatSearchQueryString });
+	    searchInput.classList.add("chat-search-input-search-box");
+	    const clearButton = ElementButton.Create("chat-search-clear-input-search", function (ev) {
+		    ElementValue("InputSearch", "");
+		    ChatSearchQueryString = "";
+		    this.hidden = true;
+		    ChatSearchQuery("");
+	    }, {
+		    image:"Icons/cross.svg",
+		    noStyling: true,
+	    }, {
+		    button: {
+			    classList: ["chat-search-room-button"],
+			    attributes: { hidden: !ChatSearchQueryString.length },
+		    },
+	    });
+	    searchInput.addEventListener("input", function(ev) {
+		    clearButton.hidden = this.value.length === 0;
+		    ChatSearchQueryString = this.value;
+	    });
+	    searchInput.addEventListener("keydown", ChatSearchKeyDownListener);
+	    ChatSearchSearchMenuButton = ElementButton.Create(
+		    "chat-search-room-open-search-menu",
+		    function () {
+			    const img = this.querySelector('img');
+			    const open = this.getAttribute("aria-expanded") === "true";
+			    if (open) {
+				    this.setAttribute("aria-expanded", "false");
+				    img.src = `Icons/CaretUp.svg`;
+			    } else {
+				    this.setAttribute("aria-expanded", "true");
+				    img.src = `Icons/CaretDown.svg`;
+				    if (document.activeElement.id !== "InputSearch") {
+					    ElementFocus("InputSearch");
+				    }
+			    }
+			    const searchPanel = document.getElementById(this.getAttribute("aria-controls"));
+			    searchPanel.hidden = open;
+		    },
+		    {
+			    tooltip: TextGet("SearchMenuButton"),
+			    tooltipPosition: "bottom",
+			    image: "Icons/CaretUp.svg",
+		    },{
+			    button: {classList: ["chat-search-room-button"], attributes: {
+				    "aria-expanded": "false",
+				    "aria-controls": "chat-search-search-menu"
+			    }}
+		    });
+	    return { searchInput, clearButton };
+    }
+
+	function ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput) {
+	    ChatSearchSearchMenu = ElementCreate(
+		    {
+			    tag: "fieldset",
+			    attributes: {
+				    id: "chat-search-search-menu",
+				    hidden: true,
+			    },
+			    children: [
+				    // Room type
+				    {
+					    tag: "div",
+					    attributes: {
+						    id:"chat-search-search-menu-room-type",
+					    },
+					    classList: ["chat-search-search-menu-grid-item"],
+					    children: [
+						    ElementCreateSettingsLabel(TextGet("RoomType")),
+						    ElementCreateRadioButtonGroup(
+							    "chat-search-search-menu-room-type-radio-group",
+							    (ev, key) => {
+								    if (key === "None") {
+									    Player.ChatSearchSettings.MapTypes = undefined;
+								    }
+								    else {
+									    Player.ChatSearchSettings.MapTypes = key;
+								    }
+								    ChatSearchUpdateSearchSettings();
+							    },
+							    Player.ChatSearchSettings.MapTypes == null ? "None" : Player.ChatSearchSettings.MapTypes,
+							    [
+								    {
+									    options: {image: "Icons/cross.svg", tooltip: TextGet("AllRooms"), },
+									    htmlOptions: {button: {attributes: {value: "None"}}}
+								    },
+								    {
+									    options: {image: "Icons/RoomTypeNormal.svg", tooltip:TextGet("NormalRooms")},
+									    htmlOptions: {button: {attributes: {value: "Never"}}}},
+								    {
+									    options: {image: "Icons/RoomTypeHybrid.svg", tooltip:TextGet("HybridRooms")},
+									    htmlOptions: {button: {attributes: {value: "Hybrid"}}}},
+								    {
+									    options: {image: "Icons/RoomTypeMap.svg", tooltip:TextGet("MapRooms")},
+									    htmlOptions: {button: {attributes: {value: "Always"}}}},
+							    ]),
+					    ],
+				    },
+				    // Lobby
+				    {
+					    tag: "div",
+					    attributes: {
+						    id:"chat-search-search-menu-room-lobby",
+					    },
+					    classList: ["chat-search-search-menu-grid-item"],
+					    children: [
+						    ElementCreateSettingsLabel(TextGet("Lobby")),
+						    ElementCreateRadioButtonGroup(
+							    "chat-search-search-menu-room-lobby-radio-group",
+							    (ev, key) => {
+								    Player.ChatSearchSettings.Space = ChatSearchSpace = key;
+								    ChatSearchUpdateSearchSettings();
+							    },
+							    ChatSearchGetSpace(),
+							    [
+								    (((ChatSearchGetSpace() != "Asylum" && asylumlimit == true)) || (asylumlimit == false)) && Player.GetGenders().includes("F") && {
+									    options: {image: "Icons/Female.svg", tooltip: TextGet("Female")},
+									    htmlOptions: {button: {attributes: {value: ""}}}
+								    },
+	                                (((ChatSearchGetSpace() != "Asylum" && asylumlimit == true)) || (asylumlimit == false)) &&							{
+									    options: {image: "Icons/Gender.svg", tooltip: TextGet("Mixed")},
+									    htmlOptions: {button: {attributes: {value: "X"}}}
+								    },
+								    (((ChatSearchGetSpace() != "Asylum" && asylumlimit == true)) || (asylumlimit == false)) && Player.GetGenders().includes("M") && {
+									    options: {image: "Icons/Male.svg", tooltip: TextGet("Male")},
+									    htmlOptions: {button: {attributes: {value: "M"}}}
+								    },
+                                    (((ChatSearchGetSpace() === "Asylum" && asylumlimit == true)) || (asylumlimit == false)) &&                                         {
+									    options: {image: "Icons/Asylum.png", tooltip: TextGet("Asylum")},
+									    htmlOptions: {button: {attributes: {value: "Asylum"}}}
+								    },
+							    ].filter(Boolean),
+						    ),
+					    ],
+				    },
+				    // Full rooms
+				    {
+					    tag: "div",
+					    attributes: {
+						    id:"chat-search-search-menu-full-rooms",
+					    },
+					    dataAttributes: {
+						    checkbox: true,
+					    },
+					    classList: ["chat-search-search-menu-grid-item"],
+					    children: [
+						    ElementCreateSettingsLabel(TextGet("ShowFullRooms"), "left"),
+						    ElementCheckbox.Create("chat-search-search-menu-full-rooms-input", function (ev) {
+							    Player.ChatSearchSettings.FullRooms = this.checked;
+							    ChatSearchUpdateSearchSettings();
+						    }, {
+							    checked: Player.ChatSearchSettings.FullRooms,
+						    })
+					    ],
+				    },
+				    // Locked rooms
+				    {
+					    tag: "div",
+					    attributes: {
+						    id:"chat-search-search-menu-locked-rooms",
+					    },
+					    dataAttributes: {
+						    checkbox: true,
+					    },
+					    classList: ["chat-search-search-menu-grid-item"],
+					    children: [
+						    ElementCreateSettingsLabel(TextGet("ShowLockedRooms"), "left"),
+						    ElementCheckbox.Create("chat-search-search-menu-locked-rooms-input", function (ev) {
+							    Player.ChatSearchSettings.ShowLocked = this.checked;
+							    ChatSearchUpdateSearchSettings();
+						    }, {
+							    checked: Player.ChatSearchSettings.ShowLocked,
+						    })
+					    ],
+				    },
+				    // Search description
+				    {
+					    tag: "div",
+					    attributes: {
+						    id:"chat-search-search-menu-search-description",
+					    },
+					    dataAttributes: {
+						    checkbox: true,
+					    },
+					    classList: ["chat-search-search-menu-grid-item"],
+					    children: [
+						    ElementCreateSettingsLabel(TextGet("SearchDescription"), "left"),
+						    ElementCheckbox.Create("chat-search-search-menu-search-description-input", function () {
+							    Player.ChatSearchSettings.SearchDescriptions = this.checked;
+							    ChatSearchUpdateSearchSettings();
+						    }, {
+							    checked: Player.ChatSearchSettings.SearchDescriptions,
+						    }),
+					    ],
+				    },
+				    // Game
+				    {
+					    tag: "div",
+					    attributes: {
+						    id:"chat-search-search-menu-room-game",
+					    },
+					    classList: ["chat-search-search-menu-grid-item"],
+					    children: [
+						    ElementCreateSettingsLabel(TextGet("GameLabel")),
+						    ElementCreateDropdown(
+							    "chat-search-search-menu-room-game-dropdown",
+							    [
+								    ...[...ChatAdminGameList, "Prison"].map(game => (
+									    {children: [TextGet(`Game${game === "" ? "AllRooms" : game}`)], attributes: {value: game, selected: ChatSearchGame == game}}
+								    )),
+							    ],
+							    function (ev) {
+								    ChatSearchGame = Player.ChatSearchSettings.Game = /** @type {ServerChatRoomGame} */ (this.value);
+								    ChatSearchUpdateSearchSettings();
+							    },
+							    null,
+							    { select: {
+								    attributes: {
+									    value: ChatSearchGame,
+								    }
+							    }}
+						    ),
+					    ],
+				    },
+				    // Language
+				    {
+					    tag: "div",
+					    attributes: {id:"chat-search-search-menu-room-language"},
+					    classList: ["chat-search-search-menu-grid-item"],
+					    children: [
+						    ElementCreateSettingsLabel("Language"),
+						    ElementCreateDropdown(
+							    "chat-search-search-menu-room-language-dropdown",
+							    [
+								    .../** @type {ServerChatRoomLanguage[]} */([...ChatAdminLanguageList, ""]).map(lang => (
+									    {children: [ChatSearchGetLanguageName(lang)], attributes: {value: lang, selected: Player.ChatSearchSettings.Language == lang}}
+								    )),
+							    ],
+							    function (ev) {
+								    Player.ChatSearchSettings.Language = ChatSearchLanguage = /** @type {ServerChatRoomLanguage} */ (this.value);
+								    ChatSearchUpdateSearchSettings();
+							    },
+							    {required: true}
+						    ),
+					    ],
+				    },
+				    // Room size
+				    {
+					    tag: "div",
+					    attributes: {id:"chat-search-search-menu-room-size"},
+					    classList: ["chat-search-search-menu-grid-item"],
+					    children: [
+						    ElementCreateSettingsLabel("Room Size"),
+						    {
+							    tag: "div",
+							    attributes: {id:"chat-search-search-menu-room-size-grid"},
+							    children: [
+								    minRoomSizeInput,
+								    "/",
+								    maxRoomSizeInput,
+								    {
+									    tag: "span",
+									    classList: ["chat-search-search-menu-room-size-label"],
+									    children: ["min"],
+									    attributes: { "for": "chat-search-search-menu-room-size-min" }
+								    },
+								    {
+									    tag: "span",
+									    classList: ["chat-search-search-menu-room-size-label"],
+									    children: ["max"],
+									    style: { "grid-column": "3/3" },
+									    attributes: { "for": "chat-search-search-menu-room-size-max" },
+								    },
+							    ],
+						    }
+					    ]
+				    },
+				    ElementButton.Create("chat-search-search-menu-search-button", function () {
+					    const elements = /** @type {HTMLCollectionOf<Element & { validity: ValidityState, reportValidity(): boolean }>} */(ChatSearchSearchMenu.elements);
+					    for (const el of elements) {
+						    if (!el.validity.valid) {
+							    el.reportValidity();
+							    return;
+						    }
+					    }
+					    ChatSearchQuery(ChatSearchQueryString);
+				    }, null, {
+					    button: {
+						    classList: ["chat-search-search-menu-search-button"],
+						    children: [
+							    TextGet("Search"),
+						    ],
+					    },
+				    }),
+			    ],
+			    parent: document.body,
+		    });
+    }
+
+    function ChatSearchInitState() {
+        ChatRoomCustomizationClear();
+	    ChatRoomActivateView(ChatRoomCharacterViewName);
+	    ChatRoomMapViewEditMode = "";
+	    ChatRoomMapViewEditBackup = [];
+	    delete Player.MapData;
+	    CurrentDarkFactor = 0.5;
+	    if (ChatSearchSafewordAppearance == null) {
+		    ChatSearchSafewordAppearance = Player.Appearance.slice(0);
+		    ChatSearchSafewordPose = Player.ActivePoseMapping;
+	    }
+	    AsylumGGTSIntroDone = false;
+	    AsylumGGTSTask = null;
+	    AsylumGGTSPreviousPose = { ...Player.PoseMapping };
+	    Player.ArousalSettings.OrgasmCount = 0;
+	    ChatSearchLanguage = Player.ChatSearchSettings.Language;
     }
 
     //Club Card Game
@@ -15717,4 +16406,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
