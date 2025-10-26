@@ -2249,6 +2249,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAKidnapLeagueRandomClubCardStart();
 	ULTRAKidnapLeagueRun();
     ULTRALARPClubCardStart();
+	ULTRALARPRun();
     ULTRALoginClick();
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
@@ -2316,7 +2317,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAInformationSheetRun();
     ULTRAIntroductionRun();
     ULTRAKidnapRun();
-    ULTRALARPRun();
     ULTRAMagicRun();
     ULTRAMagicBattleRun();
     ULTRAMagicSchoolEscapeRun();
@@ -3970,6 +3970,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
             TintsEffect();
 			if (minigame == "infiltration") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
+            next(args);
+        });
+    }
+
+	//LARP
+	async function ULTRALARPRun() {
+        modApi.hookFunction('LARPRun', 4, (args, next) => {
+            TintsEffect();
+			if (minigame == "larp") {
                 minigame == "";
                 M_MOANER_saveControls();               
             }
@@ -5800,17 +5812,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAKidnapRun() {
         modApi.hookFunction('KidnapRun', 4, (args, next) => {
             TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRALARPRun() {
-        modApi.hookFunction('LARPRun', 4, (args, next) => {
-            TintsEffect();
-			if (minigame == "larp") {
-                minigame == "";
-                M_MOANER_saveControls();               
-            }
             next(args);
         });
     }
@@ -16408,6 +16409,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
