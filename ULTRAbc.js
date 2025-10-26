@@ -6942,11 +6942,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
 	//Chat Search - Screen + Menu
-	function ChatSearchCreateGrid() {    
-	    ChatSearchSearchBodyElement = ElementCreateDiv("chat-search-body");
-	    ChatSearchRoomGrid = ElementCreateDiv("chat-search-room-grid");
-    }
-
 	function ChatSearchCreateFilterHelpDialog() {
 	    ChatSearchFilterHelpScreenElement = ElementCreate({
 		    tag: "dialog",
@@ -6997,6 +6992,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    ],
 		    parent: document.body,
 	    });
+    }
+
+	function ChatSearchCreateGrid() {    
+	    ChatSearchSearchBodyElement = ElementCreateDiv("chat-search-body");
+	    ChatSearchRoomGrid = ElementCreateDiv("chat-search-room-grid");
     }
 
 	function ChatSearchCreateHeader(searchInput, clearButton, minRoomSizeInput, maxRoomSizeInput) {
@@ -16406,5 +16406,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
