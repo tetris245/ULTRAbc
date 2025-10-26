@@ -2280,6 +2280,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPrivateGetClubCardDeck();
     ULTRAPrivateRun();
     ULTRAShibariClubCardStart();
+	ULTRAShibariRun();
     ULTRAStableClubCardStart();
     ULTRAStablePlayerTrainingCarrotsEnd();
     ULTRAStablePlayerTrainingHurdlesEnd();
@@ -2336,7 +2337,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPuppyWalkerRun();
     ULTRARhythmGameRun();
     ULTRASarahRun();
-    ULTRAShibariRun();
     ULTRAShopRun();
     ULTRASlaveAuctionRun();
     ULTRASlaveMarketRun();
@@ -5468,6 +5468,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	//Shibari
+	async function ULTRAShibariRun() {
+        modApi.hookFunction('ShibariRun', 4, (args, next) => {
+            TintsEffect();
+			if (minigame == "shibari") {
+                minigame == "";
+                M_MOANER_saveControls(); 
+                InventoryRemove(ShibariStudent, "ItemArms");
+                InventoryRemove(ShibariStudent, "ItemFeet");
+                InventoryRemove(ShibariStudent, "ItemLegs");
+                InventoryRemove(ShibariStudent, "ItemMouth");
+                InventoryRemove(ShibariStudent, "ItemTorso");
+            }
+            next(args);
+        });
+    }
+
     //Stable
     async function ULTRAStablePlayerTrainingCarrotsEnd() {
         modApi.hookFunction('StablePlayerTrainingCarrotsEnd', 4, (args, next) => {
@@ -5934,22 +5951,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRASarahRun() {
         modApi.hookFunction('SarahRun', 4, (args, next) => {
             TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRAShibariRun() {
-        modApi.hookFunction('ShibariRun', 4, (args, next) => {
-            TintsEffect();
-			if (minigame == "shibari") {
-                minigame == "";
-                M_MOANER_saveControls(); 
-                InventoryRemove(ShibariStudent, "ItemArms");
-                InventoryRemove(ShibariStudent, "ItemFeet");
-                InventoryRemove(ShibariStudent, "ItemLegs");
-                InventoryRemove(ShibariStudent, "ItemMouth");
-                InventoryRemove(ShibariStudent, "ItemTorso");
-            }
             next(args);
         });
     }
@@ -16407,6 +16408,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
