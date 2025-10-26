@@ -2206,6 +2206,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumMeetingClubCardStart();
     ULTRABackgroundsTextGet();
     ULTRACafeClubCardStart();
+	ULTRACafeRun();
     ULTRACellClick();
     ULTRACellLoad();
     ULTRACellRun();
@@ -2297,7 +2298,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumGGTSRun();
     ULTRAAsylumMeetingRun();
     ULTRAAsylumTherapyRun();
-    ULTRACafeRun();
     ULTRAChatAdminRoomCustomizationRun();
     ULTRAChatSelectRun();
     ULTRAChestLockpickRun();
@@ -2413,6 +2413,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAPlatformDialogEvent() {
         modApi.hookFunction('PlatformDialogEvent', 4, (args, next) => {
             if (magiccheat == true) BrawlCheat();
+            next(args);
+        });
+    }
+
+	//Cafe
+	async function ULTRACafeRun() {
+        modApi.hookFunction('CafeRun', 4, (args, next) => {
+            TintsEffect();
+			if (minigame == "cafe") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
             next(args);
         });
     }
@@ -5644,17 +5656,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAAsylumTherapyRun() {
         modApi.hookFunction('AsylumTherapyRun', 4, (args, next) => {
             TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRACafeRun() {
-        modApi.hookFunction('CafeRun', 4, (args, next) => {
-            TintsEffect();
-			if (minigame == "cafe") {
-                minigame == "";
-                M_MOANER_saveControls();               
-            }
             next(args);
         });
     }
@@ -16409,6 +16410,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
