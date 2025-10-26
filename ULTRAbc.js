@@ -2235,6 +2235,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardLoungePraticeGameStart();
+	ULTRAClubCardLoungeRun();
     ULTRAClubCardRenderPanel();
     ULTRACollegeTennisGameStart();
     ULTRADrawCharacter();
@@ -2301,7 +2302,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSelectRun();
     ULTRAChestLockpickRun();
     ULTRAClubCardBuilderRun();
-    ULTRAClubCardLoungeRun();
     ULTRAClubCardRun();
     ULTRACollegeCafeteriaRun();
     ULTRACollegeChessRun();
@@ -3380,6 +3380,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             moreDefaultCards();
             MiniGameStart("ClubCard", 0, "ClubCardLoungePraticeGameEnd");
             return;
+        });
+    }
+
+	async function ULTRAClubCardLoungeRun() {
+        modApi.hookFunction('ClubCardLoungeRun', 4, (args, next) => {
+            TintsEffect();
+			if (minigame == "lounge") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
+            next(args);
         });
     }
 
@@ -5672,17 +5683,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAClubCardBuilderRun() {
         modApi.hookFunction('ClubCardBuilderRun', 4, (args, next) => {
             TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRAClubCardLoungeRun() {
-        modApi.hookFunction('ClubCardLoungeRun', 4, (args, next) => {
-            TintsEffect();
-			if (minigame == "lounge") {
-                minigame == "";
-                M_MOANER_saveControls();               
-            }
             next(args);
         });
     }
@@ -16409,6 +16409,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
