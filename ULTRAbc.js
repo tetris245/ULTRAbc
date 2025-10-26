@@ -2204,6 +2204,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumEntranceStartChat();
     ULTRAAsylumGGTSLoad();
     ULTRAAsylumMeetingClubCardStart();
+	ULTRAAsylumMeetingRun();
     ULTRABackgroundsTextGet();
     ULTRACafeClubCardStart();
 	ULTRACafeRun();
@@ -2296,7 +2297,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAArcadeRun();
     ULTRAAsylumBedroomRun();
     ULTRAAsylumGGTSRun();
-    ULTRAAsylumMeetingRun();
     ULTRAAsylumTherapyRun();
     ULTRAChatAdminRoomCustomizationRun();
     ULTRAChatSelectRun();
@@ -2386,6 +2386,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(240, 585, 90, 90, "", "Gray", "Icons/Gender.png", "Mixed");
             }
             DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            next(args);
+        });
+    }
+
+	async function ULTRAAsylumMeetingRun() {
+        modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {
+            TintsEffect();
+			if (minigame == "asylum") {
+                minigame == "";
+                M_MOANER_saveControls(); 
+                AsylumEntranceIsWearingNurseClothes = function() {
+                        return true
+                    };
+                InventoryRemove(AsylumMeetingPatientRight, "ItemArms");
+                InventoryRemove(AsylumMeetingPatientRight, "ItemHead");
+                InventoryRemove(AsylumMeetingPatientRight, "ItemMouth");            
+            }
             next(args);
         });
     }
@@ -5632,23 +5649,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAAsylumGGTSRun() {
         modApi.hookFunction('AsylumGGTSRun', 4, (args, next) => {
             TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRAAsylumMeetingRun() {
-        modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {
-            TintsEffect();
-			if (minigame == "asylum") {
-                minigame == "";
-                M_MOANER_saveControls(); 
-                AsylumEntranceIsWearingNurseClothes = function() {
-                        return true
-                    };
-                InventoryRemove(AsylumMeetingPatientRight, "ItemArms");
-                InventoryRemove(AsylumMeetingPatientRight, "ItemHead");
-                InventoryRemove(AsylumMeetingPatientRight, "ItemMouth");            
-            }
             next(args);
         });
     }
@@ -16410,6 +16410,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
