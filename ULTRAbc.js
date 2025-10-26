@@ -2246,6 +2246,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAInfiltrationRun();
     ULTRAIntroductionClubCardStart();
     ULTRAIntroductionJobAnyAvailable();
+	ULTRAIntroductionRun();
     ULTRAKidnapLeagueRandomClubCardStart();
 	ULTRAKidnapLeagueRun();
     ULTRALARPClubCardStart();
@@ -2315,7 +2316,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAGetUpRun();
     ULTRAHorseWalkRun();
     ULTRAInformationSheetRun();
-    ULTRAIntroductionRun();
     ULTRAKidnapRun();
     ULTRAMagicRun();
     ULTRAMagicBattleRun();
@@ -3681,7 +3681,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Introduction Job
+    //Introduction
     async function ULTRAIntroductionJobAnyAvailable() {
         modApi.hookFunction('IntroductionJobAnyAvailable', 4, (args, next) => {
             if (minigame == "") {
@@ -3714,6 +3714,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return true;
             }
             return;
+        });
+    }
+
+	async function ULTRAIntroductionRun() {
+        modApi.hookFunction('IntroductionRun', 4, (args, next) => {
+            TintsEffect();
+			if (minigame == "introduction") {
+                minigame == "";
+                M_MOANER_saveControls();               
+            }
+            next(args);
         });
     }
 
@@ -5794,17 +5805,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAInformationSheetRun() {
         modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
             TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRAIntroductionRun() {
-        modApi.hookFunction('IntroductionRun', 4, (args, next) => {
-            TintsEffect();
-			if (minigame == "introduction") {
-                minigame == "";
-                M_MOANER_saveControls();               
-            }
             next(args);
         });
     }
@@ -16409,6 +16409,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
