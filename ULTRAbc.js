@@ -3640,8 +3640,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             TintsEffect();
             if (frkeys == true) {
                 DrawButton(825, 5, 775, 40, "UBC Hotkeys for clickable links to lobbies: F - G - H - J", "White", "");
-            } else {
-                DrawButton(825, 5, 775, 40, "Enable UBC Hotkeys to change lobby for clickable links!", "White", "");
+            } else {         
+                DrawButton(825, 5, 775, 40, "Enjoy all the UBC features!", "White", "");
             }
             next(args);
         });
@@ -16643,4 +16643,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
