@@ -7012,6 +7012,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
 	function ChatSearchCreateHeader(searchInput, clearButton, minRoomSizeInput, maxRoomSizeInput) {
+		const showFemaleButton = (
+            ((ChatSearchGetSpace() !== "Asylum" && asylumlimit === true) || (asylumlimit === false))
+            && Player.GetGenders().includes("F")
+        );       
+        const showMaleButton = (
+            ((ChatSearchGetSpace() !== "Asylum" && asylumlimit === true) || (asylumlimit === false))
+            && Player.GetGenders().includes("M")
+        );
+        const showMixedButton = (
+            (((ChatSearchGetSpace() != "Asylum" && asylumlimit == true)) || (asylumlimit == false))
+        );
+        const showAsylumButton = (
+            (((ChatSearchGetSpace() === "Asylum" && asylumlimit == true)) || (asylumlimit == false))
+        );
 	    ChatSearchRoomHeader = ElementCreate(
 		    {
 			    tag: "div",
@@ -7181,11 +7195,79 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 						    ),
 					    ],
 				    },
-				    {
+                    {
 					    tag: "div",
 					    attributes: {id: "chat-search-room-navigation-section"},
 					    classList: ["chat-search-room-header-section"],
 					    children: [
+                            ...(showFemaleButton ? [
+                                ElementButton.Create(
+                                    "chat-search-room-female-lobby-button",
+                                    () => { 
+										ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY); 
+									},
+                                    {
+                                        tooltip: TextGet("Female"),
+                                        tooltipPosition: "bottom",
+                                        image: "Screens/Online/ChatSelect/Female.png",
+                                    },
+                                    { 
+										button: { classList: ["chat-search-room-button"] 
+									} 
+								}
+                            )
+                        ] : []),
+                            ...(showMaleButton ? [
+                                ElementButton.Create(
+                                    "chat-search-room-male-lobby-button",
+                                    () => { 
+										ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY); 
+									},
+                                    {
+                                        tooltip: TextGet("Male"),
+                                        tooltipPosition: "bottom",
+                                        image: "Screens/Online/ChatSelect/Male.png",
+                                    },
+                                    { 
+										button: { classList: ["chat-search-room-button"] 
+									} 
+								}
+                            )
+                        ] : []),
+                            ...(showMixedButton ? [
+                                ElementButton.Create(
+                                    "chat-search-room-mixed-lobby-button",
+                                    () => {
+									    ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+									},
+                                    {
+                                        tooltip: TextGet("Mixed"),
+                                        tooltipPosition: "bottom",
+                                        image: "Icons/Gender.png",
+                                    },
+                                    { 
+										button: { classList: ["chat-search-room-button"] 
+									} 
+								}
+                        )
+                    ] : []),
+                        ...(showAsylumButton ? [
+                            ElementButton.Create(
+                                "chat-search-room-asylum-lobby-button",
+                                () => { 
+									ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+								},
+                                {
+                                    tooltip: TextGet("Asylum"),
+                                    tooltipPosition: "bottom",
+                                    image: "Icons/Asylum.png",
+                                },
+                                { 
+									button: { classList: ["chat-search-room-button"]
+								} 			
+							}
+                        )
+                    ] : []),
 						    ElementButton.Create(
 							    "chat-search-room-create-room-button",
 							    () => ChatAdminShowCreate(),
@@ -16442,5 +16524,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
