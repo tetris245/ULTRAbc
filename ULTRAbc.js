@@ -7217,7 +7217,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 							    "chat-search-room-exit-button",
 							    () => ChatSearchExit(false),
 							    {
-								    tooltip: TextGet("Exit"),
+								    tooltip: "",
 								    tooltipPosition: "bottom",
 								    image: "Icons/Exit.png",
 							    },
@@ -16442,4 +16442,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
