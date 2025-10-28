@@ -3153,7 +3153,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             };
             ChatSearchRoomsPerPage = 21;
             if (cskeys == true) {
-                DrawButton(25, 880, 450, 90, "UBC Hotkeys:", "White", "");
                 DrawButton(490, 880, 90, 90, "", "White", "Icons/Dress.png", "");
                 DrawButton(580, 880, 360, 90, "Left Arrow = Wardrobe", "White", "");
                 DrawButton(955, 880, 90, 90, "", "White", "Icons/Preference.png", "");
@@ -3161,7 +3160,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1470, 880, 90, 90, "", "White", "Icons/Extensions.png", "");
                 DrawButton(1560, 880, 410, 90, "Right Arrow = Extensions", "White", "");
             } else {
-                DrawButton(25, 880, 1950, 90, "Tip: Enable the UBC Hotkeys to enhance your comfort in Bondage Club!", "White", "");
+                DrawButton(490, 880, 1485, 90, "Enjoy all the UBC features!", "White", "");
             }
             next(args);
         });
@@ -16641,5 +16640,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
+
 
 })();
