@@ -101,6 +101,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cextra = false;
     let cfame = 150;
     let csname = "Introduction";
+	let dogsforbid = false;
     let frname = "BrickWall";
     let gamestable = false;
     let gl = 0;
@@ -500,6 +501,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cextra = false;
         cfame = 150;
         cskeys = false;
+		dogsforbid = false;
         dolltalk = false;
         extbuttons = false;
         extrainfo = false;
@@ -593,6 +595,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cextra = data.cextra;
         cfame = data.cfame;
         cskeys = data.cskeys;
+		dogsforbid = data.dogsforbid;
         dolltalk = data.dolltalk;
         extbuttons = data.extbuttons;
         extrainfo = data.extrainfo;
@@ -758,6 +761,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "asylumlimit": asylumlimit,
             "autojoin": autojoin,
             "cskeys": cskeys,
+            "dogsforbid": dogsforbid,
             "dolltalk": dolltalk,
             "extbuttons": extbuttons,
             "extrainfo": extrainfo,
@@ -866,6 +870,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cfame == null || cfame == undefined) cfame = 150;
                 if (cskeys == null || cskeys == undefined) cskeys = false;
                 if (csname == null || csname == undefined) csname = "Introduction";
+				if (dogsforbid == null || dogsforbid == undefined) dogsforbid = false;
                 if (dolltalk == null || dolltalk == undefined) dolltalk = false;
                 if (extbuttons == null || extbuttons == undefined) extbuttons = false;
                 if (extrainfo == null || extrainfo == undefined) extrainfo = false;
@@ -1988,8 +1993,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCSpecialModesLoad = function() {
                 UBCPreferenceSubscreen = "UBCSpecialModes";
-                let nmsg = "This mode disables the FREE/OUT buttons and hotkeys, and prevents to use some commands for yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. When this mode is enabled, it can't be disabled if you are bound. If you are in unrestrict total mode when enabling this option, an automatic relog will disable the special goddess mode.";
-                if ((Player.IsRestrained() == true) && (noescape == true)) {
+                DOGSsettings(); 
+                let nmsg = "This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. It is automatically forced when you have devious locks on you. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, an automatic relog will disable the special goddess mode.";
+                if (((Player.IsRestrained() == true) || (dogsforbid == true)) && (noescape == true)) {
                     addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, true, 120
                     );
                 } else {
@@ -6689,6 +6695,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function OutButtons() {
+		DOGSsettings();
         if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
                 DrawButton(955, 360, 45, 45, "OUT", "White", "", "");
@@ -6752,6 +6759,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function SosButtons() {
+		DOGSsettings();
         if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
                 DrawButton(955, 315, 45, 45, "FREE", "White", "", "");
@@ -8320,6 +8328,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Preferences 
+    function DOGSsettings() {
+        dogsforbid = false;
+        let DOGS = Player.ExtensionSettings.DOGS;
+        if (DOGS) {
+            let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
+            for (let A = 0; A < Player.Appearance.length; A++)
+                if ((Player.Appearance[A].Property != null) &&
+                    (Player.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
+                    (Player.Appearance[A].Property.Name == "DeviousPadlock")) {
+                    let groupName = Player.Appearance[A].Asset.Group.Name;
+                    let hasGroup = !!DOGSdata?.deviousPadlock?.itemGroups?.[groupName];
+                    if (hasGroup == true) { 
+                        Player.UBC.ubcSettings.noescape = true;
+                        noescape = true;
+                        dogsforbid = true;
+                    } else {                   
+                        Player.UBC.ubcSettings.noescape = false;
+                        noescape = false;
+                    }                        
+              }
+       }
+       M_MOANER_saveControls();
+    }
+
     function FBCsettings() {
         let gbc = 0;
         let sbc = 0;
@@ -16410,3 +16442,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
