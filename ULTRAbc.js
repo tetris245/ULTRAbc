@@ -7249,25 +7249,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 										button: { classList: ["chat-search-room-button"] 
 									} 
 								}
-                        )
-                    ] : []),
-                        ...(showAsylumButton ? [
-                            ElementButton.Create(
-                                "chat-search-room-asylum-lobby-button",
-                                () => { 
-									ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-								},
-                                {
-                                    tooltip: TextGet("Asylum"),
-                                    tooltipPosition: "bottom",
-                                    image: "Icons/Asylum.png",
-                                },
-                                { 
-									button: { classList: ["chat-search-room-button"]
-								} 			
-							}
-                        )
-                    ] : []),
+                            )
+                        ] : []),
+                            ...(showAsylumButton ? [
+                                ElementButton.Create(
+                                    "chat-search-room-asylum-lobby-button",
+                                    () => { 
+									    ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+								    },
+                                    {
+                                        tooltip: TextGet("Asylum"),
+                                        tooltipPosition: "bottom",
+                                        image: "Icons/Asylum.png",
+                                    },
+                                    { 
+									    button: { classList: ["chat-search-room-button"]
+								    } 			
+							    }
+                            )
+                        ] : []),
 						    ElementButton.Create(
 							    "chat-search-room-create-room-button",
 							    () => ChatAdminShowCreate(),
@@ -16524,6 +16524,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
