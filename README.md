@@ -69,4 +69,4 @@ Changes for future version
   - It is now automatically forced when you have devious locks on you (even if these locks don't forbid some commands)
   - It is now impossible to disable this mode when you are bound or forced to stay in this mode by devious locks
 * Changed the location of the AutoJoin message
-* Replaced the invitation to enable hotkeys in Chat Search by a more general message
+* Replaced the invitation to enable hotkeys in Chat Search and Friend List by a more general message
