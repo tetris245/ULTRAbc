@@ -7251,23 +7251,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 								}
                             )
                         ] : []),
-                            ...(showAsylumButton ? [
-                                ElementButton.Create(
-                                    "chat-search-room-asylum-lobby-button",
-                                    () => { 
-									    ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-								    },
-                                    {
-                                        tooltip: TextGet("Asylum"),
-                                        tooltipPosition: "bottom",
-                                        image: "Icons/Asylum.png",
-                                    },
-                                    { 
-									    button: { classList: ["chat-search-room-button"]
-								    } 			
-							    }
-                            )
-                        ] : []),
+                            ElementButton.Create(
+                                "chat-search-room-asylum-lobby-button",
+                                () => {
+                                    if (!showAsylumButton) return; 
+                                    ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+                                },
+                                {
+                                    tooltip: TextGet("Asylum"),
+                                    tooltipPosition: "bottom",
+                                    image: "Icons/Asylum.png",
+                                },
+                                {
+                                    button: {
+                                        classList: ["chat-search-room-button"],
+                                        attributes: !showAsylumButton ? {
+                                            "aria-hidden": "true",
+                                            "tabindex": "-1",
+                                            "disabled": "true",
+                                            "style": "visibility:hidden; pointer-events:none;"
+                                        } : {}
+                                    }
+                                }
+                            ),
 						    ElementButton.Create(
 							    "chat-search-room-create-room-button",
 							    () => ChatAdminShowCreate(),
@@ -16524,6 +16530,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
