@@ -66,5 +66,5 @@ Changes for future version
 * Patched the ChatSearchCreateSearchMenu function to include in the Chat Search Menu all lobbies you can access according your gender (if you don't have enabled the Asylum limitations)
 * Added an option in GUI - Special Modes to extend the Silent Mode to the BC safeword
 * Improved the No-Escape mode:
-  - It is now automatically forced on you when you have devious locks (even if these locks don't forbid some commands)
+  - It is now automatically forced when you have devious locks on you (even if these locks don't forbid some commands)
   - It is now impossible to disable this mode when you are bound or forced to stay in this mode by devious locks
