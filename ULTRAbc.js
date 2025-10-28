@@ -6924,7 +6924,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TextArea.setAttribute("ID", "AutoJoinAlert");
                     document.body.appendChild(TextArea);
                     ElementValue("AutoJoinAlert", "AutoJoining...");
-                    ElementPosition("AutoJoinAlert", 1450, 35, 350);
+                    ElementPosition("AutoJoinAlert", 300, 935, 300);
                 }
                 if (room.Name != undefined) {
                     var RoomName = room.Name;
@@ -16643,3 +16643,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
