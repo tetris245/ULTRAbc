@@ -61,7 +61,7 @@ Changes for future version
 
 * Refactored the ChatSearchLoad function to use smaller functions that can more easily be modified
 * Patched the ChatSearchCreateHeader function to
-  - display the lobbies buttons you can access according your gender and your setting for Asylum limitations (one click instead of 3 clicks when using the Chat Search menu!)
+  - display the lobbies buttons you can access according your gender and your setting for Asylum limitations (one click instead of 4 clicks when using the Chat Search menu!)
   - remove useless and partially not displayed tooltip for the Exit button
 * Patched the ChatSearchCreateSearchMenu function to include in the Chat Search Menu all lobbies you can access according your gender (if you don't have enabled the Asylum limitations)
 * Added an option in GUI - Special Modes to extend the Silent Mode to the BC safeword
