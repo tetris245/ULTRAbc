@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.6.1
+Most recent version: 5.7
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.6.1.zip file on the Releases page
+1. Download the ULTRAbc-version5.7.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,16 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Refactored the ChatSearchLoad function to use smaller functions that can more easily be modified
-* Patched the ChatSearchCreateHeader function to
-  - display the lobbies buttons you can access according your gender and your setting for Asylum limitations (one click instead of 4 clicks when using the Chat Search menu!)
-  - remove useless and partially not displayed tooltip for the Exit button
-* Patched the ChatSearchCreateSearchMenu function to include in the Chat Search Menu all lobbies you can access according your gender (if you don't have enabled the Asylum limitations)
-* Added an option in GUI - Special Modes to extend the Silent Mode to the BC safeword
-* Improved the No-Escape mode:
-  - It is now automatically forced when you have devious locks on you (even if these locks don't forbid some commands)
-  - It is now impossible to disable this mode when you are bound or forced to stay in this mode by devious locks
-  - The automatic relog that happened when enabling this mode while being in unrestrict total mode has been replaced by a simpler solution to disable the goddesss mode, it also fixes a potential bug happening later when exiting the UBC settings
-* Improved the info text about the unrestrict soft mode
-* Changed the location of the AutoJoin message
-* Replaced the invitation to enable hotkeys in Chat Search and Friend List by a more general message
+(...)
