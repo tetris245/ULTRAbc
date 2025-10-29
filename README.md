@@ -68,5 +68,6 @@ Changes for future version
 * Improved the No-Escape mode:
   - It is now automatically forced when you have devious locks on you (even if these locks don't forbid some commands)
   - It is now impossible to disable this mode when you are bound or forced to stay in this mode by devious locks
+* Improved the info text about the unrestrict soft mode
 * Changed the location of the AutoJoin message
 * Replaced the invitation to enable hotkeys in Chat Search and Friend List by a more general message
