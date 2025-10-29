@@ -1679,6 +1679,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((noescape == true) && (unrestrict == 2)) {
                     Player.UBC.ubcSettings.utotal = false;
+                    Player.CanInteract = function() {
+                        return !this.HasEffect("Block");
+                    };
+                    Player.CanTalk = function() {
+                        const GagEffect = SpeechTransformGagGarbleIntensity(this);
+			        return (GagEffect <= 0);
+                    };
                     unrestrict = 0;
                     M_MOANER_saveControls();              
                 }
@@ -8547,6 +8554,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 						if (unrestrict == 2) {
                             Player.UBC.ubcSettings.utotal = false;
                             unrestrict = 0;
+							Player.CanInteract = function() {
+                                return !this.HasEffect("Block");
+                            };
+                            Player.CanTalk = function() {
+                                 const GagEffect = SpeechTransformGagGarbleIntensity(this);
+			                return (GagEffect <= 0);
+                            };
                         }
                     } else {
                         Player.UBC.ubcSettings.noescape = false;
