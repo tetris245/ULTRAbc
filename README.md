@@ -68,7 +68,7 @@ Changes for future version
 * Improved the No-Escape mode:
   - It is now automatically forced when you have devious locks on you (even if these locks don't forbid some commands)
   - It is now impossible to disable this mode when you are bound or forced to stay in this mode by devious locks
-  - The automatic relog that happened when enabling this mode while being in unrestrict total has been replaced by a simpler solution, that also fixes a potential bug happening later when exiting the UBC settings
+  - The automatic relog that happened when enabling this mode while being in unrestrict total mode has been replaced by a simpler solution to disable the goddesss mode, it also fixes a potential bug happening later when exiting the UBC settings
 * Improved the info text about the unrestrict soft mode
 * Changed the location of the AutoJoin message
 * Replaced the invitation to enable hotkeys in Chat Search and Friend List by a more general message
