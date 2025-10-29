@@ -3160,7 +3160,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1470, 880, 90, 90, "", "White", "Icons/Extensions.png", "");
                 DrawButton(1560, 880, 410, 90, "Right Arrow = Extensions", "White", "");
             } else {
-                DrawButton(490, 880, 1485, 90, "Enjoy all the UBC features!", "White", "");
+                DrawButton(390, 880, 1585, 90, "Enjoy all the UBC features!", "White", "");
             }
             next(args);
         });
@@ -6801,7 +6801,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         LogDelete("Mastery", "MagicSchool");
     }
 
-    //Chat Search - Autojoin
+    //Chat Search - AutoJoin
     ChatSearchCreateGridRoom = function(room, index) {
         const isBlocked = CharacterHasBlockedItem(Player, room.BlockCategory);
         const hasTooltip = room.Friends.length > 0 || room.MemberCount >= room.MemberLimit || room.Game != "" || room.BlockCategory.length > 0;
@@ -6924,7 +6924,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TextArea.setAttribute("ID", "AutoJoinAlert");
                     document.body.appendChild(TextArea);
                     ElementValue("AutoJoinAlert", "AutoJoining...");
-                    ElementPosition("AutoJoinAlert", 300, 935, 300);
+                    ElementPosition("AutoJoinAlert", 260, 935, 250);
                 }
                 if (room.Name != undefined) {
                     var RoomName = room.Name;
@@ -16643,5 +16643,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
