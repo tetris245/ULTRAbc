@@ -2007,7 +2007,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course useful only if the safeword is enabled!", "!Player.UBC.ubcSettings.silent", 120
                 );
                 addMenuCheckbox(64, 64, "Enable unrestrict soft mode: ", "usoft",
-                    "This mode adds all hidden items to your inventory, allows to use special items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and preserves the examine feature when you are blind if you don't have choosen Total sensory deprivation. It does not remove the conditions to use assets. All these effects are also included in the unrestrict total mode. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 120
+                    "Effects of this mode (also available in unrestrict total mode) : hidden items added to your inventory, access to items covered by other items, use of items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and examine feature preserved when you are blind, but not in Total sensory deprivation. It does not remove the conditions to use assets. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable unrestrict total mode: ", "utotal",
                     "Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).", "Player.UBC.ubcSettings.noescape", 120
@@ -16643,6 +16643,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
