@@ -1678,8 +1678,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
                 if ((noescape == true) && (unrestrict == 2)) {
-                    ServerSocket.close();
-                    ServerSocket.open();
+                    Player.UBC.ubcSettings.utotal = false;
+                    unrestrict = 0;
+                    M_MOANER_saveControls();              
                 }
                 TintsEffect();
                 UBCPreferenceSubscreen = "";
@@ -1994,7 +1995,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCSpecialModesLoad = function() {
                 UBCPreferenceSubscreen = "UBCSpecialModes";
                 DOGSsettings();
-                let nmsg = "This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. It is automatically forced when you have devious locks on you. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, an automatic relog will disable the special goddess mode.";
+                let nmsg = "This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. It is automatically forced when you have devious locks on you. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, the special goddess mode will be automatically disabled.";
                 if (((Player.IsRestrained() == true) || (dogsforbid == true)) && (noescape == true)) {
                     addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, true, 120);
                 } else {
@@ -8543,6 +8544,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         Player.UBC.ubcSettings.noescape = true;
                         noescape = true;
                         dogsforbid = true;
+						if (unrestrict == 2) {
+                            Player.UBC.ubcSettings.utotal = false;
+                            unrestrict = 0;
+                        }
                     } else {
                         Player.UBC.ubcSettings.noescape = false;
                         noescape = false;
@@ -16643,6 +16648,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
 
 
