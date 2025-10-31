@@ -6810,106 +6810,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Search - AutoJoin
-    ChatSearchCreateGridRoom = function(room, index) {
-        const isBlocked = CharacterHasBlockedItem(Player, room.BlockCategory);
-        const hasTooltip = room.Friends.length > 0 || room.MemberCount >= room.MemberLimit || room.Game != "" || room.BlockCategory.length > 0;
-        const icons = ChatSearchGridRoomGetIcons(room);
-        /**@type {(null | undefined | string | Node | HTMLOptions<keyof HTMLElementTagNameMap>)[]} */
-        const content = [
-            ElementButton.Create(`chat-search-room-join-button-${room.Order}`, () => {
-                if (ChatSearchMode == "Filter") {
-                    if (ChatSearchShowHiddenRoomsActive) return ChatSearchClickUnhideRoom(room, false);
-                    if (ChatSearchHiddenResult.includes(room)) return ChatSearchClickUnhideRoom(room, false);
-                    ChatSearchHiddenResult.push(room);
-                    const roomIdx = ChatSearchResult.findIndex(r => r.Name === room.Name);
-                    if (roomIdx >= 0) ChatSearchResult.splice(roomIdx, 1);
-                    document.getElementById(`chat-search-room-join-button-${room.Order}`).setAttribute("data-temporary-hidden", "true");
-                    if (ChatSearchGhostPlayerOnClickActive) return ChatRoomListManipulation(Player.GhostList, true, "" + room.CreatorMemberNumber);
-                    ChatSearchTempHiddenRooms.push(room.CreatorMemberNumber);
-                    return;
-                }
-                RoomJoin(room);
-            }, {
-                tooltipPosition: "bottom",
-                tooltip: hasTooltip ? ChatSearchCreateGridRoomTooltip(room, index) : undefined,
-            }, {
-                button: {
-                    classList: ["chat-search-room-join-button"],
-                    attributes: {
-                        autofocus: true,
-                    },
-                    dataAttributes: {
-                        locked: !room.CanJoin ? "true" : "false",
-                        full: room.MemberCount >= room.MemberLimit ? "true" : "false",
-                        withFriends: room.Friends.length > 0 ? "true" : "false",
-                        blocked: isBlocked ? "true" : "false",
-                        game: room.Game != "" ? "true" : "false",
-                        temporaryHidden: ChatSearchHiddenResult.includes(room) ? "true" : "false",
-                    },
-                },
-            }),
-            icons.length > 0 ? {
-                tag: "div",
-                classList: ["chat-search-room-icons"],
-                children: [
-                    ...icons.map((value) => ElementCreate({
-                        tag: "img",
-                        classList: ["chat-search-room-icon"],
-                        attributes: {
-                            src: value ?? ""
-                        },
-                    })),
-                ],
-            } : undefined,
-            {
-                tag: "p",
-                classList: ["chat-search-room-title"],
-                children: [{
-                        tag: "span",
-                        classList: ["chat-search-room-name"],
-                        children: [room.Name]
-                    },
-                    "-",
-                    {
-                        tag: "span",
-                        classList: ["chat-search-room-creator"],
-                        children: [`${room.Creator}`]
-                    },
-                    {
-                        tag: "span",
-                        classList: ["chat-search-room-members"],
-                        children: [`${room.MemberCount}/${room.MemberLimit}`]
-                    },
-                ],
-            },
-            {
-                tag: "p",
-                classList: ["chat-search-room-description"],
-                children: [room.Description]
-            },
-            ElementButton.Create(`chat-search-room-page-button-${room.Order}`, () => {
-                ChatSearchShowRoomPage(room);
-            }, {
-                tooltipPosition: "bottom",
-                tooltip: TextGet("ShowRoomPage"),
-                image: "Icons/Information.svg",
-            }, {
-                button: {
-                    classList: ["chat-search-room-page-button"],
-                },
-            }),
-        ];
-        ElementCreate({
-            tag: "div",
-            classList: ["chat-search-room"],
-            attributes: {
-                id: `chat-search-room-${room.Order}`,
-            },
-            children: content,
-            parent: ChatSearchRoomGrid,
-        });
-    }
-
     function RoomJoin(room) {
         if (autojoin == false) {
             ServerSend("ChatRoomJoin", {
@@ -6963,6 +6863,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             return;
         }
     }
+
+	modApi.patchFunction("ChatSearchCreateGridRoom", {
+        'ServerSend("ChatRoomJoin", { Name: room.Name });':
+        "_ubcRoomJoin(room);"
+    });
+    window._ubcRoomJoin = RoomJoin;
 
     //Chat Search - Screen + Menu
     function ChatSearchCreateFilterHelpDialog() {
@@ -16661,3 +16567,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
