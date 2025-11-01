@@ -3124,7 +3124,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             TextPrefetch("Online", "ChatAdmin");
             TextPrefetch("Online", "ChatRoom");
             return;
-            return;
+            next(args);
         });
     }
 
@@ -16567,4 +16567,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
