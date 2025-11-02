@@ -3186,33 +3186,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Chess Game
-    async function GameChess() {
-        await CommonSetScreen("Room", "CollegeChess");
-        CollegeChessGameStartALT = function(Difficulty) {
-            CollegeChessDifficulty = parseInt(Difficulty);
-            const playerStarts = Math.random() < 0.5;
-            ChessCharacterWhite = playerStarts ? Player : CollegeChessOpponent;
-            ChessCharacterBlack = playerStarts ? CollegeChessOpponent : Player;
-            MiniGameStart("Chess", CollegeChessDifficulty, "CollegeChessGameEndALT");
-            document.addEventListener("chessOnMove", CollegeChessGameProgress);
-        };
-        if (this.ChessOn == false || this.ChessOn == undefined) {
-            ChessOn = true;
-            if (minigame == "easy") chessdifficulty = 1;
-            if (minigame == "normal") chessdifficulty = 2;
-            if (minigame == "hard") chessdifficulty = 3;
-            CollegeChessGameStartALT(chessdifficulty);
-            setTimeout(function() {
-                CommonSetScreen("Online", "ChatRoom");
-                ElementPositionFix("DivChessBoard", null, -1100, 0);
-            }, 2000);
-        } else {
-            minigame = "";
-            M_MOANER_saveControls();
-        }
-    }
-
     //Club Card Game
     async function ULTRAAsylumMeetingClubCardStart() {
         modApi.hookFunction('AsylumMeetingClubCardStart', 4, (args, next) => {
@@ -7732,6 +7705,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         };
         Player.ArousalSettings.OrgasmCount = 0;
         ChatSearchLanguage = Player.ChatSearchSettings.Language;
+    }
+
+	//Chess Game
+    async function GameChess() {
+        await CommonSetScreen("Room", "CollegeChess");
+        CollegeChessGameStartALT = function(Difficulty) {
+            CollegeChessDifficulty = parseInt(Difficulty);
+            const playerStarts = Math.random() < 0.5;
+            ChessCharacterWhite = playerStarts ? Player : CollegeChessOpponent;
+            ChessCharacterBlack = playerStarts ? CollegeChessOpponent : Player;
+            MiniGameStart("Chess", CollegeChessDifficulty, "CollegeChessGameEndALT");
+            document.addEventListener("chessOnMove", CollegeChessGameProgress);
+        };
+        if (this.ChessOn == false || this.ChessOn == undefined) {
+            ChessOn = true;
+            if (minigame == "easy") chessdifficulty = 1;
+            if (minigame == "normal") chessdifficulty = 2;
+            if (minigame == "hard") chessdifficulty = 3;
+            CollegeChessGameStartALT(chessdifficulty);
+            setTimeout(function() {
+                CommonSetScreen("Online", "ChatRoom");
+                ElementPositionFix("DivChessBoard", null, -1100, 0);
+            }, 2000);
+        } else {
+            minigame = "";
+            M_MOANER_saveControls();
+        }
     }
 
     //Club Card Game
@@ -16567,5 +16567,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
