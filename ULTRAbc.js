@@ -4542,176 +4542,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function ULTRAPreferenceSubscreenMainLoad() {
-        modApi.hookFunction('PreferenceSubscreenMainLoad', 4, (args, next) => {
-            let prfscr = PreferenceSubscreens;
-            if (alfmenu == true) prfscr = AltPreferenceSubscreens;
-            const subscreenButtons = prfscr.filter(s => !s.hidden);
-            const buttons = ElementCreate({
-                tag: "div",
-                classList: ["preference-button-grid", "scroll-box"],
-                attributes: {
-                    id: MainSubscreenIDs.grid
-                },
-                children: subscreenButtons.map((screen) => {
-                    return ElementButton.Create(`preference-main-${screen.name}`,
-                        () => {
-                            PreferenceOpenSubscreen(screen.name);
-                        }, {
-                            image: screen.icon || `Icons/${screen.name}.png`,
-                            label: screen.description || TextGet(`Homepage${screen.name}`),
-                            labelPosition: "right",
-                        });
-                }),
-            });
-            ElementWrap(PreferenceIDs.subscreen).append(buttons);
-            return;
+        modApi.hookFunction('PreferenceSubscreenMainLoad', 4, (args, next) => {          
+            if (alfmenu == true) {
+                AltPrf();
+                return;
+            }
+            next(args);
         });
     }
-
-    const AltPreferenceSubscreens = [{
-            name: "Main",
-            hidden: true,
-            load: () => PreferenceSubscreenMainLoad(),
-            run: () => PreferenceSubscreenMainRun(),
-            click: () => PreferenceSubscreenMainClick(),
-            resize: () => PreferenceSubscreenMainResize(),
-            unload: () => PreferenceSubscreenMainUnload(),
-            exit: () => PreferenceSubscreenMainExit(),
-        },
-        {
-            name: "General",
-            load: () => PreferenceSubscreenGeneralLoad(),
-            run: () => PreferenceSubscreenGeneralRun(),
-            click: () => PreferenceSubscreenGeneralClick(),
-            exit: () => PreferenceSubscreenGeneralExit(),
-            unload: () => PreferenceSubscreenGeneralUnload(),
-        },
-        {
-            name: "Arousal",
-            load: () => PreferenceSubscreenArousalLoad(),
-            run: () => PreferenceSubscreenArousalRun(),
-            click: () => PreferenceSubscreenArousalClick(),
-            exit: () => PreferenceSubscreenArousalExit(),
-            unload: () => PreferenceSubscreenArousalUnload(),
-        },
-        {
-            name: "Audio",
-            load: () => PreferenceSubscreenAudioLoad(),
-            run: () => PreferenceSubscreenAudioRun(),
-            click: () => PreferenceSubscreenAudioClick(),
-            exit: () => PreferenceSubscreenAudioExit(),
-            unload: () => PreferenceSubscreenAudioUnload(),
-            resize: () => PreferenceSubscreenAudioResize(),
-        },
-        {
-            name: "CensoredWords",
-            load: () => PreferenceSubscreenCensoredWordsLoad(),
-            run: () => PreferenceSubscreenCensoredWordsRun(),
-            click: () => PreferenceSubscreenCensoredWordsClick(),
-            exit: () => PreferenceSubscreenCensoredWordsExit(),
-            unload: () => PreferenceSubscreenCensoredWordsUnload(),
-            resize: () => PreferenceSubscreenCensoredWordsResize(),
-        },
-        {
-            name: "Chat",
-            load: () => PreferenceSubscreenChatLoad(),
-            run: () => PreferenceSubscreenChatRun(),
-            click: () => PreferenceSubscreenChatClick(),
-            exit: () => PreferenceSubscreenChatExit(),
-            resize: () => PreferenceSubscreenChatResize(),
-        },
-        {
-            name: "Controller",
-            load: () => PreferenceSubscreenControllerLoad(),
-            run: () => PreferenceSubscreenControllerRun(),
-            click: () => PreferenceSubscreenControllerClick(),
-            exit: () => PreferenceSubscreenControllerExit(),
-            unload: () => PreferenceSubscreenControllerUnload(),
-        },
-        {
-            name: "Difficulty",
-            run: () => PreferenceSubscreenDifficultyRun(),
-            click: () => PreferenceSubscreenDifficultyClick(),
-            exit: () => PreferenceSubscreenDifficultyExit(),
-        },
-        {
-            name: "Extensions",
-            load: () => PreferenceSubscreenExtensionsLoad(),
-            run: () => PreferenceSubscreenExtensionsRun(),
-            click: () => PreferenceSubscreenExtensionsClick(),
-            exit: () => PreferenceSubscreenExtensionsExit(),
-            unload: () => PreferenceSubscreenExtensionsUnload(),
-            resize: () => PreferenceSubscreenExtensionsResize(),
-        },
-        {
-            name: "Gender",
-            run: () => PreferenceSubscreenGenderRun(),
-            click: () => PreferenceSubscreenGenderClick(),
-        },
-        {
-            name: "Graphics",
-            load: () => PreferenceSubscreenGraphicsLoad(),
-            run: () => PreferenceSubscreenGraphicsRun(),
-            click: () => PreferenceSubscreenGraphicsClick(),
-            exit: () => PreferenceSubscreenGraphicsExit(),
-            unload: () => PreferenceSubscreenGraphicsUnload(),
-        },
-        {
-            name: "Immersion",
-            load: () => PreferenceSubscreenImmersionLoad(),
-            run: () => PreferenceSubscreenImmersionRun(),
-            click: () => PreferenceSubscreenImmersionClick(),
-            resize: () => PreferenceSubscreenImmersionResize(),
-        },
-        {
-            name: "Visibility",
-            load: () => PreferenceSubscreenVisibilityLoad(),
-            run: () => PreferenceSubscreenVisibilityRun(),
-            click: () => PreferenceSubscreenVisibilityClick(),
-            exit: () => PreferenceSubscreenVisibilityExit(),
-            unload: () => PreferenceSubscreenVisibilityUnload(),
-        },
-        {
-            name: "Notifications",
-            load: () => PreferenceSubscreenNotificationsLoad(),
-            run: () => PreferenceSubscreenNotificationsRun(),
-            click: () => PreferenceSubscreenNotificationsClick(),
-            exit: () => PreferenceSubscreenNotificationsExit(),
-            unload: () => PreferenceSubscreenNotificationsUnload(),
-        },
-        {
-            name: "Online",
-            load: () => PreferenceSubscreenOnlineLoad(),
-            run: () => PreferenceSubscreenOnlineRun(),
-            click: () => PreferenceSubscreenOnlineClick(),
-            resize: () => PreferenceSubscreenOnlineResize(),
-        },
-        {
-            name: "Restriction",
-            load: () => PreferenceSubscreenRestrictionLoad(),
-            run: () => PreferenceSubscreenRestrictionRun(),
-            click: () => PreferenceSubscreenRestrictionClick(),
-            resize: () => PreferenceSubscreenRestrictionResize(),
-        },
-        {
-            name: "Scripts",
-            load: () => PreferenceSubscreenScriptsLoad(),
-            run: () => PreferenceSubscreenScriptsRun(),
-            click: () => PreferenceSubscreenScriptsClick(),
-            exit: () => PreferenceSubscreenScriptsExit(),
-            unload: () => PreferenceSubscreenScriptsUnload(),
-        },
-        {
-            name: "Security",
-            load: () => PreferenceSubscreenSecurityLoad(),
-            run: () => PreferenceSubscreenSecurityRun(),
-            click: () => PreferenceSubscreenSecurityClick(),
-            exit: () => PreferenceSubscreenSecurityExit(),
-            unload: () => PreferenceSubscreenSecurityUnload(),
-            resize: () => PreferenceSubscreenSecurityResize(),
-        },
-    ];
-
 
     async function ULTRAPreferenceSubscreenOnlineLoad() {
         modApi.hookFunction('PreferenceSubscreenOnlineLoad', 4, (args, next) => {
@@ -8442,6 +8280,173 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Preferences 
+    function AltPrf() {
+        let prfscr = AltPreferenceSubscreens;
+        const subscreenButtons = prfscr.filter(s => !s.hidden);
+        const buttons = ElementCreate({
+            tag: "div",
+            classList: ["preference-button-grid", "scroll-box"],
+            attributes: {
+                id: MainSubscreenIDs.grid
+            },
+            children: subscreenButtons.map((screen) => {
+                return ElementButton.Create(`preference-main-${screen.name}`,
+                    () => {
+                        PreferenceOpenSubscreen(screen.name);
+                    }, {
+                        image: screen.icon || `Icons/${screen.name}.png`,
+                        label: screen.description || TextGet(`Homepage${screen.name}`),
+                        labelPosition: "right",
+                    });
+            }),
+        });
+        ElementWrap(PreferenceIDs.subscreen).append(buttons);
+    }
+
+    const AltPreferenceSubscreens = [{
+            name: "Main",
+            hidden: true,
+            load: () => PreferenceSubscreenMainLoad(),
+            run: () => PreferenceSubscreenMainRun(),
+            click: () => PreferenceSubscreenMainClick(),
+            resize: () => PreferenceSubscreenMainResize(),
+            unload: () => PreferenceSubscreenMainUnload(),
+            exit: () => PreferenceSubscreenMainExit(),
+        },
+        {
+            name: "General",
+            load: () => PreferenceSubscreenGeneralLoad(),
+            run: () => PreferenceSubscreenGeneralRun(),
+            click: () => PreferenceSubscreenGeneralClick(),
+            exit: () => PreferenceSubscreenGeneralExit(),
+            unload: () => PreferenceSubscreenGeneralUnload(),
+        },
+        {
+            name: "Arousal",
+            load: () => PreferenceSubscreenArousalLoad(),
+            run: () => PreferenceSubscreenArousalRun(),
+            click: () => PreferenceSubscreenArousalClick(),
+            exit: () => PreferenceSubscreenArousalExit(),
+            unload: () => PreferenceSubscreenArousalUnload(),
+        },
+        {
+            name: "Audio",
+            load: () => PreferenceSubscreenAudioLoad(),
+            run: () => PreferenceSubscreenAudioRun(),
+            click: () => PreferenceSubscreenAudioClick(),
+            exit: () => PreferenceSubscreenAudioExit(),
+            unload: () => PreferenceSubscreenAudioUnload(),
+            resize: () => PreferenceSubscreenAudioResize(),
+        },
+        {
+            name: "CensoredWords",
+            load: () => PreferenceSubscreenCensoredWordsLoad(),
+            run: () => PreferenceSubscreenCensoredWordsRun(),
+            click: () => PreferenceSubscreenCensoredWordsClick(),
+            exit: () => PreferenceSubscreenCensoredWordsExit(),
+            unload: () => PreferenceSubscreenCensoredWordsUnload(),
+            resize: () => PreferenceSubscreenCensoredWordsResize(),
+        },
+        {
+            name: "Chat",
+            load: () => PreferenceSubscreenChatLoad(),
+            run: () => PreferenceSubscreenChatRun(),
+            click: () => PreferenceSubscreenChatClick(),
+            exit: () => PreferenceSubscreenChatExit(),
+            resize: () => PreferenceSubscreenChatResize(),
+        },
+        {
+            name: "Controller",
+            load: () => PreferenceSubscreenControllerLoad(),
+            run: () => PreferenceSubscreenControllerRun(),
+            click: () => PreferenceSubscreenControllerClick(),
+            exit: () => PreferenceSubscreenControllerExit(),
+            unload: () => PreferenceSubscreenControllerUnload(),
+        },
+        {
+            name: "Difficulty",
+            run: () => PreferenceSubscreenDifficultyRun(),
+            click: () => PreferenceSubscreenDifficultyClick(),
+            exit: () => PreferenceSubscreenDifficultyExit(),
+        },
+        {
+            name: "Extensions",
+            load: () => PreferenceSubscreenExtensionsLoad(),
+            run: () => PreferenceSubscreenExtensionsRun(),
+            click: () => PreferenceSubscreenExtensionsClick(),
+            exit: () => PreferenceSubscreenExtensionsExit(),
+            unload: () => PreferenceSubscreenExtensionsUnload(),
+            resize: () => PreferenceSubscreenExtensionsResize(),
+        },
+        {
+            name: "Gender",
+            run: () => PreferenceSubscreenGenderRun(),
+            click: () => PreferenceSubscreenGenderClick(),
+        },
+        {
+            name: "Graphics",
+            load: () => PreferenceSubscreenGraphicsLoad(),
+            run: () => PreferenceSubscreenGraphicsRun(),
+            click: () => PreferenceSubscreenGraphicsClick(),
+            exit: () => PreferenceSubscreenGraphicsExit(),
+            unload: () => PreferenceSubscreenGraphicsUnload(),
+        },
+        {
+            name: "Immersion",
+            load: () => PreferenceSubscreenImmersionLoad(),
+            run: () => PreferenceSubscreenImmersionRun(),
+            click: () => PreferenceSubscreenImmersionClick(),
+            resize: () => PreferenceSubscreenImmersionResize(),
+        },
+        {
+            name: "Visibility",
+            load: () => PreferenceSubscreenVisibilityLoad(),
+            run: () => PreferenceSubscreenVisibilityRun(),
+            click: () => PreferenceSubscreenVisibilityClick(),
+            exit: () => PreferenceSubscreenVisibilityExit(),
+            unload: () => PreferenceSubscreenVisibilityUnload(),
+        },
+        {
+            name: "Notifications",
+            load: () => PreferenceSubscreenNotificationsLoad(),
+            run: () => PreferenceSubscreenNotificationsRun(),
+            click: () => PreferenceSubscreenNotificationsClick(),
+            exit: () => PreferenceSubscreenNotificationsExit(),
+            unload: () => PreferenceSubscreenNotificationsUnload(),
+        },
+        {
+            name: "Online",
+            load: () => PreferenceSubscreenOnlineLoad(),
+            run: () => PreferenceSubscreenOnlineRun(),
+            click: () => PreferenceSubscreenOnlineClick(),
+            resize: () => PreferenceSubscreenOnlineResize(),
+        },
+        {
+            name: "Restriction",
+            load: () => PreferenceSubscreenRestrictionLoad(),
+            run: () => PreferenceSubscreenRestrictionRun(),
+            click: () => PreferenceSubscreenRestrictionClick(),
+            resize: () => PreferenceSubscreenRestrictionResize(),
+        },
+        {
+            name: "Scripts",
+            load: () => PreferenceSubscreenScriptsLoad(),
+            run: () => PreferenceSubscreenScriptsRun(),
+            click: () => PreferenceSubscreenScriptsClick(),
+            exit: () => PreferenceSubscreenScriptsExit(),
+            unload: () => PreferenceSubscreenScriptsUnload(),
+        },
+        {
+            name: "Security",
+            load: () => PreferenceSubscreenSecurityLoad(),
+            run: () => PreferenceSubscreenSecurityRun(),
+            click: () => PreferenceSubscreenSecurityClick(),
+            exit: () => PreferenceSubscreenSecurityExit(),
+            unload: () => PreferenceSubscreenSecurityUnload(),
+            resize: () => PreferenceSubscreenSecurityResize(),
+        },
+    ];
+
     function DOGSsettings() {
         dogsforbid = false;
         let DOGS = Player.ExtensionSettings.DOGS;
@@ -16567,6 +16572,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
