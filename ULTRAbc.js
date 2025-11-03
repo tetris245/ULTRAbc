@@ -4169,184 +4169,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAPreferenceSubscreenChatLoad() {
+	async function ULTRAPreferenceSubscreenChatLoad() {
         modApi.hookFunction('PreferenceSubscreenChatLoad', 4, (args, next) => {
-            let Dropcheck = PreferenceSubscreenChatDropdowns;
-            if (alfaprf == true) Dropcheck = AltPreferenceSubscreenChatDropdowns;
-            const dropdownElements = Object.entries(Dropcheck).map(([key, dropdown]) => {
-                const currentValue = dropdown.current();
-                const options = dropdown.list.map(( /** @type {string} */ e) => /** @type {Omit<HTMLOptions<"option">, "tag">} */ ({
-                    attributes: {
-                        value: e,
-                        label: TextGet(e),
-                        selected: e === currentValue
-                    }
-                }));
-                return ElementCreate({
-                    tag: "div",
-                    classList: ["preference-settings-dropdown"],
-                    attributes: {
-                        id: `${key}-dropdown-container`
-                    },
-                    children: [{
-                            tag: "label",
-                            children: [TextGet(key)],
-                            attributes: {
-                                for: `${key}-dropdown`
-                            },
-                        },
-                        ElementCreateDropdown(`${key}-dropdown`, options,
-                            (ev) => {
-                                ev.preventDefault();
-                                const value = /** @type {HTMLSelectElement} */ (ev.target).value;
-                                if (!value) return;
-                                if (!dropdown.list.includes(value)) return;
-                                dropdown.onChange(value);
-                            })
-                    ]
-                });
-            });
-            let Boxcheck = PreferenceSubscreenChatCheckboxes;
-            if (alfaprf == true) Boxcheck = AltPreferenceSubscreenChatCheckboxes;
-            const checkboxElements = Boxcheck.map((checkbox) => {
-                const checked = checkbox.check();
-                const label = TextGet(checkbox.label);
-                return ElementCheckbox.CreateLabelled(`${checkbox.label}-checkbox`, label, checkbox.click, {
-                    checked
-                });
-            });
-            const grid = ElementCreate({
-                tag: "div",
-                classList: ["preference-settings-grid", "scroll-box"],
-                attributes: {
-                    id: PreferenceSubscreenChatIDs.grid
-                },
-                children: [
-                    ...dropdownElements,
-                    ...checkboxElements
-                ]
-            });
-            ElementWrap(PreferenceIDs.subscreen).append(grid);
-            return;
+            if (alfaprf == true) {
+                AltPrfChat();
+                return;
+            }
+            next(args);
         });
     }
-
-    /** @type {PreferenceChatCheckboxOption[]} */
-    const AltPreferenceSubscreenChatCheckboxes = [{
-            label: "OOCAutoClose",
-            check: () => Player.ChatSettings.OOCAutoClose,
-            click: () => Player.ChatSettings.OOCAutoClose = !Player.ChatSettings.OOCAutoClose
-        },
-        {
-            label: "ColorActions",
-            check: () => Player.ChatSettings.ColorActions,
-            click: () => Player.ChatSettings.ColorActions = !Player.ChatSettings.ColorActions
-        },
-        {
-            label: "ColorActivities",
-            check: () => Player.ChatSettings.ColorActivities,
-            click: () => Player.ChatSettings.ColorActivities = !Player.ChatSettings.ColorActivities
-        },
-        {
-            label: "ColorEmotes",
-            check: () => Player.ChatSettings.ColorEmotes,
-            click: () => Player.ChatSettings.ColorEmotes = !Player.ChatSettings.ColorEmotes
-        },
-        {
-            label: "ColorNames",
-            check: () => Player.ChatSettings.ColorNames,
-            click: () => Player.ChatSettings.ColorNames = !Player.ChatSettings.ColorNames
-        },
-        {
-            label: "DisableReplies",
-            check: () => Player.ChatSettings.DisableReplies,
-            click: () => Player.ChatSettings.DisableReplies = !Player.ChatSettings.DisableReplies
-        },
-        {
-            label: "DisplayTimestamps",
-            check: () => Player.ChatSettings.DisplayTimestamps,
-            click: () => Player.ChatSettings.DisplayTimestamps = !Player.ChatSettings.DisplayTimestamps
-        },
-        {
-            label: "PreserveChat",
-            check: () => Player.ChatSettings.PreserveChat,
-            click: () => {
-                Player.ChatSettings.PreserveChat = !Player.ChatSettings.PreserveChat;
-                const roomSeps = /** @type {HTMLDivElement[]} */ (Array.from(document.querySelectorAll("#TextAreaChatLog .chat-room-sep")));
-                if (Player.ChatSettings.PreserveChat) {
-                    roomSeps.forEach(e => e.toggleAttribute("hidden", false));
-                }
-            }
-        },
-        {
-            label: "PreserveWhitespace",
-            check: () => Player.ChatSettings.WhiteSpace == "Preserve",
-            click: () => Player.ChatSettings.WhiteSpace = Player.ChatSettings.WhiteSpace == "Preserve" ? "" : "Preserve"
-        },
-        {
-            label: "ShowAutomaticMessages",
-            check: () => Player.ChatSettings.ShowAutomaticMessages,
-            click: () => Player.ChatSettings.ShowAutomaticMessages = !Player.ChatSettings.ShowAutomaticMessages
-        },
-        {
-            label: "ShowBeepChat",
-            check: () => Player.ChatSettings.ShowBeepChat,
-            click: () => Player.ChatSettings.ShowBeepChat = !Player.ChatSettings.ShowBeepChat
-        },
-        {
-            label: "ShowChatRoomHelp",
-            check: () => Player.ChatSettings.ShowChatHelp,
-            click: () => Player.ChatSettings.ShowChatHelp = !Player.ChatSettings.ShowChatHelp
-        },
-        {
-            label: "ShowActivities",
-            check: () => Player.ChatSettings.ShowActivities,
-            click: () => Player.ChatSettings.ShowActivities = !Player.ChatSettings.ShowActivities
-        },
-        {
-            label: "ShrinkNonDialogue",
-            check: () => Player.ChatSettings.ShrinkNonDialogue,
-            click: () => Player.ChatSettings.ShrinkNonDialogue = !Player.ChatSettings.ShrinkNonDialogue
-        },
-        {
-            label: "MuStylePoses",
-            check: () => Player.ChatSettings.MuStylePoses,
-            click: () => Player.ChatSettings.MuStylePoses = !Player.ChatSettings.MuStylePoses
-        },
-    ];
-
-    /** @type {Record<string, PreferenceChatDropdownOption>} */
-    const AltPreferenceSubscreenChatDropdowns = {
-        DisplayMemberNumbers: {
-            list: [...PreferenceChatMemberNumbersList],
-            current: () => Player.ChatSettings.MemberNumbers,
-            onChange: (value) => {
-                Player.ChatSettings.MemberNumbers = /** @type {ChatMemberNumbersType} */ (value);
-            },
-        },
-        EnterLeaveStyle: {
-            list: [...PreferenceChatEnterLeaveList],
-            current: () => Player.ChatSettings.EnterLeave,
-            onChange: (value) => {
-                Player.ChatSettings.EnterLeave = /** @type {ChatEnterLeaveType} */ (value);
-            },
-        },
-        FontSize: {
-            list: [...PreferenceChatFontSizeList],
-            current: () => Player.ChatSettings.FontSize,
-            onChange: (value) => {
-                Player.ChatSettings.FontSize = /** @type {ChatFontSizeType} */ (value);
-                ChatRoomRefreshFontSize();
-            },
-        },
-        ColorTheme: {
-            list: [...PreferenceChatColorThemeList],
-            current: () => Player.ChatSettings.ColorTheme,
-            onChange: (value) => {
-                Player.ChatSettings.ColorTheme = /** @type {ChatColorThemeType} */ (value);
-            },
-        },
-    };
 
     async function ULTRAPreferenceSubscreenImmersionLoad() {
         modApi.hookFunction('PreferenceSubscreenImmersionLoad', 4, (args, next) => {
@@ -8143,6 +7974,180 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             resize: () => PreferenceSubscreenSecurityResize(),
         },
     ];
+
+	function AltPrfChat() {
+        let Dropcheck = AltPreferenceSubscreenChatDropdowns;
+        const dropdownElements = Object.entries(Dropcheck).map(([key, dropdown]) => {
+            const currentValue = dropdown.current();
+            const options = dropdown.list.map(( /** @type {string} */ e) => /** @type {Omit<HTMLOptions<"option">, "tag">} */ ({
+                attributes: {
+                    value: e,
+                    label: TextGet(e),
+                    selected: e === currentValue
+                }
+            }));
+            return ElementCreate({
+                tag: "div",
+                classList: ["preference-settings-dropdown"],
+                attributes: {
+                    id: `${key}-dropdown-container`
+                },
+                children: [{
+                        tag: "label",
+                        children: [TextGet(key)],
+                        attributes: {
+                            for: `${key}-dropdown`
+                        },
+                    },
+                    ElementCreateDropdown(`${key}-dropdown`, options,
+                        (ev) => {
+                            ev.preventDefault();
+                            const value = /** @type {HTMLSelectElement} */ (ev.target).value;
+                            if (!value) return;
+                            if (!dropdown.list.includes(value)) return;
+                            dropdown.onChange(value);
+                        })
+                ]
+            });
+        });
+        let Boxcheck = AltPreferenceSubscreenChatCheckboxes;
+        const checkboxElements = Boxcheck.map((checkbox) => {
+            const checked = checkbox.check();
+            const label = TextGet(checkbox.label);
+            return ElementCheckbox.CreateLabelled(`${checkbox.label}-checkbox`, label, checkbox.click, {
+                checked
+            });
+        });
+        const grid = ElementCreate({
+            tag: "div",
+            classList: ["preference-settings-grid", "scroll-box"],
+            attributes: {
+                id: PreferenceSubscreenChatIDs.grid
+            },
+            children: [
+                ...dropdownElements,
+                ...checkboxElements
+            ]
+        });
+        ElementWrap(PreferenceIDs.subscreen).append(grid);
+    }
+
+    /** @type {PreferenceChatCheckboxOption[]} */
+    const AltPreferenceSubscreenChatCheckboxes = [{
+            label: "OOCAutoClose",
+            check: () => Player.ChatSettings.OOCAutoClose,
+            click: () => Player.ChatSettings.OOCAutoClose = !Player.ChatSettings.OOCAutoClose
+        },
+        {
+            label: "ColorActions",
+            check: () => Player.ChatSettings.ColorActions,
+            click: () => Player.ChatSettings.ColorActions = !Player.ChatSettings.ColorActions
+        },
+        {
+            label: "ColorActivities",
+            check: () => Player.ChatSettings.ColorActivities,
+            click: () => Player.ChatSettings.ColorActivities = !Player.ChatSettings.ColorActivities
+        },
+        {
+            label: "ColorEmotes",
+            check: () => Player.ChatSettings.ColorEmotes,
+            click: () => Player.ChatSettings.ColorEmotes = !Player.ChatSettings.ColorEmotes
+        },
+        {
+            label: "ColorNames",
+            check: () => Player.ChatSettings.ColorNames,
+            click: () => Player.ChatSettings.ColorNames = !Player.ChatSettings.ColorNames
+        },
+        {
+            label: "DisableReplies",
+            check: () => Player.ChatSettings.DisableReplies,
+            click: () => Player.ChatSettings.DisableReplies = !Player.ChatSettings.DisableReplies
+        },
+        {
+            label: "DisplayTimestamps",
+            check: () => Player.ChatSettings.DisplayTimestamps,
+            click: () => Player.ChatSettings.DisplayTimestamps = !Player.ChatSettings.DisplayTimestamps
+        },
+        {
+            label: "PreserveChat",
+            check: () => Player.ChatSettings.PreserveChat,
+            click: () => {
+                Player.ChatSettings.PreserveChat = !Player.ChatSettings.PreserveChat;
+                const roomSeps = /** @type {HTMLDivElement[]} */ (Array.from(document.querySelectorAll("#TextAreaChatLog .chat-room-sep")));
+                if (Player.ChatSettings.PreserveChat) {
+                    roomSeps.forEach(e => e.toggleAttribute("hidden", false));
+                }
+            }
+        },
+        {
+            label: "PreserveWhitespace",
+            check: () => Player.ChatSettings.WhiteSpace == "Preserve",
+            click: () => Player.ChatSettings.WhiteSpace = Player.ChatSettings.WhiteSpace == "Preserve" ? "" : "Preserve"
+        },
+        {
+            label: "ShowAutomaticMessages",
+            check: () => Player.ChatSettings.ShowAutomaticMessages,
+            click: () => Player.ChatSettings.ShowAutomaticMessages = !Player.ChatSettings.ShowAutomaticMessages
+        },
+        {
+            label: "ShowBeepChat",
+            check: () => Player.ChatSettings.ShowBeepChat,
+            click: () => Player.ChatSettings.ShowBeepChat = !Player.ChatSettings.ShowBeepChat
+        },
+        {
+            label: "ShowChatRoomHelp",
+            check: () => Player.ChatSettings.ShowChatHelp,
+            click: () => Player.ChatSettings.ShowChatHelp = !Player.ChatSettings.ShowChatHelp
+        },
+        {
+            label: "ShowActivities",
+            check: () => Player.ChatSettings.ShowActivities,
+            click: () => Player.ChatSettings.ShowActivities = !Player.ChatSettings.ShowActivities
+        },
+        {
+            label: "ShrinkNonDialogue",
+            check: () => Player.ChatSettings.ShrinkNonDialogue,
+            click: () => Player.ChatSettings.ShrinkNonDialogue = !Player.ChatSettings.ShrinkNonDialogue
+        },
+        {
+            label: "MuStylePoses",
+            check: () => Player.ChatSettings.MuStylePoses,
+            click: () => Player.ChatSettings.MuStylePoses = !Player.ChatSettings.MuStylePoses
+        },
+    ];
+
+    /** @type {Record<string, PreferenceChatDropdownOption>} */
+    const AltPreferenceSubscreenChatDropdowns = {
+        DisplayMemberNumbers: {
+            list: [...PreferenceChatMemberNumbersList],
+            current: () => Player.ChatSettings.MemberNumbers,
+            onChange: (value) => {
+                Player.ChatSettings.MemberNumbers = /** @type {ChatMemberNumbersType} */ (value);
+            },
+        },
+        EnterLeaveStyle: {
+            list: [...PreferenceChatEnterLeaveList],
+            current: () => Player.ChatSettings.EnterLeave,
+            onChange: (value) => {
+                Player.ChatSettings.EnterLeave = /** @type {ChatEnterLeaveType} */ (value);
+            },
+        },
+        FontSize: {
+            list: [...PreferenceChatFontSizeList],
+            current: () => Player.ChatSettings.FontSize,
+            onChange: (value) => {
+                Player.ChatSettings.FontSize = /** @type {ChatFontSizeType} */ (value);
+                ChatRoomRefreshFontSize();
+            },
+        },
+        ColorTheme: {
+            list: [...PreferenceChatColorThemeList],
+            current: () => Player.ChatSettings.ColorTheme,
+            onChange: (value) => {
+                Player.ChatSettings.ColorTheme = /** @type {ChatColorThemeType} */ (value);
+            },
+        },
+    };
 
 	function AltPrfImmersion() {
         const difficultyTooHigh = Player.GetDifficulty() > 2;
@@ -16577,3 +16582,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
