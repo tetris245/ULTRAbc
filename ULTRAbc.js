@@ -102,6 +102,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cfame = 150;
     let csname = "Introduction";
     let dogsforbid = false;
+	let dogsforced = false;
     let frname = "BrickWall";
     let gamestable = false;
     let gl = 0;
@@ -502,6 +503,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cfame = 150;
         cskeys = false;
         dogsforbid = false;
+		dogsforced = false;
         dolltalk = false;
         extbuttons = false;
         extrainfo = false;
@@ -596,6 +598,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cfame = data.cfame;
         cskeys = data.cskeys;
         dogsforbid = data.dogsforbid;
+		dogsforced = data.dogsforced;
         dolltalk = data.dolltalk;
         extbuttons = data.extbuttons;
         extrainfo = data.extrainfo;
@@ -762,6 +765,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "autojoin": autojoin,
             "cskeys": cskeys,
             "dogsforbid": dogsforbid,
+            "dogsforced": dogsforced,
             "dolltalk": dolltalk,
             "extbuttons": extbuttons,
             "extrainfo": extrainfo,
@@ -871,6 +875,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cskeys == null || cskeys == undefined) cskeys = false;
                 if (csname == null || csname == undefined) csname = "Introduction";
                 if (dogsforbid == null || dogsforbid == undefined) dogsforbid = false;
+				if (dogsforced == null || dogsforced == undefined) dogsforced = false;
                 if (dolltalk == null || dolltalk == undefined) dolltalk = false;
                 if (extbuttons == null || extbuttons == undefined) extbuttons = false;
                 if (extrainfo == null || extrainfo == undefined) extrainfo = false;
@@ -1008,6 +1013,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cfame: 150,
                 cskeys: false,
                 cum: false,
+				dogsforced: false,
                 dolltalk: false,
                 extbuttons: false,
                 extrainfo: false,
@@ -2002,23 +2008,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCSpecialModesLoad = function() {
                 UBCPreferenceSubscreen = "UBCSpecialModes";
                 DOGSsettings();
-                let nmsg = "This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. It is automatically forced when you have devious locks on you. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, the special goddess mode will be automatically disabled.";
+                let nmsg = "This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, the special goddess mode will be automatically disabled.";
                 if (((Player.IsRestrained() == true) || (dogsforbid == true)) && (noescape == true)) {
-                    addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, true, 120);
+                    addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, true, 150);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, false, 120);
+                    addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, false, 150);
                 }
+                addMenuCheckbox(64, 64, "Force no-escape mode with devious locks: ", "dogsforced",
+                    "When no-escape mode is disabled, you can decide to force this mode when you have devious locks on you! Of course these locks need to be enabled in the DOGS mod.", "Player.UBC.ubcSettings.noescape", 150
+                );
                 addMenuCheckbox(64, 64, "Enable silent mode: ", "silent",
-                    "This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.", false, 120
+                    "This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.", false, 150
                 );
                 addMenuCheckbox(64, 64, "Extend silent mode to safeword: ", "silsafe",
-                    "When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course useful only if the safeword is enabled!", "!Player.UBC.ubcSettings.silent", 120
+                    "When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course useful only if the safeword is enabled!", "!Player.UBC.ubcSettings.silent", 150
                 );
                 addMenuCheckbox(64, 64, "Enable unrestrict soft mode: ", "usoft",
-                    "Effects of this mode (also available in unrestrict total mode) : hidden items added to your inventory, access to items covered by other items, use of items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and examine feature preserved when you are blind, but not in Total sensory deprivation. It does not remove the conditions to use assets. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 120
+                    "Effects of this mode (also available in unrestrict total mode) : hidden items added to your inventory, access to items covered by other items, use of items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and examine feature preserved when you are blind, but not in Total sensory deprivation. It does not remove the conditions to use assets. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 150
                 );
                 addMenuCheckbox(64, 64, "Enable unrestrict total mode: ", "utotal",
-                    "Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).", "Player.UBC.ubcSettings.noescape", 120
+                    "Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).", "Player.UBC.ubcSettings.noescape", 150
                 );
             }
 
@@ -8458,40 +8467,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ];
 
     function DOGSsettings() {
-        dogsforbid = false;
-        let DOGS = Player.ExtensionSettings.DOGS;
-        if (DOGS) {
-            let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
-            for (let A = 0; A < Player.Appearance.length; A++)
-                if ((Player.Appearance[A].Property != null) &&
-                    (Player.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
-                    (Player.Appearance[A].Property.Name == "DeviousPadlock")) {
-                    let groupName = Player.Appearance[A].Asset.Group.Name;
-                    let hasGroup = !!DOGSdata?.deviousPadlock?.itemGroups?.[groupName];
-                    if (hasGroup == true) {
-                        Player.UBC.ubcSettings.noescape = true;
-                        noescape = true;
-                        dogsforbid = true;
-						if (unrestrict == 2) {
-                            Player.UBC.ubcSettings.utotal = false;
-                            unrestrict = 0;
-							Player.CanInteract = function() {
-                                return !this.HasEffect("Block");
-                            };
-                            Player.CanTalk = function() {
-                                 const GagEffect = SpeechTransformGagGarbleIntensity(this);
-			                return (GagEffect <= 0);
-                            };
+        if (dogsforced == true) {
+            dogsforbid = false;
+            let DOGS = Player.ExtensionSettings.DOGS;
+            if (DOGS) {
+                let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
+                for (let A = 0; A < Player.Appearance.length; A++)
+                    if ((Player.Appearance[A].Property != null) &&
+                        (Player.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
+                        (Player.Appearance[A].Property.Name == "DeviousPadlock")) {
+                        let groupName = Player.Appearance[A].Asset.Group.Name;
+                        let hasGroup = !!DOGSdata?.deviousPadlock?.itemGroups?.[groupName];
+                        if (hasGroup == true) {
+                            Player.UBC.ubcSettings.noescape = true;
+                            noescape = true;
+                            dogsforbid = true;
+				            if (unrestrict == 2) {
+                                Player.UBC.ubcSettings.utotal = false;
+                                unrestrict = 0;
+                                Player.CanInteract = function() {
+                                    return !this.HasEffect("Block");
+                                };
+                                Player.CanTalk = function() {
+                                    const GagEffect = SpeechTransformGagGarbleIntensity(this);
+			                        return (GagEffect <= 0);
+                                };
+                            }
+                        } else {
+                            Player.UBC.ubcSettings.noescape = false;
+                            noescape = false;
                         }
-                    } else {
-                        Player.UBC.ubcSettings.noescape = false;
-                        noescape = false;
                     }
-                }
+            }
+            M_MOANER_saveControls();
         }
-        M_MOANER_saveControls();
     }
-
+ 
     function FBCsettings() {
         let gbc = 0;
         let sbc = 0;
@@ -16582,4 +16593,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
