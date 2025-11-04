@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* New setting in GUI - Special Modes to allow forced no-escape mode when this mode is not manually enabled and devious locks are detected on you
