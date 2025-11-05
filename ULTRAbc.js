@@ -6256,6 +6256,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function CardRooms() {
+		Player.ChatSearchSettings.MapTypes = undefined;
         Player.ChatSearchSettings.Game = "ClubCard";
         ChatSearchGame = Player.ChatSearchSettings.Game; 
         ChatSearchUpdateSearchSettings();
@@ -6263,6 +6264,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
  
     function GgtsRooms() {
+		Player.ChatSearchSettings.MapTypes = undefined;
         Player.ChatSearchSettings.Game = "GGTS";
         ChatSearchGame = Player.ChatSearchSettings.Game; 
         ChatSearchUpdateSearchSettings();
@@ -6278,6 +6280,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
     
     function LarpRooms() {
+		Player.ChatSearchSettings.MapTypes = undefined;
         Player.ChatSearchSettings.Game = "LARP";
         ChatSearchGame = Player.ChatSearchSettings.Game; 
         ChatSearchUpdateSearchSettings();
@@ -6285,7 +6288,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function MagicRooms() {
+		Player.ChatSearchSettings.MapTypes = undefined;
         Player.ChatSearchSettings.Game = "MagicBattle";
+        ChatSearchGame = Player.ChatSearchSettings.Game; 
+        ChatSearchUpdateSearchSettings();
+        ChatSearchQuery(ChatSearchQueryString);
+    }
+
+	function MapRooms() {
+        Player.ChatSearchSettings.MapTypes = "Always";
+        Player.ChatSearchSettings.Game = "";
         ChatSearchGame = Player.ChatSearchSettings.Game; 
         ChatSearchUpdateSearchSettings();
         ChatSearchQuery(ChatSearchQueryString);
@@ -6299,15 +6311,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatSearchQuery(ChatSearchQueryString);
     }
 
-    function MapRooms() {
-        Player.ChatSearchSettings.MapTypes = "Always";
-        Player.ChatSearchSettings.Game = "";
-        ChatSearchGame = Player.ChatSearchSettings.Game; 
-        ChatSearchUpdateSearchSettings();
-        ChatSearchQuery(ChatSearchQueryString);
-    }
-
     function PrisonRooms() {
+		Player.ChatSearchSettings.MapTypes = undefined;
         Player.ChatSearchSettings.Game = "Prison";
         ChatSearchGame = Player.ChatSearchSettings.Game; 
         ChatSearchUpdateSearchSettings();
@@ -16893,6 +16898,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
