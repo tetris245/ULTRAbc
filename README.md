@@ -60,3 +60,5 @@ All else I might not have included.
 Changes for future version
 
 * New setting in GUI - Special Modes to allow forced no-escape mode when this mode is not manually enabled and devious locks are detected on you
+* Restored many useful buttons in Chat Search for direct access to rooms with a specific type or game (1 click instead of 4 when using the menu!), the wardrobe, the preferences screen and the extensions screen
+  - Note: the hotkeys to wardrobe, preferences and extensions are still available, but without info on Chat Search screen
