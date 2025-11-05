@@ -6320,8 +6320,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Search - Screen + Menu
-    function ChatSearchCreateBottom() {
-        
+    function ChatSearchCreateBottom() {  
         ChatSearchRoomBottom = ElementCreate({
             tag: "div",
             attributes: {
@@ -6338,7 +6337,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-allrooms-button",
                             () => AllRooms(), {
-                                tooltip: "All Rooms",
+                                tooltip: TextGet("AllRooms"),
                                 tooltipPosition: "left",
                                 image: "Icons/cross.svg",
 
@@ -6351,7 +6350,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-normalrooms-button",
                             () => NormalRooms(), {
-                                tooltip: "Normal Rooms",
+                                tooltip: TextGet("NormalRooms"),
                                 tooltipPosition: "left",
                                 image: "Icons/RoomTypeNormal.svg",
                             }, {
@@ -6363,7 +6362,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-hybridrooms-button",
                             () => HybridRooms(), {
-                                tooltip: "Hybrid Rooms",
+                                tooltip: TextGet("HybridRooms"),
                                 tooltipPosition: "left",
                                 image: "Icons/RoomTypeHybrid.svg",
                             }, {
@@ -6375,7 +6374,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-maprooms-button",
                             () => MapRooms(), {
-                                tooltip: "Map Rooms",
+                                tooltip: TextGet("MapRooms"),
                                 tooltipPosition: "left",
                                 image: "Icons/RoomTypeMap.svg",
                             }, {
@@ -16898,7 +16897,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
