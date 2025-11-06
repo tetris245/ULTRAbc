@@ -2730,7 +2730,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
-			ElementRemove(ChatSearchRoomBottom);
+			if (ChatSearchRoomBottom != undefined) ElementRemove(ChatSearchRoomBottom);
             TintsEffect();
             minigame == "";
             M_MOANER_saveControls();
@@ -16898,6 +16898,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
