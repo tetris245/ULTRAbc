@@ -3140,8 +3140,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchLoad() {
-        modApi.hookFunction('ChatSearchLoad', 4, (args, next) => {
+    function ULTRAChatSearchLoad() {
+       modApi.hookFunction('ChatSearchLoad', 4, async (args, next) => { 
             ChatSearchInitState();
             ChatSearchCreatePageCountElement();
             const {
@@ -3163,8 +3163,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             TextPrefetch("Character", "FriendList");
             TextPrefetch("Online", "ChatAdmin");
             TextPrefetch("Online", "ChatRoom");
-            return;
-            next(args);
+            return await next(args);
         });
     }
 
@@ -16897,3 +16896,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
