@@ -3141,7 +3141,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function ULTRAChatSearchLoad() {
-       modApi.hookFunction('ChatSearchLoad', 4, async (args, next) => { 
+        modApi.hookFunction('ChatSearchLoad', 4, async (args, next) => { 
             ChatSearchInitState();
             ChatSearchCreatePageCountElement();
             const {
@@ -16896,4 +16896,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
