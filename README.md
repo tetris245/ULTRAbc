@@ -59,4 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* New setting in GUI - Visual to remove the UBC bottom bar in Chat Search
+  - In this case, it's recommended to enable the hotkeys for fast access to wardrobe, preferences and extensions screens. The other missing options are available in the Chat Search menu.
+* Removed the UBC info text about hotkeys from the Friend List
