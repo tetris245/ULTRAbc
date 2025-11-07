@@ -175,6 +175,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let nogarble;
     let nostruggle;
     let noteleport;
+	let noubcbar;
     let noubccolor;
     let nowhisper = false;
     let nowhrange;
@@ -556,6 +557,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nostruggle = false;
         notalk = 0;
         noteleport = false;
+		noubcbar = false;
         noubccolor = false;
         nowhisper = false;
         nowhrange = false;
@@ -651,6 +653,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nostruggle = data.nostruggle;
         notalk = data.notalk;
         noteleport = data.noteleport;
+		noubcbar = data.noubcbar;
         noubccolor = data.noubccolor;
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
@@ -813,6 +816,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nogarble": nogarble,
             "nostruggle": nostruggle,
             "noteleport": noteleport,
+            "noubcbar": noubcbar,
             "noubccolor": noubccolor,
             "nowhisper": nowhisper,
             "nowhrange": nowhrange,
@@ -943,6 +947,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (nostruggle == null || nostruggle == undefined) nostruggle = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (noteleport == null || noteleport == undefined) noteleport = false;
+				if (noubcbar == null || noubcbar == undefined) noubcbar = false;
                 if (noubccolor == null || noubccolor == undefined) noubccolor = false;
                 if (nowhisper == null || nowhisper == undefined) nowhisper = false;
                 if (nowhrange == null || nowhrange == undefined) nowhrange = false;
@@ -1065,6 +1070,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nostruggle: false,
                 notalk: 0,
                 noteleport: false,
+				noubcbar: false,
                 noubccolor: false,
                 nowhisper: false,
                 nowhrange: false,
@@ -2153,6 +2159,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Disable background color for UBC messages: ", "noubccolor",
                     "If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.", false, 192
                 );
+				addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
+                    "If you check this setting, UBC will not display a bottom bar in Chat Search. In this case, it's recommended to enable the hotkeys for fast access to wardrobe, preferences and extensions screens. The other missing options are available in the Chat Search menu.", false, 192
+                );
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
                     "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
                 );
@@ -2731,8 +2740,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
-			if (window.CurrentScreen != "ChatRoom") {
-                if (ChatSearchRoomBottom != undefined) ElementRemove(ChatSearchRoomBottom);
+			if (noubcbar == false) {
+                if (window.CurrentScreen != "ChatRoom") {
+                    if (ChatSearchRoomBottom != undefined) ElementRemove(ChatSearchRoomBottom);
+                }
             }
             TintsEffect();
             minigame == "";
@@ -3157,7 +3168,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 clearButton
             } = ChatSearchCreateSearchControls();
             ChatSearchCreateHeader(searchInput, clearButton, minRoomSizeInput, maxRoomSizeInput);
-			ChatSearchCreateBottom();
+			if (noubcbar == false) ChatSearchCreateBottom();
             ChatSearchCreateGrid();
             ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput);
             ChatSearchCreateFilterHelpDialog();
@@ -3222,7 +3233,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	async function ULTRAChatSearchUnload() {
         modApi.hookFunction('ChatSearchUnload', 4, (args, next) => {
-            ElementRemove(ChatSearchRoomBottom); 
+            if (noubcbar == false) ElementRemove(ChatSearchRoomBottom); 
             next(args);
         });
     }
@@ -16901,6 +16912,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
