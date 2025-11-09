@@ -7683,8 +7683,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function showEbchUngarbleStatus(EBCHdata) {
         let msg = "All messages are ungarbled.";
-        if (EBCHdata.ungarble = "off") msg = "Messages are not ungarbled.";
-        if (EBCHdata.ungarble = "on") msg = "Messages from white list are ungarbled.";
+        if (EBCHdata.ungarble == "off") msg = "Messages are not ungarbled.";
+        if (EBCHdata.ungarble == "on") msg = "Messages from white list are ungarbled.";
         statusmsg(msg);
     }
 
@@ -16802,7 +16802,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         showRemoteControlStatus(DOGSdata);
                     }
                 } else if (addon == "ebch") {
-                    EBCH = Player.ExtensionSettings.EBCH;
+                    let EBCH = Player.ExtensionSettings.EBCH;
                     if (EBCH) {
                         let EBCHdata = JSON.parse(EBCH);
                         showEbchLogStatus(EBCHdata);
@@ -16907,3 +16907,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
