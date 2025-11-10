@@ -5982,34 +5982,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             attributes: {
                 id: "chat-search-filter-help-screen",
             },
-            children: [{
+            children: [
+                {
                     tag: "ul",
                     classList: ["chat-search-filter-help-screen-content"],
-                    children: [{
-                            tag: "li",
-                            children: [TextGet("HelpText1")],
-                        },
-                        {
-                            tag: "li",
-                            children: [TextGet("HelpText2")],
-                        },
-                        {
-                            tag: "li",
-                            children: [TextGet("HelpText4")],
-                        },
-                        {
-                            tag: "li",
-                            children: [TextGet("HelpText5")],
-                        },
-                        {
-                            tag: "li",
-                            children: [TextGet("HelpText6")],
-                        },
-                        {
-                            tag: "li",
-                            children: [TextGet("HelpText7")],
-                        },
-                    ],
+                    children: CommonRange(1, 6).map(n => ({
+                        tag: "li",
+                        children: [TextGet(`HelpText${n}`)],
+                    })), 
                 },
                 ElementButton.Create("chat-search-filter-help-screen-close", function() {
                     ChatSearchFilterHelpScreenElement.close();
@@ -6031,7 +6011,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatSearchRoomGrid = ElementCreateDiv("chat-search-room-grid");
     }
 
-    function ChatSearchCreateHeader(searchInput, clearButton, minRoomSizeInput, maxRoomSizeInput) {
+    function ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput) {
         const showFemaleButton = (
             ((ChatSearchGetSpace() !== "Asylum" && asylumlimit === true) || (asylumlimit === false)) &&
             Player.GetGenders().includes("F")
@@ -6064,6 +6044,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             },
                             children: [
                                 searchInput,
+								filterInput,
                                 clearButton,
                             ],
                         },
@@ -6118,11 +6099,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ),
                         ElementButton.Create("chat-search-hide-rooms", function() {
                             ChatSearchToggleSearchMode();
-                            ChatSearchQuery(ChatSearchQueryString);
-                            document.getElementById('chat-search-room-filter-section').hidden = ChatSearchMode != "Filter";
-                            document.getElementById('chat-search-room-navigation-section').hidden = ChatSearchMode == "Filter";
-                            this.querySelector(".button-tooltip").textContent = TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode");
-                            this.dataset.mode = ChatSearchMode == "Filter" ? "FilterMode" : "NormalMode";
                         }, {
                             tooltip: TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode"),
                             tooltipPosition: "bottom",
@@ -6419,7 +6395,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             maxLength: 200,
             value: ChatSearchQueryString
         });
+        ElementSetAttribute("InputSearch", "placeholder", TextGet("SearchRoom"));
         searchInput.classList.add("chat-search-input-search-box");
+        searchInput.addEventListener("input", function(ev) {  
+            clearButton.hidden = this.value.length === 0;
+            ChatSearchQueryString = this.value;
+        });
+        searchInput.addEventListener("keydown", ChatSearchKeyDownListener);
+        const filterInput = ElementCreateInput("InputFilter", "text", Player.ChatSearchSettings.FilterTerms);
+        ElementSetAttribute("InputFilter", "placeholder", TextGet("FilterExcludeTerms"));
+        filterInput.toggleAttribute("hidden", true);
+        filterInput.classList.add("chat-search-input-filter-box");
+        filterInput.addEventListener("input", function () {
+            Player.ChatSearchSettings.FilterTerms = this.value;
+       });
+       filterInput.addEventListener("keydown", (event) => {
+           if (event.repeat || !CommonKey.IsPressed(event, "Enter")) return;
+           ChatSearchSaveFilterTerms();
+        });
         const clearButton = ElementButton.Create("chat-search-clear-input-search", function(ev) {
             ElementValue("InputSearch", "");
             ChatSearchQueryString = "";
@@ -6436,11 +6429,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 },
             },
         });
-        searchInput.addEventListener("input", function(ev) {
-            clearButton.hidden = this.value.length === 0;
-            ChatSearchQueryString = this.value;
-        });
-        searchInput.addEventListener("keydown", ChatSearchKeyDownListener);
         ChatSearchSearchMenuButton = ElementButton.Create(
             "chat-search-room-open-search-menu",
             function() {
@@ -6473,6 +6461,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             });
         return {
             searchInput,
+            filterInput,
             clearButton
         };
     }
@@ -16388,4 +16377,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
