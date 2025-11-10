@@ -7588,7 +7588,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ElementWrap(PreferenceIDs.subscreen).append(buttons);
     }
 
-    const AltPreferenceSubscreens = [{
+	const AltPreferenceSubscreens = [{
             name: "Main",
             hidden: true,
             load: () => PreferenceSubscreenMainLoad(),
@@ -7605,6 +7605,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             click: () => PreferenceSubscreenGeneralClick(),
             exit: () => PreferenceSubscreenGeneralExit(),
             unload: () => PreferenceSubscreenGeneralUnload(),
+            resize: () => PreferenceSubscreenGeneralResize(),
         },
         {
             name: "Arousal",
@@ -7691,6 +7692,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             exit: () => PreferenceSubscreenVisibilityExit(),
             unload: () => PreferenceSubscreenVisibilityUnload(),
         },
+        {
+	        name: "Keybindings",
+		    icon: "Icons/Keyboard.png",
+		    load: () => PreferenceSubscreenKeybindingsLoad(),
+		    run: () => PreferenceSubscreenKeybindingsRun(),
+		    click: () => PreferenceSubscreenKeybindingsClick(),
+		    exit: () => PreferenceSubscreenKeybindingsExit(),
+		    resize: () => PreferenceSubscreenKeybindingsResize(),
+	    },
         {
             name: "Notifications",
             load: () => PreferenceSubscreenNotificationsLoad(),
@@ -16326,4 +16336,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
