@@ -7861,6 +7861,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             check: () => Player.ChatSettings.ShowBeepChat,
             click: () => Player.ChatSettings.ShowBeepChat = !Player.ChatSettings.ShowBeepChat
         },
+		{
+            label: "ShowFriendRequestMessages", 
+            check: () => Player.ChatSettings.ShowFriendRequestMessages,
+            click: () => Player.ChatSettings.ShowFriendRequestMessages = !Player.ChatSettings.ShowFriendRequestMessages
+        },								  
         {
             label: "ShowChatRoomHelp",
             check: () => Player.ChatSettings.ShowChatHelp,
@@ -16336,5 +16341,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
