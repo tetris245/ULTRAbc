@@ -15024,7 +15024,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'title2',
         Description: "(title): chooses a new title (from L to Z).",
         Action: (args) => {
@@ -15036,12 +15036,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Available titles:\n" +
                     "ladyluck, liege, littleone, lordfortune, magician, magus,\n" +
                     "maid, majesticalicorn, majesty, master, masterkidnapper,\n" +
-                    "missy, mistree, mistress, mole, nawashi, nurse, operative,\n" +
-                    "oracle, patient, patron, permanentpatient, pet,\n" +
-                    "prince, princess, puppy, sage, shiningunicorn, sissy,\n" +
-                    "sorcerer, succubus, superhero, superheroine,\n" +
-                    "superspy, switch, tomboy, warlock, warmbloodhorse,\n" +
-                    "wildmustang, witch, wizard.";
+                    "matron, missy, mistree, mistress, mole, nawashi, nurse,\n" +
+                    "operative, oracle, patient, patriarch, patron,\n" +               
+                    "permanentpatient, pet, pixie, primaris, prince, princess,\n" +
+                    "puppy, queen, sage, shiningunicorn, sissy, sorcerer,\n" +
+                    "succubus, superhero, superheroine, superspy, switch,\n" +
+                    "thing, tomboy, turtle, vampire, warlock,\n" +
+                    "warmbloodhorse, wildmustang, witch, wizard.";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -15100,6 +15101,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("MasterKidnapper");
                 }
+                if (title == "matron") {
+                    if (ReputationGet("Maid") < 50) {
+                        DialogSetReputation("Maid", 50);
+                    }
+                    if (ReputationGet("Dominant") < 50) {
+                        DialogSetReputation("Dominant", 50);
+                    }
+                    TitleSet("Matron");
+                }
                 if (title == "missy") TitleSet("Missy");
                 if (title == "mistree") {
                     LogAdd("ClubMistress", "Management");
@@ -15147,6 +15157,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("Patient");
                 }
+                if (title == "patriarch") {
+                    if (ReputationGet("Maid") < 50) {
+                        DialogSetReputation("Maid", 50);
+                    }
+                    if (ReputationGet("Dominant") < 50) {
+                        DialogSetReputation("Dominant", 50);
+                    }
+                    TitleSet("Patriarch");
+                }
                 if (title == "patron") TitleSet("Patron");
                 if (title == "permanentpatient") {
                     if (ReputationGet("Asylum") > -100) {
@@ -15155,9 +15174,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("PermanentPatient");
                 }
                 if (title == "pet") TitleSet("Pet");
+                if (title == "pixie") TitleSet("Pixie");
+                if (title == "primaris") {
+                    if (ReputationGet("Asylum") < 50) {
+                        DialogSetReputation("Asylum", 50);
+                    }
+                    if (ReputationGet("Dominant") < 50) {
+                        DialogSetReputation("Dominant", 50);
+                    }
+                    TitleSet("Primaris");
+                }
                 if (title == "prince") TitleSet("Prince");
                 if (title == "princess") TitleSet("Princess");
                 if (title == "puppy") TitleSet("Puppy");
+                if (title == "queen") {    
+                    if (ReputationGet("Dominant") < 75) {
+                        DialogSetReputation("Dominant", 75);
+                    }
+                    TitleSet("Queen");
+                }
                 if (title == "sage") {
                     if ((ReputationGet("HouseAmplector") < 50) || (ReputationGet("HouseAmplector") > 99)) {
                         ResetHousesReputation();
@@ -15195,7 +15230,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("InfilrationSuperspy");
                 }
                 if (title == "switch") TitleSet("Switch");
+                if (title == "thing") TitleSet("Thing");
                 if (title == "tomboy") TitleSet("Tomboy");
+                if (title == "turtle") TitleSet("Turtle");
+                if (title == "vampire") TitleSet("Vampire");
                 if (title == "warlock") {
                     if (ReputationGet("HouseCorporis") < 100) {
                         ResetHousesReputation();
@@ -16341,6 +16379,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
