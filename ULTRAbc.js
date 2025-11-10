@@ -2278,6 +2278,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchKeyDown();
     ULTRAChatSearchLoad();
     ULTRAChatSearchParseResponse();
+	ULTRAChatSearchResize();
     ULTRAChatSearchRun();
     ULTRAChatSearchSendToast();
 	ULTRAChatSearchUnload();
@@ -3138,10 +3139,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchKeyDown() {
         modApi.hookFunction('ChatSearchKeyDown', 4, (args, next) => {
+			let ret = next(args);
             if ((cskeys == true) && (event.code === "AltLeft")) PrfClick();
             if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
             if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);
-            next(args);
+            return ret;
         });
     }
 
@@ -3155,9 +3157,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } = ChatSearchCreateRoomSizeInputs();
             const {
                 searchInput,
+				filterInput,
                 clearButton
             } = ChatSearchCreateSearchControls();
-            ChatSearchCreateHeader(searchInput, clearButton, minRoomSizeInput, maxRoomSizeInput);
+            ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput);
 			if (noubcbar == false) ChatSearchCreateBottom();
             ChatSearchCreateGrid();
             ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput);
@@ -3188,6 +3191,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 NewResult = ret;
             }
             return NewResult;
+        });
+    }
+
+	async function ULTRAChatSearchResize() {
+        modApi.hookFunction('ChatSearchResize', 4, (args, next) => {
+           if (noubcbar == false) ElementPositionFixed(ChatSearchRoomBottom, 430, 880, 1520, 90);
+           next(args);
         });
     }
 
@@ -5964,7 +5974,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ],
             parent: document.body,
         });     
-            ElementPositionFixed(ChatSearchRoomBottom, 430, 880, 1520, 90);
     }
 
     function ChatSearchCreateFilterHelpDialog() {
@@ -16379,3 +16388,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
