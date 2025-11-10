@@ -11942,20 +11942,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'erase',
-        Description: ": erases chat.",
-        Action: () => {
-            const roomSeps = document.querySelectorAll("#TextAreaChatLog .chat-room-sep");
-            const roomSep = roomSeps[0];
-            const parent = roomSep.parentElement;
-            while (roomSep.nextSibling) {
-                parent.removeChild(roomSep.nextSibling);
-            }
-            ElementScrollToEnd("TextAreaChatLog");
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'font',
         Description: "(font) (size): changes font in BC. ",
         Action: (args) => {
@@ -16007,7 +15993,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "chat") {
                 let msg = "Chat commands - * = more info when using\n" +
                     "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
-                    "<b>/erase</b> = erases chat.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
                     "<b>/frlist</b> = gives access to friendlist in current lobby." +
                     "<b>/search</b> = opens chat search in current lobby." +
@@ -16907,4 +16892,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
