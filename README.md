@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Removed erase command (as you can now use the better BC command clean)
