@@ -61,5 +61,6 @@ Changes for future version
 
 
 * Added Keybindings option to the alphabetical Preferences menu
+* Added "Show friend request messages" to the alphabetical Chat Preferences menu
 * Removed option in GUI-Misc for alphabetical order of Titles (as the titles are now ordered by BC)
 * Removed erase command (as you can now use the better BC command clean)
