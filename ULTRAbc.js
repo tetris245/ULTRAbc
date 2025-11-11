@@ -2334,6 +2334,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPrivateClubCardVsSubStart();
     ULTRAPrivateGetClubCardDeck();
     ULTRAPrivateRun();
+	ULTRARelogLoad();
     ULTRAShibariClubCardStart();
     ULTRAShibariRun();
     ULTRAStableClubCardStart();
@@ -3255,6 +3256,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatSearchUnload', 4, (args, next) => {
             if (noubcbar == false) ElementRemove(ChatSearchRoomBottom); 
 			if (autojoin == true) {
+                AutoJoin = function() {};
+                this.AutoJoinOn = false;
+                ElementRemove("AutoJoinAlert");
+                IsOn = false;
+            } 
+            next(args);
+        });
+    }
+
+	async function ULTRARelogLoad() {
+        modApi.hookFunction('RelogLoad', 4, (args, next) => {
+            if (autojoin == true) {
                 AutoJoin = function() {};
                 this.AutoJoinOn = false;
                 ElementRemove("AutoJoinAlert");
@@ -16439,5 +16452,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
