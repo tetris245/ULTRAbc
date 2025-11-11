@@ -59,12 +59,12 @@ All else I might not have included.
 
 Changes for future version
 
+* Updated the code related to Chat Search (including the AutoJoin feature)
 * Added option to enable/disable the AutoJoin feature in the Chat Search menu
 * Added Keybindings option to the alphabetical Preferences menu
 * Added "Show friend request messages" to the alphabetical Chat Preferences menu
-* Updated the code related to Chat Search (including the AutoJoin feature)
-* Updated the bg4, title1, title2 commands
 * Improved the OutChat function +  the bg1 and bg2 commands
+* Updated the bg4, title1, title2 commands
 * Removed option in GUI-Chat Search related to the AutoJoin feature (as it is now in the Chat Search menu)
 * Removed option in GUI-Misc for alphabetical order of Titles (as the titles are now ordered by BC)
 * Removed erase command (as you can now use the better BC command clean)
