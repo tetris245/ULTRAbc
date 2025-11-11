@@ -2275,6 +2275,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
     ULTRAChatSearchExit();
+	ULTRAChatSearchJoin();
     ULTRAChatSearchKeyDown();
     ULTRAChatSearchLoad();
     ULTRAChatSearchParseResponse();
@@ -3147,6 +3148,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	async function ULTRAChatSearchJoin(RoomName) {
+        modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
+            if (autojoin == true) {
+                 if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
+                    if (this.IsOn == undefined || this.IsOn == false) {
+                        IsOn = true;
+                        var TextArea = document.createElement("TextArea");
+                        TextArea.setAttribute("ID", "AutoJoinAlert");
+                        document.body.appendChild(TextArea);
+                        ElementValue("AutoJoinAlert", "AutoJoining...");
+                        ElementPosition("AutoJoinAlert", 260, 935, 250);
+                    }
+                    AutoJoin = function() {
+                        this.AutoJoinOn = true;
+                        setTimeout(function() {
+                            AutoJoin()
+                        }, 1300);
+                        ChatSearchLastQueryJoinTime = CommonTime();
+                        ChatSearchLastQueryJoin = RoomName;
+                        ServerSend("ChatRoomJoin", {
+                            Name: RoomName
+                        });
+                        ChatRoomPingLeashedPlayers();                                                         
+                        if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
+                            AutoJoin();
+                        }                 
+                    }
+                }
+	        }  
+            next(args);
+        });
+    }
+
     async function ULTRAChatSearchLoad() {
         modApi.hookFunction('ChatSearchLoad', 4, (args, next) => {
             ChatSearchInitState();
@@ -3234,6 +3268,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	async function ULTRAChatSearchUnload() {
         modApi.hookFunction('ChatSearchUnload', 4, (args, next) => {
             if (noubcbar == false) ElementRemove(ChatSearchRoomBottom); 
+			if (autojoin == true) {
+                AutoJoin = function() {};
+                this.AutoJoinOn = false;
+                ElementRemove("AutoJoinAlert");
+                IsOn = false;
+            } 
             next(args);
         });
     }
@@ -5638,67 +5678,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DialogSetReputation("HouseVincula", 0);
         LogDelete("Mastery", "MagicSchool");
     }
-
-    //Chat Search - AutoJoin
-    function RoomJoin(room) {
-        if (autojoin == false) {
-            ServerSend("ChatRoomJoin", {
-                Name: room.Name
-            });
-            return;
-        }
-        if (autojoin == true) {
-            if (room.MemberCount < room.MemberLimit - 3) {
-                ServerSend("ChatRoomJoin", {
-                    Name: room.Name
-                });
-                return;
-            }
-            if ((room.Locked == true) && (room.CanJoin == false)) return;
-            if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
-                if (this.IsOn == undefined || this.IsOn == false) {
-                    IsOn = true;
-                    var TextArea = document.createElement("TextArea");
-                    TextArea.setAttribute("ID", "AutoJoinAlert");
-                    document.body.appendChild(TextArea);
-                    ElementValue("AutoJoinAlert", "AutoJoining...");
-                    ElementPosition("AutoJoinAlert", 260, 935, 250);
-                }
-                if (room.Name != undefined) {
-                    var RoomName = room.Name;
-                    AutoJoin = function() {
-                        this.AutoJoinOn = true;
-                        setTimeout(function() {
-                            AutoJoin()
-                        }, 1300);
-                        ChatSearchLastQueryJoinTime = CommonTime();
-                        ChatSearchLastQueryJoin = RoomName;
-                        ChatRoomPlayerCanJoin = true;
-                        ServerSend("ChatRoomJoin", {
-                            Name: RoomName
-                        });
-                        ChatRoomPingLeashedPlayers();
-                        if (CurrentScreen == "ChatRoom") {
-                            AutoJoin = function() {};
-                            this.AutoJoinOn = false;
-                            ElementRemove("AutoJoinAlert");
-                            IsOn = false;
-                        }
-                    }
-                    if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
-                        AutoJoin();
-                    }
-                }
-            }
-            return;
-        }
-    }
-
-	modApi.patchFunction("ChatSearchCreateGridRoom", {
-        'ServerSend("ChatRoomJoin", { Name: room.Name });':
-        "_ubcRoomJoin(room);"
-    });
-    window._ubcRoomJoin = RoomJoin;
 
 	//Chat Search - Room Types + Games
     function AllRooms() {
@@ -16377,5 +16356,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
