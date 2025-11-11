@@ -1772,9 +1772,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCChatSearchLoad = function() {
                 UBCPreferenceSubscreen = "UBCChatSearch";
-                addMenuCheckbox(64, 64, "Enable AutoJoin feature: ", "autojoin",
-                    "When enabled, this feature allows to enter a full room as soon as it is possible after having it selected in Chat Search. Note that it will not work for locked rooms you can't enter even when they are not full. This feature disables the corresponding toast and also prevents to see toasts related to AlreadyInRoom, RoomBanned, RoomKicked, RoomLocked, because they are all in the same BC category at the moment.", false, 134
-                );
                 addMenuCheckbox(64, 64, "Present players in chat rooms: ", "pchat",
                     "When enabled, the two below parameters will be used in Chat Search for all chat rooms, no matter the type.", false, 134
                 );
@@ -2281,7 +2278,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchParseResponse();
 	ULTRAChatSearchResize();
     ULTRAChatSearchRun();
-    ULTRAChatSearchSendToast();
 	ULTRAChatSearchUnload();
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
@@ -3138,16 +3134,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchKeyDown() {
-        modApi.hookFunction('ChatSearchKeyDown', 4, (args, next) => {
-			let ret = next(args);
-            if ((cskeys == true) && (event.code === "AltLeft")) PrfClick();
-            if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
-            if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);
-            return ret;
-        });
-    }
-
 	async function ULTRAChatSearchJoin(RoomName) {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
             if (autojoin == true) {
@@ -3178,6 +3164,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
 	        }  
             next(args);
+        });
+    }
+
+	 async function ULTRAChatSearchKeyDown() {
+        modApi.hookFunction('ChatSearchKeyDown', 4, (args, next) => {
+			let ret = next(args);
+            if ((cskeys == true) && (event.code === "AltLeft")) PrfClick();
+            if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
+            if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);
+            return ret;
         });
     }
 
@@ -3230,8 +3226,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	async function ULTRAChatSearchResize() {
         modApi.hookFunction('ChatSearchResize', 4, (args, next) => {
+           let ret = next(args);
+           ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 580);
            if (noubcbar == false) ElementPositionFixed(ChatSearchRoomBottom, 430, 880, 1520, 90);
-           next(args);
+           return ret;
         });
     }
 
@@ -3250,18 +3248,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             };
             ChatSearchRoomsPerPage = 21;
             next(args);
-        });
-    }
-
-    async function ULTRAChatSearchSendToast() {
-        modApi.hookFunction('ChatSearchSendToast', 4, (args, next) => {
-            if (Player.UBC != undefined) {
-                if (Player.UBC.ubcSettings != undefined) {
-                    let ajoin = Player.UBC.ubcSettings.autojoin;
-                    if (ajoin == true) return;
-                }
-            }
-            return next(args);
         });
     }
 
@@ -5679,7 +5665,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         LogDelete("Mastery", "MagicSchool");
     }
 
-	//Chat Search - Room Types + Games
+	//Chat Search - Room Types + Games + Extra Features
     function AllRooms() {
         Player.ChatSearchSettings.MapTypes = undefined;
         Player.ChatSearchSettings.Game = "";
@@ -5750,6 +5736,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatSearchGame = Player.ChatSearchSettings.Game; 
         ChatSearchUpdateSearchSettings();
         ChatSearchQuery(ChatSearchQueryString);
+    }
+
+	function SetAutoJoin() {
+        AutoJoin = function() {};
+        this.AutoJoinOn = false;
+        ElementRemove("AutoJoinAlert");
+        IsOn = false;
+        M_MOANER_saveControls();
+        Player.UBC.ubcSettings.autojoin = autojoin;
     }
 
     //Chat Search - Screen + Menu
@@ -6658,6 +6653,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ChatSearchUpdateSearchSettings();
                         }, {
                             checked: Player.ChatSearchSettings.SearchDescriptions,
+                        }),
+                    ],
+                },
+                // AutoJoin feature
+                {
+                    tag: "div",
+                    attributes: {
+                        id: "chat-search-search-menu-autojoin",
+                    },
+                    dataAttributes: {
+                        checkbox: true,
+                    },
+                    classList: ["chat-search-search-menu-grid-item"],
+                    children: [
+                        ElementCreateSettingsLabel("AutoJoin feature:", "left"),
+                        ElementCheckbox.Create("chat-search-search-menu-autojoin-input", function() {
+                            autojoin = this.checked;
+                            SetAutoJoin();
+                        }, {
+                            checked: autojoin,
                         }),
                     ],
                 },
@@ -16355,3 +16370,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
