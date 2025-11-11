@@ -5388,10 +5388,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (!window.BCX_Loaded) {
             BackgroundsList.push(...bcxBackgrounds);
         }
-        ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
+        let ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
     }
 
-    function updateBackground() {
+    function updateBackground(ChatCreateBackgroundSelect) {
         let UpdatedRoom = {
             Name: ChatRoomData.Name,
             Description: ChatRoomData.Description,
@@ -10672,8 +10672,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (args == 98) bg = url1 + "Castle/WineCellar";
                 if (args == 99) bg = url2 + "WineCellar";
                 if ((args > 0) && (args < 100)) {
-                    ChatCreateBackgroundSelect = bg;
-                    updateBackground();
+                    let ChatCreateBackgroundSelect = bg;
+                    updateBackground(bg);
                 }
             }
         }
@@ -10766,8 +10766,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "6 = Creation of New Room (default)\n" +
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
-                    "Without BCX: 0 to 202 for official BC backgrounds, 203 to 285 are added if you use the /bg1 command.\n" +
-                    "With BCX: 0 to 202 for official BC backgrounds, 203 to 290 are added by BCX, 291 to 364 are added if you use the /bg1 command (some backgrounds have two numbers).\n" +
+                    "Without BCX: 0 to 209 for official BC backgrounds, 210 to 292 are added if you use the /bg1 command.\n" +
+                    "With BCX: 0 to 209 for official BC backgrounds, 210 to 297 are added by BCX, 298 to 371 are added if you use the /bg1 command (some backgrounds have two numbers).\n" +
                     " \n" +
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
                 infomsg(msg);
@@ -10923,7 +10923,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((args > -1) && (args < BackgroundsList.length)) {
                     let name = BackgroundsList[args].Name;
                     let url = 'https://www.bondage-europe.com/' + BCver + '/BondageClub/Backgrounds/' + name + '.jpg';
-
                     let msg = '<a href="' + url + '" target="_blank">' + url + '</a>';
                     let txt = "( " + msg + " )";
                     infomsg(txt);
@@ -16356,6 +16355,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
