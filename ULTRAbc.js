@@ -14811,14 +14811,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available titles:\n" +
-                    "admiral, agent, alien, angel, baby, bondagebaby,\n" +
-                    "bondagemaid, brat, bunny, captain, clubslave,\n" +
-                    "coldbloodhorse, collegestudent, concubus, demon,\n" +
-                    "diaperlover, doctor, doll, drone, duchess, duke,\n" +
-                    "escapedpatient, farmhorse, femboy, flyingpegasus, foal,\n" +
-                    "foxy, goodboy, goodgirl, goodone, goodslave,\n" +
-                    "goodslaveboy, goodslavegirl, headmaid, hotbloodhorse,\n" +
-                    "houdini, incubus, infiltrator, kidnapper, kitten.";
+                    "admiral, agent, alien, angel, archbishop, archjudge,\n" +
+                    "baby, bishop, bondagebaby, bondagemaid, brat, bunny,\n" +
+                    "captain, champion, clubslave, coldbloodhorse,\n" +
+                    "collegestudent, concubus, demon, diaperlover,\n" +
+                    "doctor, doll, dragon, drone, drow, duchess, duke,\n" +
+                    "elf, escapedpatient, farmhorse, femboy, flyingpegasus,\n" +
+                    "foal, foxy, freeuse, god, goddess, goodboy, goodgirl,\n" +                   
+                    "goodone, goodslave, goodslaveboy, goodslavegirl\n" +
+                    "headmaid, hotbloodhorse, houdini, incubus, \n" +
+                    "infiltrator, judge, kidnapper, king, kitten.";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -14831,11 +14833,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (title == "alien") TitleSet("Alien");
                 if (title == "angel") TitleSet("Angel");
+                if (title == "archbishop") {
+                    let house = "";
+                    if (ReputationGet("HouseAmplector") != 0) house = "HouseAmplector";
+                    if (ReputationGet("HouseCorporis") != 0) house = "HouseCorporis";
+                    if (ReputationGet("HouseMaiestas") != 0) house = "HouseMaiestas";
+                    if (ReputationGet("HouseVincula") != 0) house = "HouseVincula";                
+                    if (ReputationGet(house) < 75) {
+                        DialogSetReputation(house, 75);
+                    }
+                    TitleSet("Archbishop");
+                }
+                if (title == "archjudge") {
+                    if (ReputationGet("Dominant") < 90) {
+                        DialogSetReputation("Dominant", 90);
+                    }
+                    TitleSet("Archjudge");
+                }
                 if (title == "baby") {
                     if (ReputationGet("ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("Baby");
+                }
+                if (title == "bishop") {
+                    let house = "";
+                    if (ReputationGet("HouseAmplector") != 0) house = "HouseAmplector";
+                    if (ReputationGet("HouseCorporis") != 0) house = "HouseCorporis";
+                    if (ReputationGet("HouseMaiestas") != 0) house = "HouseMaiestas";
+                    if (ReputationGet("HouseVincula") != 0) house = "HouseVincula";                
+                    if (ReputationGet(house) < 25) {
+                        DialogSetReputation(house, 25);
+                    }
+                    TitleSet("Bishop");
                 }
                 if (title == "bondagebaby") {
                     if (ReputationGet("ABDL") < 1) {
@@ -14858,6 +14888,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "brat") TitleSet("Brat");
                 if (title == "bunny") TitleSet("Bunny");
                 if (title == "captain") TitleSet("Captain");
+                if (title == "champion") {
+                    if (ReputationGet("LARP") < 100) {
+                        DialogSetReputation("LARP", 100);
+                    }
+                    TitleSet("Champion");
+                }
                 if (title == "clubslave") LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
                 if (title == "coldbloodhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 3) || (SkillGetLevel(Player, "Infiltration") > 3)) {
@@ -14884,7 +14920,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     LogAdd("Committed", "Asylum", CurrentTime);
                     TitleSet("Doctor");
                 }
-                if (title == "doll") TitleSet("Doll");
+                if (title == "doll") TitleSet("Doll");       
+                if (title == "dragon") TitleSet("Dragon");
                 if (title == "drone") {
                     if (AsylumGGTSGetLevel(Player) < 6) {
                         Level = parseInt(6);
@@ -14894,7 +14931,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         });
                     }
                     TitleSet("Drone");
-                }
+                }        
+                if (title == "drow") TitleSet("Drow");
                 if (title == "duchess") {
                     LogAdd("KidnapSophie", "Sarah");
                     TitleSet("Duchess");
@@ -14902,7 +14940,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "duke") {
                     LogAdd("KidnapSophie", "Sarah");
                     TitleSet("Duke");
-                }
+                }         
+                if (title == "elf") TitleSet("Elf");
                 if (title == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 if (title == "farmhorse") {
                     if ((SkillGetLevel(Player, "Dressage") < 2) || (SkillGetLevel(Player, "Infiltration") > 2)) {
@@ -14930,6 +14969,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("PonyFoal");
                 }
                 if (title == "foxy") TitleSet("Foxy");
+                if (title == "freeuse") {    
+                    if (ReputationGet("Dominant") > -100) {
+                        DialogSetReputation("Dominant", -100);
+                    }
+                    TitleSet("FreeUse");
+                }
+                if (title == "god") {    
+                    if (ReputationGet("Dominant") < 100) {
+                        DialogSetReputation("Dominant", 100);
+                    }
+                    TitleSet("God");
+                }
+                if (title == "goddess") {    
+                    if (ReputationGet("Dominant") < 100) {
+                        DialogSetReputation("Dominant", 100);
+                    }
+                    TitleSet("Goddess");
+                }
                 if (title == "goodboy") {
                     if (AsylumGGTSGetLevel(Player) < 4) {
                         Level = parseInt(4);
@@ -15004,11 +15061,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("InfilrationInfiltrator");
                 }
+                if (title == "judge") {
+                    if (ReputationGet("Dominant") < 50) {
+                        DialogSetReputation("Dominant", 50);
+                    }
+                    TitleSet("Judge");
+                }
                 if (title == "kidnapper") {
                     if ((ReputationGet("Kidnap") < 50) || (ReputationGet("Kidnap") > 99)) {
                         DialogSetReputation("Kidnap", 50);
                     }
                     TitleSet("Kidnapper");
+                }
+                if (title == "king") {    
+                    if (ReputationGet("Dominant") < 75) {
+                        DialogSetReputation("Dominant", 75);
+                    }
+                    TitleSet("King");
                 }
                 if (title == "kitten") TitleSet("Kitten");
             }
@@ -16370,4 +16439,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
