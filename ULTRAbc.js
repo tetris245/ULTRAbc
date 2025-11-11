@@ -5596,13 +5596,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Game: Player.Game
             }, true);
         }
-        ChatRoomSetLastChatRoom("");
-        ServerSend("ChatRoomLeave", "");
-        CommonSetScreen("Online", "ChatSearch");
-        ChatRoomClearAllElements();
-        OnlineGameName = "";
-        ChatSearchGame = "";
-        ChatRoomData = null;
+        ChatRoomLeave();
+        CommonSetScreen("Online", "ChatSearch");    
     }
 
     function OutClick() {
@@ -16452,6 +16447,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
