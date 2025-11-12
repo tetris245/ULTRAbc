@@ -50,7 +50,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            z-index: 10;
+            z-index: inherit;
         }
         .chat-search-room-bottom-section {
             width: fit-content;
@@ -16447,6 +16447,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
