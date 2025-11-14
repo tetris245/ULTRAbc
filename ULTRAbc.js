@@ -2730,11 +2730,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
-			if (noubcbar == false) {
-                if (window.CurrentScreen != "ChatRoom") {
-                    if (ChatSearchRoomBottom != undefined) ElementRemove(ChatSearchRoomBottom);
-                }
-            }
+		    ElementRemove("chat-search-room-bottom");
+            AutoJoin = function() {};
+            this.AutoJoinOn = false;
+            ElementRemove("AutoJoinAlert");
+            IsOn = false;
             TintsEffect();
             minigame == "";
             M_MOANER_saveControls();
@@ -3255,25 +3255,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	async function ULTRAChatSearchUnload() {
         modApi.hookFunction('ChatSearchUnload', 4, (args, next) => {
-            if (noubcbar == false) ElementRemove(ChatSearchRoomBottom); 
-			if (autojoin == true) {
-                AutoJoin = function() {};
-                this.AutoJoinOn = false;
-                ElementRemove("AutoJoinAlert");
-                IsOn = false;
-            } 
+            ElementRemove("chat-search-room-bottom");
+            AutoJoin = function() {};
+            this.AutoJoinOn = false;
+            ElementRemove("AutoJoinAlert");
+            IsOn = false;
             next(args);
         });
     }
 
-	async function ULTRARelogLoad() {
+    async function ULTRARelogLoad() {
         modApi.hookFunction('RelogLoad', 4, (args, next) => {
-            if (autojoin == true) {
-                AutoJoin = function() {};
-                this.AutoJoinOn = false;
-                ElementRemove("AutoJoinAlert");
-                IsOn = false;
-            } 
+            AutoJoin = function() {};
+            this.AutoJoinOn = false;
+            ElementRemove("AutoJoinAlert");
+            IsOn = false;
             next(args);
         });
     }
@@ -16448,3 +16444,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
