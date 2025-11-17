@@ -3624,6 +3624,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPrivateGetClubCardDeck(C) {
         modApi.hookFunction('PrivateGetClubCardDeck', 4, (args, next) => {
+			let C = CurrentCharacter;
             if (npcdeck == -1) {
                 if (["Amanda", "Sarah", "Sidney", "Sarah", "Jennifer", "Julia", "Yuki", "Mildred"].includes(C.Name)) return ClubCardBuilderCollegeDeck;
                 if ((C.Title === "Mistress") || (C.Title == "Dominatrix")) return ClubCardBuilderDominantDeck;
@@ -16444,4 +16445,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
