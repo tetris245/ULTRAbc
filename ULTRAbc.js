@@ -9428,8 +9428,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function tintMbsColors() {
         if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {
             if (Player.Themed != undefined) {
-                if (Player.Themed.IntegrationModule.MBS == true) tintMbsColors1();
-                if (Player.Themed.IntegrationModule.MBS == false) tintMbsColors2();
+                if (Player.Themed.IntegrationModule != undefined) {
+                    if (Player.Themed.IntegrationModule.MBS != undefined) {	
+                        if (Player.Themed.IntegrationModule.MBS == true) tintMbsColors1();
+                        if (Player.Themed.IntegrationModule.MBS == false) tintMbsColors2();
+                    }
+                }	           
             } else {
                 tintMbsColors2();
             }
@@ -9477,8 +9481,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function untintMbsColors() {
         if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {
             if (Player.Themed != undefined) {
-                if (Player.Themed.IntegrationModule.MBS == true) untintMbsColors1();
-                if (Player.Themed.IntegrationModule.MBS == false) untintMbsColors2();
+                if (Player.Themed.IntegrationModule != undefined) {
+                    if (Player.Themed.IntegrationModule.MBS != undefined) {	
+                        if (Player.Themed.IntegrationModule.MBS == true) untintMbsColors1();
+                        if (Player.Themed.IntegrationModule.MBS == false) untintMbsColors2();
+                    }
+                }	
             } else {
                 untintMbsColors2();
             }
@@ -16463,6 +16471,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
