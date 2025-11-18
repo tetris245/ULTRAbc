@@ -3229,7 +3229,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	async function ULTRAChatSearchResize() {
         modApi.hookFunction('ChatSearchResize', 4, (args, next) => {
            let ret = next(args);
-           ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 580);
+           ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 680);
            if (noubcbar == false) ElementPositionFixed(ChatSearchRoomBottom, 430, 880, 1520, 90);
            return ret;
         });
@@ -6659,6 +6659,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ChatSearchUpdateSearchSettings();
                         }, {
                             checked: Player.ChatSearchSettings.SearchDescriptions,
+                        }),
+                    ],
+                },
+				// Friends
+                {
+                    tag: "div",
+                    attributes: {
+                        id: "chat-search-search-menu-autojoin",
+                    },
+                    dataAttributes: {
+                        checkbox: true,
+                    },
+                    classList: ["chat-search-search-menu-grid-item"],
+                    children: [
+                        ElementCreateSettingsLabel("First rooms with friends:", "left"),
+                        ElementCheckbox.Create("chat-search-search-menu-friends-input", function() {
+                            Player.OnlineSettings.SearchFriendsFirst = this.checked;
+                        }, {
+                            checked: Player.OnlineSettings.SearchFriendsFirst,
                         }),
                     ],
                 },
@@ -16445,5 +16464,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
