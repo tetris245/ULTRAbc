@@ -60,3 +60,4 @@ All else I might not have included.
 Changes for future version
 
 * Added "First rooms with friends" parameter in Chat Search menu
+* Removed "Order rooms by number of friends" from the alphabetical Online Preferences screen
