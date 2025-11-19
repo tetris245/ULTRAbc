@@ -1948,7 +1948,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Alphabetic order for Preferences: ", "alfaprf",
-                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: Chat, Immersion and Online. Probably a few other screens will be ordered in the future.", false, 120
+                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: General, Chat, Immersion and Online.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
@@ -2324,6 +2324,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPlatformDialogEvent();
     ULTRAPreferenceRun();
     ULTRAPreferenceSubscreenChatLoad();
+	ULTRAPreferenceSubscreenGeneralLoad(); 
     ULTRAPreferenceSubscreenImmersionLoad();
     ULTRAPreferenceSubscreenMainLoad();
     ULTRAPreferenceSubscreenOnlineClick();
@@ -3861,6 +3862,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	//LARP
+    async function ULTRALARPRun() {
+        modApi.hookFunction('LARPRun', 4, (args, next) => {
+            TintsEffect();
+            if (minigame == "larp") {
+                minigame == "";
+                M_MOANER_saveControls();
+            }
+            next(args);
+        });
+    }
+
     //Lockpicking
     async function ULTRAStruggleMinigameWasInterrupted() {
         modApi.hookFunction('StruggleMinigameWasInterrupted', 4, (args, next) => {
@@ -4102,18 +4115,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //LARP
-    async function ULTRALARPRun() {
-        modApi.hookFunction('LARPRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "larp") {
-                minigame == "";
-                M_MOANER_saveControls();
-            }
-            next(args);
-        });
-    }
-
     //Pandora Prison
     async function ULTRAPandoraPenitentiaryResult() {
         modApi.hookFunction('PandoraPenitentiaryResult', 4, (args, next) => {
@@ -4257,6 +4258,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PreferenceSubscreenChatLoad', 4, (args, next) => {
             if (alfaprf == true) {
                 AltPrfChat();
+                return;
+            }
+            next(args);
+        });
+    }
+
+	async function ULTRAPreferenceSubscreenGeneralLoad() {
+        modApi.hookFunction('PreferenceSubscreenGeneralLoad', 4, (args, next) => {
+            if (alfaprf == true) {
+                AltPrfGeneral();
                 return;
             }
             next(args);
@@ -7936,6 +7947,141 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             },
         },
     };
+
+    function AltPrfGeneral() {
+        const colorInput = ElementCreateInput(PreferenceSubscreenGeneralIDs.colorInput, "text", Player.LabelColor);
+        colorInput.addEventListener("input", function () {
+            PreferenceSubscreenGeneralColorInput(this);
+        });
+        PreferenceSubscreenGeneralColorInput(colorInput);
+        const colorInputGroup = ElementCreate({
+            tag: "label",
+            children: [
+                TextGet("CharacterLabelColor"),
+                colorInput,
+                ElementButton.Create(PreferenceSubscreenGeneralIDs.colorPickerToggle,
+                    () => PreferenceSubscreenGeneralColorPickerToggle(),
+                    {
+                        image: "Icons/Color.png",
+                        tooltip: TextGet("ToggleColorPicker")
+                    }
+                ),
+            ],
+            attributes: { for: PreferenceSubscreenGeneralIDs.colorInput },
+        });
+        const dropdownOptions = Object.values(AllowedInteractions)
+            .map((e) => /** @type {Omit<HTMLOptions<"option">, "tag">} */({
+                attributes: {
+                    value: e.toString(),
+                    label: TextGet("AllowedInteraction" + e.toString()),
+                    selected: e === Player.AllowedInteractions
+                }
+            }));
+        const dropdown = ElementCreate({
+            tag: "div",
+            classList: ["preference-settings-dropdown"], 
+            attributes: { 
+                id: "AllowedInteractions-dropdown-container"
+            },
+            children: [
+                {
+                     tag: "label",
+                     children: [TextGet("AllowedInteractions")], 
+                     attributes: { for: "AllowedInteractions-dropdown" },
+                 },
+                 ElementCreateDropdown("AllowedInteractions-dropdown", dropdownOptions, function (ev) {
+                     ev.preventDefault();
+                     if (this.value in Object.values(AllowedInteractions) === false) return;
+                     Player.AllowedInteractions = /** @type {AllowedInteractions} */ (CommonParseInt(this.value));
+                     if (Player.GetDifficulty() >= Difficulty.EXTREME) LoginExtremeItemSettings(Player.AllowedInteractions === AllowedInteractions.Everyone);
+                  })
+              ]
+        });
+        const onHighDifficulty = Player.GetDifficulty() >= Difficulty.HARDCORE;
+        const checkboxes = AltPreferenceSubscreenGeneralCheckboxes.map((checkbox) => {
+            return ElementCheckbox.CreateLabelled(
+                `preference-immersion-${checkbox.label}`,  
+                TextGet(checkbox.label),
+                function () {
+                    const value = this.checked;
+                    checkbox.click(value);
+                },
+                {
+                    checked: checkbox.check(),
+                    disabled: checkbox.disabled?.(onHighDifficulty)
+                    });
+        });
+        ElementCreate({
+            tag: "div",
+            classList: ["preference-settings-grid", "scroll-box"],
+            attributes: {
+                id: PreferenceSubscreenGeneralIDs.grid
+            },
+            children: [
+                colorInputGroup,
+                dropdown,
+                onHighDifficulty ? {
+                    tag: 'span',
+                    attributes: { id: PreferenceSubscreenGeneralIDs.generalHardcoreWarning },
+                    children: [TextGet("GeneralHardcoreWarning")],
+                } : undefined,
+                ...checkboxes
+            ],
+            parent: ElementWrap(PreferenceIDs.subscreen)
+        }); 
+    } 
+
+    /** @type {{label: string, check: () => boolean, click: (value: boolean) => void, disabled?: (disableButtons: boolean) => boolean}[]} */
+    const AltPreferenceSubscreenGeneralCheckboxes = [
+        {
+	        label: "EnableSafeword",
+		    check: () => Player.GameplaySettings.EnableSafeword,
+		    click: () => {
+		        const canToggle = !Player.IsRestrained() && !Player.IsChaste();
+			    const enabled = Player.GameplaySettings.EnableSafeword;
+			    if (canToggle || enabled) {
+			        if (PreferenceSafewordConfirm) {
+				        Player.GameplaySettings.EnableSafeword = !enabled;
+				        PreferenceSafewordConfirm = false;
+				    } else {
+				        PreferenceSafewordConfirm = true;
+				    }
+			    }
+			    const checkbox = /** @type {HTMLInputElement} */ (ElementWrap("preference-immersion-EnableSafeword"));
+			    checkbox.checked = Player.GameplaySettings.EnableSafeword;
+			    const label = TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword");
+			    ElementWrap("preference-immersion-EnableSafeword-label").textContent = label;
+		    },
+		    disabled: (onHighDifficulty) => onHighDifficulty
+	    },
+        {
+		    label: "OfflineLockedRestrained",
+		    check: () => Player.GameplaySettings.OfflineLockedRestrained,
+		    click: (value) => Player.GameplaySettings.OfflineLockedRestrained = value,
+		    disabled: (onHighDifficulty) => onHighDifficulty
+	    },
+        {
+		    label: "ForceFullHeight",
+		    check: () => Player.VisualSettings.ForceFullHeight,
+		    click: (value) => Player.VisualSettings.ForceFullHeight = value,
+	    },
+        {
+		    label: "ItemsAffectExpressions",
+		    check: () => Player.OnlineSharedSettings.ItemsAffectExpressions,
+		    click: (value) => Player.OnlineSharedSettings.ItemsAffectExpressions = value,
+	    },
+        {
+		    label: "DisablePickingLocksOnSelf",
+		    check: () => Player.OnlineSharedSettings.DisablePickingLocksOnSelf,
+		    click: (value) => Player.OnlineSharedSettings.DisablePickingLocksOnSelf = value,
+	    },
+        {
+		    label: "DisableAutoMaid",
+		    check: () => !Player.GameplaySettings.DisableAutoMaid,
+		    click: (value) => Player.GameplaySettings.DisableAutoMaid = value,
+		    disabled: (onHighDifficulty) => onHighDifficulty
+	    }
+    ];
 
 	function AltPrfImmersion() {
         const difficultyTooHigh = Player.GetDifficulty() > 2;
