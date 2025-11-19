@@ -8216,11 +8216,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             click: () => Player.OnlineSettings.DisableAnimations = !Player.OnlineSettings.DisableAnimations
         },
         {
-            label: "SearchFriendsFirst",
-            check: () => Player.OnlineSettings.SearchFriendsFirst,
-            click: () => Player.OnlineSettings.SearchFriendsFirst = !Player.OnlineSettings.SearchFriendsFirst
-        },
-        {
             label: "BlockBodyCosplay",
             check: () => Player.OnlineSharedSettings.BlockBodyCosplay,
             click: () => Player.OnlineSharedSettings.BlockBodyCosplay = !Player.OnlineSharedSettings.BlockBodyCosplay
@@ -16471,8 +16466,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
-
