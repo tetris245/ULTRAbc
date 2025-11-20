@@ -820,7 +820,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "rglsync": rglsync,
             "slowleave": slowleave,
             "sosbuttons": sosbuttons,
-            "blureffect": blureffect,
             "notalk": notalk,
             "reaction": reaction,
             "unrestrict": unrestrict,
@@ -16564,4 +16563,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
