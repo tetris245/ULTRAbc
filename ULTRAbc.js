@@ -3659,33 +3659,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //College Tennis
-    async function ULTRACollegeTennisGameStart() {
+	async function ULTRACollegeTennisGameStart() {
         modApi.hookFunction('CollegeTennisGameStart', 4, (args, next) => {
+            let ret = next(args);
+            if (minigame == "") return ret;
             InventoryWear(Player, "TennisRacket", "ItemHandheld");
             CharacterRefresh(Player);
-            if (minigame == "") {
-                if ((Difficulty == "Hard") && (CollegeTennisJennifer.Name != "Jennifer")) CharacterChangeMoney(Player, -25);
-            }
+            let level = "";
+            if (minigame == "tennis1") level = "Easy";
+            if (minigame == "tennis2") level = "Normal";
+            if (minigame == "tennis3") level = "Hard";
+            minigame == "";
+            M_MOANER_saveControls();
+            if ((level == "Hard") && (CollegeTennisJennifer.Name != "Jennifer")) CharacterChangeMoney(Player, -25);
             TennisCharacterLeft = Player;
             TennisCharacterRight = CollegeTennisJennifer;
-            if (minigame == "") MiniGameStart("Tennis", Difficulty, "CollegeTennisGameEnd");
-            if (minigame == "tennis1") {
-                minigame == "";
-                M_MOANER_saveControls();
-                MiniGameStart("Tennis", "Easy", "CollegeTennisGameEnd");
-            }
-            if (minigame == "tennis2") {
-                minigame == "";
-                M_MOANER_saveControls();
-                MiniGameStart("Tennis", "Normal", "CollegeTennisGameEnd");
-            }
-            if (minigame == "tennis3") {
-                minigame == "";
-                M_MOANER_saveControls();
-                if (CollegeTennisJennifer.Name != "Jennifer") CharacterChangeMoney(Player, -25);
-                MiniGameStart("Tennis", "Hard", "CollegeTennisGameEnd");
-            }
-            return;
+            MiniGameStart("Tennis", level, "CollegeTennisGameEnd");
         });
     }
 
@@ -16563,6 +16552,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
