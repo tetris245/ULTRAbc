@@ -186,7 +186,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let slowleave;
     let sosbuttons;
 
-    let blureffect = 0;
     let notalk = 0;
     let reaction = 0;
     let unrestrict = 0;
@@ -526,7 +525,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         autojoin = false;
         bgall = false;
         bl = 0;
-        blureffect = 0;
         ccards = 30;
         cdeck = 0;
         cextra = false;
@@ -621,7 +619,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         autojoin = data.autojoin;
         bgall = data.bgall;
         bl = data.bl;
-        blureffect = 0;
         ccards = data.ccards * 1;
         cdeck = data.cdeck * 1;
         cextra = data.cextra;
@@ -896,7 +893,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
                 if (blindness == null || blindness == undefined) blindness = 0;
-                if (blureffect == null || blureffect == undefined || blureffect == false) blureffect = 0;
                 if (blurmode == null || blurmode == undefined) blurmode = 0;
                 if (ccards == null || ccards == undefined) ccards = 30;
                 if (cdeck == null || cdeck == undefined) cdeck = 0;
@@ -1035,7 +1031,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 bgall: false,
                 bl: 0,
                 blindness: 0,
-                blureffect: 0,
                 blurmode: 0,
                 ccards: 30,
                 cdeck: 0,
@@ -2156,10 +2151,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuInput(200, "Forced blurry vision (1-5):", "blurmode", "InputBlurMode",
                     "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
-                );
-                addMenuInput(200, "Forced global blur level (0-4):", "blureffect", "InputBlurEffect",
-                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", 60
-                );
+                );            
                 addMenuCheckbox(64, 64, "Fully disable all UBC tint settings: ", "tintnever",
                     "If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 192
                 );
@@ -2193,29 +2185,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCVisualExit = function() {
                 let blmode = ElementValue("InputBlindnessMode");
                 let brmode = ElementValue("InputBlurMode");
-                let effect = ElementValue("InputBlurEffect");
                 let regex = /^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i;
                 let ttcolor = ElementValue("InputTintColor");
                 let ttlevel = ElementValue("InputTintLevel");
                 if ((CommonIsNumeric(blmode)) && (blmode > -1) && (blmode < 5) &&
-                    (CommonIsNumeric(brmode)) && (brmode > -1) && (brmode < 6) &&
-                    (CommonIsNumeric(effect)) && (effect > -1) && (effect < 5) &&
+                    (CommonIsNumeric(brmode)) && (brmode > -1) && (brmode < 6) &&                    
                     (CommonIsNumeric(ttlevel)) && (ttlevel > -1) && (ttlevel < 4) &&
                     (ttcolor.startsWith("#")) && (ttcolor.match(regex))) {
-                    Player.UBC.ubcSettings.blindness = blmode;
-                    Player.UBC.ubcSettings.blureffect = effect;
+                    Player.UBC.ubcSettings.blindness = blmode;                  
                     Player.UBC.ubcSettings.blurmode = brmode;
                     Player.UBC.ubcSettings.tintcolor = ttcolor;
                     Player.UBC.ubcSettings.tintlevel = ttlevel;
                     ElementRemove("InputBlindnessMode");
-                    ElementRemove("InputBlurEffect");
                     ElementRemove("InputBlurMode");
                     ElementRemove("InputTintColor");
                     ElementRemove("InputTintLevel");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
-
+  
             function keyHandler(e) {
                 if (e.key === "Escape" && !!UBCPreferenceSubscreen && UBCPreferenceSubscreen !== "UBCSettings") {
                     CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`);
@@ -2291,8 +2279,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardLoungeRun();
     ULTRAClubCardRenderPanel();
     ULTRACollegeTennisGameStart();
-    ULTRADrawCharacter();
-    ULTRADrawRoomBackground();
     ULTRAFriendListDraw();
     ULTRAFriendListKeyDown();
     ULTRAInfiltrationClubCardStart();
@@ -4649,30 +4635,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRADojoStruggleRun() {
         modApi.hookFunction('DojoStruggleRun', 4, (args, next) => {
             TintsEffect();
-            next(args);
-        });
-    }
-
-    async function ULTRADrawCharacter() {
-        modApi.hookFunction('DrawCharacter', 4, (args, next) => {
-            if (Player.UBC != undefined) {
-                if (Player.UBC.ubcSettings != undefined) {
-                    let effect = Player.UBC.ubcSettings.blureffect * 1;
-                    if (effect != 0) BlurEffect();
-                }
-            }
-            next(args);
-        });
-    }
-
-    async function ULTRADrawRoomBackground() {
-        modApi.hookFunction('DrawRoomBackground', 4, (args, next) => {
-            if (Player.UBC != undefined) {
-                if (Player.UBC.ubcSettings != undefined) {
-                    let effect = Player.UBC.ubcSettings.blureffect * 1;
-                    if (effect != 0) BlurEffect();
-                }
-            }
             next(args);
         });
     }
@@ -9492,16 +9454,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Vision
-    function BlurEffect() {
-        let effect = Player.UBC.ubcSettings.blureffect * 1;
-        let BlurLevel = 0;
-        if (effect == 1) BlurLevel = 3;
-        if (effect == 2) BlurLevel = 8;
-        if (effect == 3) BlurLevel = 20;
-        if (effect == 4) BlurLevel = 50;
-        MainCanvas.filter = `blur(${BlurLevel}px)`;
-    }
-
     function DrawHexToTints(color) {
         const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
         color = color.replace(shorthandRegex, function(m, r, g, b) {
@@ -16612,3 +16564,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
