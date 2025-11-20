@@ -4512,350 +4512,350 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Vision
-    async function ULTRAArcadeRun() {
+	function ULTRAArcadeRun() {
         modApi.hookFunction('ArcadeRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAAsylumBedroomRun() {
+    function ULTRAAsylumBedroomRun() {
         modApi.hookFunction('AsylumBedroomRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAAsylumGGTSRun() {
+    function ULTRAAsylumGGTSRun() {
         modApi.hookFunction('AsylumGGTSRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAAsylumTherapyRun() {
+    function ULTRAAsylumTherapyRun() {
         modApi.hookFunction('AsylumTherapyRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAChatAdminRoomCustomizationRun() {
+    function ULTRAChatAdminRoomCustomizationRun() {
         modApi.hookFunction('ChatAdminRoomCustomizationRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAChatSelectRun() {
+    function ULTRAChatSelectRun() {
         modApi.hookFunction('ChatSelectRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAChestLockpickRun() {
+    function ULTRAChestLockpickRun() {
         modApi.hookFunction('ChestLockpickRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAClubCardBuilderRun() {
+    function ULTRAClubCardBuilderRun() {
         modApi.hookFunction('ClubCardBuilderRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAClubCardRun() {
+    function ULTRAClubCardRun() {
         modApi.hookFunction('ClubCardRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRACollegeCafeteriaRun() {
+    function ULTRACollegeCafeteriaRun() {
         modApi.hookFunction('CollegeCafeteriaRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRACollegeChessRun() {
+    function ULTRACollegeChessRun() {
         modApi.hookFunction('CollegeChessRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRACollegeDetentionRun() {
+    function ULTRACollegeDetentionRun() {
         modApi.hookFunction('CollegeDetentionRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRACollegeEntranceRun() {
+    function ULTRACollegeEntranceRun() {
         modApi.hookFunction('CollegeEntranceRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRACollegeTeacherRun() {
+    function ULTRACollegeTeacherRun() {
         modApi.hookFunction('CollegeTeacherRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRACollegeTennisRun() {
+    function ULTRACollegeTennisRun() {
         modApi.hookFunction('CollegeTennisRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRACollegeTheaterRun() {
+    function ULTRACollegeTheaterRun() {
         modApi.hookFunction('CollegeTheaterRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRACraftingRun() {
+    function ULTRACraftingRun() {
         modApi.hookFunction('CraftingRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRADojoStruggleRun() {
+    function ULTRADojoStruggleRun() {
         modApi.hookFunction('DojoStruggleRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAGamblingRun() {
+    function ULTRAGamblingRun() {
         modApi.hookFunction('GamblingRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAGetUpRun() {
+    function ULTRAGetUpRun() {
         modApi.hookFunction('GetUpRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAHorseWalkRun() {
+    function ULTRAHorseWalkRun() {
         modApi.hookFunction('HorseWalkRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAInformationSheetRun() {
+    function ULTRAInformationSheetRun() {
         modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAKidnapRun() {
+    function ULTRAKidnapRun() {
         modApi.hookFunction('KidnapRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAMagicBattleRun() {
+    function ULTRAMagicBattleRun() {
         modApi.hookFunction('MagicBattleRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAMagicRun() {
+    function ULTRAMagicRun() {
         modApi.hookFunction('MagicRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAMagicSchoolEscapeRun() {
+    function ULTRAMagicSchoolEscapeRun() {
         modApi.hookFunction('MagicSchoolEscapeRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAMagicSchoolLaboratoryRun() {
+    function ULTRAMagicSchoolLaboratoryRun() {
         modApi.hookFunction('MagicSchoolLaboratoryRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAMaidCleaningRun() {
+    function ULTRAMaidCleaningRun() {
         modApi.hookFunction('MaidCleaningRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAMaidDrinksRun() {
+    function ULTRAMaidDrinksRun() {
         modApi.hookFunction('MaidDrinksRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAManagementRun() {
+    function ULTRAManagementRun() {
         modApi.hookFunction('ManagementRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRANurseryRun() {
+    function ULTRANurseryRun() {
         modApi.hookFunction('NurseryRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAOnlineProfileRun() {
+    function ULTRAOnlineProfileRun() {
         modApi.hookFunction('OnlineProfileRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPandoraRun() {
+    function ULTRAPandoraRun() {
         modApi.hookFunction('PandoraRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPlatformDialogRun() {
+    function ULTRAPlatformDialogRun() {
         modApi.hookFunction('PlatformDialogRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPlatformIntroRun() {
+    function ULTRAPlatformIntroRun() {
         modApi.hookFunction('PlatformIntroRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPlatformProfileRun() {
+    function ULTRAPlatformProfileRun() {
         modApi.hookFunction('PlatformProfileRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPlatformRun() {
+    function ULTRAPlatformRun() {
         modApi.hookFunction('PlatformRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPlayerAuctionRun() {
+    function ULTRAPlayerAuctionRun() {
         modApi.hookFunction('PlayerAuctionRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPokerRun() {
+    function ULTRAPokerRun() {
         modApi.hookFunction('PokerRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPrisonRun() {
+    function ULTRAPrisonRun() {
         modApi.hookFunction('PrisonRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAPuppyWalkerRun() {
+    function ULTRAPuppyWalkerRun() {
         modApi.hookFunction('PuppyWalkerRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRARhythmGameRun() {
+    function ULTRARhythmGameRun() {
         modApi.hookFunction('RhythmGameRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRASarahRun() {
+    function ULTRASarahRun() {
         modApi.hookFunction('SarahRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAShopRun() {
+    function ULTRAShopRun() {
         modApi.hookFunction('ShopRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRASlaveAuctionRun() {
+    function ULTRASlaveAuctionRun() {
         modApi.hookFunction('SlaveAuctionRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRASlaveMarketRun() {
+    function ULTRASlaveMarketRun() {
         modApi.hookFunction('SlaveMarketRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRATennisRun() {
+    function ULTRATennisRun() {
         modApi.hookFunction('TennisRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRATherapyRun() {
+    function ULTRATherapyRun() {
         modApi.hookFunction('TherapyRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRATitleRun() {
+    function ULTRATitleRun() {
         modApi.hookFunction('TitleRun', 4, (args, next) => {
             TintsEffect();
             next(args);
         });
     }
 
-    async function ULTRAWheelFortuneRun() {
+    function ULTRAWheelFortuneRun() {
         modApi.hookFunction('WheelFortuneRun', 4, (args, next) => {
             TintsEffect();
             next(args);
@@ -16563,5 +16563,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
