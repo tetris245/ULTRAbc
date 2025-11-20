@@ -62,3 +62,4 @@ Changes for future version
 * Added "First rooms with friends" parameter in Chat Search menu
 * Extended the alphabetical order in Preferences screens to the General Preferences
 * Removed "Order rooms by number of friends" from the alphabetical Online Preferences screen
+* Removed the forced global blur level from GUI-Visual, because this effect is too severe and is even applied to the settings pages
