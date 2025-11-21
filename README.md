@@ -59,8 +59,9 @@ All else I might not have included.
 
 Changes for future version
 
-* Added "First rooms with friends" parameter in Chat Search menu
+* Added the "First rooms with friends" and "Players in Room" parameters in Chat Search menu
 * Extended the alphabetical order in Preferences screens to the General Preferences
 * Removed "Order rooms by number of friends" from the alphabetical Online Preferences screen
+* Removed the Chat Search option in the UBC GUI (as all is now in the BC Chat Search menu)
 * Removed the forced global blur level from GUI-Visual, because this effect is too severe and is even applied to the settings pages
 * Removed the async character for the hooks with only the tinting effect
