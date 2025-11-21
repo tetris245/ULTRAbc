@@ -61,6 +61,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             display: flex;
             gap: 0.5em;
         }
+		#chat-search-search-menu-room-players-grid {
+            display: grid;
+            grid-template-columns: 3em 1em 3em;
+            grid-template-rows: 1fr 1fr;
+            text-align: center;
+        }
+        .chat-search-search-menu-room-players-label {
+            font-size: 0.8em;
+            user-select: none;
+        }
+        .chat-search-room-players-input {
+            border: var(--border-width) solid black;
+        }
   ` ;
     const style = document.createElement('style');
     style.type = 'text/css';
@@ -16511,6 +16524,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
