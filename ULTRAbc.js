@@ -3146,14 +3146,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 maxRoomSizeInput
             } = ChatSearchCreateRoomSizeInputs();
             const {
+                minRoomPlayersInput,
+                maxRoomPlayersInput
+            } = ChatSearchCreateRoomPlayersInputs();
+            const {
                 searchInput,
-				filterInput,
+		     filterInput,
                 clearButton
             } = ChatSearchCreateSearchControls();
-            ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput);
+            ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
 			if (noubcbar == false) ChatSearchCreateBottom();
             ChatSearchCreateGrid();
-            ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput);
+            ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
             ChatSearchCreateFilterHelpDialog();
             ChatSearchQuery(ChatSearchQueryString);
             ChatRoomNotificationReset();
@@ -5923,7 +5927,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatSearchRoomGrid = ElementCreateDiv("chat-search-room-grid");
     }
 
-    function ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput) {
+    function ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput) {
         const showFemaleButton = (
             ((ChatSearchGetSpace() !== "Asylum" && asylumlimit === true) || (asylumlimit === false)) &&
             Player.GetGenders().includes("F")
@@ -6243,6 +6247,63 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	function ChatSearchCreateRoomPlayersInputs() {
+        const minRoomPlayersInput = ElementCreate({
+            tag: "input",
+            attributes: {
+                id: "chat-search-search-menu-room-players-min",
+                type: "number",
+                inputmode: "numeric",
+                value: pmin,
+                min: 1,
+                max: 20,
+                step: 1,
+                required: true,
+            },
+            classList: ["chat-search-room-players-input"],
+            eventListeners: {
+                change: () => {
+                    const min = parseInt(minRoomPlayersInput.value, 10);
+                    if (!minRoomPlayersInput.validity.valid) return;
+                    pmin = min;
+                    minRoomPlayersInput.valueAsNumber = min;
+                    maxRoomPlayersInput.min = String(min);              
+                    M_MOANER_saveControls();
+                    Player.UBC.ubcSettings.pmin = min;
+                }
+            }
+        });
+        const maxRoomPlayersInput = ElementCreate({
+            tag: "input",
+            attributes: {
+                id: "chat-search-search-menu-room-players-max",
+                type: "number",
+                inputmode: "numeric",
+                value: pmax,
+                min: 1,
+                max: 20,
+                step: 1,
+                required: true,
+            },
+            classList: ["chat-search-room-players-input"],
+            eventListeners: {
+                change: () => {
+                    let max = parseInt(maxRoomPlayersInput.value, 10);
+                    if (!maxRoomPlayersInput.validity.valid) return;
+                    pmax = max;
+                    maxRoomPlayersInput.valueAsNumber = max;
+                    minRoomPlayersInput.max = String(max);
+                    M_MOANER_saveControls();
+                    Player.UBC.ubcSettings.pmax = max;
+                }
+            }
+        });
+        return {
+            minRoomPlayersInput,
+            maxRoomPlayersInput
+        };
+    }
+
     function ChatSearchCreateRoomSizeInputs() {
         const minRoomSizeInput = ElementCreate({
             tag: "input",
@@ -6275,7 +6336,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 type: "number",
                 inputmode: "numeric",
                 value: Player.ChatSearchSettings.RoomMaxSize,
-                min: 1,
+                min: 2,
                 max: 20,
                 step: 1,
                 required: true,
@@ -6378,7 +6439,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         };
     }
 
-    function ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput) {
+    function ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput) {
         ChatSearchSearchMenu = ElementCreate({
             tag: "fieldset",
             attributes: {
@@ -6737,6 +6798,47 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     ]
                 },
+                // Players in room
+                {
+                    tag: "div",
+                    attributes: {
+                        id: "chat-search-search-menu-room-players"
+                    },
+                    classList: ["chat-search-search-menu-grid-item"],
+                    children: [
+                        ElementCreateSettingsLabel("Players in Room"),
+                        {
+                            tag: "div",
+                            attributes: {
+                                id: "chat-search-search-menu-room-players-grid"
+                            },
+                            children: [
+                                minRoomPlayersInput,
+                                "/",
+                                maxRoomPlayersInput,
+                                {
+                                    tag: "span",
+                                    classList: ["chat-search-search-menu-room-players-label"],
+                                    children: ["min"],
+                                    attributes: {
+                                        "for": "chat-search-search-menu-room-players-min"
+                                    }
+                                },
+                                {
+                                    tag: "span",
+                                    classList: ["chat-search-search-menu-room-players-label"],
+                                    children: ["max"],
+                                    style: {
+                                        "grid-column": "3/3"
+                                    },
+                                    attributes: {
+                                        "for": "chat-search-search-menu-room-players-max"
+                                    },
+                                },
+                            ],
+                        }
+                    ]
+                },
                 ElementButton.Create("chat-search-search-menu-search-button", function() {
                     const elements = /** @type {HTMLCollectionOf<Element & { validity: ValidityState, reportValidity(): boolean }>} */ (ChatSearchSearchMenu.elements);
                     for (const el of elements) {
@@ -6758,7 +6860,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             parent: document.body,
         });
     }
-
+		
     function ChatSearchInitState() {
         ChatRoomCustomizationClear();
         ChatRoomActivateView(ChatRoomCharacterViewName);
@@ -16524,9 +16626,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
-
-
