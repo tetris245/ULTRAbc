@@ -166,6 +166,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tintlevel = 0;
     let tintmbs = false;
     let tintnever = false;
+	let wrname = "Dressing";
 
     let asylumlimit;
     let autojoin;
@@ -714,6 +715,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             reaction = 0;
             tcname = "Cell";
             unrestrict = 0;
+			wrname = "Dressing";
             messageDefault();
             M_MOANER_saveControls();
         } else {
@@ -747,6 +749,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             reaction = 0;
             tcname = data.tcname;
             unrestrict = 0;
+			wrname = data.wrname;
             messageData(data);
         }
     }
@@ -797,6 +800,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "tintlevel": tintlevel,
             "tintmbs": tintmbs,
             "tintnever": tintnever,
+            "wrname": wrname,
             "asylumlimit": asylumlimit,
             "autojoin": autojoin,
             "cskeys": cskeys,
@@ -984,6 +988,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (unrestrict == null || unrestrict == undefined) unrestrict = 0;
                 if (usoft == null || usoft == undefined) usoft = false;
                 if (utotal == null || utotal == undefined) utotal = false;
+				if (wrname == null || wrname == undefined) wrname = "Dressing";
                 M_MOANER_saveControls();
                 let BabyTalkOn = false;
                 let GagTalkOn = false;
@@ -4970,6 +4975,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAAppearanceRun() {
         modApi.hookFunction('AppearanceRun', 4, (args, next) => {
+			AppearanceBackground = wrname;
             TintsEffect();
             if (CharacterAppearanceMode == "Wardrobe") {
                 DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
@@ -10965,7 +10971,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "0 = Chat Search - 1 = Club Card Game\n" +
                     "2 = Friend List - 3 = Main Hall\n" +
                     "4 = Private Room (SP) - 5 = Timer Cell\n" +
-                    "6 = Creation of New Room (default)\n" +
+                    "6 = Wardrobe\n" +
+                    "7 = Creation of New Room (default)\n" +
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
                     "Without BCX: 0 to 209 for official BC backgrounds, 210 to 292 are added if you use the /bg1 command.\n" +
@@ -10977,7 +10984,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringBg1 = args;
                 let stringBg2 = stringBg1.split(/[ ,]+/);
                 let screen = stringBg2[0];
-                if ((screen > -1) && (screen < 7)) {
+                if ((screen > -1) && (screen < 8)) {
                     if (screen == 0) {
                         let csbg = stringBg2[1];
                         let csback = "";
@@ -11076,6 +11083,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (screen == 6) {
+                        let wrbg = stringBg2[1];
+                        let wrback = "";
+                        if ((wrbg > -2) && (wrbg < (BackgroundsList.length - 1))) {
+                            if (wrbg == -1) {
+                                wrback = "Dressing";
+                            } else {
+                                wrback = BackgroundsList[wrbg].Name;
+                            }
+                            wrname = wrback;
+                            M_MOANER_saveControls();
+                            let msg = "The background of the wardrobe is now: " + wrname + ".";
+                            infomsg(msg);
+                        }
+                    }
+                    if (screen == 7) {
                         let drbg = stringBg2[1];
                         let drback = "";
                         if ((drbg > -2) && (drbg < (BackgroundsList.length - 1))) {
