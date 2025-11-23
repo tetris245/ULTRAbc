@@ -2413,7 +2413,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "asylum") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 AsylumEntranceIsWearingNurseClothes = function() {
                     return true
@@ -2458,7 +2458,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('CafeRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "cafe") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
             }
             next(args);
@@ -2704,7 +2704,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ElementRemove("AutoJoinAlert");
             IsOn = false;
             TintsEffect();
-            minigame == "";
+            minigame = "";
             M_MOANER_saveControls();
             if (kp != 1) {
                 if (tmpname == "") {
@@ -3466,7 +3466,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ClubCardLoungeRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "lounge") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
             }
             next(args);
@@ -3655,7 +3655,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (minigame == "tennis1") level = "Easy";
             if (minigame == "tennis2") level = "Normal";
             if (minigame == "tennis3") level = "Hard";
-            minigame == "";
+            minigame = "";
             M_MOANER_saveControls();
             if ((level == "Hard") && (CollegeTennisJennifer.Name != "Jennifer")) CharacterChangeMoney(Player, -25);
             TennisCharacterLeft = Player;
@@ -3774,7 +3774,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return false;
             }
             if (minigame == "dojo") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 IntroductionJobList = ["SubDojo"];
                 IntroductionJobStart("SubDojo", 0)
@@ -3782,7 +3782,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return true;
             }
             if (minigame == "kidnap") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 IntroductionJobList = ["DomKidnap"];
                 IntroductionJobStart("DomKidnap", 0)
@@ -3790,7 +3790,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return true;
             }
             if (minigame == "puppy") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 IntroductionJobList = ["DomPuppy"];
                 IntroductionJobStart("DomPuppy", 0)
@@ -3805,7 +3805,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('IntroductionRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "introduction") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
             }
             next(args);
@@ -3817,7 +3817,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('KidnapLeagueRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "kidnap") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 KidnapLeagueBackground = "MainHall";
                 CharacterDelete(KidnapLeagueRandomKidnapper, false);
@@ -3836,7 +3836,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('LARPRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "larp") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
             }
             next(args);
@@ -3904,17 +3904,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "cleaning") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 MaidCleaning();
             }
             if (minigame == "drinks") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 MaidDrinks();
             }
             if (minigame == "rhythm") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 MaidRhythm();
             }
@@ -4003,16 +4003,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('MovieStudioRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "movie") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
             }
             if (minigame == "movie1") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 MovieStudioDailyMovie = "Interview";
             }
             if (minigame == "movie2") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 MovieStudioDailyMovie = "OpenHouse";
             }
@@ -4077,7 +4077,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "infiltration") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
             }
             next(args);
@@ -4400,7 +4400,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ShibariRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "shibari") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 InventoryRemove(ShibariStudent, "ItemArms");
                 InventoryRemove(ShibariStudent, "ItemFeet");
@@ -4431,26 +4431,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('StableRun', 4, (args, next) => {
             TintsEffect();
             if (minigame == "carrot") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 StableCarrot();
             }
             if (minigame == "hurdle") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 StableHurdle();
             }
             if (minigame == "stable") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
             }
             if (minigame == "training") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 StableTraining();
             }
             if (minigame == "whippony") {
-                minigame == "";
+                minigame = "";
                 M_MOANER_saveControls();
                 StableWhip();
             }
@@ -16669,3 +16669,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
