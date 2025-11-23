@@ -65,4 +65,4 @@ Changes for future version
 * Removed "Order rooms by number of friends" from the alphabetical Online Preferences screen
 * Removed the Chat Search option in the UBC GUI (as all is now in the BC Chat Search menu)
 * Removed the forced global blur level from GUI-Visual, because this effect is too severe and is even applied to the settings pages
-* Removed the async character for the hooks with only the tinting effect
+* Removed the async character for the hooks with only the tinting effect and/or the selection of a specific background
