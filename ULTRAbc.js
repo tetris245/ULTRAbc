@@ -2427,7 +2427,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Backgrounds
-    async function ULTRABackgroundsTextGet(msg) {
+    function ULTRABackgroundsTextGet(msg) {
         modApi.hookFunction('BackgroundsTextGet', 4, (args, next) => {
             let fixname = next(args);
             if (fixname.startsWith("MISSING")) {
@@ -3665,7 +3665,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Friendlist 
-    async function ULTRAFriendListDraw() {
+    function ULTRAFriendListDraw() {
         modApi.hookFunction('FriendListDraw', 4, (args, next) => {
             FriendListBackground = frname;
             TintsEffect();
@@ -16669,4 +16669,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
