@@ -3998,20 +3998,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAMovieStudioRun() {
         modApi.hookFunction('MovieStudioRun', 4, (args, next) => {
             TintsEffect();
-            if (minigame == "movie") {
-                minigame = "";
-                M_MOANER_saveControls();
-            }
-            if (minigame == "movie1") {
-                minigame = "";
-                M_MOANER_saveControls();
-                MovieStudioDailyMovie = "Interview";
-            }
-            if (minigame == "movie2") {
-                minigame = "";
-                M_MOANER_saveControls();
-                MovieStudioDailyMovie = "OpenHouse";
-            }
+            let moviegame = minigame;
+            minigame = "";
+            M_MOANER_saveControls();
+            if (moviegame == "movie1") MovieStudioDailyMovie = "Interview";              
+            if (moviegame == "movie2") MovieStudioDailyMovie = "OpenHouse";               
             next(args);
         });
     }
