@@ -4417,30 +4417,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAStableRun() {
         modApi.hookFunction('StableRun', 4, (args, next) => {
             TintsEffect();
-            if (minigame == "carrot") {
-                minigame = "";
-                M_MOANER_saveControls();
-                StableCarrot();
-            }
-            if (minigame == "hurdle") {
-                minigame = "";
-                M_MOANER_saveControls();
-                StableHurdle();
-            }
-            if (minigame == "stable") {
-                minigame = "";
-                M_MOANER_saveControls();
-            }
-            if (minigame == "training") {
-                minigame = "";
-                M_MOANER_saveControls();
-                StableTraining();
-            }
-            if (minigame == "whippony") {
-                minigame = "";
-                M_MOANER_saveControls();
-                StableWhip();
-            }
+            let stablegame = minigame;
+            minigame = "";
+            M_MOANER_saveControls();
+            if (stablegame == "carrot") StableCarrot();
+            if (stablegame == "hurdle") StableHurdle();   
+            if (stablegame == "training") StableTraining();      
+            if (stablegame == "whippony") StableWhip();
             next(args);
         });
     }
