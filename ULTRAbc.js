@@ -3908,21 +3908,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAMaidQuartersRun() {
         modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {
             TintsEffect();
-            if (minigame == "cleaning") {
-                minigame = "";
-                M_MOANER_saveControls();
-                MaidCleaning();
-            }
-            if (minigame == "drinks") {
-                minigame = "";
-                M_MOANER_saveControls();
-                MaidDrinks();
-            }
-            if (minigame == "rhythm") {
-                minigame = "";
-                M_MOANER_saveControls();
-                MaidRhythm();
-            }
+            let maidgame = minigame;
+            minigame = "";
+            M_MOANER_saveControls();
+            if (maidgame == "cleaning") MaidCleaning();     
+            if (maidgame == "drinks") MaidDrinks();            
+            if (maidgame == "rhythm") MaidRhythm();
             next(args);
         });
     }
@@ -16678,6 +16669,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
