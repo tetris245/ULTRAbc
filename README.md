@@ -62,6 +62,7 @@ Changes for future version
 * Added the "First rooms with friends" and "Players in Room" parameters in Chat Search menu
 * Extended the alphabetical order in Preferences screens to the General Preferences
 * Added the Character Info and Wardrobe options to the bg4 command
+* Improved the Bondage Bench trap to make it compatible with male characters
 * Improved the code related to some minigames
 * Removed "Order rooms by number of friends" from the alphabetical Online Preferences screen
 * Removed the Chat Search option in the UBC GUI (as all is now in the BC Chat Search menu)
