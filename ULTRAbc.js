@@ -7239,7 +7239,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
                     }
                 }
-        }, 2000);
+        }, 3000);
     }
 
     function IsItemSlotUnlocked(p, slot) {
@@ -9031,7 +9031,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Item = "";
         CharacterNaked(Player);
         WearItemIfUnlocked(Player, "BondageBench", "ItemDevices");
-        WearItemIfUnlocked(Player, "BalletWedges", "ItemBoots");
+        WearItemIfUnlocked(Player, "BalletMittens", "ItemBoots");
         WearItemIfUnlocked(Player, "SciFiPleasurePanties", "ItemPelvis");     
         WearItemIfUnlocked(Player, "InflatableDress", "ItemArms");
         WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
@@ -9073,28 +9073,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
         WearItemIfUnlocked(Player, "StuddedBlindfold", "ItemHead");
         WearItemIfUnlocked(Player, "BalletWedges", "ItemBoots");
+        WearItemIfUnlocked(Player, "MetalChastityBelt", "ItemPelvis");
         if (IsItemSlotUnlocked(Player, "ItemPelvis") || (magictoys == true)) {
-            WearItemIfUnlocked(Player, "PenisDildo", "ItemVulva");
             WearItemIfUnlocked(Player, "EggVibePlugXXL", "ItemButt");
         }
         WearItemIfUnlocked(Player, "ShinyLegBinder", "ItemLegs");
-        WearItemIfUnlocked(Player, "ShinyStraitjacket", "ItemArms");
-        WearItemIfUnlocked(Player, "Coffin", "ItemDevices");
-        Target = "ItemArms";
-        Item = InventoryGet(Player, Target);
-        if (Item != null && Item.Asset.Name == "ShinyStraitjacket") {
-            ExtendedItemSetOptionByRecord(Player, Item, {
-                typed: 2,
-            }, {
-                push: true,
-                refresh: true,
-            });
-        }
+        WearItemIfUnlocked(Player, "HighSecurityStraitJacket", "ItemArms");
+        WearItemIfUnlocked(Player, "Coffin", "ItemDevices");    
         Target = "ItemLegs";
         Item = InventoryGet(Player, Target);
         if (Item != null && Item.Asset.Name == "ShinyLegBinder") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 3,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemArms";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "HighSecurityStraitJacket") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                c: 1,
+                a: 1,
+                s: 3,
             }, {
                 push: true,
                 refresh: true,
@@ -16645,4 +16647,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
