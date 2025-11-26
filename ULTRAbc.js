@@ -9026,15 +9026,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Traps
-    function BondageBenchTrap() {
+	function BondageBenchTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
         WearItemIfUnlocked(Player, "BondageBench", "ItemDevices");
-        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (magictoys == true)) {
-            WearItemIfUnlocked(Player, "VibratingLatexPanties", "ItemVulva");
-        }
-        WearItemIfUnlocked(Player, "SleepSac", "ItemArms");
+        WearItemIfUnlocked(Player, "BalletWedges", "ItemBoots");
+        WearItemIfUnlocked(Player, "SciFiPleasurePanties", "ItemPelvis");     
+        WearItemIfUnlocked(Player, "InflatableDress", "ItemArms");
         WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
         WearItemIfUnlocked(Player, "FullBlindfold", "ItemHead");
         WearItemIfUnlocked(Player, "DeepthroatGag", "ItemMouth");
@@ -9048,11 +9047,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        Target = "ItemVulva";
+        Target = "ItemPelvis";
         Item = InventoryGet(Player, Target);
-        if (Item != null && Item.Asset.Name == "VibratingLatexPanties") {
+        if (Item != null && Item.Asset.Name == "SciFiPleasurePanties") {
             ExtendedItemSetOptionByRecord(Player, Item, {
-                vibrating: 9,
+                c: 3,
+                i: 4,
+                o: 1,
+                s: 2,
             }, {
                 push: true,
                 refresh: true,
@@ -16643,3 +16645,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
