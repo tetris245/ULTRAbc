@@ -7239,7 +7239,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
                     }
                 }
-        }, 3000);
+        }, 5000);
     }
 
     function IsItemSlotUnlocked(p, slot) {
@@ -9268,14 +9268,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
         WearItemIfUnlocked(Player, "LeatherBlindfold", "ItemHead");
         WearItemIfUnlocked(Player, "LeatherToeCuffs", "ItemBoots");
+        if (IsItemSlotUnlocked(Player, "ItemBreast") || (magictoys == true)) {
+            WearItemIfUnlocked(Player, "NippleWeightClamps", "ItemNipples");
+        }
         if (IsItemSlotUnlocked(Player, "ItemPelvis") || (magictoys == true)) {
-            WearItemIfUnlocked(Player, "PenisDildo", "ItemVulva");
             WearItemIfUnlocked(Player, "EggVibePlugXXL", "ItemButt");
         }
-        WearItemIfUnlocked(Player, "PolishedChastityBelt", "ItemPelvis");
+        WearItemIfUnlocked(Player, "ForbiddenChastityBelt", "ItemPelvis");
         WearItemIfUnlocked(Player, "DuctTape", "ItemHands");
         WearItemIfUnlocked(Player, "ShinyLegBinder", "ItemLegs");
-        WearItemIfUnlocked(Player, "ShinyStraitjacket", "ItemArms");
+        WearItemIfUnlocked(Player, "HeavyLatexCorset", "ItemTorso");
+        WearItemIfUnlocked(Player, "Chains", "ItemArms");
         WearItemIfUnlocked(Player, "Trolley", "ItemDevices");
         Target = "ItemMouth3";
         Item = InventoryGet(Player, Target);
@@ -9289,9 +9292,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemArms";
         Item = InventoryGet(Player, Target);
-        if (Item != null && Item.Asset.Name == "ShinyStraitjacket") {
+        if (Item != null && Item.Asset.Name == "Chains") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemTorso";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "HeavyLatexCorset") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemPelvis";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "ForbiddenChastityBelt") {
+            Item.Property.PunishOrgasm = false;
+            Item.Property.PunishStandup = false;
+            Item.Property.PunishStruggle = true;
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                c: 3,
+                s: 3,
             }, {
                 push: true,
                 refresh: true,
@@ -16647,5 +16674,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
