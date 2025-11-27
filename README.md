@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.7.3
+Most recent version: 5.7.4
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.7.3.zip file on the Releases page
+1. Download the ULTRAbc-version5.7.4.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,13 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added the "First rooms with friends" and "Players in Room" parameters in Chat Search menu
-* Extended the alphabetical order in Preferences screens to the General Preferences
-* Added the Character Info and Wardrobe options to the bg4 command
-* Improved the Bondage Bench, Coffin, Kennel and Trolley traps to make them compatible with male characters
-* Fixed the delay to apply exclusive locks on traps
-* Optimised the code related to some minigames
-* Removed "Order rooms by number of friends" from the alphabetical Online Preferences screen
-* Removed the Chat Search option in the UBC GUI (as all is now in the BC Chat Search menu)
-* Removed the forced global blur level from GUI-Visual, because this effect is too severe and is even applied to the settings pages
-* Removed the async character for the hooks with only the tinting effect and/or the selection of a specific background
+(...)
