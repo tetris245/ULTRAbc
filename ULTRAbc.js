@@ -9155,17 +9155,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
-    function KennelTrap() {
+	function KennelTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        WearItemIfUnlocked(Player, "ShinyPetSuit", "ItemArms");
+        WearItemIfUnlocked(Player, "SturdyLeatherBelts", "ItemArms");
+        WearItemIfUnlocked(Player, "FrogtieStraps", "ItemLegs");
         if (IsItemSlotUnlocked(Player, "ItemBreast") || (magictoys == true)) {
             WearItemIfUnlocked(Player, "VibeNippleClamp", "ItemNipples");
         }
-        WearItemIfUnlocked(Player, "LeatherHarness", "ItemTorso");
+        WearItemIfUnlocked(Player, "Corset4", "ItemTorso");
+        WearItemIfUnlocked(Player, "OrnateChastityBelt", "ItemPelvis");
         if (IsItemSlotUnlocked(Player, "ItemPelvis") || (magictoys == true)) {
-            WearItemIfUnlocked(Player, "ClitoralStimulator", "ItemVulva");
+            WearItemIfUnlocked(Player, "BunnyTailVibePlug", "ItemButt");
         }
         WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
         WearItemIfUnlocked(Player, "DildoPlugGag", "ItemMouth");
@@ -9181,11 +9183,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        Target = "ItemVulva";
+        Target = "ItemButt";
         Item = InventoryGet(Player, Target);
-        if (Item != null && Item.Asset.Name == "ClitoralStimulator") {
+        if (Item != null && Item.Asset.Name == "BunnyTailVibePlug") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemPelvis";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "OrnateChastityBelt") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemArms";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "SturdyLeatherBelts") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 2,
             }, {
                 push: true,
                 refresh: true,
@@ -16674,6 +16696,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
