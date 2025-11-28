@@ -11004,7 +11004,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "- a number for the concerned screen:\n" +
                     "0 = Character Info - 1 = Chat Search\n" +
                     "2 = Club Card Game - 3 = Friend List\n" +
-                    "4 = Main Hall - 5 = Private Room (SP)\n" + "6 = Timer Cell - 7 = Wardrobe\n" +
+                    "4 = Main Hall - 5 = Private Room (SP)\n" + 
+					"6 = Timer Cell - 7 = Wardrobe\n" +
                     "8 = Creation of New Room (default)\n" +
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
@@ -16694,5 +16695,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
+
 
 })();
