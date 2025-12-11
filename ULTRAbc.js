@@ -1948,7 +1948,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
                 );
 				addMenuCheckbox(64, 64, "Use only days in Character Info screens: ", "onlydays",
-                    "BC automatically converts data related to days to years, months and days. If you don't like that, use this option to get these data exprimed only in days in the Character Info screens.", false, 120
+                    "BC automatically converts days to years, months and days. If you don't like that, use this option to get these data exprimed only in days in the Character Info screens.", false, 120
                 );
             }
 
@@ -16961,3 +16961,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
