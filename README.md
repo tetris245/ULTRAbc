@@ -59,4 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Removed the transparency of the bottom bar in Chat Search (as tooltips from 7th row of rooms are now differently handled in BC)
