@@ -50,8 +50,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            z-index: 10;
-            opacity: 0.35;         
+            z-index: 10;         
         }
         .chat-search-room-bottom-section {
             width: fit-content;
@@ -3217,16 +3216,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
             ChatSearchBackground = csname;
-            TintsEffect();
-            ChatSearchListParams = {
-                x: ChatSearchPageX,
-                y: ChatSearchPageY,
-                width: MainCanvasWidth - 2 * ChatSearchPageX,
-                height: 582,
-                itemWidth: 735,
-                itemHeight: 85,
-                minMarginY: 24,
-            };
+            TintsEffect();  
+            ChatSearchRoomsPerColumn = 7;        
             ChatSearchRoomsPerPage = 21;
             next(args);
         });
@@ -16695,6 +16686,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
 
 })();
