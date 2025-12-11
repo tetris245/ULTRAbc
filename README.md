@@ -59,4 +59,5 @@ All else I might not have included.
 
 Changes for future version
 
+* Added new setting in GUI - Misc to use only days in the Character Info screens: when enabled, the days will not be converted to years, months and days
 * Removed the transparency of the bottom bar in Chat Search (as tooltips from 7th row of rooms are now differently handled in BC)
