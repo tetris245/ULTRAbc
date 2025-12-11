@@ -3972,6 +3972,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MainHallLoad();
                 }
             }
+			if ((MouseX >= 680) && (MouseX < 770) && (MouseY >= 475) && (MouseY < 565)) {
+                let backgrounds = BackgroundsTagList;
+                BackgroundSelectionMake(backgrounds, MainHallBackground, (Name, setBackground) => {
+                    if (setBackground) {
+                        if (Name !== "MainHall") {
+                            Player.VisualSettings.MainHallBackground = Name;
+                        } else {
+                            delete Player.VisualSettings.MainHallBackground;
+                        }
+                        ServerAccountUpdate.QueueData({
+                            VisualSettings: Player.VisualSettings
+                        });
+                    }
+                    CommonSetScreen("Room", "MainHall");
+                });
+            }
             if (MouseIn(240, 585, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
             if (MouseIn(240, 695, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) PrfClick();
@@ -3995,6 +4011,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
             DrawButton(570, 475, 90, 90, "", "White", "Icons/Random.png", "Random background");
+			DrawButton(680, 475, 90, 90, "", "White", "Icons/CollegeBackground.png", "Select background");
             DrawText("ULTRAbc", 130, 615, "White", "Black");
             DrawText(UBCver, 140, 655, "White", "Black");
             DrawButton(240, 585, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
@@ -16961,4 +16978,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
