@@ -63,3 +63,4 @@ Changes for future version
 * Added new button in Main Hall to manually select a background and improved the location of the buttons
 * Added new buttons in Timer Cell to get a random background or manually select a background
 * Removed the transparency of the bottom bar in Chat Search (as tooltips from 7th row of rooms are now differently handled in BC)
+* Removed button related to Timer Cell background in the Private Room
