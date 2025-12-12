@@ -5726,7 +5726,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         () => AllRooms(), {
                             tooltip: TextGet("AllRooms"),
                             tooltipPosition: "left",
-                            image: "Icons/Chat.png",
+                            image: "Icons/cross.svg",
                         }, {
                             button: {
                                 classList: ["chat-search-room-button"]
@@ -16978,3 +16978,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
