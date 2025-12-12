@@ -4474,6 +4474,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (outbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
             }
+			if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835)) {
+                if (BackgroundsList != undefined) {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = BackgroundsList[Roll - 1].Name;
+                    tcname = name;
+                    M_MOANER_saveControls();    
+                    CellLoad();
+                }
+            }
+            if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 865) && (MouseY < 955)) {
+                let backgrounds = BackgroundsTagList;
+                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                    if (setBackground) {
+                        tcname = Name;
+                        M_MOANER_saveControls();    
+                    }
+                    CommonSetScreen("Room", "Cell");
+                });
+            }
             next(args);
         });
     }
@@ -4494,6 +4515,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('CellRun', 4, (args, next) => {
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
+			DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
+            DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
             TintsEffect();
             next(args);
         });
@@ -16978,4 +17001,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
