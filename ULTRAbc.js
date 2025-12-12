@@ -4367,7 +4367,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 BackgroundSelectionMake(backgrounds, PrivateBackground, (Name, setBackground) => {
                     if (setBackground) {
                         PrivateBackground = Name;
-                        if (Name !== "MainHall") {
+                        if (Name !== "Private") {
                             Player.VisualSettings.PrivateRoomBackground = Name;
                         } else {
                             delete Player.VisualSettings.PrivateRoomBackground;
@@ -4388,15 +4388,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     CommonSetScreen("Room", "Private");
                 });
             }
-            if (MouseIn(0, 950, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
-                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                    if (setBackground) {
-                        tcname = Name;
-                        M_MOANER_saveControls();
-                    }
-                    CommonSetScreen("Room", "Private");
-                });
-            }
             if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage)) PrivateClickCharacter();
             if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
             return;
@@ -4407,9 +4398,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PrivateRun', 4, (args, next) => {
             if (LogQuery("RentRoom", "PrivateRoom")) {
                 DrawButton(0, 900, 49, 49, "", "White", "", "Select friend list background");
-                DrawButton(0, 950, 49, 49, "", "White", "", "Select timer cell background");
                 DrawImageResize("Icons/FriendList.png", 0, 900, 48, 48);
-                DrawImageResize("Icons/Cell.png", 0, 950, 48, 48);
             }
             TintsEffect();
             next(args);
@@ -17001,5 +16990,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
