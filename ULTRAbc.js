@@ -3959,7 +3959,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.ChatSearchSettings.Space = "X";
                 ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             }
-            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
+			if (MouseIn(240, 585, 200, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+            if (MouseIn(240, 695, 200, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 585) && (MouseY < 675)) {
                 if (BackgroundsList != undefined) {
                     let listbg = BackgroundsList.length;
                     let Roll = Math.floor(Math.random() * listbg);
@@ -3972,7 +3974,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MainHallLoad();
                 }
             }
-			if ((MouseX >= 680) && (MouseX < 770) && (MouseY >= 475) && (MouseY < 565)) {
+            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 695) && (MouseY < 785)) {
                 let backgrounds = BackgroundsTagList;
                 BackgroundSelectionMake(backgrounds, MainHallBackground, (Name, setBackground) => {
                     if (setBackground) {
@@ -3988,8 +3990,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     CommonSetScreen("Room", "MainHall");
                 });
             }
-            if (MouseIn(240, 585, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
-            if (MouseIn(240, 695, 315, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) PrfClick();
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 695) && (MouseY < 785)) ExtClick();
             next(args);
@@ -4009,21 +4009,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
             }
-            DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
-            DrawButton(570, 475, 90, 90, "", "White", "Icons/Random.png", "Random background");
-			DrawButton(680, 475, 90, 90, "", "White", "Icons/CollegeBackground.png", "Select background");
+            DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");          
             DrawText("ULTRAbc", 130, 615, "White", "Black");
             DrawText(UBCver, 140, 655, "White", "Black");
-            DrawButton(240, 585, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
-            DrawImageResize("Icons/Changelog.png", 250, 600, 60, 60);
-            DrawTextFit("UBC Changes", 425, 633, 308, "Black");
+            DrawButton(240, 585, 200, 90, "", "White", "", "Open UBC Changelog on GitHub");
+            DrawImageResize("Icons/Changelog.png", 240, 600, 60, 60);
+            DrawTextFit("Changes", 365, 633, 308, "Black");
+            DrawButton(460, 585, 90, 90, "", "White", "Icons/Random.png", "Random background");
             DrawButton(570, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferences");
+            DrawButton(460, 695, 90, 90, "", "White", "Icons/Explore.png", "Select background");
             DrawButton(570, 695, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
             DrawText("/uhelp", 145, 725, "White", "Black");
             DrawText("in chat", 140, 765, "White", "Black");
-            DrawButton(240, 695, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
+            DrawButton(240, 695, 200, 90, "", "White", "", "Open UBC Wiki on GitHub");
             DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
-            DrawTextFit("UBC Wiki", 425, 743, 308, "Black");
+            DrawTextFit("Wiki", 375, 743, 308, "Black");
             next(args);
         });
     }
