@@ -62,6 +62,7 @@ Changes for future version
 * Added new setting in GUI - Misc to use only days in the Character Info screens: when enabled, the days will not be converted to years, months and days
 * Added new button in Main Hall to manually select a background and improved the location of the buttons
 * Added new buttons in Timer Cell to get a random background or manually select a background
+* New command: horny (level) to set your arousal level in all cases (even with a fixed meter, or without a meter, or when the sexual activities are disabled!)
 * Improved the info text for no-escape mode forced by devious locks
 * Updated the bg4 command
 * Removed the transparency of the bottom bar in Chat Search (as tooltips from 7th row of rooms are now differently handled in BC)
