@@ -2031,7 +2031,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, false, 150);
                 }
                 addMenuCheckbox(64, 64, "Force no-escape mode with devious locks: ", "dogsforced",
-                    "When no-escape mode is disabled, you can decide to force this mode when you have devious locks on you! Of course these locks need to be enabled in the DOGS mod. Note that this mode will remain enabled when devious locks have been removed, you need to disable it manually.", "Player.UBC.ubcSettings.noescape", 150
+                    "When no-escape mode is disabled, you can decide to force this mode when you have devious locks on you! Of course these locks need to be enabled in the DOGS mod. Note that this mode will remain enabled when devious locks have been removed: you need to disable it manually.", "Player.UBC.ubcSettings.noescape", 150
                 );
                 addMenuCheckbox(64, 64, "Enable silent mode: ", "silent",
                     "This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.", false, 150
