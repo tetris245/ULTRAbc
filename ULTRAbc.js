@@ -16148,7 +16148,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/naked</b> (target) = removes clothes.\n" +
                     "<b>/outfit</b> (options) = restores/saves/loads outfit (including restraints). *\n" +
                     "<b>/underwear</b> (target) = changes underwear.\n" +
-                    "<b>/wrobe</b> (target) = opens target wardrobe.";
+                    "<b>/wrobe</b> (target) = fully opens target wardrobe.";
                 infomsg(msg);
             }
             if (args === "escape") {
@@ -16829,11 +16829,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'wrobe',
-        Description: "(target): opens target wardrobe.",
+        Description: "(target): fully opens target wardrobe.",
         Action: (args) => {
             if (args === "") {
-                ChatRoomCharacterViewClickCharacter(Player);
-                DialogChangeClothes();
+                ChatRoomAppearanceLoadCharacter(Player);
             } else {
                 let target = TargetSearch(args);
                 if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
@@ -16844,8 +16843,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         target.OnlineSharedSettings.AllowFullWardrobeAccess = true;
                         target.OnlineSharedSettings.BlockBodyCosplay = false;
-                        ChatRoomCharacterViewClickCharacter(target);
-                        DialogChangeClothes();
+                        ChatRoomAppearanceLoadCharacter(target);
                     }
                 }
                 ChatRoomSetTarget(-1);
