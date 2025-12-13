@@ -12167,6 +12167,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'horny',
+        Description: "(level): sets your arousal level (in all cases).",
+        Action: (args) => {
+            let msg1 = "The horny command must be followed by a number between 0 and 100.";
+            let msg2 = "Your arousal level has been modified.";
+            const arousal = CommonParseInt(args);
+            if (arousal === null) return infomsg(msg1);
+            const clamped = CommonClamp(arousal, 0, 100);
+            if ((Player.ArousalSettings.Active == "NoMeter") || (Player.ArousalSettings.Active == "Inactive"))  infomsg(msg2);
+		    ActivitySetArousal(Player, clamped);
+	        if (Player.ArousalSettings.AffectExpression) ActivityExpression(Player, Player.ArousalSettings.Progress);
+		    if (Player.ArousalSettings.Progress === 100) ActivityOrgasmPrepare(Player);
+        }
+    }])
+
     CommandCombine([{
         Tag: 'infolock',
         Description: ": gives info (code, password, time left) for lock used on worn item in selected slot.",
@@ -16122,7 +16138,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "fun") {
                 let msg = "Fun commands - * = more info when using\n" +
                     "** = scripts must be allowed in BC settings\n" +
-                    "<b>/cum</b> = causes an orgasm.\n" +
+                    "<b>/cum</b> = causes an orgasm (in all cases).\n" +
+                    "<b>/horny</b> = sets your arousal level (in all cases). *\n" +
                     "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
                     "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
@@ -16989,4 +17006,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
