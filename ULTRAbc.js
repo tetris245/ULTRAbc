@@ -3795,29 +3795,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (IntroductionJobAvailable(IntroductionJobList[J])) return true;
                 return false;
             }
-            if (minigame == "dojo") {
+            if (minigame != "") {
+                let introgame = minigame;
                 minigame = "";
                 M_MOANER_saveControls();
-                IntroductionJobList = ["SubDojo"];
-                IntroductionJobStart("SubDojo", 0);
-                IntroductionJobDojoStart();
-                return true;
-            }
-            if (minigame == "kidnap") {
-                minigame = "";
-                M_MOANER_saveControls();
-                IntroductionJobList = ["DomKidnap"];
-                IntroductionJobStart("DomKidnap", 0);
-                IntroductionJobBouncerStart();
-                return true;
-            }
-            if (minigame == "puppy") {
-                minigame = "";
-                M_MOANER_saveControls();
-                IntroductionJobList = ["DomPuppy"];
-                IntroductionJobStart("DomPuppy", 0);
-                IntroductionJobPuppyStart();
-                return true;
+                if (introgame == "dojo") {
+                    IntroductionJobList = ["SubDojo"];
+                    IntroductionJobStart("SubDojo", 0)
+                    IntroductionJobDojoStart();
+                    return true;
+                }
+                if (introgame == "kidnap") {
+                    IntroductionJobList = ["DomKidnap"];
+                    IntroductionJobStart("DomKidnap", 0)
+                    IntroductionJobBouncerStart();
+                    return true;
+                }
+                if (introgame == "puppy") {
+                    IntroductionJobList = ["DomPuppy"];
+                    IntroductionJobStart("DomPuppy", 0)
+                    IntroductionJobPuppyStart();
+                    return true;
+                }
             }
             return;
         });
@@ -16990,6 +16989,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
