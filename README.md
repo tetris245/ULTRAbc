@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.7.4
+Most recent version: 5.7.5
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.7.4.zip file on the Releases page
+1. Download the ULTRAbc-version5.7.5.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,11 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added new setting in GUI - Misc to use only days in the Character Info screens: when enabled, the days will not be converted to years, months and days
-* Added new button in Main Hall to manually select a background and improved the location of the buttons
-* Added new buttons in Timer Cell to get a random background or manually select a background
-* New command: horny (level) to set your arousal level in all cases (even with a fixed meter, or without a meter, or when the sexual activities are disabled!)
-* Improved the info text for no-escape mode forced by devious locks
-* Updated the bg4 command
-* Removed the transparency of the bottom bar in Chat Search (as tooltips from 7th row of rooms are now differently handled in BC)
-* Removed button related to Timer Cell background in the Private Room
+(...)
