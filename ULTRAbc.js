@@ -8408,7 +8408,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         {
             label: "DisableAutoMaid",
             check: () => !Player.GameplaySettings.DisableAutoMaid,
-            click: (value) => Player.GameplaySettings.DisableAutoMaid = value,
+            click: (value) => Player.GameplaySettings.DisableAutoMaid = !value,
             disabled: (onHighDifficulty) => onHighDifficulty
         }
     ];
@@ -17034,4 +17034,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
