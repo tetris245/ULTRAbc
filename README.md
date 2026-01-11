@@ -59,4 +59,5 @@ All else I might not have included.
 
 Changes for future version
 
+* Added buttons to select randomly or manually background in the Character Info screen
 * Updated the bg4 command
