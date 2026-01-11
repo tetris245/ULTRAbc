@@ -151,6 +151,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let gamestable = false;
     let gl = 0;
     let hearing = 0;
+	let ifext = false;
     let ifname = "Sheet";
     let maptrap1 = 0;
     let mgl = 0;
@@ -557,6 +558,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         gl = 0;
         highfame = false;
         hotkeys = false;
+		ifext = false;
         magiccheat = false;
         magictoys = false;
         mapcheat = false;
@@ -651,6 +653,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         gl = data.gaglevel * 1;
         highfame = data.highfame;
         hotkeys = data.hotkeys;
+		ifext = data.ifext;
         magiccheat = data.magiccheat;
         magictoys = data.magictoys;
         mapcheat = data.mapcheat;
@@ -793,6 +796,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "frname": frname,
             "gamestable": gamestable,
             "gaglevel": gl,
+            "ifext": ifext,
             "ifname": ifname,
             "maptrap1": maptrap1,
             "minigame": minigame,
@@ -937,6 +941,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (hearing == null || hearing == undefined) hearing = 0;
                 if (highfame == null || highfame == undefined) highfame = false;
                 if (hotkeys == null || hotkeys == undefined) hotkeys = false;
+				if (ifext == null || ifext == undefined) ifext = false;
                 if (ifname == null || ifname == undefined) ifname = "Sheet";
                 if (magiccheat == null || magiccheat == undefined) magiccheat = false;
                 if (magictoys == null || magictoys == undefined) magictoys = false;
@@ -1073,6 +1078,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 hearing: 0,
                 highfame: false,
                 hotkeys: false,
+				ifext: false,
                 magiccheat: false,
                 magictoys: false,
                 mapcheat: false,
@@ -2134,28 +2140,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "Put a valid number";
             }
 
-            PreferenceSubscreenUBCVisualLoad = function() {
+			PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
                 addMenuCheckbox(64, 64, "Disable background color for UBC messages: ", "noubccolor",
-                    "If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.", false, 192
+                    "If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.", false, 200
+                );
+                addMenuCheckbox(64, 64, "Extended using of  Character Info background: ", "ifext",
+                    "On the Character Info screen, you have buttons to select randomly or manually a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immmediate (you need to go back to the Extensions menu!)", false, 200
                 );
                 addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
-                    "If you check this setting, UBC will not display a bottom bar in Chat Search. In this case, it's recommended to enable the hotkeys for fast access to wardrobe, preferences and extensions screens. The other missing options are available in the Chat Search menu.", false, 192
+                    "If you check this setting, UBC will not display a bottom bar in Chat Search. In this case, it's recommended to enable the hotkeys for fast access to wardrobe, preferences and extensions screens. The other missing options are available in the Chat Search menu.", false, 200
                 );
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
-                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
+                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 65
                 );
                 addMenuInput(200, "Forced blurry vision (1-5):", "blurmode", "InputBlurMode",
-                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
+                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 65
                 );
                 addMenuCheckbox(64, 64, "Fully disable all UBC tint settings: ", "tintnever",
-                    "If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 192
+                    "If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 200
                 );
                 addMenuInput(200, "Tint effect level (0-3):", "tintlevel", "InputTintLevel",
-                    "Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.", 60
+                    "Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.", 65
                 );
                 addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
-                    "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.", 60
+                    "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.", 65
                 );
                 let mbsmsg = "When enabled, ALWAYS visit the Extensions screen to activate it after login. The tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is without any effect when the tint level is 0. It is not available when MBS is not used or when all UBC tint settings are fully disabled.";
                 let mbb = 0;
@@ -2164,12 +2173,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (list[i].Button == "MBS Settings") mbb = 1;
                 }
                 if (mbb == 0) {
-                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, true, 192);
+                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, true, 200);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, "Player.UBC.ubcSettings.tintnever", 192);
+                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, "Player.UBC.ubcSettings.tintnever", 200);
                 }
             }
-
+   
             PreferenceSubscreenUBCVisualRun = function() {
                 drawMenuElements();
             }
@@ -4262,6 +4271,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
                 if (tintmbs == false) untintMbsColors();
             }
+			PreferenceBackground = "Sheet";
+            if (ifext == true) PreferenceBackground = ifname;
             TintsEffect();
             next(args);
         });
@@ -4269,6 +4280,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPreferenceSubscreenChatLoad() {
         modApi.hookFunction('PreferenceSubscreenChatLoad', 4, (args, next) => {
+			PreferenceBackground = "Sheet";
+            if (ifext == true) PreferenceBackground = ifname;
             if (alfaprf == true) {
                 AltPrfChat();
                 return;
@@ -4279,6 +4292,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPreferenceSubscreenGeneralLoad() {
         modApi.hookFunction('PreferenceSubscreenGeneralLoad', 4, (args, next) => {
+			PreferenceBackground = "Sheet";
+            if (ifext == true) PreferenceBackground = ifname;
             if (alfaprf == true) {
                 AltPrfGeneral();
                 return;
@@ -4289,6 +4304,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPreferenceSubscreenImmersionLoad() {
         modApi.hookFunction('PreferenceSubscreenImmersionLoad', 4, (args, next) => {
+			PreferenceBackground = "Sheet";
+            if (ifext == true) PreferenceBackground = ifname;
             if (alfaprf == true) {
                 AltPrfImmersion();
                 return;
@@ -4318,6 +4335,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPreferenceSubscreenMainLoad() {
         modApi.hookFunction('PreferenceSubscreenMainLoad', 4, (args, next) => {
+			PreferenceBackground = "Sheet";
+            if (ifext == true) PreferenceBackground = ifname;
             if (alfmenu == true) {
                 AltPrf();
                 return;
@@ -4328,6 +4347,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAPreferenceSubscreenOnlineLoad() {
         modApi.hookFunction('PreferenceSubscreenOnlineLoad', 4, (args, next) => {
+			PreferenceBackground = "Sheet";
+            if (ifext == true) PreferenceBackground = ifname;
             if (alfaprf == true) {
                 AltPrfOnline();
                 return;
@@ -4746,7 +4767,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function ULTRAOnlineProfileRun() {
-        modApi.hookFunction('OnlineProfileRun', 4, (args, next) => {
+        modApi.hookFunction('OnlineProfileRun', 4, (args, next) => {		
+            OnlineProfileBackground = "Sheet";
+            if (ifext == true) OnlineProfileBackground = ifname;
             TintsEffect();
             next(args);
         });
@@ -4866,6 +4889,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function ULTRATitleRun() {
         modApi.hookFunction('TitleRun', 4, (args, next) => {
+			TitleBackground = "Sheet";
+            if (ifext == true) TitleBackground = ifname;
             TintsEffect();
             next(args);
         });
@@ -17058,6 +17083,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
