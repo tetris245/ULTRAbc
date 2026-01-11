@@ -59,7 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
-* Added buttons to select randomly or manually background in the Character Info screen
+* Added buttons to randomly or manually select background in the Character Info screen
   - Note: the selected background is also applied to all BCX screens
 * Added new setting in GUI - Visual to apply the selected Character Info background to the following screens: Title, Profile and Preferences (also from most add-ons other than BCX)
   - Note: the change is not immediate, you need to go back to the Extensions menu
