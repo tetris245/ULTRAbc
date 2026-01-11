@@ -61,5 +61,7 @@ Changes for future version
 
 * Added buttons to select randomly or manually background in the Character Info screen
   - Note: the selected background is also applied to all BCX screens
+* Added new setting in GUI - Visual to apply the selected Character Info screen to the following screens: Title, Profile and Preferences (also from most add-ons other than BCX)
+  - Note: the change is not immediate, you need to go back to the Extensions menu
 * Updated the bg4 command
 * Updated the code related to days in Character Info screens, when you choosen to display only days instead of years, months, days
