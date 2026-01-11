@@ -3767,10 +3767,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Information Sheet
     function ULTRAInformationSheetClick() {
         modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
+            if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
+                if (BackgroundsList != undefined) {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = BackgroundsList[Roll - 1].Name;
+                    ifname = name;
+                    M_MOANER_saveControls();    
+                    CommonSetScreen("Character", "InformationSheet");                    
+                }
+            }
+            if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 910) && (MouseY < 1000)) {
+                let backgrounds = BackgroundsTagList;
+                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                    if (setBackground) {
+                        ifname = Name;
+                        M_MOANER_saveControls();    
+                    }
+                    CommonSetScreen("Character", "InformationSheet");                    
+                });
+            }
             if ((onlydays == true) && (window.BCX_Loaded)) {
                 DaysClick();
                 return;
-            }
+            }      
             next(args);
         });
     }
@@ -3778,6 +3799,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function ULTRAInformationSheetRun() {
         modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
             InformationSheetBackground = ifname;
+            DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
+            DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
             TintsEffect();
             if (onlydays == true) {
                 DaysOnly();
@@ -3786,6 +3809,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
+
 
     //Introduction
     async function ULTRAIntroductionJobAnyAvailable() {
@@ -4470,7 +4494,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let name = BackgroundsList[Roll - 1].Name;
                     tcname = name;
                     M_MOANER_saveControls();
-                    CellLoad();
+                    CommonSetScreen("Room", "Cell");
                 }
             }
             if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 865) && (MouseY < 955)) {
@@ -17034,4 +17058,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
