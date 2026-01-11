@@ -7339,7 +7339,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DrawTextFit(TextGet("Pronouns") + " " + CharacterPronounDescription(C), 550, currentY, 450, "Black", "Gray");
         currentY += spacingLarge;
         if ((C.IsPlayer() || C.IsOnline()) && C.Creation !== null) {
-            const clubStayDuration = CommonFormatDuration(CurrentTime - C.Creation, {
+            const clubStayDuration = CommonFormatDurationRange(CurrentTime, C.Creation, {
                 showFull: true,
                 includeYears: false,
                 includeMonths: false,
@@ -7363,7 +7363,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 currentY += spacing;
             }
         } else if (C.IsNpc()) {
-            const friendshipDuration = CommonFormatDuration(CurrentTime - NPCEventGet(C, "PrivateRoomEntry"), {
+            const friendshipDuration = CommonFormatDurationRange(CurrentTime, NPCEventGet(C, "PrivateRoomEntry"), {
                 showFull: true,
                 includeYears: false,
                 includeMonths: false,
@@ -7416,7 +7416,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 const stageText = C.IsFullyOwned() ? "Collared" : "Trial";
                 const ownerNumber = C.OwnerNumber() !== -1 ? `(${C.OwnerNumber()})` : "";
                 const ownerLine = `${TextGet(`${stageText}By`)} ${C.OwnerName()} ${ownerNumber}`;
-                const stageDuration = CommonFormatDuration(CurrentTime - C.OwnedSinceMs(), {
+                const stageDuration = CommonFormatDurationRange(CurrentTime, C.OwnedSinceMs(), {
                     showFull: true,
                     includeYears: false,
                     includeMonths: false,
@@ -7482,7 +7482,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             for (let [L, lover] of lovership.entries()) {
                 const stageText = stageQualifier[lover.Stage];
                 const loverNumber = lover.MemberNumber ? `(${lover.MemberNumber})` : "";
-                const relationshipDurationHover = CommonFormatDuration(CurrentTime - lover.Start, {
+                const relationshipDurationHover = CommonFormatDurationRange(CurrentTime, lover.Start, {
                     showFull: true,
                     includeYears: false,
                     includeMonths: false,
@@ -7515,7 +7515,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (playerLove) {
                 const stageText = stageQualifier[playerLove.Stage];
                 const loverLine = `${TextGet(`${stageText}With`)} ${C.LoverName()}`;
-                const relationshipDuration = CommonFormatDuration(CurrentTime - playerLove.Start, {
+                const relationshipDuration = CommonFormatDurationRange(CurrentTime, playerLove.Start, {
                     showFull: true,
                     includeYears: false,
                     includeMonths: false,
@@ -7541,7 +7541,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else if (C.IsOwned()) {
                 const stageText = C.IsFullyOwned() ? "Collared" : "Trial";
                 const ownerLine = `${TextGet(`${stageText}By`)} ${C.OwnerName()}`;
-                const ownedDuration = CommonFormatDuration(CurrentTime - C.OwnedSinceMs(), {
+                const ownedDuration = CommonFormatDurationRange(CurrentTime, C.OwnedSinceMs(), {
                     showFull: true,
                     includeYears: false,
                     includeMonths: false,
@@ -17058,5 +17058,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
