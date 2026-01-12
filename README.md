@@ -65,3 +65,4 @@ Changes for future version
   - Note: the change is not immediate, you need to go back to the Extensions menu
 * Updated the bg4 command
 * Updated the code related to days in Character Info screens, when you have choosen to display only days instead of years, months, days
+* Improved the code for forced hearing and vision levels
