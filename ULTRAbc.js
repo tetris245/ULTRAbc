@@ -324,6 +324,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Locks
     const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock", "DeviousPadlock", "PortalLinkPadlock"];
 
+    //Senses levels
+    const blindLevels = [ GetBlindLevel0, GetBlindLevel1, GetBlindLevel2, GetBlindLevel3 ];
+    const blurLevels = [ GetBlurLevel0, GetBlurLevel1, GetBlurLevel2, GetBlurLevel3, GetBlurLevel4 ];
+    const deafLevels = [ GetDeafLevel0, GetDeafLevel1, GetDeafLevel2, GetDeafLevel3, GetDeafLevel4, GetDeafLevel5 ];
+	
     //Animal Talk Profiles
     let animalmode1 = ["hoo", "honk", "hooink", "hoink", "hoiink", "hum", "yum", "huumm", "yuuum"];
     let animalmode2 = ["mo", "moo", "mooo", "mu", "muu", "moooo"];
@@ -1633,69 +1638,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_xvibratorActive = data.xvibeMoan;
                 profile = data.profile;
                 reaction = data.reaction;
-                BabyTalkOn = false;
-                if (blindness == 1) {
-                    GetBlindLevel0();
-                    Player.GetBlindLevel = GetBlindLevel0;
+                BabyTalkOn = false;           
+                if (( blindness >0) && (blindness <5)) { 
+                    let fn1 = blindLevels[blindness - 1]; 
+                    fn1(); 
+                    Player.GetBlindLevel = fn1; 
                 }
-                if (blindness == 2) {
-                    GetBlindLevel1();
-                    Player.GetBlindLevel = GetBlindLevel1;
-                }
-                if (blindness == 3) {
-                    GetBlindLevel2();
-                    Player.GetBlindLevel = GetBlindLevel2;
-                }
-                if (blindness == 4) {
-                    GetBlindLevel3();
-                    Player.GetBlindLevel = GetBlindLevel3;
-                }
-                if (blurmode == 1) {
-                    GetBlurLevel0();
-                    Player.GetBlurLevel = GetBlurLevel0;
-                }
-                if (blurmode == 2) {
-                    GetBlurLevel1();
-                    Player.GetBlurLevel = GetBlurLevel1;
-                }
-                if (blurmode == 3) {
-                    GetBlurLevel2();
-                    Player.GetBlurLevel = GetBlurLevel2;
-                }
-                if (blurmode == 4) {
-                    GetBlurLevel3();
-                    Player.GetBlurLevel = GetBlurLevel3;
-                }
-                if (blurmode == 5) {
-                    GetBlurLevel4();
-                    Player.GetBlurLevel = GetBlurLevel4;
+                if (( blurmode >0) && (blurmode <6)) { 
+                    let fn2 = blurLevels[blurmode - 1]; 
+                    fn2(); 
+                    Player.GetBlurLevel = fn2; 
                 }
                 GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
-                if (hearing == 1) {
-                    GetDeafLevel0();
-                    Player.GetDeafLevel = GetDeafLevel0;
-                }
-                if (hearing == 2) {
-                    GetDeafLevel1();
-                    Player.GetDeafLevel = GetDeafLevel1;
-                }
-                if (hearing == 3) {
-                    GetDeafLevel2();
-                    Player.GetDeafLevel = GetDeafLevel2;
-                }
-                if (hearing == 4) {
-                    GetDeafLevel3();
-                    Player.GetDeafLevel = GetDeafLevel3;
-                }
-                if (hearing == 5) {
-                    GetDeafLevel4();
-                    Player.GetDeafLevel = GetDeafLevel4;
-                }
-                if (hearing == 6) {
-                    GetDeafLevel5();
-                    Player.GetDeafLevel = GetDeafLevel5;
+                if ((hearing >0) && (hearing <7)) { 
+                    let fn3 = deafLevels[hearing - 1]; 
+                    fn3(); 
+                    Player.GetDeafLevel = fn3; 
                 }
                 if (profile == 0) profileName = "default";
                 if (profile == 1) profileName = "bunny";
@@ -17083,4 +17043,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
