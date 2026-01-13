@@ -64,8 +64,8 @@ Changes for future version
 * Added new setting in GUI - Visual to apply the selected Character Info background to the following screens: Title, Profile and Preferences (also from most add-ons other than BCX)
   - Note: the change is not immediate, you need to go back to the Extensions menu
 * New command: mapforce to force map access in current normal room (only for yourself)
-* Updated the bg4 command
-* Added the magic option to the cgame command and applied the tinting effect to the new room with the kitsune
+* Applied the tinting effect, when selected, to the new room with the kitsune
+* Updated the bg4 command and added the magic option to the cgame command
 * Updated the code related to days in Character Info screens, when you have choosen to display only days instead of years, months, days
 * Updated the lists related to the Extra Club Card Game cards
 * Improved the code for forced hearing and vision levels
