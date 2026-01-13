@@ -13051,6 +13051,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'mapforce',
+        Description: ": forces map access in current normal room (only for yourself).",
+        Action: () => {
+            if (ChatRoomData.MapData.Type == "Never") ChatRoomData.MapData.Type = "Hybrid"; 
+        }
+    }])
+
     CommandCombine([{
         Tag: 'mapkeys',
         Description: "(keynumber) (action): finds or loses all keys or a specific key for current mapped chat room.",
@@ -16193,6 +16201,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "maps") {
                 let msg = "Maps commands - * = more info when using\n" +
                     "<b>/mapfog</b> = toggles fog in current map room.\n" +
+					"<b>/mapforce</b> = forces map access in current normal room (only for yourself).\n" +
                     "<b>/mapkeys</b> (keynumber) (action) = finds or loses all keys or a specific key for current map room. *\n" +
                     "<b>/maproom</b> = gives infos about players in current map.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
@@ -17043,4 +17052,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
