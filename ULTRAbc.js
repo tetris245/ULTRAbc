@@ -2262,6 +2262,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
     ULTRAMagicSchoolEscapeSpellEnd();
+	ULTRAMagicSchoolFindsAroundRun();
     ULTRAMaidQuartersRun();
     ULTRAMainHallClick();
     ULTRAMainHallRun();
@@ -3908,6 +3909,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (magiccheat == true) {
                 MagicSchoolEscapeTimer > CommonTime();
                 MiniGameVictory = true;
+            }
+            next(args);
+        });
+    }
+
+	async function ULTRAMagicSchoolFindsAroundRun() {
+        modApi.hookFunction('MagicSchoolFindsAroundRun', 4, (args, next) => {
+            TintsEffect();
+            if (minigame == "magic") {
+                minigame = "";
+                M_MOANER_saveControls();
             }
             next(args);
         });
@@ -11653,7 +11665,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The cgame command must include a zone.\n" +
                     "Available zones:\n" +
                     "asylum, cafe, infiltration, introduction, kidnap, larp,\n" +
-                    "lounge, movie, shibari, stable.\n" +
+                    "lounge, magic, movie, shibari, stable.\n" +
                     "You need to click on the concerned NPC, then on the appropriate option.";
                 infomsg(msg);
             } else {
@@ -11686,6 +11698,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (minigame == "lounge") {
                     RoomToGame();
                     CommonSetScreen("Room", "ClubCardLounge");
+                }
+				if (minigame == "magic") {
+                    RoomToGame();
+                    CommonSetScreen("Room", "MagicSchoolFindsAround");
                 }
                 if (minigame == "movie") {
                     RoomToGame();
