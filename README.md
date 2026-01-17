@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.7.5
+Most recent version: 5.7.6
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.7.5.zip file on the Releases page
+1. Download the ULTRAbc-version5.7.6.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,13 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* Added buttons to randomly or manually select background in the Character Info screen
-  - Note: the selected background is also applied to all BCX screens
-* Added new setting in GUI - Visual to apply the selected Character Info background to the following screens: Title, Profile and Preferences (also from most add-ons other than BCX)
-  - Note: the change is not immediate, you need to go back to the Extensions menu
-* New command: mapforce to force map access in current normal room (only for yourself)
-* Applied the tinting effect, when selected, to the new room with the kitsune
-* Updated the bg4 command and added the magic option to the cgame command
-* Updated the code related to days in Character Info screens, when you have choosen to display only days instead of years, months, days
-* Updated the lists related to the Extra Club Card Game cards
-* Improved the code for forced hearing and vision levels
+(...)
