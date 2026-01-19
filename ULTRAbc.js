@@ -192,6 +192,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let nogarble;
 	let noifbuttons;
     let nostruggle;
+    let notcbuttons;
     let noteleport;
     let noubcbar;
     let noubccolor;
@@ -578,6 +579,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		noifbuttons = false;
         nostruggle = false;
         notalk = 0;
+		notcbuttons = false;
         noteleport = false;
         noubcbar = false;
         noubccolor = false;
@@ -674,6 +676,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		noifbuttons = data.noifbuttons;
         nostruggle = data.nostruggle;
         notalk = data.notalk;
+		notcbuttons = data.notcbuttons;
         noteleport = data.noteleport;
         noubcbar = data.noubcbar;
         noubccolor = data.noubccolor;
@@ -844,6 +847,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nogarble": nogarble,
             "noifbuttons": noifbuttons,
             "nostruggle": nostruggle,
+            "notcbuttons": notcbuttons,
             "noteleport": noteleport,
             "noubcbar": noubcbar,
             "noubccolor": noubccolor,
@@ -976,6 +980,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 				if (noifbuttons == null || noifbuttons == undefined) noifbuttons = false;
                 if (nostruggle == null || nostruggle == undefined) nostruggle = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
+				if (notcbuttons == null || notcbuttons == undefined) notcbuttons = false;
                 if (noteleport == null || noteleport == undefined) noteleport = false;
                 if (noubcbar == null || noubcbar == undefined) noubcbar = false;
                 if (noubccolor == null || noubccolor == undefined) noubccolor = false;
@@ -1100,6 +1105,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 				noifbuttons: false,
                 nostruggle: false,
                 notalk: 0,
+				notcbuttons: false,
                 noteleport: false,
                 noubcbar: false,
                 noubccolor: false,
@@ -1741,6 +1747,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 				addMenuCheckbox(64, 64, "Remove background buttons in Character Info: ", "noifbuttons",
                     "If you check this setting, UBC will not display background buttons in Character Info screen. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likokisu's tool for this screen, you need to click first on the Default Background button before checking this option.", false, 200
                 );
+				addMenuCheckbox(64, 64, "Remove background buttons in Timer Cell: ", "notcbuttons",
+                    "If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active.", false, 200
+                ); 
             }
    
             PreferenceSubscreenUBCBackgroundsRun = function() {
@@ -4515,26 +4524,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (outbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
             }
-            if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835)) {
-                if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    tcname = name;
+            if (notcbuttons == false) {
+                if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 745) && (MouseY < 835)) {           
+                    tcname = "Cell";
                     M_MOANER_saveControls();
                     CommonSetScreen("Room", "Cell");
                 }
-            }
-            if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 865) && (MouseY < 955)) {
-                let backgrounds = BackgroundsTagList;
-                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                    if (setBackground) {
-                        tcname = Name;
+                if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835)) {
+                    if (BackgroundsList != undefined) {
+                        let listbg = BackgroundsList.length;
+                        let Roll = Math.floor(Math.random() * listbg);
+                        if (Roll == 0) Roll = 1;
+                        let name = BackgroundsList[Roll - 1].Name;
+                        tcname = name;
                         M_MOANER_saveControls();
+                        CommonSetScreen("Room", "Cell");
                     }
-                    CommonSetScreen("Room", "Cell");
-                });
+                }
+                if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 865) && (MouseY < 955)) {
+                    let backgrounds = BackgroundsTagList;
+                    BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                        if (setBackground) {
+                            tcname = Name;
+                            M_MOANER_saveControls();
+                        }
+                        CommonSetScreen("Room", "Cell");
+                    });
+                }
             }
             next(args);
         });
@@ -4553,11 +4569,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function ULTRACellRun() {
-        modApi.hookFunction('CellRun', 4, (args, next) => {
+        modApi.hookFunction('CellRun', 4, (args, next) => {  
             if (sosbuttons == true) SosButtons();
-            if (outbuttons == true) OutButtons();
-            DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
-            DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+            if (outbuttons == true) OutButtons();          
+            if (notcbuttons == false) {
+                DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+                DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
+                DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+            }        
             TintsEffect();
             next(args);
         });
