@@ -59,4 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Added the Backgrounds page to the GUI:
+  - Moved there the options to have access to all BC standard backgrounds, disable background color for UBC messages and extend using of Character Info background to other screens
+
