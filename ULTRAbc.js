@@ -190,6 +190,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mapfull2;
     let noescape;
     let nogarble;
+	let noifbuttons;
     let nostruggle;
     let noteleport;
     let noubcbar;
@@ -574,6 +575,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mission = "";
         noescape = false;
         nogarble = false;
+		noifbuttons = false;
         nostruggle = false;
         notalk = 0;
         noteleport = false;
@@ -669,6 +671,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mission = data.mission;
         noescape = data.noescape;
         nogarble = data.nogarble;
+		noifbuttons = data.noifbuttons;
         nostruggle = data.nostruggle;
         notalk = data.notalk;
         noteleport = data.noteleport;
@@ -839,6 +842,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "mapfull2": mapfull2,
             "noescape": noescape,
             "nogarble": nogarble,
+            "noifbuttons": noifbuttons,
             "nostruggle": nostruggle,
             "noteleport": noteleport,
             "noubcbar": noubcbar,
@@ -969,6 +973,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
                 if (noescape == null || noescape == undefined) noescape = false;
                 if (nogarble == null || nogarble == undefined) nogarble = false;
+				if (noifbuttons == null || noifbuttons == undefined) noifbuttons = false;
                 if (nostruggle == null || nostruggle == undefined) nostruggle = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (noteleport == null || noteleport == undefined) noteleport = false;
@@ -1092,6 +1097,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 maptrap1: 0,
                 noescape: false,
                 nogarble: false,
+				noifbuttons: false,
                 nostruggle: false,
                 notalk: 0,
                 noteleport: false,
@@ -1731,7 +1737,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuCheckbox(64, 64, "Extended using of Character Info background: ", "ifext",
                     "On the Character Info screen, you have buttons to randomly or manually select a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immmediate (you need to go back to the Extensions menu!)", false, 200
-                );              
+                ); 
+				addMenuCheckbox(64, 64, "Remove background buttons in Character Info: ", "noifbuttons",
+                    "If you check this setting, UBC will not display background buttons in Character Info screen. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likokisu's tool for this screen, you need to click first on the Default Background button before checking this option.", false, 200
+                );
             }
    
             PreferenceSubscreenUBCBackgroundsRun = function() {
@@ -3755,26 +3764,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Information Sheet
     function ULTRAInformationSheetClick() {
         modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
-            if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
-                if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    ifname = name;
+           if (noifbuttons == false) {
+               if ((MouseX >= 1575) && (MouseX < 1665) && (MouseY >= 910) && (MouseY < 1000)) {         
+                    ifname = "Sheet";
                     M_MOANER_saveControls();    
                     CommonSetScreen("Character", "InformationSheet");                    
                 }
-            }
-            if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 910) && (MouseY < 1000)) {
-                let backgrounds = BackgroundsTagList;
-                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                    if (setBackground) {
-                        ifname = Name;
+                if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
+                    if (BackgroundsList != undefined) {
+                        let listbg = BackgroundsList.length;
+                        let Roll = Math.floor(Math.random() * listbg);
+                        if (Roll == 0) Roll = 1;
+                        let name = BackgroundsList[Roll - 1].Name;
+                        ifname = name;
                         M_MOANER_saveControls();    
+                        CommonSetScreen("Character", "InformationSheet");                    
                     }
-                    CommonSetScreen("Character", "InformationSheet");                    
-                });
+                }
+                if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 910) && (MouseY < 1000)) {
+                    let backgrounds = BackgroundsTagList;
+                    BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                        if (setBackground) {
+                            ifname = Name;
+                            M_MOANER_saveControls();    
+                        }
+                        CommonSetScreen("Character", "InformationSheet");                    
+                    });
+                }
             }
             if ((onlydays == true) && (window.BCX_Loaded)) {
                 DaysClick();
@@ -3787,8 +3803,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function ULTRAInformationSheetRun() {
         modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
             InformationSheetBackground = ifname;
-            DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-            DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+            if (noifbuttons == false) {
+                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
+                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+            } 
             TintsEffect();
             if (onlydays == true) {
                 DaysOnly();
@@ -3797,7 +3816,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
 
     //Introduction
     async function ULTRAIntroductionJobAnyAvailable() {
@@ -17086,5 +17104,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
