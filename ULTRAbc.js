@@ -1723,6 +1723,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 			PreferenceSubscreenUBCBackgroundsLoad = function() {
                 UBCPreferenceSubscreen = "UBCBackgrounds";
+				addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
+                    "With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!", false, 200
+                );
                 addMenuCheckbox(64, 64, "Disable background color for UBC messages: ", "noubccolor",
                     "If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.", false, 200
                 );
@@ -1919,9 +1922,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
-                addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
-                    "With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!", false, 120
-                );
                 addMenuCheckbox(64, 64, "Alphabetic order in  Preferences menu: ", "alfmenu",
                     "When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.", false, 120
                 );
@@ -17086,4 +17086,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
