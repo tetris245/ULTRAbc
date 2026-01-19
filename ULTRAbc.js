@@ -1176,7 +1176,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         async function settingsPage() {
             await waitFor(() => !!PreferenceRegisterExtensionSetting)
 
-            const ubcSettingsCategories = [
+            const ubcSettingsCategories = [	
+                "UBCBackgrounds",
                 "UBCButtons",
                 "UBCCheats",
                 "UBCHotkeys",
@@ -1187,7 +1188,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCTalking",
                 "UBCVisual"
             ];
-            const ubcSettingCategoryLabels = {
+            const ubcSettingCategoryLabels = {	
+                UBCBackgrounds: "Backgrounds",
                 UBCButtons: "Buttons",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
@@ -1719,6 +1721,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 PreferenceSubscreenExtensionsClear();
             }
 
+			PreferenceSubscreenUBCBackgroundsLoad = function() {
+                UBCPreferenceSubscreen = "UBCBackgrounds";
+                addMenuCheckbox(64, 64, "Disable background color for UBC messages: ", "noubccolor",
+                    "If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.", false, 200
+                );
+                addMenuCheckbox(64, 64, "Extended using of Character Info background: ", "ifext",
+                    "On the Character Info screen, you have buttons to randomly or manually select a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immmediate (you need to go back to the Extensions menu!)", false, 200
+                );              
+            }
+   
+            PreferenceSubscreenUBCBackgroundsRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCBackgroundsClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCBackgroundsExit = function() {
+                defaultExit();
+            }
+
             PreferenceSubscreenUBCButtonsLoad = function() {
                 UBCPreferenceSubscreen = "UBCButtons";
                 addMenuCheckbox(64, 64, "Enable Preferences button in chat rooms: ", "extbuttons",
@@ -2102,12 +2126,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 			PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
-                addMenuCheckbox(64, 64, "Disable background color for UBC messages: ", "noubccolor",
-                    "If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.", false, 200
-                );
-                addMenuCheckbox(64, 64, "Extended using of  Character Info background: ", "ifext",
-                    "On the Character Info screen, you have buttons to randomly or manually select a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immmediate (you need to go back to the Extensions menu!)", false, 200
-                );
                 addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
                     "If you check this setting, UBC will not display a bottom bar in Chat Search. In this case, it's recommended to enable the hotkeys for fast access to wardrobe, preferences and extensions screens. The other missing options are available in the Chat Search menu.", false, 200
                 );
@@ -17068,3 +17086,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
