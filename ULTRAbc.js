@@ -4403,13 +4403,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	async function ULTRAPreferenceSubscreenExtensionsLoad() {
         modApi.hookFunction('PreferenceSubscreenExtensionsLoad', 4, (args, next) => {
-             skbondage = SkillGetLevel(Player,"Bondage");
-             skdressage = SkillGetLevel(Player,"Dressage");
-             skevasion = SkillGetLevel(Player,"Evasion");
-             skinfiltration = SkillGetLevel(Player,"Infiltration");
-             sklockpicking =  SkillGetLevel(Player,"LockPicking"); 
-             skselfbondage = SkillGetLevel(Player,"SelfBondage");
-             skwillpower = SkillGetLevel(Player,"Willpower");
+             skbondage = SkillGetLevel(Player,"Bondage") - SkillGetModifier(Player,"Bondage");
+             skdressage = SkillGetLevel(Player,"Dressage") - SkillGetModifier(Player,"Dressage");
+             skevasion = SkillGetLevel(Player,"Evasion") - SkillGetModifier(Player,"Evasion");
+             skinfiltration = SkillGetLevel(Player,"Infiltration") - SkillGetModifier(Player,"Infiltration");
+             sklockpicking =  SkillGetLevel(Player,"LockPicking") - SkillGetModifier(Player,"LockPicking");
+             skselfbondage = SkillGetLevel(Player,"SelfBondage") - SkillGetModifier(Player,"SelfBondage");
+             skwillpower = SkillGetLevel(Player,"Willpower") - SkillGetModifier(Player,"Willpower");
              M_MOANER_saveControls();
              Player.UBC.ubcSettings.skbondage = skbondage;
              Player.UBC.ubcSettings.skdressage = skdressage;
