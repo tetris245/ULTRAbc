@@ -164,6 +164,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let pmax = 20;
     let silent = false;
     let silsafe = false;
+	let skbondage = 0;
+    let skdressage = 0;
+    let skevasion = 0;
+    let skinfiltration = 0;
+    let sklockpicking = 0;
+    let skselfbondage = 0;
+    let skwillpower = 0;
     let st = 0;
     let tcname = "Cell";
     let tintcolor = "#000000";
@@ -595,6 +602,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         rglsync = false;
         silent = false;
         silsafe = false;
+		skbondage = 0;     
+        skdressage = 0;
+        skevasion = 0;
+        skinfiltration = 0;
+        sklockpicking = 0;
+        skselfbondage = 0;
+        skwillpower = 0;
         slowleave = false;
         sosbuttons = false;
         st = 0;
@@ -692,6 +706,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         rglsync = data.rglsync;
         silent = data.silent;
         silsafe = data.silsafe;
+        skbondage = data.skbondage;
+        skdressage = data.skdressage;
+        skevasion = data.skevasion;
+        skinfiltration = data.skinfiltration;
+        sklockpicking = data.sklockpicking;
+        skselfbondage = data.skselfbondage;
+        skwillpower = data.skwillpower;
         slowleave = data.slowleave;
         sosbuttons = data.sosbuttons;
         st = data.stutterlevel * 1;
@@ -818,6 +839,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pmax": pmax,
             "silent": silent,
             "silsafe": silsafe,
+            "skbondage": skbondage,
+            "skdressage": skdressage,
+            "skevasion": skevasion,
+            "skinfiltration": skinfiltration,
+            "sklockpicking": sklockpicking,
+            "skselfbondage": skselfbondage,
+            "skwillpower": skwillpower,
             "stutterlevel": st,
             "tcname": tcname,
             "tintcolor": tintcolor,
@@ -1007,6 +1035,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (reaction == null || reaction == undefined) reaction = 0;
                 if (rglbuttons == null || rglbuttons == undefined) rglbuttons = false;
                 if (rglsync == null || rglsync == undefined) rglsync = false;
+				if (skbondage == null || skbondage == undefined) skbondage = 0;
+                if (skdressage == null || skdressage == undefined) skdressage = 0;
+                if (skevasion == null || skevasion == undefined) skevasion = 0;
+                if (skinfiltration == null || skinfiltration == undefined) skinfiltration = 0;
+                if (sklockpicking == null || sklockpicking == undefined) sklockpicking = 0;
+                if (skselfbondage == null || skselfbondage == undefined) skselfbondage = 0;
+                if (skwillpower == null || skwillpower == undefined) skwillpower = 0;
                 if (slowleave == null || slowleave == undefined) slowleave = false;
                 if (sosbuttons == null || sosbuttons == undefined) sosbuttons = false;
                 if (silent == null || silent == undefined) silent = false;
@@ -1125,6 +1160,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 script: false,
                 silent: false,
                 silsafe: false,
+				skbondage: 0,
+                skdressage: 0,
+                skevasion: 0,
+                skinfiltration: 0,
+                sklockpicking: 0,
+                skselfbondage: 0,
+                skwillpower: 0,
                 slowleave: false,
                 sosbuttons: false,
                 spankMoan: true,
@@ -1196,6 +1238,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCMaps",
                 "UBCMisc",
                 "UBCMoaner",
+                "UBCSkills",
                 "UBCSpecialModes",
                 "UBCTalking",
                 "UBCVisual"
@@ -1208,6 +1251,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCMaps: "Maps",
                 UBCMisc: "Misc",
                 UBCMoaner: "Moaner",
+                UBCSkills: "Skills",
                 UBCSpecialModes: "Special Modes",
                 UBCTalking: "Talking",
                 UBCVisual: "Visual"
@@ -2029,6 +2073,79 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "Put a valid number";
             }
 
+			PreferenceSubscreenUBCSkillsLoad = function() {
+                UBCPreferenceSubscreen = "UBCSkills";             
+                addMenuInput(200, "Bondage (0-10):", "skbondage", "InputSkillBondage",
+                    "Input a number between 0 and 10 to set your Bondage skill level!", 6
+                );
+                addMenuInput(200, "Dressage (0-10):", "skdressage", "InputSkillDressage",
+                    "Input a number between 0 and 10 to set your Dressage skill level!", 6
+                );
+                addMenuInput(200, "Evasion (0-10):", "skevasion", "InputSkillEvasion",
+                    "Input a number between 0 and 10 to set your Evasion skill level!", 6
+                );
+                addMenuInput(200, "Infiltration (0-10):", "skinfiltration", "InputSkillInfiltration",
+                    "Input a number between 0 and 10 to set your Infiltration skill level!", 6
+                );
+                addMenuInput(200, "Lockpicking (0-10):", "sklockpicking", "InputSkillLockpicking",
+                    "Input a number between 0 and 10 to set your Lockpicking skill level!", 6
+                );
+                addMenuInput(200, "Self-Bondage (0-10):", "skselfbondage", "InputSkillSelfbondage",
+                    "Input a number between 0 and 10 to set your Self-Bondage skill level!", 6
+                );
+                addMenuInput(200, "Willpower (0-10):", "skwillpower", "InputSkillWillpower",
+                    "Input a number between 0 and 10 to set your Willpower skill level!", 6
+                );
+            }
+
+            PreferenceSubscreenUBCSkillsRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCSkillsClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCSkillsExit = function() {
+                let bondage = ElementValue("InputSkillBondage") * 1;
+                let dressage = ElementValue("InputSkillDressage") * 1;
+                let evasion = ElementValue("InputSkillEvasion") * 1; 
+                let infiltration = ElementValue("InputSkillInfiltration") * 1;
+                let lockpicking = ElementValue("InputSkillLockpicking") * 1;
+                let selfbondage = ElementValue("InputSkillSelfbondage") * 1;
+                let willpower = ElementValue("InputSkillWillpower") * 1;
+                if ((CommonIsNumeric(bondage)) && (bondage > -1) && (bondage < 11) &&
+                    (CommonIsNumeric(dressage)) && (dressage > -1) && (dressage < 11) &&
+                    (CommonIsNumeric(evasion)) && (evasion > -1) && (evasion < 11) &&
+                    (CommonIsNumeric(infiltration)) && (infiltration > -1) && (infiltration < 11) &&
+                    (CommonIsNumeric(lockpicking)) && (lockpicking > -1) && (lockpicking < 11) &&
+                    (CommonIsNumeric(selfbondage)) && (selfbondage > -1) && (selfbondage < 11) &&
+                    (CommonIsNumeric(willpower)) && (willpower > -1) && (willpower < 11)) {
+                    Player.UBC.ubcSettings.skbondage = bondage;
+                    Player.UBC.ubcSettings.skdressage = dressage;
+                    Player.UBC.ubcSettings.skevasion = evasion;
+                    Player.UBC.ubcSettings.skinfiltration = infiltration;
+                    Player.UBC.ubcSettings.sklockpicking = lockpicking;
+                    Player.UBC.ubcSettings.skselfbondage = selfbondage;
+                    Player.UBC.ubcSettings.skwillpower = willpower;
+                    SkillChange(Player, "Bondage", bondage);
+                    SkillChange(Player, "Dressage", dressage);
+                    SkillChange(Player, "Evasion", evasion);
+                    SkillChange(Player, "Infiltration", infiltration);
+                    SkillChange(Player, "LockPicking", lockpicking);
+                    SkillChange(Player, "SelfBondage", selfbondage);
+                    SkillChange(Player, "Willpower", willpower);
+                    ElementRemove("InputSkillBondage");
+                    ElementRemove("InputSkillDressage");
+                    ElementRemove("InputSkillEvasion");
+                    ElementRemove("InputSkillInfiltration");
+                    ElementRemove("InputSkillLockpicking");
+                    ElementRemove("InputSkillSelfbondage");
+                    ElementRemove("InputSkillWillpower");
+                    defaultExit();
+                } else PreferenceMessage = "Put a valid number";
+            }
+
             PreferenceSubscreenUBCSpecialModesLoad = function() {
                 UBCPreferenceSubscreen = "UBCSpecialModes";
                 DOGSsettings();
@@ -2314,6 +2431,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPlatformDialogEvent();
     ULTRAPreferenceRun();
     ULTRAPreferenceSubscreenChatLoad();
+	ULTRAPreferenceSubscreenExtensionsLoad();
     ULTRAPreferenceSubscreenGeneralLoad();
     ULTRAPreferenceSubscreenImmersionLoad();
     ULTRAPreferenceSubscreenMainLoad();
@@ -4280,6 +4398,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return;
             }
             next(args);
+        });
+    }
+
+	async function ULTRAPreferenceSubscreenExtensionsLoad() {
+        modApi.hookFunction('PreferenceSubscreenExtensionsLoad', 4, (args, next) => {
+             skbondage = SkillGetLevel(Player,"Bondage");
+             skdressage = SkillGetLevel(Player,"Dressage");
+             skevasion = SkillGetLevel(Player,"Evasion");
+             skinfiltration = SkillGetLevel(Player,"Infiltration");
+             sklockpicking =  SkillGetLevel(Player,"LockPicking"); 
+             skselfbondage = SkillGetLevel(Player,"SelfBondage");
+             skwillpower = SkillGetLevel(Player,"Willpower");
+             M_MOANER_saveControls();
+             Player.UBC.ubcSettings.skbondage = skbondage;
+             Player.UBC.ubcSettings.skdressage = skdressage;
+             Player.UBC.ubcSettings.skevasion = skevasion;
+             Player.UBC.ubcSettings.skinfiltration = skinfiltration; 
+             Player.UBC.ubcSettings.sklockpicking = sklockpicking;
+             Player.UBC.ubcSettings.skselfbondage = skselfbondage;
+             Player.UBC.ubcSettings.skwillpower = skwillpower;
+             next(args);
         });
     }
 
@@ -8886,6 +9025,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Player.RestrictionSettings.BypassNPCPunishments = true;
         }
+		skbondage = SkillGetLevel(Player,"Bondage");
+        skdressage = SkillGetLevel(Player,"Dressage");
+        skevasion = SkillGetLevel(Player,"Evasion");
+        skinfiltration = SkillGetLevel(Player,"Infiltration");
+        sklockpicking =  SkillGetLevel(Player,"LockPicking"); 
+        skselfbondage = SkillGetLevel(Player,"SelfBondage");
+        skwillpower = SkillGetLevel(Player,"Willpower");
     }
 
     //Responsive Status
@@ -15104,35 +15250,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'skill',
-        Description: "(skill) (level): changes a skill. ",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The skill command must be followed by a skill and a level.\n" +
-                    "You will be able to check the change in your profile.\n" +
-                    " \n" +
-                    "Available skills:\n" +
-                    "bondage, dressage, evasion, infiltration,\n" +
-                    "lockpicking, selfbondage, willpower.\n" +
-                    "Level must be between 0 and 10.";
-                infomsg(msg);
-            } else {
-                let stringSkill1 = args;
-                let stringSkill2 = stringSkill1.split(/[ ,]+/);
-                let skill = stringSkill2[0];
-                let level = stringSkill2[1];
-                if (skill == "bondage") SkillChange(Player, "Bondage", level);
-                if (skill == "dressage") SkillChange(Player, "Dressage", level);
-                if (skill == "evasion") SkillChange(Player, "Evasion", level);
-                if (skill == "infiltration") SkillChange(Player, "Infiltration", level);
-                if (skill == "lockpicking") SkillChange(Player, "LockPicking", level);
-                if (skill == "selfbondage") SkillChange(Player, "SelfBondage", level);
-                if (skill == "willpower") SkillChange(Player, "Willpower", level);
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'sleep',
         Description: "(target): uses the sleeping pill on yourself or another player.",
         Action: (args) => {
@@ -16192,7 +16309,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/resetinventory</b> = erases your inventory.\n" +
                     "<b>/roleplay</b> (rolehere) = starts a role. *\n" +
                     "<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n" +
-                    "<b>/skill</b> (skill) (level) = changes a skill. *\n" +
                     "<b>/title1</b> (newtitlehere) = chooses a new title (from A to K). *\n" +
                     "<b>/title2</b> (newtitlehere) = chooses a new title (from L to Z). *";
                 infomsg(msg);
