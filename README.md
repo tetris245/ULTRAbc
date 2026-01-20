@@ -63,4 +63,5 @@ Changes for future version
 * Added the Backgrounds page to the GUI:
   - Moved there the options to have access to all BC standard backgrounds, disable background color for UBC messages and extend using of Character Info background to other screens
   - Added options to remove background buttons in Character Info screen and Timer Cell
+* Added the Skills page to the GUI and removed the skill command
 
