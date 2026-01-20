@@ -9025,13 +9025,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Player.RestrictionSettings.BypassNPCPunishments = true;
         }
-		skbondage = SkillGetLevel(Player,"Bondage");
-        skdressage = SkillGetLevel(Player,"Dressage");
-        skevasion = SkillGetLevel(Player,"Evasion");
-        skinfiltration = SkillGetLevel(Player,"Infiltration");
-        sklockpicking =  SkillGetLevel(Player,"LockPicking"); 
-        skselfbondage = SkillGetLevel(Player,"SelfBondage");
-        skwillpower = SkillGetLevel(Player,"Willpower");
+		skbondage = SkillGetLevel(Player,"Bondage") - SkillGetModifier(Player,"Bondage");
+        skdressage = SkillGetLevel(Player,"Dressage") - SkillGetModifier(Player,"Dressage");
+        skevasion = SkillGetLevel(Player,"Evasion") - SkillGetModifier(Player,"Evasion");
+        skinfiltration = SkillGetLevel(Player,"Infiltration") - SkillGetModifier(Player,"Infiltration");
+        sklockpicking =  SkillGetLevel(Player,"LockPicking") - SkillGetModifier(Player,"LockPicking");
+        skselfbondage = SkillGetLevel(Player,"SelfBondage") - SkillGetModifier(Player,"SelfBondage");
+        skwillpower = SkillGetLevel(Player,"Willpower") - SkillGetModifier(Player,"Willpower");
     }
 
     //Responsive Status
@@ -17215,3 +17215,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
