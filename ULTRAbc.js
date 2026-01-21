@@ -162,6 +162,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let onlydays = false;
     let pmin = 1;
     let pmax = 20;
+	let rpabdl = 0;
+    let rpasyl = 0;
+    let rpgamb = 0;
+    let rpgame = 0;
+    let rpkidn = 0;
+    let rplarp = 0;
+    let rpmagh = 0;
+    let rpmagp = 0;
+    let rpmaid = 0;
+    let rpmain = 0;
     let silent = false;
     let silsafe = false;
 	let skbondage = 0;
@@ -600,6 +610,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         pmax = 20;
         rglbuttons = false;
         rglsync = false;
+		rpabdl = 0;
+        rpasyl = 0;
+        rpgamb = 0;
+        rpgame = 0;
+        rpkidn = 0;
+        rplarp = 0;
+        rpmagh = 0;
+        rpmagp = 0;
+        rpmaid = 0;
+        rpmain = 0;
         silent = false;
         silsafe = false;
 		skbondage = 0;     
@@ -704,6 +724,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         pmax = data.pmax * 1;
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
+		rpabdl = data.rpabdl * 1;
+        rpasyl = data.rpasyl * 1;
+        rpgamb = data.rpgamb * 1;
+        rpgame = data.rpgame * 1;
+        rpkidn = data.rpkidn * 1;
+        rplarp = data.rplarp * 1;
+        rpmagh = data.rpmagh * 1;
+        rpmagp = data.rpmagp * 1;
+        rpmaid = data.rpmaid * 1;
+        rpmain = data.rpmain * 1;
         silent = data.silent;
         silsafe = data.silsafe;
         skbondage = data.skbondage;
@@ -837,6 +867,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "onlydays": onlydays,
             "pmin": pmin,
             "pmax": pmax,
+            "rpabdl": rpabdl,
+            "rpasyl": rpasyl,
+            "rpgamb": rpgamb,
+            "rpgame": rpgame,
+            "rpkidn": rpkidn,
+            "rplarp": rplarp,
+            "rpmagh": rpmagh,
+            "rpmagp": rpmagp,
+            "rpmaid": rpmaid,
+            "rpmain": rpmain,
             "silent": silent,
             "silsafe": silsafe,
             "skbondage": skbondage,
@@ -1035,6 +1075,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (reaction == null || reaction == undefined) reaction = 0;
                 if (rglbuttons == null || rglbuttons == undefined) rglbuttons = false;
                 if (rglsync == null || rglsync == undefined) rglsync = false;
+				if (rglsync == null || rglsync == undefined) rglsync = false;
+                if (rpabdl == null || rpabdl == undefined) rpabdl = 0;
+                if (rpasyl == null || rpasyl == undefined) rpasyl = 0;
+                if (rpgamb == null || rpgamb == undefined) rpgamb = 0;
+                if (rpgame == null || rpgame == undefined) rpgame = 0;
+                if (rpkidn == null || rpkidn == undefined) rpkidn = 0;
+                if (rplarp == null || rplarp == undefined) rplarp = 0;
+                if (rpmagh == null || rpmagh == undefined) rpmagh = 0;
+                if (rpmagp == null || rpmagp == undefined) rpmagp = 0;
+                if (rpmaid == null || rpmaid == undefined) rpmaid = 0;
+                if (rpmain == null || rpmain == undefined) rpmain = 0;
 				if (skbondage == null || skbondage == undefined) skbondage = 0;
                 if (skdressage == null || skdressage == undefined) skdressage = 0;
                 if (skevasion == null || skevasion == undefined) skevasion = 0;
@@ -1157,6 +1208,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 reaction: 0,
                 rglbuttons: false,
                 rglsync: false,
+				rpabdl: 0,
+                rpasyl: 0,
+                rpgamb: 0,
+                rpgame: 0,
+                rpkidn: 0,
+                rplarp: 0,
+                rpmagh: 0,
+                rpmagp: 0,
+                rpmaid: 0,
+                rpmain: 0,
                 script: false,
                 silent: false,
                 silsafe: false,
@@ -1238,6 +1299,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCMaps",
                 "UBCMisc",
                 "UBCMoaner",
+                "UBCReputation",
                 "UBCSkills",
                 "UBCSpecialModes",
                 "UBCTalking",
@@ -1251,6 +1313,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCMaps: "Maps",
                 UBCMisc: "Misc",
                 UBCMoaner: "Moaner",
+                UBCReputation: "Reputation",
                 UBCSkills: "Skills",
                 UBCSpecialModes: "Special Modes",
                 UBCTalking: "Talking",
@@ -2069,6 +2132,108 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((CommonIsNumeric(profile)) && (profile > -1) && (profile < 11)) {
                     Player.UBC.ubcSettings.profile = profile;
                     ElementRemove("InputMoanProfile");
+                    defaultExit();
+                } else PreferenceMessage = "Put a valid number";
+            }
+
+			PreferenceSubscreenUBCReputationLoad = function() {
+                UBCPreferenceSubscreen = "UBCReputation";  
+                addMenuInput(200, "Main reputation (-100 to 100):", "rpmain", "InputRpMain",
+                    "Input a number between -100 and 100 to set your main reputation level! A negative number means that you are a Submissive, a positive number means that you are a Dominant.", 6
+                );
+                addMenuInput(200, "ABDL (0-100):", "rpabdl", "InputRpAbdl",
+                    "Input a number between 0 and 100 to set your ABDL reputation level!", 6
+                );
+                addMenuInput(200, "Asylum (-100 to 100):", "rpasyl", "InputRpAsyl",
+                    "Input a number between -100 and 100 to set your Asylum reputation level! A negative number means that you are a Patient, a positive number means that you are a Nurse.", 6
+                );
+                addMenuInput(200, "Gambling (0-100):", "rpgamb", "InputRpGamb",
+                    "Input a number between 0 and 100 to set your Gambling reputation level!", 6
+                );
+                addMenuInput(200, "Gaming (0-100):", "rpgame", "InputRpGame",
+                    "Input a number between 0 and 100 to set your Gaming reputation level!", 6
+                );
+                addMenuInput(200, "Kidnap (0-100):", "rpkidn", "InputRpKidn",
+                    "Input a number between 0 and 100 to set your Kidnap reputation level!", 6
+                );
+                addMenuInput(200, "LARP (0-100):", "rplarp", "InputRpLarp",
+                    "Input a number between 0 and 100 to set your LARP reputation level!", 6
+                );
+                addMenuInput(200, "Magic House (0-4):", "rpmagh", "InputRpMagh",
+                    "Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula.", 6
+                );
+                addMenuInput(200, "Magic Power (0-100):", "rpmagp", "InputRpMagp",
+                    "Input a number between 0 and 100 to set your Magic Power reputation level in the currently selected Magic House! Note: for the other Magic Houses, UBC automatically resets the Magic Power reputation to 0.", 6
+                );
+                addMenuInput(200, "Maid (0-100):", "rpmaid", "InputRpMaid",
+                    "Input a number between 0 and 100 to set your Maid reputation level!", 6
+                );
+            }
+
+            PreferenceSubscreenUBCReputationRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCReputationClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCReputationExit = function() {
+                let abdl = ElementValue("InputRpAbdl") * 1;
+                let asyl = ElementValue("InputRpAsyl") * 1;
+                let gamb = ElementValue("InputRpGamb") * 1;
+                let game = ElementValue("InputRpGame") * 1;
+                let kidn = ElementValue("InputRpKidn") * 1;
+                let larp = ElementValue("InputRpLarp") * 1;
+                let magh = ElementValue("InputRpMagh") * 1;
+                let magp = ElementValue("InputRpMagp") * 1;
+                let maid = ElementValue("InputRpMaid") * 1;           
+                let main = ElementValue("InputRpMain") * 1;           
+                if ((CommonIsNumeric(abdl)) && (abdl > -1) && (abdl < 101) &&
+                    (CommonIsNumeric(asyl)) && (asyl > -101) && (asyl < 101) &&
+                    (CommonIsNumeric(gamb)) && (gamb > -1) && (gamb < 101) &&
+                    (CommonIsNumeric(game)) && (game > -1) && (game < 101) &&
+                    (CommonIsNumeric(kidn)) && (kidn > -1) && (kidn < 101) &&
+                    (CommonIsNumeric(larp)) && (larp > -1) && (larp < 101) &&
+                    (CommonIsNumeric(magh)) && (magh > -1) && (magh < 5) &&
+                    (CommonIsNumeric(magp)) && (magp > -1) && (magp < 101) &&
+                    (CommonIsNumeric(maid)) && (maid > -1) && (maid < 101) &&
+                    (CommonIsNumeric(main)) && (main > -101) && (main < 101)) {
+                    Player.UBC.ubcSettings.rpabdl = abdl;
+                    Player.UBC.ubcSettings.rpasyl = asyl;
+                    Player.UBC.ubcSettings.rpgamb = gamb;
+                    Player.UBC.ubcSettings.rpgame = game;
+                    Player.UBC.ubcSettings.rpkidn = kidn;
+                    Player.UBC.ubcSettings.rplarp = larp;
+                    Player.UBC.ubcSettings.rpmagh = magh;
+                    Player.UBC.ubcSettings.rpmagp = magp;
+                    Player.UBC.ubcSettings.rpmaid = maid;
+                    Player.UBC.ubcSettings.rpmain = main;
+                    DialogSetReputation("ABDL", abdl);  
+                    DialogSetReputation("Asylum", asyl);
+                    DialogSetReputation("Gambling", gamb);
+                    DialogSetReputation("Gaming", game);
+                    DialogSetReputation("Kidnap", kidn);
+                    DialogSetReputation("LARP", larp);
+                    ResetHousesReputation();
+                    let house = "";
+                    if (magh == 1) house = "HouseAmplector";
+                    if (magh == 2) house = "HouseCorporis";
+                    if (magh == 3) house = "HouseMaiestas";
+                    if (magh == 4) house = "HouseVincula"; 
+                    if (magh != 0) DialogSetReputation(house, magp);
+                    DialogSetReputation("Maid", maid);
+                    DialogSetReputation("Dominant", main);               
+                    ElementRemove("InputRpAbdl");  
+                    ElementRemove("InputRpAsyl");
+                    ElementRemove("InputRpGamb");
+                    ElementRemove("InputRpGame");
+                    ElementRemove("InputRpKidn");
+                    ElementRemove("InputRpLarp");
+                    ElementRemove("InputRpMagh");
+                    ElementRemove("InputRpMagp");
+                    ElementRemove("InputRpMaid");                                                    
+                    ElementRemove("InputRpMain");                                                    
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
@@ -4403,14 +4568,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	async function ULTRAPreferenceSubscreenExtensionsLoad() {
         modApi.hookFunction('PreferenceSubscreenExtensionsLoad', 4, (args, next) => {
-             skbondage = SkillGetLevel(Player,"Bondage") - SkillGetModifier(Player,"Bondage");
-             skdressage = SkillGetLevel(Player,"Dressage") - SkillGetModifier(Player,"Dressage");
-             skevasion = SkillGetLevel(Player,"Evasion") - SkillGetModifier(Player,"Evasion");
-             skinfiltration = SkillGetLevel(Player,"Infiltration") - SkillGetModifier(Player,"Infiltration");
-             sklockpicking =  SkillGetLevel(Player,"LockPicking") - SkillGetModifier(Player,"LockPicking");
-             skselfbondage = SkillGetLevel(Player,"SelfBondage") - SkillGetModifier(Player,"SelfBondage");
-             skwillpower = SkillGetLevel(Player,"Willpower") - SkillGetModifier(Player,"Willpower");
+             UBCrpsk();         
              M_MOANER_saveControls();
+             Player.UBC.ubcSettings.rpabdl = rpabdl;
+             Player.UBC.ubcSettings.rpasyl = rpasyl;
+             Player.UBC.ubcSettings.rpgamb = rpgamb;
+             Player.UBC.ubcSettings.rpgame = rpgame;
+             Player.UBC.ubcSettings.rpkidn = rpkidn;
+             Player.UBC.ubcSettings.rplarp = rplarp;
+             Player.UBC.ubcSettings.rpmagh = rpmagh;
+             Player.UBC.ubcSettings.rpmagp = rpmagp;
+             Player.UBC.ubcSettings.rpmaid = rpmaid;
+             Player.UBC.ubcSettings.rpmain = rpmain;
              Player.UBC.ubcSettings.skbondage = skbondage;
              Player.UBC.ubcSettings.skdressage = skdressage;
              Player.UBC.ubcSettings.skevasion = skevasion;
@@ -9003,6 +9172,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+	function UBCrpsk() {
+        rpabdl = ReputationGet("ABDL");
+        rpasyl = ReputationGet("Asylum");
+        rpgamb = ReputationGet("Gambling");
+        rpgame = ReputationGet("Gaming");
+        rpkidn = ReputationGet("Kidnap");
+        rplarp = ReputationGet("LARP");
+        if (ReputationGet("HouseAmplector") != 0) rpmagh = 1;
+        if (ReputationGet("HouseCorporis") != 0) rpmagh = 2;
+        if (ReputationGet("HouseMaiestas") != 0) rpmagh = 3;
+        if (ReputationGet("HouseVincula") != 0) rpmagh = 4;
+        let house = "";
+        if (rpmagh == 1) house = "HouseAmplector";
+        if (rpmagh == 2) house = "HouseCorporis";
+        if (rpmagh == 3) house = "HouseMaiestas";
+        if (rpmagh == 4) house = "HouseVincula";
+        rpmagp = ReputationGet(house);
+        rpmaid = ReputationGet("Maid");
+        rpmain = ReputationGet("Dominant");
+        skbondage = SkillGetLevel(Player,"Bondage") - SkillGetModifier(Player,"Bondage");
+        skdressage = SkillGetLevel(Player,"Dressage") - SkillGetModifier(Player,"Dressage");
+        skevasion = SkillGetLevel(Player,"Evasion") - SkillGetModifier(Player,"Evasion");
+        skinfiltration = SkillGetLevel(Player,"Infiltration") - SkillGetModifier(Player,"Infiltration");
+        sklockpicking =  SkillGetLevel(Player,"LockPicking") - SkillGetModifier(Player,"LockPicking");
+        skselfbondage = SkillGetLevel(Player,"SelfBondage") - SkillGetModifier(Player,"SelfBondage");
+        skwillpower = SkillGetLevel(Player,"Willpower") - SkillGetModifier(Player,"Willpower");
+    }
+
     function UBCsettings() {
         Player.OnlineSharedSettings.UBC = UBCver;
         Player.OnlineSharedSettings.Inmap = false;
@@ -9025,13 +9222,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Player.RestrictionSettings.BypassNPCPunishments = true;
         }
-		skbondage = SkillGetLevel(Player,"Bondage") - SkillGetModifier(Player,"Bondage");
-        skdressage = SkillGetLevel(Player,"Dressage") - SkillGetModifier(Player,"Dressage");
-        skevasion = SkillGetLevel(Player,"Evasion") - SkillGetModifier(Player,"Evasion");
-        skinfiltration = SkillGetLevel(Player,"Infiltration") - SkillGetModifier(Player,"Infiltration");
-        sklockpicking =  SkillGetLevel(Player,"LockPicking") - SkillGetModifier(Player,"LockPicking");
-        skselfbondage = SkillGetLevel(Player,"SelfBondage") - SkillGetModifier(Player,"SelfBondage");
-        skwillpower = SkillGetLevel(Player,"Willpower") - SkillGetModifier(Player,"Willpower");
+		UBCrpsk();      
     }
 
     //Responsive Status
@@ -14767,55 +14958,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'reputation',
-        Description: "(reputation) (level): changes a reputation. ",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The reputation command must be followed by a reputation and a level.\n" +
-                    "You will be able to check the change in your profile.\n" +
-                    " \n" +
-                    "Available reputations:\n" +
-                    "abdl, amplector, corporis, dominant, gambling,\n" +
-                    "gaming, kidnap, larp, maid, maiestas, nurse,\n" +
-                    "patient, submissive, vincula.\n" +
-                    "Level must be between 0 and 100.</p>"
-                infomsg(msg);
-            } else {
-                let stringReputation1 = args;
-                let stringReputation2 = stringReputation1.split(/[ ,]+/);
-                let reputation = stringReputation2[0];
-                let level = stringReputation2[1];
-                if (reputation == "abdl") DialogSetReputation("ABDL", level);
-                if (reputation == "amplector") {
-                    ResetHousesReputation();
-                    DialogSetReputation("HouseAmplector", level);
-                }
-                if (reputation == "corporis") {
-                    ResetHousesReputation();
-                    DialogSetReputation("HouseCorporis", level);
-                }
-                if (reputation == "dominant") DialogSetReputation("Dominant", level);
-                if (reputation == "gambling") DialogSetReputation("Gambling", level);
-                if (reputation == "gaming") DialogSetReputation("Gaming", level);
-                if (reputation == "kidnap") DialogSetReputation("Kidnap", level);
-                if (reputation == "larp") DialogSetReputation("LARP", level);
-                if (reputation == "maid") DialogSetReputation("Maid", level);
-                if (reputation == "maiestas") {
-                    ResetHousesReputation();
-                    DialogSetReputation("HouseMaiestas", level);
-                }
-                if (reputation == "nurse") DialogSetReputation("Asylum", level);
-                if (reputation == "patient") DialogSetReputation("Asylum", -level);
-                if (reputation == "submissive") DialogSetReputation("Dominant", -level);
-                if (reputation == "vincula") {
-                    ResetHousesReputation();
-                    DialogSetReputation("HouseVincula", level);
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'resetdifficulty',
         Description: ": resets difficulty, thereby quitting it.",
         Action: (args) => {
@@ -16305,7 +16447,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/difficulty</b> (number) = changes game difficulty. *\n" +
                     "<b>/maxstatistics</b> = gives max statistics.\n" +
                     "<b>/permission</b> (number) = changes your item permission *\n" +
-                    "<b>/reputation</b> (reputation) (level) = changes a reputation. *\n" +
                     "<b>/resetinventory</b> = erases your inventory.\n" +
                     "<b>/roleplay</b> (rolehere) = starts a role. *\n" +
                     "<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n" +
@@ -17215,4 +17356,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
