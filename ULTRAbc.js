@@ -4346,6 +4346,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	async function ULTRAMainHallRun() {
+        modApi.hookFunction('MainHallRun', 4, (args, next) => {
+            ChatRoomActivateView(ChatRoomCharacterViewName);
+            MainCanvas.textAlign = "center";
+            TintsEffect();
+            DrawText("Chat Rooms", 130, 530, "White", "Black");
+            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
+            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
+            if (asylumlimit == true) {
+                DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+            } else {
+                DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            }
+            DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
+            DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+            DrawText("ULTRAbc", 130, 615, "White", "Black");
+            DrawText(UBCver, 140, 655, "White", "Black");
+            DrawButton(240, 585, 200, 90, "", "White", "", "Open UBC Changelog on GitHub");
+            DrawImageResize("Icons/Changelog.png", 240, 600, 60, 60);
+            DrawTextFit("Changes", 365, 633, 308, "Black");
+            DrawButton(460, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferences");
+            DrawButton(570, 585, 90, 90, "", "White", "Icons/Random.png", "Random background");
+            DrawButton(460, 695, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
+            DrawButton(570, 695, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+            DrawText("/uhelp", 145, 725, "White", "Black");
+            DrawText("in chat", 140, 765, "White", "Black");
+            DrawButton(240, 695, 200, 90, "", "White", "", "Open UBC Wiki on GitHub");
+            DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
+            DrawTextFit("Wiki", 375, 743, 308, "Black");
+            next(args);
+        });
+    }
+
     //Movie Studio
     async function ULTRAMovieStudioRun() {
         modApi.hookFunction('MovieStudioRun', 4, (args, next) => {
