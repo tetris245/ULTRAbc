@@ -60,9 +60,10 @@ All else I might not have included.
 Changes for future version
 
 * Added "Default Background" button in Character Info screen, Main Hall and Timer Cell
+* Added background buttons in Wardrobe
 * Added the Backgrounds page to the GUI:
   - Moved there the options to have access to all BC standard backgrounds, disable background color for UBC messages and extend using of Character Info background to other screens
-  - Added options to remove background buttons in Character Info screen and Timer Cell
+  - Added options to remove background buttons in Character Info screen, Timer Cell and Wardobe
 * Added the Reputation and Skills page to the GUI
 * Removed the reputation and skill commands
 
