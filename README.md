@@ -65,5 +65,5 @@ Changes for future version
   - Moved there the options to have access to all BC standard backgrounds, disable background color for UBC messages and extend using of Character Info background to other screens
   - Added options to remove background buttons in Character Info screen, Timer Cell and Wardobe
 * Added the Reputation and Skills page to the GUI
-* Removed the reputation and skill commands
+* Removed the reputation, skill and xstatus commands
 
