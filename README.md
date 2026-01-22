@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.7.6
+Most recent version: 5.8
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.7.6.zip file on the Releases page
+1. Download the ULTRAbc-version5.8.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,15 +59,5 @@ All else I might not have included.
 
 Changes for future version
 
-* Added "Default Background" button in Character Info screen, Main Hall and Timer Cell
-* Added background buttons in Wardrobe
-* Added the Backgrounds page to the GUI:
-  - Moved there the options to have access to all BC standard backgrounds, disable background color for UBC messages and extend using of Character Info background to other screens
-  - Added options to remove background buttons in Character Info screen, Timer Cell and Wardobe
-* Added the Reputation and Skills page to the GUI
-* Improved the maxstatistics command by adding the missing reputations:
-  - It detects if you are a dominant or submissive and will put this reputation at the maximum (if this reputation is still equal to 0, UBC will choose Dominant)
-  - It detects if you are a nurse or patient and will put this reputation at the maximum (if this reputation is still equal to 0, UBC will choose Nurse)
-  - It detects your Magic House and will put this reputation at the maximum (if this reputation is still equal to 0, UBC will choose House Amplector)
-* Removed the reputation, skill and xstatus commands
+(...)
 
