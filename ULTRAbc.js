@@ -215,6 +215,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let noubccolor;
     let nowhisper = false;
     let nowhrange;
+	let nowrbuttons;
     let npcpunish = false;
     let outbuttons;
     let rglbuttons;
@@ -602,6 +603,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noubccolor = false;
         nowhisper = false;
         nowhrange = false;
+		nowrbuttons = false;
         npcdeck = -1;
         npcpunish = false;
         onlydays = false;
@@ -716,6 +718,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noubccolor = data.noubccolor;
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
+		nowrbuttons = data.nowrbuttons;
         npcdeck = data.npcdeck * 1;
         npcpunish = data.npcpunish;
         onlydays = data.onlydays;
@@ -921,6 +924,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "noubccolor": noubccolor,
             "nowhisper": nowhisper,
             "nowhrange": nowhrange,
+            "nowrbuttons": nowrbuttons,
             "npcpunish": npcpunish,
             "outbuttons": outbuttons,
             "rglbuttons": rglbuttons,
@@ -1054,6 +1058,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (noubccolor == null || noubccolor == undefined) noubccolor = false;
                 if (nowhisper == null || nowhisper == undefined) nowhisper = false;
                 if (nowhrange == null || nowhrange == undefined) nowhrange = false;
+				if (nowrbuttons == null || nowrbuttons == undefined) nowrbuttons = false;
                 if (npcdeck == null || npcdeck == undefined) npcdeck = -1;
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;
                 if (onlydays == null || onlydays == undefined) onlydays = false;
@@ -1197,6 +1202,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 noubccolor: false,
                 nowhisper: false,
                 nowhrange: false,
+				nowrbuttons: false,
                 npcdeck: -1,
                 npcpunish: false,
                 onlydays: false,
@@ -1857,6 +1863,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 				addMenuCheckbox(64, 64, "Remove background buttons in Timer Cell: ", "notcbuttons",
                     "If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active.", false, 200
                 ); 
+				addMenuCheckbox(64, 64, "Remove background buttons in Wardrobe: ", "nowrbuttons",
+                    "If you check this setting, UBC will not display background buttons in Wardrobe. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likokisu's tool for this screen, you need to click first on the Default Background button before checking this option.", false, 200
+                ); 
             }
    
             PreferenceSubscreenUBCBackgroundsRun = function() {
@@ -2160,10 +2169,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 0 and 100 to set your LARP reputation level!", 6
                 );
                 addMenuInput(200, "Magic House (0-4):", "rpmagh", "InputRpMagh",
-                    "Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula.", 6
+                    "Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Note: when you change this parameter, UBC will also automatically reset the Magic Power reputation to 0 for all non-selected Magic Houses.", ", 6
                 );
                 addMenuInput(200, "Magic Power (0-100):", "rpmagp", "InputRpMagp",
-                    "Input a number between 0 and 100 to set your Magic Power reputation level in the currently selected Magic House! Note: for the other Magic Houses, UBC automatically resets the Magic Power reputation to 0.", 6
+                    "Input a number between 0 and 100 to set your Magic Power reputation level in the currently selected Magic House!", 6
                 );
                 addMenuInput(200, "Maid (0-100):", "rpmaid", "InputRpMaid",
                     "Input a number between 0 and 100 to set your Maid reputation level!", 6
@@ -2518,6 +2527,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //ModSDK Functions
     ULTRAActivityChatRoomArousalSync();
     ULTRAAppearanceClick();
+	ULTRAAppearanceMenuDraw(); 
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceClick();
     ULTRAAsylumEntranceRun();
@@ -5218,6 +5228,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAAppearanceClick() {
         modApi.hookFunction('AppearanceClick', 4, (args, next) => {
             let C = CharacterAppearanceSelection;
+			if (CharacterAppearanceMode == "") {
+               if (nowrbuttons == false) {
+                   if ((MouseX >= 260) && (MouseX < 350) && (MouseY >= 910) && (MouseY < 1000)) {         
+                        wrname = "Dressing";
+                        M_MOANER_saveControls();    
+                        CommonSetScreen("Character", "Appearance");                    
+                    }
+                    if ((MouseX >= 380) && (MouseX < 470) && (MouseY >= 910) && (MouseY < 1000)) {
+                        if (BackgroundsList != undefined) {
+                            let listbg = BackgroundsList.length;
+                            let Roll = Math.floor(Math.random() * listbg);
+                            if (Roll == 0) Roll = 1;
+                            let name = BackgroundsList[Roll - 1].Name;
+                            wrname = name;
+                            M_MOANER_saveControls();    
+                            CommonSetScreen("Character", "Appearance");                    
+                        }
+                    }
+                    if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 910) && (MouseY < 1000)) {
+                        let backgrounds = BackgroundsTagList;
+                        BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                            if (setBackground) {
+                                wrname = Name;
+                                M_MOANER_saveControls();    
+                            }
+                        CommonSetScreen("Character", "Appearance");                    
+                        });
+                    }
+                }
+            }
             if (CharacterAppearanceMode == "Wardrobe") {
                 if ((MouseX >= 1510) && (MouseX < 1610) && (MouseY >= 240) && (MouseY < 290)) {
                     if (C.OnlineSharedSettings.UBC != undefined) {
@@ -5349,6 +5389,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     DialogLeave();
+                }
+            }
+            next(args);
+        });
+    }
+
+	async function ULTRAAppearanceMenuDraw() {
+        modApi.hookFunction('AppearanceMenuDraw', 4, (args, next) => {
+            if (CharacterAppearanceMode == "") {
+                if (nowrbuttons == false) {
+                    DrawButton(260, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+                    DrawButton(380, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
+                    DrawButton(500, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
                 }
             }
             next(args);
@@ -17356,3 +17409,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
