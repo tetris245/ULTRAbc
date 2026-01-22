@@ -13065,27 +13065,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'maxstatistics',
         Description: ": gives max statistics.",
         Action: () => {
-            SkillChange(Player, "Infiltration", 10);
-            SkillChange(Player, "SelfBondage", 10);
-            SkillChange(Player, "Willpower", 10);
-            SkillChange(Player, "Evasion", 10);
+            ReputationChange("ABDL", 100);
+            if (ReputationGet("Asylum") >= 0) ReputationChange("Asylum", 100);           
+            if (ReputationGet("Asylum") < 0) ReputationChange("Asylum", -100);
+            if (ReputationGet("Dominant") >= 0) ReputationChange("Dominant", 100);           
+            if (ReputationGet("Dominant") < 0) ReputationChange("Dominant", -100);
+            ReputationChange("Gambling", 100);
+            ReputationChange("Gaming", 100);
+            ReputationChange("LARP", 100);
+            let magh = 0;
+            if (ReputationGet("HouseAmplector") != 0) magh = 1;
+            if (ReputationGet("HouseCorporis") != 0) magh = 2;
+            if (ReputationGet("HouseMaiestas") != 0) magh = 3;
+            if (ReputationGet("HouseVincula") != 0) magh = 4;
+            let house = "";
+            if (magh == 0) house = "HouseAmplector";
+            if (magh == 1) house = "HouseAmplector";
+            if (magh == 2) house = "HouseCorporis";
+            if (magh == 3) house = "HouseMaiestas";
+            if (magh == 4) house = "HouseVincula";
+            ReputationChange(house, 100);
+            ReputationChange("Maid", 100);
             SkillChange(Player, "Bondage", 10);
             SkillChange(Player, "Dressage", 10);
+            SkillChange(Player, "Evasion", 10);
+            SkillChange(Player, "Infiltration", 10);
             SkillChange(Player, "LockPicking", 10)
-            ReputationChange("Gaming", 100);
-            ReputationChange("Gambling", 100);
-            ReputationChange("LARP", 100);
-            ReputationChange("Maid", 100);
-            ReputationChange("ABDL", 100);
-            ReputationChange("Nurse", 100);
+            SkillChange(Player, "SelfBondage", 10);
+            SkillChange(Player, "Willpower", 10);            
             GameLARPLevelProgress(10000);
             LogAdd("BondageCollege", "Import");
             LogAdd("KidnapSophie", "Sarah");
-            let msg = "A few things have to be set manually. See the /roleplay and /rolequit commands";
+            let msg = "Changes made! A few other things have to be set with the /roleplay and /rolequit commands.";
             infomsg(msg);
         }
     }])
@@ -16610,4 +16625,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
