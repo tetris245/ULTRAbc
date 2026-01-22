@@ -2169,7 +2169,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 0 and 100 to set your LARP reputation level!", 6
                 );
                 addMenuInput(200, "Magic House (0-4):", "rpmagh", "InputRpMagh",
-                    "Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Note: when you change this parameter, UBC will also automatically reset the Magic Power reputation to 0 for all non-selected Magic Houses.", ", 6
+                    "Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Note: when you change this parameter, UBC will also automatically reset the Magic Power reputation to 0 for all non-selected Magic Houses.", 6
                 );
                 addMenuInput(200, "Magic Power (0-100):", "rpmagp", "InputRpMagp",
                     "Input a number between 0 and 100 to set your Magic Power reputation level in the currently selected Magic House!", 6
@@ -16610,3 +16610,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
