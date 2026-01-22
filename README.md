@@ -66,7 +66,7 @@ Changes for future version
   - Added options to remove background buttons in Character Info screen, Timer Cell and Wardobe
 * Added the Reputation and Skills page to the GUI
 * Improved the maxstatistics command by adding the missing reputations:
-  - It detects if you are a dominant or submisive and will put this reputation at the maximum (if this reputation is still equal to 0, UBC will choose Dominant)
+  - It detects if you are a dominant or submissive and will put this reputation at the maximum (if this reputation is still equal to 0, UBC will choose Dominant)
   - It detects if you are a nurse or patient and will put this reputation at the maximum (if this reputation is still equal to 0, UBC will choose Nurse)
   - It detects your Magic House and will put this reputation at the maximum (if this reputation is still equal to 0, UBC will choose House Amplector)
 * Removed the reputation, skill and xstatus commands
