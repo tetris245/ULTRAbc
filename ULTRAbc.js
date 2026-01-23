@@ -15935,8 +15935,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Chat commands - * = more info when using\n" +
                     "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
                     "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
-                    "<b>/frlist</b> = gives access to friendlist in current lobby." +
-                    "<b>/search</b> = opens chat search in current lobby." +
+                    "<b>/frlist</b> = gives access to friendlist in current lobby.\n" +
+                    "<b>/search</b> = opens chat search in current lobby.\n" +
                     "<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.";
                 infomsg(msg);
             }
@@ -16658,3 +16658,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
