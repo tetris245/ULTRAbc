@@ -59,5 +59,5 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+- New command: weaken to weaken all your skills for one hour
 
