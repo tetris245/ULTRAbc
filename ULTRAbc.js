@@ -15920,7 +15920,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n" +
                     "<b>/restrain</b> (target) = adds random restraints.\n" +
                     "<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Value must be between 1 and 99.\n" +
-                    "<b>/spin</b> (target) (option) = access to any wheel of fortune, even hidden. *";
+                    "<b>/spin</b> (target) (option) = access to any wheel of fortune, even hidden. *\n" +
+                    "<b>/weaken</b> = weakens all your skills for one hour.";
                 infomsg(msg);
             }
             if (args === "character") {
@@ -16629,6 +16630,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'weaken',
+        Description: ": weakens all your skills for one hour.",
+        Action: () => {      
+            SkillSetModifier(Player, "Bondage", -5, 3600000);
+            SkillSetModifier(Player, "Dressage", -5, 3600000);
+            SkillSetModifier(Player, "Evasion", -5, 3600000);
+            SkillSetModifier(Player, "Infiltration", -5, 3600000);
+            SkillSetModifier(Player, "LockPicking", -5, 3600000);
+            SkillSetModifier(Player, "SelfBondage", -5, 3600000);
+            SkillSetModifier(Player, "Willpower", -5, 3600000);
+            let msg = "You feel all your skills weakened. Changes can be seen in information panel.";
+            infomsg(msg);
+        }
+    }])
+
     CommandCombine([{
         Tag: 'wrobe',
         Description: "(target): fully opens target wardrobe.",
@@ -16662,6 +16679,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
