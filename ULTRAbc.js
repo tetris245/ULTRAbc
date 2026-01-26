@@ -6242,7 +6242,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     })),
                 },
                 ElementButton.Create("chat-search-filter-help-screen-close", function() {
-                    ChatSearchFilterHelpScreenElement.close();
+                    ChatSearchFilterHelpScreenElement?.close();
                 }, null, {
                     button: {
                         classList: ["chat-search-filter-help-screen-close-button"],
@@ -6301,7 +6301,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-search-button",
                             () => {
-                                if (ChatSearchSearchMenuButton.getAttribute("aria-expanded") === "true") {
+                                if (ChatSearchSearchMenuButton?.getAttribute("aria-expanded") === "true") {
                                     ChatSearchSearchMenuButton.click();
                                 }
                                 ChatSearchQuery(ChatSearchQueryString);
@@ -6420,18 +6420,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-help-button",
                             () => {
-                                if (ChatSearchFilterHelpScreenElement.getAttribute("open") == "true") return ChatSearchFilterHelpScreenElement.close();
-                                ChatSearchFilterHelpScreenElement.showModal();
-                                ElementPositionFixed(ChatSearchFilterHelpScreenElement, 25, 135, 1900, 800);
-                                ChatSearchFilterHelpScreenElement.addEventListener("keydown", (ev) => {
+                                if (ChatSearchFilterHelpScreenElement?.getAttribute("open") == "true") {
+                                    return ChatSearchFilterHelpScreenElement.close();
+                                }
+                                ChatSearchFilterHelpScreenElement?.showModal();
+                             ElementPositionFixed(ChatSearchFilterHelpScreenElement, 25, 135, 1900, 800);
+                                ChatSearchFilterHelpScreenElement?.addEventListener("keydown", (ev) => {
                                     if (ev.key === "Escape") {
-                                        ChatSearchFilterHelpScreenElement.close();
+                                        ChatSearchFilterHelpScreenElement?.close();
                                         return;
                                     }
                                 }, {
                                     once: true
                                 });
-                                ChatSearchFilterHelpScreenElement.focus();
+                                ChatSearchFilterHelpScreenElement?.focus();
                             }, {
                                 tooltip: TextGet("Help"),
                                 tooltipPosition: "bottom",
@@ -6456,7 +6458,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 "chat-search-room-female-lobby-button",
                                 () => {
                                     ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-									ChatSearchQuery(ChatSearchQueryString);
+                                    ChatSearchQuery(ChatSearchQueryString);
+
                                 }, {
                                     tooltip: TextGet("Female"),
                                     tooltipPosition: "bottom",
@@ -6473,7 +6476,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 "chat-search-room-male-lobby-button",
                                 () => {
                                     ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-									ChatSearchQuery(ChatSearchQueryString);
+                                    ChatSearchQuery(ChatSearchQueryString);
+
                                 }, {
                                     tooltip: TextGet("Male"),
                                     tooltipPosition: "bottom",
@@ -6490,7 +6494,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 "chat-search-room-mixed-lobby-button",
                                 () => {
                                     ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
-									ChatSearchQuery(ChatSearchQueryString);
+                                     ChatSearchQuery(ChatSearchQueryString);
+
                                 }, {
                                     tooltip: TextGet("Mixed"),
                                     tooltipPosition: "bottom",
@@ -6507,7 +6512,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             () => {
                                 if (!showAsylumButton) return;
                                 ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-								ChatSearchQuery(ChatSearchQueryString);
+                                    ChatSearchQuery(ChatSearchQueryString);
+
                             }, {
                                 tooltip: TextGet("Asylum"),
                                 tooltipPosition: "bottom",
@@ -6698,7 +6704,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function ChatSearchCreateSearchControls() {
-        if (!Player.ChatSearchSettings.Space.includes(ChatSearchGetSpace())) Player.ChatSearchSettings.Space = ChatSearchGetSpace();
+        const space = ChatSearchGetSpace();
+        if (space && !Player.ChatSearchSettings.Space.includes(space)) {
+		Player.ChatSearchSettings.Space = space;
+	  }
         const searchInput = ElementCreateSearchInput("InputSearch", () => {
             const rooms = ChatSearchShowHiddenRoomsActive ? ChatSearchHiddenResult : ChatSearchResult;
             return rooms.map(i => i.DisplayName).sort();
@@ -6744,6 +6753,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "chat-search-room-open-search-menu",
             function() {
                 const img = this.querySelector('img');
+                if (!img) return;
                 const open = this.getAttribute("aria-expanded") === "true";
                 if (open) {
                     this.setAttribute("aria-expanded", "false");
@@ -6751,12 +6761,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     this.setAttribute("aria-expanded", "true");
                     img.src = `Icons/CaretDown.svg`;
-                    if (document.activeElement.id !== "InputSearch") {
+                    if (document.activeElement?.id !== "InputSearch") {
                         ElementFocus("InputSearch");
                     }
                 }
-                const searchPanel = document.getElementById(this.getAttribute("aria-controls"));
-                searchPanel.hidden = open;
+                const control = this.getAttribute("aria-controls");
+                if (!control) return;
+                const searchPanel = document.getElementById(control);
+                if (searchPanel) {
+                    searchPanel.hidden = open;
+                }              
             }, {
                 tooltip: TextGet("SearchMenuButton"),
                 tooltipPosition: "bottom",
@@ -6798,7 +6812,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "chat-search-search-menu-room-type-radio-group",
                             (ev, key) => {
                                 if (key === "None") {
-                                    Player.ChatSearchSettings.MapTypes = undefined;
+                                    Player.ChatSearchSettings.MapTypes = "";
                                 } else {
                                     Player.ChatSearchSettings.MapTypes = key;
                                 }
@@ -6875,7 +6889,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 Player.ChatSearchSettings.Space = ChatSearchSpace = key;
                                 ChatSearchUpdateSearchSettings();
                             },
-                            ChatSearchGetSpace(),
+                            ChatSearchGetSpace() ?? "",
                             [
                                 (((ChatSearchGetSpace() != "Asylum" && asylumlimit == true)) || (asylumlimit == false)) && Player.GetGenders().includes("F") && {
                                     options: {
@@ -7178,7 +7192,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ]
                 },
                 ElementButton.Create("chat-search-search-menu-search-button", function() {
-                    const elements = /** @type {HTMLCollectionOf<Element & { validity: ValidityState, reportValidity(): boolean }>} */ (ChatSearchSearchMenu.elements);
+                    const elements = /** @type {HTMLCollectionOf<Element & { validity: ValidityState, reportValidity(): boolean }>} */(ChatSearchSearchMenu?.elements) ?? [];
                     for (const el of elements) {
                         if (!el.validity.valid) {
                             el.reportValidity();
@@ -16686,4 +16700,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
