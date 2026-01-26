@@ -6424,7 +6424,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     return ChatSearchFilterHelpScreenElement.close();
                                 }
                                 ChatSearchFilterHelpScreenElement?.showModal();
-                             ElementPositionFixed(ChatSearchFilterHelpScreenElement, 25, 135, 1900, 800);
+                                ElementPositionFixed(ChatSearchFilterHelpScreenElement, 25, 135, 1900, 800);
                                 ChatSearchFilterHelpScreenElement?.addEventListener("keydown", (ev) => {
                                     if (ev.key === "Escape") {
                                         ChatSearchFilterHelpScreenElement?.close();
@@ -6459,7 +6459,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 () => {
                                     ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
                                     ChatSearchQuery(ChatSearchQueryString);
-
                                 }, {
                                     tooltip: TextGet("Female"),
                                     tooltipPosition: "bottom",
@@ -6477,7 +6476,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 () => {
                                     ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
                                     ChatSearchQuery(ChatSearchQueryString);
-
                                 }, {
                                     tooltip: TextGet("Male"),
                                     tooltipPosition: "bottom",
@@ -6494,8 +6492,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 "chat-search-room-mixed-lobby-button",
                                 () => {
                                     ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
-                                     ChatSearchQuery(ChatSearchQueryString);
-
+                                    ChatSearchQuery(ChatSearchQueryString);
                                 }, {
                                     tooltip: TextGet("Mixed"),
                                     tooltipPosition: "bottom",
@@ -6512,8 +6509,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             () => {
                                 if (!showAsylumButton) return;
                                 ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-                                    ChatSearchQuery(ChatSearchQueryString);
-
+                                ChatSearchQuery(ChatSearchQueryString);
                             }, {
                                 tooltip: TextGet("Asylum"),
                                 tooltipPosition: "bottom",
@@ -16700,5 +16696,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
