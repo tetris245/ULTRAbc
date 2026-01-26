@@ -106,6 +106,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     window.UBCver = UBCver;
     let ini = 0;
     let kp = 0;
+	let altchsh = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
 
     let tmpname;
@@ -3462,35 +3463,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchLoad() {
+	async function ULTRAChatSearchLoad() {
         modApi.hookFunction('ChatSearchLoad', 4, (args, next) => {
-            ChatSearchInitState();
-            ChatSearchCreatePageCountElement();
-            const {
-                minRoomSizeInput,
-                maxRoomSizeInput
-            } = ChatSearchCreateRoomSizeInputs();
-            const {
-                minRoomPlayersInput,
-                maxRoomPlayersInput
-            } = ChatSearchCreateRoomPlayersInputs();
-            const {
-                searchInput,
-                filterInput,
-                clearButton
-            } = ChatSearchCreateSearchControls();
-            ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
-            if (noubcbar == false) ChatSearchCreateBottom();
-            ChatSearchCreateGrid();
-            ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
-            ChatSearchCreateFilterHelpDialog();
-            ChatSearchQuery(ChatSearchQueryString);
-            ChatRoomNotificationReset();
-            ChatSearchRejoinIncrement = 1;
-            TextPrefetch("Character", "FriendList");
-            TextPrefetch("Online", "ChatAdmin");
-            TextPrefetch("Online", "ChatRoom");
-            return;
+            if (altchsh == true) {
+                AltChatSearchLoad();
+                return;         
+            }
             next(args);
         });
     }
@@ -6021,6 +5999,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Search - Screen + Menu
+    function AltChatSearchLoad() {
+        ChatSearchInitState();
+        ChatSearchCreatePageCountElement();
+        const {
+            minRoomSizeInput,
+            maxRoomSizeInput
+        } = ChatSearchCreateRoomSizeInputs();
+        const {
+            minRoomPlayersInput,
+            maxRoomPlayersInput
+        } = ChatSearchCreateRoomPlayersInputs();
+        const {
+            searchInput,
+            filterInput,
+            clearButton
+        } = ChatSearchCreateSearchControls();
+        ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
+        if (noubcbar == false) ChatSearchCreateBottom();
+        ChatSearchCreateGrid();
+        ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
+        ChatSearchCreateFilterHelpDialog();
+        ChatSearchQuery(ChatSearchQueryString);
+        ChatRoomNotificationReset();
+        ChatSearchRejoinIncrement = 1;
+        TextPrefetch("Character", "FriendList");
+        TextPrefetch("Online", "ChatAdmin");
+        TextPrefetch("Online", "ChatRoom");
+    }
+
     function ChatSearchCreateBottom() {
         ChatSearchRoomBottom = ElementCreate({
             tag: "div",
@@ -16679,3 +16686,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
