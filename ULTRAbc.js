@@ -154,6 +154,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let hearing = 0;
 	let ifext = false;
     let ifname = "Sheet";
+	let layerall = false;
     let maptrap1 = 0;
     let mgl = 0;
     let minigame = "";
@@ -585,6 +586,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         highfame = false;
         hotkeys = false;
 		ifext = false;
+		layerall = false;
         magiccheat = false;
         magictoys = false;
         mapcheat = false;
@@ -700,6 +702,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         highfame = data.highfame;
         hotkeys = data.hotkeys;
 		ifext = data.ifext;
+		layerall = data.layerall;
         magiccheat = data.magiccheat;
         magictoys = data.magictoys;
         mapcheat = data.mapcheat;
@@ -864,6 +867,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gaglevel": gl,
             "ifext": ifext,
             "ifname": ifname,
+            "layerall": layerall,
             "maptrap1": maptrap1,
             "minigame": minigame,
             "mission": mission,
@@ -1029,6 +1033,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (hotkeys == null || hotkeys == undefined) hotkeys = false;
 				if (ifext == null || ifext == undefined) ifext = false;
                 if (ifname == null || ifname == undefined) ifname = "Sheet";
+				if (layerall == null || layerall == undefined) layerall = false;
                 if (magiccheat == null || magiccheat == undefined) magiccheat = false;
                 if (magictoys == null || magictoys == undefined) magictoys = false;
                 if (mapcheat == null || mapcheat == undefined) mapcheat = false;
@@ -1153,6 +1158,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
         await ubcSettingsLoad();
         settingsPage();
+		layeringMenu(); 
 
         async function ubcSettingsLoad(reset = false) {
             await waitFor(() => !!Player?.AccountName);
@@ -1186,6 +1192,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 highfame: false,
                 hotkeys: false,
 				ifext: false,
+				layerall: false,
                 magiccheat: false,
                 magictoys: false,
                 mapcheat: false,
@@ -1293,6 +1300,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 return false;
             }
+        }
+
+		async function layeringMenu() {
+            await waitFor(() => !!Player?.AppearanceLayers);
+            modApi.hookFunction('Layering.Load', 4, (args, next) => {   
+                if (layerall == true) Layering.Readonly = false;
+                next(args);
+            });
         }
 
         async function settingsPage() {
@@ -1942,8 +1957,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     "This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action.", 160
                 );
+                addMenuCheckbox(64, 64, "Always access to layering menus: ", "layerall",
+                    "With this option, you will always have access to layering menus, even if bindings and locks restrain your moves!", false, 160
+                );
                 addMenuCheckbox(64, 64, "Enable Bondage Brawl/Magic School cheat: ", "magiccheat",
-                    "With this option, you always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!", false, 160
+                    "With this option, you will always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!", false, 160
                 );
                 addMenuCheckbox(64, 64, "Enable extra info for some locks: ", "extrainfo",
                     "This setting allows to use the /infolock command and get this way extra info (code, password, time left) about some locks on worn item in a slot selected by clicking on yourself or another player.", false, 160
@@ -12259,57 +12277,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'itempriority',
-        Description: "(priority): changes priority of worn item in selected slot.",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "The itempriority command needs to be followed by a number (between -99 and 99) to change the priority of a worn item in a slot selected by mouse click.";
-                infomsg(msg);
-            } else {
-                let priority = args * 1;
-                if (priority > 99) priority = 99;
-                if (priority < -99) priority = -99;
-                let msg = "You have 5 seconds to click on yourself. If successful, the priority of the worn item in selected slot will be changed. If not, retry.";
-                infomsg(msg);
-                setTimeout(function() {
-                    if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
-                        if (CurrentCharacter.FocusGroup.Name) {
-                            let Target = CurrentCharacter.FocusGroup.Name;
-                            if (InventoryGet(Player, Target) != null) {
-                                ChatRoomSendLocal("AssetGroup = " + Target);
-                                let ak = 0;
-                                if (InventoryGet(Player, Target).Asset.Archetype != undefined) {
-                                    let Archetype = InventoryGet(Player, Target).Asset.Archetype;
-                                    if (Archetype == "typed") ak = 1;
-                                    if (Archetype == "modular") ak = 2;
-                                }
-                                let Property = InventoryGet(Player, Target).Property;
-                                if (ak < 2) {
-                                    if (Property == undefined) {
-                                        Property = {};
-                                        let OverridePriority = {};
-                                        OverridePriority = priority;
-                                        Property.OverridePriority = OverridePriority;
-                                    } else {
-                                        Property.OverridePriority = priority;
-                                    }
-                                }
-                                if (ak == 2) {
-                                    Property.OverridePriority = priority;
-                                }
-                                DialogLeave();
-                                ChatRoomCharacterUpdate(Player);
-                                let msg = "Item priority changed.";
-                                infomsg(msg);
-                            }
-                        }
-                    }
-                }, 5000);
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'keydeposit',
         Description: "(hours): keeps your keys safe in the vault.",
         Action: (args) => {
@@ -12343,7 +12310,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'layerset1',
+        Tag: 'layerset',
         Description: "(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot",
         Action: (args) => {
             if (args === "") {
@@ -12404,94 +12371,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'layerset2',
-        Description: "(layernumber) (priority) changes a layer priority for worn item in saved Item Slot",
-        Action: (args) => {
-            if (args === "") {
-                let msg = "First use the <b>/layershow2</b> command to click on worn item, get useful info about layer priorities and save Item Slot.\n" +
-                    "The layerset2 command must be followed by a layer number and a priority number (between -99 and 99) for the worn item in the previously saved Item Slot.\n" +
-                    "If you enter a non-numeric layer and/or priority, it will be interpreted as 0 (zero).";
-                infomsg(msg);
-            } else {
-                let stringLys3 = args;
-                let stringLys4 = stringLys3.split(/[ ,]+/);
-                let layer = stringLys4[0];
-                let priority = stringLys4[1] * 1;
-                if (!CommonIsNumeric(priority)) priority = 0;
-                if (priority > 99) priority = 99;
-                if (priority < -99) priority = -99;
-                if (this.saveditemslot == undefined) {
-                    let msg = "<b>Warning</b>: First use the <b>/layershow2</b> command to get useful info and save Item Slot.";
-                    infomsg(msg);
-                } else {
-                    let Target = this.saveditemslot.slice(0);
-                    if (InventoryGet(Player, Target) != null) {
-                        let ak = 0;
-                        if (InventoryGet(Player, Target).Asset.Archetype != undefined) {
-                            let Archetype = InventoryGet(Player, Target).Asset.Archetype;
-                            if (Archetype == "typed") ak = 1;
-                            if (Archetype == "modular") ak = 2;
-                        }
-                        let Asset = InventoryGet(Player, Target).Asset;
-                        if (!CommonIsNumeric(layer)) layer = 0;
-                        if (layer < 0) layer = 0;
-                        if (layer > Asset.Layer.length - 1) layer = 0;
-                        let Property = InventoryGet(Player, Target).Property;
-                        let Name = "";
-                        if (ak == 0) {
-                            if (layer == 0) {
-                                Name = InventoryGet(Player, Target).Asset.Name;
-                            } else {
-                                Name = Asset.Layer[layer].Name;
-                            }
-                            if (Property == undefined) {
-                                Property = {};
-                                let OverridePriority = {};
-                                OverridePriority[Name] = priority;
-                                Property.OverridePriority = OverridePriority;
-                                InventoryGet(Player, Target).Property = Property;
-                            } else if (Property.OverridePriority == undefined) {
-                                let OverridePriority = {};
-                                OverridePriority[Name] = priority;
-                                Property.OverridePriority = OverridePriority;
-                                InventoryGet(Player, Target).Property = Property;
-                            } else {
-                                Property.OverridePriority[Name] = priority;
-                                InventoryGet(Player, Target).Property = Property;
-                            }
-                        }
-                        if (ak == 1) {
-                            if ((Asset.Layer.length == 1) || (Asset.Layer[layer].Name == null)) {
-                                Name = InventoryGet(Player, Target).Asset.Name;
-                            } else {
-                                Name = Asset.Layer[layer].Name;
-                            }
-                            if (Property.OverridePriority == undefined) {
-                                let OverridePriority = {};
-                                OverridePriority[Name] = priority;
-                                Property.OverridePriority = OverridePriority;
-                                InventoryGet(Player, Target).Property = Property;
-                            } else {
-                                Property.OverridePriority[Name] = priority;
-                                InventoryGet(Player, Target).Property = Property;
-                            }
-                        }
-                        if (ak == 2) {
-                            let Name1 = InventoryGet(Player, Target).Asset.Layer[layer].ColorGroup;
-                            let Name2 = InventoryGet(Player, Target).Asset.Layer[layer].Name;
-                            InventoryGet(Player, Target).Property.OverridePriority[Name2] = priority;
-                        }
-                        ChatRoomCharacterUpdate(Player);
-                        let msg = "Layer priority changed for layer " + layer + ".";
-                        infomsg(msg);
-                    }
-                }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'layershow1',
+        Tag: 'layershow',
         Description: "gives info about layer colors of a specific worn item + saves Item Slot",
         Action: () => {
             let msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
@@ -12538,114 +12418,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     let Index = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
                                     Color2 = InventoryGet(Player, Target).Color[Index];
                                     ChatRoomSendLocal("Layer " + ly + " = " + Name1 + " - " + Name2 + " - " + Color2);
-                                    //}
-                                    ly++;
-                                }
-                            }
-                            this.saveditemslot = Target;
-                            let msg = "Item Slot saved.";
-                            infomsg(msg);
-                        }
-                        DialogLeave();
-                    }
-                }
-            }, 5000);
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'layershow2',
-        Description: "gives info about layer priorities of a specific worn item + saves Item Slot",
-        Action: () => {
-            let msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
-            infomsg(msg);
-            setTimeout(function() {
-                if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
-                    let Target = "";
-                    if (CurrentCharacter.FocusGroup.Name) {
-                        let Target = CurrentCharacter.FocusGroup.Name;
-                        if (InventoryGet(Player, Target) != null) {
-                            ChatRoomSendLocal("AssetGroup = " + Target);
-                            let Name = "";
-                            let Priority2 = 0;
-                            let ak = 0;
-                            if (InventoryGet(Player, Target).Asset.Archetype != undefined) {
-                                let Archetype = InventoryGet(Player, Target).Asset.Archetype;
-                                if (Archetype == "typed") ak = 1;
-                                if (Archetype == "modular") ak = 2;
-                            }
-                            let Asset = InventoryGet(Player, Target).Asset;
-                            let Property = InventoryGet(Player, Target).Property;
-                            if (ak == 0) {
-                                let Priority = "";
-                                if (Asset.DrawingPriority != undefined) {
-                                    Priority = InventoryGet(Player, Target).Asset.DrawingPriority;
-                                } else {
-                                    Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
-                                }
-                                let ly = 0;
-                                while (ly < Asset.Layer.length) {
-                                    if (ly == 0) {
-                                        Name = InventoryGet(Player, Target).Asset.Name;
-                                    } else {
-                                        Name = Asset.Layer[ly].Name;
-                                    }
-                                    if ((Property == undefined) || (Property.OverridePriority == undefined)) {
-                                        Priority2 = Priority;
-                                    } else {
-                                        let layerPriority = Property.OverridePriority[Name];
-                                        if (layerPriority == null) {
-                                            Priority2 = Priority;
-                                        } else {
-                                            Priority2 = layerPriority;
-                                        }
-                                    }
-                                    ChatRoomSendLocal("Layer " + ly + " = " + Name + " - " + Priority2);
-                                    ly++;
-                                }
-                            }
-                            if (ak == 1) {
-                                let Priority = "";
-                                if (Asset.DrawingPriority != undefined) {
-                                    Priority = InventoryGet(Player, Target).Asset.DrawingPriority;
-                                } else {
-                                    Priority = InventoryGet(Player, Target).Asset.Group.DrawingPriority;
-                                }
-                                let ly = 0;
-                                while (ly < Asset.Layer.length) {
-                                    if ((Asset.Layer.length == 1) || (Asset.Layer[ly].Name == null)) {
-                                        Name = InventoryGet(Player, Target).Asset.Name;
-                                    } else {
-                                        Name = Asset.Layer[ly].Name;
-                                    }
-                                    if (InventoryGet(Player, Target).Property == undefined) {
-                                        Priority2 = InventoryGet(Player, Target).Asset.Layer[ly].Priority;
-                                    } else {
-                                        let layerPriority = Property.OverridePriority?.[Name] ?? Priority;
-                                        if (layerPriority == null) {
-                                            Priority2 = InventoryGet(Player, Target).Asset.Layer[ly].Priority;
-                                        } else {
-                                            Priority2 = layerPriority;
-                                        }
-                                    }
-                                    ChatRoomSendLocal("Layer " + ly + " = " + Name + " - " + Priority2);
-                                    ly++;
-                                }
-                            }
-                            if (ak == 2) {
-                                let ly = 0;
-                                while (ly < Asset.Layer.length) {
-                                    //if (InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup != null) {
-                                    let Name1 = InventoryGet(Player, Target).Asset.Layer[ly].ColorGroup;
-                                    let Name2 = Asset.Layer[ly].Name;
-                                    let Priority = Asset.Layer[ly].Priority;
-                                    let layerPriority = Property.OverridePriority?.[Name2] ?? Priority;
-                                    if (layerPriority == null) {
-                                        Priority2 = Priority;
-                                    } else {
-                                        Priority2 = layerPriority;
-                                    }
-                                    ChatRoomSendLocal("Layer " + ly + " = " + Name1 + " - " + Name2 + " - " + Priority2);
                                     //}
                                     ly++;
                                 }
@@ -16058,11 +15830,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/allcolor</b> (colorcode) (category) (target) = changes color on current elements in specified category. *\n" +
                     "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
                     "<b>/itemcolor</b> (colorcode) = changes item color in selected slot. *\n" +
-                    "<b>/itempriority</b> (priority) = changes item priority in selected slot. *\n" +
-                    "<b>/layerset1</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" +
-                    "<b>/layerset2</b> (layernumber) (priority) = changes layer priority of item in saved Item Slot. *\n" +
-                    "<b>/layershow1</b> = color info and saving of Item Slot.\n" +
-                    "<b>/layershow2</b> = priority info + saving of Item Slot.\n" +
+                    "<b>/layerset</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" +
+                    "<b>/layershow</b> = color info and saving of Item Slot.\n" +
                     "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
                     "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
                     "<b>/vrsee</b> (background) (mode) (game) = changes the settings of a worn VR Headset. *";
@@ -16696,6 +16465,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
