@@ -59,6 +59,9 @@ All else I might not have included.
 
 Changes for future version
 
+* New option in GUI - Cheats to always have access to layering menus
 * New command: weaken to weaken all your skills for one hour
 * Updated the code related to Chat Search functions
+* Renamed the layerset1 and layershow1 commands as layerset and layershow
+* Removed the itempriority, layerset2 and layershow2 commands (use instead the new option in GUI - Cheats!)
 
