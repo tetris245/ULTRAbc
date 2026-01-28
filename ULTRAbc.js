@@ -136,6 +136,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let ahybrid = false;
     let alfaprf = false;
     let alfmenu = false;
+	let alfrpsk = false;
     let animal = 0;
     let bgall = false;
     let bl = 0;
@@ -564,6 +565,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ahybrid = false;
         alfaprf = false;
         alfmenu = false;
+		alfrpsk = false;
         animal = 0;
         asylumlimit = false;
         autojoin = false;
@@ -680,6 +682,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ahybrid = data.ahybrid;
         alfaprf = data.alfaprf;
         alfmenu = data.alfmenu;
+		alfrpsk = data.alfrpsk;
         animal = data.animal * 1;
         asylumlimit = data.asylumlimit;
         autojoin = data.autojoin;
@@ -854,6 +857,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "ahybrid": ahybrid,
             "alfaprf": alfaprf,
             "alfmenu": alfmenu,
+            "alfrpsk": alfrpsk,
             "animal": animal,
             "bgall": bgall,
             "bl": bl,
@@ -1002,6 +1006,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (alfaprf == null || alfaprf == undefined) alfaprf = false;
                 if (alfmenu == null || alfmenu == undefined) alfmenu = false;
+				if (alfrpsk == null || alfrpsk == undefined) alfrpsk = false;
                 if (animal == null || animal == undefined) animal = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;
                 if (autojoin == null || autojoin == undefined) autojoin = false;
@@ -1167,6 +1172,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ahybrid: false,
                 alfaprf: false,
                 alfmenu: false,
+				alfrpsk: false,
                 animal: 0,
                 asylumlimit: false,
                 autojoin: false,
@@ -2074,24 +2080,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCMiscLoad = function() {
-                UBCPreferenceSubscreen = "UBCMisc";
-                addMenuCheckbox(64, 64, "Alphabetic order in  Preferences menu: ", "alfmenu",
-                    "When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.", false, 120
+                UBCPreferenceSubscreen = "UBCMisc";              
+                addMenuCheckbox(64, 64, "Alphabetic order for  reputation and skills: ", "alfrpsk",
+                    "When enabled, most info about reputation and skills in the Character Info screen will be ordered in alphabetic order. Your reputation as dominant or submissive will remain displayed in first position.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Alphabetic order for Preferences: ", "alfaprf",
-                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: General, Chat, Immersion and Online.", false, 120
+                addMenuCheckbox(64, 64, "Alphabetic order for  Preferences menu: ", "alfmenu",
+                    "When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.", false, 140
+                );
+                addMenuCheckbox(64, 64, "Alphabetic order for Preferences screens: ", "alfaprf",
+                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: General, Chat, Immersion and Online.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
-                    "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
+                    "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
-                    "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
+                    "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 140
                 );
                 addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
-                    "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 120
+                    "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Use only days in Character Info screens: ", "onlydays",
-                    "BC automatically converts days to years, months and days. If you don't like that, use this option to get these data exprimed only in days in the Character Info screens.", false, 120
+                    "BC automatically converts days to years, months and days. If you don't like that, use this option to get these data exprimed only in days in the Character Info screens.", false, 140
                 );
             }
 
@@ -2598,6 +2607,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAInfiltrationRun();
     ULTRAInformationSheetClick();
     ULTRAInformationSheetRun();
+	ULTRAInformationSheetSecondScreenRun(); 
     ULTRAIntroductionClubCardStart();
     ULTRAIntroductionJobAnyAvailable();
     ULTRAIntroductionRun();
@@ -4109,6 +4119,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             TintsEffect();
             if (onlydays == true) {
                 DaysOnly();
+                return;
+            }
+            next(args);
+        });
+    }
+
+	function ULTRAInformationSheetSecondScreenRun() {
+        modApi.hookFunction('InformationSheetSecondScreenRun', 4, (args, next) => {   
+            if (alfrpsk == true) {
+                Altrpsk();
                 return;
             }
             next(args);
@@ -7557,6 +7577,94 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Information Sheet
+    function Altrpsk() {
+        var C = InformationSheetSelection;
+        if (C.IsPlayer() || C.IsOnline()) {
+            const lineHeight = 55;
+            const x = 1000;
+            const headerY = 125;
+            const firstY = 200;
+            DrawText(TextGet("Reputation"), x, headerY, "Black", "Gray");
+            const labelMap = {
+                Dominant: { posKey: "ReputationDominantPositive", negKey: "ReputationDominantNegative", useAbs: true },
+                Asylum: { posKey: "ReputationAsylumPositive", negKey: "ReputationAsylumNegative", useAbs: true },
+                ABDL: { key: "ReputationABDLPositive" },
+                Gaming: { key: "ReputationGamingPositive" },
+                Gambling: { key: "ReputationGamblingPositive" },
+                HouseAmplector: { key: "ReputationHouseAmplectorPositive" },
+                HouseCorporis: { key: "ReputationHouseCorporisPositive" },
+                HouseMaiestas: { key: "ReputationHouseMaiestasPositive" },
+                HouseVincula: { key: "ReputationHouseVinculaPositive" },
+                Kidnap: { key: "ReputationKidnapPositive" },
+                LARP: { key: "ReputationLARPPositive" },
+                Maid: { key: "ReputationMaidPositive" }
+            };
+            const entriesByType = {};
+            for (const rep of C.Reputation || []) {
+                if (!rep) continue;
+                if (!entriesByType[rep.Type]) entriesByType[rep.Type] = [];
+                entriesByType[rep.Type].push(rep);
+            }
+            let pos = 0;
+            for (const typeKey of Object.keys(labelMap)) {
+                const group = entriesByType[typeKey];
+                if (!group) continue;
+                for (const rep of group) {
+                    if (rep.Value === 0) continue;
+                    const map = labelMap[typeKey];
+                    let label;
+                    let valueText;
+                    if (map.posKey) {
+                        label = rep.Value > 0 ? TextGet(map.posKey) : TextGet(map.negKey);
+                        valueText = Math.abs(rep.Value).toString();
+                    } else {
+                        label = TextGet(map.key);
+                        valueText = rep.Value.toString();
+                    }
+                    DrawText(label + " " + valueText, x, firstY + pos * lineHeight, "Black", "Gray");
+                    pos++;
+               } 
+            }
+            if (pos === 0) DrawText(TextGet("ReputationNone"), x, firstY, "Black", "Gray");
+            SkillValidSkills = ['Bondage', 'Dressage', 'Evasion', 'Infiltration', 'LockPicking', 'SelfBondage', 'Willpower'];        
+            DrawText(TextGet("Skill"), 1425, 125, "Black", "Gray");
+            if (!C.IsPlayer()) {
+                DrawText(TextGet("Unknown"), 1425, 200, "Black", "Gray");
+            } else {
+                let skillLine = 0;
+                if (C.Skill.length == 0) {
+                    DrawText(TextGet("SkillNone"), 1425, 200, "Black", "Gray");
+                } else {
+                    for (const type of SkillValidSkills) {
+                        const name = TextGet(`Skill${type}`);
+                        const level = SkillGetLevel(C, type);
+                        const progress = SkillGetProgress(C, type);
+                        if (level === 0 && progress === 0) continue;
+                        const ratio = SkillGetRatio(C, type);
+                        const modifier = SkillGetModifier(C, type);
+                        const duration = SkillGetModifierDuration(C, type);
+                        const skillText = `${name} ${level} (${progress / 10}%)`;
+                        const color = ratio !== 1 ? "Red" : "Black";
+                        DrawText(skillText, 1425, 200 + skillLine * lineHeight, color, "Gray");
+                        skillLine++;
+                        if (modifier && modifier !== 0) {
+                            const subst = [
+                                ["ABS", (modifier > 0 ? "+" : "-")],
+                                ["VAL", modifier.toString()],
+                                ["DURATION", TimermsToTime(duration)],
+                            ];
+                            const modifierColor = modifier > 0 ? "Green" : "Red";
+                            const modifierText = CommonStringSubstitute(TextGet("SkillModifier"), subst);
+                            DrawText(modifierText, 1440, 200 + skillLine * lineHeight, modifierColor, "Gray");
+                            skillLine++;
+                        }
+                    }
+                }
+            }
+        }
+        MainCanvas.textAlign = "center";
+    }
+	
     function DaysClick() {
         var C = InformationSheetSelection;
         if (MouseIn(1815, 75, 90, 90)) InformationSheetExit();
@@ -16465,3 +16573,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
