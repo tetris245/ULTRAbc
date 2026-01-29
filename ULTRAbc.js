@@ -12451,7 +12451,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
-                    "The layerset1 command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.\n" +
+                    "The layerset command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.\n" +
                     "If you enter a non-numeric layer, it will be interpreted as 0 (zero). If the entered color does not exist, you will go back to the default color.";
                 infomsg(msg);
             } else {
@@ -16599,5 +16599,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ExtClick();
         }
     }])
+
 
 })();
