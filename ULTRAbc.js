@@ -2081,7 +2081,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";              
-                addMenuCheckbox(64, 64, "Alphabetic order for  reputation and skills: ", "alfrpsk",
+                addMenuCheckbox(64, 64, "Alphabetic order for Reputation and Skills: ", "alfrpsk",
                     "When enabled, most info about reputation and skills in the Character Info screen will be ordered in alphabetic order. Note that the reputation as dominant or submissive will remain displayed in first position.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Alphabetic order for  Preferences menu: ", "alfmenu",
@@ -16573,4 +16573,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
