@@ -2709,7 +2709,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAWheelFortuneRun();
 
     //Asylum
-    async function ULTRAAsylumEntranceClick() {
+    function ULTRAAsylumEntranceClick() {
         modApi.hookFunction('AsylumEntranceClick', 4, (args, next) => {
             if (asylumlimit == false) {
                 if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
@@ -2821,7 +2821,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatAdminClick() {
+    function ULTRAChatAdminClick() {
         modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
             if (ChatAdminCanEdit()) {
                 if (MouseIn(1230, 450, 60, 60)) {
@@ -2860,7 +2860,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomClick() {
+    function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (extbuttons == true) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
@@ -2909,7 +2909,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomKeyDown() {
+    function ULTRAChatRoomKeyDown() {
         modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
             const ret = next(args);
             if ((hotkeys == true) && (noescape == false)) {
@@ -3481,7 +3481,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchKeyDown() {
+    function ULTRAChatSearchKeyDown() {
         modApi.hookFunction('ChatSearchKeyDown', 4, (args, next) => {
             let ret = next(args);
             if ((cskeys == true) && (event.code === "AltLeft")) PrfClick();
@@ -3568,7 +3568,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAClubCardBuilderClick() {
+    function ULTRAClubCardBuilderClick() {
         modApi.hookFunction('ClubCardBuilderClick', 4, (args, next) => {
             const ret = next(args);
             if ((ClubCardBuilderDeckIndex == -1) && MouseIn(1655, 25, 90, 90)) {
@@ -3632,7 +3632,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAClubCardClick() {
+    function ULTRAClubCardClick() {
         modApi.hookFunction('ClubCardClick', 4, (args, next) => {
             if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
                 if (MouseIn(65, 60, 90, 90)) {
@@ -3986,7 +3986,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAFriendListKeyDown() {
+    function ULTRAFriendListKeyDown() {
         modApi.hookFunction('FriendListKeyDown', 4, (args, next) => {
             const searchInput = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.searchInput));
             const searchInputHasFocus = searchInput && document.activeElement === searchInput;
@@ -4070,7 +4070,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Information Sheet
-    function ULTRAInformationSheetClick() {
+    ULTRAInformationSheetClick() {
         modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
            if (noifbuttons == false) {
                if ((MouseX >= 1575) && (MouseX < 1665) && (MouseY >= 910) && (MouseY < 1000)) {         
@@ -4233,7 +4233,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Login
-    async function ULTRALoginClick() {
+    function ULTRALoginClick() {
         modApi.hookFunction('LoginClick', 4, (args, next) => {
             if (MouseIn(1910, 670, 90, 90)) hidetoast1();
             next(args);
@@ -4294,7 +4294,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Main Hall
-    async function ULTRAMainHallClick() {
+    function ULTRAMainHallClick() {
         modApi.hookFunction('MainHallClick', 4, (args, next) => {
             if (MouseIn(1645, 145, 90, 90)) MainHallMoveToChatSelect();
             if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
@@ -4520,7 +4520,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAPandoraPrisonClick() {
+    function ULTRAPandoraPrisonClick() {
         modApi.hookFunction('PandoraPrisonClick', 4, (args, next) => {
             if (sosbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
@@ -4565,7 +4565,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Photographic Room
-    async function ULTRAPhotographicClick() {
+    function ULTRAPhotographicClick() {
         modApi.hookFunction('PhotographicClick', 4, (args, next) => {
             if (sosbuttons == true) {
                 if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
@@ -4674,7 +4674,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAPreferenceSubscreenOnlineClick() {
+    function ULTRAPreferenceSubscreenOnlineClick() {
         modApi.hookFunction('PreferenceSubscreenOnlineClick', 4, (args, next) => {
             if (PreferencePageCurrent === 2) {
                 if ((MouseIn(1260, 330, 60, 60))) {
@@ -4730,7 +4730,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Private Room
-    async function ULTRAPrivateClick() {
+    function ULTRAPrivateClick() {
         modApi.hookFunction('PrivateClick', 4, (args, next) => {
             if ((Player.ArousalSettings != null) && (Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
                 if ((MouseX >= 700) && (MouseX <= 950) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmGameGenerate(0);
@@ -4856,7 +4856,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Timer Cell
-    async function ULTRACellClick() {
+    function ULTRACellClick() {
         modApi.hookFunction('CellClick', 4, (args, next) => {
             if (CellOpenTimer < CurrentTime) {
                 if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
@@ -5274,7 +5274,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Wardrobe
-    async function ULTRAAppearanceClick() {
+    function ULTRAAppearanceClick() {
         modApi.hookFunction('AppearanceClick', 4, (args, next) => {
             let C = CharacterAppearanceSelection;
 			if (CharacterAppearanceMode == "") {
