@@ -65,4 +65,4 @@ Changes for future version
 * Updated the code related to Chat Search functions
 * Renamed the layerset1 and layershow1 commands as layerset and layershow
 * Removed the itempriority, layerset2 and layershow2 commands (use instead the new option in GUI - Cheats!)
-
+* Removed the async character for the hooks in "Click" and "KeyDown" function types
