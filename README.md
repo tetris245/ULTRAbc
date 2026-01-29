@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.8
+Most recent version: 5.8.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.8.zip file on the Releases page
+1. Download the ULTRAbc-version5.8.1.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,10 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* New option in GUI - Cheats to always have access to layering menus, even if bindings and locks restrain your moves
-* New option in GUI - Misc to get Reputation (except Dominant/Submissive) and Skills in alphabetic order on the Character Info screen
-* New command: weaken to weaken all your skills for one hour
-* Updated the code related to Chat Search functions
-* Renamed the layerset1 and layershow1 commands as layerset and layershow
-* Removed the itempriority, layerset2 and layershow2 commands (use instead the new option in GUI - Cheats!)
-* Removed the async character for the hooks in "Click" and "KeyDown" function types
+(...)
