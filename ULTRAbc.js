@@ -1163,7 +1163,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
         await ubcSettingsLoad();
         settingsPage();
-		layeringMenu(); 
+		layermenu(); 
 
         async function ubcSettingsLoad(reset = false) {
             await waitFor(() => !!Player?.AccountName);
@@ -1308,7 +1308,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
 
-		async function layeringMenu() {
+		async function layermenu() {
             await waitFor(() => !!Player?.AppearanceLayers);
             modApi.hookFunction('Layering.Load', 4, (args, next) => {   
                 if (layerall == true) Layering.Readonly = false;
@@ -16573,3 +16573,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
