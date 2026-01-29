@@ -1964,7 +1964,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action.", 160
                 );
                 addMenuCheckbox(64, 64, "Always access to layering menus: ", "layerall",
-                    "With this option, you will always have access to layering menus, even if bindings and locks restrain your moves!", false, 160
+                    "With this option, you will always have access to layering menus, even if bindings and locks restrain your moves! Note: If you don't want that other players make layering based changes to your character, you can enable a specific option in the WCE mod.", false, 160
                 );
                 addMenuCheckbox(64, 64, "Enable Bondage Brawl/Magic School cheat: ", "magiccheat",
                     "With this option, you will always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!", false, 160
@@ -16573,4 +16573,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
