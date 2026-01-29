@@ -1880,16 +1880,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "On the Character Info screen, you have buttons to randomly or manually select a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immediate (you need to go back to the Extensions menu!)", false, 200
                 ); 
 				addMenuCheckbox(64, 64, "Remove background buttons in Character Info: ", "noifbuttons",
-                    "If you check this setting, UBC will not display background buttons in Character Info screen. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likolisu's tool for this screen, you need to click first on the Default Background button before checking this option.", false, 200
+                    "If you check this setting, UBC will not display background buttons in Character Info screen. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likokisu's tool to change the background of this screen, you need to click first on the Default Background button before checking this option.", false, 200
                 );
 				addMenuCheckbox(64, 64, "Remove background buttons in Timer Cell: ", "notcbuttons",
                     "If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active.", false, 200
                 ); 
 				addMenuCheckbox(64, 64, "Remove background buttons in Wardrobe: ", "nowrbuttons",
-                    "If you check this setting, UBC will not display background buttons in Wardrobe. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likolisu's tool for this screen, you need to click first on the Default Background button before checking this option.", false, 200
+                    "If you check this setting, UBC will not display background buttons in Wardrobe. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likokisu's tool to change the background of this screen, you need to click first on the Default Background button before checking this option.", false, 200
                 ); 
             }
-   
+
             PreferenceSubscreenUBCBackgroundsRun = function() {
                 drawMenuElements();
             }
@@ -4515,7 +4515,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ServerSend("ChatRoomCreate", PrisonRoom);
             ChatAdminData = PrisonRoom;
             ChatAdminData.Background = bgname;
-            ServerSend("ChatRoomUpdate", ChatAdminData);
+            ServerSend("ChatRoomAdmin", ChatAdminData);
             return;
         });
     }
