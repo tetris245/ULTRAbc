@@ -4070,7 +4070,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Information Sheet
-    ULTRAInformationSheetClick() {
+    function ULTRAInformationSheetClick() {
         modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
            if (noifbuttons == false) {
                if ((MouseX >= 1575) && (MouseX < 1665) && (MouseY >= 910) && (MouseY < 1000)) {         
@@ -16573,3 +16573,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
