@@ -60,3 +60,4 @@ All else I might not have included.
 Changes for future version
 
 * Removed link to A Discord server in the uhelp command
+* Improved the code to update the results of the uroom command when the no-escape mode has been forced by devious locks
