@@ -8998,7 +8998,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if (hasGroup == true) {
                             Player.UBC.ubcSettings.noescape = true;
                             noescape = true;
-                            dogsforbid = true;
+                            dogsforbid = true;					
+                            Player.OnlineSharedSettings.Unoescape = true;
+                            ServerAccountUpdate.QueueData({
+                                OnlineSharedSettings: Player.OnlineSharedSettings
+                            });
                             if (unrestrict == 2) {
                                 Player.UBC.ubcSettings.utotal = false;
                                 unrestrict = 0;
@@ -16601,3 +16605,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
