@@ -59,5 +59,6 @@ All else I might not have included.
 
 Changes for future version
 
+* improved the no-whisper mode when it is forced by a BCX rule that is active only if some conditions are satisfied
 * Removed link to A Discord server in the uhelp command
 * Improved the code to update the results of the uroom command when the no-escape mode has been forced by devious locks
