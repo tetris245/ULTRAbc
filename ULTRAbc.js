@@ -6084,7 +6084,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         () => AllRooms(), {
                             tooltip: TextGet("AllRooms"),
                             tooltipPosition: "left",
-                            image: "Icons/cross.svg",
+                            image: "Icons/Chat.png",
                         }, {
                             button: {
                                 classList: ["chat-search-room-button"]
@@ -15825,7 +15825,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>visual</b> = commands related to animations and background.\n" +
                     "<b>zones</b> = commands related to game zones.\n" +
                     "Several commands require or allow to specify a target. It can be a real name, a nickname or a member number.\n" +
-                    "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> and join this <a href='https://discord.gg/JUvYfSpCmN' target='_blank'>Discord</a>";
+                    "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a>";
                 infomsg(msg);
             }
             if (args === "admin") {
@@ -16599,6 +16599,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ExtClick();
         }
     }])
-
 
 })();
