@@ -11445,8 +11445,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "8 = Creation of New Room (default)\n" +
                     " \n" +
                     "- a number between -1 and a maximum that can vary:\n" +
-                    "Without BCX: 0 to 223 for official BC backgrounds, 224 to 306 are added if you use the /bg1 command.\n" +
-                    "With BCX: 0 to 223 for official BC backgrounds, 224 to 311 are added by BCX, 312 to 385 are added if you use the /bg1 command (some backgrounds have two numbers).\n" +
+                    "Without BCX: 0 to 235 for official BC backgrounds, 236 to 318 are added if you use the /bg1 command.\n" +
+                    "With BCX: 0 to 235 for official BC backgrounds, 236 to 325 are added by BCX, 326 to 399 are added if you use the /bg1 command (some backgrounds have two numbers).\n" +
                     " \n" +
                     "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
                 infomsg(msg);
@@ -16689,3 +16689,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
