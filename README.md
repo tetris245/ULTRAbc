@@ -59,6 +59,11 @@ All else I might not have included.
 
 Changes for future version
 
-* improved the no-whisper mode when it is forced by a BCX rule that is active only if some conditions are satisfied
-* Removed link to A Discord server in the uhelp command
+ATTENTION! This is the last time that this info will be provided to UBC friends via Discord. I will leave this platform on 3 March.
+
+If you want to be informed about future UBC releases, you are invited to join the brand new UBC community on Steam: https://steamcommunity.com/groups/ULTRAbc
+
+* Improved the no-whisper mode when it is forced by a BCX rule that is active only if some conditions are satisfied
 * Improved the code to update the results of the uroom command when the no-escape mode has been forced by devious locks
+* Removed link to A Discord server in the uhelp command and replaced it by a link to our Steam community
+* Updated the bg4 command
