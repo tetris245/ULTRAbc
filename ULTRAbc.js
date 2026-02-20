@@ -6458,7 +6458,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-help-button",
                             () => {
-                                if (ChatSearchFilterHelpScreenElement?.getAttribute("open") == "true") {
+                                if (ChatSearchFilterHelpScreenElement?.open) {
                                     return ChatSearchFilterHelpScreenElement.close();
                                 }
                                 ChatSearchFilterHelpScreenElement?.showModal();
@@ -16689,4 +16689,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
