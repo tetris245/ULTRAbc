@@ -9327,7 +9327,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         if ((r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r1 == 0) && (r2 == 0)) wh1 = 1;
                         if ((r1 == 1) && (rg1 == 1) && (r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 0)) wh1 = 1;
                         if ((r1 == 1) && (rg1 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r2 == 0)) wh1 = 1;
-                        if ((r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r2 == 0)) wh1 = 1;
+                        if ((r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r1 == 0)) wh1 = 1;
                         if ((r1 == 1) && (rg1 == 1) && (r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1)) wh1 = 1;
                     } 
                     let wh1data = rules.data.customData.minimumPermittedRole;
@@ -16689,3 +16689,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
