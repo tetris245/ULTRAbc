@@ -6761,6 +6761,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         filterInput.toggleAttribute("hidden", true);
         filterInput.classList.add("chat-search-input-filter-box");
         filterInput.addEventListener("input", function() {
+			clearButton.hidden = this.value.length === 0;
             Player.ChatSearchSettings.FilterTerms = this.value;
         });
         filterInput.addEventListener("keydown", (event) => {
@@ -6768,10 +6769,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatSearchSaveFilterTerms();
         });
         const clearButton = ElementButton.Create("chat-search-clear-input-search", function(ev) {
-            ElementValue("InputSearch", "");
-            ChatSearchQueryString = "";
-            this.hidden = true;
-            ChatSearchQuery("");
+            switch (ChatSearchMode) {
+			    case "":
+					ElementValue("InputSearch", "");
+					ChatSearchQuery("");
+					break;
+				case "Filter":
+					ElementValue("InputFilter", "");
+                    break;
+            }
         }, {
             image: "Icons/cross.svg",
             noStyling: true,
@@ -16689,5 +16695,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
