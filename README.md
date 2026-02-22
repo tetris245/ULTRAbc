@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.8.1
+Most recent version: 5.8.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.8.1.zip file on the Releases page
+1. Download the ULTRAbc-version5.8.2.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,11 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-ATTENTION! This is the last time that this info will be provided to UBC friends via Discord. I will leave this platform on 3 March.
-
-If you want to be informed about future UBC releases, you are invited to join the brand new UBC community on Steam: https://steamcommunity.com/groups/ULTRAbc
-
-* Improved the no-whisper mode when it is forced by a BCX rule that is active only if some conditions are satisfied
-* Improved the code to update the results of the uroom command when the no-escape mode has been forced by devious locks
-* Removed link to A Discord server in the uhelp command and replaced it by a link to our Steam community
-* Updated the bg4 command
+(...)
