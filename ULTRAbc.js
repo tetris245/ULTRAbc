@@ -6858,7 +6858,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 ChatSearchUpdateSearchSettings();
                             },
-                            Player.ChatSearchSettings.MapTypes == null ? "None" : Player.ChatSearchSettings.MapTypes,
+                            !Player.ChatSearchSettings.MapTypes ? "None" : Player.ChatSearchSettings.MapTypes,
                             [{
                                     options: {
                                         image: "Icons/cross.svg",
@@ -16695,3 +16695,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
