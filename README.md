@@ -63,3 +63,4 @@ Changes for future version
   - Moved Lobbies buttons to the bottom bar
   - Moved Wardrobe, Preferences and Extensions buttons to the top bar
   - Reduced the Chat Search menu when the bottom bar is displayed
+  - Added 3 new hotkeys (if enabled in GUI - Hotkeys): Up Arrow = Random background - Down Arrow = Select background - Tab = Default background
