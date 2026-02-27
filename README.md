@@ -59,4 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Chat Search improvements:
+  - Moved Lobbies buttons to the bottom bar
+  - Moved Wardrobe, Preferences and Extensions buttons to the top bar
+  - Reduced the Chat Search menu when the bottom bar is displayed
