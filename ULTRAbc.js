@@ -2018,7 +2018,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = total release. If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape"
                 );
                 addMenuCheckbox(64, 64, "Enable hotkeys in chat search: ", "cskeys",
-                    "These hotkeys allow to have fast access to Settings, Extensions and Wardrobe. Use the Left Alt key to access the BC Settings, the Right Arrow key to access the Extensions Settings, and the Left Arrow key to access the Wardrobe."
+                    "When this option is enabled, you will have direct access to some useful screens and can change the Chat Search background...... Left Alt = Preferences................. Left Arrow = Wardrobe................ Right Arrow = Extensions............ Up Arrow = Random background Down Arrow = Select background Tab = Default background"
                 );
                 addMenuCheckbox(64, 64, "Enable hotkeys in friend list: ", "frkeys",
                     "These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. List of hotkeys: F = female club - G = mixed club - H = male club - J = asylum."
@@ -3484,9 +3484,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function ULTRAChatSearchKeyDown() {
         modApi.hookFunction('ChatSearchKeyDown', 4, (args, next) => {
             let ret = next(args);
+            if ((cskeys == true) && (event.code === "ArrowDown")) {
+                let backgrounds = BackgroundsTagList;
+                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                    if (setBackground) {
+                        csname = Name;
+                        M_MOANER_saveControls();
+                    }
+                    CommonSetScreen("Online", "ChatSearch");
+                });
+            }
             if ((cskeys == true) && (event.code === "AltLeft")) PrfClick();
+            if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);          
             if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
-            if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);
+            if ((cskeys == true) && (event.code === "ArrowUp")) {
+                if (BackgroundsList != undefined) {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = BackgroundsList[Roll - 1].Name;
+                    csname = name;
+                    M_MOANER_saveControls();
+                    CommonSetScreen("Online", "ChatSearch");
+                 }
+            }
+            if ((cskeys == true) && (event.code === "Tab")) {
+                csname = "Introduction";
+                M_MOANER_saveControls();
+                CommonSetScreen("Online", "ChatSearch");
+            }
             return ret;
         });
     }
