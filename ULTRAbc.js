@@ -2588,6 +2588,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchParseResponse();
     ULTRAChatSearchResize();
     ULTRAChatSearchRun();
+	ULTRAChatSearchToggleSearchMode();
     ULTRAChatSearchUnload();
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
@@ -3563,6 +3564,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             TintsEffect();
             ChatSearchRoomsPerColumn = 7;
             ChatSearchRoomsPerPage = 21;
+            next(args);
+        });
+    }
+
+	async function ULTRAChatSearchToggleSearchMode() {
+        modApi.hookFunction('ChatSearchToggleSearchMode', 4, (args, next) => {
+            if (noubcbar == false) {
+                AltChatSearchToggle();
+                return;
+            }
             next(args);
         });
     }
@@ -6093,6 +6104,74 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         TextPrefetch("Character", "FriendList");
         TextPrefetch("Online", "ChatAdmin");
         TextPrefetch("Online", "ChatRoom");
+    }
+
+	function AltChatSearchToggle() {
+        switch (ChatSearchMode) {
+            case "":
+                ChatSearchRoomGrid?.classList.add("chat-search-filter-search");
+                ElementWrap("InputSearch")?.toggleAttribute("hidden", true);
+                ElementWrap("InputFilter")?.toggleAttribute("hidden", false);
+                document.getElementById("chat-search-room-search-button")?.toggleAttribute("disabled", true);
+                document.getElementById("chat-search-room-allrooms-button")?.toggleAttribute("disabled", true);
+                document.getElementById("chat-search-room-normalrooms-button")?.toggleAttribute("disabled", true);
+                document.getElementById("chat-search-room-hybridrooms-button")?.toggleAttribute("disabled", true);
+                document.getElementById("chat-search-room-maprooms-button")?.toggleAttribute("disabled", true);
+                document.getElementById("chat-search-room-female-lobby-button")?.toggleAttribute("disabled", true);         
+                document.getElementById("chat-search-room-male-lobby-button")?.toggleAttribute("disabled", true);         
+                document.getElementById("chat-search-room-mixed-lobby-button")?.toggleAttribute("disabled", true);         
+                document.getElementById("chat-search-room-asylum-lobby-button")?.toggleAttribute("disabled", true);
+                document.getElementById("chat-search-room-clubcard-button")?.toggleAttribute("disabled", true);   
+                document.getElementById("chat-search-room-ggts-button")?.toggleAttribute("disabled", true);            
+                document.getElementById("chat-search-room-larp-button")?.toggleAttribute("disabled", true);
+                document.getElementById("chat-search-room-magicbattle-button")?.toggleAttribute("disabled", true);
+                document.getElementById("chat-search-room-pandoraprison-button")?.toggleAttribute("disabled", true);
+                if (ChatSearchSearchMenuButton?.getAttribute("aria-expanded") === "true") {
+                    ChatSearchSearchMenuButton.click();
+                }
+                ChatSearchSearchMenuButton?.toggleAttribute("disabled", true);
+                ChatSearchQueryString = ElementValue("InputSearch");
+                ChatSearchFilterTermsTemp = Player.ChatSearchSettings.FilterTerms;
+                ElementValue("InputFilter", ChatSearchFilterTermsTemp);
+                ChatSearchMode = "Filter";
+                ChatSearchQuery("");
+                ChatSearchQuerySort();
+                break;
+            case "Filter":
+                ChatSearchRoomGrid?.classList.remove("chat-search-filter-search");
+                ElementWrap("InputSearch")?.toggleAttribute("hidden", false);
+                ElementWrap("InputFilter")?.toggleAttribute("hidden", true);
+                document.getElementById("chat-search-room-search-button")?.toggleAttribute("disabled", false);
+                document.getElementById("chat-search-room-allrooms-button")?.toggleAttribute("disabled", false);
+                document.getElementById("chat-search-room-normalrooms-button")?.toggleAttribute("disabled", false);
+                document.getElementById("chat-search-room-hybridrooms-button")?.toggleAttribute("disabled", false);
+                document.getElementById("chat-search-room-maprooms-button")?.toggleAttribute("disabled", false);
+                document.getElementById("chat-search-room-female-lobby-button")?.toggleAttribute("disabled", false);         
+                document.getElementById("chat-search-room-male-lobby-button")?.toggleAttribute("disabled", false);         
+                document.getElementById("chat-search-room-mixed-lobby-button")?.toggleAttribute("disabled", false);         
+                document.getElementById("chat-search-room-asylum-lobby-button")?.toggleAttribute("disabled", false);
+                document.getElementById("chat-search-room-clubcard-button")?.toggleAttribute("disabled", false);   
+                document.getElementById("chat-search-room-ggts-button")?.toggleAttribute("disabled", false);            
+                document.getElementById("chat-search-room-larp-button")?.toggleAttribute("disabled", false);
+                document.getElementById("chat-search-room-magicbattle-button")?.toggleAttribute("disabled", false);
+                document.getElementById("chat-search-room-pandoraprison-button")?.toggleAttribute("disabled", false);
+                ChatSearchSearchMenuButton?.toggleAttribute("disabled", false);
+                ChatSearchSaveFilterTerms();
+                ChatSearchMode = "";
+                ChatSearchQuery(ChatSearchQueryString);
+                break;
+       }
+       ElementWrap('chat-search-room-filter-section')?.toggleAttribute("hidden", ChatSearchMode != "Filter");
+       ElementWrap('chat-search-room-navigation-section')?.toggleAttribute("hidden", ChatSearchMode == "Filter");
+       const filterButton = document.getElementById('chat-search-hide-rooms');
+       if (filterButton) {
+           const tooltip = filterButton.querySelector(".button-tooltip");
+           if (tooltip) {
+                tooltip.textContent = TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode");
+            }
+            filterButton.dataset.mode = ChatSearchMode == "Filter" ? "FilterMode" : "NormalMode";
+        }
+        ChatSearchSetPageRelative(0);
     }
 
     function ChatSearchCreateBottom() {	
