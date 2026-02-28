@@ -59,6 +59,7 @@ All else I might not have included.
 
 Changes for future version
 
+* New option in GUI - Visual to disable BC arousal overlay (not available when the LSCG Splatter feature is detected as enabled)
 * Chat Search improvements:
   - Moved Lobbies buttons to the bottom bar
   - Moved Wardrobe, Preferences and Extensions buttons to the top bar
