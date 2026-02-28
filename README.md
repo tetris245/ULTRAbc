@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.8.2
+Most recent version: 5.8.3
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -27,7 +27,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version5.8.2.zip file on the Releases page
+1. Download the ULTRAbc-version5.8.3.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -59,11 +59,4 @@ All else I might not have included.
 
 Changes for future version
 
-* New option in GUI - Visual to disable BC arousal overlay (not available when the LSCG Splatter feature is detected as enabled)
-* Chat Search improvements:
-  - Moved Lobbies buttons to the bottom bar
-  - Moved Wardrobe, Preferences and Extensions buttons to the top bar
-  - Disabled the bottom buttons when you use the filtering mode
-  - Reduced the Chat Search menu when the bottom bar is displayed
-  - Added 3 new hotkeys (if enabled in GUI - Hotkeys): Up Arrow = Random background - Down Arrow = Select background - Tab = Default background
-* Removed the async character for several hooks in Bondage Brawl, Chat Room and Chat Search functions
+(...)
