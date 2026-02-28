@@ -2803,14 +2803,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Bondage Brawl
-    async function ULTRAPlatformAttack() {
+    function ULTRAPlatformAttack() {
         modApi.hookFunction('PlatformAttack', 4, (args, next) => {
             if (magiccheat == true) BrawlCheat();
             next(args);
         });
     }
 
-    async function ULTRAPlatformDialogEvent() {
+    function ULTRAPlatformDialogEvent() {
         modApi.hookFunction('PlatformDialogEvent', 4, (args, next) => {
             if (magiccheat == true) BrawlCheat();
             next(args);
@@ -2946,7 +2946,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomMapViewCalculatePerceptionMasks() {
+    function ULTRAChatRoomMapViewCalculatePerceptionMasks() {
         modApi.hookFunction('ChatRoomMapViewCalculatePerceptionMasks', 4, (args, next) => {
             const ret = next(args);
             if ((mapfull) || (mapfull2)) {
@@ -2959,7 +2959,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomMapViewCanEnterTile() {
+    function ULTRAChatRoomMapViewCanEnterTile() {
         modApi.hookFunction('ChatRoomMapViewCanEnterTile', 4, (args, next) => {
             const ret = next(args);
             if (mapcheat) return 20;
@@ -2967,7 +2967,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomMapViewCharacterOnWhisperRange() {
+    function ULTRAChatRoomMapViewCharacterOnWhisperRange() {
         modApi.hookFunction('ChatRoomMapViewCharacterOnWhisperRange', 4, (args, next) => {
             const ret = next(args);
             if (nowhrange) return true;
@@ -2975,7 +2975,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomMapViewMovementProcess() {
+    function ULTRAChatRoomMapViewMovementProcess() {
         modApi.hookFunction('ChatRoomMapViewMovementProcess', 4, (args, next) => {
             const {
                 X: posX,
@@ -3039,7 +3039,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomMapViewTeleportHiddenMessage() {
+    function ULTRAChatRoomMapViewTeleportHiddenMessage() {
         modApi.hookFunction('ChatRoomMapViewTeleportHiddenMessage', 4, (args, next) => {
             if (noteleport) {
                 let bltp = 1;
@@ -3142,7 +3142,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatRoomSafewordRevert() {
+    function ULTRAChatRoomSafewordRevert() {
         modApi.hookFunction('ChatRoomSafewordRevert', 4, (args, next) => {
             if (ChatSearchSafewordAppearance != null) {
                 Player.Appearance = ChatSearchSafewordAppearance.slice(0);
@@ -3547,7 +3547,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchParseResponse() {
+    function ULTRAChatSearchParseResponse() {
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
             let ret = next(args);
             let NewResult = [];
@@ -3565,7 +3565,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchResize() {
+    function ULTRAChatSearchResize() {
         modApi.hookFunction('ChatSearchResize', 4, (args, next) => {
             let ret = next(args);
             if (noubcbar == false) {
@@ -3587,7 +3587,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-	async function ULTRAChatSearchToggleSearchMode() {
+	function ULTRAChatSearchToggleSearchMode() {
         modApi.hookFunction('ChatSearchToggleSearchMode', 4, (args, next) => {
             if (noubcbar == false) {
                 AltChatSearchToggle();
