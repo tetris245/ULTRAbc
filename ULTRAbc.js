@@ -211,6 +211,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let noescape;
     let nogarble;
     let noifbuttons;
+	let nopinkscr;
     let nostruggle;
     let notcbuttons;
     let noteleport;
@@ -600,6 +601,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noescape = false;
         nogarble = false;
         noifbuttons = false;
+		nopinkscr = false;
         nostruggle = false;
         notalk = 0;
         notcbuttons = false;
@@ -717,6 +719,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noescape = data.noescape;
         nogarble = data.nogarble;
         noifbuttons = data.noifbuttons;
+		nopinkscr = data.nopinkscr;
         nostruggle = data.nostruggle;
         notalk = data.notalk;
         notcbuttons = data.notcbuttons;
@@ -926,6 +929,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "noescape": noescape,
             "nogarble": nogarble,
             "noifbuttons": noifbuttons,
+            "nopinkscr": nopinkscr,
             "nostruggle": nostruggle,
             "notcbuttons": notcbuttons,
             "noteleport": noteleport,
@@ -1061,6 +1065,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (noescape == null || noescape == undefined) noescape = false;
                 if (nogarble == null || nogarble == undefined) nogarble = false;
                 if (noifbuttons == null || noifbuttons == undefined) noifbuttons = false;
+				if (nopinkscr == null || nopinkscr == undefined) nopinkscr = false;
                 if (nostruggle == null || nostruggle == undefined) nostruggle = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
                 if (notcbuttons == null || notcbuttons == undefined) notcbuttons = false;
@@ -1208,6 +1213,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 noescape: false,
                 nogarble: false,
                 noifbuttons: false,
+                nopinkscr: false,
                 nostruggle: false,
                 notalk: 0,
                 notcbuttons: false,
@@ -2460,11 +2466,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
-
+			
             PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
+                let pmsg = "By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled";
+                let spl = 0;
+                let LSCG = Player.ExtensionSettings.LSCG;
+                if (LSCG) {
+                    let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
+                    if (LSCGdata.SplatterModule.enabled) spl = 1;
+                }
+                if (spl == 0) {
+                    addMenuCheckbox(64, 64, "Disable BC pinky arousal overlay: ", "nopinkscr", pmsg, false, 200);
+                } else {
+                    addMenuCheckbox(64, 64, "Disable BC pinky arousal overlay: ", "nopinkscr", pmsg, true, 200);
+                }
                 addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
-                    "If you check this setting, UBC will not display a bottom bar in Chat Search. In this case, it's recommended to enable the hotkeys for fast access to wardrobe, preferences and extensions screens. The other missing options are available in the Chat Search menu.", false, 200
+                    "If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu.", false, 200
                 );
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
                     "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 65
@@ -2493,7 +2511,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, "Player.UBC.ubcSettings.tintnever", 200);
                 }
             }
-
+			
             PreferenceSubscreenUBCVisualRun = function() {
                 drawMenuElements();
             }
@@ -2572,6 +2590,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatAdminClick();
     ULTRAChatAdminRun();
     ULTRAChatRoomClick();
+	ULTRAChatRoomDrawArousalOverlay();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
     ULTRAChatRoomMapViewCanEnterTile();
@@ -4464,6 +4483,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
+            }
+            next(args);
+        });
+    }
+
+	async function ULTRAChatRoomDrawArousalOverlay() {
+        modApi.hookFunction('ChatRoomDrawArousalOverlay', 4, (args, next) => { 
+            if (nopinkscr == true) {
+                let orgasmScreen = false;
+                return orgasmScreen;
             }
             next(args);
         });
