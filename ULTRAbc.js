@@ -6304,7 +6304,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ChatSearchQuery(ChatSearchQueryString);
                             }, {
                                 tooltip: TextGet("Female"),
-                                tooltipPosition: "bottom",
+                                tooltipPosition: "left",
                                 image: "Screens/Online/ChatSelect/Female.png",
                             }, {
                                 button: {
@@ -6321,7 +6321,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ChatSearchQuery(ChatSearchQueryString);
                             }, {
                                 tooltip: TextGet("Male"),
-                                tooltipPosition: "bottom",
+                                tooltipPosition: "left",
                                 image: "Screens/Online/ChatSelect/Male.png",
                             }, {
                                 button: {
@@ -6338,7 +6338,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ChatSearchQuery(ChatSearchQueryString);
                             }, {
                                 tooltip: TextGet("Mixed"),
-                                tooltipPosition: "bottom",
+                                tooltipPosition: "left",
                                 image: "Icons/Gender.png",
                             }, {
                                 button: {
@@ -6355,7 +6355,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ChatSearchQuery(ChatSearchQueryString);
                         }, {
                             tooltip: TextGet("Asylum"),
-                            tooltipPosition: "bottom",
+                            tooltipPosition: "left",
                             image: "Icons/Asylum.png",
                         }, {
                             button: {
@@ -6669,7 +6669,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "chat-search-room-wardrobe-button",
                             () => CharacterAppearanceLoadCharacter(Player), {
                                 tooltip: "Wardrobe",
-                                tooltipPosition: "left",
+                                tooltipPosition: "bottom",
                                 image: "Icons/Dress.png",
                             }, {
                                 button: {
@@ -6681,7 +6681,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "chat-search-room-preferences-button",
                             () => PrfClick(), {
                                 tooltip: "Preferences",
-                                tooltipPosition: "left",
+                                tooltipPosition: "bottom",
                                 image: "Icons/Preference.png",
                             }, {
                                 button: {
@@ -6693,7 +6693,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "chat-search-room-extensions-button",
                             () => ExtClick(), {
                                 tooltip: "Extensions",
-                                tooltipPosition: "left",
+                                tooltipPosition: "bottom",
                                 image: "Icons/Extensions.png",
                             }, {
                                 button: {
@@ -17077,4 +17077,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
