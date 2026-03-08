@@ -9615,140 +9615,133 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Talking
-    function IsBcxWhisperAllowed(target) {
+	function IsBcxWhisperAllowed(target) {
+        const str = Player.ExtensionSettings.BCX;
+        if (!str || !/^[0-9]+:/.test(str)) return true;
+        const parts = str.split(":");
+        const saveVersion = Number.parseInt(parts[0], 10);
+        if (saveVersion !== 2 || parts.length !== 3) return true;
+        const decoded = JSON.parse(LZString.decompressFromBase64(parts[1]));
+        const rules = decoded?.conditions?.rules?.conditions?.speech_restrict_whisper_send;
+        if (!rules?.active || rules.data?.enforce === false) return true;
         let wh1 = 0;
-        let lovers = [];
         let bcxlist = [];
         let reglist = [];
         let r1 = 0;
         let r2 = 0;
         let r3 = 0;
-        let r4 = 0;
+        let r4 = 0;      
         let rg1 = 0;
         let rg2 = 0;
         let rg3 = 0;
         let rg4 = 0;
-        let ownershipMember = (Player.Ownership && !Player.Ownership.Name.startsWith("NPC")) ? [Player.Ownership.MemberNumber] : [];
-        for (let n = 0; n < Player.Lovership.length; n++) {
-            if (!Player.Lovership[n].Name.startsWith("NPC")) {
-                lovers.push(Player.Lovership[n].MemberNumber);
+        const ownershipMember = (Player.Ownership && !Player.Ownership.Name.startsWith("NPC")) 
+            ? [Player.Ownership.MemberNumber] 
+            : [];
+        const lovers = Player.Lovership
+            .filter(person => !person.Name.startsWith("NPC"))
+            .map(person => person.MemberNumber);        
+        let reg1 = rules?.requirements?.room?.type;
+        let reg2 = rules?.requirements?.roomName?.name;
+        let reg3 = rules?.requirements?.role?.role;
+        let reg4 = rules?.requirements?.player?.memberNumber;
+        if (!reg1 && !reg2 && !reg3 && !reg4) wh1 = 1;
+        if (wh1 == 0) {
+            if (reg1) r1 = 1;
+            if (reg2) r2 = 1;
+            if (reg3) r3 = 1;
+            if (reg4) r4 = 1;
+            if (r1 == 1) {
+                let room = ChatRoomData.Private;
+                let rtype = "public"
+                if (room == true) rtype = "private";
+                if (rtype == reg1) rg1 = 1;
             }
+            if (r2 == 1) {
+                let rname = ChatRoomData.Name;
+                if (rname == reg2) rg2 = 1;
+            }
+            if (r3 == 1) {
+                let check = 0;
+                switch (reg3) {
+                    case 1:
+                        reglist = ownershipMember;
+                        break;
+                    case 2:
+                        reglist = (decoded.owners || []).concat(ownershipMember);
+                        break;
+                    case 3:
+                        reglist = lovers.concat((decoded.owners || []).concat(ownershipMember));
+                        break;
+                    case 4:
+                        reglist = (decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)));
+                        break;
+                    case 5:
+                        reglist = (Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember))));
+                         break;
+                     case 6:
+                         reglist = (Player.FriendList || []).concat((Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)))));
+                         break;
+                     case 7:
+                         check = 1;
+                         break;
+                 }
+                 let rplay = ChatRoomCharacter; 
+                 ChatRoomCharacter.forEach(character => {                    let rnumber = character.MemberNumber;
+                     if (reglist.includes(rnumber)) check = 1;
+                 });
+                 if (check == 1) rg3 = 1; 
+             }
+             if (r4 == 1) {
+                 let check = 0;
+                 let rplay = ChatRoomCharacter;   
+                 ChatRoomCharacter.forEach(character => {
+                     let rnumber = character.MemberNumber;
+                     if (rnumber == reg4) check = 1;
+                 });
+                 if (check == 1) rg4 = 1;
+             }
+             if ((r1 == 1) && (rg1 == 1) && (r2 == 0) && (r3 == 0) && (r4 == 0)) wh1 = 1;
+             if ((r2 == 1) && (rg2 == 1) && (r1 == 0) && (r3 == 0) && (r4 == 0)) wh1 = 1;
+             if ((r3 == 1) && (rg3 == 1) && (r1 == 0) && (r2 == 0) && (r4 == 0)) wh1 = 1;
+             if ((r4 == 1) && (rg4 == 1) && (r1 == 0) && (r2 == 0) && (r3 == 0)) wh1 = 1;
+             if ((r1 == 1) && (rg1 == 1) && (r2 == 1) && (rg2 == 1) && (r3 == 0) && (r4 == 0)) wh1 = 1;
+             if ((r1 == 1) && (rg1 == 1) && (r3 == 1) && (rg3 == 1) && (r2 == 0) && (r4 == 0)) wh1 = 1;
+             if ((r1 == 1) && (rg1 == 1) && (r4 == 1) && (rg4 == 1) && (r2 == 0) && (r3 == 0)) wh1 = 1;
+             if ((r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r1 == 0) && (r4 == 0)) wh1 = 1;
+             if ((r2 == 1) && (rg2 == 1) && (r4 == 1) && (rg4 == 1) && (r1 == 0) && (r3 == 0)) wh1 = 1;
+             if ((r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r1 == 0) && (r2 == 0)) wh1 = 1;
+             if ((r1 == 1) && (rg1 == 1) && (r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 0)) wh1 = 1;
+             if ((r1 == 1) && (rg1 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r2 == 0)) wh1 = 1;
+             if ((r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r1 == 0)) wh1 = 1;
+             if ((r1 == 1) && (rg1 == 1) && (r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1)) wh1 = 1;
+        } 
+        let wh1data = rules.data.customData.minimumPermittedRole;
+        if (wh1data === 7) return true; 
+        switch (wh1data) {
+            case 1:
+                bcxlist = ownershipMember;
+                break;
+            case 2:
+                bcxlist = (decoded.owners || []).concat(ownershipMember);
+                break;
+            case 3:
+                bcxlist = lovers.concat((decoded.owners || []).concat(ownershipMember));
+                break;
+            case 4:
+                bcxlist = (decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)));
+                break;
+            case 5:
+                bcxlist = (Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember))));
+                break;
+            case 6:
+                bcxlist = (Player.FriendList || []).concat((Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)))));
+                break;           
         }
-        let str = Player.ExtensionSettings.BCX;
-        if (str && /^[0-9]+:/.test(str)) {
-            const parts = str.split(":");
-            const saveVersion = Number.parseInt(parts[0], 10);
-            if (saveVersion === 2 && parts.length === 3) {
-                let decoded = JSON.parse(LZString.decompressFromBase64(parts[1]));
-                let rules = decoded?.conditions?.rules?.conditions?.speech_restrict_whisper_send;
-                if (rules && rules.active && rules.data?.enforce != false) {
-                    let reg1 = rules?.requirements?.room?.type;
-                    let reg2 = rules?.requirements?.roomName?.name;
-                    let reg3 = rules?.requirements?.role?.role;
-                    let reg4 = rules?.requirements?.player?.memberNumber;
-                    if (!reg1 && !reg2 && !reg3 && !reg4) wh1 = 1;
-                    if (wh1 == 0) {
-                        if (reg1) r1 = 1;
-                        if (reg2) r2 = 1;
-                        if (reg3) r3 = 1;
-                        if (reg4) r4 = 1;
-                        if (r1 == 1) {
-                            let room = ChatRoomData.Private;
-                            let rtype = "public"
-                            if (room == true) rtype = "private";
-                            if (rtype == reg1) rg1 = 1;
-                        }
-                        if (r2 == 1) {
-                            let rname = ChatRoomData.Name;
-                            if (rname == reg2) rg2 = 1;
-                        }
-                        if (r3 == 1) {
-                            let check = 0;
-                            switch (reg3) {
-                                case 1:
-                                    reglist = ownershipMember;
-                                    break;
-                                case 2:
-                                    reglist = (decoded.owners || []).concat(ownershipMember);
-                                    break;
-                                case 3:
-                                    reglist = lovers.concat((decoded.owners || []).concat(ownershipMember));
-                                    break;
-                                case 4:
-                                    reglist = (decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)));
-                                    break;
-                                case 5:
-                                    reglist = (Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember))));
-                                    break;
-                                case 6:
-                                    reglist = (Player.FriendList || []).concat((Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)))));
-                                    break;
-                                case 7:
-                                    check = 1;
-                                    break;
-                            }
-                            let rplay = ChatRoomCharacter; 
-                            ChatRoomCharacter.forEach(character => {                               
-								let rnumber = character.MemberNumber;
-                                if (reglist.includes(rnumber)) check = 1;
-                            });
-                            if (check == 1) rg3 = 1; 
-                        }
-                        if (r4 == 1) {
-                            let rplay = ChatRoomCharacter;
-                            let check = 0;
-                            ChatRoomCharacter.forEach(character => {
-                                let rnumber = character.MemberNumber;
-                                if (rnumber == reg4) check = 1;
-                            });
-                            if (check == 1) rg4 = 1;
-                        }
-                        if ((r1 == 1) && (rg1 == 1) && (r2 == 0) && (r3 == 0) && (r4 == 0)) wh1 = 1;
-                        if ((r2 == 1) && (rg2 == 1) && (r1 == 0) && (r3 == 0) && (r4 == 0)) wh1 = 1;
-                        if ((r3 == 1) && (rg3 == 1) && (r1 == 0) && (r2 == 0) && (r4 == 0)) wh1 = 1;
-                        if ((r4 == 1) && (rg4 == 1) && (r1 == 0) && (r2 == 0) && (r3 == 0)) wh1 = 1;
-                        if ((r1 == 1) && (rg1 == 1) && (r2 == 1) && (rg2 == 1) && (r3 == 0) && (r4 == 0)) wh1 = 1;
-                        if ((r1 == 1) && (rg1 == 1) && (r3 == 1) && (rg3 == 1) && (r2 == 0) && (r4 == 0)) wh1 = 1;
-                        if ((r1 == 1) && (rg1 == 1) && (r4 == 1) && (rg4 == 1) && (r2 == 0) && (r3 == 0)) wh1 = 1;
-                        if ((r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r1 == 0) && (r4 == 0)) wh1 = 1;
-                        if ((r2 == 1) && (rg2 == 1) && (r4 == 1) && (rg4 == 1) && (r1 == 0) && (r3 == 0)) wh1 = 1;
-                        if ((r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r1 == 0) && (r2 == 0)) wh1 = 1;
-                        if ((r1 == 1) && (rg1 == 1) && (r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 0)) wh1 = 1;
-                        if ((r1 == 1) && (rg1 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r2 == 0)) wh1 = 1;
-                        if ((r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1) && (r1 == 0)) wh1 = 1;
-                        if ((r1 == 1) && (rg1 == 1) && (r2 == 1) && (rg2 == 1) && (r3 == 1) && (rg3 == 1) && (r4 == 1) && (rg4 == 1)) wh1 = 1;
-                    } 
-                    let wh1data = rules.data.customData.minimumPermittedRole;
-                    switch (wh1data) {
-                        case 1:
-                            bcxlist = ownershipMember;
-                            break;
-                        case 2:
-                            bcxlist = (decoded.owners || []).concat(ownershipMember);
-                            break;
-                        case 3:
-                            bcxlist = lovers.concat((decoded.owners || []).concat(ownershipMember));
-                            break;
-                        case 4:
-                            bcxlist = (decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)));
-                            break;
-                        case 5:
-                            bcxlist = (Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember))));
-                            break;
-                        case 6:
-                            bcxlist = (Player.FriendList || []).concat((Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)))));
-                            break;
-                        case 7:
-                            wh1 = 0;
-                            break;
-                    }
-                    if (ChatRoomTargetMemberNumber === Player.Ownership?.MemberNumber) {
-                        wh1 = 0;
-                    } else if (wh1data > 1 && wh1data < 7 && bcxlist.includes(ChatRoomTargetMemberNumber)) {
-                        wh1 = 0;
-                    }
-                }
-            }
+        if (ChatRoomTargetMemberNumber === Player.Ownership?.MemberNumber) {
+            wh1 = 0;
+        } else if (wh1data > 1 && wh1data < 7 && bcxlist.includes(ChatRoomTargetMemberNumber)) {
+            wh1 = 0;
         }
         return wh1 === 0;
     }
@@ -17077,5 +17070,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
