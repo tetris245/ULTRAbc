@@ -9627,7 +9627,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let wh1 = 0;
         let bcxlist = [];
         let reglist = [];
-        let rl = 0;
         let r1 = 0;
         let r2 = 0;
         let r3 = 0;
@@ -17089,4 +17088,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
