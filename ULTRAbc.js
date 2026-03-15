@@ -9627,10 +9627,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let wh1 = 0;
         let bcxlist = [];
         let reglist = [];
+        let rl = 0;
         let r1 = 0;
         let r2 = 0;
         let r3 = 0;
-        let r4 = 0;      
+        let r4 = 0;   
+        let ror = 0;   
         let rg1 = 0;
         let rg2 = 0;
         let rg3 = 0;
@@ -9640,67 +9642,84 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             : [];
         const lovers = Player.Lovership
             .filter(person => !person.Name.startsWith("NPC"))
-            .map(person => person.MemberNumber);        
+            .map(person => person.MemberNumber); 
+        let regor = rules?.requirements?.orLogic;     
         let reg1 = rules?.requirements?.room?.type;
         let reg2 = rules?.requirements?.roomName?.name;
         let reg3 = rules?.requirements?.role?.role;
         let reg4 = rules?.requirements?.player?.memberNumber;
         if (!reg1 && !reg2 && !reg3 && !reg4) wh1 = 1;
         if (wh1 == 0) {
+            if (regor) ror = 1;
             if (reg1) r1 = 1;
             if (reg2) r2 = 1;
             if (reg3) r3 = 1;
             if (reg4) r4 = 1;
-            if (r1 == 1) {
-                let room = ChatRoomData.Private;
-                let rtype = "public"
-                if (room == true) rtype = "private";
-                if (rtype == reg1) rg1 = 1;
+        }
+        if ((r1 == 1) && (wh1 == 0)) {
+            let room = ChatRoomData.Private;
+            let rtype = "public"
+            if (room == true) rtype = "private";
+            if (rtype == reg1) {
+                if (ror == 1) wh1 = 1;
+                rg1 = 1;
             }
-            if (r2 == 1) {
-                let rname = ChatRoomData.Name;
-                if (rname == reg2) rg2 = 1;
+        }
+        if ((r2 == 1) && (wh1 == 0)) {
+            let rname = ChatRoomData.Name;
+            if (rname == reg2) {
+                if (ror == 1) wh1 = 1;
+                rg2 = 1;
             }
-            if (r3 == 1) {
-                let check = 0;
-                switch (reg3) {
-                    case 1:
-                        reglist = ownershipMember;
-                        break;
-                    case 2:
-                        reglist = (decoded.owners || []).concat(ownershipMember);
-                        break;
-                    case 3:
-                        reglist = lovers.concat((decoded.owners || []).concat(ownershipMember));
-                        break;
-                    case 4:
-                        reglist = (decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)));
-                        break;
-                    case 5:
-                        reglist = (Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember))));
-                         break;
-                     case 6:
-                         reglist = (Player.FriendList || []).concat((Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)))));
-                         break;
-                     case 7:
-                         check = 1;
-                         break;
-                 }
-                 let rplay = ChatRoomCharacter; 
-                 ChatRoomCharacter.forEach(character => {                    let rnumber = character.MemberNumber;
-                     if (reglist.includes(rnumber)) check = 1;
-                 });
-                 if (check == 1) rg3 = 1; 
+        }
+        if ((r3 == 1) && (wh1 == 0)) { 
+            let check = 0;
+            switch (reg3) {
+                case 1:
+                    reglist = ownershipMember;
+                    break;
+                case 2:
+                    reglist = (decoded.owners || []).concat(ownershipMember);
+                    break;
+                case 3:
+                    reglist = lovers.concat((decoded.owners || []).concat(ownershipMember));
+                    break;
+                case 4:
+                    reglist = (decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)));
+                    break;
+                case 5:
+                    reglist = (Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember))));
+                     break;
+                 case 6:
+                     reglist = (Player.FriendList || []).concat((Player.WhiteList || []).concat((decoded.mistresses || []).concat(lovers.concat((decoded.owners || []).concat(ownershipMember)))));
+                     break;
+                 case 7:
+                     check = 1;
+                     break;
              }
-             if (r4 == 1) {
-                 let check = 0;
-                 let rplay = ChatRoomCharacter;   
-                 ChatRoomCharacter.forEach(character => {
-                     let rnumber = character.MemberNumber;
-                     if (rnumber == reg4) check = 1;
-                 });
-                 if (check == 1) rg4 = 1;
+             let rplay = ChatRoomCharacter; 
+             ChatRoomCharacter.forEach(character => {                
+				 let rnumber = character.MemberNumber;
+                 if (reglist.includes(rnumber)) check = 1;
+             });
+             if (check == 1) {
+                 if (ror == 1) wh1 = 1;
+                 rg3 = 1;
              }
+        }
+        if ((r4 == 1) && (wh1 == 0)) { 
+             let check = 0;
+             let rplay = ChatRoomCharacter;   
+             ChatRoomCharacter.forEach(character => {
+                 let rnumber = character.MemberNumber;
+                 if (rnumber == reg4) check = 1;
+             });
+             if (check == 1) {
+                 if (ror == 1) wh1 = 1;
+                 rg4 = 1;
+             }
+        }
+        if (ror == 0) {
              if ((r1 == 1) && (rg1 == 1) && (r2 == 0) && (r3 == 0) && (r4 == 0)) wh1 = 1;
              if ((r2 == 1) && (rg2 == 1) && (r1 == 0) && (r3 == 0) && (r4 == 0)) wh1 = 1;
              if ((r3 == 1) && (rg3 == 1) && (r1 == 0) && (r2 == 0) && (r4 == 0)) wh1 = 1;
@@ -9744,8 +9763,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             wh1 = 0;
         }
         return wh1 === 0;
-    }
-
+    }  
+         
     function IsDollTalk(text) {
         const segmenter = new Intl.Segmenter([], {
             granularity: 'word'
@@ -17070,3 +17089,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
