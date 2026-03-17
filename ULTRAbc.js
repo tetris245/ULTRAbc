@@ -6942,12 +6942,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementFocus("InputSearch");
                     }
                 }
-                const control = this.getAttribute("aria-controls");
-                if (!control) return;
-                const searchPanel = document.getElementById(control);
-                if (searchPanel) {
-                    searchPanel.hidden = open;
-                }
+                ElementUnpackIDs.fromAttribute(this, "aria-controls").forEach(el => el.hidden = open);
             }, {
                 tooltip: TextGet("SearchMenuButton"),
                 tooltipPosition: "bottom",
