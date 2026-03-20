@@ -48,6 +48,8 @@ Special thanks to Myrhanda and Kimei for giving permission to integrate the Moan
 
 Thanks to lillyBC for providing ideas and inspiration with her bcTampermonkeys scripts.
 
+Thanks to wwwruomeng for the Chinese translation.
+
 Thanks for special assistance:
 Shyness, Ada, huzpsb, Lilly, Nikky90506, Tarram1010, harmony, KitKat, Moon, Sin.
 
