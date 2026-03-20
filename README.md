@@ -16,7 +16,7 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
 
-Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.js
+Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.user.js
 
 You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, etc...)
 
