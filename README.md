@@ -14,7 +14,7 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 **Recommended methode with Tampermonkey** - links to the ULTRAbc loader: 
 
-Automatic: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
+English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
 
 Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.js
 
