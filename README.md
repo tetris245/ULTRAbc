@@ -16,7 +16,7 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 Automatic: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
 
-Non-automatic: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.js
+Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.js
 
 You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, etc...)
 
@@ -26,7 +26,9 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
-**Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
+Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-ch.js
+
+**Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Only for English version - Will not work with Asian server)
 1. Download the ULTRAbc-version5.8.3.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
