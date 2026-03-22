@@ -64,3 +64,5 @@ All else I might not have included.
 Changes for future version
 
 * Added three new hotkeys to change background in Friend List (D = Default background - R = Random background - S = Select Background)
+* Removed the button to change background of Friend List in Private Room (SP)
+* Added two buttons in Private Room (SP) to choose randomly a background or go back to the default background of this room
