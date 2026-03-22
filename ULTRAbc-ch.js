@@ -2865,15 +2865,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
-
-    async function ULTRAChatAdminRun() {
+	
+	async function ULTRAChatAdminRun() {
         modApi.hookFunction('ChatAdminRun', 4, (args, next) => {
             TintsEffect();
             ChatAdminGameList = ["", "ClubCard", "LARP", "MagicBattle", "GGTS", "Prison"];
             if (ChatAdminCanEdit()) {
-                DrawButton(1230, 450, 60, 60, "", "White", "", "Random background");
+                DrawButton(1230, 450, 60, 60, "", "White", "", "随机背景");
             } else {
-                DrawButton(1230, 450, 60, 60, "", "Gray", "", "Random background");
+                DrawButton(1230, 450, 60, 60, "", "Gray", "", "随机背景");
             }
             DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
             next(args);
