@@ -5019,15 +5019,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             return;
         });
     }
-
+	
     async function ULTRACellRun() {
         modApi.hookFunction('CellRun', 4, (args, next) => {
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
             if (notcbuttons == false) {
-                DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
+                DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "随机背景");
+                DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "选择背景");
             }
             TintsEffect();
             next(args);
