@@ -63,4 +63,4 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Added three new hotkeys to change background in Friend List (D = Default background - R = Random background - S = Select Background)
