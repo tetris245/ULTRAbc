@@ -2027,7 +2027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "启用此选项后，您可以直接访问一些有用的屏幕，并可以更改聊天搜索背景                                           Left Alt = 偏好设置                   左箭头 = 衣柜                           右箭头 = 扩展                       上箭头 = 随机背景                下箭头 = 选择背景                           Tab = 默认背景"
                 );
                 addMenuCheckbox(64, 64, "在好友列表中启用热键：", "frkeys",
-                    "这些热键允许在您位于大厅（不在房间）时，在您可访问的另一个大厅中获取可点击链接。您只能在线好友列表上使用它们，并且如果您不在搜索输入框或发送提示音区域。热键列表：F = 女性俱乐部 - G = 混合俱乐部 - H = 男性俱乐部 - J = 精神病院。"
+                    "这些热键允许在您位于大厅（不在房间）时，在您可访问的另一个大厅中获取可点击链接。您只能在线好友列表上使用它们，并且如果您不在搜索输入框或发送提示音区域。背景也可以更改。热键列表：        D = 默认背景        F = 女性俱乐部  G = 混合俱乐部    H = 男性俱乐部 J = 精神病院         R = 随机背景    S = 选择背景"
                 );
             }
 
@@ -4053,6 +4053,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
             if (frkeys == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
+					if (event.code === "KeyD") {
+                       frname = "BrickWall";
+                       M_MOANER_saveControls();
+                       CommonSetScreen("Character", "FriendList");
+                    }
                     if (event.code === "KeyF") {
                         if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) {
                             Player.ChatSearchSettings.Space = "";
@@ -4092,6 +4097,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             });
                             return true;
                         }
+                    }
+					if (event.code === "KeyR") {
+                        if (BackgroundsList != undefined) {
+                            let listbg = BackgroundsList.length;
+                            let Roll = Math.floor(Math.random() * listbg);
+                            if (Roll == 0) Roll = 1;
+                            let name = BackgroundsList[Roll - 1].Name;
+                            frname = name;
+                            M_MOANER_saveControls();
+                            CommonSetScreen("Character", "FriendList");
+                        }       
+                    }
+                    if (event.code === "KeyS") {                      
+                        ElementRemove(FriendListIDs.root);
+                        let backgrounds = BackgroundsTagList;
+                        BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                            if (setBackground) {
+                                frname = Name;
+                                M_MOANER_saveControls();
+                            }
+                            CommonSetScreen("Character", "FriendList");
+                         }); 
                     }
                 }
             }
