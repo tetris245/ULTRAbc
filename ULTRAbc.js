@@ -2027,7 +2027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When this option is enabled, you will have direct access to some useful screens and can change the Chat Search background...... Left Alt = Preferences................. Left Arrow = Wardrobe................ Right Arrow = Extensions............ Up Arrow = Random background Down Arrow = Select background Tab = Default background"
                 );
                 addMenuCheckbox(64, 64, "Enable hotkeys in friend list: ", "frkeys",
-                    "These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. List of hotkeys: F = female club - G = mixed club - H = male club - J = asylum."
+                    "These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. Background can be changed too. List of available hotkeys:                D = Default background                  F = Female club    G = Mixed club  H = Male club        J = Asylum       R = Random background              S = Select background"
                 );
             }
 
@@ -4053,6 +4053,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
             if (frkeys == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
+					if (event.code === "KeyD") {
+                       frname = "BrickWall";
+                       M_MOANER_saveControls();
+                       CommonSetScreen("Character", "FriendList");
+                    }
                     if (event.code === "KeyF") {
                         if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) {
                             Player.ChatSearchSettings.Space = "";
@@ -4093,6 +4098,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             return true;
                         }
                     }
+					if (event.code === "KeyR") {
+                        if (BackgroundsList != undefined) {
+                            let listbg = BackgroundsList.length;
+                            let Roll = Math.floor(Math.random() * listbg);
+                            if (Roll == 0) Roll = 1;
+                            let name = BackgroundsList[Roll - 1].Name;
+                            frname = name;
+                            M_MOANER_saveControls();
+                            CommonSetScreen("Character", "FriendList");
+                        }       
+                    }
+                    if (event.code === "KeyS") {                      
+                        ElementRemove(FriendListIDs.root);
+                        let backgrounds = BackgroundsTagList;
+                        BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                            if (setBackground) {
+                                frname = Name;
+                                M_MOANER_saveControls();
+                            }
+                            CommonSetScreen("Character", "FriendList");
+                         });                  
+                     }
                 }
             }
             next(args);
