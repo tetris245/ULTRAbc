@@ -5557,9 +5557,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('AppearanceMenuDraw', 4, (args, next) => {
             if (CharacterAppearanceMode == "") {
                 if (nowrbuttons == false) {
-                    DrawButton(260, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                    DrawButton(380, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                    DrawButton(500, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                    DrawButton(260, 910, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
+                    DrawButton(380, 910, 90, 90, "", "White", "Icons/Random.png", "随机背景");
+                    DrawButton(500, 910, 90, 90, "", "White", "Icons/Explore.png", "选择背景");
                 }
             }
             next(args);
