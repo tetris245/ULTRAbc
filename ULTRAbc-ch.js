@@ -4198,9 +4198,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
             InformationSheetBackground = ifname;
             if (noifbuttons == false) {
-                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
+                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "随机背景");
+                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "选择背景");
             }
             TintsEffect();
             if (onlydays == true) {
