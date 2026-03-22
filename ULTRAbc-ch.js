@@ -4880,13 +4880,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 });
             }
             if (MouseIn(0, 900, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
-                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                    if (setBackground) {
-                        frname = Name;
-                        M_MOANER_saveControls();
-                    }
+                if (BackgroundsList != undefined) {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = BackgroundsList[Roll - 1].Name;
+                    Player.VisualSettings.PrivateRoomBackground = name;
+                    ServerAccountUpdate.QueueData({
+                        VisualSettings: Player.VisualSettings
+                    });
                     CommonSetScreen("Room", "Private");
+                 }  
+            }
+            if (MouseIn(0, 950, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
+                Player.VisualSettings.PrivateRoomBackground = "Private";
+                ServerAccountUpdate.QueueData({
+                    VisualSettings: Player.VisualSettings
                 });
+                CommonSetScreen("Room", "Private"); 
             }
             if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage)) PrivateClickCharacter();
             if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
@@ -4894,11 +4905,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAPrivateRun() {
+	async function ULTRAPrivateRun() {
         modApi.hookFunction('PrivateRun', 4, (args, next) => {
             if (LogQuery("RentRoom", "PrivateRoom")) {
-                DrawButton(0, 900, 49, 49, "", "White", "", "Select friend list background");
-                DrawImageResize("Icons/FriendList.png", 0, 900, 48, 48);
+                DrawButton(0, 900, 49, 49, "", "White", "", "随机背景");
+                DrawButton(0, 950, 49, 49, "", "White", "", "默认背景");
+                DrawImageResize("Icons/Random.png", 0, 900, 48, 48);
+                DrawImageResize("Icons/Reset.png", 0, 950, 48, 48);  
             }
             TintsEffect();
             next(args);
