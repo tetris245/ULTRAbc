@@ -147,6 +147,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cextra = false;
     let cfame = 150;
     let csname = "Introduction";
+	let ctitle = "";
     let dogsforbid = false;
     let dogsforced = false;
     let frname = "BrickWall";
@@ -577,6 +578,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cextra = false;
         cfame = 150;
         cskeys = false;
+		ctitle = "";
         dogsforbid = false;
         dogsforced = false;
         dolltalk = false;
@@ -695,6 +697,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cextra = data.cextra;
         cfame = data.cfame;
         cskeys = data.cskeys;
+		ctitle = data.ctitle;
         dogsforbid = data.dogsforbid;
         dogsforced = data.dogsforced;
         dolltalk = data.dolltalk;
@@ -869,6 +872,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cextra": cextra,
             "cfame": cfame,
             "csname": csname,
+            "ctitle": ctitle,
             "frname": frname,
             "gamestable": gamestable,
             "gaglevel": gl,
@@ -1024,6 +1028,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cfame == null || cfame == undefined) cfame = 150;
                 if (cskeys == null || cskeys == undefined) cskeys = false;
                 if (csname == null || csname == undefined) csname = "Introduction";
+				if (ctitle == null || ctitle == undefined) ctitle = "";
                 if (dogsforbid == null || dogsforbid == undefined) dogsforbid = false;
                 if (dogsforced == null || dogsforced == undefined) dogsforced = false;
                 if (dogsforced == false) dogsforbid = false;
@@ -8052,10 +8057,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawTextFit(TextGet("Nickname") + " " + CharacterNickname(C), 550, currentY, 450, "Black", "Gray");
             currentY += spacing;
         }
-        if (CurrentTitle !== "None") {
-            DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
-            currentY += spacing;
+        if (C.OnlineSharedSettings.ctitle != undefined){
+            if (C.OnlineSharedSettings.ctitle != "") {
+                DrawTextFit(TextGet("Title") + " " + C.OnlineSharedSettings.ctitle, 550, currentY, 450, "#0000BF", "Black", "Gray"); 
+            } else {
+                if (CurrentTitle != "None") {
+                    DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
+                }
+            }
+        } else {
+            if (CurrentTitle != "None") {
+                DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
+            }
         }
+        currentY += spacing;
         if (C.MemberNumber != null) {
             DrawTextFit(TextGet("MemberNumber") + " " + C.MemberNumber.toString(), 550, currentY, 450, "Black", "Gray");
             currentY += spacing;
@@ -9438,6 +9453,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function UBCsettings() {
         Player.OnlineSharedSettings.UBC = UBCver;
+		Player.OnlineSharedSettings.ctitle = ctitle;
         Player.OnlineSharedSettings.Inmap = false;
         if (Player.OnlineSharedSettings.Tplist == undefined) {
             Player.OnlineSharedSettings.Tplist = [];
@@ -12377,6 +12393,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 this.ColorTarget10 = undefined;
                 this.ColorTargetNameCustom = undefined;
             }
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'ctitle',
+        Description: "(custom title): creates a custom title, that does not require to satisfy some conditions.",
+        Action: (args, originalInput) => {  
+            if (args === "") { 
+                let msg = "The ctitle command must be followed by the custom title you want to display in your profile.\n" +
+                    "It can be an original title or an existing official title, for which you don't satisfy some conditions.\n" +
+                    "It will work only between UBC users if you have selected the Only Days option for the Character Info screen.\n" +
+                    "This title will not be displayed on the Titles screen.\n" +
+                    "Use ? as title to go back to a profile without custom title.";
+                infomsg(msg);
+                return;
+            }      
+            let custom = originalInput.replace(/^\/ctitle\s+/i, '').trim(); 
+            if (custom === "?") ctitle = "";
+            else ctitle = custom;
+            M_MOANER_saveControls();         
         }
     }])
 
@@ -16278,6 +16314,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "character") {
                 let msg = "Character commands - * = more info when using\n" +
+					"<b>/ctitle</b> (custom title) = creates a custom title. *\n" +
                     "<b>/difficulty</b> (number) = changes game difficulty. *\n" +
                     "<b>/maxstatistics</b> = gives max statistics.\n" +
                     "<b>/permission</b> (number) = changes your item permission *\n" +
