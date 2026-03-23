@@ -12403,16 +12403,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") { 
                 let msg = "The ctitle command must be followed by the custom title you want to display in your profile.\n" +
                     "It can be an original title or an existing official title, for which you don't satisfy some conditions.\n" +
-                    "It will work only between UBC users if you have selected the Only Days option for the Character Info screen.\n" +
+                    "Maximum 25 characters (spaces included)!\n" +
+                    "It will work only between UBC users who have selected the Only Days option for the Character Info screen.\n" +
                     "This title will not be displayed on the Titles screen.\n" +
                     "Use ? as title to go back to a profile without custom title.";
                 infomsg(msg);
                 return;
             }      
             let custom = originalInput.replace(/^\/ctitle\s+/i, '').trim(); 
-            if (custom === "?") ctitle = "";
-            else ctitle = custom;
-            M_MOANER_saveControls();         
+            let LS = /[/\p{L}\p{N}\p{Z}'-]/gu;
+            let length = custom.length;
+            if ((length > 0) && (length < 26) && (custom.match(LS))) {
+                if (custom === "?") {
+                    ctitle = "";
+                    infomsg("Custom title deleted")
+                } else {
+                    ctitle = custom;
+                    infomsg("Custom title created or modified");        
+                } 
+                M_MOANER_saveControls();
+                Player.OnlineSharedSettings.ctitle = ctitle;
+                ServerAccountUpdate.QueueData({
+                    OnlineSharedSettings: Player.OnlineSharedSettings
+                });
+            } else {
+                infomsg("Maximum 25 characters (spaces included)!");
+            }
         }
     }])
 
