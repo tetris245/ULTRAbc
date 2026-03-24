@@ -67,6 +67,7 @@ Changes for future version
   - It will work only between UBC users who have selected the Only Days option for the Character Info screen
   - To go back to a profile without custom title, use ? as title 
 * Added three new hotkeys to change background in Friend List (D = Default background - R = Random background - S = Select Background)
-* Removed the button to change background of Friend List in Private Room (SP)
-* Removed the tinting effect in Private Room (SP) because any hook for this room can provoke random freezing when entering it
+* Added buttons in Private Room (SP) to randomly change the background and go back to the default background
+* Removed the buttons to change background of Friend List and Main Hall in Private Room (SP) 
+
 
