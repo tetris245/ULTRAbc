@@ -6435,7 +6435,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-clubcard-button",
                         () => CardRooms(), {
-                            tooltip: "Club Card",
+                            tooltip: "俱乐部卡牌",
                             tooltipPosition: "left",
                             image: "Icons/ClubCard.png",
                         }, {
@@ -6459,7 +6459,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-larp-button",
                         () => LarpRooms(), {
-                            tooltip: "LARP",
+                            tooltip: "体感对战",
                             tooltipPosition: "left",
                             image: "Icons/Battle.png",
                         }, {
@@ -6471,7 +6471,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-magicbattle-button",
                         () => MagicRooms(), {
-                            tooltip: "Magic Battle",
+                            tooltip: "魔法对战",
                             tooltipPosition: "left",
                             image: "Icons/MagicSchool.png",
                         }, {
@@ -6483,7 +6483,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-pandoraprison-button",
                         () => PrisonRooms(), {
-                            tooltip: "Pandora	 Prison",
+                            tooltip: "潘多拉",
                             tooltipPosition: "left",
                             image: "Icons/Infiltration.png",
                         }, {
@@ -6713,7 +6713,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-wardrobe-button",
                             () => CharacterAppearanceLoadCharacter(Player), {
-                                tooltip: "Wardrobe",
+                                tooltip: "衣柜",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Dress.png",
                             }, {
@@ -6725,7 +6725,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-preferences-button",
                             () => PrfClick(), {
-                                tooltip: "Preferences",
+                                tooltip: "偏好设置",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Preference.png",
                             }, {
@@ -6737,7 +6737,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-extensions-button",
                             () => ExtClick(), {
-                                tooltip: "Extensions",
+                                tooltip: "扩展",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Extensions.png",
                             }, {
