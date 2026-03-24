@@ -12483,7 +12483,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Maximum 25 characters (spaces included)!\n" +
                     "It will work only between UBC users who have selected the Only Days option for the Character Info screen.\n" +
                     "This title will not be displayed on the Titles screen.\n" +
-                    "Use ? as title to go back to a profile without custom title.";
+                    "Use None as title to go back to a profile without custom title.";
                 infomsg(msg);
                 return;
             }      
