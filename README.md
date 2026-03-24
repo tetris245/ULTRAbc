@@ -68,6 +68,7 @@ Changes for future version
   - To go back to a profile without custom title, use "None" as title 
 * Added three new hotkeys to change background in Friend List (D = Default background - R = Random background - S = Select Background)
 * Added buttons in Private Room (SP) to randomly change the background and go back to the default background
-* Removed the button to change background of Friend List in Private Room (SP) 
+* Removed the button to change background of Friend List in Private Room (SP)
+* Added Chinese version of the mod - Thanks to wwwruomeng!
 
 
