@@ -2667,10 +2667,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceSubscreenOnlineClick();
     ULTRAPreferenceSubscreenOnlineLoad();
     ULTRAPreferenceSubscreenOnlineRun();
+	ULTRAPrivateClick();
     ULTRAPrivateClubCardVsFriendStart();
     ULTRAPrivateClubCardVsOwnerStart();
     ULTRAPrivateClubCardVsSubStart();
     ULTRAPrivateGetClubCardDeck();
+	ULTRAPrivateRun();
     ULTRARelogLoad();
     ULTRAShibariClubCardStart();
     ULTRAShibariRun();
@@ -4824,6 +4826,99 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
                 DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
             }
+            next(args);
+        });
+    }
+
+	//Private Room
+    function ULTRAPrivateClick() {
+        modApi.hookFunction('PrivateClick', 4, (args, next) => {
+            if ((Player.ArousalSettings != null) && (Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
+                if ((MouseX >= 700) && (MouseX <= 950) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmGameGenerate(0);
+                if ((MouseX >= 1050) && (MouseX <= 1300) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmStart(Player);
+                if ((MouseX >= ActivityOrgasmGameButtonX + 500) && (MouseX <= ActivityOrgasmGameButtonX + 700) && (MouseY >= ActivityOrgasmGameButtonY) && (MouseY <= ActivityOrgasmGameButtonY + 64) && (Player.ArousalSettings.OrgasmStage == 1)) ActivityOrgasmGameGenerate(ActivityOrgasmGameProgress + 1);
+                return;
+            }
+            if (MouseIn(500, 0, 500, 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
+            if (MouseIn(1000, 0, 500, 1000) && !LogQuery("RentRoom", "PrivateRoom")) {
+                NPCTraitDialog(PrivateVendor);
+                CharacterSetCurrent(PrivateVendor);
+            }
+            if (MouseIn(1885, PrivateButtonTop(0), 90, 90) && Player.CanWalk() && !Player.Cage) PrivateExit();
+            if (MouseIn(1885, PrivateButtonTop(1), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) PoseSetActive(Player, Player.ActivePoseMapping.BodyLower !== "Kneel" ? "Kneel" : "BaseLower", true);
+            if (MouseIn(1885, PrivateButtonTop(2), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (!Player.Cage)) CharacterSetCurrent(PrivateVendor);
+            if (MouseIn(1885, PrivateButtonTop(3), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChangeOwnClothes()) CharacterAppearanceLoadCharacter(Player);
+            if (MouseIn(1885, PrivateButtonTop(4), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChangeOwnClothes() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
+            if (MouseIn(1885, PrivateButtonTop(5), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage) && PrivateBedActive()) CommonSetScreen("Room", "PrivateBed");
+            if (MouseIn(1885, PrivateButtonTop(6), 90, 90) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset + 4 == PrivateCharacterMax) ? 0 : PrivateCharacterOffset + 4;
+            let backgrounds = BackgroundsPrivateRoomTagList;
+            if (bgall) backgrounds = BackgroundsTagList;
+            if (MouseIn(1885, PrivateButtonTop(7), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
+                BackgroundSelectionMake(backgrounds, MainHallBackground, (Name, setBackground) => {
+                    if (setBackground) {
+                        if (Name !== "MainHall") {
+                            Player.VisualSettings.MainHallBackground = Name;
+                        } else {
+                            delete Player.VisualSettings.MainHallBackground;
+                        }
+                        ServerAccountUpdate.QueueData({
+                            VisualSettings: Player.VisualSettings
+                        });
+                    }
+                    CommonSetScreen("Room", "Private");
+                });
+            }
+            if (MouseIn(1885, PrivateButtonTop(8), 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
+                BackgroundSelectionMake(backgrounds, PrivateBackground, (Name, setBackground) => {
+                    if (setBackground) {
+                        PrivateBackground = Name;
+                        if (Name !== "Private") {
+                            Player.VisualSettings.PrivateRoomBackground = Name;
+                        } else {
+                            delete Player.VisualSettings.PrivateRoomBackground;
+                        }
+                        ServerAccountUpdate.QueueData({
+                            VisualSettings: Player.VisualSettings
+                        });
+                    }
+                    CommonSetScreen("Room", "Private");
+                });
+            }
+            if (MouseIn(0, 900, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
+                if (BackgroundsList != undefined) {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = BackgroundsList[Roll - 1].Name;
+                    Player.VisualSettings.PrivateRoomBackground = name;
+                    ServerAccountUpdate.QueueData({
+                        VisualSettings: Player.VisualSettings
+                    });
+                    CommonSetScreen("Room", "Private");
+                 }  
+            }
+            if (MouseIn(0, 950, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
+                Player.VisualSettings.PrivateRoomBackground = "Private";
+                ServerAccountUpdate.QueueData({
+                    VisualSettings: Player.VisualSettings
+                });
+                CommonSetScreen("Room", "Private"); 
+            }
+            if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (!Player.Cage)) PrivateClickCharacter();
+            if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
+            return;
+        });
+    }
+
+    async function ULTRAPrivateRun() {
+        modApi.hookFunction('PrivateRun', 4, (args, next) => {
+            if (LogQuery("RentRoom", "PrivateRoom")) {
+                DrawButton(0, 900, 49, 49, "", "White", "", "Random backgound");
+                DrawButton(0, 950, 49, 49, "", "White", "", "Default background");
+                DrawImageResize("Icons/Random.png", 0, 900, 48, 48);
+                DrawImageResize("Icons/Reset.png", 0, 950, 48, 48);  
+            }
+            TintsEffect();
             next(args);
         });
     }
