@@ -12189,8 +12189,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "cgame 命令必须包含一个区域。\n" +
                     "可用区域：\n" +
-                    "asylum（精神病院）、cafe（咖啡馆）、infiltration（潜入）、introduction（介绍）、kidnap（绑架）、larp（真人角色扮演）、\n" +
-                    "lounge（休息室）、magic（魔法）、movie（电影）、shibari（绳艺）、stable（马厩）。\n" +
+                    "asylum（精神病院）、cafe（咖啡馆）、infiltration（潜入）、\n" +
+                    "introduction（介绍）、kidnap（绑架）、\n" +
+                    "larp（真人角色扮演）、lounge（休息室）、magic（魔法）、\n" +
+                    "movie（电影）、shibari（绳艺）、stable（马厩）。\n" +
                     "你需要点击相关的 NPC，然后点击适当的选项。";
                 infomsg(msg);
             } else {
@@ -12606,9 +12608,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "game 命令必须包含一个小游戏。\n" +
                     "可用小游戏：\n" +
-                    "carrot（胡萝卜）、cleaning（清洁）、dojo（道场）、drinks（饮料）、hurdle（跨栏）、kidnap（绑架）、movie1（电影 1）、\n" +
-                    "movie2（电影 2）、puppy（小狗）、rhythm（节奏）、tennis1（网球 1）、tennis2（网球 2）、tennis3（网球 3）、\n" +
-                    "training（训练）、whippony（鞭打小马）。\n" +
+                    "carrot（胡萝卜）、cleaning（清洁）、dojo（道场）、\n" +
+                    "drinks（饮料）、hurdle（跨栏）、kidnap（绑架）、\n" +
+                    "movie1（电影 1）、movie2（电影 2）、puppy（小狗）、\n" +
+                    "rhythm（节奏）、tennis1（网球 1）、tennis2（网球 2）、\n" +
+                    "tennis3（网球 3）、training（训练）、\n" +
+                    "whippony（鞭打小马）。\n" +
                     "Tennis1 = 简单，tennis2 = 普通，tennis3 = 困难\n" +
                     "Training 是跨栏游戏的训练师版本。\n" +
                     "你通常需要点击 NPC 并在对话框中选择合适的选项。\n" +
