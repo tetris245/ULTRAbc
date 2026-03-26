@@ -15693,9 +15693,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'title1',
-        Description: "（称号）：选择一个新的称号（从 A 到 K）。",
+        Description: "（称号）：选择一个新的称号（从 A 到 D）。",
         Action: (args) => {
             if (args === "") {
                 let msg = "title1 命令后必须跟一个称号。\n" +
@@ -15703,16 +15703,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "你将能够在你的个人资料中查看变化。\n" +
                     " \n" +
                     "可用称号：\n" +
-                    "admiral（上将）、agent（特工）、alien（外星人）、angel（天使）、archbishop（大主教）、archjudge（审判长）、\n" +
-                    "baby（宝贝）、bishop（主教）、bondagebaby（束缚宝贝）、bondagemaid（束缚女仆）、brat（顽童）、bunny（兔子）、\n" +
-                    "captain（队长）、champion（冠军）、clubslave（俱乐部奴隶）、coldbloodhorse（冷血马）、\n" +
-                    "collegestudent（大学生）、concubus（梦魔）、demon（恶魔）、diaperlover（尿布爱好者）、\n" +
-                    "doctor（医生）、doll（人偶）、dragon（龙）、drone（无人机）、drow（黑暗精灵）、duchess（女公爵）、duke（公爵）、\n" +
-                    "elf（精灵）、escapedpatient（逃跑病人）、farmhorse（农场马）、femboy（伪娘）、flyingpegasus（飞马）、\n" +
-                    "foal（小马驹）、foxy（狐狸）、freeuse（公用）、god（神）、goddess（女神）、goodboy（好男孩）、goodgirl（好女孩）、\n" +
-                    "goodone（好人）、goodslave（好奴隶）、goodslaveboy（好男奴）、goodslavegirl（好女奴）、\n" +
-                    "headmaid（女仆长）、hotbloodhorse（热血马）、houdini（胡迪尼）、incubus（梦魔）、\n" +
-                    "infiltrator（渗透者）、judge（法官）、kidnapper（绑架者）、king（国王）、kitten（小猫）。";
+                    "admiral（上将）、agent（特工）、alien（外星人）、\n" +
+                    "angel（天使）、archbishop（大主教）、\n" +
+                    "archjudge（审判长）、baby（宝贝）、bishop（主教）、\n" +
+                    "bondagebaby（束缚宝贝）、bondagemaid（束缚女仆）、\n" +
+                    "brat（顽童）、bunny（兔子）、captain（队长）、\n" +
+                    "champion（冠军）、clubslave（俱乐部奴隶）、\n" +
+                    "coldbloodhorse（冷血马）、collegestudent（大学生）、\n" +
+                    "concubus（梦魔）、demon（恶魔）、\n" +
+                    "diaperlover（尿布爱好者）、doctor（医生）、\n" +
+                    "doll（人偶）、dragon（龙）、drone（无人机）、\n" +
+                    "drow（黑暗精灵）、duchess（女公爵）、duke（公爵)。";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -15832,7 +15833,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "duke") {
                     LogAdd("KidnapSophie", "Sarah");
                     TitleSet("Duke");
-                }
+                }        
+            }
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'title2',
+        Description: "（称号）：选择一个新的称号（从 E 到 K）。",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "title2 命令后必须跟一个称号。\n" +
+                    "它还将更改获得该称号所需的参数。\n" +
+                    "你将能够在你的个人资料中查看变化。\n" +
+                    " \n" +
+                    "可用称号：\n" +
+                    "elf（精灵）、escapedpatient（逃跑病人）、\n" +
+                    "farmhorse（农场马）、femboy（伪娘）、\n" +
+                    "flyingpegasus（飞马）、foal（小马驹）、foxy（狐狸）、\n" +
+                    "freeuse（公用）、god（神）、goddess（女神）、\n" +
+                    "goodboy（好男孩）、goodgirl（好女孩）、\n" +
+                    "goodone（好人）、goodslave（好奴隶）、\n" +
+                    "goodslaveboy（好男奴）、goodslavegirl（好女奴）、\n" +
+                    "headmaid（女仆长）、hotbloodhorse（热血马）、\n" +
+                    "houdini（胡迪尼）、incubus（梦魔）、\n" +
+                    "infiltrator（渗透者）、judge（法官）、\n" +
+                    "kidnapper（绑架者）、king（国王）、kitten（小猫）。";
+                infomsg(msg);
+            } else {
+                let title = args;
                 if (title == "elf") TitleSet("Elf");
                 if (title == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 if (title == "farmhorse") {
@@ -15977,24 +16006,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'title2',
-        Description: "（称号）：选择一个新的称号（从 L 到 Z）。",
+        Tag: 'title3',
+        Description: "（称号）：选择一个新的称号（从 L 到 Q）。",
         Action: (args) => {
             if (args === "") {
-                let msg = "title2 命令后必须跟一个称号。\n" +
+                let msg = "title3 命令后必须跟一个称号。\n" +
                     "它还将更改获得该称号所需的参数。\n" +
                     "你将能够在你的个人资料中查看变化。\n" +
                     " \n" +
                     "可用称号：\n" +
-                    "ladyluck（幸运女士）、liege（君主）、littleone（小可爱）、lordfortune（财富领主）、magician（魔术师）、magus（法师）、\n" +
-                    "maid（女仆）、majesticalicorn（庄严独角兽）、majesty（陛下）、master（主人）、masterkidnapper（绑架头目）、\n" +
-                    "matron（女舍监）、missy（小姐）、mistree（树先生）、mistress（女主人）、mole（鼹鼠）、nawashi（绳师）、nurse（护士）、\n" +
-                    "operative（特工）、oracle（先知）、patient（病人）、patriarch（族长）、patron（赞助人）、\n" +
-                    "permanentpatient（永久病人）、pet（宠物）、pixie（小精灵）、primaris（首席）、prince（王子）、princess（公主）、\n" +
-                    "puppy（小狗）、queen（女王）、sage（圣人）、shiningunicorn（闪耀独角兽）、sissy（娘娘腔）、sorcerer（术士）、\n" +
-                    "succubus（魅魔）、superhero（超级英雄）、superheroine（超级女英雄）、superspy（超级间谍）、switch（双向）、\n" +
-                    "thing（东西）、tomboy（假小子）、turtle（海龟）、vampire（吸血鬼）、warlock（男巫）、\n" +
-                    "warmbloodhorse（温血马）、wildmustang（野马）、witch（女巫）、wizard（巫师）。";
+                    "ladyluck（幸运女士）、liege（君主）、littleone（小可爱）、\n" +
+                    "lordfortune（财富领主）、magician（魔术师）、\n" +
+                    "magus（法师）、maid（女仆）、\n" +
+                    "majesticalicorn（庄严独角兽）、majesty（陛下）、\n" +
+                    "master（主人）、masterkidnapper（绑架头目）、\n" +
+                    "matron（女舍监）、missy（小姐）、mistree（树先生）、\n" +
+                    "mistress（女主人）、mole（鼹鼠）、nawashi（绳师）、\n" +
+                    "nurse（护士）、operative（特工）、oracle（先知）、\n" +
+                    "patient（病人）、patriarch（族长）、patron（赞助人）、\n" +
+                    "permanentpatient（永久病人）、pet（宠物）、\n" +
+                    "pixie（小精灵）、primaris（首席）、prince（王子）、\n" +
+                    "princess（公主）、puppy（小狗）、queen（女王)。";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -16144,7 +16176,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("Dominant", 75);
                     }
                     TitleSet("Queen");
-                }
+                }   
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'title4',
+        Description: "（称号）：选择一个新的称号（从 R 到 Z）。",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "title4 命令后必须跟一个称号。\n" +
+                    "它还将更改获得该称号所需的参数。\n" +
+                    "你将能够在你的个人资料中查看变化。\n" +
+                    " \n" +
+                    "可用称号：\n" +
+                    "sage（圣人）、shiningunicorn（闪耀独角兽）、\n" +
+                    "sissy（娘娘腔）、sorcerer（术士）、succubus（魅魔）、\n" +
+                    "superhero（超级英雄）、superheroine（超级女英雄）、\n" +
+                    "superspy（超级间谍）、switch（双向）、thing（东西）、\n" +
+                    "tomboy（假小子）、turtle（海龟）、vampire（吸血鬼）、\n" +
+                    "warlock（男巫）、warmbloodhorse（温血马）、\n" +
+                    "wildmustang（野马）、witch（女巫）、wizard（巫师）。";
+                infomsg(msg);
+            } else {
+                let title = args;
                 if (title == "sage") {
                     if ((ReputationGet("HouseAmplector") < 50) || (ReputationGet("HouseAmplector") > 99)) {
                         ResetHousesReputation();
@@ -16425,8 +16481,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/resetinventory</b> = 清空你的物品栏。\n" +
                     "<b>/roleplay</b> （角色）= 开始扮演角色。*\n" +
                     "<b>/rolequit</b> （角色或俱乐部区域）= 停止扮演角色。*\n" +
-                    "<b>/title1</b> （新称号）= 选择一个新的称号（从 A 到 K）。*\n" +
-                    "<b>/title2</b> （新称号）= 选择一个新的称号（从 L 到 Z）。*";
+                    "<b>/title1</b> （新称号）= 选择一个新的称号（从 A 到 D）。*\n" +
+                    "<b>/title2</b> （新称号）= 选择一个新的称号（从 E 到 K）。*\n" +
+                    "<b>/title3</b> （新称号）= 选择一个新的称号（从 L 到 Q）。*\n" +
+                    "<b>/title4</b> （新称号）= 选择一个新的称号（从 R 到 Z）。*";
                 infomsg(msg);
             }
             if (args === "chat") {
