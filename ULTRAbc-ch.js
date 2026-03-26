@@ -2026,7 +2026,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCHotkeysLoad = function() {
                 UBCPreferenceSubscreen = "UBCHotkeys";
                 addMenuCheckbox(64, 64, "在聊天室中启用热键：", "hotkeys",
-                    "这些热键与 /quit 命令等效，但没有特定的可选文本；以及 /totalrelease 命令，但仅适用于您自己。数字键盘上的热键：除号 = 快速离开 - 乘号 = 完全释放。如果您没有数字键盘，请使用类似的命令或 UBC 按钮。此选项在非逃离模式下不可用。", "Player.UBC.ubcSettings.noescape"
+                    "这些热键与 /quit 命令等效，但没有特定的可选文本；以及 /totalrelease 命令，但仅适用于您自己。          数字键盘上的热键：                    除号 = 快速离开                        乘号 = 完全释放。                    如果您没有数字键盘，请使用类似的命令或 UBC 按钮。                   此选项在非逃离模式下不可用。", "Player.UBC.ubcSettings.noescape"
                 );
                 addMenuCheckbox(64, 64, "在聊天搜索中启用热键：", "cskeys",
                     "启用此选项后，您可以直接访问一些有用的屏幕，并可以更改聊天搜索背景                                           Left Alt = 偏好设置                   左箭头 = 衣柜                           右箭头 = 扩展                       上箭头 = 随机背景                下箭头 = 选择背景                           Tab = 默认背景"
