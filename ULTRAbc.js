@@ -13024,7 +13024,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot",
         Action: (args) => {
             if (args === "") {
-                let msg = "First use the <b>/layershow1</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
+                let msg = "First use the <b>/layershow</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
                     "The layerset command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.\n" +
                     "If you enter a non-numeric layer, it will be interpreted as 0 (zero). If the entered color does not exist, you will go back to the default color.";
                 infomsg(msg);
@@ -13034,7 +13034,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let layer = stringLys2[0];
                 let color = stringLys2[1];
                 if (this.saveditemslot == undefined) {
-                    let msg = "<b>Warning</b>: First use the <b>/layershow1</b> command to get useful info and save Item Slot.";
+                    let msg = "<b>Warning</b>: First use the <b>/layershow</b> command to get useful info and save Item Slot.";
                     infomsg(msg);
                 } else {
                     let Target = this.saveditemslot.slice(0);
