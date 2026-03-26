@@ -70,6 +70,7 @@ Changes for future version
 * Replaced the 2 existing title commands by 4 commands: title1 for titles from A to D, title2 for titles from E to K, title3 for titles from L to Q, title4 for titles from R to Z
 * Added three new hotkeys to change background in Friend List (D = Default background - R = Random background - S = Select Background)
 * Added buttons in Private Room (SP) to randomly change the background and go back to the default background
+* Improved the text display for the Hotkeys options in the GUI of both versions and adapted it for several commands in the Chinese version
 * Removed the button to change background of Friend List in Private Room (SP)
 
 
