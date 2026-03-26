@@ -14305,21 +14305,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "（姿势）（目标）：更改任何玩家的姿势。",
         Action: (args) => {
             if (args === "") {
-                let msg = "pose2 命令后必须跟一个姿势，以及可选的目标。\n" +
+                let msg = "roleplay 命令必须包含一个角色。\n" +
+                    "你将能够在你的个人资料中查看变化。\n" +
                     " \n" +
-                    "可用姿势：\n" +
-                    "armsfree（手臂自由）、belly（腹部）、\n" +
-                    "boxtied（箱式捆绑）、cuffed（手铐）、\n" +
-                    "elbowtied（肘部捆绑）、kneel1（跪姿 1）、\n" +
-                    "kneel2（跪姿 2）、legsclosed（并腿）、\n" +
-                    "legsopen（开腿）、pet（宠物）、\n" +
-                    "spreadarms1（展臂 1）、spreadarms2（展臂 2）、\n" +
-                    "spreadeagle1（大字形 1）、spreadeagle2（大字形 2）、\n" +
-                    "spreadlegs（分腿）、stand（站立）、\n" +
-                    "suspension（悬吊）、tapedhands（绑手）。\n" +
-                    "仅限自身：exercise（运动）、jump（跳跃）。\n" +
-                    "使用 <b>/pose2 reset</b> （目标）恢复中性姿势。\n" +
-                    "如果启用了 WCE，当 /pose2 reset 失败时，仅对自身使用 <b>/pose baseupper</b>。";
+                    "可用角色：\n" +
+                    "clubmistress（俱乐部女主人）、clubslave（俱乐部奴隶）、\n" +
+                    "doctor（医生）、escapedpatient（逃跑病人）、\n" +
+                    "headmaid（女仆长）、kidnapper（绑架者）、maid（女仆）、\n" +
+                    "magician（魔术师）、magus（法师）、\n" +
+                    "masterkidnapper（绑架头目）、mistress（女主人）、\n" +
+                    "nurse（护士）、oracle（先知）、patient（病人）、\n" +
+                    "permanentpatient（永久病人）、sage（圣人）、\n" +
+                    "sorcerer（术士）、warlock（男巫）、witch（女巫）、\n" +
+                    "wizard（巫师）。\n" +
+                    "小心 clubslave，你将被迫完成契约。escapedpatient 也有类似的警告。";
                 infomsg(msg);
             } else {
                 let stringPose1 = args;
