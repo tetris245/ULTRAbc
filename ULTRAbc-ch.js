@@ -12555,10 +12555,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "font 命令后必须跟一个字体编号，以及可选的大小编号。\n" +
-                    "支持的字体：0 Arial（宋体）- 1 Times New Roman（时报体）\n" +
-                    "2 Papyrus（草纸体）- 3 Comic Sans（漫画体）- 4 Impact（冲击体）\n" +
-                    "5 Helvetica Neue（黑体）- 6 Verdana（Verdana 体）- 7 Century Gothic（哥特体）\n" +
-                    "8 Georgia（佐治亚体）- 9 Courrier New（新 Courier 体）- 10 Copperplate（铜板体）\n" +
+                    "支持的字体：\n" +
+                    "0 Arial（宋体）- 1 Times New Roman（时报体）\n" +
+                    "2 Papyrus（草纸体）- 3 Comic Sans（漫画体）\n" +
+                    "4 Impact（冲击体）- 5 Helvetica Neue（黑体）\n" +
+                    "6 Verdana（Verdana 体）- 7 Century Gothic（哥特体）\n" +
+                    "8 Georgia（佐治亚体）- 9 Courrier New（新 Courier 体）\n" +
+                    "10 Copperplate（铜板体）\n" +
                     "大小：0 小 - 1 中 - 2 大";
                 infomsg(msg);
             } else {
