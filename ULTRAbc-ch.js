@@ -15505,7 +15505,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "i = 获取轮子上最多选项的信息\n" +
                     "r = 完全随机旋转（包括轮子创建者未选择的选项）\n" +
                     "提示：在使用 r 模式之前先使用 i 模式，它将正确初始化消息。\n" +
-                    "注意：a 和 r 模式会禁用角色扮演！";
+                    "注意：i 和 r 模式会禁用角色扮演！";
                 infomsg(msg);
             } else {
                 let stringSol1 = args;
