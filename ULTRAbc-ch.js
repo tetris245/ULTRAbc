@@ -14308,11 +14308,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "pose2 命令后必须跟一个姿势，以及可选的目标。\n" +
                     " \n" +
                     "可用姿势：\n" +
-                    "armsfree（手臂自由）、belly（腹部）、boxtied（箱式捆绑）、cuffed（手铐）、elbowtied（肘部捆绑）、\n" +
-                    "kneel1（跪姿 1）、kneel2（跪姿 2）、legsclosed（并腿）、legsopen（开腿）、pet（宠物）、\n" +
-                    "spreadarms1（展臂 1）、spreadarms2（展臂 2）、spreadeagle1（大字形 1）、\n" +
-                    "spreadeagle2（大字形 2）、spreadlegs（分腿）、stand（站立）、suspension（悬吊）、\n" +
-                    "tapedhands（绑手）。仅限自身：exercise（运动）、jump（跳跃）。\n" +
+                    "armsfree（手臂自由）、belly（腹部）、\n" +
+                    "boxtied（箱式捆绑）、cuffed（手铐）、\n" +
+                    "elbowtied（肘部捆绑）、kneel1（跪姿 1）、\n" +
+                    "kneel2（跪姿 2）、legsclosed（并腿）、\n" +
+                    "legsopen（开腿）、pet（宠物）、\n" +
+                    "spreadarms1（展臂 1）、spreadarms2（展臂 2）、\n" +
+                    "spreadeagle1（大字形 1）、spreadeagle2（大字形 2）、\n" +
+                    "spreadlegs（分腿）、stand（站立）、\n" +
+                    "suspension（悬吊）、tapedhands（绑手）。\n" +
+                    "仅限自身：exercise（运动）、jump（跳跃）。\n" +
                     "使用 <b>/pose2 reset</b> （目标）恢复中性姿势。\n" +
                     "如果启用了 WCE，当 /pose2 reset 失败时，仅对自身使用 <b>/pose baseupper</b>。";
                 infomsg(msg);
