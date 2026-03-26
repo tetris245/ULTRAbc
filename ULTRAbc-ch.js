@@ -12832,7 +12832,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 Inventory = InventoryGet(CurrentCharacter, Target);
                                 if (Inventory.Property.LockedBy != null) {
                                     if (Inventory.Property.LockedBy == "CombinationPadlock") {
-                                        Lock = "Combination Padlock";
+                                        Lock = "组合密码锁";
                                         asset = Inventory.Asset.Description;
                                         code = Inventory.Property.CombinationNumber;
                                         ChatRoomSendLocal("AssetGroup = " + Target);
@@ -12840,7 +12840,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         ChatRoomSendLocal("" + asset + " = " + code + "");
                                     }
                                     if (Inventory.Property.LockedBy == "PortalLinkPadlock") {
-                                        Lock = "Portal Link Padlock";
+                                        Lock = "传送门连接锁";
                                         asset = Inventory.Asset.Description;
                                         code = Inventory.Property.PortalLinkCode;
                                         ChatRoomSendLocal("AssetGroup = " + Target);
@@ -12848,9 +12848,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         ChatRoomSendLocal("" + asset + " = " + code + "");
                                     }
                                     if ((Inventory.Property.LockedBy == "SafewordPadlock") || (Inventory.Property.LockedBy == "PasswordPadlock") || (Inventory.Property.LockedBy == "TimerPasswordPadlock")) {
-                                        Lock = "Safeword Padlock";
-                                        if (Inventory.Property.LockedBy == "PasswordPadlock") Lock = "Password Padlock";
-                                        if (Inventory.Property.LockedBy == "TimerPasswordPadlock") Lock = "Timer Password Padlock";
+                                        Lock = "安全词锁";
+                                        if (Inventory.Property.LockedBy == "PasswordPadlock") Lock = "密码锁";
+                                        if (Inventory.Property.LockedBy == "TimerPasswordPadlock") Lock = "计时密码锁";
                                         asset = Inventory.Asset.Description;
                                         code = Inventory.Property.Password;
                                         ChatRoomSendLocal("AssetGroup = " + Target);
@@ -12863,10 +12863,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         }
                                     }
                                     if ((Inventory.Property.LockedBy == "TimerPadlock") || (Inventory.Property.LockedBy == "MistressTimerPadlock") || (Inventory.Property.LockedBy == "LoversTimerPadlock") || (Inventory.Property.LockedBy == "OwnerTimerPadlock")) {
-                                        Lock = "Timer Padlock";
-                                        if (Inventory.Property.LockedBy == "MistressTimerPadlock") Lock = "Mistress Timer Padlock";
-                                        if (Inventory.Property.LockedBy == "LoversTimerPadlock") Lock = "Lovers Timer Padlock";
-                                        if (Inventory.Property.LockedBy == "OwnerTimerPadlock") Lock = "Owner Timer Padlock";
+                                        Lock = "五分钟计时锁";
+                                        if (Inventory.Property.LockedBy == "MistressTimerPadlock") Lock = "女王计时锁";
+                                        if (Inventory.Property.LockedBy == "LoversTimerPadlock") Lock = "爱人计时锁";
+                                        if (Inventory.Property.LockedBy == "OwnerTimerPadlock") Lock = "主人计时锁";
                                         asset = Inventory.Asset.Description;
                                         time = Inventory.Property.RemoveTimer;
                                         left = TimerToString(time - CurrentTime);
@@ -12877,7 +12877,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 if (Inventory.Property.Name != null) {
                                     if (Inventory.Property.Name == "Best Friend Timer Padlock") {
-                                        Lock = "Best Friend Timer Padlock";
+                                        Lock = "好友计时器锁";
                                         asset = Inventory.Asset.Description;
                                         time = Inventory.Property.RemovalTime;
                                         left = TimerToString(time - CurrentTime);
