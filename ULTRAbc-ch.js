@@ -13014,7 +13014,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "（层编号）（颜色代码）更改已保存物品槽中穿戴物品的图层颜色",
         Action: (args) => {
             if (args === "") {
-                let msg = "首先使用 <b>/layershow1</b> 命令点击穿戴物品，获取有关图层颜色的有用信息并保存物品槽。\n" +
+                let msg = "首先使用 <b>/layershow</b> 命令点击穿戴物品，获取有关图层颜色的有用信息并保存物品槽。\n" +
                     "layerset 命令后必须跟一个图层编号（-1 表示所有图层）和一个颜色代码（格式为 #000000），用于之前保存的物品槽中的穿戴物品。\n" +
                     "如果输入非数字图层，将被解释为 0（零）。如果输入的颜色不存在，将返回默认颜色。";
                 infomsg(msg);
@@ -13024,7 +13024,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let layer = stringLys2[0];
                 let color = stringLys2[1];
                 if (this.saveditemslot == undefined) {
-                    let msg = "<b>警告</b>：首先使用 <b>/layershow1</b> 命令获取有用信息并保存物品槽。";
+                    let msg = "<b>警告</b>：首先使用 <b>/layershow</b> 命令获取有用信息并保存物品槽。";
                     infomsg(msg);
                 } else {
                     let Target = this.saveditemslot.slice(0);
