@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.8.3
+Most recent version: 5.9
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -29,7 +29,7 @@ To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM 
 Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-ch.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Only for English version - Will not work with Asian server)
-1. Download the ULTRAbc-version5.8.3.zip file on the Releases page
+1. Download the ULTRAbc-version5.9.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -63,15 +63,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Added Chinese version of the mod - Thanks to wwwruomeng!
-* New command: ctitle (custom title) to create a custom title, that does not require to satisfy some conditions (maximum 25 characters, spaces included)
-  - It will work only between UBC users who have selected the Only Days option for the Character Info screen
-  - To go back to a profile without custom title, use "None" as title (无 in Chinese version)
-* Replaced the 2 existing title commands by 4 commands: title1 for titles from A to D, title2 for titles from E to K, title3 for titles from L to Q, title4 for titles from R to Z
-* Added three new hotkeys to change background in Friend List (D = Default background - R = Random background - S = Select Background)
-* Added buttons in Private Room (SP) to randomly change the background and go back to the default background
-* Improved the text display for the Hotkeys options in the GUI of both versions and adapted it for several commands in the Chinese version
-* Removed the button to change background of Friend List in Private Room (SP)
-
+(...)
 
 
