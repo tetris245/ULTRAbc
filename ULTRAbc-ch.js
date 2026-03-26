@@ -12493,7 +12493,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let LS = /[/\p{L}\p{N}\p{Z}'-]/gu;
             let length = custom.length;
             if ((length > 0) && (length < 26) && (custom.match(LS))) {
-                if (custom === "None") {
+                if (custom === "无") {
                     ctitle = "";
                     infomsg("Custom title deleted")
                 } else {
