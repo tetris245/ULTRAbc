@@ -15647,7 +15647,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "";
                 if (Player.Themed != undefined) msg = msg + "当前状态：";
                 infomsg(msg);
-                if (Player.Themed != undefined) showLoginStatus();
             } else {
                 if (Player.Themed != undefined) {
                     if ((args == 1) || (args == 3)) {
