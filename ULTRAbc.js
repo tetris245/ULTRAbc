@@ -2026,7 +2026,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCHotkeysLoad = function() {
                 UBCPreferenceSubscreen = "UBCHotkeys";
                 addMenuCheckbox(64, 64, "Enable hotkeys in chat rooms: ", "hotkeys",
-                    "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself. Hotkeys on numeric pad: Divide = fast leave - Multiply = total release. If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape"
+                    "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself.                         Hotkeys on numeric pad:         Divide = fast leave               Multiply = total release                    If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape"
                 );
                 addMenuCheckbox(64, 64, "Enable hotkeys in chat search: ", "cskeys",
                     "When this option is enabled, you will have direct access to some useful screens and can change the Chat Search background       Left Alt = Preferences                  Left Arrow = Wardrobe                 Right Arrow = Extensions             Up Arrow = Random background Down Arrow = Select background Tab = Default background"
