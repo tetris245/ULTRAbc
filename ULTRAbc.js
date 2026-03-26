@@ -15713,12 +15713,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "baby, bishop, bondagebaby, bondagemaid, brat, bunny,\n" +
                     "captain, champion, clubslave, coldbloodhorse,\n" +
                     "collegestudent, concubus, demon, diaperlover,\n" +
-                    "doctor, doll, dragon, drone, drow, duchess, duke,\n" +
-                    "elf, escapedpatient, farmhorse, femboy, flyingpegasus,\n" +
-                    "foal, foxy, freeuse, god, goddess, goodboy, goodgirl,\n" +
-                    "goodone, goodslave, goodslaveboy, goodslavegirl\n" +
-                    "headmaid, hotbloodhorse, houdini, incubus, \n" +
-                    "infiltrator, judge, kidnapper, king, kitten.";
+                    "doctor, doll, dragon, drone, drow, duchess, duke.";               
                 infomsg(msg);
             } else {
                 let title = args;
@@ -15838,7 +15833,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "duke") {
                     LogAdd("KidnapSophie", "Sarah");
                     TitleSet("Duke");
-                }
+                }      
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'title2',
+        Description: "(title): chooses a new title (from E to K).",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The title2 command must be followed by a title.\n" +
+                    "It will also change required parameters to get the title.\n" +
+                    "You will be able to check the changes in your profile.\n" +
+                    " \n" +
+                    "Available titles:\n" +
+                    "elf, escapedpatient, farmhorse, femboy, flyingpegasus,\n" +
+                    "foal, foxy, freeuse, god, goddess, goodboy, goodgirl,\n" +
+                    "goodone, goodslave, goodslaveboy, goodslavegirl\n" +
+                    "headmaid, hotbloodhorse, houdini, incubus, \n" +
+                    "infiltrator, judge, kidnapper, king, kitten.";
+                infomsg(msg);
+            } else {
+                let title = args;
                 if (title == "elf") TitleSet("Elf");
                 if (title == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 if (title == "farmhorse") {
@@ -15983,11 +16000,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'title2',
-        Description: "(title): chooses a new title (from L to Z).",
+        Tag: 'title3',
+        Description: "(title): chooses a new title (from L to Q).",
         Action: (args) => {
             if (args === "") {
-                let msg = "The title2 command must be followed by a title.\n" +
+                let msg = "The title3 command must be followed by a title.\n" +
                     "It will also change required parameters to get the title.\n" +
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
@@ -15997,10 +16014,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "matron, missy, mistree, mistress, mole, nawashi, nurse,\n" +
                     "operative, oracle, patient, patriarch, patron,\n" +
                     "permanentpatient, pet, pixie, primaris, prince, princess,\n" +
-                    "puppy, queen, sage, shiningunicorn, sissy, sorcerer,\n" +
-                    "succubus, superhero, superheroine, superspy, switch,\n" +
-                    "thing, tomboy, turtle, vampire, warlock,\n" +
-                    "warmbloodhorse, wildmustang, witch, wizard.";
+                    "puppy, queen.";                 
                 infomsg(msg);
             } else {
                 let title = args;
@@ -16150,7 +16164,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("Dominant", 75);
                     }
                     TitleSet("Queen");
-                }
+                }          
+            }
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'title4',
+        Description: "(title): chooses a new title (from R to Z).",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The title4 command must be followed by a title.\n" +
+                    "It will also change required parameters to get the title.\n" +
+                    "You will be able to check the changes in your profile.\n" +
+                    " \n" +
+                    "Available titles:\n" +
+                    "sage, shiningunicorn, sissy, sorcerer,\n" +
+                    "succubus, superhero, superheroine, superspy, switch,\n" +
+                    "thing, tomboy, turtle, vampire, warlock,\n" +
+                    "warmbloodhorse, wildmustang, witch, wizard.";
+                infomsg(msg);
+            } else {
+                let title = args;
                 if (title == "sage") {
                     if ((ReputationGet("HouseAmplector") < 50) || (ReputationGet("HouseAmplector") > 99)) {
                         ResetHousesReputation();
@@ -16431,8 +16466,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/resetinventory</b> = erases your inventory.\n" +
                     "<b>/roleplay</b> (rolehere) = starts a role. *\n" +
                     "<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n" +
-                    "<b>/title1</b> (newtitlehere) = chooses a new title (from A to K). *\n" +
-                    "<b>/title2</b> (newtitlehere) = chooses a new title (from L to Z). *";
+                    "<b>/title1</b> (newtitlehere) = chooses a new title (from A to D). *\n" +
+                    "<b>/title1</b> (newtitlehere) = chooses a new title (from E to K). *\n" +
+                    "<b>/title3</b> (newtitlehere) = chooses a new title (from L to Q). *\n" +
+                    "<b>/title4</b> (newtitlehere) = chooses a new title (from R to Z). *";
                 infomsg(msg);
             }
             if (args === "chat") {
