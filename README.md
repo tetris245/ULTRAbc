@@ -67,6 +67,7 @@ Changes for future version
 * New command: ctitle (custom title) to create a custom title, that does not require to satisfy some conditions (maximum 25 characters, spaces included)
   - It will work only between UBC users who have selected the Only Days option for the Character Info screen
   - To go back to a profile without custom title, use "None" as title (无 in Chinese version)
+* Replaced the 2 existing title commands by 4 commands: title1 for titles from A to D, title2 for titles from E to K, title3 for titles from L to Q, title4 for titles from R to Z
 * Added three new hotkeys to change background in Friend List (D = Default background - R = Random background - S = Select Background)
 * Added buttons in Private Room (SP) to randomly change the background and go back to the default background
 * Removed the button to change background of Friend List in Private Room (SP)
