@@ -2133,7 +2133,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "¡Añade más diversión al Bondage Club con los gemidos generados automáticamente por el Moaner!", false, 140
                 );
                 addMenuInput(200, "Perfil de gemidos (0-10):", "profile", "InputMoanProfile",
-                    "Introduce un número entre 0 y 10 para seleccionar un perfil de gemidos: 0 Por defecto - 1 Bunny - 2 Cow - 3 Dog - 4 Fox - 5 Mouse - 6 Neko - 7 Pig - 8 Pony - 9 Wildfox - 10 Wolf.", 6
+                    "Introduce un número entre 0 y 10 para seleccionar un perfil de gemidos: 0 Por defecto - 1 Conejo - 2 Vaca - 3 Cachorro - 4 Zorro - 5 Ratón - 6 Gatito (Neko) - 7 Cerdo - 8 Poni - 9 Zorro Salvaje - 10 Lobito", 6
                 );
                 let omsg = "Cuando está activado, gemirás al llegar al orgasmo. No es posible activarlo si se detecta que la función LSCG Splatter está activa.";
                 let spl = 0;
@@ -2400,7 +2400,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
                 addMenuInput(200, "Modo habla/susurro animal (0-9):", "animal", "InputAnimalMode",
-                    "Introduce un número del 0 al 9 para seleccionar un modo de habla o susurro animal 'permanente' forzado: 0 Humano - 1 Conejo - 2 Vaca - 3 Zorro - 4 Gatito - 5 Ratón - 6 Cerdo - 7 Pony - 8 Cachorro - 9 Lobito. Si solo quieres hablar así una vez, usa el comando /atalk tras seleccionar 0 (habla humana) aquí.", 64
+                    "Introduce un número del 0 al 9 para seleccionar un modo de habla o susurro animal 'permanente' forzado: 0 Humano - 1 Conejo - 2 Vaca - 3 Zorro - 4 Gatito - 5 Ratón - 6 Cerdo - 7 Poni - 8 Cachorro - 9 Lobito. Si solo quieres hablar así una vez, usa el comando /atalk tras seleccionar 0 (habla humana) aquí.", 64
                 );
                 addMenuCheckbox(64, 64, "Activar modo de habla/susurro híbrido: ", "ahybrid",
                     "Cuando está activado y se asocia con un modo de habla animal, ¡todos tus mensajes y susurros combinarán palabras animales y humanas!", false, 200
