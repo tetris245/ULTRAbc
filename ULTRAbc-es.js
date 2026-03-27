@@ -2378,10 +2378,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Cuando el modo silencio está activo, se puede usar la safeword sin que aparezca ningún mensaje en el chat. Útil solo si la safeword está habilitada.", "!Player.UBC.ubcSettings.silent", 220
                 );
                 addMenuCheckbox(64, 64, "Activar modo 'unrestrict soft': ", "usoft",
-                    "Efectos de este modo: objetos ocultos añadidos al inventario, acceso a objetos cubiertos por otros, uso de ciertos objetos sobre uno mismo o terceros, y función de examen preservada bajo ceguera (excepto en privación sensorial total). No elimina las condiciones para usar assets. Requiere reiniciar sesión para salir del modo.", false, 220
+                    "Efectos de este modo: objetos ocultos añadidos al inventario, acceso a objetos cubiertos por otros, uso de objetos como maletas, bandejas de sirvienta de madera o paletas sobre ti mismo u otros jugadores en este modo, y función de examen preservada bajo ceguera (excepto en privación sensorial total). No elimina las condiciones para usar assets. Requiere reiniciar sesión para salir del modo.", false, 220
                 );
                 addMenuCheckbox(64, 64, "Activar modo 'unrestrict total': ", "utotal",
-                    "Además de los efectos 'soft', este modo permite ciertas interacciones incluso bajo restricción. Uno de sus efectos puede ser bloqueado por Uwall. Este modo no está disponible en no-escape. Puede activar una alerta de BCX que debe ignorarse. Requiere reiniciar sesión para salir de este modo.", "Player.UBC.ubcSettings.noescape", 220
+                    "Además de los efectos 'soft', este modo permite ciertas interacciones incluso bajo restricción. Uno de sus efectos (simulación de que tienes las llaves adecuadas) puede ser bloqueado por Uwall y permitido por Ulist. Este modo no está disponible en no-escape. Puede activar una alerta de BCX que debe ignorarse. Requiere reiniciar sesión para salir de este modo.", "Player.UBC.ubcSettings.noescape", 220
                 );
             }
 
