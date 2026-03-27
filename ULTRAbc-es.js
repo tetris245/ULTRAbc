@@ -2050,26 +2050,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMapsLoad = function() {
                 UBCPreferenceSubscreen = "UBCMaps";
-                addMenuCheckbox(64, 64, "Añadir juguetes bajo castidad bloqueada en trampas: ", "magictoys",
-                    "Activa esta opción si aceptas que las trampas en salas con mapa puedan añadir juguetes bajo castidad bloqueada, ¡con todas las consecuencias que eso pueda tener después con tu dueño/a o amantes, por ejemplo!", false, 140
+                addMenuCheckbox(64, 64, "Añadir juguetes bajo castidad bloqueada: ", "magictoys",
+                    "Activa esta opción si aceptas que las trampas en salas con mapa puedan añadir juguetes bajo castidad bloqueada, ¡con todas las consecuencias que eso pueda tener después con tu dueño/a o amantes, por ejemplo!", false, 230
                 );
-                addMenuInput(200, "Trampa de dispositivo seleccionada (0-9):", "maptrap1", "InputDeviceTrap",
-                    "Introduce un número entre 0 y 9 para seleccionar una trampa de dispositivo: 0 Ninguna - 1 Banco de bondage - 2 Ataúd - 3 Marco de exhibición - 4 Perrera (Kennel) - 5 Casillero - 6 Carretilla - 7 Caja de madera - 8 Cruz en X - 9 TODAS LAS TRAMPAS. ¡Cuando una trampa está activa, serás atada automáticamente si caminas sobre el dispositivo!", 6
+                addMenuInput(200, "Trampa de dispositivo seleccionada(0-9)", "maptrap1", "InputDeviceTrap",
+                    "Introduce un número entre 0 y 9 para seleccionar una trampa de dispositivo: 0 Ninguna - 1 Banco de bondage - 2 Ataúd - 3 Marco de exhibición - 4 Perrera (Kennel) - 5 Casillero - 6 Carretilla - 7 Caja de madera - 8 Cruz en X - 9 TODAS LAS TRAMPAS. ¡Cuando una trampa está activa, serás atada automáticamente si caminas sobre el dispositivo!", 96
                 );
                 addMenuCheckbox(64, 64, "Activar audición completa en mapas: ", "mapfull2",
-                    "Cuando está activado, no habrá ninguna limitación a tu audición en las salas con mapa.", false, 140
+                    "Cuando está activado, no habrá ninguna limitación a tu audición en las salas con mapa.", false, 230
                 );
                 addMenuCheckbox(64, 64, "Activar visión completa en mapas: ", "mapfull",
-                    "Cuando está activado, puedes ver las salas del mapa completas sin niebla. Notas: el comando /mapfog, que activa/desactiva la niebla solo en la sala actual, no tendrá efecto si este ajuste está activo. Si no usaste /mapfog para quitar la niebla antes de activar esto, la niebla volverá al desactivarlo.", false, 140
+                    "Cuando está activado, puedes ver las salas del mapa completas sin niebla. Notas: el comando /mapfog, que activa/desactiva la niebla solo en la sala actual, no tendrá efecto si este ajuste está activo. Si no usaste /mapfog para quitar la niebla antes de activar esto, la niebla volverá al desactivarlo.", false, 230
                 );
                 addMenuCheckbox(64, 64, "Activar susurros completos en mapas: ", "nowhrange",
-                    "Cuando está activado, puedes susurrar a cualquier jugador en el mapa, sin importar la distancia. Funcionará con el comando estándar /whisper y el comando de UBC /murmur, entre todos los jugadores que tengan esta opción activa.", false, 140
+                    "Cuando está activado, puedes susurrar a cualquier jugador en el mapa, sin importar la distancia. Funcionará con el comando estándar /whisper y el comando de UBC /murmur, entre todos los jugadores que tengan esta opción activa.", false, 230
                 );
                 addMenuCheckbox(64, 64, "Activar caminata mágica en mapas: ", "mapcheat",
-                    "¡Cuando está activado, puedes ir a cualquier parte de los mapas e incluso atravesar paredes, incluso sin ser administradora!", false, 140
+                    "¡Cuando está activado, puedes ir a cualquier parte de los mapas e incluso atravesar paredes, incluso sin ser administradora!", false, 230
                 );
                 addMenuCheckbox(64, 64, "Sin teletransporte forzado en mapas: ", "noteleport",
-                    "Cuando está marcado, los comandos de BC relacionados con el teletransporte forzado en los mapas no funcionarán contigo, excepto si al menos un administrador de la sala está en tu Tplist (ver comandos /tplistadd, /tplistremove y /tplistshow).", false, 140
+                    "Cuando está marcado, los comandos de BC relacionados con el teletransporte forzado en los mapas no funcionarán contigo, excepto si al menos un administrador de la sala está en tu Tplist (ver comandos /tplistadd, /tplistremove y /tplistshow).", false, 230
                 );
             }
 
