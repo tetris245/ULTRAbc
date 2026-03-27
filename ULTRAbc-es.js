@@ -1972,7 +1972,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             Game: Player.Game
                         }, true);
                     },
-                    "Este ajuste es un interruptor. Puedes añadir o quitar todas las cartas extra de recompensa. Ten en cuenta que las cartas extra que hayas conseguido de forma normal también se eliminarán cuando esta opción cambie a la acción de quitar.", 160
+                    "Este ajuste es un interruptor. Puedes añadir o quitar todas las cartas extra de recompensa. Ten en cuenta que las cartas extra que hayas conseguido de forma normal también se eliminarán cuando esta opción cambie a la acción de quitar.", 140
                 );
                 addMenuCheckbox(64, 64, "Acceso total a menús de capas (layering): ", "layerall",
                     "Con esta opción, siempre tendrás acceso a los menús de capas, ¡incluso si las ataduras y candados restringen tus movimientos! Nota: Si no quieres que otros jugadores cambien las capas de tu personaje, puedes activar una opción específica en el mod WCE.", false, 160
