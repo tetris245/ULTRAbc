@@ -2093,25 +2093,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
                 addMenuCheckbox(64, 64, "Orden alfabético para Reputación y Habilidades: ", "alfrpsk",
-                    "Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.", false, 140
+                    "Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Orden alfabético para el menú de Preferencias: ", "alfmenu",
-                    "Cuando está activado, todas las opciones del menú principal de Preferencias se ordenarán alfabéticamente, a excepción de las Preferencias Generales.", false, 140
+                    "Cuando está activado, todas las opciones del menú principal de Preferencias se ordenarán alfabéticamente, a excepción de las Preferencias Generales.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Orden alfabético en pantallas de Preferencias: ", "alfaprf",
-                    "Con esta opción, la mayoría de los ajustes en algunas pantallas de Preferencias estarán en orden alfabético (según el texto en inglés) por tipo de ajuste (desplegables, casillas). Las pantallas afectadas son: General, Chat, Inmersión y Online.", false, 140
+                    "Con esta opción, la mayoría de los ajustes en algunas pantallas de Preferencias estarán en orden alfabético (según el texto en inglés) por tipo de ajuste (desplegables, casillas). Las pantallas afectadas son: General, Chat, Inmersión y Online.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Activar limitaciones del Manicomio (Asylum): ", "asylumlimit",
-                    "Por defecto, UBC desactiva las limitaciones del Manicomio (acceso y salida). Si te gustan estas limitaciones, puedes activarlas de nuevo con esta opción.", false, 140
+                    "Por defecto, UBC desactiva las limitaciones del Manicomio (acceso y salida). Si te gustan estas limitaciones, puedes activarlas de nuevo con esta opción.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Activar castigos por NPC: ", "npcpunish",
-                    "Por defecto, UBC desactiva los castigos automáticos de los NPC (especialmente cuando estás atada en una sala y pides ayuda a una sirvienta). Si te gustan estos castigos, puedes activarlos de nuevo con esta opción.", false, 140
+                    "Por defecto, UBC desactiva los castigos automáticos de los NPC (especialmente cuando estás atada en una sala y pides ayuda a una sirvienta). Si te gustan estos castigos, puedes activarlos de nuevo con esta opción.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Sin cambios de permisos tras usar la Safeword: ", "fixperm",
-                    "BC cambia automáticamente tus permisos generales de objetos cuando usas el comando de safeword o la opción de revertir en el menú de safeword. Si no te gusta esto, usa esta opción y tus permisos generales no serán modificados.", false, 140
+                    "BC cambia automáticamente tus permisos generales de objetos cuando usas el comando de safeword o la opción de revertir en el menú de safeword. Si no te gusta esto, usa esta opción y tus permisos generales no serán modificados.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Usar solo días en pantallas de Información: ", "onlydays",
-                    "BC convierte automáticamente los días en años, meses y días. Si no te gusta esto, usa esta opción para que estos datos se expresen únicamente en días en las pantallas de Información de Personaje.", false, 140
+                    "BC convierte automáticamente los días en años, meses y días. Si no te gusta esto, usa esta opción para que estos datos se expresen únicamente en días en las pantallas de Información de Personaje.", false, 228
                 );
             }
 
