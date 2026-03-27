@@ -1975,16 +1975,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Este ajuste es un interruptor. Puedes añadir o quitar todas las cartas extra de recompensa. Ten en cuenta que las cartas extra que hayas conseguido de forma normal también se eliminarán cuando esta opción cambie a la acción de quitar.", 140
                 );
                 addMenuCheckbox(64, 64, "Acceso total a menús de capas (layering): ", "layerall",
-                    "Con esta opción, siempre tendrás acceso a los menús de capas, ¡incluso si las ataduras y candados restringen tus movimientos! Nota: Si no quieres que otros jugadores cambien las capas de tu personaje, puedes activar una opción específica en el mod WCE.", false, 160
+                    "Con esta opción, siempre tendrás acceso a los menús de capas, ¡incluso si las ataduras y candados restringen tus movimientos! Nota: Si no quieres que otros jugadores cambien las capas de tu personaje, puedes activar una opción específica en el mod WCE.", false, 220
                 );
                 addMenuCheckbox(64, 64, "Truco para Bondage Brawl/Escuela de Magia: ", "magiccheat",
-                    "¡Con esta opción, siempre serás la ganadora en Bondage Brawl y en la Escuela de Magia (solo en la parte de un solo jugador)!", false, 160
+                    "¡Con esta opción, siempre serás la ganadora en Bondage Brawl y en la Escuela de Magia (solo en la parte de un solo jugador)!", false, 220
                 );
                 addMenuCheckbox(64, 64, "Información extra para algunos candados: ", "extrainfo",
-                    "Este ajuste permite usar el comando /infolock para obtener información extra (código, contraseña, tiempo restante) sobre algunos candados en objetos equipados en una ranura seleccionada al hacer clic en ti misma o en otro jugador.", false, 160
+                    "Este ajuste permite usar el comando /infolock para obtener información extra (código, contraseña, tiempo restante) sobre algunos candados en objetos equipados en una ranura seleccionada al hacer clic en ti misma o en otro jugador.", false, 220
                 );
                 addMenuCheckbox(64, 64, "Ayuda total para candados intrincados y HS: ", "fullseed",
-                    "¡Te convertirás en una experta en ganzúas con esta opción! Se mostrará en pantalla la solución completa con el orden correcto para forzar candados intrincados y de alta seguridad (HS).", false, 160
+                    "¡Te convertirás en una experta en ganzúas con esta opción! Se mostrará en pantalla la solución completa con el orden correcto para forzar candados intrincados y de alta seguridad (HS).", false, 220
                 );
                 let gmsg = "Este ajuste permite que tu habla (gagtalk) no forzada sea legible, sin importar la dificultad del juego. Sin embargo, no está disponible si has activado la función correspondiente de WCE, que tiene más opciones.";
                 let smsg = "Este ajuste permite el forcejeo (struggle) automático en minijuegos, sin importar la dificultad del juego. Si el forcejeo automático falla, necesitarás cambiar la solidez de los objetos equipados con el comando /solidity y/o mejorar tus habilidades con el comando /boost. Ten en cuenta que este ajuste no está disponible si has activado la función correspondiente de WCE, que funciona de forma algo distinta.";
@@ -2000,14 +2000,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (FBCdata.autoStruggle) sbc = 1;
                 }
                 if (gbc == 0) {
-                    addMenuCheckbox(64, 64, "Desactivar balbuceo (ungarbling) en tu gagtalk: ", "nogarble", gmsg, false, 160);
+                    addMenuCheckbox(64, 64, "Desactivar balbuceo (ungarbling) en tu gagtalk: ", "nogarble", gmsg, false, 220);
                 } else {
-                    addMenuCheckbox(64, 64, "Desactivar balbuceo (ungarbling) en tu gagtalk: ", "nogarble", gmsg, true, 160);
+                    addMenuCheckbox(64, 64, "Desactivar balbuceo (ungarbling) en tu gagtalk: ", "nogarble", gmsg, true, 220);
                 }
                 if (sbc == 0) {
-                    addMenuCheckbox(64, 64, "Activar forcejeo automático en minijuegos: ", "nostruggle", smsg, false, 160);
+                    addMenuCheckbox(64, 64, "Activar forcejeo automático en minijuegos: ", "nostruggle", smsg, false, 220);
                 } else {
-                    addMenuCheckbox(64, 64, "Activar forcejeo automático en minijuegos: ", "nostruggle", smsg, true, 160);
+                    addMenuCheckbox(64, 64, "Activar forcejeo automático en minijuegos: ", "nostruggle", smsg, true, 220);
                 }
             }
 
