@@ -2364,24 +2364,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DOGSsettings();
                 let nmsg = "Este modo desactiva los botones y atajos de LIBERAR/SALIR, y prohíbe muchos comandos sobre ti misma: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (si el valor < 20), totalrelease, unlock, untie. Si este modo está activo, no puede desactivarse mientras se está en restricción. Si se está en modo 'unrestrict total' al activar esta opción, el modo especial se desactivará automáticamente.";
                 if (((Player.IsRestrained() == true) || (dogsforbid == true)) && (noescape == true)) {
-                    addMenuCheckbox(64, 64, "Activar modo sin escape (no-escape): ", "noescape", nmsg, true, 150);
+                    addMenuCheckbox(64, 64, "Activar modo sin escape (no-escape): ", "noescape", nmsg, true, 220);
                 } else {
-                    addMenuCheckbox(64, 64, "Activar modo sin escape (no-escape): ", "noescape", nmsg, false, 150);
+                    addMenuCheckbox(64, 64, "Activar modo sin escape (no-escape): ", "noescape", nmsg, false, 220);
                 }
                 addMenuCheckbox(64, 64, "Forzar modo no-escape con candados devious: ", "dogsforced",
-                    "Cuando el modo no-escape está desactivado, se puede decidir forzar este modo cuando se tienen candados devious. Estos candados deben estar activados en el mod DOGS. Este modo seguirá activo tras quitar los candados y debe desactivarse manualmente.", "Player.UBC.ubcSettings.noescape", 150
+                    "Cuando el modo no-escape está desactivado, se puede decidir forzar este modo cuando se tienen candados devious. Estos candados deben estar activados en el mod DOGS. Este modo seguirá activo tras quitar los candados y debe desactivarse manualmente.", "Player.UBC.ubcSettings.noescape", 220
                 );
                 addMenuCheckbox(64, 64, "Activar modo silencio: ", "silent",
-                    "Este modo impide usar el comando de mensaje y hace que ciertos comandos no muestren avisos en el chat: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. Para volver a los mensajes por defecto, se debe desactivar este modo.", false, 150
+                    "Este modo impide usar el comando de mensaje y hace que ciertos comandos no muestren avisos en el chat: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. Para volver a los mensajes por defecto, se debe desactivar este modo.", false, 220
                 );
                 addMenuCheckbox(64, 64, "Extender modo silencio a la Safeword: ", "silsafe",
-                    "Cuando el modo silencio está activo, se puede usar la safeword sin que aparezca ningún mensaje en el chat. Útil solo si la safeword está habilitada.", "!Player.UBC.ubcSettings.silent", 150
+                    "Cuando el modo silencio está activo, se puede usar la safeword sin que aparezca ningún mensaje en el chat. Útil solo si la safeword está habilitada.", "!Player.UBC.ubcSettings.silent", 220
                 );
                 addMenuCheckbox(64, 64, "Activar modo 'unrestrict soft': ", "usoft",
-                    "Efectos de este modo: objetos ocultos añadidos al inventario, acceso a objetos cubiertos por otros, uso de ciertos objetos sobre uno mismo o terceros, y función de examen preservada bajo ceguera (excepto en privación sensorial total). No elimina las condiciones para usar assets. Requiere reiniciar sesión para salir del modo.", false, 150
+                    "Efectos de este modo: objetos ocultos añadidos al inventario, acceso a objetos cubiertos por otros, uso de ciertos objetos sobre uno mismo o terceros, y función de examen preservada bajo ceguera (excepto en privación sensorial total). No elimina las condiciones para usar assets. Requiere reiniciar sesión para salir del modo.", false, 220
                 );
                 addMenuCheckbox(64, 64, "Activar modo 'unrestrict total': ", "utotal",
-                    "Además de los efectos 'soft', este modo permite ciertas interacciones incluso bajo restricción. Uno de sus efectos puede ser bloqueado por Uwall. Este modo no está disponible en no-escape. Puede activar una alerta de BCX que debe ignorarse. Requiere reiniciar sesión para salir de este modo.", "Player.UBC.ubcSettings.noescape", 150
+                    "Además de los efectos 'soft', este modo permite ciertas interacciones incluso bajo restricción. Uno de sus efectos puede ser bloqueado por Uwall. Este modo no está disponible en no-escape. Puede activar una alerta de BCX que debe ignorarse. Requiere reiniciar sesión para salir de este modo.", "Player.UBC.ubcSettings.noescape", 220
                 );
             }
 
