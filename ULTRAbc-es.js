@@ -1913,30 +1913,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 defaultExit();
             }
 
-            PreferenceSubscreenUBCButtonsLoad = function() {
+			PreferenceSubscreenUBCButtonsLoad = function() {
                 UBCPreferenceSubscreen = "UBCButtons";
                 addMenuCheckbox(64, 64, "Activar botón de Preferencias en salas de chat: ", "extbuttons",
-                    "Cuando está marcado, se añadirá un botón de Extensiones en las salas de chat.", false, 150
+                    "Cuando está marcado, se añadirá un botón de Extensiones en las salas de chat.", false, 215
                 );
                 addMenuCheckbox(64, 64, "Activar botones de LIBERAR (FREE): ", "sosbuttons",
-                    "El botón FREE se añade en la sala de chat, la prisión de Pandora, la sala fotográfica y la celda de tiempo. Corresponde al comando /totalrelease, pero solo para ti. El mensaje por defecto en las salas de chat para este botón puede ser reemplazado por un mensaje personalizado o por la ausencia de mensaje (ver el comando /message). Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape", 150
+                    "El botón FREE se añade en la sala de chat, la prisión de Pandora, la sala fotográfica y la celda de tiempo. Corresponde al comando /totalrelease, pero solo para ti. El mensaje por defecto en las salas de chat para este botón puede ser reemplazado por un mensaje personalizado o por la ausencia de mensaje (ver el comando /message). Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape", 215
                 );
                 addMenuCheckbox(64, 64, "Activar botones de SALIR (OUT): ", "outbuttons",
-                    "El botón OUT se añade en la sala de chat, la prisión de Pandora, la sala fotográfica y la celda de tiempo. Corresponde al comando /quit, pero sin un texto opcional específico. Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape", 150
+                    "El botón OUT se añade en la sala de chat, la prisión de Pandora, la sala fotográfica y la celda de tiempo. Corresponde al comando /quit, pero sin un texto opcional específico. Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape", 215
                 );
                 let slowmsg = "Por defecto, sales de una sala de chat u otra ubicación con el botón OUT en modo rápido, incluso si estás atada. Al activar esta opción, saldrás en modo lento sin un icono especial bajo tu personaje, ¡lo que sorprenderá a los demás jugadores! Esta opción no está disponible en modo sin escape (no-escape). ";
                 let notesc = 0;
                 if (Player.UBC.ubcSettings.noescape == false) notesc = 1;
                 if (notesc == 0) {
-                    addMenuCheckbox(64, 64, "Salida lenta con botón OUT: ", "slowleave", slowmsg, true, 150);
+                    addMenuCheckbox(64, 64, "Salida lenta con botón OUT: ", "slowleave", slowmsg, true, 215);
                 } else {
-                    addMenuCheckbox(64, 64, "Salida lenta con botón OUT: ", "slowleave", slowmsg, "!Player.UBC.ubcSettings.outbuttons", 150);
+                    addMenuCheckbox(64, 64, "Salida lenta con botón OUT: ", "slowleave", slowmsg, "!Player.UBC.ubcSettings.outbuttons", 215);
                 }
                 addMenuCheckbox(64, 64, "Activar botón RGL en el chat: ", "rglbuttons",
-                    "El botón RGL da información sobre tu Nivel Real de Balbuceo (Real Garbling Level) en cualquier momento, comprobando las mordazas puestas y otros objetos que restringen el habla (también collares LSCG y hechizos). Al usar los botones, atajos o comandos para liberarte, esta información se da automáticamente y se sincroniza con tu nivel forzado de gagtalk/susurro cuando el resultado es 0. Por lo tanto, el botón RGL puede usarse como emergencia cuando no puedes hablar sin estar amordazada, por ejemplo.", false, 150
+                    "El botón RGL da información sobre tu Nivel Real de Balbuceo (Real Garbling Level) en cualquier momento, comprobando las mordazas puestas y otros objetos que restringen el habla (también collares LSCG y hechizos). Al usar los botones, atajos o comandos para liberarte, esta información se da automáticamente y se sincroniza con tu nivel forzado de gagtalk/susurro cuando el resultado es 0. Por lo tanto, el botón RGL puede usarse como emergencia.", false, 215
                 );
                 addMenuCheckbox(64, 64, "Sincronización extendida con botón RGL:", "rglsync",
-                    "Por defecto, la sincronización del botón RGL con el nivel forzado de gagtalk/susurro es automática al usar los botones de emergencia, atajos o comandos para liberarte. Este ajuste permite extenderlo a todas las demás situaciones. El nivel detectado se limitará a 10 para gagtalk (el 11 se usa para baby talk). Cuando está activado, los cambios manuales en tus mordazas y otros objetos que restringen el habla (incluyendo collares LSCG y hechizos) requieren hacer clic de nuevo en el botón RGL.", "!Player.UBC.ubcSettings.rglbuttons", 150
+                    "Por defecto, la sincronización del botón RGL con el nivel forzado de gagtalk/susurro es automática al usar los botones de emergencia, atajos o comandos para liberarte. Este ajuste permite extenderlo a todas las demás situaciones. El nivel detectado se limitará a 10 para gagtalk (el 11 se usa para baby talk). Cuando está activado, los cambios manuales en tus mordazas y otros objetos que restringen el habla (incluyendo collares LSCG y hechizos) requieren hacer clic de nuevo en el botón RGL.", "!Player.UBC.ubcSettings.rglbuttons", 215
                 );
             }
 
