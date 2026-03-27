@@ -1537,8 +1537,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
                 MainCanvas.textAlign = "left";
-                if (PreferenceMessage != "") DrawText(PreferenceMessage, 1400, 125, "Red", "Black");
-                DrawText("UBC " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + " - Click on a setting to get more info", 500, 125, "Black", "Gray");
+                if (PreferenceMessage != "") DrawText(PreferenceMessage, 1200, 85, "Red", "Black");
+                DrawText("UBC " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + " - Haz clic en una opción para obtener más información", 500, 125, "Black", "Gray");
                 if (settingsHint != "") {
                     DrawTextWrapGood(settingsHint, 1350, 200, 555, 725, ForeColor = UBC_API.HintForeColor, BackColor = UBC_API.HintBackColor, BorderColor = UBC_API.HintBorderColor);
                 }
@@ -2283,7 +2283,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputRpMaid");
                     ElementRemove("InputRpMain");
                     defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                } else PreferenceMessage = "Introduce un número válido";
             }
 
             PreferenceSubscreenUBCSkillsLoad = function() {
@@ -2356,7 +2356,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputSkillSelfbondage");
                     ElementRemove("InputSkillWillpower");
                     defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                } else PreferenceMessage = "Introduce un número válido";
             }
 
             PreferenceSubscreenUBCSpecialModesLoad = function() {
@@ -2544,7 +2544,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputTintColor");
                     ElementRemove("InputTintLevel");
                     defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                } else PreferenceMessage = "Introduce un número válido";
             }
 
             function keyHandler(e) {
