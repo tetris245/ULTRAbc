@@ -4459,7 +4459,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatRoomActivateView(ChatRoomCharacterViewName);
             MainCanvas.textAlign = "center";
             TintsEffect();
-            DrawText("Salas de Chat", 130, 530, "White", "Black");
+            DrawText("Salas de Chat", 115, 530, "White", "Black");
             if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Solo Mujeres");
             if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Solo Hombres");
             if (asylumlimit == true) {
