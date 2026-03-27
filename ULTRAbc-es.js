@@ -1344,7 +1344,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCTalking",
                 "UBCVisual"
             ];
-const ubcSettingCategoryLabels = {
+            const ubcSettingCategoryLabels = {
                 UBCBackgrounds: "Fondos",
                 UBCButtons: "Botones",
                 UBCCheats: "Trucos",
@@ -2113,7 +2113,6 @@ const ubcSettingCategoryLabels = {
                 addMenuCheckbox(64, 64, "Usar solo días en pantallas de Información: ", "onlydays",
                     "BC convierte automáticamente los días en años, meses y días. Si no te gusta esto, usa esta opción para que estos datos se expresen únicamente en días en las pantallas de Información de Personaje.", false, 140
                 );
-
             }
 
             PreferenceSubscreenUBCMiscRun = function() {
@@ -2166,7 +2165,6 @@ const ubcSettingCategoryLabels = {
                 addMenuCheckbox(64, 64, "Extender gemidos por vibradores (xvibes moan): ", "xvibeMoan",
                     "Cuando está activado, gemirás cuando cambien los ajustes de vibración de otros jugadores en la sala, incluso si tú no tienes un vibrador activo (la única condición es tener un nivel de excitación igual o superior a 10). Este ajuste requiere que el gemido por vibradores propio esté activado.", "!Player.UBC.ubcSettings.vibeMoan", 140
                 );
-
             }
 
             PreferenceSubscreenUBCMoanerRun = function() {
@@ -2219,7 +2217,6 @@ const ubcSettingCategoryLabels = {
                     "Introduce un número entre 0 y 100 para establecer tu nivel de reputación de Sirvienta.", 6
                 );
             }
-
 
             PreferenceSubscreenUBCReputationRun = function() {
                 drawMenuElements();
@@ -12114,7 +12111,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'bgshow2',
         Description: "(numero): envía al chat un enlace a un fondo estándar específico. Al usar con WCE, el enlace es clicable y la imagen se puede incrustar.",
         Action: (args) => {
@@ -12205,7 +12202,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'cgame',
         Description: "(zona): inicia un Juego de Cartas del Club contra un NPC específico.",
         Action: (args) => {
@@ -12322,7 +12319,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'college',
         Description: "entra a la universidad, omitiendo los requisitos.",
         Action: () => {
@@ -12496,7 +12493,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-	    CommandCombine([{
+	CommandCombine([{
         Tag: 'ctitle',
         Description: "(titulo personalizado): crea un título personalizado que no requiere cumplir condiciones.",
         Action: (args, originalInput) => {  
@@ -12622,7 +12619,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'game',
         Description: "(minijuego): lanza un minijuego.",
         Action: (args) => {
@@ -12768,7 +12765,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'hint',
         Description: "(objetivo) (pista): añade o cambia una pista para los candados con contraseña actuales.",
         Action: (_, command, args) => {
@@ -12910,7 +12907,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'invisible',
         Description: "(objetivo): activa o envía al modo invisible (los scripts deben estar permitidos en los ajustes de BC).",
         Action: (args) => {
@@ -13024,7 +13021,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'layerset',
         Description: "(numero_capa) (codigocolor): cambia el color de una capa del objeto en el espacio guardado.",
         Action: (args) => {
@@ -13148,7 +13145,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'lock',
         Description: "(objetivo) (tipo_candado) (otros parámetros): añade candados a todos los objetos bloqueables del objetivo especificado.",
         Action: (args) => {
@@ -13369,7 +13366,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'login',
         Description: "(nombre_cuenta) (contraseña): inicia sesión en una cuenta nueva.",
         Action: (args) => {
@@ -13414,7 +13411,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'mapkeys',
         Description: "(numero_llave) (accion): encuentra o pierde todas las llaves o una específica para la sala con mapa actual.",
         Action: (args) => {
@@ -13531,7 +13528,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'mapy',
         Description: "(posicion-y): cambia tu coordenada Y en el mapa.",
         Action: (args) => {
@@ -13647,7 +13644,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'mbsroom',
         Description: ": da información sobre las ruedas de la fortuna MBS en la sala de chat actual.",
         Action: () => {
@@ -13909,7 +13906,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'mission',
         Description: "(mision): va a la sala de infiltración y fuerza una misión específica.",
         Action: (args) => {
@@ -14042,7 +14039,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'outfit',
         Description: "(parámetro): restaura/guarda/carga vestimentas (incluyendo accesorios).",
         Action: (args) => {
@@ -14159,7 +14156,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'permission',
         Description: "(numero): cambia tus permisos de objetos.",
         Action: (args) => {
@@ -14292,7 +14289,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'pmenu',
         Description: ": acceso directo al menú de Preferencias.",
         Action: () => {
@@ -14827,7 +14824,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'prison',
         Description: "(minutos): permanece en la prisión online de Pandora.",
         Action: (args) => {
@@ -14924,7 +14921,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'removecollar',
         Description: ": quita temporalmente el collar de esclava/dueño.",
         Action: () => {
@@ -15004,7 +15001,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'roleplay',
         Description: "(rol): comienza a jugar un rol específico.",
         Action: (args) => {
@@ -15070,7 +15067,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'rolequit',
         Description: "(rol o área del club): deja de jugar un rol específico.",
         Action: (args) => {
@@ -15128,7 +15125,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'safeworditem',
         Description: ": elimina un objeto específico.",
         Action: () => {
@@ -15366,7 +15363,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'sleep',
         Description: "(objetivo): usa la pastilla para dormir en ti mismo o en otro jugador.",
         Action: (args) => {
@@ -15495,7 +15492,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'spin',
         Description: "(objetivo) (opcion): permite acceder a la rueda de la fortuna del objetivo, incluso si no se muestra.",
         Action: (args) => {
@@ -15615,7 +15612,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'theme',
         Description: "(numero): cambia el tema de color del chat.",
         Action: (args) => {
@@ -15694,7 +15691,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'title1',
         Description: "(titulo): elige un nuevo título (de la A a la K).",
         Action: (args) => {
@@ -16259,7 +16256,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'totalrelease',
         Description: "(objetivo): retira todas las fijaciones, collar, arnés, castidad y accesorios.",
         Action: (args) => {
@@ -16364,7 +16361,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'trsee',
         Description: "(visor) (módulo de sordera) (barboquejo): cambia los ajustes de un Casco Tecno equipado.",
         Action: (args) => {
@@ -16467,7 +16464,7 @@ const ubcSettingCategoryLabels = {
                     "<b>/title4</b> (nuevo título) = elige un nuevo título (R-Z). *";
                 infomsg(msg);
             }
-                        if (args === "chat") {
+            if (args === "chat") {
                 let msg = "Comandos de chat - * = más información al usar\n" +
                     "<b>/bio</b> (objetivo) = ve el perfil de cualquier jugador en la sala de chat.\n" +
                     "<b>/font</b> (nueva_fuente) (tamaño) = cambia la fuente en BC. *\n" +
@@ -16530,7 +16527,7 @@ const ubcSettingCategoryLabels = {
                     "<b>/tplistshow</b> = muestra la lista de jugadores autorizados para teletransportarte.";
                 infomsg(msg);
             }
-                        if (args === "misc") {
+            if (args === "misc") {
                 let msg = "Comandos Varios - * = más info al usar\n" +
                     "<b>/callubc</b> = instala la interfaz UBC (usar si falló la inicialización).\n" +
                     "<b>/login</b> (cuenta) (contraseña) = inicia sesión en una cuenta nueva.\n" +
@@ -16598,7 +16595,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'ulistadd',
         Description: "(número_de_miembro): añade un jugador a la lista permitiéndole ignorar el Uwall.",
         Action: (args) => {
@@ -16699,7 +16696,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'unlock',
         Description: "(objetivo) (tipo_candado): elimina todos los candados o solo un tipo específico en el objetivo indicado.",
         Action: (args) => {
@@ -16844,7 +16841,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'uroom',
         Description: ": da información sobre usuarios de UBC y protección Uwall en la sala de chat actual.",
         Action: () => {
@@ -17076,7 +17073,7 @@ const ubcSettingCategoryLabels = {
         }
     }])
 
-        CommandCombine([{
+    CommandCombine([{
         Tag: 'visible',
         Description: ": (objetivo): vuelve o envía de vuelta al modo visible.",
         Action: (args) => {
