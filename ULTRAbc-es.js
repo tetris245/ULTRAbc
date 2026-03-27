@@ -89,7 +89,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 (async function() {
     if (window.UBCver) {
-        console.warn("ULTRAbc already loaded. No double loading");
+        console.warn("ULTRAbc ya está cargado, por lo que no se volverá a cargar");
         return;
     }
 
@@ -119,14 +119,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let tgpr2;
     let tgpr3;
     let tgpr4;
-    const umsg1 = "Your command can't be executed because ";
-    const umsg2 = " has enabled the Uwall protection.";
-    const umsg3 = "you are in no-escape mode.";
-    const umsg4 = "Your message can't be sent because it does not respect the rules of doll talk.";
-    const umsg5 = "This room does not use the map feature.";
-    const umsg6 = " Better use the <b>/uroom</b> command.";
-    const umsg7 = "you are in silent mode.";
-    const umsg8 = "Your very tight collar or a LSCG spell prevents you to talk.";
+    const umsg1 = "Tu comando no puede ser ejecutado porque ";
+    const umsg2 = " has activado la protección Uwall.";
+    const umsg3 = "estás en modo sin escape (no-escape).";
+    const umsg4 = "Tu mensaje no puede enviarse porque no respeta las reglas de 'doll talk'.";
+    const umsg5 = "Esta sala no utiliza la función de mapa.";
+    const umsg6 = " Es mejor usar el comando <b>/uroom</b>.";
+    const umsg7 = "estás en modo silencio.";
+    const umsg8 = "Tu collar está muy apretado o un hechizo LSCG te impide hablar.";
 
     const M_MOANER_moanerKey = "bc_moaner_";
     let M_MOANER_scriptOn = false;
@@ -1164,9 +1164,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         await waitFor(() => ServerSocket && ServerIsConnected);
 
         const UBC_TIPS = [
-            "See more stars with the UBC options and commands!",
-            "Tip: Use the /uhelp command in chat or explore the wiki to better know all the UBC commands.",
-            "Enjoy all the UBC options and commands!"
+            "¡Mira más estrellas con las opciones y comandos de UBC!",
+            "Consejo: Usa el comando /uhelp en el chat o explora la wiki para conocer mejor todos los comandos de UBC.",
+            "¡Disfruta de todas las opciones y comandos de UBC!"
         ]
 
         const ubcSettingsKey = () => "bc_moaner_" + Player.MemberNumber;
@@ -1344,19 +1344,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCTalking",
                 "UBCVisual"
             ];
-            const ubcSettingCategoryLabels = {
-                UBCBackgrounds: "Backgrounds",
-                UBCButtons: "Buttons",
-                UBCCheats: "Cheats",
-                UBCHotkeys: "Hotkeys",
-                UBCMaps: "Maps",
-                UBCMisc: "Misc",
-                UBCMoaner: "Moaner",
-                UBCReputation: "Reputation",
-                UBCSkills: "Skills",
-                UBCSpecialModes: "Special Modes",
-                UBCTalking: "Talking",
-                UBCVisual: "Visual"
+const ubcSettingCategoryLabels = {
+                UBCBackgrounds: "Fondos",
+                UBCButtons: "Botones",
+                UBCCheats: "Trucos",
+                UBCHotkeys: "Atajos de teclado",
+                UBCMaps: "Mapas",
+                UBCMisc: "Varios",
+                UBCMoaner: "Gemidos (Moaner)",
+                UBCReputation: "Reputación",
+                UBCSkills: "Habilidades",
+                UBCSpecialModes: "Modos especiales",
+                UBCTalking: "Hablar",
+                UBCVisual: "Visuales"
             };
             const MENU_ELEMENT_X_OFFSET = 1050;
 
@@ -1676,22 +1676,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawCharacter(Player, 50, 50, 0.9);
                 DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
                 MainCanvas.textAlign = "left";
-                DrawText("- ULTRA Bondage Club Settings -", 500, 125, "Black", "Gray");
+                DrawText("- Configuración de ULTRAbc -", 500, 125, "Black", "Gray");
                 MainCanvas.textAlign = "center";
                 //Show tips every 10 secs
                 DrawTextWrapGood(UBC_TIPS[Math.floor(((TimerGetTime() % 100000) / 100000) * (UBC_TIPS.length))], 1650, 260, 400, 100, ForeColor = UBC_API.HintForeColor);
 
                 DrawText("ULTRAbc " + UBCver, 1665, 525, "Black", "Gray");
-                DrawButton(1500, 550, 315, 90, "", "White", "", "Link to Icons8");
+                DrawButton(1500, 550, 315, 90, "", "White", "", "Enlace a Icons8");
                 DrawImageResize(IMAGES.LOGO, 1510, 565, 60, 60);
-                DrawTextFit("Icon by Icons8", 1690, 598, 308, "Black");
-                DrawButton(1500, 655, 315, 90, "", "White", "", "Open UBC Changelog on GitHub");
+                DrawTextFit("Icono de Icons8", 1690, 598, 308, "Black");
+                DrawButton(1500, 655, 315, 90, "", "White", "", "Abre el Changelog de UBC en GitHub");
                 DrawImageResize("Icons/Changelog.png", 1510, 670, 60, 60);
                 DrawTextFit("UBC Changes", 1685, 703, 308, "Black");
-                DrawButton(1500, 760, 315, 90, "", "White", "", "Open UBC Wiki on GitHub");
+                DrawButton(1500, 760, 315, 90, "", "White", "", "Abrir la Wiki de UBC en GitHub");
                 DrawImageResize("Icons/Introduction.png", 1510, 775, 60, 60);
-                DrawTextFit("UBC Wiki", 1685, 808, 308, "Black");
-                DrawText("/uhelp in chat", 1665, 880, "Black", "Gray");
+                DrawTextFit("Wiki de UBC", 1685, 808, 308, "Black");
+                DrawText("/uhelp en el chat", 1665, 880, "Black", "Gray");
 
                 //DrawButton(1500, 860, 300, 90, "Reset", "Red", "Icons/Reset.png", "Reset ALL Settings (including best friends list).")
 
@@ -1881,23 +1881,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCBackgroundsLoad = function() {
                 UBCPreferenceSubscreen = "UBCBackgrounds";
-                addMenuCheckbox(64, 64, "Access all standard backgrounds: ", "bgall",
-                    "With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!", false, 200
+                addMenuCheckbox(64, 64, "Acceder a todos los fondos estándar: ", "bgall",
+                    "Con esta opción, no estarás limitada a 42 fondos en la Celda Privada o 187 en las preferencias Online y el editor de Club Card Game al cambiar varios fondos. Tendrás acceso a todos los fondos estándar (¡más de 250!). Nota: si usas BCX y quieres acceso directo a los fondos añadidos por BCX, ¡muéstralos con el comando /bg1!", false, 200
                 );
-                addMenuCheckbox(64, 64, "Disable background color for UBC messages: ", "noubccolor",
-                    "If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.", false, 200
+                addMenuCheckbox(64, 64, "Desactivar color de fondo para mensajes UBC: ", "noubccolor",
+                    "Si marcas esta casilla, UBC no usará un color específico predefinido como fondo para sus mensajes locales en las salas de chat.", false, 200
                 );
-                addMenuCheckbox(64, 64, "Extended using of Character Info background: ", "ifext",
-                    "On the Character Info screen, you have buttons to randomly or manually select a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immediate (you need to go back to the Extensions menu!)", false, 200
+                addMenuCheckbox(64, 64, "Uso extendido del fondo de Información de Personaje: ", "ifext",
+                    "En la pantalla de Información de Personaje, tienes botones para seleccionar manual o aleatoriamente un fondo que reemplaza al predeterminado. El fondo seleccionado también se aplica automáticamente a las pantallas de BCX. Si activas este ajuste, UBC extiende este fondo a las siguientes pantallas: Título, Perfil y Preferencias (también de la mayoría de complementos), pero el efecto no es inmediato (¡debes volver al menú de Extensiones!)", false, 200
                 );
-                addMenuCheckbox(64, 64, "Remove background buttons in Character Info: ", "noifbuttons",
-                    "If you check this setting, UBC will not display background buttons in Character Info screen. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likolisu's tool to change the background of this screen, you need to click first on the Default Background button before checking this option.", false, 200
+                addMenuCheckbox(64, 64, "Quitar botones de fondo en Información de Personaje: ", "noifbuttons",
+                    "Si marcas esta casilla, UBC no mostrará los botones de fondo en la pantalla de Información de Personaje. Sin embargo, tus ajustes actuales seguirán activos. NOTA IMPORTANTE: Si quieres usar la herramienta de Likolisu para cambiar el fondo de esta pantalla, debes hacer clic primero en el botón de Fondo Predeterminado antes de marcar esta opción.", false, 200
                 );
-                addMenuCheckbox(64, 64, "Remove background buttons in Timer Cell: ", "notcbuttons",
-                    "If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active.", false, 200
+                addMenuCheckbox(64, 64, "Quitar botones de fondo en Celda de Tiempo: ", "notcbuttons",
+                    "Si marcas esta casilla, UBC no mostrará los botones de fondo en la Celda de Tiempo. Sin embargo, tus ajustes actuales seguirán activos.", false, 200
                 );
-                addMenuCheckbox(64, 64, "Remove background buttons in Wardrobe: ", "nowrbuttons",
-                    "If you check this setting, UBC will not display background buttons in Wardrobe. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likolisu's tool to change the background of this screen, you need to click first on the Default Background button before checking this option.", false, 200
+                addMenuCheckbox(64, 64, "Quitar botones de fondo en Vestuario: ", "nowrbuttons",
+                    "Si marcas esta casilla, UBC no mostrará los botones de fondo en el Vestuario. Sin embargo, tus ajustes actuales seguirán activos. NOTA IMPORTANTE: Si quieres usar la herramienta de Likolisu para cambiar el fondo de esta pantalla, debes hacer clic primero en el botón de Fondo Predeterminado antes de marcar esta opción.", false, 200
                 );
             }
 
@@ -1915,28 +1915,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCButtonsLoad = function() {
                 UBCPreferenceSubscreen = "UBCButtons";
-                addMenuCheckbox(64, 64, "Enable Preferences button in chat rooms: ", "extbuttons",
-                    "When checked, an Extensions button will be added in the chat rooms.", false, 150
+                addMenuCheckbox(64, 64, "Activar botón de Preferencias en salas de chat: ", "extbuttons",
+                    "Cuando está marcado, se añadirá un botón de Extensiones en las salas de chat.", false, 150
                 );
-                addMenuCheckbox(64, 64, "Enable FREE buttons: ", "sosbuttons",
-                    "The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape", 150
+                addMenuCheckbox(64, 64, "Activar botones de LIBERAR (FREE): ", "sosbuttons",
+                    "El botón FREE se añade en la sala de chat, la prisión de Pandora, la sala fotográfica y la celda de tiempo. Corresponde al comando /totalrelease, pero solo para ti. El mensaje por defecto en las salas de chat para este botón puede ser reemplazado por un mensaje personalizado o por la ausencia de mensaje (ver el comando /message). Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape", 150
                 );
-                addMenuCheckbox(64, 64, "Enable OUT buttons: ", "outbuttons",
-                    "The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape", 150
+                addMenuCheckbox(64, 64, "Activar botones de SALIR (OUT): ", "outbuttons",
+                    "El botón OUT se añade en la sala de chat, la prisión de Pandora, la sala fotográfica y la celda de tiempo. Corresponde al comando /quit, pero sin un texto opcional específico. Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape", 150
                 );
-                let slowmsg = "By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players! This option is not available in no-escape mode. ";
+                let slowmsg = "Por defecto, sales de una sala de chat u otra ubicación con el botón OUT en modo rápido, incluso si estás atada. Al activar esta opción, saldrás en modo lento sin un icono especial bajo tu personaje, ¡lo que sorprenderá a los demás jugadores! Esta opción no está disponible en modo sin escape (no-escape). ";
                 let notesc = 0;
                 if (Player.UBC.ubcSettings.noescape == false) notesc = 1;
                 if (notesc == 0) {
-                    addMenuCheckbox(64, 64, "Slow exit with OUT button: ", "slowleave", slowmsg, true, 150);
+                    addMenuCheckbox(64, 64, "Salida lenta con botón OUT: ", "slowleave", slowmsg, true, 150);
                 } else {
-                    addMenuCheckbox(64, 64, "Slow exit with OUT button: ", "slowleave", slowmsg, "!Player.UBC.ubcSettings.outbuttons", 150);
+                    addMenuCheckbox(64, 64, "Salida lenta con botón OUT: ", "slowleave", slowmsg, "!Player.UBC.ubcSettings.outbuttons", 150);
                 }
-                addMenuCheckbox(64, 64, "Enable RGL button in chat: ", "rglbuttons",
-                    "The RGL button gives info about your current Real Garbling Level at any moment, by checking worn gags and other items restraining talking (also LSCG collar and spells). When using the buttons, hotkeys or commands to release yourself, this info is automatically given and synchronized with your forced gagtalk/whisper level as the result is 0. The RGL button can therefore be used as emergency when you can't talk while not being gagged, for example.", false, 150
+                addMenuCheckbox(64, 64, "Activar botón RGL en el chat: ", "rglbuttons",
+                    "El botón RGL da información sobre tu Nivel Real de Balbuceo (Real Garbling Level) en cualquier momento, comprobando las mordazas puestas y otros objetos que restringen el habla (también collares LSCG y hechizos). Al usar los botones, atajos o comandos para liberarte, esta información se da automáticamente y se sincroniza con tu nivel forzado de gagtalk/susurro cuando el resultado es 0. Por lo tanto, el botón RGL puede usarse como emergencia cuando no puedes hablar sin estar amordazada, por ejemplo.", false, 150
                 );
-                addMenuCheckbox(64, 64, "Extended synchronization with RGL button:", "rglsync",
-                    "By default, the synchronization of RGL button with forced level of gagtalk/whisper is automatic when using the emergency buttons, hotkeys or commands to release yourself. This setting allows to extend it to all other situations. The detected level will be limited to 10 for gagtalk (11 is used for baby talk). When enabled, manual changes in your worn gags and other items restraining talking (including LSCG collar and spells) require to click the RGL button again.", "!Player.UBC.ubcSettings.rglbuttons", 150
+                addMenuCheckbox(64, 64, "Sincronización extendida con botón RGL:", "rglsync",
+                    "Por defecto, la sincronización del botón RGL con el nivel forzado de gagtalk/susurro es automática al usar los botones de emergencia, atajos o comandos para liberarte. Este ajuste permite extenderlo a todas las demás situaciones. El nivel detectado se limitará a 10 para gagtalk (el 11 se usa para baby talk). Cuando está activado, los cambios manuales en tus mordazas y otros objetos que restringen el habla (incluyendo collares LSCG y hechizos) requieren hacer clic de nuevo en el botón RGL.", "!Player.UBC.ubcSettings.rglbuttons", 150
                 );
             }
 
@@ -1954,7 +1954,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCCheatsLoad = function() {
                 UBCPreferenceSubscreen = "UBCCheats";
-                addMenuButton(150, 64, "Add/Remove Extra Cards for Card Game:", "Toggle", function() {
+                addMenuButton(150, 64, "Añadir/Quitar cartas extra del juego:", "Alternar", function() {
                         Player.Game.ClubCard.Reward = "";
                         if (Player.UBC.ubcSettings.cextra == false) {
                             Player.UBC.ubcSettings.cextra = true;
@@ -1963,31 +1963,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 let Char = String.fromCharCode(Extra[i]);
                                 Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
                             }
-                            PreferenceMessage = "All extra cards added";
+                            PreferenceMessage = "Todas las cartas extra añadidas";
                         } else {
                             Player.UBC.ubcSettings.cextra = false;
-                            PreferenceMessage = "All extra cards removed";
+                            PreferenceMessage = "Todas las cartas extra eliminadas";
                         }
                         ServerAccountUpdate.QueueData({
                             Game: Player.Game
                         }, true);
                     },
-                    "This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action.", 160
+                    "Este ajuste es un interruptor. Puedes añadir o quitar todas las cartas extra de recompensa. Ten en cuenta que las cartas extra que hayas conseguido de forma normal también se eliminarán cuando esta opción cambie a la acción de quitar.", 160
                 );
-                addMenuCheckbox(64, 64, "Always access to layering menus: ", "layerall",
-                    "With this option, you will always have access to layering menus, even if bindings and locks restrain your moves! Note: If you don't want that other players make layering based changes to your character, you can enable a specific option in the WCE mod.", false, 160
+                addMenuCheckbox(64, 64, "Acceso total a menús de capas (layering): ", "layerall",
+                    "Con esta opción, siempre tendrás acceso a los menús de capas, ¡incluso si las ataduras y candados restringen tus movimientos! Nota: Si no quieres que otros jugadores cambien las capas de tu personaje, puedes activar una opción específica en el mod WCE.", false, 160
                 );
-                addMenuCheckbox(64, 64, "Enable Bondage Brawl/Magic School cheat: ", "magiccheat",
-                    "With this option, you will always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!", false, 160
+                addMenuCheckbox(64, 64, "Truco para Bondage Brawl/Escuela de Magia: ", "magiccheat",
+                    "¡Con esta opción, siempre serás la ganadora en Bondage Brawl y en la Escuela de Magia (solo en la parte de un solo jugador)!", false, 160
                 );
-                addMenuCheckbox(64, 64, "Enable extra info for some locks: ", "extrainfo",
-                    "This setting allows to use the /infolock command and get this way extra info (code, password, time left) about some locks on worn item in a slot selected by clicking on yourself or another player.", false, 160
+                addMenuCheckbox(64, 64, "Información extra para algunos candados: ", "extrainfo",
+                    "Este ajuste permite usar el comando /infolock para obtener información extra (código, contraseña, tiempo restante) sobre algunos candados en objetos equipados en una ranura seleccionada al hacer clic en ti misma o en otro jugador.", false, 160
                 );
-                addMenuCheckbox(64, 64, "Enable full help for intricate and hs locks: ", "fullseed",
-                    "You will become a lockpicking expert with this option! The full solution with the correct order to lockpick intricate and high security locks is displayed on screen.", false, 160
+                addMenuCheckbox(64, 64, "Ayuda total para candados intrincados y HS: ", "fullseed",
+                    "¡Te convertirás en una experta en ganzúas con esta opción! Se mostrará en pantalla la solución completa con el orden correcto para forzar candados intrincados y de alta seguridad (HS).", false, 160
                 );
-                let gmsg = "This setting allows to ungarble your non-forced gagtalk, no matter your game difficulty. However, it is not available when you have enabled the corresponding WCE feature, which has more options.";
-                let smsg = "This setting allows automatic struggle in mini-games, no matter your game difficulty. If the autostruggle fails, you need to change solidity of current worn items with the /solidity command and/or enhance your skills with the /boost command. Note that this setting is not available when you have enabled the corresponding WCE feature, which works slightly differently.";
+                let gmsg = "Este ajuste permite que tu habla (gagtalk) no forzada sea legible, sin importar la dificultad del juego. Sin embargo, no está disponible si has activado la función correspondiente de WCE, que tiene más opciones.";
+                let smsg = "Este ajuste permite el forcejeo (struggle) automático en minijuegos, sin importar la dificultad del juego. Si el forcejeo automático falla, necesitarás cambiar la solidez de los objetos equipados con el comando /solidity y/o mejorar tus habilidades con el comando /boost. Ten en cuenta que este ajuste no está disponible si has activado la función correspondiente de WCE, que funciona de forma algo distinta.";
                 let gbc = 0;
                 let sbc = 0;
                 if (Player.FBC != undefined) {
@@ -2000,14 +2000,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (FBCdata.autoStruggle) sbc = 1;
                 }
                 if (gbc == 0) {
-                    addMenuCheckbox(64, 64, "Enable ungarbling of your gagtalk: ", "nogarble", gmsg, false, 160);
+                    addMenuCheckbox(64, 64, "Desactivar balbuceo (ungarbling) en tu gagtalk: ", "nogarble", gmsg, false, 160);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable ungarbling of your gagtalk: ", "nogarble", gmsg, true, 160);
+                    addMenuCheckbox(64, 64, "Desactivar balbuceo (ungarbling) en tu gagtalk: ", "nogarble", gmsg, true, 160);
                 }
                 if (sbc == 0) {
-                    addMenuCheckbox(64, 64, "Enable automatic struggle in mini-games: ", "nostruggle", smsg, false, 160);
+                    addMenuCheckbox(64, 64, "Activar forcejeo automático en minijuegos: ", "nostruggle", smsg, false, 160);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable automatic struggle in mini-games: ", "nostruggle", smsg, true, 160);
+                    addMenuCheckbox(64, 64, "Activar forcejeo automático en minijuegos: ", "nostruggle", smsg, true, 160);
                 }
             }
 
@@ -2025,14 +2025,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCHotkeysLoad = function() {
                 UBCPreferenceSubscreen = "UBCHotkeys";
-                addMenuCheckbox(64, 64, "Enable hotkeys in chat rooms: ", "hotkeys",
-                    "These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself.                         Hotkeys on numeric pad:         Divide = fast leave               Multiply = total release                    If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode.", "Player.UBC.ubcSettings.noescape"
+                addMenuCheckbox(64, 64, "Activar atajos en salas de chat: ", "hotkeys",
+                    "Estos atajos equivalen al comando /quit (sin texto opcional) y al comando /totalrelease (solo para ti). Atajos en el teclado numérico: Dividir (/) = salida rápida, Multiplicar (*) = liberación total. Si no tienes teclado numérico, usa el comando similar o un botón de UBC. Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape"
                 );
-                addMenuCheckbox(64, 64, "Enable hotkeys in chat search: ", "cskeys",
-                    "When this option is enabled, you will have direct access to some useful screens and can change the Chat Search background       Left Alt = Preferences                  Left Arrow = Wardrobe                 Right Arrow = Extensions             Up Arrow = Random background Down Arrow = Select background Tab = Default background"
+                addMenuCheckbox(64, 64, "Activar atajos en búsqueda de chat: ", "cskeys",
+                    "Cuando esta opción está activa, tendrás acceso directo a varias pantallas y podrás cambiar el fondo de la Búsqueda de Chat. Alt Izquierdo = Preferencias, Flecha Izquierda = Vestuario, Flecha Derecha = Extensiones, Flecha Arriba = Fondo aleatorio, Flecha Abajo = Seleccionar fondo, Tab = Fondo predeterminado."
                 );
-                addMenuCheckbox(64, 64, "Enable hotkeys in friend list: ", "frkeys",
-                    "These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. Background can be changed too. List of available hotkeys:                D = Default background                  F = Female club    G = Mixed club  H = Male club        J = Asylum       R = Random background              S = Select background"
+                addMenuCheckbox(64, 64, "Activar atajos en lista de amigos: ", "frkeys",
+                    "Estos atajos permiten obtener enlaces clicables a otros lobbies a los que tengas acceso si estás en un lobby (no en una sala). Solo puedes usarlos en la lista de amigos conectados Y si no estás en el cuadro de búsqueda o zona de pitidos. También permite cambiar el fondo. Atajos: D = Fondo predeterminado, F = Club femenino, G = Club mixto, H = Club masculino, J = Manicomio (Asylum), R = Fondo aleatorio, S = Seleccionar fondo."
                 );
             }
 
@@ -2050,26 +2050,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMapsLoad = function() {
                 UBCPreferenceSubscreen = "UBCMaps";
-                addMenuCheckbox(64, 64, "Add toys under locked chastity in traps: ", "magictoys",
-                    "Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!", false, 140
+                addMenuCheckbox(64, 64, "Añadir juguetes bajo castidad bloqueada en trampas: ", "magictoys",
+                    "Activa esta opción si aceptas que las trampas en salas con mapa puedan añadir juguetes bajo castidad bloqueada, ¡con todas las consecuencias que eso pueda tener después con tu dueño/a o amantes, por ejemplo!", false, 140
                 );
-                addMenuInput(200, "Selected device trap (0-9):", "maptrap1", "InputDeviceTrap",
-                    "Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
+                addMenuInput(200, "Trampa de dispositivo seleccionada (0-9):", "maptrap1", "InputDeviceTrap",
+                    "Introduce un número entre 0 y 9 para seleccionar una trampa de dispositivo: 0 Ninguna - 1 Banco de bondage - 2 Ataúd - 3 Marco de exhibición - 4 Perrera (Kennel) - 5 Casillero - 6 Carretilla - 7 Caja de madera - 8 Cruz en X - 9 TODAS LAS TRAMPAS. ¡Cuando una trampa está activa, serás atada automáticamente si caminas sobre el dispositivo!", 6
                 );
-                addMenuCheckbox(64, 64, "Enable full hearing in maps: ", "mapfull2",
-                    "When enabled, there's no any limitation to your hearing in the map rooms", false, 140
+                addMenuCheckbox(64, 64, "Activar audición completa en mapas: ", "mapfull2",
+                    "Cuando está activado, no habrá ninguna limitación a tu audición en las salas con mapa.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Enable full vision in maps: ", "mapfull",
-                    "When enabled, you can see the entire map rooms without fog. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.", false, 140
+                addMenuCheckbox(64, 64, "Activar visión completa en mapas: ", "mapfull",
+                    "Cuando está activado, puedes ver las salas del mapa completas sin niebla. Notas: el comando /mapfog, que activa/desactiva la niebla solo en la sala actual, no tendrá efecto si este ajuste está activo. Si no usaste /mapfog para quitar la niebla antes de activar esto, la niebla volverá al desactivarlo.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Enable full whispering in maps: ", "nowhrange",
-                    "When enabled, you can whisper to any player in the map, no matter the distance that is between you and this player. It will work with the standard BC command /whisper and the UBC command /murmur, between all players who have enabled this option.", false, 140
+                addMenuCheckbox(64, 64, "Activar susurros completos en mapas: ", "nowhrange",
+                    "Cuando está activado, puedes susurrar a cualquier jugador en el mapa, sin importar la distancia. Funcionará con el comando estándar /whisper y el comando de UBC /murmur, entre todos los jugadores que tengan esta opción activa.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Enable magic walk in maps: ", "mapcheat",
-                    "When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!", false, 140
+                addMenuCheckbox(64, 64, "Activar caminata mágica en mapas: ", "mapcheat",
+                    "¡Cuando está activado, puedes ir a cualquier parte de los mapas e incluso atravesar paredes, incluso sin ser administradora!", false, 140
                 );
-                addMenuCheckbox(64, 64, "No forced teleportation in maps: ", "noteleport",
-                    "When checked, the BC commands related to forced teleportation in the maps will not work on you, except if at least one admin of the chat room is in your Tplist (see the commands /tplistadd, /tplistremove and /tplistshow).", false, 140
+                addMenuCheckbox(64, 64, "Sin teletransporte forzado en mapas: ", "noteleport",
+                    "Cuando está marcado, los comandos de BC relacionados con el teletransporte forzado en los mapas no funcionarán contigo, excepto si al menos un administrador de la sala está en tu Tplist (ver comandos /tplistadd, /tplistremove y /tplistshow).", false, 140
                 );
             }
 
@@ -2087,32 +2087,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.UBC.ubcSettings.maptrap1 = device;
                     ElementRemove("InputDeviceTrap");
                     defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                } else PreferenceMessage = "Introduce un número válido";
             }
 
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
-                addMenuCheckbox(64, 64, "Alphabetic order for  Reputation and Skills: ", "alfrpsk",
-                    "When enabled, most info about reputation and skills in the Character Info screen will be ordered in alphabetic order. Note that the reputation as dominant or submissive will remain displayed in first position.", false, 140
+                addMenuCheckbox(64, 64, "Orden alfabético para Reputación y Habilidades: ", "alfrpsk",
+                    "Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Alphabetic order for  Preferences menu: ", "alfmenu",
-                    "When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.", false, 140
+                addMenuCheckbox(64, 64, "Orden alfabético para el menú de Preferencias: ", "alfmenu",
+                    "Cuando está activado, todas las opciones del menú principal de Preferencias se ordenarán alfabéticamente, a excepción de las Preferencias Generales.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Alphabetic order for Preferences screens: ", "alfaprf",
-                    "With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: General, Chat, Immersion and Online.", false, 140
+                addMenuCheckbox(64, 64, "Orden alfabético en pantallas de Preferencias: ", "alfaprf",
+                    "Con esta opción, la mayoría de los ajustes en algunas pantallas de Preferencias estarán en orden alfabético (según el texto en inglés) por tipo de ajuste (desplegables, casillas). Las pantallas afectadas son: General, Chat, Inmersión y Online.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
-                    "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 140
+                addMenuCheckbox(64, 64, "Activar limitaciones del Manicomio (Asylum): ", "asylumlimit",
+                    "Por defecto, UBC desactiva las limitaciones del Manicomio (acceso y salida). Si te gustan estas limitaciones, puedes activarlas de nuevo con esta opción.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
-                    "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 140
+                addMenuCheckbox(64, 64, "Activar castigos por NPC: ", "npcpunish",
+                    "Por defecto, UBC desactiva los castigos automáticos de los NPC (especialmente cuando estás atada en una sala y pides ayuda a una sirvienta). Si te gustan estos castigos, puedes activarlos de nuevo con esta opción.", false, 140
                 );
-                addMenuCheckbox(64, 64, "No permission change after safeword: ", "fixperm",
-                    "BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.", false, 140
+                addMenuCheckbox(64, 64, "Sin cambios de permisos tras usar la Safeword: ", "fixperm",
+                    "BC cambia automáticamente tus permisos generales de objetos cuando usas el comando de safeword o la opción de revertir en el menú de safeword. Si no te gusta esto, usa esta opción y tus permisos generales no serán modificados.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Use only days in Character Info screens: ", "onlydays",
-                    "BC automatically converts days to years, months and days. If you don't like that, use this option to get these data exprimed only in days in the Character Info screens.", false, 140
+                addMenuCheckbox(64, 64, "Usar solo días en pantallas de Información: ", "onlydays",
+                    "BC convierte automáticamente los días en años, meses y días. Si no te gusta esto, usa esta opción para que estos datos se expresen únicamente en días en las pantallas de Información de Personaje.", false, 140
                 );
+
             }
 
             PreferenceSubscreenUBCMiscRun = function() {
@@ -2129,13 +2130,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMoanerLoad = function() {
                 UBCPreferenceSubscreen = "UBCMoaner";
-                addMenuCheckbox(64, 64, "Activate the Moaner: ", "script",
-                    "Add more fun to Bondage Club with the moans automatically generated by the Moaner!", false, 140
+                addMenuCheckbox(64, 64, "Activar el Moaner: ", "script",
+                    "¡Añade más diversión al Bondage Club con los gemidos generados automáticamente por el Moaner!", false, 140
                 );
-                addMenuInput(200, "Moaning profile (0-10):", "profile", "InputMoanProfile",
-                    "Input a number between 0 and 10 to select one of these moaning profiles: 0 Default - 1 Bunny - 2 Cow - 3 Dog - 4 Fox - 5 Mouse - 6 Neko - 7 Pig - 8 Pony - 9 Wildfox - 10 Wolf.", 6
+                addMenuInput(200, "Perfil de gemidos (0-10):", "profile", "InputMoanProfile",
+                    "Introduce un número entre 0 y 10 para seleccionar un perfil de gemidos: 0 Por defecto - 1 Bunny - 2 Cow - 3 Dog - 4 Fox - 5 Mouse - 6 Neko - 7 Pig - 8 Pony - 9 Wildfox - 10 Wolf.", 6
                 );
-                let omsg = "When enabled, you will moan while cumming. It is not possible to enable it when the LSCG Splatter feature is detected as enabled.";
+                let omsg = "Cuando está activado, gemirás al llegar al orgasmo. No es posible activarlo si se detecta que la función LSCG Splatter está activa.";
                 let spl = 0;
                 let LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
@@ -2143,28 +2144,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (LSCGdata.SplatterModule.enabled) spl = 1;
                 }
                 if (spl == 0) {
-                    addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan", omsg, false, 140);
+                    addMenuCheckbox(64, 64, "Activar gemido de orgasmo: ", "orgasmMoan", omsg, false, 140);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable the orgasm moan: ", "orgasmMoan", omsg, true, 140);
+                    addMenuCheckbox(64, 64, "Activar gemido de orgasmo: ", "orgasmMoan", omsg, true, 140);
                 }
-                addMenuCheckbox(64, 64, "Enable the spank moan: ", "spankMoan",
-                    "When enabled, you will moan while being spanked. Also when bitten, kicked, pinched, shocked, slapped. In case of actions triggering a shock, it concerns only actions to punish orgasm, stand up or struggle. According your fetishes and your horny state, it can be pain or pleasure.", false, 140
+                addMenuCheckbox(64, 64, "Activar gemido por azote (spank): ", "spankMoan",
+                    "Cuando está activado, gemirás al recibir azotes. También al ser mordida, pateada, pellizcada, electrocutada o abofeteada. En caso de acciones que activen descargas, solo afecta a las acciones para castigar orgasmos, levantarse o forcejear. Según tus fetiches y nivel de excitación, puede ser de dolor o placer.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Enable the talk moan: ", "talkMoan",
-                    "When enabled, you will moan while speaking if you're vibed. The moans can interrupt your talking. Note that when you disable this setting, it automatically disables the whisper moan too.", false, 140
+                addMenuCheckbox(64, 64, "Activar gemido al hablar: ", "talkMoan",
+                    "Cuando está activado, gemirás al hablar si tienes un vibrador activo. Los gemidos pueden interrumpir tu habla. Ten en cuenta que al desactivar este ajuste, también se desactivará automáticamente el gemido al susurrar.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Extend talk moan to whispers: ", "whisperMoan",
-                    "When enabled, you will moan while whispering if you're vibed. The moans can interrupt your whispers. Note that this setting can't be enabled when the talk moan is disabled.", "!Player.UBC.ubcSettings.talkMoan", 140
+                addMenuCheckbox(64, 64, "Extender gemido al hablar a los susurros: ", "whisperMoan",
+                    "Cuando está activado, gemirás al susurrar si tienes un vibrador activo. Los gemidos pueden interrumpir tus susurros. Este ajuste no puede activarse si el gemido al hablar está desactivado.", "!Player.UBC.ubcSettings.talkMoan", 140
                 );
-                addMenuCheckbox(64, 64, "Enable the tickle moan: ", "tickleMoan",
-                    "When enabled, you will moan while being tickled. According your fetishes and your horny state, it can be pain or pleasure.", false, 140
+                addMenuCheckbox(64, 64, "Activar gemido por cosquillas: ", "tickleMoan",
+                    "Cuando está activado, gemirás al recibir cosquillas. Según tus fetiches y nivel de excitación, puede ser de dolor o placer.", false, 140
                 );
-                addMenuCheckbox(64, 64, "Enable the vibes moan: ", "vibeMoan",
-                    "When enabled, you will moan if your vibrator's settings change and your arousal level is higher or equal to 10. Also when fingered, fisted, masturbated, or when your ears are caressed, kissed, licked, nibbled, or when using LSCG aphrodisiac injector, drink, respirator. Note that when you disable this setting, it automatically disables the xvibes moan too.", false, 140
+                addMenuCheckbox(64, 64, "Activar gemido por vibradores: ", "vibeMoan",
+                    "Cuando está activado, gemirás si cambian los ajustes de tu vibrador y tu nivel de excitación es igual o superior a 10. También al ser penetrada con dedos o puño, masturbada, o cuando tus orejas son acariciadas, besadas, lamidas o mordisqueadas, o al usar el inyector afrodisíaco, bebida o respirador de LSCG. Al desactivar esto, también se desactiva el gemido por vibradores ajenos (xvibes).", false, 140
                 );
-                addMenuCheckbox(64, 64, "Extend vibes moan (xvibes moan): ", "xvibeMoan",
-                    "When enabled, you will moan when vibe settings of other players in the chat room change, even if you are not yourself vibed (the only condition is an arousal level higher or equal to 10). Note that this setting can't be enabled when the vibes moan is disabled.", "!Player.UBC.ubcSettings.vibeMoan", 140
+                addMenuCheckbox(64, 64, "Extender gemidos por vibradores (xvibes moan): ", "xvibeMoan",
+                    "Cuando está activado, gemirás cuando cambien los ajustes de vibración de otros jugadores en la sala, incluso si tú no tienes un vibrador activo (la única condición es tener un nivel de excitación igual o superior a 10). Este ajuste requiere que el gemido por vibradores propio esté activado.", "!Player.UBC.ubcSettings.vibeMoan", 140
                 );
+
             }
 
             PreferenceSubscreenUBCMoanerRun = function() {
@@ -2181,42 +2183,43 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.UBC.ubcSettings.profile = profile;
                     ElementRemove("InputMoanProfile");
                     defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                } else PreferenceMessage = "Introduce un número válido";
             }
 
             PreferenceSubscreenUBCReputationLoad = function() {
                 UBCPreferenceSubscreen = "UBCReputation";
-                addMenuInput(200, "Main reputation (-100 to 100):", "rpmain", "InputRpMain",
-                    "Input a number between -100 and 100 to set your main reputation level! A negative number means that you are a Submissive, a positive number means that you are a Dominant.", 6
+                addMenuInput(200, "Reputación principal (-100 a 100):", "rpmain", "InputRpMain",
+                    "Introduce un número entre -100 y 100 para establecer tu nivel de reputación principal. Un número negativo significa que eres Sumisa, un número positivo significa que eres Dominante.", 6
                 );
                 addMenuInput(200, "ABDL (0-100):", "rpabdl", "InputRpAbdl",
-                    "Input a number between 0 and 100 to set your ABDL reputation level!", 6
+                    "Introduce un número entre 0 y 100 para establecer tu nivel de reputación ABDL.", 6
                 );
-                addMenuInput(200, "Asylum (-100 to 100):", "rpasyl", "InputRpAsyl",
-                    "Input a number between -100 and 100 to set your Asylum reputation level! A negative number means that you are a Patient, a positive number means that you are a Nurse.", 6
+                addMenuInput(200, "Manicomio (-100 a 100):", "rpasyl", "InputRpAsyl",
+                    "Introduce un número entre -100 y 100 para establecer tu nivel de reputación en el Manicomio. Un número negativo significa que eres Paciente, un número positivo significa que eres Enfermera.", 6
                 );
-                addMenuInput(200, "Gambling (0-100):", "rpgamb", "InputRpGamb",
-                    "Input a number between 0 and 100 to set your Gambling reputation level!", 6
+                addMenuInput(200, "Apuestas (0-100):", "rpgamb", "InputRpGamb",
+                    "Introduce un número entre 0 y 100 para establecer tu nivel de reputación en Apuestas.", 6
                 );
-                addMenuInput(200, "Gaming (0-100):", "rpgame", "InputRpGame",
-                    "Input a number between 0 and 100 to set your Gaming reputation level!", 6
+                addMenuInput(200, "Videojuegos (0-100):", "rpgame", "InputRpGame",
+                    "Introduce un número entre 0 y 100 para establecer tu nivel de reputación en Videojuegos.", 6
                 );
-                addMenuInput(200, "Kidnap (0-100):", "rpkidn", "InputRpKidn",
-                    "Input a number between 0 and 100 to set your Kidnap reputation level!", 6
+                addMenuInput(200, "Secuestro (0-100):", "rpkidn", "InputRpKidn",
+                    "Introduce un número entre 0 y 100 para establecer tu nivel de reputación en Secuestro.", 6
                 );
                 addMenuInput(200, "LARP (0-100):", "rplarp", "InputRpLarp",
-                    "Input a number between 0 and 100 to set your LARP reputation level!", 6
+                    "Introduce un número entre 0 y 100 para establecer tu nivel de reputación LARP.", 6
                 );
-                addMenuInput(200, "Magic House (0-4):", "rpmagh", "InputRpMagh",
-                    "Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Note: when you change this parameter, UBC will also automatically reset the Magic Power reputation to 0 for all non-selected Magic Houses.", 6
+                addMenuInput(200, "Casa Mágica (0-4):", "rpmagh", "InputRpMagh",
+                    "Introduce un número entre 0 y 4 para seleccionar una Casa Mágica: 0 = Ninguna - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Nota: al cambiar este parámetro, UBC reseteará automáticamente a 0 la reputación de Poder Mágico en todas las casas no seleccionadas.", 6
                 );
-                addMenuInput(200, "Magic Power (0-100):", "rpmagp", "InputRpMagp",
-                    "Input a number between 0 and 100 to set your Magic Power reputation level in the currently selected Magic House!", 6
+                addMenuInput(200, "Poder Mágico (0-100):", "rpmagp", "InputRpMagp",
+                    "Introduce un número entre 0 y 100 para establecer tu nivel de reputación de Poder Mágico en la Casa Mágica seleccionada.", 6
                 );
-                addMenuInput(200, "Maid (0-100):", "rpmaid", "InputRpMaid",
-                    "Input a number between 0 and 100 to set your Maid reputation level!", 6
+                addMenuInput(200, "Sirvienta (0-100):", "rpmaid", "InputRpMaid",
+                    "Introduce un número entre 0 y 100 para establecer tu nivel de reputación de Sirvienta.", 6
                 );
             }
+
 
             PreferenceSubscreenUBCReputationRun = function() {
                 drawMenuElements();
@@ -2289,25 +2292,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCSkillsLoad = function() {
                 UBCPreferenceSubscreen = "UBCSkills";
                 addMenuInput(200, "Bondage (0-10):", "skbondage", "InputSkillBondage",
-                    "Input a number between 0 and 10 to set your Bondage skill level!", 6
+                    "¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Bondage!", 6
                 );
-                addMenuInput(200, "Dressage (0-10):", "skdressage", "InputSkillDressage",
-                    "Input a number between 0 and 10 to set your Dressage skill level!", 6
+                addMenuInput(200, "Doma (0-10):", "skdressage", "InputSkillDressage",
+                    "¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Doma (Dressage)!", 6
                 );
-                addMenuInput(200, "Evasion (0-10):", "skevasion", "InputSkillEvasion",
-                    "Input a number between 0 and 10 to set your Evasion skill level!", 6
+                addMenuInput(200, "Evasión (0-10):", "skevasion", "InputSkillEvasion",
+                    "¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Evasión!", 6
                 );
-                addMenuInput(200, "Infiltration (0-10):", "skinfiltration", "InputSkillInfiltration",
-                    "Input a number between 0 and 10 to set your Infiltration skill level!", 6
+                addMenuInput(200, "Infiltración (0-10):", "skinfiltration", "InputSkillInfiltration",
+                    "¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Infiltración!", 6
                 );
-                addMenuInput(200, "Lockpicking (0-10):", "sklockpicking", "InputSkillLockpicking",
-                    "Input a number between 0 and 10 to set your Lockpicking skill level!", 6
+                addMenuInput(200, "Ganzúa (0-10):", "sklockpicking", "InputSkillLockpicking",
+                    "¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Ganzúa (Lockpicking)!", 6
                 );
-                addMenuInput(200, "Self-Bondage (0-10):", "skselfbondage", "InputSkillSelfbondage",
-                    "Input a number between 0 and 10 to set your Self-Bondage skill level!", 6
+                addMenuInput(200, "Autobondage (0-10):", "skselfbondage", "InputSkillSelfbondage",
+                    "¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Autobondage!", 6
                 );
-                addMenuInput(200, "Willpower (0-10):", "skwillpower", "InputSkillWillpower",
-                    "Input a number between 0 and 10 to set your Willpower skill level!", 6
+                addMenuInput(200, "Fuerza de voluntad (0-10):", "skwillpower", "InputSkillWillpower",
+                    "¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Fuerza de voluntad!", 6
                 );
             }
 
@@ -2362,26 +2365,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCSpecialModesLoad = function() {
                 UBCPreferenceSubscreen = "UBCSpecialModes";
                 DOGSsettings();
-                let nmsg = "This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, the special goddess mode will be automatically disabled.";
+                let nmsg = "Este modo desactiva los botones y atajos de LIBERAR/SALIR, y prohíbe muchos comandos sobre ti misma: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (si el valor < 20), totalrelease, unlock, untie. Si este modo está activo, no puede desactivarse mientras se está en restricción. Si se está en modo 'unrestrict total' al activar esta opción, el modo especial se desactivará automáticamente.";
                 if (((Player.IsRestrained() == true) || (dogsforbid == true)) && (noescape == true)) {
-                    addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, true, 150);
+                    addMenuCheckbox(64, 64, "Activar modo sin escape (no-escape): ", "noescape", nmsg, true, 150);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable no-escape mode: ", "noescape", nmsg, false, 150);
+                    addMenuCheckbox(64, 64, "Activar modo sin escape (no-escape): ", "noescape", nmsg, false, 150);
                 }
-                addMenuCheckbox(64, 64, "Force no-escape mode with devious locks: ", "dogsforced",
-                    "When no-escape mode is disabled, you can decide to force this mode when you have devious locks on you! Of course these locks need to be enabled in the DOGS mod. Note that this mode will remain enabled when devious locks have been removed: you need to disable it manually.", "Player.UBC.ubcSettings.noescape", 150
+                addMenuCheckbox(64, 64, "Forzar modo no-escape con candados devious: ", "dogsforced",
+                    "Cuando el modo no-escape está desactivado, se puede decidir forzar este modo cuando se tienen candados devious. Estos candados deben estar activados en el mod DOGS. Este modo seguirá activo tras quitar los candados y debe desactivarse manualmente.", "Player.UBC.ubcSettings.noescape", 150
                 );
-                addMenuCheckbox(64, 64, "Enable silent mode: ", "silent",
-                    "This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.", false, 150
+                addMenuCheckbox(64, 64, "Activar modo silencio: ", "silent",
+                    "Este modo impide usar el comando de mensaje y hace que ciertos comandos no muestren avisos en el chat: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. Para volver a los mensajes por defecto, se debe desactivar este modo.", false, 150
                 );
-                addMenuCheckbox(64, 64, "Extend silent mode to safeword: ", "silsafe",
-                    "When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course useful only if the safeword is enabled!", "!Player.UBC.ubcSettings.silent", 150
+                addMenuCheckbox(64, 64, "Extender modo silencio a la Safeword: ", "silsafe",
+                    "Cuando el modo silencio está activo, se puede usar la safeword sin que aparezca ningún mensaje en el chat. Útil solo si la safeword está habilitada.", "!Player.UBC.ubcSettings.silent", 150
                 );
-                addMenuCheckbox(64, 64, "Enable unrestrict soft mode: ", "usoft",
-                    "Effects of this mode (also available in unrestrict total mode) : hidden items added to your inventory, access to items covered by other items, use of items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and examine feature preserved when you are blind, but not in Total sensory deprivation. It does not remove the conditions to use assets. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).", false, 150
+                addMenuCheckbox(64, 64, "Activar modo 'unrestrict soft': ", "usoft",
+                    "Efectos de este modo: objetos ocultos añadidos al inventario, acceso a objetos cubiertos por otros, uso de ciertos objetos sobre uno mismo o terceros, y función de examen preservada bajo ceguera (excepto en privación sensorial total). No elimina las condiciones para usar assets. Requiere reiniciar sesión para salir del modo.", false, 150
                 );
-                addMenuCheckbox(64, 64, "Enable unrestrict total mode: ", "utotal",
-                    "Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).", "Player.UBC.ubcSettings.noescape", 150
+                addMenuCheckbox(64, 64, "Activar modo 'unrestrict total': ", "utotal",
+                    "Además de los efectos 'soft', este modo permite ciertas interacciones incluso bajo restricción. Uno de sus efectos puede ser bloqueado por Uwall. Este modo no está disponible en no-escape. Puede activar una alerta de BCX que debe ignorarse. Requiere reiniciar sesión para salir de este modo.", "Player.UBC.ubcSettings.noescape", 150
                 );
             }
 
@@ -2399,25 +2402,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
-                addMenuInput(200, "Animal talk/whisper mode (0-9):", "animal", "InputAnimalMode",
-                    "Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).", -16
+                addMenuInput(200, "Modo habla/susurro animal (0-9):", "animal", "InputAnimalMode",
+                    "Introduce un número del 0 al 9 para seleccionar un modo de habla o susurro animal 'permanente' forzado: 0 Humano - 1 Conejo - 2 Vaca - 3 Zorro - 4 Gatito - 5 Ratón - 6 Cerdo - 7 Pony - 8 Cachorro - 9 Lobito. Si solo quieres hablar así una vez, usa el comando /atalk tras seleccionar 0 (habla humana) aquí.", -16
                 );
-                addMenuCheckbox(64, 64, "Enable hybrid talk/whisper mode: ", "ahybrid",
-                    "When enabled and associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!", false, 120
+                addMenuCheckbox(64, 64, "Activar modo de habla/susurro híbrido: ", "ahybrid",
+                    "Cuando está activado y se asocia con un modo de habla animal, ¡todos tus mensajes y susurros combinarán palabras animales y humanas!", false, 120
                 );
-                addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
-                    "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
+                addMenuCheckbox(64, 64, "Activar modo de habla (y susurro) de muñeca: ", "dolltalk",
+                    "Cuando está activado, máximo 5 palabras por mensaje o susurro, y no puedes usar palabras de más de 6 caracteres. El cumplimiento de estas reglas se verifica en la versión original de tu mensaje antes de ser alterado por tartamudeo, el Moaner, babytalk, gagtalk o habla animal.", false, 120
                 );
-                addMenuInput(200, "Forced gagtalk/whisper (0-11):", "gaglevel", "InputGagLevel",
-                    "Input a number between 0 and 11 to select a 'permanent' forced level: 0 Disabled feature - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Better heavy gag - 9 Very heavy gag - 10 Total gag - 11 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once gagtalk, use the /gtalk command. To talk only once like a baby, use /btalk. See also the RGL button.", -16
+                addMenuInput(200, "Mordaza/susurro forzado (0-11):", "gaglevel", "InputGagLevel",
+                    "Introduce un número del 0 al 11 para seleccionar un nivel 'permanente' forzado: 0 Función desactivada - 1 Casi sin mordaza - 2 Muy ligera - 3 Ligera - 4 Fácil - 5 Normal - 6 Media - 7 Pesada - 8 Pesada superior - 9 Muy pesada - 10 Total - 11 Habla de bebé (Baby talk). Si ya estás amordazada, tu elección solo puede aumentar el efecto, no disminuirlo. Para usar gagtalk una sola vez, usa el comando /gtalk. Para hablar como un bebé una sola vez, usa /btalk. Mira también el botón RGL.", -16
                 );
-                addMenuInput(200, "Forced hearing mode (1-6):", "hearing", "InputHearingMode",
-                    "Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                addMenuInput(200, "Modo de audición forzada (1-6):", "hearing", "InputHearingMode",
+                    "Introduce un número del 1 al 6 para seleccionar un modo de audición 'permanente' forzado, ignorando tu estado real: 1 Sin sordera - 2 Sordera ligera - 3 Normal - 4 Pesada - 5 Muy pesada - 6 Total. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo (cierra el mensaje de error)!", -16
                 );
-                addMenuInput(200, "Forced stuttering level (0-4):", "stutterlevel", "InputStutterLevel",
-                    "Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).", -16
+                addMenuInput(200, "Nivel de tartamudeo forzado (0-4):", "stutterlevel", "InputStutterLevel",
+                    "Introduce un número del 0 al 4 para seleccionar un nivel de tartamudeo 'permanente' forzado: 0 Sin tartamudeo - 1 Ligero - 2 Normal - 3 Pesado - 4 Total. Ten en cuenta que si tienes vibradores activos, tu elección solo puede aumentar el efecto, no disminuirlo. Si solo quieres hablar con un nivel de tartamudeo específico una vez, usa el comando /stalk tras seleccionar 0 aquí.", -16
                 );
-                let wmsg = "When enabled, you can't use normal whispers. Only OOC and emote whispers are possible. This option is not available when a similar BCX rule is detected as active. In this case, UBC will apply the BCX whisper restrictions, but will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed.";
+                let wmsg = "Cuando está activado, no puedes usar susurros normales. Solo son posibles los susurros OOC y de gestos (emote). Esta opción no está disponible cuando se detecta una regla de BCX similar activa. En ese caso, UBC aplicará las restricciones de susurro de BCX, pero no enviará mensajes públicos ni añadirá entradas al registro de comportamiento si intentas susurrar cuando no está permitido.";
                 let wbc = 0;
                 if (Player.OnlineSettings.BCX != undefined) {
                     let str = Player.OnlineSettings.BCX;
@@ -2437,9 +2440,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (wbc == 0) {
-                    addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper", wmsg, false, 120);
+                    addMenuCheckbox(64, 64, "Activar modo sin susurros: ", "nowhisper", wmsg, false, 120);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper", wmsg, true, 120);
+                    addMenuCheckbox(64, 64, "Activar modo sin susurros: ", "nowhisper", wmsg, true, 120);
                 }
             }
 
@@ -2469,12 +2472,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputHearingMode");
                     ElementRemove("InputStutterLevel");
                     defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                } else PreferenceMessage = "Introduce un número válido";
             }
 			
             PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
-                let pmsg = "By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled";
+                let pmsg = "Por defecto, BC añade mensajes y un efecto rosa cuando estás muy excitada y probablemente vayas a tener un orgasmo. ¡Si no te gusta eso, este ajuste de UBC te hará feliz! Nota: No está disponible cuando la función LSCG Splatter está detectada como activada.";
                 let spl = 0;
                 let LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
@@ -2482,38 +2485,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (LSCGdata.SplatterModule.enabled) spl = 1;
                 }
                 if (spl == 0) {
-                    addMenuCheckbox(64, 64, "Disable BC pinky arousal overlay: ", "nopinkscr", pmsg, false, 200);
+                    addMenuCheckbox(64, 64, "Desactivar capa rosa de excitación de BC: ", "nopinkscr", pmsg, false, 200);
                 } else {
-                    addMenuCheckbox(64, 64, "Disable BC pinky arousal overlay: ", "nopinkscr", pmsg, true, 200);
+                    addMenuCheckbox(64, 64, "Desactivar capa rosa de excitación de BC: ", "nopinkscr", pmsg, true, 200);
                 }
-                addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
-                    "If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu.", false, 200
+                addMenuCheckbox(64, 64, "Quitar barra inferior de UBC en Búsqueda de Chat: ", "noubcbar",
+                    "Si marcas este ajuste, UBC no mostrará la barra inferior en la Búsqueda de Chat. Las opciones faltantes estarán disponibles en el menú de Búsqueda de Chat.", false, 200
                 );
-                addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
-                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 65
+                addMenuInput(200, "Modo de ceguera forzada (1-4):", "blindness", "InputBlindnessMode",
+                    "Introduce un número entre 1 y 4 para seleccionar uno de estos modos de ceguera 'permanentes' forzados, ignorando tu estado real: 1 Sin ceguera - 2 Ceguera ligera - 3 Ceguera normal - 4 Ceguera pesada. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!", 65
                 );
-                addMenuInput(200, "Forced blurry vision (1-5):", "blurmode", "InputBlurMode",
-                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 65
+                addMenuInput(200, "Visión borrosa forzada (1-5):", "blurmode", "InputBlurMode",
+                    "Introduce un número entre 1 y 5 para seleccionar uno de estos modos de visión borrosa 'permanentes' forzados, ignorando tu estado real: 1 Sin visión borrosa - 2 Visión borrosa ligera - 3 Visión borrosa normal - 4 Versión borrosa pesada - 5 Visión borrosa total. Nota: necesitarás reiniciar sesión (relog) para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!", 65
                 );
-                addMenuCheckbox(64, 64, "Fully disable all UBC tint settings: ", "tintnever",
-                    "If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.", false, 200
+                addMenuCheckbox(64, 64, "Desactivar totalmente los ajustes de tinte: ", "tintnever",
+                    "Si marcas este ajuste, todos los ajustes de tinte de UBC (nivel, color, MBS) se desactivarán por completo. Sin embargo, se requiere reiniciar sesión para restaurar los colores originales o del tema en las pantallas de MBS.", false, 200
                 );
-                addMenuInput(200, "Tint effect level (0-3):", "tintlevel", "InputTintLevel",
-                    "Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.", 65
+                addMenuInput(200, "Nivel de efecto de tinte (0-3):", "tintlevel", "InputTintLevel",
+                    "Introduce un número entre 0 y 3 para seleccionar uno de estos niveles de efecto de tinte forzados: 0 Sin efecto - 1 Efecto ligero - 2 Efecto medio - 3 Efecto pesado.", 65
                 );
-                addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
-                    "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.", 65
+                addMenuInput(200, "Color del efecto de tinte (formato #000000):", "tintcolor", "InputTintColor",
+                    "Introduce un código de color en formato hexadecimal #000000 para aplicar un efecto de tinte en casi todo el Bondage Club. ¡No olvides seleccionar también un nivel de efecto de tinte! El tinte también se aplicará en las páginas creadas por la mayoría de complementos. Excepciones conocidas son BCX y el mod de Echo. El caso de MBS es especial (ver ajuste específico). El color final puede variar al mezclarse con un color de Tema.", 65
                 );
-                let mbsmsg = "When enabled, ALWAYS visit the Extensions screen to activate it after login. The tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is without any effect when the tint level is 0. It is not available when MBS is not used or when all UBC tint settings are fully disabled.";
+                let mbsmsg = "Cuando esté activado, visita SIEMPRE la pantalla de Extensiones para activarlo tras iniciar sesión. El color del tinte se usará como color de fondo para la parte central de las pantallas de MBS. Si lo desactivas más tarde, el color restaurado corresponderá al color por defecto de MBS o al color principal del Tema. Este ajuste no tiene efecto si el nivel de tinte es 0. No está disponible si no se usa MBS o si los ajustes de tinte de UBC están totalmente desactivados.";
                 let mbb = 0;
                 let list = PreferenceExtensionsDisplay;
                 for (let i = 0; i < list.length; i++) {
                     if (list[i].Button == "MBS Settings") mbb = 1;
                 }
                 if (mbb == 0) {
-                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, true, 200);
+                    addMenuCheckbox(64, 64, "Activar efecto de tinte en pantallas MBS: ", "tintmbs", mbsmsg, true, 200);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable tint effect on MBS screens: ", "tintmbs", mbsmsg, "Player.UBC.ubcSettings.tintnever", 200);
+                    addMenuCheckbox(64, 64, "Activar efecto de tinte en pantallas MBS: ", "tintmbs", mbsmsg, "Player.UBC.ubcSettings.tintnever", 200);
                 }
             }
 			
@@ -2895,7 +2898,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if ((sosbuttons == true) && (noescape == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 315) && (MouseY < 360)) {
-                    let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
+                    let msg = "Láseres mágicos hacen desaparecer todas las ataduras y juguetes del cuerpo de " + tmpname + ".";
                     if (Totalrelease != undefined) {
                         if (Totalrelease != "") {
                             if (Totalrelease.startsWith("\u0027")) {
@@ -2913,7 +2916,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((outbuttons == true) && (noescape == false)) {
                 if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) {
                     if (slowleave == true) {
-                        let msg = "" + tmpname + " slowly heads for the door.";
+                        let msg = "" + tmpname + " se dirige lentamente hacia la puerta.";
                         publicmsg(msg);
                         setTimeout(function() {
                             OutChat();
@@ -3000,42 +3003,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((item1 == "FloorItem") && (item2 != "Blank")) {
                     if ((item2 == "BondageBench") && ((maptrap1 == 1) || (maptrap1 == 9))) {
                         BondageBenchTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
+                        let msg = "" + tmpname + " ha caído de repente en un Banco de Bondage.";
                         publicmsg(msg);
                     }
                     if ((item2 == "Coffin") && ((maptrap1 == 2) || (maptrap1 == 9))) {
                         CoffinTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Coffin";
+                        let msg = "" + tmpname + " ha caído de repente en un Ataúd.";
                         publicmsg(msg);
                     }
                     if ((item2 == "TheDisplayFrame") && ((maptrap1 == 3) || (maptrap1 == 9))) {
                         DisplayFrameTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
+                        let msg = "" + tmpname + " ha caído de repente en un Marco de Exhibición.";
                         publicmsg(msg);
                     }
                     if ((item2 == "Kennel") && ((maptrap1 == 4) || (maptrap1 == 9))) {
                         KennelTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Kennel.";
+                        let msg = "" + tmpname + " ha caído de repente en una Perrera.";
                         publicmsg(msg);
                     }
                     if ((item2 == "Locker") && ((maptrap1 == 5) || (maptrap1 == 9))) {
                         LockerTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Locker.";
+                        let msg = "" + tmpname + " ha caído de repente en un Casillero.";
                         publicmsg(msg);
                     }
                     if ((item2 == "Trolley") && ((maptrap1 == 6) || (maptrap1 == 9))) {
                         TrolleyTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
+                        let msg = "" + tmpname + " ha caído de repente en una Carretilla.";
                         publicmsg(msg);
                     }
                     if ((item2 == "WoodenBox") && ((maptrap1 == 7) || (maptrap1 == 9))) {
                         WoodenBoxTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
+                        let msg = "" + tmpname + " ha caído de repente en una Caja de Madera.";
                         publicmsg(msg);
                     }
                     if ((item2 == "X-Cross") && ((maptrap1 == 8) || (maptrap1 == 9))) {
                         XCrossTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
+                        let msg = "" + tmpname + " ha caído de repente en una Cruz en X.";
                         publicmsg(msg);
                     }
                 }
@@ -3043,6 +3046,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             return ret;
         });
     }
+
 
     function ULTRAChatRoomMapViewTeleportHiddenMessage() {
         modApi.hookFunction('ChatRoomMapViewTeleportHiddenMessage', 4, (args, next) => {
@@ -3056,7 +3060,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (bltp == 1) {
-                    let msg = "A teleportation attempt has been cancelled because not allowed.";
+                    let msg = "Un intento de teletransporte ha sido cancelado porque no está permitido.";
                     publicmsg(msg);
                     return;
                 }
@@ -3254,7 +3258,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (nm == 1) {
                         text2 = "";
                         ElementValue("InputChat", "");
-                        let msg = "Your message or whisper can't be sent because it does not respect the rules of doll talk.";
+                        let msg = "Tu mensaje o susurro no puede enviarse porque no respeta las reglas de habla de muñeca (doll talk).";
                         infomsg(msg);
                     }
                 }
@@ -3263,8 +3267,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (nw == 1) {
                         text2 = "";
                         ElementValue("InputChat", "");
-                        let msg = "Your whisper can't be sent because you are in no-whisper mode.";
-                        if (wh1 == 1) msg = "Your whisper can't be sent because a BCX rule prevents you to whisper to this player.";
+                        let msg = "Tu susurro no puede enviarse porque estás en modo sin susurros.";
+                        if (wh1 == 1) msg = "Tu susurro no puede enviarse porque una regla de BCX te impide susurrar a este jugador.";
                         infomsg(msg);
                     }
                 }
@@ -3853,44 +3857,44 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAClubCardRenderPanel() {
         modApi.hookFunction('ClubCardRenderPanel', 4, (args, next) => {
             if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
-                DrawText("Current Mode", 120, 35, "White", "Black");
+                DrawText("Modo Actual", 120, 35, "White", "Black");
                 if (highfame) {
-                    DrawButton(65, 60, 90, 90, "HF", "White", "", "Switch to Normal mode");
+                    DrawButton(65, 60, 90, 90, "HF", "White", "", "Cambiar a modo Normal");
                 } else {
-                    DrawButton(65, 60, 90, 90, "NHF", "White", "", "Switch to High Fame mode");
+                    DrawButton(65, 60, 90, 90, "NHF", "White", "", "Cambiar a modo Fama Alta (High Fame)");
                 }
-                DrawText("Actualisation", 430, 35, "White", "Black");
+                DrawText("Actualización", 430, 35, "White", "Black");
                 DrawButton(385, 60, 90, 90, "", "White", "Icons/Exit.png");
-                DrawText("Available options for Default and NPC card decks:", 1140, 35, "White", "Gray");
-                DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
-                DrawText("5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
-                if (ClubCardIsOnline() == false) DrawText("Only for NPC: -1 = Deck defined by original BC code", 1140, 275, "White", "Gray");
-                DrawText("If you change other parameters than the mode,", 1140, 750, "White", "Black");
-                DrawText("click the Exit button, then come back to play", 1140, 830, "White", "Black");
+                DrawText("Opciones de mazos para Predeterminado y NPCs:", 1140, 35, "White", "Gray");
+                DrawText("0 Original - 1 ABDL - 2 Manicomio - 3 Universidad - 4 Dominante", 1140, 115, "White", "Gray");
+                DrawText("5 Responsabilidad - 6 Sirvienta - 7 Mascota - 8 Porno - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
+                if (ClubCardIsOnline() == false) DrawText("Solo para NPC: -1 = Mazo definido por código BC original", 1140, 275, "White", "Gray");
+                DrawText("Si cambias otros parámetros distintos al modo,", 1140, 750, "White", "Black");
+                DrawText("haz clic en el botón Salir y vuelve para jugar", 1140, 830, "White", "Black");
                 const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
                 fameInput.setAttribute("min", "150");
                 fameInput.setAttribute("max", "550");
                 fameInput.setAttribute("autocomplete", "off");
-                DrawText("High Fame level", 145, 190, "White", "Gray");
+                DrawText("Nivel de Fama Alta", 145, 190, "White", "Gray");
                 ElementPosition("InputHighFame", 420, 185, 250);
                 const cardsInput = ElementCreateInput("InputMaxCards", "number", ccards);
                 cardsInput.setAttribute("min", "30");
                 cardsInput.setAttribute("max", "40");
                 cardsInput.setAttribute("autocomplete", "off");
-                DrawText("Cards in deck", 130, 270, "White", "Gray");
+                DrawText("Cartas en mazo", 130, 270, "White", "Gray");
                 ElementPosition("InputMaxCards", 420, 265, 250);
                 const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
                 deckInput.setAttribute("min", "0");
                 deckInput.setAttribute("max", "10");
                 deckInput.setAttribute("autocomplete", "off");
-                DrawText("Default card deck", 145, 350, "White", "Gray");
+                DrawText("Mazo predeterminado", 145, 350, "White", "Gray");
                 ElementPosition("InputDefaultDeck", 420, 345, 250);
                 if (ClubCardIsOnline() == false) {
                     const npcdeckInput = ElementCreateInput("InputNpcDeck", "number", npcdeck);
                     npcdeckInput.setAttribute("min", "-1");
                     npcdeckInput.setAttribute("max", "10");
                     npcdeckInput.setAttribute("autocomplete", "off");
-                    DrawText("NPC card deck", 145, 430, "White", "Gray");
+                    DrawText("Mazo de cartas NPC", 145, 430, "White", "Gray");
                     ElementPosition("InputNpcDeck", 420, 425, 250);
                 }
             }
@@ -4203,9 +4207,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
             InformationSheetBackground = ifname;
             if (noifbuttons == false) {
-                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
+                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
+                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
             }
             TintsEffect();
             if (onlydays == true) {
@@ -4333,8 +4337,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "", "");
-            DrawButton(1910, 670, 90, 90, "NO BEEP TOAST", "White", "", "Click here to hide all beep toasts");
+            DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " ¡Listo!", "Pink", "", "");
+            DrawButton(1910, 670, 90, 90, "SIN AVISOS BEEP", "White", "", "Haz clic aquí para ocultar todas las notificaciones (toasts) de pitidos");
             next(args);
         });
     }
@@ -4458,28 +4462,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatRoomActivateView(ChatRoomCharacterViewName);
             MainCanvas.textAlign = "center";
             TintsEffect();
-            DrawText("Chat Rooms", 130, 530, "White", "Black");
-            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
+            DrawText("Salas de Chat", 130, 530, "White", "Black");
+            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Solo Mujeres");
+            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Solo Hombres");
             if (asylumlimit == true) {
-                DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+                DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Manicomio (Asylum)");
             } else {
-                DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+                DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Manicomio (Asylum)");
             }
-            DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
-            DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+            DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixto");
+            DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
             DrawText("ULTRAbc", 130, 615, "White", "Black");
             DrawText(UBCver, 140, 655, "White", "Black");
-            DrawButton(240, 585, 200, 90, "", "White", "", "Open UBC Changelog on GitHub");
+            DrawButton(240, 585, 200, 90, "", "White", "", "Abrir registro de cambios (Changelog) en GitHub");
             DrawImageResize("Icons/Changelog.png", 240, 600, 60, 60);
-            DrawTextFit("Changes", 365, 633, 308, "Black");
-            DrawButton(460, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferences");
-            DrawButton(570, 585, 90, 90, "", "White", "Icons/Random.png", "Random background");
-            DrawButton(460, 695, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
-            DrawButton(570, 695, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+            DrawTextFit("Cambios", 365, 633, 308, "Black");
+            DrawButton(460, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferencias");
+            DrawButton(570, 585, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
+            DrawButton(460, 695, 90, 90, "", "White", "Icons/Extensions.png", "Extensiones");
+            DrawButton(570, 695, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
             DrawText("/uhelp", 145, 725, "White", "Black");
-            DrawText("in chat", 140, 765, "White", "Black");
-            DrawButton(240, 695, 200, 90, "", "White", "", "Open UBC Wiki on GitHub");
+            DrawText("en chat", 140, 765, "White", "Black");
+            DrawButton(240, 695, 200, 90, "", "White", "", "Abrir la Wiki de UBC en GitHub");
             DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
             DrawTextFit("Wiki", 375, 743, 308, "Black");
             next(args);
@@ -4823,7 +4827,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (PreferencePageCurrent === 2) {
                 MainCanvas.textAlign = "left";
                 DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");
-                DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
+                DrawButton(1260, 330, 60, 60, "", "White", "", "Fondo Aleatorio");
                 DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
             }
             next(args);
@@ -4913,8 +4917,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAPrivateRun() {
         modApi.hookFunction('PrivateRun', 4, (args, next) => {
             if (LogQuery("RentRoom", "PrivateRoom")) {
-                DrawButton(0, 900, 49, 49, "", "White", "", "Random backgound");
-                DrawButton(0, 950, 49, 49, "", "White", "", "Default background");
+                DrawButton(0, 900, 49, 49, "", "White", "", "Fondo aleatorio");
+                DrawButton(0, 950, 49, 49, "", "White", "", "Fondo predeterminado");
                 DrawImageResize("Icons/Random.png", 0, 900, 48, 48);
                 DrawImageResize("Icons/Reset.png", 0, 950, 48, 48);  
             }
@@ -5030,9 +5034,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
             if (notcbuttons == false) {
-                DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
+                DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
+                DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
             }
             TintsEffect();
             next(args);
@@ -5431,7 +5435,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 tgpname = C.Nickname;
                             }
                             if ((tmpname != tgpname) && (IsTargetProtected(C))) {
-                                let msg = "UBC Export is not possible because " + tgpname + " has enabled the Uwall protection.";
+                                let msg = "La exportación de UBC no es posible porque " + tgpname + " ha activado la protección Uwall.";
                                 infomsg(msg);
                             } else {
                                 let appall = new Array();
@@ -5447,7 +5451,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     appall.push(app);
                                 });
                                 ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Appearance saved.</p>\n" +
+                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Apariencia guardada.</p>\n" +
                                     btoa(encodeURI(JSON.stringify(appall)))
                                 );
                             }
@@ -5456,7 +5460,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DialogLeave();
                 }
                 if ((MouseX >= 1630) && (MouseX < 1730) && (MouseY >= 240) && (MouseY < 290)) {
-                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                    let appinp = prompt('Por favor, introduce el awcode (Compatible con BCG).', '');
                     if (C.OnlineSharedSettings.UBC != undefined) {
                         if ((C.Nickname == '') || (C.Nickname == undefined)) {
                             tgpname = C.Name;
@@ -5464,7 +5468,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             tgpname = C.Nickname;
                         }
                         if ((tmpname != tgpname) && (IsTargetProtected(C))) {
-                            let msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
+                            let msg = "La importación de UBC no es posible porque " + tgpname + " ha activado la protección Uwall.";
                             infomsg(msg);
                         } else {
                             for (let A = C.Appearance.length - 1; A >= 0; A--)
@@ -5492,7 +5496,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DialogLeave();
                 }
                 if ((MouseX >= 1750) && (MouseX < 1850) && (MouseY >= 240) && (MouseY < 290)) {
-                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                    let appinp = prompt('Por favor, introduce el awcode (Compatible con BCG).', '');
                     if (C.OnlineSharedSettings.UBC != undefined) {
                         if ((C.Nickname == '') || (C.Nickname == undefined)) {
                             tgpname = C.Name;
@@ -5500,7 +5504,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             tgpname = C.Nickname;
                         }
                         if ((tmpname != tgpname) && (IsTargetProtected(C))) {
-                            let msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
+                            let msg = "La importación de UBC no es posible porque " + tgpname + " ha activado la protección Uwall.";
                             infomsg(msg);
                         } else {
                             CharacterNaked(C);
@@ -5523,7 +5527,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DialogLeave();
                 }
                 if ((MouseX >= 1870) && (MouseX < 1970) && (MouseY >= 240) && (MouseY < 290)) {
-                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                    let appinp = prompt('Por favor, introduce el awcode (Compatible con BCG).', '');
                     if (C.OnlineSharedSettings.UBC != undefined) {
                         if ((C.Nickname == '') || (C.Nickname == undefined)) {
                             tgpname = C.Name;
@@ -5531,7 +5535,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             tgpname = C.Nickname;
                         }
                         if ((tmpname != tgpname) && (IsTargetProtected(C))) {
-                            let msg = "UBC Import is not possible because " + tgpname + " has enabled the Uwall protection.";
+                            let msg = "La importación de UBC no es posible porque " + tgpname + " ha activado la protección Uwall.";
                             infomsg(msg);
                         } else {
                             CharacterNaked(C);
@@ -5562,9 +5566,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('AppearanceMenuDraw', 4, (args, next) => {
             if (CharacterAppearanceMode == "") {
                 if (nowrbuttons == false) {
-                    DrawButton(260, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                    DrawButton(380, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                    DrawButton(500, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                    DrawButton(260, 910, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
+                    DrawButton(380, 910, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
+                    DrawButton(500, 910, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
                 }
             }
             next(args);
@@ -5576,10 +5580,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             AppearanceBackground = wrname;
             TintsEffect();
             if (CharacterAppearanceMode == "Wardrobe") {
-                DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
-                DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Clothing + Restraints");
-                DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Clothing + Restraints + Cosplay");
-                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");
+                DrawButton(1510, 240, 100, 60, "Exportar", "#50E992", "", "Exportación completa de ULTRAbc");
+                DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Ropa + Ataduras");
+                DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Ropa + Ataduras + Cosplay");
+                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Importación completa de ULTRAbc");
             }
             next(args);
         });
@@ -5973,16 +5977,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DOGSsettings();
         if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
-                DrawButton(955, 360, 45, 45, "OUT", "White", "", "");
+                DrawButton(955, 360, 45, 45, "SALIR", "White", "", "");
             } else {
                 if (slowleave == true) {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Slow Exit");
+                    DrawButton(0, 90, 45, 45, "SALIR", "White", "", "Salida lenta");
                 } else {
-                    DrawButton(0, 90, 45, 45, "OUT", "White", "", "Fast Exit");
+                    DrawButton(0, 90, 45, 45, "SALIR", "White", "", "Salida rápida");
                 }
             }
         }
     }
+
 
     function OutChat() {
         if (PandoraPenitentiaryIsInmate(Player)) {
@@ -6032,9 +6037,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DOGSsettings();
         if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
-                DrawButton(955, 315, 45, 45, "FREE", "White", "", "");
+                DrawButton(955, 315, 45, 45, "LIBRE", "White", "", "");
             } else {
-                DrawButton(0, 45, 45, 45, "FREE", "White", "", "Total Release");
+                DrawButton(0, 45, 45, 45, "LIBRE", "White", "", "Liberación Total");
             }
         }
     }
@@ -7940,8 +7945,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function applySleepEffect(character, name, pronoun2) {
         publicmsg(
             character === Player ?
-            `${tmpname} swallows a sleeping pill and drinks a glass of water. ${pronoun1} falls asleep very quickly.` :
-            `${tmpname} feeds ${name} a sleeping pill and gives ${pronoun2} a glass of water. ${name} falls asleep very quickly.`
+            `${tmpname} toma una pastilla para dormir y bebe un vaso de agua. Se duerme muy rápido.` :
+            `${tmpname} le da a ${name} una pastilla para dormir y un vaso de agua. ${name} se duerme muy rápido.`
         );
         InventoryWear(character, "RegularSleepingPill", 'ItemMouth');
         CharacterSetFacialExpression(character, "Eyes", "Closed");
@@ -9621,7 +9626,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         if (typeof shared.Uwall === "boolean") {
-            ubc2 = shared.Uwall ? "Has enabled Uwall." : "Has disabled Uwall.";
+            ubc2 = shared.Uwall ? "Ha activado Uwall." : "Ha desactivado Uwall.";
         }
         ChatRoomSendLocal(`${ubc1} - ${ubc2}`);
         if (command == "uroom") ChatRoomSendLocal(" ");
@@ -9906,7 +9911,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             updateNoTalk(ntt, ont);
             if (window.CurrentScreen == "ChatRoom") {
-                let msg = "You are now in real baby talk mode.";
+                let msg = "Ahora estás en modo babytalk real.";
                 if (ntt == 1) msg = msg + " " + umsg8;
                 infomsg(msg);
             }
@@ -9942,7 +9947,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 updateNoTalk(ntt, ont);
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
-                    let msg = "You are now in normal talk mode.";
+                    let msg = "Ahora estás en modo de habla normal.";
                     if (ntt == 1) msg = msg + " " + umsg8;
                     infomsg(msg);
                 }
@@ -9963,7 +9968,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 updateNoTalk(ntt, ont);
                 M_MOANER_saveControls();
                 if (window.CurrentScreen == "ChatRoom") {
-                    let msg = "You are now in real gag talk mode. Your current garbling level is " + ngl + ".";
+                    let msg = "Ahora estás en modo gagtalk real. Tu nivel actual de balbuceo es " + ngl + ".";
                     if (ntt == 1) msg = msg + " " + umsg8;
                     infomsg(msg);
                 }
@@ -10800,57 +10805,57 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         showM_MOANER_xvibratorStatus();
     }
 
-    function showM_MOANER_scriptStatus() {
-        let msg = "The moaner is not active.";
-        if (M_MOANER_scriptOn) msg = "The moaner is active.";
+        function showM_MOANER_scriptStatus() {
+        let msg = "El moaner no está activo.";
+        if (M_MOANER_scriptOn) msg = "El moaner está activo.";
         statusmsg(msg);
     }
 
     function showM_MOANER_profileStatus() {
-        let msg = "Current moans profile: " + profileName;
-        if (profileName == "default") msg = "No custom profile loaded.";
+        let msg = "Perfil de gemidos actual: " + profileName;
+        if (profileName == "default") msg = "No hay ningún perfil personalizado cargado.";
         statusmsg(msg);
     }
 
     function showM_MOANER_orgasmStatus() {
-        let msg = "The orgasm moan is not active. You will not moan while cumming.";
-        if (M_MOANER_orgasmActive) msg = "The orgasm moan is active. You will moan while cumming.";
+        let msg = "El gemido de orgasmo no está activo. No gemirás al correrte.";
+        if (M_MOANER_orgasmActive) msg = "El gemido de orgasmo está activo. Gemirás al correrte.";
         statusmsg(msg);
     }
 
     function showM_MOANER_spankStatus() {
-        let msg = "The spank moan is not active. You will not moan while being spanked.";
-        if (M_MOANER_spankActive) msg = "The spank moan is active. You will moan while being spanked.";
+        let msg = "El gemido por azote no está activo. No gemirás mientras recibes azotes.";
+        if (M_MOANER_spankActive) msg = "El gemido por azote está activo. Gemirás mientras recibes azotes.";
         statusmsg(msg);
     }
 
     function showM_MOANER_talkStatus() {
-        let msg = "The talk moan is not active. If you're vibed, you will not moan while speaking.";
-        if (M_MOANER_talkActive) msg = "The talk moan is active. If you're vibed, you will moan while speaking.";
+        let msg = "El gemido al hablar no está activo. Si tienes vibradores, no gemirás mientras hablas.";
+        if (M_MOANER_talkActive) msg = "El gemido al hablar está activo. Si tienes vibradores, gemirás mientras hablas.";
         statusmsg(msg);
     }
 
     function showM_MOANER_whisperStatus() {
-        let msg = "The whisper moan is not active. If you're vibed, you will not moan while whispering.";
-        if (M_MOANER_whisperActive) msg = "The whisper moan is active. If you're vibed, you will whisper while speaking.";
+        let msg = "El gemido al susurrar no está activo. Si tienes vibradores, no gemirás mientras susurras.";
+        if (M_MOANER_whisperActive) msg = "El gemido al susurrar está activo. Si tienes vibradores, gemirás al susurrar.";
         statusmsg(msg);
     }
 
     function showM_MOANER_tickleStatus() {
-        let msg = "The tickle moan is not active. You will not moan while being tickled.";
-        if (M_MOANER_tickleActive) msg = "The tickle moan is active. You will moan while being tickled.";
+        let msg = "El gemido por cosquillas no está activo. No gemirás mientras recibes cosquillas.";
+        if (M_MOANER_tickleActive) msg = "El gemido por cosquillas está activo. Gemirás mientras recibes cosquillas.";
         statusmsg(msg);
     }
 
     function showM_MOANER_vibratorStatus() {
-        let msg = "The vibes moan is not active. If your vibrator's settings change, you will not moan.";
-        if (M_MOANER_vibratorActive) msg = "The vibes moan is active. If your vibrator's settings change, you will moan.";
+        let msg = "El gemido por vibración no está activo. Si cambian los ajustes de tu vibrador, no gemirás.";
+        if (M_MOANER_vibratorActive) msg = "El gemido por vibración está activo. Si cambian los ajustes de tu vibrador, gemirás.";
         statusmsg(msg);
     }
 
     function showM_MOANER_xvibratorStatus() {
-        let msg = "The xvibes moan is not active. If vibrator's settings of other players change, you will not moan.";
-        if (M_MOANER_xvibratorActive) msg = "The xvibes moan is active. If vibrator's settings of other players change, you will moan.";
+        let msg = "El gemido por vibración ajena (xvibes) no está activo. Si cambian los ajustes de vibradores de otros jugadores, no gemirás.";
+        if (M_MOANER_xvibratorActive) msg = "El gemido por vibración ajena (xvibes) está activo. Si cambian los ajustes de vibradores de otros jugadores, gemirás.";
         statusmsg(msg);
     }
 
@@ -11499,15 +11504,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'allcolor',
-        Description: "(colorcode) (category) (target): changes color on current elements in specified category.",
+        Description: "(código-color) (categoría) (objetivo): cambia el color de los elementos actuales en la categoría especificada.",
         Action: (args) => {
             args = (args || "").trim();
             if (!args) {
-                let msg = "The allcolor command must be followed by a color code, a number corresponding to a category and optionally a target.\n" +
+                let msg = "El comando allcolor debe ir seguido de un código de color, un número correspondiente a una categoría y opcionalmente un objetivo.\n" +
                     " \n" +
-                    "The color code must be in hex format: #RRGGBB or #RGB.\n" +
+                    "El código de color debe estar en formato hexadecimal: #RRGGBB o #RGB.\n" +
                     " \n" +
-                    "The numbers for the categories are: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories.";
+                    "Los números para las categorías son: 1 = Objetos - 2 = Ropa (excluyendo cosplay) - 3 = Cosplay - 4 = Cuerpo - 5 = Todas las categorías.";
                 infomsg(msg);
                 return;
             }
@@ -11517,19 +11522,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const targetname = parts[2];
             const isValidColor = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color);
             if (!isValidColor) {
-                infomsg("Invalid color. Use hex format like #RRGGBB or #RGB.");
+                infomsg("Color inválido. Usa el formato hexadecimal como #RRGGBB o #RGB.");
                 return;
             }
             if (!category || isNaN(category) || category < 1 || category > 5) {
-                infomsg("Invalid category. Use a number between 1 and 5, for the category you want to color: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories.");
+                infomsg("Categoría inválida. Usa un número entre 1 y 5 para la categoría que quieras colorear: 1 = Objetos - 2 = Ropa (excluyendo cosplay) - 3 = Cosplay - 4 = Cuerpo - 5 = Todas las categorías.");
                 return;
             }
             let catname = "";
-            if (category == 1) catname = "items.";
-            if (category == 2) catname = "clothes.";
+            if (category == 1) catname = "objetos.";
+            if (category == 2) catname = "ropa.";
             if (category == 3) catname = "cosplay.";
-            if (category == 4) catname = "body.";
-            if (category == 5) catname = "items, clothes, cosplay and body.";
+            if (category == 4) catname = "cuerpo.";
+            if (category == 5) catname = "objetos, ropa, cosplay y cuerpo.";
             const applyColorToAppearance = (appearanceArray, color) => {
                 for (const part of appearanceArray) {
                     if (!part || !part.Asset || !part.Asset.Group || !part.Asset.Group.Name) continue;
@@ -11548,7 +11553,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             };
             if (!targetname) {
                 applyColorToAppearance(Player.Appearance, color);
-                let msg = "New colors are used on " + tmpname + "'s " + catname;
+                let msg = "Se están usando nuevos colores en los " + catname + " de " + tmpname;
                 targetMessage(Allcolor, msg, 1);
                 ChatRoomCharacterUpdate(Player);
                 return;
@@ -11569,19 +11574,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 return;
             }
             applyColorToAppearance(target.Appearance, color);
-            let msg = "New colors are used on " + tgpname + "'s " + catname;
+            let msg = "Se están usando nuevos colores en los " + catname + " de " + tgpname;
             targetMessage(Tallcolor, msg, 2);
             ChatRoomCharacterUpdate(target);
             ChatRoomSetTarget(-1);
         }
-    }])
+    }]);
 
     CommandCombine([{
         Tag: 'asylum',
-        Description: "(minutes): enters asylum, bypasses requirements.",
+        Description: "(minutos): entra al manicomio, omitiendo los requisitos.",
         Action: (args) => {
             if ((args === "") && (ReputationGet("Asylum") < 0)) {
-                let msg = "You must specify minutes if you are a patient.";
+                let msg = "Debes especificar los minutos si eres un paciente.";
                 infomsg(msg);
             } else {
                 if (ReputationGet("Asylum") < 0) {
@@ -11602,13 +11607,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'atalk',
-        Description: "(animal) (words): speaks once as a specified animal.",
+        Description: "(animal) (palabras): habla una vez como el animal especificado.",
         Action: (_, command, args) => {
-            let help = "The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\n" +
-                "Note that it can't be used when you are in a 'permanent' animal talk mode.\n" +
-                "Available animals:\n" +
-                "1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n" +
-                "6 pig - 7 pony - 8 puppy - 9 wolfy";
+            let help = "El comando atalk debe ir seguido de un número entre 1 y 9 para el animal y las palabras que quieras decir.\n" +
+                "Ten en cuenta que no puede usarse cuando ya estás en un modo de habla animal 'permanente'.\n" +
+                "Animales disponibles:\n" +
+                "1 conejo - 2 vaca - 3 zorro - 4 gatito - 5 ratón\n" +
+                "6 cerdo - 7 pony - 8 cachorro - 9 lobito";
             let [mode] = args;
             if (!mode || isNaN(mode) || mode < 1 || mode > 9) {
                 infomsg(help);
@@ -11617,7 +11622,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let [, , ...message] = command.split(" ");
             let msg = message?.join(" ");
             if (!msg) {
-                infomsg("Please include words to say after the animal number.");
+                infomsg("Por favor, incluye las palabras que quieras decir después del número de animal.");
                 return;
             }
             if (dolltalk === true && IsDollTalk(msg) === false) {
@@ -11633,10 +11638,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'autokick',
-        Description: ": toggles on auto kick for 0 day old accounts.",
+        Description: ": alterna la expulsión automática (auto kick) para cuentas de 0 días de antigüedad.",
         Action: () => {
             if (this.AutoKickOn == false || this.AutoKickOn == undefined) {
-                let msg = "AutoKick Ready.";
+                let msg = "AutoKick Preparado.";
                 infomsg(msg);
                 AutoKickOn = true;
                 AutoKicker = function(data, days = 1, hours = 12, minutes = 0) {
@@ -11649,7 +11654,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             MemberNumber: character.MemberNumber,
                             Action: "Ban"
                         });
-                        let msg = "AutoKick: Account was 0 days old.";
+                        let msg = "AutoKick: La cuenta tenía 0 días de antigüedad.";
                         publicmsg(msg);
                     };
                 };
@@ -11657,7 +11662,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 AutoKickOn = false;
                 ServerSocket.off("ChatRoomMessage", AutoKicker);
-                let msg = "AutoKick Disabled.";
+                let msg = "AutoKick Desactivado.";
                 infomsg(msg);
             }
         }
@@ -11675,26 +11680,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg2',
-        Description: "(number): uses a Bondage Brawl background as standard background.",
+        Description: "(número): usa un fondo de Bondage Brawl como fondo estándar.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The bg2 command must be followed by a number. List of Bondage Brawl backgrounds:\n" +
-                    "1, 2 Balcony - 3 Ballroom - 4 to 12 Bandit Camp\n" +
-                    "13 to 15 Barn - 16 to 18 Bathroom Olivia\n" +
-                    "19 Bedroom Dungeon - 20 Bedroom Edward\n" +
-                    "21, 22 Bedroom Isabella - 23 Bedroom Melody\n" +
-                    "24 to 26 Bedroom Olivia - 27 to 32 Birch\n" +
-                    "33 Black - 34 to 36 Camp Ground\n" +
-                    "37 to 39 Castle - 40, 41 Clearing\n" +
-                    "42 to 44 College - 45 to 47 Countess Hall\n" +
-                    "48 Desert - 49, 50 Dungeon - 51, 52 Dungeon Cell\n" +
-                    "53 to 55 Dungeon Storage - 56 Forest\n" +
-                    "57 to 60 Forest Cabin - 61 Gas - 62 Green Plain\n" +
-                    "63 to 73 Hall (1 to 4) - 74 to 79 Lake - 80 Maid Bed\n" +
-                    "81 Mountain Path - 82, 83 Oak\n" +
-                    "84 to 88 Plain - 89 Pond - 90, 91 Savannah\n" +
-                    "92 to 94 Tent - 95, 96 Terrace\n" +
-                    "97 Vulture Plain - 98, 99 Wine Cell";
+                let msg = "El comando bg2 debe ir seguido de un número. Lista de fondos de Bondage Brawl:\n" +
+                    "1, 2 Balcón - 3 Salón de baile - 4 al 12 Campamento bandido\n" +
+                    "13 al 15 Granero - 16 al 18 Baño de Olivia\n" +
+                    "19 Dormitorio Mazmorra - 20 Dormitorio de Edward\n" +
+                    "21, 22 Dormitorio de Isabella - 23 Dormitorio de Melody\n" +
+                    "24 al 26 Dormitorio de Olivia - 27 al 32 Abedul (Birch)\n" +
+                    "33 Negro - 34 al 36 Terreno de campamento\n" +
+                    "37 al 39 Castillo - 40, 41 Claro del bosque\n" +
+                    "42 al 44 Universidad - 45 al 47 Salón de la Condesa\n" +
+                    "48 Desierto - 49, 50 Mazmorra - 51, 52 Celda de mazmorra\n" +
+                    "53 al 55 Almacén de mazmorra - 56 Bosque\n" +
+                    "57 al 60 Cabaña del bosque - 61 Gas - 62 Llanura verde\n" +
+                    "63 al 73 Pasillo (1 al 4) - 74 al 79 Lago - 80 Cama de sirvienta\n" +
+                    "81 Camino de montaña - 82, 83 Roble (Oak)\n" +
+                    "84 al 88 Llanura - 89 Estanque - 90, 91 Sabana\n" +
+                    "92 al 94 Tienda - 95, 96 Terraza\n" +
+                    "97 Llanura del buitre - 98, 99 Bodega de vino";
                 infomsg(msg);
             } else {
                 let bg = "";
@@ -11809,7 +11814,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg3',
-        Description: "(number): uses a Bondage College or Bondage Teacher background as custom background.",
+        Description: "(número): utiliza un fondo de Bondage College o Bondage Teacher como fondo personalizado.",
         Action: (args) => {
             let BCver = GameVersion;
             if (BCver.includes("Beta")) {
@@ -11819,16 +11824,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 BCver = "R" + beta3;
             }
             if (args === "") {
-                let msg = "The bg3 command must be followed by a number. List of Bondage College backgrounds:\n" +
+                let msg = "El comando bg3 debe ir seguido de un número. Lista de fondos de Bondage College:\n" +
                     "BONDAGE COLLEGE\n" +
-                    "1 Art Class - 2, 3 Class - 4 Club - 5 College\n" +
-                    "6 Dorm - 7 Dressing Room - 8 Gym Class\n" +
-                    "9 to 12 Isolation Room - 13 to 16 Kinbaku Club\n" +
-                    "17 to 26 Library - 27, 28 Lockers\n" +
-                    "29 Running Track - 30, 31 Showers - 32 Theater\n" +
+                    "1 Clase de Arte - 2, 3 Clase - 4 Club - 5 Universidad\n" +
+                    "6 Dormitorio - 7 Vestidor - 8 Clase de Gimnasia\n" +
+                    "9 al 12 Sala de Aislamiento - 13 al 16 Club Kinbaku\n" +
+                    "17 al 26 Biblioteca - 27, 28 Casilleros\n" +
+                    "29 Pista de Atletismo - 30, 31 Duchas - 32 Teatro\n" +
                     "BONDAGE TEACHER\n" +
-                    "33, 34 Beach - 35, 36 Briefcase - 37 Bullseye\n" +
-                    "38, 39 Class - 40 College - 41 Office";
+                    "33, 34 Playa - 35, 36 Maletín - 37 Diana\n" +
+                    "38, 39 Clase - 40 Universidad - 41 Oficina";
                 infomsg(msg);
             } else {
                 let bg = "";
@@ -11883,22 +11888,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg4',
-        Description: "(screen) (background): selects a standard background for the Club Card Game, Friend List, Main Hall, Private Room (SP) or Timer Cell",
+        Description: "(pantalla) (fondo): selecciona un fondo estándar para el Juego de Cartas del Club, Lista de Amigos, Salón Principal, Habitación Privada (SP) o Celda con Temporizador",
         Action: (args) => {
             if (args === "") {
-                let msg = "The bg4 command must be followed by two numbers:\n" +
-                    "- a number for the concerned screen:\n" +
-                    "0 = Character Info - 1 = Chat Search\n" +
-                    "2 = Club Card Game - 3 = Friend List\n" +
-                    "4 = Main Hall - 5 = Private Room (SP)\n" +
-                    "6 = Timer Cell - 7 = Wardrobe\n" +
-                    "8 = Creation of New Room (default)\n" +
+                let msg = "El comando bg4 debe ir seguido de dos números:\n" +
+                    "- un número para la pantalla afectada:\n" +
+                    "0 = Info de Personaje - 1 = Búsqueda de Chat\n" +
+                    "2 = Juego de Cartas del Club - 3 = Lista de Amigos\n" +
+                    "4 = Salón Principal - 5 = Habitación Privada (SP)\n" +
+                    "6 = Celda con Temporizador - 7 = Guardarropa\n" +
+                    "8 = Creación de Nueva Sala (predeterminado)\n" +
                     " \n" +
-                    "- a number between -1 and a maximum that can vary:\n" +
-                    "Without BCX: 0 to 235 for official BC backgrounds, 236 to 318 are added if you use the /bg1 command.\n" +
-                    "With BCX: 0 to 235 for official BC backgrounds, 236 to 325 are added by BCX, 326 to 399 are added if you use the /bg1 command (some backgrounds have two numbers).\n" +
+                    "- un número entre -1 y un máximo que puede variar:\n" +
+                    "Sin BCX: 0 a 235 para fondos oficiales de BC, 236 a 318 se añaden si usas el comando /bg1.\n" +
+                    "Con BCX: 0 a 235 para fondos oficiales de BC, 236 a 325 son añadidos por BCX, 326 a 399 se añaden si usas el comando /bg1 (algunos fondos tienen dos números).\n" +
                     " \n" +
-                    "Use -1 to go back to the default background. Tip: use </b>/bglist</b> to know which number corresponds to a specific background.";
+                    "Usa -1 para volver al fondo predeterminado. Consejo: usa <b>/bglist</b> para saber qué número corresponde a cada fondo.";
                 infomsg(msg);
             } else {
                 let stringBg1 = args;
@@ -11916,7 +11921,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             ifname = ifback;
                             M_MOANER_saveControls();
-                            let msg = "The background of your character info is now: " + ifname + ".";
+                            let msg = "El fondo de tu información de personaje ahora es: " + ifname + ".";
                             infomsg(msg);
                         }
                     }
@@ -11931,7 +11936,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             csname = csback;
                             M_MOANER_saveControls();
-                            let msg = "The background of Chat Search is now: " + BackgroundsTextGet(csname) + ".";
+                            let msg = "El fondo de Búsqueda de Chat ahora es: " + BackgroundsTextGet(csname) + ".";
                             infomsg(msg);
                         }
                     }
@@ -11948,11 +11953,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 Game: Player.Game
                             });
-                            let msg = "The background of the Club Card Game is now: " + BackgroundsTextGet(ccback) + ".";
+                            let msg = "El fondo del Juego de Cartas del Club ahora es: " + BackgroundsTextGet(ccback) + ".";
                             infomsg(msg);
                         }
                     }
-                    if (screen == 3) {
+                                        if (screen == 3) {
                         let frbg = stringBg2[1];
                         let frback = "";
                         if ((frbg > -2) && (frbg < (BackgroundsList.length - 1))) {
@@ -11963,7 +11968,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             frname = frback;
                             M_MOANER_saveControls();
-                            let msg = "The background of the friend list is now: " + BackgroundsTextGet(frname) + ".";
+                            let msg = "El fondo de la lista de amigos ahora es: " + BackgroundsTextGet(frname) + ".";
                             infomsg(msg);
                         }
                     }
@@ -11980,7 +11985,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 VisualSettings: Player.VisualSettings
                             });
-                            let msg = "The background of the main hall is now: " + BackgroundsTextGet(mhback) + ".";
+                            let msg = "El fondo del salón principal ahora es: " + BackgroundsTextGet(mhback) + ".";
                             infomsg(msg);
                         }
                     }
@@ -11998,7 +12003,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 VisualSettings: Player.VisualSettings
                             });
-                            let msg = "The background of your private room (SP) is now: " + BackgroundsTextGet(prback) + ".";
+                            let msg = "El fondo de tu habitación privada (SP) ahora es: " + BackgroundsTextGet(prback) + ".";
                             infomsg(msg);
                         }
                     }
@@ -12013,11 +12018,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             tcname = tcback;
                             M_MOANER_saveControls();
-                            let msg = "The background of the timer cell is now: " + tcname + ".";
+                            let msg = "El fondo de la celda con temporizador ahora es: " + tcname + ".";
                             infomsg(msg);
                         }
                     }
-                    if (screen == 7) {
+                                        if (screen == 7) {
                         let wrbg = stringBg2[1];
                         let wrback = "";
                         if ((wrbg > -2) && (wrbg < (BackgroundsList.length - 1))) {
@@ -12028,7 +12033,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             wrname = wrback;
                             M_MOANER_saveControls();
-                            let msg = "The background of the wardrobe is now: " + wrname + ".";
+                            let msg = "El fondo del guardarropa ahora es: " + wrname + ".";
                             infomsg(msg);
                         }
                     }
@@ -12046,7 +12051,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ServerAccountUpdate.QueueData({
                                 OnlineSettings: Player.OnlineSettings
                             });
-                            let msg = "The default background when creating a new room is now: " + BackgroundsTextGet(drback) + ".";
+                            let msg = "El fondo predeterminado al crear una nueva sala ahora es: " + BackgroundsTextGet(drback) + ".";
                             infomsg(msg);
                         }
                     }
@@ -12057,7 +12062,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bglist',
-        Description: ": displays list of all available standard backgrounds",
+        Description: ": muestra la lista de todos los fondos estándar disponibles",
         Action: () => {
             for (let i = 0; i < BackgroundsList.length; i++)
                 ChatRoomSendLocal(i + " - " + BackgroundsTextGet(BackgroundsList[i].Name));
@@ -12066,7 +12071,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bgshow1',
-        Description: "(bgnumber): displays locally clickable link to a specific standard background and embedded picture.",
+        Description: "(numero): muestra un enlace local con clic y la imagen incrustada de un fondo estándar específico.",
         Action: (args) => {
             let BCver = GameVersion;
             if (BCver.includes("Beta")) {
@@ -12076,12 +12081,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 BCver = "R" + beta3;
             }
             if (args === "") {
-                let msg = "The bgshow1 command must be followed by a number (use /bglist to get available numbers).";
+                let msg = "El comando bgshow1 debe ir seguido de un número (usa /bglist para ver los números disponibles).";
                 infomsg(msg);
             } else {
                 if ((args > -1) && (args < BackgroundsList.length)) {
                     let name = BackgroundsList[args].Name;
-                    let url = 'https://www.bondage-europe.com/' + BCver + '/BondageClub/Backgrounds/' + name + '.jpg';
+                    let url = 'https://www.bondage-europe.com' + BCver + '/BondageClub/Backgrounds/' + name + '.jpg';
                     let msg = '<a href="' + url + '" target="_blank">' + url + '</a>';
                     let txt = "( " + msg + " )";
                     infomsg(txt);
@@ -12093,7 +12098,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     img.classList.add('chatImg');
                     let a = document.createElement("a");
                     a.target = '_blank';
-                    a.href = msg;
+                    a.href = url;
                     img.style.maxWidth = '90%';
                     img.style.maxHeight = '90%';
                     div.append(divMsg);
@@ -12109,9 +12114,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'bgshow2',
-        Description: "(bgnumber): sends in chat link to a specific standard background. When used with WCE feature, the link is clickable and the picture can be embedded in the chat.",
+        Description: "(numero): envía al chat un enlace a un fondo estándar específico. Al usar con WCE, el enlace es clicable y la imagen se puede incrustar.",
         Action: (args) => {
             let BCver = GameVersion;
             if (BCver.includes("Beta")) {
@@ -12121,7 +12126,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 BCver = "R" + beta3;
             }
             if (args === "") {
-                let msg = "The bgshow2 command must be followed by a number (use /bglist to get available numbers).";
+                let msg = "El comando bgshow2 debe ir seguido de un número (usa /bglist para ver los disponibles).";
                 infomsg(msg);
             } else {
                 if ((args > -1) && (args < BackgroundsList.length)) {
@@ -12136,7 +12141,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bio',
-        Description: "(target): gives direct access to the profile description of any player in the chat room.",
+        Description: "(objetivo): da acceso directo a la descripción del perfil de cualquier jugador en la sala.",
         Action: (args) => {
             let target = "";
             if (args === "") {
@@ -12150,7 +12155,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'boost',
-        Description: ": boosts all your skills for one hour.",
+        Description: ": potencia todas tus habilidades durante una hora.",
         Action: () => {
             if (noescape) {
                 let msg = umsg1 + umsg3;
@@ -12163,7 +12168,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 SkillSetModifier(Player, "LockPicking", +5, 3600000);
                 SkillSetModifier(Player, "SelfBondage", +5, 3600000);
                 SkillSetModifier(Player, "Willpower", +5, 3600000);
-                let msg = "You feel all your skills boosted. Changes can be seen in information panel.";
+                let msg = "Sientes todas tus habilidades potenciadas. Los cambios se ven en el panel de información.";
                 infomsg(msg);
             }
         }
@@ -12171,14 +12176,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'btalk',
-        Description: "(words): speaks once as a baby.",
+        Description: "(palabras): habla una vez como un bebé.",
         Action: (args) => {
             if (!args) {
-                infomsg("The btalk command must be followed by the words you want to say.");
+                infomsg("El comando btalk debe ir seguido de las palabras que quieras decir.");
                 return;
             }
             if (dolltalk === true && !IsDollTalk(args)) {
-                infomsg("Your message can't be sent because it does not respect the rules of doll talk");
+                infomsg("Tu mensaje no se pudo enviar porque no respeta las reglas dolltalk.");
                 return;
             }
             let msg = SpeechTransformBabyTalk(args);
@@ -12192,24 +12197,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'callubc',
-        Description: ": installation of UBC GUI (to be used if it has failed during the initialisation).",
+        Description: ": instalación de la interfaz UBC (usar si falló durante la inicialización).",
         Action: () => {
-            let msg = "Check now the Extensions page!";
+            let msg = "¡Revisa ahora la página de Extensiones!";
             infomsg(msg);
             runUBC();
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'cgame',
-        Description: "(zone): launches a Club Card Game against a specific NPC.",
+        Description: "(zona): inicia un Juego de Cartas del Club contra un NPC específico.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The cgame command must include a zone.\n" +
-                    "Available zones:\n" +
+                let msg = "El comando cgame debe incluir una zona.\n" +
+                    "Zonas disponibles:\n" +
                     "asylum, cafe, infiltration, introduction, kidnap, larp,\n" +
                     "lounge, magic, movie, shibari, stable.\n" +
-                    "You need to click on the concerned NPC, then on the appropriate option.";
+                    "Debes hacer clic en el NPC correspondiente y luego en la opción apropiada.";
                 infomsg(msg);
             } else {
                 minigame = args;
@@ -12264,16 +12269,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'chess',
-        Description: "(difficulty): starts chess.",
+        Description: "(dificultad): inicia el ajedrez.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The chess command must be followed by a number between 1 and 3.\n" +
+                let msg = "El comando chess debe ir seguido de un número entre 1 y 3.\n" +
                     " \n" +
-                    "Available difficulty modes:\n" +
-                    "1 easy\n" +
+                    "Modos de dificultad disponibles:\n" +
+                    "1 fácil\n" +
                     "2 normal\n" +
-                    "3 hard\n" +
-                    "Note that a full relog is required at the end of a chess game.";
+                    "3 difícil\n" +
+                    "Ten en cuenta que se requiere un relog completo al finalizar una partida de ajedrez.";
                 infomsg(msg);
             } else {
                 let chessdifficulty = args;
@@ -12289,13 +12294,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'clothes',
-        Description: "(target): changes clothes.",
+        Description: "(objetivo): cambia la ropa.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target == Player) {
-                let msg = "Magical lasers put random clothes on " + tmpname + "'s body.";
+                let msg = "Láseres mágicos ponen ropa aleatoria en el cuerpo de " + tmpname + ".";
                 targetMessage(Clothes, msg, 1);
                 CharacterAppearanceFullRandom(Player, true);
                 ChatRoomCharacterUpdate(Player);
@@ -12306,7 +12311,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers put random clothes on " + tgpname + "'s body.";
+                        let msg = "Láseres mágicos ponen ropa aleatoria en el cuerpo de " + tgpname + ".";
                         targetMessage(Tclothes, msg, 2);
                         CharacterAppearanceFullRandom(target, true);
                         ChatRoomCharacterUpdate(target);
@@ -12317,9 +12322,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'college',
-        Description: "enters college, bypasses requirements.",
+        Description: "entra a la universidad, omitiendo los requisitos.",
         Action: () => {
             ChatRoomSetLastChatRoom("");
             ServerSend("ChatRoomLeave", "");
@@ -12343,19 +12348,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'colorchanger',
-        Description: "(anim): gets an animation with color change.",
+        Description: "(anim): activa una animación con cambio de color.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The colorchanger command:\n" +
-                    "To preselect, two choices exist, type: <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\n" +
-                    "To manually select area, type: <b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\n" +
-                    "Manual selection can only target 10 areas at a time,\n" +
-                    "then requires to be reset to reuse, type: <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\n" +
-                    "Only 1 target can be active at a time";
+                let msg = "El comando colorchanger:\n" +
+                    "Para preseleccionar, existen dos opciones, escribe: <b>/colorchanger hair</b> o <b>/colorchanger eyes</b>\n" +
+                    "Para seleccionar un área manualmente, escribe: <b>/colorchanger set</b> o <b>/colorchanger select</b> o <b>/colorchanger custom</b>\n" +
+                    "La selección manual solo puede afectar a 10 áreas a la vez,\n" +
+                    "luego requiere ser reiniciada para volver a usarla, escribe: <b>/colorchanger stop</b> o <b>/colorchanger reset</b>\n" +
+                    "Solo puede haber 1 objetivo activo a la vez";
                 infomsg(msg);
             }
             if ((args === "custom") || (args === "set") || (args === "select")) {
-                let msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                let msg = "Tienes 5 segundos para hacer clic en el objetivo y seleccionar el área. Si tiene éxito, se confirmará. Si no, reintenta.";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
@@ -12424,8 +12429,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }, 5000);
             }
-            if (args === "eyes") {
-                let msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                        if (args === "eyes") {
+                let msg = "Tienes 5 segundos para hacer clic en el objetivo y seleccionar el área. Si tiene éxito, se confirmará. Si no, reintenta.";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
@@ -12449,7 +12454,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }, 5000);
             }
             if (args === "hair") {
-                let msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry";
+                let msg = "Tienes 5 segundos para hacer clic en el objetivo y seleccionar el área. Si tiene éxito, se confirmará. Si no, reintenta.";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
@@ -12491,17 +12496,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-	CommandCombine([{
+	    CommandCombine([{
         Tag: 'ctitle',
-        Description: "(custom title): creates a custom title, that does not require to satisfy some conditions.",
+        Description: "(titulo personalizado): crea un título personalizado que no requiere cumplir condiciones.",
         Action: (args, originalInput) => {  
             if (args === "") { 
-                let msg = "The ctitle command must be followed by the custom title you want to display in your profile.\n" +
-                    "It can be an original title or an existing official title, for which you don't satisfy some conditions.\n" +
-                    "Maximum 25 characters (spaces included)!\n" +
-                    "It will work only between UBC users who have selected the Only Days option for the Character Info screen.\n" +
-                    "This title will not be displayed on the Titles screen.\n" +
-                    "Use None as title to go back to a profile without custom title.";
+                let msg = "El comando ctitle debe ir seguido del título personalizado que quieras mostrar en tu perfil.\n" +
+                    "Puede ser un título original o uno oficial existente para el cual no cumplas los requisitos.\n" +
+                    "¡Máximo 25 caracteres (espacios incluidos)!\n" +
+                    "Solo funcionará entre usuarios de UBC que tengan seleccionada la opción 'Only Days' en la pantalla de Info de Personaje.\n" +
+                    "Este título no se mostrará en la pantalla de Títulos.\n" +
+                    "Usa 'None' como título para volver a un perfil sin título personalizado.";
                 infomsg(msg);
                 return;
             }      
@@ -12511,10 +12516,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((length > 0) && (length < 26) && (custom.match(LS))) {
                 if (custom === "None") {
                     ctitle = "";
-                    infomsg("Custom title deleted")
+                    infomsg("Título personalizado eliminado")
                 } else {
                     ctitle = custom;
-                    infomsg("Custom title created or modified");        
+                    infomsg("Título personalizado creado o modificado");        
                 } 
                 M_MOANER_saveControls();
                 Player.OnlineSharedSettings.ctitle = ctitle;
@@ -12522,14 +12527,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
             } else {
-                infomsg("Maximum 25 characters (spaces included)!");
+                infomsg("¡Máximo 25 caracteres (espacios incluidos)!");
             }
         }
     }])
 
     CommandCombine([{
         Tag: 'cum',
-        Description: ": causes an orgasm.",
+        Description: ": provoca un orgasmo.",
         Action: () => {
             ActivityOrgasmRuined = false;
             ActivityOrgasmStart(Player);
@@ -12538,12 +12543,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'difficulty',
-        Description: "(number): changes game difficulty.",
+        Description: "(numero): cambia la dificultad del juego.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The difficulty command must be followed by a number between 0 and 3.\n" +
+                let msg = "El comando difficulty debe ir seguido de un número entre 0 y 3.\n" +
                     " \n" +
-                    "Available difficulty modes:\n" +
+                    "Modos de dificultad disponibles:\n" +
                     "0 roleplay\n" +
                     "1 regular\n" +
                     "2 hardcore\n" +
@@ -12567,15 +12572,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'font',
-        Description: "(font) (size): changes font in BC. ",
+        Description: "(fuente) (tamaño): cambia la fuente en BC.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The font command must be followed by a font number and optionally a size number.\n" +
-                    "Supported fonts: 0 Arial - 1 Times New Roman\n" +
+                let msg = "El comando font debe ir seguido de un número de fuente y opcionalmente un número de tamaño.\n" +
+                    "Fuentes soportadas: 0 Arial - 1 Times New Roman\n" +
                     "2 Papyrus - 3 Comic Sans - 4 Impact\n" +
                     "5 Helvetica Neue - 6 Verdana - 7 Century Gothic\n" +
                     "8 Georgia - 9 Courrier New - 10 Copperplate\n" +
-                    "Sizes: 0 Small - 1 Medium - 2 Large";
+                    "Tamaños: 0 Pequeño - 1 Mediano - 2 Grande";
                 infomsg(msg);
             } else {
                 let stringFont1 = args;
@@ -12605,7 +12610,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'frlist',
-        Description: "(lobby): gives access to friendlist in current lobby.",
+        Description: "(lobby): da acceso a la lista de amigos en el lobby actual.",
         Action: () => {
             RoomToGame();
             CommonSetScreen("Online", "ChatSearch");
@@ -12617,20 +12622,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'game',
-        Description: "(minigame): launches a minigame.",
+        Description: "(minijuego): lanza un minijuego.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The game command must include a minigame.\n" +
-                    "Available minigames:\n" +
+                let msg = "El comando game debe incluir un minijuego.\n" +
+                    "Minijuegos disponibles:\n" +
                     "carrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\n" +
                     "movie2, puppy, rhythm, tennis1, tennis2, tennis3,\n" +
                     "training, whippony.\n" +
-                    "Tennis1 = easy, tennis2 = normal, tennis3 = hard\n" +
-                    "Training is the trainer version of the hurdle game.\n" +
-                    "You need generally to click on the NPC and select the appropriate options in the dialogs.\n" +
-                    "Note that a full relog is required to really end the games in the stable (the 'leave' option in dialog will start a new game!)";
+                    "Tennis1 = fácil, tennis2 = normal, tennis3 = difícil\n" +
+                    "Training es la versión de entrenamiento del juego hurdle.\n" +
+                    "Generalmente necesitas hacer clic en el NPC y seleccionar las opciones apropiadas en los diálogos.\n" +
+                    "Nota: se requiere un relog completo para terminar realmente los juegos en el establo (¡la opción 'leave' en el diálogo iniciará un juego nuevo!)";
                 infomsg(msg);
             } else {
                 minigame = args;
@@ -12663,10 +12668,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'ggts',
-        Description: "(minutes) (level):  enters ggts training in asylum for the specified time and level.",
+        Description: "(minutos) (nivel): entra al entrenamiento ggts en el asilo por el tiempo y nivel especificados.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The ggts command must be followed by two numbers to  specify minutes and level (1-6).";
+                let msg = "El comando ggts debe ir seguido de dos números para especificar minutos y nivel (1-6).";
                 infomsg(msg);
             } else {
                 let stringGgts1 = args;
@@ -12675,7 +12680,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let level = stringGgts2[1];
                 minigame = level;
                 M_MOANER_saveControls();
-                let msg = "" + tmpname + " gets grabbed by two maids and locked in the asylum for " + minutes + " minutes of training with the Good Girl Training System Level " + level + ".";
+                let msg = "" + tmpname + " es agarrada por dos sirvientas y encerrada en el asilo para " + minutes + " minutos de entrenamiento con el Good Girl Training System Nivel " + level + ".";
                 publicmsg(msg);
                 DialogLentLockpicks = false;
                 RoomToGame();
@@ -12701,22 +12706,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'gtalk',
-        Description: "(talkmode) (words): speaks once in specified gag talk.",
+        Description: "(modo_habla) (palabras): habla una vez con el habla de mordaza especificada.",
         Action: (_, command, args) => {
-            let help = "The gtalk command must be followed by a number between 0 and 10, then the words you want to say.\n" +
+            let help = "El comando gtalk debe ir seguido de un número entre 0 y 10, y luego las palabras que quieras decir.\n" +
                 " \n" +
-                "Available talk modes:\n" +
-                "0 real gag talk (based on currently worn gags and other items restraining talking)\n" +
-                "1 almost no gag talk\n" +
-                "2 very light gag talk\n" +
-                "3 light gag talk\n" +
-                "4 easy gag talk\n" +
-                "5 normal gag talk\n" +
-                "6 medium gag talk\n" +
-                "7 heavy gag talk\n" +
-                "8 better heavy gag talk\n" +
-                "9 very heavy gag talk\n" +
-                "10 total gag talk";
+                "Modos de habla disponibles:\n" +
+                "0 habla de mordaza real (basada en mordazas actuales y otros objetos que restrinjan el habla)\n" +
+                "1 casi sin habla de mordaza\n" +
+                "2 habla de mordaza muy ligera\n" +
+                "3 habla de mordaza ligera\n" +
+                "4 habla de mordaza fácil\n" +
+                "5 habla de mordaza normal\n" +
+                "6 habla de mordaza media\n" +
+                "7 habla de mordaza pesada\n" +
+                "8 mejor habla de mordaza pesada\n" +
+                "9 habla de mordaza muy pesada\n" +
+                "10 habla de mordaza total";
             let [gaglevel] = args;
             if (!gaglevel || isNaN(gaglevel) || gaglevel < 0 || gaglevel > 10) {
                 infomsg(help);
@@ -12725,7 +12730,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let [, , ...message] = command.split(" ");
             let msg = message?.join(" ");
             if (!msg) {
-                infomsg("Please include words to say after the gagtalk level.");
+                infomsg("Por favor, incluye las palabras a decir después del nivel de gtalk.");
                 return;
             }
             if (dolltalk === true && IsDollTalk(msg) === false) {
@@ -12763,13 +12768,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'hint',
-        Description: "(target) (hint): adds or changes a hint for current locks with passwords.",
+        Description: "(objetivo) (pista): añade o cambia una pista para los candados con contraseña actuales.",
         Action: (_, command, args) => {
             let [targetname] = args;
             if (!targetname) {
-                let msg = "The hint command must be followed by a target and the hint you want to add to locks with password.";
+                let msg = "El comando hint debe ir seguido de un objetivo y la pista que quieras añadir a los candados con contraseña.";
                 infomsg(msg);
             } else {
                 let [, , ...message] = command.split(" ");
@@ -12788,7 +12793,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         (target.Appearance[A].Property.LockedBy == "PasswordPadlock") ||
                                         (target.Appearance[A].Property.LockedBy == "TimerPasswordPadlock")) {
                                         target.Appearance[A].Property.Hint = hint;
-                                        let msg = "A hint has been added to " + tgpname + "'s locks with password.";
+                                        let msg = "Se ha añadido una pista a los candados con contraseña de " + tgpname + ".";
                                         publicmsg(msg);
                                     }
                                 }
@@ -12803,10 +12808,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'horny',
-        Description: "(level): sets your arousal level (in all cases).",
+        Description: "(nivel): establece tu nivel de excitación (en todos los casos).",
         Action: (args) => {
-            let msg1 = "The horny command must be followed by a number between 0 and 100.";
-            let msg2 = "Your arousal level has been modified.";
+            let msg1 = "El comando horny debe ir seguido de un número entre 0 y 100.";
+            let msg2 = "Tu nivel de excitación ha sido modificado.";
             const arousal = CommonParseInt(args);
             if (arousal === null) return infomsg(msg1);
             const clamped = CommonClamp(arousal, 0, 100);
@@ -12819,13 +12824,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'infolock',
-        Description: ": gives info (code, password, time left) for lock used on worn item in selected slot.",
+        Description: ": da información (código, contraseña, tiempo restante) del candado usado en el objeto del espacio seleccionado.",
         Action: () => {
             if (extrainfo == false) {
-                let msg = "You can't use this command according your settings.";
+                let msg = "No puedes usar este comando según tus ajustes.";
                 infomsg(msg);
             } else {
-                let msg = "You have 5 seconds to click on yourself or another player. If successful, you will get infos about the lock for the selected slot.";
+                let msg = "Tienes 5 segundos para hacer clic en ti mismo o en otro jugador. Si tiene éxito, obtendrás información sobre el candado del espacio seleccionado.";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
@@ -12842,29 +12847,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 Inventory = InventoryGet(CurrentCharacter, Target);
                                 if (Inventory.Property.LockedBy != null) {
                                     if (Inventory.Property.LockedBy == "CombinationPadlock") {
-                                        Lock = "Combination Padlock";
+                                        Lock = "Candado de Combinación";
                                         asset = Inventory.Asset.Description;
                                         code = Inventory.Property.CombinationNumber;
-                                        ChatRoomSendLocal("AssetGroup = " + Target);
-                                        ChatRoomSendLocal("Locked with " + Lock);
+                                        ChatRoomSendLocal("Grupo de Objeto = " + Target);
+                                        ChatRoomSendLocal("Bloqueado con " + Lock);
                                         ChatRoomSendLocal("" + asset + " = " + code + "");
                                     }
                                     if (Inventory.Property.LockedBy == "PortalLinkPadlock") {
-                                        Lock = "Portal Link Padlock";
+                                        Lock = "Candado de Enlace de Portal";
                                         asset = Inventory.Asset.Description;
                                         code = Inventory.Property.PortalLinkCode;
-                                        ChatRoomSendLocal("AssetGroup = " + Target);
-                                        ChatRoomSendLocal("Locked with " + Lock);
+                                        ChatRoomSendLocal("Grupo de Objeto = " + Target);
+                                        ChatRoomSendLocal("Bloqueado con " + Lock);
                                         ChatRoomSendLocal("" + asset + " = " + code + "");
                                     }
                                     if ((Inventory.Property.LockedBy == "SafewordPadlock") || (Inventory.Property.LockedBy == "PasswordPadlock") || (Inventory.Property.LockedBy == "TimerPasswordPadlock")) {
-                                        Lock = "Safeword Padlock";
-                                        if (Inventory.Property.LockedBy == "PasswordPadlock") Lock = "Password Padlock";
-                                        if (Inventory.Property.LockedBy == "TimerPasswordPadlock") Lock = "Timer Password Padlock";
+                                        Lock = "Candado de Palabra de Seguridad";
+                                        if (Inventory.Property.LockedBy == "PasswordPadlock") Lock = "Candado de Contraseña";
+                                        if (Inventory.Property.LockedBy == "TimerPasswordPadlock") Lock = "Candado de Contraseña con Temporizador";
                                         asset = Inventory.Asset.Description;
                                         code = Inventory.Property.Password;
-                                        ChatRoomSendLocal("AssetGroup = " + Target);
-                                        ChatRoomSendLocal("Locked with " + Lock);
+                                        ChatRoomSendLocal("Grupo de Objeto = " + Target);
+                                        ChatRoomSendLocal("Bloqueado con " + Lock);
                                         ChatRoomSendLocal("" + asset + " = " + code + "");
                                         if (Inventory.Property.LockedBy == "TimerPasswordPadlock") {
                                             time = Inventory.Property.RemoveTimer;
@@ -12873,26 +12878,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         }
                                     }
                                     if ((Inventory.Property.LockedBy == "TimerPadlock") || (Inventory.Property.LockedBy == "MistressTimerPadlock") || (Inventory.Property.LockedBy == "LoversTimerPadlock") || (Inventory.Property.LockedBy == "OwnerTimerPadlock")) {
-                                        Lock = "Timer Padlock";
-                                        if (Inventory.Property.LockedBy == "MistressTimerPadlock") Lock = "Mistress Timer Padlock";
-                                        if (Inventory.Property.LockedBy == "LoversTimerPadlock") Lock = "Lovers Timer Padlock";
-                                        if (Inventory.Property.LockedBy == "OwnerTimerPadlock") Lock = "Owner Timer Padlock";
+                                        Lock = "Candado con Temporizador";
+                                        if (Inventory.Property.LockedBy == "MistressTimerPadlock") Lock = "Candado con Temporizador de Ama";
+                                        if (Inventory.Property.LockedBy == "LoversTimerPadlock") Lock = "Candado con Temporizador de Amante";
+                                        if (Inventory.Property.LockedBy == "OwnerTimerPadlock") Lock = "Candado con Temporizador de Dueño";
                                         asset = Inventory.Asset.Description;
                                         time = Inventory.Property.RemoveTimer;
                                         left = TimerToString(time - CurrentTime);
-                                        ChatRoomSendLocal("AssetGroup = " + Target);
-                                        ChatRoomSendLocal("Locked with " + Lock);
+                                        ChatRoomSendLocal("Grupo de Objeto = " + Target);
+                                        ChatRoomSendLocal("Bloqueado con " + Lock);
                                         ChatRoomSendLocal("" + asset + " = " + left + "");
                                     }
                                 }
                                 if (Inventory.Property.Name != null) {
                                     if (Inventory.Property.Name == "Best Friend Timer Padlock") {
-                                        Lock = "Best Friend Timer Padlock";
+                                        Lock = "Candado con Temporizador de Mejor Amigo";
                                         asset = Inventory.Asset.Description;
                                         time = Inventory.Property.RemovalTime;
                                         left = TimerToString(time - CurrentTime);
-                                        ChatRoomSendLocal("AssetGroup = " + Target);
-                                        ChatRoomSendLocal("Locked with " + Lock);
+                                        ChatRoomSendLocal("Grupo de Objeto = " + Target);
+                                        ChatRoomSendLocal("Bloqueado con " + Lock);
                                         ChatRoomSendLocal("" + asset + " = " + left + "");
                                     }
                                 }
@@ -12905,20 +12910,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'invisible',
-        Description: "(target): goes or sends to invisible mode (scripts need to be allowed in BC settings).",
+        Description: "(objetivo): activa o envía al modo invisible (los scripts deben estar permitidos en los ajustes de BC).",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target == Player) {
                 if (Player.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                    let msg = "To use the invisible command on yourself, you need first to allow Scripts in BC settings.";
+                    let msg = "Para usar el comando invisible en ti mismo, primero debes permitir Scripts en los ajustes de BC.";
                     infomsg(msg);
                     return;
                 }
-                let msg = "Magical lasers make " + tmpname + " completely invisible.";
+                let msg = "Láseres mágicos hacen a " + tmpname + " completamente invisible.";
                 targetMessage(Invisible, msg, 1);
                 InventoryWear(Player, "Script", "ItemScript");
                 InventoryGet(Player, "ItemScript").Property = {
@@ -12931,7 +12936,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                        let msg = "To use the invisible command on other players, they need first to allow Scripts in BC settings.";
+                        let msg = "Para usar el comando invisible en otros jugadores, ellos deben primero permitir Scripts en los ajustes de BC.";
                         infomsg(msg);
                         return;
                     }
@@ -12939,7 +12944,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers make " + tgpname + " completely invisible.";
+                        let msg = "Láseres mágicos hacen a " + tgpname + " completamente invisible.";
                         targetMessage(Tinvisible, msg, 2);
                         InventoryWear(target, "Script", "ItemScript");
                         InventoryGet(target, "ItemScript").Property = {
@@ -12956,15 +12961,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'itemcolor',
-        Description: "(colorcode): changes color of worn item in selected slot.",
+        Description: "(codigocolor): cambia el color del objeto usado en el espacio seleccionado.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The itemcolor command needs to be followed by a color code in the format #000000 to change the color of a worn item in a slot selected by mouse click.";
+                let msg = "El comando itemcolor debe ir seguido de un código de color en formato #000000 para cambiar el color del objeto en el espacio seleccionado con un clic.";
                 infomsg(msg);
             } else {
                 let color = args;
                 if (color.startsWith("#")) {
-                    let msg = "You have 5 seconds to click on yourself. If successful, the color of the worn item in selected slot will be changed. If not, retry.";
+                    let msg = "Tienes 5 segundos para hacer clic en ti mismo. Si tiene éxito, el color del objeto en el espacio seleccionado cambiará. Si no, reintenta.";
                     infomsg(msg);
                     setTimeout(function() {
                         if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
@@ -12975,7 +12980,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     InventoryGet(Player, Target).Color = color;
                                     DialogLeave();
                                     ChatRoomCharacterUpdate(Player);
-                                    let msg = "Item color changed.";
+                                    let msg = "Color del objeto cambiado.";
                                     infomsg(msg);
                                 }
                             }
@@ -12988,15 +12993,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'keydeposit',
-        Description: "(hours): keeps your keys safe in the vault.",
+        Description: "(horas): guarda tus llaves a salvo en la bóveda.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The keydeposit command must be followed by a number higher than 0.";
+                let msg = "El comando keydeposit debe ir seguido de un número mayor a 0.";
                 infomsg(msg);
             } else {
                 let hours = args;
                 if (hours > 0) {
-                    let msg = "" + tmpname + "'s keys are now safe in the vault for " + hours + " hours.";
+                    let msg = "Las llaves de " + tmpname + " están ahora a salvo en la bóveda por " + hours + " horas.";
                     publicmsg(msg);
                     CellDepositKeys(hours);
                 }
@@ -13006,27 +13011,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'killpar',
-        Description: ": kills UBC/Moaner parameters saved locally.",
+        Description: ": elimina los parámetros de UBC/Moaner guardados localmente.",
         Action: (args) => {
             if (args === "") {
-                let msg = "<b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b>";
+                let msg = "<b>Advertencia</b>: Este comando eliminará todos los parámetros de UBC/Moaner guardados localmente. Úsalo solo si algunos parámetros parecen no funcionar. Confirma escribiendo: <b>/killpar yes</b>";
                 infomsg(msg);
             } else if (args === "yes") {
                 M_MOANER_deleteControls();
-                let msg = "All UBC/Moaner parameters have been deleted. Make a full logout/login then use the appropriate commands to set the parameters that you like.";
+                let msg = "Todos los parámetros de UBC/Moaner han sido eliminados. Haz un logout/login completo y luego usa los comandos apropiados para configurar los parámetros que gustes.";
                 infomsg(msg);
             }
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'layerset',
-        Description: "(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot",
+        Description: "(numero_capa) (codigocolor): cambia el color de una capa del objeto en el espacio guardado.",
         Action: (args) => {
             if (args === "") {
-                let msg = "First use the <b>/layershow</b> command to click on worn item, get useful info about layer colors and save Item Slot.\n" +
-                    "The layerset command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.\n" +
-                    "If you enter a non-numeric layer, it will be interpreted as 0 (zero). If the entered color does not exist, you will go back to the default color.";
+                let msg = "Primero usa el comando <b>/layershow</b> para hacer clic en un objeto, obtener info de sus capas y guardar el espacio.\n" +
+                    "El comando layerset debe ir seguido de un número de capa (-1 para todas) y un código de color #000000 para el objeto en el espacio guardado previamente.\n" +
+                    "Si ingresas una capa no numérica, se interpretará como 0. Si el color no existe, volverá al color por defecto.";
                 infomsg(msg);
             } else {
                 let stringLys1 = args;
@@ -13034,7 +13039,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let layer = stringLys2[0];
                 let color = stringLys2[1];
                 if (this.saveditemslot == undefined) {
-                    let msg = "<b>Warning</b>: First use the <b>/layershow</b> command to get useful info and save Item Slot.";
+                    let msg = "<b>Advertencia</b>: Primero usa el comando <b>/layershow</b> para obtener información y guardar el espacio del objeto.";
                     infomsg(msg);
                 } else {
                     let Target = this.saveditemslot.slice(0);
@@ -13071,8 +13076,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                         }
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "Layer color changed for layer " + layer + ".";
-                        if (layer == -1) msg = "Layer color changed for all layers.";
+                        let msg = "Color cambiado para la capa " + layer + ".";
+                        if (layer == -1) msg = "Color cambiado para todas las capas.";
                         infomsg(msg);
                     }
                 }
@@ -13082,9 +13087,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'layershow',
-        Description: "gives info about layer colors of a specific worn item + saves Item Slot",
+        Description: "da info sobre los colores de capa de un objeto específico + guarda el espacio del objeto.",
         Action: () => {
-            let msg = "You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.";
+            let msg = "Tienes 5 segundos para hacer clic en ti misma. Si tiene éxito, obtendrás la info y el espacio del objeto se guardará. Si no, reintenta.";
             infomsg(msg);
             setTimeout(function() {
                 if ((CurrentCharacter != null) && (CurrentCharacter == Player)) {
@@ -13113,9 +13118,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     if (InventoryGet(Player, Target).Asset.Layer[ly].AllowColorize) {
                                         Color2 = InventoryGet(Player, Target).Color[ly];
                                     } else {
-                                        Color2 = "No way to change color";
+                                        Color2 = "No es posible cambiar el color";
                                     }
-                                    ChatRoomSendLocal("Layer " + ly + " = " + Name + " - " + Color2);
+                                    ChatRoomSendLocal("Capa " + ly + " = " + Name + " - " + Color2);
                                     ly++;
                                 }
                             }
@@ -13127,13 +13132,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     let Name2 = Asset.Layer[ly].Name;
                                     let Index = InventoryGet(Player, Target).Asset.Layer[ly].ColorIndex;
                                     Color2 = InventoryGet(Player, Target).Color[Index];
-                                    ChatRoomSendLocal("Layer " + ly + " = " + Name1 + " - " + Name2 + " - " + Color2);
+                                    ChatRoomSendLocal("Capa " + ly + " = " + Name1 + " - " + Name2 + " - " + Color2);
                                     //}
                                     ly++;
                                 }
                             }
                             this.saveditemslot = Target;
-                            let msg = "Item Slot saved.";
+                            let msg = "Espacio del objeto guardado.";
                             infomsg(msg);
                         }
                         DialogLeave();
@@ -13143,46 +13148,46 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'lock',
-        Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
+        Description: "(objetivo) (tipo_candado) (otros parámetros): añade candados a todos los objetos bloqueables del objetivo especificado.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8, 17, 19 to 22\n" +
-                    "/lock (target) (locktype) (r) for lock 9\n" +
-                    "/lock (target) (locktype) (code) for lock 10\n" +
-                    "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
-                    "/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15, 18\n" +
-                    "/lock (target) (locktype) (password) (minutes) (h) (i) (r) - lock 16\n" +
-                    "ALWAYS SPECIFY THE TARGET. Lock types:\n" +
-                    "1 Metal (default when not specified) - 2 Exclusive\n" +
-                    "3 Intricate - 4 High Security - 5 Pandora\n" +
-                    "6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n" +
-                    "10 Combination - 11 Safeword - 12 Password\n" +
-                    "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
-                    "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
-                    "19 Family - 20 Lewd Crest - 21 Devious (if enabled)\n" +
-                    "22 Portal Link (only for specific item)\n" +
-                    "Locks 17, 18, 20 and 21 require a specific mod\n" +
-                    "Use <b>/lock par</b> for info about other parameters";
+                let msg = "El comando lock tiene varias sintaxis:\n" +
+                    "/lock (objetivo) (tipo_candado) para candados 1 al 8, 17, 19 al 22\n" +
+                    "/lock (objetivo) (tipo_candado) (r) para candado 9\n" +
+                    "/lock (objetivo) (tipo_candado) (codigo) para candado 10\n" +
+                    "/lock (objetivo) (tipo_candado) (contraseña) (r) para candados 11 y 12\n" +
+                    "/lock (objetivo) (tipo_candado) (minutos) (h) (i) (r) - candados 13 al 15, 18\n" +
+                    "/lock (objetivo) (tipo_candado) (contraseña) (minutos) (h) (i) (r) - candado 16\n" +
+                    "SIEMPRE ESPECIFICA EL OBJETIVO. Tipos de candado:\n" +
+                    "1 Metal (por defecto) - 2 Exclusivo\n" +
+                    "3 Intrincado - 4 Alta Seguridad - 5 Pandora\n" +
+                    "6 Ama - 7 Amante - 8 Dueño - 9 Cinco Minutos\n" +
+                    "10 Combinación - 11 Palabra de Seguridad - 12 Contraseña\n" +
+                    "13 Temporizador de Ama - 14 Temporizador de Amante - 15 Temporizador de Dueño\n" +
+                    "16 Contraseña con Tiempo - 17 Mejor Amigo - 18 Temp. Mejor Amigo\n" +
+                    "19 Familiar - 20 Escudo Lúbrico - 21 Devious (si está activo)\n" +
+                    "22 Enlace de Portal (solo para objeto específico)\n" +
+                    "Los candados 17, 18, 20 y 21 requieren un mod específico\n" +
+                    "Usa <b>/lock par</b> para info sobre otros parámetros";
                 infomsg(msg);
             } else if (args === "par") {
-                let msg = "Special parameters of lock command:\n" +
-                    "code must be between 0 and 9999.\n" +
-                    "password is limited to 8 characters.\n" +
-                    "maximum time = 240 minutes for locks 13 and 16,\n" +
-                    "10080 minutes for locks 14, 15 and 18\n" +
-                    "Use ? if you want a time randomly choosen by the game\n" +
-                    "Use the portal options to set the code of Portal Link lock\n" +
+                let msg = "Parámetros especiales del comando lock:\n" +
+                    "El código debe estar entre 0 y 9999.\n" +
+                    "La contraseña está limitada a 8 caracteres.\n" +
+                    "Tiempo máximo = 240 minutos para candados 13 y 16,\n" +
+                    "10080 minutos para candados 14, 15 y 18\n" +
+                    "Usa ? si quieres un tiempo elegido al azar por el juego\n" +
+                    "Usa las opciones de portal para fijar el código del candado de Enlace de Portal\n" +
                     " \n" +
-                    "Optional parameters:\n" +
-                    "h to hide the timer,\n" +
-                    "i to enable time input from other players,\n" +
-                    "r for item removal when correct password entered\n" +
-                    "or lock timer runs out.\n" +
+                    "Parámetros opcionales:\n" +
+                    "h para ocultar el temporizador,\n" +
+                    "i para permitir la entrada de tiempo de otros jugadores,\n" +
+                    "r para la eliminación del objeto cuando se meta la contraseña correcta\n" +
+                    "o cuando el tiempo del candado se agote.\n" +
                     " \n" +
-                    "Tip: replace h and/or i by another character when you need to skip them.";
+                    "Consejo: reemplaza h y/o i por otro carácter cuando necesites omitirlos.";
                 infomsg(msg);
             } else {
                 let code = 0;
@@ -13298,7 +13303,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     tgpname = getNickname(target);
                     if (dogs == 0) {
                         if (tmpname == tgpname) {
-                            let msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
+                            let msg = "Láseres mágicos hacen aparecer candados en el cuerpo de " + tgpname + ".";
                             targetMessage(Mlock, msg, 1);
                         } else {
                             if (IsTargetProtected(target)) {
@@ -13306,10 +13311,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 let msg = umsg1 + tgpname + umsg2;
                                 infomsg(msg);
                             } else {
-                                let msg = "Magical lasers make appear locks on " + tgpname + "'s body.";
+                                let msg = "Láseres mágicos hacen aparecer candados en el cuerpo de " + tgpname + ".";
                                 targetMessage(Tlock, msg, 2);
                             }
                         }
+
                         if (uw == 0) {
                             let mn = Player.MemberNumber;
                             for (let A = 0; A < target.Appearance.length; A++)
@@ -13363,12 +13369,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'login',
-        Description: "(accountname) (password): logs in a new account.",
+        Description: "(nombre_cuenta) (contraseña): inicia sesión en una cuenta nueva.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The login command must be followed by an account name and a password";
+                let msg = "El comando login debe ir seguido de un nombre de cuenta y una contraseña";
                 infomsg(msg);
             } else {
                 let stringLogin1 = args;
@@ -13390,51 +13396,51 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'mapfog',
-        Description: ": toggles fog in current mapped room.",
+        Description: ": activa/desactiva la niebla en la sala con mapa actual.",
         Action: () => {
             if (!IsMapRoom()) return infomsg(umsg5);
             const fogEnabled = !!ChatRoomData.MapData.Fog;
             ChatRoomData.MapData.Fog = !fogEnabled;
-            const status = fogEnabled ? "disabled" : "enabled";
-            infomsg(`Fog in current mapped room is ${status}. No visible effect if you have enabled full vision in mapped rooms.`);
+            const status = fogEnabled ? "desactivada" : "activada";
+            infomsg(`La niebla en la sala con mapa actual está ${status}. No habrá efecto visible si tienes activada la visión completa en salas con mapa.`);
         }
     }])
 
     CommandCombine([{
         Tag: 'mapforce',
-        Description: ": forces map access in current normal room (only for yourself).",
+        Description: ": fuerza el acceso al mapa en la sala normal actual (solo para ti).",
         Action: () => {
             if (ChatRoomData.MapData.Type == "Never") ChatRoomData.MapData.Type = "Hybrid";
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'mapkeys',
-        Description: "(keynumber) (action): finds or loses all keys or a specific key for current mapped chat room.",
+        Description: "(numero_llave) (accion): encuentra o pierde todas las llaves o una específica para la sala con mapa actual.",
         Action: (args) => {
             if (!IsMapRoom()) return infomsg(umsg5);
             if (!args) {
                 return infomsg(
-                    "The mapkeys command must be followed by two numbers.\n" +
-                    "1st number: 1 = Bronze key - 2 = Silver key - 3 = Gold key - 4 = All keys.\n" +
-                    "2nd number: 1 = Find - 2 = Lose."
+                    "El comando mapkeys debe ir seguido de dos números.\n" +
+                    "1er número: 1 = Llave de Bronce - 2 = Llave de Plata - 3 = Llave de Oro - 4 = Todas las llaves.\n" +
+                    "2do número: 1 = Encontrar - 2 = Perder."
                 );
             }
-            if (!Player.MapData) return infomsg("You haven't entered the map.");
+            if (!Player.MapData) return infomsg("No has entrado al mapa.");
             const [keynrStr, actionStr] = args.split(/[ ,]+/);
             const keynr = Number(keynrStr);
             const action = Number(actionStr);
             if (![1, 2, 3, 4].includes(keynr) || ![1, 2].includes(action)) return;
             const keys = [{
-                    name: "Gold",
+                    name: "Oro",
                     prop: "HasKeyGold"
                 },
                 {
-                    name: "Silver",
+                    name: "Plata",
                     prop: "HasKeySilver"
                 },
                 {
-                    name: "Bronze",
+                    name: "Bronce",
                     prop: "HasKeyBronze"
                 }
             ];
@@ -13447,14 +13453,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 .filter(key =>
                     Player.MapData.PrivateState[key.prop])
                 .map(key => key.name);
-            ChatRoomSendLocal(`Keys found: ${foundKeys.join(" - ") || "None"}.`);
+            ChatRoomSendLocal(`Llaves encontradas: ${foundKeys.join(" - ") || "Ninguna"}.`);
             ChatRoomSendLocal(" ");
         }
     }])
 
     CommandCombine([{
         Tag: 'maproom',
-        Description: ": gives infos about location of players in current mapped chat room.",
+        Description: ": da información sobre la ubicación de los jugadores en la sala con mapa actual.",
         Action: () => {
             if (!IsMapRoom()) return infomsg(umsg5 + umsg6);
             ChatRoomCharacter.forEach(character => {
@@ -13470,12 +13476,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (MapData) {
                     let exinfo = "";
                     if (ChatRoomData.MapData.Type === "Always") {
-                        exinfo = "Real presence in map: YES";
+                        exinfo = "Presencia real en el mapa: SÍ";
                     } else if (ChatRoomData.MapData.Type === "Hybrid") {
                         if (typeof OnlineSharedSettings.Inmap === "boolean") {
-                            exinfo = `Real presence in map: ${OnlineSharedSettings.Inmap ? "YES" : "NO"}`;
+                            exinfo = `Presencia real en el mapa: ${OnlineSharedSettings.Inmap ? "SÍ" : "NO"}`;
                         } else {
-                            exinfo = "Real presence in map: ?";
+                            exinfo = "Presencia real en el mapa: ?";
                         }
                     }
                     const {
@@ -13485,7 +13491,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
                     if (character === Player) keysinfo(Player);
                 } else {
-                    ChatRoomSendLocal("Does not have entered map");
+                    ChatRoomSendLocal("No ha entrado al mapa");
                 }
                 ChatRoomSendLocal(" ");
             });
@@ -13494,17 +13500,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'mapx',
-        Description: "(x-position): changes your X coordinate in the map.",
+        Description: "(posicion-x): cambia tu coordenada X en el mapa.",
         Action: (args) => {
             const plx = Number(args);
             if (args === "" || isNaN(plx) || plx < 0 || plx > 39) {
-                infomsg("The mapx command must be followed by a number between 0 and 39.");
+                infomsg("El comando mapx debe ir seguido de un número entre 0 y 39.");
                 return;
             }
             if (!IsMapRoom()) return infomsg(umsg5);
-            if (!Player.MapData) return infomsg("You don't have entered map!");
+            if (!Player.MapData) return infomsg("¡No has entrado al mapa!");
             if (plx === Player.MapData.Pos.X) return;
-            const D = plx < Player.MapData.Pos.X ? "West" : "East";
+            const D = plx < Player.MapData.Pos.X ? "Oeste" : "Este";
             const m = Math.abs(plx - Player.MapData.Pos.X);
             const X = plx;
             const Y = Player.MapData.Pos.Y;
@@ -13525,19 +13531,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'mapy',
-        Description: "(y-position): changes your Y coordinate in the map.",
+        Description: "(posicion-y): cambia tu coordenada Y en el mapa.",
         Action: (args) => {
             const ply = Number(args);
             if (args === "" || isNaN(ply) || ply < 0 || ply > 39) {
-                infomsg("The mapy command must be followed by a number between 0 and 39.");
+                infomsg("El comando mapy debe ir seguido de un número entre 0 y 39.");
                 return;
             }
             if (!IsMapRoom()) return infomsg(umsg5);
-            if (!Player.MapData) return infomsg("You don't have entered map!");
+            if (!Player.MapData) return infomsg("¡No has entrado al mapa!");
             if (ply === Player.MapData.Pos.Y) return;
-            const D = ply < Player.MapData.Pos.Y ? "North" : "South";
+            const D = ply < Player.MapData.Pos.Y ? "Norte" : "Sur";
             const m = Math.abs(ply - Player.MapData.Pos.Y);
             const X = Player.MapData.Pos.X;
             const Y = ply;
@@ -13560,25 +13566,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'mapz',
-        Description: "(target): gives coordinates in the map.",
+        Description: "(objetivo): da las coordenadas en el mapa.",
         Action: (args) => {
             if (!IsMapRoom()) return infomsg(umsg5);
             const target = args ? TargetSearch(args) : Player;
             if (!target) return;
             const mapData = target.MapData;
             if (!mapData) {
-                ChatRoomSendLocal("Does not have entered map");
+                ChatRoomSendLocal("No ha entrado al mapa");
                 ChatRoomSendLocal(" ");
                 return;
             }
             let exinfo = "";
             const mapType = ChatRoomData?.MapData?.Type;
             if (mapType === "Always") {
-                exinfo = "Real presence in map: YES";
+                exinfo = "Presencia real en el mapa: SÍ";
             } else if (mapType === "Hybrid") {
                 const inmap = target.OnlineSharedSettings?.Inmap;
-                exinfo = "Real presence in map: " +
-                    (inmap === true ? "YES" : inmap === false ? "NO" : "?");
+                exinfo = "Presencia real en el mapa: " +
+                    (inmap === true ? "SÍ" : inmap === false ? "NO" : "?");
             }
             ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
             if (target === Player) keysinfo(Player);
@@ -13588,22 +13594,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'mapzoom',
-        Description: "(value): changes zoom level in the map rooms.",
+        Description: "(valor): cambia el nivel de zoom en las salas con mapa.",
         Action: (args) => {
             const plz = Number(args);
             if (args === "" || isNaN(plz) || plz < 7 || plz > 50) {
-                infomsg("The mapzoom command must be followed by a number between 7 and 50.");
+                infomsg("El comando mapzoom debe ir seguido de un número entre 7 y 50.");
                 return;
             }
             if (!IsMapRoom()) return infomsg(umsg5);
             ChatRoomMapViewPerceptionRangeMax = plz;
-            infomsg("Zoom level modified! Enjoy!");
+            infomsg("¡Nivel de zoom modificado! ¡Disfruta!");
         }
     }])
 
     CommandCombine([{
         Tag: 'maxstatistics',
-        Description: ": gives max statistics.",
+        Description: ": otorga estadísticas máximas.",
         Action: () => {
             ReputationChange("ABDL", 100);
             if (ReputationGet("Asylum") >= 0) ReputationChange("Asylum", 100);
@@ -13636,14 +13642,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             GameLARPLevelProgress(10000);
             LogAdd("BondageCollege", "Import");
             LogAdd("KidnapSophie", "Sarah");
-            let msg = "Changes made! A few other things have to be set with the /roleplay and /rolequit commands.";
+            let msg = "¡Cambios realizados! Algunas otras cosas deben configurarse con los comandos /roleplay y /rolequit.";
             infomsg(msg);
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'mbsroom',
-        Description: ": gives infos about MBS wheels of fortune in current chat room.",
+        Description: ": da información sobre las ruedas de la fortuna MBS en la sala de chat actual.",
         Action: () => {
             ChatRoomCharacter.forEach(character => {
                 const {
@@ -13655,20 +13661,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 const command = "mbsroom";
                 UBCinfo(character, command);
                 if (!InventoryAvailable(character, "WheelFortune", "ItemDevices")) {
-                    ChatRoomSendLocal("Does not have a wheel of fortune.");
+                    ChatRoomSendLocal("No tiene una rueda de la fortuna.");
                     ChatRoomSendLocal(" ");
                     return;
                 }
                 const MBS = OnlineSharedSettings.MBS;
                 const MBSVersion = OnlineSharedSettings.MBSVersion;
                 if (!MBS) {
-                    ChatRoomSendLocal("Does not have a MBS wheel of fortune.");
+                    ChatRoomSendLocal("No tiene una rueda de la fortuna MBS.");
                     ChatRoomSendLocal(" ");
                     return;
                 }
-                ChatRoomSendLocal("Has a MBS wheel of fortune.");
+                ChatRoomSendLocal("Tiene una rueda de la fortuna MBS.");
                 if (MBS.Version !== undefined) {
-                    ChatRoomSendLocal("Does not have custom options on this wheel.");
+                    ChatRoomSendLocal("No tiene opciones personalizadas en esta rueda.");
                     ChatRoomSendLocal(" ");
                     return;
                 }
@@ -13685,7 +13691,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 try {
                     MBSwhdata = JSON.parse(decompressed);
                 } catch {
-                    ChatRoomSendLocal("Error reading custom options.");
+                    ChatRoomSendLocal("Error al leer las opciones personalizadas.");
                     ChatRoomSendLocal(" ");
                     return;
                 }
@@ -13699,7 +13705,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     });
                 }
                 if (!found) {
-                    ChatRoomSendLocal("Does not have custom options on this wheel.");
+                    ChatRoomSendLocal("No tiene opciones personalizadas en esta rueda.");
                 }
                 ChatRoomSendLocal(" ");
             });
@@ -13708,7 +13714,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'message',
-        Description: "(option) (message): creates custom message for a specific command.",
+        Description: "(opción) (mensaje): crea un mensaje personalizado para un comando específico.",
         Action: (_, command, args) => {
             if (silent) {
                 let msg = umsg1 + umsg7;
@@ -13717,15 +13723,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             var [option] = args;
             if (!option) {
-                let msg = "The message command must be followed by an option and the message you want instead of the default message.\n" +
-                    "Each option corresponds to a command, a 't' prefix being added for using on other players.\n" +
-                    "Options on yourself: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\n" +
-                    "Options on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n" +
+                let msg = "El comando message debe ir seguido de una opción y el mensaje que desees en lugar del predeterminado.\n" +
+                    "Cada opción corresponde a un comando, añadiendo un prefijo 't' para su uso en otros jugadores.\n" +
+                    "Opciones sobre uno mismo: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\n" +
+                    "Opciones sobre otros jugadores: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n" +
                     " \n" +
-                    "When writing your message, don't forget that your name or nickname will be added before it\n" +
-                    "When acting on another player, the target name or nickname will be added after the message\n" +
-                    "Use ? as message to go back to default message\n" +
-                    "Use ! as message to select silent mode (no message)";
+                    "Al escribir el mensaje, el nombre o apodo se añadirá antes de este.\n" +
+                    "Al actuar sobre otro jugador, el nombre o apodo del objetivo se añadirá después del mensaje.\n" +
+                    "Usa ? para volver al mensaje predeterminado.\n" +
+                    "Usa ! para seleccionar el modo silencioso (sin mensaje).";
                 infomsg(msg);
                 return;
             }
@@ -13739,12 +13745,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     change = 2;
                     option2 = option.slice(1);
                 }
-                let msg1 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option + " command on yourself.</p>";
-                let msg2 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option + " command on yourself.</p>"
-                let msg3 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option + " command on yourself.</p>"
-                let msg4 = "<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for " + option2 + " command on other players.</p>";
-                let msg5 = "<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for " + option2 + " command on other players.</p>";
-                let msg6 = "<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for " + option2 + " command on other players.</p>";
+                let msg1 = "<p style='background-color:#5fbd7a'>ULTRAbc: Modo silencioso guardado para el comando " + option + " sobre uno mismo.</p>";
+                let msg2 = "<p style='background-color:#5fbd7a'>ULTRAbc: Regreso al mensaje predeterminado para el comando " + option + " sobre uno mismo.</p>"
+                let msg3 = "<p style='background-color:#5fbd7a'>ULTRAbc: Nuevo mensaje guardado para el comando " + option + " sobre uno mismo.</p>"
+                let msg4 = "<p style='background-color:#5fbd7a'>ULTRAbc: Modo silencioso guardado para el comando " + option2 + " sobre otros jugadores.</p>";
+                let msg5 = "<p style='background-color:#5fbd7a'>ULTRAbc: Regreso al mensaje predeterminado para el comando " + option2 + " sobre otros jugadores.</p>";
+                let msg6 = "<p style='background-color:#5fbd7a'>ULTRAbc: Nuevo mensaje guardado para el comando " + option2 + " sobre otros jugadores.</p>";
                 if (option == "allcolor") {
                     Allcolor = custom;
                     if (custom == "!") Allcolor = "no message";
@@ -13903,15 +13909,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'mission',
-        Description: "(mission): goes to infiltration room and forces a specific mission.",
+        Description: "(mision): va a la sala de infiltración y fuerza una misión específica.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The mission command must include a mission.\n" +
-                    "Available missions:\n" +
+                let msg = "El comando mission debe incluir una misión.\n" +
+                    "Misiones disponibles:\n" +
                     "burglar, kidnap, rescue, retrieve, sabotage.\n" +
-                    "Full random mission with random.";
+                    "Misión aleatoria con 'random'.";
                 infomsg(msg);
             } else {
                 mission = args;
@@ -13925,7 +13931,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'mstatus',
-        Description: ": displays current status of the moaner.",
+        Description: ": muestra el estado actual del moaner.",
         Action: () => {
             showStatus();
         }
@@ -13933,7 +13939,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'murmur',
-        Description: "(MemberNumber|Name|Nickname)(Message): sends a whisper to a player.",
+        Description: "(NumeroMiembro|Nombre|Apodo)(Mensaje): envía un susurro a un jugador.",
         Action: (args, command) => {
             const [, ...parts] = command.split(" ");
             const target = parts?.shift();
@@ -13985,13 +13991,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'naked',
-        Description: "(target): removes clothes.",
+        Description: "(objetivo): quita la ropa.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target == Player) {
-                let msg = "Magical lasers make disappear the clothes on " + tmpname + "'s body.";
+                let msg = "Láseres mágicos hacen desaparecer la ropa del cuerpo de " + tmpname + ".";
                 targetMessage(Naked, msg, 1);
                 CharacterNaked(Player);
                 ChatRoomCharacterUpdate(Player);
@@ -14002,7 +14008,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers make disappear the clothes on " + tgpname + "'s body.";
+                        let msg = "Láseres mágicos hacen desaparecer la ropa del cuerpo de " + tgpname + ".";
                         targetMessage(Tnaked, msg, 2);
                         CharacterNaked(target);
                         ChatRoomCharacterUpdate(target);
@@ -14015,15 +14021,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'npcprison',
-        Description: "(minutes): stays in NPC Pandora prison.",
+        Description: "(minutos): permanece en la prisión NPC de Pandora.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The npcprison command must be followed by a number higher than 0";
+                let msg = "El comando npcprison debe ir seguido de un número mayor a 0";
                 infomsg(msg);
             } else {
                 let minutes = args;
                 if (minutes > 0) {
-                    let msg = "" + tmpname + " gets grabbed by two maids and sent to NPC Pandora prison for " + minutes + " minutes.";
+                    let msg = "" + tmpname + " es agarrada por dos sirvientas y enviada a la prisión NPC de Pandora por " + minutes + " minutos.";
                     publicmsg(msg);
                     DialogLentLockpicks = false;
                     RoomToGame();
@@ -14036,25 +14042,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'outfit',
-        Description: "(parameter): restores/saves/loads outfit (including restraints).",
+        Description: "(parámetro): restaura/guarda/carga vestimentas (incluyendo accesorios).",
         Action: (args) => {
             if (args === "") {
-                let msg = "Options for outfit command:\n" +
-                    "<b>All these options include the restraints</b>, so it's also a good bondage tool.\n" +
-                    "To restore your outfit to what it was before entering room, type: <b>/outfit reset</b> or <b>/outfit restore</b> or <b>/outfit revert</b>\n" +
-                    "Three outfits can be saved by using <b>/outfit save1</b> or <b>/outfit save2</b> or <b>/outfit save3</b>\n" +
-                    "To load saved outfits, type: <b>/outfit load1</b> or <b>/outfit load2</b> or <b>/outfit load3</b>\n" +
-                    "You will have 5 seconds to click on target. Retry if the saving/loading was unsuccessful\n" +
-                    "These saves last only 1 login session.\n" +
-                    "To save outfits between sessions, use the <b>Export button</b> in wardrobe\n" +
-                    "You will have the outfit saved as a code. You can copy and paste it elsewhere.\n" +
-                    "Then you can use the <b>Import buttons</b> to load it later.";
+                let msg = "Opciones para el comando outfit:\n" +
+                    "<b>Todas estas opciones incluyen los accesorios</b>, por lo que es una herramienta integral de vestuario.\n" +
+                    "Para restaurar la vestimenta a como estaba antes de entrar a la sala, escribir: <b>/outfit reset</b> o <b>/outfit restore</b> o <b>/outfit revert</b>\n" +
+                    "Se pueden guardar tres configuraciones usando <b>/outfit save1</b> o <b>/outfit save2</b> o <b>/outfit save3</b>\n" +
+                    "Para cargar configuraciones guardadas, escribir: <b>/outfit load1</b> o <b>/outfit load2</b> o <b>/outfit load3</b>\n" +
+                    "Habrá un margen de 5 segundos para hacer clic en el objetivo. Reintentar si el guardado o la carga no tienen éxito.\n" +
+                    "Estos guardados duran solo una sesión de inicio de sesión.\n" +
+                    "Para mantener las vestimentas entre sesiones, utilizar el <b>botón Exportar</b> en el guardarropa.\n" +
+                    "La vestimenta se guardará como un código que se puede copiar y pegar en otro lugar.\n" +
+                    "Luego se pueden usar los <b>botones de Importar</b> para cargarla más tarde.";
                 infomsg(msg);
             }
             if ((args === "load1") || (args === "load2") || (args === "load3")) {
-                let msg = "You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.";
+                let msg = "Hay 5 segundos para hacer clic en el objetivo. Si tiene éxito, la vestimenta será cargada. De lo contrario, reintentar.";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
@@ -14084,7 +14090,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             }
                             if (nl == 1) {
                                 DialogLeave();
-                                let msg = "Outfit " + args + " command not executed as no any saved outfit has been found.";
+                                let msg = "El comando outfit " + args + " no se ha ejecutado porque no se ha encontrado ninguna vestimenta guardada.";
                                 infomsg(msg);
                             }
                             if (nl == 0) {
@@ -14104,7 +14110,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     CharacterRefresh(CurrentCharacter);
                                     ChatRoomCharacterUpdate(CurrentCharacter);
                                     DialogLeave();
-                                    let msg = "Outfit " + args + " command executed.";
+                                    let msg = "Comando outfit " + args + " ejecutado.";
                                     infomsg(msg);
                                 }
                             }
@@ -14116,11 +14122,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.Appearance = ChatSearchSafewordAppearance.slice(0);
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
-                let msg = "Outfit reset-restore-revert command executed.";
+                let msg = "Comando outfit reset-restore-revert ejecutado.";
                 infomsg(msg);
             }
             if ((args === "save1") || (args === "save2") || (args === "save3")) {
-                let msg = "You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.";
+                let msg = "Tienes 5 segundos para hacer clic en el objetivo. Si tiene éxito, la vestimenta se guardará. Si no, reintenta.";
                 infomsg(msg);
                 setTimeout(function() {
                     if (CurrentCharacter != null) {
@@ -14143,7 +14149,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 if (args === "save2") this.savedoutfit2 = CurrentCharacter.Appearance.slice(0);
                                 if (args === "save3") this.savedoutfit3 = CurrentCharacter.Appearance.slice(0);
                                 DialogLeave();
-                                let msg = "Outfit " + args + " command executed.";
+                                let msg = "Comando outfit " + args + " ejecutado.";
                                 infomsg(msg);
                             }
                         }
@@ -14153,19 +14159,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'permission',
-        Description: "(number): changes your item permission.",
+        Description: "(numero): cambia tus permisos de objetos.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The permission command must be followed by a number.\n" +
-                    "The effect will be visible in your profile.\n" +
-                    "0 Everyone, no exceptions\n" +
-                    "1 Everyone, except blacklist\n" +
-                    "2 Owner, Lover, whitelist & Dominants\n" +
-                    "3 Owner, Lover and whitelist only\n" +
-                    "4 Owner and Lover only\n" +
-                    "5 Owner only";
+                let msg = "El comando permission debe ir seguido de un número.\n" +
+                    "El efecto será visible en tu perfil.\n" +
+                    "0 Todos, sin excepciones\n" +
+                    "1 Todos, excepto lista negra\n" +
+                    "2 Dueño, Amante, lista blanca y Dominantes\n" +
+                    "3 Dueño, Amante y lista blanca solamente\n" +
+                    "4 Dueño y Amante solamente\n" +
+                    "5 Solo el Dueño";
                 infomsg(msg);
             } else {
                 let perm = args * 1;
@@ -14182,13 +14188,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'pet',
-        Description: "(target): becomes a fully restrained pet.",
+        Description: "(objetivo): se convierte en una mascota totalmente restringida.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target == Player) {
-                let msg = "" + tmpname + " becomes a cute pet.";
+                let msg = "" + tmpname + " se convierte en una linda mascota.";
                 targetMessage(Pet, msg, 1);
                 CharacterNaked(Player);
                 InventoryWearRandom(Player, "ItemArms", 8, null, false, true, petitems1, true);
@@ -14207,7 +14213,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "" + tgpname + " becomes a cute pet.";
+                        let msg = "" + tgpname + " se convierte en una linda mascota.";
                         targetMessage(Tpet, msg, 2);
                         CharacterNaked(target);
                         InventoryWearRandom(target, "ItemArms", 8, null, false, true, petitems1, true);
@@ -14228,7 +14234,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'ping',
-        Description: "(MemberNumber)(Message): sends a beep to a player.",
+        Description: "(NumeroMiembro)(Mensaje): envía un pitido (beep) a un jugador.",
         Action: (args) => {
             const parts = args.split(" ");
             const target = parseInt(parts.shift(), 10);
@@ -14286,9 +14292,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'pmenu',
-        Description: ": direct access to Preferences menu.",
+        Description: ": acceso directo al menú de Preferencias.",
         Action: () => {
             PrfClick();
         }
@@ -14296,11 +14302,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'poof',
-        Description: "(action): leaves the club very fast.",
+        Description: "(accion): abandona el club muy rápido.",
         Action: (args) => {
             let message = "";
             if (args === "") {
-                message = " poofs away."
+                message = " desaparece de repente (poof)."
             } else {
                 message = ' '.repeat(1) + args;
             }
@@ -14312,19 +14318,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'pose2',
-        Description: "(pose) (target): changes the pose of any player.",
+        Description: "(pose) (objetivo): cambia la pose de cualquier jugador.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The pose2 command must be followed by a pose and optionally a target.\n" +
+                let msg = "El comando pose2 debe ir seguido de una pose y, opcionalmente, un objetivo.\n" +
                     " \n" +
-                    "Available poses:\n" +
+                    "Poses disponibles:\n" +
                     "armsfree, belly, boxtied, cuffed, elbowtied,\n" +
                     "kneel1, kneel2, legsclosed, legsopen, pet,\n" +
                     "spreadarms1, spreadarms2, spreadeagle1\n" +
                     "spreadeagle2, spreadlegs, stand, suspension,\n" +
-                    "tapedhands. Only on yourself: exercise, jump.\n" +
-                    "Use <b>/pose2 reset</b> (target) to back to neutral pose.\n" +
-                    "If WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.";
+                    "tapedhands. Solo en ti mismo: exercise, jump.\n" +
+                    "Usa <b>/pose2 reset</b> (objetivo) para volver a la pose neutral.\n" +
+                    "Si WCE está activo, usa <b>/pose baseupper</b> solo en ti mismo cuando /pose2 reset falle.";
                 infomsg(msg);
             } else {
                 let stringPose1 = args;
@@ -14337,84 +14343,84 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         (PoseCanChangeUnaided(Player, 'BaseUpper'))) {
                         PoseSetActive(Player, "BaseUpper");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " relaxes " + pronoun3 + " arms.";
+                        let msg = "" + tmpname + " relaja sus brazos.";
                         publicmsg(msg);
                     } else if ((pose == "belly") &&
                         (Player.ActivePose != 'Hogtied') &&
                         (PoseCanChangeUnaided(Player, 'Hogtied'))) {
                         PoseSetActive(Player, "Hogtied");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " relaxes on " + pronoun3 + " belly.";
+                        let msg = "" + tmpname + " se relaja sobre su vientre.";
                         publicmsg(msg);
                     } else if ((pose == "boxtied") &&
                         (Player.ActivePose != 'BackBoxTie') &&
                         (PoseCanChangeUnaided(Player, 'BackBoxTie'))) {
                         PoseSetActive(Player, "BackBoxTie");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " puts " + pronoun3 + " arms behind " + pronoun3 + " back.";
+                        let msg = "" + tmpname + " pone sus brazos detrás de la espalda.";
                         publicmsg(msg);
                     } else if ((pose == "cuffed") &&
                         (Player.ActivePose != 'BackCuffs') &&
                         (PoseCanChangeUnaided(Player, 'BackCuffs'))) {
                         PoseSetActive(Player, "BackCuffs");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun4 + " is handcuffed.";
+                        let msg = "" + tmpname + " pone sus brazos como si estuviera esposada.";
                         publicmsg(msg);
                     } else if ((pose == "elbowtied") &&
                         (Player.ActivePose != 'BackElbowTouch') &&
                         (PoseCanChangeUnaided(Player, 'BackElbowTouch'))) {
                         PoseSetActive(Player, "BackElbowTouch");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " puts " + pronoun3 + " arms behind " + pronoun3 + " back, elbows almost touching.";
+                        let msg = "" + tmpname + " pone sus brazos tras la espalda, con los codos casi tocándose.";
                         publicmsg(msg);
                     } else if ((pose == "kneel1") &&
                         (Player.ActivePose != 'Kneel') &&
                         ((PoseCanChangeUnaided(Player, 'Kneel')) || (ChatRoomCanAttemptKneel(Player) == true))) {
                         PoseSetActive(Player, "Kneel");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " kneels down.";
+                        let msg = "" + tmpname + " se arrodilla.";
                         publicmsg(msg);
                     } else if ((pose == "kneel2") &&
                         (Player.ActivePose != 'KneelingSpread') &&
                         (PoseCanChangeUnaided(Player, 'KneelingSpread'))) {
                         PoseSetActive(Player, "KneelingSpread");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " kneels down and opens " + pronoun3 + " legs.";
+                        let msg = "" + tmpname + " se arrodilla y abre sus piernas.";
                         publicmsg(msg);
                     } else if ((pose == "legsclosed") &&
                         (Player.ActivePose != 'LegsClosed') &&
                         (PoseCanChangeUnaided(Player, 'LegsClosed'))) {
                         PoseSetActive(Player, "LegsClosed");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " stands up and closes " + pronoun3 + " legs.";
+                        let msg = "" + tmpname + " se pone de pie y cierra sus piernas.";
                         publicmsg(msg);
                     } else if ((pose == "legsopen") &&
                         (Player.ActivePose != 'LegsOpen') &&
                         (PoseCanChangeUnaided(Player, 'LegsOpen'))) {
                         PoseSetActive(Player, "LegsOpen");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " stands up normally on " + pronoun3 + " feet.";
+                        let msg = "" + tmpname + " se pone de pie normalmente.";
                         publicmsg(msg);
                     } else if ((pose == "pet") &&
                         (Player.ActivePose != 'AllFours') &&
                         (PoseCanChangeUnaided(Player, 'AllFours'))) {
                         PoseSetActive(Player, "AllFours");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " relaxes on all fours.";
+                        let msg = "" + tmpname + " se relaja a cuatro patas.";
                         publicmsg(msg);
                     } else if ((pose == "spreadarms1") &&
                         (Player.ActivePose != 'Yoked') &&
                         (PoseCanChangeUnaided(Player, 'Yoked'))) {
                         PoseSetActive(Player, "Yoked");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " raises " + pronoun3 + " hands.";
+                        let msg = "" + tmpname + " levanta sus manos.";
                         publicmsg(msg);
                     } else if ((pose == "spreadarms2") &&
                         (Player.ActivePose != 'OverTheHead') &&
                         (PoseCanChangeUnaided(Player, 'OverTheHead'))) {
                         PoseSetActive(Player, "OverTheHead");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " raises the hands above " + pronoun3 + " head.";
+                        let msg = "" + tmpname + " levanta las manos por encima de su cabeza.";
                         publicmsg(msg);
                     } else if ((pose == "spreadeagle1") &&
                         ((Player.ActivePose == null) || (Player.ActivePose.includes('Yoked') == false) || (Player.ActivePose.includes('Spread') == false)) &&
@@ -14423,7 +14429,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         PoseSetActive(Player, "Yoked");
                         PoseSetActive(Player, "Spread")
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " raises " + pronoun3 + " hands and spreads " + pronoun3 + " legs.";
+                        let msg = "" + tmpname + " levanta sus manos y abre sus piernas.";
                         publicmsg(msg);
                     } else if ((pose == "spreadeagle2") &&
                         ((Player.ActivePose == null) || (Player.ActivePose.includes('OverTheHead') == false) || (Player.ActivePose.includes('Spread') == false)) &&
@@ -14432,14 +14438,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         PoseSetActive(Player, "OverTheHead");
                         PoseSetActive(Player, "Spread")
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " raises the hands above " + pronoun3 + " head and spreads " + pronoun3 + " legs.";
+                        let msg = "" + tmpname + " levanta las manos sobre su cabeza y abre sus piernas.";
                         publicmsg(msg);
                     } else if ((pose == "spreadlegs") &&
                         (Player.ActivePose != 'Spread') &&
                         (PoseCanChangeUnaided(Player, 'Spread'))) {
                         PoseSetActive(Player, "Spread");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " spreads " + pronoun3 + " legs.";
+                        let msg = "" + tmpname + " abre sus piernas.";
                         publicmsg(msg);
                     } else if ((pose == "stand") &&
                         (Player.ActivePose != null) &&
@@ -14447,25 +14453,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         PoseSetActive(Player, null);
                         ChatRoomCharacterUpdate(Player);
                         CharacterRefresh(Player);
-                        let msg = "" + tmpname + " stands up.";
+                        let msg = "" + tmpname + " se pone de pie.";
                         publicmsg(msg);
                     } else if ((pose == "suspension") &&
                         (Player.ActivePose != 'Suspension') &&
                         (PoseCanChangeUnaided(Player, 'Suspension'))) {
                         PoseSetActive(Player, "Suspension");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " is now in an acrobatic pose in suspension.";
+                        let msg = "" + tmpname + " está ahora en una pose acrobática en suspensión.";
                         publicmsg(msg);
                     } else if ((pose == "tapedhands") &&
                         (Player.ActivePose != 'TapedHands') &&
                         (PoseCanChangeUnaided(Player, 'TapedHands'))) {
                         PoseSetActive(Player, "TapedHands");
                         ChatRoomCharacterUpdate(Player);
-                        let msg = "" + tmpname + " puts " + pronoun3 + " arms out like " + pronoun3 + " hands are taped.";
+                        let msg = "" + tmpname + " estira los brazos como si tuviera las manos encintadas.";
                         publicmsg(msg);
-                        // Special poses
+                        // Poses especiales
                     } else if (pose == "jump") {
-                        let msg = "" + tmpname + " jumps with joy.";
+                        let msg = "" + tmpname + " salta de alegría.";
                         publicmsg(msg);
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
                         PoseSetActive(Player, null);
@@ -14528,11 +14534,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         } else if (InventoryGet(Player, "ItemPelvis").Asset.Name == "HempRope") {
                             Region = "ItemPelvis";
                         } else {
-                            msg1 = "You're too heavily tied to exercise.";
+                            msg1 = "Estás demasiado atada para hacer ejercicio.";
                             infomsg(msg1);
                         }
                         if (msg1 == "") {
-                            let msg2 = "" + tmpname + " makes " + pronoun3 + " workout.";
+                            let msg2 = "" + tmpname + " hace su entrenamiento.";
                             publicmsg(msg2);
                             PoseSetActive(Player, null);
                             ChatRoomCharacterUpdate(Player);
@@ -14659,12 +14665,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
-                            if (pose == "armsfree") {
+                                                        if (pose == "armsfree") {
                                 if ((target.ActivePose != 'BaseUpper') &&
                                     (PoseCanChangeUnaided(target, 'BaseUpper'))) {
                                     PoseSetActive(target, "BaseUpper");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " lets " + tgpname + " relax " + tgpr3 + " arms.";
+                                    let msg = "" + tmpname + " deja que " + tgpname + " relaje sus brazos.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "belly") {
@@ -14672,7 +14678,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'Hogtied'))) {
                                     PoseSetActive(target, "Hogtied");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to stay on " + tgpr3 + " belly.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a quedarse sobre su vientre.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "boxtied") {
@@ -14680,7 +14686,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'BackBoxTie'))) {
                                     PoseSetActive(target, "BackBoxTie");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to put the arms behind " + tgpr3 + " back.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a poner los brazos tras su espalda.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "cuffed") {
@@ -14688,7 +14694,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'BackCuffs'))) {
                                     PoseSetActive(target, "BackCuffs");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr4 + " handcuffed.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a estirar los brazos como si estuviera esposada.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "elbowtied") {
@@ -14696,7 +14702,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'BackElbowTouch'))) {
                                     PoseSetActive(target, "BackElbowTouch");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to put the arms behind her back, elbows almost touching.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a poner los brazos tras su espalda, con los codos casi tocándose.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "kneel1") {
@@ -14704,7 +14710,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     ((PoseCanChangeUnaided(target, 'Kneel')) || (ChatRoomCanAttemptKneel(target) == true))) {
                                     PoseSetActive(target, "Kneel");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " helps " + tgpname + " to kneel down.";
+                                    let msg = "" + tmpname + " ayuda a " + tgpname + " a arrodillarse.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "kneel2") {
@@ -14712,7 +14718,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'KneelingSpread'))) {
                                     PoseSetActive(target, "KneelingSpread");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " helps " + tgpname + " to kneel down, forcing " + tgpr3 + " legs open.";
+                                    let msg = "" + tmpname + " ayuda a " + tgpname + " a arrodillarse, forzando sus piernas a abrirse.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "legsclosed") {
@@ -14720,7 +14726,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'LegsClosed'))) {
                                     PoseSetActive(target, "LegsClosed");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " helps " + tgpname + " to stand up with " + tgpr3 + " legs closed.";
+                                    let msg = "" + tmpname + " ayuda a " + tgpname + " a ponerse de pie con sus piernas cerradas.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "legsopen") {
@@ -14728,7 +14734,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'LegsOpen'))) {
                                     PoseSetActive(target, "LegsOpen");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " helps " + tgpname + " to stand up normally on " + tgpr3 + " feet.";
+                                    let msg = "" + tmpname + " ayuda a " + tgpname + " a ponerse de pie normalmente sobre sus pies.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "pet") {
@@ -14736,7 +14742,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'AllFours'))) {
                                     PoseSetActive(target, "AllFours");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " on all fours.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a ponerse a cuatro patas.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "spreadarms1") {
@@ -14744,7 +14750,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'Yoked'))) {
                                     PoseSetActive(target, "Yoked");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " helps " + tgpname + " to raise " + tgpr3 + " hands.";
+                                    let msg = "" + tmpname + " ayuda a " + tgpname + " a levantar sus manos.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "spreadarms2") {
@@ -14752,7 +14758,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'OverTheHead'))) {
                                     PoseSetActive(target, "OverTheHead");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to raise the hands above " + tgpr3 + " head.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a levantar las manos por encima de su cabeza.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "spreadeagle1") {
@@ -14762,7 +14768,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target, "Yoked");
                                     PoseSetActive(target, "Spread");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to raise the hands and spread the legs.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a levantar las manos y abrir las piernas.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "spreadeagle2") {
@@ -14772,7 +14778,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target, "OverTheHead");
                                     PoseSetActive(target, "Spread");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to raise the hands above the head and spread the legs.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a levantar las manos sobre la cabeza y abrir las piernas.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "spreadlegs") {
@@ -14780,7 +14786,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'Spread'))) {
                                     PoseSetActive(target, "Spread");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to spread " + tgpr3 + " legs.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a abrir sus piernas.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "stand") {
@@ -14789,7 +14795,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     PoseSetActive(target, null);
                                     ChatRoomCharacterUpdate(target);
                                     CharacterRefresh(target);
-                                    let msg = "" + tmpname + " helps " + tgpname + " to stand up.";
+                                    let msg = "" + tmpname + " ayuda a " + tgpname + " a ponerse de pie.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "suspension") {
@@ -14797,7 +14803,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'Suspension'))) {
                                     PoseSetActive(target, "Suspension");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " in an acrobatic pose in suspension.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a ponerse en una pose acrobática en suspensión.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "tapedhands") {
@@ -14805,7 +14811,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     (PoseCanChangeUnaided(target, 'TapedHands'))) {
                                     PoseSetActive(target, "TapedHands");
                                     ChatRoomCharacterUpdate(target);
-                                    let msg = "" + tmpname + " forces " + tgpname + " to put the arms out like " + tgpr3 + " hands are taped.";
+                                    let msg = "" + tmpname + " obliga a " + tgpname + " a estirar los brazos como si tuviera las manos encintadas.";
                                     publicmsg(msg);
                                 }
                             } else if (pose == "reset") {
@@ -14821,16 +14827,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'prison',
-        Description: "(minutes): stays in online Pandora prison.",
+        Description: "(minutos): permanece en la prisión online de Pandora.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The prison command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\n" +
-                    "If you use it when you are alone in a room, it will be a new room automatically created.\n" +
-                    "It is recommended to use it in an existing Pandora room that you have first entered as normal player.\n" +
-                    "If you use it in an existing non-Pandora room, there will be no any timer, but the Pandora guards will be active though during the requested time.\n" +
-                    "For a correct working in all cases, be sure to have enabled the appropriate Immersion settings to auto-remake rooms."
+                let msg = "El comando prison debe ir seguido de un número mayor a 0. Provocará un relog automático antes de enviarte a prisión.\n" +
+                    "Si lo usas estando sola en una sala, se creará una nueva sala automáticamente.\n" +
+                    "Se recomienda usarlo en una sala de Pandora existente en la que hayas entrado primero como jugador normal.\n" +
+                    "Si lo usas en una sala que no sea de Pandora, no habrá temporizador, pero los guardias de Pandora estarán activos durante el tiempo solicitado.\n" +
+                    "Para un funcionamiento correcto en todos los casos, asegúrate de tener activados los ajustes de Inmersión apropiados para la auto-recreación de salas."
                 infomsg(msg);
             } else {
                 let minutes = args;
@@ -14855,7 +14861,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'quit',
-        Description: "(action): leaves room.",
+        Description: "(accion): abandona la sala.",
         Action: (args) => {
             if (noescape) {
                 let msg = umsg1 + umsg3;
@@ -14875,13 +14881,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'randomize',
-        Description: "(target): naked + underwear + clothes + restrain commands.",
+        Description: "(objetivo): comandos naked + underwear + clothes + restrain combinados.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target == Player) {
-                let msg = "Magical lasers apply random clothes and bindings on " + tmpname + "'s body.";
+                let msg = "Láseres mágicos aplican ropa y ataduras aleatorias en el cuerpo de " + tmpname + ".";
                 targetMessage(Randomize, msg, 1);
                 CharacterNaked(Player);
                 CharacterRandomUnderwear(Player);
@@ -14895,7 +14901,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers apply random clothes and bindings on " + tgpname + "'s body.";
+                        let msg = "Láseres mágicos aplican ropa y ataduras aleatorias en el cuerpo de " + tgpname + ".";
                         targetMessage(Trandomize, msg, 2);
                         CharacterNaked(target);
                         CharacterRandomUnderwear(target);
@@ -14911,16 +14917,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'relog',
-        Description: ": relogs.",
+        Description: ": reconecta (relog).",
         Action: () => {
             ServerSocket.close();
             ServerSocket.open();
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'removecollar',
-        Description: ": temporarily removes slave/owner collar.",
+        Description: ": quita temporalmente el collar de esclava/dueño.",
         Action: () => {
             ServerSend("ChatRoomChat", {
                 Content: "PlayerOwnerCollarRelease",
@@ -14939,14 +14945,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'resetdifficulty',
-        Description: ": resets difficulty, thereby quitting it.",
+        Description: ": restablece la dificultad, abandonándola.",
         Action: (args) => {
             if (args === "") {
-                let msg = "<b>Warning</b>: Resetting difficulty will incur a 7-day waiting period to rechange. Confirm by typing: <b>/resetdifficulty yes</b>";
+                let msg = "<b>Advertencia</b>: Restablecer la dificultad implicará un periodo de espera de 7 días para volver a cambiarla. Confirma escribiendo: <b>/resetdifficulty yes</b>";
                 infomsg(msg);
             } else if (args === "yes") {
                 Player.Difficulty = [];
-                let msg = "Difficulty reset, select a new one in settings.";
+                let msg = "Dificultad restablecida, selecciona una nueva en los ajustes.";
                 infomsg(msg);
             }
         }
@@ -14954,15 +14960,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'resetinventory',
-        Description: ": erases your inventory.",
+        Description: ": borra tu inventario.",
         Action: (args) => {
             if (args === "") {
-                let msg = "<b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b>";
+                let msg = "<b>Advertencia</b>: Perderás mucha ropa y objetos, tendrás que comprarlos de nuevo. Confirma escribiendo: <b>/resetinventory yes</b>";
                 infomsg(msg);
             } else if (args === "yes") {
                 Player.Inventory = [];
                 ServerPlayerInventorySync();
-                let msg = "Accomplished. Visit store to buy new clothes and items.";
+                let msg = "Logrado. Visita la tienda para comprar nueva ropa y objetos.";
                 infomsg(msg);
             }
         }
@@ -14970,13 +14976,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'restrain',
-        Description: "(target): adds random restraints.",
+        Description: "(objetivo): añade ataduras aleatorias.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target == Player) {
-                let msg = "Magical lasers apply random restraints on " + tmpname + "'s body.";
+                let msg = "Láseres mágicos aplican ataduras aleatorias en el cuerpo de " + tmpname + ".";
                 targetMessage(Restrain, msg, 1);
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
@@ -14987,7 +14993,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers apply random restraints on " + tgpname + "'s body.";
+                        let msg = "Láseres mágicos aplican ataduras aleatorias en el cuerpo de " + tgpname + ".";
                         targetMessage(Trestrain, msg, 2);
                         CharacterFullRandomRestrain(target, "ALL");
                         ChatRoomCharacterUpdate(target);
@@ -14998,32 +15004,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'roleplay',
-        Description: "(role): starts to play a role",
+        Description: "(rol): comienza a jugar un rol específico.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The roleplay command must include a role.\n" +
-                    "You will be able to check the changes in your profile.\n" +
+                let msg = "El comando roleplay debe incluir un rol.\n" +
+                    "Podrás verificar los cambios en tu perfil.\n" +
                     " \n" +
-                    "Available roles:\n" +
-                    "clubmistress, clubslave, doctor, escapedpatient,\n" +
-                    "headmaid, kidnapper, maid, magician, magus,\n" +
-                    "masterkidnapper, mistress, nurse, oracle, patient,\n" +
-                    "permanentpatient, sage, sorcerer, warlock, witch, wizard.\n" +
-                    "Be careful with clubslave, you will be forced to complete contract. Similar warning for escapedpatient.";
+                    "Roles disponibles:\n" +
+                    "doctor, headmaid, magician, magus,\n" +
+                    "maid, nurse, oracle, patient,\n" +
+                    "permanentpatient, sage, sorcerer, warlock, witch, wizard.\n";
                 infomsg(msg);
             } else {
                 let role = args;
-                if (role == "clubmistress") LogAdd("ClubMistress", "Management");
-                if (role == "clubslave") LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
                 if (role == "doctor") {
                     LogAdd("Committed", "Asylum", CurrentTime);
                     ReputationChange('Asylum', 200);
                 }
-                if (role == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 if (role == "headmaid") LogAdd("LeadSorority", "Maid");
-                if (role == "kidnapper") DialogSetReputation("Kidnap", 50);
                 if (role == "magician") {
                     ResetHousesReputation();
                     DialogSetReputation("HouseVincula", 50);
@@ -15035,11 +15035,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (role == "maid") {
                     LogDelete("LeadSorority", "Maid");
                     LogAdd("JoinedSorority", "Management");
-                }
-                if (role == "masterkidnapper") ReputationChange("Kidnap", 100);
-                if (role == "mistress") {
-                    LogAdd("ClubMistress", "Management");
-                    ReputationChange("Dominant", 200);
                 }
                 if (role == "nurse") {
                     LogAdd("Committed", "Asylum", CurrentTime);
@@ -15075,22 +15070,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'rolequit',
-        Description: "(role or club area): ceases to play a role",
+        Description: "(rol o área del club): deja de jugar un rol específico.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The rolequit command must include a role or clubarea.\n" +
-                    "You will be able to check the changes in your profile.\n" +
+                let msg = "El comando rolequit debe incluir un rol o área del club.\n" +
+                    "Podrás verificar los cambios en tu perfil.\n" +
                     " \n" +
-                    "Available roles or areas:\n" +
-                    "asylum to cease being doctor, nurse, patient or permanent patient.\n" +
-                    "clubslave to break the club slave contract.\n" +
-                    "ggts to leave ggts training (back to level 0).\n" +
-                    "kidnapper to cease being kidnapper or master kidnapper.\n" +
-                    "magician to cease one of the 8 magic roles.\n" +
-                    "management or mistress to cease being mistress or club mistress.\n" +
-                    "sorority or maid to cease being maid or headmaid.";
+                    "Roles o áreas disponibles:\n" +
+                    "asylum para dejar de ser doctor, enfermera, paciente o paciente permanente.\n" +
+                    "clubslave para romper el contrato de esclava del club.\n" +
+                    "ggts para abandonar el entrenamiento ggts (volver al nivel 0).\n" +
+                    "kidnapper para dejar de ser secuestradora o maestra secuestradora.\n" +
+                    "magician para dejar uno de los 8 roles mágicos.\n" +
+                    "management o mistress para dejar de ser mistress o mistress del club.\n" +
+                    "sorority o maid para dejar de ser sirvienta o jefa de sirvientas.";
                 infomsg(msg);
             } else {
                 let role = args;
@@ -15133,11 +15128,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'safeworditem',
-        Description: ": removes specific item.",
+        Description: ": elimina un objeto específico.",
         Action: () => {
-            let msg = "You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.";
+            let msg = "Tienes 5 segundos para hacer clic en el objetivo y seleccionar el área. Si tiene éxito, el objeto será retirado. Si no, reintenta.";
             infomsg(msg);
             setTimeout(function() {
                 if (CurrentCharacter != null) {
@@ -15174,7 +15169,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'search',
-        Description: ": opens chat search in current lobby.",
+        Description: ": abre la búsqueda de chat en el lobby actual.",
         Action: () => {
             RoomToGame();
             CommonSetScreen("Online", "ChatSearch");
@@ -15183,26 +15178,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'sfchaste',
-        Description: "(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.",
+        Description: "(modelo) (escudo frontal) (escudo trasero) (protección de manipulación) (modo orgasmo): cambia los ajustes del Cinturón de Castidad Futurista equipado.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The sfchaste command must be followed by 5 numbers for model, front shield, back shield, tamper protection and orgasm mode.\n" +
+                let msg = "El comando sfchaste debe ir seguido de 5 números para el modelo, escudo frontal, escudo trasero, protección de manipulación y modo de orgasmo.\n" +
                     " \n" +
-                    "Available models: \n" +
-                    "0 Prototype - 1 High-Security\n" +
-                    "2 Training - 3 Neo\n" +
+                    "Modelos disponibles: \n" +
+                    "0 Prototipo - 1 Alta Seguridad\n" +
+                    "2 Entrenamiento - 3 Neo\n" +
                     " \n" +
-                    "Available front shields:\n" +
-                    "0 Open - 1 Locked\n" +
+                    "Escudos frontales:\n" +
+                    "0 Abierto - 1 Bloqueado\n" +
                     " \n" +
-                    "Available back shields:\n" +
-                    "0 Open - 1 Locked\n" +
+                    "Escudos traseros:\n" +
+                    "0 Abierto - 1 Bloqueado\n" +
                     " \n" +
-                    "Available tamper protections:\n" +
-                    "0 Disabled - 1 Belt - 2 All items\n" +
+                    "Protecciones de manipulación:\n" +
+                    "0 Desactivado - 1 Cinturón - 2 Todos los objetos\n" +
                     " \n" +
-                    "Available orgasm modes:\n" +
-                    "0 Allow - 1 Punish";
+                    "Modos de orgasmo:\n" +
+                    "0 Permitir - 1 Castigar";
                 infomsg(msg);
             } else {
                 if (InventoryGet(Player, "ItemPelvis") != null) {
@@ -15219,7 +15214,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             const FuturisticChastityBeltConfig = ModularItemDataLookup.ItemPelvisFuturisticChastityBelt;
                             FuturisticChastityBelt.Property = ModularItemMergeModuleValues(FuturisticChastityBeltConfig, [msf, fsf, bsf, tsf, osf]);
                             ChatRoomCharacterUpdate(Player);
-                            let msg = "The settings of your Futuristic Chastity Belt have been modified.";
+                            let msg = "Los ajustes de tu Cinturón de Castidad Futurista han sido modificados.";
                             infomsg(msg);
                         }
                     }
@@ -15228,22 +15223,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+   CommandCombine([{
         Tag: 'shock',
-        Description: ": (slot) (sensibility) (intensity): changes mode of worn device shock in a specific slot.",
+        Description: ": (espacio) (sensibilidad) (intensidad): cambia el modo de descarga del dispositivo equipado en un espacio específico.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The shock command must be followed by two (or three) numbers:\n" +
-                    "- a number for the concerned slot:\n" +
-                    "0 = Arms - 1 = Breast - 2 = Butt - 3 = Devices - 4 = Neck - 5 = Neck Accessories - 6 = Nipples - 7 = Pelvis - 8 = Vulva\n" +
+                let msg = "El comando shock debe ir seguido de dos (o tres) números:\n" +
+                    "- un número para el espacio afectado:\n" +
+                    "0 = Brazos - 1 = Pecho - 2 = Trasero - 3 = Dispositivos - 4 = Cuello - 5 = Accesorios de Cuello - 6 = Pezones - 7 = Pelvis - 8 = Vulva\n" +
                     " \n" +
-                    "- a number for the sensibility of the shock device in this slot:\n" +
-                    "0 = Off - 1 = Low - 2 = Medium - 3 = High \n" +
-                    "- a number for the intensity of the shocks:\n" +
-                    "1 = Low - 2 = Medium - 3 = High \n" +
-                    "Note that most devices don't need the last parameter as they refer to a level combining sensibility and intensity!\n" +
-                    "Several devices can't be disabled. For the Obedience Belt, use 0 (disabled) or 1 (enabled).\n" +
-                    "This command does not support the Futuristic Chastity Belt and the Futuristic Training Belt.";
+                    "- un número para la sensibilidad del dispositivo de descarga en este espacio:\n" +
+                    "0 = Apagado - 1 = Baja - 2 = Media - 3 = Alta \n" +
+                    "- un número para la intensidad de las descargas:\n" +
+                    "1 = Baja - 2 = Media - 3 = Alta \n" +
+                    "¡Ten en cuenta que la mayoría de los dispositivos no necesitan el último parámetro, ya que se refieren a un nivel que combina sensibilidad e intensidad!\n" +
+                    "Varios dispositivos no pueden desactivarse. Para el Cinturón de Obediencia, usa 0 (desactivado) o 1 (activado).\n" +
+                    "Este comando no es compatible con el Cinturón de Castidad Futurista ni con el Cinturón de Entrenamiento Futurista.";
                 infomsg(msg);
             } else {
                 let Target = "";
@@ -15253,7 +15248,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let slot = stringSol2[0];
                 let ms = stringSol2[1];
                 let mi = stringSol2[2];
-                let msg = "Settings changed for one of your shock devices!";
+                let msg = "¡Ajustes cambiados para uno de tus dispositivos de descarga!";
                 if ((slot > -1) && (slot < 9)) {
                     if (slot == 0) Target = "ItemArms";
                     if (slot == 1) Target = "ItemBreast";
@@ -15371,9 +15366,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'sleep',
-        Description: "(target): uses the sleeping pill on yourself or another player.",
+        Description: "(objetivo): usa la pastilla para dormir en ti mismo o en otro jugador.",
         Action: (args) => {
             let target = args !== "" ? TargetSearch(args) : Player;
             if (target) {
@@ -15395,7 +15390,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'slowleave',
-        Description: "(action): slowly leaves the room.",
+        Description: "(accion): abandona la sala lentamente.",
         Action: (args) => {
             if (noescape) {
                 let msg = umsg1 + umsg3;
@@ -15403,7 +15398,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let message = "";
                 if (args === "") {
-                    message = " slowly heads for the door."
+                    message = " se dirige lentamente hacia la puerta."
                 } else {
                     message = ' '.repeat(1) + args;
                 }
@@ -15418,11 +15413,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'solidity',
-        Description: "(value) (target): changes the solidity of most current bindings.",
+        Description: "(valor) (objetivo): cambia la solidez de la mayoría de las ataduras actuales.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The solidity command must be followed by a number between 1 and 99, and optionally a target.\n" +
-                    "To escape special restraints (Futuristic Crate, Wooden Rack, Armbinder Suit), use the value 1.";
+                let msg = "El comando solidity debe ir seguido de un número entre 1 y 99, y opcionalmente un objetivo.\n" +
+                    "Para escapar de restricciones especiales (Futuristic Crate, Wooden Rack, Armbinder Suit), usa el valor 1.";
                 infomsg(msg);
             } else {
                 let stringSol1 = args;
@@ -15430,7 +15425,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let solidity = stringSol2[0];
                 let targetname = stringSol2[1];
                 if ((solidity < 1) || (solidity > 99)) {
-                    let msg = "The solidity value must be between 1 and 99.";
+                    let msg = "El valor de solidez debe estar entre 1 y 99.";
                     infomsg(msg);
                 } else {
                     if ((targetname == null) && (solidity > 0) && (solidity < 100)) {
@@ -15448,7 +15443,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if ((extrasol != 0) && (solidity == 1)) {
                                 if (extrasol == 1) InventoryRemove(Player, "ItemDevices");
                                 if (extrasol == 2) InventoryRemove(Player, "ItemArms");
-                                let msg1 = "Magical lasers make disappear the special restraints that kept " + tmpname + " prisoner.";
+                                let msg1 = "Láseres mágicos hacen desaparecer las restricciones especiales que mantenían prisionera a " + tmpname + ".";
                                 targetMessage(Solidity, msg1, 1);
                             }
                             for (let A = 0; A < Player.Appearance.length; A++)
@@ -15458,7 +15453,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     }
                                 }
                             ChatRoomCharacterUpdate(Player);
-                            let msg2 = "The solidity of most current bindings has been changed.";
+                            let msg2 = "La solidez de la mayoría de las ataduras actuales ha sido cambiada.";
                             infomsg(msg2);
                         }
                     } else {
@@ -15479,7 +15474,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 if ((extrasol != 0) && (solidity == 1)) {
                                     if (extrasol == 1) InventoryRemove(target, "ItemDevices");
                                     if (extrasol == 2) InventoryRemove(target, "ItemArms");
-                                    let msg1 = "Magical lasers make disappear the special restraints that kept " + tgpname + " prisoner.";
+                                    let msg1 = "Láseres mágicos hacen desaparecer las restricciones especiales que mantenían prisionera a " + tgpname + ".";
                                     targetMessage(Tsolidity, msg1, 2);
                                 }
                                 for (let A = 0; A < target.Appearance.length; A++)
@@ -15488,7 +15483,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                             target.Appearance[A].Difficulty = solidity;
                                         }
                                     }
-                                let msg2 = "The solidity of most current " + tgpname + "\u0027s bindings has been changed by " + tmpname + ".";
+                                let msg2 = "La solidez de la mayoría de las ataduras actuales de " + tgpname + " ha sido cambiada por " + tmpname + ".";
                                 publicmsg(msg2);
                                 ChatRoomCharacterUpdate(target);
                             }
@@ -15500,18 +15495,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'spin',
-        Description: "(target) (option): allows access to target's wheel of fortune, even when not displayed.",
+        Description: "(objetivo) (opcion): permite acceder a la rueda de la fortuna del objetivo, incluso si no se muestra.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The spin command must be followed by the target whose wheel of fortune interests you, and optionally a mode.\n" +
-                    "Available modes:\n" +
-                    "a = automatic real spinning (only the options selected by the wheel creator)\n" +
-                    "i = info about the maximum of options on the wheel\n" +
-                    "r = full random spinning (includes also the options not selected by the wheel creator)\n" +
-                    "Tip: use the i mode before the r mode, it will correctly initialise the messages.\n" +
-                    "Note that roleplay is disabled by a and r modes!";
+                let msg = "El comando spin debe ir seguido del objetivo cuya rueda de la fortuna te interesa, y opcionalmente un modo.\n" +
+                    "Modos disponibles:\n" +
+                    "a = giro real automático (solo las opciones seleccionadas por el creador de la rueda)\n" +
+                    "i = información sobre el máximo de opciones en la rueda\n" +
+                    "r = giro aleatorio completo (incluye también las opciones no seleccionadas por el creador)\n" +
+                    "Consejo: usa el modo i antes que el modo r, inicializará correctamente los mensajes.\n" +
+                    "¡Ten en cuenta que el roleplay se desactiva con los modos a y r!";
                 infomsg(msg);
             } else {
                 let stringSol1 = args;
@@ -15526,7 +15521,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         infomsg(msg);
                     } else {
                         if (!InventoryAvailable(target, "WheelFortune", "ItemDevices")) {
-                            let msg = "Bad luck! This player does not have a wheel of fortune.";
+                            let msg = "¡Mala suerte! Este jugador no tiene una rueda de la fortuna.";
                             infomsg(msg);
                         } else {
                             CurrentCharacter = target;
@@ -15546,29 +15541,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'stalk',
-        Description: "(stuttermode) (words): speaks once in a specified stuttering mode.",
+        Description: "(modo_tartamudeo) (palabras): habla una vez en un modo de tartamudeo especificado.",
         Action: (_, command, args) => {
-            let help = "The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\n" +
-                "Note that it can't be used when you are in a 'permanent' stuttering mode.\n" +
+            let help = "El comando stalk debe ir seguido de un número entre 1 y 4 para el modo de tartamudeo y las palabras que quieras decir.\n" +
+                "Ten en cuenta que no se puede usar cuando estás en un modo de tartamudeo 'permanente'.\n" +
                 " \n" +
-                "Available stuttering modes:\n" +
-                "1 light stuttering\n" +
-                "2 normal stuttering\n" +
-                "3 heavy stuttering\n" +
-                "4 total stuttering";
+                "Modos de tartamudeo disponibles:\n" +
+                "1 tartamudeo ligero\n" +
+                "2 tartamudeo normal\n" +
+                "3 tartamudeo pesado\n" +
+                "4 tartamudeo total";
             let [mode] = args;
             if (!mode || isNaN(mode) || mode < 1 || mode > 4) {
                 infomsg(help);
                 return;
             }
             if (st != 0) {
-                infomsg("You can't use this command because you are in a 'permanent' stuttering mode");
+                infomsg("No puedes usar este comando porque estás en un modo de tartamudeo 'permanente'");
                 return;
             }
             let [, , ...message] = command.split(" ");
             let msg = message?.join(" ");
             if (!msg) {
-                infomsg("Please include words to say after the stuttering mode.");
+                infomsg("Por favor, incluye las palabras a decir después del modo de tartamudeo.");
                 return;
             }
             if (dolltalk === true && IsDollTalk(msg) === false) {
@@ -15588,7 +15583,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'store',
-        Description: ": leaves chatroom, goes to store, shows hidden items.",
+        Description: ": abandona la sala, va a la tienda y muestra objetos ocultos.",
         Action: () => {
             Asset.forEach(e => {
                 if (e.Value < 0) e.Value = 1;
@@ -15603,10 +15598,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'superdice',
-        Description: "(sides): rolls a superdice. ",
+        Description: "(caras): lanza un superdado.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The superdice command must be followed by a number between 2 and 999999999.";
+                let msg = "El comando superdice debe ir seguido de un número entre 2 y 999999999.";
                 infomsg(msg);
             } else {
                 let sides = args;
@@ -15614,18 +15609,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 const Result = [];
                 let Roll = Math.floor(Math.random() * sides) + 1;
                 Result.push(Roll);
-                let msg = "" + tmpname + " rolls a superdice of " + sides + " sides. The result is " + Result + ".";
+                let msg = "" + tmpname + " lanza un superdado de " + sides + " caras. El resultado es " + Result + ".";
                 publicmsg(msg);
             }
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'theme',
-        Description: "(number): changes chat color theme.",
+        Description: "(numero): cambia el tema de color del chat.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The theme command must be followed by a number between 0 and 3.";
+                let msg = "El comando theme debe ir seguido de un número entre 0 y 3.";
                 infomsg(msg);
             } else {
                 let theme = args;
@@ -15644,14 +15639,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'thmlogin',
-        Description: "(options) shows/hides Credits and/or NPCs on login screen, when Themed mod used",
+        Description: "(opciones) muestra/oculta Créditos y/o NPCs en la pantalla de inicio, cuando se usa el mod Themed",
         Action: (args) => {
             if (args === "") {
-                let msg = "The thmlogin command can be used only if Themed mod is enabled.\n" +
-                    "It must be followed by a number between 1 and 3.\n" +
-                    "1 = Credits - 2 = NPCs - 3 = 1 + 2.\n" +
+                let msg = "El comando thmlogin solo puede usarse si el mod Themed está activado.\n" +
+                    "Debe ir seguido de un número entre 1 y 3.\n" +
+                    "1 = Créditos - 2 = NPCs - 3 = 1 + 2.\n" +
                     "";
-                if (Player.Themed != undefined) msg = msg + "Current status:";
+                if (Player.Themed != undefined) msg = msg + "Estado actual:";
                 infomsg(msg);
             } else {
                 if (Player.Themed != undefined) {
@@ -15671,7 +15666,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     if ((args > 0) && (args < 4)) {
                         localStorage.setItem('ThemedLocalData', JSON.stringify(window.ThemedLocalData));
-                        let msg = "Settings for login screen modified!";
+                        let msg = "¡Ajustes de la pantalla de inicio modificados!";
                         infomsg(msg);
                     }
                 }
@@ -15681,15 +15676,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'timercell',
-        Description: "(minutes): stays in the isolation cell.",
+        Description: "(minutos): permanece en la celda de aislamiento.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The timercell command must be followed by a number higher than 0.";
+                let msg = "El comando timercell debe ir seguido de un número mayor a 0.";
                 infomsg(msg);
             } else {
                 let minutes = args;
                 if (minutes > 0) {
-                    let msg = "" + tmpname + " gets grabbed by two maids and locked in a timer cell for " + minutes + " minutes.";
+                    let msg = "" + tmpname + " es agarrada por dos sirvientas y encerrada en una celda con temporizador por " + minutes + " minutos.";
                     publicmsg(msg);
                     DialogLentLockpicks = false;
                     RoomToGame();
@@ -15699,21 +15694,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'title1',
-        Description: "(title): chooses a new title (from A to K).",
+        Description: "(titulo): elige un nuevo título (de la A a la K).",
         Action: (args) => {
             if (args === "") {
-                let msg = "The title1 command must be followed by a title.\n" +
-                    "It will also change required parameters to get the title.\n" +
-                    "You will be able to check the changes in your profile.\n" +
+                let msg = "El comando title1 debe ir seguido de un título.\n" +
+                    "También cambiará los parámetros necesarios para obtener el título.\n" +
+                    "Podrás verificar los cambios en tu perfil.\n" +
                     " \n" +
-                    "Available titles:\n" +
+                    "Títulos disponibles:\n" +
                     "admiral, agent, alien, angel, archbishop, archjudge,\n" +
                     "baby, bishop, bondagebaby, bondagemaid, brat, bunny,\n" +
                     "captain, champion, clubslave, coldbloodhorse,\n" +
                     "collegestudent, concubus, demon, diaperlover,\n" +
-                    "doctor, doll, dragon, drone, drow, duchess, duke.";               
+                    "doctor, doll, dragon, drone, drow, duchess, duke.";              
                 infomsg(msg);
             } else {
                 let title = args;
@@ -15840,14 +15835,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'title2',
-        Description: "(title): chooses a new title (from E to K).",
+        Description: "(titulo): elige un nuevo título (de la E a la K).",
         Action: (args) => {
             if (args === "") {
-                let msg = "The title2 command must be followed by a title.\n" +
-                    "It will also change required parameters to get the title.\n" +
-                    "You will be able to check the changes in your profile.\n" +
+                let msg = "El comando title2 debe ir seguido de un título.\n" +
+                    "También cambiará los parámetros necesarios para obtener el título.\n" +
+                    "Podrás verificar los cambios en tu perfil.\n" +
                     " \n" +
-                    "Available titles:\n" +
+                    "Títulos disponibles:\n" +
                     "elf, escapedpatient, farmhorse, femboy, flyingpegasus,\n" +
                     "foal, foxy, freeuse, god, goddess, goodboy, goodgirl,\n" +
                     "goodone, goodslave, goodslaveboy, goodslavegirl\n" +
@@ -16001,14 +15996,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'title3',
-        Description: "(title): chooses a new title (from L to Q).",
+        Description: "(titulo): elige un nuevo título (de la L a la Q).",
         Action: (args) => {
             if (args === "") {
-                let msg = "The title3 command must be followed by a title.\n" +
-                    "It will also change required parameters to get the title.\n" +
-                    "You will be able to check the changes in your profile.\n" +
+                let msg = "El comando title3 debe ir seguido de un título.\n" +
+                    "También cambiará los parámetros necesarios para obtener el título.\n" +
+                    "Podrás verificar los cambios en tu perfil.\n" +
                     " \n" +
-                    "Available titles:\n" +
+                    "Títulos disponibles:\n" +
                     "ladyluck, liege, littleone, lordfortune, magician, magus,\n" +
                     "maid, majesticalicorn, majesty, master, masterkidnapper,\n" +
                     "matron, missy, mistree, mistress, mole, nawashi, nurse,\n" +
@@ -16171,14 +16166,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'title4',
-        Description: "(title): chooses a new title (from R to Z).",
+        Description: "(titulo): elige un nuevo título (de la R a la Z).",
         Action: (args) => {
             if (args === "") {
-                let msg = "The title4 command must be followed by a title.\n" +
-                    "It will also change required parameters to get the title.\n" +
-                    "You will be able to check the changes in your profile.\n" +
+                let msg = "El comando title4 debe ir seguido de un título.\n" +
+                    "También cambiará los parámetros necesarios para obtener el título.\n" +
+                    "Podrás verificar los cambios en tu perfil.\n" +
                     " \n" +
-                    "Available titles:\n" +
+                    "Títulos disponibles:\n" +
                     "sage, shiningunicorn, sissy, sorcerer,\n" +
                     "succubus, superhero, superheroine, superspy, switch,\n" +
                     "thing, tomboy, turtle, vampire, warlock,\n" +
@@ -16264,9 +16259,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'totalrelease',
-        Description: "(target): removes all bindings, collar, harness, chastity, toys.",
+        Description: "(objetivo): retira todas las fijaciones, collar, arnés, castidad y accesorios.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
@@ -16276,7 +16271,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let msg = umsg1 + umsg3;
                     infomsg(msg);
                 } else {
-                    let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
+                    let msg = "Láseres mágicos hacen desaparecer todas las fijaciones y accesorios del cuerpo de " + tmpname + ".";
                     targetMessage(Totalrelease, msg, 1);
                     SosClick();
                 }
@@ -16287,7 +16282,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers make disappear all bindings and toys on " + tgpname + "'s body.";
+                        let msg = "Láseres mágicos hacen desaparecer todas las fijaciones y accesorios del cuerpo de " + tgpname + ".";
                         targetMessage(Ttotalrelease, msg, 2);
                         CharacterReleaseTotal(target);
                         ChatRoomCharacterUpdate(target);
@@ -16300,10 +16295,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'tplistadd',
-        Description: "(membernumber): adds a player to the list allowing to teleport you.",
+        Description: "(número_miembro): añade a un jugador a la lista autorizada para teletransportarte.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The tplistadd command must be followed by the member number of the player that you allow to teleport you.";
+                let msg = "El comando tplistadd debe ser seguido por el número de miembro del jugador al que se permite teletransportarte.";
                 infomsg(msg);
             } else {
                 let member = args * 1;
@@ -16326,10 +16321,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'tplistremove',
-        Description: "(membernumber): removes a player from the list allowing to teleport you.",
+        Description: "(número_miembro): elimina a un jugador de la lista autorizada para teletransportarte.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The tplistremove command must be followed by the member number of the player who is no more allowed to teleport you.";
+                let msg = "El comando tplistremove debe ser seguido por el número de miembro del jugador que ya no tiene permiso para teletransportarte.";
                 infomsg(msg);
             } else {
                 let member = args * 1;
@@ -16357,7 +16352,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'tplistshow',
-        Description: "displays the list of players allowed to teleport you.",
+        Description: "muestra la lista de jugadores autorizados para teletransportarte.",
         Action: (args) => {
             let List;
             if (Player.OnlineSharedSettings.Tplist == undefined) {
@@ -16369,27 +16364,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'trsee',
-        Description: "(visor) (deafening module) (chin strap): changes the settings of a worn Techno Helmet",
+        Description: "(visor) (módulo de sordera) (barboquejo): cambia los ajustes de un Casco Tecno equipado.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The trsee command must be followed by 3 numbers for visor, deafening module and chin strap.\n" +
+                let msg = "El comando trsee debe ir seguido de 3 números para el visor, el módulo de sordera y el barboquejo.\n" +
                     " \n" +
-                    "Available visors:\n" +
-                    "0 No visor - 1 transparent\n" +
-                    "2 light tinted - 3 heavy tinted\n" +
-                    "4 opaque - 5 hypnotic\n" +
+                    "Visores disponibles:\n" +
+                    "0 Sin visor - 1 transparente\n" +
+                    "2 tinte ligero - 3 tinte fuerte\n" +
+                    "4 opaco - 5 hipnótico\n" +
                     " \n" +
-                    "Available deafening modules:\n" +
-                    "0 no module\n" +
-                    "1 light\n" +
-                    "2 heavy\n" +
-                    "3 noise-cancelling\n" +
+                    "Módulos de sordera disponibles:\n" +
+                    "0 sin módulo\n" +
+                    "1 ligero\n" +
+                    "2 pesado\n" +
+                    "3 cancelación de ruido\n" +
                     " \n" +
-                    "Available options for chin strap:\n" +
-                    "0 No chin strap\n" +
-                    "1 chin strap";
+                    "Opciones disponibles para el barboquejo:\n" +
+                    "0 Sin barboquejo\n" +
+                    "1 con barboquejo";
                 infomsg(msg);
             } else {
                 if (InventoryGet(Player, "ItemHood") != null) {
@@ -16404,7 +16399,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             const TechnoHelmet1Config = ModularItemDataLookup.ItemHoodTechnoHelmet1;
                             TechnoHelmet1.Property = ModularItemMergeModuleValues(TechnoHelmet1Config, [vtr, dtr, ctr]);
                             ChatRoomCharacterUpdate(Player);
-                            let msg = "The settings of your Techno Helmet have been modified.";
+                            let msg = "Los ajustes de tu Casco Tecno han sido modificados.";
                             infomsg(msg);
                         }
                     }
@@ -16415,200 +16410,200 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'uhelp',
-        Description: "(category): displays the ULTRAbc commands.",
+        Description: "(categoría): muestra los comandos de ULTRAbc.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The uhelp is organized into categories. Use <b>/uhelp</b> (category). List of categories:\n" +
-                    "<b>admin</b> = commands only for chat room admins.\n" +
-                    "<b>bondage</b> = commands related to bondage.\n" +
-                    "<b>character</b> = commands related to your character.\n" +
-                    "<b>chat</b> = commands with extra features in chat room.\n" +
-                    "<b>clothing</b> = commands related to the clothes.\n" +
-                    "<b>escape</b> = commands related to escape.\n" +
-                    "<b>fun</b> = commands related to fun, pain and pleasure.\n" +
-                    "<b>maps</b> = commands related to hybrid and map rooms.\n" +
-                    "<b>misc</b> = help, info, login and Ulist commands.\n" +
-                    "<b>settings</b> = commands to customize ULTRAbc.\n" +
-                    "<b>talking</b> = commands related to talking.\n" +
-                    "<b>visual</b> = commands related to animations and background.\n" +
-                    "<b>zones</b> = commands related to game zones.\n" +
-                    "Several commands require or allow to specify a target. It can be a real name, a nickname or a member number.\n" +
-                    "Visit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> and join our <a href='https://steamcommunity.com/groups/ULTRAbc' target='_blank'>Steam community</a>";
+                let msg = "El uhelp está organizado en categorías. Usa <b>/uhelp</b> (categoría). Lista de categorías:\n" +
+                    "<b>admin</b> = comandos solo para administradores de la sala.\n" +
+                    "<b>bondage</b> = comandos relacionados con restricciones.\n" +
+                    "<b>character</b> = comandos relacionados con tu personaje.\n" +
+                    "<b>chat</b> = comandos con funciones extra en la sala de chat.\n" +
+                    "<b>clothing</b> = comandos relacionados con la ropa.\n" +
+                    "<b>escape</b> = comandos relacionados con escapar.\n" +
+                    "<b>fun</b> = comandos relacionados con diversión y efectos.\n" +
+                    "<b>maps</b> = comandos relacionados con salas híbridas y de mapa.\n" +
+                    "<b>misc</b> = comandos de ayuda, info, login y Ulist.\n" +
+                    "<b>settings</b> = comandos para personalizar ULTRAbc.\n" +
+                    "<b>talking</b> = comandos relacionados con hablar.\n" +
+                    "<b>visual</b> = comandos relacionados con animaciones y fondos.\n" +
+                    "<b>zones</b> = comandos relacionados con zonas de juego.\n" +
+                    "Varios comandos requieren o permiten especificar un objetivo. Puede ser un nombre real, un apodo o un número de miembro.\n" +
+                    "Visita también nuestra <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> y únete a nuestra <a href='https://steamcommunity.com/groups/ULTRAbc' target='_blank'>comunidad de Steam</a>";
                 infomsg(msg);
             }
             if (args === "admin") {
-                let msg = "Admin commands\n" +
-                    "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
-                    "<b>/bg1</b> = adds hidden backgrounds to the selection screen.\n" +
-                    "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.\n" +
-                    "<b>/bg3</b> (number) = uses a Bondage College background as custom background. /bg3 to get the list.";
+                let msg = "Comandos de Admin\n" +
+                    "<b>/autokick</b> = activa/desactiva la expulsión automática para cuentas de 0 días.\n" +
+                    "<b>/bg1</b> = añade fondos ocultos a la pantalla de selección.\n" +
+                    "<b>/bg2</b> (número) = cambia el fondo de la sala. /bg2 para ver la lista.\n" +
+                    "<b>/bg3</b> (número) = utiliza un fondo personalizado. /bg3 para ver la lista.";
                 infomsg(msg);
             }
             if (args === "bondage") {
-                let msg = "Bondage commands - * = more info when using\n" +
-                    "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
-                    "<b>/lock</b> = adds locks on all lockable items. *.\n" +
-                    "<b>/outfit</b> = restores/saves/loads outfit (including restraints). *\n" +
-                    "<b>/pet</b> (target) = becomes a fully restrained pet.\n" +
-                    "<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n" +
-                    "<b>/restrain</b> (target) = adds random restraints.\n" +
-                    "<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Value must be between 1 and 99.\n" +
-                    "<b>/spin</b> (target) (option) = access to any wheel of fortune, even hidden. *\n" +
-                    "<b>/weaken</b> = weakens all your skills for one hour.";
+                let msg = "Comandos de Restricción - * = más info al usar\n" +
+                    "<b>/hint</b> (objetivo) (pista) = añade o cambia una pista para los candados con contraseña.\n" +
+                    "<b>/lock</b> = añade candados a todos los objetos bloqueables. *.\n" +
+                    "<b>/outfit</b> = restaura/guarda/carga vestimenta (incluyendo accesorios). *\n" +
+                    "<b>/pet</b> (objetivo) = aplica restricciones totales de estado 'mascota'.\n" +
+                    "<b>/randomize</b> (objetivo) = aplica una combinación aleatoria de ropa y restricciones.\n" +
+                    "<b>/restrain</b> (objetivo) = añade restricciones aleatorias.\n" +
+                    "<b>/solidity</b> (valor) (objetivo) = cambia la resistencia de las ataduras actuales (1-99).\n" +
+                    "<b>/spin</b> (objetivo) (opción) = acceso a ruedas de la fortuna. *\n" +
+                    "<b>/weaken</b> = debilita las habilidades por una hora.";
                 infomsg(msg);
             }
             if (args === "character") {
-                let msg = "Character commands - * = more info when using\n" +
-					"<b>/ctitle</b> (custom title) = creates a custom title. *\n" +
-                    "<b>/difficulty</b> (number) = changes game difficulty. *\n" +
-                    "<b>/maxstatistics</b> = gives max statistics.\n" +
-                    "<b>/permission</b> (number) = changes your item permission *\n" +
-                    "<b>/resetinventory</b> = erases your inventory.\n" +
-                    "<b>/roleplay</b> (rolehere) = starts a role. *\n" +
-                    "<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n" +
-                    "<b>/title1</b> (newtitlehere) = chooses a new title (from A to D). *\n" +
-                    "<b>/title1</b> (newtitlehere) = chooses a new title (from E to K). *\n" +
-                    "<b>/title3</b> (newtitlehere) = chooses a new title (from L to Q). *\n" +
-                    "<b>/title4</b> (newtitlehere) = chooses a new title (from R to Z). *";
+                let msg = "Comandos de Personaje - * = más info al usar\n" +
+                    "<b>/ctitle</b> (título) = crea un título personalizado. *\n" +
+                    "<b>/difficulty</b> (número) = cambia la dificultad del juego. *\n" +
+                    "<b>/maxstatistics</b> = maximiza las estadísticas.\n" +
+                    "<b>/permission</b> (número) = cambia los permisos de objetos. *\n" +
+                    "<b>/resetinventory</b> = borra el inventario.\n" +
+                    "<b>/roleplay</b> (rol) = inicia un modo de rol. *\n" +
+                    "<b>/rolequit</b> (rol) = finaliza un modo de rol. *\n" +
+                    "<b>/title1</b> (nuevo título) = elige un nuevo título (A-D). *\n" +
+                    "<b>/title2</b> (nuevo título) = elige un nuevo título (E-K). *\n" +
+                    "<b>/title3</b> (nuevo título) = elige un nuevo título (L-Q). *\n" +
+                    "<b>/title4</b> (nuevo título) = elige un nuevo título (R-Z). *";
                 infomsg(msg);
             }
-            if (args === "chat") {
-                let msg = "Chat commands - * = more info when using\n" +
-                    "<b>/bio</b> (target) = sees profile of any player in chat room.\n" +
-                    "<b>/font</b> (newfont) (size) = changes font in BC. *\n" +
-                    "<b>/frlist</b> = gives access to friendlist in current lobby.\n" +
-                    "<b>/search</b> = opens chat search in current lobby.\n" +
-                    "<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.";
+                        if (args === "chat") {
+                let msg = "Comandos de chat - * = más información al usar\n" +
+                    "<b>/bio</b> (objetivo) = ve el perfil de cualquier jugador en la sala de chat.\n" +
+                    "<b>/font</b> (nueva_fuente) (tamaño) = cambia la fuente en BC. *\n" +
+                    "<b>/frlist</b> = da acceso a la lista de amigos en el lobby actual.\n" +
+                    "<b>/search</b> = abre la búsqueda de chat en el lobby actual.\n" +
+                    "<b>/theme</b> (número) = cambia el tema de color del chat. Número entre 0 y 3.";
                 infomsg(msg);
             }
             if (args === "clothing") {
-                let msg = "Clothing commands - * = more info when using\n" +
-                    "<b>/clothes</b> (target) = changes clothes.\n" +
-                    "<b>/naked</b> (target) = removes clothes.\n" +
-                    "<b>/outfit</b> (options) = restores/saves/loads outfit (including restraints). *\n" +
-                    "<b>/underwear</b> (target) = changes underwear.\n" +
-                    "<b>/wrobe</b> (target) = fully opens target wardrobe.";
+                let msg = "Comandos de ropa - * = más información al usar\n" +
+                    "<b>/clothes</b> (objetivo) = cambia la ropa.\n" +
+                    "<b>/naked</b> (objetivo) = quita la ropa.\n" +
+                    "<b>/outfit</b> (opciones) = restaura/guarda/carga atuendos (incluyendo accesorios). *\n" +
+                    "<b>/underwear</b> (objetivo) = cambia la ropa interior.\n" +
+                    "<b>/wrobe</b> (objetivo) = abre completamente el guardarropa del objetivo.";
                 infomsg(msg);
             }
             if (args === "escape") {
-                let msg = "Escape commands - * = more info when using\n" +
-                    "<b>/boost</b> = boosts all your skills for one hour.\n" +
-                    "<b>/infolock</b> = gives extra info (code, password, time left) for lock used on worn item in selected slot.\n" +
-                    "<b>/quit</b> (action) = leaves room.\n" +
-                    "<b>/removecollar</b> = temporarily removes slave/owner collar.\n" +
-                    "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n" +
-                    "<b>/safeworditem</b> = removes specific item. *\n" +
-                    "<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Use low values to escape! Value 1 to escape special restraints.\n" +
-                    "<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n" +
-                    "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. *\n" +
-                    "<b>/untie</b> (target) = removes all bindings.";
+                let msg = "Comandos de escape - * = más información al usar\n" +
+                    "<b>/boost</b> = potencia todas tus habilidades durante una hora.\n" +
+                    "<b>/infolock</b> = da información extra (código, contraseña, tiempo restante) para el candado usado en el objeto equipado.\n" +
+                    "<b>/quit</b> (acción) = abandona la sala.\n" +
+                    "<b>/removecollar</b> = quita temporalmente el collar.\n" +
+                    "<b>/resetdifficulty</b> = restablece la dificultad, saliendo de ella.\n" +
+                    "<b>/safeworditem</b> = elimina un objeto específico. *\n" +
+                    "<b>/solidity</b> (valor) (objetivo) = cambia la solidez de las ataduras actuales. ¡Usa valores bajos para escapar! Valor 1 para escapar de restricciones especiales.\n" +
+                    "<b>/totalrelease</b> (objetivo) = elimina todas las ataduras y accesorios.\n" +
+                    "<b>/unlock</b> (objetivo) (tipo_de_candado) = elimina todos los candados o solo un tipo específico. *\n" +
+                    "<b>/untie</b> (objetivo) = elimina todas las ataduras.";
                 infomsg(msg);
             }
             if (args === "fun") {
-                let msg = "Fun commands - * = more info when using\n" +
-                    "** = scripts must be allowed in BC settings\n" +
-                    "<b>/cum</b> = causes an orgasm (in all cases).\n" +
-                    "<b>/horny</b> = sets your arousal level (in all cases). *\n" +
-                    "<b>/invisible</b> (target) = goes or sends to invisible mode. **\n" +
-                    "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
-                    "<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n" +
-                    "<b>/shock</b> (slot) (sensibility) (intensity) = changes mode of worn device shock in a specific slot. *\n" +
-                    "<b>/sleep</b> (target) = uses the sleeping pill.\n" +
-                    "<b>/slowleave</b> (action) = slowly leaves the room.\n" +
-                    "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
-                    "<b>/vibe</b> (slot) (mode) = changes mode of worn vibe in a specific slot. *\n" +
-                    "<b>/visible</b> (target) = goes or sends back to visible mode. **";
+                let msg = "Comandos de diversión - * = más información al usar\n" +
+                    "** = los scripts deben estar permitidos en la configuración de BC\n" +
+                    "<b>/cum</b> = provoca un orgasmo.\n" +
+                    "<b>/horny</b> = establece tu nivel de excitación. *\n" +
+                    "<b>/invisible</b> (objetivo) = entra o envía al modo invisible. **\n" +
+                    "<b>/poof</b> (acción) = abandona el club rápidamente. La acción es opcional.\n" +
+                    "<b>/sfchaste</b> (opciones) = cambia la configuración del cinturón de castidad futurista. *\n" +
+                    "<b>/shock</b> (ranura) (sensibilidad) (intensidad) = cambia el modo de descarga del dispositivo en una ranura específica. *\n" +
+                    "<b>/sleep</b> (objetivo) = utiliza el efecto de sueño.\n" +
+                    "<b>/slowleave</b> (acción) = abandona la sala lentamente.\n" +
+                    "<b>/superdice</b> (lados) = lanza un super-dado. Los lados pueden estar entre 2 y 999999999.\n" +
+                    "<b>/vibe</b> (ranura) (modo) = cambia el modo de vibración en una ranura específica. *\n" +
+                    "<b>/visible</b> (objetivo) = vuelve al modo visible. **";
                 infomsg(msg);
             }
             if (args === "maps") {
-                let msg = "Maps commands - * = more info when using\n" +
-                    "<b>/mapfog</b> = toggles fog in current map room.\n" +
-                    "<b>/mapforce</b> = forces map access in current normal room (only for yourself).\n" +
-                    "<b>/mapkeys</b> (keynumber) (action) = finds or loses all keys or a specific key for current map room. *\n" +
-                    "<b>/maproom</b> = gives infos about players in current map.\n" +
-                    "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
-                    "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
-                    "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
-                    "<b>/mapzoom</b> (value) = changes zoom level in map rooms.\n" +
-                    "<b>/tplistadd</b> (membernumber) = adds a player to the list allowing to teleport you.\n" +
-                    "<b>/tplistremove</b> (membernumber) = removes a player from the list allowing to teleport you.\n" +
-                    "<b>/tplistshow</b> = displays the list of players allowed to teleport you.";
+                let msg = "Comandos de mapas - * = más información al usar\n" +
+                    "<b>/mapfog</b> = alterna la niebla en la sala de mapa actual.\n" +
+                    "<b>/mapforce</b> = fuerza el acceso al mapa en la sala normal actual (solo para ti).\n" +
+                    "<b>/mapkeys</b> (número_de_llave) (acción) = encuentra o pierde todas las llaves o una llave específica. *\n" +
+                    "<b>/maproom</b> = da información sobre los jugadores en el mapa actual.\n" +
+                    "<b>/mapx</b> (posición-x) = cambia tu coordenada X en el mapa.\n" +
+                    "<b>/mapy</b> (posición-y) = cambia tu coordenada Y en el mapa.\n" +
+                    "<b>/mapz</b> (objetivo) = da las coordenadas en el mapa.\n" +
+                    "<b>/mapzoom</b> (valor) = cambia el nivel de zoom en las salas de mapa.\n" +
+                    "<b>/tplistadd</b> (número_miembro) = añade a un jugador a la lista permitiendo que te teletransporte.\n" +
+                    "<b>/tplistremove</b> (número_miembro) = elimina a un jugador de la lista.\n" +
+                    "<b>/tplistshow</b> = muestra la lista de jugadores autorizados para teletransportarte.";
                 infomsg(msg);
             }
-            if (args === "misc") {
-                let msg = "Misc commands - * = more info when using\n" +
-                    "<b>/callubc</b> = installs UBC GUI (to be used if it has failed during initialisation).\n" +
-                    "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
-                    "<b>/mbsroom</b> = infos about MBS wheels in current room.\n" +
-                    "<b>/mstatus</b> = displays current status of the moaner.\n" +
-                    "<b>/pmenu</b> = direct access to Preferences screen.\n" +
-                    "<b>/relog</b> = relogs.\n" +
-                    "<b>/thmlogin</b> (options) shows/hides Credits and/or NPCs on login screen, when Themed mod used. *\n" +
-                    "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
-                    "<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n" +
-                    "<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n" +
-                    "<b>/ulistshow</b> = displays list of players in your Ulist.\n" +
-                    "<b>/uroom</b> = infos about UBC/Uwall users in current room.\n" +
-                    "<b>/xmenu</b> = direct access to Extensions screen.";
+                        if (args === "misc") {
+                let msg = "Comandos Varios - * = más info al usar\n" +
+                    "<b>/callubc</b> = instala la interfaz UBC (usar si falló la inicialización).\n" +
+                    "<b>/login</b> (cuenta) (contraseña) = inicia sesión en una cuenta nueva.\n" +
+                    "<b>/mbsroom</b> = info sobre ruedas MBS en la sala actual.\n" +
+                    "<b>/mstatus</b> = muestra el estado actual del moaner.\n" +
+                    "<b>/pmenu</b> = acceso directo a la pantalla de Preferencias.\n" +
+                    "<b>/relog</b> = reconecta el servidor.\n" +
+                    "<b>/thmlogin</b> (opciones) muestra/oculta Créditos o NPCs en el login (con mod Themed). *\n" +
+                    "<b>/uhelp</b> (categoría) = muestra los comandos de ULTRAbc. *\n" +
+                    "<b>/ulistadd</b> (número) = añade un jugador a la lista para ignorar el Uwall.\n" +
+                    "<b>/ulistremove</b> (número) = elimina un jugador de la lista del Uwall.\n" +
+                    "<b>/ulistshow</b> = muestra tu lista de jugadores en Ulist.\n" +
+                    "<b>/uroom</b> = info sobre usuarios de UBC/Uwall en la sala actual.\n" +
+                    "<b>/xmenu</b> = acceso directo a la pantalla de Extensiones.";
                 infomsg(msg);
             }
             if (args === "settings") {
-                let msg = "Settings commands - * = more info when using\n" +
-                    "<b>/bg4</b> (screen) (background) = selects a standard background for the some specific BC rooms. *\n" +
-                    "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
-                    "<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background and embedded picture.\n" +
-                    "<b>/bgshow2</b> (bgnumber) = sends in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n" +
-                    "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
-                    "<b>/message</b> (option) (message) = creates custom messages for specific command. *";
+                let msg = "Comandos de Configuración - * = más info al usar\n" +
+                    "<b>/bg4</b> (pantalla) (fondo) = elige un fondo estándar para salas específicas de BC. *\n" +
+                    "<b>/bglist</b> muestra la lista de todos los fondos estándar disponibles.\n" +
+                    "<b>/bgshow1</b> (número) = muestra un enlace local y la imagen de un fondo estándar.\n" +
+                    "<b>/bgshow2</b> (número) = envía al chat el enlace de un fondo estándar. (Clicable con WCE).\n" +
+                    "<b>/killpar</b> = elimina los parámetros de UBC/Moaner guardados localmente.\n" +
+                    "<b>/message</b> (opción) (mensaje) = crea mensajes personalizados para comandos específicos. *";
                 infomsg(msg);
             }
             if (args === "talking") {
-                let msg = "Talking commands - * = more info when using\n" +
-                    "<b>/atalk</b> (stuffhere) = speaks once as an animal. *\n" +
-                    "<b>/btalk</b> (stuffhere) = speaks once as a baby.\n" +
-                    "<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
-                    "<b>/murmur</b> (MemberNumber|Name|Nickname) (Message) = sends a whisper to a player. Error messages will not disappear.\n" +
-                    "<b>/ping</b> (MemberNumber) (Message) = sends a beep to a player. Beep errors will not disappear.\n" +
-                    "<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *";
+                let msg = "Comandos de Habla - * = más info al usar\n" +
+                    "<b>/atalk</b> (texto) = habla una vez como un animal. *\n" +
+                    "<b>/btalk</b> (texto) = habla una vez como un bebé.\n" +
+                    "<b>/gtalk</b> (modo) (texto) = habla una vez con un nivel de mordaza específico. *\n" +
+                    "<b>/murmur</b> (Número|Nombre|Apodo) (Mensaje) = envía un susurro persistente.\n" +
+                    "<b>/ping</b> (Número) (Mensaje) = envía un pitido (beep) a un jugador.\n" +
+                    "<b>/stalk</b> (modo) (texto) = habla una vez con un modo de tartamudeo específico. *";
                 infomsg(msg);
             }
             if (args === "visual") {
-                let msg = "Visual commands - * = more info when using\n" +
-                    "<b>/allcolor</b> (colorcode) (category) (target) = changes color on current elements in specified category. *\n" +
-                    "<b>/colorchanger</b> (anim) =  animation with color change. *\n" +
-                    "<b>/itemcolor</b> (colorcode) = changes item color in selected slot. *\n" +
-                    "<b>/layerset</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n" +
-                    "<b>/layershow</b> = color info and saving of Item Slot.\n" +
-                    "<b>/pose2</b> (pose) (target) = changes pose of any player. *\n" +
-                    "<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n" +
-                    "<b>/vrsee</b> (background) (mode) (game) = changes the settings of a worn VR Headset. *";
+                let msg = "Comandos Visuales - * = más info al usar\n" +
+                    "<b>/allcolor</b> (color) (categoría) (objetivo) = cambia el color de elementos por categoría. *\n" +
+                    "<b>/colorchanger</b> (anim) = animación con cambio de color constante. *\n" +
+                    "<b>/itemcolor</b> (color) = cambia el color del objeto en el espacio seleccionado. *\n" +
+                    "<b>/layerset</b> (capa) (color) = cambia el color de una capa en el espacio guardado. *\n" +
+                    "<b>/layershow</b> = info de colores y guardado de espacio de objeto (Item Slot).\n" +
+                    "<b>/pose2</b> (pose) (objetivo) = cambia la pose de cualquier jugador. *\n" +
+                    "<b>/trsee</b> (opciones) = cambia los ajustes del Casco Tecno equipado. * \n" +
+                    "<b>/vrsee</b> (fondo) (modo) (juego) = cambia los ajustes de las Gafas VR equipadas. *";
                 infomsg(msg);
             }
             if (args === "zones") {
-                let msg = "Zones commands - * = more info when using\n" +
-                    "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
-                    "<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n" +
-                    "<b>/chess</b> (difficulty) = starts chess game. *\n" +
-                    "<b>/college</b> = enters college, bypasses requirements.\n" +
-                    "<b>/game</b> (minigame) = launches a minigame. *\n" +
-                    "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
-                    "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n" +
-                    "<b>/mission</b> (missiontype) = forces an infiltration mission. *\n" +
-                    "<b>/npcprison</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n" +
-                    "<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n" +
-                    "<b>/store</b> = Goes to store. Shows hidden items.\n" +
-                    "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.";
+                let msg = "Comandos de Zonas - * = más info al usar\n" +
+                    "<b>/asylum</b> (minutos) = entra al asilo omitiendo requisitos. Indica minutos si eres paciente.\n" +
+                    "<b>/cgame</b> (zona) = inicia un juego de cartas con un NPC. *\n" +
+                    "<b>/chess</b> (dificultad) = inicia una partida de ajedrez. *\n" +
+                    "<b>/college</b> = entra a la universidad omitiendo requisitos.\n" +
+                    "<b>/game</b> (minijuego) = lanza un minijuego específico. *\n" +
+                    "<b>/ggts</b> (minutos) (nivel) = inicia entrenamiento GGTS en el asilo (Nivel 1-6).\n" +
+                    "<b>/keydeposit</b> (horas) = guarda tus llaves en la bóveda (acepta más de 7 días).\n" +
+                    "<b>/mission</b> (tipo) = fuerza una misión de infiltración específica. *\n" +
+                    "<b>/npcprison</b> (minutos) = te envía a la prisión NPC de Pandora.\n" +
+                    "<b>/prison</b> (minutos) = te envía a la prisión online de Pandora. *\n" +
+                    "<b>/store</b> = va a la tienda y muestra objetos ocultos.\n" +
+                    "<b>/timercell</b> (minutos) = te encierra en la celda de aislamiento.";
                 infomsg(msg);
             }
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'ulistadd',
-        Description: "(membernumber): adds a player to the list allowing to bypass Uwall.",
+        Description: "(número_de_miembro): añade un jugador a la lista permitiéndole ignorar el Uwall.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The ulistadd command must be followed by the member number of the player that you allow to bypass Uwall.";
+                let msg = "El comando ulistadd debe ir seguido del número de miembro del jugador al que permite ignorar el Uwall.";
                 infomsg(msg);
             } else {
                 let member = args * 1;
@@ -16631,10 +16626,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'ulistremove',
-        Description: "(membernumber): removes a player from the list allowing to bypass Uwall.",
+        Description: "(número_de_miembro): elimina a un jugador de la lista que permite ignorar el Uwall.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The ulistremove command must be followed by the member number of the player who is no more allowed to bypass Uwall.";
+                let msg = "El comando ulistremove debe ir seguido del número de miembro del jugador que ya no tiene permitido ignorar el Uwall.";
                 infomsg(msg);
             } else {
                 let member = args * 1;
@@ -16662,7 +16657,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'ulistshow',
-        Description: "displays the list of players allowed to bypass Uwall.",
+        Description: "muestra la lista de jugadores permitidos para ignorar el Uwall.",
         Action: (args) => {
             let List;
             if (Player.OnlineSharedSettings.Ulist == undefined) {
@@ -16676,13 +16671,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'underwear',
-        Description: "(target): changes underwear.",
+        Description: "(objetivo): cambia la ropa interior.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target == Player) {
-                let msg = "Magical lasers put " + tmpname + " in random underwear.";
+                let msg = "Láseres mágicos ponen a " + tmpname + " ropa interior al azar.";
                 targetMessage(Underwear, msg, 1);
                 CharacterRandomUnderwear(Player);
                 ChatRoomCharacterUpdate(Player);
@@ -16693,7 +16688,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers put " + tgpname + " in random underwear.";
+                        let msg = "Láseres mágicos ponen a " + tgpname + " ropa interior al azar.";
                         targetMessage(Tunderwear, msg, 2);
                         CharacterRandomUnderwear(target);
                         ChatRoomCharacterUpdate(target);
@@ -16704,26 +16699,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'unlock',
-        Description: "(target) (locktype): removes all locks or only a specified type of lock on specified target.",
+        Description: "(objetivo) (tipo_candado): elimina todos los candados o solo un tipo específico en el objetivo indicado.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The unlock command:\n" +
-                    "<b>/unlock</b> (target) (locktype).\n" +
-                    "The target always needs to be specified.\n" +
-                    "All locks of any type will be removed if you don't specify the lock type.\n" +
+                let msg = "El comando unlock:\n" +
+                    "<b>/unlock</b> (objetivo) (tipo_candado).\n" +
+                    "Siempre se debe especificar el objetivo.\n" +
+                    "Se eliminarán todos los candados si no especificas el tipo.\n" +
                     " \n" +
-                    "The lock types:\n" +
-                    "1 Metal (default if wrong value entered) - 2 Exclusive\n" +
-                    "3 Intricate - 4 High Security - 5 Pandora\n" +
-                    "6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n" +
-                    "10 Combination - 11 Safeword - 12 Password\n" +
-                    "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
-                    "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
-                    "19 Family - 20 Lewd Crest - 21 Devious \n" +
-                    "22 Portal Link\n" +
-                    "Lock 21 can be removed only if players use a modified version of the DOGS mod.";
+                    "Tipos de candado:\n" +
+                    "1 Metal (por defecto) - 2 Exclusivo\n" +
+                    "3 Intrincado - 4 Alta Seguridad - 5 Pandora\n" +
+                    "6 Ama - 7 Amante - 8 Dueño - 9 Cinco Minutos\n" +
+                    "10 Combinación - 11 Palabra de Seguridad - 12 Contraseña\n" +
+                    "13 Temp. Ama - 14 Temp. Amante - 15 Temp. Dueño\n" +
+                    "16 Contraseña con Tiempo - 17 Mejor Amigo - 18 Temp. Mejor Amigo\n" +
+                    "19 Familiar - 20 Escudo Lúbrico - 21 Devious \n" +
+                    "22 Enlace de Portal\n" +
+                    "El candado 21 solo puede retirarse si se usa una versión modificada del mod DOGS.";
                 infomsg(msg);
             } else {
                 let uw = 0;
@@ -16739,7 +16734,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let msg = umsg1 + umsg3;
                             infomsg(msg);
                         } else {
-                            let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
+                            let msg = "Láseres mágicos hacen desaparecer los candados del cuerpo de " + tgpname + ".";
                             targetMessage(Unlock, msg, 1);
                         }
                     } else {
@@ -16748,7 +16743,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
-                            let msg = "Magical lasers make disappear locks on " + tgpname + "'s body.";
+                            let msg = "Láseres mágicos hacen desaparecer los candados del cuerpo de " + tgpname + ".";
                             targetMessage(Tunlock, msg, 2);
                         }
                     }
@@ -16815,7 +16810,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'untie',
-        Description: "(target): removes all bindings.",
+        Description: "(objetivo): elimina todas las ataduras.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
@@ -16825,7 +16820,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let msg = umsg1 + umsg3;
                     infomsg(msg);
                 } else {
-                    let msg = "Magical lasers make disappear the bindings on " + tmpname + "'s body.";
+                    let msg = "Láseres mágicos hacen desaparecer las ataduras del cuerpo de " + tmpname + ".";
                     targetMessage(Untie, msg, 1);
                     CharacterRelease(Player);
                     ChatRoomCharacterUpdate(Player);
@@ -16838,7 +16833,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "Magical lasers make disappear the bindings on " + tgpname + "'s body.";
+                        let msg = "Láseres mágicos hacen desaparecer las ataduras del cuerpo de " + tgpname + ".";
                         targetMessage(Tuntie, msg, 2);
                         CharacterRelease(target);
                         ChatRoomCharacterUpdate(target);
@@ -16849,9 +16844,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'uroom',
-        Description: ": gives infos about UBC users and Uwall protection in current chat room.",
+        Description: ": da información sobre usuarios de UBC y protección Uwall en la sala de chat actual.",
         Action: () => {
             ChatRoomCharacter.forEach(character => {
                 const command = "uroom";
@@ -16862,21 +16857,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'vibe',
-        Description: ": (slot) (mode): changes mode of worn vibe in a specific slot.",
+        Description: ": (espacio) (modo): cambia el modo de vibración en un espacio específico.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The vibe command must be followed by two numbers:\n" +
-                    "- a number for the concerned slot:\n" +
-                    "0 = Boots - 1 = Breast - 2 = Butt - 3 = Clitoris/Gland\n" +
-                    "4 = Devices - 5 = Feet - 6 = Nipples\n" +
-                    "7 = Nipples Piercings - 8 = Pelvis - 9 = Vulva/Penis\n" +
+                let msg = "El comando vibe debe ir seguido de dos números:\n" +
+                    "- un número para el espacio afectado:\n" +
+                    "0 = Botas - 1 = Pecho - 2 = Trasero - 3 = Clítoris/Glande\n" +
+                    "4 = Dispositivos - 5 = Pies - 6 = Pezones\n" +
+                    "7 = Piercings de Pezones - 8 = Pelvis - 9 = Vulva/Pene\n" +
                     " \n" +
-                    "- a number for the mode of the vibe in this slot:\n" +
-                    "0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n" +
-                    "5 = Random - 6 = Escalate - 7 = Tease - 8 = Deny - 9 = Edge\n" +
-                    "Note that modes 5 to 9 are not available on some vibes!\n" +
-                    "For Heavy Duty Belt, Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm\n" +
-                    "This command does not support the Futuristic Training Belt and the Lewd Crest.";
+                    "- un número para el modo de vibración en este espacio:\n" +
+                    "0 = Apagado - 1 = Bajo - 2 = Medio - 3 = Alto - 4 = Máximo\n" +
+                    "5 = Aleatorio - 6 = Escalar - 7 = Provocar - 8 = Denegar - 9 = Al Límite (Edge)\n" +
+                    "¡Ten en cuenta que los modos 5 al 9 no están disponibles en algunos vibradores!\n" +
+                    "Para el Cinturón de Alta Resistencia, Bragas de Placer Sci-Fi y el Frasco de Vidrio: 5, 6 o 7 = Permitir orgasmo\n" +
+                    "Este comando no es compatible con el Cinturón de Entrenamiento Futurista ni el Escudo Lúbrico.";
                 infomsg(msg);
             } else {
                 let Target = "";
@@ -16885,7 +16880,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringSol2 = stringSol1.split(/[ ,]+/);
                 let slot = stringSol2[0];
                 let mode = stringSol2[1];
-                let msg = "Mode changed for one of your vibes!";
+                let msg = "¡Modo cambiado para uno de tus vibradores!";
                 if ((slot > -1) && (slot < 10)) {
                     if (slot == 0) Target = "ItemBoots";
                     if (slot == 1) Target = "ItemBreast";
@@ -17081,15 +17076,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+        CommandCombine([{
         Tag: 'visible',
-        Description: ": (target): goes back or sends back to visible mode.",
+        Description: ": (objetivo): vuelve o envía de vuelta al modo visible.",
         Action: (args) => {
             let target = Player;
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target == Player) {
-                let msg = "" + tmpname + " suddenly is visible for everybody.";
+                let msg = "" + tmpname + " de repente es visible para todos.";
                 targetMessage(Visible, msg, 1);
                 InventoryRemove(Player, "ItemScript");
                 CurrentScreen === 'ChatRoom' ?
@@ -17099,7 +17094,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
-                        let msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
+                        let msg = "Para usar el comando visible en otros jugadores, ellos deben primero permitir Scripts en los ajustes de BC.";
                         infomsg(msg);
                         return;
                     }
@@ -17107,7 +17102,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = umsg1 + tgpname + umsg2;
                         infomsg(msg);
                     } else {
-                        let msg = "" + tgpname + " suddenly is visible for everybody.";
+                        let msg = "" + tgpname + " de repente es visible para todos.";
                         targetMessage(Tvisible, msg, 2);
                         InventoryRemove(target, "ItemScript");
                         CurrentScreen === 'ChatRoom' ?
@@ -17121,24 +17116,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'vrsee',
-        Description: "(background) (mode) (game): changes the settings of a worn VR Headset.",
+        Description: "(fondo) (modo) (juego): cambia los ajustes de unas Gafas VR equipadas.",
         Action: (args) => {
             if (args === "") {
-                let msg = "The vrsee command must be followed by 3 numbers for background, mode and game.\n" +
+                let msg = "El comando vrsee debe ir seguido de 3 números para el fondo, el modo y el juego.\n" +
                     " \n" +
-                    "Available backgrounds:\n" +
-                    "0 No background - 1 Virtual World\n" +
-                    "2 Dungeon - 3 High-Tech\n" +
-                    "4 Ancient Ruins - 5 Trance\n" +
+                    "Fondos disponibles:\n" +
+                    "0 Sin fondo - 1 Mundo Virtual\n" +
+                    "2 Mazmorra - 3 Alta Tecnología\n" +
+                    "4 Ruinas Antiguas - 5 Trance\n" +
                     " \n" +
-                    "Available modes:\n" +
-                    "0 Passthrough\n" +
-                    "1 VR off\n" +
-                    "2 VR on\n" +
-                    "3 VR on + Hide restraints\n" +
+                    "Modos disponibles:\n" +
+                    "0 Passthrough (Transparente)\n" +
+                    "1 VR apagado\n" +
+                    "2 VR encendido\n" +
+                    "3 VR encendido + Ocultar ataduras\n" +
                     " \n" +
-                    "Available games:\n" +
-                    "0 No game\n" +
+                    "Juegos disponibles:\n" +
+                    "0 Sin juego\n" +
                     "1 Kinky Dungeon";
                 infomsg(msg);
             } else {
@@ -17154,7 +17149,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             const InteractiveVRHeadsetConfig = ModularItemDataLookup.ItemHeadInteractiveVRHeadset;
                             InteractiveVRHeadset.Property = ModularItemMergeModuleValues(InteractiveVRHeadsetConfig, [bvr, fvr, gvr]);
                             ChatRoomCharacterUpdate(Player);
-                            let msg = "The settings of your VR Headset have been modified.";
+                            let msg = "Los ajustes de tus Gafas VR han sido modificados.";
                             infomsg(msg);
                         }
                     }
@@ -17165,7 +17160,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'weaken',
-        Description: ": weakens all your skills for one hour.",
+        Description: ": debilita todas tus habilidades durante una hora.",
         Action: () => {
             SkillSetModifier(Player, "Bondage", -5, 3600000);
             SkillSetModifier(Player, "Dressage", -5, 3600000);
@@ -17174,14 +17169,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             SkillSetModifier(Player, "LockPicking", -5, 3600000);
             SkillSetModifier(Player, "SelfBondage", -5, 3600000);
             SkillSetModifier(Player, "Willpower", -5, 3600000);
-            let msg = "You feel all your skills weakened. Changes can be seen in information panel.";
+            let msg = "Sientes todas tus habilidades debilitadas. Los cambios se pueden ver en el panel de información.";
             infomsg(msg);
         }
     }])
 
     CommandCombine([{
         Tag: 'wrobe',
-        Description: "(target): fully opens target wardrobe.",
+        Description: "(objetivo): abre completamente el guardarropa del objetivo.",
         Action: (args) => {
             if (args === "") {
                 ChatRoomAppearanceLoadCharacter(Player);
@@ -17205,7 +17200,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'xmenu',
-        Description: ": direct access to Extensions menu.",
+        Description: ": acceso directo al menú de Extensiones.",
         Action: () => {
             ExtClick();
         }
