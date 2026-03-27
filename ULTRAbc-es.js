@@ -2162,7 +2162,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Activar gemido por vibradores: ", "vibeMoan",
                     "Cuando está activado, gemirás si cambian los ajustes de tu vibrador y tu nivel de excitación es igual o superior a 10. También al ser penetrada con dedos o puño, masturbada, o cuando tus orejas son acariciadas, besadas, lamidas o mordisqueadas, o al usar el inyector afrodisíaco, bebida o respirador de LSCG. Al desactivar esto, también se desactiva el gemido por vibradores ajenos (xvibes).", false, 140
                 );
-                addMenuCheckbox(64, 64, "Extender gemidos por vibradores (xvibes moan): ", "xvibeMoan",
+                addMenuCheckbox(64, 64, "Extender gemidos por vibradores (xvibes): ", "xvibeMoan",
                     "Cuando está activado, gemirás cuando cambien los ajustes de vibración de otros jugadores en la sala, incluso si tú no tienes un vibrador activo (la única condición es tener un nivel de excitación igual o superior a 10). Este ajuste requiere que el gemido por vibradores propio esté activado.", "!Player.UBC.ubcSettings.vibeMoan", 140
                 );
             }
