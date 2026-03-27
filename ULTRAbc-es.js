@@ -2397,25 +2397,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 defaultExit();
             }
 
-            PreferenceSubscreenUBCTalkingLoad = function() {
+			PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
                 addMenuInput(200, "Modo habla/susurro animal (0-9):", "animal", "InputAnimalMode",
-                    "Introduce un número del 0 al 9 para seleccionar un modo de habla o susurro animal 'permanente' forzado: 0 Humano - 1 Conejo - 2 Vaca - 3 Zorro - 4 Gatito - 5 Ratón - 6 Cerdo - 7 Pony - 8 Cachorro - 9 Lobito. Si solo quieres hablar así una vez, usa el comando /atalk tras seleccionar 0 (habla humana) aquí.", -16
+                    "Introduce un número del 0 al 9 para seleccionar un modo de habla o susurro animal 'permanente' forzado: 0 Humano - 1 Conejo - 2 Vaca - 3 Zorro - 4 Gatito - 5 Ratón - 6 Cerdo - 7 Pony - 8 Cachorro - 9 Lobito. Si solo quieres hablar así una vez, usa el comando /atalk tras seleccionar 0 (habla humana) aquí.", 64
                 );
                 addMenuCheckbox(64, 64, "Activar modo de habla/susurro híbrido: ", "ahybrid",
-                    "Cuando está activado y se asocia con un modo de habla animal, ¡todos tus mensajes y susurros combinarán palabras animales y humanas!", false, 120
+                    "Cuando está activado y se asocia con un modo de habla animal, ¡todos tus mensajes y susurros combinarán palabras animales y humanas!", false, 200
                 );
                 addMenuCheckbox(64, 64, "Activar modo de habla (y susurro) de muñeca: ", "dolltalk",
-                    "Cuando está activado, máximo 5 palabras por mensaje o susurro, y no puedes usar palabras de más de 6 caracteres. El cumplimiento de estas reglas se verifica en la versión original de tu mensaje antes de ser alterado por tartamudeo, el Moaner, babytalk, gagtalk o habla animal.", false, 120
+                    "Cuando está activado, máximo 5 palabras por mensaje o susurro, y no puedes usar palabras de más de 6 caracteres. El cumplimiento de estas reglas se verifica en la versión original de tu mensaje antes de ser alterado por tartamudeo, el Moaner, babytalk, gagtalk o habla animal.", false, 200
                 );
                 addMenuInput(200, "Mordaza/susurro forzado (0-11):", "gaglevel", "InputGagLevel",
-                    "Introduce un número del 0 al 11 para seleccionar un nivel 'permanente' forzado: 0 Función desactivada - 1 Casi sin mordaza - 2 Muy ligera - 3 Ligera - 4 Fácil - 5 Normal - 6 Media - 7 Pesada - 8 Pesada superior - 9 Muy pesada - 10 Total - 11 Habla de bebé (Baby talk). Si ya estás amordazada, tu elección solo puede aumentar el efecto, no disminuirlo. Para usar gagtalk una sola vez, usa el comando /gtalk. Para hablar como un bebé una sola vez, usa /btalk. Mira también el botón RGL.", -16
+                    "Introduce un número del 0 al 11 para seleccionar un nivel 'permanente' forzado: 0 Función desactivada - 1 Casi sin mordaza - 2 Muy ligera - 3 Ligera - 4 Fácil - 5 Normal - 6 Media - 7 Pesada - 8 Pesada superior - 9 Muy pesada - 10 Total - 11 Habla de bebé (Baby talk). Si ya estás amordazada, tu elección solo puede aumentar el efecto, no disminuirlo. Para usar gagtalk una sola vez, usa el comando /gtalk. Para hablar como un bebé una sola vez, usa /btalk. Mira también el botón RGL.", 64
                 );
                 addMenuInput(200, "Modo de audición forzada (1-6):", "hearing", "InputHearingMode",
-                    "Introduce un número del 1 al 6 para seleccionar un modo de audición 'permanente' forzado, ignorando tu estado real: 1 Sin sordera - 2 Sordera ligera - 3 Normal - 4 Pesada - 5 Muy pesada - 6 Total. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo (cierra el mensaje de error)!", -16
+                    "Introduce un número del 1 al 6 para seleccionar un modo de audición 'permanente' forzado, ignorando tu estado real: 1 Sin sordera - 2 Sordera ligera - 3 Normal - 4 Pesada - 5 Muy pesada - 6 Total. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo (cierra el mensaje de error)!", 64
                 );
                 addMenuInput(200, "Nivel de tartamudeo forzado (0-4):", "stutterlevel", "InputStutterLevel",
-                    "Introduce un número del 0 al 4 para seleccionar un nivel de tartamudeo 'permanente' forzado: 0 Sin tartamudeo - 1 Ligero - 2 Normal - 3 Pesado - 4 Total. Ten en cuenta que si tienes vibradores activos, tu elección solo puede aumentar el efecto, no disminuirlo. Si solo quieres hablar con un nivel de tartamudeo específico una vez, usa el comando /stalk tras seleccionar 0 aquí.", -16
+                    "Introduce un número del 0 al 4 para seleccionar un nivel de tartamudeo 'permanente' forzado: 0 Sin tartamudeo - 1 Ligero - 2 Normal - 3 Pesado - 4 Total. Ten en cuenta que si tienes vibradores activos, tu elección solo puede aumentar el efecto, no disminuirlo. Si solo quieres hablar con un nivel de tartamudeo específico una vez, usa el comando /stalk tras seleccionar 0 aquí.", 64
                 );
                 let wmsg = "Cuando está activado, no puedes usar susurros normales. Solo son posibles los susurros OOC y de gestos (emote). Esta opción no está disponible cuando se detecta una regla de BCX similar activa. En ese caso, UBC aplicará las restricciones de susurro de BCX, pero no enviará mensajes públicos ni añadirá entradas al registro de comportamiento si intentas susurrar cuando no está permitido.";
                 let wbc = 0;
@@ -2437,9 +2437,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (wbc == 0) {
-                    addMenuCheckbox(64, 64, "Activar modo sin susurros: ", "nowhisper", wmsg, false, 120);
+                    addMenuCheckbox(64, 64, "Activar modo sin susurros: ", "nowhisper", wmsg, false, 200);
                 } else {
-                    addMenuCheckbox(64, 64, "Activar modo sin susurros: ", "nowhisper", wmsg, true, 120);
+                    addMenuCheckbox(64, 64, "Activar modo sin susurros: ", "nowhisper", wmsg, true, 200);
                 }
             }
 
