@@ -2026,13 +2026,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCHotkeysLoad = function() {
                 UBCPreferenceSubscreen = "UBCHotkeys";
                 addMenuCheckbox(64, 64, "Activar atajos en salas de chat: ", "hotkeys",
-                    "Estos atajos equivalen al comando /quit (sin texto opcional) y al comando /totalrelease (solo para ti). Atajos en el teclado numérico: Dividir (/) = salida rápida, Multiplicar (*) = liberación total. Si no tienes teclado numérico, usa el comando similar o un botón de UBC. Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape"
+                    "Estos atajos equivalen al comando /quit (sin texto opcional) y al comando /totalrelease (solo para ti).                                        Atajos en el teclado numérico: Dividir (/) = salida rápida                 Multiplicar (*) = liberación total      Si no tienes teclado numérico, usa el comando similar o un botón de UBC. Esta opción no está disponible en modo sin escape (no-escape).", "Player.UBC.ubcSettings.noescape", 105
                 );
                 addMenuCheckbox(64, 64, "Activar atajos en búsqueda de chat: ", "cskeys",
-                    "Cuando esta opción está activa, tendrás acceso directo a varias pantallas y podrás cambiar el fondo de la Búsqueda de Chat. Alt Izquierdo = Preferencias, Flecha Izquierda = Vestuario, Flecha Derecha = Extensiones, Flecha Arriba = Fondo aleatorio, Flecha Abajo = Seleccionar fondo, Tab = Fondo predeterminado."
+                    "Cuando esta opción está activa, tendrás acceso directo a varias pantallas y podrás cambiar el fondo de la Búsqueda de Chat.      Alt Izquierdo = Preferencias        Flecha Izquierda = Vestuario  Flecha Derecha = Extensiones  Flecha Arriba = Fondo aleatorio  Flecha Abajo = Seleccionar fondo  Tab = Fondo predeterminado", false, 105
                 );
                 addMenuCheckbox(64, 64, "Activar atajos en lista de amigos: ", "frkeys",
-                    "Estos atajos permiten obtener enlaces clicables a otros lobbies a los que tengas acceso si estás en un lobby (no en una sala). Solo puedes usarlos en la lista de amigos conectados Y si no estás en el cuadro de búsqueda o zona de pitidos. También permite cambiar el fondo. Atajos: D = Fondo predeterminado, F = Club femenino, G = Club mixto, H = Club masculino, J = Manicomio (Asylum), R = Fondo aleatorio, S = Seleccionar fondo."
+                    "Estos atajos permiten obtener enlaces clicables a otros lobbies a los que tengas acceso si estás en un lobby (no en una sala). Solo puedes usarlos en la lista de amigos conectados Y si no estás en el cuadro de búsqueda o zona de pitidos. También permite cambiar el fondo. Atajos:              D = Fondo predeterminado             F = Club femenino                        G = Club mixto                             H = Club masculino                       J = Manicomio (Asylum)                 R = Fondo aleatorio                      S = Seleccionar fondo", false, 105
                 );
             }
 
