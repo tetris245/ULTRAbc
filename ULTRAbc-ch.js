@@ -7253,7 +7253,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 {
                     tag: "div",
                     attributes: {
-                        id: "chat-search-search-menu-autojoin",
+                        id: "chat-search-search-menu-friends",
                     },
                     dataAttributes: {
                         checkbox: true,
@@ -7527,7 +7527,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 {
                     tag: "div",
                     attributes: {
-                        id: "chat-search-search-menu-autojoin",
+                        id: "chat-search-search-menu-friends",
                     },
                     dataAttributes: {
                         checkbox: true,
