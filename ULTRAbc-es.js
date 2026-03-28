@@ -2876,9 +2876,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             TintsEffect();
             ChatAdminGameList = ["", "ClubCard", "LARP", "MagicBattle", "GGTS", "Prison"];
             if (ChatAdminCanEdit()) {
-                DrawButton(1230, 450, 60, 60, "", "White", "", "Random background");
+                DrawButton(1230, 450, 60, 60, "", "White", "", "Fondo aleatorio");
             } else {
-                DrawButton(1230, 450, 60, 60, "", "Gray", "", "Random background");
+                DrawButton(1230, 450, 60, 60, "", "Gray", "", "Fondo aleatorio");
             }
             DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
             next(args);
