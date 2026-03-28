@@ -11667,10 +11667,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg1',
-        Description: ": adds hidden backgrounds to the selection screen.",
+        Description: ": añade fondos ocultos a la pantalla de selección",
         Action: () => {
             morebg();
-            let msg = "You can use more standard backgrounds now. In addition, if you use BCX, the backgrouds added and hidden by this mod are now directly visible.";
+            let msg = "Ahora puedes usar más fondos estándar. Además, si usas BCX, el fondo añadido y oculto por este mod ahora es directamente visible.";
             infomsg(msg);
         }
     }])
