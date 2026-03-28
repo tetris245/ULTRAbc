@@ -1679,15 +1679,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawText("- Configuración de ULTRAbc -", 500, 125, "Black", "Gray");
                 MainCanvas.textAlign = "center";
                 //Show tips every 10 secs
-                DrawTextWrapGood(UBC_TIPS[Math.floor(((TimerGetTime() % 100000) / 100000) * (UBC_TIPS.length))], 1650, 260, 400, 100, ForeColor = UBC_API.HintForeColor);
+                DrawTextWrapGood(UBC_TIPS[Math.floor(((TimerGetTime() % 100000) / 100000) * (UBC_TIPS.length))], 1650, 230, 400, 100, ForeColor = UBC_API.HintForeColor);
 
                 DrawText("ULTRAbc " + UBCver, 1665, 525, "Black", "Gray");
                 DrawButton(1500, 550, 315, 90, "", "White", "", "Enlace a Icons8");
                 DrawImageResize(IMAGES.LOGO, 1510, 565, 60, 60);
                 DrawTextFit("Icono de Icons8", 1690, 598, 308, "Black");
-                DrawButton(1500, 655, 315, 90, "", "White", "", "Abre el Changelog de UBC en GitHub");
+                DrawButton(1500, 655, 315, 90, "", "White", "", "Abrir el Changelog de UBC en GitHub");
                 DrawImageResize("Icons/Changelog.png", 1510, 670, 60, 60);
-                DrawTextFit("UBC Changes", 1685, 703, 308, "Black");
+                DrawTextFit("Cambios", 1685, 703, 308, "Black");
                 DrawButton(1500, 760, 315, 90, "", "White", "", "Abrir la Wiki de UBC en GitHub");
                 DrawImageResize("Icons/Introduction.png", 1510, 775, 60, 60);
                 DrawTextFit("Wiki de UBC", 1685, 808, 308, "Black");
@@ -4471,7 +4471,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
             DrawText("ULTRAbc", 130, 615, "White", "Black");
             DrawText(UBCver, 140, 655, "White", "Black");
-            DrawButton(240, 585, 200, 90, "", "White", "", "Abrir registro de cambios (Changelog) en GitHub");
+            DrawButton(240, 585, 200, 90, "", "White", "", "Abrir el Changelog de UBC en GitHub");
             DrawImageResize("Icons/Changelog.png", 240, 600, 60, 60);
             DrawTextFit("Cambios", 365, 633, 308, "Black");
             DrawButton(460, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferencias");
