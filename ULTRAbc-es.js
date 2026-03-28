@@ -6243,7 +6243,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
        if (filterButton) {
            const tooltip = filterButton.querySelector(".button-tooltip");
            if (tooltip) {
-                tooltip.textContent = TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode");
+                tooltip.textContent = ChatSearchMode != "Filter" ? "Eliminar salas no deseadas" : "Volver a la vista de salas";
             }
             filterButton.dataset.mode = ChatSearchMode == "Filter" ? "FilterMode" : "NormalMode";
         }
@@ -6280,7 +6280,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-allrooms-button",
                         () => AllRooms(), {
-                            tooltip: TextGet("AllRooms"),
+                            tooltip: "Todas las salas",
                             tooltipPosition: "left",
                             image: "Icons/Chat.png",
                         }, {
@@ -6292,7 +6292,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-normalrooms-button",
                         () => NormalRooms(), {
-                            tooltip: TextGet("NormalRooms"),
+                            tooltip: "Salas normales",
                             tooltipPosition: "left",
                             image: "Icons/RoomTypeNormal.svg",
                         }, {
@@ -6304,7 +6304,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-hybridrooms-button",
                         () => HybridRooms(), {
-                            tooltip: TextGet("HybridRooms"),
+                            tooltip: "Salas híbridas",
                             tooltipPosition: "left",
                             image: "Icons/RoomTypeHybrid.svg",
                         }, {
@@ -6316,7 +6316,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-maprooms-button",
                         () => MapRooms(), {
-                            tooltip: TextGet("MapRooms"),
+                            tooltip: "Salas mapeadas",
                             tooltipPosition: "left",
                             image: "Icons/RoomTypeMap.svg",
                         }, {
@@ -6350,7 +6350,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
                                 ChatSearchQuery(ChatSearchQueryString);
                             }, {
-                                tooltip: TextGet("Female"),
+                                tooltip: "Club femenino",
                                 tooltipPosition: "left",
                                 image: "Screens/Online/ChatSelect/Female.png",
                             }, {
@@ -6367,7 +6367,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
                                 ChatSearchQuery(ChatSearchQueryString);
                             }, {
-                                tooltip: TextGet("Male"),
+                                tooltip: "Club masculino",
                                 tooltipPosition: "left",
                                 image: "Screens/Online/ChatSelect/Male.png",
                             }, {
@@ -6384,7 +6384,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
                                 ChatSearchQuery(ChatSearchQueryString);
                             }, {
-                                tooltip: TextGet("Mixed"),
+                                tooltip: "Club mixto",
                                 tooltipPosition: "left",
                                 image: "Icons/Gender.png",
                             }, {
@@ -6401,7 +6401,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
                             ChatSearchQuery(ChatSearchQueryString);
                         }, {
-                            tooltip: TextGet("Asylum"),
+                            tooltip: "Manicomio (Asylum)",
                             tooltipPosition: "left",
                             image: "Icons/Asylum.png",
                         }, {
@@ -6437,7 +6437,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-clubcard-button",
                         () => CardRooms(), {
-                            tooltip: "Club Card",
+                            tooltip: "Juego de cartas del club",
                             tooltipPosition: "left",
                             image: "Icons/ClubCard.png",
                         }, {
@@ -6473,7 +6473,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-magicbattle-button",
                         () => MagicRooms(), {
-                            tooltip: "Magic Battle",
+                            tooltip: "Batalla mágica",
                             tooltipPosition: "left",
                             image: "Icons/MagicSchool.png",
                         }, {
@@ -6485,7 +6485,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementButton.Create(
                         "chat-search-room-pandoraprison-button",
                         () => PrisonRooms(), {
-                            tooltip: "Pandora	 Prison",
+                            tooltip: "Prisión Pandora",
                             tooltipPosition: "left",
                             image: "Icons/Infiltration.png",
                         }, {
@@ -6565,7 +6565,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 }
                                 ChatSearchQuery(ChatSearchQueryString);
                             }, {
-                                tooltip: TextGet("Search"),
+                                tooltip: "Buscar",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Search.png",
                             }, {
@@ -6578,7 +6578,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-prev-page",
                             () => ChatSearchSetPageRelative(-1), {
-                                tooltip: TextGet("Prev"),
+                                tooltip: "Página anterior",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Prev.png",
                             }, {
@@ -6594,7 +6594,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-next-page",
                             () => ChatSearchSetPageRelative(1), {
-                                tooltip: TextGet("Next"),
+                                tooltip: "Página siguiente",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Next.png",
                             }, {
@@ -6609,7 +6609,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create("chat-search-hide-rooms", function() {
                             ChatSearchToggleSearchMode();
                         }, {
-                            tooltip: TextGet(ChatSearchMode != "Filter" ? "FilterMode" : "NormalMode"),
+                            tooltip: ChatSearchMode != "Filter" ? "Eliminar salas no deseadas" : "Volver a la vista de salas",
                             tooltipPosition: "bottom",
                             role: "checkbox",
                             image: "Icons/Private.png",
@@ -6637,7 +6637,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ChatSearchGhostPlayerOnClickActive = false;
                         }, {
                             role: "radio",
-                            tooltip: TextGet("TempHideOnClick"),
+                            tooltip: "Filtrar al hacer clic",
                             tooltipPosition: "bottom",
                             image: "Icons/Trash.png",
                         }, {
@@ -6652,7 +6652,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ChatSearchGhostPlayerOnClickActive = true;
                         }, {
                             role: "radio",
-                            tooltip: TextGet("GhostPlayerOnClick"),
+                            tooltip: "Jugador fantasma al hacer clic",
                             tooltipPosition: "bottom",
                             image: "Icons/GhostList.png",
                         }, {
@@ -6667,7 +6667,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             "chat-search-room-show-hidden-rooms-button",
                             () => ChatSearchToggleHiddenMode(), {
                                 role: "checkbox",
-                                tooltip: TextGet("ShowHiddenRooms"),
+                                tooltip: "Mostrar salas ocultas",
                                 tooltipPosition: "bottom",
                                 image: "Icons/InspectLock.png",
                             }, {
@@ -6694,7 +6694,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 });
                                 ChatSearchFilterHelpScreenElement?.focus();
                             }, {
-                                tooltip: TextGet("Help"),
+                                tooltip: "Ayuda",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Question.png",
                             }, {
@@ -6715,7 +6715,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-wardrobe-button",
                             () => CharacterAppearanceLoadCharacter(Player), {
-                                tooltip: "Wardrobe",
+                                tooltip: "Vestuario",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Dress.png",
                             }, {
@@ -6727,7 +6727,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-preferences-button",
                             () => PrfClick(), {
-                                tooltip: "Preferences",
+                                tooltip: "Preferencias",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Preference.png",
                             }, {
@@ -6739,7 +6739,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-extensions-button",
                             () => ExtClick(), {
-                                tooltip: "Extensions",
+                                tooltip: "Extensiones",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Extensions.png",
                             }, {
@@ -6751,7 +6751,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementButton.Create(
                             "chat-search-room-create-room-button",
                             () => ChatAdminShowCreate(), {
-                                tooltip: TextGet("CreateRoom"),
+                                tooltip: "Crea tu sala de chat",
                                 tooltipPosition: "bottom",
                                 image: "Icons/Plus.png",
                             }, {
@@ -6769,7 +6769,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 };
                                 CommonSetScreen("Character", "FriendList");
                             }, {
-                                tooltip: TextGet("FriendList"),
+                                tooltip: "Lista de amigos",
                                 tooltipPosition: "bottom",
                                 image: "Icons/FriendList.png",
                             }, {
@@ -6933,7 +6933,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             maxLength: 200,
             value: ChatSearchQueryString
         });
-        ElementSetAttribute("InputSearch", "placeholder", TextGet("SearchRoom"));
+        ElementSetAttribute("InputSearch", "placeholder", "Buscar una sala");
         searchInput.classList.add("chat-search-input-search-box");
         searchInput.addEventListener("input", function(ev) {
             clearButton.hidden = this.value.length === 0;
@@ -6941,7 +6941,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
         searchInput.addEventListener("keydown", ChatSearchKeyDownListener);
         const filterInput = ElementCreateInput("InputFilter", "text", Player.ChatSearchSettings.FilterTerms);
-        ElementSetAttribute("InputFilter", "placeholder", TextGet("FilterExcludeTerms"));
+        ElementSetAttribute("InputFilter", "placeholder", "Filtrar términos (coma separado)");
         filterInput.toggleAttribute("hidden", true);
         filterInput.classList.add("chat-search-input-filter-box");
         filterInput.addEventListener("input", function() {
@@ -6991,7 +6991,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 ElementUnpackIDs.fromAttribute(this, "aria-controls").forEach(el => el.hidden = open);
             }, {
-                tooltip: TextGet("SearchMenuButton"),
+                tooltip: "Menú de búsqueda",
                 tooltipPosition: "bottom",
                 image: "Icons/CaretUp.svg",
             }, {
@@ -7051,7 +7051,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("RoomType")),
+                        ElementCreateSettingsLabel("Tipo de sala"),
                         ElementCreateRadioButtonGroup(
                             "chat-search-search-menu-room-type-radio-group",
                             (ev, key) => {
@@ -7066,7 +7066,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             [{
                                     options: {
                                         image: "Icons/cross.svg",
-                                        tooltip: TextGet("AllRooms"),
+                                        tooltip: "Todas las salas"
                                     },
                                     htmlOptions: {
                                         button: {
@@ -7079,7 +7079,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 {
                                     options: {
                                         image: "Icons/RoomTypeNormal.svg",
-                                        tooltip: TextGet("NormalRooms")
+                                        tooltip: "Salas normales"
                                     },
                                     htmlOptions: {
                                         button: {
@@ -7092,7 +7092,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 {
                                     options: {
                                         image: "Icons/RoomTypeHybrid.svg",
-                                        tooltip: TextGet("HybridRooms")
+                                        tooltip: "Salas híbridas"
                                     },
                                     htmlOptions: {
                                         button: {
@@ -7105,7 +7105,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 {
                                     options: {
                                         image: "Icons/RoomTypeMap.svg",
-                                        tooltip: TextGet("MapRooms")
+                                        tooltip: "Salas mapeadas"
                                     },
                                     htmlOptions: {
                                         button: {
@@ -7126,7 +7126,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("Lobby")),
+                        ElementCreateSettingsLabel("Club"),
                         ElementCreateRadioButtonGroup(
                             "chat-search-search-menu-room-lobby-radio-group",
                             (ev, key) => {
@@ -7138,7 +7138,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 (((ChatSearchGetSpace() != "Asylum" && asylumlimit == true)) || (asylumlimit == false)) && Player.GetGenders().includes("F") && {
                                     options: {
                                         image: "Icons/Female.svg",
-                                        tooltip: TextGet("Female")
+                                        tooltip: "Club femenino"
                                     },
                                     htmlOptions: {
                                         button: {
@@ -7151,7 +7151,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 (((ChatSearchGetSpace() != "Asylum" && asylumlimit == true)) || (asylumlimit == false)) && {
                                     options: {
                                         image: "Icons/Gender.svg",
-                                        tooltip: TextGet("Mixed")
+                                        tooltip: "Club mixto"
                                     },
                                     htmlOptions: {
                                         button: {
@@ -7164,7 +7164,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 (((ChatSearchGetSpace() != "Asylum" && asylumlimit == true)) || (asylumlimit == false)) && Player.GetGenders().includes("M") && {
                                     options: {
                                         image: "Icons/Male.svg",
-                                        tooltip: TextGet("Male")
+                                        tooltip: "Club masculino"
                                     },
                                     htmlOptions: {
                                         button: {
@@ -7177,7 +7177,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 (((ChatSearchGetSpace() === "Asylum" && asylumlimit == true)) || (asylumlimit == false)) && {
                                     options: {
                                         image: "Icons/Asylum.png",
-                                        tooltip: TextGet("Asylum")
+                                        tooltip: "Manicomio (Asylum)"
                                     },
                                     htmlOptions: {
                                         button: {
@@ -7202,7 +7202,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("ShowFullRooms"), "left"),
+                        ElementCreateSettingsLabel("Mostrar salas completas:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-full-rooms-input", function(ev) {
                             Player.ChatSearchSettings.FullRooms = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7222,7 +7222,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("ShowLockedRooms"), "left"),
+                        ElementCreateSettingsLabel("Mostrar salas bloqueadas:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-locked-rooms-input", function(ev) {
                             Player.ChatSearchSettings.ShowLocked = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7242,7 +7242,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("SearchDescription"), "left"),
+                        ElementCreateSettingsLabel("Descripción de la búsqueda:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-search-description-input", function() {
                             Player.ChatSearchSettings.SearchDescriptions = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7255,14 +7255,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 {
                     tag: "div",
                     attributes: {
-                        id: "chat-search-search-menu-autojoin",
+                        id: "chat-search-search-menu-friends",
                     },
                     dataAttributes: {
                         checkbox: true,
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("First rooms with friends:", "left"),
+                        ElementCreateSettingsLabel("Primero salas con amigos:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-friends-input", function() {
                             Player.OnlineSettings.SearchFriendsFirst = this.checked;
                         }, {
@@ -7281,7 +7281,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("AutoJoin feature:", "left"),
+                        ElementCreateSettingsLabel("Función de unión automática:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-autojoin-input", function() {
                             autojoin = this.checked;
                             SetAutoJoin();
@@ -7298,7 +7298,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("GameLabel")),
+                        ElementCreateSettingsLabel("Juego"),
                         ElementCreateDropdown(
                             "chat-search-search-menu-room-game-dropdown",
                             [
@@ -7332,7 +7332,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Language"),
+                        ElementCreateSettingsLabel("Idioma"),
                         ElementCreateDropdown(
                             "chat-search-search-menu-room-language-dropdown",
                             [
@@ -7361,7 +7361,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Room Size"),
+                        ElementCreateSettingsLabel("Tamaño de la sala"),
                         {
                             tag: "div",
                             attributes: {
@@ -7402,7 +7402,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Players in Room"),
+                        ElementCreateSettingsLabel("Jugadores en la sala"),
                         {
                             tag: "div",
                             attributes: {
@@ -7448,7 +7448,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     button: {
                         classList: ["chat-search-search-menu-search-button"],
                         children: [
-                            TextGet("Search"),
+                            "Buscar",
                         ],
                     },
                 }),
@@ -7476,7 +7476,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("ShowFullRooms"), "left"),
+                        ElementCreateSettingsLabel("Mostrar salas completas:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-full-rooms-input", function(ev) {
                             Player.ChatSearchSettings.FullRooms = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7496,7 +7496,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("ShowLockedRooms"), "left"),
+                        ElementCreateSettingsLabel("Mostrar salas bloqueadas:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-locked-rooms-input", function(ev) {
                             Player.ChatSearchSettings.ShowLocked = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7516,7 +7516,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("SearchDescription"), "left"),
+                        ElementCreateSettingsLabel("Descripción de la búsqueda:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-search-description-input", function() {
                             Player.ChatSearchSettings.SearchDescriptions = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7529,14 +7529,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 {
                     tag: "div",
                     attributes: {
-                        id: "chat-search-search-menu-autojoin",
+                        id: "chat-search-search-menu-friends",
                     },
                     dataAttributes: {
                         checkbox: true,
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("First rooms with friends:", "left"),
+                        ElementCreateSettingsLabel("Primero salas con amigos:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-friends-input", function() {
                             Player.OnlineSettings.SearchFriendsFirst = this.checked;
                         }, {
@@ -7555,7 +7555,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("AutoJoin feature:", "left"),
+                        ElementCreateSettingsLabel("Función de unión automática:", "left"),
                         ElementCheckbox.Create("chat-search-search-menu-autojoin-input", function() {
                             autojoin = this.checked;
                             SetAutoJoin();
@@ -7572,7 +7572,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Language"),
+                        ElementCreateSettingsLabel("Idioma"),
                         ElementCreateDropdown(
                             "chat-search-search-menu-room-language-dropdown",
                             [
@@ -7601,7 +7601,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Room Size"),
+                        ElementCreateSettingsLabel("Tamaño de la sala"),
                         {
                             tag: "div",
                             attributes: {
@@ -7642,7 +7642,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Players in Room"),
+                        ElementCreateSettingsLabel("Jugadores en la sala"),
                         {
                             tag: "div",
                             attributes: {
@@ -7688,7 +7688,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     button: {
                         classList: ["chat-search-search-menu-search-button"],
                         children: [
-                            TextGet("Search"),
+                            "Buscar",
                         ],
                     },
                 }),
