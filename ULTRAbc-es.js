@@ -11670,11 +11670,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": añade fondos ocultos a la pantalla de selección",
         Action: () => {
             morebg();
-            let msg = "Ahora puedes usar más fondos estándar. Además, si usas BCX, el fondo añadido y oculto por este mod ahora es directamente visible.";
+            let msg = "Ahora puedes usar más fondos estándar. Además, si usas BCX, los fondos añadidos y ocultos por este mod ahora son directamente visibles.";
             infomsg(msg);
         }
     }])
-
+	
     CommandCombine([{
         Tag: 'bg2',
         Description: "(número): usa un fondo de Bondage Brawl como fondo estándar.",
