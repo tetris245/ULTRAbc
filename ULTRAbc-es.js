@@ -6769,7 +6769,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 };
                                 CommonSetScreen("Character", "FriendList");
                             }, {
-                                tooltip: "Lista de amigos",
+                                tooltip: "Amigos",
                                 tooltipPosition: "bottom",
                                 image: "Icons/FriendList.png",
                             }, {
