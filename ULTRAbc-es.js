@@ -11610,7 +11610,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "Ten en cuenta que no puede usarse cuando ya estás en un modo de habla animal 'permanente'.\n" +
                 "Animales disponibles:\n" +
                 "1 conejo - 2 vaca - 3 zorro - 4 gatito - 5 ratón\n" +
-                "6 cerdo - 7 pony - 8 cachorro - 9 lobito";
+                "6 cerdo - 7 poni - 8 cachorro - 9 lobito";
             let [mode] = args;
             if (!mode || isNaN(mode) || mode < 1 || mode > 9) {
                 infomsg(help);
