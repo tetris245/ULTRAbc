@@ -22,10 +22,6 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-es.
 
 You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, etc...)
 
-Manual installation: Add new script / Utilities / Insert link to ULTRAbc loader in last option / Click on "Install"
-
-To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM will search for new version and install it)
-
 **Bookmark methode** - links to the ULTRAbc bookmark: 
 
 English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
