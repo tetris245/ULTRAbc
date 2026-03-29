@@ -10733,7 +10733,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Wheel of Fortune
-    async function WheelGame(option) {
+	async function WheelGame(option) {
         await CommonSetScreen("MiniGame", "WheelFortune");
         WheelStart = function() {
             let maxwh = WheelFortuneOption.length - 1;
@@ -10751,7 +10751,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (option == "i") {
                 WheelFortuneExit();
-                let msg = "The options on this wheel go from 0 to " + maxwh + ".";
+                let msg = "Las opciones en esta rueda van de 0 a " + maxwh + ".";
                 infomsg(msg);
             }
             if (option == "r") {
@@ -10762,13 +10762,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let id = WheelFortuneOption[Roll - 1].ID;
                 if ((id != "j") && (id != "k") && (id != "l") && (id != "m")) {
                     Result.push(Roll - 1);
-                    let msg = tmpname + " randomly forces an option of " + tgpname + "'s wheel.";
+                    let msg = tmpname + " fuerza aleatoriamente una opción de la rueda de " + tgpname + ".";
                     publicmsg(msg);
                     WheelFortuneValue = WheelFortuneOption.map(o => o.ID)[Result];
-                    WheelFortuneResult();
+                    WheelFortuneResult(); 
                 } else {
                     WheelFortuneExit();
-                    let msg = "No result! Try again!";
+                    let msg = "¡Sin resultado! ¡Inténtalo de nuevo!";
                     infomsg(msg);
                 }
             }
