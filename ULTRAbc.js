@@ -24,13 +24,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 //SDKstuff end
 
-
 (async function() {
-    if (window.UBCver) {
-        console.warn("ULTRAbctest already loaded. No double loading");
-        return;
-    }
-
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
