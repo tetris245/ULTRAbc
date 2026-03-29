@@ -12,6 +12,10 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 *Preliminary note* : if you use many add-ons for BC, you could be interested by **FUSAM**, a multi-add-on-loader for TamperMonkey: https://sidiousious.gitlab.io/bc-addon-loader/
 
+In this case, you will have 3 buttons on the Login screen, so you can click on the appropriate button to load the English, Chinese or Spanish version of UBC. 
+
+If you prefer to bypass this step, use one of the below methodes.
+
 **Recommended methode with Tampermonkey** - links to the ULTRAbc loader: 
 
 English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
