@@ -3101,23 +3101,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (InventoryGet(Player, "Pronouns").Asset != null) {
                         let chprn = InventoryGet(Player, "Pronouns").Asset.Name;
                         if (chprn != pronoun1) {
-                            if (chprn == "HeHim") {
-                                pronoun1 = "He";
-                                pronoun2 = "him";
-                                pronoun3 = "his";
-                                pronoun4 = "he";
+                            if (chprn != pronoun1) {
+                                 if (chprn == "HeHim") {
+                                pronoun1 = "Él";
+                                pronoun2 = "lo";
+                                pronoun3 = "su";
+                                pronoun4 = "él";
                                 if (ini == 1) M_MOANER_saveControls();
                             } else if (chprn == "SheHer") {
-                                pronoun1 = "She";
-                                pronoun2 = "her";
-                                pronoun3 = "her";
-                                pronoun4 = "she";
+                                pronoun1 = "Ella";
+                                pronoun2 = "la";
+                                pronoun3 = "su";
+                                pronoun4 = "ella";
                                 if (ini == 1) M_MOANER_saveControls();
                             } else {
-                                pronoun1 = "They";
-                                pronoun2 = "them";
-                                pronoun3 = "their";
-                                pronoun4 = "they";
+                                pronoun1 = "Elle";
+                                pronoun2 = "le";
+                                pronoun3 = "su";
+                                pronoun4 = "elle";
                                 if (ini == 1) M_MOANER_saveControls();
                             }
                         }
@@ -9995,33 +9996,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function getPronoun1(target) {
         let name = InventoryGet(target, "Pronouns").Asset.Name;
-        tgpr1 = "They";
-        if (name == "HeHim") tgpr1 = "He";
-        if (name == "SheHer") tgpr1 = "She";
+        tgpr1 = "Elle";
+        if (name == "HeHim") tgpr1 = "Él";
+        if (name == "SheHer") tgpr1 = "Ella";
         return tgpr1;
     }
 
     function getPronoun2(target) {
         let name = InventoryGet(target, "Pronouns").Asset.Name;
-        tgpr2 = "them";
-        if (name == "HeHim") tgpr2 = "him";
-        if (name == "SheHer") tgpr2 = "her";
+        tgpr2 = "le";
+        if (name == "HeHim") tgpr2 = "lo";
+        if (name == "SheHer") tgpr2 = "la";
         return tgpr2;
     }
 
     function getPronoun3(target) {
         let name = InventoryGet(target, "Pronouns").Asset.Name;
-        tgpr3 = "their";
-        if (name == "HeHim") tgpr3 = "his";
-        if (name == "SheHer") tgpr3 = "her";
+        tgpr3 = "su";
+        if (name == "HeHim") tgpr3 = "su";
+        if (name == "SheHer") tgpr3 = "su";
         return tgpr3;
     }
 
     function getPronoun4(target) {
         let name = InventoryGet(target, "Pronouns").Asset.Name;
-        tgpr4 = "they";
-        if (name == "HeHim") tgpr4 = "he";
-        if (name == "SheHer") tgpr4 = "she";
+        tgpr4 = "elle";
+        if (name == "HeHim") tgpr4 = "él";
+        if (name == "SheHer") tgpr4 = "ella";
         return tgpr4;
     }
 
