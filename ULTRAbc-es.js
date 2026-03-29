@@ -13151,21 +13151,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "El comando lock tiene varias sintaxis:\n" +
-                    "/lock (objetivo) (tipo_candado) para candados 1 al 8, 17, 19 al 22\n" +
-                    "/lock (objetivo) (tipo_candado) (r) para candado 9\n" +
-                    "/lock (objetivo) (tipo_candado) (codigo) para candado 10\n" +
-                    "/lock (objetivo) (tipo_candado) (contraseña) (r) para candados 11 y 12\n" +
-                    "/lock (objetivo) (tipo_candado) (minutos) (h) (i) (r) - candados 13 al 15, 18\n" +
-                    "/lock (objetivo) (tipo_candado) (contraseña) (minutos) (h) (i) (r) - candado 16\n" +
+                    "o = objetivo - tc = tipo candado\n" +
+                    "/lock (o) (tc) para candados 1 al 8, 17, 19 al 22\n" +
+                    "/lock (o) (tc) (r) para candado 9\n" +
+                    "/lock (o) (tc) (codigo) para candado 10\n" +
+                    "/lock (o) (tc) (contraseña) (r) para candados 11 y 12\n" +
+                    "/lock (o) (tc) (minutos) (h) (i) (r) - candados 13 al 15, 18\n" +
+                    "/lock (o) (tc) (contraseña) (minutos) (h) (i) (r) - candado 16\n" +
                     "SIEMPRE ESPECIFICA EL OBJETIVO. Tipos de candado:\n" +
-                    "1 Metal (por defecto) - 2 Exclusivo\n" +
-                    "3 Intrincado - 4 Alta Seguridad - 5 Pandora\n" +
-                    "6 Ama - 7 Amante - 8 Dueño - 9 Cinco Minutos\n" +
-                    "10 Combinación - 11 Palabra de Seguridad - 12 Contraseña\n" +
-                    "13 Temporizador de Ama - 14 Temporizador de Amante - 15 Temporizador de Dueño\n" +
-                    "16 Contraseña con Tiempo - 17 Mejor Amigo - 18 Temp. Mejor Amigo\n" +
-                    "19 Familiar - 20 Escudo Lúbrico - 21 Devious (si está activo)\n" +
-                    "22 Enlace de Portal (solo para objeto específico)\n" +
+                    "1 Metal (por defecto) - 2 Exclusivo - 3 Intrincado\n" +
+                    "4 Alta Seguridad - 5 Pandora - 6 Ama - 7 Amante\n" +
+                    "8 Dueño - 9 Cinco Minutos - 10 Combinación\n" +
+                    "11 Palabra de Seguridad - 12 Contraseña\n" +
+                    "13 Temp. Ama - 14 Temp. Amante - 15 Temp. Dueño\n" +
+                    "16 Contraseña con Tiempo - 17 Mejor Amigo\n" +
+                    "18 Temp. Mejor Amigo - 19 Familiar - 20 Escudo Lúbrico\n" +
+                    "21 Devious (si está activo) - 22 Enlace de Portal (solo para objeto específico)\n" +
                     "Los candados 17, 18, 20 y 21 requieren un mod específico\n" +
                     "Usa <b>/lock par</b> para info sobre otros parámetros";
                 infomsg(msg);
@@ -16707,14 +16708,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Se eliminarán todos los candados si no especificas el tipo.\n" +
                     " \n" +
                     "Tipos de candado:\n" +
-                    "1 Metal (por defecto) - 2 Exclusivo\n" +
-                    "3 Intrincado - 4 Alta Seguridad - 5 Pandora\n" +
-                    "6 Ama - 7 Amante - 8 Dueño - 9 Cinco Minutos\n" +
-                    "10 Combinación - 11 Palabra de Seguridad - 12 Contraseña\n" +
+                    "1 Metal (por defecto) - 2 Exclusivo - 3 Intrincado\n" +
+                    "4 Alta Seguridad - 5 Pandora - 6 Ama - 7 Amante\n" +
+                    "8 Dueño - 9 Cinco Minutos - 10 Combinación\n" +
+                    "11 Palabra de Seguridad - 12 Contraseña\n" +
                     "13 Temp. Ama - 14 Temp. Amante - 15 Temp. Dueño\n" +
-                    "16 Contraseña con Tiempo - 17 Mejor Amigo - 18 Temp. Mejor Amigo\n" +
-                    "19 Familiar - 20 Escudo Lúbrico - 21 Devious \n" +
-                    "22 Enlace de Portal\n" +
+                    "16 Contraseña con Tiempo - 17 Mejor Amigo\n" +
+                    "18 Temp. Mejor Amigo - 19 Familiar - 20 Escudo Lúbrico\n" +
+                    "21 Devious - 22 Enlace de Portal\n" +
                     "El candado 21 solo puede retirarse si se usa una versión modificada del mod DOGS.";
                 infomsg(msg);
             } else {
