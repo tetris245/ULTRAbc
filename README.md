@@ -18,15 +18,21 @@ English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.use
 
 Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.user.js
 
+Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-es.user.js
+
 You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, etc...)
 
 Manual installation: Add new script / Utilities / Insert link to ULTRAbc loader in last option / Click on "Install"
 
 To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM will search for new version and install it)
 
-**Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
+**Bookmark methode** - links to the ULTRAbc bookmark: 
+
+English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-ch.js
+
+Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-es.js
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Only for English version - Will not work with Asian server)
 1. Download the ULTRAbc-version5.9.zip file on the Releases page
