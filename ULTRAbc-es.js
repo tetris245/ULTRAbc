@@ -9600,12 +9600,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Room Info
-    function keysinfo(Player) {
+	function keysinfo(Player) {
         const keys = [];
-        if (Player.MapData.PrivateState.HasKeyGold) keys.push("Gold");
-        if (Player.MapData.PrivateState.HasKeySilver) keys.push("Silver");
-        if (Player.MapData.PrivateState.HasKeyBronze) keys.push("Bronze");
-        ChatRoomSendLocal(`Keys found: ${keys.join(" - ") || "None"}.`);
+        if (Player.MapData.PrivateState.HasKeyGold) keys.push("Oro");
+        if (Player.MapData.PrivateState.HasKeySilver) keys.push("Plata");
+        if (Player.MapData.PrivateState.HasKeyBronze) keys.push("Bronce");
+        ChatRoomSendLocal(`Llaves encontradas: ${keys.join(" - ") || "Ninguno"}.`);
     }
 
     function UBCinfo(character, command) {
@@ -9613,13 +9613,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         const aka = character.Nickname ? character.Name : "";
         const number = character.MemberNumber;
         ChatRoomSendLocal(`${name}${aka ? " (" + aka + ")" : ""} - ${number}`);
-        let ubc1 = "Does not use ULTRAbc.";
-        let ubc2 = "Does not use Uwall.";
+        let ubc1 = "No utiliza ULTRAbc.";
+        let ubc2 = "No utiliza Uwall.";
         const shared = character.OnlineSharedSettings || {};
         if (shared.UBC === UBCver || shared.UBC === UBCver0) {
-            ubc1 = "Is an ULTRAbc user.";
+            ubc1 = "Es usuario de ULTRAbc.";
             if (shared.Unoescape === true) {
-                ubc1 = "UBC in no-escape mode";
+                ubc1 = "UBC en modo sin escape (no-escape)";
             }
         }
         if (typeof shared.Uwall === "boolean") {
@@ -9628,7 +9628,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomSendLocal(`${ubc1} - ${ubc2}`);
         if (command == "uroom") ChatRoomSendLocal(" ");
     }
-
+  
     //Stable
     async function StableCarrot() {
         await CommonSetScreen("Room", "Stable");
