@@ -28,7 +28,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
-        version: "",
+        version: "5.9",
         repository: 'https://github.com/tetris245/ULTRAbc',
     });
 
