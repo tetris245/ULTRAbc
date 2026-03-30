@@ -24,7 +24,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 //SDKstuff end
 
-(async function() {
+(function() {
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -41,28 +41,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
                 newScript.src = "https://tetris245.github.io/ultrabc.github.io/ULTRAbc-en.js";
-                crossorigin="anonymous";
+                newScript.crossorigin = "anonymous";
                 document.getElementsByTagName('head')[0].appendChild(newScript);            
             }        
             if (MouseIn(1810, 670, 90, 90)) {
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
                 newScript.src = "https://tetris245.github.io/ultrabc.github.io/ULTRAbc-ch.js";
-                crossorigin="anonymous";
+                newScript.crossorigin = "anonymous";
                 document.getElementsByTagName('head')[0].appendChild(newScript);            
             }
             if (MouseIn(1810, 790, 90, 90)) {
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
                 newScript.src = "https://tetris245.github.io/ultrabc.github.io/ULTRAbc-es.js";
-                crossorigin="anonymous";
+                newScript.crossorigin = "anonymous";
                 document.getElementsByTagName('head')[0].appendChild(newScript);            
             }
             return next(args);
         });
     }
 
-    async function ULTRALoginRun() {
+    function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
             DrawButton(1810, 560, 90, 90, "UBC ENGLISH", "White", "", "");
             DrawButton(1810, 670, 90, 90, "UBC CHINESE", "White", "", "");
