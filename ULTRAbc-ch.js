@@ -2640,7 +2640,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAKidnapLeagueRun();
     ULTRALARPClubCardStart();
     ULTRALARPRun();
-    ULTRALoginClick();
     ULTRALoginRun();
     ULTRAMagicPuzzleRun();
     ULTRAMagicSchoolEscapeSpellEnd();
@@ -4324,18 +4323,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Login
-    function ULTRALoginClick() {
-        modApi.hookFunction('LoginClick', 4, (args, next) => {
-            if (MouseIn(1910, 670, 90, 90)) hidetoast1();
-            next(args);
-        });
-    }
-
     async function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
             DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "", "");
-            DrawButton(1910, 670, 90, 90, "NO BEEP TOAST", "White", "", "Click here to hide all beep toasts");
-            next(args);
+            return next(args);
         });
     }
 
@@ -8452,11 +8443,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Messages
-    function hidetoast1() {
-        ServerShowBeep = function() {}
-        ToastManager.dismissAll();
-    }
-
     function infomsg(msg) {
         if (noubccolor) {
             ChatRoomSendLocal("ULTRAbc: " + msg);
