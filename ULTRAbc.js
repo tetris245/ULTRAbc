@@ -42,21 +42,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 newScript.type = 'text/javascript';
                 newScript.src = "https://tetris245.github.io/ultrabc.github.io/ULTRAbc-en.js";
                 newScript.crossorigin = "anonymous";
-                document.getElementsByTagName('head')[0].appendChild(newScript);            
+                document.getElementsByTagName('head')[0].appendChild(newScript); 
+                const Name = ElementValue(LoginIDs.name);
+		        const Password = ElementValue(LoginIDs.password);
+		        LoginDoLogin(Name, Password);            
             }        
             if (MouseIn(1810, 670, 90, 90)) {
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
                 newScript.src = "https://tetris245.github.io/ultrabc.github.io/ULTRAbc-ch.js";
                 newScript.crossorigin = "anonymous";
-                document.getElementsByTagName('head')[0].appendChild(newScript);            
+                document.getElementsByTagName('head')[0].appendChild(newScript); 
+                const Name = ElementValue(LoginIDs.name);
+		        const Password = ElementValue(LoginIDs.password);
+		        LoginDoLogin(Name, Password);         
             }
             if (MouseIn(1810, 790, 90, 90)) {
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
                 newScript.src = "https://tetris245.github.io/ultrabc.github.io/ULTRAbc-es.js";
                 newScript.crossorigin = "anonymous";
-                document.getElementsByTagName('head')[0].appendChild(newScript);            
+                document.getElementsByTagName('head')[0].appendChild(newScript);  
+                const Name = ElementValue(LoginIDs.name);
+		        const Password = ElementValue(LoginIDs.password);
+		        LoginDoLogin(Name, Password);                  
             }
             return next(args);
         });
