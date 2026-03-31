@@ -37,7 +37,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function ULTRALoginClick() {
         modApi.hookFunction('LoginClick', 4, (args, next) => {
-            if (MouseIn(1810, 560, 90, 90)) {
+            if (MouseIn(1810, 550, 90, 90)) {
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
                 newScript.src = "https://tetris245.github.io/ultrabc.github.io/ULTRAbc-en.js";
@@ -64,6 +64,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function ULTRALoginRun() {
         modApi.hookFunction('LoginRun', 4, (args, next) => {
+            DrawText("Select", 1850, 440, "White", "Black");
+            DrawText("UBC", 1850, 480, "White", "Black");
+            DrawText("Language", 1850, 520, "White", "Black");
             DrawButton(1810, 560, 90, 90, "UBC ENGLISH", "White", "", "");
             DrawButton(1810, 670, 90, 90, "UBC CHINESE", "White", "", "");
             DrawButton(1810, 790, 90, 90, "UBC SPANISH", "White", "", "");
