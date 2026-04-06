@@ -12,7 +12,7 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 ## Not recommended installation (FUSAM)
 
-Although UBC is available in the multi-mod manager FUSAM, it is not recommended to use this way to load UBC, for these reasons:
+Although UBC is available in the multi-mod manager FUSAM (only at browser-level), it is not recommended to use this way to load UBC, for these reasons:
 
  - FUSAM maintainer has refused to insert the language versions of UBC
  - In reaction to this decision, UBC loading via FUSAM adds 3 buttons on the Login screen, so you can click on the appropriate button to load the English, Chinese or Spanish version of UBC
