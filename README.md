@@ -14,6 +14,7 @@ Although UBC is available in the multi-mod manager FUSAM, it is not recommended 
 
  - FUSAM maintainer has refused to insert the language versions of UBC
  - In reaction to this unfair decision, UBC loading via FUSAM adds 3 buttons on the Login screen, so you can click on the appropriate button to load the English, Chinese or Spanish version of UBC
+ - If you want to avoid this step, use one of the below recommended procedures
 
 
 ## Recommended installation procedures
