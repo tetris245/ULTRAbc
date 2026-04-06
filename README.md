@@ -10,21 +10,26 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 ## Installation 
 
-*Preliminary note* : if you use many add-ons for BC, you could be interested by **FUSAM**, a multi-add-on-loader for TamperMonkey: https://sidiousious.gitlab.io/bc-addon-loader/
+** Not recommended procedure (FUSAM)**
 
-In this case, you will have 3 buttons on the Login screen, so you can click on the appropriate button to load the English, Chinese or Spanish version of UBC. 
+Although UBC is available in the multi-mod manager FUSAM, it is not recommended to use this way to load UBC, for these reasons:
 
-If you prefer to bypass this step, use one of the below methodes.
+ - FUSAM maintainer has refused to insert the language versions of UBC
+ - In reaction to this unfair decision, UBC loading via FUSAM adds 3 buttons on the Login screen, so you can click on the appropriate button to load the English, Chinese or Spanish version of UBC
 
-**Recommended methode with Tampermonkey** - links to the ULTRAbc loader: 
+** Recommended procedures **
+
+To use UBC in English or Chinese, I recommend the PCM mod created by Likolisu, a Chinese friend: https://github.com/awdrrawd/liko-Plugin-Repository
+
+To use UBC in English, Chinese or Spanish, the below methodes are also available and I recommend the TM/VM way.
+
+**Methode with Tampermonkey or ViolentMonkey** - links to the ULTRAbc loader: 
 
 English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
 
 Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.user.js
 
 Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-es.user.js
-
-You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, etc...)
 
 **Bookmark methode** - links to the ULTRAbc bookmark: 
 
@@ -34,7 +39,7 @@ Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-c
 
 Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-es.js
 
-**Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Only for English version - Will not work with Asian server)
+**Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Only for English version atm  - Will not work with Asian server)
 1. Download the ULTRAbc-version5.9.zip file on the Releases page
 2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
 3. Go to browser extensions. Enable developer mode.
