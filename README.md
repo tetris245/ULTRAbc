@@ -17,11 +17,13 @@ Although UBC is available in the multi-mod manager FUSAM, it is not recommended 
  - FUSAM maintainer has refused to insert the language versions of UBC
  - In reaction to this unfair decision, UBC loading via FUSAM adds 3 buttons on the Login screen, so you can click on the appropriate button to load the English, Chinese or Spanish version of UBC
 
+
 **Recommended procedures**
 
 To use UBC in English or Chinese, I recommend the PCM mod created by Likolisu, a Chinese friend: https://github.com/awdrrawd/liko-Plugin-Repository
 
 To use UBC in English, Chinese or Spanish, the below methodes are also available, the TM/VM way is the easiest one.
+
 
 **Methode with Tampermonkey or ViolentMonkey** - links to the ULTRAbc loader: 
 
@@ -31,6 +33,7 @@ Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.
 
 Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-es.user.js
 
+
 **Bookmark methode** - links to the ULTRAbc bookmark: 
 
 English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
@@ -38,6 +41,7 @@ English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.j
 Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-ch.js
 
 Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-es.js
+
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Only for English version atm  - Will not work with Asian server)
 1. Download the ULTRAbc-version5.9.zip file on the Releases page
