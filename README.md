@@ -10,7 +10,7 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 ## Installation 
 
-** Not recommended procedure (FUSAM)**
+**Not recommended procedure (FUSAM)**
 
 Although UBC is available in the multi-mod manager FUSAM, it is not recommended to use this way to load UBC, for these reasons:
 
