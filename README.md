@@ -17,11 +17,11 @@ Although UBC is available in the multi-mod manager FUSAM, it is not recommended 
  - FUSAM maintainer has refused to insert the language versions of UBC
  - In reaction to this unfair decision, UBC loading via FUSAM adds 3 buttons on the Login screen, so you can click on the appropriate button to load the English, Chinese or Spanish version of UBC
 
-** Recommended procedures **
+**Recommended procedures**
 
 To use UBC in English or Chinese, I recommend the PCM mod created by Likolisu, a Chinese friend: https://github.com/awdrrawd/liko-Plugin-Repository
 
-To use UBC in English, Chinese or Spanish, the below methodes are also available and I recommend the TM/VM way.
+To use UBC in English, Chinese or Spanish, the below methodes are also available, the TM/VM way is the easiest one.
 
 **Methode with Tampermonkey or ViolentMonkey** - links to the ULTRAbc loader: 
 
