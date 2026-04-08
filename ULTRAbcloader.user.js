@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name ULTRAbc
+// @name ULTRAbc-en
 // @namespace https://www.bondageprojects.com/
 // @version 5.9
 // @description Everything you'll ever need for BC
