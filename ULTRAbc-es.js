@@ -6918,20 +6918,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (space && !Player.ChatSearchSettings.Space.includes(space)) {
             Player.ChatSearchSettings.Space = space;
         }
-        const searchInput = ElementCreateSearchInput("InputSearch", () => {
-            const rooms = ChatSearchShowHiddenRoomsActive ? ChatSearchHiddenResult : ChatSearchResult;
-            return rooms.map(i => i.DisplayName).sort();
-        }, {
-            maxLength: 200,
-            value: ChatSearchQueryString
-        });
-        ElementSetAttribute("InputSearch", "placeholder", "Buscar una sala");
-        searchInput.classList.add("chat-search-input-search-box");
-        searchInput.addEventListener("input", function(ev) {
-            clearButton.hidden = this.value.length === 0;
-            ChatSearchQueryString = this.value;
-        });
-        searchInput.addEventListener("keydown", ChatSearchKeyDownListener);
+        const searchInput = ElementCreateSearchInput(
+            "InputSearch",
+            () => {
+                const rooms = ChatSearchShowHiddenRoomsActive ? ChatSearchHiddenResult : ChatSearchResult;
+                return rooms.map(i => i.DisplayName).sort();
+            },
+            {
+                maxLength: 200,
+                value: ChatSearchQueryString,
+                placeholder: TextGet("SearchRoom"),
+                onInput: function (ev) {
+                    clearButton.hidden = this.value.length === 0;
+                    ChatSearchQueryString = this.value;
+                },
+                onKeydown: ChatSearchKeyDownListener,
+            },
+            { search: { classList: ["chat-search-input-search-box"] } },
+        );
         const filterInput = ElementCreateInput("InputFilter", "text", Player.ChatSearchSettings.FilterTerms);
         ElementSetAttribute("InputFilter", "placeholder", "Filtrar términos (coma separado)");
         filterInput.toggleAttribute("hidden", true);
