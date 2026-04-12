@@ -88,6 +88,10 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Added Spanish version of the mod - Thanks to cyber!
+* Added 3 UBC language buttons on Login screen to login (only if you load UBC via FUSAM)
+* Added pronouns for the "It" gender type
+* Added Chinese translation of the pronouns
+* Updated the ChatSearchCreateSearchControls function and the AltPreferenceSubscreens constant
 
 
