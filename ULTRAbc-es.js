@@ -8638,7 +8638,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ElementWrap(PreferenceIDs.subscreen).append(buttons);
     }
 
-    const AltPreferenceSubscreens = [{
+	const AltPreferenceSubscreens = [{
             name: "Main",
             hidden: true,
             load: () => PreferenceSubscreenMainLoad(),
@@ -8701,9 +8701,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         },
         {
             name: "Difficulty",
+            load: () => PreferenceSubscreenDifficultyLoad(),
             run: () => PreferenceSubscreenDifficultyRun(),
             click: () => PreferenceSubscreenDifficultyClick(),
             exit: () => PreferenceSubscreenDifficultyExit(),
+            resize: () => PreferenceSubscreenDifficultyResize(),
         },
         {
             name: "Extensions",
@@ -8716,8 +8718,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         },
         {
             name: "Gender",
+            load: () => PreferenceSubscreenGenderLoad(),
             run: () => PreferenceSubscreenGenderRun(),
             click: () => PreferenceSubscreenGenderClick(),
+            resize: () => PreferenceSubscreenGenderResize(),
         },
         {
             name: "Graphics",
@@ -8780,6 +8784,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             click: () => PreferenceSubscreenScriptsClick(),
             exit: () => PreferenceSubscreenScriptsExit(),
             unload: () => PreferenceSubscreenScriptsUnload(),
+            resize: () => PreferenceSubscreenScriptsResize(),
         },
         {
             name: "Security",
