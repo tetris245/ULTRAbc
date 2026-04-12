@@ -3100,22 +3100,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let chprn = InventoryGet(Player, "Pronouns").Asset.Name;
                         if (chprn != pronoun1) {
                             if (chprn == "HeHim") {
-                                pronoun1 = "He";
-                                pronoun2 = "him";
-                                pronoun3 = "his";
-                                pronoun4 = "he";
+                                pronoun1 = "他";
+                                pronoun2 = "他";
+                                pronoun3 = "他的";
+                                pronoun4 = "他";
+                                if (ini == 1) M_MOANER_saveControls();
+                            } else if (chprn == "ItIt") {
+                                pronoun1 = "它";
+                                pronoun2 = "它";
+                                pronoun3 = "它的";
+                                pronoun4 = "它";
                                 if (ini == 1) M_MOANER_saveControls();
                             } else if (chprn == "SheHer") {
-                                pronoun1 = "She";
-                                pronoun2 = "her";
-                                pronoun3 = "her";
-                                pronoun4 = "she";
+                                pronoun1 = "她";
+                                pronoun2 = "她";
+                                pronoun3 = "她的";
+                                pronoun4 = "她";
                                 if (ini == 1) M_MOANER_saveControls();
                             } else {
-                                pronoun1 = "They";
-                                pronoun2 = "them";
-                                pronoun3 = "their";
-                                pronoun4 = "they";
+                                pronoun1 = "X也";
+                                pronoun2 = "X也";
+                                pronoun3 = "X也的"; 
+                                pronoun4 = "X也"; 
                                 if (ini == 1) M_MOANER_saveControls();
                             }
                         }
@@ -9970,33 +9976,37 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function getPronoun1(target) {
         let name = InventoryGet(target, "Pronouns").Asset.Name;
-        tgpr1 = "They";
-        if (name == "HeHim") tgpr1 = "He";
-        if (name == "SheHer") tgpr1 = "She";
+        tgpr1 = "X也";
+        if (name == "HeHim") tgpr1 = "他";
+        if (name == "SheHer") tgpr1 = "她";
+		if (name == "ItIt") tgpr1 = "它";
         return tgpr1;
     }
 
     function getPronoun2(target) {
         let name = InventoryGet(target, "Pronouns").Asset.Name;
-        tgpr2 = "them";
-        if (name == "HeHim") tgpr2 = "him";
-        if (name == "SheHer") tgpr2 = "her";
+        tgpr2 = "X也";
+        if (name == "HeHim") tgpr2 = "他";
+        if (name == "SheHer") tgpr2 = "她";
+		if (name == "ItIt") tgpr2 = "它";
         return tgpr2;
     }
 
     function getPronoun3(target) {
         let name = InventoryGet(target, "Pronouns").Asset.Name;
-        tgpr3 = "their";
-        if (name == "HeHim") tgpr3 = "his";
-        if (name == "SheHer") tgpr3 = "her";
+        tgpr3 = "X也的"; 
+        if (name == "HeHim") tgpr3 = "他的";
+        if (name == "SheHer") tgpr3 = "她的";
+		if (name == "ItIt") tgpr3 = "它的";
         return tgpr3;
     }
 
     function getPronoun4(target) {
         let name = InventoryGet(target, "Pronouns").Asset.Name;
-        tgpr4 = "they";
-        if (name == "HeHim") tgpr4 = "he";
-        if (name == "SheHer") tgpr4 = "she";
+        tgpr4 = "X也";
+        if (name == "HeHim") tgpr4 = "他";
+        if (name == "SheHer") tgpr4 = "她";
+		if (name == "ItIt") tgpr4 = "它";
         return tgpr4;
     }
 
