@@ -3107,6 +3107,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 pronoun3 = "su";
                                 pronoun4 = "él";
                                 if (ini == 1) M_MOANER_saveControls();
+							} else if (chprn == "ItIt") {
+                                pronoun1 = "Eso";
+                                pronoun2 = "lo";
+                                pronoun3 = "su";
+                                pronoun4 = "eso";
+                                if (ini == 1) M_MOANER_saveControls();
                             } else if (chprn == "SheHer") {
                                 pronoun1 = "Ella";
                                 pronoun2 = "la";
@@ -9994,6 +10000,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         tgpr1 = "Elle";
         if (name == "HeHim") tgpr1 = "Él";
         if (name == "SheHer") tgpr1 = "Ella";
+		if (name == "ItIt") tgpr1 = "Eso";
         return tgpr1;
     }
 
@@ -10002,6 +10009,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         tgpr2 = "le";
         if (name == "HeHim") tgpr2 = "lo";
         if (name == "SheHer") tgpr2 = "la";
+		if (name == "ItIt") tgpr2 = "lo";
         return tgpr2;
     }
 
@@ -10010,6 +10018,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         tgpr3 = "su";
         if (name == "HeHim") tgpr3 = "su";
         if (name == "SheHer") tgpr3 = "su";
+		if (name == "ItIt") tgpr1 = "su";
         return tgpr3;
     }
 
@@ -10018,6 +10027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         tgpr4 = "elle";
         if (name == "HeHim") tgpr4 = "él";
         if (name == "SheHer") tgpr4 = "ella";
+		if (name == "ItIt") tgpr1 = "eso";
         return tgpr4;
     }
 
