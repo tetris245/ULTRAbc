@@ -5562,10 +5562,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             AppearanceBackground = wrname;
             TintsEffect();
             if (CharacterAppearanceMode == "Wardrobe") {
-                DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
-                DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Clothing + Restraints");
-                DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Clothing + Restraints + Cosplay");
-                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");    
+                DrawButton(1510, 240, 100, 60, "Exportar", "#50E992", "", "Exportación completa de ULTRAbc");
+                DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Ropa + Ataduras");
+                DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Ropa + Ataduras + Cosplay");
+                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Importación completa de ULTRAbc");    
                 if (nowrbuttons == false) {
                     DrawButton(1150, 25, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
                     DrawButton(1150, 130, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
