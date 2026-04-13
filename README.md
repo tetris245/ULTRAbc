@@ -92,7 +92,7 @@ Changes for future version
   - Note: It includes translation of all tooltips in Chat Search
 * Added 3 UBC language buttons on Login screen to login (only if you load UBC via FUSAM)
 * Moved background buttons in wardrobe from 1st screen to the specific wardrobe screen
-  - Note that changing background will also change display (back to 1st screen)
+  - Note: changing background will also change display (back to 1st screen)
 * Added pronouns for the "It" gender type
 * Added Chinese translation of the pronouns
 * Updated the ChatSearchCreateSearchControls function and the AltPreferenceSubscreens constant
