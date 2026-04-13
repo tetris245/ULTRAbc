@@ -2578,7 +2578,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //ModSDK Functions
     ULTRAActivityChatRoomArousalSync();
     ULTRAAppearanceClick();
-    ULTRAAppearanceMenuDraw();
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceClick();
     ULTRAAsylumEntranceRun();
@@ -5388,14 +5387,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function ULTRAAppearanceClick() {
         modApi.hookFunction('AppearanceClick', 4, (args, next) => {
             let C = CharacterAppearanceSelection;
-            if (CharacterAppearanceMode == "") {
+            if (CharacterAppearanceMode == "Wardrobe") {
                 if (nowrbuttons == false) {
-                    if ((MouseX >= 260) && (MouseX < 350) && (MouseY >= 910) && (MouseY < 1000)) {
+                    if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 25) && (MouseY < 115)) {
                         wrname = "Dressing";
                         M_MOANER_saveControls();
-                        CommonSetScreen("Character", "Appearance");
+                        ElementRemove("InputWardrobeName");
+                        CommonSetScreen("Character", "Appearance");         
                     }
-                    if ((MouseX >= 380) && (MouseX < 470) && (MouseY >= 910) && (MouseY < 1000)) {
+                    if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 130) && (MouseY < 220)) {
                         if (BackgroundsList != undefined) {
                             let listbg = BackgroundsList.length;
                             let Roll = Math.floor(Math.random() * listbg);
@@ -5403,22 +5403,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let name = BackgroundsList[Roll - 1].Name;
                             wrname = name;
                             M_MOANER_saveControls();
+                            ElementRemove("InputWardrobeName");
                             CommonSetScreen("Character", "Appearance");
                         }
                     }
-                    if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 910) && (MouseY < 1000)) {
+                    if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 235) && (MouseY < 325)) {
                         let backgrounds = BackgroundsTagList;
                         BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
                             if (setBackground) {
                                 wrname = Name;
                                 M_MOANER_saveControls();
                             }
-                            CommonSetScreen("Character", "Appearance");
+                            ElementRemove("InputWardrobeName");
+                            CommonSetScreen("Character", "Appearance");                       
                         });
                     }
                 }
-            }
-            if (CharacterAppearanceMode == "Wardrobe") {
                 if ((MouseX >= 1510) && (MouseX < 1610) && (MouseY >= 240) && (MouseY < 290)) {
                     if (C.OnlineSharedSettings.UBC != undefined) {
                         if (ServerPlayerIsInChatRoom()) {
@@ -5555,19 +5555,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAAppearanceMenuDraw() {
-        modApi.hookFunction('AppearanceMenuDraw', 4, (args, next) => {
-            if (CharacterAppearanceMode == "") {
-                if (nowrbuttons == false) {
-                    DrawButton(260, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                    DrawButton(380, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                    DrawButton(500, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
-                }
-            }
-            next(args);
-        });
-    }
-
     async function ULTRAAppearanceRun() {
         modApi.hookFunction('AppearanceRun', 4, (args, next) => {
             AppearanceBackground = wrname;
@@ -5576,7 +5563,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
                 DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Clothing + Restraints");
                 DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Clothing + Restraints + Cosplay");
-                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");
+                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");    
+                if (nowrbuttons == false) {
+                    DrawButton(1150, 25, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+                    DrawButton(1150, 130, 90, 90, "", "White", "Icons/Random.png", "Random background");
+                    DrawButton(1150, 235, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                }      
             }
             next(args);
         });
