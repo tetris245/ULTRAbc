@@ -89,6 +89,7 @@ All else I might not have included.
 Changes for future version
 
 * Added Spanish version of the mod - Thanks to cyber!
+  - Note: It includes translation of all tooltips in Chat Search
 * Added 3 UBC language buttons on Login screen to login (only if you load UBC via FUSAM)
 * Moved background buttons in wardrobe from 1st screen to the specific wardrobe screen
   - Note that changing background will also change display (back to 1st screen)
