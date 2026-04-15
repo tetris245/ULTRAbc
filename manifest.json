@@ -1,5 +1,5 @@
 {
-  "name": "ULTRAbc",
+  "name": "ULTRAbc-en",
   "description": "Everything you'll ever need.",
   "version": "5.9.1",
   "manifest_version": 3,
@@ -26,7 +26,8 @@
     "http://bondageprojects.elementfx.com/*",
     "https://bondageprojects.elementfx.com/*",
     "http://www.bondageprojects.elementfx.com/*",
-    "https://www.bondageprojects.elementfx.com/*"
+    "https://www.bondageprojects.elementfx.com/*",
+    "https://www.bondage-asia.com/*"
   ],
   "content_scripts": [
     {
@@ -41,7 +42,8 @@
         "http://bondageprojects.elementfx.com/*",
         "https://bondageprojects.elementfx.com/*",
         "http://www.bondageprojects.elementfx.com/*",
-        "https://www.bondageprojects.elementfx.com/*"
+        "https://www.bondageprojects.elementfx.com/*",
+        "https://www.bondage-asia.com/*"
       ]
     }
   ],
@@ -58,22 +60,10 @@
         "http://bondageprojects.elementfx.com/*",
         "https://bondageprojects.elementfx.com/*",
         "http://www.bondageprojects.elementfx.com/*",
-        "https://www.bondageprojects.elementfx.com/*"
+        "https://www.bondageprojects.elementfx.com/*",
+        "https://www.bondage-asia.com/*"
       ]
   }
 ]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
