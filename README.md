@@ -96,6 +96,7 @@ Changes for future version
   - Note: Changing background will also change display (back to 1st screen)
 * Added pronouns for the "It" gender type
 * Added Chinese translation of the pronouns
-* Updated the ChatSearchCreateSearchControls function and the AltPreferenceSubscreens constant
+* Updated the AltChatSearchToggle and ChatSearchCreateSearchControls functions
+* Updated the AltPreferenceSubscreens constant
 
 
