@@ -6190,7 +6190,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ElementValue("InputFilter", ChatSearchFilterTermsTemp);
                 ChatSearchMode = "Filter";
                 ChatSearchQuery("");
-                ChatSearchQuerySort();
                 break;
             case "Filter":
                 ChatSearchRoomGrid?.classList.remove("chat-search-filter-search");
