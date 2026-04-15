@@ -3558,19 +3558,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function ULTRAChatSearchParseResponse() {
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
-            let ret = next(args);
-            let NewResult = [];
-            if ((pmin != 1) && (pmax != 20)) {
-                let rm = 0;
-                while (rm < ret.length) {
-                    let player = ret[rm].MemberCount;
-                    if ((player >= pmin) && (player <= pmax)) NewResult.push(ret[rm]);
-                    rm++;
-                }
-            } else {
-                NewResult = ret;
-            }
-            return NewResult;
+            const res = next(args);
+            return res.filter(r => r.MemberCount >= pmin && r.MemberCount <= pmax);
         });
     }
 
