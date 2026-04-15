@@ -3099,8 +3099,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (InventoryGet(Player, "Pronouns").Asset != null) {
                         let chprn = InventoryGet(Player, "Pronouns").Asset.Name;
                         if (chprn != pronoun1) {
-                            if (chprn != pronoun1) {
-                                 if (chprn == "HeHim") {
+                            if (chprn == "HeHim") {
                                 pronoun1 = "Él";
                                 pronoun2 = "lo";
                                 pronoun3 = "su";
