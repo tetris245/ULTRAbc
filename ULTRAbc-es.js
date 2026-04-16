@@ -4716,23 +4716,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PreferenceSubscreenExtensionsLoad', 4, (args, next) => {
             UBCrpsk();
             M_MOANER_saveControls();
-            Player.UBC.ubcSettings.rpabdl = rpabdl;
-            Player.UBC.ubcSettings.rpasyl = rpasyl;
-            Player.UBC.ubcSettings.rpgamb = rpgamb;
-            Player.UBC.ubcSettings.rpgame = rpgame;
-            Player.UBC.ubcSettings.rpkidn = rpkidn;
-            Player.UBC.ubcSettings.rplarp = rplarp;
-            Player.UBC.ubcSettings.rpmagh = rpmagh;
-            Player.UBC.ubcSettings.rpmagp = rpmagp;
-            Player.UBC.ubcSettings.rpmaid = rpmaid;
-            Player.UBC.ubcSettings.rpmain = rpmain;
-            Player.UBC.ubcSettings.skbondage = skbondage;
-            Player.UBC.ubcSettings.skdressage = skdressage;
-            Player.UBC.ubcSettings.skevasion = skevasion;
-            Player.UBC.ubcSettings.skinfiltration = skinfiltration;
-            Player.UBC.ubcSettings.sklockpicking = sklockpicking;
-            Player.UBC.ubcSettings.skselfbondage = skselfbondage;
-            Player.UBC.ubcSettings.skwillpower = skwillpower;
+            if (Player.UBC != undefined) {
+                if (Player.UBC.ubcSettings != undefined) {
+                    Player.UBC.ubcSettings.rpabdl = rpabdl;
+                    Player.UBC.ubcSettings.rpasyl = rpasyl;
+                    Player.UBC.ubcSettings.rpgamb = rpgamb;
+                    Player.UBC.ubcSettings.rpgame = rpgame;
+                    Player.UBC.ubcSettings.rpkidn = rpkidn;
+                    Player.UBC.ubcSettings.rplarp = rplarp;
+                    Player.UBC.ubcSettings.rpmagh = rpmagh;
+                    Player.UBC.ubcSettings.rpmagp = rpmagp;
+                    Player.UBC.ubcSettings.rpmaid = rpmaid;
+                    Player.UBC.ubcSettings.rpmain = rpmain;
+                    Player.UBC.ubcSettings.skbondage = skbondage;
+                    Player.UBC.ubcSettings.skdressage = skdressage;
+                    Player.UBC.ubcSettings.skevasion = skevasion;
+                    Player.UBC.ubcSettings.skinfiltration = skinfiltration;
+                    Player.UBC.ubcSettings.sklockpicking = sklockpicking;
+                    Player.UBC.ubcSettings.skselfbondage = skselfbondage;
+                    Player.UBC.ubcSettings.skwillpower = skwillpower;
+                 }
+             }
             next(args);
         });
     }
