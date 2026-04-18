@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.9
+Most recent version: 5.9.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -50,10 +50,17 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 <br>
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Only for English version atm  - Will not work with Asian server)
-1. Download the ULTRAbc-version5.9.zip file on the Releases page
-2. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
-3. Go to browser extensions. Enable developer mode.
-4. Load as Unpacked. Done. If the file can't be seen, see step 2.
+1. Download one of these files:
+
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.1/ULTRAbc-en-v5.9.1.zip
+
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.1/ULTRAbc-ch-v5.9.1.zip
+
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.1/ULTRAbc-es-v5.9.1.zip
+   
+3. Depending on browser, the .zip might have to be extracted. few browsers accept a .zip, a few requires a folder.
+4. Go to browser extensions. Enable developer mode.
+5. Load as Unpacked. Done. If the file can't be seen, see step 2.
 
 After installation, refresh your BC page and relog.
 
@@ -88,16 +95,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Added Spanish version of the mod - Thanks to ciber!
-  - Note: It includes translation of all tooltips in Chat Search
-* Added 3 UBC language buttons on Login screen to login BC with UBC in the choosen language (only if you load UBC via FUSAM)
-   - Note: Using the standard BC Login button or the WCE buttons will not load UBC
-* Moved background buttons in wardrobe from 1st screen to the specific wardrobe screen
-  - Note: Changing background will also change display (back to 1st screen)
-* Added pronouns for the "It" gender type
-* Added Chinese translation of the pronouns
-* Added the Asian server in the 'generic' manifest.json file 
-* Updated the AltChatSearchToggle and ChatSearchCreateSearchControls functions
-* Updated the AltPreferenceSubscreens constant
+(...)
 
 
