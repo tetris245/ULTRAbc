@@ -49,7 +49,7 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 
 <br>
 
-**Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Only for English version atm  - Will not work with Asian server)
+**Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
    English version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.1/ULTRAbc-en-v5.9.1.zip
