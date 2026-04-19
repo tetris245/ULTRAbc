@@ -58,7 +58,7 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 
    Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.1/ULTRAbc-es-v5.9.1.zip
    
-3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers requires a folder.
+3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
 5. Load as Unpacked. Done. If the file can't be seen, see step 2.
 
