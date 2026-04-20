@@ -16417,7 +16417,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "settings") {
-                let msg = "设置命令 - * = 使用时获取更多信息\n" +
+                let msg = "设置命令\n" +
                     "<b>/bglist</b> 显示所有可用标准背景的列表。\n" +
                     "<b>/bgshow1</b> （背景编号）= 在本地显示特定标准背景的可点击链接和嵌入图片。\n" +
                     "<b>/bgshow2</b> （背景编号）= 在聊天中发送特定标准背景的链接。如果使用 WCE 功能，可点击链接和嵌入。\n" +
