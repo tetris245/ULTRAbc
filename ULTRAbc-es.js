@@ -4852,7 +4852,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (PreferencePageCurrent === 2) {
                 MainCanvas.textAlign = "left";
                 DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");		
-                DrawButton(1160, 330, 60, 60, "", "White", "", "Cosy Chalet");
+                DrawButton(1160, 330, 60, 60, "", "White", "", "Chalet Acogedor");
                 DrawButton(1260, 330, 60, 60, "", "White", "", "Fondo Aleatorio");
 				DrawImageResize("Icons/Reset.png", 1160, 330, 60, 60);
                 DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
