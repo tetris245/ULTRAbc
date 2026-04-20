@@ -4797,9 +4797,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    function ULTRAPreferenceSubscreenOnlineClick() {
+    async function ULTRAPreferenceSubscreenMainLoad() {
+        modApi.hookFunction('PreferenceSubscreenMainLoad', 4, (args, next) => {
+            PreferenceBackground = "Sheet";
+            if (ifext == true) PreferenceBackground = ifname;
+            if (alfmenu == true) {
+                AltPrf();
+                return;
+            }
+            next(args);
+        });
+    }
+
+	function ULTRAPreferenceSubscreenOnlineClick() {
         modApi.hookFunction('PreferenceSubscreenOnlineClick', 4, (args, next) => {
             if (PreferencePageCurrent === 2) {
+                if ((MouseIn(1160, 330, 60, 60))) {
+                    PreferenceOnlineDefaultBackground = "CosyChalet";
+                    Player.OnlineSettings.DefaultChatRoomBackground = "CosyChalet";
+                     PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
+                    PreferenceOpenSubscreen("Online", 2);
+                }
                 if ((MouseIn(1260, 330, 60, 60))) {
                     let listbg = PreferenceOnlineDefaultBackgroundList.length;
                     if (bgall) listbg = BackgroundsList.length;
@@ -4811,18 +4829,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
                     PreferenceOpenSubscreen("Online", 2);
                 }
-            }
-            next(args);
-        });
-    }
-
-    async function ULTRAPreferenceSubscreenMainLoad() {
-        modApi.hookFunction('PreferenceSubscreenMainLoad', 4, (args, next) => {
-            PreferenceBackground = "Sheet";
-            if (ifext == true) PreferenceBackground = ifname;
-            if (alfmenu == true) {
-                AltPrf();
-                return;
             }
             next(args);
         });
@@ -4845,7 +4851,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (PreferencePageCurrent === 2) {
                 MainCanvas.textAlign = "left";
                 DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");
+                DrawButton(1160, 330, 60, 60, "", "White", "", "Cosy Chalet");
                 DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
+                DrawImageResize("Icons/Reset.png", 1160, 330, 60, 60);
                 DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
             }
             next(args);
