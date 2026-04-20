@@ -16395,7 +16395,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "settings") {
-                let msg = "Comandos de Configuración - * = más info al usar\n" +
+                let msg = "Comandos de Configuración\n" +
                     "<b>/bglist</b> muestra la lista de todos los fondos estándar disponibles.\n" +
                     "<b>/bgshow1</b> (número) = muestra un enlace local y la imagen de un fondo estándar.\n" +
                     "<b>/bgshow2</b> (número) = envía al chat el enlace de un fondo estándar. (Clicable con WCE).\n" +
