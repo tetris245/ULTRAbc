@@ -4816,7 +4816,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((MouseIn(1160, 330, 60, 60))) {
                     PreferenceOnlineDefaultBackground = "CosyChalet";
                     Player.OnlineSettings.DefaultChatRoomBackground = "CosyChalet";
-                     PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
+                    PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
                     PreferenceOpenSubscreen("Online", 2);
                 }
                 if ((MouseIn(1260, 330, 60, 60))) {
