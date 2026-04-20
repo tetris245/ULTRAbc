@@ -16402,7 +16402,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "settings") {
-                let msg = "Settings commands - * = more info when using\n" +
+                let msg = "Settings commands\n" +
                     "<b>/bglist</b> displays the list of all available standard backgrounds.\n" +
                     "<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background and embedded picture.\n" +
                     "<b>/bgshow2</b> (bgnumber) = sends in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n" +
