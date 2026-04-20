@@ -5111,13 +5111,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    function ULTRAClubCardBuilderRun() {
-        modApi.hookFunction('ClubCardBuilderRun', 4, (args, next) => {
-            TintsEffect();
-            next(args);
-        });
-    }
-
     function ULTRAClubCardRun() {
         modApi.hookFunction('ClubCardRun', 4, (args, next) => {
             TintsEffect();
