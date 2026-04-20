@@ -2615,6 +2615,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatSearchUnload();
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
+	ULTRAClubCardBuilderRun();
     ULTRAClubCardCheckVictory();
     ULTRAClubCardClick();
     ULTRAClubCardEndTurn();
@@ -2688,7 +2689,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatAdminRoomCustomizationRun();
     ULTRAChatSelectRun();
     ULTRAChestLockpickRun();
-    ULTRAClubCardBuilderRun();
     ULTRAClubCardRun();
     ULTRACollegeCafeteriaRun();
     ULTRACollegeChessRun();
@@ -3628,19 +3628,41 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function ULTRAClubCardBuilderClick() {
         modApi.hookFunction('ClubCardBuilderClick', 4, (args, next) => {
             const ret = next(args);
-            if ((ClubCardBuilderDeckIndex == -1) && MouseIn(1655, 25, 90, 90)) {
-                let background = Player.Game?.ClubCard?.Background ?? "ClubCardPlayBoard1";
-                let backgrounds = BackgroundsClubCardsTagList;
-                if (bgall) backgrounds = BackgroundsTagList;
-                BackgroundSelectionMake(backgrounds, background, (Name, setBackground) => {
-                    if (setBackground) {
-                        Player.Game.ClubCard.Background = Name;
+            if (ClubCardBuilderDeckIndex == -1) {
+                if (MouseIn(1425, 25, 90, 90)) {
+                    Player.Game.ClubCard.Background = "ClubCardPlayBoard1";
+                    ServerAccountUpdate.QueueData({
+                        Game: Player.Game
+                    }, true);
+                    CommonSetScreen("MiniGame", "ClubCardBuilder");
+                }
+                if (MouseIn(1540, 25, 90, 90)) {
+                    if (BackgroundsList != undefined) {
+                        let listbg = BackgroundsList.length;
+                        let Roll = Math.floor(Math.random() * listbg);
+                        if (Roll == 0) Roll = 1;
+                        let name = BackgroundsList[Roll - 1].Name;
+                        Player.Game.ClubCard.Background = name;
                         ServerAccountUpdate.QueueData({
                             Game: Player.Game
                         }, true);
+                        CommonSetScreen("MiniGame", "ClubCardBuilder");
                     }
-                    CommonSetScreen("MiniGame", "ClubCardBuilder");
-                });
+                }               
+                if (MouseIn(1655, 25, 90, 90)) {
+                    let background = Player.Game?.ClubCard?.Background ?? "ClubCardPlayBoard1";
+                    let backgrounds = BackgroundsClubCardsTagList;
+                    if (bgall) backgrounds = BackgroundsTagList;
+                    BackgroundSelectionMake(backgrounds, background, (Name, setBackground) => {
+                        if (setBackground) {
+                            Player.Game.ClubCard.Background = Name;
+                            ServerAccountUpdate.QueueData({
+                                Game: Player.Game
+                            }, true);
+                        }
+                        CommonSetScreen("MiniGame", "ClubCardBuilder");
+                    });
+                }
             }
             return ret;
         });
@@ -3649,6 +3671,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAClubCardBuilderLoad() {
         modApi.hookFunction('ClubCardBuilderLoad', 4, (args, next) => {
             ClubCardBuilderBackground = Player.Game.ClubCard.Background;
+            next(args);
+        });
+    }
+
+	async function ULTRAClubCardBuilderRun() {
+        modApi.hookFunction('ClubCardBuilderRun', 4, (args, next) => {
+            TintsEffect();
+            if (ClubCardBuilderDeckIndex == -1) {
+                DrawButton(1425, 25, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+                DrawButton(1540, 25, 90, 90, "", "White", "Icons/Random.png", "Random background");
+            }
             next(args);
         });
     }
