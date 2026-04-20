@@ -96,5 +96,7 @@ All else I might not have included.
 Changes for future version
 
 * Added buttons in Club Card Builder to randomly change background and go back to default background
+* Added button in page 2 of Online Settings to go back to "Cozy Chalet" as default background when creating a new room
+* Removed the bg4 command (all its options are now available as buttons in the appropriate screens)
 
 
