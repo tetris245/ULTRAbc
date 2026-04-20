@@ -95,6 +95,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Added buttons in Club Card Builder to randomly change background and go back to default background
 
 
