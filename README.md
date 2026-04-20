@@ -97,6 +97,8 @@ Changes for future version
 
 * Added buttons in Club Card Builder to randomly change background and go back to default background
 * Added button in page 2 of Online Settings to go back to "Cozy Chalet" as default background when creating a new room
+* Refactored the InformationSheetRun function to use smaller functions that can more easily be modified
+* Extended the display of custom titles (created with the ctitle command) to info screen that does not use the Days Only parameter
 * Removed the bg4 command (all its options are now available as buttons or hotkeys in the appropriate screens)
 
 
