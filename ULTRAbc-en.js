@@ -8183,6 +8183,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
 	function InformationSheetDrawBaseInfo(C) {
+		const CurrentTitle = TitleGet(C);
         const spacing = 55;
 	    const spacingLarge = 75;
 	    let currentY = 125;
