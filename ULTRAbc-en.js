@@ -8216,7 +8216,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    return currentY;
     }
 
-    function InformationSheetDrawButtons(C) {
+	function InformationSheetDrawButtons(C) {
         MainCanvas.textAlign = "center";
 	    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");	
 	    if (C.IsPlayer()) {
@@ -8226,12 +8226,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    DrawButton(1815, 420, 90, 90, "", "White", "Icons/FriendList.png");
 		    DrawButton(1815, 535, 90, 90, "", "White", "Icons/Introduction.png");
 		    if (C.HasOwnerNotes())
-		        DrawButton(1715, 535, 90, 90, "", "White", "Icons/Management.png");
-            if (!window.BCX_Loaded) {
-                DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
-            } else {
-                DrawButton(1815, 800, 90, 90, "", "White", "Icons/Next.png");
-            }
+		        DrawButton(1715, 535, 90, 90, "", "White", "Icons/Management.png");           
             if (noifbuttons == false) {
                 DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
                 DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
@@ -8240,9 +8235,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    } else if (C.IsOnline()) {
             DrawButton(1815, 190, 90, 90, "", "White", "Icons/Introduction.png");
 		    if (C.HasOwnerNotes() || C.IsFullyOwnedByPlayer())
-	            DrawButton(1715, 190, 90, 90, "", "White", "Icons/Management.png");
-		    DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
+	            DrawButton(1715, 190, 90, 90, "", "White", "Icons/Management.png");	      
 	    }
+        if (!window.BCX_Loaded) {
+            DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
+        } else {
+            DrawButton(1815, 800, 90, 90, "", "White", "Icons/Next.png");
+        }
    }
 
    function InformationSheetDrawLoverInfo(C) {
