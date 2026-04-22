@@ -12582,7 +12582,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((length > 0) && (length < 26) && (custom.match(LS))) {
                 if (custom === "无") {
                     ctitle = "";
-                    infomsg("Custom title deleted")
+                    infomsg("Custom title deleted");
                 } else {
                     ctitle = custom;
                     infomsg("Custom title created or modified");        
