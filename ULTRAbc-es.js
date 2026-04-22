@@ -7028,31 +7028,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
 	function ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput) {
-       if (noubcbar == true)  SearchMenu1(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);  
-       if (noubcbar == false) SearchMenu2(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
-    }
-
-	function ChatSearchInitState() {
-        ChatRoomCustomizationClear();
-        ChatRoomActivateView(ChatRoomCharacterViewName);
-        ChatRoomMapViewEditMode = "";
-        ChatRoomMapViewEditBackup = [];
-        delete Player.MapData;
-        CurrentDarkFactor = 0.5;
-        if (ChatSearchSafewordAppearance == null) {
-            ChatSearchSafewordAppearance = Player.Appearance.slice(0);
-            ChatSearchSafewordPose = Player.ActivePoseMapping;
-        }
-        AsylumGGTSIntroDone = false;
-        AsylumGGTSTask = null;
-        AsylumGGTSPreviousPose = {
-            ...Player.PoseMapping
-        };
-        Player.ArousalSettings.OrgasmCount = 0;
-        ChatSearchLanguage = Player.ChatSearchSettings.Language;
-    }
-
-	function SearchMenu1(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput) {
         ChatSearchSearchMenu = ElementCreate({
             tag: "fieldset",
             attributes: {
@@ -7061,7 +7036,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             },
             children: [
                 // Room type
-                {
+                (noubcbar == true) && {
                     tag: "div",
                     attributes: {
                         id: "chat-search-search-menu-room-type",
@@ -7136,7 +7111,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ],
                 }, 
                 // Lobby
-                {
+                (noubcbar == true) && {
                     tag: "div",
                     attributes: {
                         id: "chat-search-search-menu-room-lobby",
@@ -7308,7 +7283,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ],
                 },
                 // Game
-                {
+                (noubcbar == true) && {
                     tag: "div",
                     attributes: {
                         id: "chat-search-search-menu-room-game",
@@ -7419,7 +7394,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Jugadores en la sala"),
+                        ElementCreateSettingsLabel("Jugadores en la sala")
                         {
                             tag: "div",
                             attributes: {
@@ -7465,255 +7440,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     button: {
                         classList: ["chat-search-search-menu-search-button"],
                         children: [
-                            "Buscar",
+                             "Buscar",
                         ],
                     },
                 }),
-            ],
+            ].filter(Boolean),
             parent: document.body,
         });
     }
 
-    function SearchMenu2(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput) {
-        ChatSearchSearchMenu = ElementCreate({
-            tag: "fieldset",
-            attributes: {
-                id: "chat-search-search-menu",
-                hidden: true,
-            },
-            children: [
-                // Full rooms
-                {
-                    tag: "div",
-                    attributes: {
-                        id: "chat-search-search-menu-full-rooms",
-                    },
-                    dataAttributes: {
-                        checkbox: true,
-                    },
-                    classList: ["chat-search-search-menu-grid-item"],
-                    children: [
-                        ElementCreateSettingsLabel("Mostrar salas completas:", "left"),
-                        ElementCheckbox.Create("chat-search-search-menu-full-rooms-input", function(ev) {
-                            Player.ChatSearchSettings.FullRooms = this.checked;
-                            ChatSearchUpdateSearchSettings();
-                        }, {
-                            checked: Player.ChatSearchSettings.FullRooms,
-                        })
-                    ],
-                },
-                // Locked rooms
-                {
-                    tag: "div",
-                    attributes: {
-                        id: "chat-search-search-menu-locked-rooms",
-                    },
-                    dataAttributes: {
-                        checkbox: true,
-                    },
-                    classList: ["chat-search-search-menu-grid-item"],
-                    children: [
-                        ElementCreateSettingsLabel("Mostrar salas bloqueadas:", "left"),
-                        ElementCheckbox.Create("chat-search-search-menu-locked-rooms-input", function(ev) {
-                            Player.ChatSearchSettings.ShowLocked = this.checked;
-                            ChatSearchUpdateSearchSettings();
-                        }, {
-                            checked: Player.ChatSearchSettings.ShowLocked,
-                        })
-                    ],
-                },
-                // Search description
-                {
-                    tag: "div",
-                    attributes: {
-                        id: "chat-search-search-menu-search-description",
-                    },
-                    dataAttributes: {
-                        checkbox: true,
-                    },
-                    classList: ["chat-search-search-menu-grid-item"],
-                    children: [
-                        ElementCreateSettingsLabel("Descripción de la búsqueda:", "left"),
-                        ElementCheckbox.Create("chat-search-search-menu-search-description-input", function() {
-                            Player.ChatSearchSettings.SearchDescriptions = this.checked;
-                            ChatSearchUpdateSearchSettings();
-                        }, {
-                            checked: Player.ChatSearchSettings.SearchDescriptions,
-                        }),
-                    ],
-                },
-                // Friends
-                {
-                    tag: "div",
-                    attributes: {
-                        id: "chat-search-search-menu-friends",
-                    },
-                    dataAttributes: {
-                        checkbox: true,
-                    },
-                    classList: ["chat-search-search-menu-grid-item"],
-                    children: [
-                        ElementCreateSettingsLabel("Primero salas con amigos:", "left"),
-                        ElementCheckbox.Create("chat-search-search-menu-friends-input", function() {
-                            Player.OnlineSettings.SearchFriendsFirst = this.checked;
-                        }, {
-                            checked: Player.OnlineSettings.SearchFriendsFirst,
-                        }),
-                    ],
-                },
-                // AutoJoin feature
-                {
-                    tag: "div",
-                    attributes: {
-                        id: "chat-search-search-menu-autojoin",
-                    },
-                    dataAttributes: {
-                        checkbox: true,
-                    },
-                    classList: ["chat-search-search-menu-grid-item"],
-                    children: [
-                        ElementCreateSettingsLabel("Función de unión automática:", "left"),
-                        ElementCheckbox.Create("chat-search-search-menu-autojoin-input", function() {
-                            autojoin = this.checked;
-                            SetAutoJoin();
-                        }, {
-                            checked: autojoin,
-                        }),
-                    ],
-                },
-                // Language
-                {
-                    tag: "div",
-                    attributes: {
-                        id: "chat-search-search-menu-room-language"
-                    },
-                    classList: ["chat-search-search-menu-grid-item"],
-                    children: [
-                        ElementCreateSettingsLabel("Idioma"),
-                        ElementCreateDropdown(
-                            "chat-search-search-menu-room-language-dropdown",
-                            [
-                                ... /** @type {ServerChatRoomLanguage[]} */ ([...ChatAdminLanguageList, ""]).map(lang => ({
-                                    children: [ChatSearchGetLanguageName(lang)],
-                                    attributes: {
-                                        value: lang,
-                                        selected: Player.ChatSearchSettings.Language == lang
-                                    }
-                                })),
-                            ],
-                            function(ev) {
-                                Player.ChatSearchSettings.Language = ChatSearchLanguage = /** @type {ServerChatRoomLanguage} */ (this.value);
-                                ChatSearchUpdateSearchSettings();
-                            }, {
-                                required: true
-                            }
-                        ),
-                    ],
-                },
-                // Room size
-                {
-                    tag: "div",
-                    attributes: {
-                        id: "chat-search-search-menu-room-size"
-                    },
-                    classList: ["chat-search-search-menu-grid-item"],
-                    children: [
-                        ElementCreateSettingsLabel("Tamaño de la sala"),
-                        {
-                            tag: "div",
-                            attributes: {
-                                id: "chat-search-search-menu-room-size-grid"
-                            },
-                            children: [
-                                minRoomSizeInput,
-                                "/",
-                                maxRoomSizeInput,
-                                {
-                                    tag: "span",
-                                    classList: ["chat-search-search-menu-room-size-label"],
-                                    children: ["min"],
-                                    attributes: {
-                                        "for": "chat-search-search-menu-room-size-min"
-                                    }
-                                },
-                                {
-                                    tag: "span",
-                                    classList: ["chat-search-search-menu-room-size-label"],
-                                    children: ["max"],
-                                    style: {
-                                        "grid-column": "3/3"
-                                    },
-                                    attributes: {
-                                        "for": "chat-search-search-menu-room-size-max"
-                                    },
-                                },
-                            ],
-                        }
-                    ]
-                },
-                // Players in room
-                {
-                    tag: "div",
-                    attributes: {
-                        id: "chat-search-search-menu-room-players"
-                    },
-                    classList: ["chat-search-search-menu-grid-item"],
-                    children: [
-                        ElementCreateSettingsLabel("Jugadores en la sala"),
-                        {
-                            tag: "div",
-                            attributes: {
-                                id: "chat-search-search-menu-room-players-grid"
-                            },
-                            children: [
-                                minRoomPlayersInput,
-                                "/",
-                                maxRoomPlayersInput,
-                                {
-                                    tag: "span",
-                                    classList: ["chat-search-search-menu-room-players-label"],
-                                    children: ["min"],
-                                    attributes: {
-                                        "for": "chat-search-search-menu-room-players-min"
-                                    }
-                                },
-                                {
-                                    tag: "span",
-                                    classList: ["chat-search-search-menu-room-players-label"],
-                                    children: ["max"],
-                                    style: {
-                                        "grid-column": "3/3"
-                                    },
-                                    attributes: {
-                                        "for": "chat-search-search-menu-room-players-max"
-                                    },
-                                },
-                            ],
-                        }
-                    ]
-                },
-                ElementButton.Create("chat-search-search-menu-search-button", function() {
-                    const elements = /** @type {HTMLCollectionOf<Element & { validity: ValidityState, reportValidity(): boolean }>} */ (ChatSearchSearchMenu?.elements) ?? [];
-                    for (const el of elements) {
-                        if (!el.validity.valid) {
-                            el.reportValidity();
-                            return;
-                        }
-                    }
-                    ChatSearchQuery(ChatSearchQueryString);
-                }, null, {
-                    button: {
-                        classList: ["chat-search-search-menu-search-button"],
-                        children: [
-                            "Buscar",
-                        ],
-                    },
-                }),
-            ],
-            parent: document.body,
-        });
+	function ChatSearchInitState() {
+        ChatRoomCustomizationClear();
+        ChatRoomActivateView(ChatRoomCharacterViewName);
+        ChatRoomMapViewEditMode = "";
+        ChatRoomMapViewEditBackup = [];
+        delete Player.MapData;
+        CurrentDarkFactor = 0.5;
+        if (ChatSearchSafewordAppearance == null) {
+            ChatSearchSafewordAppearance = Player.Appearance.slice(0);
+            ChatSearchSafewordPose = Player.ActivePoseMapping;
+        }
+        AsylumGGTSIntroDone = false;
+        AsylumGGTSTask = null;
+        AsylumGGTSPreviousPose = {
+            ...Player.PoseMapping
+        };
+        Player.ArousalSettings.OrgasmCount = 0;
+        ChatSearchLanguage = Player.ChatSearchSettings.Language;
     }
-	
+
     //Chess Game
     async function GameChess() {
         await CommonSetScreen("Room", "CollegeChess");
