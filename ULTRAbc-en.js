@@ -15015,7 +15015,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else if (args === "yes") {
                 Player.Nickname = null;
                 ServerAccountUpdate.QueueData({ Nickname: null });
-                let msg = "Accomplished. You have no more a nickname.";
+                let msg = "Accomplished. You no longer have a nickname.";
                 infomsg(msg);
             }
         }
