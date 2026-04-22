@@ -95,7 +95,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: cname (custom name) to create a custom name, that can accept numbers and more letters than the official name ((maximum 20 characters, spaces included)
+* New command: cname (custom name) to create a custom name, that can accept numbers and more letters than the official name (maximum 20 characters, spaces included)
   - It will work only between UBC users and replace the official name in the profile
   - To go back to a profile without custom name, use "None" as name (无 in Chinese version)
 * New command: resetnickname to erase your nickname
