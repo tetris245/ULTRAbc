@@ -12377,7 +12377,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "More letters are accepted than for the official name, it can also include spaces and numbers.\n" +
                     "Maximum 20 characters (spaces included)!\n" +
                     "It will work only between UBC users and replace the official name in the profile.\n" +               
-                    "Use None as title to go back to a profile without custom title.";
+                    "Use None as name to go back to a profile without custom name.";
                 infomsg(msg);
                 return;
             }      
