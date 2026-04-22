@@ -146,6 +146,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cdeck = 0;
     let cextra = false;
     let cfame = 150;
+	let cname = "";
     let csname = "Introduction";
 	let ctitle = "";
     let dogsforbid = false;
@@ -577,6 +578,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cdeck = 0;
         cextra = false;
         cfame = 150;
+		cname = "";
         cskeys = false;
 		ctitle = "";
         dogsforbid = false;
@@ -696,6 +698,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cdeck = data.cdeck * 1;
         cextra = data.cextra;
         cfame = data.cfame;
+		cname = data.cname;
         cskeys = data.cskeys;
 		ctitle = data.ctitle;
         dogsforbid = data.dogsforbid;
@@ -871,6 +874,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cdeck": cdeck,
             "cextra": cextra,
             "cfame": cfame,
+			"cname": cname,
             "csname": csname,
             "ctitle": ctitle,
             "frname": frname,
@@ -1026,6 +1030,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cdeck == null || cdeck == undefined) cdeck = 0;
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 150;
+				if (cname == null || cname == undefined) cname = "";
                 if (cskeys == null || cskeys == undefined) cskeys = false;
                 if (csname == null || csname == undefined) csname = "Introduction";
 				if (ctitle == null || ctitle == undefined) ctitle = "";
@@ -8189,7 +8194,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         const spacing = 55;
 	    const spacingLarge = 75;
 	    let currentY = 125;
-	    DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+	    if (C.OnlineSharedSettings.cname != undefined) {
+             if (C.OnlineSharedSettings.cname != "") {
+                  DrawTextFit(TextGet("Name") + " " + C.OnlineSharedSettings.cname, 550, currentY, 450, "Black", "Gray"); 
+             } else {
+	           DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+             }
+         } else {
+             DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+         }
 	    currentY += spacing;
 	    if (C.Name !== CharacterNickname(C)) {
 	        DrawTextFit(TextGet("Nickname") + " " + CharacterNickname(C), 550, currentY, 450, "Black", "Gray");
@@ -9758,6 +9771,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function UBCsettings() {
         Player.OnlineSharedSettings.UBC = UBCver;
+		Player.OnlineSharedSettings.cname = cname;
 		Player.OnlineSharedSettings.ctitle = ctitle;
         Player.OnlineSharedSettings.Inmap = false;
         if (Player.OnlineSharedSettings.Tplist == undefined) {
@@ -12354,6 +12368,41 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             ChatRoomSetTarget(-1);
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'cname',
+        Description: "(nombre personalizado): crea un nombre personalizado que no requiere cumplir condiciones. .",
+        Action: (args, originalInput) => {  
+            if (args === "") { 
+                let msg = "El comando cname debe ir seguido del nombre personalizado que quieras mostrar en tu perfil.\n" +
+                    "Se aceptan más letras que para el nombre oficial; también puede incluir espacios y números.\n" +
+                    "¡Máximo 20 caracteres (espacios incluidos)!\n" +
+                    "Solo funcionará entre usuarios de UBC y reemplazará el nombre oficial en el perfil.\n" +               
+                    "Usa 'None' como nombre para volver a un perfil sin nombre personalizado.";
+                infomsg(msg);
+                return;
+            }      
+            let custom = originalInput.replace(/^\/cname\s+/i, '').trim(); 
+            let LS = /[/\p{L}\p{N}\p{Z}'-]/gu;
+            let length = custom.length;
+            if ((length > 0) && (length < 21) && (custom.match(LS))) {
+                if (custom === "None") {
+                    cname = "";
+                    infomsg("Custom name deleted")
+                } else {
+                    cname = custom;
+                    infomsg("Custom name created or modified");        
+                } 
+                M_MOANER_saveControls();
+                Player.OnlineSharedSettings.cname = cname;
+                ServerAccountUpdate.QueueData({
+                    OnlineSharedSettings: Player.OnlineSharedSettings
+                });
+            } else {
+                infomsg("¡Máximo 20 caracteres (espacios incluidos)!");
+            }
         }
     }])
 
@@ -16506,6 +16555,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "character") {
                 let msg = "Comandos de Personaje - * = más info al usar\n" +
+					"<b>/cname</b> (nombre) = crea un nombre personalizado. *\n" +
                     "<b>/ctitle</b> (título) = crea un título personalizado. *\n" +
                     "<b>/difficulty</b> (número) = cambia la dificultad del juego. *\n" +
                     "<b>/maxstatistics</b> = maximiza las estadísticas.\n" +
