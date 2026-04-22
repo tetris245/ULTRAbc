@@ -15005,6 +15005,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'resetnickname',
+        Description: ": erases your nickname.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "<b>Warning</b>: You will lose your nickname. Confirm by typing: <b>/resetnickname yes</b>";
+                infomsg(msg);
+            } else if (args === "yes") {
+                Player.Nickname = null;
+                ServerAccountUpdate.QueueData({ Nickname: null });
+                let msg = "Accomplished. You have no more a nickname.";
+                infomsg(msg);
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'restrain',
         Description: "(target): adds random restraints.",
@@ -16501,6 +16517,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/maxstatistics</b> = gives max statistics.\n" +
                     "<b>/permission</b> (number) = changes your item permission *\n" +
                     "<b>/resetinventory</b> = erases your inventory.\n" +
+					"<b>/resetnickname</b> = erases your nickname.\n" +
                     "<b>/roleplay</b> (rolehere) = starts a role. *\n" +
                     "<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n" +
                     "<b>/title1</b> (newtitlehere) = chooses a new title (from A to D). *\n" +
