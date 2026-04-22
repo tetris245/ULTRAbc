@@ -15000,6 +15000,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'resetnickname',
+        Description: "：删除你的昵称。",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "<b>警告</b>：你将失去你的昵称。输入 <b>/resetnickname yes</b> 确认";
+                infomsg(msg);
+            } else if (args === "yes") {
+                Player.Nickname = null;
+                ServerAccountUpdate.QueueData({ Nickname: null });
+				let msg = "已完成。你不再有昵称了。";
+                let msg = "Accomplished. You have no more a nickname.";
+                infomsg(msg);
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'restrain',
         Description: "（目标）：添加随机束缚。",
@@ -16517,6 +16534,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/maxstatistics</b> = 给予最大统计值。\n" +
                     "<b>/permission</b> （数字）= 更改你的物品权限 *\n" +
                     "<b>/resetinventory</b> = 清空你的物品栏。\n" +
+					"<b>/resetnickname</b> = 删除你的昵称。\n" +
                     "<b>/roleplay</b> （角色）= 开始扮演角色。*\n" +
                     "<b>/rolequit</b> （角色或俱乐部区域）= 停止扮演角色。*\n" +
                     "<b>/title1</b> （新称号）= 选择一个新的称号（从 A 到 D）。*\n" +
