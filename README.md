@@ -97,7 +97,7 @@ Changes for future version
 
 * New command: cname (custom name) to create a custom name, that can accept numbers and more letters than the official name ((maximum 20 characters, spaces included)
   - It will work only between UBC users and replace the official name in the profile
-  - To go back to a profile without custom name, use "None" as title (无 in Chinese version)
+  - To go back to a profile without custom name, use "None" as name (无 in Chinese version)
 * New command: resetnickname to erase your nickname
 * Added buttons in Club Card Builder to randomly change background and go back to default background
 * Added button in page 2 of Online Settings to go back to "Cozy Chalet" as default background when creating a new room
