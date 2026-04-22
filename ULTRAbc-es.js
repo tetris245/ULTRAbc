@@ -12390,10 +12390,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((length > 0) && (length < 21) && (custom.match(LS))) {
                 if (custom === "None") {
                     cname = "";
-                    infomsg("Custom name deleted")
+                    infomsg("Nombre personalizado eliminado");
                 } else {
                     cname = custom;
-                    infomsg("Custom name created or modified");        
+                     infomsg("Nombre personalizado creado o modificado");      
                 } 
                 M_MOANER_saveControls();
                 Player.OnlineSharedSettings.cname = cname;
@@ -12600,7 +12600,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((length > 0) && (length < 26) && (custom.match(LS))) {
                 if (custom === "None") {
                     ctitle = "";
-                    infomsg("Título personalizado eliminado")
+                    infomsg("Título personalizado eliminado");
                 } else {
                     ctitle = custom;
                     infomsg("Título personalizado creado o modificado");        
