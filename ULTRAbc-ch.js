@@ -12372,7 +12372,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((length > 0) && (length < 21) && (custom.match(LS))) {
                 if (custom === "无") {
                     cname = "";
-                    infomsg("Custom name deleted")
+                    infomsg("Custom name deleted");
                 } else {
                     cname = custom;
                     infomsg("Custom name created or modified");        
