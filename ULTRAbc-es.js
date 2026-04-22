@@ -15010,6 +15010,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'resetnickname',
+        Description: ": borra tu apodo.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "<b>Advertencia</b>: Perderás tu apodo. Confirma escribiendo: <b>/resetnickname yes</b>";
+                infomsg(msg);
+            } else if (args === "yes") {
+                Player.Nickname = null;
+                ServerAccountUpdate.QueueData({ Nickname: null });
+                let msg = "Logrado. Ya no tienes apodo.";
+                infomsg(msg);
+            }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'restrain',
         Description: "(objetivo): añade ataduras aleatorias.",
@@ -16495,6 +16511,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/maxstatistics</b> = maximiza las estadísticas.\n" +
                     "<b>/permission</b> (número) = cambia los permisos de objetos. *\n" +
                     "<b>/resetinventory</b> = borra el inventario.\n" +
+					"<b>/resetnickname</b> = borra tu apodo.\n" +
                     "<b>/roleplay</b> (rol) = inicia un modo de rol. *\n" +
                     "<b>/rolequit</b> (rol) = finaliza un modo de rol. *\n" +
                     "<b>/title1</b> (nuevo título) = elige un nuevo título (A-D). *\n" +
