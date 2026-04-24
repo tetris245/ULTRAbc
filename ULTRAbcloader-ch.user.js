@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc-ch
 // @namespace https://www.bondageprojects.com/
-// @version 5.9.1
+// @version 5.9.2
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
