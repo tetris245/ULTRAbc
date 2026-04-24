@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc-en
 // @namespace https://www.bondageprojects.com/
-// @version 5.9.1
+// @version 5.9.2
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -93,8 +93,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return;
     }
 
-    const UBCver = "5.9.1";
-    const UBCver0 = "5.9";
+    const UBCver = "5.9.2";
+    const UBCver0 = "5.9.1";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
