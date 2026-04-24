@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.9.1
+Most recent version: 5.9.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.1/ULTRAbc-en-v5.9.1.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.2/ULTRAbc-en-v5.9.2.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.1/ULTRAbc-ch-v5.9.1.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.2/ULTRAbc-ch-v5.9.2.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.1/ULTRAbc-es-v5.9.1.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.2/ULTRAbc-es-v5.9.2.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -95,14 +95,6 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: cname (custom name) to create a custom name, that can accept numbers and more letters than the official name (maximum 20 characters, spaces included)
-  - It will work only between UBC users and replace the official name in the profile
-  - To go back to a profile without custom name, use "None" as name (无 in Chinese version)
-* New command: resetnickname to erase your nickname
-* Added buttons in Club Card Builder to randomly change background and go back to default background
-* Added button in page 2 of Online Settings to go back to "Cozy Chalet" as default background when creating a new room
-* Refactored the InformationSheetRun function to use smaller functions that can more easily be modified
-* Extended the display of custom titles (created with the ctitle command) to info screen that does not use the Days Only parameter
-* Removed the bg4 command (all its options are now available as buttons or hotkeys in the appropriate screens)
+(...)
 
 
