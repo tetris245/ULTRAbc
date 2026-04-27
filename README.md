@@ -95,6 +95,10 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Updated the lock and unlock commands:
+  - Added support for the Heart Lock (added by Likolisu's AFC mod)
+  - Removed support for the Portal Link Lock (as it can be applied only to a specific item)
+
+Made the metal lock as default lock when you don't specify the lock type or enter a wrong value
 
 
