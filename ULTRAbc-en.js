@@ -16583,6 +16583,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "10 Combination - 11 Safeword - 12 Password\n" +
                     "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
                     "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
+					"19 Family - 20 Lewd Crest - 21 Devious - 22 Heart\n" +
                     "Locks 21 and 22 can be removed by everybody only if players use a modified version of the DOGS or AFC mod.";
                 infomsg(msg);
             } else {
