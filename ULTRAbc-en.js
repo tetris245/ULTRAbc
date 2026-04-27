@@ -348,8 +348,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const petitems3 = ["CowtailStrap", "FoxTailStrap", "FoxTailsStrap", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "LargeBushyTail", "LargeFoxTail", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "RaccoonTailStrap", "TailStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"];
 
     //Locks
-    const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock", "DeviousPadlock", "PortalLinkPadlock"];
-
+    //Locks
+    const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock", "DeviousPadlock", "Heart Padlock"];
+	
     //Senses levels
     const blindLevels = [GetBlindLevel0, GetBlindLevel1, GetBlindLevel2, GetBlindLevel3];
     const blurLevels = [GetBlurLevel0, GetBlurLevel1, GetBlurLevel2, GetBlurLevel3, GetBlurLevel4];
@@ -13004,8 +13005,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
                     "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
                     "19 Family - 20 Lewd Crest - 21 Devious (if enabled)\n" +
-                    "22 Portal Link (only for specific item)\n" +
-                    "Locks 17, 18, 20 and 21 require a specific mod\n" +
+                    "22 Heart (if enabled)\n" +
+                    "Locks 17, 18, 20, 21 and 22 require a specific mod\n" +
                     "Use <b>/lock par</b> for info about other parameters";
                 infomsg(msg);
             } else if (args === "par") {
@@ -13015,7 +13016,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
                     "10080 minutes for locks 14, 15 and 18\n" +
                     "Use ? if you want a time randomly choosen by the game\n" +
-                    "Use the portal options to set the code of Portal Link lock\n" +
                     " \n" +
                     "Optional parameters:\n" +
                     "h to hide the timer,\n" +
@@ -13192,6 +13192,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         if (lk == 21) {
                                             target.Appearance[A].Property.LockedBy = "ExclusivePadlock";
                                             target.Appearance[A].Property.Name = "DeviousPadlock";
+                                        }
+										if (lk == 22) {
+                                            target.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
+                                            target.Appearance[A].Property.Name = "Heart Padlock";
                                         }
                                     }
                                 }
@@ -16579,9 +16583,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "10 Combination - 11 Safeword - 12 Password\n" +
                     "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
                     "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
-                    "19 Family - 20 Lewd Crest - 21 Devious \n" +
-                    "22 Portal Link\n" +
-                    "Lock 21 can be removed only if players use a modified version of the DOGS mod.";
+                    "Locks 21 and 22 can be removed by everybody only if players use a modified version of the DOGS or AFC mod.";
                 infomsg(msg);
             } else {
                 let uw = 0;
@@ -16627,7 +16629,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (!CommonIsNumeric(lk)) lk = 1;
                             if ((lk < 1) || (lk > 22)) lk = 1;
                             let Lock = locks[lk];
-                            if ((lk != 4) && (lk != 17) && (lk != 18) && (lk != 20) && (lk != 21)) CharacterReleaseFromLock(target, Lock);
+                            if ((lk != 4) && (lk != 17) && (lk != 18) && (lk != 20) && (lk != 21) && (lk != 22)) CharacterReleaseFromLock(target, Lock);
                             if (lk == 4) {
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if ((target.Appearance[A].Property != null) &&
@@ -16660,6 +16662,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     if ((target.Appearance[A].Property != null) &&
                                         (target.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
                                         (target.Appearance[A].Property.Name == "DeviousPadlock"))
+                                        InventoryUnlock(target, target.Appearance[A]);
+                            }
+							if (lk == 22) {
+                                for (let A = 0; A < target.Appearance.length; A++)
+                                    if ((target.Appearance[A].Property != null) &&
+                                        (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                        (target.Appearance[A].Property.Name == "Heart Padlock"))
                                         InventoryUnlock(target, target.Appearance[A]);
                             }
                         }
