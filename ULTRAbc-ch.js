@@ -348,9 +348,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const petitems3 = ["CowtailStrap", "FoxTailStrap", "FoxTailsStrap", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "LargeBushyTail", "LargeFoxTail", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "RaccoonTailStrap", "TailStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"];
 
     //Locks
-    const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock", "DeviousPadlock", "PortalLinkPadlock"];
-
-    //Senses levels
+	const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock", "DeviousPadlock", "Heart Padlock"];	
+    
+	//Senses levels
     const blindLevels = [GetBlindLevel0, GetBlindLevel1, GetBlindLevel2, GetBlindLevel3];
     const blurLevels = [GetBlurLevel0, GetBlurLevel1, GetBlurLevel2, GetBlurLevel3, GetBlurLevel4];
     const deafLevels = [GetDeafLevel0, GetDeafLevel1, GetDeafLevel2, GetDeafLevel3, GetDeafLevel4, GetDeafLevel5];
@@ -12994,9 +12994,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "10 组合 - 11 安全词 - 12 密码\n" +
                     "13 女主人计时器 - 14 爱人计时器 - 15 主人计时器\n" +
                     "16 计时器密码 - 17 最好的朋友 - 18 好友计时器\n" +
-                    "19 家族 - 20 色欲纹章 - 21 Devious（如果启用）\n" +
-                    "22 传送链接（仅用于特定物品）\n" +
-                    "锁 17、18、20 和 21 需要特定的模组\n" +
+                    "19 家族 - 20 色欲纹章 - 21 邪恶（如果启用）\n" +
+                    "22 心 (如果启用)\n" +
+                    "锁 17、18、20, 21 和 22 需要特定的模组\n" +
                     "使用 <b>/lock par</b> 获取有关其他参数的信息";
                 infomsg(msg);
             } else if (args === "par") {
@@ -13006,7 +13006,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "最长时间 = 锁 13 和 16 为 240 分钟，\n" +
                     "锁 14、15 和 18 为 10080 分钟\n" +
                     "如果你想让游戏随机选择时间，使用 ?\n" +
-                    "使用传送选项来设置传送链接锁的代码\n" +
                     " \n" +
                     "可选参数：\n" +
                     "h 隐藏计时器，\n" +
@@ -13183,6 +13182,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         if (lk == 21) {
                                             target.Appearance[A].Property.LockedBy = "ExclusivePadlock";
                                             target.Appearance[A].Property.Name = "DeviousPadlock";
+                                        }
+										if (lk == 22) {
+                                            target.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
+                                            target.Appearance[A].Property.Name = "Heart Padlock";
                                         }
                                     }
                                 }
@@ -16595,9 +16598,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "10 组合 - 11 安全词 - 12 密码\n" +
                     "13 女主人计时器 - 14 爱人计时器 - 15 主人计时器\n" +
                     "16 计时器密码 - 17 好友 - 18 好友计时器\n" +
-                    "19 家族 - 20 淫纹 - 21 邪恶\n" +
-                    "22 传送门链接\n" +
+                    "19 家族 - 20 淫纹 - 21 邪恶 - 22 心\n" +
                     "锁 21 仅在使用修改版本的 DOGS 模组时才能移除。";
+				    "锁 21 和 22 仅在使用修改版本的 DOGS 或 AFC 模组时才能移除。\n" +
                 infomsg(msg);
             } else {
                 let uw = 0;
@@ -16643,7 +16646,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (!CommonIsNumeric(lk)) lk = 1;
                             if ((lk < 1) || (lk > 22)) lk = 1;
                             let Lock = locks[lk];
-                            if ((lk != 4) && (lk != 17) && (lk != 18) && (lk != 20) && (lk != 21)) CharacterReleaseFromLock(target, Lock);
+                            if ((lk != 4) && (lk != 17) && (lk != 18) && (lk != 20) && (lk != 21) && (lk != 22)) CharacterReleaseFromLock(target, Lock);
                             if (lk == 4) {
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if ((target.Appearance[A].Property != null) &&
@@ -16676,6 +16679,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     if ((target.Appearance[A].Property != null) &&
                                         (target.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
                                         (target.Appearance[A].Property.Name == "DeviousPadlock"))
+                                        InventoryUnlock(target, target.Appearance[A]);
+                            }
+							if (lk == 22) {
+                                for (let A = 0; A < target.Appearance.length; A++)
+                                    if ((target.Appearance[A].Property != null) &&
+                                        (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                        (target.Appearance[A].Property.Name == "Heart Padlock"))
                                         InventoryUnlock(target, target.Appearance[A]);
                             }
                         }
