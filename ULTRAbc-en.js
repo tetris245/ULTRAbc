@@ -11611,6 +11611,75 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'autoheart',
+        Description: "(vibe level) (orgasm mode) (lock time): puts heart locks on yourself and configures them.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The autoheart command must be followed by 3 numbers for vibe level, orgasm mode and lock time.\n" +
+                    "Note that the heart lock requires a specific mod\n" +
+                    " \n" +
+                    "Available vibe levels:\n" +
+                    "0 = Off - 1 = Low - 2 = Medium - 3 = High \n" +
+                    "Available orgasm modes:\n" +
+                    "0 = Normal - 1 = Edge - 2 = Deny\n" +
+                    "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.";
+                 infomsg(msg);
+             } else {
+                 let stringheart1 = args;
+                 let stringheart2 = stringheart1.split(/[ ,]+/);
+                 let vlh = stringheart2[0];
+                 let omh = stringheart2[1];
+                 let lth = stringheart2[2];        
+                 if ((vlh > -1) && (vlh < 4) && (omh > -1) && (omh < 3) && (lth > -1)) {
+                     let level = "";
+                     let Lock = "Heart Padlock";
+                     let mn = Player.MemberNumber;
+                     let mode = "";
+                     let time = 0;
+                     if (vlh == 0) level = "off";
+                     if (vlh == 1) level = "low";
+                     if (vlh == 2) level = "medium";
+                     if (vlh == 3) level = "high";
+                     if (omh == 0) mode = "normal";
+                     if (omh == 1) mode = "edge";
+                     if (omh == 2) mode = "deny";
+                     if (lth == 0) time = null;
+                     if (lth != 0) time = CurrentTime + (lth * 3600000);
+                     let msg = "Magical lasers make appear locks on " + tmpname + "'s body.";
+                     targetMessage(Mlock, msg, 1);
+                     for (let A = 0; A < Player.Appearance.length; A++)
+                         if (Player.Appearance[A].Asset.AllowLock == true) {
+                             if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                                 InventoryLock(Player, Player.Appearance[A], Lock, mn);
+                                 Player.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
+                                 Player.Appearance[A].Property.Name = "Heart Padlock";
+                                 let p = Player.HeartLock.padlocks;
+                                 let Group = Player.Appearance[A].Asset.Group.Name; 
+                                 let value =  {
+                                     owner: mn,
+                                     ownerName: Player.Nickname || Player.Name,
+                                     lockedAt: new Date().toISOString(),
+                                     note: '',
+                                     unlockTime: time, 
+                                     vibe: level, 
+                                     orgasmMode: mode,
+                                 };
+                                 p[Group] = value;
+                             }
+                         }
+                } 
+                ChatRoomCharacterUpdate(Player);
+                let data = JSON.parse(JSON.stringify(Player.HeartLock));
+                ServerSend('ChatRoomChat', {
+                    Type: 'Hidden', Content: 'HeartLockSync',
+                    Dictionary: [{ Tag: 'HeartLockData', Data: data }],
+                });
+                ServerPlayerExtensionSettingsSync('HeartLock');
+           }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'autokick',
         Description: ": toggles on auto kick for 0 day old accounts.",
@@ -16306,6 +16375,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "bondage") {
                 let msg = "Bondage commands - * = more info when using\n" +
+					"<b>/autoheart</b> = puts heart locks on yourself and configures them. *.\n" +
                     "<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n" +
                     "<b>/lock</b> = adds locks on all lockable items. *.\n" +
                     "<b>/outfit</b> = restores/saves/loads outfit (including restraints). *\n" +
