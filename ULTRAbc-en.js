@@ -11617,7 +11617,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The autoheart command must be followed by 3 numbers for vibe level, orgasm mode and lock time.\n" +
-                    "Note that the heart lock requires a specific mod\n" +
+                    "Note that the heart lock requires a specific mod.\n" +
                     " \n" +
                     "Available vibe levels:\n" +
                     "0 = Off - 1 = Low - 2 = Medium - 3 = High \n" +
