@@ -11629,7 +11629,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                      if (omh == 2) mode = "deny";
                      if (lth == 0) time = null;
                      if (lth != 0) time = CurrentTime + (lth * 3600000);
-                     let msg = "Magical lasers make appear locks on " + tmpname + "'s body.";
+                     let msg = "魔法激光使锁出现在 " + tmpname + " 的身上。";
                      targetMessage(Mlock, msg, 1);
                      for (let A = 0; A < Player.Appearance.length; A++)
                          if (Player.Appearance[A].Asset.AllowLock == true) {
