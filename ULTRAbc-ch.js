@@ -11594,6 +11594,75 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'autoheart',
+        Description: "(vibe level) (orgasm mode) (lock time): puts heart locks on yourself and configures them.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The autoheart command must be followed by 3 numbers for vibe level, orgasm mode and lock time.\n" +
+                    "Note that the heart lock requires a specific mod.\n" +
+                    " \n" +
+                    "Available vibe levels:\n" +
+                    "0 關閉 - 1 低 - 2 中 - 3 中 \n" +
+                    "Available orgasm modes:\n" +
+                    "0 正常 - 1 邊緣 - 2 拒絕 \n" +
+                    "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.";
+                 infomsg(msg);
+             } else {
+                 let stringheart1 = args;
+                 let stringheart2 = stringheart1.split(/[ ,]+/);
+                 let vlh = stringheart2[0];
+                 let omh = stringheart2[1];
+                 let lth = stringheart2[2];        
+                 if ((vlh > -1) && (vlh < 4) && (omh > -1) && (omh < 3) && (lth > -1)) {
+                     let level = "";
+                     let Lock = "Heart Padlock";
+                     let mn = Player.MemberNumber;
+                     let mode = "";
+                     let time = 0;
+                     if (vlh == 0) level = "off";
+                     if (vlh == 1) level = "low";
+                     if (vlh == 2) level = "medium";
+                     if (vlh == 3) level = "high";
+                     if (omh == 0) mode = "normal";
+                     if (omh == 1) mode = "edge";
+                     if (omh == 2) mode = "deny";
+                     if (lth == 0) time = null;
+                     if (lth != 0) time = CurrentTime + (lth * 3600000);
+                     let msg = "Magical lasers make appear locks on " + tmpname + "'s body.";
+                     targetMessage(Mlock, msg, 1);
+                     for (let A = 0; A < Player.Appearance.length; A++)
+                         if (Player.Appearance[A].Asset.AllowLock == true) {
+                             if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                                 InventoryLock(Player, Player.Appearance[A], Lock, mn);
+                                 Player.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
+                                 Player.Appearance[A].Property.Name = "Heart Padlock";
+                                 let p = Player.HeartLock.padlocks;
+                                 let Group = Player.Appearance[A].Asset.Group.Name; 
+                                 let value =  {
+                                     owner: mn,
+                                     ownerName: Player.Nickname || Player.Name,
+                                     lockedAt: new Date().toISOString(),
+                                     note: '',
+                                     unlockTime: time, 
+                                     vibe: level, 
+                                     orgasmMode: mode,
+                                 };
+                                 p[Group] = value;
+                             }
+                         }
+                } 
+                ChatRoomCharacterUpdate(Player);
+                let data = JSON.parse(JSON.stringify(Player.HeartLock));
+                ServerSend('ChatRoomChat', {
+                    Type: 'Hidden', Content: 'HeartLockSync',
+                    Dictionary: [{ Tag: 'HeartLockData', Data: data }],
+                });
+                ServerPlayerExtensionSettingsSync('HeartLock');
+           }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'autokick',
         Description: "：切换自动踢出 0 天账户。",
@@ -16322,6 +16391,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "bondage") {
                 let msg = "束缚命令 - * = 使用时获取更多信息\n" +
+					"<b>/autoheart</b> = puts heart locks on yourself and configures them. *.\n" +
                     "<b>/hint</b> （目标）（提示）= 为所有带密码的锁添加或更改提示。\n" +
                     "<b>/lock</b> = 为所有可锁定物品添加锁。*。\n" +
                     "<b>/outfit</b> = 恢复/保存/加载服装（包括束缚）。*\n" +
