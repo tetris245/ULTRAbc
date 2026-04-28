@@ -95,10 +95,9 @@ All else I might not have included.
 
 Changes for future version
 
-* Updated the lock and unlock commands:
-  - Added support for the Heart Lock (added by Likolisu's AFC mod)
-  - Removed support for the Portal Link Lock (as it can be applied only to a specific item)
+* New command: autoheart (vibe level) (orgasm mode) (lock time) to apply Heart Locks on yourself and configure them
+  - Note: This lock requires the Likolisu's AFC mod (see https://github.com/awdrrawd/liko-Plugin-Repository and search for Abundantia Florum ─Chromatica)
+* Updated the lock and unlock commands: Added support for the Heart Lock and removed support for the Portal Link Lock (as it can be applied only to a specific item)
 
-Made the metal lock as default lock when you don't specify the lock type or enter a wrong value
 
 
