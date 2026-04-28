@@ -11615,6 +11615,75 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
+        Tag: 'autoheart',
+        Description: "(nivel de vibración) (modo orgasmo) (tiempo de bloqueo): te pone candados de corazón y los configura.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "El comando autoheart debe ir seguido de 3 números para el nivel de vibración, el modo orgasmo y el tiempo de bloqueo.\n" +
+                    "Tenga en cuenta que el candado del corazón requiere un mod específico.\n" +
+                    " \n" +
+                    "Niveles de vibración disponibles:\n" +
+                    "0 = Apagado - 1 = Bajo - 2 = Medio - 3 = Alto \n" +
+                    "Modos de orgasmo disponibles:\n" +
+                    "0 = Normal - 1 = Al Límite (Edge) - 2 = Denegar\n" +
+                    "El tiempo se expresa en horas. El mínimo es 1 hora. Use 0 para tiempo ilimitado.";
+                 infomsg(msg);
+             } else {
+                 let stringheart1 = args;
+                 let stringheart2 = stringheart1.split(/[ ,]+/);
+                 let vlh = stringheart2[0];
+                 let omh = stringheart2[1];
+                 let lth = stringheart2[2];        
+                 if ((vlh > -1) && (vlh < 4) && (omh > -1) && (omh < 3) && (lth > -1)) {
+                     let level = "";
+                     let Lock = "Heart Padlock";
+                     let mn = Player.MemberNumber;
+                     let mode = "";
+                     let time = 0;
+                     if (vlh == 0) level = "off";
+                     if (vlh == 1) level = "low";
+                     if (vlh == 2) level = "medium";
+                     if (vlh == 3) level = "high";
+                     if (omh == 0) mode = "normal";
+                     if (omh == 1) mode = "edge";
+                     if (omh == 2) mode = "deny";
+                     if (lth == 0) time = null;
+                     if (lth != 0) time = CurrentTime + (lth * 3600000);
+                     let msg = "Láseres mágicos hacen aparecer candados en el cuerpo de " + tmpname + ".";
+                     targetMessage(Mlock, msg, 1);
+                     for (let A = 0; A < Player.Appearance.length; A++)
+                         if (Player.Appearance[A].Asset.AllowLock == true) {
+                             if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                                 InventoryLock(Player, Player.Appearance[A], Lock, mn);
+                                 Player.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
+                                 Player.Appearance[A].Property.Name = "Heart Padlock";
+                                 let p = Player.HeartLock.padlocks;
+                                 let Group = Player.Appearance[A].Asset.Group.Name; 
+                                 let value =  {
+                                     owner: mn,
+                                     ownerName: Player.Nickname || Player.Name,
+                                     lockedAt: new Date().toISOString(),
+                                     note: '',
+                                     unlockTime: time, 
+                                     vibe: level, 
+                                     orgasmMode: mode,
+                                 };
+                                 p[Group] = value;
+                             }
+                         }
+                } 
+                ChatRoomCharacterUpdate(Player);
+                let data = JSON.parse(JSON.stringify(Player.HeartLock));
+                ServerSend('ChatRoomChat', {
+                    Type: 'Hidden', Content: 'HeartLockSync',
+                    Dictionary: [{ Tag: 'HeartLockData', Data: data }],
+                });
+                ServerPlayerExtensionSettingsSync('HeartLock');
+           }
+        }
+    }])
+
+    CommandCombine([{
         Tag: 'autokick',
         Description: ": alterna la expulsión automática (auto kick) para cuentas de 0 días de antigüedad.",
         Action: () => {
@@ -16300,6 +16369,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "bondage") {
                 let msg = "Comandos de Restricción - * = más info al usar\n" +
+					"<b>/autoheart</b> = te pone candados de corazón y los configura. *.\n" +
                     "<b>/hint</b> (objetivo) (pista) = añade o cambia una pista para los candados con contraseña.\n" +
                     "<b>/lock</b> = añade candados a todos los objetos bloqueables. *.\n" +
                     "<b>/outfit</b> = restaura/guarda/carga vestimenta (incluyendo accesorios). *\n" +
