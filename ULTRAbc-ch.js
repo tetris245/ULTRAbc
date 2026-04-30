@@ -11613,7 +11613,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  let stringheart2 = stringheart1.split(/[ ,]+/);
                  let vlh = stringheart2[0];
                  let omh = stringheart2[1];
-                 let lth = stringheart2[2];        
+                 let lth = stringheart2[2];  
+                 let heart = 0;      
                  if ((vlh > -1) && (vlh < 4) && (omh > -1) && (omh < 3) && (lth > -1)) {
                      let level = "";
                      let Lock = "Heart Padlock";
@@ -11629,36 +11630,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                      if (omh == 2) mode = "deny";
                      if (lth == 0) time = null;
                      if (lth != 0) time = CurrentTime + (lth * 3600000);
-                     let msg = "魔法激光使锁出现在 " + tmpname + " 的身上。";
-                     targetMessage(Mlock, msg, 1);
                      for (let A = 0; A < Player.Appearance.length; A++)
                          if (Player.Appearance[A].Asset.AllowLock == true) {
                              if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
                                  InventoryLock(Player, Player.Appearance[A], Lock, mn);
                                  Player.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
                                  Player.Appearance[A].Property.Name = "Heart Padlock";
-                                 let p = Player.HeartLock.padlocks;
-                                 let Group = Player.Appearance[A].Asset.Group.Name; 
-                                 let value =  {
-                                     owner: mn,
-                                     ownerName: Player.Nickname || Player.Name,
-                                     lockedAt: new Date().toISOString(),
-                                     note: '',
-                                     unlockTime: time, 
-                                     vibe: level, 
-                                     orgasmMode: mode,
-                                 };
-                                 p[Group] = value;
+                                 if (Player.HeartLock != undefined) {
+                                     heart = heart + 1;
+                                     let p = Player.HeartLock.padlocks;
+                                     let Group = Player.Appearance[A].Asset.Group.Name; 
+                                     let value =  {
+                                         owner: mn,
+                                         ownerName: Player.Nickname || Player.Name,
+                                         lockedAt: new Date().toISOString(),
+                                         note: '',
+                                         unlockTime: time, 
+                                         vibe: level, 
+                                         orgasmMode: mode,
+                                     };
+                                     p[Group] = value;
+                                 }
                              }
                          }
                 } 
-                ChatRoomCharacterUpdate(Player);
-                let data = JSON.parse(JSON.stringify(Player.HeartLock));
-                ServerSend('ChatRoomChat', {
-                    Type: 'Hidden', Content: 'HeartLockSync',
-                    Dictionary: [{ Tag: 'HeartLockData', Data: data }],
-                });
-                ServerPlayerExtensionSettingsSync('HeartLock');
+                if (heart != 0) {
+                    infomsg("Heart locks aopplied and configured.");
+                    ChatRoomCharacterUpdate(Player);
+                    let data = JSON.parse(JSON.stringify(Player.HeartLock));
+                    ServerSend('ChatRoomChat', {
+                        Type: 'Hidden', Content: 'HeartLockSync',
+                        Dictionary: [{ Tag: 'HeartLockData', Data: data }],
+                    });
+                    ServerPlayerExtensionSettingsSync('HeartLock');
+               }
            }
         }
     }])
