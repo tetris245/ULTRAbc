@@ -15110,6 +15110,71 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'setdevious',
+        Description: "(lock time) (anticheat): sets the time and the anticheat for all current devious locks on yourself.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "The setdevious command must be followed by two numbers for lock time and anticheat option.\n" +
+                    "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\n" +
+                    "For the anticheat option, use 0 ( = disabled) or 1 ( = enabled).\n" +               
+                    "Note: the settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog."
+                infomsg(msg);
+            } else {
+                let stringdevious1 = args;
+                let stringdevious2 = stringdevious1.split(/[ ,]+/);
+                 let ltd = stringdevious2[0];
+                 let acd = stringdevious2[1];
+                 if ((ltd > -1) && (acd > -1) && (acd < 2)) {
+                     let anticheat = "";
+                     let mn = Player.MemberNumber; 
+                     let unlock = "";
+                     if (ltd == 0) unlock = undefined;
+                     if (acd == 0) anticheat = false;
+                     if (acd == 1) anticheat = true; 
+                     let devious = 0;       
+                     let DOGS = Player.ExtensionSettings.DOGS;
+                     if (DOGS) {
+                         let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
+                         if (DOGSdata.deviousPadlock.state == true) { 
+                             for (let A = 0; A < Player.Appearance.length; A++)
+                                 if ((Player.Appearance[A].Property != null) &&
+                                    (Player.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
+                                    (Player.Appearance[A].Property.Name == "DeviousPadlock")) { 
+                                     devious = devious + 1;                 
+                                     let p = DOGSdata.deviousPadlock.itemGroups;
+                                     let Group = Player.Appearance[A].Asset.Group.Name; 
+                                     let q = p[Group].item;
+                                     if (ltd != 0) {
+                                         let date = new Date().toISOString();
+                                         let currentDate = new Date(date);
+                                         currentDate.setHours(currentDate.getHours() + (1 * ltd));
+                                         unlock = currentDate.toISOString(); 
+                                     }
+                                     let value =  {
+                                         item: q,
+                                         memberNumbers: [],
+                                         minimumRole: 0,
+                                         note: "",
+                                         owner: mn,
+                                         preventCheatCommands: anticheat,
+                                         unlockTime: unlock, 
+                                    };
+                                      DOGSdata.deviousPadlock.itemGroups[Group] = value;                                
+                                }
+                            if (devious != 0) {
+                                infomsg("Settings for your devious locks have been updated."); 
+                                ChatRoomCharacterUpdate(Player);       
+                                Player.ExtensionSettings.DOGS = LZString.compressToBase64(JSON.stringify(DOGSdata));              
+                                ServerPlayerExtensionSettingsSync('DOGS');
+                          }
+                      }
+                   } 
+               }
+           }
+        }
+    }])
+
     CommandCombine([{
         Tag: 'sfchaste',
         Description: "（型号）（前护罩）（后护罩）（防篡改）（高潮模式）：更改穿戴的未来贞操带的设置。",
@@ -16403,6 +16468,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/pet</b> （目标）= 成为完全受束缚的宠物。\n" +
                     "<b>/randomize</b> （目标）= 裸体 + 内衣 + 服装 + 束缚命令。\n" +
                     "<b>/restrain</b> （目标）= 添加随机束缚。\n" +
+					"<b>/setdevious</b> = configures all your current devious locks. *\n" +
                     "<b>/solidity</b> （数值）（目标）= 更改当前大多数束缚的坚固度。数值必须在 1 到 99 之间。\n" +
                     "<b>/spin</b> （目标）（选项）= 访问任何命运之轮，即使隐藏的。*\n" +
                     "<b>/weaken</b> = 削弱你所有的技能一小时。";
