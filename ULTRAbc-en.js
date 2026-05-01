@@ -15123,7 +15123,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "The setdevious command must be followed by two numbers for lock time and anticheat option.\n" +
                     "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\n" +
                     "For the anticheat option, use 0 ( = disabled) or 1 ( = enabled).\n" +               
-                    "Note: the settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog."
+                    "Note: the settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog.\n" +
+				    "It is recommended to make this full relog immediately after correct execution of this command to preserve the updated data.";
                 infomsg(msg);
             } else {
                 let stringdevious1 = args;
@@ -15168,7 +15169,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     DOGSdata.deviousPadlock.itemGroups[Group] = value;                                
                                 }
                             if (devious != 0) {
-                                infomsg("Settings for your devious locks have been updated."); 
+                                infomsg("Settings for your devious locks have been updated. Please make now a full relog to preserve the updated data!"); 
                                 ChatRoomCharacterUpdate(Player);       
                                 Player.ExtensionSettings.DOGS = LZString.compressToBase64(JSON.stringify(DOGSdata));              
                                 ServerPlayerExtensionSettingsSync('DOGS');
