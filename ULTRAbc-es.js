@@ -11616,10 +11616,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	 CommandCombine([{
         Tag: 'autoheart',
-        Description: "(nivel de vibración) (modo orgasmo) (tiempo de bloqueo): te pone candados de corazón y los configura.",
+        Description: "(nivel de vibración) (modo orgasmo) (tiempo de candado): te pone candados de corazón y los configura.",
         Action: (args) => {
             if (args === "") {
-                let msg = "El comando autoheart debe ir seguido de 3 números para el nivel de vibración, el modo orgasmo y el tiempo de bloqueo.\n" +
+                let msg = "El comando autoheart debe ir seguido de 3 números para el nivel de vibración, el modo orgasmo y el tiempo de candado.\n" +
                     "Tenga en cuenta que el candado del corazón requiere un mod específico.\n" +
                     " \n" +
                     "Niveles de vibración disponibles:\n" +
