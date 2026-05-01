@@ -15153,8 +15153,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                      if (ltd != 0) {
                                          let date = new Date().toISOString();
                                          let currentDate = new Date(date);
-                                     currentDate.setHours(currentDate.getHours() + (1 * ltd));
-                                         unlock = currentDate.toISOString();
+                                         currentDate.setHours(currentDate.getHours() + (1 * ltd));
+                                         unlock = currentDate.toISOString(); 
                                      }
                                      let value =  {
                                          item: q,
