@@ -15164,9 +15164,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                          owner: mn,
                                          preventCheatCommands: anticheat,
                                          unlockTime: unlock, 
-                                    };
-                                      DOGSdata.deviousPadlock.itemGroups[Group] = value;                                
-                                }
+                                     };  
+                                     DOGSdata.deviousPadlock.itemGroups[Group] = value;                                
+                                }        
                             if (devious != 0) {
                                 infomsg("Settings for your devious locks have been updated."); 
                                 ChatRoomCharacterUpdate(Player);       
