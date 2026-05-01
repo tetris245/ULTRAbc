@@ -97,7 +97,7 @@ Changes for future version
 
 * New command: autoheart (vibe level) (orgasm mode) (lock time) to apply Heart Locks on yourself and configure them
   - Note: This lock requires the Likolisu's AFC mod (see https://github.com/awdrrawd/liko-Plugin-Repository and search for Abundantia Florum ─Chromatica)
-* New command: setdevious (lock time) (anticheat) to set the time and the anticheat for all current devious locks on yourself.
+* New command: setdevious (lock time) (anticheat) to set the time and the anticheat for all current Devious locks on yourself.
   - Note: The settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog.
 * Updated the lock and unlock commands: Added support for the Heart Lock and removed support for the Portal Link Lock (as it can be applied only to a specific item)
 
