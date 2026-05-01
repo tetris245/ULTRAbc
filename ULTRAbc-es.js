@@ -14582,7 +14582,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             let msg = umsg1 + tgpname + umsg2;
                             infomsg(msg);
                         } else {
-                                                        if (pose == "armsfree") {
+                            if (pose == "armsfree") {
                                 if ((target.ActivePose != 'BaseUpper') &&
                                     (PoseCanChangeUnaided(target, 'BaseUpper'))) {
                                     PoseSetActive(target, "BaseUpper");
@@ -15117,7 +15117,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "El comando setdevious debe ir seguido de dos números para el tiempo de candado y la opción antitrampas.\n" +
                     "El tiempo se expresa en horas. El mínimo es 1 hora. Use 0 para tiempo ilimitado.\n" +
                     "Para la opción antitrampas, use 0 (= desactivado) o 1 (= activado).\n" +               
-                    "Nota: la configuración no se reflejará automáticamente en la interfaz de DOGS; solo la verá después de reiniciar sesión por completo."
+                    "Nota: la configuración no se reflejará automáticamente en la interfaz de DOGS; solo la verá después de reiniciar sesión por completo.\n" +
+					"Se recomienda reiniciar la sesión por completo inmediatamente después de ejecutar correctamente este comando para conservar los datos actualizados.";
                 infomsg(msg);
             } else {
                 let stringdevious1 = args;
@@ -15162,7 +15163,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     DOGSdata.deviousPadlock.itemGroups[Group] = value;                                
                                 }
                             if (devious != 0) {
-                                infomsg("Se han actualizado los ajustes de tus devious candados."); 
+                                infomsg("Se han actualizado los ajustes de tus devious candados. ¡Por favor, reinicie la sesión por completo para conservar los datos actualizados!"); 
                                 ChatRoomCharacterUpdate(Player);       
                                 Player.ExtensionSettings.DOGS = LZString.compressToBase64(JSON.stringify(DOGSdata));              
                                 ServerPlayerExtensionSettingsSync('DOGS');
