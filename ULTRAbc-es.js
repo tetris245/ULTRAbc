@@ -15109,6 +15109,71 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'setdevious',
+        Description: "(tiempo de candado) (antitrampas): establece el tiempo y el sistema antitrampas para todos los candados devious actuales que tengas instalados.",
+        Action: (args) => {
+            if (args === "") {
+                let msg = "El comando setdevious debe ir seguido de dos números para el tiempo de candado y la opción antitrampas.\n" +
+                    "El tiempo se expresa en horas. El mínimo es 1 hora. Use 0 para tiempo ilimitado.\n" +
+                    "Para la opción antitrampas, use 0 (= desactivado) o 1 (= activado).\n" +               
+                    "Nota: la configuración no se reflejará automáticamente en la interfaz de DOGS; solo la verá después de reiniciar sesión por completo."
+                infomsg(msg);
+            } else {
+                let stringdevious1 = args;
+                let stringdevious2 = stringdevious1.split(/[ ,]+/);
+                let ltd = stringdevious2[0];
+                let acd = stringdevious2[1];
+                if ((ltd > -1) && (acd > -1) && (acd < 2)) {
+                    let anticheat = "";
+                    let mn = Player.MemberNumber; 
+                    let unlock = "";
+                    if (ltd == 0) unlock = undefined;
+                    if (acd == 0) anticheat = false;
+                    if (acd == 1) anticheat = true; 
+                    let devious = 0;       
+                    let DOGS = Player.ExtensionSettings.DOGS;
+                    if (DOGS) {
+                        let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
+                        if (DOGSdata.deviousPadlock.state == true) { 
+                            for (let A = 0; A < Player.Appearance.length; A++)
+                                if ((Player.Appearance[A].Property != null) &&
+                                    (Player.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
+                                    (Player.Appearance[A].Property.Name == "DeviousPadlock")) { 
+                                    devious = devious + 1;                 
+                                    let p = DOGSdata.deviousPadlock.itemGroups;
+                                    let Group = Player.Appearance[A].Asset.Group.Name; 
+                                    let q = p[Group].item;
+                                    if (ltd != 0) {
+                                        let date = new Date().toISOString();
+                                        let currentDate = new Date(date);
+                                        currentDate.setHours(currentDate.getHours() + (1 * ltd));
+                                        unlock = currentDate.toISOString(); 
+                                    }
+                                    let value =  {
+                                        item: q,
+                                        memberNumbers: [],
+                                        minimumRole: 0,
+                                        note: "",
+                                        owner: mn,
+                                        preventCheatCommands: anticheat,
+                                        unlockTime: unlock, 
+                                    };
+                                    DOGSdata.deviousPadlock.itemGroups[Group] = value;                                
+                                }
+                            if (devious != 0) {
+                                infomsg("Se han actualizado los ajustes de tus devious candados."); 
+                                ChatRoomCharacterUpdate(Player);       
+                                Player.ExtensionSettings.DOGS = LZString.compressToBase64(JSON.stringify(DOGSdata));              
+                                ServerPlayerExtensionSettingsSync('DOGS');
+                            }
+                        }
+                    }  
+                }
+            }
+        }    
+    }])
+
     CommandCombine([{
         Tag: 'sfchaste',
         Description: "(modelo) (escudo frontal) (escudo trasero) (protección de manipulación) (modo orgasmo): cambia los ajustes del Cinturón de Castidad Futurista equipado.",
@@ -16381,6 +16446,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/pet</b> (objetivo) = aplica restricciones totales de estado 'mascota'.\n" +
                     "<b>/randomize</b> (objetivo) = aplica una combinación aleatoria de ropa y restricciones.\n" +
                     "<b>/restrain</b> (objetivo) = añade restricciones aleatorias.\n" +
+					"<b>/setdevious</b> = configura todos tus candados devious actuales. *\n" +
                     "<b>/solidity</b> (valor) (objetivo) = cambia la resistencia de las ataduras actuales (1-99).\n" +
                     "<b>/spin</b> (objetivo) (opción) = acceso a ruedas de la fortuna. *\n" +
                     "<b>/weaken</b> = debilita las habilidades por una hora.";
