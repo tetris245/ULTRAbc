@@ -11663,9 +11663,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  let heart = 0; 
 				 if ((!CommonIsNumeric(lth)) && (lth == "?")) {   
                      const Result = [];
-                     let Roll = Math.floor(Math.random() * 24);
+                     let Roll =  Math.floor(Math.random() * 24) + 1;
                      Result.push(Roll);
-                     if (Result < 1) Result = 1;
                      lth = Result; 
                  }
                  if ((vlh > -1) && (vlh < 4) && (omh > -1) && (omh < 3) && (lth > -1)) {
@@ -15170,9 +15169,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let acd = stringdevious2[1];
 				if ((!CommonIsNumeric(ltd)) && (ltd == "?")) {   
                      const Result = [];
-                     let Roll = Math.floor(Math.random() * 24);
+                     let Roll =  Math.floor(Math.random() * 24) + 1;
                      Result.push(Roll);
-                     if (Result < 1) Result = 1;
                      ltd = Result; 
                  }
                 if ((ltd > -1) && (acd > -1) && (acd < 2)) {
