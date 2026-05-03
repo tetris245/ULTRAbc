@@ -12836,8 +12836,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         ChatRoomSendLocal("Locked with " + Lock);
                                         ChatRoomSendLocal("" + asset + " = " + left + "");
                                     }
-                                }
-                            }
+								    if ((Inventory.Property.Name == "Heart Padlock") && (Player.HeartLock.padlocks[Target].unlockTime != null)) {
+                                        Lock = "心锁";
+                                        asset = Inventory.Asset.Description;
+                                        time = Player.HeartLock.padlocks[Target].unlockTime; 
+                                        left = TimerToString(time - CurrentTime);
+                                        ChatRoomSendLocal("AssetGroup = " + Target);
+                                        ChatRoomSendLocal("Locked with " + Lock);
+                                        ChatRoomSendLocal("" + asset + " = " + left + "");
+                                    }
+                                    if (Inventory.Property.Name == "DeviousPadlock") {
+                                        let DOGS = Player.ExtensionSettings.DOGS;
+                                        let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
+                                        if (DOGSdata.deviousPadlock.itemGroups[Target].unlockTime != undefined) {
+                                            Lock = "邪恶锁";
+                                            asset = Inventory.Asset.Description;
+                                            time = DOGSdata.deviousPadlock.itemGroups[Target].unlockTime ;
+                                            time = new Date(time);
+                                            left = TimerToString(time - CurrentTime);
+                                            ChatRoomSendLocal("AssetGroup = " + Target);
+                                            ChatRoomSendLocal("Locked with " + Lock);
+                                            ChatRoomSendLocal("" + asset + " = " + left + "");
+                                        }
+                                    }
+							    }		
+                            } 
                             DialogLeave();
                         }
                     }
