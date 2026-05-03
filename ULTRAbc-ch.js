@@ -108,6 +108,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let kp = 0;
     let altchsh = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
+	let lastAnimationUpdate;
 
     let tmpname;
     let pronoun1;
@@ -138,6 +139,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let alfmenu = false;
     let alfrpsk = false;
     let animal = 0;
+	let animstate = 0;
     let bgall = false;
     let bl = 0;
     let blindness = 0;
@@ -570,6 +572,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         alfmenu = false;
         alfrpsk = false;
         animal = 0;
+		animstate = 0;
         asylumlimit = false;
         autojoin = false;
         bgall = false;
@@ -690,6 +693,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         alfmenu = data.alfmenu;
         alfrpsk = data.alfrpsk;
         animal = data.animal * 1;
+		animstate = data.animstate * 1;
         asylumlimit = data.asylumlimit;
         autojoin = data.autojoin;
         bgall = data.bgall;
@@ -868,6 +872,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "alfmenu": alfmenu,
             "alfrpsk": alfrpsk,
             "animal": animal,
+			"animstate": animstate,
             "bgall": bgall,
             "bl": bl,
             "ccards": ccards,
@@ -1020,6 +1025,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (alfmenu == null || alfmenu == undefined) alfmenu = false;
                 if (alfrpsk == null || alfrpsk == undefined) alfrpsk = false;
                 if (animal == null || animal == undefined) animal = 0;
+				if (animstate == null || animstate == undefined) animstate = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;
                 if (autojoin == null || autojoin == undefined) autojoin = false;
                 if (bgall == null || bgall == undefined) bgall = false;
@@ -1189,6 +1195,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 alfmenu: false,
                 alfrpsk: false,
                 animal: 0,
+				animstate: 0,
                 asylumlimit: false,
                 autojoin: false,
                 bgall: false,
@@ -2479,6 +2486,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			
             PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
+				addMenuInput(200, "Control item animation (0-2):", "animstate", "InputAnimControl",
+                    "Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation)",65
                 let pmsg = "默认情况下，当你非常兴奋并可能达到高潮时，BC 会添加消息和粉色效果。如果你不喜欢这样，这个 UBC 设置会让你满意！注意：当检测到 LSCG Splatter 功能启用时不可用";
                 let spl = 0;
                 let LSCG = Player.ExtensionSettings.LSCG;
@@ -2531,25 +2540,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCVisualExit = function() {
+                let astate = ElementValue("InputAnimControl");
                 let blmode = ElementValue("InputBlindnessMode");
                 let brmode = ElementValue("InputBlurMode");
                 let regex = /^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i;
                 let ttcolor = ElementValue("InputTintColor");
                 let ttlevel = ElementValue("InputTintLevel");
-                if ((CommonIsNumeric(blmode)) && (blmode > -1) && (blmode < 5) &&
+                if ((CommonIsNumeric(astate)) && (astate > -1) && (astate < 3) &&
+                    (CommonIsNumeric(blmode)) && (blmode > -1) && (blmode < 5) &&
                     (CommonIsNumeric(brmode)) && (brmode > -1) && (brmode < 6) &&
                     (CommonIsNumeric(ttlevel)) && (ttlevel > -1) && (ttlevel < 4) &&
                     (ttcolor.startsWith("#")) && (ttcolor.match(regex))) {
+                    Player.UBC.ubcSettings.animstate = astate;
                     Player.UBC.ubcSettings.blindness = blmode;
                     Player.UBC.ubcSettings.blurmode = brmode;
                     Player.UBC.ubcSettings.tintcolor = ttcolor;
                     Player.UBC.ubcSettings.tintlevel = ttlevel;
+                    ElementRemove("InputAnimControl");
                     ElementRemove("InputBlindnessMode");
                     ElementRemove("InputBlurMode");
                     ElementRemove("InputTintColor");
                     ElementRemove("InputTintLevel");
                     defaultExit();
-                } else PreferenceMessage = "请输入有效的数字";
+                } else PreferenceMessage = "Put a valid number";
             }
 
             function keyHandler(e) {
@@ -2582,6 +2595,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //ModSDK Functions
     ULTRAActivityChatRoomArousalSync();
+	ULTRAAnimationRequestDraw();
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceClick();
@@ -5068,6 +5082,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Vision
+    function ULTRAAnimationRequestDraw(C) {
+        modApi.hookFunction('AnimationRequestDraw', 4, (args, next) => {
+            if (animstate == 2) return;
+            if (animstate == 1) {      
+                if ((CommonTime() - lastAnimationUpdate) < 500) {
+                    return;
+                } else {
+                    lastAnimationUpdate = CommonTime();
+                }
+            }
+            return next(args);     
+        });
+    }
+	
     function ULTRAArcadeRun() {
         modApi.hookFunction('ArcadeRun', 4, (args, next) => {
             TintsEffect();
