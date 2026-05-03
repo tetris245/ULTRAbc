@@ -11654,7 +11654,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "0 = Apagado - 1 = Bajo - 2 = Medio - 3 = Alto \n" +
                     "Modos de orgasmo disponibles:\n" +
                     "0 = Normal - 1 = Al Límite (Edge) - 2 = Denegar\n" +
-                    "El tiempo se expresa en horas. El mínimo es 1 hora. Use 0 para tiempo ilimitado.";
+                    "El tiempo se expresa en horas. El mínimo es 1 hora. Use 0 para tiempo ilimitado.\n" +
+					"Usa ? si quieres un tiempo elegido al azar por el juego (entre 1 y 720 horas)." ;
                  infomsg(msg);
              } else {
                  let stringheart1 = args;
@@ -11662,7 +11663,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  let vlh = stringheart2[0];
                  let omh = stringheart2[1];
                  let lth = stringheart2[2];  
-                 let heart = 0;      
+                 let heart = 0; 
+				 if ((!CommonIsNumeric(lth)) && (lth == "?")) {   
+                     const Result = [];
+                     let Roll =  Math.floor(Math.random() * 720) + 1;
+                     Result.push(Roll);
+                     lth = Result; 
+                 }
                  if ((vlh > -1) && (vlh < 4) && (omh > -1) && (omh < 3) && (lth > -1)) {
                      let level = "";
                      let Lock = "Heart Padlock";
@@ -15144,6 +15151,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "El comando setdevious debe ir seguido de dos números para el tiempo de candado y la opción antitrampas.\n" +
                     "El tiempo se expresa en horas. El mínimo es 1 hora. Use 0 para tiempo ilimitado.\n" +
+					"Usa ? si quieres un tiempo elegido al azar por el juego (entre 1 y 720 horas).\n" +
                     "Para la opción antitrampas, use 0 (= desactivado) o 1 (= activado).\n" +               
                     "Nota: la configuración no se reflejará automáticamente en la interfaz de DOGS; solo la verá después de reiniciar sesión por completo.\n" +
 					"Se recomienda reiniciar la sesión por completo inmediatamente después de ejecutar correctamente este comando para conservar los datos actualizados.";
@@ -15153,6 +15161,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringdevious2 = stringdevious1.split(/[ ,]+/);
                 let ltd = stringdevious2[0];
                 let acd = stringdevious2[1];
+				if ((!CommonIsNumeric(ltd)) && (ltd == "?")) {   
+                     const Result = [];
+                     let Roll =  Math.floor(Math.random() * 720) + 1;
+                     Result.push(Roll);                
+                     ltd = Result; 
+                 }
                 if ((ltd > -1) && (acd > -1) && (acd < 2)) {
                     let anticheat = "";
                     let mn = Player.MemberNumber; 
