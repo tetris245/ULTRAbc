@@ -101,7 +101,8 @@ Changes for future version
   - This lock requires the Likolisu's AFC mod (see https://github.com/awdrrawd/liko-Plugin-Repository and search for Abundantia Florum ─Chromatica), available in her PCM mod manager
 * New command: setdevious (lock time) (anticheat) to set the time and the anticheat for all current Devious locks on yourself.
   - The settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog, that is recommended immediately after correct execution of this command to preserve the updated data
-* Updated the lock and unlock commands: Added support for the Heart Lock and removed support for the Portal Link Lock (as it can be applied only to a specific item)
+* Updated the infolock command: extended it to the Devious locks and Heart locks with timer
+* Updated the lock and unlock commands: added support for the Heart Lock and removed support for the Portal Link Lock (as it can be applied only to a specific item)
 
 
 
