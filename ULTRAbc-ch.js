@@ -11635,7 +11635,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Available orgasm modes:\n" +
                     "0 正常 - 1 邊緣 - 2 拒絕 \n" +        
                     "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\n" +
-                    "Use ? if you want a time randomly choosen by the game (between 1 and 24 hours).";
+                    "Use ? if you want a time randomly choosen by the game (between 1 and 720 hours).";
                  infomsg(msg);
              } else {
                  let stringheart1 = args;
@@ -11646,7 +11646,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  let heart = 0;
 				 if ((!CommonIsNumeric(lth)) && (lth == "?")) {   
                      const Result = [];
-                     let Roll =  Math.floor(Math.random() * 24) + 1;
+                     let Roll =  Math.floor(Math.random() * 720) + 1;
                      Result.push(Roll);
                      lth = Result; 
                  }
@@ -15152,7 +15152,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "") {
                 let msg = "The setdevious command must be followed by two numbers for lock time and anticheat option.\n" +
                     "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\n" +	
-                    "Use ? if you want a time randomly choosen by the game (between 1 and 24 hours).\n" +
+                    "Use ? if you want a time randomly choosen by the game (between 1 and 720 hours).\n" +
                     "For the anticheat option, use 0 ( = disabled) or 1 ( = enabled).\n" +               
                     "Note: the settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog.\n" +
                     "It is recommended to make this full relog immediately after correct execution of this command to preserve the updated data.";
@@ -15164,7 +15164,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let acd = stringdevious2[1];
 				if ((!CommonIsNumeric(ltd)) && (ltd == "?")) {   
                      const Result = [];
-                     let Roll =  Math.floor(Math.random() * 24) + 1;
+                     let Roll =  Math.floor(Math.random() * 720) + 1;
                      Result.push(Roll);                
                      ltd = Result; 
                 }
