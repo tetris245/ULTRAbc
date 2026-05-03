@@ -11650,8 +11650,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Available vibe levels:\n" +
                     "0 = Off - 1 = Low - 2 = Medium - 3 = High \n" +
                     "Available orgasm modes:\n" +
-                    "0 = Normal - 1 = Edge - 2 = Deny\n" +
-                    "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.";
+                    "0 = Normal - 1 = Edge - 2 = Deny\n" +       
+                    "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\n" +
+                    "Use ? if you want a time randomly choosen by the game (between 1 and 24 hours).";
                  infomsg(msg);
              } else {
                  let stringheart1 = args;
@@ -11659,7 +11660,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                  let vlh = stringheart2[0];
                  let omh = stringheart2[1];
                  let lth = stringheart2[2];  
-                 let heart = 0;      
+                 let heart = 0; 
+				 if ((!CommonIsNumeric(lth)) && (lth == "?")) {   
+                     const Result = [];
+                     let Roll = Math.floor(Math.random() * 24);
+                     Result.push(Roll);
+                     if (Result < 1) Result = 1;
+                     lth = Result; 
+                 }
                  if ((vlh > -1) && (vlh < 4) && (omh > -1) && (omh < 3) && (lth > -1)) {
                      let level = "";
                      let Lock = "Heart Padlock";
@@ -15149,7 +15157,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The setdevious command must be followed by two numbers for lock time and anticheat option.\n" +
-                    "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\n" +
+                    "The time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\n" +		
+                    "Use ? if you want a time randomly choosen by the game (between 1 and 24 hours).\n" +
                     "For the anticheat option, use 0 ( = disabled) or 1 ( = enabled).\n" +               
                     "Note: the settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog.\n" +
 				    "It is recommended to make this full relog immediately after correct execution of this command to preserve the updated data.";
@@ -15159,6 +15168,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringdevious2 = stringdevious1.split(/[ ,]+/);
                 let ltd = stringdevious2[0];
                 let acd = stringdevious2[1];
+				if ((!CommonIsNumeric(ltd)) && (ltd == "?")) {   
+                     const Result = [];
+                     let Roll = Math.floor(Math.random() * 24);
+                     Result.push(Roll);
+                     if (Result < 1) Result = 1;
+                     ltd = Result; 
+                 }
                 if ((ltd > -1) && (acd > -1) && (acd < 2)) {
                     let anticheat = "";
                     let mn = Player.MemberNumber; 
