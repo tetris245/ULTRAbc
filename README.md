@@ -98,10 +98,9 @@ Changes for future version
 * New option in GUI - Visual to control animation integrated in some items (it can be: No control - Partial control: 2 updates per second - Full control: no animation)
   - It is based on the similar feature available in ELA mod (https://github.com/Eddiidev/ELA)
 * New command: autoheart (vibe level) (orgasm mode) (lock time) to apply Heart Locks on yourself and configure them
-  - Note: This lock requires the Likolisu's AFC mod (see https://github.com/awdrrawd/liko-Plugin-Repository and search for Abundantia Florum ─Chromatica)
+  - This lock requires the Likolisu's AFC mod (see https://github.com/awdrrawd/liko-Plugin-Repository and search for Abundantia Florum ─Chromatica), available in her PCM mod manager
 * New command: setdevious (lock time) (anticheat) to set the time and the anticheat for all current Devious locks on yourself.
-  - Note: The settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog
-  - It is recommended to make this full relog immediately after correct execution of this command to preserve the updated data
+  - The settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog, that is recommended immediately after correct execution of this command to preserve the updated data
 * Updated the lock and unlock commands: Added support for the Heart Lock and removed support for the Portal Link Lock (as it can be applied only to a specific item)
 
 
