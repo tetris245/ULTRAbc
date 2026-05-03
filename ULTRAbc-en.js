@@ -2487,8 +2487,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
 				addMenuInput(200, "Control item animation (0-2):", "animstate", "InputAnimControl",
-                    "Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation)",65
-                let pmsg = "By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled";
+                    "Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation). Important note: alteration of the item animation can lead in some cases to unexpected effects, such as graphical issues, bugs or discrepancies. Use it only if you're experiencing lagging problems.",65
+                );
+				let pmsg = "By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled";
                 let spl = 0;
                 let LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
