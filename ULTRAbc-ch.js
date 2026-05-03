@@ -2562,7 +2562,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputTintColor");
                     ElementRemove("InputTintLevel");
                     defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                } else PreferenceMessage = "请输入有效的数字";
             }
 
             function keyHandler(e) {
