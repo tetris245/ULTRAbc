@@ -76,6 +76,8 @@ Special thanks to Firefly for giving permission to integrate the BC-Diaper-Wette
 
 Special thanks to Myrhanda and Kimei for giving permission to integrate the Moaner script.
 
+Special thanks to Eddii for giving permission to use a feature of his ELA mod (https://github.com/Eddiidev/ELA).
+
 Thanks to lillyBC for providing ideas and inspiration with her bcTampermonkeys scripts.
 
 Thanks to wwwruomeng for the Chinese translation.
