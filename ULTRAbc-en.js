@@ -11708,7 +11708,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                          }
                 } 
                 if (heart != 0) {
-                    infomsg("Heart locks aopplied and configured.");
+                    infomsg("Heart locks applied and configured.");
                     ChatRoomCharacterUpdate(Player);
                     let data = JSON.parse(JSON.stringify(Player.HeartLock));
                     ServerSend('ChatRoomChat', {
