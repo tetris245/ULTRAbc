@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 5.9.2
+Most recent version: 6.0
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.2/ULTRAbc-en-v5.9.2.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.0.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.2/ULTRAbc-ch-v5.9.2.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.0.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v5.9.2/ULTRAbc-es-v5.9.2.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.0.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -97,16 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New option in GUI - Visual to control animation integrated in some items (it can be: No control - Partial control: 2 updates per second - Full control: no animation)
-  - It is based on the similar feature available in ELA mod (https://github.com/Eddiidev/ELA) created by Eddii.
-  - Use it only if you're experiencing lagging problems, as alteration of item animation can lead in some cases to graphical issues, bugs or discrepancies.
-* New command: autoheart (vibe level) (orgasm mode) (lock time) to apply Heart Locks on yourself and configure them
-  - This lock requires the Likolisu's AFC mod (see https://github.com/awdrrawd/liko-Plugin-Repository and search for Abundantia Florum ─Chromatica), available in her PCM mod manager
-* New command: setdevious (lock time) (anticheat) to set the time and the anticheat for all current Devious locks on yourself.
-  - The settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog.
-  - It is recommended to make a full relog immediately after correct execution of this command to preserve the updated data.
-* Updated the infolock command: extended it to the Heart locks and Devious locks using a timer.
-* Updated the lock and unlock commands: added support for the Heart Lock and removed support for the Portal Link Lock (as it can be applied only to a specific item)
+(...)
 
 
 
