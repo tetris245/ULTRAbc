@@ -93,7 +93,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return;
     }
 
-    const UBCver = 6.0";
+    const UBCver = "6.0";
     const UBCver0 = "5.9.2";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
