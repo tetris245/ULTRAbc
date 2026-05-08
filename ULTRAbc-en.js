@@ -8008,7 +8008,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                       DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
                   }
             }
-        currentY += spacing;
+            currentY += spacing;
+		}	
 	    if (C.MemberNumber != null) {
 		    DrawTextFit(TextGet("MemberNumber") + " " + C.MemberNumber.toString(), 550, currentY, 450, "Black", "Gray");
 		    currentY += spacing;
