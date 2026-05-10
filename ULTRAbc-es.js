@@ -7801,8 +7801,9 @@
         return deafLevel;
     }
 
-    //Information Sheet
+	//Information Sheet
     function AltInformationSheetRun() {
+        if (!InformationSheetSelection) return;
         InformationSheetBackground = ifname;
         TintsEffect();
         const C = InformationSheetSelection;
@@ -7823,19 +7824,19 @@
             currentY = InformationSheetDrawOwnerInfo(C, currentY);
             currentY = 800;
             currentY = InformationSheetDrawOnlinePlayerInfo(C, currentY);
-        } 
+        }
         InformationSheetDrawButtons(C);
         MainCanvas.textAlign = "left";
         if (InformationSheetSecondScreen) return InformationSheetSecondScreenRun();
         InformationSheetDrawLoverInfo(C);
         if (C.IsNpc()) {
-		    InformationSheetDrawNPCOwnerAndTraits(C);
-	    }
-	    MainCanvas.textAlign = "center";
+            InformationSheetDrawNPCOwnerAndTraits(C);
+        }
+        MainCanvas.textAlign = "center";
     }
 
     function Altrpsk() {
-        var C = InformationSheetSelection;
+        const C = InformationSheetSelection;
         if (C.IsPlayer() || C.IsOnline()) {
             const lineHeight = 55;
             const x = 1000;
@@ -7951,7 +7952,8 @@
     }
 
     function DaysClick() {
-        var C = InformationSheetSelection;
+        if (!InformationSheetSelection) return;
+        const C = InformationSheetSelection;
         if (MouseIn(1815, 75, 90, 90)) InformationSheetExit();
         if (C.IsPlayer()) {
             if (MouseIn(1815, 190, 90, 90) && !TitleIsForced(TitleGet(C))) CommonSetScreen("Character", "Title");
@@ -7967,108 +7969,116 @@
         }
     }
 
-	function InformationSheetDrawBaseInfo(C) {
-		const CurrentTitle = TitleGet(C);
+    function InformationSheetDrawBaseInfo(C) {
+        const CurrentTitle = TitleGet(C);
         const spacing = 55;
-	    const spacingLarge = 75;
-	    let currentY = 125;
-	    if (C.OnlineSharedSettings.cname != undefined) {
-             if (C.OnlineSharedSettings.cname != "") {
-                  DrawTextFit(TextGet("Name") + " " + C.OnlineSharedSettings.cname, 550, currentY, 450, "Black", "Gray"); 
-             } else {
-	           DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
-             }
-         } else {
-             DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
-         }
-	    currentY += spacing;
-	    if (C.Name !== CharacterNickname(C)) {
-	        DrawTextFit(TextGet("Nickname") + " " + CharacterNickname(C), 550, currentY, 450, "Black", "Gray");
-		    currentY += spacing;
-	    }
-	    if (C.OnlineSharedSettings.ctitle != undefined){
-            if (C.OnlineSharedSettings.ctitle != "") {
-                DrawTextFit(TextGet("Title") + " " + C.OnlineSharedSettings.ctitle, 550, currentY, 450, "#0000BF", "Black", "Gray"); 
+        const spacingLarge = 75;
+        let currentY = 125;
+        if (C.OnlineSharedSettings != undefined) {
+            if (C.OnlineSharedSettings.cname != undefined) {
+                if (C.OnlineSharedSettings.cname != "") {
+                    DrawTextFit(TextGet("Name") + " " + C.OnlineSharedSettings.cname, 550, currentY, 450, "Black", "Gray");
+                } else {
+                    DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+                }
+            } else {
+                DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+            }
+        } else {
+            DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+        }
+        currentY += spacing;
+        if (C.Name !== CharacterNickname(C)) {
+            DrawTextFit(TextGet("Nickname") + " " + CharacterNickname(C), 550, currentY, 450, "Black", "Gray");
+            currentY += spacing;
+        }
+        if (C.OnlineSharedSettings != undefined) {
+            if (C.OnlineSharedSettings.ctitle != undefined) {
+                if (C.OnlineSharedSettings.ctitle != "") {
+                    DrawTextFit(TextGet("Title") + " " + C.OnlineSharedSettings.ctitle, 550, currentY, 450, "#0000BF", "Black", "Gray");
+                } else {
+                    if (CurrentTitle != "None") {
+                        DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
+                    }
+                }
             } else {
                 if (CurrentTitle != "None") {
                     DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
                 }
             }
-        } else {
-            if (CurrentTitle != "None") {
-                DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
-            }
+            currentY += spacing;
         }
-        currentY += spacing;
-	    if (C.MemberNumber != null) {
-		    DrawTextFit(TextGet("MemberNumber") + " " + C.MemberNumber.toString(), 550, currentY, 450, "Black", "Gray");
-		    currentY += spacing;
-	    }
-	    DrawTextFit(TextGet("Pronouns") + " " + CharacterPronounDescription(C), 550, currentY, 450, "Black", "Gray");
+        if (C.MemberNumber != null) {
+            DrawTextFit(TextGet("MemberNumber") + " " + C.MemberNumber.toString(), 550, currentY, 450, "Black", "Gray");
+            currentY += spacing;
+        }
+        DrawTextFit(TextGet("Pronouns") + " " + CharacterPronounDescription(C), 550, currentY, 450, "Black", "Gray");
         currentY += spacingLarge;
-	    return currentY;
+        return currentY;
     }
 
     function InformationSheetDrawButtons(C) {
         MainCanvas.textAlign = "center";
-	    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");	
-	    if (C.IsPlayer()) {
-	        const CurrentTitle = TitleGet(C);
-		    if (!TitleIsForced(CurrentTitle)) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Title.png");
-		    DrawButton(1815, 305, 90, 90, "", "White", "Icons/Preference.png");
-		    DrawButton(1815, 420, 90, 90, "", "White", "Icons/FriendList.png");
-		    DrawButton(1815, 535, 90, 90, "", "White", "Icons/Introduction.png");
-		    if (C.HasOwnerNotes())
-		        DrawButton(1715, 535, 90, 90, "", "White", "Icons/Management.png");
-            if (!window.BCX_Loaded) {
-                DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
-            } else {
-                DrawButton(1815, 800, 90, 90, "", "White", "Icons/Next.png");
-            }
+        DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+        if (C.IsPlayer()) {
+            const CurrentTitle = TitleGet(C);
+            if (!TitleIsForced(CurrentTitle)) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Title.png");
+            DrawButton(1815, 305, 90, 90, "", "White", "Icons/Preference.png");
+            DrawButton(1815, 420, 90, 90, "", "White", "Icons/FriendList.png");
+            DrawButton(1815, 535, 90, 90, "", "White", "Icons/Introduction.png");
+            if (C.HasOwnerNotes())
+                DrawButton(1715, 535, 90, 90, "", "White", "Icons/Management.png");
             if (noifbuttons == false) {
-                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
-                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
-                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
+                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
+                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
             }
-	    } else if (C.IsOnline()) {
+        } else if (C.IsOnline()) {
             DrawButton(1815, 190, 90, 90, "", "White", "Icons/Introduction.png");
-		    if (C.HasOwnerNotes() || C.IsFullyOwnedByPlayer())
-	            DrawButton(1715, 190, 90, 90, "", "White", "Icons/Management.png");
-		    DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
-	    }
-   }
+            if (C.HasOwnerNotes() || C.IsFullyOwnedByPlayer())
+                DrawButton(1715, 190, 90, 90, "", "White", "Icons/Management.png");
+        }
+        if (C.IsNpc()) return;
+        if (!window.BCX_Loaded) {
+            DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
+        } else {
+            DrawButton(1815, 800, 90, 90, "", "White", "Icons/Next.png");
+        }
+    }
 
-   function InformationSheetDrawLoverInfo(C) {
-       const stageQualifier = Object.freeze({
-	       0: "Dating",
-		   1: "Engaged",
-		   2: "Married",
-	    });
-	    if ((C.IsPlayer() || C.IsOnline()) && C.GetLovership().length > 0) {
-		    DrawText(TextGet("Relationships"), 1200, 125, "Black", "Gray");
-		    const lovership = C.GetLovership();
-		    if (lovership.length < 1) DrawText(TextGet("None"), 1200, 200, "Black", "Gray");
-		    for (let [L, lover] of lovership.entries()) {
+    function InformationSheetDrawLoverInfo(C) {
+        const stageQualifier = Object.freeze({
+            0: "Dating",
+            1: "Engaged",
+            2: "Married",
+        });
+        if ((C.IsPlayer() || C.IsOnline()) && C.GetLovership().length > 0) {
+            DrawText(TextGet("Relationships"), 1200, 125, "Black", "Gray");
+            const lovership = C.GetLovership();
+            if (lovership.length < 1) DrawText(TextGet("None"), 1200, 200, "Black", "Gray");
+            for (let [L, lover] of lovership.entries()) {
+                const loveStart = lover.Start ?? 0;
+                const stageText = stageQualifier[lover.Stage ?? 0];
                 if (onlydays == false) {
-			        const stageText = stageQualifier[lover.Stage];
-			        const relationStageLabel = `${TextGet(`${stageText}With`)} ${lover.Name}${lover.MemberNumber ? ` (${lover.MemberNumber})` : ""}`;
-			        DrawTextFit(relationStageLabel, 1200, 200 + L * 150, 600, "Black", "Gray");
-			        const relationDurationLabel = `${TextGet("For")} ${CommonFormatDurationRange(CurrentTime, lover.Start, { showFull: true, includeYears: true, includeMonths: true, includeDays: true })}`;
-			        DrawTextFit(relationDurationLabel, 1200, 260 + L * 150, 600, "Black", "Gray");
-			        const hoverY = 260 + L * 150 - 20;
-			        if (MouseIn(1200, hoverY, 600, 40)) {
-			            const relationStartDate = new Date(lover.Start).toLocaleString(undefined, {
-			                dateStyle: "medium",
-				            timeStyle: "short",
-			            });
-			            const relationDurationLabelShort = CommonFormatDurationRange(CurrentTime, lover.Start, { showFull: true });
-			            DrawHoverElements.push(() => {
-			                DrawButtonHover(1200, hoverY, 450, 40, `${relationStartDate} - ${relationDurationLabelShort}`);
-			            });
-			        }
-		        }
+                    const relationStageLabel = `${TextGet(`${stageText}With`)} ${lover.Name}${lover.MemberNumber ? ` (${lover.MemberNumber})` : ""}`;
+                    DrawTextFit(relationStageLabel, 1200, 200 + L * 150, 600, "Black", "Gray");
+                    const relationDurationLabel = `${TextGet("For")} ${CommonFormatDurationRange(CurrentTime, loveStart, { showFull: true, includeYears: true, includeMonths: true, includeDays: true })}`;
+                    DrawTextFit(relationDurationLabel, 1200, 260 + L * 150, 600, "Black", "Gray");
+                    const hoverY = 260 + L * 150 - 20;
+                    if (MouseIn(1200, hoverY, 600, 40)) {
+                        const relationStartDate = new Date(loveStart).toLocaleString(undefined, {
+                            dateStyle: "medium",
+                            timeStyle: "short",
+                        });
+                        const relationDurationLabelShort = CommonFormatDurationRange(CurrentTime, loveStart, {
+                            showFull: true
+                        });
+                        DrawHoverElements.push(() => {
+                            DrawButtonHover(1200, hoverY, 450, 40, `${relationStartDate} - ${relationDurationLabelShort}`);
+                        });
+                    }
+                }
                 if (onlydays == true) {
-                    const stageText = stageQualifier[lover.Stage];
                     const loverNumber = lover.MemberNumber ? `(${lover.MemberNumber})` : "";
                     const relationshipDurationHover = CommonFormatDurationRange(CurrentTime, lover.Start, {
                         showFull: true,
@@ -8089,31 +8099,38 @@
                         });
                 }
             }
-	    } else if (C.IsNpc()) {
-		    InformationSheetDrawNPCLoverInfo(C);
-	    }
+        } else if (C.IsNpc()) {
+            InformationSheetDrawNPCLoverInfo(C);
+        }
     }
 
-	function InformationSheetDrawNPCInfo(C, currentY) {
+    function InformationSheetDrawNPCInfo(C, currentY) {
         const spacing = 55;
-	    const spacingLarge = 75;
-	    if (!C.IsNpc()) return currentY;
+        const spacingLarge = 75;
+        if (!C.IsNpc()) return currentY;
         if (onlydays == false) {
-	        const friendshipDate = NPCEventGet(C, "PrivateRoomEntry");
-	        const friendshipDurationFormatted = CommonFormatDurationRange(CurrentTime, friendshipDate, { showFull: true, includeYears: true, includeMonths: true, includeDays: true });
-	        const friendsFor = `${TextGet("FriendsFor")} ${friendshipDurationFormatted}`;
-	        DrawTextFit(friendsFor, 550, currentY, 450, "Black", "Gray");
-	        const y = currentY;
-	        if (MouseIn(550, y - 20, 450, 40)) {
-	            const friendshipStartDate = new Date(NPCEventGet(C, "PrivateRoomEntry")).toLocaleString(undefined, {
-		            dateStyle: "medium",
-			        timeStyle: "short",
-		        });
-		        const friendshipDayDuration = CommonFormatDurationRange(CurrentTime, friendshipDate, { showFull: true });
-		        DrawHoverElements.push(() => {
-			        DrawButtonHover(550, y - 20, 450, 40, `${friendshipStartDate} - ${friendshipDayDuration}`);
-		        });
-	        }
+            const friendshipDate = NPCEventGet(C, "PrivateRoomEntry");
+            const friendshipDurationFormatted = CommonFormatDurationRange(CurrentTime, friendshipDate, {
+                showFull: true,
+                includeYears: true,
+                includeMonths: true,
+                includeDays: true
+            });
+            const friendsFor = `${TextGet("FriendsFor")} ${friendshipDurationFormatted}`;
+            DrawTextFit(friendsFor, 550, currentY, 450, "Black", "Gray");
+            const y = currentY;
+            if (MouseIn(550, y - 20, 450, 40)) {
+                const friendshipStartDate = new Date(NPCEventGet(C, "PrivateRoomEntry")).toLocaleString(undefined, {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                });
+                const friendshipDayDuration = CommonFormatDurationRange(CurrentTime, friendshipDate, {
+                    showFull: true
+                });
+                DrawHoverElements.push(() => {
+                    DrawButtonHover(550, y - 20, 450, 40, `${friendshipStartDate} - ${friendshipDayDuration}`);
+                });
+            }
         }
         if (onlydays == true) {
             const friendshipDuration = CommonFormatDurationRange(CurrentTime, NPCEventGet(C, "PrivateRoomEntry"), {
@@ -8134,59 +8151,59 @@
                     DrawButtonHover(550, y - 20, 450, 40, friendshipStartDate);
                 });
         }
-	    currentY += spacing;
-	    let relationshipQualifier = "";
-	    if (C.Love >= 100) relationshipQualifier = "RelationshipPerfect";
-	    else if (C.Love >= 75) relationshipQualifier = "RelationshipGreat";
-	    else if (C.Love >= 50) relationshipQualifier = "RelationshipGood";
-	    else if (C.Love >= 25) relationshipQualifier = "RelationshipFair";
-	    else if (C.Love > -25) relationshipQualifier = "RelationshipNeutral";
-	    else if (C.Love > -50) relationshipQualifier = "RelationshipPoor";
-	    else if (C.Love > -75) relationshipQualifier = "RelationshipBad";
-	    else if (C.Love > -100) relationshipQualifier = "RelationshipHorrible";
-	    else relationshipQualifier = "RelationshipAtrocious";
-	    let loveLine = TextGet("Relationship") + " " + C.Love.toString() + " " + TextGet(relationshipQualifier);
-	    DrawTextFit(loveLine, 550, currentY, 450, "Black", "Gray");
-	    currentY += spacingLarge;
-	    return currentY;
+        currentY += spacing;
+        const Love = C.Love ?? 0;
+        let relationshipQualifier = "";
+        if (Love >= 100) relationshipQualifier = "RelationshipPerfect";
+        else if (Love >= 75) relationshipQualifier = "RelationshipGreat";
+        else if (Love >= 50) relationshipQualifier = "RelationshipGood";
+        else if (Love >= 25) relationshipQualifier = "RelationshipFair";
+        else if (Love > -25) relationshipQualifier = "RelationshipNeutral";
+        else if (Love > -50) relationshipQualifier = "RelationshipPoor";
+        else if (Love > -75) relationshipQualifier = "RelationshipBad";
+        else if (Love > -100) relationshipQualifier = "RelationshipHorrible";
+        else relationshipQualifier = "RelationshipAtrocious";
+        let loveLine = TextGet("Relationship") + " " + Love.toString() + " " + TextGet(relationshipQualifier);
+        DrawTextFit(loveLine, 550, currentY, 450, "Black", "Gray");
+        return currentY;
     }
 
-	function InformationSheetDrawNPCLoverInfo(C) {
+    function InformationSheetDrawNPCLoverInfo(C) {
         const spacing = 55;
-	    const stageQualifier = Object.freeze({
-	        0: "Dating",
-		    1: "Engaged",
-		    2: "Married",
-	    });
-	    let currentY = 275;
-	    const lovership = C.GetLovership();
-	    const playerLove = lovership.find(l => l.MemberNumber === Player.MemberNumber);
-	    if (!C.LoverName() && !playerLove) {
-		    DrawText(`${TextGet("Lover")} ${TextGet("None")}`, 550, currentY, "Black", "Gray");
-		    currentY += spacing;
-	    }
-	    if (playerLove) {
+        const stageQualifier = Object.freeze({
+            0: "Dating",
+            1: "Engaged",
+            2: "Married",
+        });
+        let currentY = 450;
+        const lovership = C.GetLovership();
+        const playerLove = lovership.find(l => l.MemberNumber === Player.MemberNumber);
+        if (!C.LoverName() && !playerLove) {
+            DrawText(`${TextGet("Lover")} ${TextGet("None")}`, 550, currentY, "Black", "Gray");
+            currentY += spacing;
+        }
+        if (playerLove) {
+            const stageText = stageQualifier[playerLove.Stage ?? 0];
+            const loveStart = playerLove.Start ?? 0;
             if (onlydays == false) {
-		        const stageText = stageQualifier[playerLove.Stage];
-		        const loverStageLabel = `${TextGet(`${stageText}With`)} ${C.LoverName()}`;
-		        DrawText(loverStageLabel, 550, currentY, "Black", "Gray");
-		        currentY += spacing;
-		        const loverDurationLabel = `${TextGet("For")} ${CommonFormatDurationRange(CurrentTime, playerLove.Start, { showFull: true, includeYears: true, includeMonths: true, includeDays: true })}`;
-		        DrawText(loverDurationLabel, 550, currentY, "Black", "Gray");
-		        const y = currentY - 20;
-		        if (MouseIn(550, y, 450, 40))
-		            DrawHoverElements.push(() => {
-		                const loverStartDate = new Date(playerLove.Start).toLocaleString(undefined, {
-			                dateStyle: "medium",
-				            timeStyle: "short",
-			            });
-			            const loverDurationTooltip = `${loverStartDate} - ${CommonFormatDurationRange(CurrentTime, playerLove.Start, { showFull: true })}`;
-			            DrawButtonHover(550, y, 450, 40, loverDurationTooltip);
-			        });
+                const loverStageLabel = `${TextGet(`${stageText}With`)} ${C.LoverName()}`;
+                DrawText(loverStageLabel, 550, currentY, "Black", "Gray");
+                currentY += spacing;
+                const loverDurationLabel = `${TextGet("For")} ${CommonFormatDurationRange(CurrentTime, loveStart, { showFull: true, includeYears: true, includeMonths: true, includeDays: true })}`;
+                DrawText(loverDurationLabel, 550, currentY, "Black", "Gray");
+                const y = currentY - 20;
+                if (MouseIn(550, y, 450, 40))
+                    DrawHoverElements.push(() => {
+                        const loverStartDate = new Date(loveStart).toLocaleString(undefined, {
+                            dateStyle: "medium",
+                            timeStyle: "short",
+                        });
+                        const loverDurationTooltip = `${loverStartDate} â€“ ${CommonFormatDurationRange(CurrentTime, loveStart, { showFull: true })}`;
+                        DrawButtonHover(550, y, 450, 40, loverDurationTooltip);
+                    });
                 currentY += spacing;
             }
             if (onlydays == true) {
-                const stageText = stageQualifier[playerLove.Stage];
                 const loverLine = `${TextGet(`${stageText}With`)} ${C.LoverName()}`;
                 const relationshipDuration = CommonFormatDurationRange(CurrentTime, playerLove.Start, {
                     showFull: true,
@@ -8206,40 +8223,47 @@
                     DrawHoverElements.push(() => {
                         DrawButtonHover(550, y, 450, 40, stageDurationHover);
                     });
-                currentY += spacing; 
+                currentY += spacing;
             }
-	    }
+        }
     }
 
-	function InformationSheetDrawNPCOwnerAndTraits(C) {
+    function InformationSheetDrawNPCOwnerAndTraits(C) {
         const spacing = 55;
-	    let currentY = 275;
-	    if (!C.IsNpc()) return;
-	    if (!C.IsOwned()) {
-	        DrawText(`${TextGet("Owner")} ${TextGet("None")}`, 550, currentY, "Black", "Gray");
-	        currentY += spacing;
-	    } else if (C.IsOwned()) {
+        let currentY = 500;
+        if (!C.IsNpc()) return;
+        if (!C.IsOwned()) {
+            DrawText(`${TextGet("Owner")} ${TextGet("None")}`, 550, currentY, "Black", "Gray");
+            currentY += spacing;
+        } else if (C.IsOwned()) {
             if (onlydays == false) {
-		        const ownedDate = C.OwnedSinceMs();
-		        const stageText = C.IsFullyOwned() ? "Collared" : "Trial";
-		        const ownedByLabel = `${TextGet(`${stageText}By`)} ${C.OwnerName()}`;
-		        DrawText(ownedByLabel, 550, currentY, "Black", "Gray");
-		        currentY += spacing;
-		        const ownedDurationFormatted = CommonFormatDurationRange(CurrentTime, ownedDate, { showFull: true, includeYears: true, includeMonths: true, includeDays: true });
-		        const ownedStageLabel = `${TextGet(`For`)} ${ownedDurationFormatted}`;
-		        DrawText(ownedStageLabel, 550, currentY, "Black", "Gray");
-		        const y = currentY - 20;
-		        if (MouseIn(550, y, 450, 40)) {
-		            const ownedStartDate = new Date(C.OwnedSinceMs()).toLocaleString(undefined, {
-		                dateStyle: "medium",
-			            timeStyle: "short",
-		            });
-		            const ownedDayDuration = CommonFormatDurationRange(CurrentTime, ownedDate, { showFull: true });
-		            DrawHoverElements.push(() => {
-	                    DrawButtonHover(550, y, 450, 40, `${ownedStartDate} - ${ownedDayDuration}`);
-		            });
-		        }
-		        currentY += spacing;
+                const ownedDate = C.OwnedSinceMs();
+                const stageText = C.IsFullyOwned() ? "Collared" : "Trial";
+                const ownedByLabel = `${TextGet(`${stageText}By`)} ${C.OwnerName()}`;
+                DrawText(ownedByLabel, 550, currentY, "Black", "Gray");
+                currentY += spacing;
+                const ownedDurationFormatted = CommonFormatDurationRange(CurrentTime, ownedDate, {
+                    showFull: true,
+                    includeYears: true,
+                    includeMonths: true,
+                    includeDays: true
+                });
+                const ownedStageLabel = `${TextGet(`For`)} ${ownedDurationFormatted}`;
+                DrawText(ownedStageLabel, 550, currentY, "Black", "Gray");
+                const y = currentY - 20;
+                if (MouseIn(550, y, 450, 40)) {
+                    const ownedStartDate = new Date(C.OwnedSinceMs()).toLocaleString(undefined, {
+                        dateStyle: "medium",
+                        timeStyle: "short",
+                    });
+                    const ownedDayDuration = CommonFormatDurationRange(CurrentTime, ownedDate, {
+                        showFull: true
+                    });
+                    DrawHoverElements.push(() => {
+                        DrawButtonHover(550, y, 450, 40, `${ownedStartDate} - ${ownedDayDuration}`);
+                    });
+                }
+                currentY += spacing;
             }
             if (onlydays == true) {
                 const stageText = C.IsFullyOwned() ? "Collared" : "Trial";
@@ -8264,58 +8288,64 @@
                         DrawButtonHover(550, y, 450, 40, joinedHoverLine);
                     });
                 currentY += spacing;
-           }
-	    }
-	    DrawText(TextGet("Trait"), 1000, 125, "Black", "Gray");
-	    if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 604800000) {
-		    let Pos = 0;
-		    for (let T = 0; T < C.Trait.length; T++)
-		        if ((C.Trait[T].Value != null) && (C.Trait[T].Value != 0)) {
-		            DrawText(TextGet("Trait" + ((C.Trait[T].Value > 0) ? C.Trait[T].Name : NPCTraitReverse(C.Trait[T].Name))) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? Math.abs(C.Trait[T].Value).toString() : "??"), 1000, 200 + Pos * 75, "Black", "Gray");
-			        Pos++;
-		        }
-	    } else DrawText(TextGet("TraitUnknown"), 1000, 200, "Black", "Gray");
+            }
+        }
+        DrawText(TextGet("Trait"), 1000, 125, "Black", "Gray");
+        if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 604800000) {
+            let Pos = 0;
+            for (const trait of C.Trait ?? []) {
+                DrawText(TextGet("Trait" + ((C.Trait[T].Value > 0) ? C.Trait[T].Name : NPCTraitReverse(C.Trait[T].Name))) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? Math.abs(C.Trait[T].Value).toString() : "??"), 1000, 200 + Pos * 75, "Black", "Gray");
+                Pos++;
+            }
+        } else DrawText(TextGet("TraitUnknown"), 1000, 200, "Black", "Gray");
     }
 
-	function InformationSheetDrawOnlinePlayerInfo(C, currentY) {
+    function InformationSheetDrawOnlinePlayerInfo(C, currentY) {
         const spacing = 55;
-	    if (!C.IsOnline()) return currentY;
-	    DrawTextFit(TextGet("AllowedInteractions"), 550, currentY, 450, "Black", "Gray");
-	    currentY += spacing;
-	    DrawTextFit(TextGet("AllowedInteraction" + C.AllowedInteractions.toString()), 550, currentY, 450, "Black", "Gray");
-	    currentY += spacing;
-	    return currentY;
+        if (!C.IsOnline()) return currentY;
+        DrawTextFit(TextGet("AllowedInteractions"), 550, currentY, 450, "Black", "Gray");
+        currentY += spacing;
+        DrawTextFit(TextGet("AllowedInteraction" + C.AllowedInteractions.toString()), 550, currentY, 450, "Black", "Gray");
+        currentY += spacing;
+        return currentY;
     }
 
-	function InformationSheetDrawOwnerInfo(C, currentY) {
+    function InformationSheetDrawOwnerInfo(C, currentY) {
         const spacing = 55;
-	    if (!C.IsOwned()) {
-	         DrawTextFit(TextGet("Unowned"), 550, currentY, 450, "Black", "Gray");
-		    currentY += spacing;
-	    } else if (C.IsOwned() && C.IsOwned() != "ggts") {
+        if (!C.IsOwned()) {
+            DrawTextFit(TextGet("Unowned"), 550, currentY, 450, "Black", "Gray");
+            currentY += spacing;
+        } else if (C.IsOwned() && C.IsOwned() != "ggts") {
             if (onlydays == false) {
-		        const stageText = C.IsFullyOwned() ? "Collared" : "Trial";
-		        const ownedDate = C.OwnedSinceMs();
-		        const ownerStageLabel = `${TextGet(`${stageText}By`)} ${C.OwnerName()}${C.OwnerNumber() !== -1 ? ` (${C.OwnerNumber()})` : ""}`;
-		        DrawTextFit(ownerStageLabel, 550, currentY, 450, "Black", "Gray");
-		        currentY += spacing;
-		        if (C.OwnedSinceMs() > 0) {
-		            const ownedDurationFormatted = CommonFormatDurationRange(CurrentTime, ownedDate, { showFull: true, includeYears: true, includeMonths: true, includeDays: true });
-		            const ownerDurationLabel = `${TextGet("For")} ${ownedDurationFormatted}`;
-		            DrawTextFit(ownerDurationLabel, 550, currentY, 450, "Black", "Gray");
-		            const y = currentY;
-		            if (MouseIn(550, y - 20, 450, 40)) {
-		                const ownedStartDate = new Date(C.OwnedSinceMs()).toLocaleString(undefined, {
-			                dateStyle: "medium",
-				            timeStyle: "short",
-			            });
-			            const ownedDayDuration = CommonFormatDurationRange(CurrentTime, ownedDate, { showFull: true });
-			            DrawHoverElements.push(() => {
-		                    DrawButtonHover(550, y - 20, 450, 40, `${ownedStartDate} - ${ownedDayDuration}`);
-			            });
-		            }
-		            currentY += spacing;
-	            }        
+                const stageText = C.IsFullyOwned() ? "Collared" : "Trial";
+                const ownedDate = C.OwnedSinceMs();
+                const ownerStageLabel = `${TextGet(`${stageText}By`)} ${C.OwnerName()}${C.OwnerNumber() !== -1 ? ` (${C.OwnerNumber()})` : ""}`;
+                DrawTextFit(ownerStageLabel, 550, currentY, 450, "Black", "Gray");
+                currentY += spacing;
+                if (C.OwnedSinceMs() > 0) {
+                    const ownedDurationFormatted = CommonFormatDurationRange(CurrentTime, ownedDate, {
+                        showFull: true,
+                        includeYears: true,
+                        includeMonths: true,
+                        includeDays: true
+                    });
+                    const ownerDurationLabel = `${TextGet("For")} ${ownedDurationFormatted}`;
+                    DrawTextFit(ownerDurationLabel, 550, currentY, 450, "Black", "Gray");
+                    const y = currentY;
+                    if (MouseIn(550, y - 20, 450, 40)) {
+                        const ownedStartDate = new Date(C.OwnedSinceMs()).toLocaleString(undefined, {
+                            dateStyle: "medium",
+                            timeStyle: "short",
+                        });
+                        const ownedDayDuration = CommonFormatDurationRange(CurrentTime, ownedDate, {
+                            showFull: true
+                        });
+                        DrawHoverElements.push(() => {
+                            DrawButtonHover(550, y - 20, 450, 40, `${ownedStartDate} - ${ownedDayDuration}`);
+                        });
+                    }
+                    currentY += spacing;
+                }
             }
             if (onlydays == true) {
                 const stageText = C.IsFullyOwned() ? "Collared" : "Trial";
@@ -8342,32 +8372,39 @@
                         });
                     currentY += spacing;
                 }
-           } 
-	    }
-	    return currentY;
+            }
+        }
+        return currentY;
     }
 
-	function InformationSheetDrawPlayerInfo(C, currentY) {
-	    const spacing = 55;
-	    const spacingLarge = 75;
-	    if ((C.IsPlayer() || C.IsOnline()) && C.Creation !== null) {
+    function InformationSheetDrawPlayerInfo(C, currentY) {
+        const spacing = 55;
+        const spacingLarge = 75;
+        if ((C.IsPlayer() || C.IsOnline()) && C.Creation !== undefined) {
             if (onlydays == false) {
                 const memberLabel = TextGet(C.IsBirthday() ? "Birthday" : "MemberFor");
-		        const creationFormatted = CommonFormatDurationRange(CurrentTime, C.Creation, { showFull: true, includeYears: true, includeMonths: true, includeDays: true });
-		        const memberForLabel = `${memberLabel} ${creationFormatted}`;
-		        DrawTextFit(memberForLabel, 550, currentY, 450, (C.IsBirthday() ? "Blue" : "Black"), "Gray");	
-		        const y = currentY;
-		        if (MouseIn(550, y - 20, 450, 40)) {
-		            const createdDate = new Date(C.Creation).toLocaleString(undefined, {
-		                dateStyle: "medium",
-			            timeStyle: "short",
-		            });
-		            const createdDayDuration = CommonFormatDurationRange(CurrentTime, C.Creation, { showFull: true });
-		            DrawHoverElements.push(() => {
-		                DrawButtonHover(550, y - 20, 450, 40, `${createdDate} - ${createdDayDuration}`);
-		            });
-	            }
-            } 
+                const creationFormatted = CommonFormatDurationRange(CurrentTime, C.Creation, {
+                    showFull: true,
+                    includeYears: true,
+                    includeMonths: true,
+                    includeDays: true
+                });
+                const memberForLabel = `${memberLabel} ${creationFormatted}`;
+                DrawTextFit(memberForLabel, 550, currentY, 450, (C.IsBirthday() ? "Blue" : "Black"), "Gray");
+                const y = currentY;
+                if (MouseIn(550, y - 20, 450, 40)) {
+                    const createdDate = new Date(C.Creation).toLocaleString(undefined, {
+                        dateStyle: "medium",
+                        timeStyle: "short",
+                    });
+                    const createdDayDuration = CommonFormatDurationRange(CurrentTime, C.Creation, {
+                        showFull: true
+                    });
+                    DrawHoverElements.push(() => {
+                        DrawButtonHover(550, y - 20, 450, 40, `${createdDate} - ${createdDayDuration}`);
+                    });
+                }
+            }
             if (onlydays == true) {
                 const clubStayDuration = CommonFormatDurationRange(CurrentTime, C.Creation, {
                     showFull: true,
@@ -8377,7 +8414,7 @@
                 });
                 const memberForLine = TextGet(C.IsBirthday() ? "Birthday" : "MemberFor") + " " + clubStayDuration;
                 const joinedDate = new Date(C.Creation).toLocaleString(undefined, {
-                    dateStyle: "medium",  
+                    dateStyle: "medium",
                     timeStyle: "short",
                 });
                 DrawTextFit(memberForLine, 550, currentY, 450, (C.IsBirthday() ? "Blue" : "Black"), "Gray");
@@ -8387,27 +8424,27 @@
                         DrawButtonHover(550, y - 20, 450, 40, joinedDate);
                     });
             }
-	        currentY += spacing;
-		    if (C.IsPlayer()) {
-	            let moneyLine = TextGet("Money") + " " + C.Money.toString() + " $";
-		        DrawTextFit(moneyLine, 550, currentY, 450, "Black", "Gray");
-		    }
-	    }
-	    currentY += spacingLarge;
-	    return currentY;
+            currentY += spacing;
+            if (C.IsPlayer()) {
+                let moneyLine = TextGet("Money") + " " + C.Money.toString() + " $";
+                DrawTextFit(moneyLine, 550, currentY, 450, "Black", "Gray");
+            }
+        }
+        currentY += spacingLarge;
+        return currentY;
     }
 
-	function InformationSheetGetDifficultyLine(C) {
-        let difficultyLine = `${TextGet("DifficultyLevel" + C.GetDifficulty())} ${TextGet("DifficultyTitle")}`;	
-	    if (C.IsPlayer()) {
-		    const MillisecondsPerDay = 86400000;
-		    const DifficultyChangeMaxDelay = 7;
-		    const LastChangeTime = typeof C.Difficulty?.LastChange === "number" ? C.Difficulty.LastChange : C.Creation;
-		    const DaysSinceLastChange = Math.floor((CurrentTime - LastChangeTime) / MillisecondsPerDay);
-		    const RemainingDays = DaysSinceLastChange >= DifficultyChangeMaxDelay ? 0 : DifficultyChangeMaxDelay - DaysSinceLastChange;
-		    difficultyLine += TextGet("DifficultyDaysTillCanChange").replace("NumberOfDays", RemainingDays.toString());
-	    }	
-	    return difficultyLine;
+    function InformationSheetGetDifficultyLine(C) {
+        let difficultyLine = `${TextGet("DifficultyLevel" + C.GetDifficulty())} ${TextGet("DifficultyTitle")}`;
+        if (C.IsPlayer()) {
+            const MillisecondsPerDay = 86400000;
+            const DifficultyChangeMaxDelay = 7;
+            const LastChangeTime = typeof C.Difficulty?.LastChange === "number" ? C.Difficulty.LastChange : C.Creation;
+            const DaysSinceLastChange = Math.floor((CurrentTime - LastChangeTime) / MillisecondsPerDay);
+            const RemainingDays = DaysSinceLastChange >= DifficultyChangeMaxDelay ? 0 : DifficultyChangeMaxDelay - DaysSinceLastChange;
+            difficultyLine += TextGet("DifficultyDaysTillCanChange").replace("NumberOfDays", RemainingDays.toString());
+        }
+        return difficultyLine;
     }
 
     //Locks
