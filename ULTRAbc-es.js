@@ -7354,7 +7354,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
                         ElementCreateSettingsLabel("Idioma", "chat-search-search-menu-room-language-dropdown"),
-
                         ElementCreateDropdown(
                             "chat-search-search-menu-room-language-dropdown",
                             [
