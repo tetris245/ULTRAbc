@@ -97,7 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Updated the ChatSearchCreateSearchMenu function
 
 
 
