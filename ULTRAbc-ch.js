@@ -7070,7 +7070,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("RoomType")),
+                        ElementCreateSettingsLabel(TextGet("RoomType"), "chat-search-search-menu-room-type-radio-group"),
                         ElementCreateRadioButtonGroup(
                             "chat-search-search-menu-room-type-radio-group",
                             (ev, key) => {
@@ -7145,7 +7145,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("Lobby")),
+                        ElementCreateSettingsLabel(TextGet("Lobby"), "chat-search-search-menu-room-lobby-radio-group"),
                         ElementCreateRadioButtonGroup(
                             "chat-search-search-menu-room-lobby-radio-group",
                             (ev, key) => {
@@ -7221,7 +7221,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("ShowFullRooms"), "left"),
+                        ElementCreateSettingsLabel(TextGet("ShowFullRooms"), "chat-search-search-menu-full-rooms-input", { position: "left" }),
                         ElementCheckbox.Create("chat-search-search-menu-full-rooms-input", function(ev) {
                             Player.ChatSearchSettings.FullRooms = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7241,7 +7241,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("ShowLockedRooms"), "left"),
+                        ElementCreateSettingsLabel(TextGet("ShowLockedRooms"), "chat-search-search-menu-locked-rooms-input", { position: "left" }),
                         ElementCheckbox.Create("chat-search-search-menu-locked-rooms-input", function(ev) {
                             Player.ChatSearchSettings.ShowLocked = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7261,7 +7261,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("SearchDescription"), "left"),
+                        ElementCreateSettingsLabel(TextGet("SearchDescription"), "chat-search-search-menu-search-description-input", { position: "left" }),
                         ElementCheckbox.Create("chat-search-search-menu-search-description-input", function() {
                             Player.ChatSearchSettings.SearchDescriptions = this.checked;
                             ChatSearchUpdateSearchSettings();
@@ -7281,7 +7281,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("First rooms with friends:", "left"),
+                        ElementCreateSettingsLabel("First rooms with friends", "chat-search-search-menu-search-friends-input", { position: "left" }),
                         ElementCheckbox.Create("chat-search-search-menu-friends-input", function() {
                             Player.OnlineSettings.SearchFriendsFirst = this.checked;
                         }, {
@@ -7300,7 +7300,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("AutoJoin feature:", "left"),
+                        ElementCreateSettingsLabel("AutoJoin feature:", "chat-search-search-menu-search-autojoin-input", { position: "left" }),                      
                         ElementCheckbox.Create("chat-search-search-menu-autojoin-input", function() {
                             autojoin = this.checked;
                             SetAutoJoin();
@@ -7317,7 +7317,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel(TextGet("GameLabel")),
+                        ElementCreateSettingsLabel(TextGet("GameLabel"), "chat-search-search-menu-room-game-dropdown"),
                         ElementCreateDropdown(
                             "chat-search-search-menu-room-game-dropdown",
                             [
@@ -7351,7 +7351,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Language"),
+                        ElementCreateSettingsLabel("Language", "chat-search-search-menu-room-language-dropdown"),
                         ElementCreateDropdown(
                             "chat-search-search-menu-room-language-dropdown",
                             [
@@ -7380,7 +7380,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Room Size"),
+                        ElementCreateSettingsLabel("Room Size", "chat-search-search-menu-room-size-grid"),
                         {
                             tag: "div",
                             attributes: {
@@ -7421,7 +7421,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Players in Room"),
+                        ElementCreateSettingsLabel("Players in Room", "chat-search-search-menu-players-grid"),
                         {
                             tag: "div",
                             attributes: {
