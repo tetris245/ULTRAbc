@@ -9333,10 +9333,7 @@
         }));
         const dropdown = ElementDropdown.CreateLabelled("RoomCustomizationLevel", dropdownOptions,
         TextGet("RoomCustomizationLabel"), function (ev) {
-            ev.preventDefault();
-            const value = CommonParseInt(this.value);
-            if (!value) return;
-            Player.OnlineSettings.ShowRoomCustomization = /** @type {0 | 1 | 2 | 3} */ (value);
+            Player.OnlineSettings.ShowRoomCustomization = /** @type {ChatRoomCustomizationType} */ (CommonParseInt(this.value));   
         },
         null,
         {
