@@ -9309,17 +9309,18 @@
         },
     ];
 
-    function AltPrfOnline() {
+	function AltPrfOnline() {
         if (!PreferenceOnlineDefaultBackground) PreferenceOnlineDefaultBackground = Player.OnlineSettings.DefaultChatRoomBackground;
         PreferenceOnlineDefaultBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
         PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
+        const checkboxHtmlOptions = { container: { classList: ["preference-settings-checkbox"] } };
         let Boxcheck2 = AltPreferenceSubscreenOnlineCheckboxes;
         const checkboxElements = Boxcheck2.map((checkbox) => {
             const checked = checkbox.check();
             const label = TextGet(checkbox.label);
             return ElementCheckbox.CreateLabelled(`${checkbox.label}-checkbox`, label, checkbox.click, {
                 checked
-            });
+            }, checkboxHtmlOptions);
         });
         const dropdownOptions = [0, 1, 2, 3].map((e) => /** @type {Omit<HTMLOptions<"option">, "tag">} */ ({
             attributes: {
@@ -9328,30 +9329,22 @@
                 selected: e === Player.OnlineSettings.ShowRoomCustomization
             }
         }));
-        const dropdown = ElementCreate({
-            tag: "div",
-            classList: ["preference-settings-dropdown"],
-            attributes: {
-                id: `RoomCustomizationLevel-dropdown-container`
-            },
-            children: [{
-                    tag: "label",
-                    children: [TextGet("RoomCustomizationLabel")],
-                    attributes: {
-                        for: "RoomCustomizationLevel"
-                    },
-                },
-                ElementCreateDropdown("RoomCustomizationLevel", dropdownOptions, (ev) => {
-                    ev.preventDefault();
-                    const value = parseInt( /** @type {HTMLSelectElement} */ (ev.target).value);
-                    if (!value) return;
-                    Player.OnlineSettings.ShowRoomCustomization = /** @type {0 | 1 | 2 | 3} */ (value);
-                })
-            ]
-        });
+        const dropdown = ElementDropdown.CreateLabelled("RoomCustomizationLevel", dropdownOptions,
+        TextGet("RoomCustomizationLabel"), function (ev) {
+            ev.preventDefault();
+            const value = CommonParseInt(this.value);
+            if (!value) return;
+            Player.OnlineSettings.ShowRoomCustomization = /** @type {0 | 1 | 2 | 3} */ (value);
+        },
+        null,
+        {
+            container: {
+                classList: ["preference-settings-dropdown"],
+            }
+        });     
         const grid = ElementCreate({
             tag: "div",
-            classList: ["preference-settings-grid", "scroll-box"],
+            classList: ["preference-settings-grid", "preference-settings-aligned-grid", "scroll-box"],
             attributes: {
                 id: PreferenceSubscreenOnlineIDs.grid
             },
