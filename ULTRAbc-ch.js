@@ -9146,9 +9146,10 @@
         }
     ];
 
-    function AltPrfImmersion() {
+	function AltPrfImmersion() {
         const difficultyTooHigh = Player.GetDifficulty() > 2;
         const disableButtons = difficultyTooHigh || (Player.GameplaySettings.ImmersionLockSetting && Player.IsRestrained());
+        const checkboxHtmlOptions = { container: { classList: ["preference-settings-checkbox"] } };
         const disableCheckbox = ElementCheckbox.CreateLabelled(
             PreferenceSubscreenImmersionIDs.lockCheckbox,
             difficultyTooHigh ? TextGet("ImmersionLocked") : TextGet("ImmersionLockSetting"),
@@ -9168,32 +9169,24 @@
                 selected: e === Player.GameplaySettings.SensDepChatLog
             }
         }));
-        const sensDepDropdown = ElementCreate({
-            tag: "div",
-            classList: ["preference-settings-dropdown"],
-            attributes: {
-                id: `SensDepSetting-dropdown-container`
+        const sensDepDropdown = ElementDropdown.CreateLabelled(`SensDepSetting-dropdown`, options, TextGet("SensDepSetting"),
+            function () {
+                const value = /** @type {ImmersionSensDepName} */ (this.value);
+                if (!value) return;
+                if (!PreferenceSettingsSensDepList.includes(value)) return;
+                Player.GameplaySettings.SensDepChatLog = value;
+                if (Player.GameplaySettings.SensDepChatLog === "SensDepExtreme") ChatRoomSetTarget(-1);
+                PreferenceSubscreenImmersionCheckStates(disableButtons);
             },
-            children: [{
-                    tag: "label",
-                    children: [TextGet("SensDepSetting")],
-                    attributes: {
-                        for: "SensDepSetting-dropdown"
-                    },
-                },
-                ElementCreateDropdown(`SensDepSetting-dropdown`, options,
-                    function() {
-                        const value = /** @type {SettingsSensDepName} */ (this.value);
-                        if (!value) return;
-                        if (!PreferenceSettingsSensDepList.includes(value)) return;
-                        Player.GameplaySettings.SensDepChatLog = value;
-                        if (Player.GameplaySettings.SensDepChatLog === "SensDepExtreme") ChatRoomSetTarget(-1);
-                        PreferenceSubscreenImmersionCheckStates(disableButtons);
-                    }, {
-                        disabled: disableButtons
-                    })
-            ]
-        });
+            {
+                disabled: disableButtons
+            },
+            {
+                container: {
+                    classList: ["preference-settings-dropdown"],
+                }
+            }
+        );        
         let Boxcheck3 = AltPreferenceSubscreenImmersionCheckboxes;
         const otherCheckboxes = Boxcheck3.map((checkbox) => {
             return ElementCheckbox.CreateLabelled(
@@ -9206,7 +9199,7 @@
                 }, {
                     checked: checkbox.check(),
                     disabled: checkbox.disabled(disableButtons)
-                });
+                }, checkboxHtmlOptions);
         });
         ElementCreate({
             tag: "div",
@@ -9221,7 +9214,7 @@
                 },
                 {
                     tag: "div",
-                    classList: ["preference-settings-grid", "scroll-box"],
+                    classList: ["preference-settings-grid", "preference-settings-aligned-grid", "scroll-box"],
                     attributes: {
                         id: PreferenceSubscreenImmersionIDs.grid
                     },
@@ -9234,7 +9227,7 @@
             parent: ElementWrap(PreferenceIDs.subscreen)
         });
     }
-
+ 
     /** @type {PreferenceChatCheckboxOption[]} */
     const AltPreferenceSubscreenImmersionCheckboxes = [{
             label: "AllowTints",
