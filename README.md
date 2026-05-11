@@ -97,7 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-* Hooked in the ChatRoomTopMenuSync function instead of ChatRoomMenuDraw to add UBC buttons in the chat rooms
+* Updated the hooking in a BC function to add UBC buttons in the chat rooms
 * Updated the ChatSearchCreateSearchMenu function
 * Updated several functions related to Information Sheet and Preferences
 * Removed modSDK as it's now integrated in the game code
