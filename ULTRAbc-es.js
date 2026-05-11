@@ -9049,27 +9049,19 @@
                     selected: e === Player.AllowedInteractions
                 }
             }));
-        const dropdown = ElementCreate({
-            tag: "div",
-            classList: ["preference-settings-dropdown"],
-            attributes: {
-                id: "AllowedInteractions-dropdown-container"
-            },
-            children: [{
-                    tag: "label",
-                    children: [TextGet("AllowedInteractions")],
-                    attributes: {
-                        for: "AllowedInteractions-dropdown"
-                    },
-                },
-                ElementCreateDropdown("AllowedInteractions-dropdown", dropdownOptions, function(ev) {
-                    ev.preventDefault();
-                    if (this.value in Object.values(AllowedInteractions) === false) return;
-                    Player.AllowedInteractions = /** @type {AllowedInteractions} */ (CommonParseInt(this.value));
-                    if (Player.GetDifficulty() >= Difficulty.EXTREME) LoginExtremeItemSettings(Player.AllowedInteractions === AllowedInteractions.Everyone);
-                })
-            ]
-        });
+        const dropdown = ElementDropdown.CreateLabelled("AllowedInteractions-dropdown", dropdownOptions, TextGet("AllowedInteractions"),
+            function (ev) {
+                ev.preventDefault();
+                if (this.value in Object.values(AllowedInteractions) === false) return;
+                Player.AllowedInteractions = /** @type {AllowedInteractions} */ (CommonParseInt(this.value));
+                if (Player.GetDifficulty() >= Difficulty.EXTREME) 
+                     LoginExtremeItemSettings(Player.AllowedInteractions === AllowedInteractions.Everyone);
+            }, null, {
+                container: {
+                    classList: ["preference-settings-dropdown"],
+                }
+            }
+        );
         const onHighDifficulty = Player.GetDifficulty() >= Difficulty.HARDCORE;
         const checkboxes = AltPreferenceSubscreenGeneralCheckboxes.map((checkbox) => {
             return ElementCheckbox.CreateLabelled(
@@ -9104,7 +9096,7 @@
             parent: ElementWrap(PreferenceIDs.subscreen)
         });
     }
-
+	
     /** @type {{label: string, check: () => boolean, click: (value: boolean) => void, disabled?: (disableButtons: boolean) => boolean}[]} */
     const AltPreferenceSubscreenGeneralCheckboxes = [{
             label: "EnableSafeword",
