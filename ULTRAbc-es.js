@@ -2615,9 +2615,9 @@
     ULTRAChatRoomMapViewCharacterOnWhisperRange();
     ULTRAChatRoomMapViewMovementProcess();
     ULTRAChatRoomMapViewTeleportHiddenMessage();
-    ULTRAChatRoomMenuDraw();
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
+	ULTRAChatRoomTopMenuSync();
     ULTRAChatSearchExit();
     ULTRAChatSearchJoin();
     ULTRAChatSearchKeyDown();
@@ -3078,94 +3078,6 @@
         });
     }
 
-    async function ULTRAChatRoomMenuDraw() {
-        modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
-            ElementRemove("chat-search-room-bottom");
-            AutoJoin = function() {};
-            this.AutoJoinOn = false;
-            ElementRemove("AutoJoinAlert");
-            IsOn = false;
-            TintsEffect();
-            minigame = "";
-            M_MOANER_saveControls();
-            if (kp != 1) {
-                if (tmpname == "") {
-                    if (Player.Nickname == '') {
-                        tmpname = Player.Name;
-                    } else {
-                        tmpname = Player.Nickname;
-                    }
-                    if (ini == 1) M_MOANER_saveControls();
-                } else {
-                    if (Player.Nickname != '') {
-                        if (tmpname != Player.Nickname) {
-                            tmpname = Player.Nickname;
-                            if (ini == 1) M_MOANER_saveControls();
-                        }
-                    } else {
-                        if (tmpname != Player.Name) {
-                            tmpname = Player.Name;
-                            if (ini == 1) M_MOANER_saveControls();
-                        }
-                    }
-                }
-                if (InventoryGet(Player, "Pronouns") != null) {
-                    if (InventoryGet(Player, "Pronouns").Asset != null) {
-                        let chprn = InventoryGet(Player, "Pronouns").Asset.Name;
-                        if (chprn != pronoun1) {
-                            if (chprn == "HeHim") {
-                                pronoun1 = "Él";
-                                pronoun2 = "lo";
-                                pronoun3 = "su";
-                                pronoun4 = "él";
-                                if (ini == 1) M_MOANER_saveControls();
-                            } else if (chprn == "ItIt") {
-                                pronoun1 = "Eso";
-                                pronoun2 = "lo";
-                                pronoun3 = "su";
-                                pronoun4 = "eso";
-                                if (ini == 1) M_MOANER_saveControls();
-                            } else if (chprn == "SheHer") {
-                                pronoun1 = "Ella";
-                                pronoun2 = "la";
-                                pronoun3 = "su";
-                                pronoun4 = "ella";
-                                if (ini == 1) M_MOANER_saveControls();
-                            } else {
-                                pronoun1 = "Elle";
-                                pronoun2 = "le";
-                                pronoun3 = "su";
-                                pronoun4 = "elle";
-                                if (ini == 1) M_MOANER_saveControls();
-                            }
-                        }
-                    }
-                }
-            }
-            if (extbuttons == true) {
-                DrawButton(955, 270, 45, 45, "", "White", "", "");
-                DrawImageResize("Icons/Extensions.png", 960, 272, 40, 40);
-            }
-            if (sosbuttons == true) SosButtons();
-            if (outbuttons == true) OutButtons();
-            if (rglbuttons == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
-            let chmap = ChatRoomCharacterViewIsActive();
-            if ((chmap == false) && (Player.OnlineSharedSettings.Inmap == false)) {
-                Player.OnlineSharedSettings.Inmap = true;
-                ServerAccountUpdate.QueueData({
-                    OnlineSharedSettings: Player.OnlineSharedSettings
-                });
-            } else if ((chmap == true) && (Player.OnlineSharedSettings.Inmap == true)) {
-                Player.OnlineSharedSettings.Inmap = false;
-                ServerAccountUpdate.QueueData({
-                    OnlineSharedSettings: Player.OnlineSharedSettings
-                });
-            }
-            Player.ChatSearchSettings.Game = "";
-            next(args);
-        });
-    }
-
     function ULTRAChatRoomSafewordRevert() {
         modApi.hookFunction('ChatRoomSafewordRevert', 4, (args, next) => {
             if (ChatSearchSafewordAppearance != null) {
@@ -3446,6 +3358,94 @@
                     }
                 }
             }
+            next(args);
+        });
+    }
+
+	async function ULTRAChatRoomTopMenuSync() {
+        modApi.hookFunction('ChatRoomTopMenuSync', 4, (args, next) => {
+            ElementRemove("chat-search-room-bottom");
+            AutoJoin = function() {};
+            this.AutoJoinOn = false;
+            ElementRemove("AutoJoinAlert");
+            IsOn = false;
+            TintsEffect();
+            minigame = "";
+            M_MOANER_saveControls();
+            if (kp != 1) {
+                if (tmpname == "") {
+                    if (Player.Nickname == '') {
+                        tmpname = Player.Name;
+                    } else {
+                        tmpname = Player.Nickname;
+                    }
+                    if (ini == 1) M_MOANER_saveControls();
+                } else {
+                    if (Player.Nickname != '') {
+                        if (tmpname != Player.Nickname) {
+                            tmpname = Player.Nickname;
+                            if (ini == 1) M_MOANER_saveControls();
+                        }
+                    } else {
+                        if (tmpname != Player.Name) {
+                            tmpname = Player.Name;
+                            if (ini == 1) M_MOANER_saveControls();
+                        }
+                    }
+                }
+                if (InventoryGet(Player, "Pronouns") != null) {
+                    if (InventoryGet(Player, "Pronouns").Asset != null) {
+                        let chprn = InventoryGet(Player, "Pronouns").Asset.Name;
+                        if (chprn != pronoun1) {
+                            if (chprn == "HeHim") {
+                                pronoun1 = "He";
+                                pronoun2 = "him";
+                                pronoun3 = "his";
+                                pronoun4 = "he";
+                                if (ini == 1) M_MOANER_saveControls();
+                            } else if (chprn == "ItIt") {
+                                pronoun1 = "It";
+                                pronoun2 = "it";
+                                pronoun3 = "its";
+                                pronoun4 = "it";
+                                if (ini == 1) M_MOANER_saveControls();
+                            } else if (chprn == "SheHer") {
+                                pronoun1 = "She";
+                                pronoun2 = "her";
+                                pronoun3 = "her";
+                                pronoun4 = "she";
+                                if (ini == 1) M_MOANER_saveControls();
+                            } else {
+                                pronoun1 = "They";
+                                pronoun2 = "them";
+                                pronoun3 = "their";
+                                pronoun4 = "they";
+                                if (ini == 1) M_MOANER_saveControls();
+                            }
+                        }
+                    }
+                }
+            }
+            if (extbuttons == true) {
+                DrawButton(955, 270, 45, 45, "", "White", "", "");
+                DrawImageResize("Icons/Extensions.png", 960, 272, 40, 40);
+            }
+            if (sosbuttons == true) SosButtons();
+            if (outbuttons == true) OutButtons();
+            if (rglbuttons == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
+            let chmap = ChatRoomCharacterViewIsActive();
+            if ((chmap == false) && (Player.OnlineSharedSettings.Inmap == false)) {
+                Player.OnlineSharedSettings.Inmap = true;
+                ServerAccountUpdate.QueueData({
+                    OnlineSharedSettings: Player.OnlineSharedSettings
+                });
+            } else if ((chmap == true) && (Player.OnlineSharedSettings.Inmap == true)) {
+                Player.OnlineSharedSettings.Inmap = false;
+                ServerAccountUpdate.QueueData({
+                    OnlineSharedSettings: Player.OnlineSharedSettings
+                });
+            }
+            Player.ChatSearchSettings.Game = "";
             next(args);
         });
     }
