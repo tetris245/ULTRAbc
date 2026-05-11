@@ -8847,8 +8847,9 @@
         },
     ];
 
-    function AltPrfChat() {
+	function AltPrfChat() {
         let Dropcheck = AltPreferenceSubscreenChatDropdowns;
+		const checkboxHtmlOptions = { container: { classList: ["preference-settings-checkbox"] } };
         const dropdownElements = Object.entries(Dropcheck).map(([key, dropdown]) => {
             const currentValue = dropdown.current();
             const options = dropdown.list.map(( /** @type {string} */ e) => /** @type {Omit<HTMLOptions<"option">, "tag">} */ ({
@@ -8858,41 +8859,31 @@
                     selected: e === currentValue
                 }
             }));
-            return ElementCreate({
-                tag: "div",
-                classList: ["preference-settings-dropdown"],
-                attributes: {
-                    id: `${key}-dropdown-container`
-                },
-                children: [{
-                        tag: "label",
-                        children: [TextGet(key)],
-                        attributes: {
-                            for: `${key}-dropdown`
-                        },
-                    },
-                    ElementCreateDropdown(`${key}-dropdown`, options,
-                        (ev) => {
-                            ev.preventDefault();
-                            const value = /** @type {HTMLSelectElement} */ (ev.target).value;
-                            if (!value) return;
-                            if (!dropdown.list.includes(value)) return;
-                            dropdown.onChange(value);
-                        })
-                ]
-            });
-        });
+            return ElementDropdown.CreateLabelled(`${key}-dropdown`, options, TextGet(key),
+                function (ev) {
+                    ev.preventDefault();
+                    const value = this.value;
+                    if (!value) return;
+                    if (!dropdown.list.includes(value)) return;
+                    dropdown.onChange(value);
+                }, null, {
+                    container: {
+                        classList: ["preference-settings-dropdown"],
+                    }
+                }
+            );         
+        });   
         let Boxcheck = AltPreferenceSubscreenChatCheckboxes;
         const checkboxElements = Boxcheck.map((checkbox) => {
             const checked = checkbox.check();
             const label = TextGet(checkbox.label);
             return ElementCheckbox.CreateLabelled(`${checkbox.label}-checkbox`, label, checkbox.click, {
                 checked
-            });
+            }, checkboxHtmlOptions);
         });
         const grid = ElementCreate({
             tag: "div",
-            classList: ["preference-settings-grid", "scroll-box"],
+            classList: ["preference-settings-grid", "preference-settings-aligned-grid", "scroll-box"],
             attributes: {
                 id: PreferenceSubscreenChatIDs.grid
             },
