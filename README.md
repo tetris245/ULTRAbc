@@ -97,6 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
+* Updated the lock command for the Owner Timer Lock (maximum time 50400 minutes instead of 10080)
 * Updated the hooking in a BC function to add UBC buttons in the chat rooms
 * Updated the ChatSearchCreateSearchMenu function
 * Updated several functions related to Information Sheet and Preferences
