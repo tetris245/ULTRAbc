@@ -13166,7 +13166,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "code must be between 0 and 9999.\n" +
                     "password is limited to 8 characters.\n" +
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
-                    "10080 minutes for locks 14, 15 and 18\n" +
+                    "10080 minutes for locks 14 and 18,\n" +
+                    "50400 minutes for lock 15\n" +
                     "Use ? if you want a time randomly choosen by the game\n" +
                     " \n" +
                     "Optional parameters:\n" +
@@ -13205,7 +13206,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((lk == 13) || (lk == 14) || (lk == 15)) {
                     let maxtime = 240;
-                    if (lk != 13) maxtime = 10080;
+                    if (lk == 14) maxtime = 10080;
+					if (lk == 15) maxtime = 50400;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
                         const Result = [];
