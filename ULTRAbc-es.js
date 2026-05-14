@@ -13169,7 +13169,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "El código debe estar entre 0 y 9999.\n" +
                     "La contraseña está limitada a 8 caracteres.\n" +
                     "Tiempo máximo = 240 minutos para candados 13 y 16,\n" +
-                    "10080 minutos para candados 14, 15 y 18\n" +
+                    "10080 minutos para candados 14 y 18,\n" +
+					"50400 minutos para candado 15\n"+
                     "Usa ? si quieres un tiempo elegido al azar por el juego\n" +
                     " \n" +
                     "Parámetros opcionales:\n" +
@@ -13208,7 +13209,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((lk == 13) || (lk == 14) || (lk == 15)) {
                     let maxtime = 240;
-                    if (lk != 13) maxtime = 10080;
+                    if (lk == 14) maxtime = 10080;
+					if (lk == 15) maxtime = 50400;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
                         const Result = [];
