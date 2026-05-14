@@ -13157,7 +13157,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "代码必须在 0 到 9999 之间。\n" +
                     "口令限制为 8 个字符。\n" +
                     "最长时间 = 锁 13 和 16 为 240 分钟，\n" +
-                    "锁 14、15 和 18 为 10080 分钟\n" +
+                    "锁 14 和 18 为 10080 分钟， \n" +
+					"锁 15 50400 分钟 \n" +
                     "如果你想让游戏随机选择时间，使用 ?\n" +
                     " \n" +
                     "可选参数：\n" +
@@ -13196,7 +13197,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((lk == 13) || (lk == 14) || (lk == 15)) {
                     let maxtime = 240;
-                    if (lk != 13) maxtime = 10080;
+                    if (lk == 14) maxtime = 10080;
+					if (lk == 15) maxtime = 50400;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
                         const Result = [];
