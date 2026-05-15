@@ -164,6 +164,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mgl = 0;
     let minigame = "";
     let mission = "";
+	let nopending = false;
     let npcdeck = -1;
     let onegl = 0;
     let onlydays = false;
@@ -608,6 +609,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noescape = false;
         nogarble = false;
         noifbuttons = false;
+		nopending = false;
         nopinkscr = false;
         nostruggle = false;
         notalk = 0;
@@ -729,6 +731,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noescape = data.noescape;
         nogarble = data.nogarble;
         noifbuttons = data.noifbuttons;
+		nopending = data.nopending;
         nopinkscr = data.nopinkscr;
         nostruggle = data.nostruggle;
         notalk = data.notalk;
@@ -891,6 +894,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "maptrap1": maptrap1,
             "minigame": minigame,
             "mission": mission,
+			"nopending": nopending,
             "npcdeck": npcdeck,
             "onlydays": onlydays,
             "pmin": pmin,
@@ -1081,6 +1085,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (noescape == null || noescape == undefined) noescape = false;
                 if (nogarble == null || nogarble == undefined) nogarble = false;
                 if (noifbuttons == null || noifbuttons == undefined) noifbuttons = false;
+				if (nopending == null || nopending == undefined) nopending = false;
                 if (nopinkscr == null || nopinkscr == undefined) nopinkscr = false;
                 if (nostruggle == null || nostruggle == undefined) nostruggle = false;
                 if (notalk == null || notalk == undefined) notalk = 0;
@@ -1230,6 +1235,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 noescape: false,
                 nogarble: false,
                 noifbuttons: false,
+				nopending: false,
                 nopinkscr: false,
                 nostruggle: false,
                 notalk: 0,
@@ -2118,6 +2124,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuCheckbox(64, 64, "Activar castigos por NPC: ", "npcpunish",
                     "Por defecto, UBC desactiva los castigos automáticos de los NPC (especialmente cuando estás atada en una sala y pides ayuda a una sirvienta). Si te gustan estos castigos, puedes activarlos de nuevo con esta opción.", false, 228
+                );
+				addMenuCheckbox(64, 64, "No pending friends in Friend List: ", "nopending",
+                    "Cuando está marcado, la pantalla 'Todos los amigos' en la lista de amigos no mostrará los amigos pendientes (no confirmados).", false, 140
                 );
                 addMenuCheckbox(64, 64, "Sin cambios de permisos tras usar la Safeword: ", "fixperm",
                     "BC cambia automáticamente tus permisos generales de objetos cuando usas el comando de safeword o la opción de revertir en el menú de safeword. Si no te gusta esto, usa esta opción y tus permisos generales no serán modificados.", false, 228
@@ -4177,6 +4186,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             next(args);
         });
     }
+
+	modApi.patchFunction(
+        "FriendListLoadFriendList", {
+            "const isOnline = !!dataMap.get(memberNumber);":
+            "if (Player.UBC.ubcSettings.nopending == true && memberName === TextGet('Unknown')) continue; const isOnline = !!dataMap.get(memberNumber);",
+        }
+    );
 
     //GGTS
     async function ULTRAAsylumGGTSLoad() {
