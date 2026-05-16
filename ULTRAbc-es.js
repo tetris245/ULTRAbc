@@ -2125,8 +2125,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Activar castigos por NPC: ", "npcpunish",
                     "Por defecto, UBC desactiva los castigos automáticos de los NPC (especialmente cuando estás atada en una sala y pides ayuda a una sirvienta). Si te gustan estos castigos, puedes activarlos de nuevo con esta opción.", false, 228
                 );
-				addMenuCheckbox(64, 64, "No pending friends in Friend List: ", "nopending",
-                    "Cuando está marcado, la pantalla 'Todos los amigos' en la lista de amigos no mostrará los amigos pendientes (no confirmados).", false, 140
+				addMenuCheckbox(64, 64, "Ocultar amigos pendientes en la Lista de Amigos: ", "nopending",
+                    "Cuando está marcado, la pantalla 'Todos los amigos' en la Lista de Amigos no mostrará los amigos pendientes (no confirmados).", false, 228
                 );
                 addMenuCheckbox(64, 64, "Sin cambios de permisos tras usar la Safeword: ", "fixperm",
                     "BC cambia automáticamente tus permisos generales de objetos cuando usas el comando de safeword o la opción de revertir en el menú de safeword. Si no te gusta esto, usa esta opción y tus permisos generales no serán modificados.", false, 228
