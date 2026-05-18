@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.0
+Most recent version: 6.0.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.0.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.0.1.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.0.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.0.1.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.0.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.0.1.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -97,12 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New setting in GUI - Misc to hide pending friends in the All Friends screen of the Friend List
-* Updated the lock command for the Owner Timer Lock (maximum time 50400 minutes instead of 10080)
-* Updated the hooking in a BC function to add UBC buttons in the chat rooms
-* Updated the ChatSearchCreateSearchMenu function
-* Updated several functions related to Information Sheet and Preferences
-
+(...)
 
 
 
