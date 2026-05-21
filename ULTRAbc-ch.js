@@ -16128,12 +16128,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "majesticalicorn（庄严独角兽）、majesty（陛下）、\n" +
                     "master（主人）、masterkidnapper（绑架头目）、\n" +
                     "matron（女舍监）、missy（小姐）、mistree（树先生）、\n" +
-                    "mistress（女主人）、mole（鼹鼠）、nawashi（绳师）、\n" +
-                    "nurse（护士）、operative（特工）、oracle（先知）、\n" +
-                    "patient（病人）、patriarch（族长）、patron（赞助人）、\n" +
-                    "permanentpatient（永久病人）、pet（宠物）、\n" +
-                    "pixie（小精灵）、primaris（首席）、prince（王子）、\n" +
-                    "princess（公主）、puppy（小狗）、queen（女王)。";
+                    "mistress（女主人）、mole（鼹鼠）、 monster、\n" +
+                    "nawashi（绳师）、nurse（护士）、operative（特工）、\n" +
+					"oracle（先知）、patient（病人）、patriarch（族长）、\n" +
+                    "patron（赞助人）、permanentpatient（永久病人）、\n" +
+                    "pet（宠物）、pixie（小精灵）、primaris（首席）、\n" +
+                    "prince（王子）、princess（公主）、puppy（小狗）、\n" +
+                    "queen（女王)。";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -16216,6 +16217,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("InfilrationMole");
                 }
+				if (title == "monster") TitleSet("Monster");
                 if (title == "nawashi") {
                     if (SkillGetLevel(Player, "Bondage") < 10) {
                         SkillChange(Player, "Bondage", 10);
@@ -16298,13 +16300,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "你将能够在你的个人资料中查看变化。\n" +
                     " \n" +
                     "可用称号：\n" +
-                    "sage（圣人）、shiningunicorn（闪耀独角兽）、\n" +
-                    "sissy（娘娘腔）、sorcerer（术士）、succubus（魅魔）、\n" +
-                    "superhero（超级英雄）、superheroine（超级女英雄）、\n" +
+                    "sage（圣人）、shapeshifter、\n" +
+                    "shiningunicorn（闪耀独角兽）、sissy（娘娘腔）、\n" +
+                    "sorcerer（术士）、succubus（魅魔）、\n" +
+                    "superhero（超级英雄）、superheroine（超级女英雄）、\n" +               
                     "superspy（超级间谍）、switch（双向）、thing（东西）、\n" +
                     "tomboy（假小子）、turtle（海龟）、vampire（吸血鬼）、\n" +
                     "warlock（男巫）、warmbloodhorse（温血马）、\n" +
-                    "wildmustang（野马）、witch（女巫）、wizard（巫师）。";
+                    "wildmustang（野马）、witch（女巫）、\n" +
+					"wizard（巫师）、 wolf。";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -16315,6 +16319,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("MagicSchoolSage");
                 }
+				if (title == "shapeshifter") TitleSet("Shapeshifter");
                 if (title == "shiningunicorn") {
                     if ((SkillGetLevel(Player, "Dressage") < 7) || (SkillGetLevel(Player, "Infiltration") > 7)) {
                         SkillChange(Player, "Dressage", 7);
@@ -16382,6 +16387,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("MagicSchoolWizard");
                 }
+				if (title == "wolf") TitleSet("Wolf");
             }
         }
     }])
