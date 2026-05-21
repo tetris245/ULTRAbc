@@ -8326,7 +8326,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 604800000) {
             let Pos = 0;
             for (const trait of C.Trait ?? []) {
-		     DrawText(TextGet("Trait" + ((trait.Value > 0) ? trait.Name : NPCTraitReverse(trait.Name))) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? Math.abs(trait.Value).toString() : "??"), 1000, 200 + Pos * 75, "Black", "Gray");
+		        DrawText(TextGet("Trait" + ((trait.Value > 0) ? trait.Name : NPCTraitReverse(trait.Name))) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? Math.abs(trait.Value).toString() : "??"), 1000, 200 + Pos * 75, "Black", "Gray");
                 Pos++;
             }
         } else DrawText(TextGet("TraitUnknown"), 1000, 200, "Black", "Gray");
