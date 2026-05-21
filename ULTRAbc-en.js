@@ -16117,8 +16117,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Available titles:\n" +
                     "ladyluck, liege, littleone, lordfortune, magician, magus,\n" +
                     "maid, majesticalicorn, majesty, master, masterkidnapper,\n" +
-                    "matron, missy, mistree, mistress, mole, nawashi, nurse,\n" +
-                    "operative, oracle, patient, patriarch, patron,\n" +
+                    "matron, missy, mistree, mistress, mole, monster, nawashi,\n" +
+                    "nurse, operative, oracle, patient, patriarch, patron,\n" +
                     "permanentpatient, pet, pixie, primaris, prince, princess,\n" +
                     "puppy, queen.";
                 infomsg(msg);
@@ -16203,6 +16203,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("InfilrationMole");
                 }
+                if (title == "monster") TitleSet("Monster");
                 if (title == "nawashi") {
                     if (SkillGetLevel(Player, "Bondage") < 10) {
                         SkillChange(Player, "Bondage", 10);
@@ -16285,10 +16286,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "You will be able to check the changes in your profile.\n" +
                     " \n" +
                     "Available titles:\n" +
-                    "sage, shiningunicorn, sissy, sorcerer,\n" +
+                    "sage, shapeshifter, shiningunicorn, sissy, sorcerer,\n" +
                     "succubus, superhero, superheroine, superspy, switch,\n" +
                     "thing, tomboy, turtle, vampire, warlock,\n" +
-                    "warmbloodhorse, wildmustang, witch, wizard.";
+                    "warmbloodhorse, wildmustang, witch, wizard, wolf.";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -16299,6 +16300,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("MagicSchoolSage");
                 }
+                if (title == "shapeshifter") TitleSet("Shapeshifter");
                 if (title == "shiningunicorn") {
                     if ((SkillGetLevel(Player, "Dressage") < 7) || (SkillGetLevel(Player, "Infiltration") > 7)) {
                         SkillChange(Player, "Dressage", 7);
@@ -16366,6 +16368,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("MagicSchoolWizard");
                 }
+                if (title == "wolf") TitleSet("Wolf");
             }
         }
     }])
