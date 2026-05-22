@@ -1447,6 +1447,53 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ];
         Player.UBC.ubcSettings.ListImmersion = ListImmersion;
 
+		let ListOnline = [
+            {
+                label: "AllowFullWardrobeAccess",
+                check: () => Player.OnlineSharedSettings.AllowFullWardrobeAccess,
+                click: () => Player.OnlineSharedSettings.AllowFullWardrobeAccess = !Player.OnlineSharedSettings.AllowFullWardrobeAccess
+            },
+            {
+                label: "AutoBanBlackList",
+                check: () => Player.OnlineSettings.AutoBanBlackList,
+                click: () => Player.OnlineSettings.AutoBanBlackList = !Player.OnlineSettings.AutoBanBlackList
+            },
+            {
+                label: "AutoBanGhostList",
+                check: () => Player.OnlineSettings.AutoBanGhostList,
+                click: () => Player.OnlineSettings.AutoBanGhostList = !Player.OnlineSettings.AutoBanGhostList
+            },
+            {
+                label: "DisableAnimations",
+                check: () => Player.OnlineSettings.DisableAnimations,
+                click: () => Player.OnlineSettings.DisableAnimations = !Player.OnlineSettings.DisableAnimations
+            },
+            {
+                label: "BlockBodyCosplay",
+                check: () => Player.OnlineSharedSettings.BlockBodyCosplay,
+                click: () => Player.OnlineSharedSettings.BlockBodyCosplay = !Player.OnlineSharedSettings.BlockBodyCosplay
+            },
+            {
+                label: "SendStatus",
+                check: () => Player.OnlineSettings.SendStatus,
+                click: () => Player.OnlineSettings.SendStatus = !Player.OnlineSettings.SendStatus
+            },
+            {
+                label: "EnableAfkTimer",
+                check: () => Player.OnlineSettings.EnableAfkTimer,
+                click: () => {
+                Player.OnlineSettings.EnableAfkTimer = !Player.OnlineSettings.EnableAfkTimer;
+                AfkTimerSetEnabled(Player.OnlineSettings.EnableAfkTimer);
+                }
+            },
+            {
+                label: "ShowStatus",
+                check: () => Player.OnlineSettings.ShowStatus,
+                click: () => Player.OnlineSettings.ShowStatus = !Player.OnlineSettings.ShowStatus
+            },
+        ];
+        Player.UBC.ubcSettings.ListOnline = ListOnline;
+		
         async function waitFor(func, cancelFunc = () => false) {
             while (!func()) {
                 if (cancelFunc()) {
@@ -5005,16 +5052,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function ULTRAPreferenceSubscreenOnlineLoad() {
-        modApi.hookFunction('PreferenceSubscreenOnlineLoad', 4, (args, next) => {
-            PreferenceBackground = "Sheet";
-            if (ifext == true) PreferenceBackground = ifname;
-            if (alfaprf == true) {
-                AltPrfOnline();
-                return;
+        modApi.hookFunction("PreferenceSubscreenOnlineLoad", 4, (args, next) => {
+        PreferenceBackground = "Sheet";
+        if (ifext == true) PreferenceBackground = ifname;
+        setTimeout(() => {
+            const grid = document.getElementById(PreferenceSubscreenOnlineIDs.grid);
+            if (grid && Player.UBC?.ubcSettings?.alfaprf === true) {
+                const lastChild = grid.lastElementChild;
+                if (lastChild) {
+                    grid.insertBefore(lastChild, grid.firstChild);
+                }
             }
-            next(args);
+        }, 0);
+        return next(args);
         });
     }
+
+	modApi.patchFunction(
+        "PreferenceSubscreenOnlineLoad", {
+            "const checkboxElements = PreferenceSubscreenOnlineCheckboxes.map((checkbox) => {":
+            "let List = PreferenceSubscreenOnlineCheckboxes; if (Player.UBC.ubcSettings.alfaprf == true) List = Player.UBC.ubcSettings.ListOnline; const checkboxElements = List.map((checkbox) => {",  
+        }
+    );
 
     async function ULTRAPreferenceSubscreenOnlineRun() {
         modApi.hookFunction('PreferenceSubscreenOnlineRun', 4, (args, next) => {
@@ -9180,128 +9239,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             },
         },
     };
-
-    function AltPrfOnline() {
-        if (!PreferenceOnlineDefaultBackground) PreferenceOnlineDefaultBackground = Player.OnlineSettings.DefaultChatRoomBackground;
-        PreferenceOnlineDefaultBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
-        PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
-        const checkboxHtmlOptions = { container: { classList: ["preference-settings-checkbox"] } };
-        let Boxcheck2 = AltPreferenceSubscreenOnlineCheckboxes;
-        const checkboxElements = Boxcheck2.map((checkbox) => {
-            const checked = checkbox.check();
-            const label = TextGet(checkbox.label);
-            return ElementCheckbox.CreateLabelled(`${checkbox.label}-checkbox`, label, checkbox.click, {
-                checked
-            }, checkboxHtmlOptions);
-        });
-        const dropdownOptions = [0, 1, 2, 3].map((e) => /** @type {Omit<HTMLOptions<"option">, "tag">} */ ({
-            attributes: {
-                value: e.toString(),
-                label: TextGet("RoomCustomizationLevel" + e.toString()),
-                selected: e === Player.OnlineSettings.ShowRoomCustomization
-            }
-        }));
-        const dropdown = ElementDropdown.CreateLabelled("RoomCustomizationLevel", dropdownOptions,
-        TextGet("RoomCustomizationLabel"), function (ev) {
-            Player.OnlineSettings.ShowRoomCustomization = /** @type {ChatRoomCustomizationType} */ (CommonParseInt(this.value));   
-        },
-        null,
-        {
-            container: {
-                classList: ["preference-settings-dropdown"],
-            }
-        });     
-        const grid = ElementCreate({
-            tag: "div",
-            classList: ["preference-settings-grid", "preference-settings-aligned-grid", "scroll-box"],
-            attributes: {
-                id: PreferenceSubscreenOnlineIDs.grid
-            },
-            children: [
-                dropdown,
-                ...checkboxElements
-            ]
-        });
-        ElementWrap(PreferenceIDs.subscreen).append(grid);
-        const subtitle = ElementCreate({
-            tag: "label",
-            attributes: {
-                id: PreferenceSubscreenOnlineIDs.subtitle,
-                for: PreferenceSubscreenOnlineIDs.selection
-            },
-            children: [TextGet("DefaultChatRoomBackground")],
-        });
-        const selection = ElementButton.Create(PreferenceSubscreenOnlineIDs.selection, () => {
-            BackgroundSelectionMake(BackgroundsTagList, PreferenceOnlineDefaultBackground, (Name, setBackground) => {
-                if (setBackground) {
-                    PreferenceOnlineDefaultBackground = Name;
-                    Player.OnlineSettings.DefaultChatRoomBackground = Name;
-                    PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
-                }
-                PreferenceOpenSubscreen("Online", 2);
-            });
-        }, {
-            image: "Icons/Preference.png",
-        });
-        const grid2 = ElementCreate({
-            tag: "div",
-            classList: ["preference-settings-grid", "scroll-box"],
-            attributes: {
-                id: PreferenceSubscreenOnlineIDs.grid2
-            },
-            children: [
-                subtitle,
-                selection
-            ]
-        });
-        ElementWrap(PreferenceIDs.subscreen).append(grid2);
-    }
-
-    /** @type {PreferenceChatCheckboxOption[]} */
-    const AltPreferenceSubscreenOnlineCheckboxes = [{
-            label: "AllowFullWardrobeAccess",
-            check: () => Player.OnlineSharedSettings.AllowFullWardrobeAccess,
-            click: () => Player.OnlineSharedSettings.AllowFullWardrobeAccess = !Player.OnlineSharedSettings.AllowFullWardrobeAccess
-        },
-        {
-            label: "AutoBanBlackList",
-            check: () => Player.OnlineSettings.AutoBanBlackList,
-            click: () => Player.OnlineSettings.AutoBanBlackList = !Player.OnlineSettings.AutoBanBlackList
-        },
-        {
-            label: "AutoBanGhostList",
-            check: () => Player.OnlineSettings.AutoBanGhostList,
-            click: () => Player.OnlineSettings.AutoBanGhostList = !Player.OnlineSettings.AutoBanGhostList
-        },
-        {
-            label: "DisableAnimations",
-            check: () => Player.OnlineSettings.DisableAnimations,
-            click: () => Player.OnlineSettings.DisableAnimations = !Player.OnlineSettings.DisableAnimations
-        },
-        {
-            label: "BlockBodyCosplay",
-            check: () => Player.OnlineSharedSettings.BlockBodyCosplay,
-            click: () => Player.OnlineSharedSettings.BlockBodyCosplay = !Player.OnlineSharedSettings.BlockBodyCosplay
-        },
-        {
-            label: "SendStatus",
-            check: () => Player.OnlineSettings.SendStatus,
-            click: () => Player.OnlineSettings.SendStatus = !Player.OnlineSettings.SendStatus
-        },
-        {
-            label: "EnableAfkTimer",
-            check: () => Player.OnlineSettings.EnableAfkTimer,
-            click: () => {
-                Player.OnlineSettings.EnableAfkTimer = !Player.OnlineSettings.EnableAfkTimer;
-                AfkTimerSetEnabled(Player.OnlineSettings.EnableAfkTimer);
-            }
-        },
-        {
-            label: "ShowStatus",
-            check: () => Player.OnlineSettings.ShowStatus,
-            click: () => Player.OnlineSettings.ShowStatus = !Player.OnlineSettings.ShowStatus
-        },
-    ];
 
     function DOGSsettings() {
         dogsforbid = false;
