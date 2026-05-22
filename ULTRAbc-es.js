@@ -5070,7 +5070,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PreferenceSubscreenChatLoad', 4, (args, next) => {
             PreferenceBackground = "Sheet";
             if (ifext == true) PreferenceBackground = ifname;
-            next(args);
+            return next(args);
         });
     }
 
