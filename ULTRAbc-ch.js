@@ -2579,7 +2579,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "启用后，偏好设置主菜单的所有选项将按字母顺序排列，通用偏好设置除外。", false, 140
                 );
                 addMenuCheckbox(64, 64, "偏好设置屏幕的字母顺序：", "alfaprf",
-                    "启用此选项后，某些偏好设置屏幕中的大部分设置将按设置类型（下拉框、复选框）按字母顺序排列（根据英文文本）。这些屏幕将按以下顺序排列：通用、聊天、 显示、沉浸和在线。", false, 140
+                    "启用此选项后，某些偏好设置屏幕中的大部分设置将按设置类型（下拉框、复选框）按字母顺序排列（根据英文文本）。这些屏幕将按以下顺序排列：通用、音频、聊天、 显示、沉浸和在线。", false, 140
                 );
 				addMenuCheckbox(64, 64, "声望和技能的字母顺序：", "alfrpsk",
                     "启用后，角色信息屏幕中关于声望和技能的大部分信息将按字母顺序排列。请注意，作为支配者或服从者的声望仍将首先显示。", false, 140
@@ -3152,6 +3152,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
     ULTRAPreferenceRun();
+	ULTRAPreferenceSubscreenAudioLoad();
     ULTRAPreferenceSubscreenChatLoad();
     ULTRAPreferenceSubscreenExtensionsLoad();
     ULTRAPreferenceSubscreenGeneralLoad();
@@ -5224,6 +5225,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (ifext == true) PreferenceBackground = ifname;
             TintsEffect();
             next(args);
+        });
+    }
+
+	async function ULTRAPreferenceSubscreenAudioLoad() {
+        modApi.hookFunction('PreferenceSubscreenAudioLoad', 4, (args, next) => {
+            const result = next(args); 
+            const oldStyle = document.getElementById('ultrabc-audio-order-style');
+            if (oldStyle) oldStyle.remove();
+            const style = document.createElement('style');
+            style.id = 'ultrabc-audio-order-style';
+            if (Player.UBC.ubcSettings.alfaprf == true) {
+                style.textContent = `
+                    #checkbox-pair-preferences-Notifications { order: 1 !important; }
+                    #checkbox-pair-preferences-PlayItemPlayerOnly { order: 2 !important; }
+                    #checkbox-pair-preferences-PlayItem { order: 3 !important; }
+        `        ;
+             } else {     
+                 style.textContent = `
+                     #checkbox-pair-preferences-PlayItem { order: 1 !important; }
+                     #checkbox-pair-preferences-PlayItemPlayerOnly { order: 2 !important; }
+                     #checkbox-pair-preferences-Notifications { order: 3 !important; }
+        `         ;
+               }
+               document.head.appendChild(style);
+               return result;
         });
     }
 
