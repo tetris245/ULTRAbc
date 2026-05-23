@@ -2575,14 +2575,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
-                addMenuCheckbox(64, 64, "声望和技能的字母顺序：", "alfrpsk",
-                    "启用后，角色信息屏幕中关于声望和技能的大部分信息将按字母顺序排列。请注意，作为支配者或服从者的声望仍将首先显示。", false, 140
-                );
                 addMenuCheckbox(64, 64, "偏好设置菜单的字母顺序：", "alfmenu",
                     "启用后，偏好设置主菜单的所有选项将按字母顺序排列，通用偏好设置除外。", false, 140
                 );
                 addMenuCheckbox(64, 64, "偏好设置屏幕的字母顺序：", "alfaprf",
-                    "启用此选项后，某些偏好设置屏幕中的大部分设置将按设置类型（下拉框、复选框）按字母顺序排列（根据英文文本）。这些屏幕将按以下顺序排列：通用、聊天、沉浸和在线。", false, 140
+                    "启用此选项后，某些偏好设置屏幕中的大部分设置将按设置类型（下拉框、复选框）按字母顺序排列（根据英文文本）。这些屏幕将按以下顺序排列：通用、聊天、 显示、沉浸和在线。", false, 140
+                );
+				addMenuCheckbox(64, 64, "声望和技能的字母顺序：", "alfrpsk",
+                    "启用后，角色信息屏幕中关于声望和技能的大部分信息将按字母顺序排列。请注意，作为支配者或服从者的声望仍将首先显示。", false, 140
                 );
                 addMenuCheckbox(64, 64, "启用精神病院限制：", "asylumlimit",
                     "默认情况下，UBC 禁用精神病院限制（访问、退出）。如果您喜欢这些限制，可以使用此选项再次启用它们。", false, 140
@@ -3155,6 +3155,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceSubscreenChatLoad();
     ULTRAPreferenceSubscreenExtensionsLoad();
     ULTRAPreferenceSubscreenGeneralLoad();
+	ULTRAPreferenceSubscreenGraphicsLoad(); 
     ULTRAPreferenceSubscreenImmersionLoad();
     ULTRAPreferenceSubscreenMainLoad();
     ULTRAPreferenceSubscreenOnlineClick();
@@ -5286,6 +5287,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "let List = PreferenceSubscreenGeneralCheckboxes; if (Player.UBC.ubcSettings.alfaprf == true) List = Player.UBC.ubcSettings.ListGeneral; const checkboxes = List.map((checkbox) => {",         
         }
     );
+
+	async function ULTRAPreferenceSubscreenGraphicsLoad() {
+        modApi.hookFunction('PreferenceSubscreenGraphicsLoad', 4, (args, next) => {
+            const originalElementCreate = window.ElementCreate;
+            window.ElementCreate = function(config, ...rest) {
+                if (config?.classList?.includes("preference-settings-grid") && config?.attributes?.id === PreferenceSubscreenGraphicsIDs.grid) {
+                    if (Player?.UBC?.ubcSettings?.alfaprf === true && Array.isArray(config.children)) {
+                        const children = config.children;
+                        config.children = [
+                            children[9],  // animationQualityDropdown
+                            children[0],  // vfxDropdown
+                            children[1],  // vfxFilterDropdown
+                            children[13], // maxFpsDropdown
+                            children[3],  // fontDropdown
+                            children [11], // webglBlock 2  
+                            children[14], // maxUnfocusedFpsDropdown
+                            children[2],  // vfxVibratorDropdown
+                            children[12], // allowBlur
+                            children[6],  // centerChatrooms
+                            children[15], // showFps   
+                            children [10], // webglBlock  1 
+                            children[8],  // doBlindFlash
+                            children[7],  // stimulationFlash
+                            children[4],  // invertRoom
+                            children[5],  // smoothZoom                    
+                        ];
+                    }
+                } 
+                return originalElementCreate.call(this, config, ...rest);
+            }
+            next(args); 
+            window.ElementCreate = originalElementCreate;   
+        });
+    }
 
     async function ULTRAPreferenceSubscreenImmersionLoad() {
         modApi.hookFunction('PreferenceSubscreenImmersionLoad', 4, (args, next) => {
