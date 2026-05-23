@@ -2579,7 +2579,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Cuando está activado, todas las opciones del menú principal de Preferencias se ordenarán alfabéticamente, a excepción de las Preferencias Generales.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Orden alfabético en pantallas de Preferencias: ", "alfaprf",
-                    "Con esta opción, la mayoría de los ajustes en algunas pantallas de Preferencias estarán en orden alfabético (según el texto en inglés) por tipo de ajuste (desplegables, casillas). Las pantallas afectadas son: General, Chat, Gráficos, Inmersión y Online.", false, 228
+                    "Con esta opción, la mayoría de los ajustes en algunas pantallas de Preferencias estarán en orden alfabético (según el texto en inglés) por tipo de ajuste (desplegables, casillas). Las pantallas afectadas son: General, Audio, Chat, Gráficos, Inmersión y Online.", false, 228
                 );
 				addMenuCheckbox(64, 64, "Orden alfabético para Reputación y Habilidades: ", "alfrpsk",
                     "Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.", false, 228
@@ -3152,6 +3152,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
     ULTRAPreferenceRun();
+	ULTRAPreferenceSubscreenAudioLoad();
     ULTRAPreferenceSubscreenChatLoad();
     ULTRAPreferenceSubscreenExtensionsLoad();
     ULTRAPreferenceSubscreenGeneralLoad();
@@ -5225,6 +5226,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (ifext == true) PreferenceBackground = ifname;
             TintsEffect();
             next(args);
+        });
+    }
+
+	async function ULTRAPreferenceSubscreenAudioLoad() {
+        modApi.hookFunction('PreferenceSubscreenAudioLoad', 4, (args, next) => {
+            const result = next(args); 
+            const oldStyle = document.getElementById('ultrabc-audio-order-style');
+            if (oldStyle) oldStyle.remove();
+            const style = document.createElement('style');
+            style.id = 'ultrabc-audio-order-style';
+            if (Player.UBC.ubcSettings.alfaprf == true) {
+                style.textContent = `
+                    #checkbox-pair-preferences-Notifications { order: 1 !important; }
+                    #checkbox-pair-preferences-PlayItemPlayerOnly { order: 2 !important; }
+                    #checkbox-pair-preferences-PlayItem { order: 3 !important; }
+        `        ;
+             } else {     
+                 style.textContent = `
+                     #checkbox-pair-preferences-PlayItem { order: 1 !important; }
+                     #checkbox-pair-preferences-PlayItemPlayerOnly { order: 2 !important; }
+                     #checkbox-pair-preferences-Notifications { order: 3 !important; }
+        `         ;
+               }
+               document.head.appendChild(style);
+               return result;
         });
     }
 
