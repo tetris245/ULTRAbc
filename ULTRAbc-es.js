@@ -2575,14 +2575,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
-                addMenuCheckbox(64, 64, "Orden alfabético para Reputación y Habilidades: ", "alfrpsk",
-                    "Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.", false, 228
-                );
                 addMenuCheckbox(64, 64, "Orden alfabético para el menú de Preferencias: ", "alfmenu",
                     "Cuando está activado, todas las opciones del menú principal de Preferencias se ordenarán alfabéticamente, a excepción de las Preferencias Generales.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Orden alfabético en pantallas de Preferencias: ", "alfaprf",
-                    "Con esta opción, la mayoría de los ajustes en algunas pantallas de Preferencias estarán en orden alfabético (según el texto en inglés) por tipo de ajuste (desplegables, casillas). Las pantallas afectadas son: General, Chat, Inmersión y Online.", false, 228
+                    "Con esta opción, la mayoría de los ajustes en algunas pantallas de Preferencias estarán en orden alfabético (según el texto en inglés) por tipo de ajuste (desplegables, casillas). Las pantallas afectadas son: General, Chat, Gráficos, Inmersión y Online.", false, 228
+                );
+				addMenuCheckbox(64, 64, "Orden alfabético para Reputación y Habilidades: ", "alfrpsk",
+                    "Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Activar limitaciones del Manicomio (Asylum): ", "asylumlimit",
                     "Por defecto, UBC desactiva las limitaciones del Manicomio (acceso y salida). Si te gustan estas limitaciones, puedes activarlas de nuevo con esta opción.", false, 228
@@ -3155,6 +3155,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPreferenceSubscreenChatLoad();
     ULTRAPreferenceSubscreenExtensionsLoad();
     ULTRAPreferenceSubscreenGeneralLoad();
+	ULTRAPreferenceSubscreenGraphicsLoad(); 
     ULTRAPreferenceSubscreenImmersionLoad();
     ULTRAPreferenceSubscreenMainLoad();
     ULTRAPreferenceSubscreenOnlineClick();
@@ -5287,6 +5288,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "let List = PreferenceSubscreenGeneralCheckboxes; if (Player.UBC.ubcSettings.alfaprf == true) List = Player.UBC.ubcSettings.ListGeneral; const checkboxes = List.map((checkbox) => {",         
         }
     );
+
+	async function ULTRAPreferenceSubscreenGraphicsLoad() {
+        modApi.hookFunction('PreferenceSubscreenGraphicsLoad', 4, (args, next) => {
+            const originalElementCreate = window.ElementCreate;
+            window.ElementCreate = function(config, ...rest) {
+                if (config?.classList?.includes("preference-settings-grid") && config?.attributes?.id === PreferenceSubscreenGraphicsIDs.grid) {
+                    if (Player?.UBC?.ubcSettings?.alfaprf === true && Array.isArray(config.children)) {
+                        const children = config.children;
+                        config.children = [
+                            children[9],  // animationQualityDropdown
+                            children[0],  // vfxDropdown
+                            children[1],  // vfxFilterDropdown
+                            children[13], // maxFpsDropdown
+                            children[3],  // fontDropdown
+                            children [11], // webglBlock 2  
+                            children[14], // maxUnfocusedFpsDropdown
+                            children[2],  // vfxVibratorDropdown
+                            children[12], // allowBlur
+                            children[6],  // centerChatrooms
+                            children[15], // showFps   
+                            children [10], // webglBlock  1 
+                            children[8],  // doBlindFlash
+                            children[7],  // stimulationFlash
+                            children[4],  // invertRoom
+                            children[5],  // smoothZoom                    
+                        ];
+                    }
+                } 
+                return originalElementCreate.call(this, config, ...rest);
+            }
+            next(args); 
+            window.ElementCreate = originalElementCreate;   
+        });
+    }
 
     async function ULTRAPreferenceSubscreenImmersionLoad() {
         modApi.hookFunction('PreferenceSubscreenImmersionLoad', 4, (args, next) => {
