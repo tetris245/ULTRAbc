@@ -5230,7 +5230,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
 	async function ULTRAPreferenceSubscreenAudioLoad() {
-        modApi.hookFunction('PreferenceSubscreenAudioLoad', 0, (args, next) => {
+        modApi.hookFunction('PreferenceSubscreenAudioLoad', 4, (args, next) => {
             const result = next(args); 
             const oldStyle = document.getElementById('ultrabc-audio-order-style');
             if (oldStyle) oldStyle.remove();
