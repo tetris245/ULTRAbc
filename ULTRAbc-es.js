@@ -6594,7 +6594,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function OutClick() {
         if (noescape == false) {
-            if (window.CurrentScreen == "Cell") CellLock(0);
+            if (window.CurrentScreen == "Cell") {
+                CellLock(0);
+                CellMinutes = 5;
+            }
             if (window.CurrentScreen == "PandoraPrison") PandoraPunishmentSentence(0);
             CharacterRefresh(Player);
             if (slowleave == true) {
