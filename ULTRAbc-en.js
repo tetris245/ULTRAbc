@@ -5149,36 +5149,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function ULTRAPandoraPrisonRun() {
-        modApi.hookFunction('PandoraPrisonRun', 4, (args, next) => {
-            if ((Player.Infiltration.Punishment.Timer < CurrentTime) && (CurrentCharacter == null) && !PandoraPrisonEscaped)
-                PandoraPrisonCharacter = PandoraPrisonMaid;
-            if (PandoraWillpowerTimer < CommonTime()) {
-                if (PandoraWillpower < PandoraMaxWillpower) PandoraWillpower++;
-                PandoraWillpowerTimer = PandoraWillpowerTimer + ((InfiltrationPerksActive("Recovery")) ? 20000 : 30000);
-            }
-            if ((Player.Infiltration.Punishment.Timer >= CurrentTime) && (PandoraPrisonCharacterTimer < CommonTime()) && (CurrentCharacter == null) && !PandoraPrisonEscaped) {
-                PandoraPrisonBribeEnabled = true;
-                PandoraPrisonCharacter = (PandoraPrisonCharacter == null) ? PandoraPrisonGuard : null;
-                PandoraPrisonCharacterTimer = CommonTime() + 30000 + Math.floor(Math.random() * 30000);
-            }
-            if (PandoraPrisonCharacter != null) {
-                DrawCharacter(Player, 500, 0, 1);
-                DrawCharacter(PandoraPrisonCharacter, 1000, 0, 1);
-            } else DrawCharacter(Player, 750, 0, 1);
-            if (Player.CanKneel()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Kneel.png", TextGet("Kneel"));
-            DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
-            if (Player.Infiltration.Punishment.Timer > CurrentTime) {
-                DrawText(TextGet("Sentence") + " " + Player.Infiltration.Punishment.Minutes.toString() + " " + TextGet("Minutes"), 1800, 870, "White", "Black");
-                DrawText(TextGet("EndsIn") + " " + TimerToString(Player.Infiltration.Punishment.Timer - CurrentTime), 1800, 920, "White", "Black");
-            }
-            DrawProgressBar(1610, 954, 380, 36, Math.round(PandoraWillpower / PandoraMaxWillpower * 100));
-            DrawText(PandoraWillpower.toString(), 1800, 973, "black", "white");
+        modApi.hookFunction('PandoraPrisonRun', 4, (args, next) => {     
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
             TintsEffect();
-            return;
+            return next(args);
         });
     }
+
+     modApi.patchFunction(
+        "PandoraPrisonRun", {
+            "if (Player.Infiltration.Punishment.Timer > CurrentTime + 3600000) Player.Infiltration.Punishment.Timer = CurrentTime + 3600000;":
+            "",
+        }
+    );
 
     //Photographic Room
     function ULTRAPhotographicClick() {
