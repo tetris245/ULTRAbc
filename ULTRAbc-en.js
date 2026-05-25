@@ -3071,7 +3071,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //ModSDK Functions
     ULTRAActivityChatRoomArousalSync();
-    ULTRAAnimationRequestDraw();
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceClick();
@@ -3178,55 +3177,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAStableRun();
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
-
-    ULTRAArcadeRun();
-    ULTRAAsylumBedroomRun();
-    ULTRAAsylumGGTSRun();
-    ULTRAAsylumTherapyRun();
-    ULTRAChatAdminRoomCustomizationRun();
-    ULTRAChatSelectRun();
-    ULTRAChestLockpickRun();
-    ULTRAClubCardRun();
-    ULTRACollegeCafeteriaRun();
-    ULTRACollegeChessRun();
-    ULTRACollegeDetentionRun();
-    ULTRACollegeEntranceRun();
-    ULTRACollegeTeacherRun();
-    ULTRACollegeTennisRun();
-    ULTRACollegeTheaterRun();
-    ULTRACraftingRun();
-    ULTRADojoStruggleRun();
-    ULTRAGamblingRun();
-    ULTRAGetUpRun();
-    ULTRAHorseWalkRun();
-    ULTRAKidnapRun();
-    ULTRAMagicRun();
-    ULTRAMagicBattleRun();
-    ULTRAMagicSchoolEscapeRun();
-    ULTRAMagicSchoolLaboratoryRun();
-    ULTRAMaidCleaningRun();
-    ULTRAMaidDrinksRun();
-    ULTRAManagementRun();
-    ULTRANurseryRun();
-    ULTRAOnlineProfileRun();
-    ULTRAPandoraRun();
-    ULTRAPlatformIntroRun();
-    ULTRAPlatformDialogRun();
-    ULTRAPlatformProfileRun();
-    ULTRAPlatformRun();
-    ULTRAPlayerAuctionRun();
-    ULTRAPokerRun();
-    ULTRAPrisonRun();
-    ULTRAPuppyWalkerRun();
-    ULTRARhythmGameRun();
-    ULTRASarahRun();
-    ULTRAShopRun();
-    ULTRASlaveAuctionRun();
-    ULTRASlaveMarketRun();
-    ULTRATennisRun();
-    ULTRATherapyRun();
-    ULTRATitleRun();
-    ULTRAWheelFortuneRun();
 
     //Asylum
     function ULTRAAsylumEntranceClick() {
