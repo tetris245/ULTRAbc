@@ -5717,7 +5717,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         TintsEffect();
         return next(args);
     });
-    }
 
     modApi.hookFunction('MagicSchoolLaboratoryRun', 4, (args, next) => {
         TintsEffect();
