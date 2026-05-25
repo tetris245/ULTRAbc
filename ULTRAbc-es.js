@@ -3081,9 +3081,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRABackgroundsTextGet();
     ULTRACafeClubCardStart();
     ULTRACafeRun();
-    ULTRACellClick();
-    ULTRACellLoad();
-    ULTRACellRun();
     ULTRAChatAdminClick();
     ULTRAChatAdminRun();
     ULTRAChatRoomClick();
@@ -5515,76 +5512,70 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Timer Cell
-    function ULTRACellClick() {
-        modApi.hookFunction('CellClick', 4, (args, next) => {
-            if (CellOpenTimer < CurrentTime) {
-                if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
+	//Timer Cell
+    modApi.hookFunction('CellClick', 4, (args, next) => {
+        if (CellOpenTimer < CurrentTime) {
+            if (MouseIn(1885, 385, 90, 90) && (CellMinutes > 59)) CellMinutes = CellMinutes + 5;
+        }
+        if (sosbuttons == true) {
+            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
+        }
+        if (outbuttons == true) {
+            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
+        }
+        if (notcbuttons == false) {
+            if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 745) && (MouseY < 835)) {
+                tcname = "Cell";
+                M_MOANER_saveControls();
+                CommonSetScreen("Room", "Cell");
             }
-            if (sosbuttons == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
-            }
-            if (outbuttons == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
-            }
-            if (notcbuttons == false) {
-                if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 745) && (MouseY < 835)) {
-                    tcname = "Cell";
-                    M_MOANER_saveControls();
-                    CommonSetScreen("Room", "Cell");
+            if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835)) {
+                if (BackgroundsList != undefined) {
+                   let listbg = BackgroundsList.length;
+                   let Roll = Math.floor(Math.random() * listbg);
+                   if (Roll == 0) Roll = 1;
+                   let name = BackgroundsList[Roll - 1].Name;
+                   tcname = name;
+                   M_MOANER_saveControls();
+                   CommonSetScreen("Room", "Cell");
                 }
-                if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835)) {
-                    if (BackgroundsList != undefined) {
-                        let listbg = BackgroundsList.length;
-                        let Roll = Math.floor(Math.random() * listbg);
-                        if (Roll == 0) Roll = 1;
-                        let name = BackgroundsList[Roll - 1].Name;
-                        tcname = name;
+            }
+            if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 865) && (MouseY < 955)) {
+                let backgrounds = BackgroundsTagList;
+                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                    if (setBackground) {
+                        tcname = Name;
                         M_MOANER_saveControls();
-                        CommonSetScreen("Room", "Cell");
                     }
-                }
-                if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 865) && (MouseY < 955)) {
-                    let backgrounds = BackgroundsTagList;
-                    BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                        if (setBackground) {
-                            tcname = Name;
-                            M_MOANER_saveControls();
-                        }
-                        CommonSetScreen("Room", "Cell");
-                    });
-                }
+                    CommonSetScreen("Room", "Cell");
+                });
             }
-            next(args);
-        });
-    }
+        }
+        return next(args);
+    });
 
-    async function ULTRACellLoad() {
-        modApi.hookFunction('CellLoad', 4, (args, next) => {
-            CellBackground = tcname;
-            CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
-            CellKeyDepositStaff.AllowItem = false;
-            PoseSetActive(Player, null);
-            CellOpenTimer = LogValue("Locked", "Cell");
-            if (CellOpenTimer == null) CellOpenTimer = 0;
-            return;
-        });
-    }
+    modApi.hookFunction('CellLoad', 4, async (args, next) => {
+        CellBackground = tcname;
+        CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
+        CellKeyDepositStaff.AllowItem = false;
+        PoseSetActive(Player, null);
+        CellOpenTimer = LogValue("Locked", "Cell");
+        if (CellOpenTimer == null) CellOpenTimer = 0;
+        return;
+    });
 
-    async function ULTRACellRun() {
-        modApi.hookFunction('CellRun', 4, (args, next) => {
-            if (sosbuttons == true) SosButtons();
-            if (outbuttons == true) OutButtons();
-            if (notcbuttons == false) {
-                DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
-                DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
-                DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
-            }
-            TintsEffect();
-            next(args);
-        });
-    }
-
+    modApi.hookFunction('CellRun', 4, async (args, next) => {
+        if (sosbuttons == true) SosButtons();
+        if (outbuttons == true) OutButtons();
+        if (notcbuttons == false) {
+            DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+            DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
+            DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+        }
+        TintsEffect();
+        return next(args);
+    });
+ 
 	//Vision
     modApi.hookFunction('AnimationRequestDraw', 4, (args, next) => {
         if (animstate == 2) return;
