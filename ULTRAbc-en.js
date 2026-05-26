@@ -3169,9 +3169,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAShibariClubCardStart();
     ULTRAShibariRun();
     ULTRAStableClubCardStart();
-    ULTRAStablePlayerTrainingCarrotsEnd();
-    ULTRAStablePlayerTrainingHurdlesEnd();
-    ULTRAStableRun();
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
@@ -5483,34 +5480,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Stable
-    async function ULTRAStablePlayerTrainingCarrotsEnd() {
-        modApi.hookFunction('StablePlayerTrainingCarrotsEnd', 4, (args, next) => {
-            if (gamestable) StablePonyEnd();
-            next(args);
-        });
-    }
+	//Stable
+    modApi.hookFunction('StablePlayerTrainingCarrotsEnd', 4, async (args, next) => {
+        if (gamestable) StablePonyEnd();
+        return next(args);
+    });
 
-    async function ULTRAStablePlayerTrainingHurdlesEnd() {
-        modApi.hookFunction('StablePlayerTrainingHurdlesEnd', 4, (args, next) => {
-            if (gamestable) StablePonyEnd();
-            next(args);
-        });
-    }
+    modApi.hookFunction('StablePlayerTrainingHurdlesEnd', 4, async (args, next) => {
+        if (gamestable) StablePonyEnd();
+        return next(args);
+    });
 
-    async function ULTRAStableRun() {
-        modApi.hookFunction('StableRun', 4, (args, next) => {
-            TintsEffect();
-            let stablegame = minigame;
-            minigame = "";
-            M_MOANER_saveControls();
-            if (stablegame == "carrot") StableCarrot();
-            if (stablegame == "hurdle") StableHurdle();
-            if (stablegame == "training") StableTraining();
-            if (stablegame == "whippony") StableWhip();
-            next(args);
-        });
-    }
+    modApi.hookFunction('StableRun', 4, async (args, next) => {
+        TintsEffect();
+        let stablegame = minigame;
+        minigame = "";
+        M_MOANER_saveControls();
+        if (stablegame == "carrot") StableCarrot();
+        if (stablegame == "hurdle") StableHurdle();
+        if (stablegame == "training") StableTraining();
+        if (stablegame == "whippony") StableWhip();
+        return next(args);
+    });
 
 	//Timer Cell
     modApi.hookFunction('CellClick', 4, (args, next) => {
@@ -12241,8 +12232,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "training, whippony.\n" +
                     "Tennis1 = easy, tennis2 = normal, tennis3 = hard\n" +
                     "Training is the trainer version of the hurdle game.\n" +
-                    "You need generally to click on the NPC and select the appropriate options in the dialogs.\n" +
-                    "Note that a full relog is required to really end the games in the stable (the 'leave' option in dialog will start a new game!)";
+                    "You need generally to click on the NPC and select the appropriate options in the dialogs.";
                 infomsg(msg);
             } else {
                 minigame = args;
