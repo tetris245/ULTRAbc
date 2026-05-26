@@ -100,7 +100,9 @@ Changes for future version
 * Extended the alphabetical order to the Audio and Graphics Preferences screens
 * Updated the title3 and title4 commands
 * Optimised the code related to alphabetic order for the Preferences menu and the following Preferences screens: General, Chat, Immersion, Online
-* Optimised the code to modify the PandoraPrisonRun function
+* Optimised the code for several hooks (1st series) by
+  - deleting the ULTRA executable and make the hook directly executable
+  - replacing next(args) by return next(args) except when another kind of return is implemented
 
 
 
