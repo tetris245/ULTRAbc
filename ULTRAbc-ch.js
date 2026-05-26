@@ -3168,9 +3168,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAShibariClubCardStart();
     ULTRAShibariRun();
     ULTRAStableClubCardStart();
-    ULTRAStablePlayerTrainingCarrotsEnd();
-    ULTRAStablePlayerTrainingHurdlesEnd();
-    ULTRAStableRun();
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
@@ -5482,34 +5479,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Stable
-    async function ULTRAStablePlayerTrainingCarrotsEnd() {
-        modApi.hookFunction('StablePlayerTrainingCarrotsEnd', 4, (args, next) => {
-            if (gamestable) StablePonyEnd();
-            next(args);
-        });
-    }
+	//Stable
+    modApi.hookFunction('StablePlayerTrainingCarrotsEnd', 4, async (args, next) => {
+        if (gamestable) StablePonyEnd();
+        return next(args);
+    });
 
-    async function ULTRAStablePlayerTrainingHurdlesEnd() {
-        modApi.hookFunction('StablePlayerTrainingHurdlesEnd', 4, (args, next) => {
-            if (gamestable) StablePonyEnd();
-            next(args);
-        });
-    }
+    modApi.hookFunction('StablePlayerTrainingHurdlesEnd', 4, async (args, next) => {
+        if (gamestable) StablePonyEnd();
+        return next(args);
+    });
 
-    async function ULTRAStableRun() {
-        modApi.hookFunction('StableRun', 4, (args, next) => {
-            TintsEffect();
-            let stablegame = minigame;
-            minigame = "";
-            M_MOANER_saveControls();
-            if (stablegame == "carrot") StableCarrot();
-            if (stablegame == "hurdle") StableHurdle();
-            if (stablegame == "training") StableTraining();
-            if (stablegame == "whippony") StableWhip();
-            next(args);
-        });
-    }
+    modApi.hookFunction('StableRun', 4, (args, next) => {
+        TintsEffect();
+        let stablegame = minigame;
+        minigame = "";
+        M_MOANER_saveControls();
+        if (stablegame == "carrot") StableCarrot();
+        if (stablegame == "hurdle") StableHurdle();
+        if (stablegame == "training") StableTraining();
+        if (stablegame == "whippony") StableWhip();
+        return next(args);
+    });
 
 	//Timer Cell
     modApi.hookFunction('CellClick', 4, (args, next) => {
@@ -12231,8 +12222,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "whippony（鞭打小马）。\n" +
                     "Tennis1 = 简单，tennis2 = 普通，tennis3 = 困难\n" +
                     "Training 是跨栏游戏的训练师版本。\n" +
-                    "你通常需要点击 NPC 并在对话框中选择合适的选项。\n" +
-                    "注意：需要完全重新登录才能真正结束马厩中的游戏（对话框中的'离开'选项将开始新游戏！）";
+                    "你通常需要点击 NPC 并在对话框中选择合适的选项。";
                 infomsg(msg);
             } else {
                 minigame = args;
