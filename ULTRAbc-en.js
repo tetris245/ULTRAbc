@@ -5555,13 +5555,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     modApi.hookFunction('CellLoad', 4, async (args, next) => {
-        CellBackground = tcname;
-        CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
-        CellKeyDepositStaff.AllowItem = false;
-        PoseSetActive(Player, null);
-        CellOpenTimer = LogValue("Locked", "Cell");
-        if (CellOpenTimer == null) CellOpenTimer = 0;
-        return;
+        if (altchsh == true) {
+           AltCellLoad();
+           return;
+        }
+        return next(args);
     });
 
     modApi.hookFunction('CellRun', 4, async (args, next) => {
@@ -10146,6 +10144,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
+	//Timer Cell
+    function AltCellLoad() {
+        CellBackground = tcname;
+        CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
+        CellKeyDepositStaff.AllowItem = false;
+        PoseSetActive(Player, null);
+        CellOpenTimer = LogValue("Locked", "Cell");
+        if (CellOpenTimer == null) CellOpenTimer = 0;
+    }
+	
     //Unrestrict
     function softUnrestrict() {
         unrestrict = 1;
