@@ -103,6 +103,7 @@ Changes for future version
 * Optimised the code for several hooks (1st series) by
   - deleting the ULTRA executable and directly executing the hook
   - replacing next(args) by return next(args) except when another kind of return is implemented
+  - replacing (partially or entirely) some hooks by patches
 
 
 
