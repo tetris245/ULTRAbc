@@ -5240,8 +5240,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } 
             return originalElementCreate.call(this, config, ...rest);
         }
-    next(args);
-    window.ElementCreate = originalElementCreate;   
+        next(args);
+        window.ElementCreate = originalElementCreate;   
     });
 
     modApi.hookFunction('PreferenceSubscreenImmersionLoad', 4, async (args, next) => {
