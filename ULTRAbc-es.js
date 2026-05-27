@@ -5358,7 +5358,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
              'BackgroundSelectionMake(BackgroundsPrivateRoomTagList, MainHallBackground, (Name, setBackground) => {':
              'BackgroundSelectionMake(backgrounds, MainHallBackground, (Name, setBackground) => {',
              'BackgroundSelectionMake(BackgroundsPrivateRoomTagList, PrivateBackground, (Name, setBackground) => {':
-		   'BackgroundSelectionMake(backgrounds, PrivateBackground, (Name, setBackground) => {',
+		     'BackgroundSelectionMake(backgrounds, PrivateBackground, (Name, setBackground) => {',
         }
     );
 
