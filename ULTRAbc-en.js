@@ -3146,17 +3146,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPandoraPrisonRun();
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
-    ULTRAPreferenceRun();
-	ULTRAPreferenceSubscreenAudioLoad();
-    ULTRAPreferenceSubscreenChatLoad();
-    ULTRAPreferenceSubscreenExtensionsLoad();
-    ULTRAPreferenceSubscreenGeneralLoad();
-	ULTRAPreferenceSubscreenGraphicsLoad(); 
-    ULTRAPreferenceSubscreenImmersionLoad();
-    ULTRAPreferenceSubscreenMainLoad();
-    ULTRAPreferenceSubscreenOnlineClick();
-    ULTRAPreferenceSubscreenOnlineLoad();
-    ULTRAPreferenceSubscreenOnlineRun();
     ULTRAPrivateClick();
     ULTRAPrivateClubCardVsFriendStart();
     ULTRAPrivateClubCardVsOwnerStart();
@@ -5124,66 +5113,58 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Preferences
-    async function ULTRAInformationSheetExit() {
-        modApi.hookFunction('InformationSheetExit', 4, (args, next) => {
-            FBCsettings();
-            next(args);
-        });
-    }
+    modApi.hookFunction('InformationSheetExit', 4, async (args, next) => {
+        FBCsettings();
+        return next(args);
+    });
+ 
+    modApi.hookFunction('PreferenceRun', 4, async (args, next) => {
+        let mbb = 0;
+        let list = PreferenceExtensionsDisplay;
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].Button == "MBS Settings") mbb = 1;
+        }
+        let name = PreferenceSubscreen.name;
+        if ((name == "Extensions") && (PreferenceExtensionsCurrent == null) && (mbb == 1) && (tintnever == false)) {
+            if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
+            if (tintmbs == false) untintMbsColors();
+        }
+        PreferenceBackground = "Sheet";
+        if (ifext == true) PreferenceBackground = ifname;
+        TintsEffect();
+        return next(args);
+    });
+  
+    modApi.hookFunction('PreferenceSubscreenAudioLoad', 4, async (args, next) => {
+        const result = next(args); 
+        const oldStyle = document.getElementById('ultrabc-audio-order-style');
+        if (oldStyle) oldStyle.remove();
+        const style = document.createElement('style');
+        style.id = 'ultrabc-audio-order-style';
+        if (Player.UBC.ubcSettings.alfaprf == true) {
+            style.textContent = `
+                #checkbox-pair-preferences-Notifications { order: 1 !important; }
+                #checkbox-pair-preferences-PlayItemPlayerOnly { order: 2 !important; }
+                #checkbox-pair-preferences-PlayItem { order: 3 !important; }
+        `    ;
+         } else {     
+             style.textContent = `
+                 #checkbox-pair-preferences-PlayItem { order: 1 !important; }
+                 #checkbox-pair-preferences-PlayItemPlayerOnly { order: 2 !important; }
+                 #checkbox-pair-preferences-Notifications { order: 3 !important; }
+        `     ;
+          }
+          document.head.appendChild(style);
+          return result;
+    });
 
-    async function ULTRAPreferenceRun() {
-        modApi.hookFunction('PreferenceRun', 4, (args, next) => {
-            let mbb = 0;
-            let list = PreferenceExtensionsDisplay;
-            for (let i = 0; i < list.length; i++) {
-                if (list[i].Button == "MBS Settings") mbb = 1;
-            }
-            let name = PreferenceSubscreen.name;
-            if ((name == "Extensions") && (PreferenceExtensionsCurrent == null) && (mbb == 1) && (tintnever == false)) {
-                if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
-                if (tintmbs == false) untintMbsColors();
-            }
-            PreferenceBackground = "Sheet";
-            if (ifext == true) PreferenceBackground = ifname;
-            TintsEffect();
-            next(args);
-        });
-    }
+    modApi.hookFunction('PreferenceSubscreenChatLoad', 4, async (args, next) => {
+        PreferenceBackground = "Sheet";
+        if (ifext == true) PreferenceBackground = ifname;
+        return next(args);
+    });
 
-	async function ULTRAPreferenceSubscreenAudioLoad() {
-        modApi.hookFunction('PreferenceSubscreenAudioLoad', 4, (args, next) => {
-            const result = next(args); 
-            const oldStyle = document.getElementById('ultrabc-audio-order-style');
-            if (oldStyle) oldStyle.remove();
-            const style = document.createElement('style');
-            style.id = 'ultrabc-audio-order-style';
-            if (Player.UBC.ubcSettings.alfaprf == true) {
-                style.textContent = `
-                    #checkbox-pair-preferences-Notifications { order: 1 !important; }
-                    #checkbox-pair-preferences-PlayItemPlayerOnly { order: 2 !important; }
-                    #checkbox-pair-preferences-PlayItem { order: 3 !important; }
-        `        ;
-             } else {     
-                 style.textContent = `
-                     #checkbox-pair-preferences-PlayItem { order: 1 !important; }
-                     #checkbox-pair-preferences-PlayItemPlayerOnly { order: 2 !important; }
-                     #checkbox-pair-preferences-Notifications { order: 3 !important; }
-        `         ;
-               }
-               document.head.appendChild(style);
-               return result;
-        });
-    }
-
-    async function ULTRAPreferenceSubscreenChatLoad() {
-        modApi.hookFunction('PreferenceSubscreenChatLoad', 4, (args, next) => {
-            PreferenceBackground = "Sheet";
-            if (ifext == true) PreferenceBackground = ifname;
-            return next(args);
-        });
-    }
-
-	modApi.patchFunction(
+    modApi.patchFunction(
         "PreferenceSubscreenChatLoad", {
             "const dropdownElements = Object.entries(PreferenceSubscreenChatDropdowns).map(([key, dropdown]) => {":     
             "let List2 = PreferenceSubscreenChatDropdowns; if (Player.UBC.ubcSettings.alfaprf == true) List2 = Player.UBC.ubcSettings.ListChat2; const dropdownElements = Object.entries(List2).map(([key, dropdown]) => {",    
@@ -5192,42 +5173,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     );
 
-    async function ULTRAPreferenceSubscreenExtensionsLoad() {
-        modApi.hookFunction('PreferenceSubscreenExtensionsLoad', 4, (args, next) => {
-            UBCrpsk();
-            M_MOANER_saveControls();
-            if (Player.UBC != undefined) {
-                if (Player.UBC.ubcSettings != undefined) {
-                    Player.UBC.ubcSettings.rpabdl = rpabdl;
-                    Player.UBC.ubcSettings.rpasyl = rpasyl;
-                    Player.UBC.ubcSettings.rpgamb = rpgamb;
-                    Player.UBC.ubcSettings.rpgame = rpgame;
-                    Player.UBC.ubcSettings.rpkidn = rpkidn;
-                    Player.UBC.ubcSettings.rplarp = rplarp;
-                    Player.UBC.ubcSettings.rpmagh = rpmagh;
-                    Player.UBC.ubcSettings.rpmagp = rpmagp;
-                    Player.UBC.ubcSettings.rpmaid = rpmaid;
-                    Player.UBC.ubcSettings.rpmain = rpmain;
-                    Player.UBC.ubcSettings.skbondage = skbondage;
-                    Player.UBC.ubcSettings.skdressage = skdressage;
-                    Player.UBC.ubcSettings.skevasion = skevasion;
-                    Player.UBC.ubcSettings.skinfiltration = skinfiltration;
-                    Player.UBC.ubcSettings.sklockpicking = sklockpicking;
-                    Player.UBC.ubcSettings.skselfbondage = skselfbondage;
-                    Player.UBC.ubcSettings.skwillpower = skwillpower;
-                }
+    modApi.hookFunction('PreferenceSubscreenExtensionsLoad', 4, async (args, next) => {
+        UBCrpsk();
+        M_MOANER_saveControls();
+        if (Player.UBC != undefined) {
+            if (Player.UBC.ubcSettings != undefined) {
+                Player.UBC.ubcSettings.rpabdl = rpabdl;
+                Player.UBC.ubcSettings.rpasyl = rpasyl;
+                Player.UBC.ubcSettings.rpgamb = rpgamb;
+                Player.UBC.ubcSettings.rpgame = rpgame;
+                Player.UBC.ubcSettings.rpkidn = rpkidn;
+                Player.UBC.ubcSettings.rplarp = rplarp;
+                Player.UBC.ubcSettings.rpmagh = rpmagh;
+                Player.UBC.ubcSettings.rpmagp = rpmagp;
+                Player.UBC.ubcSettings.rpmaid = rpmaid;
+                Player.UBC.ubcSettings.rpmain = rpmain;
+                Player.UBC.ubcSettings.skbondage = skbondage;
+                Player.UBC.ubcSettings.skdressage = skdressage;
+                Player.UBC.ubcSettings.skevasion = skevasion;
+                Player.UBC.ubcSettings.skinfiltration = skinfiltration;
+                Player.UBC.ubcSettings.sklockpicking = sklockpicking;
+                Player.UBC.ubcSettings.skselfbondage = skselfbondage;
+                Player.UBC.ubcSettings.skwillpower = skwillpower;
             }
-            next(args);
-        });
-    }
+        }
+        return next(args);
+    });
 
-    async function ULTRAPreferenceSubscreenGeneralLoad() {
-        modApi.hookFunction('PreferenceSubscreenGeneralLoad', 4, (args, next) => {
-            PreferenceBackground = "Sheet";
-            if (ifext == true) PreferenceBackground = ifname;        
-            return next(args);
-        });
-    }
+    modApi.hookFunction('PreferenceSubscreenGeneralLoad', 4, async (args, next) => {
+        PreferenceBackground = "Sheet";
+        if (ifext == true) PreferenceBackground = ifname;        
+        return next(args);
+    });
 
     modApi.patchFunction(
         "PreferenceSubscreenGeneralLoad", {
@@ -5236,97 +5213,88 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     );
 
-	async function ULTRAPreferenceSubscreenGraphicsLoad() {
-        modApi.hookFunction('PreferenceSubscreenGraphicsLoad', 4, (args, next) => {
-            const originalElementCreate = window.ElementCreate;
-            window.ElementCreate = function(config, ...rest) {
-                if (config?.classList?.includes("preference-settings-grid") && config?.attributes?.id === PreferenceSubscreenGraphicsIDs.grid) {
-                    if (Player?.UBC?.ubcSettings?.alfaprf === true && Array.isArray(config.children)) {
-                        const children = config.children;
-                        config.children = [
-                            children[9],  // animationQualityDropdown
-                            children[0],  // vfxDropdown
-                            children[1],  // vfxFilterDropdown
-                            children[13], // maxFpsDropdown
-                            children[3],  // fontDropdown
-                            children [11], // webglBlock 2  
-                            children[14], // maxUnfocusedFpsDropdown
-                            children[2],  // vfxVibratorDropdown
-                            children[12], // allowBlur
-                            children[6],  // centerChatrooms
-                            children[15], // showFps   
-                            children [10], // webglBlock  1 
-                            children[8],  // doBlindFlash
-                            children[7],  // stimulationFlash
-                            children[4],  // invertRoom
-                            children[5],  // smoothZoom                    
-                        ];
-                    }
-                } 
-                return originalElementCreate.call(this, config, ...rest);
-            }
-            next(args); 
-            window.ElementCreate = originalElementCreate;   
-        });
-    }
-	
-    async function ULTRAPreferenceSubscreenImmersionLoad() {
-        modApi.hookFunction('PreferenceSubscreenImmersionLoad', 4, (args, next) => {
-            PreferenceBackground = "Sheet";
-            if (ifext == true) PreferenceBackground = ifname;
-            return next(args);
-        });
-    }
+    modApi.hookFunction('PreferenceSubscreenGraphicsLoad', 4, async (args, next) => {
+        const originalElementCreate = window.ElementCreate;
+        window.ElementCreate = function(config, ...rest) {
+            if (config?.classList?.includes("preference-settings-grid") && config?.attributes?.id === PreferenceSubscreenGraphicsIDs.grid) {
+                if (Player?.UBC?.ubcSettings?.alfaprf === true && Array.isArray(config.children)) {
+                    const children = config.children;
+                    config.children = [
+                        children[9],  // animationQualityDropdown
+                        children[0],  // vfxDropdown
+                        children[1],  // vfxFilterDropdown
+                        children[13], // maxFpsDropdown
+                        children[3],  // fontDropdown
+                        children [11], // webglBlock 2  
+                        children[14], // maxUnfocusedFpsDropdown
+                        children[2],  // vfxVibratorDropdown
+                        children[12], // allowBlur
+                        children[6],  // centerChatrooms
+                        children[15], // showFps   
+                        children [10], // webglBlock  1 
+                        children[8],  // doBlindFlash
+                        children[7],  // stimulationFlash
+                        children[4],  // invertRoom
+                        children[5],  // smoothZoom                    
+                    ];
+                }
+            } 
+            return originalElementCreate.call(this, config, ...rest);
+        }
+        next(args);
+        window.ElementCreate = originalElementCreate;   
+    });
 
-	modApi.patchFunction(
+    modApi.hookFunction('PreferenceSubscreenImmersionLoad', 4, async (args, next) => {
+        PreferenceBackground = "Sheet";
+        if (ifext == true) PreferenceBackground = ifname;
+        return next(args);
+    });
+
+    modApi.patchFunction(
         "PreferenceSubscreenImmersionLoad", {
             "const otherCheckboxes = PreferenceSubscreenImmersionCheckboxes.map((checkbox) => {":
             "let List = PreferenceSubscreenImmersionCheckboxes; if (Player.UBC.ubcSettings.alfaprf == true) List = Player.UBC.ubcSettings.ListImmersion; const otherCheckboxes = List.map((checkbox) => {",         
         }
     );
 
-    async function ULTRAPreferenceSubscreenMainLoad() {
-        modApi.hookFunction('PreferenceSubscreenMainLoad', 4, (args, next) => {
-            PreferenceBackground = "Sheet";
-            if (ifext == true) PreferenceBackground = ifname;
-            return next(args);
-        });
-    }
+    modApi.hookFunction('PreferenceSubscreenMainLoad', 4, async (args, next) => {
+        PreferenceBackground = "Sheet";
+        if (ifext == true) PreferenceBackground = ifname;
+        return next(args);
+    });
 
-	modApi.patchFunction(
+    modApi.patchFunction(
         "PreferenceSubscreenMainLoad", {
             "const subscreenButtons = PreferenceSubscreens.filter(s => !s.hidden);":
             "let List = PreferenceSubscreens; if (Player.UBC.ubcSettings.alfmenu == true) List = Player.UBC.ubcSettings.ListAlpha; const subscreenButtons = List.filter(s => !s.hidden); ",         
         }
     );
 
-    function ULTRAPreferenceSubscreenOnlineClick() {
-        modApi.hookFunction('PreferenceSubscreenOnlineClick', 4, (args, next) => {
-            if (PreferencePageCurrent === 2) {
-                if ((MouseIn(1160, 330, 60, 60))) {
-                    PreferenceOnlineDefaultBackground = "CosyChalet";
-                    Player.OnlineSettings.DefaultChatRoomBackground = "CosyChalet";
-                    PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
-                    PreferenceOpenSubscreen("Online", 2);
-                }
-                if ((MouseIn(1260, 330, 60, 60))) {
-                    let listbg = PreferenceOnlineDefaultBackgroundList.length;
-                    if (bgall) listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    PreferenceOnlineDefaultBackground = name;
-                    Player.OnlineSettings.DefaultChatRoomBackground = name;
-                    PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
-                    PreferenceOpenSubscreen("Online", 2);
-                }
+    modApi.hookFunction('PreferenceSubscreenOnlineClick', 4, (args, next) => {
+        if (PreferencePageCurrent === 2) {
+            if ((MouseIn(1160, 330, 60, 60))) {
+                PreferenceOnlineDefaultBackground = "CosyChalet";
+                Player.OnlineSettings.DefaultChatRoomBackground = "CosyChalet";
+                PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
+                PreferenceOpenSubscreen("Online", 2);
             }
-            next(args);
-        });
-    }
-
-    async function ULTRAPreferenceSubscreenOnlineLoad() {
-        modApi.hookFunction("PreferenceSubscreenOnlineLoad", 4, (args, next) => {
+            if ((MouseIn(1260, 330, 60, 60))) {
+                let listbg = PreferenceOnlineDefaultBackgroundList.length;
+                if (bgall) listbg = BackgroundsList.length;
+                let Roll = Math.floor(Math.random() * listbg);
+                if (Roll == 0) Roll = 1;
+                let name = BackgroundsList[Roll - 1].Name;
+                PreferenceOnlineDefaultBackground = name;
+                Player.OnlineSettings.DefaultChatRoomBackground = name;
+                PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
+                PreferenceOpenSubscreen("Online", 2);
+            }
+        }
+        return next(args);
+    });
+ 
+    modApi.hookFunction("PreferenceSubscreenOnlineLoad", 4, async (args, next) => {
         PreferenceBackground = "Sheet";
         if (ifext == true) PreferenceBackground = ifname;
         setTimeout(() => {
@@ -5339,29 +5307,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }, 0);
         return next(args);
-        });
-    }
+    });
 
-	modApi.patchFunction(
+    modApi.patchFunction(
         "PreferenceSubscreenOnlineLoad", {
             "const checkboxElements = PreferenceSubscreenOnlineCheckboxes.map((checkbox) => {":
             "let List = PreferenceSubscreenOnlineCheckboxes; if (Player.UBC.ubcSettings.alfaprf == true) List = Player.UBC.ubcSettings.ListOnline; const checkboxElements = List.map((checkbox) => {",  
         }
     );
 
-    async function ULTRAPreferenceSubscreenOnlineRun() {
-        modApi.hookFunction('PreferenceSubscreenOnlineRun', 4, (args, next) => {
-            if (PreferencePageCurrent === 2) {
-                MainCanvas.textAlign = "left";
-                DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");
-                DrawButton(1160, 330, 60, 60, "", "White", "", "Cosy Chalet");
-                DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
-                DrawImageResize("Icons/Reset.png", 1160, 330, 60, 60);
-                DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('PreferenceSubscreenOnlineRun', 4, async (args, next) => {
+        if (PreferencePageCurrent === 2) {
+            MainCanvas.textAlign = "left";
+            DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");
+            DrawButton(1160, 330, 60, 60, "", "White", "", "Cosy Chalet");
+            DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
+            DrawImageResize("Icons/Reset.png", 1160, 330, 60, 60);
+            DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
+        }
+        return next(args);
+    });
 
     //Private Room
     function ULTRAPrivateClick() {
