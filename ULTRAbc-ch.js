@@ -3166,7 +3166,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPrivateRun();
     ULTRARelogLoad();
     ULTRAShibariClubCardStart();
-    ULTRAShibariRun();
     ULTRAStableClubCardStart();
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
@@ -5463,21 +5462,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Shibari
-    async function ULTRAShibariRun() {
-        modApi.hookFunction('ShibariRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "shibari") {
-                minigame = "";
-                M_MOANER_saveControls();
-                InventoryRemove(ShibariStudent, "ItemArms");
-                InventoryRemove(ShibariStudent, "ItemFeet");
-                InventoryRemove(ShibariStudent, "ItemLegs");
-                InventoryRemove(ShibariStudent, "ItemMouth");
-                InventoryRemove(ShibariStudent, "ItemTorso");
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('ShibariRun', 4, async (args, next) => {
+        TintsEffect();
+        if (minigame == "shibari") {
+            minigame = "";
+            M_MOANER_saveControls();
+            InventoryRemove(ShibariStudent, "ItemArms");
+            InventoryRemove(ShibariStudent, "ItemFeet");
+            InventoryRemove(ShibariStudent, "ItemLegs");
+            InventoryRemove(ShibariStudent, "ItemMouth");
+            InventoryRemove(ShibariStudent, "ItemTorso");
+        }
+        return next(args);
+    });
 
 	//Stable
     modApi.hookFunction('StablePlayerTrainingCarrotsEnd', 4, async (args, next) => {
