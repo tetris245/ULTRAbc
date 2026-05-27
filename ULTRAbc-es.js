@@ -3143,8 +3143,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPandoraPenitentiaryResult();
     ULTRAPandoraPrisonClick();
     ULTRAPandoraPrisonRun();
-    ULTRAPhotographicClick();
-    ULTRAPhotographicRun();
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
     ULTRAPreferenceRun();
@@ -5108,26 +5106,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     );
 
     //Photographic Room
-    function ULTRAPhotographicClick() {
-        modApi.hookFunction('PhotographicClick', 4, (args, next) => {
-            if (sosbuttons == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
-            }
-            if (outbuttons == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('PhotographicClick', 4, (args, next) => {
+        if (sosbuttons == true) {
+            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
+        }
+        if (outbuttons == true) {
+            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
+        }
+        return next(args);
+    });
 
-    async function ULTRAPhotographicRun() {
-        modApi.hookFunction('PhotographicRun', 4, (args, next) => {
-            if (sosbuttons == true) SosButtons();
-            if (outbuttons == true) OutButtons();
-            TintsEffect();
-            next(args);
-        });
-    }
+    modApi.hookFunction('PhotographicRun', 4, async (args, next) => {
+        if (sosbuttons == true) SosButtons();
+        if (outbuttons == true) OutButtons();
+        TintsEffect();
+        return next(args);
+    });
 
     //Preferences
     async function ULTRAInformationSheetExit() {
