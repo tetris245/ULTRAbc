@@ -11669,7 +11669,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Zonas disponibles:\n" +
                     "asylum, cafe, infiltration, introduction, kidnap, larp,\n" +
                     "lounge, magic, movie, shibari, stable.\n" +
-                    "Debes hacer clic en el NPC correspondiente y luego en la opción apropiada.";
+                    "Debes hacer clic en el NPC correspondiente y luego en la opción apropiada.\n" +
+                    "En cuanto a la magia, la opción de la carta aparecerá después de un largo diálogo, sal y vuelve a entrar si has comenzado la misión solicitada por el kitsune, pero aún no la has terminado.";
                 infomsg(msg);
             } else {
                 minigame = args;
