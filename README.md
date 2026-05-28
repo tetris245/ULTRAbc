@@ -101,7 +101,7 @@ Changes for future version
 * Updated the magic option of the cgame command
 * Updated the title3 and title4 commands
 * Optimised the code related to alphabetic order for the Preferences menu and the following Preferences screens: General, Chat, Immersion, Online
-* Optimised the code for several hooks (1st series) by
+* Optimised the code for 1st series of hooks by
   - deleting the ULTRA executable and directly executing the hook
   - replacing next(args) by return next(args) except when another kind of return is implemented
   - replacing (partially or entirely) some hooks by patches
