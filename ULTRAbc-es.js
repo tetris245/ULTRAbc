@@ -3128,9 +3128,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRALARPRun();
     ULTRAMovieStudioClubCardStart();
     ULTRAPandoraClubCardStart();
-    ULTRAPandoraPenitentiaryResult();
-    ULTRAPandoraPrisonClick();
-    ULTRAPandoraPrisonRun();
     ULTRAPlatformAttack();
     ULTRAPlatformDialogEvent();
     ULTRAPrivateClubCardVsFriendStart();
@@ -4964,75 +4961,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Pandora Prison
-    async function ULTRAPandoraPenitentiaryResult() {
-        modApi.hookFunction('PandoraPenitentiaryResult', 4, (args, next) => {
-            if (CurrentScreen == "ChatRoom") return;
-            if (PandoraPenitentiaryIsInmate(Player)) {
-                let Result = [];
-                PandoraPenitentiaryStartNewRoom = false;
-            }
-            let space = ChatRoomSpaceType.MIXED;
-            if (ChatSearchSpace == "") space = ChatRoomSpaceType.FEMALE_ONLY;
-            if (ChatSearchSpace == "M") space = ChatRoomSpaceType.MALE_ONLY;
-            if (ChatSearchSpace == "Asylum") space = ChatRoomSpaceType.ASYLUM;
-            ChatSearchReturnScreen = ["Online", "ChatSearch"];
-            PandoraPenitentiaryCreateTimer = CommonTime() + 10000;
-            let ban = [];
-            if (Player.OnlineSettings.AutoBanBlackList) ban.push("BlackList");
-            if (Player.OnlineSettings.AutoBanGhostList) ban.push("GhostList");
-            let listban = ChatRoomConcatenateBanList(ban);
-            let bgnumber = "";
-            let bgname = CommonRandomItemFromList(null, ["PrisonHall", "PandoraCell0", "PandoraCell1", "PandoraCell2", "PandoraCell3", "PandoraCell4", "PandoraCell5", "PandoraCell6"]);
-            ChatAdminBackgroundList = BackgroundsList;
-            /** @type {ChatRoomSettings} */
-            PrisonRoom = {
-                Name: "Pandora " + Math.round(Math.random() * 1000000000).toString(),
-                Description: "Pandora Penitentiary Cell",
-                Admin: [Player.MemberNumber],
-                Whitelist: [],
-                Ban: listban,
-                Background: bgname,
-                Limit: 10,
-                Game: "Prison",
-                Visibility: ChatRoomVisibilityMode.PUBLIC,
-                Access: ChatRoomAccessMode.PUBLIC,
-                BlockCategory: ["Leashing"],
-                Language: ChatAdminDefaultLanguage,
-                Space: space,
-                MapData: {
-                    Type: "Never"
-                },
-            };
-            ServerSend("ChatRoomCreate", PrisonRoom);
-            ChatAdminData = PrisonRoom;
-            ChatAdminData.Background = bgname;
-            ServerSend("ChatRoomAdmin", ChatAdminData);
-            return;
-        });
-    }
+	modApi.hookFunction('PandoraPenitentiaryResult', 4, async (args, next) => {
+        if (altchsh == true) {
+           AltPrisonResult();
+           return;
+        }
+        return next(args);
+    });
 
-    function ULTRAPandoraPrisonClick() {
-        modApi.hookFunction('PandoraPrisonClick', 4, (args, next) => {
-            if (sosbuttons == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
-            }
-            if (outbuttons == true) {
-                if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('PandoraPrisonClick', 4, (args, next) => {
+        if (sosbuttons == true) {
+            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 45) && (MouseY < 90)) SosClick();
+        }
+        if (outbuttons == true) {
+            if ((MouseX >= 0) && (MouseX < 45) && (MouseY >= 90) && (MouseY < 135)) OutClick();
+        }
+        return next(args);
+    });
 
-    async function ULTRAPandoraPrisonRun() {
-        modApi.hookFunction('PandoraPrisonRun', 4, (args, next) => {     
-            if (sosbuttons == true) SosButtons();
-            if (outbuttons == true) OutButtons();
-            TintsEffect();
-            return next(args);
-        });
-    }
+    modApi.hookFunction('PandoraPrisonRun', 4, (args, next) => {     
+        if (sosbuttons == true) SosButtons();
+        if (outbuttons == true) OutButtons();
+        TintsEffect();
+        return next(args);
+    });
 
-     modApi.patchFunction(
+    modApi.patchFunction(
         "PandoraPrisonRun", {
             "if (Player.Infiltration.Punishment.Timer > CurrentTime + 3600000) Player.Infiltration.Punishment.Timer = CurrentTime + 3600000;":
             "",
@@ -8920,6 +8874,51 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
         mission = "";
         M_MOANER_saveControls();
+    }
+
+	//Pandora Prison
+    async function AltPrisonResult() {
+        if (CurrentScreen == "ChatRoom") return;
+        if (PandoraPenitentiaryIsInmate(Player)) {
+            let Result = [];
+            PandoraPenitentiaryStartNewRoom = false;
+        }
+        let space = ChatRoomSpaceType.MIXED;
+        if (ChatSearchSpace == "") space = ChatRoomSpaceType.FEMALE_ONLY;
+        if (ChatSearchSpace == "M") space = ChatRoomSpaceType.MALE_ONLY;
+        if (ChatSearchSpace == "Asylum") space = ChatRoomSpaceType.ASYLUM;
+        ChatSearchReturnScreen = ["Online", "ChatSearch"];
+        PandoraPenitentiaryCreateTimer = CommonTime() + 10000;
+        let ban = [];
+        if (Player.OnlineSettings.AutoBanBlackList) ban.push("BlackList");
+        if (Player.OnlineSettings.AutoBanGhostList) ban.push("GhostList");
+        let listban = ChatRoomConcatenateBanList(ban);
+        let bgnumber = "";
+        let bgname = CommonRandomItemFromList(null, ["PrisonHall", "PandoraCell0", "PandoraCell1", "PandoraCell2", "PandoraCell3", "PandoraCell4", "PandoraCell5", "PandoraCell6"]);
+        ChatAdminBackgroundList = BackgroundsList;
+        /** @type {ChatRoomSettings} */
+        PrisonRoom = {
+            Name: "Pandora " + Math.round(Math.random() * 1000000000).toString(),
+            Description: "Pandora Penitentiary Cell",
+            Admin: [Player.MemberNumber],
+            Whitelist: [],
+            Ban: listban,
+            Background: bgname,
+            Limit: 10,
+            Game: "Prison",
+            Visibility: ChatRoomVisibilityMode.PUBLIC,
+            Access: ChatRoomAccessMode.PUBLIC,
+            BlockCategory: ["Leashing"],
+            Language: ChatAdminDefaultLanguage,
+            Space: space,
+            MapData: {
+                Type: "Never"
+            },
+        };
+        ServerSend("ChatRoomCreate", PrisonRoom);
+        ChatAdminData = PrisonRoom;
+        ChatAdminData.Background = bgname;
+        ServerSend("ChatRoomAdmin", ChatAdminData);
     }
 
     //Poses
