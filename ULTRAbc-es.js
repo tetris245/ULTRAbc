@@ -4889,24 +4889,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
         if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
         if (asylumlimit == true) {
-            DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+            DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Manicomio (Asylum)");
         } else {
-            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Manicomio (Asylum)");
         }
-        DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
-        DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Default background");
+        DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixto");
+        DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
         DrawText("ULTRAbc", 130, 615, "White", "Black");
         DrawText(UBCver, 140, 655, "White", "Black");
-        DrawButton(240, 585, 200, 90, "", "White", "", "Open UBC Changelog on GitHub");
+        DrawButton(240, 585, 200, 90, "", "White", "", "Abrir el Changelog de UBC en GitHub");
         DrawImageResize("Icons/Changelog.png", 240, 600, 60, 60);
-        DrawTextFit("Changes", 365, 633, 308, "Black");
-        DrawButton(460, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferences");
-        DrawButton(570, 585, 90, 90, "", "White", "Icons/Random.png", "Random background");
-        DrawButton(460, 695, 90, 90, "", "White", "Icons/Extensions.png", "Extensions");
-        DrawButton(570, 695, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+        DrawTextFit("Cambios", 365, 633, 308, "Black");
+        DrawButton(460, 585, 90, 90, "", "White", "Icons/Preference.png", "Preferencias");
+        DrawButton(570, 585, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
+        DrawButton(460, 695, 90, 90, "", "White", "Icons/Extensions.png", "Extensiones");
+        DrawButton(570, 695, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
         DrawText("/uhelp", 145, 725, "White", "Black");
-        DrawText("in chat", 140, 765, "White", "Black");
-        DrawButton(240, 695, 200, 90, "", "White", "", "Open UBC Wiki on GitHub");
+        DrawText("en chat", 140, 765, "White", "Black");
+        DrawButton(240, 695, 200, 90, "", "White", "", "Abrir la Wiki de UBC en GitHub")
         DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
         DrawTextFit("Wiki", 375, 743, 308, "Black");
         return next(args);
@@ -5301,8 +5301,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (PreferencePageCurrent === 2) {
             MainCanvas.textAlign = "left";
             DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");
-            DrawButton(1160, 330, 60, 60, "", "White", "", "Cosy Chalet");
-            DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
+            DrawButton(1160, 330, 60, 60, "", "White", "", "Chalet Acogedor");
+            DrawButton(1260, 330, 60, 60, "", "White", "", "Fondo Aleatorio");
             DrawImageResize("Icons/Reset.png", 1160, 330, 60, 60);
             DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
         }
@@ -5347,8 +5347,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     modApi.hookFunction('PrivateRun', 4, async (args, next) => {
         if (LogQuery("RentRoom", "PrivateRoom")) {
-            DrawButton(0, 900, 49, 49, "", "White", "", "Random backgound");
-            DrawButton(0, 950, 49, 49, "", "White", "", "Default background");
+            DrawButton(0, 900, 49, 49, "", "White", "", "Fondo aleatorio");
+            DrawButton(0, 950, 49, 49, "", "White", "", "Fondo predeterminado");
             DrawImageResize("Icons/Random.png", 0, 900, 48, 48);
             DrawImageResize("Icons/Reset.png", 0, 950, 48, 48);
         }
@@ -5448,9 +5448,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (sosbuttons == true) SosButtons();
         if (outbuttons == true) OutButtons();
         if (notcbuttons == false) {
-            DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-            DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
-            DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+            DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
+            DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
+            DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
         }
         TintsEffect();
         return next(args);
