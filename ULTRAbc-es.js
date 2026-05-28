@@ -3069,7 +3069,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     // End of section under GPLv3 license
 
     //ModSDK Functions
-    ULTRAActivityChatRoomArousalSync();
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceClick();
@@ -3084,7 +3083,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatAdminClick();
     ULTRAChatAdminRun();
     ULTRAChatRoomClick();
-    ULTRAChatRoomDrawArousalOverlay();
     ULTRAChatRoomKeyDown();
     ULTRAChatRoomMapViewCalculatePerceptionMasks();
     ULTRAChatRoomMapViewCanEnterTile();
@@ -3131,7 +3129,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRALARPClubCardStart();
     ULTRALARPRun();
     ULTRAMovieStudioClubCardStart();
-    ULTRAMovieStudioRun();
     ULTRAPandoraClubCardStart();
     ULTRAPandoraPenitentiaryResult();
     ULTRAPandoraPrisonClick();
@@ -4912,49 +4909,43 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    //Movie Studio
-    async function ULTRAMovieStudioRun() {
-        modApi.hookFunction('MovieStudioRun', 4, (args, next) => {
-            TintsEffect();
-            let moviegame = minigame;
-            minigame = "";
-            M_MOANER_saveControls();
-            if (moviegame == "movie1") MovieStudioDailyMovie = "Interview";
-            if (moviegame == "movie2") MovieStudioDailyMovie = "OpenHouse";
-            next(args);
-        });
-    }
+	//Movie Studio
+    modApi.hookFunction('MovieStudioRun', 4, async (args, next) => {
+        TintsEffect();
+        let moviegame = minigame;
+        minigame = "";
+        M_MOANER_saveControls();
+        if (moviegame == "movie1") MovieStudioDailyMovie = "Interview";
+        if (moviegame == "movie2") MovieStudioDailyMovie = "OpenHouse";
+        return next(args);
+    });
 
     //Orgasm
-    async function ULTRAActivityChatRoomArousalSync() {
-        modApi.hookFunction('ActivityChatRoomArousalSync', 4, (args, next) => {
-            if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
-                if (Player.UBC != undefined) {
-                    if (Player.UBC.ubcSettings != undefined) {
-                        if (Player.UBC.ubcSettings.cum == true) {
-                            if (Player.ArousalSettings.OrgasmStage == 2) {
-                                setTimeout(function() {
-                                    Player.ArousalSettings.OrgasmStage = 0;
-                                    Player.UBC.ubcSettings.cum = false;
-                                }, 15000);
-                            }
+    modApi.hookFunction('ActivityChatRoomArousalSync', 4, async (args, next) => {
+        if (M_MOANER_orgasmActive && M_MOANER_scriptOn && window.CurrentScreen == "ChatRoom") {
+            if (Player.UBC != undefined) {
+                if (Player.UBC.ubcSettings != undefined) {
+                    if (Player.UBC.ubcSettings.cum == true) {
+                        if (Player.ArousalSettings.OrgasmStage == 2) {
+                           setTimeout(function() {
+                                Player.ArousalSettings.OrgasmStage = 0;
+                                Player.UBC.ubcSettings.cum = false;
+                            }, 15000);
                         }
                     }
                 }
             }
-            next(args);
-        });
-    }
+        }
+        return next(args);
+    });
 
-    async function ULTRAChatRoomDrawArousalOverlay() {
-        modApi.hookFunction('ChatRoomDrawArousalOverlay', 4, (args, next) => {
-            if (nopinkscr == true) {
-                let orgasmScreen = false;
-                return orgasmScreen;
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('ChatRoomDrawArousalOverlay', 4, async (args, next) => {
+        if (nopinkscr == true) {
+            let orgasmScreen = false;
+            return orgasmScreen;
+        }
+        return next(args);
+    });
 
     //Pandora Infiltration
     async function ULTRAInfiltrationPrepareMission() {
