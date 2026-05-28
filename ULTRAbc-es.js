@@ -4885,9 +4885,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomActivateView(ChatRoomCharacterViewName);
         MainCanvas.textAlign = "center";
         TintsEffect();
-        DrawText("Chat Rooms", 130, 530, "White", "Black");
-        if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-        if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
+        DrawText("Salas de Chat", 115, 530, "White", "Black");
+        if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Solo Mujeres");
+        if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Solo Hombres");
         if (asylumlimit == true) {
             DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Manicomio (Asylum)");
         } else {
