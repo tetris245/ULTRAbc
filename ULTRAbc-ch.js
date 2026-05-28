@@ -5310,8 +5310,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (PreferencePageCurrent === 2) {
             MainCanvas.textAlign = "left";
             DrawText(BackgroundsTextGet(PreferenceOnlineDefaultBackground), 960, 255, "Black", "Gray");
-            DrawButton(1160, 330, 60, 60, "", "White", "", "Cosy Chalet");
-            DrawButton(1260, 330, 60, 60, "", "White", "", "Random background");
+            DrawButton(1160, 330, 60, 60, "", "White", "", "舒适的小屋");
+            DrawButton(1260, 330, 60, 60, "", "White", "", "随机背景");
             DrawImageResize("Icons/Reset.png", 1160, 330, 60, 60);
             DrawImageResize("Icons/Random.png", 1260, 330, 60, 60);
         }
@@ -5356,8 +5356,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     modApi.hookFunction('PrivateRun', 4, async (args, next) => {
         if (LogQuery("RentRoom", "PrivateRoom")) {
-            DrawButton(0, 900, 49, 49, "", "White", "", "Random backgound");
-            DrawButton(0, 950, 49, 49, "", "White", "", "Default background");
+            DrawButton(0, 900, 49, 49, "", "White", "", "随机背景");
+            DrawButton(0, 950, 49, 49, "", "White", "", "默认背景");
             DrawImageResize("Icons/Random.png", 0, 900, 48, 48);
             DrawImageResize("Icons/Reset.png", 0, 950, 48, 48);
         }
@@ -5457,9 +5457,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (sosbuttons == true) SosButtons();
         if (outbuttons == true) OutButtons();
         if (notcbuttons == false) {
-            DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-            DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
-            DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+            DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
+            DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "随机背景");
+            DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "选择背景");
         }
         TintsEffect();
         return next(args);
