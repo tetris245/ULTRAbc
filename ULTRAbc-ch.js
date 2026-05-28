@@ -3116,8 +3116,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAFriendListDraw();
     ULTRAFriendListKeyDown();
     ULTRAInfiltrationClubCardStart();
-    ULTRAInfiltrationPrepareMission();
-    ULTRAInfiltrationRun();
     ULTRAInformationSheetClick();
     ULTRAInformationSheetRun();
     ULTRAInformationSheetSecondScreenRun();
@@ -4947,47 +4945,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Pandora Infiltration
-    async function ULTRAInfiltrationPrepareMission() {
-        modApi.hookFunction('InfiltrationPrepareMission', 4, (args, next) => {
-            if (mission == "") InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
-            if (mission == "burglar") InfiltrationMission = "CatBurglar";
-            if (mission == "kidnap") InfiltrationMission = "Kidnap";
-            if (mission == "rescue") InfiltrationMission = "Rescue";
-            if (mission == "retrieve") InfiltrationMission = "Retrieve";
-            if (mission == "sabotage") InfiltrationMission = "ReverseMaid";
-            if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
-                InfiltrationTarget = {
-                    Type: "NPC",
-                    Name: CharacterGenerateRandomName(),
-                    PrivateRoom: false
-                };
-            } else {
-                const PreviousTarget = InfiltrationTarget && InfiltrationTarget.Type || "";
-                const Type = /** @type {InfiltrationTargetType} */ (CommonRandomItemFromList(PreviousTarget, InfiltrationObjectType));
-                InfiltrationTarget = {
-                    Type: Type,
-                    Name: DialogFind(InfiltrationSupervisor, "Object" + Type),
-                };
-            }
-            InfiltrationSupervisor.Stage = InfiltrationMission;
-            InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
-            InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
-            mission = "";
-            M_MOANER_saveControls();
-            return;
-        });
-    }
+	modApi.hookFunction('InfiltrationPrepareMission', 4, async (args, next) => {
+        if (altchsh == true) {
+           AltPrepareMission();
+           return;
+        }
+        return next(args);
+    });
 
-    async function ULTRAInfiltrationRun() {
-        modApi.hookFunction('InfiltrationRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "infiltration") {
-                minigame = "";
-                M_MOANER_saveControls();
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('InfiltrationRun', 4, async (args, next) => {
+        TintsEffect();
+        if (minigame == "infiltration") {
+            minigame = "";
+            M_MOANER_saveControls();
+        }
+        return next(args);
+    });
 
     //Pandora Prison
     async function ULTRAPandoraPenitentiaryResult() {
@@ -8916,6 +8889,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         if (type != "no message") publicmsg(msg);
+    }
+
+	//Pandora Infiltration
+    async function AltPrepareMission() {
+        if (mission == "") InfiltrationMission = CommonRandomItemFromList(InfiltrationMission, InfiltrationMissionType);
+        if (mission == "burglar") InfiltrationMission = "CatBurglar";
+        if (mission == "kidnap") InfiltrationMission = "Kidnap";
+        if (mission == "rescue") InfiltrationMission = "Rescue";
+        if (mission == "retrieve") InfiltrationMission = "Retrieve";
+        if (mission == "sabotage") InfiltrationMission = "ReverseMaid";
+        if ((InfiltrationMission == "Rescue") || (InfiltrationMission == "Kidnap")) {
+            InfiltrationTarget = {
+                Type: "NPC",
+                Name: CharacterGenerateRandomName(),
+                PrivateRoom: false
+            };
+        } else {
+            const PreviousTarget = InfiltrationTarget && InfiltrationTarget.Type || "";
+            const Type = /** @type {InfiltrationTargetType} */ (CommonRandomItemFromList(PreviousTarget, InfiltrationObjectType));
+            InfiltrationTarget = {
+                Type: Type,
+                Name: DialogFind(InfiltrationSupervisor, "Object" + Type),
+            };
+        }
+        InfiltrationSupervisor.Stage = InfiltrationMission;
+        InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
+        InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
+        mission = "";
+        M_MOANER_saveControls();
     }
 
     //Poses
