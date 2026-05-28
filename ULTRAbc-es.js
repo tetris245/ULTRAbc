@@ -3130,10 +3130,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAKidnapLeagueRun();
     ULTRALARPClubCardStart();
     ULTRALARPRun();
-    ULTRALoginRun();
-    ULTRAMagicPuzzleRun();
-    ULTRAMagicSchoolEscapeSpellEnd();
-    ULTRAMagicSchoolFindsAroundRun();
     ULTRAMaidQuartersRun();
     ULTRAMainHallClick();
     ULTRAMainHallRun();
@@ -4774,45 +4770,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    //Login
-    async function ULTRALoginRun() {
-        modApi.hookFunction('LoginRun', 4, (args, next) => {
-            DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " ¡Listo!", "Pink", "", "");
-            return next(args);
-        });
-    }
+	//Login
+    modApi.hookFunction('LoginRun', 4, (args, next) => {
+        DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "", "");
+        return next(args);
+    });
 
     //Magic School
-    async function ULTRAMagicPuzzleRun() {
-        modApi.hookFunction('MagicPuzzleRun', 4, (args, next) => {
-            if (magiccheat == true) {
-                if (MiniGameEnded) MiniGameVictory = true;
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('MagicPuzzleRun', 4, async (args, next) => {
+        if (magiccheat == true) {
+            if (MiniGameEnded) MiniGameVictory = true;
+        }
+        return next(args);
+    });
 
-    async function ULTRAMagicSchoolEscapeSpellEnd() {
-        modApi.hookFunction('MagicSchoolEscapeSpellEnd', 4, (args, next) => {
-            if (magiccheat == true) {
-                MagicSchoolEscapeTimer > CommonTime();
-                MiniGameVictory = true;
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('MagicSchoolEscapeSpellEnd', 4, async (args, next) => {
+        if (magiccheat == true) {
+            MagicSchoolEscapeTimer > CommonTime();
+            MiniGameVictory = true;
+        }
+        return next(args);
+    });
 
-    async function ULTRAMagicSchoolFindsAroundRun() {
-        modApi.hookFunction('MagicSchoolFindsAroundRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "magic") {
-                minigame = "";
-                M_MOANER_saveControls();
+    modApi.hookFunction('MagicSchoolFindsAroundRun', 4, async (args, next) => {
+        TintsEffect();
+        if (minigame == "magic") {
+            minigame = "";
+            M_MOANER_saveControls();
+            let quest = Player.Game.MagicSchoolFindsAround.KitsuneQuestProgress;
+            if (quest != -1) {
+                quest = 9;
+                Player.Game.MagicSchoolFindsAround.KitsuneQuestProgress = quest;
             }
-            next(args);
-        });
-    }
-
+        }
+        return next(args);
+    });
+ 
     //Maid Quarters
     async function ULTRAMaidQuartersRun() {
         modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {
