@@ -3130,9 +3130,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAKidnapLeagueRun();
     ULTRALARPClubCardStart();
     ULTRALARPRun();
-    ULTRAMaidQuartersRun();
-    ULTRAMainHallClick();
-    ULTRAMainHallRun();
     ULTRAMovieStudioClubCardStart();
     ULTRAMovieStudioRun();
     ULTRAPandoraClubCardStart();
@@ -4806,120 +4803,113 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Maid Quarters
-    async function ULTRAMaidQuartersRun() {
-        modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {
-            TintsEffect();
-            let maidgame = minigame;
-            minigame = "";
-            M_MOANER_saveControls();
-            if (maidgame == "cleaning") MaidCleaning();
-            if (maidgame == "drinks") MaidDrinks();
-            if (maidgame == "rhythm") MaidRhythm();
-            next(args);
-        });
-    }
+    modApi.hookFunction('MaidQuartersRun', 4, async (args, next) => {
+        TintsEffect();
+        let maidgame = minigame;
+        minigame = "";
+        M_MOANER_saveControls();
+        if (maidgame == "cleaning") MaidCleaning();
+        if (maidgame == "drinks") MaidDrinks();
+        if (maidgame == "rhythm") MaidRhythm();
+        return next(args);
+    });
 
     //Main Hall
-    function ULTRAMainHallClick() {
-        modApi.hookFunction('MainHallClick', 4, (args, next) => {
-            if (MouseIn(1645, 145, 90, 90)) MainHallMoveToChatSelect();
-            if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
-                if (IsFemale() == true) {
-                    Player.ChatSearchSettings.Space = "";
-                    ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-                }
-                if (IsMale() == true) {
-                    Player.ChatSearchSettings.Space = "M";
-                    ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-                }
+    modApi.hookFunction('MainHallClick', 4, (args, next) => {
+        if (MouseIn(1645, 145, 90, 90)) MainHallMoveToChatSelect();
+        if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
+            if (IsFemale() == true) {
+                Player.ChatSearchSettings.Space = "";
+                ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
-            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
-                if (asylumlimit == false) {
-                    Player.ChatSearchSettings.Space = "Asylum";
-                    ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-                }
+            if (IsMale() == true) {
+                Player.ChatSearchSettings.Space = "M";
+                ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
-            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) {
-                Player.ChatSearchSettings.Space = "X";
-                ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+        }
+        if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
+            if (asylumlimit == false) {
+                Player.ChatSearchSettings.Space = "Asylum";
+                ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
             }
-            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 585) && (MouseY < 675)) PrfClick();
-            if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 695) && (MouseY < 785)) ExtClick();
-
-            if (MouseIn(240, 585, 200, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
-            if (MouseIn(240, 695, 200, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
-            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
-                Player.VisualSettings.MainHallBackground = "MainHall";
+        }
+        if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) {
+            Player.ChatSearchSettings.Space = "X";
+            ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+        }
+        if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 585) && (MouseY < 675)) PrfClick();
+        if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 695) && (MouseY < 785)) ExtClick();
+        if (MouseIn(240, 585, 200, 90)) window.open('https://github.com/tetris245/ULTRAbc/releases', '_blank');
+        if (MouseIn(240, 695, 200, 90)) window.open('https://github.com/tetris245/ULTRAbc/wiki', '_blank');
+        if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
+            Player.VisualSettings.MainHallBackground = "MainHall";
+            ServerAccountUpdate.QueueData({
+                VisualSettings: Player.VisualSettings
+            });
+            CommonSetScreen("Room", "MainHall");
+        }
+        if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) {
+            if (BackgroundsList != undefined) {
+                let listbg = BackgroundsList.length;
+                let Roll = Math.floor(Math.random() * listbg);
+                if (Roll == 0) Roll = 1;
+                let name = BackgroundsList[Roll - 1].Name;
+                Player.VisualSettings.MainHallBackground = name;
                 ServerAccountUpdate.QueueData({
                     VisualSettings: Player.VisualSettings
                 });
                 CommonSetScreen("Room", "MainHall");
             }
-            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) {
-                if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    Player.VisualSettings.MainHallBackground = name;
+        }
+        if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 695) && (MouseY < 785)) {
+            let backgrounds = BackgroundsTagList;
+            BackgroundSelectionMake(backgrounds, MainHallBackground, (Name, setBackground) => {
+                if (setBackground) {
+                    if (Name !== "MainHall") {
+                        Player.VisualSettings.MainHallBackground = Name;
+                    } else {
+                        delete Player.VisualSettings.MainHallBackground;
+                    }
                     ServerAccountUpdate.QueueData({
                         VisualSettings: Player.VisualSettings
                     });
-                    CommonSetScreen("Room", "MainHall");
                 }
-            }
-            if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 695) && (MouseY < 785)) {
-                let backgrounds = BackgroundsTagList;
-                BackgroundSelectionMake(backgrounds, MainHallBackground, (Name, setBackground) => {
-                    if (setBackground) {
-                        if (Name !== "MainHall") {
-                            Player.VisualSettings.MainHallBackground = Name;
-                        } else {
-                            delete Player.VisualSettings.MainHallBackground;
-                        }
-                        ServerAccountUpdate.QueueData({
-                            VisualSettings: Player.VisualSettings
-                        });
-                    }
-                    CommonSetScreen("Room", "MainHall");
-                });
-            }
-            next(args);
-        });
-    }
+                CommonSetScreen("Room", "MainHall");
+            });
+        }
+        return next(args);
+    });
 
-    async function ULTRAMainHallRun() {
-        modApi.hookFunction('MainHallRun', 4, (args, next) => {
-            ChatRoomActivateView(ChatRoomCharacterViewName);
-            MainCanvas.textAlign = "center";
-            TintsEffect();
-            DrawText("聊天室", 130, 530, "White", "Black");
-            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "仅限女性");
-            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "仅限男性");
-            if (asylumlimit == true) {
-                DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "精神病院");
-            } else {
-                DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "精神病院");
-            }
-            DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "混合");
-            DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
-            DrawText("ULTRAbc", 130, 615, "White", "Black");
-            DrawText(UBCver, 140, 655, "White", "Black");
-            DrawButton(240, 585, 200, 90, "", "White", "", "在 GitHub 上打开 UBC 更新日志");
-            DrawImageResize("Icons/Changelog.png", 240, 600, 60, 60);
-            DrawTextFit("更新日志", 365, 633, 308, "Black");
-            DrawButton(460, 585, 90, 90, "", "White", "Icons/Preference.png", "偏好设置");
-            DrawButton(570, 585, 90, 90, "", "White", "Icons/Random.png", "随机背景");
-            DrawButton(460, 695, 90, 90, "", "White", "Icons/Extensions.png", "扩展");
-            DrawButton(570, 695, 90, 90, "", "White", "Icons/Explore.png", "选择背景");
-            DrawText("在聊天中输入", 145, 725, "White", "Black");
-            DrawText("/uhelp", 140, 765, "White", "Black");
-            DrawButton(240, 695, 200, 90, "", "White", "", "在 GitHub 上打开 UBC Wiki");
-            DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
-            DrawTextFit("Wiki", 375, 743, 308, "Black");
-            next(args);
-        });
-    }
+    modApi.hookFunction('MainHallRun', 4, async (args, next) => {
+        ChatRoomActivateView(ChatRoomCharacterViewName);
+        MainCanvas.textAlign = "center";
+        TintsEffect();
+        DrawText("聊天室", 130, 530, "White", "Black");
+        if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "仅限女性");
+        if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "仅限男性");
+        if (asylumlimit == true) {
+            DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "精神病院");
+        } else {
+            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "精神病院");
+        }
+        DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "混合");
+        DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
+        DrawText("ULTRAbc", 130, 615, "White", "Black");
+        DrawText(UBCver, 140, 655, "White", "Black");
+        DrawButton(240, 585, 200, 90, "", "White", "", "在 GitHub 上打开 UBC 更新日志");
+        DrawImageResize("Icons/Changelog.png", 240, 600, 60, 60);
+        DrawTextFit("更新日志", 365, 633, 308, "Black");
+        DrawButton(460, 585, 90, 90, "", "White", "Icons/Preference.png", "偏好设置");
+        DrawButton(570, 585, 90, 90, "", "White", "Icons/Random.png", "随机背景");
+        DrawButton(460, 695, 90, 90, "", "White", "Icons/Extensions.png", "扩展");
+        DrawButton(570, 695, 90, 90, "", "White", "Icons/Explore.png", "选择背景");
+        DrawText("在聊天中输入", 145, 725, "White", "Black");
+        DrawText("/uhelp", 140, 765, "White", "Black");
+        DrawButton(240, 695, 200, 90, "", "White", "", "在 GitHub 上打开 UBC Wiki");
+        DrawImageResize("Icons/Introduction.png", 250, 710, 60, 60);
+        DrawTextFit("Wiki", 375, 743, 308, "Black");
+        return next(args);
+    });
 
     //Movie Studio
     async function ULTRAMovieStudioRun() {
