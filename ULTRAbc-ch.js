@@ -11652,7 +11652,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "introduction（介绍）、kidnap（绑架）、\n" +
                     "larp（真人角色扮演）、lounge（休息室）、magic（魔法）、\n" +
                     "movie（电影）、shibari（绳艺）、stable（马厩）。\n" +
-                    "你需要点击相关的 NPC，然后点击适当的选项。";
+                    "你需要点击相关的 NPC，然后点击适当的选项。\n";
+                    "For magic, the card option will appear after long dialog, exit and come back if you have started the quest requested by the kitsune, but didn't yet finished it.";
                 infomsg(msg);
             } else {
                 minigame = args;
