@@ -3069,6 +3069,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     // End of section under GPLv3 license
 
     //ModSDK Functions
+    //Note: The ULTRA list does not include many ModSDK Functions (hooks or patches) that are automatically executed
+	//At term, it will only include a few Functions for which an ULTRA loader is better to avoid strange issues
+    ULTRAChatRoomDrawArousalOverlay(); 
+	
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceClick();
@@ -4933,13 +4937,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('ChatRoomDrawArousalOverlay', 4, async (args, next) => {
-        if (nopinkscr == true) {
-            let orgasmScreen = false;
-            return orgasmScreen;
-        }
-        return next(args);
-    });
+    async function ULTRAChatRoomDrawArousalOverlay() {
+        modApi.hookFunction('ChatRoomDrawArousalOverlay', 4, (args, next) => {
+            if (nopinkscr == true) {
+                let orgasmScreen = false;
+                return orgasmScreen;
+            }
+            return next(args);
+        });
+    }
 
     //Pandora Infiltration
 	modApi.hookFunction('InfiltrationPrepareMission', 4, async (args, next) => {
