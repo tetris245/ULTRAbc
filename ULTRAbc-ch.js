@@ -10600,8 +10600,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (lvibe == 1) {
                     if (!Player?.MemberNumber) return;
-                    let mtarget = data.Dictionary.find(obj => obj.TargetCharacter)?.TargetCharacter;
-                    mtarget ||= data.Dictionary.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber;
+                    let mtarget = data.Dictionary?.find(obj => obj.TargetCharacter)?.TargetCharacter;
+                    mtarget ||= data.Dictionary?.find(obj => obj.Tag === "TargetCharacter")?.MemberNumber;
                     if (mtarget !== Player.MemberNumber) return;
                     msg = ElementValue("InputChat");
                     if (LSCGdata.InjectorModule.enableHorny == true) {
