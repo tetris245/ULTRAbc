@@ -9051,24 +9051,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function UBCrpsk() {
-        rpabdl = ReputationGet("ABDL");
-        rpasyl = ReputationGet("Asylum");
-        rpgamb = ReputationGet("Gambling");
-        rpgame = ReputationGet("Gaming");
-        rpkidn = ReputationGet("Kidnap");
-        rplarp = ReputationGet("LARP");
-        if (ReputationGet("HouseAmplector") != 0) rpmagh = 1;
-        if (ReputationGet("HouseCorporis") != 0) rpmagh = 2;
-        if (ReputationGet("HouseMaiestas") != 0) rpmagh = 3;
-        if (ReputationGet("HouseVincula") != 0) rpmagh = 4;
+        rpabdl = ReputationGet(Player, "ABDL");
+        rpasyl = ReputationGet(Player, "Asylum");
+        rpgamb = ReputationGet(Player, "Gambling");
+        rpgame = ReputationGet(PLayer, "Gaming");
+        rpkidn = ReputationGet(Player, "Kidnap");
+        rplarp = ReputationGet(Player, "LARP");
+        if (ReputationGet(Player, "HouseAmplector") != 0) rpmagh = 1;
+        if (ReputationGet(Player, "HouseCorporis") != 0) rpmagh = 2;
+        if (ReputationGet(Player, "HouseMaiestas") != 0) rpmagh = 3;
+        if (ReputationGet(Player, "HouseVincula") != 0) rpmagh = 4;
         let house = "";
         if (rpmagh == 1) house = "HouseAmplector";
         if (rpmagh == 2) house = "HouseCorporis";
         if (rpmagh == 3) house = "HouseMaiestas";
         if (rpmagh == 4) house = "HouseVincula";
-        rpmagp = ReputationGet(house);
-        rpmaid = ReputationGet("Maid");
-        rpmain = ReputationGet("Dominant");
+        rpmagp = ReputationGet(Player, house);
+        rpmaid = ReputationGet(Player, "Maid");
+        rpmain = ReputationGet(Player, "Dominant");
         skbondage = SkillGetLevel(Player, "Bondage") - SkillGetModifier(Player, "Bondage");
         skdressage = SkillGetLevel(Player, "Dressage") - SkillGetModifier(Player, "Dressage");
         skevasion = SkillGetLevel(Player, "Evasion") - SkillGetModifier(Player, "Evasion");
