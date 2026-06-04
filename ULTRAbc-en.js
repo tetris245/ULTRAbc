@@ -13126,18 +13126,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: ": gives max statistics.",
         Action: () => {
             ReputationChange("ABDL", 100);
-            if (ReputationGet("Asylum") >= 0) ReputationChange("Asylum", 100);
-            if (ReputationGet("Asylum") < 0) ReputationChange("Asylum", -100);
-            if (ReputationGet("Dominant") >= 0) ReputationChange("Dominant", 100);
-            if (ReputationGet("Dominant") < 0) ReputationChange("Dominant", -100);
+            if (ReputationGet(Player, "Asylum") >= 0) ReputationChange("Asylum", 100);
+            if (ReputationGet(Player, "Asylum") < 0) ReputationChange("Asylum", -100);
+            if (ReputationGet(Player, "Dominant") >= 0) ReputationChange("Dominant", 100);
+            if (ReputationGet(Player, "Dominant") < 0) ReputationChange("Dominant", -100);
             ReputationChange("Gambling", 100);
             ReputationChange("Gaming", 100);
             ReputationChange("LARP", 100);
             let magh = 0;
-            if (ReputationGet("HouseAmplector") != 0) magh = 1;
-            if (ReputationGet("HouseCorporis") != 0) magh = 2;
-            if (ReputationGet("HouseMaiestas") != 0) magh = 3;
-            if (ReputationGet("HouseVincula") != 0) magh = 4;
+            if (ReputationGet(Player, "HouseAmplector") != 0) magh = 1;
+            if (ReputationGet(Player, "HouseCorporis") != 0) magh = 2;
+            if (ReputationGet(Player, "HouseMaiestas") != 0) magh = 3;
+            if (ReputationGet(Player, "HouseVincula") != 0) magh = 4;
             let house = "";
             if (magh == 0) house = "HouseAmplector";
             if (magh == 1) house = "HouseAmplector";
