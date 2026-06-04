@@ -97,6 +97,9 @@ All else I might not have included.
 
 Changes for future version
 
+* New command: umods (target) to get infos about mods used by all players or a specific player in the current chat room
+  - It's a simplified version of the new BC mods commands (no 'list' or 'remote' parameter)
+* Added the info option to the uhelp command and moved there some commands that were in the misc option
 * Extended the alphabetical order to the Audio and Graphics Preferences screens
 * Updated the asylum, cgame, maxstatistics, title1, title2, title3 and title4 commands
 * Updated the InformationSheetDrawBaseInfo and UBCrpsk functions
