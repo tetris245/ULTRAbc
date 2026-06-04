@@ -11108,11 +11108,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'asylum',
         Description: "（分钟）：进入精神病院，绕过要求。",
         Action: (args) => {
-            if ((args === "") && (ReputationGet("Asylum") < 0)) {
+            if ((args === "") && (ReputationGet(Player, "Asylum") < 0)) {
                 let msg = "如果你是病人，你必须指定分钟数。";
                 infomsg(msg);
             } else {
-                if (ReputationGet("Asylum") < 0) {
+                if (ReputationGet(Player, "Asylum") < 0) {
                     let minutes = args;
                     LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
                 }
