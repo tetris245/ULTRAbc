@@ -9054,7 +9054,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         rpabdl = ReputationGet(Player, "ABDL");
         rpasyl = ReputationGet(Player, "Asylum");
         rpgamb = ReputationGet(Player, "Gambling");
-        rpgame = ReputationGet(PLayer, "Gaming");
+        rpgame = ReputationGet(Player, "Gaming");
         rpkidn = ReputationGet(Player, "Kidnap");
         rplarp = ReputationGet(Player, "LARP");
         if (ReputationGet(Player, "HouseAmplector") != 0) rpmagh = 1;
