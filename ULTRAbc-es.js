@@ -7699,11 +7699,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function ChatSearchInitState() {
-        ChatRoomCustomizationClear();
-        ChatRoomActivateView(ChatRoomCharacterViewName);
-        ChatRoomMapViewEditMode = "";
-        ChatRoomMapViewEditBackup = [];
-        delete Player.MapData;
         CurrentDarkFactor = 0.5;
         if (ChatSearchSafewordAppearance == null) {
             ChatSearchSafewordAppearance = Player.Appearance.slice(0);
