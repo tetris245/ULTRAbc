@@ -16064,6 +16064,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>clothing</b> = 与服装相关的命令。\n" +
                     "<b>escape</b> = 与逃脱相关的命令。\n" +
                     "<b>fun</b> = 与乐趣、痛苦和愉悦相关的命令。\n" +
+					"<b>info</b> = commands that give infos.\n" +
                     "<b>maps</b> = 与混合房间和地图房间相关的命令。\n" +
                     "<b>misc</b> = 帮助、信息、登录和 Ulist 命令。\n" +
                     "<b>settings</b> = 自定义 ULTRAbc 的命令。\n" +
@@ -16162,6 +16163,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/visible</b> （目标）= 返回或发送回可见模式。**";
                 infomsg(msg);
             }
+			if (args === "info") {
+                let msg = "Info commands - * = more info when using\n" +                  
+                    "<b>/maproom</b> = 提供当前地图中玩家的信息。\n" +
+                    "<b>/mbsroom</b> = 当前房间中 MBS 轮子的信息。\n" +
+                    "<b>/mstatus</b> = 显示 moaner 的当前状态。\n" +              
+                    "<b>/uhelp</b> （类别）= 显示 ULTRAbc 命令。*\n" +
+                    "<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.";
+                    "<b>/uroom</b> = 当前房间中 UBC/Uwall 用户的信息。";              
+                infomsg(msg);
+            }
             if (args === "maps") {
                 let msg = "地图命令 - * = 使用时获取更多信息\n" +
                     "<b>/mapfog</b> = 切换当前地图房间的战争迷雾。\n" +
@@ -16181,16 +16192,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "杂项命令 - * = 使用时获取更多信息\n" +
                     "<b>/callubc</b> = 安装 UBC GUI（如果初始化失败时使用）。\n" +
                     "<b>/login</b> （账户名）（密码）= 登录新账户。\n" +
-                    "<b>/mbsroom</b> = 当前房间中 MBS 轮子的信息。\n" +
-                    "<b>/mstatus</b> = 显示 moaner 的当前状态。\n" +
                     "<b>/pmenu</b> = 直接进入偏好设置屏幕。\n" +
                     "<b>/relog</b> = 重新登录。\n" +
                     "<b>/thmlogin</b> （选项）在使用 Themed 模组时显示/隐藏登录屏幕上的制作人员名单和/或 NPC。*\n" +
-                    "<b>/uhelp</b> （类别）= 显示 ULTRAbc 命令。*\n" +
                     "<b>/ulistadd</b> （成员编号）= 将一个玩家添加到允许绕过 Uwall 的列表中。\n" +
                     "<b>/ulistremove</b> （成员编号）= 从允许绕过 Uwall 的列表中移除一个玩家。\n" +
                     "<b>/ulistshow</b> = 显示你的 Ulist 中的玩家列表。\n" +
-                    "<b>/uroom</b> = 当前房间中 UBC/Uwall 用户的信息。\n" +
                     "<b>/xmenu</b> = 直接进入扩展屏幕。";
                 infomsg(msg);
             }
@@ -16312,6 +16319,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 List = Player.OnlineSharedSettings.Ulist;
             }
             ChatRoomSendLocal("Uwall 列表：" + JSON.stringify(List));
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'umods',
+        Description: "(target): displays infos about mods used by all players or a specific player in the current chat room.",
+        Action: (args) => {
+            CommandsModsList.StartRemote(args);
         }
     }])
 
