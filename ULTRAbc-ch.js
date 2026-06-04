@@ -9048,34 +9048,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-    function UBCrpsk() {
-        rpabdl = ReputationGet("ABDL");
-        rpasyl = ReputationGet("Asylum");
-        rpgamb = ReputationGet("Gambling");
-        rpgame = ReputationGet("Gaming");
-        rpkidn = ReputationGet("Kidnap");
-        rplarp = ReputationGet("LARP");
-        if (ReputationGet("HouseAmplector") != 0) rpmagh = 1;
-        if (ReputationGet("HouseCorporis") != 0) rpmagh = 2;
-        if (ReputationGet("HouseMaiestas") != 0) rpmagh = 3;
-        if (ReputationGet("HouseVincula") != 0) rpmagh = 4;
-        let house = "";
-        if (rpmagh == 1) house = "HouseAmplector";
-        if (rpmagh == 2) house = "HouseCorporis";
-        if (rpmagh == 3) house = "HouseMaiestas";
-        if (rpmagh == 4) house = "HouseVincula";
-        rpmagp = ReputationGet(house);
-        rpmaid = ReputationGet("Maid");
-        rpmain = ReputationGet("Dominant");
-        skbondage = SkillGetLevel(Player, "Bondage") - SkillGetModifier(Player, "Bondage");
-        skdressage = SkillGetLevel(Player, "Dressage") - SkillGetModifier(Player, "Dressage");
-        skevasion = SkillGetLevel(Player, "Evasion") - SkillGetModifier(Player, "Evasion");
-        skinfiltration = SkillGetLevel(Player, "Infiltration") - SkillGetModifier(Player, "Infiltration");
-        sklockpicking = SkillGetLevel(Player, "LockPicking") - SkillGetModifier(Player, "LockPicking");
-        skselfbondage = SkillGetLevel(Player, "SelfBondage") - SkillGetModifier(Player, "SelfBondage");
-        skwillpower = SkillGetLevel(Player, "Willpower") - SkillGetModifier(Player, "Willpower");
-    }
-
 	function UBCrpsk() {
         rpabdl = ReputationGet(Player, "ABDL");
         rpasyl = ReputationGet(Player, "Asylum");
@@ -9102,6 +9074,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         sklockpicking = SkillGetLevel(Player, "LockPicking") - SkillGetModifier(Player, "LockPicking");
         skselfbondage = SkillGetLevel(Player, "SelfBondage") - SkillGetModifier(Player, "SelfBondage");
         skwillpower = SkillGetLevel(Player, "Willpower") - SkillGetModifier(Player, "Willpower");
+    }
+
+    function UBCsettings() {
+        Player.OnlineSharedSettings.UBC = UBCver;
+        Player.OnlineSharedSettings.cname = cname;
+        Player.OnlineSharedSettings.ctitle = ctitle;
+        Player.OnlineSharedSettings.Inmap = false;
+        if (Player.OnlineSharedSettings.Tplist == undefined) {
+            Player.OnlineSharedSettings.Tplist = [];
+        }
+        if (Player.OnlineSharedSettings.Ulist == undefined) {
+            Player.OnlineSharedSettings.Ulist = [];
+        }
+        if (noescape == true) {
+            Player.OnlineSharedSettings.Unoescape = true;
+        } else {
+            Player.OnlineSharedSettings.Unoescape = false;
+        }
+        ServerAccountUpdate.QueueData({
+            OnlineSharedSettings: Player.OnlineSharedSettings
+        });
+        if (npcpunish == true) {
+            Player.RestrictionSettings.BypassNPCPunishments = false;
+        } else {
+            Player.RestrictionSettings.BypassNPCPunishments = true;
+        }
+        UBCrpsk();
     }
 
     //Room Connections
