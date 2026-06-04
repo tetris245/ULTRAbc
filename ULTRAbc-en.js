@@ -11126,11 +11126,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tag: 'asylum',
         Description: "(minutes): enters asylum, bypasses requirements.",
         Action: (args) => {
-            if ((args === "") && (ReputationGet("Asylum") < 0)) {
+            if ((args === "") && (ReputationGet(Player, "Asylum") < 0)) {
                 let msg = "You must specify minutes if you are a patient.";
                 infomsg(msg);
             } else {
-                if (ReputationGet("Asylum") < 0) {
+                if (ReputationGet(Player, "Asylum") < 0) {
                     let minutes = args;
                     LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
                 }
