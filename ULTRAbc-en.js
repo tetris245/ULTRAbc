@@ -16146,7 +16146,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
 			if (args === "info") {
-                let msg = "Info commands - * = more info when using\n" +
+                let msg = "Info commands - * = more info when using\n" +		
+                    "<b>/maproom</b> = gives infos about players in current map.\n" +
                     "<b>/mbsroom</b> = infos about MBS wheels in current room.\n" +
                     "<b>/mstatus</b> = displays current status of the moaner.\n" +                 
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
@@ -16159,7 +16160,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/mapfog</b> = toggles fog in current map room.\n" +
                     "<b>/mapforce</b> = forces map access in current normal room (only for yourself).\n" +
                     "<b>/mapkeys</b> (keynumber) (action) = finds or loses all keys or a specific key for current map room. *\n" +
-                    "<b>/maproom</b> = gives infos about players in current map.\n" +
+                    "<b>/maproom</b> = infos about players in current map.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
