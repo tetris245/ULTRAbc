@@ -100,7 +100,7 @@ Changes for future version
 * Extended the alphabetical order to the Audio and Graphics Preferences screens
 * Updated the magic option of the cgame command
 * Updated the title3 and title4 commands
-* Updated the InformationSheetDrawBaseInfo function
+* Updated the InformationSheetDrawBaseInfo and UBCrpsk functions
 * Optimised the code related to alphabetic order for the Preferences menu and the following Preferences screens: General, Chat, Immersion, Online
 * Optimised the code for 1st series of hooks by
   - deleting the ULTRA executable and directly executing the hook
