@@ -16038,6 +16038,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>clothing</b> = comandos relacionados con la ropa.\n" +
                     "<b>escape</b> = comandos relacionados con escapar.\n" +
                     "<b>fun</b> = comandos relacionados con diversión y efectos.\n" +
+					"<b>info</b> = comandos que proporcionan info.\n" +
                     "<b>maps</b> = comandos relacionados con salas híbridas y de mapa.\n" +
                     "<b>misc</b> = comandos de ayuda, info, login y Ulist.\n" +
                     "<b>settings</b> = comandos para personalizar ULTRAbc.\n" +
@@ -16136,6 +16137,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/visible</b> (objetivo) = vuelve al modo visible. **";
                 infomsg(msg);
             }
+			if (args === "info") {
+                let msg = "Info commands - * = más información al usar\n" +                  
+                    "<b>/maproom</b> = da información sobre los jugadores en el mapa actual.\n" +
+                    "<b>/mbsroom</b> = info sobre ruedas MBS en la sala actual.\n" +
+                    "<b>/mstatus</b> = muestra el estado actual del moaner.\n" +              
+                    "<b>/uhelp</b> (categoría) = muestra los comandos de ULTRAbc. *\n" +
+                    "<b>/umods</b> (target) = info sobre los mods utilizados por todos los jugadores o por un jugador específico en la sala actual.";
+                    "<b>/uroom</b> = info sobre usuarios de UBC/Uwall en la sala actual.\n" +                 
+                infomsg(msg);
+            }
             if (args === "maps") {
                 let msg = "Comandos de mapas - * = más información al usar\n" +
                     "<b>/mapfog</b> = alterna la niebla en la sala de mapa actual.\n" +
@@ -16155,16 +16166,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let msg = "Comandos Varios - * = más info al usar\n" +
                     "<b>/callubc</b> = instala la interfaz UBC (usar si falló la inicialización).\n" +
                     "<b>/login</b> (cuenta) (contraseña) = inicia sesión en una cuenta nueva.\n" +
-                    "<b>/mbsroom</b> = info sobre ruedas MBS en la sala actual.\n" +
-                    "<b>/mstatus</b> = muestra el estado actual del moaner.\n" +
                     "<b>/pmenu</b> = acceso directo a la pantalla de Preferencias.\n" +
                     "<b>/relog</b> = reconecta el servidor.\n" +
                     "<b>/thmlogin</b> (opciones) muestra/oculta Créditos o NPCs en el login (con mod Themed). *\n" +
-                    "<b>/uhelp</b> (categoría) = muestra los comandos de ULTRAbc. *\n" +
                     "<b>/ulistadd</b> (número) = añade un jugador a la lista para ignorar el Uwall.\n" +
                     "<b>/ulistremove</b> (número) = elimina un jugador de la lista del Uwall.\n" +
                     "<b>/ulistshow</b> = muestra tu lista de jugadores en Ulist.\n" +
-                    "<b>/uroom</b> = info sobre usuarios de UBC/Uwall en la sala actual.\n" +
                     "<b>/xmenu</b> = acceso directo a la pantalla de Extensiones.";
                 infomsg(msg);
             }
@@ -16286,6 +16293,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 List = Player.OnlineSharedSettings.Ulist;
             }
             ChatRoomSendLocal("Ulist: " + JSON.stringify(List));
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'umods',
+        Description: "(target): displays infos about mods used by all players or a specific player in the current chat room.",
+        Action: (args) => {
+            CommandsModsList.StartRemote(args);
         }
     }])
 
