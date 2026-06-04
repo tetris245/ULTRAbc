@@ -102,7 +102,7 @@ Changes for future version
 * Added the info option to the uhelp command and moved there some commands that were in the misc option
 * Extended the alphabetical order to the Audio and Graphics Preferences screens
 * Updated the asylum, cgame, maxstatistics, title1, title2, title3 and title4 commands
-* Updated the InformationSheetDrawBaseInfo and UBCrpsk functions
+* Updated the ChatSearchInitState, InformationSheetDrawBaseInfo and UBCrpsk functions
 * Updated and optimised the code related to alphabetic order for the Preferences menu and the following Preferences screens: General, Chat, Immersion, Online
 * Optimised the code for 1st series of hooks by
   - deleting the ULTRA executable and directly executing the hook
