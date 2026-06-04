@@ -98,7 +98,7 @@ All else I might not have included.
 Changes for future version
 
 * Extended the alphabetical order to the Audio and Graphics Preferences screens
-* Updated the asylum, cgame, title3 and title4 commands
+* Updated the asylum, cgame, maxstatistics, title3 and title4 commands
 * Updated the InformationSheetDrawBaseInfo and UBCrpsk functions
 * Optimised the code related to alphabetic order for the Preferences menu and the following Preferences screens: General, Chat, Immersion, Online
 * Optimised the code for 1st series of hooks by
