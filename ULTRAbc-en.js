@@ -1738,6 +1738,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 check: () => Player.OnlineSharedSettings.AllowFullWardrobeAccess,
                 click: () => Player.OnlineSharedSettings.AllowFullWardrobeAccess = !Player.OnlineSharedSettings.AllowFullWardrobeAccess
             },
+            { 
+                label: "RespondRemoteModListQueries",
+                check: () => Player.OnlineSettings.RespondRemoteModListQueries, 
+                click: () => Player.OnlineSettings.RespondRemoteModListQueries = !Player.OnlineSettings.RespondRemoteModListQueries 
+            },
             {
                 label: "AutoBanBlackList",
                 check: () => Player.OnlineSettings.AutoBanBlackList,
