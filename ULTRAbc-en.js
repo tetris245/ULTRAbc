@@ -16045,7 +16045,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>chat</b> = commands with extra features in chat room.\n" +
                     "<b>clothing</b> = commands related to the clothes.\n" +
                     "<b>escape</b> = commands related to escape.\n" +
-                    "<b>fun</b> = commands related to fun, pain and pleasure.\n" +
+                    "<b>fun</b> = commands related to fun, pain and pleasure.\n" +		
+                    "<b>info</b> = commands that give infos.\n" +
                     "<b>maps</b> = commands related to hybrid and map rooms.\n" +
                     "<b>misc</b> = help, info, login and Ulist commands.\n" +
                     "<b>settings</b> = commands to customize ULTRAbc.\n" +
@@ -16144,6 +16145,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/visible</b> (target) = goes or sends back to visible mode. **";
                 infomsg(msg);
             }
+			if (args === "info") {
+                let msg = "Info commands - * = more info when using\n" +
+                    "<b>/mbsroom</b> = infos about MBS wheels in current room.\n" +
+                    "<b>/mstatus</b> = displays current status of the moaner.\n" +                 
+                    "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
+                    "<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.";
+                    "<b>/uroom</b> = infos about UBC/Uwall users in current room.";                  
+                infomsg(msg);
+            }
             if (args === "maps") {
                 let msg = "Maps commands - * = more info when using\n" +
                     "<b>/mapfog</b> = toggles fog in current map room.\n" +
@@ -16162,17 +16172,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "misc") {
                 let msg = "Misc commands - * = more info when using\n" +
                     "<b>/callubc</b> = installs UBC GUI (to be used if it has failed during initialisation).\n" +
-                    "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
-                    "<b>/mbsroom</b> = infos about MBS wheels in current room.\n" +
-                    "<b>/mstatus</b> = displays current status of the moaner.\n" +
+                    "<b>/login</b> (accountname) (password) = logs in a new account.\n" +                 
                     "<b>/pmenu</b> = direct access to Preferences screen.\n" +
                     "<b>/relog</b> = relogs.\n" +
                     "<b>/thmlogin</b> (options) shows/hides Credits and/or NPCs on login screen, when Themed mod used. *\n" +
-                    "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
                     "<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n" +
                     "<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n" +
-                    "<b>/ulistshow</b> = displays list of players in your Ulist.\n" +
-                    "<b>/uroom</b> = infos about UBC/Uwall users in current room.\n" +
+                    "<b>/ulistshow</b> = displays list of players in your Ulist.\n" +                 
                     "<b>/xmenu</b> = direct access to Extensions screen.";
                 infomsg(msg);
             }
@@ -16294,6 +16300,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 List = Player.OnlineSharedSettings.Ulist;
             }
             ChatRoomSendLocal("Ulist: " + JSON.stringify(List));
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'umods',
+        Description: "(target): displays infos about mods used by all players or a specific player in the current chat room.",
+        Action: (args) => {
+            CommandsModsList.StartRemote(args);
         }
     }])
 
