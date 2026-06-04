@@ -16144,7 +16144,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/mstatus</b> = muestra el estado actual del moaner.\n" +              
                     "<b>/uhelp</b> (categoría) = muestra los comandos de ULTRAbc. *\n" +
                     "<b>/umods</b> (target) = info sobre los mods utilizados por todos los jugadores o por un jugador específico en la sala actual.";
-                    "<b>/uroom</b> = info sobre usuarios de UBC/Uwall en la sala actual.\n" +                 
+                    "<b>/uroom</b> = info sobre usuarios de UBC/Uwall en la sala actual.";               
                 infomsg(msg);
             }
             if (args === "maps") {
