@@ -1320,7 +1320,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 load: () => PreferenceSubscreenMainLoad(),
                 run: () => PreferenceSubscreenMainRun(),
                 click: () => PreferenceSubscreenMainClick(),
-                resize: () => PreferenceSubscreenMainResize(),
+                resize: (onLoad) => PreferenceSubscreenMainResize(onLoad),
                 unload: () => PreferenceSubscreenMainUnload(),
                 exit: () => PreferenceSubscreenMainExit(),
             },
@@ -1331,7 +1331,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 click: () => PreferenceSubscreenGeneralClick(),
                 exit: () => PreferenceSubscreenGeneralExit(),
                 unload: () => PreferenceSubscreenGeneralUnload(),
-                resize: () => PreferenceSubscreenGeneralResize(),
+                resize: (onLoad) => PreferenceSubscreenGeneralResize(onLoad),
             },
             {
                 name: "Arousal",
@@ -1348,7 +1348,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 click: () => PreferenceSubscreenAudioClick(),
                 exit: () => PreferenceSubscreenAudioExit(),
                 unload: () => PreferenceSubscreenAudioUnload(),
-                resize: () => PreferenceSubscreenAudioResize(),
+                resize: (onLoad) => PreferenceSubscreenAudioResize(onLoad),
             },
             {
                 name: "CensoredWords",
@@ -1357,7 +1357,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 click: () => PreferenceSubscreenCensoredWordsClick(),
                 exit: () => PreferenceSubscreenCensoredWordsExit(),
                 unload: () => PreferenceSubscreenCensoredWordsUnload(),
-                resize: () => PreferenceSubscreenCensoredWordsResize(),
+                resize: (onLoad) => PreferenceSubscreenCensoredWordsResize(onLoad),
             },
             {
                 name: "Chat",
@@ -1365,7 +1365,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 run: () => PreferenceSubscreenChatRun(),
                 click: () => PreferenceSubscreenChatClick(),
                 exit: () => PreferenceSubscreenChatExit(),
-                resize: () => PreferenceSubscreenChatResize(),
+                resize: (onLoad) => PreferenceSubscreenChatResize(onLoad),
             },
             {
                 name: "Controller",
@@ -1381,7 +1381,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 run: () => PreferenceSubscreenDifficultyRun(),
                 click: () => PreferenceSubscreenDifficultyClick(),
                 exit: () => PreferenceSubscreenDifficultyExit(),
-                resize: () => PreferenceSubscreenDifficultyResize(),
+                resize: (onLoad) => PreferenceSubscreenDifficultyResize(onLoad),
             },
             {
                 name: "Extensions",
@@ -1390,14 +1390,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 click: () => PreferenceSubscreenExtensionsClick(),
                 exit: () => PreferenceSubscreenExtensionsExit(),
                 unload: () => PreferenceSubscreenExtensionsUnload(),
-                resize: () => PreferenceSubscreenExtensionsResize(),
+                resize: (onLoad) => PreferenceSubscreenExtensionsResize(onLoad),
             },
             {
                 name: "Gender",
                 load: () => PreferenceSubscreenGenderLoad(),
                 run: () => PreferenceSubscreenGenderRun(),
                 click: () => PreferenceSubscreenGenderClick(),
-                resize: () => PreferenceSubscreenGenderResize(),
+                resize: (onLoad) => PreferenceSubscreenGenderResize(onLoad),
             },
             {
                 name: "Graphics",
@@ -1406,13 +1406,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 click: () => PreferenceSubscreenGraphicsClick(),
                 exit: () => PreferenceSubscreenGraphicsExit(),
                 unload: () => PreferenceSubscreenGraphicsUnload(),
+                resize: (onLoad) => PreferenceSubscreenGraphicsResize(onLoad),
             },
             {
                 name: "Immersion",
                 load: () => PreferenceSubscreenImmersionLoad(),
                 run: () => PreferenceSubscreenImmersionRun(),
                 click: () => PreferenceSubscreenImmersionClick(),
-                resize: () => PreferenceSubscreenImmersionResize(),
+                resize: (onLoad) => PreferenceSubscreenImmersionResize(onLoad),
             },
             {
                 name: "Visibility",
@@ -1429,7 +1430,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 run: () => PreferenceSubscreenKeybindingsRun(),
                 click: () => PreferenceSubscreenKeybindingsClick(),
                 exit: () => PreferenceSubscreenKeybindingsExit(),
-                resize: () => PreferenceSubscreenKeybindingsResize(),
+                resize: (onLoad) => PreferenceSubscreenKeybindingsResize(onLoad),
             },
             {
                 name: "Notifications",
@@ -1444,14 +1445,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 load: () => PreferenceSubscreenOnlineLoad(),
                 run: () => PreferenceSubscreenOnlineRun(),
                 click: () => PreferenceSubscreenOnlineClick(),
-                resize: () => PreferenceSubscreenOnlineResize(),
+                resize: (onLoad) => PreferenceSubscreenOnlineResize(onLoad),
             },
             {
                 name: "Restriction",
                 load: () => PreferenceSubscreenRestrictionLoad(),
                 run: () => PreferenceSubscreenRestrictionRun(),
                 click: () => PreferenceSubscreenRestrictionClick(),
-                resize: () => PreferenceSubscreenRestrictionResize(),
+                resize: (onLoad) => PreferenceSubscreenRestrictionResize(onLoad),
             },
             {
                 name: "Scripts",
@@ -1460,7 +1461,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 click: () => PreferenceSubscreenScriptsClick(),
                 exit: () => PreferenceSubscreenScriptsExit(),
                 unload: () => PreferenceSubscreenScriptsUnload(),
-                resize: () => PreferenceSubscreenScriptsResize(),
+                resize: (onLoad) => PreferenceSubscreenScriptsResize(onLoad),
             },
             {
                 name: "Security",
@@ -1469,7 +1470,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 click: () => PreferenceSubscreenSecurityClick(),
                 exit: () => PreferenceSubscreenSecurityExit(),
                 unload: () => PreferenceSubscreenSecurityUnload(),
-                resize: () => PreferenceSubscreenSecurityResize(),
+                resize: (onLoad) => PreferenceSubscreenSecurityResize(onLoad),
             },
         ];
         Player.UBC.ubcSettings.ListAlpha = ListAlpha;
