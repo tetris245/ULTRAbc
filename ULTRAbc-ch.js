@@ -15327,7 +15327,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "drow（黑暗精灵）、duchess（女公爵）、duke（公爵)。";
                 infomsg(msg);
             } else {
-                let title = args;
+				let title = args;
                 if (title == "admiral") TitleSet("Admiral");
                 if (title == "agent") {
                     if ((SkillGetLevel(Player, "Infiltration") < 6) || (SkillGetLevel(Player, "Infiltration") > 7)) {
@@ -15339,40 +15339,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "angel") TitleSet("Angel");
                 if (title == "archbishop") {
                     let house = "";
-                    if (ReputationGet("HouseAmplector") != 0) house = "HouseAmplector";
-                    if (ReputationGet("HouseCorporis") != 0) house = "HouseCorporis";
-                    if (ReputationGet("HouseMaiestas") != 0) house = "HouseMaiestas";
-                    if (ReputationGet("HouseVincula") != 0) house = "HouseVincula";
+                    if (ReputationGet(Player, "HouseAmplector") != 0) house = "HouseAmplector";
+                    if (ReputationGet(Player, "HouseCorporis") != 0) house = "HouseCorporis";
+                    if (ReputationGet(Player, "HouseMaiestas") != 0) house = "HouseMaiestas";
+                    if (ReputationGet(Player, "HouseVincula") != 0) house = "HouseVincula";
                     if (ReputationGet(house) < 75) {
                         DialogSetReputation(house, 75);
                     }
                     TitleSet("Archbishop");
                 }
                 if (title == "archjudge") {
-                    if (ReputationGet("Dominant") < 90) {
+                    if (ReputationGet(Player, "Dominant") < 90) {
                         DialogSetReputation("Dominant", 90);
                     }
                     TitleSet("Archjudge");
                 }
                 if (title == "baby") {
-                    if (ReputationGet("ABDL") < 1) {
+                    if (ReputationGet(Player, "ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("Baby");
                 }
                 if (title == "bishop") {
                     let house = "";
-                    if (ReputationGet("HouseAmplector") != 0) house = "HouseAmplector";
-                    if (ReputationGet("HouseCorporis") != 0) house = "HouseCorporis";
-                    if (ReputationGet("HouseMaiestas") != 0) house = "HouseMaiestas";
-                    if (ReputationGet("HouseVincula") != 0) house = "HouseVincula";
+                    if (ReputationGet(Player, "HouseAmplector") != 0) house = "HouseAmplector";
+                    if (ReputationGet(Player, "HouseCorporis") != 0) house = "HouseCorporis";
+                    if (ReputationGet(PLayer, "HouseMaiestas") != 0) house = "HouseMaiestas";
+                    if (ReputationGet(Player, "HouseVincula") != 0) house = "HouseVincula";
                     if (ReputationGet(house) < 25) {
                         DialogSetReputation(house, 25);
                     }
                     TitleSet("Bishop");
                 }
                 if (title == "bondagebaby") {
-                    if (ReputationGet("ABDL") < 1) {
+                    if (ReputationGet(Player, "ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     if (SkillGetLevel(Player, "Evasion") < 10) {
@@ -15393,7 +15393,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "bunny") TitleSet("Bunny");
                 if (title == "captain") TitleSet("Captain");
                 if (title == "champion") {
-                    if (ReputationGet("LARP") < 100) {
+                    if (ReputationGet(Player, "LARP") < 100) {
                         DialogSetReputation("LARP", 100);
                     }
                     TitleSet("Champion");
@@ -15412,13 +15412,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "concubus") TitleSet("Concubus");
                 if (title == "demon") TitleSet("Demon");
                 if (title == "diaperlover") {
-                    if (ReputationGet("ABDL") < 1) {
+                    if (ReputationGet(Player, "ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("DL");
                 }
                 if (title == "doctor") {
-                    if (ReputationGet("Asylum") < 100) {
+                    if (ReputationGet(Player, "Asylum") < 100) {
                         DialogSetReputation("Asylum", 100);
                     }
                     LogAdd("Committed", "Asylum", CurrentTime);
@@ -15448,7 +15448,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+             
     CommandCombine([{
         Tag: 'title2',
         Description: "（称号）：选择一个新的称号（从 E 到 K）。",
@@ -15472,7 +15472,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "kidnapper（绑架者）、king（国王）、kitten（小猫）。";
                 infomsg(msg);
             } else {
-                let title = args;
+				let title = args;
                 if (title == "elf") TitleSet("Elf");
                 if (title == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 if (title == "farmhorse") {
@@ -15489,11 +15489,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("PonyPegasus");
                 }
                 if (title == "foal") {
-                    if (ReputationGet("ABDL") < 1) {
+                    if (ReputationGet(Player, "ABDL") < 1) {
                         if ((SkillGetLevel(Player, "Dressage") < 1) || (SkillGetLevel(Player, "Infiltration") > 2)) {
                             SkillChange(Player, "Dressage", 1);
                         }
-                    } else if (ReputationGet("ABDL") >= 1) {
+                    } else if (ReputationGet(Player, "ABDL") >= 1) {
                         if (SkillGetLevel(Player, "Dressage") < 1) {
                             SkillChange(Player, "Dressage", 1);
                         }
@@ -15502,19 +15502,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (title == "foxy") TitleSet("Foxy");
                 if (title == "freeuse") {
-                    if (ReputationGet("Dominant") > -100) {
+                    if (ReputationGet(Player, "Dominant") > -100) {
                         DialogSetReputation("Dominant", -100);
                     }
                     TitleSet("FreeUse");
                 }
                 if (title == "god") {
-                    if (ReputationGet("Dominant") < 100) {
+                    if (ReputationGet(Player, "Dominant") < 100) {
                         DialogSetReputation("Dominant", 100);
                     }
                     TitleSet("God");
                 }
                 if (title == "goddess") {
-                    if (ReputationGet("Dominant") < 100) {
+                    if (ReputationGet(Player, "Dominant") < 100) {
                         DialogSetReputation("Dominant", 100);
                     }
                     TitleSet("Goddess");
@@ -15594,19 +15594,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("InfilrationInfiltrator");
                 }
                 if (title == "judge") {
-                    if (ReputationGet("Dominant") < 50) {
+                    if (ReputationGet(Player, "Dominant") < 50) {
                         DialogSetReputation("Dominant", 50);
                     }
                     TitleSet("Judge");
                 }
                 if (title == "kidnapper") {
-                    if ((ReputationGet("Kidnap") < 50) || (ReputationGet("Kidnap") > 99)) {
+                    if ((ReputationGet(Player, "Kidnap") < 50) || (ReputationGet(Player, "Kidnap") > 99)) {
                         DialogSetReputation("Kidnap", 50);
                     }
                     TitleSet("Kidnapper");
                 }
                 if (title == "king") {
-                    if (ReputationGet("Dominant") < 75) {
+                    if (ReputationGet(Player, "Dominant") < 75) {
                         DialogSetReputation("Dominant", 75);
                     }
                     TitleSet("King");
@@ -15615,7 +15615,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+          
     CommandCombine([{
         Tag: 'title3',
         Description: "（称号）：选择一个新的称号（从 L 到 Q）。",
@@ -15641,35 +15641,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "queen（女王)。";
                 infomsg(msg);
             } else {
-                let title = args;
+				let title = args;
                 if (title == "ladyluck") {
-                    if (ReputationGet("Gambling") < 100) {
+                    if (ReputationGet(Player, "Gambling") < 100) {
                         DialogSetReputation("Gambling", 100);
                     }
                     TitleSet("LadyLuck");
                 }
                 if (title == "liege") TitleSet("Liege");
                 if (title == "littleone") {
-                    if (ReputationGet("ABDL") < 1) {
+                    if (ReputationGet(Player, "ABDL") < 1) {
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("LittleOne");
                 }
                 if (title == "lordfortune") {
-                    if (ReputationGet("Gambling") < 100) {
+                    if (ReputationGet(Player, "Gambling") < 100) {
                         DialogSetReputation("Gambling", 100);
                     }
                     TitleSet("Lord Fortune");
                 }
                 if (title == "magician") {
-                    if ((ReputationGet("HouseVincula") < 50) || (ReputationGet("HouseVincula") > 99)) {
+                    if ((ReputationGet(Player, "HouseVincula") < 50) || (ReputationGet(Player, "HouseVincula") > 99)) {
                         ResetHousesReputation();
                         DialogSetReputation("HouseVincula", 50);
                     }
                     TitleSet("MagicSchoolMagician");
                 }
                 if (title == "magus") {
-                    if (ReputationGet("HouseMaiestas") < 100) {
+                    if (ReputationGet(Player, "HouseMaiestas") < 100) {
                         ResetHousesReputation();
                         DialogSetReputation("HouseMaiestas", 100);
                     }
@@ -15692,16 +15692,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("Master");
                 }
                 if (title == "masterkidnapper") {
-                    if (ReputationGet("Kidnap") < 100) {
+                    if (ReputationGet(Player, "Kidnap") < 100) {
                         DialogSetReputation("Kidnap", 100);
                     }
                     TitleSet("MasterKidnapper");
                 }
                 if (title == "matron") {
-                    if (ReputationGet("Maid") < 50) {
+                    if (ReputationGet(Player, "Maid") < 50) {
                         DialogSetReputation("Maid", 50);
                     }
-                    if (ReputationGet("Dominant") < 50) {
+                    if (ReputationGet(Player, "Dominant") < 50) {
                         DialogSetReputation("Dominant", 50);
                     }
                     TitleSet("Matron");
@@ -15721,7 +15721,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     TitleSet("InfilrationMole");
                 }
-				if (title == "monster") TitleSet("Monster");
+                if (title == "monster") TitleSet("Monster");
                 if (title == "nawashi") {
                     if (SkillGetLevel(Player, "Bondage") < 10) {
                         SkillChange(Player, "Bondage", 10);
@@ -15729,7 +15729,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("Nawashi");
                 }
                 if (title == "nurse") {
-                    if ((ReputationGet("Asylum") < 50) || (ReputationGet("Asylum") > 99)) {
+                    if ((ReputationGet(Player, "Asylum") < 50) || (ReputationGet(Player, "Asylum") > 99)) {
                         DialogSetReputation("Asylum", 50);
                     }
                     LogAdd("Committed", "Asylum", CurrentTime);
@@ -15742,30 +15742,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("InfilrationOperative");
                 }
                 if (title == "oracle") {
-                    if (ReputationGet("HouseAmplector") < 100) {
+                    if (ReputationGet(Player, "HouseAmplector") < 100) {
                         ResetHousesReputation();
                         DialogSetReputation("HouseAmplector", 100);
                     }
                     TitleSet("MagicSchoolOracle");
                 }
                 if (title == "patient") {
-                    if ((ReputationGet("Asylum") > -50) || (ReputationGet("Asylum") < -99)) {
+                    if ((ReputationGet(Player, "Asylum") > -50) || (ReputationGet(Player, "Asylum") < -99)) {
                         DialogSetReputation("Asylum", -50);
                     }
                     TitleSet("Patient");
                 }
                 if (title == "patriarch") {
-                    if (ReputationGet("Maid") < 50) {
+                    if (ReputationGet(Player, "Maid") < 50) {
                         DialogSetReputation("Maid", 50);
                     }
-                    if (ReputationGet("Dominant") < 50) {
+                    if (ReputationGet(Player, "Dominant") < 50) {
                         DialogSetReputation("Dominant", 50);
                     }
                     TitleSet("Patriarch");
                 }
                 if (title == "patron") TitleSet("Patron");
                 if (title == "permanentpatient") {
-                    if (ReputationGet("Asylum") > -100) {
+                    if (ReputationGet(Player, "Asylum") > -100) {
                         DialogSetReputation("Asylum", -100);
                     }
                     TitleSet("PermanentPatient");
@@ -15773,10 +15773,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "pet") TitleSet("Pet");
                 if (title == "pixie") TitleSet("Pixie");
                 if (title == "primaris") {
-                    if (ReputationGet("Asylum") < 50) {
+                    if (ReputationGet(Player, "Asylum") < 50) {
                         DialogSetReputation("Asylum", 50);
                     }
-                    if (ReputationGet("Dominant") < 50) {
+                    if (ReputationGet(Player, "Dominant") < 50) {
                         DialogSetReputation("Dominant", 50);
                     }
                     TitleSet("Primaris");
@@ -15785,7 +15785,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "princess") TitleSet("Princess");
                 if (title == "puppy") TitleSet("Puppy");
                 if (title == "queen") {
-                    if (ReputationGet("Dominant") < 75) {
+                    if (ReputationGet(Player, "Dominant") < 75) {
                         DialogSetReputation("Dominant", 75);
                     }
                     TitleSet("Queen");
@@ -15793,7 +15793,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
     }])
-
+             
     CommandCombine([{
         Tag: 'title4',
         Description: "（称号）：选择一个新的称号（从 R 到 Z）。",
@@ -15817,13 +15817,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let title = args;
                 if (title == "sage") {
-                    if ((ReputationGet("HouseAmplector") < 50) || (ReputationGet("HouseAmplector") > 99)) {
+                    if ((ReputationGet(Player, "HouseAmplector") < 50) || (ReputationGet(Player, "HouseAmplector") > 99)) {
                         ResetHousesReputation();
                         DialogSetReputation("HouseAmplector", 50);
                     }
                     TitleSet("MagicSchoolSage");
                 }
-				if (title == "shapeshifter") TitleSet("Shapeshifter");
+                if (title == "shapeshifter") TitleSet("Shapeshifter");
                 if (title == "shiningunicorn") {
                     if ((SkillGetLevel(Player, "Dressage") < 7) || (SkillGetLevel(Player, "Infiltration") > 7)) {
                         SkillChange(Player, "Dressage", 7);
@@ -15832,7 +15832,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (title == "sissy") TitleSet("Sissy");
                 if (title == "sorcerer") {
-                    if (ReputationGet("HouseVincula") < 100) {
+                    if (ReputationGet(Player, "HouseVincula") < 100) {
                         ResetHousesReputation();
                         DialogSetReputation("HouseVincula", 100);
                     }
@@ -15859,7 +15859,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (title == "turtle") TitleSet("Turtle");
                 if (title == "vampire") TitleSet("Vampire");
                 if (title == "warlock") {
-                    if (ReputationGet("HouseCorporis") < 100) {
+                    if (ReputationGet(Player, "HouseCorporis") < 100) {
                         ResetHousesReputation();
                         DialogSetReputation("HouseCorporis", 100);
                     }
@@ -15878,20 +15878,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     TitleSet("PonyWild");
                 }
                 if (title == "witch") {
-                    if ((ReputationGet("HouseCorporis") < 50) || (ReputationGet("HouseCorporis") > 99)) {
+                    if ((ReputationGet(Player, "HouseCorporis") < 50) || (ReputationGet(Player, "HouseCorporis") > 99)) {
                         ResetHousesReputation();
                         DialogSetReputation("HouseCorporis", 50);
                     }
                     TitleSet("MagicSchoolWitch");
                 }
                 if (title == "wizard") {
-                    if ((ReputationGet("HouseMaiestas") < 50) || (ReputationGet("HouseMaiestas") > 99)) {
+                    if ((ReputationGet(Player, "HouseMaiestas") < 50) || (ReputationGet(Player, "HouseMaiestas") > 99)) {
                         ResetHousesReputation();
                         DialogSetReputation("HouseMaiestas", 50);
                     }
                     TitleSet("MagicSchoolWizard");
                 }
-				if (title == "wolf") TitleSet("Wolf");
+                if (title == "wolf") TitleSet("Wolf");
             }
         }
     }])
