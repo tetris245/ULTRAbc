@@ -97,6 +97,8 @@ All else I might not have included.
 
 Changes for future version
 
+* New setting in GUI - Misc to disable all BCX alarm messages (thanks to huzpsb!)
+  - When selected, you need to check the console for error messages if something seems wrong in BC
 * New command: umods (target) to get infos about mods used by all players or a specific player in the current chat room
   - It's a simplified version of the new BC mods commands (no 'list' or 'remote' parameter)
 * Added the info option to the uhelp command and moved there some commands that were in the misc option
