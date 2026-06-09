@@ -2596,8 +2596,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 				addMenuCheckbox(64, 64, "Orden alfabético para Reputación y Habilidades: ", "alfrpsk",
                     "Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.", false, 228
                 );
-				addMenuCheckbox(64, 64, "Disable all BCX alarm messages: ", "nobcxalarm",
-                    "Al seleccionar esta opción, ya no verá los mensajes de alarma de BCX. Si nota algún problema al usar BC, compruebe si se trata de mensajes de error en la consola.", false, 140
+				addMenuCheckbox(64, 64, "Desactivar los mensajes de alarma de BCX: ", "nobcxalarm",
+                    "Al seleccionar esta opción, ya no verá los mensajes de alarma de BCX. Si nota algún problema al usar BC, compruebe si se trata de mensajes de error en la consola.", false, 228
                 );
                 addMenuCheckbox(64, 64, "Activar limitaciones del Manicomio (Asylum): ", "asylumlimit",
                     "Por defecto, UBC desactiva las limitaciones del Manicomio (acceso y salida). Si te gustan estas limitaciones, puedes activarlas de nuevo con esta opción.", false, 228
@@ -4780,7 +4780,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	//Login
     modApi.hookFunction('LoginRun', 4, (args, next) => {
-        DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " Ready!", "Pink", "", "");
+        DrawButton(750, 145, 500, 60, "ULTRAbc " + UBCver + " ¡Listo!", "Pink", "", "");
         return next(args);
     });
 
