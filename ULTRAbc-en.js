@@ -2597,7 +2597,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, most info about reputation and skills in the Character Info screen will be ordered in alphabetic order. Note that the reputation as dominant or submissive will remain displayed in first position.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Disable all BCX alarm messages: ", "nobcxalarm",
-                    "When selected, you will no more see BCX alarm messages. If something seems wrong when using BC, you need to check if they are error messages in the console!", false, 140
+                    "By selecting this option, you will no longer see BCX alarm messages. If you experience any problems using BC, check the console for error messages.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
                     "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 140
