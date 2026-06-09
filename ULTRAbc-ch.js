@@ -2597,7 +2597,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "启用后，角色信息屏幕中关于声望和技能的大部分信息将按字母顺序排列。请注意，作为支配者或服从者的声望仍将首先显示。", false, 140
                 );
 				addMenuCheckbox(64, 64, "Disable all BCX alarm messages: ", "nobcxalarm",
-                    "When selected, you will no more see BCX alarm messages. If something seems wrong when using BC, you need to check if they are error messages in the console!", false, 140
+                    "By selecting this option, you will no longer see BCX alarm messages. If you experience any problems using BC, check the console for error messages.", false, 140
                 );
                 addMenuCheckbox(64, 64, "启用精神病院限制：", "asylumlimit",
                     "默认情况下，UBC 禁用精神病院限制（访问、退出）。如果您喜欢这些限制，可以使用此选项再次启用它们。", false, 140
