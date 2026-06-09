@@ -164,6 +164,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mgl = 0;
     let minigame = "";
     let mission = "";
+	let nobcxalarm = false;
 	let nopending = false;
     let npcdeck = -1;
     let onegl = 0;
@@ -606,6 +607,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         maptrap1 = 0;
         minigame = "";
         mission = "";
+		nobcxalarm = false;
         noescape = false;
         nogarble = false;
         noifbuttons = false;
@@ -728,6 +730,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         maptrap1 = data.maptrap1 * 1;
         minigame = data.minigame;
         mission = data.mission;
+		nobcxalarm = data.nobcxalarm;
         noescape = data.noescape;
         nogarble = data.nogarble;
         noifbuttons = data.noifbuttons;
@@ -894,6 +897,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "maptrap1": maptrap1,
             "minigame": minigame,
             "mission": mission,
+			"nobcxalarm": nobcxalarm,
 			"nopending": nopending,
             "npcdeck": npcdeck,
             "onlydays": onlydays,
@@ -1082,6 +1086,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
+				if (nobcxalarm == null || nobcxalarm == undefined) nobcxalarm = false;
                 if (noescape == null || noescape == undefined) noescape = false;
                 if (nogarble == null || nogarble == undefined) nogarble = false;
                 if (noifbuttons == null || noifbuttons == undefined) noifbuttons = false;
@@ -1232,6 +1237,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 mapfull: false,
                 mapfull2: false,
                 maptrap1: 0,
+				nobcxalarm: false,
                 noescape: false,
                 nogarble: false,
                 noifbuttons: false,
@@ -2589,6 +2595,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
 				addMenuCheckbox(64, 64, "Orden alfabético para Reputación y Habilidades: ", "alfrpsk",
                     "Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.", false, 228
+                );
+				addMenuCheckbox(64, 64, "Disable all BCX alarm messages: ", "nobcxalarm",
+                    "Al seleccionar esta opción, ya no verá los mensajes de alarma de BCX. Si nota algún problema al usar BC, compruebe si se trata de mensajes de error en la consola.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Activar limitaciones del Manicomio (Asylum): ", "asylumlimit",
                     "Por defecto, UBC desactiva las limitaciones del Manicomio (acceso y salida). Si te gustan estas limitaciones, puedes activarlas de nuevo con esta opción.", false, 228
@@ -9160,6 +9169,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomSendLocal(`${ubc1} - ${ubc2}`);
         if (command == "uroom") ChatRoomSendLocal(" ");
     }
+
+    function dfsNode(node) {
+        for (let i = 0; i < node.childNodes.length; i++) {
+            const result = dfsNode(node.childNodes[i]);
+            if (result) return result;
+        }
+        if (node.style && node.style[0] === 'cursor' && node.innerText === 'Close') return node.onclick;
+    }
+
+    const originalAppendChild = Element.prototype.appendChild;
+    Element.prototype.appendChild = function (child) {
+        const e = originalAppendChild.call(this, child);
+        if (nobcxalarm) {
+            for (let i = 0; i < this.childNodes.length; i++) {
+                const result = dfsNode(this.childNodes[i]);
+                if (result) {
+                    console.log("STFU, BCX!");
+                    result();
+                }
+            }
+        }
+        return e;
+    };
 
     //Stable
     async function StableCarrot() {
