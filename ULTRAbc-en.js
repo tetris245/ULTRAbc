@@ -16178,7 +16178,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/mbsroom</b> = infos about MBS wheels in current room.\n" +
                     "<b>/mstatus</b> = displays current status of the moaner.\n" +                 
                     "<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n" +
-                    "<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.";
+                    "<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.\n" +
                     "<b>/uroom</b> = infos about UBC/Uwall users in current room.";                  
                 infomsg(msg);
             }
