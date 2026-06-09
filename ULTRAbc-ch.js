@@ -16197,7 +16197,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/mbsroom</b> = 当前房间中 MBS 轮子的信息。\n" +
                     "<b>/mstatus</b> = 显示 moaner 的当前状态。\n" +              
                     "<b>/uhelp</b> （类别）= 显示 ULTRAbc 命令。*\n" +
-                    "<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.";
+                    "<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.\n" +
                     "<b>/uroom</b> = 当前房间中 UBC/Uwall 用户的信息。";              
                 infomsg(msg);
             }
