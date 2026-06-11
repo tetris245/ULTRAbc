@@ -97,19 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New setting in GUI - Misc to disable all BCX alarm messages (thanks to huzpsb!)
-  - When selected, you need to check the console for error messages if something seems wrong in BC
-* New command: umods (target) to get infos about mods used by all players or a specific player in the current chat room
-  - It's a simplified version of the new BC mods commands (no 'list' or 'remote' parameter)
-* Added the info option to the uhelp command and moved there some commands that were in the misc option
-* Extended the alphabetical order to the Audio and Graphics Preferences screens
-* Updated the asylum, cgame, maxstatistics, title1, title2, title3 and title4 commands
-* Updated the ChatSearchInitState, InformationSheetDrawBaseInfo and UBCrpsk functions
-* Updated and optimised the code related to alphabetic order for the Preferences menu and the following Preferences screens: General, Chat, Immersion, Online
-* Optimised the code for 1st series of hooks by
-  - deleting the ULTRA executable and directly executing the hook
-  - replacing next(args) by return next(args) except when another kind of return is implemented
-  - replacing (partially or entirely) some hooks by patches
+* Added more sounds for Animal Talk Mode 8 (Puppy)
 
 
 
