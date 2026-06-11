@@ -367,7 +367,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let animalmode5 = ["cou", "coui", "couic", "koui", "kouii", "scoui", "scouic"];
     let animalmode6 = ["gru", "grui", "gruik", "gruiik", "gruiii", "groi"];
     let animalmode7 = ["nei", "neigh", "neighh", "neighhhh", "whin", "whinny", "whinney"];
-    let animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo"];
+    let animalmode8 = ["wof", "woof", "wuf", "wooof", "awo", "awoo", "woo", "arf", "bork", "ruff", "wroof", "yip"];
     let animalmode9 = ["owo", "owoo", "whoo", "owoooo", "howl", "howll", "hoowl"];
 
     const animalModes = [null, animalmode1, animalmode2, animalmode3, animalmode4, animalmode5, animalmode6, animalmode7, animalmode8, animalmode9];
