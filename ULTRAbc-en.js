@@ -15275,10 +15275,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let theme = args;
                 if ((theme > -1) && (theme < 4)) {
                     Player.ChatSettings.ColorTheme = PreferenceChatColorThemeList[theme]
+                    PreferenceSubscreenChatExit();
                     ServerAccountUpdate.QueueData({
                         ChatSettings: Player.ChatSettings
-                    });
-                    InformationSheetLoad();
+                    });                
                     InformationSheetLoadCharacter(Player);
                     InformationSheetExit();
                 }
