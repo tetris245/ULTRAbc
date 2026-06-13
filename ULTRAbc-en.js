@@ -12116,13 +12116,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.ChatSettings.FontSize = PreferenceChatFontSizeList[size];
                     ChatRoomRefreshFontSize();
                 }
+				PreferenceSubscreenGraphicsExit();
                 ServerAccountUpdate.QueueData({
                     ChatSettings: Player.ChatSettings
                 });
                 ServerAccountUpdate.QueueData({
                     GraphicsSettings: Player.GraphicsSettings
                 });
-                InformationSheetLoad();
                 InformationSheetLoadCharacter(Player);
                 InformationSheetExit();
             }
