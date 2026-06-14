@@ -2914,7 +2914,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
                 addMenuInput(200, "AFK time before message (1-60):", "afktime", "InputAFKTime",
-                    "Input a number between 1 and 60 to determine the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status. By default, it is 10 minutes.", 30
+                    "Input a number between 1 and 60 to set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status. By default, it is 10 minutes.", 30
                 );
                 addMenuCheckbox(64, 64, "Enable automatic AFK message: ", "afkinfo",
                     "When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have determined for this feature. It will be displayed even if you have choosen not to display the AFK icon, and will be repeated every 30 minutes after the first message.", false, 166
