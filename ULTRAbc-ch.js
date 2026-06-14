@@ -108,6 +108,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let kp = 0;
     let altchsh = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
+	let lastAfkMessageTime = 0;
     let lastAnimationUpdate;
 
     let tmpname;
@@ -134,6 +135,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let M_MOANER_cum = false;
     let profile;
     let profileName;
+	let afkinfo = false;
+    let afktime = 10;
     let ahybrid = false;
     let alfaprf = false;
     let alfmenu = false;
@@ -569,6 +572,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Initialisation
     function UBCdefault() {
+		afkinfo = false;
+        afktime = 10;
         ahybrid = false;
         alfaprf = false;
         alfmenu = false;
@@ -692,6 +697,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function UBCdata(data) {
+		afkinfo = data.afkinfo;
+        afktime = data.afktime;
         ahybrid = data.ahybrid;
         alfaprf = data.alfaprf;
         alfmenu = data.alfmenu;
@@ -873,6 +880,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun2": pronoun2,
             "pronoun3": pronoun3,
             "pronoun4": pronoun4,
+			"afkinfo": afkinfo,
+            "afktime": afktime,
             "ahybrid": ahybrid,
             "alfaprf": alfaprf,
             "alfmenu": alfmenu,
@@ -1028,6 +1037,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
                 console.log("ULTRAbc loaded: Version " + UBCver);
+				if (afkinfo == null || afkinfo == undefined) afkinfo = false;
+                if (afktime == null || afktime == undefined) afktime = 10;
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (alfaprf == null || alfaprf == undefined) alfaprf = false;
                 if (alfmenu == null || alfmenu == undefined) alfmenu = false;
@@ -1200,6 +1211,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             await waitFor(() => !!Player?.AccountName);
 
             const UBC_DEFAULT_SETTINGS = {
+				afkinfo: false,
+                afktime: 10,
                 ahybrid: false,
                 alfaprf: false,
                 alfmenu: false,
@@ -2900,23 +2913,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
+				addMenuInput(200, "AFK time before message (1-60):", "afktime", "InputAFKTime",
+                    "Input a number between 1 and 60 to determine the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status. By default, it is 10 minutes.", 30
+                );
+                addMenuCheckbox(64, 64, "Enable automatic AFK message: ", "afkinfo",
+                    "When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have determined for this feature. It will be displayed even if you have choosen not to display the AFK icon, and will be repeated every 30 minutes after the first message.", false, 166
+                );
                 addMenuInput(200, "动物说话/耳语模式（0-9）:", "animal", "InputAnimalMode",
-                    "输入 0 到 9 之间的数字来选择以下强制的'永久'动物说话或耳语模式之一：0 人类 - 1 兔子 - 2 奶牛 - 3 狐狸 - 4 猫咪 - 5 老鼠 - 6 猪 - 7 小马 - 8 小狗 - 9 小狼。如果你只想暂时使用特定说话模式，请在这里选择 0（人类说话），然后使用 /atalk 命令。", -16
+                    "输入 0 到 9 之间的数字来选择以下强制的'永久'动物说话或耳语模式之一：0 人类 - 1 兔子 - 2 奶牛 - 3 狐狸 - 4 猫咪 - 5 老鼠 - 6 猪 - 7 小马 - 8 小狗 - 9 小狼。如果你只想暂时使用特定说话模式，请在这里选择 0（人类说话），然后使用 /atalk 命令。", 30
                 );
                 addMenuCheckbox(64, 64, "启用混合说话/耳语模式：", "ahybrid",
-                    "启用后并与动物说话模式关联时，你所有的聊天消息和耳语将结合动物词汇和人类词汇！", false, 120
+                    "启用后并与动物说话模式关联时，你所有的聊天消息和耳语将结合动物词汇和人类词汇！", false, 166
                 );
                 addMenuCheckbox(64, 64, "启用人偶说话（和耳语）模式：", "dolltalk",
-                    "启用后，每条消息或耳语最多 5 个单词，并且你不能使用超过 6 个字符的单词。这些规则的遵守情况会在你的原始消息或耳语中检查，在结巴、Moaner、婴儿语、口塞语、动物语修改之前。", false, 120
+                    "启用后，每条消息或耳语最多 5 个单词，并且你不能使用超过 6 个字符的单词。这些规则的遵守情况会在你的原始消息或耳语中检查，在结巴、Moaner、婴儿语、口塞语、动物语修改之前。", false, 166
                 );
                 addMenuInput(200, "强制口塞说话/耳语（0-11）:", "gaglevel", "InputGagLevel",
-                    "输入 0 到 11 之间的数字来选择一个'永久'强制等级：0 禁用功能 - 1 几乎无口塞 - 2 非常轻度口塞 - 3 轻度口塞 - 4 简单口塞 - 5 普通口塞 - 6 中等口塞 - 7 重度口塞 - 8 更重口塞 - 9 非常重度口塞 - 10 完全口塞 - 11 婴儿语。如果你真的被口塞住，你的选择只能增加效果，不能减少它。要暂时使用口塞说话，使用 /gtalk 命令。要暂时像婴儿一样说话，使用 /btalk。另见 RGL 按钮。", -16
+                    "输入 0 到 11 之间的数字来选择一个'永久'强制等级：0 禁用功能 - 1 几乎无口塞 - 2 非常轻度口塞 - 3 轻度口塞 - 4 简单口塞 - 5 普通口塞 - 6 中等口塞 - 7 重度口塞 - 8 更重口塞 - 9 非常重度口塞 - 10 完全口塞 - 11 婴儿语。如果你真的被口塞住，你的选择只能增加效果，不能减少它。要暂时使用口塞说话，使用 /gtalk 命令。要暂时像婴儿一样说话，使用 /btalk。另见 RGL 按钮。", 30
                 );
                 addMenuInput(200, "强制听觉模式（1-6）:", "hearing", "InputHearingMode",
-                    "输入 1 到 6 之间的数字来选择以下强制的'永久'听觉模式之一，忽略你的实际状态：1 无耳聋 - 2 轻度耳聋 - 3 普通耳聋 - 4 重度耳聋 - 5 非常重度耳聋 - 6 完全耳聋。注意你需要完全重新登录才能离开此特殊模式（如果输入 0，将不会产生任何效果）。此模式可能触发 BCX 警告。忽略它即可（关闭突破消息）！", -16
+                    "输入 1 到 6 之间的数字来选择以下强制的'永久'听觉模式之一，忽略你的实际状态：1 无耳聋 - 2 轻度耳聋 - 3 普通耳聋 - 4 重度耳聋 - 5 非常重度耳聋 - 6 完全耳聋。注意你需要完全重新登录才能离开此特殊模式（如果输入 0，将不会产生任何效果）。此模式可能触发 BCX 警告。忽略它即可（关闭突破消息）！", 30
                 );
                 addMenuInput(200, "强制结巴等级（0-4）:", "stutterlevel", "InputStutterLevel",
-                    "输入 0 到 4 之间的数字来选择以下强制的'永久'说话或耳语结巴等级之一：0 无结巴 - 1 轻度结巴 - 2 普通结巴 - 3 重度结巴 - 4 完全结巴。注意如果你被振动器影响，你的选择只能增加效果，不能减少它。如果你只想暂时使用特定结巴等级说话，请在这里选择 0（无结巴），然后使用 /stalk 命令。", -16
+                    "输入 0 到 4 之间的数字来选择以下强制的'永久'说话或耳语结巴等级之一：0 无结巴 - 1 轻度结巴 - 2 普通结巴 - 3 重度结巴 - 4 完全结巴。注意如果你被振动器影响，你的选择只能增加效果，不能减少它。如果你只想暂时使用特定结巴等级说话，请在这里选择 0（无结巴），然后使用 /stalk 命令。", 30
                 );
                 let wmsg = "启用后，你无法使用普通耳语。只能使用 OOC 和表情耳语。当检测到类似的 BCX 规则处于活动状态时，此选项不可用。在这种情况下，UBC 将应用 BCX 耳语限制，但如果你在不允许时尝试耳语，不会发送公共消息或向行为日志添加条目。";
                 let wbc = 0;
@@ -2938,9 +2957,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (wbc == 0) {
-                    addMenuCheckbox(64, 64, "启用禁止耳语模式：", "nowhisper", wmsg, false, 120);
+                    addMenuCheckbox(64, 64, "启用禁止耳语模式：", "nowhisper", wmsg, false, 166);
                 } else {
-                    addMenuCheckbox(64, 64, "启用禁止耳语模式：", "nowhisper", wmsg, true, 120);
+                    addMenuCheckbox(64, 64, "启用禁止耳语模式：", "nowhisper", wmsg, true, 166);
                 }
             }
 
@@ -2953,18 +2972,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCTalkingExit = function() {
+				let afkmin = ElementValue("InputAFKTime");
                 let glevel = ElementValue("InputGagLevel");
                 let hmode = ElementValue("InputHearingMode");
                 let pmode = ElementValue("InputAnimalMode");
                 let stlevel = ElementValue("InputStutterLevel");
-                if ((CommonIsNumeric(glevel)) && (glevel > -1) && (glevel < 12) &&
+                if ((CommonIsNumeric(afkmin)) && (afkmin > 0) && (afkmin < 61) &&
+                    (CommonIsNumeric(glevel)) && (glevel > -1) && (glevel < 12) &&
                     (CommonIsNumeric(hmode)) && (hmode > -1) && (hmode < 7) &&
                     (CommonIsNumeric(pmode)) && (pmode > -1) && (pmode < 10) &&
                     (CommonIsNumeric(stlevel)) && (stlevel > -1) && (stlevel < 5)) {
+					Player.UBC.ubcSettings.afktime = afkmin;
                     Player.UBC.ubcSettings.animal = pmode;
                     Player.UBC.ubcSettings.gaglevel = glevel;
                     Player.UBC.ubcSettings.hearing = hmode;
                     Player.UBC.ubcSettings.stutterlevel = stlevel;
+					ElementRemove("InputAFKTime");
                     ElementRemove("InputAnimalMode");
                     ElementRemove("InputGagLevel");
                     ElementRemove("InputHearingMode");
@@ -3261,6 +3284,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Room (+ name/nickname/pronouns management for player)
+    modApi.hookFunction('AfkTimerSetIsAfk', 4, async (args, next) => {
+        if (afkinfo) {        
+            if (!ServerPlayerIsInChatRoom()) return;          
+            let initialDelay = afktime * 60 * 1000;
+            let repeatInterval = 30 * 60 * 1000;
+            let msg = "I'm currently AFK. Please be patient or come back later!";             
+            if (lastAfkMessageTime === 0) {         
+                if (AfkTimerLastEvent + initialDelay < CommonTime()) {
+                    ServerSend("ChatRoomChat", {
+                        Content: msg,
+                        Type: "Chat",
+                    });
+                    lastAfkMessageTime = CommonTime();
+                }
+            } else {
+                if (CommonTime() - lastAfkMessageTime >= repeatInterval) {
+                    ServerSend("ChatRoomChat", {
+                        Content: msg,
+                        Type: "Chat",
+                    });
+                    lastAfkMessageTime = CommonTime();
+                }
+            }
+        }
+        return next(args);
+    });
+
     async function ULTRAAsylumEntranceStartChat() {
         modApi.hookFunction('AsylumEntranceStartChat', 4, (args, next) => {
             if (asylumlimit == true) {
