@@ -3289,7 +3289,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!ServerPlayerIsInChatRoom()) return;          
             let initialDelay = afktime * 60 * 1000;
             let repeatInterval = 30 * 60 * 1000;
-            let msg = "I'm currently AFK. Please be patient or come back later!";             
+            let msg = "Actualmente estoy inactivo (AFK) ¡Por favor, ten paciencia o vuelve más tarde!";          
             if (lastAfkMessageTime === 0) {         
                 if (AfkTimerLastEvent + initialDelay < CommonTime()) {
                     ServerSend("ChatRoomChat", {
