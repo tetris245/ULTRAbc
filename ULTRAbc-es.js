@@ -2913,7 +2913,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
-				addMenuInput(200, "Inactividad (AFK) antes mensaje (1-60):", "afktime", "InputAFKTime",
+				addMenuInput(200, "Inactividad antes mensaje (1-60):", "afktime", "InputAFKTime",
                     "Introduce un número entre 1 y 60 para determinar la cantidad de minutos que debes permanecer inactivo antes de que se muestre un mensaje automático en el chat para informar a los demás jugadores sobre tu estado de inactividad. Por defecto, son 10 minutos.", 64
                 );
                 addMenuCheckbox(64, 64, "Activar mensaje automático de AFK: ", "afkinfo",
