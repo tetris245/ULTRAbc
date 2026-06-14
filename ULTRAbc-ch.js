@@ -2342,6 +2342,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((utotal == true) && (unrestrict != 2)) totalUnrestrict();
                 silentMode();
                 M_MOANER_saveControls();
+				if (afkinfo == true) {
+                    Player.OnlineSettings.EnableAfkTimer = true;    
+                    ServerAccountUpdate.QueueData({
+                        OnlineSettings: Player.OnlineSettings
+                    });
+                }
                 if (noescape == true) {
                     Player.OnlineSharedSettings.Unoescape = true;
                 } else {
@@ -2917,7 +2923,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 1 and 60 to set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status. By default, it is 10 minutes.", 30
                 );
                 addMenuCheckbox(64, 64, "Enable automatic AFK message: ", "afkinfo",
-                    "When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have set for this feature. It will be displayed even if you have choosen not to display the AFK icon, and will be repeated every 30 minutes after the first message.", false, 166
+				    "When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have set for this feature. It will also activate the AFK icon, and will be repeated every 30 minutes after the first message.", false, 166
                 );
                 addMenuInput(200, "动物说话/耳语模式（0-9）:", "animal", "InputAnimalMode",
                     "输入 0 到 9 之间的数字来选择以下强制的'永久'动物说话或耳语模式之一：0 人类 - 1 兔子 - 2 奶牛 - 3 狐狸 - 4 猫咪 - 5 老鼠 - 6 猪 - 7 小马 - 8 小狗 - 9 小狼。如果你只想暂时使用特定说话模式，请在这里选择 0（人类说话），然后使用 /atalk 命令。", 30
@@ -3284,6 +3290,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Room (+ name/nickname/pronouns management for player)
+    modApi.hookFunction('AfkTimerReset', 4, async (args, next) => {
+        if (afkinfo) {
+            lastAfkMessageTime = 0;
+            AfkTimerIsSet = false;
+            CharacterSetFacialExpression(Player, "Emoticon", AfkTimerOldEmoticon);
+            AfkTimerOldEmoticon = null;
+        }
+        return next(args);
+    });
+
+	modApi.hookFunction('AfkTimerSetEnabled', 4, async (args, next) => {
+        if (afkinfo) { 
+            if (Player.OnlineSettings.EnableAfkTimer == false) {
+                Player.OnlineSettings.EnableAfkTimer = true;
+                ServerAccountUpdate.QueueData({
+                    OnlineSettings: Player.OnlineSettings
+                });
+                AfkTimerIsEnabled = Enabled;
+                AfkTimerStart();
+             }
+        } 
+        return next(args);
+    });
+	
     modApi.hookFunction('AfkTimerSetIsAfk', 4, async (args, next) => {
         if (afkinfo) {        
             if (!ServerPlayerIsInChatRoom()) return;          
@@ -9155,6 +9185,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ServerAccountUpdate.QueueData({
             OnlineSharedSettings: Player.OnlineSharedSettings
         });
+		if (afkinfo == true) {
+            Player.OnlineSettings.EnableAfkTimer = true; 
+            ServerAccountUpdate.QueueData({
+                OnlineSettings: Player.OnlineSettings
+            });
+        } 
         if (npcpunish == true) {
             Player.RestrictionSettings.BypassNPCPunishments = false;
         } else {
