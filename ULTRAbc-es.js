@@ -108,6 +108,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let kp = 0;
     let altchsh = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
+	let lastAfkMessageTime = 0;
     let lastAnimationUpdate;
 
     let tmpname;
@@ -134,6 +135,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let M_MOANER_cum = false;
     let profile;
     let profileName;
+	let afkinfo = false;
+    let afktime = 10;
     let ahybrid = false;
     let alfaprf = false;
     let alfmenu = false;
@@ -569,6 +572,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Initialisation
     function UBCdefault() {
+		afkinfo = false;
+        afktime = 10;
         ahybrid = false;
         alfaprf = false;
         alfmenu = false;
@@ -692,6 +697,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function UBCdata(data) {
+		afkinfo = data.afkinfo;
+        afktime = data.afktime;
         ahybrid = data.ahybrid;
         alfaprf = data.alfaprf;
         alfmenu = data.alfmenu;
@@ -873,6 +880,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun2": pronoun2,
             "pronoun3": pronoun3,
             "pronoun4": pronoun4,
+			"afkinfo": afkinfo,
+            "afktime": afktime,
             "ahybrid": ahybrid,
             "alfaprf": alfaprf,
             "alfmenu": alfmenu,
@@ -1028,6 +1037,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
                 console.log("ULTRAbc loaded: Version " + UBCver);
+				if (afkinfo == null || afkinfo == undefined) afkinfo = false;
+                if (afktime == null || afktime == undefined) afktime = 10;
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (alfaprf == null || alfaprf == undefined) alfaprf = false;
                 if (alfmenu == null || alfmenu == undefined) alfmenu = false;
@@ -1200,6 +1211,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             await waitFor(() => !!Player?.AccountName);
 
             const UBC_DEFAULT_SETTINGS = {
+				afkinfo: false,
+                afktime: 10,
                 ahybrid: false,
                 alfaprf: false,
                 alfmenu: false,
@@ -2900,6 +2913,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
+				addMenuInput(200, "Tiempo de inactividad (AFK) antes mensaje (1-60):", "afktime", "InputAFKTime",
+                    "Introduce un número entre 1 y 60 para determinar la cantidad de minutos que debes permanecer inactivo antes de que se muestre un mensaje automático en el chat para informar a los demás jugadores sobre tu estado de inactividad. Por defecto, son 10 minutos.", 64
+                );
+                addMenuCheckbox(64, 64, "Activar mensaje automático de AFK: ", "afkinfo",
+                    "Cuando está activada, se mostrará un mensaje automático en el chat para informar a los demás jugadores sobre tu estado de inactividad (AFK) cuando te encuentres en dicho estado desde el tiempo que hayas configurado para esta función. Se mostrará incluso si has optado por no mostrar el icono de AFK y se repetirá cada 30 minutos después del primer mensaje.", false, 200
+                );
                 addMenuInput(200, "Modo habla/susurro animal (0-9):", "animal", "InputAnimalMode",
                     "Introduce un número del 0 al 9 para seleccionar un modo de habla o susurro animal 'permanente' forzado: 0 Humano - 1 Conejo - 2 Vaca - 3 Zorro - 4 Gatito - 5 Ratón - 6 Cerdo - 7 Poni - 8 Cachorro - 9 Lobito. Si solo quieres hablar así una vez, usa el comando /atalk tras seleccionar 0 (habla humana) aquí.", 64
                 );
@@ -2953,18 +2972,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCTalkingExit = function() {
+				let afkmin = ElementValue("InputAFKTime");
                 let glevel = ElementValue("InputGagLevel");
                 let hmode = ElementValue("InputHearingMode");
                 let pmode = ElementValue("InputAnimalMode");
                 let stlevel = ElementValue("InputStutterLevel");
-                if ((CommonIsNumeric(glevel)) && (glevel > -1) && (glevel < 12) &&
+                if ((CommonIsNumeric(afkmin)) && (afkmin > 0) && (afkmin < 61) &&
+                    (CommonIsNumeric(glevel)) && (glevel > -1) && (glevel < 12) &&
                     (CommonIsNumeric(hmode)) && (hmode > -1) && (hmode < 7) &&
                     (CommonIsNumeric(pmode)) && (pmode > -1) && (pmode < 10) &&
                     (CommonIsNumeric(stlevel)) && (stlevel > -1) && (stlevel < 5)) {
+					Player.UBC.ubcSettings.afktime = afkmin;
                     Player.UBC.ubcSettings.animal = pmode;
                     Player.UBC.ubcSettings.gaglevel = glevel;
                     Player.UBC.ubcSettings.hearing = hmode;
                     Player.UBC.ubcSettings.stutterlevel = stlevel;
+					ElementRemove("InputAFKTime");
                     ElementRemove("InputAnimalMode");
                     ElementRemove("InputGagLevel");
                     ElementRemove("InputHearingMode");
@@ -3261,6 +3284,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Room (+ name/nickname/pronouns management for player)
+    modApi.hookFunction('AfkTimerSetIsAfk', 4, async (args, next) => {
+        if (afkinfo) {        
+            if (!ServerPlayerIsInChatRoom()) return;          
+            let initialDelay = afktime * 60 * 1000;
+            let repeatInterval = 30 * 60 * 1000;
+            let msg = "I'm currently AFK. Please be patient or come back later!";             
+            if (lastAfkMessageTime === 0) {         
+                if (AfkTimerLastEvent + initialDelay < CommonTime()) {
+                    ServerSend("ChatRoomChat", {
+                        Content: msg,
+                        Type: "Chat",
+                    });
+                    lastAfkMessageTime = CommonTime();
+                }
+            } else {
+                if (CommonTime() - lastAfkMessageTime >= repeatInterval) {
+                    ServerSend("ChatRoomChat", {
+                        Content: msg,
+                        Type: "Chat",
+                    });
+                    lastAfkMessageTime = CommonTime();
+                }
+            }
+        }
+        return next(args);
+    });
+
     async function ULTRAAsylumEntranceStartChat() {
         modApi.hookFunction('AsylumEntranceStartChat', 4, (args, next) => {
             if (asylumlimit == true) {
