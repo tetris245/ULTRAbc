@@ -108,6 +108,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let kp = 0;
     let altchsh = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
+	let lastAfkMessageTime = 0;
     let lastAnimationUpdate;
 
     let tmpname;
@@ -134,6 +135,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let M_MOANER_cum = false;
     let profile;
     let profileName;
+	let afkinfo = false;
+    let afktime = 10;
     let ahybrid = false;
     let alfaprf = false;
     let alfmenu = false;
@@ -569,6 +572,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Initialisation
     function UBCdefault() {
+		afkinfo = false;
+        afktime = 10;
         ahybrid = false;
         alfaprf = false;
         alfmenu = false;
@@ -692,6 +697,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function UBCdata(data) {
+		afkinfo = data.afkinfo;
+        afktime = data.afktime;
         ahybrid = data.ahybrid;
         alfaprf = data.alfaprf;
         alfmenu = data.alfmenu;
@@ -873,6 +880,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun2": pronoun2,
             "pronoun3": pronoun3,
             "pronoun4": pronoun4,
+            "afkinfo": afkinfo,
+            "afktime": afktime,
             "ahybrid": ahybrid,
             "alfaprf": alfaprf,
             "alfmenu": alfmenu,
@@ -1028,6 +1037,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 M_MOANER_initControls();
                 Player.UBC = UBCver;
                 console.log("ULTRAbc loaded: Version " + UBCver);
+				if (afkinfo == null || afkinfo == undefined) afkinfo = false;
+                if (afktime == null || afktime == undefined) afktime = 10;
                 if (ahybrid == null || ahybrid == undefined) ahybrid = false;
                 if (alfaprf == null || alfaprf == undefined) alfaprf = false;
                 if (alfmenu == null || alfmenu == undefined) alfmenu = false;
@@ -1200,6 +1211,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             await waitFor(() => !!Player?.AccountName);
 
             const UBC_DEFAULT_SETTINGS = {
+				afkinfo: false,
+                afktime: 10,
                 ahybrid: false,
                 alfaprf: false,
                 alfmenu: false,
@@ -2900,23 +2913,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             PreferenceSubscreenUBCTalkingLoad = function() {
                 UBCPreferenceSubscreen = "UBCTalking";
+                addMenuInput(200, "AFK time before message (1-60):", "afktime", "InputAFKTime",
+                    "Input a number between 1 and 60 to determine the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status. By default, it is 10 minutes.", 30
+                );
+                addMenuCheckbox(64, 64, "Enable automatic AFK message: ", "afkinfo",
+                    "When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have determined for this feature. It will be displayed even if you have choosen not to display the AFK icon, and will be repeated every 30 minutes after the first message.", false, 166
+                );
                 addMenuInput(200, "Animal talk/whisper mode (0-9):", "animal", "InputAnimalMode",
-                    "Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).", -16
+                    "Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).", 30
                 );
                 addMenuCheckbox(64, 64, "Enable hybrid talk/whisper mode: ", "ahybrid",
-                    "When enabled and associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!", false, 120
+                    "When enabled and associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!", false, 166
                 );
                 addMenuCheckbox(64, 64, "Enable doll talk (and whisper) mode: ", "dolltalk",
-                    "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 120
+                    "When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.", false, 166
                 );
                 addMenuInput(200, "Forced gagtalk/whisper (0-11):", "gaglevel", "InputGagLevel",
-                    "Input a number between 0 and 11 to select a 'permanent' forced level: 0 Disabled feature - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Better heavy gag - 9 Very heavy gag - 10 Total gag - 11 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once gagtalk, use the /gtalk command. To talk only once like a baby, use /btalk. See also the RGL button.", -16
+                    "Input a number between 0 and 11 to select a 'permanent' forced level: 0 Disabled feature - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Better heavy gag - 9 Very heavy gag - 10 Total gag - 11 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once gagtalk, use the /gtalk command. To talk only once like a baby, use /btalk. See also the RGL button.", 30
                 );
                 addMenuInput(200, "Forced hearing mode (1-6):", "hearing", "InputHearingMode",
-                    "Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                    "Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 30
                 );
                 addMenuInput(200, "Forced stuttering level (0-4):", "stutterlevel", "InputStutterLevel",
-                    "Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).", -16
+                    "Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).", 30
                 );
                 let wmsg = "When enabled, you can't use normal whispers. Only OOC and emote whispers are possible. This option is not available when a similar BCX rule is detected as active. In this case, UBC will apply the BCX whisper restrictions, but will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed.";
                 let wbc = 0;
@@ -2938,9 +2957,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 if (wbc == 0) {
-                    addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper", wmsg, false, 120);
+                    addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper", wmsg, false, 166);
                 } else {
-                    addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper", wmsg, true, 120);
+                    addMenuCheckbox(64, 64, "Enable no-whisper mode: ", "nowhisper", wmsg, true, 166);
                 }
             }
 
@@ -2952,19 +2971,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 handleMenuClicks();
             }
 
-            PreferenceSubscreenUBCTalkingExit = function() {
+			PreferenceSubscreenUBCTalkingExit = function() {
+                let afkmin = ElementValue("InputAFKTime");
                 let glevel = ElementValue("InputGagLevel");
                 let hmode = ElementValue("InputHearingMode");
                 let pmode = ElementValue("InputAnimalMode");
                 let stlevel = ElementValue("InputStutterLevel");
-                if ((CommonIsNumeric(glevel)) && (glevel > -1) && (glevel < 12) &&
+                if ((CommonIsNumeric(afkmin)) && (afkmin > 0) && (afkmin < 61) &&
+                    (CommonIsNumeric(glevel)) && (glevel > -1) && (glevel < 12) &&
                     (CommonIsNumeric(hmode)) && (hmode > -1) && (hmode < 7) &&
                     (CommonIsNumeric(pmode)) && (pmode > -1) && (pmode < 10) &&
                     (CommonIsNumeric(stlevel)) && (stlevel > -1) && (stlevel < 5)) {
+                    Player.UBC.ubcSettings.afktime = afkmin;
                     Player.UBC.ubcSettings.animal = pmode;
                     Player.UBC.ubcSettings.gaglevel = glevel;
                     Player.UBC.ubcSettings.hearing = hmode;
                     Player.UBC.ubcSettings.stutterlevel = stlevel;
+                    ElementRemove("InputAFKTime");
                     ElementRemove("InputAnimalMode");
                     ElementRemove("InputGagLevel");
                     ElementRemove("InputHearingMode");
@@ -3261,6 +3284,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Room (+ name/nickname/pronouns management for player)
+    modApi.hookFunction('AfkTimerSetIsAfk', 4, async (args, next) => {
+        if (afkinfo) {        
+            if (!ServerPlayerIsInChatRoom()) return;          
+            let initialDelay = afktime * 60 * 1000;
+            let repeatInterval = 30 * 60 * 1000;
+            let msg = "I'm currently AFK. Please be patient or come back later!";             
+            if (lastAfkMessageTime === 0) {         
+                if (AfkTimerLastEvent + initialDelay < CommonTime()) {
+                    ServerSend("ChatRoomChat", {
+                        Content: msg,
+                        Type: "Chat",
+                    });
+                    lastAfkMessageTime = CommonTime();
+                }
+            } else {
+                if (CommonTime() - lastAfkMessageTime >= repeatInterval) {
+                    ServerSend("ChatRoomChat", {
+                        Content: msg,
+                        Type: "Chat",
+                    });
+                    lastAfkMessageTime = CommonTime();
+                }
+            }
+        }
+        return next(args);
+    });
+
     async function ULTRAAsylumEntranceStartChat() {
         modApi.hookFunction('AsylumEntranceStartChat', 4, (args, next) => {
             if (asylumlimit == true) {
