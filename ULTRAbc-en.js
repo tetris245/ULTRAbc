@@ -2917,7 +2917,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Input a number between 1 and 60 to set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status. By default, it is 10 minutes.", 30
                 );
                 addMenuCheckbox(64, 64, "Enable automatic AFK message: ", "afkinfo",
-                    "When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have determined for this feature. It will be displayed even if you have choosen not to display the AFK icon, and will be repeated every 30 minutes after the first message.", false, 166
+                    "When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have set for this feature. It will be displayed even if you have choosen not to display the AFK icon, and will be repeated every 30 minutes after the first message.", false, 166
                 );
                 addMenuInput(200, "Animal talk/whisper mode (0-9):", "animal", "InputAnimalMode",
                     "Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).", 30
