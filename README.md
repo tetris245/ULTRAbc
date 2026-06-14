@@ -99,7 +99,7 @@ Changes for future version
 
 * New settings in GUI - Talking to
   - set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status (default = 10 minutes)
-  - enable/disable this automatic message when being AFK
+  - enable/disable this automatic message (when enabled, it will also activate the AFK icon and the message will be repeated every 30 minutes after the first message)
 * Added more sounds for Animal Talk Mode 8 (Puppy)
 
 
