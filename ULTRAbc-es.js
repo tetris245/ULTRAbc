@@ -2923,7 +2923,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Introduce un número entre 1 y 60 para determinar la cantidad de minutos que debes permanecer inactivo antes de que se muestre un mensaje automático en el chat para informar a los demás jugadores sobre tu estado de inactividad. Por defecto, son 10 minutos.", 64
                 );
                 addMenuCheckbox(64, 64, "Activar mensaje automático de AFK: ", "afkinfo",
-                    "Cuando esté activada, se mostrará un mensaje automático en el chat para informar a los demás jugadores sobre tu estado AFK cuando te encuentres en dicho estado desde el tiempo que hayas configurado para esta función. También activará el icono AFK y se repetirá cada 30 minutos después del primer mensaje.", false, 200
+                    "Cuando esté activada, se mostrará un mensaje automático en el chat para informar a los demás jugadores sobre tu estado AFK cuando te encuentres en dicho estado desde el tiempo que hayas configurado para esta función. También activará el icono AFK y se repetirá cada 30 minutos después del primer mensaje. Nota: Cuando ya no estés AFK, la configuración "forzada" con el icono AFK no se modificará; deberás cambiarla manualmente si deseas que se muestre.", false, 200
                 );
                 addMenuInput(200, "Modo habla/susurro animal (0-9):", "animal", "InputAnimalMode",
                     "Introduce un número del 0 al 9 para seleccionar un modo de habla o susurro animal 'permanente' forzado: 0 Humano - 1 Conejo - 2 Vaca - 3 Zorro - 4 Gatito - 5 Ratón - 6 Cerdo - 7 Poni - 8 Cachorro - 9 Lobito. Si solo quieres hablar así una vez, usa el comando /atalk tras seleccionar 0 (habla humana) aquí.", 64
@@ -3291,12 +3291,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Chat Room (+ name/nickname/pronouns management for player)
     modApi.hookFunction('AfkTimerReset', 4, async (args, next) => {
-        if (afkinfo) {
-            lastAfkMessageTime = 0;
-            AfkTimerIsSet = false;
-            CharacterSetFacialExpression(Player, "Emoticon", AfkTimerOldEmoticon);
-            AfkTimerOldEmoticon = null;
-        }
+        lastAfkMessageTime = 0;      
         return next(args);
     });
 
