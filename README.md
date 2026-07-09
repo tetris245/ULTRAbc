@@ -101,6 +101,7 @@ Changes for future version
   - set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status (default = 10 minutes)
   - enable/disable this automatic message (when enabled, it will also activate the AFK icon and the message will be repeated every 30 minutes after the first message)
 * Added more sounds for Animal Talk Mode 8 (Puppy)
+* Improved the display of background names in the background selection by automatically removing the "[Hidden]" part added by BCX (the category still exists, but now the order of the backgrounds is always the same, no matter the way used to have more than the standard BC backgrounds) 
 
 
 
