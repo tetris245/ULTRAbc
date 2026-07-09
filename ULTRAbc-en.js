@@ -4960,11 +4960,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DrawText("Chat Rooms", 130, 530, "White", "Black");
         if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
         if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
-        if (asylumlimit == true) {
-            DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
-        } else {
-            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
-        }
+        if (asylumlimit == false) DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
         DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
         DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Default background");
         DrawText("ULTRAbc", 130, 615, "White", "Black");
