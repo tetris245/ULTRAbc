@@ -4961,11 +4961,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DrawText("Salas de Chat", 115, 530, "White", "Black");
         if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Solo Mujeres");
         if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Solo Hombres");
-        if (asylumlimit == true) {
-            DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Manicomio (Asylum)");
-        } else {
-            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Manicomio (Asylum)");
-        }
+        if (asylumlimit == false) DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
         DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixto");
         DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
         DrawText("ULTRAbc", 130, 615, "White", "Black");
