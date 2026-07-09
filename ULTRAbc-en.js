@@ -11314,7 +11314,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let lth = stringheart2[2];
                 let heart = 0;
                 if ((!CommonIsNumeric(lth)) && (lth == "?")) {
-                    const Result = [];
+                    let Result = [];
                     let Roll = Math.floor(Math.random() * 720) + 1;
                     Result.push(Roll);
                     lth = Result;
@@ -12845,7 +12845,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 					if (lk == 15) maxtime = 50400;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
-                        const Result = [];
+                        let Result = [];
                         let Roll = Math.floor(Math.random() * maxtime);
                         Result.push(Roll);
                         if (Result < 5) Result = 5;
@@ -12866,7 +12866,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let maxtime = 240;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[3])) && (stringLock2[3] == "?")) {
-                        const Result = [];
+                        let Result = [];
                         let Roll = Math.floor(Math.random() * maxtime);
                         Result.push(Roll);
                         if (Result < 5) Result = 5;
@@ -12887,7 +12887,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let maxtime = 10080;
                     minutes = 5;
                     if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
-                        const Result = [];
+                        let Result = [];
                         let Roll = Math.floor(Math.random() * maxtime);
                         Result.push(Roll);
                         if (Result < 1) Result = 1;
@@ -14851,7 +14851,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let ltd = stringdevious2[0];
                 let acd = stringdevious2[1];
                 if ((!CommonIsNumeric(ltd)) && (ltd == "?")) {
-                    const Result = [];
+                    let Result = [];
                     let Roll = Math.floor(Math.random() * 720) + 1;
                     Result.push(Roll);
                     ltd = Result;
@@ -15336,7 +15336,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 let sides = args;
                 if ((sides < 2) || (sides > 1000000000)) sides = 6;
-                const Result = [];
+                let Result = [];
                 let Roll = Math.floor(Math.random() * sides) + 1;
                 Result.push(Roll);
                 let msg = "" + tmpname + " rolls a superdice of " + sides + " sides. The result is " + Result + ".";
