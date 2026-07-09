@@ -3212,13 +3212,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {
         TintsEffect();
-        DrawText("Chat Rooms", 130, 530, "White", "Black");
+        DrawText("Salas de Chat", 130, 530, "White", "Black");
         if (asylumlimit == false) {
-            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            DrawButton(240, 585, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
+            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Solo Mujeres");
+            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Solo Hombres");
+            DrawButton(240, 585, 90, 90, "", "White", "Icons/Gender.png", "Mixto");
         } 
-        DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+        DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Manicomio (Asylum)");
         return next(args);
     });
 
@@ -4961,7 +4961,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DrawText("Salas de Chat", 115, 530, "White", "Black");
         if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Solo Mujeres");
         if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Solo Hombres");
-        if (asylumlimit == false) DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+        if (asylumlimit == false) DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Manicomio (Asylum)");
         DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "Mixto");
         DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
         DrawText("ULTRAbc", 130, 615, "White", "Black");
