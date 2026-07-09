@@ -3119,12 +3119,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
-    ULTRAAsylumEntranceClick();
-    ULTRAAsylumEntranceRun();
     ULTRAAsylumEntranceStartChat();
     ULTRAAsylumGGTSLoad();
     ULTRAAsylumMeetingClubCardStart();
-    ULTRAAsylumMeetingRun();
     ULTRABackgroundsTextGet();
     ULTRACafeClubCardStart();
     ULTRACafeRun();
@@ -3189,66 +3186,56 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRATitleExit();
 
     //Asylum
-    function ULTRAAsylumEntranceClick() {
-        modApi.hookFunction('AsylumEntranceClick', 4, (args, next) => {
-            if (asylumlimit == false) {
-                if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
-                    if (IsFemale() == true) {
-                        Player.ChatSearchSettings.Space = "";
-                        ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
-                    }
-                    if (IsMale() == true) {
-                        Player.ChatSearchSettings.Space = "M";
-                        ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
-                    }
+	modApi.hookFunction('AsylumEntranceClick', 4, (args, next) => {
+        if (asylumlimit == false) {
+            if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
+                if (IsFemale() == true) {
+                    Player.ChatSearchSettings.Space = "";
+                    ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
                 }
-                if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 585) && (MouseY < 675)) {
-                    Player.ChatSearchSettings.Space = "X";
-                    ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+                if (IsMale() == true) {
+                    Player.ChatSearchSettings.Space = "M";
+                    ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
                 }
             }
-            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
-                Player.ChatSearchSettings.Space = "Asylum";
-                ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 585) && (MouseY < 675)) {
+                Player.ChatSearchSettings.Space = "X";
+                ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             }
-            next(args);
-        });
-    }
+        }
+        if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
+            Player.ChatSearchSettings.Space = "Asylum";
+            ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+        }
+        return next(args);
+    });
 
-    async function ULTRAAsylumEntranceRun() {
-        modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {
-            TintsEffect();
-            DrawText("聊天室", 130, 530, "White", "Black");
-            if (asylumlimit == false) {
-                if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "仅限女性");
-                if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "仅限男性");
-                DrawButton(240, 585, 90, 90, "", "White", "Icons/Gender.png", "混合");
-            } else {
-                if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "仅限女性");
-                if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "仅限男性");
-                DrawButton(240, 585, 90, 90, "", "Gray", "Icons/Gender.png", "混合");
-            }
-            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "精神病院");
-            next(args);
-        });
-    }
+    modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {
+        TintsEffect();
+        DrawText("Chat Rooms", 130, 530, "White", "Black");
+        if (asylumlimit == false) {
+            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
+            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
+            DrawButton(240, 585, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
+        } 
+        DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+        return next(args);
+    });
 
-    async function ULTRAAsylumMeetingRun() {
-        modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "asylum") {
-                minigame = "";
-                M_MOANER_saveControls();
-                AsylumEntranceIsWearingNurseClothes = function() {
-                    return true
-                };
-                InventoryRemove(AsylumMeetingPatientRight, "ItemArms");
-                InventoryRemove(AsylumMeetingPatientRight, "ItemHead");
-                InventoryRemove(AsylumMeetingPatientRight, "ItemMouth");
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {
+        TintsEffect();
+        if (minigame == "asylum") {
+            minigame = "";
+            M_MOANER_saveControls();
+            AsylumEntranceIsWearingNurseClothes = function() {
+                return true
+            };
+            InventoryRemove(AsylumMeetingPatientRight, "ItemArms");
+            InventoryRemove(AsylumMeetingPatientRight, "ItemHead");
+            InventoryRemove(AsylumMeetingPatientRight, "ItemMouth");
+        }
+        return next(args);
+    });
 
     //Backgrounds
     function ULTRABackgroundsTextGet(msg) {
