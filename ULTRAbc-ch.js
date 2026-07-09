@@ -3212,13 +3212,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {
         TintsEffect();
-        DrawText("Chat Rooms", 130, 530, "White", "Black");
+        DrawText("聊天室", 130, 530, "White", "Black");
         if (asylumlimit == false) {
-            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
-            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
-            DrawButton(240, 585, 90, 90, "", "White", "Icons/Gender.png", "Mixed");
+            if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "仅限女性");
+            if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "仅限男性");
+            DrawButton(240, 585, 90, 90, "", "White", "Icons/Gender.png", "混合")
         } 
-        DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+        DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "精神病院");
         return next(args);
     });
 
@@ -4960,11 +4960,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DrawText("聊天室", 130, 530, "White", "Black");
         if (IsFemale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "仅限女性");
         if (IsMale() == true) DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "仅限男性");
-        if (asylumlimit == true) {
-            DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "精神病院");
-        } else {
-            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "精神病院");
-        }
+        if (asylumlimit == false) DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "精神病院");
         DrawButton(460, 475, 90, 90, "", "White", "Icons/Gender.png", "混合");
         DrawButton(570, 475, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
         DrawText("ULTRAbc", 130, 615, "White", "Black");
