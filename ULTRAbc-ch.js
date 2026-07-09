@@ -3122,7 +3122,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumEntranceStartChat();
     ULTRAAsylumGGTSLoad();
     ULTRAAsylumMeetingClubCardStart();
-    ULTRABackgroundsTextGet();
     ULTRACafeClubCardStart();
     ULTRACafeRun();
     ULTRAChatAdminClick();
@@ -3238,16 +3237,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Backgrounds
-    function ULTRABackgroundsTextGet(msg) {
-        modApi.hookFunction('BackgroundsTextGet', 4, (args, next) => {
-            let fixname = next(args);
-            if (fixname.startsWith("MISSING")) {
-                let background = BackgroundsList.find(bg => bg === args[0]);
-                return `${background ?? args[0]}`;
-            }
-            return fixname;
-        });
-    }
+    modApi.hookFunction('BackgroundsTextGet', 4, (args, next) => {
+        let fixname = next(args);
+        if ((fixname.startsWith("MISSING")) || (fixname.startsWith("[Hidden]"))) {
+            let background = BackgroundsList.find(bg => bg === args[0]);
+            return `${background ?? args[0]}`;
+        }
+        return fixname;
+    });
 
     //Bondage Brawl
     function ULTRAPlatformAttack() {
