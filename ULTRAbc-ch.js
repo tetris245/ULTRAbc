@@ -3123,7 +3123,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumGGTSLoad();
     ULTRAAsylumMeetingClubCardStart();
     ULTRACafeClubCardStart();
-    ULTRACafeRun();
     ULTRAChatAdminClick();
     ULTRAChatAdminRun();
     ULTRAChatRoomClick();
@@ -3172,8 +3171,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRALARPRun();
     ULTRAMovieStudioClubCardStart();
     ULTRAPandoraClubCardStart();
-    ULTRAPlatformAttack();
-    ULTRAPlatformDialogEvent();
     ULTRAPrivateClubCardVsFriendStart();
     ULTRAPrivateClubCardVsOwnerStart();
     ULTRAPrivateClubCardVsSubStart();
@@ -3209,7 +3206,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {
+    modApi.hookFunction('AsylumEntranceRun', 4, async (args, next) => {
         TintsEffect();
         DrawText("聊天室", 130, 530, "White", "Black");
         if (asylumlimit == false) {
@@ -3221,7 +3218,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {
+    modApi.hookFunction('AsylumMeetingRun', 4, async (args, next) => {
         TintsEffect();
         if (minigame == "asylum") {
             minigame = "";
@@ -3247,31 +3244,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Bondage Brawl
-    function ULTRAPlatformAttack() {
-        modApi.hookFunction('PlatformAttack', 4, (args, next) => {
-            if (magiccheat == true) BrawlCheat();
-            next(args);
-        });
-    }
+    modApi.hookFunction('PlatformAttack', 4, (args, next) => {
+        if (magiccheat == true) BrawlCheat();
+        return next(args);
+    });
 
-    function ULTRAPlatformDialogEvent() {
-        modApi.hookFunction('PlatformDialogEvent', 4, (args, next) => {
-            if (magiccheat == true) BrawlCheat();
-            next(args);
-        });
-    }
+    modApi.hookFunction('PlatformDialogEvent', 4, (args, next) => {
+        if (magiccheat == true) BrawlCheat();
+        return next(args);
+    });
 
     //Cafe
-    async function ULTRACafeRun() {
-        modApi.hookFunction('CafeRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "cafe") {
-                minigame = "";
-                M_MOANER_saveControls();
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('CafeRun', 4, async (args, next) => {
+        TintsEffect();
+        if (minigame == "cafe") {
+            minigame = "";
+            M_MOANER_saveControls();
+        }
+        return next(args);
+    });
 
     //Chat Room (+ name/nickname/pronouns management for player)
     modApi.hookFunction('AfkTimerReset', 4, async (args, next) => {
