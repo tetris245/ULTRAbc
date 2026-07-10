@@ -3156,10 +3156,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardRenderPanel();
     ULTRAInfiltrationClubCardStart();
     ULTRAIntroductionClubCardStart();
-    ULTRAIntroductionJobAnyAvailable();
-    ULTRAIntroductionRun();
     ULTRAKidnapLeagueRandomClubCardStart();
-    ULTRAKidnapLeagueRun();
     ULTRALARPClubCardStart();
     ULTRAMovieStudioClubCardStart();
     ULTRAPandoraClubCardStart();
@@ -4689,69 +4686,62 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Introduction
-    async function ULTRAIntroductionJobAnyAvailable() {
-        modApi.hookFunction('IntroductionJobAnyAvailable', 4, (args, next) => {
-            if (minigame == "") {
-                for (let J = 0; J < IntroductionJobList.length; J++)
-                    if (IntroductionJobAvailable(IntroductionJobList[J])) return true;
-                return false;
-            }
-            if (minigame != "") {
-                let introgame = minigame;
-                minigame = "";
-                M_MOANER_saveControls();
-                if (introgame == "dojo") {
-                    IntroductionJobList = ["SubDojo"];
-                    IntroductionJobStart("SubDojo", 0)
-                    IntroductionJobDojoStart();
-                    return true;
-                }
-                if (introgame == "kidnap") {
-                    IntroductionJobList = ["DomKidnap"];
-                    IntroductionJobStart("DomKidnap", 0)
-                    IntroductionJobBouncerStart();
-                    return true;
-                }
-                if (introgame == "puppy") {
-                    IntroductionJobList = ["DomPuppy"];
-                    IntroductionJobStart("DomPuppy", 0)
-                    IntroductionJobPuppyStart();
-                    return true;
-                }
-            }
-            return;
-        });
-    }
+	modApi.hookFunction('IntroductionJobAnyAvailable', 4, async (args, next) => {
+        let ret = next (args);
+        if (minigame == "") return ret;
+        window.DailyJobCannotTakeJobDone = IntroductionCannotTakeJobDone;
+        window.DailyJobCannotTakeJobRestrained = IntroductionCannotTakeJobRestrained;
+        window.DailyJobCanPlayClubCard = IntroductionCanPlayClubCard;
+        window.DailyJobNoTitle = IntroductionNoTitle;
+        window.DailyJobCanTakeJob = IntroductionCanTakeJob;
+        let introgame = minigame;
+        minigame = "";
+        M_MOANER_saveControls();
+        if (introgame == "dojo") {
+            IntroductionJobList = ["SubDojo"];
+            IntroductionJobStart("SubDojo", 0)
+            IntroductionJobDojoStart();
+            return true;
+        }
+        if (introgame == "kidnap") {
+            IntroductionJobList = ["DomKidnap"];
+            IntroductionJobStart("DomKidnap", 0)
+            IntroductionJobBouncerStart();
+            return true;
+        }
+        if (introgame == "puppy") {
+            IntroductionJobList = ["DomPuppy"];
+            IntroductionJobStart("DomPuppy", 0)
+            IntroductionJobPuppyStart();
+            return true;
+        }
+    });
 
-    async function ULTRAIntroductionRun() {
-        modApi.hookFunction('IntroductionRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "introduction") {
-                minigame = "";
-                M_MOANER_saveControls();
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('IntroductionRun', 4, async (args, next) => {
+        TintsEffect();
+        if (minigame == "introduction") {
+            minigame = "";
+            M_MOANER_saveControls();
+        }
+        return next(args);
+    });
 
     //Kidnap League
-    async function ULTRAKidnapLeagueRun() {
-        modApi.hookFunction('KidnapLeagueRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "kidnap") {
-                minigame = "";
-                M_MOANER_saveControls();
-                KidnapLeagueBackground = "MainHall";
-                CharacterDelete(KidnapLeagueRandomKidnapper, false);
-                KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
-                CharacterSetCurrent(KidnapLeagueRandomKidnapper);
-                KidnapLeagueRandomKidnapperScenario = "1";
-                KidnapLeagueRandomKidnapper.Stage = KidnapLeagueRandomKidnapperScenario.toString();
-                KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario);
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('KidnapLeagueRun', 4, async (args, next) => {
+        TintsEffect();
+        if (minigame == "kidnap") {
+            minigame = "";
+            M_MOANER_saveControls();
+            KidnapLeagueBackground = "MainHall";
+            CharacterDelete(KidnapLeagueRandomKidnapper, false);
+            KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
+            CharacterSetCurrent(KidnapLeagueRandomKidnapper);
+            KidnapLeagueRandomKidnapperScenario = "1";
+            KidnapLeagueRandomKidnapper.Stage = KidnapLeagueRandomKidnapperScenario.toString();
+            KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario);
+        }
+        return next(args);
+    });
 
     //LARP
 	modApi.hookFunction('LARPRun', 4, async (args, next) => {
