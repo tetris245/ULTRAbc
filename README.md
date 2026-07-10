@@ -103,6 +103,7 @@ Changes for future version
 * Added more sounds for Animal Talk Mode 8 (Puppy)
 * Improved the display and order of background names in the Background Selection screen by automatically removing the "[Hidden]" prefix added by BCX
 * Improved the display of extension names in the Extensions screen by automatically removing the "Settings" word
+* Updated hooks in two functions related to the Club Card Game
 
 
 
