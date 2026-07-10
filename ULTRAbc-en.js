@@ -3155,9 +3155,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardLoungePraticeGameStart();
     ULTRAClubCardLoungeRun();
     ULTRAClubCardRenderPanel();
-    ULTRACollegeTennisGameStart();
-    ULTRAFriendListDraw();
-    ULTRAFriendListKeyDown();
     ULTRAInfiltrationClubCardStart();
     ULTRAInformationSheetClick();
     ULTRAInformationSheetRun();
@@ -4526,114 +4523,108 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //College Tennis
-    async function ULTRACollegeTennisGameStart() {
-        modApi.hookFunction('CollegeTennisGameStart', 4, (args, next) => {
-            let ret = next(args);
-            if (minigame == "") return ret;
-            InventoryWear(Player, "TennisRacket", "ItemHandheld");
-            CharacterRefresh(Player);
-            let level = "";
-            if (minigame == "tennis1") level = "Easy";
-            if (minigame == "tennis2") level = "Normal";
-            if (minigame == "tennis3") level = "Hard";
-            minigame = "";
-            M_MOANER_saveControls();
-            if ((level == "Hard") && (CollegeTennisJennifer.Name != "Jennifer")) CharacterChangeMoney(Player, -25);
-            TennisCharacterLeft = Player;
-            TennisCharacterRight = CollegeTennisJennifer;
-            MiniGameStart("Tennis", level, "CollegeTennisGameEnd");
-        });
-    }
+	modApi.hookFunction('CollegeTennisGameStart', 4, async (args, next) => {
+        let ret = next(args);
+        if (minigame == "") return ret;
+        InventoryWear(Player, "TennisRacket", "ItemHandheld");
+        CharacterRefresh(Player);
+        let level = "";
+        if (minigame == "tennis1") level = "Easy";
+        if (minigame == "tennis2") level = "Normal";
+        if (minigame == "tennis3") level = "Hard";
+        minigame = "";
+        M_MOANER_saveControls();
+        if ((level == "Hard") && (CollegeTennisJennifer.Name != "Jennifer")) CharacterChangeMoney(Player, -25);
+        TennisCharacterLeft = Player;
+        TennisCharacterRight = CollegeTennisJennifer;
+        MiniGameStart("Tennis", level, "CollegeTennisGameEnd");
+    });
 
     //Friendlist 
-    function ULTRAFriendListDraw() {
-        modApi.hookFunction('FriendListDraw', 4, (args, next) => {
-            FriendListBackground = frname;
-            TintsEffect();
-            next(args);
-        });
-    }
+    modApi.hookFunction('FriendListDraw', 4, (args, next) => {
+        FriendListBackground = frname;
+        TintsEffect();
+        return next(args);
+    });
 
-    function ULTRAFriendListKeyDown() {
-        modApi.hookFunction('FriendListKeyDown', 4, (args, next) => {
-            const searchInput = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.searchInput));
-            const searchInputHasFocus = searchInput && document.activeElement === searchInput;
-            const beepTextArea = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.beepTextArea));
-            const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
-            if (frkeys == true) {
-                if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
-                    if (event.code === "KeyD") {
-                        frname = "BrickWall";
+    modApi.hookFunction('FriendListKeyDown', 4, (args, next) => {
+        const searchInput = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.searchInput));
+        const searchInputHasFocus = searchInput && document.activeElement === searchInput;
+        const beepTextArea = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.beepTextArea));
+        const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
+        if (frkeys == true) {
+            if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
+                if (event.code === "KeyD") {
+                    frname = "BrickWall";
+                    M_MOANER_saveControls();
+                    CommonSetScreen("Character", "FriendList");
+                }
+                if (event.code === "KeyF") {
+                    if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) {
+                        Player.ChatSearchSettings.Space = "";
+                        ChatSearchSpace = "";
+                        ServerSend("AccountQuery", {
+                            Query: "OnlineFriends"
+                        });
+                        return true;
+                    }
+                }
+                if (event.code === "KeyG") {
+                    if ((asylumlimit == false) || ((asylumlimit == true) && (ChatSearchSpace != "Asylum"))) {
+                        Player.ChatSearchSettings.Space = "X";
+                        ChatSearchSpace = "X";
+                        ServerSend("AccountQuery", {
+                            Query: "OnlineFriends"
+                        });
+                        return true;
+                    }
+                }
+                if (event.code === "KeyH") {
+                    if ((IsMale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) {
+                        Player.ChatSearchSettings.Space = "M";
+                        ChatSearchSpace = "M";
+                        ServerSend("AccountQuery", {
+                            Query: "OnlineFriends"
+                        });
+                        return true;
+                    }
+                }
+                if (event.code === "KeyJ") {
+                    if ((asylumlimit == false) || (ChatSearchSpace == "Asylum")) {
+                        Player.ChatSearchSettings.Space = "Asylum";
+                        ChatSearchSpace = "Asylum";
+                        ServerSend("AccountQuery", {
+                            Query: "OnlineFriends"
+                        });
+                        return true;
+                    }
+                }
+                if (event.code === "KeyR") {
+                    if (BackgroundsList != undefined) {
+                        let listbg = BackgroundsList.length;
+                        let Roll = Math.floor(Math.random() * listbg);
+                        if (Roll == 0) Roll = 1;
+                        let name = BackgroundsList[Roll - 1].Name;
+                        frname = name;
                         M_MOANER_saveControls();
                         CommonSetScreen("Character", "FriendList");
                     }
-                    if (event.code === "KeyF") {
-                        if ((IsFemale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) {
-                            Player.ChatSearchSettings.Space = "";
-                            ChatSearchSpace = "";
-                            ServerSend("AccountQuery", {
-                                Query: "OnlineFriends"
-                            });
-                            return true;
-                        }
-                    }
-                    if (event.code === "KeyG") {
-                        if ((asylumlimit == false) || ((asylumlimit == true) && (ChatSearchSpace != "Asylum"))) {
-                            Player.ChatSearchSettings.Space = "X";
-                            ChatSearchSpace = "X";
-                            ServerSend("AccountQuery", {
-                                Query: "OnlineFriends"
-                            });
-                            return true;
-                        }
-                    }
-                    if (event.code === "KeyH") {
-                        if ((IsMale() == true) && ((ChatSearchSpace != "Asylum") || (asylumlimit == false))) {
-                            Player.ChatSearchSettings.Space = "M";
-                            ChatSearchSpace = "M";
-                            ServerSend("AccountQuery", {
-                                Query: "OnlineFriends"
-                            });
-                            return true;
-                        }
-                    }
-                    if (event.code === "KeyJ") {
-                        if ((asylumlimit == false) || (ChatSearchSpace == "Asylum")) {
-                            Player.ChatSearchSettings.Space = "Asylum";
-                            ChatSearchSpace = "Asylum";
-                            ServerSend("AccountQuery", {
-                                Query: "OnlineFriends"
-                            });
-                            return true;
-                        }
-                    }
-                    if (event.code === "KeyR") {
-                        if (BackgroundsList != undefined) {
-                            let listbg = BackgroundsList.length;
-                            let Roll = Math.floor(Math.random() * listbg);
-                            if (Roll == 0) Roll = 1;
-                            let name = BackgroundsList[Roll - 1].Name;
-                            frname = name;
+                }
+                if (event.code === "KeyS") {
+                    ElementRemove(FriendListIDs.root);
+                    let backgrounds = BackgroundsTagList;
+                    BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                        if (setBackground) {
+                            frname = Name;
                             M_MOANER_saveControls();
-                            CommonSetScreen("Character", "FriendList");
                         }
-                    }
-                    if (event.code === "KeyS") {
-                        ElementRemove(FriendListIDs.root);
-                        let backgrounds = BackgroundsTagList;
-                        BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                            if (setBackground) {
-                                frname = Name;
-                                M_MOANER_saveControls();
-                            }
-                            CommonSetScreen("Character", "FriendList");
-                        });
-                    }
+                        CommonSetScreen("Character", "FriendList");
+                    });
                 }
             }
-            next(args);
-        });
-    }
+        }
+        return next(args);
+    });
 
 	modApi.patchFunction(
         "FriendListLoadFriendList", {
