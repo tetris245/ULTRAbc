@@ -4362,38 +4362,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(385, 60, 90, 90, "", "White", "Icons/Exit.png");
                 DrawText("Available options for Default and NPC card decks:", 1140, 35, "White", "Gray");
                 DrawText("0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant", 1140, 115, "White", "Gray");
-                DrawText("5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
-                if (ClubCardIsOnline() == false) DrawText("Only for NPC: -1 = Deck defined by original BC code", 1140, 275, "White", "Gray");
+                DrawText("5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra", 1140, 155, "White", "Gray");
+                if (ClubCardIsOnline() == false) DrawText("Only for NPC: -1 = Deck defined by original BC code", 1140, 195, "White", "Gray");
                 DrawText("If you change other parameters than the mode,", 1140, 750, "White", "Black");
                 DrawText("click the Exit button, then come back to play", 1140, 830, "White", "Black");
                 const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
                 fameInput.setAttribute("min", "150");
                 fameInput.setAttribute("max", "550");
                 fameInput.setAttribute("autocomplete", "off");
-                DrawText("High Fame level", 145, 190, "White", "Gray");
-                ElementPosition("InputHighFame", 420, 185, 250);
+                DrawText("High Fame level", 145, 590, "White", "Gray");
+                ElementPosition("InputHighFame", 420, 585, 250);
                 const cardsInput = ElementCreateInput("InputMaxCards", "number", ccards);
                 cardsInput.setAttribute("min", "30");
                 cardsInput.setAttribute("max", "40");
                 cardsInput.setAttribute("autocomplete", "off");
-                DrawText("Cards in deck", 130, 270, "White", "Gray");
-                ElementPosition("InputMaxCards", 420, 265, 250);
+                DrawText("Cards in deck", 130, 670, "White", "Gray");
+                ElementPosition("InputMaxCards", 420, 665, 250);
                 const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
                 deckInput.setAttribute("min", "0");
                 deckInput.setAttribute("max", "10");
                 deckInput.setAttribute("autocomplete", "off");
-                DrawText("Default card deck", 145, 350, "White", "Gray");
-                ElementPosition("InputDefaultDeck", 420, 345, 250);
+                DrawText("Default card deck", 145, 750, "White", "Gray");
+                ElementPosition("InputDefaultDeck", 420, 745, 250);
                 if (ClubCardIsOnline() == false) {
                     const npcdeckInput = ElementCreateInput("InputNpcDeck", "number", npcdeck);
                     npcdeckInput.setAttribute("min", "-1");
                     npcdeckInput.setAttribute("max", "10");
                     npcdeckInput.setAttribute("autocomplete", "off");
-                    DrawText("NPC card deck", 145, 430, "White", "Gray");
-                    ElementPosition("InputNpcDeck", 420, 425, 250);
+                    DrawText("NPC card deck", 145, 830, "White", "Gray");
+                    ElementPosition("InputNpcDeck", 420, 825, 250);
                 }
             }
-            next(args);
+            return next(args);
         });
     }
 
