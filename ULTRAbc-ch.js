@@ -4377,7 +4377,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 cardsInput.setAttribute("max", "40");
                 cardsInput.setAttribute("autocomplete", "off");
                 DrawText("牌组中的卡牌数量", 130, 670, "White", "Gray");
-                ElementPosition("InputMaxCards", 420, 265, 250);
+                ElementPosition("InputMaxCards", 420, 665, 250);
                 const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
                 deckInput.setAttribute("min", "0");
                 deckInput.setAttribute("max", "10");
@@ -4393,7 +4393,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementPosition("InputNpcDeck", 420, 825, 250);
                 }
             }
-            next(args);
+            return next(args);
         });
     }
 
