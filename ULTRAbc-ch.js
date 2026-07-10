@@ -13980,10 +13980,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomCharacterUpdate(Player);
                         let msg = "" + tmpname + " 站起来并闭上" + pronoun3 + "双腿。";
                         publicmsg(msg);
-                    } else if ((pose == "legsopen") &&
-                        (Player.ActivePose != 'LegsOpen') &&
-                        (PoseCanChangeUnaided(Player, 'LegsOpen'))) {
-                        PoseSetActive(Player, "LegsOpen");
+                     } else if ((pose == "legsopen") &&
+                        (Player.ActivePose != 'BaseLower') &&
+                        (PoseCanChangeUnaided(Player, 'BaseLower'))) {
+                        PoseSetActive(Player, "BaseLower");
                         ChatRoomCharacterUpdate(Player);
                         let msg = "" + tmpname + " 正常站立在" + pronoun3 + "脚上。";
                         publicmsg(msg);
@@ -14316,9 +14316,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     publicmsg(msg);
                                 }
                             } else if (pose == "legsopen") {
-                                if ((target.ActivePose != 'LegsOpen') &&
-                                    (PoseCanChangeUnaided(target, 'LegsOpen'))) {
-                                    PoseSetActive(target, "LegsOpen");
+                                if ((target.ActivePose != 'BaseLower') &&
+                                    (PoseCanChangeUnaided(target, 'BaseLower'))) {
+                                    PoseSetActive(target, "BaseLower");
                                     ChatRoomCharacterUpdate(target);
                                     let msg = "" + tmpname + " 帮助 " + tgpname + " 正常站立在" + tgpr3 + "脚上。";
                                     publicmsg(msg);
