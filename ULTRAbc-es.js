@@ -13989,9 +13989,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "" + tmpname + " se pone de pie y cierra sus piernas.";
                         publicmsg(msg);
                     } else if ((pose == "legsopen") &&
-                        (Player.ActivePose != 'LegsOpen') &&
-                        (PoseCanChangeUnaided(Player, 'LegsOpen'))) {
-                        PoseSetActive(Player, "LegsOpen");
+                        (Player.ActivePose != 'BaseLower') &&
+                        (PoseCanChangeUnaided(Player, 'BaseLower'))) {
+                        PoseSetActive(Player, "BaseLower");
                         ChatRoomCharacterUpdate(Player);
                         let msg = "" + tmpname + " se pone de pie normalmente.";
                         publicmsg(msg);
@@ -14324,9 +14324,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     publicmsg(msg);
                                 }
                             } else if (pose == "legsopen") {
-                                if ((target.ActivePose != 'LegsOpen') &&
-                                    (PoseCanChangeUnaided(target, 'LegsOpen'))) {
-                                    PoseSetActive(target, "LegsOpen");
+                                if ((target.ActivePose != 'BaseLower') &&
+                                    (PoseCanChangeUnaided(target, 'BaseLower'))) {
+                                    PoseSetActive(target, "BaseLower");
                                     ChatRoomCharacterUpdate(target);
                                     let msg = "" + tmpname + " ayuda a " + tgpname + " a ponerse de pie normalmente sobre sus pies.";
                                     publicmsg(msg);
