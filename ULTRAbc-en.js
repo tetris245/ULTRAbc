@@ -3155,9 +3155,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardLoungeRun();
     ULTRAClubCardRenderPanel();
     ULTRAInfiltrationClubCardStart();
-    ULTRAInformationSheetClick();
-    ULTRAInformationSheetRun();
-    ULTRAInformationSheetSecondScreenRun();
     ULTRAIntroductionClubCardStart();
     ULTRAIntroductionJobAnyAvailable();
     ULTRAIntroductionRun();
@@ -4639,63 +4636,57 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     );
 
     //Information Sheet
-    function ULTRAInformationSheetClick() {
-        modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
-            if (noifbuttons == false) {
-                if ((MouseX >= 1575) && (MouseX < 1665) && (MouseY >= 910) && (MouseY < 1000)) {
-                    ifname = "Sheet";
+    modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
+        if (noifbuttons == false) {
+            if ((MouseX >= 1575) && (MouseX < 1665) && (MouseY >= 910) && (MouseY < 1000)) {
+                ifname = "Sheet";
+                M_MOANER_saveControls();
+                CommonSetScreen("Character", "InformationSheet");
+            }
+            if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
+                if (BackgroundsList != undefined) {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = BackgroundsList[Roll - 1].Name;
+                    ifname = name;
                     M_MOANER_saveControls();
                     CommonSetScreen("Character", "InformationSheet");
                 }
-                if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
-                    if (BackgroundsList != undefined) {
-                        let listbg = BackgroundsList.length;
-                        let Roll = Math.floor(Math.random() * listbg);
-                        if (Roll == 0) Roll = 1;
-                        let name = BackgroundsList[Roll - 1].Name;
-                        ifname = name;
+            }
+            if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 910) && (MouseY < 1000)) {
+                let backgrounds = BackgroundsTagList;
+                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                    if (setBackground) {
+                        ifname = Name;
                         M_MOANER_saveControls();
-                        CommonSetScreen("Character", "InformationSheet");
                     }
-                }
-                if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 910) && (MouseY < 1000)) {
-                    let backgrounds = BackgroundsTagList;
-                    BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                        if (setBackground) {
-                            ifname = Name;
-                            M_MOANER_saveControls();
-                        }
-                        CommonSetScreen("Character", "InformationSheet");
-                    });
-                }
+                    CommonSetScreen("Character", "InformationSheet");
+                });
             }
-            if ((onlydays == true) && (window.BCX_Loaded)) {
-                DaysClick();
-                return;
-            }
-            next(args);
-        });
-    }
+        }
+        if ((onlydays == true) && (window.BCX_Loaded)) {
+            DaysClick();
+            return;
+        }
+        return next(args);
+    });
 
-    function ULTRAInformationSheetRun() {
-        modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
-            if (altchsh == true) {
-                AltInformationSheetRun();
-                return;
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
+        if (altchsh == true) {
+            AltInformationSheetRun();
+            return;
+        }
+        return next(args);
+    });
 
-    function ULTRAInformationSheetSecondScreenRun() {
-        modApi.hookFunction('InformationSheetSecondScreenRun', 4, (args, next) => {
-            if (alfrpsk == true) {
-                Altrpsk();
-                return;
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('InformationSheetSecondScreenRun', 4, (args, next) => {
+        if (alfrpsk == true) {
+            Altrpsk();
+            return;
+        }
+        return next(args);
+    });
 
     //Introduction
     async function ULTRAIntroductionJobAnyAvailable() {
