@@ -3120,7 +3120,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
     ULTRAAsylumEntranceStartChat();
-    ULTRAAsylumGGTSLoad();
     ULTRAAsylumMeetingClubCardStart();
     ULTRACafeClubCardStart();
     ULTRAChatAdminClick();
@@ -4633,33 +4632,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     );
 
     //GGTS
-    async function ULTRAAsylumGGTSLoad() {
-        modApi.hookFunction('AsylumGGTSLoad', 4, (args, next) => {
-            ChatSearchRoomSpaces = ["ASYLUM"];
-            AsylumGGTSIntroDone = false;
-            AsylumGGTSTask = null;
-            if (AsylumGGTSComputer == null) {
-                AsylumGGTSComputer = CharacterLoadNPC("NPC_AsylumGGTS_Computer");
-                AsylumGGTSComputer.AllowItem = false;
-                AsylumGGTSComputer.Stage = "0";
-                let Level = "";
-                if (minigame == "") {
-                    Level = AsylumGGTSGetLevel(Player);
-                } else {
-                    Level = minigame;
-                }
-                if (Level == 1) AsylumGGTSComputer.Stage = "100";
-                if (Level == 2) AsylumGGTSComputer.Stage = "1000";
-                if (Level == 3) AsylumGGTSComputer.Stage = "2000";
-                if (Level == 4) AsylumGGTSComputer.Stage = "3000";
-                if (Level == 5) AsylumGGTSComputer.Stage = "4000";
-                if (Level >= 6) AsylumGGTSComputer.Stage = "5000";
-                if (Level >= 6) Player.Game.GGTS.Strike = 0;
-                AsylumGGTSComputerImage(Level);
-            }
-            return;
-        });
-    }
+    modApi.patchFunction(
+        "AsylumGGTSLoad", {
+            'let Level = AsylumGGTSGetLevel(Player);':
+            'let Level = ""; if (Player.UBC.ubcSettings.minigame == "") { Level = AsylumGGTSGetLevel(Player); } else { Level = minigame; }',
+        }
+    );
 
     //Information Sheet
     function ULTRAInformationSheetClick() {
