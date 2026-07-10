@@ -5166,6 +5166,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
+	modApi.patchFunction(
+       "PreferenceSubscreenExtensionsLoad", {
+           'label: item.Button,':
+           'label: (typeof item.Button === "string" ? item.Button.replace(/Settings/gi, "").trim() : item.Button),'
+       }
+   );
+
     modApi.hookFunction('PreferenceSubscreenGeneralLoad', 4, async (args, next) => {
         PreferenceBackground = "Sheet";
         if (ifext == true) PreferenceBackground = ifname;        
