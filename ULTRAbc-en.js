@@ -13986,9 +13986,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "" + tmpname + " stands up and closes " + pronoun3 + " legs.";
                         publicmsg(msg);
                     } else if ((pose == "legsopen") &&
-                        (Player.ActivePose != 'LegsOpen') &&
-                        (PoseCanChangeUnaided(Player, 'LegsOpen'))) {
-                        PoseSetActive(Player, "LegsOpen");
+                        (Player.ActivePose != 'BaseLower') &&
+                        (PoseCanChangeUnaided(Player, 'BaseLower'))) {
+                        PoseSetActive(Player, "BaseLower");
                         ChatRoomCharacterUpdate(Player);
                         let msg = "" + tmpname + " stands up normally on " + pronoun3 + " feet.";
                         publicmsg(msg);
@@ -14321,9 +14321,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     publicmsg(msg);
                                 }
                             } else if (pose == "legsopen") {
-                                if ((target.ActivePose != 'LegsOpen') &&
-                                    (PoseCanChangeUnaided(target, 'LegsOpen'))) {
-                                    PoseSetActive(target, "LegsOpen");
+                                if ((target.ActivePose != 'BaseLower') &&
+                                    (PoseCanChangeUnaided(target, 'BaseLower'))) {
+                                    PoseSetActive(target, "BaseLower");
                                     ChatRoomCharacterUpdate(target);
                                     let msg = "" + tmpname + " helps " + tgpname + " to stand up normally on " + tgpr3 + " feet.";
                                     publicmsg(msg);
