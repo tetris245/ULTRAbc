@@ -4363,38 +4363,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(385, 60, 90, 90, "", "White", "Icons/Exit.png");
                 DrawText("Opciones de mazos para Predeterminado y NPCs:", 1140, 35, "White", "Gray");
                 DrawText("0 Original - 1 ABDL - 2 Manicomio - 3 Universidad - 4 Dominante", 1140, 115, "White", "Gray");
-                DrawText("5 Responsabilidad - 6 Sirvienta - 7 Mascota - 8 Porno - 9 Shibari - 10 Extra", 1140, 195, "White", "Gray");
-                if (ClubCardIsOnline() == false) DrawText("Solo para NPC: -1 = Mazo definido por código BC original", 1140, 275, "White", "Gray");
+                DrawText("5 Responsabilidad - 6 Sirvienta - 7 Mascota - 8 Porno - 9 Shibari - 10 Extra", 1140, 155, "White", "Gray");
+                if (ClubCardIsOnline() == false) DrawText("Solo para NPC: -1 = Mazo definido por código BC original", 1140, 195, "White", "Gray");
                 DrawText("Si cambias otros parámetros distintos al modo,", 1140, 750, "White", "Black");
                 DrawText("haz clic en el botón Salir y vuelve para jugar", 1140, 830, "White", "Black");
                 const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
                 fameInput.setAttribute("min", "150");
                 fameInput.setAttribute("max", "550");
                 fameInput.setAttribute("autocomplete", "off");
-                DrawText("Nivel de Fama Alta", 145, 190, "White", "Gray");
-                ElementPosition("InputHighFame", 420, 185, 250);
+                DrawText("Nivel de Fama Alta", 145, 590, "White", "Gray");
+                ElementPosition("InputHighFame", 420, 585, 250);
                 const cardsInput = ElementCreateInput("InputMaxCards", "number", ccards);
                 cardsInput.setAttribute("min", "30");
                 cardsInput.setAttribute("max", "40");
                 cardsInput.setAttribute("autocomplete", "off");
-                DrawText("Cartas en mazo", 130, 270, "White", "Gray");
-                ElementPosition("InputMaxCards", 420, 265, 250);
+                DrawText("Cartas en mazo", 130, 670, "White", "Gray");
+                ElementPosition("InputMaxCards", 420, 665, 250);
                 const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
                 deckInput.setAttribute("min", "0");
                 deckInput.setAttribute("max", "10");
                 deckInput.setAttribute("autocomplete", "off");
-                DrawText("Mazo predeterminado", 145, 350, "White", "Gray");
-                ElementPosition("InputDefaultDeck", 420, 345, 250);
+                DrawText("Mazo predeterminado", 145, 750, "White", "Gray");
+                ElementPosition("InputDefaultDeck", 420, 745, 250);
                 if (ClubCardIsOnline() == false) {
                     const npcdeckInput = ElementCreateInput("InputNpcDeck", "number", npcdeck);
                     npcdeckInput.setAttribute("min", "-1");
                     npcdeckInput.setAttribute("max", "10");
                     npcdeckInput.setAttribute("autocomplete", "off");
-                    DrawText("Mazo de cartas NPC", 145, 430, "White", "Gray");
-                    ElementPosition("InputNpcDeck", 420, 425, 250);
+                    DrawText("Mazo de cartas NPC", 145, 830, "White", "Gray");
+                    ElementPosition("InputNpcDeck", 420, 825, 250);
                 }
             }
-            next(args);
+            return next(args);
         });
     }
 
