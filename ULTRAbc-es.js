@@ -3123,7 +3123,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumGGTSLoad();
     ULTRAAsylumMeetingClubCardStart();
     ULTRACafeClubCardStart();
-    ULTRACafeRun();
     ULTRAChatAdminClick();
     ULTRAChatAdminRun();
     ULTRAChatRoomClick();
@@ -3172,8 +3171,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRALARPRun();
     ULTRAMovieStudioClubCardStart();
     ULTRAPandoraClubCardStart();
-    ULTRAPlatformAttack();
-    ULTRAPlatformDialogEvent();
     ULTRAPrivateClubCardVsFriendStart();
     ULTRAPrivateClubCardVsOwnerStart();
     ULTRAPrivateClubCardVsSubStart();
