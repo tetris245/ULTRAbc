@@ -3165,7 +3165,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAKidnapLeagueRandomClubCardStart();
     ULTRAKidnapLeagueRun();
     ULTRALARPClubCardStart();
-    ULTRALARPRun();
     ULTRAMovieStudioClubCardStart();
     ULTRAPandoraClubCardStart();
     ULTRAPrivateClubCardVsFriendStart();
@@ -3175,7 +3174,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRARelogLoad();
     ULTRAShibariClubCardStart();
     ULTRAStableClubCardStart();
-    ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
     //Asylum
@@ -4788,36 +4786,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //LARP
-    async function ULTRALARPRun() {
-        modApi.hookFunction('LARPRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "larp") {
-                minigame = "";
-                M_MOANER_saveControls();
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('LARPRun', 4, async (args, next) => {
+        TintsEffect();
+        if (minigame == "larp") {
+            minigame = "";
+            M_MOANER_saveControls();
+        }
+        return next(args);
+    });
 
     //Lockpicking
-    async function ULTRAStruggleMinigameWasInterrupted() {
-        modApi.hookFunction('StruggleMinigameWasInterrupted', 4, (args, next) => {
-            if (fullseed == true) {
-                if (StruggleProgressCurrentMinigame === "LockPick") {
-                    let seed = parseInt(StruggleLockPickOrder.join(""));
-                    let tips = StruggleLockPickOrder.map((a) => {
-                        return true;
-                    });
-                    for (let q = 0; q < tips.length; q++) {
-                        let xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
-                        DrawText(`${StruggleLockPickOrder.indexOf(q) + 1}`, xx, 300, "blue");
-                    }
-                    return false;
+    modApi.hookFunction('StruggleMinigameWasInterrupted', 4, (args, next) => {
+        if (fullseed == true) {
+            if (StruggleProgressCurrentMinigame === "LockPick") {
+                let seed = parseInt(StruggleLockPickOrder.join(""));
+                let tips = StruggleLockPickOrder.map((a) => {
+                    return true;
+                });
+                for (let q = 0; q < tips.length; q++) {
+                    let xx = 1475 + (0.5 - tips.length / 2 + q) * 100;
+                    DrawText(`${StruggleLockPickOrder.indexOf(q) + 1}`, xx, 300, "blue");
                 }
+                return false;
             }
-            next(args);
-        });
-    }
+        }
+        return next(args);
+    });
 
 	//Login
     modApi.hookFunction('LoginRun', 4, (args, next) => {
