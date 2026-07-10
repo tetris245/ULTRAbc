@@ -3167,7 +3167,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRALARPClubCardStart();
     ULTRAMovieStudioClubCardStart();
     ULTRAPandoraClubCardStart();
-    ULTRAPrivateClubCardVsFriendStart();
+    ULTRAPrivateClubCardVsCharacterStart();
     ULTRAPrivateClubCardVsOwnerStart();
     ULTRAPrivateClubCardVsSubStart();
     ULTRAPrivateGetClubCardDeck();
@@ -4446,8 +4446,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAPrivateClubCardVsFriendStart() {
-        modApi.hookFunction('PrivateClubCardVsFriendStart', 4, (args, next) => {
+    async function ULTRAPrivateClubCardVsCharacterStart() {
+        modApi.hookFunction('PrivateClubCardVsCharacterStart', 4, (args, next) => {
             morePrivateCards();
             MiniGameStart("ClubCard", 0, "PrivateClubCardVsFriendEnd");
             return;
