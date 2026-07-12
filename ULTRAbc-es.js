@@ -3964,8 +3964,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }, 1300);
                         ChatSearchLastQueryJoinTime = CommonTime();
                         ChatSearchLastQueryJoin = RoomName;
-                        roomstate = "";
-                        M_MOANER_saveControls();
                         ServerSend("ChatRoomJoin", {
                             Name: RoomName
                         });          
