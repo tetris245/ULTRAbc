@@ -101,8 +101,8 @@ Changes for future version
   - set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status (default = 10 minutes)
   - enable/disable this automatic message (when enabled, it will also activate the AFK icon and the message will be repeated every 30 minutes after the first message)
 * Restored the AutoJoin feature (was broken since several BC releases)
-* Improved the display and order of background names in the Background Selection screen by automatically removing the "[Hidden]" prefix added by BCX
-* Improved the display of extension names in the Extensions screen by automatically removing the "Settings" word
+* Improved the display and order of background names in the Background Selection screen by automatically removing the "[Hidden]" prefix added by BCX (Note: the [Hidden] category is still available)
+* Improved the display of extension names in the Extensions screen by automatically removing the "Settings" word included in the code of many add-ons
 * Added more sounds for Animal Talk Mode 8 (Puppy)
 * Optimised the code for 2nd series of hooks
 * Updated the code for the legsopen option of the pose2 command
