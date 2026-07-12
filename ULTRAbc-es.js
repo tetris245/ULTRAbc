@@ -3116,6 +3116,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Note: The ULTRA list does not include many ModSDK Functions (hooks or patches) that are automatically executed
 	//At term, it will only include a few Functions for which an ULTRA loader is better to avoid strange issues
     ULTRAChatRoomDrawArousalOverlay(); 
+	ULTRAChatSearchJoin();
 
     ULTRAAppearanceClick();
     ULTRAAppearanceRun();
@@ -3135,7 +3136,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
     ULTRAChatSearchExit();
-    ULTRAChatSearchJoin();
     ULTRAChatSearchKeyDown();
     ULTRAChatSearchLoad();
     ULTRAChatSearchParseResponse();
@@ -3944,8 +3944,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAChatSearchJoin(RoomName) {
+	async function ULTRAChatSearchJoin(RoomName) {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
+            const RoomName = args[0];
             if (autojoin == true) {
                 if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
                     if (this.IsOn == undefined || this.IsOn == false) {
@@ -3953,7 +3954,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         var TextArea = document.createElement("TextArea");
                         TextArea.setAttribute("ID", "AutoJoinAlert");
                         document.body.appendChild(TextArea);
-                        ElementValue("AutoJoinAlert", "AutoJoining...");
+                        ElementValue("AutoJoinAlert", "AutoJoining...");                     
                         ElementPosition("AutoJoinAlert", 260, 935, 250);
                     }
                     AutoJoin = function() {
@@ -3963,17 +3964,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }, 1300);
                         ChatSearchLastQueryJoinTime = CommonTime();
                         ChatSearchLastQueryJoin = RoomName;
+                        roomstate = "";
+                        M_MOANER_saveControls();
                         ServerSend("ChatRoomJoin", {
                             Name: RoomName
-                        });
-                        ChatRoomPingLeashedPlayers();
-                        if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
-                            AutoJoin();
-                        }
+                        });          
+                    }
+                    if (this.AutoJoinOn == false || this.AutoJoinOn == undefined) {
+                        AutoJoin();
                     }
                 }
             }
-            next(args);
+            return next(args);
         });
     }
 
