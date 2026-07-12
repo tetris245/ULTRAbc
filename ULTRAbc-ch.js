@@ -3118,8 +3118,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomDrawArousalOverlay(); 
 	ULTRAChatSearchJoin();
 	
-    ULTRAAppearanceClick();
-    ULTRAAppearanceRun();
     ULTRAAsylumEntranceStartChat();
     ULTRAAsylumMeetingClubCardStart();
     ULTRACafeClubCardStart();
