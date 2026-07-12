@@ -3124,12 +3124,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatAdminClick();
     ULTRAChatAdminRun();
     ULTRAChatRoomClick();
-    ULTRAChatRoomKeyDown();
-    ULTRAChatRoomMapViewCalculatePerceptionMasks();
-    ULTRAChatRoomMapViewCanEnterTile();
-    ULTRAChatRoomMapViewCharacterOnWhisperRange();
-    ULTRAChatRoomMapViewMovementProcess();
-    ULTRAChatRoomMapViewTeleportHiddenMessage();
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
@@ -3387,136 +3381,124 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    function ULTRAChatRoomKeyDown() {
-        modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
-            const ret = next(args);
-            if ((hotkeys == true) && (noescape == false)) {
-                if (event.code === "NumpadDivide") {
-                    OutChat();
-                    return true;
+	modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
+        const ret = next(args);
+        if ((hotkeys == true) && (noescape == false)) {
+            if (event.code === "NumpadDivide") {
+                OutChat();
+                return true;
+            }
+            if (event.code === "NumpadMultiply") {
+                SosClick();
+                return true;
+            }
+        }
+        return ret;
+    });
+
+    modApi.hookFunction('ChatRoomMapViewCalculatePerceptionMasks', 4, (args, next) => {
+        const ret = next(args);
+        if ((mapfull) || (mapfull2)) {
+            if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) return;
+            if (mapfull) ChatRoomMapViewVisibilityMask.fill(true);
+            if (mapfull2) ChatRoomMapViewAudibilityMask.fill(true);
+            return;
+        }
+        return ret;
+    });
+
+    modApi.hookFunction('ChatRoomMapViewCanEnterTile', 4, (args, next) => {
+        const ret = next(args);
+        if (mapcheat) return 20;
+        return ret;
+    });
+
+    modApi.hookFunction('ChatRoomMapViewCharacterOnWhisperRange', 4, (args, next) => {
+        const ret = next(args);
+        if (nowhrange) return true;
+        return ret;
+    });
+
+    modApi.hookFunction('ChatRoomMapViewMovementProcess', 4, (args, next) => {
+        const {
+            X: posX,
+            Y: posY
+        } = Player.MapData.Pos;
+        const ret = next(args);
+        if (Player.MapData.Pos.X < 0) Player.MapData.Pos.X = Player.MapData.Pos.X + 1;
+        if (Player.MapData.Pos.Y < 0) Player.MapData.Pos.Y = Player.MapData.Pos.Y + 1;
+        if (Player.MapData.Pos.X > 39) Player.MapData.Pos.X = Player.MapData.Pos.X - 1;
+        if (Player.MapData.Pos.Y > 39) Player.MapData.Pos.Y = Player.MapData.Pos.Y - 1;
+        if (posX !== Player.MapData.Pos.X || posY !== Player.MapData.Pos.Y) {
+            const newTile = ChatRoomMapViewGetTileAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
+            const newObject = ChatRoomMapViewGetObjectAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
+            if (!newObject) return ret;
+            let item1 = newObject.Type;
+            let item2 = newObject.Style;
+            if ((item1 == "FloorItem") && (item2 != "Blank")) {
+                if ((item2 == "BondageBench") && ((maptrap1 == 1) || (maptrap1 == 9))) {
+                    BondageBenchTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
+                    publicmsg(msg);
                 }
-                if (event.code === "NumpadMultiply") {
-                    SosClick();
-                    return true;
+                if ((item2 == "Coffin") && ((maptrap1 == 2) || (maptrap1 == 9))) {
+                    CoffinTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Coffin";
+                    publicmsg(msg);
+                }
+                if ((item2 == "TheDisplayFrame") && ((maptrap1 == 3) || (maptrap1 == 9))) {
+                    DisplayFrameTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Kennel") && ((maptrap1 == 4) || (maptrap1 == 9))) {
+                    KennelTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Kennel.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Locker") && ((maptrap1 == 5) || (maptrap1 == 9))) {
+                    LockerTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Locker.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Trolley") && ((maptrap1 == 6) || (maptrap1 == 9))) {
+                    TrolleyTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "WoodenBox") && ((maptrap1 == 7) || (maptrap1 == 9))) {
+                    WoodenBoxTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "X-Cross") && ((maptrap1 == 8) || (maptrap1 == 9))) {
+                    XCrossTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
+                    publicmsg(msg);
                 }
             }
-            return ret;
-        });
-    }
+        }
+        return ret;
+    });
 
-    function ULTRAChatRoomMapViewCalculatePerceptionMasks() {
-        modApi.hookFunction('ChatRoomMapViewCalculatePerceptionMasks', 4, (args, next) => {
-            const ret = next(args);
-            if ((mapfull) || (mapfull2)) {
-                if ((ChatRoomData.MapData == null) || (ChatRoomData.MapData.Type == null) || (ChatRoomData.MapData.Type == "Never")) return;
-                if (mapfull) ChatRoomMapViewVisibilityMask.fill(true);
-                if (mapfull2) ChatRoomMapViewAudibilityMask.fill(true);
+    modApi.hookFunction('ChatRoomMapViewTeleportHiddenMessage', 4, (args, next) => {
+        if (noteleport) {
+            let bltp = 1;
+            if (Player.OnlineSharedSettings.Tplist != undefined) {
+                let adm = 0;
+                while (adm < ChatRoomData.Admin.length) {
+                    if (Player.OnlineSharedSettings.Tplist.includes(ChatRoomData.Admin[adm])) bltp = 0;
+                    adm++;
+                }
+            }
+            if (bltp == 1) {
+                let msg = "A teleportation attempt has been cancelled because not allowed.";
+                publicmsg(msg);
                 return;
             }
-            return ret;
-        });
-    }
-
-    function ULTRAChatRoomMapViewCanEnterTile() {
-        modApi.hookFunction('ChatRoomMapViewCanEnterTile', 4, (args, next) => {
-            const ret = next(args);
-            if (mapcheat) return 20;
-            return ret;
-        });
-    }
-
-    function ULTRAChatRoomMapViewCharacterOnWhisperRange() {
-        modApi.hookFunction('ChatRoomMapViewCharacterOnWhisperRange', 4, (args, next) => {
-            const ret = next(args);
-            if (nowhrange) return true;
-            return ret;
-        });
-    }
-
-    function ULTRAChatRoomMapViewMovementProcess() {
-        modApi.hookFunction('ChatRoomMapViewMovementProcess', 4, (args, next) => {
-            const {
-                X: posX,
-                Y: posY
-            } = Player.MapData.Pos;
-            const ret = next(args);
-            if (Player.MapData.Pos.X < 0) Player.MapData.Pos.X = Player.MapData.Pos.X + 1;
-            if (Player.MapData.Pos.Y < 0) Player.MapData.Pos.Y = Player.MapData.Pos.Y + 1;
-            if (Player.MapData.Pos.X > 39) Player.MapData.Pos.X = Player.MapData.Pos.X - 1;
-            if (Player.MapData.Pos.Y > 39) Player.MapData.Pos.Y = Player.MapData.Pos.Y - 1;
-            if (posX !== Player.MapData.Pos.X || posY !== Player.MapData.Pos.Y) {
-                const newTile = ChatRoomMapViewGetTileAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
-                const newObject = ChatRoomMapViewGetObjectAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
-                if (!newObject) return ret;
-                let item1 = newObject.Type;
-                let item2 = newObject.Style;
-                if ((item1 == "FloorItem") && (item2 != "Blank")) {
-                    if ((item2 == "BondageBench") && ((maptrap1 == 1) || (maptrap1 == 9))) {
-                        BondageBenchTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
-                        publicmsg(msg);
-                    }
-                    if ((item2 == "Coffin") && ((maptrap1 == 2) || (maptrap1 == 9))) {
-                        CoffinTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Coffin";
-                        publicmsg(msg);
-                    }
-                    if ((item2 == "TheDisplayFrame") && ((maptrap1 == 3) || (maptrap1 == 9))) {
-                        DisplayFrameTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
-                        publicmsg(msg);
-                    }
-                    if ((item2 == "Kennel") && ((maptrap1 == 4) || (maptrap1 == 9))) {
-                        KennelTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Kennel.";
-                        publicmsg(msg);
-                    }
-                    if ((item2 == "Locker") && ((maptrap1 == 5) || (maptrap1 == 9))) {
-                        LockerTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Locker.";
-                        publicmsg(msg);
-                    }
-                    if ((item2 == "Trolley") && ((maptrap1 == 6) || (maptrap1 == 9))) {
-                        TrolleyTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
-                        publicmsg(msg);
-                    }
-                    if ((item2 == "WoodenBox") && ((maptrap1 == 7) || (maptrap1 == 9))) {
-                        WoodenBoxTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
-                        publicmsg(msg);
-                    }
-                    if ((item2 == "X-Cross") && ((maptrap1 == 8) || (maptrap1 == 9))) {
-                        XCrossTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
-                        publicmsg(msg);
-                    }
-                }
-            }
-            return ret;
-        });
-    }
-
-    function ULTRAChatRoomMapViewTeleportHiddenMessage() {
-        modApi.hookFunction('ChatRoomMapViewTeleportHiddenMessage', 4, (args, next) => {
-            if (noteleport) {
-                let bltp = 1;
-                if (Player.OnlineSharedSettings.Tplist != undefined) {
-                    let adm = 0;
-                    while (adm < ChatRoomData.Admin.length) {
-                        if (Player.OnlineSharedSettings.Tplist.includes(ChatRoomData.Admin[adm])) bltp = 0;
-                        adm++;
-                    }
-                }
-                if (bltp == 1) {
-                    let msg = "A teleportation attempt has been cancelled because not allowed.";
-                    publicmsg(msg);
-                    return;
-                }
-            }
-            next(args);
-        });
-    }
+        }
+        return next(args);
+    });
 
     function ULTRAChatRoomSafewordRevert() {
         modApi.hookFunction('ChatRoomSafewordRevert', 4, (args, next) => {
