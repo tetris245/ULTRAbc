@@ -5620,176 +5620,174 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Wardrobe
-    function ULTRAAppearanceClick() {
-        modApi.hookFunction('AppearanceClick', 4, (args, next) => {
-            let C = CharacterAppearanceSelection;
-            if (CharacterAppearanceMode == "Wardrobe") {
-                if (nowrbuttons == false) {
-                    if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 25) && (MouseY < 115)) {
-                        wrname = "Dressing";
+    modApi.hookFunction('AppearanceClick', 4, (args, next) => {
+        let C = CharacterAppearanceSelection;
+        if (CharacterAppearanceMode == "Wardrobe") {
+            if (nowrbuttons == false) {
+                if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 25) && (MouseY < 115)) {
+                    wrname = "Dressing";
+                    M_MOANER_saveControls();
+                    ElementRemove("InputWardrobeName");
+                    CommonSetScreen("Character", "Appearance");
+                }
+                if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 130) && (MouseY < 220)) {
+                    if (BackgroundsList != undefined) {
+                        let listbg = BackgroundsList.length;
+                        let Roll = Math.floor(Math.random() * listbg);
+                        if (Roll == 0) Roll = 1;
+                        let name = BackgroundsList[Roll - 1].Name;
+                        wrname = name;
                         M_MOANER_saveControls();
                         ElementRemove("InputWardrobeName");
                         CommonSetScreen("Character", "Appearance");
                     }
-                    if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 130) && (MouseY < 220)) {
-                        if (BackgroundsList != undefined) {
-                            let listbg = BackgroundsList.length;
-                            let Roll = Math.floor(Math.random() * listbg);
-                            if (Roll == 0) Roll = 1;
-                            let name = BackgroundsList[Roll - 1].Name;
-                            wrname = name;
+                }
+                if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 235) && (MouseY < 325)) {
+                    let backgrounds = BackgroundsTagList;
+                    BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                        if (setBackground) {
+                            wrname = Name;
                             M_MOANER_saveControls();
-                            ElementRemove("InputWardrobeName");
-                            CommonSetScreen("Character", "Appearance");
                         }
-                    }
-                    if ((MouseX >= 1150) && (MouseX < 1240) && (MouseY >= 235) && (MouseY < 325)) {
-                        let backgrounds = BackgroundsTagList;
-                        BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                            if (setBackground) {
-                                wrname = Name;
-                                M_MOANER_saveControls();
-                            }
-                            ElementRemove("InputWardrobeName");
-                            CommonSetScreen("Character", "Appearance");
-                        });
-                    }
-                }
-                if ((MouseX >= 1510) && (MouseX < 1610) && (MouseY >= 240) && (MouseY < 290)) {
-                    if (C.OnlineSharedSettings.UBC != undefined) {
-                        if (ServerPlayerIsInChatRoom()) {
-                            if ((C.Nickname == '') || (C.Nickname == undefined)) {
-                                tgpname = C.Name;
-                            } else {
-                                tgpname = C.Nickname;
-                            }
-                            if ((tmpname != tgpname) && (IsTargetProtected(C))) {
-                                let msg = "UBC 导出不可能，因为" + tgpname + "已启用 Uwall 保护。";
-                                infomsg(msg);
-                            } else {
-                                let appall = new Array();
-                                C.Appearance.forEach(item => {
-                                    let app = new Array();
-                                    app.push(item.Asset.Name);
-                                    app.push(item.Asset.Group.Name);
-                                    app.push(item.Color);
-                                    app.push(item.Difficulty);
-                                    app.push(item.Craft);
-                                    app.push(false);
-                                    //Do not remove this line. It is for the compatibility with bcg.
-                                    appall.push(app);
-                                });
-                                ChatRoomSendLocal(
-                                    "<p style='background-color:#5fbd7a'>ULTRAbc: Appearance saved.</p>\n" +
-                                    btoa(encodeURI(JSON.stringify(appall)))
-                                );
-                            }
-                        }
-                    }
-                    DialogLeave();
-                }
-                if ((MouseX >= 1630) && (MouseX < 1730) && (MouseY >= 240) && (MouseY < 290)) {
-                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
-                    if (C.OnlineSharedSettings.UBC != undefined) {
-                        if ((C.Nickname == '') || (C.Nickname == undefined)) {
-                            tgpname = C.Name;
-                        } else {
-                            tgpname = C.Nickname;
-                        }
-                        if ((tmpname != tgpname) && (IsTargetProtected(C))) {
-                            let msg = "UBC 导入不可能，因为" + tgpname + "已启用 Uwall 保护。";
-                            infomsg(msg);
-                        } else {
-                            for (let A = C.Appearance.length - 1; A >= 0; A--)
-                                if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
-                                    if (!(echolevel2.includes(C.Appearance[A].Asset.Group.Name))) {
-                                        InventoryRemove(C, C.Appearance[A].Asset.Group.Name);
-                                    }
-                                }
-                            CharacterReleaseNoLock(C);
-                            let appobj = JSON.parse(decodeURI(atob(appinp)));
-                            appobj.forEach(itemstr => {
-                                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
-                                        InventoryRemove(C, itemstr[1]);
-                                        InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                                    }
-                                } else if (!(echolevel2.includes(itemstr[1]))) {
-                                    InventoryRemove(C, itemstr[1]);
-                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                                }
-                            });
-                            CharacterRefresh(C, false);
-                        }
-                    }
-                    DialogLeave();
-                }
-                if ((MouseX >= 1750) && (MouseX < 1850) && (MouseY >= 240) && (MouseY < 290)) {
-                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
-                    if (C.OnlineSharedSettings.UBC != undefined) {
-                        if ((C.Nickname == '') || (C.Nickname == undefined)) {
-                            tgpname = C.Name;
-                        } else {
-                            tgpname = C.Nickname;
-                        }
-                        if ((tmpname != tgpname) && (IsTargetProtected(C))) {
-                            let msg = "UBC 导入不可能，因为" + tgpname + "已启用 Uwall 保护。";
-                            infomsg(msg);
-                        } else {
-                            CharacterNaked(C);
-                            CharacterReleaseNoLock(C);
-                            let appobj = JSON.parse(decodeURI(atob(appinp)));
-                            appobj.forEach(itemstr => {
-                                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
-                                        InventoryRemove(C, itemstr[1]);
-                                        InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                                    }
-                                } else if (!(echolevel1.includes(itemstr[1]))) {
-                                    InventoryRemove(C, itemstr[1]);
-                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                                }
-                            });
-                            CharacterRefresh(C, false);
-                        }
-                    }
-                    DialogLeave();
-                }
-                if ((MouseX >= 1870) && (MouseX < 1970) && (MouseY >= 240) && (MouseY < 290)) {
-                    let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
-                    if (C.OnlineSharedSettings.UBC != undefined) {
-                        if ((C.Nickname == '') || (C.Nickname == undefined)) {
-                            tgpname = C.Name;
-                        } else {
-                            tgpname = C.Nickname;
-                        }
-                        if ((tmpname != tgpname) && (IsTargetProtected(C))) {
-                            let msg = "UBC 导入不可能，因为" + tgpname + "已启用 Uwall 保护。";
-                            infomsg(msg);
-                        } else {
-                            CharacterNaked(C);
-                            CharacterReleaseNoLock(C);
-                            let appobj = JSON.parse(decodeURI(atob(appinp)));
-                            appobj.forEach(itemstr => {
-                                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
-                                        InventoryRemove(C, itemstr[1]);
-                                        InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                                    }
-                                } else {
-                                    InventoryRemove(C, itemstr[1]);
-                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
-                                }
-                            });
-                            CharacterRefresh(C, false);
-                        }
-                    }
-                    DialogLeave();
+                        ElementRemove("InputWardrobeName");
+                        CommonSetScreen("Character", "Appearance");
+                    });
                 }
             }
-            next(args);
-        });
-    }
+            if ((MouseX >= 1510) && (MouseX < 1610) && (MouseY >= 240) && (MouseY < 290)) {
+                if (C.OnlineSharedSettings.UBC != undefined) {
+                    if (ServerPlayerIsInChatRoom()) {
+                        if ((C.Nickname == '') || (C.Nickname == undefined)) {
+                            tgpname = C.Name;
+                        } else {
+                            tgpname = C.Nickname;
+                        }
+                        if ((tmpname != tgpname) && (IsTargetProtected(C))) {
+                            let msg = "UBC 导出不可能，因为" + tgpname + "已启用 Uwall 保护。";
+                            infomsg(msg);
+                        } else {
+                            let appall = new Array();
+                            C.Appearance.forEach(item => {
+                                let app = new Array();
+                                app.push(item.Asset.Name);
+                                app.push(item.Asset.Group.Name);
+                                app.push(item.Color);
+                                app.push(item.Difficulty);
+                                app.push(item.Craft);
+                                app.push(false);
+                                //Do not remove this line. It is for the compatibility with bcg.
+                                appall.push(app);
+                            });
+                            ChatRoomSendLocal(
+                                "<p style='background-color:#5fbd7a'>ULTRAbc: Appearance saved.</p>\n" +
+                                btoa(encodeURI(JSON.stringify(appall)))
+                            );
+                        }
+                    }
+                }
+                DialogLeave();
+            }
+            if ((MouseX >= 1630) && (MouseX < 1730) && (MouseY >= 240) && (MouseY < 290)) {
+                let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                if (C.OnlineSharedSettings.UBC != undefined) {
+                    if ((C.Nickname == '') || (C.Nickname == undefined)) {
+                        tgpname = C.Name;
+                    } else {
+                        tgpname = C.Nickname;
+                    }
+                    if ((tmpname != tgpname) && (IsTargetProtected(C))) {
+                        let msg = "UBC 导入不可能，因为" + tgpname + "已启用 Uwall 保护。";
+                        infomsg(msg);
+                    } else {
+                        for (let A = C.Appearance.length - 1; A >= 0; A--)
+                            if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
+                                if (!(echolevel2.includes(C.Appearance[A].Asset.Group.Name))) {
+                                    InventoryRemove(C, C.Appearance[A].Asset.Group.Name);
+                                }
+                            }
+                        CharacterReleaseNoLock(C);
+                        let appobj = JSON.parse(decodeURI(atob(appinp)));
+                        appobj.forEach(itemstr => {
+                            if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                                if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                                    InventoryRemove(C, itemstr[1]);
+                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                                }
+                            } else if (!(echolevel2.includes(itemstr[1]))) {
+                                InventoryRemove(C, itemstr[1]);
+                                InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                            }
+                        });
+                        CharacterRefresh(C, false);
+                    }
+                }
+                DialogLeave();
+            }
+            if ((MouseX >= 1750) && (MouseX < 1850) && (MouseY >= 240) && (MouseY < 290)) {
+                let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                if (C.OnlineSharedSettings.UBC != undefined) {
+                    if ((C.Nickname == '') || (C.Nickname == undefined)) {
+                        tgpname = C.Name;
+                    } else {
+                        tgpname = C.Nickname;
+                    }
+                    if ((tmpname != tgpname) && (IsTargetProtected(C))) {
+                        let msg = "UBC 导入不可能，因为" + tgpname + "已启用 Uwall 保护。";
+                        infomsg(msg);
+                    } else {
+                        CharacterNaked(C);
+                        CharacterReleaseNoLock(C);
+                        let appobj = JSON.parse(decodeURI(atob(appinp)));
+                        appobj.forEach(itemstr => {
+                            if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                                if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                                    InventoryRemove(C, itemstr[1]);
+                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                                }
+                            } else if (!(echolevel1.includes(itemstr[1]))) {
+                                InventoryRemove(C, itemstr[1]);
+                                InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                            }
+                        });
+                        CharacterRefresh(C, false);
+                    }
+                }
+                DialogLeave();
+            }
+            if ((MouseX >= 1870) && (MouseX < 1970) && (MouseY >= 240) && (MouseY < 290)) {
+                let appinp = prompt('Please input the awcode (Compatible with BCG).', '');
+                if (C.OnlineSharedSettings.UBC != undefined) {
+                    if ((C.Nickname == '') || (C.Nickname == undefined)) {
+                        tgpname = C.Name;
+                    } else {
+                        tgpname = C.Nickname;
+                    }
+                    if ((tmpname != tgpname) && (IsTargetProtected(C))) {
+                        let msg = "UBC 导入不可能，因为" + tgpname + "已启用 Uwall 保护。";
+                        infomsg(msg);
+                    } else {
+                        CharacterNaked(C);
+                        CharacterReleaseNoLock(C);
+                        let appobj = JSON.parse(decodeURI(atob(appinp)));
+                        appobj.forEach(itemstr => {
+                            if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                                if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                                    InventoryRemove(C, itemstr[1]);
+                                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                                }
+                            } else {
+                                InventoryRemove(C, itemstr[1]);
+                                InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                            }
+                        });
+                        CharacterRefresh(C, false);
+                    }
+                }
+                DialogLeave();
+            }
+        }
+        return next(args);
+    });
 
 	modApi.hookFunction('AppearanceRun', 4, (args, next) => {
         AppearanceBackground = wrname;
