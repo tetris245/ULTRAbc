@@ -3135,14 +3135,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
-    ULTRAChatSearchExit();
-    ULTRAChatSearchKeyDown();
-    ULTRAChatSearchLoad();
-    ULTRAChatSearchParseResponse();
-    ULTRAChatSearchResize();
-    ULTRAChatSearchRun();
-    ULTRAChatSearchToggleSearchMode();
-    ULTRAChatSearchUnload();
     ULTRAClubCardBuilderClick();
     ULTRAClubCardBuilderLoad();
     ULTRAClubCardBuilderRun();
@@ -3164,7 +3156,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPrivateClubCardVsOwnerStart();
     ULTRAPrivateClubCardVsSubStart();
     ULTRAPrivateGetClubCardDeck();
-    ULTRARelogLoad();
     ULTRAShibariClubCardStart();
     ULTRAStableClubCardStart();
     ULTRATitleExit();
@@ -3932,17 +3923,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Chat Search 
-    async function ULTRAChatSearchExit() {
-        modApi.hookFunction('ChatSearchExit', 4, (args, next) => {
-            Player.ChatSearchSettings.Game = "";
-            if (ChatSearchSpace == "Asylum") {
-                ChatSearchReturnScreen = ["Room", "AsylumEntrance"];
-            } else {
-                ChatSearchReturnScreen = ["Room", "MainHall"];
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('ChatSearchExit', 4, async (args, next) => {
+        Player.ChatSearchSettings.Game = "";
+        if (ChatSearchSpace == "Asylum") {
+            ChatSearchReturnScreen = ["Room", "AsylumEntrance"];
+        } else {
+            ChatSearchReturnScreen = ["Room", "MainHall"];
+        }
+        return next(args);
+    });
 
 	async function ULTRAChatSearchJoin(RoomName) {
         modApi.hookFunction('ChatSearchJoin', 4, (args, next) => {
@@ -3977,112 +3966,96 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    function ULTRAChatSearchKeyDown() {
-        modApi.hookFunction('ChatSearchKeyDown', 4, (args, next) => {
-            let ret = next(args);
-            if ((cskeys == true) && (event.code === "ArrowDown")) {
-                let backgrounds = BackgroundsTagList;
-                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                    if (setBackground) {
-                        csname = Name;
-                        M_MOANER_saveControls();
-                    }
-                    CommonSetScreen("Online", "ChatSearch");
-                });
-            }
-            if ((cskeys == true) && (event.code === "AltLeft")) PrfClick();
-            if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);
-            if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
-            if ((cskeys == true) && (event.code === "ArrowUp")) {
-                if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    csname = name;
+	modApi.hookFunction('ChatSearchKeyDown', 4, (args, next) => {
+        let ret = next(args);
+        if ((cskeys == true) && (event.code === "ArrowDown")) {
+            let backgrounds = BackgroundsTagList;
+            BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                if (setBackground) {
+                    csname = Name;
                     M_MOANER_saveControls();
-                    CommonSetScreen("Online", "ChatSearch");
                 }
-            }
-            if ((cskeys == true) && (event.code === "Tab")) {
-                csname = "Introduction";
+                CommonSetScreen("Online", "ChatSearch");
+            });
+        }
+        if ((cskeys == true) && (event.code === "AltLeft")) PrfClick();
+        if ((cskeys == true) && (event.code === "ArrowLeft")) CharacterAppearanceLoadCharacter(Player);
+        if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
+        if ((cskeys == true) && (event.code === "ArrowUp")) {
+            if (BackgroundsList != undefined) {
+                let listbg = BackgroundsList.length;
+                let Roll = Math.floor(Math.random() * listbg);
+                if (Roll == 0) Roll = 1;
+                let name = BackgroundsList[Roll - 1].Name;
+                csname = name;
                 M_MOANER_saveControls();
                 CommonSetScreen("Online", "ChatSearch");
             }
-            return ret;
-        });
-    }
+        }
+        if ((cskeys == true) && (event.code === "Tab")) {
+            csname = "Introduction";
+            M_MOANER_saveControls();
+            CommonSetScreen("Online", "ChatSearch");
+        }
+        return ret;
+    });
 
-    async function ULTRAChatSearchLoad() {
-        modApi.hookFunction('ChatSearchLoad', 4, (args, next) => {
-            if (altchsh == true) {
-                AltChatSearchLoad();
-                return;
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('ChatSearchLoad', 4, async (args, next) => {
+        if (altchsh == true) {
+            AltChatSearchLoad();
+            return;
+        }
+        return next(args);
+    });
 
-    function ULTRAChatSearchParseResponse() {
-        modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
-            const res = next(args);
-            return res.filter(r => r.MemberCount >= pmin && r.MemberCount <= pmax);
-        });
-    }
+    modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
+        const res = next(args);
+        return res.filter(r => r.MemberCount >= pmin && r.MemberCount <= pmax);
+    });
 
-    function ULTRAChatSearchResize() {
-        modApi.hookFunction('ChatSearchResize', 4, (args, next) => {
-            let ret = next(args);
-            if (noubcbar == false) {
-                ElementPositionFixed(ChatSearchRoomBottom, 430, 880, 1520, 90);
-                ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 480);
-            }
-            if (noubcbar == true) ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 680);
-            return ret;
-        });
-    }
+    modApi.hookFunction('ChatSearchResize', 4, (args, next) => {
+        let ret = next(args);
+        if (noubcbar == false) {
+            ElementPositionFixed(ChatSearchRoomBottom, 430, 880, 1520, 90);
+            ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 480);
+        }
+        if (noubcbar == true) ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 680);
+        return ret;
+    });
 
-    async function ULTRAChatSearchRun() {
-        modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
-            ChatSearchBackground = csname;
-            TintsEffect();
-            ChatSearchRoomsPerColumn = 7;
-            ChatSearchRoomsPerPage = 21;
-            next(args);
-        });
-    }
+    modApi.hookFunction('ChatSearchRun', 4, async (args, next) => {
+        ChatSearchBackground = csname;
+        TintsEffect();
+        ChatSearchRoomsPerColumn = 7;
+        ChatSearchRoomsPerPage = 21;
+        return next(args);
+    });
 
-    function ULTRAChatSearchToggleSearchMode() {
-        modApi.hookFunction('ChatSearchToggleSearchMode', 4, (args, next) => {
-            if (noubcbar == false) {
-                AltChatSearchToggle();
-                return;
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('ChatSearchToggleSearchMode', 4, (args, next) => {
+        if (noubcbar == false) {
+            AltChatSearchToggle();
+            return;
+        }
+        return next(args);
+    });
 
-    async function ULTRAChatSearchUnload() {
-        modApi.hookFunction('ChatSearchUnload', 4, (args, next) => {
-            ElementRemove("chat-search-room-bottom");
-            AutoJoin = function() {};
-            this.AutoJoinOn = false;
-            ElementRemove("AutoJoinAlert");
-            IsOn = false;
-            next(args);
-        });
-    }
+    modApi.hookFunction('ChatSearchUnload', 4, async (args, next) => {
+        ElementRemove("chat-search-room-bottom");
+        AutoJoin = function() {};
+        this.AutoJoinOn = false;
+        ElementRemove("AutoJoinAlert");
+        IsOn = false;
+        return next(args);
+    });
 
-    async function ULTRARelogLoad() {
-        modApi.hookFunction('RelogLoad', 4, (args, next) => {
-            AutoJoin = function() {};
-            this.AutoJoinOn = false;
-            ElementRemove("AutoJoinAlert");
-            IsOn = false;
-            next(args);
-        });
-    }
-
+    modApi.hookFunction('RelogLoad', 4, async (args, next) => {
+        AutoJoin = function() {};
+        this.AutoJoinOn = false;
+        ElementRemove("AutoJoinAlert");
+        IsOn = false;
+        return next(args);
+    });
+ 
     //Club Card Game
     async function ULTRAAsylumMeetingClubCardStart() {
         modApi.hookFunction('AsylumMeetingClubCardStart', 4, (args, next) => {
