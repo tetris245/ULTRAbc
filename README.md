@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.1
+Most recent version: 6.1.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.1.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.1.1.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.1.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.1.1.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.1.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.1.1.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -97,16 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New settings in GUI - Talking to
-  - set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status (default = 10 minutes)
-  - enable/disable this automatic message (when enabled, it will also activate the AFK icon and the message will be repeated every 30 minutes after the first message)
-* Restored the AutoJoin feature (was broken since several BC releases)
-* Improved the display and order of background names in the Background Selection screen by automatically removing the "[Hidden]" prefix added by BCX (Note: the [Hidden] category is still available)
-* Improved the display of extension names in the Extensions screen by automatically removing the "Settings" word included in the code of many add-ons
-* Added more sounds for Animal Talk Mode 8 (Puppy)
-* Optimised the code for 2nd series of hooks
-* Updated the code for the legsopen option of the pose2 command
-* Updated hooks in two functions related to the Club Card Game
+(...)
 
 
 
