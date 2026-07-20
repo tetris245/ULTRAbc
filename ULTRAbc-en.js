@@ -16030,7 +16030,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "admin") {
                 let msg = "Admin commands\n" +
                     "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
-                    "<b>/bg1</b> (number) = uses a Bondage College background as custom background. /bg1 to get the list.\n" +
+                    "<b>/bg1</b> (number) = uses a Bondage College/Teacher background as custom background. /bg1 to get the list.\n" +
                     "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.";
                 infomsg(msg);
             }
