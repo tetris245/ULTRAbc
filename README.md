@@ -97,7 +97,8 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Added automatic addition of standard backgrounds and their correct alphabetic order when loading UBC (it replaces the old bg1 command)
+* Renamed the bg3 command as bg1
 
 
 
