@@ -9063,6 +9063,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Player.RestrictionSettings.BypassNPCPunishments = true;
         }
         UBCrpsk();
+		morebg();
     }
 
     //Room Connections
@@ -11281,11 +11282,75 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg1',
-        Description: ": adds hidden backgrounds to the selection screen.",
-        Action: () => {
-            morebg();
-            let msg = "You can use more standard backgrounds now. In addition, if you use BCX, the backgrouds added and hidden by this mod are now directly visible.";
-            infomsg(msg);
+        Description: "(number): uses a Bondage College or Bondage Teacher background as custom background.",
+        Action: (args) => {
+            let BCver = GameVersion;
+            if (BCver.includes("Beta")) {
+                let beta1 = BCver.slice(0, 4);
+                let beta2 = beta1.slice(-3);
+                let beta3 = beta2 - 1;
+                BCver = "R" + beta3;
+            }
+            if (args === "") {
+                let msg = "The bg1 command must be followed by a number. List of available backgrounds:\n" +
+                    "BONDAGE COLLEGE\n" +
+                    "1 Art Class - 2, 3 Class - 4 Club - 5 College\n" +
+                    "6 Dorm - 7 Dressing Room - 8 Gym Class\n" +
+                    "9 to 12 Isolation Room - 13 to 16 Kinbaku Club\n" +
+                    "17 to 26 Library - 27, 28 Lockers\n" +
+                    "29 Running Track - 30, 31 Showers - 32 Theater\n" +
+                    "BONDAGE TEACHER\n" +
+                    "33, 34 Beach - 35, 36 Briefcase - 37 Bullseye\n" +
+                    "38, 39 Class - 40 College - 41 Office";
+                infomsg(msg);
+            } else {
+                let bg = "";
+                let url1 = "https://www.bondage-europe.com/" + BCver;
+                let url2 = "https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/";
+                let url3 = "https://gitgud.io/BondageProjects/bondage-teacher/-/raw/master/";
+                if (args == 1) bg = url1 + "/C004_ArtClass/Intro/Background.jpg";
+                if (args == 2) bg = url1 + "/C001_BeforeClass/Intro/Background2.jpg";
+                if (args == 3) bg = url1 + "/C999_Common/Quiz/Backgrounds/Classroom.jpg";
+                if (args == 4) bg = url1 + "/C013_BondageClub/Intro/Background.jpg";
+                if (args == 5) bg = url1 + "/C000_Intro/Intro/Background.jpg";
+                if (args == 6) bg = url1 + "/C012_AfterClass/Intro/Background.jpg";
+                if (args == 7) bg = url1 + "/C008_DramaClass/DressingRoom/Background.jpg";
+                if (args == 8) bg = url1 + "/C005_GymClass/Intro/Background.jpg";
+                if (args == 9) bg = url1 + "/C006_Isolation/Intro/Background.jpg";
+                if (args == 10) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_0.jpg";
+                if (args == 11) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_1.jpg";
+                if (args == 12) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_2.jpg";
+                if (args == 13) bg = url1 + "/C101_KinbakuClub/ClubRoom1/ClubRoom1Arrows.jpg";
+                if (args == 14) bg = url1 + "/C101_KinbakuClub/ClubRoom2/ClubRoom2Arrows.jpg";
+                if (args == 15) bg = url1 + "/C101_KinbakuClub/ClubRoom3/ClubRoom3Arrows.jpg";
+                if (args == 16) bg = url1 + "/C101_KinbakuClub/ClubRoom4/ClubRoom4.jpg";
+                if (args == 17) bg = url1 + "/C009_Library/Library/001.jpg";
+                if (args == 18) bg = url1 + "/C009_Library/Library/002.jpg";
+                if (args == 19) bg = url1 + "/C009_Library/Library/003.jpg";
+                if (args == 20) bg = url1 + "/C009_Library/Library/004.jpg";
+                if (args == 21) bg = url1 + "/C009_Library/Library/005.jpg";
+                if (args == 22) bg = url1 + "/C009_Library/Library/006.jpg";
+                if (args == 23) bg = url1 + "/C009_Library/Library/007.jpg";
+                if (args == 24) bg = url1 + "/C009_Library/Library/008.jpg";
+                if (args == 25) bg = url1 + "/C009_Library/Library/009.jpg";
+                if (args == 26) bg = url1 + "/C009_Library/Library/010.jpg";
+                if (args == 27) bg = url1 + "/C010_Revenge/Intro/BackgroundAmandaSarah.jpg";
+                if (args == 28) bg = url1 + "/C010_Revenge/Intro/BackgroundSidneyJennifer.jpg";
+                if (args == 29) bg = url1 + "/C999_Common/Fights/Backgrounds/RunningTrack.jpg";
+                if (args == 30) bg = url2 + "Shower1.jpg";
+                if (args == 31) bg = url2 + "Shower2.jpg";
+                if (args == 32) bg = url1 + "/C008_DramaClass/Theater/Background.jpg";
+                if (args == 33) bg = url3 + "Screen/Character/Picture/Background/MiaBeach1.jpg";
+                if (args == 34) bg = url3 + "Screen/Character/Picture/Background/TeacherBeach2.jpg";
+                if (args == 35) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseInside.jpg";
+                if (args == 36) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseOutside.jpg";
+                if (args == 37) bg = url3 + "Image/Cheat/Bullseye.png";
+                if (args == 38) bg = url3 + "Image/Background/TeacherClassStandingAlone.jpg";
+                if (args == 39) bg = url3 + "Image/Background/TeacherClassStandingAloneCuffed.jpg";
+                if (args == 40) bg = url3 + "Image/Background/TeacherCollegeSingle.jpg";
+                if (args == 41) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/TeacherLookOffice.jpg";
+                if ((args > 0) && (args < 42)) ChatAdminRoomCustomizationCommand("Image", bg);
+            }
         }
     }])
 
@@ -11419,80 +11484,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let ChatCreateBackgroundSelect = bg;
                     updateBackground(bg);
                 }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'bg3',
-        Description: "(number): uses a Bondage College or Bondage Teacher background as custom background.",
-        Action: (args) => {
-            let BCver = GameVersion;
-            if (BCver.includes("Beta")) {
-                let beta1 = BCver.slice(0, 4);
-                let beta2 = beta1.slice(-3);
-                let beta3 = beta2 - 1;
-                BCver = "R" + beta3;
-            }
-            if (args === "") {
-                let msg = "The bg3 command must be followed by a number. List of Bondage College backgrounds:\n" +
-                    "BONDAGE COLLEGE\n" +
-                    "1 Art Class - 2, 3 Class - 4 Club - 5 College\n" +
-                    "6 Dorm - 7 Dressing Room - 8 Gym Class\n" +
-                    "9 to 12 Isolation Room - 13 to 16 Kinbaku Club\n" +
-                    "17 to 26 Library - 27, 28 Lockers\n" +
-                    "29 Running Track - 30, 31 Showers - 32 Theater\n" +
-                    "BONDAGE TEACHER\n" +
-                    "33, 34 Beach - 35, 36 Briefcase - 37 Bullseye\n" +
-                    "38, 39 Class - 40 College - 41 Office";
-                infomsg(msg);
-            } else {
-                let bg = "";
-                let url1 = "https://www.bondage-europe.com/" + BCver;
-                let url2 = "https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/";
-                let url3 = "https://gitgud.io/BondageProjects/bondage-teacher/-/raw/master/";
-                if (args == 1) bg = url1 + "/C004_ArtClass/Intro/Background.jpg";
-                if (args == 2) bg = url1 + "/C001_BeforeClass/Intro/Background2.jpg";
-                if (args == 3) bg = url1 + "/C999_Common/Quiz/Backgrounds/Classroom.jpg";
-                if (args == 4) bg = url1 + "/C013_BondageClub/Intro/Background.jpg";
-                if (args == 5) bg = url1 + "/C000_Intro/Intro/Background.jpg";
-                if (args == 6) bg = url1 + "/C012_AfterClass/Intro/Background.jpg";
-                if (args == 7) bg = url1 + "/C008_DramaClass/DressingRoom/Background.jpg";
-                if (args == 8) bg = url1 + "/C005_GymClass/Intro/Background.jpg";
-                if (args == 9) bg = url1 + "/C006_Isolation/Intro/Background.jpg";
-                if (args == 10) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_0.jpg";
-                if (args == 11) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_1.jpg";
-                if (args == 12) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_2.jpg";
-                if (args == 13) bg = url1 + "/C101_KinbakuClub/ClubRoom1/ClubRoom1Arrows.jpg";
-                if (args == 14) bg = url1 + "/C101_KinbakuClub/ClubRoom2/ClubRoom2Arrows.jpg";
-                if (args == 15) bg = url1 + "/C101_KinbakuClub/ClubRoom3/ClubRoom3Arrows.jpg";
-                if (args == 16) bg = url1 + "/C101_KinbakuClub/ClubRoom4/ClubRoom4.jpg";
-                if (args == 17) bg = url1 + "/C009_Library/Library/001.jpg";
-                if (args == 18) bg = url1 + "/C009_Library/Library/002.jpg";
-                if (args == 19) bg = url1 + "/C009_Library/Library/003.jpg";
-                if (args == 20) bg = url1 + "/C009_Library/Library/004.jpg";
-                if (args == 21) bg = url1 + "/C009_Library/Library/005.jpg";
-                if (args == 22) bg = url1 + "/C009_Library/Library/006.jpg";
-                if (args == 23) bg = url1 + "/C009_Library/Library/007.jpg";
-                if (args == 24) bg = url1 + "/C009_Library/Library/008.jpg";
-                if (args == 25) bg = url1 + "/C009_Library/Library/009.jpg";
-                if (args == 26) bg = url1 + "/C009_Library/Library/010.jpg";
-                if (args == 27) bg = url1 + "/C010_Revenge/Intro/BackgroundAmandaSarah.jpg";
-                if (args == 28) bg = url1 + "/C010_Revenge/Intro/BackgroundSidneyJennifer.jpg";
-                if (args == 29) bg = url1 + "/C999_Common/Fights/Backgrounds/RunningTrack.jpg";
-                if (args == 30) bg = url2 + "Shower1.jpg";
-                if (args == 31) bg = url2 + "Shower2.jpg";
-                if (args == 32) bg = url1 + "/C008_DramaClass/Theater/Background.jpg";
-                if (args == 33) bg = url3 + "Screen/Character/Picture/Background/MiaBeach1.jpg";
-                if (args == 34) bg = url3 + "Screen/Character/Picture/Background/TeacherBeach2.jpg";
-                if (args == 35) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseInside.jpg";
-                if (args == 36) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseOutside.jpg";
-                if (args == 37) bg = url3 + "Image/Cheat/Bullseye.png";
-                if (args == 38) bg = url3 + "Image/Background/TeacherClassStandingAlone.jpg";
-                if (args == 39) bg = url3 + "Image/Background/TeacherClassStandingAloneCuffed.jpg";
-                if (args == 40) bg = url3 + "Image/Background/TeacherCollegeSingle.jpg";
-                if (args == 41) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/TeacherLookOffice.jpg";
-                if ((args > 0) && (args < 42)) ChatAdminRoomCustomizationCommand("Image", bg);
             }
         }
     }])
@@ -16039,9 +16030,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "admin") {
                 let msg = "Admin commands\n" +
                     "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
-                    "<b>/bg1</b> = adds hidden backgrounds to the selection screen.\n" +
-                    "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.\n" +
-                    "<b>/bg3</b> (number) = uses a Bondage College background as custom background. /bg3 to get the list.";
+                    "<b>/bg1</b> (number) = uses a Bondage College background as custom background. /bg1 to get the list.\n" +
+                    "<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.";
                 infomsg(msg);
             }
             if (args === "bondage") {
