@@ -9064,6 +9064,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Player.RestrictionSettings.BypassNPCPunishments = true;
         }
         UBCrpsk();
+		morebg();
     }
 
     //Room Connections
@@ -11281,11 +11282,75 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     CommandCombine([{
         Tag: 'bg1',
-        Description: ": añade fondos ocultos a la pantalla de selección",
-        Action: () => {
-            morebg();
-            let msg = "Ahora puedes usar más fondos estándar. Además, si usas BCX, los fondos añadidos y ocultos por este mod ahora son directamente visibles.";
-            infomsg(msg);
+        Description: "(número): utiliza un fondo de Bondage College o Bondage Teacher como fondo personalizado.",
+        Action: (args) => {
+            let BCver = GameVersion;
+            if (BCver.includes("Beta")) {
+                let beta1 = BCver.slice(0, 4);
+                let beta2 = beta1.slice(-3);
+                let beta3 = beta2 - 1;
+                BCver = "R" + beta3;
+            }
+            if (args === "") {
+                let msg = "El comando bg1 debe ir seguido de un número. Lista de fondos disponibles:\n" +
+                    "BONDAGE COLLEGE\n" +
+                    "1 Clase de Arte - 2, 3 Clase - 4 Club - 5 Universidad\n" +
+                    "6 Dormitorio - 7 Vestidor - 8 Clase de Gimnasia\n" +
+                    "9 al 12 Sala de Aislamiento - 13 al 16 Club Kinbaku\n" +
+                    "17 al 26 Biblioteca - 27, 28 Casilleros\n" +
+                    "29 Pista de Atletismo - 30, 31 Duchas - 32 Teatro\n" +
+                    "BONDAGE TEACHER\n" +
+                    "33, 34 Playa - 35, 36 Maletín - 37 Diana\n" +
+                    "38, 39 Clase - 40 Universidad - 41 Oficina";
+                infomsg(msg);
+            } else {
+                let bg = "";
+                let url1 = "https://www.bondage-europe.com/" + BCver;
+                let url2 = "https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/";
+                let url3 = "https://gitgud.io/BondageProjects/bondage-teacher/-/raw/master/";
+                if (args == 1) bg = url1 + "/C004_ArtClass/Intro/Background.jpg";
+                if (args == 2) bg = url1 + "/C001_BeforeClass/Intro/Background2.jpg";
+                if (args == 3) bg = url1 + "/C999_Common/Quiz/Backgrounds/Classroom.jpg";
+                if (args == 4) bg = url1 + "/C013_BondageClub/Intro/Background.jpg";
+                if (args == 5) bg = url1 + "/C000_Intro/Intro/Background.jpg";
+                if (args == 6) bg = url1 + "/C012_AfterClass/Intro/Background.jpg";
+                if (args == 7) bg = url1 + "/C008_DramaClass/DressingRoom/Background.jpg";
+                if (args == 8) bg = url1 + "/C005_GymClass/Intro/Background.jpg";
+                if (args == 9) bg = url1 + "/C006_Isolation/Intro/Background.jpg";
+                if (args == 10) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_0.jpg";
+                if (args == 11) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_1.jpg";
+                if (args == 12) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_2.jpg";
+                if (args == 13) bg = url1 + "/C101_KinbakuClub/ClubRoom1/ClubRoom1Arrows.jpg";
+                if (args == 14) bg = url1 + "/C101_KinbakuClub/ClubRoom2/ClubRoom2Arrows.jpg";
+                if (args == 15) bg = url1 + "/C101_KinbakuClub/ClubRoom3/ClubRoom3Arrows.jpg";
+                if (args == 16) bg = url1 + "/C101_KinbakuClub/ClubRoom4/ClubRoom4.jpg";
+                if (args == 17) bg = url1 + "/C009_Library/Library/001.jpg";
+                if (args == 18) bg = url1 + "/C009_Library/Library/002.jpg";
+                if (args == 19) bg = url1 + "/C009_Library/Library/003.jpg";
+                if (args == 20) bg = url1 + "/C009_Library/Library/004.jpg";
+                if (args == 21) bg = url1 + "/C009_Library/Library/005.jpg";
+                if (args == 22) bg = url1 + "/C009_Library/Library/006.jpg";
+                if (args == 23) bg = url1 + "/C009_Library/Library/007.jpg";
+                if (args == 24) bg = url1 + "/C009_Library/Library/008.jpg";
+                if (args == 25) bg = url1 + "/C009_Library/Library/009.jpg";
+                if (args == 26) bg = url1 + "/C009_Library/Library/010.jpg";
+                if (args == 27) bg = url1 + "/C010_Revenge/Intro/BackgroundAmandaSarah.jpg";
+                if (args == 28) bg = url1 + "/C010_Revenge/Intro/BackgroundSidneyJennifer.jpg";
+                if (args == 29) bg = url1 + "/C999_Common/Fights/Backgrounds/RunningTrack.jpg";
+                if (args == 30) bg = url2 + "Shower1.jpg";
+                if (args == 31) bg = url2 + "Shower2.jpg";
+                if (args == 32) bg = url1 + "/C008_DramaClass/Theater/Background.jpg";
+                if (args == 33) bg = url3 + "Screen/Character/Picture/Background/MiaBeach1.jpg";
+                if (args == 34) bg = url3 + "Screen/Character/Picture/Background/TeacherBeach2.jpg";
+                if (args == 35) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseInside.jpg";
+                if (args == 36) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseOutside.jpg";
+                if (args == 37) bg = url3 + "Image/Cheat/Bullseye.png";
+                if (args == 38) bg = url3 + "Image/Background/TeacherClassStandingAlone.jpg";
+                if (args == 39) bg = url3 + "Image/Background/TeacherClassStandingAloneCuffed.jpg";
+                if (args == 40) bg = url3 + "Image/Background/TeacherCollegeSingle.jpg";
+                if (args == 41) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/TeacherLookOffice.jpg";
+                if ((args > 0) && (args < 42)) ChatAdminRoomCustomizationCommand("Image", bg);
+            }
         }
     }])
 
@@ -11419,80 +11484,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let ChatCreateBackgroundSelect = bg;
                     updateBackground(bg);
                 }
-            }
-        }
-    }])
-
-    CommandCombine([{
-        Tag: 'bg3',
-        Description: "(número): utiliza un fondo de Bondage College o Bondage Teacher como fondo personalizado.",
-        Action: (args) => {
-            let BCver = GameVersion;
-            if (BCver.includes("Beta")) {
-                let beta1 = BCver.slice(0, 4);
-                let beta2 = beta1.slice(-3);
-                let beta3 = beta2 - 1;
-                BCver = "R" + beta3;
-            }
-            if (args === "") {
-                let msg = "El comando bg3 debe ir seguido de un número. Lista de fondos de Bondage College:\n" +
-                    "BONDAGE COLLEGE\n" +
-                    "1 Clase de Arte - 2, 3 Clase - 4 Club - 5 Universidad\n" +
-                    "6 Dormitorio - 7 Vestidor - 8 Clase de Gimnasia\n" +
-                    "9 al 12 Sala de Aislamiento - 13 al 16 Club Kinbaku\n" +
-                    "17 al 26 Biblioteca - 27, 28 Casilleros\n" +
-                    "29 Pista de Atletismo - 30, 31 Duchas - 32 Teatro\n" +
-                    "BONDAGE TEACHER\n" +
-                    "33, 34 Playa - 35, 36 Maletín - 37 Diana\n" +
-                    "38, 39 Clase - 40 Universidad - 41 Oficina";
-                infomsg(msg);
-            } else {
-                let bg = "";
-                let url1 = "https://www.bondage-europe.com/" + BCver;
-                let url2 = "https://gitgud.io/BondageProjects/Bondage-College/-/raw/master/Backgrounds/";
-                let url3 = "https://gitgud.io/BondageProjects/bondage-teacher/-/raw/master/";
-                if (args == 1) bg = url1 + "/C004_ArtClass/Intro/Background.jpg";
-                if (args == 2) bg = url1 + "/C001_BeforeClass/Intro/Background2.jpg";
-                if (args == 3) bg = url1 + "/C999_Common/Quiz/Backgrounds/Classroom.jpg";
-                if (args == 4) bg = url1 + "/C013_BondageClub/Intro/Background.jpg";
-                if (args == 5) bg = url1 + "/C000_Intro/Intro/Background.jpg";
-                if (args == 6) bg = url1 + "/C012_AfterClass/Intro/Background.jpg";
-                if (args == 7) bg = url1 + "/C008_DramaClass/DressingRoom/Background.jpg";
-                if (args == 8) bg = url1 + "/C005_GymClass/Intro/Background.jpg";
-                if (args == 9) bg = url1 + "/C006_Isolation/Intro/Background.jpg";
-                if (args == 10) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_0.jpg";
-                if (args == 11) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_1.jpg";
-                if (args == 12) bg = url1 + "/C006_Isolation/IsolationRoom/C006_CutRope_3_2.jpg";
-                if (args == 13) bg = url1 + "/C101_KinbakuClub/ClubRoom1/ClubRoom1Arrows.jpg";
-                if (args == 14) bg = url1 + "/C101_KinbakuClub/ClubRoom2/ClubRoom2Arrows.jpg";
-                if (args == 15) bg = url1 + "/C101_KinbakuClub/ClubRoom3/ClubRoom3Arrows.jpg";
-                if (args == 16) bg = url1 + "/C101_KinbakuClub/ClubRoom4/ClubRoom4.jpg";
-                if (args == 17) bg = url1 + "/C009_Library/Library/001.jpg";
-                if (args == 18) bg = url1 + "/C009_Library/Library/002.jpg";
-                if (args == 19) bg = url1 + "/C009_Library/Library/003.jpg";
-                if (args == 20) bg = url1 + "/C009_Library/Library/004.jpg";
-                if (args == 21) bg = url1 + "/C009_Library/Library/005.jpg";
-                if (args == 22) bg = url1 + "/C009_Library/Library/006.jpg";
-                if (args == 23) bg = url1 + "/C009_Library/Library/007.jpg";
-                if (args == 24) bg = url1 + "/C009_Library/Library/008.jpg";
-                if (args == 25) bg = url1 + "/C009_Library/Library/009.jpg";
-                if (args == 26) bg = url1 + "/C009_Library/Library/010.jpg";
-                if (args == 27) bg = url1 + "/C010_Revenge/Intro/BackgroundAmandaSarah.jpg";
-                if (args == 28) bg = url1 + "/C010_Revenge/Intro/BackgroundSidneyJennifer.jpg";
-                if (args == 29) bg = url1 + "/C999_Common/Fights/Backgrounds/RunningTrack.jpg";
-                if (args == 30) bg = url2 + "Shower1.jpg";
-                if (args == 31) bg = url2 + "Shower2.jpg";
-                if (args == 32) bg = url1 + "/C008_DramaClass/Theater/Background.jpg";
-                if (args == 33) bg = url3 + "Screen/Character/Picture/Background/MiaBeach1.jpg";
-                if (args == 34) bg = url3 + "Screen/Character/Picture/Background/TeacherBeach2.jpg";
-                if (args == 35) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseInside.jpg";
-                if (args == 36) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/BriefcaseOutside.jpg";
-                if (args == 37) bg = url3 + "Image/Cheat/Bullseye.png";
-                if (args == 38) bg = url3 + "Image/Background/TeacherClassStandingAlone.jpg";
-                if (args == 39) bg = url3 + "Image/Background/TeacherClassStandingAloneCuffed.jpg";
-                if (args == 40) bg = url3 + "Image/Background/TeacherCollegeSingle.jpg";
-                if (args == 41) bg = url3 + "Screen/Intro/FirstBossMeeting/Background/TeacherLookOffice.jpg";
-                if ((args > 0) && (args < 42)) ChatAdminRoomCustomizationCommand("Image", bg);
             }
         }
     }])
@@ -16028,11 +16019,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "admin") {
-                let msg = "Comandos de Admin\n" +
+                let msg = "Comandos de Admin\\n" +
                     "<b>/autokick</b> = activa/desactiva la expulsión automática para cuentas de 0 días.\n" +
-                    "<b>/bg1</b> = añade fondos ocultos a la pantalla de selección.\n" +
-                    "<b>/bg2</b> (número) = cambia el fondo de la sala. /bg2 para ver la lista.\n" +
-                    "<b>/bg3</b> (número) = utiliza un fondo personalizado. /bg3 para ver la lista.";
+                    "<b>/bg1</b> (número) = utiliza un fondo personalizado. /bg1 para ver la lista.\n" +
+                    "<b>/bg2</b> (número) = cambia el fondo de la sala. /bg2 para ver la lista.";
                 infomsg(msg);
             }
             if (args === "bondage") {
