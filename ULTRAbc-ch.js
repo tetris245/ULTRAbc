@@ -3122,8 +3122,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAAsylumMeetingClubCardStart();
     ULTRACafeClubCardStart();
     ULTRAChatAdminClick();
-    ULTRAChatAdminRun();
-    ULTRAChatRoomClick();
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
@@ -3293,44 +3291,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    function ULTRAChatAdminClick() {
-        modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
-            if (ChatAdminCanEdit()) {
-                if (MouseIn(1230, 450, 60, 60)) {
-                    if ((asylumlimit == true) && (ChatSearchSpace == "Asylum")) {
-                        let AsylumList = BackgroundsGenerateList([BackgroundsTagAsylum]);
-                        let listbg = AsylumList.length;
-                        let Roll = Math.floor(Math.random() * listbg);
-                        if (Roll == 0) Roll = 1;
-                        let name = AsylumList[Roll - 1].Name;
-                        ChatAdminData.Background = ChatAdminBackgroundList[Roll];
-                    } else {
-                        let listbg = BackgroundsList.length;
-                        let Roll = Math.floor(Math.random() * listbg);
-                        if (Roll == 0) Roll = 1;
-                        let name = BackgroundsList[Roll - 1].Name;
-                        ChatAdminData.Background = ChatAdminBackgroundList[Roll];
-                    }
-                    return;
+    modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
+        if (ChatAdminCanEdit()) {
+            if (MouseIn(1230, 450, 60, 60)) {
+                if ((asylumlimit == true) && (ChatSearchSpace == "Asylum")) {
+                    let AsylumList = BackgroundsGenerateList([BackgroundsTagAsylum]);
+                    let listbg = AsylumList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = AsylumList[Roll - 1].Name;
+                    ChatAdminData.Background = ChatAdminBackgroundList[Roll];
+                } else {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = BackgroundsList[Roll - 1].Name;
+                    ChatAdminData.Background = ChatAdminBackgroundList[Roll];
                 }
+                return;
             }
-            next(args);
-        });
-    }
+        }
+        return next(args);
+    });
 
-    async function ULTRAChatAdminRun() {
-        modApi.hookFunction('ChatAdminRun', 4, (args, next) => {
-            TintsEffect();
-            ChatAdminGameList = ["", "ClubCard", "LARP", "MagicBattle", "GGTS", "Prison"];
-            if (ChatAdminCanEdit()) {
-                DrawButton(1230, 450, 60, 60, "", "White", "", "随机背景");
-            } else {
-                DrawButton(1230, 450, 60, 60, "", "Gray", "", "随机背景");
-            }
-            DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
-            next(args);
-        });
-    }
+    modApi.hookFunction('ChatAdminRun', 4, async (args, next) => {
+        TintsEffect();
+        ChatAdminGameList = ["", "ClubCard", "LARP", "MagicBattle", "GGTS", "Prison"];
+        if (ChatAdminCanEdit()) {
+            DrawButton(1230, 450, 60, 60, "", "White", "", "随机背景");
+        } else {
+            DrawButton(1230, 450, 60, 60, "", "Gray", "", "随机背景");
+        }
+        DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
+        return next(args);
+    });
 
     function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
