@@ -3118,10 +3118,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomDrawArousalOverlay(); 
 	ULTRAChatSearchJoin();
 
-    ULTRAAsylumEntranceStartChat();
     ULTRAAsylumMeetingClubCardStart();
     ULTRACafeClubCardStart();
-    ULTRAChatRoomClick();
     ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
@@ -3280,16 +3278,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    async function ULTRAAsylumEntranceStartChat() {
-        modApi.hookFunction('AsylumEntranceStartChat', 4, (args, next) => {
-            if (asylumlimit == true) {
-                ChatRoomStart("Asylum", "", "AsylumEntrance", "Room", "AsylumEntrance", [BackgroundsTagAsylum]);
-            } else {
-                ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-            }
+    modApi.hookFunction('AsylumEntranceStartChat', 4, (args, next) => {
+        if (asylumlimit == true) {
+            ChatRoomStart("Asylum", "", "AsylumEntrance", "Room", "AsylumEntrance", [BackgroundsTagAsylum]);
+        } else {
+            ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
             return;
-        });
-    }
+        }
+        return next (args);
+    });
 
 	modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
         if (ChatAdminCanEdit()) {
@@ -3324,55 +3321,53 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    function ULTRAChatRoomClick() {
-        modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
-            if (extbuttons == true) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
-                    ExtClick();
-                    return;
-                }
+	modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
+        if (extbuttons == true) {
+            if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
+                ExtClick();
+                return;
             }
-            if ((sosbuttons == true) && (noescape == false)) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 315) && (MouseY < 360)) {
-                    let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
-                    if (Totalrelease != undefined) {
-                        if (Totalrelease != "") {
-                            if (Totalrelease.startsWith("\u0027")) {
-                                msg = tmpname + Totalrelease;
-                            } else {
-                                msg = tmpname + ' '.repeat(1) + Totalrelease;
-                            }
+        }
+        if ((sosbuttons == true) && (noescape == false)) {
+            if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 315) && (MouseY < 360)) {
+                let msg = "Magical lasers make disappear all bindings and toys on " + tmpname + "'s body.";
+                if (Totalrelease != undefined) {
+                    if (Totalrelease != "") {
+                        if (Totalrelease.startsWith("\u0027")) {
+                            msg = tmpname + Totalrelease;
+                        } else {
+                            msg = tmpname + ' '.repeat(1) + Totalrelease;
                         }
                     }
-                    if (Totalrelease != "no message") publicmsg(msg);
-                    SosClick();
-                    return;
                 }
+                if (Totalrelease != "no message") publicmsg(msg);
+                SosClick();
+                return;
             }
-            if ((outbuttons == true) && (noescape == false)) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) {
-                    if (slowleave == true) {
-                        let msg = "" + tmpname + " slowly heads for the door.";
-                        publicmsg(msg);
-                        setTimeout(function() {
-                            OutChat();
-                        }, 15000);
-                        return;
-                    } else {
+        }
+        if ((outbuttons == true) && (noescape == false)) {
+            if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) {
+                if (slowleave == true) {
+                    let msg = "" + tmpname + " slowly heads for the door.";
+                    publicmsg(msg);
+                    setTimeout(function() {
                         OutChat();
-                    }
+                    }, 15000);
+                } else {
+                    OutChat();
                 }
+                return;
             }
-            if (rglbuttons == true) {
-                if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 405) && (MouseY < 450)) {
-                    RealGarblingLevel();
-                    return;
-                }
+        }
+        if (rglbuttons == true) {
+            if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 405) && (MouseY < 450)) {
+                RealGarblingLevel();
+                return;
             }
-            next(args);
-        });
-    }
-
+        }
+        return next(args);
+    });
+ 
 	modApi.hookFunction('ChatRoomKeyDown', 4, (args, next) => {
         const ret = next(args);
         if ((hotkeys == true) && (noescape == false)) {
