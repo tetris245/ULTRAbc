@@ -3314,15 +3314,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('ChatAdminRun', 4, async (args, next) => {
+	modApi.hookFunction('ChatAdminRun', 4, async (args, next) => {
         TintsEffect();
         ChatAdminGameList = ["", "ClubCard", "LARP", "MagicBattle", "GGTS", "Prison"];
         if (ChatAdminCanEdit()) {
             DrawButton(1230, 450, 60, 60, "", "White", "", "随机背景");
-        } else {
-            DrawButton(1230, 450, 60, 60, "", "Gray", "", "随机背景");
+            DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
         }
-        DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
         return next(args);
     });
 
