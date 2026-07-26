@@ -3319,13 +3319,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatAdminGameList = ["", "ClubCard", "LARP", "MagicBattle", "GGTS", "Prison"];
         if (ChatAdminCanEdit()) {
             DrawButton(1230, 450, 60, 60, "", "White", "", "Random background");
-        } else {
-            DrawButton(1230, 450, 60, 60, "", "Gray", "", "Random background");
+            DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
         }
-        DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
         return next(args);
     });
- 
+
     function ULTRAChatRoomClick() {
         modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
             if (extbuttons == true) {
