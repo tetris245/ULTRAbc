@@ -3916,7 +3916,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         this.AutoJoinOn = true;
                         setTimeout(function() {
                             AutoJoin()
-                        }, 1300);
+                        }, 3600);
                         ChatSearchLastQueryJoinTime = CommonTime();
                         ChatSearchLastQueryJoin = RoomName;
                         ServerSend("ChatRoomJoin", {
