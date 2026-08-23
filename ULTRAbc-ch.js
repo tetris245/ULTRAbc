@@ -3120,7 +3120,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	
     ULTRAAsylumMeetingClubCardStart();
     ULTRACafeClubCardStart();
-    ULTRAChatRoomSafewordRevert();
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
     ULTRAClubCardBuilderClick();
@@ -3487,35 +3486,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
           
-    function ULTRAChatRoomSafewordRevert() {
-        modApi.hookFunction('ChatRoomSafewordRevert', 4, (args, next) => {
-            if (ChatSearchSafewordAppearance != null) {
-                Player.Appearance = ChatSearchSafewordAppearance.slice(0);
-                Player.ActivePoseMapping = ChatSearchSafewordPose;
-                CharacterRefresh(Player);
-                ChatRoomCharacterUpdate(Player);
-                if (silsafe == false) {
-                    const Dictionary = new DictionaryBuilder()
-                        .sourceCharacter(Player)
-                        .build();
-                    ServerSend("ChatRoomChat", {
-                        Content: "ActionActivateSafewordRevert",
-                        Type: "Action",
-                        Dictionary
-                    });
-                }
-                if ((Player.AllowedInteractions < AllowedInteractions.OwnerLoversWhitelistOnly) && (fixperm == false)) {
-                    Player.AllowedInteractions = AllowedInteractions.OwnerLoversWhitelistOnly;
-                    ServerAccountUpdate.QueueData({
-                        AllowedInteractions: Player.AllowedInteractions,
-                        ItemPermission: Player.AllowedInteractions
-                    }, true);
-                    setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
-                }
-            }
-            return;
-        });
-    }
+    modApi.patchFunction(
+        "ChatRoomSafewordRelease", {
+            'ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRelease", Type: "Action", Dictionary });':
+             'if (Player.UBC.ubcSettings.silsafe == false) ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRelease", Type: "Action", Dictionary });',
+        }
+    );
+
+    modApi.patchFunction(
+        "ChatRoomSafewordRevert", {
+            'ChatRoomCharacterUpdate(Player);':
+            'ChatRoomCharacterUpdate(Player); if (Player.UBC.ubcSettings.silsafe == false) {',
+            'ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRevert", Type: "Action", Dictionary });':
+            'ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRevert", Type: "Action", Dictionary }); }',
+            'if (Player.AllowedInteractions < AllowedInteractions.OwnerLoversWhitelistOnly) {':
+            'if ((Player.AllowedInteractions < AllowedInteractions.OwnerLoversWhitelistOnly) && (fixperm == false)) {',
+        }
+    );
 
     async function ULTRAChatRoomSendChat() {
         modApi.hookFunction('ChatRoomSendChat', 4, (args, next) => {
