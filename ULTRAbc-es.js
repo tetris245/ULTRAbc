@@ -16059,6 +16059,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/naked</b> (objetivo) = quita la ropa.\n" +
                     "<b>/outfit</b> (opciones) = restaura/guarda/carga atuendos (incluyendo accesorios). *\n" +
                     "<b>/underwear</b> (objetivo) = cambia la ropa interior.\n" +
+					"<b>/wexport</b> (objetivo) = exporta completamente vestimenta en formato UBC/BCG.\n" +
+                    "<b>/wimport1</b> (objetivo) = importa ropa + ataduras en formato UBC/BCG.\n" +
+                    "<b>/wimport2</b> (objetivo) = importa ropa + ataduras + cosplay en formato UBC/BCG.\n" +
+                    "<b>/wimport3</b> (objetivo) = importa completamente vestimenta en formato UBC/BCG.\n" +
                     "<b>/wrobe</b> (objetivo) = abre completamente el guardarropa del objetivo.";
                 infomsg(msg);
             }
@@ -16793,6 +16797,161 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 ChatRoomSetTarget(-1);
             }
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'wexport',
+        Description: "(objetivo): exporta completamente vestimenta en formato UBC/BCG.",
+        Action: (args) => {
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
+            if (!target) return;
+            if (target != Player) {
+                if (target.AllowItem == false) return;
+                if (target.OnlineSharedSettings.UBC == undefined) return;
+                tgpname = getNickname(target);
+                if (IsTargetProtected(target)) {
+                    let msg = umsg1 + tgpname + umsg2;
+                    infomsg(msg);
+                    return;
+                }
+            }
+            let appall = new Array();
+            target.Appearance.forEach(item => {
+                let app = new Array();
+                app.push(item.Asset.Name);
+                app.push(item.Asset.Group.Name);
+                app.push(item.Color);
+                app.push(item.Difficulty);
+                app.push(item.Craft);
+                app.push(false);
+                //Do not remove this line. It is for the compatibility with bcg.
+                appall.push(app);
+            });
+            ChatRoomSendLocal(
+                "<p style='background-color:#5fbd7a'>ULTRAbc: awcode:</p>\n" +
+                    btoa(encodeURI(JSON.stringify(appall)))
+            );
+        }
+    }])
+
+     CommandCombine([{
+        Tag: 'wimport1',
+        Description: "(objetivo): importa ropa + ataduras en formato UBC/BCG..",
+        Action: (args) => {
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
+            if (!target) return;
+            if (target != Player) {
+                if (target.AllowItem == false) return;
+                if (target.OnlineSharedSettings.UBC == undefined) return;
+                tgpname = getNickname(target);
+                if (IsTargetProtected(target)) {
+                    let msg = umsg1 + tgpname + umsg2;
+                    infomsg(msg);
+                    return;
+                }
+            }
+            let appinp = prompt('Por favor, introduce el awcode (Compatible con BCG).', '');
+            C = target;
+            for (let A = C.Appearance.length - 1; A >= 0; A--)
+                if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
+                    if (!(echolevel2.includes(C.Appearance[A].Asset.Group.Name))) {
+                        InventoryRemove(C, C.Appearance[A].Asset.Group.Name);
+                    }
+                }
+            CharacterReleaseNoLock(C);
+            let appobj = JSON.parse(decodeURI(atob(appinp)));
+            appobj.forEach(itemstr => {
+                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                        InventoryRemove(C, itemstr[1]);
+                        InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                    }
+                } else if (!(echolevel2.includes(itemstr[1]))) {
+                    InventoryRemove(C, itemstr[1]);
+                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                }
+            });
+            ChatRoomCharacterUpdate(C);
+            ChatRoomSetTarget(-1);
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'wimport2',
+        Description: "(objetivo): importa ropa + ataduras + cosplay en formato UBC/BCG. .",
+        Action: (args) => {
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
+            if (!target) return;
+            if (target != Player) {
+                if (target.AllowItem == false) return;
+                if (target.OnlineSharedSettings.UBC == undefined) return;
+                tgpname = getNickname(target);
+                if (IsTargetProtected(target)) {
+                    let msg = umsg1 + tgpname + umsg2;
+                    infomsg(msg);
+                    return;
+                }
+            }
+            let appinp = prompt('Por favor, introduce el awcode (Compatible con BCG).', '');
+            C = target;
+            CharacterNaked(C);
+            CharacterReleaseNoLock(C);
+            let appobj = JSON.parse(decodeURI(atob(appinp)));
+            appobj.forEach(itemstr => {
+                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                        InventoryRemove(C, itemstr[1]);
+                         InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                    }
+                } else if (!(echolevel1.includes(itemstr[1]))) {
+                    InventoryRemove(C, itemstr[1]);
+                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                }
+            });
+            ChatRoomCharacterUpdate(C);
+            ChatRoomSetTarget(-1);
+        }
+    }])
+
+    CommandCombine([{
+        Tag: 'wimport3',
+        Description: "(objetivo): importa completamente vestimenta en formato UBC/BCG.",
+        Action: (args) => {
+            let target = Player;
+            if (args != "") target = TargetSearch(args);
+            if (!target) return;
+            if (target != Player) {
+                if (target.AllowItem == false) return;
+                if (target.OnlineSharedSettings.UBC == undefined) return;
+                tgpname = getNickname(target);
+                if (IsTargetProtected(target)) {
+                    let msg = umsg1 + tgpname + umsg2;
+                    infomsg(msg);
+                    return;
+                }
+            }
+            let appinp = prompt('Por favor, introduce el awcode (Compatible con BCG).', '');
+            C = target;
+            CharacterNaked(C);
+            CharacterReleaseNoLock(C);
+            let appobj = JSON.parse(decodeURI(atob(appinp)));
+            appobj.forEach(itemstr => {
+                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
+                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
+                        InventoryRemove(C, itemstr[1]);
+                        InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                    }
+                } else {
+                    InventoryRemove(C, itemstr[1]);
+                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                }
+            });
+            ChatRoomCharacterUpdate(C);
+            ChatRoomSetTarget(-1);
         }
     }])
 
