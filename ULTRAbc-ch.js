@@ -16088,10 +16088,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/naked</b> （目标）= 移除服装。\n" +
                     "<b>/outfit</b> （选项）= 恢复/保存/加载服装（包括束缚）。*\n" +
                     "<b>/underwear</b> （目标）= 更改内衣。\n" +
-					"<b>/wexport</b> = (目标) = fully exports outfit in UBC/BCG format.\n" +
-                    "<b>/wimport1</b> = (目标) = imports clothing + restraints in UBC/BCG format.\n" +
-                    "<b>/wimport2</b> = (目标) = imports clothing + restraints + cosplay in UBC/BCG format.\n" +
-                    "<b>/wimport3</b> = (目标) = fully imports outfit in UBC/BCG format.\n" +
+					"<b>/wexport</b> (目标) = fully exports outfit in UBC/BCG format.\n" +
+                    "<b>/wimport1</b> (目标) = imports clothing + restraints in UBC/BCG format.\n" +
+                    "<b>/wimport2</b> (目标) = imports clothing + restraints + cosplay in UBC/BCG format.\n" +
+                    "<b>/wimport3</b> (目标) = fully imports outfit in UBC/BCG format.\n" +
                     "<b>/wrobe</b> （目标）= 完全打开目标的衣柜。";
                 infomsg(msg);
             }
