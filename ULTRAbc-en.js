@@ -16068,10 +16068,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/naked</b> (target) = removes clothes.\n" +
                     "<b>/outfit</b> (options) = restores/saves/loads outfit (including restraints). *\n" +
                     "<b>/underwear</b> (target) = changes underwear.\n" +
-				    "<b>/wexport</b> = (target) = fully exports outfit in UBC/BCG format.\n" +
-                    "<b>/wimport1</b> = (target) imports clothing + restraints in UBC/BCG format.\n" +
-                    "<b>/wimport2</b> = (target) imports clothing + restraints + cosplay in UBC/BCG format.\n" +
-                    "<b>/wimport3</b> = (target) fully imports outfit in UBC/BCG format.\n" +
+				    "<b>/wexport</b> (target) = fully exports outfit in UBC/BCG format.\n" +
+                    "<b>/wimport1</b> (target) = imports clothing + restraints in UBC/BCG format.\n" +
+                    "<b>/wimport2</b> (target) = imports clothing + restraints + cosplay in UBC/BCG format.\n" +
+                    "<b>/wimport3</b> (target) = fully imports outfit in UBC/BCG format.\n" +
                     "<b>/wrobe</b> (target) = fully opens target wardrobe.";
                 infomsg(msg);
             }
