@@ -97,6 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
+* Removed all UBC buttons in Wardrobe (because they will be broken in BC RC132)
 * New commands submitted to the Uwall/Ulist limitations:
   - wexport (target) to fully export outfit in UBC/BCG format
   - wimport1 (target) to import clothing + restraints in UBC/BCG format
