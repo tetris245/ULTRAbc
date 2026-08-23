@@ -97,6 +97,11 @@ All else I might not have included.
 
 Changes for future version
 
+* New commands submitted to the Uwall/Ulist limitations:
+  - wexport (target) to fully export outfit in UBC/BCG format
+  - wimport1 (target) to import clothing + restraints in UBC/BCG format
+  - wimport2 (target) to import clothing + restraints + cosplay in UBC/BCG format
+  - wimport3 (target) to fully import outfit in UBC/BCG format
 * Added automatic addition of standard backgrounds and their correct alphabetic order when loading UBC (it replaces the old bg1 command)
 * Improved the delay for the repetition of AutoJoin attempt, that happens now at the end of the current toast
 * Renamed the bg3 command as bg1
