@@ -16834,7 +16834,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 appall.push(app);
             });
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: Appearance code:</p>\n" +
+                "<p style='background-color:#5fbd7a'>ULTRAbc: awcode:</p>\n" +
                     btoa(encodeURI(JSON.stringify(appall)))
             );
         }
