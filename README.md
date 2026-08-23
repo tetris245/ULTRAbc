@@ -97,7 +97,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Removed all UBC buttons in Wardrobe (because they will be broken in BC RC132)
 * New commands submitted to the Uwall/Ulist limitations:
   - wexport (target) to fully export outfit in UBC/BCG format
   - wimport1 (target) to import clothing + restraints in UBC/BCG format
@@ -106,6 +105,7 @@ Changes for future version
 * Added automatic addition of standard backgrounds and their correct alphabetic order when loading UBC (it replaces the old bg1 command)
 * Improved the delay for the repetition of AutoJoin attempt, that happens now at the end of the current toast
 * Renamed the bg3 command as bg1
+* Removed all UBC buttons in Wardrobe (because they will be broken in BC RC132)
 
 
 
