@@ -8821,8 +8821,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function UBCsettings() {
         Player.OnlineSharedSettings.UBC = UBCver;
-        Player.OnlineSharedSettings.cname = cname;
-        Player.OnlineSharedSettings.ctitle = ctitle;
+        if (Player.OnlineSharedSettings.cname == undefined) {
+            Player.OnlineSharedSettings.cname = cname;
+        } else {
+            cname = Player.OnlineSharedSettings.cname;
+            M_MOANER_saveControls();
+        }
+		if (Player.OnlineSharedSettings.ctitle == undefined) {
+            Player.OnlineSharedSettings.ctitle = ctitle;
+        } else {
+            ctitle = Player.OnlineSharedSettings.ctitle;
+            M_MOANER_saveControls();
+        }
         Player.OnlineSharedSettings.Inmap = false;
         if (Player.OnlineSharedSettings.Tplist == undefined) {
             Player.OnlineSharedSettings.Tplist = [];
