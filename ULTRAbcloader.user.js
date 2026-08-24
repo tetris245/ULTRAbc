@@ -6,6 +6,8 @@
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
 // @match https://www.bondageprojects.elementfx.com/*
+// @match https://bondageeurope.com/*
+// @match https://www.bondageeurope.com/*
 // @match https://bondage-europe.com/*
 // @match https://www.bondage-europe.com/*
 // @match https://bondage-asia.com/club/*
