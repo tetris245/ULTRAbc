@@ -17,6 +17,8 @@
     "activeTab"
   ],
   "host_permissions": [
+    "https://bondageeurope.com/*",
+    "https://www.bondageeurope.com/*",
     "https://bondage-europe.com/*",
     "https://www.bondage-europe.com/*",
     "http://bondageprojects.com/*",
@@ -33,7 +35,9 @@
     {
       "js": ["contentscript.js"],
       "matches": [
-        "https://bondage-europe.com/*",
+        "https://bondageeurope.com/*",
+        "https://www.bondageeurope.com/*",
+        "https://bondage-europe.com/*",  
         "https://www.bondage-europe.com/*",
         "http://bondageprojects.com/*",
         "https://bondageprojects.com/*",
@@ -51,8 +55,9 @@
     {
       "resources": ["ULTRAbc.js"],
       "matches": [
-        "https://bondage-europe.com/*",
-        "https://www.bondage-europe.com/*",
+        "https://bondageeurope.com/*",
+        "https://www.bondageeurope.com/*",
+        "https://bondage-europe.com/*",  
         "http://bondageprojects.com/*",
         "https://bondageprojects.com/*",
         "http://www.bondageprojects.com/*",
