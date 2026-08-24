@@ -154,6 +154,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let cextra = false;
     let cfame = 150;
     let cname = "";
+	let cowner1 = "";
+    let cowner2 = 0;
+    let cowner3 = 0;
     let csname = "Introduction";
     let ctitle = "";
     let dogsforbid = false;
@@ -591,6 +594,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cextra = false;
         cfame = 150;
         cname = "";
+		cowner1 = "";
+        cowner2 = 0;
+        cowner3 = 0;
         cskeys = false;
         ctitle = "";
         dogsforbid = false;
@@ -716,6 +722,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         cextra = data.cextra;
         cfame = data.cfame;
         cname = data.cname;
+		cowner1 = data.cowner1;
+        cowner2 = data.cowner2;
+        cowner3 = data.cowner3;
         cskeys = data.cskeys;
         ctitle = data.ctitle;
         dogsforbid = data.dogsforbid;
@@ -897,6 +906,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cextra": cextra,
             "cfame": cfame,
             "cname": cname,
+            "cowner1": cowner1,
+            "cowner2": cowner2,
+            "cowner3": cowner3,
             "csname": csname,
             "ctitle": ctitle,
             "frname": frname,
@@ -1058,6 +1070,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cextra == null || cextra == undefined) cextra = false;
                 if (cfame == null || cfame == undefined) cfame = 150;
                 if (cname == null || cname == undefined) cname = "";
+				if (cowner1 == null || cowner1 == undefined) cowner1 = "";
+                if (cowner2 == null || cowner2 == undefined) cowner2 = 0;
+                if (cowner3 == null || cowner2 == undefined) cowner3 = 0;
                 if (cskeys == null || cskeys == undefined) cskeys = false;
                 if (csname == null || csname == undefined) csname = "Introduction";
                 if (ctitle == null || ctitle == undefined) ctitle = "";
@@ -8194,6 +8209,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function InformationSheetDrawNPCOwnerAndTraits(C) {
         const spacing = 55;
         let currentY = 500;
+		if (C.OnlineSharedSettings != undefined) {
+            if (C.OnlineSharedSettings.cowner1 != undefined) {
+                if (C.OnlineSharedSettings.cowner1 != "") {
+                    DrawTextFit("Collared by " + C.OnlineSharedSettings.cowner1 + " (" + C.OnlineSharedSettings.cowner2 + ")", 550, currentY, 450, "Black", "Gray");
+                    currentY += spacing;
+                    DrawTextFit("for " + C.OnlineSharedSettings.cowner3 + " days", 550, currentY, 450, "Black", "Gray");
+                    const y = currentY;
+                    currentY += spacing;
+                    return currentY;
+                    return;
+                }
+            }
+        }
         if (!C.IsNpc()) return;
         if (!C.IsOwned()) {
             DrawText(`${TextGet("Owner")} ${TextGet("None")}`, 550, currentY, "Black", "Gray");
@@ -8275,6 +8303,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function InformationSheetDrawOwnerInfo(C, currentY) {
         const spacing = 55;
+		if (C.OnlineSharedSettings != undefined) {
+            if (C.OnlineSharedSettings.cowner1 != undefined) {
+                if (C.OnlineSharedSettings.cowner1 != "") {
+                   DrawTextFit("Collared by " + C.OnlineSharedSettings.cowner1 + " (" + C.OnlineSharedSettings.cowner2 + ")", 550, currentY, 450, "Black", "Gray");
+                    currentY += spacing;
+                    DrawTextFit("for " + C.OnlineSharedSettings.cowner3 + " days", 550, currentY, 450, "Black", "Gray");
+                    const y = currentY;
+                    currentY += spacing;
+                    return currentY;
+                    return;
+                }
+            }
+        }
         if (!C.IsOwned()) {
             DrawTextFit(TextGet("Unowned"), 550, currentY, 450, "Black", "Gray");
             currentY += spacing;
@@ -8822,19 +8863,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function UBCsettings() {
+		let mupdate = 0;
         Player.OnlineSharedSettings.UBC = UBCver;
         if (Player.OnlineSharedSettings.cname == undefined) {
             Player.OnlineSharedSettings.cname = cname;
         } else {
             cname = Player.OnlineSharedSettings.cname;
-            M_MOANER_saveControls();
+            mupdate = 1;
+        }
+		if (Player.OnlineSharedSettings.cowner1 == undefined) {
+            Player.OnlineSharedSettings.cowner1 = cowner1;
+        } else {
+            cowner1 = Player.OnlineSharedSettings.cowner1;
+            mupdate = 1;
+        }
+        if (Player.OnlineSharedSettings.cowner2 == undefined) {
+            Player.OnlineSharedSettings.cowner2 = cowner2;
+        } else {
+            cowner2 = Player.OnlineSharedSettings.cowner2;
+            mupdate = 1;
+        }
+        if (Player.OnlineSharedSettings.cowner3 == undefined) {
+            Player.OnlineSharedSettings.cowner3 = cowner3;
+        } else {
+            cowner3 = Player.OnlineSharedSettings.cowner3;
+            mupdate = 1;
         }
         if (Player.OnlineSharedSettings.ctitle == undefined) {
             Player.OnlineSharedSettings.ctitle = ctitle;
         } else {
             ctitle = Player.OnlineSharedSettings.ctitle;
-            M_MOANER_saveControls();
+            mupdate = 1;
         }
+		if (mupdate == 1) M_MOANER_saveControls();
         Player.OnlineSharedSettings.Inmap = false;
         if (Player.OnlineSharedSettings.Tplist == undefined) {
             Player.OnlineSharedSettings.Tplist = [];
@@ -11741,6 +11802,99 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 this.ColorTarget10 = undefined;
                 this.ColorTargetNameCustom = undefined;
             }
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'cowner',
+        Description: "(member number) (owning days) (owner name): sets a custom owner, that will be displayed in your profile.",
+        Action: (args, originalInput) => {
+            args = (args || "").trim();
+            originalInput = originalInput || "";
+            if (args === "") {
+                let msg = "The cowner command must be followed by the member number of the wished owner, the number of days corresponding to this owning, and the name of the custom owner.\n" +
+                    "This custom member can be any player of the game, even yourself or a sub that you own.\n" +
+                    "The number of owning days can't exceed the number of days you are in the game.\n" +
+                    "Maximum 20 characters for the name (spaces included)!\n" +
+                    "It will work only between UBC users and replace the official info in the profile.\n" +
+                    "Use None as name to go back to a profile without custom owner.";
+                infomsg(msg);
+                return;
+            }
+            const m = originalInput.match(/^\/?cowner\s+(\d+)\s+(\d+)\s+([\s\S]+)$/i);
+            let number, days, nameRaw;
+            if (m) {
+                number = parseInt(m[1], 10);
+                days = parseInt(m[2], 10);
+                nameRaw = m[3].trim();
+            } else {
+                const parts = args.split(/\s+/);
+                if (parts.length < 3) {
+                    infomsg("Usage: cowner <memberNumber> <days> <name> (name can contain spaces). Use 'None' as name to delete custom owner.");
+                    return;
+                }
+                number = parseInt(parts[0], 10);
+                days = parseInt(parts[1], 10);
+                nameRaw = parts.slice(2).join(' ').trim();
+            }
+            if (!Number.isInteger(number) || number <= 0) {
+                infomsg("Invalid member number. It must be a positive integer.");
+                return;
+            }
+            if (!Number.isInteger(days) || days <= 0) {
+                infomsg("Invalid days. It must be a positive integer.");
+                return;
+            }
+            let gamedays = CommonFormatDurationRange(CurrentTime, Player.Creation, {
+                showFull: true,
+                includeYears: false,
+                includeMonths: false,
+                includeDays: true
+            });
+            let match = gamedays && gamedays.match(/\d+/);
+            let gameDaysNumber = match ? parseInt(match[0], 10) : 0;
+            if (days > gameDaysNumber) {
+                infomsg("The number of owning days can't exceed the number of days you are in the game (" + gameDaysNumber + ").");
+                return;
+            }
+            const allowedNameRe = /^[\p{L}\p{N}\p{Zs}'-]+$/u;
+            if (!nameRaw || nameRaw.length === 0) {
+                infomsg("Name cannot be empty. Use 'None' to remove the custom owner.");
+                return;
+            }
+            if (nameRaw.length > 20) {
+                infomsg("Maximum 20 characters for the name (spaces included)!");
+                return;
+            }
+            const nameLower = nameRaw.toLowerCase();
+            let nameIsValid = false;
+            try {
+                nameIsValid = allowedNameRe.test(nameRaw) || (nameLower === "none");
+            } catch (e) {
+                nameIsValid = (/^[A-Za-z0-9 '\-]+$/).test(nameRaw) || (nameLower === "none");
+            }
+            if (!nameIsValid) {
+                infomsg("Name contains invalid characters. Allowed: letters, numbers, spaces, apostrophe (') and hyphen (-).");
+                return;
+            }
+            if (nameRaw === "None") {
+                cowner1 = "";
+                cowner2 = 0;
+                cowner3 = 0;
+                infomsg("Custom owner deleted");
+            } else {
+                cowner1 = nameRaw;
+                cowner2 = number;
+                cowner3 = days;
+                infomsg("Custom owner created or modified");
+            }
+            M_MOANER_saveControls();
+            Player.OnlineSharedSettings.cowner1 = cowner1;
+            Player.OnlineSharedSettings.cowner2 = cowner2;
+            Player.OnlineSharedSettings.cowner3 = cowner3;
+            ServerAccountUpdate.QueueData({
+                 OnlineSharedSettings: Player.OnlineSharedSettings
+            });      
         }
     }])
 
@@ -15871,6 +16025,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "character") {
                 let msg = "角色命令 - * = 使用时获取更多信息\n" +
                     "<b>/cname</b> (custom name) = creates a custom name. *\n" +
+					"<b>/cowner</b> (member number) (owning days) (owner name) = sets a custom owner. *\n" +
                     "<b>/ctitle</b> (custom title) = creates a custom title. *\n" +
                     "<b>/difficulty</b> （数字）= 更改游戏难度。*\n" +
                     "<b>/maxstatistics</b> = 给予最大统计值。\n" +
