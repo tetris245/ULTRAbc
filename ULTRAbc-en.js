@@ -11828,7 +11828,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             originalInput = originalInput || "";
             if (args === "") {
                 let msg = "The cowner command must be followed by the member number of the wished owner, the number of days corresponding to this owning, and the name of the custom owner.\n" +
-                    "This custom member can be any player of the game, even yourself or a sub that you own.\n" +
+                    "This custom owner can be any player of the game, even yourself or a sub that you own.\n" +
                     "The number of owning days can't exceed the number of days you are in the game.\n" +
                     "Maximum 20 characters for the name (spaces included)!\n" +
                     "It will work only between UBC users and replace the official info in the profile.\n" +
