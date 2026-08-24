@@ -102,18 +102,17 @@ Changes for future version
   - The number of owning days can't exceed the number of days you are in the game, and the maximum characters for the name is 20
   - It will work only between UBC users and replace the official name in the profile
   - To go back to a profile without custom name, use "None" as name (无 in Chinese version)
-* New commands submitted to the Uwall/Ulist limitations:
+* Added new commands submitted to the Uwall/Ulist limitations and removed all UBC buttons in Wardrobe (because they will be broken in BC RC132):
   - wexport (target) to fully export outfit in UBC/BCG format
   - wimport1 (target) to import clothing + restraints in UBC/BCG format
   - wimport2 (target) to import clothing + restraints + cosplay in UBC/BCG format
   - wimport3 (target) to fully import outfit in UBC/BCG format
-* Added automatic addition of standard backgrounds and their correct alphabetic order when loading UBC (it replaces the old bg1 command)
+* Added automatic addition of standard backgrounds and their correct alphabetic order when loading UBC, removed the old bg1 command and renamed the bg3 command as bg1
 * Added support for the new European server
 * Improved the delay for the repetition of AutoJoin attempt, that happens now at the end of the current toast
 * Improved the stability of the cname and ctitle parameters
 * Fixed the silent mode for the safeword (was not working when the release option was used)
-* Renamed the bg3 command as bg1
-* Removed all UBC buttons in Wardrobe (because they will be broken in BC RC132)
+
 
 
 
