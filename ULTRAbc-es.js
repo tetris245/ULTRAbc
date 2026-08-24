@@ -11822,17 +11822,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	CommandCombine([{
         Tag: 'cowner',
-        Description: "(member number) (owning days) (owner name): sets a custom owner, that will be displayed in your profile.",
+        Description: "(número de miembro) (días de propiedad) (nombre del propietario): establece un propietario personalizado que se mostrará en tu perfil.",
         Action: (args, originalInput) => {
             args = (args || "").trim();
             originalInput = originalInput || "";
             if (args === "") {
-                let msg = "The cowner command must be followed by the member number of the wished owner, the number of days corresponding to this owning, and the name of the custom owner.\n" +
-                    "This custom owner can be any player of the game, even yourself or a sub that you own.\n" +
-                    "The number of owning days can't exceed the number of days you are in the game.\n" +
-                    "Maximum 20 characters for the name (spaces included)!\n" +
-                    "It will work only between UBC users and replace the official info in the profile.\n" +
-                    "Use None as name to go back to a profile without custom owner.";
+                let msg = "El comando cowner debe ir seguido del número de miembro del propietario deseado, el número de días correspondientes a esta propiedad y el nombre del propietario personalizado.\n" +
+                    "Este propietario personalizado puede ser cualquier jugador del juego, incluso tú mismo o un sub que poseas.\n" +
+                    "El número de días de propiedad no puede exceder el número de días que llevas jugando.\n" +
+                    "¡Máximo 20 caracteres para el nombre (espacios incluidos)!\n" +
+                    "Solo funcionará entre usuarios de UBC y reemplazará la información oficial del perfil.\n" +
+                    "Usa 'None' como nombre para volver a un perfil sin propietario personalizado.";
                 infomsg(msg);
                 return;
             }
@@ -11845,7 +11845,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 const parts = args.split(/\s+/);
                 if (parts.length < 3) {
-                    infomsg("Usage: cowner <memberNumber> <days> <name> (name can contain spaces). Use 'None' as name to delete custom owner.");
+                    infomsg("Usar: cowner <número de miembro> <días> <nombre> (el nombre puede contener espacios). Usa 'None' como nombre para eliminar el propietario personalizado.");
                     return;
                 }
                 number = parseInt(parts[0], 10);
@@ -11853,11 +11853,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nameRaw = parts.slice(2).join(' ').trim();
             }
             if (!Number.isInteger(number) || number <= 0) {
-                infomsg("Invalid member number. It must be a positive integer.");
+                infomsg("Número de miembro no válido. Debe ser un número entero positivo.");
                 return;
             }
             if (!Number.isInteger(days) || days <= 0) {
-                infomsg("Invalid days. It must be a positive integer.");
+                infomsg("Días no válidos. Debe ser un número entero positivo.");
                 return;
             }
             let gamedays = CommonFormatDurationRange(CurrentTime, Player.Creation, {
@@ -11869,16 +11869,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let match = gamedays && gamedays.match(/\d+/);
             let gameDaysNumber = match ? parseInt(match[0], 10) : 0;
             if (days > gameDaysNumber) {
-                infomsg("The number of owning days can't exceed the number of days you are in the game (" + gameDaysNumber + ").");
+                infomsg("El número de días de propiedad no puede exceder el número de días que llevas jugando (" + gameDaysNumber + ").");
                 return;
             }
             const allowedNameRe = /^[\p{L}\p{N}\p{Zs}'-]+$/u;
             if (!nameRaw || nameRaw.length === 0) {
-                infomsg("Name cannot be empty. Use 'None' to remove the custom owner.");
+                infomsg("El nombre no puede estar vacío. Use 'None' para eliminar el propietario personalizado.");
                 return;
             }
             if (nameRaw.length > 20) {
-                infomsg("Maximum 20 characters for the name (spaces included)!");
+                infomsg("¡Máximo 20 caracteres para el nombre (espacios incluidos)!");
                 return;
             }
             const nameLower = nameRaw.toLowerCase();
@@ -11889,19 +11889,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nameIsValid = (/^[A-Za-z0-9 '\-]+$/).test(nameRaw) || (nameLower === "none");
             }
             if (!nameIsValid) {
-                infomsg("Name contains invalid characters. Allowed: letters, numbers, spaces, apostrophe (') and hyphen (-).");
+                infomsg("El nombre contiene caracteres no válidos. Se permiten: letras, números, espacios, apóstrofe (') y guion (-).");
                 return;
             }
             if (nameRaw === "None") {
                 cowner1 = "";
                 cowner2 = 0;
                 cowner3 = 0;
-                infomsg("Custom owner deleted");
+                infomsg("Propietario personalizado eliminado");
             } else {
                 cowner1 = nameRaw;
                 cowner2 = number;
                 cowner3 = days;
-                infomsg("Custom owner created or modified");
+                infomsg("Propietario personalizado eliminado creado o modificado");
             }
             M_MOANER_saveControls();
             Player.OnlineSharedSettings.cowner1 = cowner1;
@@ -15996,7 +15996,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args === "character") {
                 let msg = "Comandos de Personaje - * = más info al usar\n" +
                     "<b>/cname</b> (nombre) = crea un nombre personalizado. *\n" +
-					"<b>/cowner</b> (member number) (owning days) (owner name) = sets a custom owner. *\n" +
+					"<b>/cowner</b> (número de miembro) (días de propiedad) (nombre del propietario) = establece un propietario personalizado. *\n" +
                     "<b>/ctitle</b> (título) = crea un título personalizado. *\n" +
                     "<b>/difficulty</b> (número) = cambia la dificultad del juego. *\n" +
                     "<b>/maxstatistics</b> = maximiza las estadísticas.\n" +
