@@ -97,6 +97,11 @@ All else I might not have included.
 
 Changes for future version
 
+* New command: cowner (member number) (owning days) (owner name) to set a custom owner, whose infos will be displayed in your profile instead of the data coming from the server
+  - This custom owner can be any player of the game, even yourself or a sub that you own
+  - The number of owning days can't exceed the number of days you are in the game, and the maximum characters for the name is 20
+  - It will work only between UBC users and replace the official name in the profile
+  - To go back to a profile without custom name, use "None" as name (无 in Chinese version)
 * New commands submitted to the Uwall/Ulist limitations:
   - wexport (target) to fully export outfit in UBC/BCG format
   - wimport1 (target) to import clothing + restraints in UBC/BCG format
