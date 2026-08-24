@@ -11813,11 +11813,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             originalInput = originalInput || "";
             if (args === "") {
                 let msg = "The cowner command must be followed by the member number of the wished owner, the number of days corresponding to this owning, and the name of the custom owner.\n" +
-                    "This custom member can be any player of the game, even yourself or a sub that you own.\n" +
+                    "This custom owner can be any player of the game, even yourself or a sub that you own.\n" +
                     "The number of owning days can't exceed the number of days you are in the game.\n" +
                     "Maximum 20 characters for the name (spaces included)!\n" +
                     "It will work only between UBC users and replace the official info in the profile.\n" +
-                    "Use None as name to go back to a profile without custom owner.";
+                    "Use 无 as name to go back to a profile without custom owner.";
                 infomsg(msg);
                 return;
             }
@@ -11830,7 +11830,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             } else {
                 const parts = args.split(/\s+/);
                 if (parts.length < 3) {
-                    infomsg("Usage: cowner <memberNumber> <days> <name> (name can contain spaces). Use 'None' as name to delete custom owner.");
+                    infomsg("Usage: cowner <memberNumber> <days> <name> (name can contain spaces). Use '无' as name to delete custom owner.");
                     return;
                 }
                 number = parseInt(parts[0], 10);
@@ -11859,7 +11859,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             const allowedNameRe = /^[\p{L}\p{N}\p{Zs}'-]+$/u;
             if (!nameRaw || nameRaw.length === 0) {
-                infomsg("Name cannot be empty. Use 'None' to remove the custom owner.");
+                infomsg("Name cannot be empty. Use '无' to remove the custom owner.");
                 return;
             }
             if (nameRaw.length > 20) {
@@ -11877,7 +11877,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg("Name contains invalid characters. Allowed: letters, numbers, spaces, apostrophe (') and hyphen (-).");
                 return;
             }
-            if (nameRaw === "None") {
+            if (nameRaw === "无") {
                 cowner1 = "";
                 cowner2 = 0;
                 cowner3 = 0;
