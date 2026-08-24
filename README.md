@@ -103,6 +103,7 @@ Changes for future version
   - wimport2 (target) to import clothing + restraints + cosplay in UBC/BCG format
   - wimport3 (target) to fully import outfit in UBC/BCG format
 * Added automatic addition of standard backgrounds and their correct alphabetic order when loading UBC (it replaces the old bg1 command)
+* Added support for the new European server
 * Improved the delay for the repetition of AutoJoin attempt, that happens now at the end of the current toast
 * Improved the stability of the cname and ctitle parameters
 * Fixed the silent mode for the safeword (was not working when the release option was used)
