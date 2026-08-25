@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.1.1
+Most recent version: 6.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.1.1.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.2.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.1.1.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.2.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.1.1.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.2.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -97,20 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New command: cowner (member number) (owning days) (owner name) to set a custom owner, whose infos will be displayed in your profile instead of the data coming from the server
-  - This custom owner can be any player of the game, even yourself or a sub that you own
-  - The number of owning days can't exceed the number of days you are in the game, and the maximum characters for the name is 20
-  - It will work only between UBC users; to go back to a profile without custom owner, use "None" as name (无 in Chinese version)
-* Added new commands submitted to the Uwall/Ulist limitations and removed all UBC buttons in Wardrobe (because they will be broken in BC RC132):
-  - wexport (target) to fully export outfit in UBC/BCG format
-  - wimport1 (target) to import clothing + restraints in UBC/BCG format
-  - wimport2 (target) to import clothing + restraints + cosplay in UBC/BCG format
-  - wimport3 (target) to fully import outfit in UBC/BCG format
-* Added automatic addition of standard backgrounds and their correct alphabetic order when loading UBC, removed the old bg1 command and renamed the bg3 command as bg1
-* Added support for the new European server
-* Improved the delay for the repetition of AutoJoin attempt, that happens now at the end of the current toast
-* Improved the stability of the cname and ctitle parameters
-* Fixed the silent mode for the safeword (was not working when the release option was used)
+(...)
 
 
 
