@@ -3517,7 +3517,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             'ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRevert", Type: "Action", Dictionary });':
             'ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRevert", Type: "Action", Dictionary }); }',
             'if (Player.AllowedInteractions < AllowedInteractions.OwnerLoversWhitelistOnly) {':
-            'if ((Player.AllowedInteractions < AllowedInteractions.OwnerLoversWhitelistOnly) && (fixperm == false)) {',
+            'if ((Player.AllowedInteractions < AllowedInteractions.OwnerLoversWhitelistOnly) && (Player.UBC.ubcSettings.fixperm == false)) {',
         }
     );
 
