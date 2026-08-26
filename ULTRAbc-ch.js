@@ -11869,9 +11869,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const nameLower = nameRaw.toLowerCase();
             let nameIsValid = false;
             try {
-                nameIsValid = allowedNameRe.test(nameRaw) || (nameLower === "none");
+                nameIsValid = allowedNameRe.test(nameRaw) || (nameLower === "无");
             } catch (e) {
-                nameIsValid = (/^[A-Za-z0-9 '\-]+$/).test(nameRaw) || (nameLower === "none");
+                nameIsValid = (/^[A-Za-z0-9 '\-]+$/).test(nameRaw) || (nameLower === "无");
             }
             if (!nameIsValid) {
                 infomsg("Name contains invalid characters. Allowed: letters, numbers, spaces, apostrophe (') and hyphen (-).");
