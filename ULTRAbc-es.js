@@ -14,7 +14,6 @@
 // @match https://www.bondage-asia.com/club/*
 // @match https://bondageprojects.com/*
 // @match https://www.bondageprojects.com/*
-// @match http://localhost:*/*
 // @icon data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant none
 // @run-at document-end
