@@ -3330,6 +3330,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
+	modApi.hookFunction('ChatBlockItemRun', 4, async (args, next) => {
+        ChatBlockItemList = ["ABDL", "Arousal", "Fantasy", "SciFi", "BlockLocationSharing", "Photos", "Leashing", "Smoking"];
+        return next(args);
+    });
+
 	modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
         if (extbuttons == true) {
             if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
