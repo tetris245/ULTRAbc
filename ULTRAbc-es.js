@@ -7377,7 +7377,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 {
                                     tag: "span",
                                     classList: ["chat-search-search-menu-room-players-label"],
-                                    children: ["max"],
+                                    children: [""],
                                     style: {
                                         "grid-column": "3/3"
                                     },
