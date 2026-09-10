@@ -5088,6 +5088,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         children[8],  // doBlindFlash
                         children[7],  // stimulationFlash
                         children[4],  // invertRoom
+						children[16], // showFullscreenButton 
                         children[5],  // smoothZoom                    
                     ];
                 }
