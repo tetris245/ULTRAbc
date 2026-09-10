@@ -6988,7 +6988,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         };
     }
 
-    function ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput) {
+    function ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, maxRoomPlayersInput) {
         ChatSearchSearchMenu = ElementCreate({
             tag: "fieldset",
             attributes: {
