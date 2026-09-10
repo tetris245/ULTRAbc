@@ -176,7 +176,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let npcdeck = -1;
     let onegl = 0;
     let onlydays = false;
-    let pmin = 1;
     let pmax = 20;
     let rpabdl = 0;
     let rpasyl = 0;
@@ -638,7 +637,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         npcpunish = false;
         onlydays = false;
         outbuttons = false;
-        pmin = 1;
         pmax = 20;
         rglbuttons = false;
         rglsync = false;
@@ -766,7 +764,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         npcpunish = data.npcpunish;
         onlydays = data.onlydays;
         outbuttons = data.outbuttons;
-        pmin = data.pmin * 1;
         pmax = data.pmax * 1;
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
@@ -923,7 +920,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 			"nopending": nopending,
             "npcdeck": npcdeck,
             "onlydays": onlydays,
-            "pmin": pmin,
             "pmax": pmax,
             "rpabdl": rpabdl,
             "rpasyl": rpasyl,
@@ -1132,7 +1128,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;
                 if (onlydays == null || onlydays == undefined) onlydays = false;
                 if (outbuttons == null || outbuttons == undefined) outbuttons = false;
-                if (pmin == null || pmin == undefined || pmin == 0) pmin = 1;
                 if (pmax == null || pmax == undefined || pmax == 0) pmax = 20;
                 if (profileName == null || profileName == undefined) profileName = "default";
                 if (profileName == "default") profile = 0;
@@ -1286,7 +1281,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 onlydays: false,
                 orgasmMoan: true,
                 outbuttons: false,
-                pmin: 1,
                 pmax: 20,
                 profile: 0,
                 reaction: 0,
@@ -3979,7 +3973,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
         const res = next(args);
-        return res.filter(r => r.MemberCount >= pmin && r.MemberCount <= pmax);
+        return res.filter(r => r.MemberCount <= pmax);
     });
 
     modApi.hookFunction('ChatSearchResize', 4, (args, next) => {
@@ -6169,7 +6163,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             maxRoomSizeInput
         } = ChatSearchCreateRoomSizeInputs();
         const {
-            minRoomPlayersInput,
             maxRoomPlayersInput
         } = ChatSearchCreateRoomPlayersInputs();
         const {
@@ -6177,10 +6170,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             filterInput,
             clearButton
         } = ChatSearchCreateSearchControls();
-        ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
+        ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput, maxRoomPlayersInput);
         if (noubcbar == false) ChatSearchCreateBottom();
         ChatSearchCreateGrid();
-        ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput);
+        ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, maxRoomPlayersInput);
         ChatSearchCreateFilterHelpDialog();
         ChatSearchQuery(ChatSearchQueryString);
         ChatRoomNotificationReset();
@@ -6541,7 +6534,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatSearchRoomGrid = ElementCreateDiv("chat-search-room-grid");
     }
 
-    function ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput) {
+    function ChatSearchCreateHeader(searchInput, filterInput, clearButton, minRoomSizeInput, maxRoomSizeInput, maxRoomPlayersInput) {
         ChatSearchRoomHeader = ElementCreate({
             tag: "div",
             attributes: {
@@ -6817,31 +6810,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function ChatSearchCreateRoomPlayersInputs() {
-        const minRoomPlayersInput = ElementCreate({
-            tag: "input",
-            attributes: {
-                id: "chat-search-search-menu-room-players-min",
-                type: "number",
-                inputmode: "numeric",
-                value: pmin,
-                min: 1,
-                max: 20,
-                step: 1,
-                required: true,
-            },
-            classList: ["chat-search-room-players-input"],
-            eventListeners: {
-                change: () => {
-                    const min = parseInt(minRoomPlayersInput.value, 10);
-                    if (!minRoomPlayersInput.validity.valid) return;
-                    pmin = min;
-                    minRoomPlayersInput.valueAsNumber = min;
-                    maxRoomPlayersInput.min = String(min);
-                    M_MOANER_saveControls();
-                    Player.UBC.ubcSettings.pmin = min;
-                }
-            }
-        });
         const maxRoomPlayersInput = ElementCreate({
             tag: "input",
             attributes: {
@@ -6849,7 +6817,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 type: "number",
                 inputmode: "numeric",
                 value: pmax,
-                min: 1,
+                min: 2,
                 max: 20,
                 step: 1,
                 required: true,
@@ -6861,14 +6829,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (!maxRoomPlayersInput.validity.valid) return;
                     pmax = max;
                     maxRoomPlayersInput.valueAsNumber = max;
-                    minRoomPlayersInput.max = String(max);
                     M_MOANER_saveControls();
                     Player.UBC.ubcSettings.pmax = max;
                 }
             }
         });
         return {
-            minRoomPlayersInput,
             maxRoomPlayersInput
         };
     }
@@ -7023,7 +6989,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         };
     }
 
-    function ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, minRoomPlayersInput, maxRoomPlayersInput) {
+    function ChatSearchCreateSearchMenu(minRoomSizeInput, maxRoomSizeInput, maxRoomPlayersInput) {
         ChatSearchSearchMenu = ElementCreate({
             tag: "fieldset",
             attributes: {
@@ -7392,7 +7358,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     ]
                 },
-                // Players in room
+                // Maximum players in room
                 {
                     tag: "div",
                     attributes: {
@@ -7400,24 +7366,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     },
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
-                        ElementCreateSettingsLabel("Jugadores en la sala", "chat-search-search-menu-players-grid"),
+                        ElementCreateSettingsLabel("Máx. de jugadores en la sala", "chat-search-search-menu-players-grid"),
                         {
                             tag: "div",
                             attributes: {
                                 id: "chat-search-search-menu-room-players-grid"
                             },
                             children: [
-                                minRoomPlayersInput,
-                                "/",
                                 maxRoomPlayersInput,
-                                {
-                                    tag: "span",
-                                    classList: ["chat-search-search-menu-room-players-label"],
-                                    children: ["min"],
-                                    attributes: {
-                                        "for": "chat-search-search-menu-room-players-min"
-                                    }
-                                },
                                 {
                                     tag: "span",
                                     classList: ["chat-search-search-menu-room-players-label"],
