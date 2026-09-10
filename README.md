@@ -98,6 +98,7 @@ All else I might not have included.
 Changes for future version
 
 * Removed the "Minimum Players in Room" parameter from the Chat Search Menu
+* Updated the hook in the PreferenceSubscreenGraphicsLoad function
 
 
 
