@@ -98,6 +98,7 @@ All else I might not have included.
 Changes for future version
 
 * Removed the "Minimum Players in Room" parameter from the Chat Search Menu
+* Hooked in the ChatBlockItemRun function to display the English ChatBlockItemList in alphabetical order on the concerned subscreen related to a created chat room
 * Updated the hook in the PreferenceSubscreenGraphicsLoad function
 
 
