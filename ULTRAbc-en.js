@@ -3142,7 +3142,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
     ULTRAClubCardCheckVictory();
-    ULTRAClubCardClick();
     ULTRAClubCardEndTurn();
     ULTRAClubCardGetReward();
     ULTRAClubCardLoungePraticeGameStart();
@@ -4127,42 +4126,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    function ULTRAClubCardClick() {
-        modApi.hookFunction('ClubCardClick', 4, (args, next) => {
-            if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
-                if (MouseIn(65, 60, 90, 90)) {
-                    if (highfame) {
-                        highfame = false;
-                        Player.UBC.ubcSettings.highfame = false;
-                        M_MOANER_saveControls();
-                    } else {
-                        highfame = true;
-                        Player.UBC.ubcSettings.highfame = true;
-                        M_MOANER_saveControls();
-                    }
-                }
-                if (MouseIn(385, 60, 90, 90)) {
-                    let fame = ElementValue("InputHighFame");
-                    let cards = ElementValue("InputMaxCards");
-                    let deck = ElementValue("InputDefaultDeck");
-                    Player.UBC.ubcSettings.cfame = fame;
-                    Player.UBC.ubcSettings.ccards = cards;
-                    Player.UBC.ubcSettings.cdeck = deck;
-                    ElementRemove("InputHighFame");
-                    ElementRemove("InputMaxCards");
-                    ElementRemove("InputDefaultDeck");
-                    if (ClubCardIsOnline() == false) {
-                        let ndeck = ElementValue("InputNpcDeck");
-                        Player.UBC.ubcSettings.npcdeck = ndeck;
-                        ElementRemove("InputNpcDeck");
-                    }
-                    PreferenceSubscreenUBCSettingsExit();
-                    ClubCardEndGame(true);
+	modApi.hookFunction('ClubCardClick', 4, (args, next) => {
+        if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
+            if (MouseIn(65, 60, 90, 90)) {
+                if (highfame) {
+                    highfame = false;
+                    Player.UBC.ubcSettings.highfame = false;
+                    M_MOANER_saveControls();
+                } else {
+                    highfame = true;
+                    Player.UBC.ubcSettings.highfame = true;
+                    M_MOANER_saveControls();
                 }
             }
-            next(args);
-        });
-    }
+            if (MouseIn(385, 60, 90, 90)) {
+                let fame = ElementValue("InputHighFame");
+                let cards = ElementValue("InputMaxCards");
+                let deck = ElementValue("InputDefaultDeck");
+                Player.UBC.ubcSettings.cfame = fame;
+                Player.UBC.ubcSettings.ccards = cards;
+                Player.UBC.ubcSettings.cdeck = deck;
+                ElementRemove("InputHighFame");
+                ElementRemove("InputMaxCards");
+                ElementRemove("InputDefaultDeck");
+                if (ClubCardIsOnline() == false) {
+                    let ndeck = ElementValue("InputNpcDeck");
+                    Player.UBC.ubcSettings.npcdeck = ndeck;
+                    ElementRemove("InputNpcDeck");
+                }
+                PreferenceSubscreenUBCSettingsExit();
+                ClubCardEndGame(true);
+            }
+        }
+        return next(args);
+    });
 
     async function ULTRAClubCardEndTurn(Draw = false) {
         modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
