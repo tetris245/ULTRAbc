@@ -4039,6 +4039,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
+	async function ULTRACafeClubCardStart() {
+        modApi.hookFunction('CafeClubCardStart', 4, (args, next) => {
+            moreMaidCards();
+            MiniGameStart("ClubCard", 0, "CafeClubCardEnd");
+            return;
+        });
+    }
+
 	modApi.hookFunction('ClubCardBuilderClick', 4, (args, next) => {
         const ret = next(args);
         if (ClubCardBuilderDeckIndex == -1) {
@@ -4093,14 +4101,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         return next(args);
     });
-
-    async function ULTRACafeClubCardStart() {
-        modApi.hookFunction('CafeClubCardStart', 4, (args, next) => {
-            moreMaidCards();
-            MiniGameStart("ClubCard", 0, "CafeClubCardEnd");
-            return;
-        });
-    }
 
     async function ULTRAClubCardCheckVictory(CCPLayer) {
         modApi.hookFunction('ClubCardCheckVictory', 4, (args, next) => {
