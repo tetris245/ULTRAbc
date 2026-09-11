@@ -220,6 +220,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mapcheat;
     let mapfull;
     let mapfull2;
+	let mapfull3;
     let noescape;
     let nogarble;
     let noifbuttons;
@@ -615,6 +616,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mapcheat = false;
         mapfull = false;
         mapfull2 = false;
+		mapfull3 = false;
         maptrap1 = 0;
         minigame = "";
         mission = "";
@@ -742,6 +744,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mapcheat = data.mapcheat;
         mapfull = data.mapfull;
         mapfull2 = data.mapfull2;
+		mapfull3 = data.mapfull3;
         maptrap1 = data.maptrap1 * 1;
         minigame = data.minigame;
         mission = data.mission;
@@ -965,6 +968,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "mapcheat": mapcheat,
             "mapfull": mapfull,
             "mapfull2": mapfull2,
+            "mapfull3": mapfull3,
             "noescape": noescape,
             "nogarble": nogarble,
             "noifbuttons": noifbuttons,
@@ -1095,6 +1099,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (mapcheat == null || mapcheat == undefined) mapcheat = false;
                 if (mapfull == null || mapfull == undefined) mapfull = false;
                 if (mapfull2 == null || mapfull2 == undefined) mapfull2 = false;
+				if (mapfull3 == null || mapfull3 == undefined) mapfull3 = false;
                 if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (minigame == null || minigame == undefined) minigame = "";
                 if (mission == null || mission == undefined) mission = "";
@@ -1260,6 +1265,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 mapcheat: false,
                 mapfull: false,
                 mapfull2: false,
+				mapfull3: false,
                 maptrap1: 0,	
                 nobcxalarm: false,
                 noescape: false,
@@ -2582,6 +2588,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuCheckbox(64, 64, "Enable full hearing in maps: ", "mapfull2",
                     "When enabled, there's no any limitation to your hearing in the map rooms", false, 140
+                );
+				addMenuCheckbox(64, 64, "Enable full location in maps: ", "mapfull3",
+                    "When enabled, the /maproom and /mapz commands will always give the coordinates of other players in the map rooms, even if the Location Sharing is blocked.", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable full vision in maps: ", "mapfull",
                     "When enabled, you can see the entire map rooms without fog. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.", false, 140
