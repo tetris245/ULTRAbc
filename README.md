@@ -100,7 +100,7 @@ Changes for future version
 * New setting in GUI - Maps to enable full location of players in map rooms, even when Location Sharing is blocked
 * Updated the maproom and mapz commands: they will don't give the coordinates of other players if the current map room has blocked Location Sharing, except if the new setting in GUI - Maps has been enabled
 * Removed the "Minimum Players in Room" parameter from the Chat Search Menu
-* Hooked in the ChatBlockItemRun function to display the English ChatBlockItemList in alphabetical order on the concerned subscreen related to a created chat room
+* Hooked in the ChatBlockItemRun function to display the English ChatBlockItemList in alphabetical order on the concerned subscreen related for a chat room
 * Updated the hook in the PreferenceSubscreenGraphicsLoad function
 
 
