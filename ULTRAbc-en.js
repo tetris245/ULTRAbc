@@ -3145,7 +3145,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardClick();
     ULTRAClubCardEndTurn();
     ULTRAClubCardGetReward();
-    ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardLoungePraticeGameStart();
     ULTRAInfiltrationClubCardStart();
     ULTRAIntroductionClubCardStart();
@@ -4194,75 +4193,73 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAClubCardLoadDeckNumber() {
-        modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
-            ElementRemove("InputHighFame");
-            ElementRemove("InputMaxCards");
-            ElementRemove("InputDefaultDeck");
-            if (ClubCardIsOnline() == false) ElementRemove("InputNpcDeck");
-            let originaldeck = ClubCardBuilderDefaultDeck;
-            let initialdeck = [];
-            let plusdeck = [];
-            if (cdeck == 0) {
-                initialdeck = originaldeck;
-                plusdeck = DefaultDeckPlus;
-            }
-            if (cdeck == 1) {
-                initialdeck = ClubCardBuilderABDLDeck;
-                plusdeck = ABDLDeckPlus;
-            }
-            if (cdeck == 2) {
-                initialdeck = ClubCardBuilderAsylumDeck;
-                plusdeck = AsylumDeckPlus;
-            }
-            if (cdeck == 3) {
-                initialdeck = ClubCardBuilderCollegeDeck;
-                plusdeck = CollegeDeckPlus;
-            }
-            if (cdeck == 4) {
-                initialdeck = ClubCardBuilderDominantDeck;
-                plusdeck = DominantDeckPlus;
-            }
-            if (cdeck == 5) {
-                initialdeck = ClubCardBuilderLiabilityDeck;
-                plusdeck = LiabilityDeckPlus;
-            }
-            if (cdeck == 6) {
-                initialdeck = ClubCardBuilderMaidDeck;
-                plusdeck = MaidDeckPlus;
-            }
-            if (cdeck == 7) {
-                initialdeck = ClubCardBuilderPetDeck;
-                plusdeck = PetDeckPlus;
-            }
-            if (cdeck == 8) {
-                initialdeck = ClubCardBuilderPornDeck;
-                plusdeck = PornDeckPlus;
-            }
-            if (cdeck == 9) {
-                initialdeck = ClubCardBuilderShibariDeck;
-                plusdeck = ShibariDeckPlus;
-            }
-            if (cdeck == 10) {
-                initialdeck = ClubCardBuilderExtraDeck;
-                plusdeck = ExtraDeckPlus;
-            }
-            ClubCardBuilderMinDeckSize = ccards;
-            if (ccards == 30) ClubCardBuilderDefaultDeck = initialdeck;
-            if (ccards > 30) ClubCardBuilderDefaultDeck = initialdeck.concat(plusdeck[0]);
-            if (ccards > 31) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[1]);
-            if (ccards > 32) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[2]);
-            if (ccards > 33) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[3]);
-            if (ccards > 34) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[4]);
-            if (ccards > 35) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[5]);
-            if (ccards > 36) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[6]);
-            if (ccards > 37) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[7]);
-            if (ccards > 38) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[8]);
-            if (ccards > 39) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[9]);
-            next(args);
-        });
-    }
-
+	modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
+        ElementRemove("InputHighFame");
+        ElementRemove("InputMaxCards");
+        ElementRemove("InputDefaultDeck");
+        if (ClubCardIsOnline() == false) ElementRemove("InputNpcDeck");
+        let originaldeck = ClubCardBuilderDefaultDeck;
+        let initialdeck = [];
+        let plusdeck = [];
+        if (cdeck == 0) {
+            initialdeck = originaldeck;
+            plusdeck = DefaultDeckPlus;
+        }
+        if (cdeck == 1) {
+            initialdeck = ClubCardBuilderABDLDeck;
+            plusdeck = ABDLDeckPlus;
+        }
+        if (cdeck == 2) {
+            initialdeck = ClubCardBuilderAsylumDeck;
+            plusdeck = AsylumDeckPlus;
+        }
+        if (cdeck == 3) {
+            initialdeck = ClubCardBuilderCollegeDeck;
+            plusdeck = CollegeDeckPlus;
+        }
+        if (cdeck == 4) {
+            initialdeck = ClubCardBuilderDominantDeck;
+            plusdeck = DominantDeckPlus;
+        }
+        if (cdeck == 5) {
+            initialdeck = ClubCardBuilderLiabilityDeck;
+            plusdeck = LiabilityDeckPlus;
+        }
+        if (cdeck == 6) {
+            initialdeck = ClubCardBuilderMaidDeck;
+            plusdeck = MaidDeckPlus;
+        }
+        if (cdeck == 7) {
+            initialdeck = ClubCardBuilderPetDeck;
+            plusdeck = PetDeckPlus;
+        }
+        if (cdeck == 8) {
+            initialdeck = ClubCardBuilderPornDeck;
+            plusdeck = PornDeckPlus;
+        }
+        if (cdeck == 9) {
+            initialdeck = ClubCardBuilderShibariDeck;
+            plusdeck = ShibariDeckPlus;
+        }
+        if (cdeck == 10) {
+            initialdeck = ClubCardBuilderExtraDeck;
+            plusdeck = ExtraDeckPlus;
+        }
+        ClubCardBuilderMinDeckSize = ccards;
+        if (ccards == 30) ClubCardBuilderDefaultDeck = initialdeck;
+        if (ccards > 30) ClubCardBuilderDefaultDeck = initialdeck.concat(plusdeck[0]);
+        if (ccards > 31) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[1]);
+        if (ccards > 32) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[2]);
+        if (ccards > 33) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[3]);
+        if (ccards > 34) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[4]);
+        if (ccards > 35) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[5]);
+        if (ccards > 36) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[6]);
+        if (ccards > 37) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[7]);
+        if (ccards > 38) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[8]);
+        if (ccards > 39) ClubCardBuilderDefaultDeck = ClubCardBuilderDefaultDeck.concat(plusdeck[9]);
+        return next(args);
+    });
+  
     async function ULTRAClubCardLoungePraticeGameStart() {
         modApi.hookFunction('ClubCardLoungePraticeGameStart', 4, (args, next) => {
             moreDefaultCards();
