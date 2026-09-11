@@ -3147,7 +3147,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardLoungePraticeGameStart();
-    ULTRAClubCardLoungeRun();
     ULTRAClubCardRenderPanel();
     ULTRAInfiltrationClubCardStart();
     ULTRAIntroductionClubCardStart();
@@ -4273,16 +4272,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAClubCardLoungeRun() {
-        modApi.hookFunction('ClubCardLoungeRun', 4, (args, next) => {
-            TintsEffect();
-            if (minigame == "lounge") {
-                minigame = "";
-                M_MOANER_saveControls();
-            }
-            next(args);
-        });
-    }
+    modApi.hookFunction('ClubCardLoungeRun', 4, (args, next) => {
+        TintsEffect();
+        if (minigame == "lounge") {
+            minigame = "";
+            M_MOANER_saveControls();
+        }
+        return next(args);
+    });
 
     async function ULTRAClubCardRenderPanel() {
         modApi.hookFunction('ClubCardRenderPanel', 4, (args, next) => {
