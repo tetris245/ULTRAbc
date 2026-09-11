@@ -3147,7 +3147,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAClubCardGetReward();
     ULTRAClubCardLoadDeckNumber();
     ULTRAClubCardLoungePraticeGameStart();
-    ULTRAClubCardRenderPanel();
     ULTRAInfiltrationClubCardStart();
     ULTRAIntroductionClubCardStart();
     ULTRAKidnapLeagueRandomClubCardStart();
@@ -4281,53 +4280,51 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    async function ULTRAClubCardRenderPanel() {
-        modApi.hookFunction('ClubCardRenderPanel', 4, (args, next) => {
-            if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
-                DrawText("当前模式", 120, 35, "White", "Black");
-                if (highfame) {
-                    DrawButton(65, 60, 90, 90, "HF", "White", "", "切换到普通模式");
-                } else {
-                    DrawButton(65, 60, 90, 90, "NHF", "White", "", "切换到高知名度模式");
-                }
-                DrawText("更新", 430, 35, "White", "Black");
-                DrawButton(385, 60, 90, 90, "", "White", "Icons/Exit.png");
-                DrawText("默认和 NPC 牌组的可用选项：", 1140, 35, "White", "Gray");
-                DrawText("0 原始 - 1 ABDL - 2 精神病院 - 3 学院 - 4 支配", 1140, 115, "White", "Gray");
-                DrawText("5 责任 - 6 女仆 - 7 宠物 - 8 色情 - 9 束缚 - 10 额外", 1140, 155, "White", "Gray");
-                if (ClubCardIsOnline() == false) DrawText("仅限 NPC: -1 = 由原始 BC 代码定义的牌组", 1140, 195, "White", "Gray");
-                DrawText("如果您更改了模式以外的其他参数，", 1140, 750, "White", "Black");
-                DrawText("请点击退出按钮，然后返回游戏", 1140, 830, "White", "Black");
-                const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
-                fameInput.setAttribute("min", "150");
-                fameInput.setAttribute("max", "550");
-                fameInput.setAttribute("autocomplete", "off");
-                DrawText("高知名度等级", 145, 590, "White", "Gray");
-                ElementPosition("InputHighFame", 420, 585, 250);
-                const cardsInput = ElementCreateInput("InputMaxCards", "number", ccards);
-                cardsInput.setAttribute("min", "30");
-                cardsInput.setAttribute("max", "40");
-                cardsInput.setAttribute("autocomplete", "off");
-                DrawText("牌组中的卡牌数量", 130, 670, "White", "Gray");
-                ElementPosition("InputMaxCards", 420, 665, 250);
-                const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
-                deckInput.setAttribute("min", "0");
-                deckInput.setAttribute("max", "10");
-                deckInput.setAttribute("autocomplete", "off");
-                DrawText("默认牌组", 145, 750, "White", "Gray");
-                ElementPosition("InputDefaultDeck", 420, 745, 250);
-                if (ClubCardIsOnline() == false) {
-                    const npcdeckInput = ElementCreateInput("InputNpcDeck", "number", npcdeck);
-                    npcdeckInput.setAttribute("min", "-1");
-                    npcdeckInput.setAttribute("max", "10");
-                    npcdeckInput.setAttribute("autocomplete", "off");
-                    DrawText("NPC 牌组", 145, 830, "White", "Gray");
-                    ElementPosition("InputNpcDeck", 420, 825, 250);
-                }
+	modApi.hookFunction('ClubCardRenderPanel', 4, (args, next) => {
+        if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
+            DrawText("当前模式", 120, 35, "White", "Black");
+            if (highfame) {
+                DrawButton(65, 60, 90, 90, "HF", "White", "", "切换到普通模式");
+            } else {
+                DrawButton(65, 60, 90, 90, "NHF", "White", "", "切换到高知名度模式");
             }
-            return next(args);
-        });
-    }
+            DrawText("更新", 430, 35, "White", "Black");
+            DrawButton(385, 60, 90, 90, "", "White", "Icons/Exit.png");
+            DrawText("默认和 NPC 牌组的可用选项：", 1140, 35, "White", "Gray");
+            DrawText("0 原始 - 1 ABDL - 2 精神病院 - 3 学院 - 4 支配", 1140, 115, "White", "Gray");
+            DrawText("5 责任 - 6 女仆 - 7 宠物 - 8 色情 - 9 束缚 - 10 额外", 1140, 155, "White", "Gray");
+            if (ClubCardIsOnline() == false) DrawText("仅限 NPC: -1 = 由原始 BC 代码定义的牌组", 1140, 195, "White", "Gray");
+            DrawText("如果您更改了模式以外的其他参数，", 1140, 750, "White", "Black");
+            DrawText("请点击退出按钮，然后返回游戏", 1140, 830, "White", "Black");
+            const fameInput = ElementCreateInput("InputHighFame", "number", cfame);
+            fameInput.setAttribute("min", "150");
+            fameInput.setAttribute("max", "550");
+            fameInput.setAttribute("autocomplete", "off");
+            DrawText("高知名度等级", 145, 590, "White", "Gray");
+            ElementPosition("InputHighFame", 420, 585, 250);
+            const cardsInput = ElementCreateInput("InputMaxCards", "number", ccards);
+            cardsInput.setAttribute("min", "30");
+            cardsInput.setAttribute("max", "40");
+            cardsInput.setAttribute("autocomplete", "off");
+            DrawText("牌组中的卡牌数量", 130, 670, "White", "Gray");
+            ElementPosition("InputMaxCards", 420, 665, 250);
+            const deckInput = ElementCreateInput("InputDefaultDeck", "number", cdeck);
+            deckInput.setAttribute("min", "0");
+            deckInput.setAttribute("max", "10");
+            deckInput.setAttribute("autocomplete", "off");
+            DrawText("默认牌组", 145, 750, "White", "Gray");
+            ElementPosition("InputDefaultDeck", 420, 745, 250);
+            if (ClubCardIsOnline() == false) {
+                const npcdeckInput = ElementCreateInput("InputNpcDeck", "number", npcdeck);
+                npcdeckInput.setAttribute("min", "-1");
+                npcdeckInput.setAttribute("max", "10");
+                npcdeckInput.setAttribute("autocomplete", "off");
+                DrawText("NPC 牌组", 145, 830, "White", "Gray");
+                ElementPosition("InputNpcDeck", 420, 825, 250);
+            }
+        }
+        return next(args);
+    });
 
     async function ULTRAInfiltrationClubCardStart() {
         modApi.hookFunction('InfiltrationClubCardStart', 4, (args, next) => {
