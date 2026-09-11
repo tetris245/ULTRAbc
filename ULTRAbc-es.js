@@ -12894,8 +12894,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         X,
                         Y
                     } = MapData.Pos;
-                    ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
-                    if (character === Player) keysinfo(Player);
+                    if (character === Player) {
+                        ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
+                        keysinfo(Player);
+                    } else {
+                        if (!ChatRoomData.BlockCategory.includes("BlockLocationSharing")) {
+                            ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
+                        } else {
+                            ChatRoomSendLocal(`Compartir ubicación bloqueado - ${exinfo}`);
+                        }
+                    }
                 } else {
                     ChatRoomSendLocal("No ha entrado al mapa");
                 }
@@ -12992,8 +13000,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 exinfo = "Presencia real en el mapa: " +
                     (inmap === true ? "SÍ" : inmap === false ? "NO" : "?");
             }
-            ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
-            if (target === Player) keysinfo(Player);
+            if (target === Player) {
+                ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
+                keysinfo(Player);
+            } else {
+                if (!ChatRoomData.BlockCategory.includes("BlockLocationSharing")) {
+                    ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
+                 } else {
+                     ChatRoomSendLocal(`Compartir ubicación bloqueado - ${exinfo}`);
+                 }
+            }
             ChatRoomSendLocal(" ");
         }
     }])
