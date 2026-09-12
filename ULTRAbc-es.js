@@ -4109,14 +4109,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ClubCardPending = null;
                 MiniGameVictory = (CCPlayer.Control == "Player");
                 MiniGameEnded = true;
-                let nmg = TextGet("VictoryFor" + CCPlayer.Control);
-                if (ClubCardIsOnline()) nmg = TextGet("VictoryOnline").replace("PLAYERNAME", CharacterNickname(CCPlayer.Character));
-                let Msg = nmg;
-                if (highfame) Msg = nmg.replace("100", cfame);
-                ClubCardCreatePopup("TEXT", { Text: Msg, Button1: TextGet("Return"), Function1: "ClubCardEndGame()" });
-                ClubCardGameEnded = true;
-                if (MiniGameVictory && (ClubCardReward != null)) ClubCardGetReward();
-                GameClubCardReset();
+                if (MiniGameVictory && (ClubCardReward != null)) {
+                    ClubCardGameEnded = true;
+                    ClubCardGetReward();
+                    GameClubCardReset();
+                } else {
+                    let nmg = TextGet("VictoryFor" + CCPlayer.Control);
+                    if (ClubCardIsOnline()) nmg = TextGet("VictoryOnline").replace("PLAYERNAME", CharacterNickname(CCPlayer.Character));
+                    let Msg = nmg;
+                    if (highfame) Msg = nmg.replace("100", cfame);
+                    ClubCardCreatePopup("TEXT", { Text: Msg, Button1: TextGet("Return"), Function1: "ClubCardEndGame()" });
+                    ClubCardGameEnded = true;            
+                    GameClubCardReset();
+                 } 
             }
         }
         return ret;
