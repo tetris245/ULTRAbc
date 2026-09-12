@@ -3141,7 +3141,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRACafeClubCardStart();
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
-    ULTRAClubCardGetReward();
     ULTRAClubCardLoungePraticeGameStart();
     ULTRAInfiltrationClubCardStart();
     ULTRAIntroductionClubCardStart();
@@ -4164,26 +4163,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    async function ULTRAClubCardGetReward() {
-        modApi.hookFunction('ClubCardGetReward', 4, (args, next) => {
-            if (highfame == true) {
-                ClubCardFameGoal = cfame;
-                let nmg = "";
-                let Char = String.fromCharCode(ClubCardReward.ID);
-                if (Player.Game.ClubCard.Reward.indexOf(Char) < 0) {
-                    ClubCardFocus = ClubCardReward;
-                    Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
-                    ServerAccountUpdate.QueueData({
-                        Game: Player.Game
-                    }, true);
-                    nmg = TextGet("WonNewCard");
-                    Msg = nmg.replace("100", cfame);
-                    ClubCardCreatePopup("TEXT", Msg + " " + ClubCardReward.Title, TextGet("Return"), null, "ClubCardEndGame()", null);
-                }
+    modApi.hookFunction('ClubCardGetReward', 4, (args, next) => {
+        if (highfame == true) {
+            ClubCardFameGoal = cfame;
+            let nmg = "";
+            let Char = String.fromCharCode(ClubCardReward.ID);
+            if (!Player.Game.ClubCard?.Reward?.includes(Char)) {
+                ClubCardFocus = ClubCardReward;
+                Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
+                ServerAccountUpdate.QueueData({
+                    Game: Player.Game
+                }, true);
+                nmg = TextGet("WonNewCard");
+                Msg = nmg.replace("100", cfame);
+                ClubCardCreatePopup("TEXT", { Text: Msg + " " + ClubCardReward.Title, Button1: TextGet("Return"), Function1: "ClubCardEndGame()" });
             }
-            next(args);
-        });
-    }
+        }
+        return next(args);
+    });
 
 	modApi.hookFunction('ClubCardLoadDeckNumber', 4, (args, next) => {
         ElementRemove("InputHighFame");
@@ -7453,7 +7450,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             } else {
                 if (ClubCardSelection == null && CCPlayer.DiscardPile.filter(card => card.Type !== "Event").length > 0) {
-                    ClubCardCreatePopup("SEARCH", null, null, null, null, null, CCPlayer.DiscardPile.filter(card => card.Type !== "Event"));
+                    ClubCardCreatePopup("SEARCH", { CardsPool:  CCPlayer.DiscardPile.filter(card => card.Type !== "Event") });
                     return;
                 }
                 if (ClubCardSelection) {
