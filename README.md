@@ -101,6 +101,7 @@ Changes for future version
 * Updated the maproom and mapz commands: they will don't give the coordinates of other players if the current map room has blocked Location Sharing, except if the new setting in GUI - Maps has been enabled
 * Removed the "Minimum Players in Room" parameter from the Chat Search Menu
 * Hooked in the ChatBlockItemRun function to display the English ChatBlockItemList in alphabetical order on the concerned subscreen related for a chat room
+* Updated and/or optimised hooks/patches in several functions related to the Club Card Game
 * Updated the hook in the PreferenceSubscreenGraphicsLoad function
 
 
