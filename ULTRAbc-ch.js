@@ -3141,8 +3141,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRACafeClubCardStart();
     ULTRAChatRoomSendChat();
 	ULTRAChatRoomTopMenuSync();
-    ULTRAClubCardCheckVictory();
-    ULTRAClubCardEndTurn();
     ULTRAClubCardGetReward();
     ULTRAClubCardLoungePraticeGameStart();
     ULTRAInfiltrationClubCardStart();
@@ -4098,33 +4096,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 	
-    async function ULTRAClubCardCheckVictory(CCPLayer) {
-        modApi.hookFunction('ClubCardCheckVictory', 4, (args, next) => {
-            const ret = next(args);
-            if (ret) {
-                let CCPlayer = args[0];
-                if (CCPlayer.Fame == null) CCPlayer.Fame = 0;
-                if (CCPlayer == Player) {
-                    ClubCardFameGoal = 100;
-                    if (highfame == true) ClubCardFameGoal = cfame;
-                }
-                if (CCPlayer.Fame >= ClubCardFameGoal) {
-                    ClubCardFocus = null;
-                    MiniGameVictory = (CCPlayer.Control == "Player");
-                    MiniGameEnded = true;
-                    let nmg = TextGet("VictoryFor" + CCPlayer.Control);
-                    if (ClubCardIsOnline()) nmg = TextGet("VictoryOnline").replace("PLAYERNAME", CharacterNickname(CCPlayer.Character));
-                    let Msg = nmg;
-                    if (highfame) Msg = nmg.replace("100", cfame);
-                    ClubCardCreatePopup("TEXT", Msg, TextGet("Return"), null, "ClubCardEndGame()", null);
-                    ClubCardGameEnded = true;
-                    if (MiniGameVictory && (ClubCardReward != null)) ClubCardGetReward();
-                    GameClubCardReset();
-                }
+    modApi.hookFunction('ClubCardCheckVictory', 4, (args, next) => {
+        const ret = next(args);
+        if (ret) {
+            let CCPlayer = args[0];
+            if (CCPlayer.Fame == null) CCPlayer.Fame = 0;
+            if (CCPlayer == Player) {
+                ClubCardFameGoal = 100;
+                if (highfame == true) ClubCardFameGoal = cfame;
             }
-            return ret;
-        });
-    }
+            if (CCPlayer.Fame >= ClubCardFameGoal) {
+                ClubCardFocus = null;
+                ClubCardPending = null;
+                MiniGameVictory = (CCPlayer.Control == "Player");
+                MiniGameEnded = true;
+                let nmg = TextGet("VictoryFor" + CCPlayer.Control);
+                if (ClubCardIsOnline()) nmg = TextGet("VictoryOnline").replace("PLAYERNAME", CharacterNickname(CCPlayer.Character));
+                let Msg = nmg;
+                if (highfame) Msg = nmg.replace("100", cfame);
+                ClubCardCreatePopup("TEXT", { Text: Msg, Button1: TextGet("Return"), Function1: "ClubCardEndGame()" });
+                ClubCardGameEnded = true;
+                if (MiniGameVictory && (ClubCardReward != null)) ClubCardGetReward();
+                GameClubCardReset();
+            }
+        }
+        return ret;
+    });
 
 	modApi.hookFunction('ClubCardClick', 4, (args, next) => {
         if ((ClubCardPopup != null) && (ClubCardPopup.Mode == "DECK")) {
@@ -4161,13 +4158,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    async function ULTRAClubCardEndTurn(Draw = false) {
-        modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
-            ClubCardFameGoal = 100;
-            if (highfame == true) ClubCardFameGoal = cfame;
-            next(args);
-        });
-    }
+    modApi.hookFunction('ClubCardEndTurn', 4, (args, next) => {
+        ClubCardFameGoal = 100;
+        if (highfame == true) ClubCardFameGoal = cfame;
+        return next(args);
+    });
 
     async function ULTRAClubCardGetReward() {
         modApi.hookFunction('ClubCardGetReward', 4, (args, next) => {
