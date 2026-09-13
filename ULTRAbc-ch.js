@@ -8769,7 +8769,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         let spl = 0;
-        let LSCG = Player.ExtensionSettings.LSCG;
+        let LSCG;
+        if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.SplatterModule.enabled) spl = 1;
@@ -9184,7 +9185,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let ogl = Player.UBC.ubcSettings.gaglevel;
         let ont = Player.UBC.ubcSettings.notalk;
         ElementValue("InputChat", "");
-        let LSCG = Player.ExtensionSettings.LSCG;
+        let LSCG;
+        if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             let states = LSCGdata.StateModule.states || [];
