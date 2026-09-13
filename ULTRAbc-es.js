@@ -7899,40 +7899,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         const spacing = 55;
         const spacingLarge = 75;
         let currentY = 125;
+		let iname = C.Name;
+        let ititle = TitleGetName(CurrentTitle);
+        let icase = 0;
         if (C.OnlineSharedSettings != undefined) {
-            if (C.OnlineSharedSettings.cname != undefined) {
-                if (C.OnlineSharedSettings.cname != "") {
-                    DrawTextFit(TextGet("Name") + " " + C.OnlineSharedSettings.cname, 550, currentY, 450, "Black", "Gray");
-                } else {
-                    DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+			if (C.OnlineSharedSettings.UBCShared != undefined) {
+                if (C.OnlineSharedSettings.UBCShared.cname != undefined) {
+                    if (C.OnlineSharedSettings.UBCShared.cname != "") iname = C.OnlineSharedSettings.UBCShared.cname;
                 }
-            } else {
-                DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
-            }
-        } else {
-            DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
-        }
+			}
+		}
+        DrawTextFit(TextGet("Name") + " " + iname, 550, currentY, 450, "Black", "Gray");	
         currentY += spacing;
         if (C.Name !== CharacterNickname(C)) {
             DrawTextFit(TextGet("Nickname") + " " + CharacterNickname(C), 550, currentY, 450, "Black", "Gray");
             currentY += spacing;
         }
         if (C.OnlineSharedSettings != undefined) {
-            if (C.OnlineSharedSettings.ctitle != undefined) {
-                if (C.OnlineSharedSettings.ctitle != "") {
-                    DrawTextFit(TextGet("Title") + " " + C.OnlineSharedSettings.ctitle, 550, currentY, 450, "#0000BF", "Black", "Gray");
-                } else {
-                    if (CurrentTitle != "None") {
-                        DrawTextFit(TextGet("Title") + " " + TitleGetName(CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
+            if (C.OnlineSharedSettings.UBCShared != undefined) {
+                if (C.OnlineSharedSettings.UBCShared.ctitle != undefined) {
+                    if (C.OnlineSharedSettings.UBCShared.ctitle != "") {
+                        ititle = C.OnlineSharedSettings.UBCShared.ctitle;
+                        icase = 1;
                     }
                 }
-            } else {
-                if (CurrentTitle != "None") {
-                    DrawTextFit(TextGet("Title") + " " + TitleGetName(CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
-                }
             }
-            currentY += spacing;
         }
+		if (icase == 1) {
+            DrawTextFit(TextGet("Title") + " " + ititle, 550, currentY, 450, "#0000BF", "Black", "Gray");
+        } else {
+            DrawTextFit(TextGet("Title") + " " + ititle, 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
+        }
+        currentY += spacing;
         if (C.MemberNumber != null) {
             DrawTextFit(TextGet("MemberNumber") + " " + C.MemberNumber.toString(), 550, currentY, 450, "Black", "Gray");
             currentY += spacing;
@@ -8157,15 +8155,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         const spacing = 55;
         let currentY = 500;
 		if (C.OnlineSharedSettings != undefined) {
-            if (C.OnlineSharedSettings.cowner1 != undefined) {
-                if (C.OnlineSharedSettings.cowner1 != "") {
-                    DrawTextFit("Collared by " + C.OnlineSharedSettings.cowner1 + " (" + C.OnlineSharedSettings.cowner2 + ")", 550, currentY, 450, "Black", "Gray");
-                    currentY += spacing;
-                    DrawTextFit("for " + C.OnlineSharedSettings.cowner3 + " days", 550, currentY, 450, "Black", "Gray");
-                    const y = currentY;
-                    currentY += spacing;
-                    return currentY;
-                    return;
+            if (C.OnlineSharedSettings.UBCShared != undefined) {
+                if (C.OnlineSharedSettings.UBCShared.cowner1 != undefined) {
+                    if (C.OnlineSharedSettings.UBCShared.cowner1 != "") {
+                        DrawTextFit("Collared by " + C.OnlineSharedSettings.UBCShared.cowner1 + " (" + C.OnlineSharedSettings.UBCShared.cowner2 + ")", 550, currentY, 450, "Black", "Gray");
+                        currentY += spacing;
+                        DrawTextFit("for " + C.OnlineSharedSettings.UBCShared.cowner3 + " days", 550, currentY, 450, "Black", "Gray");
+                        const y = currentY;
+                        currentY += spacing;
+                        return currentY;
+                        return;
+                    }
                 }
             }
         }
@@ -8251,15 +8251,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function InformationSheetDrawOwnerInfo(C, currentY) {
         const spacing = 55;
 		if (C.OnlineSharedSettings != undefined) {
-            if (C.OnlineSharedSettings.cowner1 != undefined) {
-                if (C.OnlineSharedSettings.cowner1 != "") {
-                   DrawTextFit("Collared by " + C.OnlineSharedSettings.cowner1 + " (" + C.OnlineSharedSettings.cowner2 + ")", 550, currentY, 450, "Black", "Gray");
-                    currentY += spacing;
-                    DrawTextFit("for " + C.OnlineSharedSettings.cowner3 + " days", 550, currentY, 450, "Black", "Gray");
-                    const y = currentY;
-                    currentY += spacing;
-                    return currentY;
-                    return;
+            if (C.OnlineSharedSettings.UBCShared != undefined) {
+                if (C.OnlineSharedSettings.UBCShared.cowner1 != undefined) {
+                    if (C.OnlineSharedSettings.UBCShared.cowner1 != "") {
+                        DrawTextFit("Collared by " + C.OnlineSharedSettings.UBCShared.cowner1 + " (" + C.OnlineSharedSettings.UBCShared.cowner2 + ")", 550, currentY, 450, "Black", "Gray");
+                        currentY += spacing;
+                        DrawTextFit("for " + C.OnlineSharedSettings.UBCShared.cowner3 + " days", 550, currentY, 450, "Black", "Gray");
+                        const y = currentY;
+                        currentY += spacing;
+                        return currentY;
+                        return;
+                    }
                 }
             }
         }
@@ -8811,39 +8813,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function UBCsettings() {
-		let mupdate = 0;
-        Player.OnlineSharedSettings.UBC = UBCver;
-        if (Player.OnlineSharedSettings.cname == undefined) {
-            Player.OnlineSharedSettings.cname = cname;
-        } else {
-            cname = Player.OnlineSharedSettings.cname;
-            mupdate = 1;
-        }
-		if (Player.OnlineSharedSettings.cowner1 == undefined) {
-            Player.OnlineSharedSettings.cowner1 = cowner1;
-        } else {
-            cowner1 = Player.OnlineSharedSettings.cowner1;
-            mupdate = 1;
-        }
-        if (Player.OnlineSharedSettings.cowner2 == undefined) {
-            Player.OnlineSharedSettings.cowner2 = cowner2;
-        } else {
-            cowner2 = Player.OnlineSharedSettings.cowner2;
-            mupdate = 1;
-        }
-        if (Player.OnlineSharedSettings.cowner3 == undefined) {
-            Player.OnlineSharedSettings.cowner3 = cowner3;
-        } else {
-            cowner3 = Player.OnlineSharedSettings.cowner3;
-            mupdate = 1;
-        }
-        if (Player.OnlineSharedSettings.ctitle == undefined) {
-            Player.OnlineSharedSettings.ctitle = ctitle;
-        } else {
-            ctitle = Player.OnlineSharedSettings.ctitle;
-            mupdate = 1;
-        }
-		if (mupdate == 1) M_MOANER_saveControls();
         Player.OnlineSharedSettings.Inmap = false;
         if (Player.OnlineSharedSettings.Tplist == undefined) {
             Player.OnlineSharedSettings.Tplist = [];
@@ -8856,6 +8825,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Player.OnlineSharedSettings.Unoescape = false;
         }
+		Player.OnlineSharedSettings.UBCShared ??= {};
+        Player.OnlineSharedSettings.UBCShared.cname ??= cname;
+        Player.OnlineSharedSettings.UBCShared.cowner1 ??= cowner1;
+        Player.OnlineSharedSettings.UBCShared.cowner2 ??= cowner2;
+        Player.OnlineSharedSettings.UBCShared.cowner3 ??= cowner3;
+        Player.OnlineSharedSettings.UBCShared.ctitle ??= ctitle;
+        delete Player.OnlineSharedSettings.cname; 
+        delete Player.OnlineSharedSettings.cowner1; 
+        delete Player.OnlineSharedSettings.cowner2; 
+        delete Player.OnlineSharedSettings.cowner3; 
+        delete Player.OnlineSharedSettings.ctitle; 
         ServerAccountUpdate.QueueData({
             OnlineSharedSettings: Player.OnlineSharedSettings
         });
@@ -11584,7 +11564,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     infomsg("Nombre personalizado creado o modificado");
                 }
                 M_MOANER_saveControls();
-                Player.OnlineSharedSettings.cname = cname;
+                Player.OnlineSharedSettings.UBCShared.cname = cname;
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
@@ -11852,9 +11832,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg("Propietario personalizado eliminado creado o modificado");
             }
             M_MOANER_saveControls();
-            Player.OnlineSharedSettings.cowner1 = cowner1;
-            Player.OnlineSharedSettings.cowner2 = cowner2;
-            Player.OnlineSharedSettings.cowner3 = cowner3;
+            Player.OnlineSharedSettings.UBCShared.cowner1 = cowner1;
+            Player.OnlineSharedSettings.UBCShared.cowner2 = cowner2;
+            Player.OnlineSharedSettings.UBCShared.cowner3 = cowner3;
             ServerAccountUpdate.QueueData({
                  OnlineSharedSettings: Player.OnlineSharedSettings
             });      
@@ -11887,7 +11867,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     infomsg("Título personalizado creado o modificado");
                 }
                 M_MOANER_saveControls();
-                Player.OnlineSharedSettings.ctitle = ctitle;
+                Player.OnlineSharedSettings.UBCShared.ctitle = ctitle;
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
