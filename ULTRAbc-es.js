@@ -12812,7 +12812,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!args) {
                 return infomsg(
                     "El comando mapkeys debe ir seguido de dos números.\n" +
-                    "1er número: 1 = Llave de Bronce - 2 = Llave de Plata - 3 = Llave de Oro - 4 = Todas las llaves.\n" +
+                    "1er número: 1 = Llave de Oro - 2 = Llave de Plata - 3 = Llave de Bronce - 4 = Todas las llaves.\n" +
                     "2do número: 1 = Encontrar - 2 = Perder."
                 );
             }
