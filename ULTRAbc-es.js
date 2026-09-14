@@ -3032,7 +3032,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Controlar la animación del objeto (0-2):", "animstate", "InputAnimControl",
                     "Introduce un número entre 0 y 2 para controlar la animación integrada en algunos objetos, como la caja futurista: 0 Sin control - 1 Control parcial (2 actualizaciones por segundo) - 2 Control total (sin animación). Nota importante: modificar la animación del objeto puede provocar, en algunos casos, efectos inesperados, como problemas gráficos, errores o inconsistencias. Úsela solo si experimenta problemas de lentitud.", 84
                 );
-				addMenuCheckbox(64, 64, "Desactivar el efecto gris en el armario: ", "nograywr", 
+				addMenuCheckbox(64, 64, "Desactivar efecto gris en el guardarropa: ", "nograywr", 
                     "Por defecto, BC aplica un efecto gris a la barra superior del guardarropa. Si no te gusta, ¡simplemente selecciona esta opción!", false, 220
                 );
                 let pmsg = "Por defecto, BC añade mensajes y un efecto rosa cuando estás muy excitada y probablemente vayas a tener un orgasmo. ¡Si no te gusta eso, este ajuste de UBC te hará feliz! Nota: No está disponible cuando la función LSCG Splatter está detectada como activada.";
