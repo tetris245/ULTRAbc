@@ -3032,7 +3032,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Control item animation (0-2):", "animstate", "InputAnimControl",
                     "Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation). Important note: alteration of the item animation can lead in some cases to unexpected effects, such as graphical issues, bugs or discrepancies. Use it only if you're experiencing lagging problems.", 65
                 );
-				addMenuCheckbox(64, 64, "Disable gray effect in wardobe: ", "nograywr", 
+				addMenuCheckbox(64, 64, "Disable gray effect in wardrobe: ", "nograywr", 
                     "By default, BC applies a gray effect on the top bar of the wardrobe. If you don't like that, just select this setting!", false, 200
                 );
                 let pmsg = "默认情况下，当你非常兴奋并可能达到高潮时，BC 会添加消息和粉色效果。如果你不喜欢这样，这个 UBC 设置会让你满意！注意：当检测到 LSCG Splatter 功能启用时不可用。";
