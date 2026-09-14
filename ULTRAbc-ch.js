@@ -12801,7 +12801,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!args) {
                 return infomsg(
                     "mapkeys 命令后必须跟两个数字。\n" +
-                    "第 1 个数字：1 = 青铜钥匙 - 2 = 白银钥匙 - 3 = 黄金钥匙 - 4 = 所有钥匙。\n" +
+					"第 1 个数字：1 = 黄金钥匙 - 2 = 白银钥匙 - 3 = 青铜钥匙 - 4 = 所有钥匙。\n" +
                     "第 2 个数字：1 = 查找 - 2 = 丢失。"
                 );
             }
