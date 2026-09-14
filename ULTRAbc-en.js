@@ -223,6 +223,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	let mapfull3;
     let noescape;
     let nogarble;
+	let nograywr;
     let noifbuttons;
     let nopinkscr;
     let nostruggle;
@@ -623,6 +624,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		nobcxalarm = false;
         noescape = false;
         nogarble = false;
+		nograywr = false;
         noifbuttons = false;
 		nopending = false;
         nopinkscr = false;
@@ -751,6 +753,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		nobcxalarm = data.nobcxalarm;
         noescape = data.noescape;
         nogarble = data.nogarble;
+		nograywr = data.nograywr;
         noifbuttons = data.noifbuttons;
 		nopending = data.nopending;
         nopinkscr = data.nopinkscr;
@@ -971,6 +974,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "mapfull3": mapfull3,
             "noescape": noescape,
             "nogarble": nogarble,
+            "nograywr": nograywr,
             "noifbuttons": noifbuttons,
             "nopinkscr": nopinkscr,
             "nostruggle": nostruggle,
@@ -1117,6 +1121,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 				if (nobcxalarm == null || nobcxalarm == undefined) nobcxalarm = false;
                 if (noescape == null || noescape == undefined) noescape = false;
                 if (nogarble == null || nogarble == undefined) nogarble = false;
+				if (nograywr == null || nograywr == undefined) nograywr = false;
                 if (noifbuttons == null || noifbuttons == undefined) noifbuttons = false;
 				if (nopending == null || nopending == undefined) nopending = false;
                 if (nopinkscr == null || nopinkscr == undefined) nopinkscr = false;
@@ -1270,6 +1275,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nobcxalarm: false,
                 noescape: false,
                 nogarble: false,
+				nograywr: false,
                 noifbuttons: false,
 				nopending: false,
                 nopinkscr: false,
@@ -3025,6 +3031,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCPreferenceSubscreen = "UBCVisual";
                 addMenuInput(200, "Control item animation (0-2):", "animstate", "InputAnimControl",
                     "Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation). Important note: alteration of the item animation can lead in some cases to unexpected effects, such as graphical issues, bugs or discrepancies. Use it only if you're experiencing lagging problems.", 65
+                );
+				addMenuCheckbox(64, 64, "Disable gray effect in wardobe: ", "nograywr", 
+                    "By default, BC applies a gray effect on the top bar of the wardrobe. If you don't like that, just select this setting!", false, 200
                 );
                 let pmsg = "By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled.";
                 let spl = 0;
@@ -5575,6 +5584,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         TintsEffect();
         return next(args);
     });
+
+	modApi.patchFunction(
+        "WardrobeLoad", {
+            'const header = screen.querySelector(".screen-header");':
+            'const header = screen.querySelector(".screen-header"); if (Player.UBC.ubcSettings.nograywr == true) header.style.backgroundColor = "rgba(0, 0, 0, 0)";',         
+        }
+    );
 
     //Other functions
     //Background
