@@ -5585,6 +5585,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
+	//Wardrobe
 	modApi.patchFunction(
         "WardrobeLoad", {
             'const header = screen.querySelector(".screen-header");':
