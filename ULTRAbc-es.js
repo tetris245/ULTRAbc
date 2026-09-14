@@ -3033,7 +3033,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Introduce un número entre 0 y 2 para controlar la animación integrada en algunos objetos, como la caja futurista: 0 Sin control - 1 Control parcial (2 actualizaciones por segundo) - 2 Control total (sin animación). Nota importante: modificar la animación del objeto puede provocar, en algunos casos, efectos inesperados, como problemas gráficos, errores o inconsistencias. Úsela solo si experimenta problemas de lentitud.", 84
                 );
 				addMenuCheckbox(64, 64, "Desactivar el efecto gris en el armario: ", "nograywr", 
-                    "Por defecto, BC aplica un efecto gris a la barra superior del armario. Si no te gusta, ¡simplemente selecciona esta opción!", false, 220
+                    "Por defecto, BC aplica un efecto gris a la barra superior del guardarropa. Si no te gusta, ¡simplemente selecciona esta opción!", false, 220
                 );
                 let pmsg = "Por defecto, BC añade mensajes y un efecto rosa cuando estás muy excitada y probablemente vayas a tener un orgasmo. ¡Si no te gusta eso, este ajuste de UBC te hará feliz! Nota: No está disponible cuando la función LSCG Splatter está detectada como activada.";
                 let spl = 0;
@@ -16703,31 +16703,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             infomsg(msg);
         }
     }])
-
-    CommandCombine([{
-        Tag: 'wrobe',
-        Description: "(objetivo): abre completamente el guardarropa del objetivo.",
-        Action: (args) => {
-            if (args === "") {
-                ChatRoomAppearanceLoadCharacter(Player);
-            } else {
-                let target = TargetSearch(args);
-                if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
-                    tgpname = getNickname(target);
-                    if (IsTargetProtected(target)) {
-                        let msg = umsg1 + tgpname + umsg2;
-                        infomsg(msg);
-                    } else {
-                        target.OnlineSharedSettings.AllowFullWardrobeAccess = true;
-                        target.OnlineSharedSettings.BlockBodyCosplay = false;
-                        ChatRoomAppearanceLoadCharacter(target);
-                    }
-                }
-                ChatRoomSetTarget(-1);
-            }
-        }
-    }])
-
+ 
 	CommandCombine([{
         Tag: 'wexport',
         Description: "(objetivo): exporta completamente vestimenta en formato UBC/BCG.",
@@ -16882,6 +16858,31 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatRoomSetTarget(-1);
         }
     }])
+
+	CommandCombine([{
+        Tag: 'wrobe',
+        Description: "(objetivo): abre completamente el guardarropa del objetivo.",
+        Action: (args) => {
+            if (args === "") {
+                ChatRoomAppearanceLoadCharacter(Player);
+            } else {
+                let target = TargetSearch(args);
+                if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    tgpname = getNickname(target);
+                    if (IsTargetProtected(target)) {
+                        let msg = umsg1 + tgpname + umsg2;
+                        infomsg(msg);
+                    } else {
+                        target.OnlineSharedSettings.AllowFullWardrobeAccess = true;
+                        target.OnlineSharedSettings.BlockBodyCosplay = false;
+                        ChatRoomAppearanceLoadCharacter(target);
+                    }
+                }
+                ChatRoomSetTarget(-1);
+            }
+        }
+    }])
+
 
     CommandCombine([{
         Tag: 'xmenu',
