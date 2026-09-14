@@ -12810,7 +12810,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (!args) {
                 return infomsg(
                     "The mapkeys command must be followed by two numbers.\n" +
-                    "1st number: 1 = Bronze key - 2 = Silver key - 3 = Gold key - 4 = All keys.\n" +
+                    "1st number: 1 = Gold key - 2 = Silver key - 3 = Bronze key - 4 = All keys.\n" +
                     "2nd number: 1 = Find - 2 = Lose."
                 );
             }
