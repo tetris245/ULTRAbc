@@ -3056,8 +3056,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     addMenuCheckbox(64, 64, "Disable BC pinky arousal overlay: ", "nopinkscr", pmsg, true, 200);
                 }
                 addMenuCheckbox(64, 64, "Enable all UBC changes in Chat Search: ", "altchsh",
-                    "If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search.", false, 200
-                );
+                    "If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search. However, the location for this bar will remain empty.", false, 200
+                )
                 addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
                     "If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu. This parameter is not available if you have disabled all UBC changes in Chat Search.", "!Player.UBC.ubcSettings.altchsh", 200
                 );
