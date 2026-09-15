@@ -2682,7 +2682,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 let omsg = "启用后，您会在高潮时呻吟。当检测到 LSCG Splatter 功能已启用时无法启用它。";
                 let spl = 0;
-                let LSCG = Player.ExtensionSettings.LSCG;
+                let LSCG;
+                if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
                     let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                     if (LSCGdata.SplatterModule.enabled) spl = 1;
@@ -3037,7 +3038,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 let pmsg = "默认情况下，当你非常兴奋并可能达到高潮时，BC 会添加消息和粉色效果。如果你不喜欢这样，这个 UBC 设置会让你满意！注意：当检测到 LSCG Splatter 功能启用时不可用。";
                 let spl = 0;
-                let LSCG = Player.ExtensionSettings.LSCG;
+                let LSCG;
+                if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
                     let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                     if (LSCGdata.SplatterModule.enabled) spl = 1;
@@ -10239,7 +10241,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_reactionOrgasm(Player) {
         let spl = 0;
-        let LSCG = Player.ExtensionSettings.LSCG;
+        let LSCG;
+        if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.SplatterModule.enabled) spl = 1;
@@ -10340,7 +10343,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             let lvibe = 0;
-            let LSCG = Player.ExtensionSettings.LSCG;
+            let LSCG;
+            if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
             if (LSCG) {
                 let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                 if ((data.Content.includes("SipItem")) || (data.Content.includes("LSCG_FunnelPour"))) lvibe = 1;
@@ -10524,7 +10528,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Player.ArousalSettings.Progress >= 10) {
             return true;
         }
-        let LSCG = Player.ExtensionSettings.LSCG;
+        let LSCG;
+        if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.InjectorModule.enableHorny == true) {
@@ -10802,7 +10807,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
         }
-        let LSCG = Player.ExtensionSettings.LSCG;
+        let LSCG;
+        if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.InjectorModule.enableHorny == true) {
@@ -12102,7 +12108,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         mgl = SpeechTransformGagGarbleIntensity(Player);
                     }
                 }
-                let LSCG = Player.ExtensionSettings.LSCG;
+                let LSCG;
+                if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
                     let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                     let states = LSCGdata.StateModule.states || [];
