@@ -3339,7 +3339,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
 	modApi.hookFunction('ChatBlockItemRun', 4, async (args, next) => {
-        ChatBlockItemList = ["ABDL", "Arousal", "Fantasy", "SciFi", "BlockLocationSharing", "Photos", "Leashing", "Smoking"];
+        ChatBlockItemList = ["ABDL", "Arousal", "Fantasy", "SciFi", "Location", "Photos", "Leashing", "Smoking"];
         return next(args);
     });
 
@@ -12871,7 +12871,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
                         keysinfo(Player);
                     } else {
-                        if ((!ChatRoomData.BlockCategory.includes("BlockLocationSharing")) || (mapfull3)) {
+                        if ((!ChatRoomData.BlockCategory.includes("Location")) || (mapfull3)) {
                             ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
                         } else {
                             ChatRoomSendLocal(`Location Sharing blocked - ${exinfo}`);
@@ -12977,7 +12977,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
                 keysinfo(Player);
             } else {
-                 if ((!ChatRoomData.BlockCategory.includes("BlockLocationSharing")) || (mapfull3)) {
+                 if ((!ChatRoomData.BlockCategory.includes("Location")) || (mapfull3)) {
                     ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
                  } else {
                      ChatRoomSendLocal(`Location Sharing blocked - ${exinfo}`);
