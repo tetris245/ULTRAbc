@@ -2682,7 +2682,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 let omsg = "When enabled, you will moan while cumming. It is not possible to enable it when the LSCG Splatter feature is detected as enabled.";
                 let spl = 0;
-                let LSCG = Player.ExtensionSettings.LSCG;
+                let LSCG;
+                if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
                     let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                     if (LSCGdata.SplatterModule.enabled) spl = 1;
@@ -3037,7 +3038,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 let pmsg = "By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled.";
                 let spl = 0;
-                let LSCG = Player.ExtensionSettings.LSCG;
+                let LSCG;
+                if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
                     let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                     if (LSCGdata.SplatterModule.enabled) spl = 1;
@@ -10256,7 +10258,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_reactionOrgasm(Player) {
         let spl = 0;
-        let LSCG = Player.ExtensionSettings.LSCG;
+        let LSCG;
+        if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.SplatterModule.enabled) spl = 1;
@@ -10357,7 +10360,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             let lvibe = 0;
-            let LSCG = Player.ExtensionSettings.LSCG;
+            let LSCG;
+            if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
             if (LSCG) {
                 let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                 if ((data.Content.includes("SipItem")) || (data.Content.includes("LSCG_FunnelPour"))) lvibe = 1;
@@ -10541,7 +10545,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Player.ArousalSettings.Progress >= 10) {
             return true;
         }
-        let LSCG = Player.ExtensionSettings.LSCG;
+        let LSCG;
+        if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.InjectorModule.enableHorny == true) {
@@ -10819,7 +10824,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
         }
-        let LSCG = Player.ExtensionSettings.LSCG;
+        let LSCG;
+        if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
         if (LSCG) {
             let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
             if (LSCGdata.InjectorModule.enableHorny == true) {
@@ -12111,7 +12117,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         mgl = SpeechTransformGagGarbleIntensity(Player);
                     }
                 }
-                let LSCG = Player.ExtensionSettings.LSCG;
+                let LSCG;
+                if (Player.ExtensionSettings.LSCG != undefined) LSCG = Player.ExtensionSettings.LSCG;
                 if (LSCG) {
                     let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                     let states = LSCGdata.StateModule.states || [];
