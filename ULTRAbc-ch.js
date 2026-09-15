@@ -107,7 +107,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     window.UBCver = UBCver;
     let ini = 0;
     let kp = 0;
-    let altchsh = true;
+    let altinfo = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
 	let lastAfkMessageTime = 0;
     let lastAnimationUpdate;
@@ -142,6 +142,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let alfaprf = false;
     let alfmenu = false;
     let alfrpsk = false;
+	let altchsh = true;
     let animal = 0;
     let animstate = 0;
     let bgall = false;
@@ -583,6 +584,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         alfaprf = false;
         alfmenu = false;
         alfrpsk = false;
+		altchsh = true;
         animal = 0;
         animstate = 0;
         asylumlimit = false;
@@ -712,6 +714,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         alfaprf = data.alfaprf;
         alfmenu = data.alfmenu;
         alfrpsk = data.alfrpsk;
+		altchsh = data.altchsh;
         animal = data.animal * 1;
         animstate = data.animstate * 1;
         asylumlimit = data.asylumlimit;
@@ -899,6 +902,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "alfaprf": alfaprf,
             "alfmenu": alfmenu,
             "alfrpsk": alfrpsk,
+			"altchsh": altchsh,
             "animal": animal,
             "animstate": animstate,
             "bgall": bgall,
@@ -1060,6 +1064,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (alfaprf == null || alfaprf == undefined) alfaprf = false;
                 if (alfmenu == null || alfmenu == undefined) alfmenu = false;
                 if (alfrpsk == null || alfrpsk == undefined) alfrpsk = false;
+				if (altchsh == null || altchsh == undefined) altchsh = true;
                 if (animal == null || animal == undefined) animal = 0;
                 if (animstate == null || animstate == undefined) animstate = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;
@@ -1238,6 +1243,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 alfaprf: false,
                 alfmenu: false,
                 alfrpsk: false,
+				altchsh: true,
                 animal: 0,
                 animstate: 0,
                 asylumlimit: false,
@@ -3049,8 +3055,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     addMenuCheckbox(64, 64, "禁用 BC 粉色兴奋覆盖层：", "nopinkscr", pmsg, true, 200);
                 }
-                addMenuCheckbox(64, 64, "移除聊天搜索中的 UBC 底部栏：", "noubcbar",
-                    "如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。", false, 200
+				addMenuCheckbox(64, 64, "Enable all UBC changes in Chat Search: ", "altchsh",
+                    "If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search. However, the location for this bar will remain empty.", false, 200
+                );
+                addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
+                    "如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。This parameter is not available if you have disabled all UBC changes in Chat Search.", "!Player.UBC.ubcSettings.altchsh", 200
                 );
                 addMenuInput(200, "强制失明模式（1-4）:", "blindness", "InputBlindnessMode",
                     "输入 1 到 4 之间的数字来选择以下强制的'永久'失明模式之一，忽略你的实际状态：1 无失明 - 2 轻度失明 - 3 普通失明 - 4 重度失明。注意你需要完全重新登录才能离开此特殊模式（如果输入 0，将不会产生任何效果）。此模式可能触发 BCX 警告。忽略它即可（关闭突破消息）！", 65
@@ -3998,7 +4007,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ElementPositionFixed(ChatSearchRoomBottom, 430, 880, 1520, 90);
             ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 480);
         }
-        if (noubcbar == true) ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 680);
+        if ((altchsh == true) && (noubcbar == true)) ElementPositionFixed(ChatSearchSearchMenu, 25, 115, 810, 680);
         return ret;
     });
 
@@ -4609,7 +4618,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
-        if (altchsh == true) {
+        if (altinfo == true) {
             AltInformationSheetRun();
             return;
         }
@@ -4893,7 +4902,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Pandora Infiltration
 	modApi.hookFunction('InfiltrationPrepareMission', 4, async (args, next) => {
-        if (altchsh == true) {
+        if (altinfo == true) {
            AltPrepareMission();
            return;
         }
@@ -4911,7 +4920,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Pandora Prison
 	modApi.hookFunction('PandoraPenitentiaryResult', 4, async (args, next) => {
-        if (altchsh == true) {
+        if (altinfo == true) {
            AltPrisonResult();
            return;
         }
@@ -5312,7 +5321,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
 	modApi.hookFunction('CellLoad', 4, async (args, next) => {
-        if (altchsh == true) {
+        if (altinfo == true) {
            AltCellLoad();
            return;
         }
