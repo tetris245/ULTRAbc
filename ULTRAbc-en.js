@@ -3652,7 +3652,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             ElementValue("InputChat", text3.replace(text3, text4));
             let mb = 0;
-            let MBS = Player.ExtensionSettings.MBS;
+            let MBS;
+            if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
             if (MBS) {
                 let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                 if (MBSdata.AlternativeGarbling) mb = 1;
@@ -9240,7 +9241,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             GagTalkOn = true;
             let ngl = SpeechTransformGagGarbleIntensity(Player);
             mgl = ngl;
-            let MBS = Player.ExtensionSettings.MBS;
+            let MBS;
+            if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
             if (MBS) {
                 let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                 if (MBSdata.AlternativeGarbling && ChatRoomTargetMemberNumber == null) {
@@ -10292,7 +10294,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (this.StutterOn == true) moan2 = SpeechTransformStutter(moan, st);
                 ElementValue("InputChat", moan.replace(moan, moan2));
                 let mb = 0;
-                let MBS = Player.ExtensionSettings.MBS;
+                let MBS;
+                if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
                 if (MBS) {
                     let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                     if (MBSdata.AlternativeGarbling) mb = 1;
@@ -10505,7 +10508,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (this.StutterOn == true) moan2 = SpeechTransformStutter(moan, st);
         ElementValue("InputChat", moan.replace(moan, moan2));
         let mb = 0;
-        let MBS = Player.ExtensionSettings.MBS;
+        let MBS;
+        if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
         if (MBS) {
             let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
             if (MBSdata.AlternativeGarbling) mb = 1;
@@ -12109,7 +12113,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (gaglevel == 0) {
                 onegl = SpeechTransformGagGarbleIntensity(Player);
                 let mgl = onegl;
-                let MBS = Player.ExtensionSettings.MBS;
+                let MBS;
+                if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
                 if (MBS) {
                     let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                     if (MBSdata.AlternativeGarbling) {
@@ -13076,8 +13081,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomSendLocal(" ");
                     return;
                 }
-                const MBS = OnlineSharedSettings.MBS;
-                const MBSVersion = OnlineSharedSettings.MBSVersion;
+                let MBS;
+                if (Player.OnlineSharedSettings.MBS != undefined) LSCG = Player.OnlineSharedSettings.MBS;
+                let MBSVersion;
+                if (Player.OnlineSharedSettings.MBSVersion != undefined) MBSVersion = OnlineSharedSettings.MBSVersion;
                 if (!MBS) {
                     ChatRoomSendLocal("Does not have a MBS wheel of fortune.");
                     ChatRoomSendLocal(" ");
