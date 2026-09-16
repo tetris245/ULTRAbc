@@ -3037,10 +3037,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
                 addMenuInput(200, "Controlar la animación del objeto (0-2):", "animstate", "InputAnimControl",
-                    "Introduce un número entre 0 y 2 para controlar la animación integrada en algunos objetos, como la caja futurista: 0 Sin control - 1 Control parcial (2 actualizaciones por segundo) - 2 Control total (sin animación). Nota importante: modificar la animación del objeto puede provocar, en algunos casos, efectos inesperados, como problemas gráficos, errores o inconsistencias. Úsela solo si experimenta problemas de lentitud.", 84
+                    "Introduce un número entre 0 y 2 para controlar la animación integrada en algunos objetos, como la caja futurista: 0 Sin control - 1 Control parcial (2 actualizaciones por segundo) - 2 Control total (sin animación). Nota importante: modificar la animación del objeto puede provocar, en algunos casos, efectos inesperados, como problemas gráficos, errores o inconsistencias. Úsela solo si experimenta problemas de lentitud.", 104
                 );
 				addMenuCheckbox(64, 64, "Desactivar efecto gris en el guardarropa: ", "nograywr", 
-                    "Por defecto, BC aplica un efecto gris a la barra superior del guardarropa. Si no te gusta, ¡simplemente selecciona esta opción!", false, 220
+                    "Por defecto, BC aplica un efecto gris a la barra superior del guardarropa. Si no te gusta, ¡simplemente selecciona esta opción!", false, 240
                 );
                 let pmsg = "Por defecto, BC añade mensajes y un efecto rosa cuando estás muy excitada y probablemente vayas a tener un orgasmo. ¡Si no te gusta eso, este ajuste de UBC te hará feliz! Nota: No está disponible cuando la función LSCG Splatter está detectada como activada.";
                 let spl = 0;
@@ -3051,30 +3051,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (LSCGdata.SplatterModule.enabled) spl = 1;
                 }
                 if (spl == 0) {
-                    addMenuCheckbox(64, 64, "Desactivar capa rosa de excitación de BC: ", "nopinkscr", pmsg, false, 220);
+                    addMenuCheckbox(64, 64, "Desactivar capa rosa de excitación de BC: ", "nopinkscr", pmsg, false, 240);
                 } else {
-                    addMenuCheckbox(64, 64, "Desactivar capa rosa de excitación de BC: ", "nopinkscr", pmsg, true, 220);
+                    addMenuCheckbox(64, 64, "Desactivar capa rosa de excitación de BC: ", "nopinkscr", pmsg, true, 240);
                 }
                 addMenuCheckbox(64, 64, "Habilitar cambios de UBC en Búsqueda de Chat: ", "altchsh",
-                    "Si desactiva esta opción, UBC utilizará la barra superior y el menú estándar para la Búsqueda de Chat, y no mostrará la barra inferior de UBC en la Búsqueda de Chat. Sin embargo, la ubicación de esta barra permanecerá vacía.", false, 220
+                    "Si desactiva esta opción, UBC utilizará la barra superior y el menú estándar para la Búsqueda de Chat, y no mostrará la barra inferior de UBC en la Búsqueda de Chat. Sin embargo, la ubicación de esta barra permanecerá vacía.", false, 240
                 );
                 addMenuCheckbox(64, 64, "Quitar barra inferior en Búsqueda de Chat: ", "noubcbar",
-                    "Si marcas este ajuste, UBC no mostrará la barra inferior en la Búsqueda de Chat. Las opciones faltantes estarán disponibles en el menú de Búsqueda de Chat. Este parámetro no está disponible si ha desactivado todos los cambios de UBC en la Búsqueda de Chat.", "!Player.UBC.ubcSettings.altchsh", 220
+                    "Si marcas este ajuste, UBC no mostrará la barra inferior en la Búsqueda de Chat. Las opciones faltantes estarán disponibles en el menú de Búsqueda de Chat. Este parámetro no está disponible si ha desactivado todos los cambios de UBC en la Búsqueda de Chat.", "!Player.UBC.ubcSettings.altchsh", 240
                 );
                 addMenuInput(200, "Modo de ceguera forzada (1-4):", "blindness", "InputBlindnessMode",
-                    "Introduce un número entre 1 y 4 para seleccionar uno de estos modos de ceguera 'permanentes' forzados, ignorando tu estado real: 1 Sin ceguera - 2 Ceguera ligera - 3 Ceguera normal - 4 Ceguera pesada. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!", 84
+                    "Introduce un número entre 1 y 4 para seleccionar uno de estos modos de ceguera 'permanentes' forzados, ignorando tu estado real: 1 Sin ceguera - 2 Ceguera ligera - 3 Ceguera normal - 4 Ceguera pesada. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!", 104
                 );
                 addMenuInput(200, "Visión borrosa forzada (1-5):", "blurmode", "InputBlurMode",
-                    "Introduce un número entre 1 y 5 para seleccionar uno de estos modos de visión borrosa 'permanentes' forzados, ignorando tu estado real: 1 Sin visión borrosa - 2 Visión borrosa ligera - 3 Visión borrosa normal - 4 Versión borrosa pesada - 5 Visión borrosa total. Nota: necesitarás reiniciar sesión (relog) para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!", 84
+                    "Introduce un número entre 1 y 5 para seleccionar uno de estos modos de visión borrosa 'permanentes' forzados, ignorando tu estado real: 1 Sin visión borrosa - 2 Visión borrosa ligera - 3 Visión borrosa normal - 4 Versión borrosa pesada - 5 Visión borrosa total. Nota: necesitarás reiniciar sesión (relog) para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!", 104
                 );
                 addMenuCheckbox(64, 64, "Desactivar totalmente los ajustes de tinte: ", "tintnever",
-                    "Si marcas este ajuste, todos los ajustes de tinte de UBC (nivel, color, MBS) se desactivarán por completo. Sin embargo, se requiere reiniciar sesión para restaurar los colores originales o del tema en las pantallas de MBS.", false, 220
+                    "Si marcas este ajuste, todos los ajustes de tinte de UBC (nivel, color, MBS) se desactivarán por completo. Sin embargo, se requiere reiniciar sesión para restaurar los colores originales o del tema en las pantallas de MBS.", false, 240
                 );
                 addMenuInput(200, "Nivel de efecto de tinte (0-3):", "tintlevel", "InputTintLevel",
-                    "Introduce un número entre 0 y 3 para seleccionar uno de estos niveles de efecto de tinte forzados: 0 Sin efecto - 1 Efecto ligero - 2 Efecto medio - 3 Efecto pesado.", 84
+                    "Introduce un número entre 0 y 3 para seleccionar uno de estos niveles de efecto de tinte forzados: 0 Sin efecto - 1 Efecto ligero - 2 Efecto medio - 3 Efecto pesado.", 104
                 );
                 addMenuInput(200, "Color del tinte (formato #000000):", "tintcolor", "InputTintColor",
-                    "Introduce un código de color en formato hexadecimal #000000 para aplicar un efecto de tinte en casi todo el Bondage Club. ¡No olvides seleccionar también un nivel de efecto de tinte! El tinte también se aplicará en las páginas creadas por la mayoría de complementos. Excepciones conocidas son BCX y el mod de Echo. El caso de MBS es especial (ver ajuste específico). El color final puede variar al mezclarse con un color de Tema.", 84
+                    "Introduce un código de color en formato hexadecimal #000000 para aplicar un efecto de tinte en casi todo el Bondage Club. ¡No olvides seleccionar también un nivel de efecto de tinte! El tinte también se aplicará en las páginas creadas por la mayoría de complementos. Excepciones conocidas son BCX y el mod de Echo. El caso de MBS es especial (ver ajuste específico). El color final puede variar al mezclarse con un color de Tema.", 104
                 );
                 let mbsmsg = "Cuando esté activado, visita SIEMPRE la pantalla de Extensiones para activarlo tras iniciar sesión. El color del tinte se usará como color de fondo para la parte central de las pantallas de MBS. Si lo desactivas más tarde, el color restaurado corresponderá al color por defecto de MBS o al color principal del Tema. Este ajuste no tiene efecto si el nivel de tinte es 0. No está disponible si no se usa MBS o si los ajustes de tinte de UBC están totalmente desactivados.";
                 let mbb = 0;
@@ -3083,9 +3083,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (list[i].Button == "MBS Settings") mbb = 1;
                 }
                 if (mbb == 0) {
-                    addMenuCheckbox(64, 64, "Activar efecto de tinte en pantallas MBS: ", "tintmbs", mbsmsg, true, 220);
+                    addMenuCheckbox(64, 64, "Activar efecto de tinte en pantallas MBS: ", "tintmbs", mbsmsg, true, 240);
                 } else {
-                    addMenuCheckbox(64, 64, "Activar efecto de tinte en pantallas MBS: ", "tintmbs", mbsmsg, "Player.UBC.ubcSettings.tintnever", 220);
+                    addMenuCheckbox(64, 64, "Activar efecto de tinte en pantallas MBS: ", "tintmbs", mbsmsg, "Player.UBC.ubcSettings.tintnever", 240);
                 }
             }
 
