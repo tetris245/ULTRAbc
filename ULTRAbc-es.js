@@ -9250,7 +9250,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (LSCG) {
                 let LSCGdata = JSON.parse(LZString.decompressFromBase64(LSCG));
                 let neck = InventoryGet(Player, "ItemNeck");
-                if (neck && LSCGdata.CollarModule.chokeLevel > 1) {
+                if (neck && LSCGdata?.CollarModule?.chokeLevel > 1) {
                     ngl += LSCGdata.CollarModule.chokeLevel * 2;
                     mgl = ngl;
                 }
