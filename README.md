@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.2
+Most recent version: 6.2.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.2.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.2.1.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.2.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.2.1.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.2.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.2.1.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -97,17 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New setting in GUI - Maps to enable full location of players in map rooms, even when Location Sharing is blocked
-* New settings in GUI - Visual to 
-  - enable/disable gray effect on top bar of the Wardrobe 
-  - enable/disable all UBC changes in Chat Search (with exception of the location reserved for the bottom bar)
-* Updated the maproom and mapz commands: they will don't give the coordinates of other players if the current map room has blocked Location Sharing, except if the new setting in GUI - Maps has been selected
-* Removed the "Minimum Players in Room" parameter from the Chat Search Menu
-* Hooked in the ChatBlockItemRun function to display the English ChatBlockItemList in alphabetical order on the concerned subscreen related to a chat room
-* Optimised the code for the UBC custom commands and moved the saving of their data to Player.OnlineSharedSettings.UBCShared
-* Updated and/or optimised hooks/patches in several functions related to the Club Card Game
-* Updated the hook in the PreferenceSubscreenGraphicsLoad function
-
+(...)
 
 
 
