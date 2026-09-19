@@ -5586,9 +5586,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Wardrobe
-    modApi.patchFunction(
+     modApi.patchFunction(
         "WardrobeLoad", {
-            'const header = screen.querySelector(".screen-header");': 'const header = screen.querySelector(".screen-header"); if (Player.UBC.ubcSettings.nograywr == true) header.style.backgroundColor = "rgba(0, 0, 0, 0)";',
+            'const screenHeader = screen.querySelector(".screen-header");': 'const screenHeader = screen.querySelector(".screen-header"); if (Player.UBC.ubcSettings.nograywr == true) screenHeader.style.backgroundColor = "rgba(0, 0, 0, 0)";',
         }
     );
 
