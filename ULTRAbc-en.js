@@ -1875,7 +1875,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCSkills",
                 "UBCSpecialModes",
                 "UBCTalking",
-                "UBCVisual"
+                "UBCVisualEffects",
+                "UBCVisualPreferences"
             ];
             const ubcSettingCategoryLabels = {
                 UBCBackgrounds: "Backgrounds",
@@ -1889,7 +1890,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCSkills: "Skills",
                 UBCSpecialModes: "Special Modes",
                 UBCTalking: "Talking",
-                UBCVisual: "Visual"
+                UBCVisualEffects: "Visual Effects",
+                UBCVisualPreferences: "Visual Preferences"
             };
             const MENU_ELEMENT_X_OFFSET = 1050;
 
@@ -3031,8 +3033,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "Put a valid number";
             }
 
-            PreferenceSubscreenUBCVisualLoad = function() {
-                UBCPreferenceSubscreen = "UBCVisual";
+			PreferenceSubscreenUBCVisualEffectsLoad = function() {
+                UBCPreferenceSubscreen = "UBCVisualEffects";
                 addMenuInput(200, "Control item animation (0-2):", "animstate", "InputAnimControl",
                     "Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation). Important note: alteration of the item animation can lead in some cases to unexpected effects, such as graphical issues, bugs or discrepancies. Use it only if you're experiencing lagging problems.", 65
                 );
@@ -3052,12 +3054,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     addMenuCheckbox(64, 64, "Disable BC pinky arousal overlay: ", "nopinkscr", pmsg, true, 200);
                 }
-                addMenuCheckbox(64, 64, "Enable all UBC changes in Chat Search: ", "altchsh",
-                    "If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search. However, the location for this bar will remain empty.", false, 200
-                )
-                addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
-                    "If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu. This parameter is not available if you have disabled all UBC changes in Chat Search.", "!Player.UBC.ubcSettings.altchsh", 200
-                );
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
                     "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 65
                 );
@@ -3086,15 +3082,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
 
-            PreferenceSubscreenUBCVisualRun = function() {
+            PreferenceSubscreenUBCVisualEffectsRun = function() {
                 drawMenuElements();
             }
 
-            PreferenceSubscreenUBCVisualClick = function() {
+            PreferenceSubscreenUBCVisualEffectsClick = function() {
                 handleMenuClicks();
             }
 
-            PreferenceSubscreenUBCVisualExit = function() {
+            PreferenceSubscreenUBCVisualEffectsExit = function() {
                 let astate = ElementValue("InputAnimControl");
                 let blmode = ElementValue("InputBlindnessMode");
                 let brmode = ElementValue("InputBlurMode");
@@ -3118,6 +3114,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputTintLevel");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesLoad = function() {
+                UBCPreferenceSubscreen = "UBCVisualPreferences";         
+                addMenuCheckbox(64, 64, "Enable all UBC changes in Chat Search: ", "altchsh",
+                    "If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search. However, the location for this bar will remain empty.", false, 200
+                )
+                addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
+                    "If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu. This parameter is not available if you have disabled all UBC changes in Chat Search.", "!Player.UBC.ubcSettings.altchsh", 200
+                );   
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesExit = function() {
+                defaultExit();
             }
 
             function keyHandler(e) {
