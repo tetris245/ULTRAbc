@@ -1874,7 +1874,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCSkills",
                 "UBCSpecialModes",
                 "UBCTalking",
-                "UBCVisual"
+                "UBCVisualEffects",
+                "UBCVisualPreferences"
             ];
             const ubcSettingCategoryLabels = {
                 UBCBackgrounds: "Fondos",
@@ -1888,7 +1889,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCSkills: "Habilidades",
                 UBCSpecialModes: "Modos especiales",
                 UBCTalking: "Hablar",
-                UBCVisual: "Visuales"
+                UBCVisualEffects: "Efectos visuales",
+                UBCVisualPreferences: "Preferencias visuales"
             };
             const MENU_ELEMENT_X_OFFSET = 1050;
 
@@ -3030,8 +3032,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "Introduce un número válido";
             }
 
-            PreferenceSubscreenUBCVisualLoad = function() {
-                UBCPreferenceSubscreen = "UBCVisual";
+            PreferenceSubscreenUBCVisualEffectsLoad = function() {
+                UBCPreferenceSubscreen = "UBCVisualEffects";
                 addMenuInput(200, "Controlar la animación del objeto (0-2):", "animstate", "InputAnimControl",
                     "Introduce un número entre 0 y 2 para controlar la animación integrada en algunos objetos, como la caja futurista: 0 Sin control - 1 Control parcial (2 actualizaciones por segundo) - 2 Control total (sin animación). Nota importante: modificar la animación del objeto puede provocar, en algunos casos, efectos inesperados, como problemas gráficos, errores o inconsistencias. Úsela solo si experimenta problemas de lentitud.", 104
                 );
@@ -3051,12 +3053,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     addMenuCheckbox(64, 64, "Desactivar capa rosa de excitación de BC: ", "nopinkscr", pmsg, true, 240);
                 }
-                addMenuCheckbox(64, 64, "Habilitar cambios de UBC en Búsqueda de Chat: ", "altchsh",
-                    "Si desactiva esta opción, UBC utilizará la barra superior y el menú estándar para la Búsqueda de Chat, y no mostrará la barra inferior de UBC en la Búsqueda de Chat. Sin embargo, la ubicación de esta barra permanecerá vacía.", false, 240
-                );
-                addMenuCheckbox(64, 64, "Quitar barra inferior en Búsqueda de Chat: ", "noubcbar",
-                    "Si marcas este ajuste, UBC no mostrará la barra inferior en la Búsqueda de Chat. Las opciones faltantes estarán disponibles en el menú de Búsqueda de Chat. Este parámetro no está disponible si ha desactivado todos los cambios de UBC en la Búsqueda de Chat.", "!Player.UBC.ubcSettings.altchsh", 240
-                );
                 addMenuInput(200, "Modo de ceguera forzada (1-4):", "blindness", "InputBlindnessMode",
                     "Introduce un número entre 1 y 4 para seleccionar uno de estos modos de ceguera 'permanentes' forzados, ignorando tu estado real: 1 Sin ceguera - 2 Ceguera ligera - 3 Ceguera normal - 4 Ceguera pesada. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!", 104
                 );
@@ -3085,15 +3081,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
 
-            PreferenceSubscreenUBCVisualRun = function() {
+            PreferenceSubscreenUBCVisualEffectsRun = function() {
                 drawMenuElements();
             }
 
-            PreferenceSubscreenUBCVisualClick = function() {
+            PreferenceSubscreenUBCVisualEffectsClick = function() {
                 handleMenuClicks();
             }
 
-            PreferenceSubscreenUBCVisualExit = function() {
+            PreferenceSubscreenUBCVisualEffectsExit = function() {
                 let astate = ElementValue("InputAnimControl");
                 let blmode = ElementValue("InputBlindnessMode");
                 let brmode = ElementValue("InputBlurMode");
@@ -3117,6 +3113,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputTintLevel");
                     defaultExit();
                 } else PreferenceMessage = "Introduce un número válido";
+            }
+
+			PreferenceSubscreenUBCVisualPreferencesLoad = function() {
+                UBCPreferenceSubscreen = "UBCVisualPreferences";   
+                addMenuCheckbox(64, 64, "Habilitar cambios de UBC en Búsqueda de Chat: ", "altchsh",
+                    "Si desactiva esta opción, UBC utilizará la barra superior y el menú estándar para la Búsqueda de Chat, y no mostrará la barra inferior de UBC en la Búsqueda de Chat. Sin embargo, la ubicación de esta barra permanecerá vacía.", false, 240
+                );
+                addMenuCheckbox(64, 64, "Quitar barra inferior en Búsqueda de Chat: ", "noubcbar",
+                    "Si marcas este ajuste, UBC no mostrará la barra inferior en la Búsqueda de Chat. Las opciones faltantes estarán disponibles en el menú de Búsqueda de Chat. Este parámetro no está disponible si ha desactivado todos los cambios de UBC en la Búsqueda de Chat.", "!Player.UBC.ubcSettings.altchsh", 240
+                );
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesExit = function() {
+                defaultExit();
             }
 
             function keyHandler(e) {
