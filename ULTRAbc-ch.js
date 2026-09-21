@@ -1874,7 +1874,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCSkills",
                 "UBCSpecialModes",
                 "UBCTalking",
-                "UBCVisual"
+                "UBCVisualEffects",
+                "UBCVisualPreferences"
             ];
             const ubcSettingCategoryLabels = {
                 UBCBackgrounds: "背景",
@@ -1888,7 +1889,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCSkills: "技能",
                 UBCSpecialModes: "特殊模式",
                 UBCTalking: "说话",
-                UBCVisual: "视觉"
+				UBCVisualEffects: "视觉效果",
+                UBCVisualPreferences: "视觉偏好"
             };
             const MENU_ELEMENT_X_OFFSET = 1050;
 
@@ -3030,8 +3032,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "请输入有效的数字";
             }
 
-            PreferenceSubscreenUBCVisualLoad = function() {
-                UBCPreferenceSubscreen = "UBCVisual";
+            PreferenceSubscreenUBCVisualEffectsLoad = function() {
+                UBCPreferenceSubscreen = "UBCVisualEffects";
                 addMenuInput(200, "Control item animation (0-2):", "animstate", "InputAnimControl",
                     "Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation). Important note: alteration of the item animation can lead in some cases to unexpected effects, such as graphical issues, bugs or discrepancies. Use it only if you're experiencing lagging problems.", 65
                 );
@@ -3051,12 +3053,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     addMenuCheckbox(64, 64, "禁用 BC 粉色兴奋覆盖层：", "nopinkscr", pmsg, true, 200);
                 }
-                addMenuCheckbox(64, 64, "Enable all UBC changes in Chat Search: ", "altchsh",
-                    "If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search. However, the location for this bar will remain empty.", false, 200
-                );
-                addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
-                    "如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。This parameter is not available if you have disabled all UBC changes in Chat Search.", "!Player.UBC.ubcSettings.altchsh", 200
-                );
                 addMenuInput(200, "强制失明模式（1-4）:", "blindness", "InputBlindnessMode",
                     "输入 1 到 4 之间的数字来选择以下强制的'永久'失明模式之一，忽略你的实际状态：1 无失明 - 2 轻度失明 - 3 普通失明 - 4 重度失明。注意你需要完全重新登录才能离开此特殊模式（如果输入 0，将不会产生任何效果）。此模式可能触发 BCX 警告。忽略它即可（关闭突破消息）！", 65
                 );
@@ -3085,15 +3081,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
 
-            PreferenceSubscreenUBCVisualRun = function() {
+            PreferenceSubscreenUBCVisualEffectsRun = function() {
                 drawMenuElements();
             }
 
-            PreferenceSubscreenUBCVisualClick = function() {
+            PreferenceSubscreenUBCVisualEffectsClick = function() {
                 handleMenuClicks();
             }
 
-            PreferenceSubscreenUBCVisualExit = function() {
+            PreferenceSubscreenUBCVisualEffectsExit = function() {
                 let astate = ElementValue("InputAnimControl");
                 let blmode = ElementValue("InputBlindnessMode");
                 let brmode = ElementValue("InputBlurMode");
@@ -3117,6 +3113,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputTintLevel");
                     defaultExit();
                 } else PreferenceMessage = "请输入有效的数字";
+            }
+
+			PreferenceSubscreenUBCVisualPreferencesLoad = function() {
+                UBCPreferenceSubscreen = "UBCVisualPreferences";
+                addMenuCheckbox(64, 64, "Enable all UBC changes in Chat Search: ", "altchsh",
+                    "If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search. However, the location for this bar will remain empty.", false, 200
+                );
+                addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
+                    "如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。This parameter is not available if you have disabled all UBC changes in Chat Search.", "!Player.UBC.ubcSettings.altchsh", 200
+                );
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCVisualPreferencesExit = function() {
+                defaultExit();
             }
 
             function keyHandler(e) {
