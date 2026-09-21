@@ -10223,18 +10223,32 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 },
                 classList: ["wardrobe-slot-actions"],
                 parent: cell,
-            });
+            });    
             const configurationsActions = [
                 { 
                     id: WardrobeID.slotLoad(C),
-                    labelKey: "Load",
+                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Load")) ? TextGet("Load") : "Load",
                     icon: "Icons/Dress.png",
                     classeCss: "wardrobe-slot-load",
                     callback: (slot) => WardrobeLoadOutfit(slot)
                 },
                 {
+                    id: `wardrobe-slot-import-${C}`,
+                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Copy to clipboard")) ? TextGet("Copy to clipboard") : "Copy to clipboard",
+                    icon: "Icons/Paste.png",
+                    classeCss: "wardrobe-slot-import",
+                    callback: (slot) => WardrobeImportOutfit(slot)
+                },
+                {
+                    id: `wardrobe-slot-export-${C}`,
+                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Paste from clipboard")) ? TextGet("Paste from clipboard") : "Paste from clipboard",
+                    icon: "Icons/Copy.png",
+                    classeCss: "wardrobe-slot-export",
+                    callback: (slot) => WardrobeExportOutfit(slot)
+                },
+                {
                     id: `wardrobe-slot-save-${C}`,
-                    labelKey: "Save",
+                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Save")) ? TextGet("Save") : "Save",
                     icon: "Icons/Save.png",
                     classeCss: "wardrobe-slot-save",
                     callback: (slot) => WardrobeSaveOutfit(slot)
@@ -10244,9 +10258,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 configurationsActions.reverse();
             }
             configurationsActions.forEach(config => {
-                const labelTexte = TextGet(config.labelKey);
+                const labelTexte = config.label; 
                 let previewButtonOpts = {};
-                if (config.labelKey === "Load") {
+                if (config.id === WardrobeID.slotLoad(C)) {
                     previewButtonOpts = WardrobeActionPreviewButtonOptions("Load", () => WardrobeGetVisibleSlot(C))?.button || {};
                 }
                 ElementButton.Create(
@@ -10268,7 +10282,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             parent: actions,
                             classList: [config.classeCss],
                             attributes: {
-                                hidden: config.labelKey === "Load" ? true : false,
+                                hidden: config.id === WardrobeID.slotLoad(C) ? true : false,
                                 ...(showPreviews ? {
                                     "aria-label": labelTexte
                                 } : {}),
@@ -10280,6 +10294,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+	function WardrobeExportOutfit(slot) {
+        WardrobeLoadOutfit(slot);
+        let App = [];
+        for (let A of Player.Appearance)
+           if ((A.Asset != null) && (A.Asset.Group != null) && (A.Asset.Group.Category == "Appearance") && A.Asset.Group.AllowCustomize) {
+               App.push({ A: A.Asset.Name, G: A.Asset.Group.Name, C: A.Color });
+           }
+           if (App.length == 0) return;
+           let S = JSON.stringify(App);
+           S = LZString.compressToBase64(S);
+           CommonClipboardWrite(S, (res) => {
+               if (res.err) {
+                   ToastManager.error(res.errorAsDOM(TextGet("AppCopyError")));
+               } else {
+                   ToastManager.success(TextGet("AppCopyDone"));   
+               }
+           });      
+    }
+
+    function WardrobeImportOutfit(slot) {
+        if (!Wardrobe.selectedCharacter || slot < 0) return;
+        CommonClipboardRead((res) => {
+            if (res.ok && res.value) {
+                CharacterAppearancePaste(Player, res.value, false);
+            } else if (res.err) {					
+		        ToastManager.error(res.errorAsDOM(TextGet("AppPasteError")));			
+            }
+        });
+    }
+	
     function WardrobeSaveOutfit(slot) {
         if (!Wardrobe.selectedCharacter || slot < 0) return;
         WardrobeSetActionPreview("Save", true);
