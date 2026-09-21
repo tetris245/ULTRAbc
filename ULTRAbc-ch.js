@@ -10227,7 +10227,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const configurationsActions = [
                 { 
                     id: WardrobeID.slotLoad(C),
-                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Load")) ? TextGet("Load") : "Load",
+                    label: TextGet("Load"),
                     icon: "Icons/Dress.png",
                     classeCss: "wardrobe-slot-load",
                     callback: (slot) => WardrobeLoadOutfit(slot)
@@ -10248,7 +10248,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 },
                 {
                     id: `wardrobe-slot-save-${C}`,
-                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Save")) ? TextGet("Save") : "Save",
+                    label: TextGet("Save"),
                     icon: "Icons/Save.png",
                     classeCss: "wardrobe-slot-save",
                     callback: (slot) => WardrobeSaveOutfit(slot)
