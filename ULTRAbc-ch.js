@@ -144,6 +144,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let alfmenu = false;
     let alfrpsk = false;
     let altchsh = true;
+	let altwrobe = true;
     let animal = 0;
     let animstate = 0;
     let bgall = false;
@@ -586,6 +587,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         alfmenu = false;
         alfrpsk = false;
         altchsh = true;
+		altwrobe = true;
         animal = 0;
         animstate = 0;
         asylumlimit = false;
@@ -716,6 +718,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         alfmenu = data.alfmenu;
         alfrpsk = data.alfrpsk;
         altchsh = data.altchsh;
+        altwrobe = data.altwrobe;
         animal = data.animal * 1;
         animstate = data.animstate * 1;
         asylumlimit = data.asylumlimit;
@@ -904,6 +907,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "alfmenu": alfmenu,
             "alfrpsk": alfrpsk,
             "altchsh": altchsh,
+            "altwrobe": altwrobe,
             "animal": animal,
             "animstate": animstate,
             "bgall": bgall,
@@ -1066,6 +1070,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (alfmenu == null || alfmenu == undefined) alfmenu = false;
                 if (alfrpsk == null || alfrpsk == undefined) alfrpsk = false;
                 if (altchsh == null || altchsh == undefined) altchsh = true;
+				if (altwrobe == null || altwrobe == undefined) altwrobe = true;
                 if (animal == null || animal == undefined) animal = 0;
                 if (animstate == null || animstate == undefined) animstate = 0;
                 if (asylumlimit == null || asylumlimit == undefined) asylumlimit = false;
@@ -1245,6 +1250,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 alfmenu: false,
                 alfrpsk: false,
                 altchsh: true,
+				altwrobe: true,
                 animal: 0,
                 animstate: 0,
                 asylumlimit: false,
@@ -3123,6 +3129,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Remove UBC bottom bar in Chat Search: ", "noubcbar",
                     "如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。This parameter is not available if you have disabled all UBC changes in Chat Search.", "!Player.UBC.ubcSettings.altchsh", 200
                 );
+				addMenuCheckbox(64, 64, "Enable all UBC changes in the Wardrobe: ", "altwrobe",
+                    "If you uncheck this setting, UBC will use the standard BC Wardrobe.", false, 200
+                )
             }
 
             PreferenceSubscreenUBCVisualPreferencesRun = function() {
