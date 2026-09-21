@@ -5612,9 +5612,43 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Wardrobe
-     modApi.patchFunction(
+    modApi.hookFunction('WardrobeCreateOutfitSlots', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobe();
+            return;
+        }
+        return next(args);
+    })
+
+	modApi.patchFunction(
+        "WardrobeGetGridDimensions", {
+            'return { columns: Wardrobe.labelColumns, rows: Wardrobe.labelRows };': 'if (Player.UBC.ubcSettings.altwrobe == true) { Wardrobe.labelColumns = 2; Wardrobe.labelRows = 6; } return { columns: Wardrobe.labelColumns, rows: Wardrobe.labelRows };',
+        }
+    );
+
+    modApi.patchFunction(
+        "WardrobeGetSlotsPerPage", {
+            'return WardrobeShowsCharacters() ? Wardrobe.previewPerPage() : Wardrobe.labelPerPage();':
+            'if (Player.UBC.ubcSettings.altwrobe == true) { Wardrobe.labelColumns = 2; Wardrobe.labelRows = 6; } return WardrobeShowsCharacters() ? Wardrobe.previewPerPage() : Wardrobe.labelPerPage();',
+        }
+    );  
+	
+    modApi.patchFunction(
         "WardrobeLoad", {
             'const screenHeader = screen.querySelector(".screen-header");': 'const screenHeader = screen.querySelector(".screen-header"); if (Player.UBC.ubcSettings.nograywr == true) screenHeader.style.backgroundColor = "rgba(0, 0, 0, 0)";',
+        }
+    );
+
+    modApi.patchFunction(
+        "WardrobeResize", {
+            'ElementPositionFixed(WardrobeID.slotGrid, X, Y, Width, Height);': 'if (Player.UBC.ubcSettings.altwrobe == true) { Wardrobe.grid.height = 667; ElementPositionFixed(WardrobeID.slotGrid, X + 4, Y, Width - 4 , 667); } else { ElementPositionFixed(WardrobeID.slotGrid, X, Y, Width, Height); }',
+        }
+    );
+
+    modApi.patchFunction(
+        "WardrobeToggleCharacterPreviews", {
+            'WardrobeOffset = 0;': 
+            `if (Player.UBC.ubcSettings.altwrobe == true) { // UBC mode } else { WardrobeOffset = 0; }`
         }
     );
 
@@ -10090,6 +10124,185 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             tooltipColor: mbs.css.DEFAULT_STYLE.tooltipColor,
             textColor: mbs.css.DEFAULT_STYLE.textColor
         });
+    }
+
+	//Wardrobe
+    function AltWardrobe() {
+        const main = ElementWrap(WardrobeID.screen)?.querySelector(".screen-main");
+        if (!main) return;
+        const gridElm = ElementWrap(WardrobeID.slotGrid);
+        if (gridElm) gridElm.remove();
+        const showPreviews = WardrobeShowsCharacters();
+        const {
+            columns,
+            rows
+        } = WardrobeGetGridDimensions();
+        const slotCanvasSize = WardrobeGetSlotCanvasSize();
+        const grid = ElementCreate({
+            tag: "div",
+            attributes: {
+                id: WardrobeID.slotGrid,
+                "screen-generated": CurrentScreen
+            },
+            classList: [
+                "HideOnPopup",
+                "wardrobe-slot-grid",
+                showPreviews ? "wardrobe-slot-grid-preview" : "wardrobe-slot-grid-labels",
+            ],
+            style: {
+                ["grid-template-columns"]: `repeat(${columns}, 1fr)`,
+                ["grid-template-rows"]: `repeat(${rows}, 1fr)`,
+            },
+            parent: main,
+        });
+        const slotsPerPage = WardrobeGetSlotsPerPage();
+        for (let C = 0; C < slotsPerPage; C++) {
+            /** @type {(HTMLOptions<any> | HTMLElement)[]} */
+            const previewChildren = showPreviews ? [
+                ElementCreate({
+                    tag: "canvas",
+                    attributes: {
+                        id: WardrobeID.slotCanvas(C),
+                        width: String(slotCanvasSize.width),
+                        height: String(slotCanvasSize.height),
+                        "aria-hidden": "true",
+                        hidden: true,
+                    },
+                    classList: ["wardrobe-slot-canvas"],
+                })
+            ] : [];
+            const cell = ElementCreate({
+                tag: "div",
+                attributes: {
+                    id: WardrobeID.slotCell(C),
+                    "screen-generated": CurrentScreen
+                },
+                classList: ["wardrobe-slot"],
+                parent: grid,
+            });
+            ElementButton.Create(
+                WardrobeID.slotButton(C),
+                () => {
+                    const slot = WardrobeGetVisibleSlot(C);
+                    if (slot == null) return;
+                    WardrobeHandleSlotActivate(slot);
+                }, {
+                    label: [
+                        {
+                            tag: "span",
+                            classList: ["wardrobe-slot-index"]
+                        },
+                        {
+                            tag: "span",
+                            classList: ["wardrobe-slot-name"]
+                        },
+                    ],
+                    labelPosition: showPreviews ? "bottom" : "center",
+                    noStyling: showPreviews,
+                    image: Wardrobe.emptySlotImage,
+                }, {
+                    button: {
+                        parent: cell,
+                        classList: ["wardrobe-slot-button", showPreviews ? "wardrobe-slot-preview" : null],
+                        children: previewChildren,
+                    },
+                    img: {
+                        attributes: {
+                            id: WardrobeID.slotEmpty(C),
+                            hidden: true,
+                        },
+                        classList: ["wardrobe-slot-empty"],
+                    },
+                },
+            );
+            const actions = ElementCreate({
+                tag: "div",
+                attributes: {
+                    id: WardrobeID.slotActions(C),
+                    "screen-generated": CurrentScreen
+                },
+                classList: ["wardrobe-slot-actions"],
+                parent: cell,
+            });
+            const configurationsActions = [
+                { 
+                    id: WardrobeID.slotLoad(C),
+                    labelKey: "Load",
+                    icon: "Icons/Dress.png",
+                    classeCss: "wardrobe-slot-load",
+                    callback: (slot) => WardrobeLoadOutfit(slot)
+                },
+                {
+                    id: `wardrobe-slot-save-${C}`,
+                    labelKey: "Save",
+                    icon: "Icons/Save.png",
+                    classeCss: "wardrobe-slot-save",
+                    callback: (slot) => WardrobeSaveOutfit(slot)
+                }
+            ];
+            if (Player.VisualSettings.ShowCharactersInWardrobe == false) {
+                configurationsActions.reverse();
+            }
+            configurationsActions.forEach(config => {
+                const labelTexte = TextGet(config.labelKey);
+                let previewButtonOpts = {};
+                if (config.labelKey === "Load") {
+                    previewButtonOpts = WardrobeActionPreviewButtonOptions("Load", () => WardrobeGetVisibleSlot(C))?.button || {};
+                }
+                ElementButton.Create(
+                    config.id,
+                    (ev) => {
+                        ev.stopPropagation();
+                        const slot = WardrobeGetVisibleSlot(C);
+                        if (slot == null) return;
+                        config.callback(slot);
+                    }, {
+                        image: config.icon,
+                        ...(showPreviews ? {} : {
+                            tooltip: labelTexte,
+                            tooltipPosition: "left",
+                        }),
+                    }, {
+                        button: {
+                            ...previewButtonOpts,
+                            parent: actions,
+                            classList: [config.classeCss],
+                            attributes: {
+                                hidden: config.labelKey === "Load" ? true : false,
+                                ...(showPreviews ? {
+                                    "aria-label": labelTexte
+                                } : {}),
+                            },
+                        },
+                    }
+                );
+            });
+        }
+    }
+
+    function WardrobeSaveOutfit(slot) {
+        if (!Wardrobe.selectedCharacter || slot < 0) return;
+        WardrobeSetActionPreview("Save", true);
+        Wardrobe.previewLocked = true;
+        let confirmed = false;
+        try {
+            const sideCharacter = WardrobeGetSidePreviewCharacter();
+            if (sideCharacter) WardrobeDrawToCanvas(WardrobeID.sideCanvas, sideCharacter, 1);
+            confirmed = confirm(TextGet("SaveOutfitConfirm"));
+        } finally {
+            Wardrobe.previewLocked = false;
+            WardrobeSetActionPreview(null, true);
+        }
+        if (!confirmed) return;
+        WardrobeFastSave(Wardrobe.selectedCharacter, slot);
+        if (WardrobeRenameSelectedOutfit()) {
+            WardrobePushAll();
+        } else {
+            ServerAccountUpdate.QueueData({
+                Wardrobe: CharacterCompressWardrobe(Player.Wardrobe)
+            });
+        }
+        WardrobeUpdateElements();
     }
 
     //Wheel of Fortune
