@@ -174,7 +174,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mgl = 0;
     let minigame = "";
     let mission = "";
-    let nobcxalarm = false;
     let nopending = false;
     let npcdeck = -1;
     let onegl = 0;
@@ -626,7 +625,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         maptrap1 = 0;
         minigame = "";
         mission = "";
-        nobcxalarm = false;
         noescape = false;
         nogarble = false;
         nograywr = false;
@@ -757,7 +755,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         maptrap1 = data.maptrap1 * 1;
         minigame = data.minigame;
         mission = data.mission;
-        nobcxalarm = data.nobcxalarm;
         noescape = data.noescape;
         nogarble = data.nogarble;
         nograywr = data.nograywr;
@@ -931,7 +928,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "maptrap1": maptrap1,
             "minigame": minigame,
             "mission": mission,
-            "nobcxalarm": nobcxalarm,
             "nopending": nopending,
             "npcdeck": npcdeck,
             "onlydays": onlydays,
@@ -1129,7 +1125,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
-                if (nobcxalarm == null || nobcxalarm == undefined) nobcxalarm = false;
                 if (noescape == null || noescape == undefined) noescape = false;
                 if (nogarble == null || nogarble == undefined) nogarble = false;
                 if (nograywr == null || nograywr == undefined) nograywr = false;
@@ -1285,7 +1280,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 mapfull2: false,
                 mapfull3: false,
                 maptrap1: 0,
-                nobcxalarm: false,
                 noescape: false,
                 nogarble: false,
                 nograywr: false,
@@ -2649,9 +2643,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuCheckbox(64, 64, "声望和技能的字母顺序：", "alfrpsk",
                     "启用后，角色信息屏幕中关于声望和技能的大部分信息将按字母顺序排列。请注意，作为支配者或服从者的声望仍将首先显示。", false, 140
-                );
-                addMenuCheckbox(64, 64, "Disable all BCX alarm messages: ", "nobcxalarm",
-                    "By selecting this option, you will no longer see BCX alarm messages. If you experience any problems using BC, check the console for error messages.", false, 140
                 );
                 addMenuCheckbox(64, 64, "启用精神病院限制：", "asylumlimit",
                     "默认情况下，UBC 禁用精神病院限制（访问、退出）。如果您喜欢这些限制，可以使用此选项再次启用它们。", false, 140
@@ -8985,30 +8976,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomSendLocal(`${ubc1} - ${ubc2}`);
         if (command == "uroom") ChatRoomSendLocal(" ");
     }
-
-    //Silent BCX
-    function dfsNode(node) {
-        for (let i = 0; i < node.childNodes.length; i++) {
-            const result = dfsNode(node.childNodes[i]);
-            if (result) return result;
-        }
-        if (node.style && node.style[0] === 'cursor' && node.innerText === 'Close') return node.onclick;
-    }
-
-    const originalAppendChild = Element.prototype.appendChild;
-    Element.prototype.appendChild = function(child) {
-        const e = originalAppendChild.call(this, child);
-        if (nobcxalarm) {
-            for (let i = 0; i < this.childNodes.length; i++) {
-                const result = dfsNode(this.childNodes[i]);
-                if (result) {
-                    console.log("STFU, BCX!");
-                    result();
-                }
-            }
-        }
-        return e;
-    };
 
     //Stable
     async function StableCarrot() {
