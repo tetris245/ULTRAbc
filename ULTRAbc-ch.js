@@ -8908,6 +8908,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         delete Player.OnlineSharedSettings.cowner2;
         delete Player.OnlineSharedSettings.cowner3;
         delete Player.OnlineSharedSettings.ctitle;
+		delete Player.OnlineSharedSettings.Inmap;
         ServerAccountUpdate.QueueData({
             OnlineSharedSettings: Player.OnlineSharedSettings
         });
