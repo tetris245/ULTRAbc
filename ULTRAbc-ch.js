@@ -13267,16 +13267,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 					exinfo = "在地图中的真实存在：" + (inmap === true ? "是" : inmap === false ? "否" : "？");
                 }
             }
-            if (target === Player) {
+            let data = ChatRoomData.Admin;
+            if ((target === Player) || (data.includes(Player.MemberNumber))) {
                 ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
-                keysinfo(Player);
+                if (ChatRoomData.BlockCategory.includes("Location")) {
+                    if (target.OnlineSharedSettings.UBCShared.mapfull3 == true)  {
+                        if ((target != Player) && (!data.includes(target.MemberNumber))) ChatRoomSendLocal("This player has enabled the UBC cheat to get coordinates of other players in the map.");
+                    }
+                 }
             } else {
-                if ((!ChatRoomData.BlockCategory.includes("Location")) || (mapfull3)) {
-                    ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
+                if (ChatRoomData.BlockCategory.includes("Location")) {
+                    if (Player.OnlineSharedSettings.UBCShared.mapfull3 == true)  {
+                        ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);                    
+                    } else { 
+                        ChatRoomSendLocal(`Location Sharing blocked - ${exinfo}`);
+                    }
                 } else {
-                    ChatRoomSendLocal(`Location Sharing blocked - ${exinfo}`);
+                    ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
                 }
             }
+            if (target === Player) keysinfo(Player);
             ChatRoomSendLocal(" ");
         }
     }])
