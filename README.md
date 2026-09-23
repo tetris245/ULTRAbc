@@ -104,7 +104,7 @@ Changes for future version
   - The Paste function does not automatically save the pasted outfit (it's a safety to avoid mistakes)
   - The UBC Wardrobe does not display the button to access BCX features, you need to click on the label or mini-character
   - The empty space at the bottom is reserved for future UBC additions
-* GUI - Visual is now splitted into Visual Effects and Visual Preferences
+* Splitted GUI - Visual into Visual Effects and Visual Preferences
 * Added an option in GUI - Visual Preferences to enable/disable the alternative UBC Wardrobe
 * Moved the Inmap variable to Player.OnlineSharedSettings.UBCShared
 
