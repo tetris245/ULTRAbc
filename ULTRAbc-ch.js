@@ -2374,6 +2374,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         OnlineSettings: Player.OnlineSettings
                     });
                 }
+				if (mapfull3 == true) {
+                    Player.OnlineSharedSettings.UBCShared.mapfull3 = true;
+                } else {
+                    Player.OnlineSharedSettings.UBCShared.mapfull3 = false;
+                }
                 if (noescape == true) {
                     Player.OnlineSharedSettings.Unoescape = true;
                 } else {
@@ -8903,6 +8908,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Player.OnlineSharedSettings.UBCShared.cowner3 ??= cowner3;
         Player.OnlineSharedSettings.UBCShared.ctitle ??= ctitle;
 		Player.OnlineSharedSettings.UBCShared.Inmap = false;
+		if (mapfull3 == true) {
+            Player.OnlineSharedSettings.UBCShared.mapfull3 = true;
+        } else {
+            Player.OnlineSharedSettings.UBCShared.mapfull3 = false;
+        }
         delete Player.OnlineSharedSettings.cname;
         delete Player.OnlineSharedSettings.cowner1;
         delete Player.OnlineSharedSettings.cowner2;
