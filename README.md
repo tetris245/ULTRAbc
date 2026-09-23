@@ -97,7 +97,16 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Implemented an alternative Wardrobe that almost works like the old BC Wardrobe:
+  - the non-preview mode includes only 12 label slots per page, what simplifies the synchronisation with the preview mode
+  - each slot contains 4 buttons (Save, Paste from clipboard, Copy to clipboard, Load), all limited to clothes
+  - the Copy function automatically loads the slot outfit before copying data to clipboard
+  - the Paste function does not automatically save the pasted outfit (it's a safety to avoid mistakes)
+  - The BC Wardrobe does not display the button to access BCX features, you need to click on the label or mini-character
+  - The empty space at the bottom is reserved for future UBC additions
+* GUI - Visual is now splitted into Visual Effects and Visual Preferences
+* Added an option in GUI - Visual Preferences to enable/disable the alternative UBC Wardrobe
+* Moved the Inmap variable to Player.OnlineSharedSettings.UBCShared
 
 
 
