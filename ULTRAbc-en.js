@@ -2606,7 +2606,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "When enabled, there's no any limitation to your hearing in the map rooms", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable full location in maps: ", "mapfull3",
-                    "When enabled, the /maproom and /mapz commands will always give the coordinates of other players in the map rooms, even if the Location Sharing is blocked.", false, 140
+                    "When enabled, the /maproom and /mapz commands will always give the coordinates of other players in the map rooms, even if the Location Sharing is blocked. Note that the administrators will be informed that you use this cheat, if they have blocked Location Sharing and use one of these commands. So using this cheat in such rooms can lead to bad consequences. Be careful!", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable full vision in maps: ", "mapfull",
                     "When enabled, you can see the entire map rooms without fog. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.", false, 140
