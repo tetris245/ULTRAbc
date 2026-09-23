@@ -106,7 +106,7 @@ Changes for future version
   - The empty space at the bottom is reserved for future UBC additions
 * Splitted GUI - Visual into Visual Effects and Visual Preferences
 * Added an option in GUI - Visual Preferences to enable/disable the alternative UBC Wardrobe
-* Moved the Inmap variable to Player.OnlineSharedSettings.UBCShared
+* Moved the Inmap variable to Player.OnlineSharedSettings.UBCShared and added there the mapfull3 variable
 
 
 
