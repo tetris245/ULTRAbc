@@ -2605,7 +2605,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "启用后，您在地图房间中的听力没有任何限制", false, 140
                 );
                 addMenuCheckbox(64, 64, "Enable full location in maps: ", "mapfull3",
-                    "When enabled, the /maproom and /mapz commands will always give the coordinates of other players in the map rooms, even if the Location Sharing is blocked.", false, 140
+                    "When enabled, the /maproom and /mapz commands will always give the coordinates of other players in the map rooms, even if the Location Sharing is blocked. Note that the administrators will be informed that you use this cheat, if they have blocked Location Sharing and use one of these commands. So using this cheat in such rooms can lead to bad consequences. Be careful!", false, 140
                 );
                 addMenuCheckbox(64, 64, "在地图中启用完全视野：", "mapfull",
                     "启用后，您可以看到整个地图房间而没有迷雾。注意：/mapfog 命令（仅在当前位置图房间中启用/禁用迷雾）如果此设置激活将无效。如果您在启用此设置之前没有使用 /mapfog 移除迷雾，迷雾会在禁用时恢复。", false, 140
