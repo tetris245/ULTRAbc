@@ -13262,16 +13262,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     exinfo = "Presencia real en el mapa: " + (inmap === true ? "SÍ" : inmap === false ? "NO" : "?");
                 }
             }
-            if (target === Player) {
+            let data = ChatRoomData.Admin;
+            if ((target === Player) || (data.includes(Player.MemberNumber))) {
                 ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
-                keysinfo(Player);
+                if (ChatRoomData.BlockCategory.includes("Location")) {
+                    if (target.OnlineSharedSettings.UBCShared.mapfull3 == true)  {
+                        if ((target != Player) && (!data.includes(target.MemberNumber))) ChatRoomSendLocal("Este jugador ha activado el truco UBC para obtener las coordenadas de otros jugadores en el mapa.");
+                    }
+                 }
             } else {
-                if ((!ChatRoomData.BlockCategory.includes("Location")) || (mapfull3)) {
-                    ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
+                if (ChatRoomData.BlockCategory.includes("Location")) {
+                    if (Player.OnlineSharedSettings.UBCShared.mapfull3 == true)  {
+                        ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);                    
+                    } else { 
+                        ChatRoomSendLocal(`Compartir ubicación bloqueado - ${exinfo}`);
+                    }
                 } else {
-                    ChatRoomSendLocal(`Compartir ubicación bloqueado - ${exinfo}`);
+                    ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
                 }
             }
+            if (target === Player) keysinfo(Player);
             ChatRoomSendLocal(" ");
         }
     }])
