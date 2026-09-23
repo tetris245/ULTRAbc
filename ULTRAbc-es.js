@@ -3875,13 +3875,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (outbuttons == true) OutButtons();
             if (rglbuttons == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
             let chmap = ChatRoomCharacterViewIsActive();
-            if ((chmap == false) && (Player.OnlineSharedSettings.Inmap == false)) {
-                Player.OnlineSharedSettings.Inmap = true;
+            if ((chmap == false) && (Player.OnlineSharedSettings.UBCShared.Inmap == false)) {
+                Player.OnlineSharedSettings.UBCShared.Inmap = true;
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
-            } else if ((chmap == true) && (Player.OnlineSharedSettings.Inmap == true)) {
-                Player.OnlineSharedSettings.Inmap = false;
+            } else if ((chmap == true) && (Player.OnlineSharedSettings.UBCShared.Inmap == true)) {
+                Player.OnlineSharedSettings.UBCShared.Inmap = false;
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
@@ -8882,7 +8882,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function UBCsettings() {
-        Player.OnlineSharedSettings.Inmap = false;
+        if (Player.OnlineSharedSettings.UBC == undefined) {
+            Player.OnlineSharedSettings.UBC = [];
+        }
         if (Player.OnlineSharedSettings.Tplist == undefined) {
             Player.OnlineSharedSettings.Tplist = [];
         }
@@ -8894,17 +8896,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Player.OnlineSharedSettings.Unoescape = false;
         }
+		Player.OnlineSharedSettings.UBC = UBCver;
         Player.OnlineSharedSettings.UBCShared ??= {};
         Player.OnlineSharedSettings.UBCShared.cname ??= cname;
         Player.OnlineSharedSettings.UBCShared.cowner1 ??= cowner1;
         Player.OnlineSharedSettings.UBCShared.cowner2 ??= cowner2;
         Player.OnlineSharedSettings.UBCShared.cowner3 ??= cowner3;
         Player.OnlineSharedSettings.UBCShared.ctitle ??= ctitle;
+		Player.OnlineSharedSettings.UBCShared.Inmap = false;
         delete Player.OnlineSharedSettings.cname;
         delete Player.OnlineSharedSettings.cowner1;
         delete Player.OnlineSharedSettings.cowner2;
         delete Player.OnlineSharedSettings.cowner3;
         delete Player.OnlineSharedSettings.ctitle;
+		delete Player.OnlineSharedSettings.Inmap;
         ServerAccountUpdate.QueueData({
             OnlineSharedSettings: Player.OnlineSharedSettings
         });
@@ -13127,11 +13132,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (ChatRoomData.MapData.Type === "Always") {
                         exinfo = "Presencia real en el mapa: SÍ";
                     } else if (ChatRoomData.MapData.Type === "Hybrid") {
-                        if (typeof OnlineSharedSettings.Inmap === "boolean") {
-                            exinfo = `Presencia real en el mapa: ${OnlineSharedSettings.Inmap ? "SÍ" : "NO"}`;
-                        } else {
-                            exinfo = "Presencia real en el mapa: ?";
-                        }
+                        if (character.OnlineSharedSettings?.UBCShared?.Inmap != undefined) {
+                           const ubcshared = character.OnlineSharedSettings.UBCShared || {};
+                           if (typeof ubcshared.Inmap === "boolean") {
+							   exinfo = `Presencia real en el mapa: ${ubcshared.Inmap ? "SÍ" : "NO"}`;
+                            } else {
+                               exinfo = "Presencia real en el mapa: ?";
+                            } 
+                         } else {
+                            const ubcshared = character.OnlineSharedSettings || {};
+                            if (typeof ubcshared.Inmap === "boolean") {
+                               exinfo = `Presencia real en el mapa: ${ubcshared.Inmap ? "SÍ" : "NO"}`;
+                            } else {
+                               exinfo = "Presencia real en el mapa: ?";
+                            } 
+                         }
                     }
                     const {
                         X,
@@ -13239,9 +13254,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (mapType === "Always") {
                 exinfo = "Presencia real en el mapa: SÍ";
             } else if (mapType === "Hybrid") {
-                const inmap = target.OnlineSharedSettings?.Inmap;
-                exinfo = "Presencia real en el mapa: " +
-                    (inmap === true ? "SÍ" : inmap === false ? "NO" : "?");
+                if (target.OnlineSharedSettings?.UBCShared?.Inmap != undefined) {
+                    const inmap = target.OnlineSharedSettings?.UBCShared?.Inmap;
+                    exinfo = "Presencia real en el mapa: " + (inmap === true ? "SÍ" : inmap === false ? "NO" : "?");
+                } else {       
+                    const inmap = target.OnlineSharedSettings?.Inmap;
+                    exinfo = "Presencia real en el mapa: " + (inmap === true ? "SÍ" : inmap === false ? "NO" : "?");
+                }
             }
             if (target === Player) {
                 ChatRoomSendLocal(`X = ${mapData.Pos?.X ?? "?"} - Y = ${mapData.Pos?.Y ?? "?"} - ${exinfo}`);
