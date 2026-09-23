@@ -13162,14 +13162,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         X,
                         Y
                     } = MapData.Pos;
-                    if (character === Player) {
-                        ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
-                        keysinfo(Player);
+                    let data = ChatRoomData.Admin;
+                    if ((character === Player) || (data.includes(Player.MemberNumber))) {
+                        ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);  
+                        if (ChatRoomData.BlockCategory.includes("Location")) {
+                            if (character.OnlineSharedSettings.UBCShared.mapfull3 == true)  {
+                                if ((character != Player) && (!data.includes(character.MemberNumber))) ChatRoomSendLocal("Este jugador ha activado el truco UBC para obtener las coordenadas de otros jugadores en el mapa.");
+                            }
+                        }
+                        if (character === Player) keysinfo(Player);
                     } else {
-                        if ((!ChatRoomData.BlockCategory.includes("Location")) || (mapfull3)) {
-                            ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
+                        if (ChatRoomData.BlockCategory.includes("Location")) {
+                            if (Player.OnlineSharedSettings.UBCShared.mapfull3 == true)  {
+                                ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);                    
+                            } else { 
+                                ChatRoomSendLocal(`Compartir ubicación bloqueado - ${exinfo}`);
+                            }
                         } else {
-                            ChatRoomSendLocal(`Compartir ubicación bloqueado - ${exinfo}`);
+                            ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
                         }
                     }
                 } else {
