@@ -13160,14 +13160,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         X,
                         Y
                     } = MapData.Pos;
-                    if (character === Player) {
-                        ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
-                        keysinfo(Player);
+                    let data = ChatRoomData.Admin;
+                    if ((character === Player) || (data.includes(Player.MemberNumber))) {
+                        ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);  
+                        if (ChatRoomData.BlockCategory.includes("Location")) {
+                            if (character.OnlineSharedSettings.UBCShared.mapfull3 == true)  {
+                                if ((character != Player) && (!data.includes(character.MemberNumber))) ChatRoomSendLocal("This player has enabled the UBC cheat to get coordinates of other players in the map.");
+                            }
+                        }
+                        if (character === Player) keysinfo(Player);
                     } else {
-                        if ((!ChatRoomData.BlockCategory.includes("Location")) || (mapfull3)) {
-                            ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
+                        if (ChatRoomData.BlockCategory.includes("Location")) {
+                            if (Player.OnlineSharedSettings.UBCShared.mapfull3 == true)  {
+                                ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);                    
+                            } else { 
+                                ChatRoomSendLocal(`Location Sharing blocked - ${exinfo}`);
+                            }
                         } else {
-                            ChatRoomSendLocal(`Location Sharing blocked - ${exinfo}`);
+                            ChatRoomSendLocal(`X = ${X} - Y = ${Y} - ${exinfo}`);
                         }
                     }
                 } else {
