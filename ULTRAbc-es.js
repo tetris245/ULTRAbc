@@ -2604,8 +2604,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Activar audición completa en mapas: ", "mapfull2",
                     "Cuando está activado, no habrá ninguna limitación a tu audición en las salas con mapa.", false, 230
                 );
-				addMenuCheckbox(64, 64, "Enable full location in maps: ", "mapfull3",
-                    "Cuando está activado, los comandos /maproom y /mapz siempre mostrarán las coordenadas de otros jugadores en las salas con mapa, incluso si la función de compartir ubicación está bloqueada. Ten en cuenta que los administradores serán informados de que utilizas este truco si han bloqueado la función de compartir ubicación y utilizas alguno de estos comandos. Por lo tanto, usar este truco en dichas salas puede acarrear consecuencias negativas. ¡Ten cuidado!", false, 140
+                addMenuCheckbox(64, 64, "Activar ubicación completa en mapas: ", "mapfull3",
+                    "Cuando está activado, los comandos /maproom y /mapz siempre mostrarán las coordenadas de otros jugadores en las salas con mapa, incluso si la función de compartir ubicación está bloqueada. Ten en cuenta que los administradores serán informados de que utilizas este truco si han bloqueado esta función y utilizas alguno de estos comandos. Por lo tanto, usar este truco en dichas salas puede acarrear consecuencias negativas. ¡Ten cuidado!", false, 230
                 );
                 addMenuCheckbox(64, 64, "Activar visión completa en mapas: ", "mapfull",
                     "Cuando está activado, puedes ver las salas del mapa completas sin niebla. Notas: el comando /mapfog, que activa/desactiva la niebla solo en la sala actual, no tendrá efecto si este ajuste está activo. Si no usaste /mapfog para quitar la niebla antes de activar esto, la niebla volverá al desactivarlo.", false, 230
@@ -3125,7 +3125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Quitar barra inferior en Búsqueda de Chat: ", "noubcbar",
                     "Si marcas este ajuste, UBC no mostrará la barra inferior en la Búsqueda de Chat. Las opciones faltantes estarán disponibles en el menú de Búsqueda de Chat. Este parámetro no está disponible si ha desactivado todos los cambios de UBC en la Búsqueda de Chat.", "!Player.UBC.ubcSettings.altchsh", 240
                 );
-				addMenuCheckbox(64, 64, "Habilitar todos los cambios de UBC en el guardarropa: ", "altwrobe",
+				addMenuCheckbox(64, 64, "Habilitar el UBC guardarropa: ", "altwrobe",
                     "Si desactiva esta opción, UBC utilizará el guardarropa estándar de BC.", false, 240
                 ); 
             }
