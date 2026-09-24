@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.3.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3/ULTRAbc-en-v6.3.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.3.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3/ULTRAbc-ch-v6.3.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.3.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3/ULTRAbc-es-v6.3.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
