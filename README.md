@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.2.1
+Most recent version: 6.3
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.2.1.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-en-v6.3.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.2.1.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-ch-v6.3.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.2.1.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.0/ULTRAbc-es-v6.3.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -97,17 +97,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Implemented an alternative Wardrobe that almost works like the old BC Wardrobe:
-  - The non-preview mode includes only 12 label slots per page, what simplifies the synchronisation with the preview mode
-  - Each slot contains 4 buttons (Save, Paste from clipboard, Copy to clipboard, Load), all limited to clothes
-  - The Copy function automatically loads the slot outfit before copying data to clipboard
-  - The Paste function does not automatically save the pasted outfit (it's a safety to avoid mistakes)
-  - The UBC Wardrobe does not display the button to access BCX features, you need to click on the label or mini-character
-  - The empty space at the bottom is reserved for future UBC additions
-* Updated again the maproom and mapz commands: they will inform the administrators of the map room that you use the UBC cheat if they have blocked Location Sharing. It means that using this cheat in such rooms can have bad consequences.
-* Splitted GUI - Visual into Visual Effects and Visual Preferences
-* Added an option in GUI - Visual Preferences to enable/disable the alternative UBC Wardrobe
-* Moved the Inmap variable to Player.OnlineSharedSettings.UBCShared and added there the mapfull3 variable
-
+(...)
 
 
