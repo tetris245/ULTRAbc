@@ -10222,14 +10222,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 },
                 {
                     id: `wardrobe-slot-import-${C}`,
-                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Copy to clipboard")) ? TextGet("Copy to clipboard") : "Copy to clipboard",
+					label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Paste from clipboard")) ? TextGet("Paste from clipboard") : "Paste from clipboard",
                     icon: "Icons/Paste.png",
                     classeCss: "wardrobe-slot-import",
                     callback: (slot) => WardrobeImportOutfit(slot)
                 },
                 {
                     id: `wardrobe-slot-export-${C}`,
-                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Paste from clipboard")) ? TextGet("Paste from clipboard") : "Paste from clipboard",
+                     label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Copy to clipboard")) ? TextGet("Copy to clipboard") : "Copy to clipboard",
                     icon: "Icons/Copy.png",
                     classeCss: "wardrobe-slot-export",
                     callback: (slot) => WardrobeExportOutfit(slot)
