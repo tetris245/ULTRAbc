@@ -10140,6 +10140,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             style: {
                 ["grid-template-columns"]: `repeat(${columns}, 1fr)`,
                 ["grid-template-rows"]: `repeat(${rows}, 1fr)`,
+				["grid-auto-flow"]: "column",
             },
             parent: main,
         });
