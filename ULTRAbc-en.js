@@ -15548,7 +15548,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (ReputationGet(Player, "HouseCorporis") != 0) house = "HouseCorporis";
                     if (ReputationGet(Player, "HouseMaiestas") != 0) house = "HouseMaiestas";
                     if (ReputationGet(Player, "HouseVincula") != 0) house = "HouseVincula";
-                    if (ReputationGet(house) < 75) {
+                    if (house && ReputationGet(house) < 75) {
                         DialogSetReputation(house, 75);
                     }
                     TitleSet("Archbishop");
