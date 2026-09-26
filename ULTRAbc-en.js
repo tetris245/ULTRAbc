@@ -12812,17 +12812,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'lock',
         Description: "(target) (locktype) (other parameters): adds locks to all lockable items on specified target.",
         Action: (args) => {
             if (args === "") {
                 let msg = "The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8, 17, 19 to 22\n" +
+                    "/lock (target) (locktype) for locks 1 to 8, 17 to 20\n" +
                     "/lock (target) (locktype) (r) for lock 9\n" +
                     "/lock (target) (locktype) (code) for lock 10\n" +
                     "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
-                    "/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15, 18\n" +
+                    "/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15\n" +
                     "/lock (target) (locktype) (password) (minutes) (h) (i) (r) - lock 16\n" +
                     "ALWAYS SPECIFY THE TARGET. Lock types:\n" +
                     "1 Metal (default when not specified) - 2 Exclusive\n" +
@@ -12830,10 +12830,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n" +
                     "10 Combination - 11 Safeword - 12 Password\n" +
                     "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
-                    "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
-                    "19 Family - 20 Lewd Crest - 21 Devious (if enabled)\n" +
-                    "22 Heart (if enabled)\n" +
-                    "Locks 17, 18, 20, 21 and 22 require a specific mod\n" +
+                    "16 Timer Password - 17 Family - 18 Lewd Crest\n" +
+                    "19 Devious (if enabled) - 20 Heart (if enabled)\n" +
+                    "Locks 18, 19 and 20 require a specific mod\n" +
                     "Use <b>/lock par</b> for info about other parameters";
                 infomsg(msg);
             } else if (args === "par") {
@@ -12841,7 +12840,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "code must be between 0 and 9999.\n" +
                     "password is limited to 8 characters.\n" +
                     "maximum time = 240 minutes for locks 13 and 16,\n" +
-                    "10080 minutes for locks 14 and 18,\n" +
+                    "10080 minutes for lock 14,\n" +
                     "50400 minutes for lock 15\n" +
                     "Use ? if you want a time randomly choosen by the game\n" +
                     " \n" +
@@ -12868,7 +12867,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringLock2 = stringLock1.split(/[ ,]+/);
                 let lk = stringLock2[1];
                 if (!CommonIsNumeric(lk)) lk = 1;
-                if ((lk < 1) || (lk > 22)) lk = 1;
+                if ((lk < 1) || (lk > 20)) lk = 1;
                 let Lock = locks[lk];
                 if (lk == 9) removeitem = stringLock2[2];
                 if (lk == 10) code = stringLock2[2];
@@ -12922,31 +12921,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     hidetimer = stringLock2[4];
                     enableinput = stringLock2[5];
                     removeitem = stringLock2[6];
-                }
-                if (lk == 18) {
-                    let maxtime = 10080;
-                    minutes = 5;
-                    if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
-                        let Result = [];
-                        let Roll = Math.floor(Math.random() * maxtime);
-                        Result.push(Roll);
-                        if (Result < 1) Result = 1;
-                        minutes = Result;
-                    }
-                    if (CommonIsNumeric(stringLock2[2])) {
-                        minutes = stringLock2[2];
-                        if (minutes < 5) minutes = 5;
-                        if (minutes > maxtime) minutes = maxtime;
-                    }
-                    time = (minutes + 5);
-                    hidetimer = stringLock2[3];
-                    enableinput = stringLock2[4];
-                    removeitem = stringLock2[5];
-                }
-                if (lk != 21) dogs = 0;
+                }              
+                if (lk != 19) dogs = 0;
                 let targetname = stringLock2[0];
                 let target = TargetSearch(targetname);
-                if ((target != null) && (lk == 21)) {
+                if ((target != null) && (lk == 19)) {
                     if (target == Player) {
                         if (Player.ExtensionSettings.DOGS != null) {
                             let str = Player.ExtensionSettings.DOGS;
@@ -12990,39 +12969,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                             target.Appearance[A].Property.RemoveOnUnlock = true;
                                             target.Appearance[A].Property.RemoveItem = true;
                                         }
-                                        if (minutes != null) {
-                                            if (lk == 18) {
-                                                target.Appearance[A].Property.MaxTime = 604800;
-                                                target.Appearance[A].Property.RemovalTime = Math.round(CurrentTime + time * 60 * 100);
-                                            } else {
-                                                target.Appearance[A].Property.RemoveTimer = target.Appearance[A].Property.RemoveTimer + (time * 60 * 1000);
-                                            }
+                                        if (lk == 13 || lk == 14 || lk == 15 || lk == 16) {
+                                            if (typeof target.Appearance[A].Property.RemoveTimer !== "number") target.Appearance[A].Property.RemoveTimer = 0;
+                                            target.Appearance[A].Property.RemoveTimer = target.Appearance[A].Property.RemoveTimer + (time * 60 * 1000);
                                         }
                                         if (hidetimer == "h") target.Appearance[A].Property.ShowTimer = false;
                                         if (enableinput == "i") target.Appearance[A].Property.EnableRandomInput = true;
                                         if ((lk == 10) && (code != null) && (code > -1) && (code < 10000)) target.Appearance[A].Property.CombinationNumber = code;
-                                        if (((lk == 11) || (lk == 12) || (lk == 16)) && (pw != null) && (pw.length <= 8) && (pw.match(PS))) target.Appearance[A].Property.Password = pw;
-                                        if ((lk == 17) || (lk == 18)) {
-                                            target.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
-                                            target.Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
-                                            let listOwnerLovers = new Set();
-                                            if (target.Ownership && target.Ownership.MemberNumber != null) listOwnerLovers.add(target.Ownership.MemberNumber);
-                                            if (target.Lovership) {
-                                                for (let L = 0; L < target.Lovership.length; L++) {
-                                                    const lover = target.Lovership[L];
-                                                    if (lover.MemberNumber != null) listOwnerLovers.add(target.Lovership[L].MemberNumber);
-                                                }
-                                            }
-                                            target.Appearance[A].Property.MemberNumberListKeys = "-1," + Array.from(listOwnerLovers).join(",");
-                                        }
-                                        if (lk == 17) target.Appearance[A].Property.Name = "Best Friend Padlock";
-                                        if (lk == 18) target.Appearance[A].Property.Name = "Best Friend Timer Padlock";
-                                        if (lk == 20) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock";
-                                        if (lk == 21) {
+                                        if (((lk == 11) || (lk == 12) || (lk == 16)) && (pw != null) && (pw.length <= 8) && (pw.match(PS))) target.Appearance[A].Property.Password = pw;                                                                  
+                                        if (lk == 18) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock";
+                                        if (lk == 19) {
                                             target.Appearance[A].Property.LockedBy = "ExclusivePadlock";
                                             target.Appearance[A].Property.Name = "DeviousPadlock";
                                         }
-                                        if (lk == 22) {
+                                        if (lk == 20) {
                                             target.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
                                             target.Appearance[A].Property.Name = "Heart Padlock";
                                         }
