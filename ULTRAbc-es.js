@@ -3677,7 +3677,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ElementValue("InputChat", text3.replace(text3, text4));
             let mb = 0;
             let MBS;
-            if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
+            if (Player.ExtensionSettings.MBS != undefined) MBS = Player.ExtensionSettings.MBS;
             if (MBS) {
                 let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                 if (MBSdata.AlternativeGarbling) mb = 1;
@@ -9286,7 +9286,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             let ngl = SpeechTransformGagGarbleIntensity(Player);
             mgl = ngl;
             let MBS;
-            if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
+            if (Player.ExtensionSettings.MBS != undefined) MBS = Player.ExtensionSettings.MBS;
             if (MBS) {
                 let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                 if (MBSdata.AlternativeGarbling && ChatRoomTargetMemberNumber == null) {
@@ -10563,7 +10563,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ElementValue("InputChat", moan.replace(moan, moan2));
                 let mb = 0;
                 let MBS;
-                if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
+                if (Player.ExtensionSettings.MBS != undefined) MBS = Player.ExtensionSettings.MBS;
                 if (MBS) {
                     let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                     if (MBSdata.AlternativeGarbling) mb = 1;
@@ -10777,7 +10777,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ElementValue("InputChat", moan.replace(moan, moan2));
         let mb = 0;
         let MBS;
-        if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
+        if (Player.ExtensionSettings.MBS != undefined) MBS = Player.ExtensionSettings.MBS;
         if (MBS) {
             let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
             if (MBSdata.AlternativeGarbling) mb = 1;
@@ -12382,7 +12382,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 onegl = SpeechTransformGagGarbleIntensity(Player);
                 let mgl = onegl;
                 let MBS;
-                if (Player.ExtensionSettings.MBS != undefined) LSCG = Player.ExtensionSettings.MBS;
+                if (Player.ExtensionSettings.MBS != undefined) MBS = Player.ExtensionSettings.MBS;
                 if (MBS) {
                     let MBSdata = JSON.parse(LZString.decompressFromUTF16(MBS));
                     if (MBSdata.AlternativeGarbling) {
@@ -13386,7 +13386,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return;
                 }
                 let MBS;
-                if (Player.OnlineSharedSettings.MBS != undefined) LSCG = Player.OnlineSharedSettings.MBS;
+                if (Player.OnlineSharedSettings.MBS != undefined) MBS = Player.OnlineSharedSettings.MBS;
                 let MBSVersion;
                 if (Player.OnlineSharedSettings.MBSVersion != undefined) MBSVersion = OnlineSharedSettings.MBSVersion;
                 if (!MBS) {
