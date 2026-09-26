@@ -16506,7 +16506,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'unlock',
         Description: "(target) (locktype): removes all locks or only a specified type of lock on specified target.",
         Action: (args) => {
@@ -16522,9 +16522,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n" +
                     "10 Combination - 11 Safeword - 12 Password\n" +
                     "13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n" +
-                    "16 Timer Password - 17 Best Friend - 18 BF Timer\n" +
-                    "19 Family - 20 Lewd Crest - 21 Devious - 22 Heart\n" +
-                    "Locks 21 and 22 can be removed by everybody only if players use a modified version of the DOGS or AFC mod.";
+                    "16 Timer Password - 17 Family - 18 Lewd Crest\n" +
+                    "19 Devious - 20 Heart \n" +
+                    "21 Best Friend - 22 BF Timer\n" +
+                    "Locks 19 and 20 can be removed by everybody only if players use a modified version of the DOGS or AFC mod.";
                 infomsg(msg);
             } else {
                 let uw = 0;
@@ -16556,11 +16557,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (uw == 0) {
                         if (lk == null) {
                             let lm = 1;
-                            while (lm < 17) {
+                            while (lm < 18) {
                                 CharacterReleaseFromLock(target, locks[lm]);
                                 lm++;
                             }
                             CharacterReleaseFromLock(target, locks[19]);
+                            CharacterReleaseFromLock(target, locks[20]);
+                            CharacterReleaseFromLock(target, locks[21]);
                             CharacterReleaseFromLock(target, locks[22]);
                             for (let A = 0; A < target.Appearance.length; A++)
                                 if ((target.Appearance[A].Property != null) &&
@@ -16570,7 +16573,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (!CommonIsNumeric(lk)) lk = 1;
                             if ((lk < 1) || (lk > 22)) lk = 1;
                             let Lock = locks[lk];
-                            if ((lk != 4) && (lk != 17) && (lk != 18) && (lk != 20) && (lk != 21) && (lk != 22)) CharacterReleaseFromLock(target, Lock);
+                            if ((lk != 4) && (lk <= 18)) CharacterReleaseFromLock(target, Lock);
                             if (lk == 4) {
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if ((target.Appearance[A].Property != null) &&
@@ -16578,40 +16581,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         (target.Appearance[A].Property.Name == undefined))
                                         InventoryUnlock(target, target.Appearance[A]);
                             }
-                            if (lk == 17) {
-                                for (let A = 0; A < target.Appearance.length; A++)
-                                    if ((target.Appearance[A].Property != null) &&
-                                        (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
-                                        (target.Appearance[A].Property.Name == "Best Friend Padlock"))
-                                        InventoryUnlock(target, target.Appearance[A]);
-                            }
                             if (lk == 18) {
-                                for (let A = 0; A < target.Appearance.length; A++)
-                                    if ((target.Appearance[A].Property != null) &&
-                                        (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
-                                        (target.Appearance[A].Property.Name == "Best Friend Timer Padlock"))
-                                        InventoryUnlock(target, target.Appearance[A]);
-                            }
-                            if (lk == 20) {
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if ((target.Appearance[A].Property != null) &&
                                         (target.Appearance[A].Property.LockedBy == "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock"))
                                         InventoryUnlock(target, target.Appearance[A]);
                             }
-                            if (lk == 21) {
+                            if (lk == 19) {
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if ((target.Appearance[A].Property != null) &&
                                         (target.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
                                         (target.Appearance[A].Property.Name == "DeviousPadlock"))
                                         InventoryUnlock(target, target.Appearance[A]);
                             }
-                            if (lk == 22) {
+                            if (lk == 20) {
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if ((target.Appearance[A].Property != null) &&
                                         (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
                                         (target.Appearance[A].Property.Name == "Heart Padlock"))
                                         InventoryUnlock(target, target.Appearance[A]);
                             }
+                            if (lk == 21) {
+                                for (let A = 0; A < target.Appearance.length; A++)
+                                    if ((target.Appearance[A].Property != null) &&
+                                        (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                        (target.Appearance[A].Property.Name == "Best Friend Padlock"))
+                                        InventoryUnlock(target, target.Appearance[A]);
+                            }
+                            if (lk == 22) {
+                                for (let A = 0; A < target.Appearance.length; A++)
+                                    if ((target.Appearance[A].Property != null) &&
+                                        (target.Appearance[A].Property.LockedBy == "HighSecurityPadlock") &&
+                                        (target.Appearance[A].Property.Name == "Best Friend Timer Padlock"))
+                                        InventoryUnlock(target, target.Appearance[A]);
+                            }                          
                         }
                         ChatRoomCharacterUpdate(target);
                     }
