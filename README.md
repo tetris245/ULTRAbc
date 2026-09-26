@@ -97,6 +97,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Removed the Best Friend and Best Friend Timer locks from the lock command
 
 
