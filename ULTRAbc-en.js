@@ -363,8 +363,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const petitems3 = ["CowtailStrap", "FoxTailStrap", "FoxTailsStrap", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "LargeBushyTail", "LargeFoxTail", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "RaccoonTailStrap", "TailStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"];
 
     //Locks
-    const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "Best Friend Padlock", "Best Friend Timer Padlock", "FamilyPadlock", "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock", "DeviousPadlock", "Heart Padlock"];
-
+    const locks = ["", "MetalPadlock", "ExclusivePadlock", "IntricatePadlock", "HighSecurityPadlock", "PandoraPadlock", "MistressPadlock", "LoversPadlock", "OwnerPadlock", "TimerPadlock", "CombinationPadlock", "SafewordPadlock", "PasswordPadlock", "MistressTimerPadlock", "LoversTimerPadlock", "OwnerTimerPadlock", "TimerPasswordPadlock", "FamilyPadlock", "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock", "DeviousPadlock", "Heart Padlock", "Best Friend Padlock", "Best Friend Timer Padlock"];
+	
     //Senses levels
     const blindLevels = [GetBlindLevel0, GetBlindLevel1, GetBlindLevel2, GetBlindLevel3];
     const blurLevels = [GetBlurLevel0, GetBlurLevel1, GetBlurLevel2, GetBlurLevel3, GetBlurLevel4];
