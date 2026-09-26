@@ -98,5 +98,6 @@ All else I might not have included.
 Changes for future version
 
 * Removed the Best Friend and Best Friend Timer locks from the lock command
+* Put the Best Friend and Best Friend Timer locks at the end of the list for the unlock command
 
 
