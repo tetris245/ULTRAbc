@@ -12825,11 +12825,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "lock 命令有多种语法：\n" +
-                    "/lock (目标) (锁类型) 用于锁 1 到 8、17、19 到 22\n" +
+                    "/lock (目标) (锁类型) 用于锁 1 到 8、17 到 20\n" +
                     "/lock (目标) (锁类型) (r) 用于锁 9\n" +
                     "/lock (目标) (锁类型) (代码) 用于锁 10\n" +
                     "/lock (目标) (锁类型) (口令) (r) 用于锁 11 和 12\n" +
-                    "/lock (目标) (锁类型) (分钟数) (h) (i) (r) - 锁 13 到 15、18\n" +
+                    "/lock (目标) (锁类型) (分钟数) (h) (i) (r) - 锁 13 到 15\n" +
                     "/lock (目标) (锁类型) (口令) (分钟数) (h) (i) (r) - 锁 16\n" +
                     "必须指定目标。锁类型：\n" +
                     "1 金属（默认，未指定时）- 2 专属\n" +
@@ -12837,10 +12837,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "6 女主人 - 7 爱人 - 8 主人 - 9 五分钟\n" +
                     "10 组合 - 11 安全词 - 12 密码\n" +
                     "13 女主人计时器 - 14 爱人计时器 - 15 主人计时器\n" +
-                    "16 计时器密码 - 17 最好的朋友 - 18 好友计时器\n" +
-                    "19 家族 - 20 色欲纹章 - 21 邪恶（如果启用）\n" +
-                    "22 心 (如果启用)\n" +
-                    "锁 17、18、20, 21 和 22 需要特定的模组\n" +
+                    "16 计时器密码 - 17 家族 - 18 色欲纹章\n" +
+					"19 邪恶（如果启用）- 20 心 (如果启用)\n" +
+                    "锁 18, 19 和 20 需要特定的模组\n" +
                     "使用 <b>/lock par</b> 获取有关其他参数的信息";
                 infomsg(msg);
             } else if (args === "par") {
@@ -12848,7 +12847,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "代码必须在 0 到 9999 之间。\n" +
                     "口令限制为 8 个字符。\n" +
                     "最长时间 = 锁 13 和 16 为 240 分钟，\n" +
-                    "锁 14 和 18 为 10080 分钟， \n" +
+                    "锁 14 10080 分钟， \n" +
                     "锁 15 50400 分钟 \n" +
                     "如果你想让游戏随机选择时间，使用 ?\n" +
                     " \n" +
@@ -12875,7 +12874,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let stringLock2 = stringLock1.split(/[ ,]+/);
                 let lk = stringLock2[1];
                 if (!CommonIsNumeric(lk)) lk = 1;
-                if ((lk < 1) || (lk > 22)) lk = 1;
+                if ((lk < 1) || (lk > 20)) lk = 1;
                 let Lock = locks[lk];
                 if (lk == 9) removeitem = stringLock2[2];
                 if (lk == 10) code = stringLock2[2];
@@ -12930,30 +12929,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     enableinput = stringLock2[5];
                     removeitem = stringLock2[6];
                 }
-                if (lk == 18) {
-                    let maxtime = 10080;
-                    minutes = 5;
-                    if ((!CommonIsNumeric(stringLock2[2])) && (stringLock2[2] == "?")) {
-                        let Result = [];
-                        let Roll = Math.floor(Math.random() * maxtime);
-                        Result.push(Roll);
-                        if (Result < 1) Result = 1;
-                        minutes = Result;
-                    }
-                    if (CommonIsNumeric(stringLock2[2])) {
-                        minutes = stringLock2[2];
-                        if (minutes < 5) minutes = 5;
-                        if (minutes > maxtime) minutes = maxtime;
-                    }
-                    time = (minutes + 5);
-                    hidetimer = stringLock2[3];
-                    enableinput = stringLock2[4];
-                    removeitem = stringLock2[5];
-                }
-                if (lk != 21) dogs = 0;
+                if (lk != 19) dogs = 0;
                 let targetname = stringLock2[0];
                 let target = TargetSearch(targetname);
-                if ((target != null) && (lk == 21)) {
+                if ((target != null) && (lk == 19)) {
                     if (target == Player) {
                         if (Player.ExtensionSettings.DOGS != null) {
                             let str = Player.ExtensionSettings.DOGS;
@@ -12997,39 +12976,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                             target.Appearance[A].Property.RemoveOnUnlock = true;
                                             target.Appearance[A].Property.RemoveItem = true;
                                         }
-                                        if (minutes != null) {
-                                            if (lk == 18) {
-                                                target.Appearance[A].Property.MaxTime = 604800;
-                                                target.Appearance[A].Property.RemovalTime = Math.round(CurrentTime + time * 60 * 100);
-                                            } else {
-                                                target.Appearance[A].Property.RemoveTimer = target.Appearance[A].Property.RemoveTimer + (time * 60 * 1000);
-                                            }
+                                        if (lk == 13 || lk == 14 || lk == 15 || lk == 16) {
+                                            if (typeof target.Appearance[A].Property.RemoveTimer !== "number") target.Appearance[A].Property.RemoveTimer = 0;
+                                            target.Appearance[A].Property.RemoveTimer = target.Appearance[A].Property.RemoveTimer + (time * 60 * 1000);
                                         }
                                         if (hidetimer == "h") target.Appearance[A].Property.ShowTimer = false;
                                         if (enableinput == "i") target.Appearance[A].Property.EnableRandomInput = true;
                                         if ((lk == 10) && (code != null) && (code > -1) && (code < 10000)) target.Appearance[A].Property.CombinationNumber = code;
                                         if (((lk == 11) || (lk == 12) || (lk == 16)) && (pw != null) && (pw.length <= 8) && (pw.match(PS))) target.Appearance[A].Property.Password = pw;
-                                        if ((lk == 17) || (lk == 18)) {
-                                            target.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
-                                            target.Appearance[A].Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
-                                            let listOwnerLovers = new Set();
-                                            if (target.Ownership && target.Ownership.MemberNumber != null) listOwnerLovers.add(target.Ownership.MemberNumber);
-                                            if (target.Lovership) {
-                                                for (let L = 0; L < target.Lovership.length; L++) {
-                                                    const lover = target.Lovership[L];
-                                                    if (lover.MemberNumber != null) listOwnerLovers.add(target.Lovership[L].MemberNumber);
-                                                }
-                                            }
-                                            target.Appearance[A].Property.MemberNumberListKeys = "-1," + Array.from(listOwnerLovers).join(",");
-                                        }
-                                        if (lk == 17) target.Appearance[A].Property.Name = "Best Friend Padlock";
-                                        if (lk == 18) target.Appearance[A].Property.Name = "Best Friend Timer Padlock";
-                                        if (lk == 20) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock";
-                                        if (lk == 21) {
+                                        if (lk == 18) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock";
+                                        if (lk == 19) {
                                             target.Appearance[A].Property.LockedBy = "ExclusivePadlock";
                                             target.Appearance[A].Property.Name = "DeviousPadlock";
                                         }
-                                        if (lk == 22) {
+                                        if (lk == 20) {
                                             target.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
                                             target.Appearance[A].Property.Name = "Heart Padlock";
                                         }
