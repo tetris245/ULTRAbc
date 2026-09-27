@@ -12044,6 +12044,133 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'convertbf',
+        Description: "(target) (time) (h) (i) (r): converts all High Security locks on yourself or another player into Best Friend or Best Friend Timer locks",
+        Action: (args) => {
+           if (!args || args.trim() === "") { 
+                let msg = "The convertbf command must be followed by the target who has high security locks, and optionally time + related parameters.\n" +
+                    "The target always needs to be specified.\n" +
+                    "The time is expressed in minutes. Use ? if you want a time randomly choosen by the game (between 5 and 10080 minutes).\n" +
+                    "Optional parameters for timer lock:\n" +
+                    "h to hide the timer,\n" +
+                    "i to enable time input from other players,\n" +
+                    "r for item removal when lock timer runs out.\n" +
+                    " \n" +
+                    "Tip: replace h and/or i by another character when you need to skip them.";
+                infomsg(msg);
+                return;
+            } 
+            let enableinput = "";
+            let hidetimer = "";
+            let removeitem = "";
+            let parts = args.trim().split(/\s+/);
+            let targetName = parts[0];
+            let minutesRaw = parts[1];
+            let minutes = null;
+            if (minutesRaw !== undefined) {
+                if ((!CommonIsNumeric(minutesRaw)) && (minutesRaw == "?")) {
+                    let Result = [];
+                    let Roll = Math.floor(Math.random() * 10080) + 1;
+                    Result.push(Roll);
+                    minutesRaw = Result;
+                }
+                if (!/^\d+$/.test(minutesRaw)) {
+                    infomsg("Invalid minutes value. Provide a positive integer number of minutes (or omit for no timer).");
+                    return;
+                }
+                minutes = parseInt(minutesRaw, 10);
+                let maxtime = 10080;
+                if (minutes < 5) minutes = 5;
+                if (minutes > maxtime) minutes = maxtime;
+            }
+            let target = TargetSearch(targetName);
+            if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
+                tgpname = getNickname(target);
+                if (IsTargetProtected(target)) {
+                    let msg = umsg1 + tgpname + umsg2;
+                    infomsg(msg);
+                    return;
+                }
+                hidetimer = parts[2];
+                enableinput = parts[3];
+                removeitem = parts[4];
+                let converted = 0;
+                try {
+                   const now = (typeof CurrentTime === "number") ? CurrentTime : Date.now();
+                   for (let i = 0; i < target.Appearance.length; i++) {
+                       const app = target.Appearance[i];
+                       if (!app || !app.Property) continue;
+                       if (app.Property.LockedBy !== "HighSecurityPadlock") continue;
+                       const name = app.Property.Name || "";
+                       if (name === "Best Friend Padlock" || name === "Best Friend Timer Padlock") continue;
+                       const groupName = app.Asset && app.Asset.Group ? app.Asset.Group.Name : null;
+                       if (minutes === null) {
+                           if (typeof convertHStoBF === "function") {
+                               try { convertHStoBF(target, app, groupName); }
+                               catch (e) { console.error("convertHStoBF failed", e); }
+                           } else {
+                               app.Property.Name = "Best Friend Padlock";
+                               app.Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
+                               let owners = new Set();
+                               if (target.Ownership && target.Ownership.MemberNumber != null) owners.add(target.Ownership.MemberNumber);
+                               if (target.Lovership && Array.isArray(target.Lovership)) {
+                                   for (const lv of target.Lovership) if (lv?.MemberNumber != null) owners.add(lv.MemberNumber);
+                               }
+                               app.Property.MemberNumberListKeys = "-1," + Array.from(owners).join(",");
+                               try { if (typeof ChatRoomCharacterItemUpdate === "function" && groupName) ChatRoomCharacterItemUpdate(target, groupName); }
+                               catch(e){ console.error("ChatRoomCharacterItemUpdate failed", e); }
+                           }
+                       } else {
+                           if (typeof convertHStoBFTimer === "function") {
+                               try { convertHStoBFTimer(target, app, groupName); }
+                               catch (e) { console.error("convertHStoBFTimer failed", e); }
+                               if (Number.isInteger(minutes) && minutes > 0) {
+                                   try {
+                                       if (app.Property) {
+                                           app.Property.RemovalTime = Math.round(now + minutes * 60 * 1000);
+                                           app.Property.MaxTime = 604800;
+                                           if (typeof ChatRoomCharacterItemUpdate === "function" && groupName) ChatRoomCharacterItemUpdate(target, groupName);
+                                       }
+                                   } catch(e){ console.error("override RemovalTime failed", e); }
+                               }
+                           } else {
+                               app.Property.Name = "Best Friend Timer Padlock";
+                               app.Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
+                               app.Property.MaxTime = 604800;
+                               if (Number.isInteger(minutes) && minutes > 0) {
+                                   app.Property.RemovalTime = Math.round(now + minutes * 60 * 1000);
+                               }
+                               let owners = new Set();
+                               if (target.Ownership && target.Ownership.MemberNumber != null) owners.add(target.Ownership.MemberNumber);
+                               if (target.Lovership && Array.isArray(target.Lovership)) {
+                                   for (const lv of target.Lovership) if (lv?.MemberNumber != null) owners.add(lv.MemberNumber);
+                               }
+                               app.Property.MemberNumberListKeys = "-1," + Array.from(owners).join(",");
+                               if (hidetimer == "h") app.Property.ShowTimer = false;
+                               if (enableinput == "i") app.Property.EnableRandomInput = true;
+                               if (removeitem == "r") app.Property.RemoveItem = true;
+                               try { if (typeof ChatRoomCharacterItemUpdate === "function" && groupName) ChatRoomCharacterItemUpdate(target, groupName); }
+                               catch(e){ console.error("ChatRoomCharacterItemUpdate failed", e); }
+                           }
+                       }
+                       converted++;
+                   }
+               } catch (e) {
+                   console.error("convertbf: error", e);
+                   infomsg("An error occurred during conversion. See console.");
+                   return;
+               }
+               if (converted > 0) {
+                   infomsg("Converted " + converted + " high security lock(s) into " + (minutes === null ? "Best Friend Padlock" : "Best Friend Timer Padlock") + ".");
+                   infomsg("You need to use the /updatebf command to save data related to these locks.");
+               } else {
+                   infomsg("No High Security Padlocks found to convert (or already Best Friend locks).");
+               }
+           }
+       }
+    }]);
+
     CommandCombine([{
         Tag: 'cowner',
         Description: "(member number) (owning days) (owner name): sets a custom owner, that will be displayed in your profile.",
@@ -16262,9 +16389,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "bondage") {
                 let msg = "束缚命令 - * = 使用时获取更多信息\n" +
-                    "<b>/autoheart</b> = puts heart locks on yourself and configures them. *.\n" +
+					"<b>/autoheart</b> = puts/configures heart locks on yourself. *\n" +
+                    "<b>/convertbf</b> (target) (time) = converts high security locks into best friend (timer) locks. *\n" +
                     "<b>/hint</b> （目标）（提示）= 为所有带密码的锁添加或更改提示。\n" +
-                    "<b>/lock</b> = 为所有可锁定物品添加锁。*。\n" +
+                    "<b>/lock</b> = 为所有可锁定物品添加锁。*\n" +
                     "<b>/outfit</b> = 恢复/保存/加载服装（包括束缚）。*\n" +
                     "<b>/pet</b> （目标）= 成为完全受束缚的宠物。\n" +
                     "<b>/randomize</b> （目标）= 裸体 + 内衣 + 服装 + 束缚命令。\n" +
