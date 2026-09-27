@@ -12043,6 +12043,133 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'convertbf',
+        Description: "(objectivo) (minutos) (h) (i) (r): convierte todos los candados de alta seguridad en Best Friend o Best Friend Timer.",
+        Action: (args) => {
+           if (!args || args.trim() === "") { 
+                let msg = "El comando convertbf debe ir seguido de el objetivo que cuenta con candados de alta seguridad y, opcionalmente, información de tiempo y parámetros relacionados.\n" +
+                    "El objetivo siempre debe especificarse.\n" +
+                    "El tiempo se expresa en minutos. Usa ? si quieres un tiempo elegido al azar por el juego (entre 5 y 10080 minutos).\n" +
+                    "Parámetros opcionales para el candado con temporizador:\n" +
+                    "h para ocultar el temporizador,\n" +
+                    "i para permitir la entrada de tiempo de otros jugadores,\n" +
+                    "r para la eliminación del objeto cuando el tiempo del candado se agote.\n" +
+                    " \n" +
+                    "Consejo: reemplaza h y/o i por otro carácter cuando necesites omitirlos.";
+                infomsg(msg);
+                return;
+            } 
+            let enableinput = "";
+            let hidetimer = "";
+            let removeitem = "";
+            let parts = args.trim().split(/\s+/);
+            let targetName = parts[0];
+            let minutesRaw = parts[1];
+            let minutes = null;
+            if (minutesRaw !== undefined) {
+                if ((!CommonIsNumeric(minutesRaw)) && (minutesRaw == "?")) {
+                    let Result = [];
+                    let Roll = Math.floor(Math.random() * 10080) + 1;
+                    Result.push(Roll);
+                    minutesRaw = Result;
+                }
+                if (!/^\d+$/.test(minutesRaw)) {
+                    infomsg("Valor de minutos no válido. Indique un número entero positivo de minutos (u omítalo si no desea temporizador).");
+                    return;
+                }
+                minutes = parseInt(minutesRaw, 10);
+                let maxtime = 10080;
+                if (minutes < 5) minutes = 5;
+                if (minutes > maxtime) minutes = maxtime;
+            }
+            let target = TargetSearch(targetName);
+            if ((target != null) && (target.OnlineSharedSettings.UBC != undefined)) {
+                tgpname = getNickname(target);
+                if (IsTargetProtected(target)) {
+                    let msg = umsg1 + tgpname + umsg2;
+                    infomsg(msg);
+                    return;
+                }
+                hidetimer = parts[2];
+                enableinput = parts[3];
+                removeitem = parts[4];
+                let converted = 0;
+                try {
+                   const now = (typeof CurrentTime === "number") ? CurrentTime : Date.now();
+                   for (let i = 0; i < target.Appearance.length; i++) {
+                       const app = target.Appearance[i];
+                       if (!app || !app.Property) continue;
+                       if (app.Property.LockedBy !== "HighSecurityPadlock") continue;
+                       const name = app.Property.Name || "";
+                       if (name === "Best Friend Padlock" || name === "Best Friend Timer Padlock") continue;
+                       const groupName = app.Asset && app.Asset.Group ? app.Asset.Group.Name : null;
+                       if (minutes === null) {
+                           if (typeof convertHStoBF === "function") {
+                               try { convertHStoBF(target, app, groupName); }
+                               catch (e) { console.error("convertHStoBF failed", e); }
+                           } else {
+                               app.Property.Name = "Best Friend Padlock";
+                               app.Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
+                               let owners = new Set();
+                               if (target.Ownership && target.Ownership.MemberNumber != null) owners.add(target.Ownership.MemberNumber);
+                               if (target.Lovership && Array.isArray(target.Lovership)) {
+                                   for (const lv of target.Lovership) if (lv?.MemberNumber != null) owners.add(lv.MemberNumber);
+                               }
+                               app.Property.MemberNumberListKeys = "-1," + Array.from(owners).join(",");
+                               try { if (typeof ChatRoomCharacterItemUpdate === "function" && groupName) ChatRoomCharacterItemUpdate(target, groupName); }
+                               catch(e){ console.error("ChatRoomCharacterItemUpdate failed", e); }
+                           }
+                       } else {
+                           if (typeof convertHStoBFTimer === "function") {
+                               try { convertHStoBFTimer(target, app, groupName); }
+                               catch (e) { console.error("convertHStoBFTimer failed", e); }
+                               if (Number.isInteger(minutes) && minutes > 0) {
+                                   try {
+                                       if (app.Property) {
+                                           app.Property.RemovalTime = Math.round(now + minutes * 60 * 1000);
+                                           app.Property.MaxTime = 604800;
+                                           if (typeof ChatRoomCharacterItemUpdate === "function" && groupName) ChatRoomCharacterItemUpdate(target, groupName);
+                                       }
+                                   } catch(e){ console.error("override RemovalTime failed", e); }
+                               }
+                           } else {
+                               app.Property.Name = "Best Friend Timer Padlock";
+                               app.Property.LockPickSeed = "8,3,5,10,4,2,6,7,1,9,0,11";
+                               app.Property.MaxTime = 604800;
+                               if (Number.isInteger(minutes) && minutes > 0) {
+                                   app.Property.RemovalTime = Math.round(now + minutes * 60 * 1000);
+                               }
+                               let owners = new Set();
+                               if (target.Ownership && target.Ownership.MemberNumber != null) owners.add(target.Ownership.MemberNumber);
+                               if (target.Lovership && Array.isArray(target.Lovership)) {
+                                   for (const lv of target.Lovership) if (lv?.MemberNumber != null) owners.add(lv.MemberNumber);
+                               }
+                               app.Property.MemberNumberListKeys = "-1," + Array.from(owners).join(",");
+                               if (hidetimer == "h") app.Property.ShowTimer = false;
+                               if (enableinput == "i") app.Property.EnableRandomInput = true;
+                               if (removeitem == "r") app.Property.RemoveItem = true;
+                               try { if (typeof ChatRoomCharacterItemUpdate === "function" && groupName) ChatRoomCharacterItemUpdate(target, groupName); }
+                               catch(e){ console.error("ChatRoomCharacterItemUpdate failed", e); }
+                           }
+                       }
+                       converted++;
+                   }
+               } catch (e) {
+                   console.error("convertbf: error", e);
+                   infomsg("Se produjo un error durante la conversión. Consulte la consola.");
+                   return;
+               }
+               if (converted > 0) {
+                   infomsg(converted + " candado(s) de alta seguridad convertido(s) en " + (minutes === null ? "Mejor Amigo" : "Temp. Mejor Amigo") + ".");
+                   infomsg("Debes utilizar el comando /updatebf para guardar los datos relacionados con estos candados.");
+               } else {
+                   infomsg("No se encontraron candados de alta seguridad para convertir (ni candados que ya sean del tipo Best Friend).");
+               }
+           }
+       }
+    }]);
+
     CommandCombine([{
         Tag: 'cowner',
         Description: "(número de miembro) (días de propiedad) (nombre del propietario): establece un propietario personalizado que se mostrará en tu perfil.",
@@ -16217,9 +16344,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (args === "bondage") {
                 let msg = "Comandos de Restricción - * = más info al usar\n" +
-                    "<b>/autoheart</b> = te pone candados de corazón y los configura. *.\n" +
+                    "<b>/autoheart</b> = te pone candados de corazón y los configura. *\n" +
+					"<b>/convertbf</b> (objectivo) (minutos) = convierte candados de alta seguridad en mejor amigo. *\n" +
                     "<b>/hint</b> (objetivo) (pista) = añade o cambia una pista para los candados con contraseña.\n" +
-                    "<b>/lock</b> = añade candados a todos los objetos bloqueables. *.\n" +
+                    "<b>/lock</b> = añade candados a todos los objetos bloqueables. *\n" +
                     "<b>/outfit</b> = restaura/guarda/carga vestimenta (incluyendo accesorios). *\n" +
                     "<b>/pet</b> (objetivo) = aplica restricciones totales de estado 'mascota'.\n" +
                     "<b>/randomize</b> (objetivo) = aplica una combinación aleatoria de ropa y restricciones.\n" +
@@ -16515,7 +16643,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "13 Temp. Ama - 14 Temp. Amante - 15 Temp. Dueño\n" +
                     "16 Contraseña con Tiempo - 17 Familiar - 28 Escudo Lúbrico\n" +
                     "19 Devious - 20 Corazón\n" +
-                    "21 Mejor Amigo- 22 Temp. Mejor Amigo \n" +              
+                    "21 Mejor Amigo - 22 Temp. Mejor Amigo \n" +              
                     "Los candados 19 y 20 solo pueden retirarse si se usa una versión modificada del mod DOGS o AFC.";
                 infomsg(msg);
             } else {
