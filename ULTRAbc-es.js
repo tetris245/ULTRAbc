@@ -13346,9 +13346,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     return;
                 }
                 let MBS;
-                if (Player.OnlineSharedSettings.MBS != undefined) MBS = Player.OnlineSharedSettings.MBS;
+                if (character.OnlineSharedSettings.MBS != undefined) MBS = character.OnlineSharedSettings.MBS;
                 let MBSVersion;
-                if (Player.OnlineSharedSettings.MBSVersion != undefined) MBSVersion = OnlineSharedSettings.MBSVersion;
+                if (character.OnlineSharedSettings.MBSVersion != undefined) MBSVersion = character.OnlineSharedSettings.MBSVersion;
                 if (!MBS) {
                     ChatRoomSendLocal("No tiene una rueda de la fortuna MBS.");
                     ChatRoomSendLocal(" ");
