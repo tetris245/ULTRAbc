@@ -170,6 +170,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let hearing = 0;
     let ifext = false;
     let ifname = "Sheet";
+	let ifshare = false;
     let layerall = false;
     let maptrap1 = 0;
     let mgl = 0;
@@ -236,7 +237,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let noubccolor;
     let nowhisper = false;
     let nowhrange;
-    let nowrbuttons;
+    //let nowrbuttons;
     let npcpunish = false;
     let outbuttons;
     let rglbuttons;
@@ -616,6 +617,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         highfame = false;
         hotkeys = false;
         ifext = false;
+		ifshare = false;
         layerall = false;
         magiccheat = false;
         magictoys = false;
@@ -640,7 +642,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noubccolor = false;
         nowhisper = false;
         nowhrange = false;
-        nowrbuttons = false;
+        //nowrbuttons = false;
         npcdeck = -1;
         npcpunish = false;
         onlydays = false;
@@ -746,6 +748,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         highfame = data.highfame;
         hotkeys = data.hotkeys;
         ifext = data.ifext;
+		ifshare = data.ifshare;
         layerall = data.layerall;
         magiccheat = data.magiccheat;
         magictoys = data.magictoys;
@@ -770,7 +773,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         noubccolor = data.noubccolor;
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
-        nowrbuttons = data.nowrbuttons;
+        //nowrbuttons = data.nowrbuttons;
         npcdeck = data.npcdeck * 1;
         npcpunish = data.npcpunish;
         onlydays = data.onlydays;
@@ -925,6 +928,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "gaglevel": gl,
             "ifext": ifext,
             "ifname": ifname,
+            "ifshare": ifshare,
             "layerall": layerall,
             "maptrap1": maptrap1,
             "minigame": minigame,
@@ -990,7 +994,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "noubccolor": noubccolor,
             "nowhisper": nowhisper,
             "nowhrange": nowhrange,
-            "nowrbuttons": nowrbuttons,
+            //"nowrbuttons": nowrbuttons,
             "npcpunish": npcpunish,
             "outbuttons": outbuttons,
             "rglbuttons": rglbuttons,
@@ -1105,6 +1109,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (hotkeys == null || hotkeys == undefined) hotkeys = false;
                 if (ifext == null || ifext == undefined) ifext = false;
                 if (ifname == null || ifname == undefined) ifname = "Sheet";
+				if (ifshare == null || ifshare == undefined) ifshare = false;
                 if (layerall == null || layerall == undefined) layerall = false;
                 if (magiccheat == null || magiccheat == undefined) magiccheat = false;
                 if (magictoys == null || magictoys == undefined) magictoys = false;
@@ -1140,7 +1145,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (noubccolor == null || noubccolor == undefined) noubccolor = false;
                 if (nowhisper == null || nowhisper == undefined) nowhisper = false;
                 if (nowhrange == null || nowhrange == undefined) nowhrange = false;
-                if (nowrbuttons == null || nowrbuttons == undefined) nowrbuttons = false;
+                //if (nowrbuttons == null || nowrbuttons == undefined) nowrbuttons = false;
                 if (npcdeck == null || npcdeck == undefined) npcdeck = -1;
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;
                 if (onlydays == null || onlydays == undefined) onlydays = false;
@@ -1273,6 +1278,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 highfame: false,
                 hotkeys: false,
                 ifext: false,
+				ifshare: false,
                 layerall: false,
                 magiccheat: false,
                 magictoys: false,
@@ -1295,7 +1301,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 noubccolor: false,
                 nowhisper: false,
                 nowhrange: false,
-                nowrbuttons: false,
+                //nowrbuttons: false,
                 npcdeck: -1,
                 npcpunish: false,
                 onlydays: false,
@@ -2375,6 +2381,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         OnlineSettings: Player.OnlineSettings
                     });
                 }
+				Player.OnlineSharedSettings.UBCShared.ifshare = ifshare;
                 if (mapfull3 == true) {
                     Player.OnlineSharedSettings.UBCShared.mapfull3 = true;
                 } else {
@@ -2442,8 +2449,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, "Remove background buttons in Timer Cell: ", "notcbuttons",
                     "If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active.", false, 200
                 );
-                addMenuCheckbox(64, 64, "Remove background buttons in Wardrobe: ", "nowrbuttons",
+                /*addMenuCheckbox(64, 64, "Remove background buttons in Wardrobe: ", "nowrbuttons",
                     "If you check this setting, UBC will not display background buttons in Wardrobe. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likolisu's tool to change the background of this screen, you need to click first on the Default Background button before checking this option.", false, 200
+                );*/
+				addMenuCheckbox(64, 64, "Share Character Info background: ", "ifshare",
+                    "When enabled, other UBC users will see the standard BC background that you use for your Character Info screen.", false, 200
                 );
             }
 
@@ -4608,6 +4618,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((MouseX >= 1575) && (MouseX < 1665) && (MouseY >= 910) && (MouseY < 1000)) {
                 ifname = "Sheet";
                 M_MOANER_saveControls();
+				Player.OnlineSharedSettings.UBCShared.ifname = ifname;
+                ServerAccountUpdate.QueueData({
+                    OnlineSharedSettings: Player.OnlineSharedSettings
+                });
                 CommonSetScreen("Character", "InformationSheet");
             }
             if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
@@ -4618,6 +4632,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let name = BackgroundsList[Roll - 1].Name;
                     ifname = name;
                     M_MOANER_saveControls();
+					Player.OnlineSharedSettings.UBCShared.ifname = ifname;
+                    ServerAccountUpdate.QueueData({
+                        OnlineSharedSettings: Player.OnlineSharedSettings
+                    });
                     CommonSetScreen("Character", "InformationSheet");
                 }
             }
@@ -4627,6 +4645,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (setBackground) {
                         ifname = Name;
                         M_MOANER_saveControls();
+						Player.OnlineSharedSettings.UBCShared.ifname = ifname;
+                        ServerAccountUpdate.QueueData({
+                            OnlineSharedSettings: Player.OnlineSharedSettings
+                        });
                     }
                     CommonSetScreen("Character", "InformationSheet");
                 });
@@ -7811,6 +7833,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InformationSheetBackground = ifname;
         TintsEffect();
         const C = InformationSheetSelection;
+		if (C != Player) {
+            if (C.OnlineSharedSettings != undefined) {
+                if (C.OnlineSharedSettings.UBCShared != undefined) {
+                    if (C.OnlineSharedSettings.UBCShared.ifshare == true) {
+                        if (C.OnlineSharedSettings.UBCShared.ifname != undefined) {
+                            InformationSheetBackground = C.OnlineSharedSettings.UBCShared.ifname;
+                        }
+                    }
+                }
+            }
+        }
         const spacing = 55;
         DrawCharacter(C, 50, 50, 0.9);
         MainCanvas.textAlign = "left";
@@ -8913,6 +8946,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Player.OnlineSharedSettings.UBCShared.cowner2 ??= cowner2;
         Player.OnlineSharedSettings.UBCShared.cowner3 ??= cowner3;
         Player.OnlineSharedSettings.UBCShared.ctitle ??= ctitle;
+		Player.OnlineSharedSettings.UBCShared.ifname ??= ifname;
+        Player.OnlineSharedSettings.UBCShared.ifshare = ifshare;
         Player.OnlineSharedSettings.UBCShared.Inmap = false;
         if (mapfull3 == true) {
             Player.OnlineSharedSettings.UBCShared.mapfull3 = true;
