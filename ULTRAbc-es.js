@@ -3197,8 +3197,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPrivateClubCardVsOwnerStart();
     ULTRAPrivateClubCardVsSubStart();
     ULTRAPrivateGetClubCardDeck();
-    ULTRAShibariClubCardStart();
-    ULTRAStableClubCardStart();
     ULTRATitleExit();
 
     //Asylum
@@ -4477,21 +4475,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-    async function ULTRAShibariClubCardStart() {
-        modApi.hookFunction('ShibariClubCardStart', 4, (args, next) => {
+    modApi.hookFunction('ShibariClubCardStart', 4, (args, next) => {
+        if (altinfo == true) {
             moreDominantCards();
             MiniGameStart("ClubCard", 0, "ShibariClubCardEnd");
-            return;
-        });
-    }
+            return;    
+        }
+        return next(args);
+    });
 
-    async function ULTRAStableClubCardStart() {
-        modApi.hookFunction('StableClubCardStart', 4, (args, next) => {
+    modApi.hookFunction('StableClubCardStart', 4, (args, next) => {      
+        if (altinfo == true) {
             moreABDLCards();
             MiniGameStart("ClubCard", 0, "StableClubCardEnd");
             return;
-        });
-    }
+        }
+        return next(args);
+    });
 
     //College Tennis
     modApi.hookFunction('CollegeTennisGameStart', 4, async (args, next) => {
