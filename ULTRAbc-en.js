@@ -2388,9 +2388,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.OnlineSharedSettings.UBCShared.mapfull3 = false;
                 }
                 if (noescape == true) {
-                    Player.OnlineSharedSettings.Unoescape = true;
+                    Player.OnlineSharedSettings.UBCShared.Unoescape = true;
                 } else {
-                    Player.OnlineSharedSettings.Unoescape = false;
+                    Player.OnlineSharedSettings.UBCShared.Unoescape = false;
                 }
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
@@ -8814,7 +8814,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             Player.UBC.ubcSettings.noescape = true;
                             noescape = true;
                             dogsforbid = true;
-                            Player.OnlineSharedSettings.Unoescape = true;
+                            Player.OnlineSharedSettings.UBCShared.Unoescape = true;
                             ServerAccountUpdate.QueueData({
                                 OnlineSharedSettings: Player.OnlineSharedSettings
                             });
@@ -8934,11 +8934,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Player.OnlineSharedSettings.Ulist == undefined) {
             Player.OnlineSharedSettings.Ulist = [];
         }
-        if (noescape == true) {
-            Player.OnlineSharedSettings.Unoescape = true;
-        } else {
-            Player.OnlineSharedSettings.Unoescape = false;
-        }
         Player.OnlineSharedSettings.UBC = UBCver;
         Player.OnlineSharedSettings.UBCShared ??= {};
         Player.OnlineSharedSettings.UBCShared.cname ??= cname;
@@ -8954,12 +8949,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             Player.OnlineSharedSettings.UBCShared.mapfull3 = false;
         }
+		if (noescape == true) {
+            Player.OnlineSharedSettings.UBCShared.Unoescape = true;
+        } else {
+            Player.OnlineSharedSettings.UBCShared.Unoescape = false;
+        }
         delete Player.OnlineSharedSettings.cname;
         delete Player.OnlineSharedSettings.cowner1;
         delete Player.OnlineSharedSettings.cowner2;
         delete Player.OnlineSharedSettings.cowner3;
         delete Player.OnlineSharedSettings.ctitle;
         delete Player.OnlineSharedSettings.Inmap;
+		delete Player.OnlineSharedSettings.Unoescape;
         ServerAccountUpdate.QueueData({
             OnlineSharedSettings: Player.OnlineSharedSettings
         });
@@ -9020,9 +9021,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let ubc1 = "Does not use ULTRAbc.";
         let ubc2 = "Does not use Uwall.";
         const shared = character.OnlineSharedSettings || {};
+		const shared2 = character.OnlineSharedSettings.UBCShared || {};
         if (shared.UBC === UBCver || shared.UBC === UBCver0) {
             ubc1 = "Is an ULTRAbc user.";
-            if (shared.Unoescape === true) {
+            if (shared2.Unoescape === true) {
                 ubc1 = "UBC in no-escape mode";
             }
         }
