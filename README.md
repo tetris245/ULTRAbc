@@ -100,5 +100,6 @@ Changes for future version
 * New setting in GUI - Backgrounds to share with other UBC users the standard BC background that you use for your Information Sheet (Character Info) screen
 * Removed the Best Friend and Best Friend Timer locks from the lock command
 * Put the Best Friend and Best Friend Timer locks at the end of the list for the unlock command
+* Moved the Unoescape variable to Player.OnlineSharedSettings.UBCShared + added there the ifname and ifshare variables
 
 
