@@ -3186,8 +3186,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAChatRoomDrawArousalOverlay();
     ULTRAChatSearchJoin();
 
-    ULTRAAsylumMeetingClubCardStart();
-    ULTRACafeClubCardStart();
     ULTRAChatRoomSendChat();
     ULTRAChatRoomTopMenuSync();
     ULTRAClubCardLoungePraticeGameStart();
@@ -4070,21 +4068,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Club Card Game
-    async function ULTRAAsylumMeetingClubCardStart() {
-        modApi.hookFunction('AsylumMeetingClubCardStart', 4, (args, next) => {
+    modApi.hookFunction('AsylumMeetingClubCardStart', 4, async (args, next) => {
+        if (altinfo == true) {
             moreAsylumCards();
             MiniGameStart("ClubCard", 0, "AsylumMeetingClubCardEnd");
             return;
-        });
-    }
+        }
+        return next(args);
+    });
 
-    async function ULTRACafeClubCardStart() {
-        modApi.hookFunction('CafeClubCardStart', 4, (args, next) => {
+    modApi.hookFunction('CafeClubCardStart', 4, (args, next) => {
+        if (altinfo == true) {
             moreMaidCards();
             MiniGameStart("ClubCard", 0, "CafeClubCardEnd");
             return;
-        });
-    }
+        }
+        return next(args);
+    });
 
     modApi.hookFunction('ClubCardBuilderClick', 4, (args, next) => {
         const ret = next(args);
