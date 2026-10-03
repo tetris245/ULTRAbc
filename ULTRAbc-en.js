@@ -4404,7 +4404,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MiniGameStart("ClubCard", 0, "MovieStudioClubCardEnd");
             return;
         }
-
+        return next(args);
     });
 
     modApi.hookFunction('PandoraClubCardStart', 4, (args, next) => {
@@ -4414,6 +4414,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MiniGameStart("ClubCard", 0, "PandoraClubCardEnd");
             return;
         }
+		return next(args);
     });
 
     async function ULTRAPrivateClubCardVsCharacterStart() {
