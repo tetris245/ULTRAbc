@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.3
+Most recent version: 6.3.1
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3/ULTRAbc-en-v6.3.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.1/ULTRAbc-en-v6.3.1.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3/ULTRAbc-ch-v6.3.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.1/ULTRAbc-ch-v6.3.1.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3/ULTRAbc-es-v6.3.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.1/ULTRAbc-es-v6.3.1.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -97,9 +97,6 @@ All else I might not have included.
 
 Changes for future version
 
-* New setting in GUI - Backgrounds to share with other UBC users the standard BC background that you use for your Information Sheet (Character Info) screen
-* Removed the Best Friend and Best Friend Timer locks from the lock command
-* Put the Best Friend and Best Friend Timer locks at the end of the list for the unlock command
-* Moved the Unoescape variable to Player.OnlineSharedSettings.UBCShared + added there the ifname and ifshare variables
+(...)
 
 
