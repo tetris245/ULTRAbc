@@ -74,6 +74,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         .chat-search-room-players-input {
             border: var(--border-width) solid black;
         }
+		#wardrobe-screen-header .wardrobe-header-controls {
+	        display: flex;
+	        align-items: center;
+	        gap: var(--gap);
+	        color: white;
+	        direction: ltr;
+        }
+        #wardrobe-page {
+	        flex: 0 0 auto;
+	        white-space: nowrap;
+        }
   `;
     const style = document.createElement('style');
     style.type = 'text/css';
@@ -5629,50 +5640,158 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Wardrobe
+    modApi.hookFunction('WardrobeCreateElements', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeCreateElements();
+            return;
+        }
+        return next(args);
+    });
+
+    modApi.hookFunction('WardrobeCreateMenuButtons', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeCreateMenuButtons();
+            return;
+        }
+        return next(args);
+    });
+
     modApi.hookFunction('WardrobeCreateOutfitSlots', 4, async (args, next) => {
         if (altwrobe == true) {
             AltWardrobe();
             return;
         }
         return next(args);
-    })
+    });
 
-	modApi.patchFunction(
-        "WardrobeGetGridDimensions", {
-            'return { columns: Wardrobe.labelColumns, rows: Wardrobe.labelRows };': 'if (Player.UBC.ubcSettings.altwrobe == true) { Wardrobe.labelColumns = 2; Wardrobe.labelRows = 6; } return { columns: Wardrobe.labelColumns, rows: Wardrobe.labelRows };',
+     modApi.hookFunction('WardrobeEnsureVisibleCharacters', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeEnsureVisibleCharacters();
+            return;
         }
-    );
+        return next(args);
+    });
 
-    modApi.patchFunction(
-        "WardrobeGetSlotsPerPage", {
-            'return WardrobeShowsCharacters() ? Wardrobe.previewPerPage() : Wardrobe.labelPerPage();':
-            'if (Player.UBC.ubcSettings.altwrobe == true) { Wardrobe.labelColumns = 2; Wardrobe.labelRows = 6; } return WardrobeShowsCharacters() ? Wardrobe.previewPerPage() : Wardrobe.labelPerPage();',
+    modApi.hookFunction('WardrobeFitSlotLabels', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeFitSlotLabels();
+            return;
         }
-    );  
-	
+        return next(args);
+    });
+
+     modApi.hookFunction('WardrobeGetGridDimensions', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeGetGridDimensions();
+            return;
+        }
+        return next(args);
+    });
+
+   modApi.hookFunction('WardrobeGetSlotsPerPage', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeGetSlotsPerPage();
+            return;
+        }
+        return next(args);
+    });
+
+   modApi.hookFunction('WardrobeGetVisibleSlot', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeGetVisibleSlot();
+            return;
+        }
+        return next(args);
+    });
+
+   modApi.hookFunction('WardrobeKeyDown', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeKeyDown();
+            return;
+        }
+        return next(args);
+    });
+
+   modApi.hookFunction('WardrobeLoad', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeLoad();
+            return;
+        }     
+        return next(args);
+    });
+
     modApi.patchFunction(
         "WardrobeLoad", {
             'const screenHeader = screen.querySelector(".screen-header");': 'const screenHeader = screen.querySelector(".screen-header"); if (Player.UBC.ubcSettings.nograywr == true) screenHeader.style.backgroundColor = "rgba(0, 0, 0, 0)";',
         }
     );
 
+    modApi.hookFunction('WardrobeLoadCharacters', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeLoadCharacters();
+            return;
+        }     
+        return next(args);
+    });
+
+    modApi.hookFunction('WardrobeRenameSelectedOutfit', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeRenameSelectedOutfit();
+            return;
+        }     
+        return next(args);
+    });
+
+    modApi.hookFunction('WardrobeResize', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeResize();
+            return;
+        }     
+        return next(args);
+    });
+
+    modApi.hookFunction('WardrobeRun', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeRun();
+            return;
+        }     
+        return next(args);
+    });
+
+    modApi.hookFunction('WardrobeSetSearch', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeSetSearch();
+            return;
+        }     
+        return next(args);
+    });
+
     modApi.patchFunction(
-        "WardrobeResize", {
-            'ElementPositionFixed(WardrobeID.slotGrid, X, Y, Width, Height);': 'if (Player.UBC.ubcSettings.altwrobe == true) { Wardrobe.grid.height = 667; ElementPositionFixed(WardrobeID.slotGrid, X + 4, Y, Width - 4 , 667); } else { ElementPositionFixed(WardrobeID.slotGrid, X, Y, Width, Height); }',
+        "WardrobeToggleCharacterPreviews", {
+            'WardrobeOffset = 0;': 
+            `if (Player.UBC.ubcSettings.altwrobe == true) {
+                // UBC mode
+             } else {
+                WardrobeOffset = 0;          
+             }`
         }
     );
 
-    modApi.patchFunction(
-    "WardrobeToggleCharacterPreviews", {
-        'WardrobeOffset = 0;': 
-        `if (Player.UBC.ubcSettings.altwrobe == true) {
-            // UBC mode
-         } else {
-            WardrobeOffset = 0;          
-          }`
-    }
-);
+    modApi.hookFunction('WardrobeUnload', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeUnload();
+            return;
+        }
+        return next(args);
+    });
 
+     modApi.hookFunction('WardrobeUpdateElements', 4, async (args, next) => {
+        if (altwrobe == true) {
+            AltWardrobeUpdateElements();
+            return;
+        }
+        return next(args);
+    });
 
     //Other functions
     //Background
@@ -10160,7 +10279,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         const {
             columns,
             rows
-        } = WardrobeGetGridDimensions();
+        } = AltWardrobeGetGridDimensions();
         const slotCanvasSize = WardrobeGetSlotCanvasSize();
         const grid = ElementCreate({
             tag: "div",
@@ -10180,7 +10299,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             },
             parent: main,
         });
-        const slotsPerPage = WardrobeGetSlotsPerPage();
+        const slotsPerPage = AltWardrobeGetSlotsPerPage();
         for (let C = 0; C < slotsPerPage; C++) {
             /** @type {(HTMLOptions<any> | HTMLElement)[]} */
             const previewChildren = showPreviews ? [
@@ -10208,7 +10327,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ElementButton.Create(
                 WardrobeID.slotButton(C),
                 () => {
-                    const slot = WardrobeGetVisibleSlot(C);
+                    const slot = AltWardrobeGetVisibleSlot(C);
                     if (slot == null) return;
                     WardrobeHandleSlotActivate(slot);
                 }, {
@@ -10266,7 +10385,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 },
                 {
                     id: `wardrobe-slot-export-${C}`,
-                    label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Copy to clipboard")) ? TextGet("Copy to clipboard") : "Copy to clipboard",
+                     label: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Copy to clipboard")) ? TextGet("Copy to clipboard") : "Copy to clipboard",
                     icon: "Icons/Copy.png",
                     classeCss: "wardrobe-slot-export",
                     callback: (slot) => WardrobeExportOutfit(slot)
@@ -10286,13 +10405,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 const labelTexte = config.label; 
                 let previewButtonOpts = {};
                 if (config.id === WardrobeID.slotLoad(C)) {
-                    previewButtonOpts = WardrobeActionPreviewButtonOptions("Load", () => WardrobeGetVisibleSlot(C))?.button || {};
+                    previewButtonOpts = WardrobeActionPreviewButtonOptions("Load", () => AltWardrobeGetVisibleSlot(C))?.button || {};
                 }
                 ElementButton.Create(
                     config.id,
                     (ev) => {
                         ev.stopPropagation();
-                        const slot = WardrobeGetVisibleSlot(C);
+                        const slot = AltWardrobeGetVisibleSlot(C);
                         if (slot == null) return;
                         config.callback(slot);
                     }, {
@@ -10319,7 +10438,339 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-	function WardrobeExportOutfit(slot) {
+    function AltWardrobeChangePage(change) {
+	const filteredSlots = WardrobeGetFilteredSlots();
+	const slotsPerPage = AltWardrobeGetSlotsPerPage();
+	if (filteredSlots.length === 0) {
+		WardrobeOffset = 0;
+		return;
+	}
+	if (filteredSlots.length <= slotsPerPage) return;
+	const lastPageOffset = Math.floor((filteredSlots.length - 1) / slotsPerPage) * slotsPerPage;
+	WardrobeOffset += change * slotsPerPage;
+	if (WardrobeOffset < 0) {
+		WardrobeOffset = lastPageOffset;
+	} else if (WardrobeOffset > lastPageOffset) {
+		WardrobeOffset = 0;
+	}
+	WardrobeInvalidateCanvasCache();
+	AltWardrobeUpdateElements(filteredSlots);
+}
+
+    function AltWardrobeCreateElements() {
+	const main = ElementWrap(WardrobeID.screen)?.querySelector(".screen-main");
+	if (!main) return;
+	WardrobeCreateCharacterCanvas(WardrobeID.mainCanvas, { parent: main });
+	WardrobeCreateCharacterCanvas(WardrobeID.sideCanvas, { parent: main, hidden: true });
+	ElementCreate({
+		tag: "span",
+		attributes: { id: WardrobeID.noMatches, "screen-generated": CurrentScreen, "aria-live": "polite" },
+		classList: ["HideOnPopup", "no-select"],
+		children: [
+			TextGet("NoOutfitMatches")
+		],
+		parent: main,
+	});
+	ElementCheckbox.CreateLabelled(WardrobeID.excludeBodyparts, TextGet("ExcludeBodyParts"), WardrobeExcludeBodypartsChange, null, { container: { parent: main } });
+	AltWardrobe();
+}
+
+    function AltWardrobeCreateMenuButtons() {
+        let AltWardrobeID = Object.freeze({
+            previous: "wardrobe-previous",
+	    next: "wardrobe-next",
+	    page: "wardrobe-page",
+        });
+	return [
+		ElementButton.Create(WardrobeID.exit, WardrobeExit, { image: "Icons/Exit.png", tooltip: TextGet("Return") }),
+		ElementButton.Create(WardrobeID.showPreviews, WardrobeToggleCharacterPreviews, {
+			image: WardrobeShowsCharacters() ? "Icons/Character.png" : "Icons/CharacterOff.png",
+			tooltip: TextGet("ShowCharacterPreviews"),
+		}),
+		ElementButton.Create(WardrobeID.search, () => {
+			const searchBar = ElementWrap(WardrobeID.searchInput);
+			if (!searchBar) return;
+			searchBar.toggleAttribute("hidden", false);
+			searchBar.focus();
+			AltWardrobeUpdateElements();
+		}, { image: "Icons/Search.png", tooltip: TextGet("Search") }),
+		ElementButton.Create(WardrobeID.reorder, () => WardrobeReorderModeSet(), { image: "Icons/Swap.png", tooltip: TextGet("ReorderSlots") }),
+		ElementButton.Create(AltWardrobeID.next, () => AltWardrobeChangePage(1), { image: "Icons/Next.png", tooltip: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Next page")) ? TextGet("Next page") : "Next page" }), 
+		ElementButton.Create(AltWardrobeID.previous, () => AltWardrobeChangePage(-1), { image: "Icons/Prev.png", tooltip: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Previous page")) ? TextGet("Previous page") : "Previous page" }), 
+	];
+}
+
+    function AltWardrobeEnsureVisibleCharacters(filteredSlots = WardrobeGetFilteredSlots()) {
+	const page = WardrobeShowsCharacters()
+		? filteredSlots.slice(WardrobeOffset, WardrobeOffset + AltWardrobeGetSlotsPerPage())
+		: [];
+	const keep = new Set([
+		...(WardrobeSelection >= 0 ? [WardrobeSelection] : []),
+		...page,
+	]);
+	for (const slot of keep) WardrobeEnsureSlotCharacter(slot);
+	let released = false;
+	for (let slot = 0; slot < WardrobeCharacter.length; slot++) {
+		if (keep.has(slot) || !WardrobeCharacter[slot]) continue;
+		CharacterDelete(/** @type {Character} */ (WardrobeCharacter[slot]));
+		WardrobeCharacter[slot] = null;
+		released = true;
+	}
+	if (released) WardrobeInvalidateCanvasCache();
+}
+
+    function AltWardrobeFitSlotLabels() {
+	const grid = ElementWrap(WardrobeID.slotGrid);
+	if (!grid || grid.hasAttribute("hidden")) return;
+	const names = /** @type {NodeListOf<HTMLElement>} */ (grid.querySelectorAll(".wardrobe-slot-button:not([hidden]) .wardrobe-slot-name"));
+	for (const name of names) {
+		name.style.fontSize = "";
+		ElementFitText(name);
+	}
+}
+
+    function AltWardrobeGetGridDimensions() {
+	if (WardrobeShowsCharacters()) {
+		return { columns: Wardrobe.previewColumns, rows: Wardrobe.previewRows };
+	} else {
+            Wardrobe.labelColumns = 2; 
+            Wardrobe.labelRows = 6;
+	    return { columns: Wardrobe.labelColumns, rows: Wardrobe.labelRows };
+        } 
+}
+
+    function AltWardrobeGetSlotsPerPage() { 
+       Wardrobe.labelColumns = 2; 
+       Wardrobe.labelRows = 6; 
+       return WardrobeShowsCharacters() ? Wardrobe.previewPerPage() : Wardrobe.labelPerPage(); 
+    }
+
+    function AltWardrobeGetVisibleSlot(cellIndex) {
+	const slot = WardrobeGetFilteredSlots()[cellIndex + WardrobeOffset];
+	return slot == null ? null : slot;
+}
+
+    function AltWardrobeKeyDown(event) {
+	if (WardrobeReorderMode !== "None" || WardrobeSelection !== -1) return false;
+	const search = /** @type {HTMLInputElement} */ (ElementWrap(WardrobeID.searchInput));
+	if (search && CommonKey.InputKeyDown(search, event, { allowCtrlA: true })) {
+		return true;
+	}
+	return false;
+} 
+
+    async function AltWardrobeLoad() {
+        Wardrobe.labelColumns = 2; 
+        Wardrobe.labelRows = 6;
+        Wardrobe.grid.x = 500;
+        Wardrobe.grid.y = 100;
+        Wardrobe.grid. width = 1500;
+        Wardrobe.grid.height = 667;
+        let AltWardrobeID = Object.freeze({
+            previous: "wardrobe-previous",
+	    next: "wardrobe-next",
+	    page: "wardrobe-page",
+        });
+	CurrentDarkFactor = 0.5;
+	Wardrobe.appearanceBackup = CharacterAppearanceBackup;
+	const search = ElementCreateInput(WardrobeID.searchInput, "search", "", 20);
+	search.placeholder = TextGet("OutfitSearch");
+	search.setAttribute("aria-label", TextGet("OutfitSearch"));
+	search.setAttribute("autocomplete", "off");
+	search.setAttribute("hidden", true);
+	search.addEventListener("input", WardrobeSearchInput);
+	search.addEventListener("blur", () => AltWardrobeUpdateElements());
+	const status = ElementCreate({
+		tag: "span",
+		attributes: { id: WardrobeID.status },
+		children: [WardrobeGetStatusText(), search],
+	});
+	const page = ElementCreate({ tag: "span", attributes: { id: AltWardrobeID.page } });
+	const screen = ElementDOMScreen.getTemplate(WardrobeID.screen, {
+		hgroupInHeader: true,
+		header: status,
+		menubarButtons: AltWardrobeCreateMenuButtons(),
+		parent: document.body,
+	});
+	const screenHeader = screen.querySelector(".screen-header");
+        if (nograywr == true) screenHeader.style.backgroundColor = "rgba(0, 0, 0, 0)";
+	const headerHGroup = screenHeader?.querySelector(".screen-hgroup");
+	if (screenHeader && headerHGroup) {
+		screenHeader.insertBefore(
+			ElementCreate({
+				tag: "div",
+				classList: ["wardrobe-header-controls"],
+				children: [page],
+			}),
+			headerHGroup,
+		);
+		headerHGroup.appendChild(search);
+	}
+	AltWardrobeLoadCharacters();
+	AltWardrobeCreateElements();
+	AltWardrobeUpdateElements();
+}
+
+        function AltWardrobeLoadCharacters() {
+	WardrobeClearCharacters();
+	WardrobeCharacter = new Array(WardrobeSize).fill(null);
+	AltWardrobeEnsureVisibleCharacters();
+}
+
+    function AltWardrobeResize() {
+	const { width, height, mainX, sideX } = Wardrobe.characterPreview;
+	ElementPositionFixed(WardrobeID.screen, 0, 0, 2000, 1000);
+	ElementPositionFixed(WardrobeID.mainCanvas, mainX, 0, width, height);
+	ElementPositionFixed(WardrobeID.sideCanvas, sideX, 0, width, height);
+	ElementPositionFixed(WardrobeID.noMatches, 500, 420, 1500, 60);
+	ElementPositionFixed(`checkbox-pair-${WardrobeID.excludeBodyparts}`, 70, 900, 450);
+	if (WardrobeSelection !== -1) {
+		const { x, y, width: overlayW, height: overlayH } = Wardrobe.inspectorRect;
+		ElementPositionFixed(WardrobeID.previewOverlay, x, y, overlayW, overlayH);
+	}
+	const { x: X, y: Y, width: Width, height: Height } = Wardrobe.grid;
+        Wardrobe.grid.height = 667; 
+        ElementPositionFixed(WardrobeID.slotGrid, X + 4, Y, Width - 4 , 667);
+	AltWardrobeFitSlotLabels();
+}
+
+    function AltWardrobeRenameSelectedOutfit(push = false) {
+	if (WardrobeSelection === -1) return false;
+	const name = ElementValue(WardrobeID.name);
+	const validName = /^[a-zA-Z0-9 ]+$/.test(name) || name.length === 0;
+	if (!validName) {
+		ToastManager.error(TextGet("OutfitNameError"));
+		return false;
+	}
+	WardrobeSetCharacterName(WardrobeSelection, name, push);
+	ToastManager.success(TextGet("OutfitRenamed"));
+	AltWardrobeSetSearch(Wardrobe.search, false);
+	return true;
+}
+
+    function AltWardrobeRun() {
+	const mainCharacter = WardrobeGetMainPreviewCharacter();
+	if (mainCharacter) {
+		WardrobeDrawToCanvas(WardrobeID.mainCanvas, mainCharacter, 1);
+	}
+	const sideCharacter = WardrobeGetSidePreviewCharacter();
+	if (sideCharacter) {
+		WardrobeDrawToCanvas(WardrobeID.sideCanvas, sideCharacter, 1);
+	}
+	if (WardrobeSelection !== -1 || !WardrobeShowsCharacters()) return;
+	const filteredSlots = WardrobeGetFilteredSlots();
+	const slotsPerPage = AltWardrobeGetSlotsPerPage();
+	const { zoom } = WardrobeGetSlotCanvasSize();
+	for (let C = 0; C < slotsPerPage; C++) {
+		const slot = filteredSlots[C + WardrobeOffset];
+		if (slot == null || WardrobeIsSlotEmpty(slot)) continue;
+		const character = WardrobeCharacter[slot];
+		if (!character) continue;
+		WardrobeDrawToCanvas(WardrobeID.slotCanvas(C), character, zoom);
+	}
+}
+
+    function AltWardrobeSetSearch(search, resetOffset = true) {
+	Wardrobe.search = search;
+	if (resetOffset) WardrobeOffset = 0;
+	const filteredSlots = WardrobeGetFilteredSlots();
+	if (WardrobeSelection !== -1 && !filteredSlots.includes(WardrobeSelection)) {
+		WardrobeTogglePreviewOverlay(-1);
+	}
+}
+
+    function AltWardrobeUnload() {
+	ElementRemove(WardrobeID.screen);
+	WardrobeReorderModeSet("None");
+	WardrobeClearCharacters();
+	Wardrobe.selectedCharacter = /** @type {never} */ (null);
+	WardrobeTogglePreviewOverlay(-1);
+	WardrobeSetActionPreview(null, true);
+	WardrobeOffset = 0;
+	Wardrobe.search = "";
+	WardrobeInvalidateFilteredSlots();
+}
+
+    function AltWardrobeUpdateElements(filteredSlots = WardrobeGetFilteredSlots()) {
+        let AltWardrobeID = Object.freeze({
+            previous: "wardrobe-previous",
+	    next: "wardrobe-next",
+	    page: "wardrobe-page",
+        });
+	const header = ElementWrap(WardrobeID.screen)?.querySelector(".screen-header");
+	const slotsPerPage = AltWardrobeGetSlotsPerPage();
+	const page = filteredSlots.length > 0 ? Math.floor(WardrobeOffset / slotsPerPage) + 1 : 0;
+	const pageCount = Math.ceil(filteredSlots.length / slotsPerPage);
+	ElementDOMScreen.setHeading(WardrobeID.status, WardrobeGetStatusText());
+	ElementSetText(AltWardrobeID.page, `Page ${page}/${pageCount}`);
+	header?.toggleAttribute("hidden", WardrobeSelection !== -1);
+	AltWardrobeEnsureVisibleCharacters(filteredSlots);
+	const hasSelection = WardrobeSelection !== -1;
+	const hasMultiplePages = filteredSlots.length > slotsPerPage;
+	const selectionEmpty = hasSelection && WardrobeIsSlotEmpty(WardrobeSelection);
+	ElementWrap(AltWardrobeID.previous)?.toggleAttribute("disabled", !hasMultiplePages);
+	ElementWrap(AltWardrobeID.next)?.toggleAttribute("disabled", !hasMultiplePages);
+	ElementWrap(WardrobeID.load)?.toggleAttribute("disabled", !hasSelection || selectionEmpty);
+	ElementWrap(WardrobeID.save)?.toggleAttribute("disabled", !hasSelection);
+	ElementWrap(WardrobeID.delete)?.toggleAttribute("disabled", !hasSelection || selectionEmpty);
+	ElementWrap(WardrobeID.name)?.toggleAttribute("disabled", !hasSelection);
+	ElementWrap(WardrobeID.rename)?.toggleAttribute("disabled", !hasSelection || selectionEmpty);
+	ElementWrap(WardrobeID.noMatches)?.toggleAttribute("hidden", filteredSlots.length > 0 || Wardrobe.search.trim().length === 0);
+	const search = /** @type {HTMLInputElement | null} */ (ElementWrap(WardrobeID.searchInput));
+	search?.toggleAttribute("disabled", WardrobeReorderMode !== "None");
+	const isSearching = document.activeElement === search || (search?.value.length ?? 0) !== 0;
+	search?.toggleAttribute("hidden", !isSearching);
+	ElementWrap("wardrobe-screen-h1")?.toggleAttribute("hidden", isSearching);
+	ElementSetValue(search, Wardrobe.search);
+	ElementSetChecked(WardrobeID.excludeBodyparts, Wardrobe.excludeBodyparts);
+	const previewsButton = ElementWrap(WardrobeID.showPreviews);
+	if (previewsButton) {
+		ElementButton.SetImage(previewsButton, WardrobeShowsCharacters() ? "Icons/Character.png" : "Icons/CharacterOff.png");
+	}
+	const gridHidden = WardrobeSelection !== -1;
+	const showPreviews = WardrobeShowsCharacters();
+	ElementWrap(WardrobeID.slotGrid)?.toggleAttribute("hidden", gridHidden);
+	WardrobeUpdateSidePreviewVisibility();
+	for (let C = 0; C < slotsPerPage; C++) {
+		const slot = filteredSlots[C + WardrobeOffset];
+		const cell = ElementWrap(WardrobeID.slotCell(C));
+		const button = ElementWrap(WardrobeID.slotButton(C));
+		if (!button) continue;
+		cell?.toggleAttribute("hidden", slot == null);
+		button.toggleAttribute("hidden", slot == null);
+		const buttonLabel = button.querySelector(".button-label");
+		if (buttonLabel && slot != null) {
+			ElementSetText(buttonLabel.querySelector(".wardrobe-slot-index"), WardrobeGetSlotIndexLabel(slot));
+			ElementSetText(buttonLabel.querySelector(".wardrobe-slot-name"), WardrobeGetOutfitName(slot));
+		}
+		button.classList.toggle("reorder-select", WardrobeReorderMode === "Select" && slot != null && WardrobeReorderList.includes(slot));
+		button.classList.toggle("reorder-place", WardrobeReorderMode === "Place" && slot != null && WardrobeReorderList.includes(slot));
+		const isEmpty = slot != null && WardrobeIsSlotEmpty(slot);
+		button.classList.toggle("wardrobe-slot-empty-button", isEmpty);
+		const loadBtn = ElementWrap(WardrobeID.slotLoad(C));
+		const shouldHideLoadButton = slot == null || isEmpty || WardrobeReorderMode !== "None";
+		loadBtn?.toggleAttribute("hidden", shouldHideLoadButton);
+		const slotIcon = ElementWrap(WardrobeID.slotEmpty(C));
+		if (slotIcon) {
+			const showIcon = slot != null && (isEmpty || !showPreviews);
+			slotIcon.toggleAttribute("hidden", !showIcon);
+			if (showIcon) {
+				const nextSrc = isEmpty ? Wardrobe.emptySlotImage : Wardrobe.filledSlotImage;
+				ElementButton.SetImage(slotIcon, nextSrc);
+			}
+		}
+		if (!showPreviews) continue;
+		const slotCanvas = ElementWrap(WardrobeID.slotCanvas(C));
+		const wasHidden = slotCanvas?.hasAttribute("hidden");
+		slotCanvas?.toggleAttribute("hidden", slot == null || isEmpty);
+		if (wasHidden && slotCanvas && !slotCanvas.hasAttribute("hidden")) {
+			WardrobeInvalidateCanvasCache(WardrobeID.slotCanvas(C));
+		}
+	}
+	AltWardrobeFitSlotLabels();
+}
+
+    function WardrobeExportOutfit(slot) {
         WardrobeLoadOutfit(slot);
         let App = [];
         for (let A of Player.Appearance)
@@ -10344,11 +10795,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (res.ok && res.value) {
                 CharacterAppearancePaste(Player, res.value, false);
             } else if (res.err) {					
-		        ToastManager.error(res.errorAsDOM(TextGet("AppPasteError")));			
+		ToastManager.error(res.errorAsDOM(TextGet("AppPasteError")));			
             }
         });
-    }
-	
+     }
+
     function WardrobeSaveOutfit(slot) {
         if (!Wardrobe.selectedCharacter || slot < 0) return;
         WardrobeSetActionPreview("Save", true);
@@ -10364,16 +10815,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         if (!confirmed) return;
         WardrobeFastSave(Wardrobe.selectedCharacter, slot);
-        if (WardrobeRenameSelectedOutfit()) {
+        if (AltWardrobeRenameSelectedOutfit()) {
             WardrobePushAll();
         } else {
             ServerAccountUpdate.QueueData({
                 Wardrobe: CharacterCompressWardrobe(Player.Wardrobe)
             });
         }
-        WardrobeUpdateElements();
+        AltWardrobeUpdateElements();
     }
-	
+
     //Wheel of Fortune
     async function WheelGame(option) {
         await CommonSetScreen("MiniGame", "WheelFortune");
