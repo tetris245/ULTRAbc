@@ -2448,7 +2448,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active.", false, 200
                 );
                 /*addMenuCheckbox(64, 64, "Remove background buttons in Wardrobe: ", "nowrbuttons",
-                    "If you check this setting, UBC will not display background buttons in Wardrobe. However, your current settings will remain active. IMPORTANT NOTE: If you want to use Likolisu's tool to change the background of this screen, you need to click first on the Default Background button before checking this option.", false, 200
+                    "If you check this setting, UBC will not display background buttons in Wardrobe. However, your current settings will remain active.", false, 200
                 );*/
 				addMenuCheckbox(64, 64, "Share Character Info background: ", "ifshare",
                     "When enabled, other UBC users will see the standard BC background that you use for your Character Info screen.", false, 200
