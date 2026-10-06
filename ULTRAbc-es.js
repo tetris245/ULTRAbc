@@ -2442,7 +2442,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "En la pantalla de Información de Personaje, tienes botones para seleccionar manual o aleatoriamente un fondo que reemplaza al predeterminado. El fondo seleccionado también se aplica automáticamente a las pantallas de BCX. Si activas este ajuste, UBC extiende este fondo a las siguientes pantallas: Título, Perfil y Preferencias (también de la mayoría de complementos), pero el efecto no es inmediato (¡debes volver al menú de Extensiones!)", false, 230
                 );
                 addMenuCheckbox(64, 64, "Quitar botones de fondo en Información: ", "noifbuttons",
-                    "Si marcas esta casilla, UBC no mostrará los botones de fondo en la pantalla de Información de Personaje. Sin embargo, tus ajustes actuales seguirán activos. NOTA IMPORTANTE: Si quieres usar la herramienta de Likolisu para cambiar el fondo de esta pantalla, debes hacer clic primero en el botón de Fondo Predeterminado antes de marcar esta opción.", false, 230
+                    "Si marcas esta casilla, UBC no mostrará los botones de fondo en la pantalla de Información de Personaje. Sin embargo, tus ajustes actuales seguirán activos.", false, 230
                 );
                 addMenuCheckbox(64, 64, "Quitar botones de fondo en Celda de Tiempo: ", "notcbuttons",
                     "Si marcas esta casilla, UBC no mostrará los botones de fondo en la Celda de Tiempo. Sin embargo, tus ajustes actuales seguirán activos.", false, 230
