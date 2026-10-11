@@ -2436,6 +2436,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     unrestrict = 0;
                     M_MOANER_saveControls();
                 }
+				if (Wardrobe !=  {} )  {
+                    if (altwrobe == false)  {
+                        Wardrobe.labelColumns = 1;
+                        Wardrobe.labelRows = 8;
+                    } else {
+                        Wardrobe.labelColumns = 2;
+                        Wardrobe.labelRows = 6;
+                    }
+                }
                 TintsEffect();
                 UBCPreferenceSubscreen = "";
                 PreferenceMessage = "";
@@ -5641,22 +5650,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Wardrobe
-    modApi.hookFunction('WardrobeCreateElements', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeCreateElements();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeCreateMenuButtons', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeCreateMenuButtons();
-            return;
-        }
-        return next(args);
-    });
-
     modApi.hookFunction('WardrobeCreateOutfitSlots', 4, async (args, next) => {
         if (altwrobe == true) {
             AltWardrobe();
@@ -5665,85 +5658,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('WardrobeEnsureVisibleCharacters', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeEnsureVisibleCharacters();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeFitSlotLabels', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeFitSlotLabels();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeGetGridDimensions', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeGetGridDimensions();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeGetSlotsPerPage', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeGetSlotsPerPage();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeGetVisibleSlot', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeGetVisibleSlot();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeKeyDown', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeKeyDown();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeLoad', 4, async (args, next) => {
+    modApi.hookFunction('WardrobeLoad', 4, async (args, next) => { 
         if (altwrobe == true) {
             AltWardrobeLoad();
             return;
-        }
+        } 
         return next(args);
     });
 
-    modApi.patchFunction(
-        "WardrobeLoad", {
-            'const screenHeader = screen.querySelector(".screen-header");': 'const screenHeader = screen.querySelector(".screen-header"); if (Player.UBC.ubcSettings.nograywr == true) screenHeader.style.backgroundColor = "rgba(0, 0, 0, 0)";',
-        }
-    );
-
-    modApi.hookFunction('WardrobeLoadCharacters', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeLoadCharacters();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeRenameSelectedOutfit', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeRenameSelectedOutfit();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeResize', 4, async (args, next) => {
+    modApi.hookFunction('WardrobeResize', 4, async (args, next) => {    
         if (altwrobe == true) {
             AltWardrobeResize();
             return;
@@ -5751,45 +5674,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('WardrobeRun', 4, async (args, next) => {
+    modApi.hookFunction('WardrobeRun', 4, async (args, next) => {   
         if (altwrobe == true) {
             AltWardrobeRun();
             return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeSetSearch', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeSetSearch();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.patchFunction(
-        "WardrobeToggleCharacterPreviews", {
-            'WardrobeOffset = 0;': `if (Player.UBC.ubcSettings.altwrobe == true) {
-                // UBC mode
-             } else {
-                WardrobeOffset = 0;          
-             }`
-        }
-    );
-
-    modApi.hookFunction('WardrobeUnload', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeUnload();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeUpdateElements', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeUpdateElements();
-            return;
-        }
+        }  
         return next(args);
     });
 
