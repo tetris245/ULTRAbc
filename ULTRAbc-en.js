@@ -2435,6 +2435,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     unrestrict = 0;
                     M_MOANER_saveControls();
                 }
+				if (Wardrobe !=  {} )  {
+                    if (altwrobe == false)  {
+                        Wardrobe.labelColumns = 1;
+                        Wardrobe.labelRows = 8;
+                    } else {
+                        Wardrobe.labelColumns = 2;
+                        Wardrobe.labelRows = 6;
+                    }
+                }
                 TintsEffect();
                 UBCPreferenceSubscreen = "";
                 PreferenceMessage = "";
@@ -5640,23 +5649,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Wardrobe
-    modApi.hookFunction('WardrobeCreateElements', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeCreateElements();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeCreateMenuButtons', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeCreateMenuButtons();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeCreateOutfitSlots', 4, async (args, next) => {
+	modApi.hookFunction('WardrobeCreateOutfitSlots', 4, async (args, next) => {
         if (altwrobe == true) {
             AltWardrobe();
             return;
@@ -5664,85 +5657,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('WardrobeEnsureVisibleCharacters', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeEnsureVisibleCharacters();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeFitSlotLabels', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeFitSlotLabels();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeGetGridDimensions', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeGetGridDimensions();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeGetSlotsPerPage', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeGetSlotsPerPage();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeGetVisibleSlot', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeGetVisibleSlot();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeKeyDown', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeKeyDown();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeLoad', 4, async (args, next) => {
+    modApi.hookFunction('WardrobeLoad', 4, async (args, next) => { 
         if (altwrobe == true) {
             AltWardrobeLoad();
             return;
-        }
+        } 
         return next(args);
     });
 
-    modApi.patchFunction(
-        "WardrobeLoad", {
-            'const screenHeader = screen.querySelector(".screen-header");': 'const screenHeader = screen.querySelector(".screen-header"); if (Player.UBC.ubcSettings.nograywr == true) screenHeader.style.backgroundColor = "rgba(0, 0, 0, 0)";',
-        }
-    );
-
-    modApi.hookFunction('WardrobeLoadCharacters', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeLoadCharacters();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeRenameSelectedOutfit', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeRenameSelectedOutfit();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeResize', 4, async (args, next) => {
+    modApi.hookFunction('WardrobeResize', 4, async (args, next) => {    
         if (altwrobe == true) {
             AltWardrobeResize();
             return;
@@ -5750,48 +5673,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('WardrobeRun', 4, async (args, next) => {
+    modApi.hookFunction('WardrobeRun', 4, async (args, next) => {   
         if (altwrobe == true) {
             AltWardrobeRun();
             return;
-        }
+        }  
         return next(args);
     });
-
-    modApi.hookFunction('WardrobeSetSearch', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeSetSearch();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.patchFunction(
-        "WardrobeToggleCharacterPreviews", {
-            'WardrobeOffset = 0;': `if (Player.UBC.ubcSettings.altwrobe == true) {
-                // UBC mode
-             } else {
-                WardrobeOffset = 0;          
-             }`
-        }
-    );
-
-    modApi.hookFunction('WardrobeUnload', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeUnload();
-            return;
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('WardrobeUpdateElements', 4, async (args, next) => {
-        if (altwrobe == true) {
-            AltWardrobeUpdateElements();
-            return;
-        }
-        return next(args);
-    });
-
+   
     //Other functions
     //Background
     function morebg() {
@@ -10495,7 +10384,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 image: "Icons/Exit.png",
                 tooltip: TextGet("Return")
             }),
-            ElementButton.Create(WardrobeID.showPreviews, WardrobeToggleCharacterPreviews, {
+            ElementButton.Create(WardrobeID.showPreviews, AltWardrobeToggleCharacterPreviews, {
                 image: WardrobeShowsCharacters() ? "Icons/Character.png" : "Icons/CharacterOff.png",
                 tooltip: TextGet("ShowCharacterPreviews"),
             }),
@@ -10569,6 +10458,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    function AltWardrobeGetSlotIndexLabel(slot) {
+	    return `${(slot + 1).toString().padStart(String(WardrobeSize).length, "\u2007")}: `;
+    }
+
     function AltWardrobeGetSlotsPerPage() {
         Wardrobe.labelColumns = 2;
         Wardrobe.labelRows = 6;
@@ -10592,12 +10485,56 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function AltWardrobeLoad() {
-        Wardrobe.labelColumns = 2;
-        Wardrobe.labelRows = 6;
-        Wardrobe.grid.x = 500;
-        Wardrobe.grid.y = 100;
-        Wardrobe.grid.width = 1500;
-        Wardrobe.grid.height = 667;
+        var Wardrobe = {
+	    previewColumns: 6,
+	    previewRows: 2,
+	    previewPerPage: () => Wardrobe.previewColumns * Wardrobe.previewRows,
+	    labelColumns: 2,
+	    labelRows: 6,
+	    labelPerPage: () => Wardrobe.labelColumns * Wardrobe.labelRows,
+	    search: "",
+	    /** @type {Character} */
+	    selectedCharacter: /** @type {never} */ (null),
+	    excludeBodyparts: false,
+	    /** @type {ScreenSpecifier | null} */
+	    returnScreen: null,
+	    /** @type {string | null} */
+	    appearanceBackup: null,
+	    /** Cached result of {@link WardrobeGetFilteredSlots}. */
+	    filteredSlotsCache: /** @type {number[] | null} */ (null),
+	    /** Search query used to build {@link Wardrobe.filteredSlotsCache}. */
+	    filteredSlotsQuery: /** @type {string | null} */ (null),
+	    /** {@link WardrobeSize} used to build {@link Wardrobe.filteredSlotsCache}. */
+	    filteredSlotsSize: -1,
+	    canvasCache: new Map(),
+	    drawGeneration: 0,
+	    emptySlotImage: "Icons/NoWardrobe.png",
+	    filledSlotImage: "Icons/Wardrobe.png",
+	    /** @type {null | WardrobeActionPreview} */
+	    previewAction: null,
+	    previewSlot: -1,
+	    previewLocked: false,
+	    previewLoadCharacter: /** @type {Character | null} */ (null),
+	    previewSaveCharacter: /** @type {Character | null} */ (null),
+	    characterPreview: {
+		width: 500,
+		height: 1000,
+		mainX: 0,
+		sideX: 500,
+	    },
+	    inspectorRect: {
+		x: 1100,
+		y: 150,
+		width: 850,
+		height: 700,
+	    },
+	    grid: {
+		x: 500,
+		y: 100,
+		width: 1500,
+		height: 667,
+	    },
+    };
         let AltWardrobeID = Object.freeze({
             previous: "wardrobe-previous",
             next: "wardrobe-next",
@@ -10657,6 +10594,56 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function AltWardrobeResize() {
+        var Wardrobe = {
+	    previewColumns: 6,
+	    previewRows: 2,
+	    previewPerPage: () => Wardrobe.previewColumns * Wardrobe.previewRows,
+	    labelColumns: 2,
+	    labelRows: 6,
+	    labelPerPage: () => Wardrobe.labelColumns * Wardrobe.labelRows,
+	    search: "",
+	    /** @type {Character} */
+	    selectedCharacter: /** @type {never} */ (null),
+	    excludeBodyparts: false,
+	    /** @type {ScreenSpecifier | null} */
+	    returnScreen: null,
+	    /** @type {string | null} */
+	    appearanceBackup: null,
+	    /** Cached result of {@link WardrobeGetFilteredSlots}. */
+	    filteredSlotsCache: /** @type {number[] | null} */ (null),
+	    /** Search query used to build {@link Wardrobe.filteredSlotsCache}. */
+	    filteredSlotsQuery: /** @type {string | null} */ (null),
+	    /** {@link WardrobeSize} used to build {@link Wardrobe.filteredSlotsCache}. */
+	    filteredSlotsSize: -1,
+	    canvasCache: new Map(),
+	    drawGeneration: 0,
+	    emptySlotImage: "Icons/NoWardrobe.png",
+	    filledSlotImage: "Icons/Wardrobe.png",
+	    /** @type {null | WardrobeActionPreview} */
+	    previewAction: null,
+	    previewSlot: -1,
+	    previewLocked: false,
+	    previewLoadCharacter: /** @type {Character | null} */ (null),
+	    previewSaveCharacter: /** @type {Character | null} */ (null),
+	    characterPreview: {
+		width: 500,
+		height: 1000,
+		mainX: 0,
+		sideX: 500,
+	    },
+	    inspectorRect: {
+		x: 1100,
+		y: 150,
+		width: 850,
+		height: 700,
+	    },
+	    grid: {
+		x: 500,
+		y: 100,
+		width: 1500,
+		height: 667,
+	    },
+    };
         const {
             width,
             height,
@@ -10735,6 +10722,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    function AltWardrobeToggleCharacterPreviews() {
+	    Player.VisualSettings.ShowCharactersInWardrobe = !Player.VisualSettings.ShowCharactersInWardrobe;
+	    ServerAccountUpdate.QueueData({ VisualSettings: Player.VisualSettings });
+	    AltWardrobeLoadCharacters();
+	    AltWardrobe();
+	    AltWardrobeUpdateElements();
+	    AltWardrobeResize(false);
+    }
+
     function AltWardrobeUnload() {
         ElementRemove(WardrobeID.screen);
         WardrobeReorderModeSet("None");
@@ -10796,7 +10792,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             button.toggleAttribute("hidden", slot == null);
             const buttonLabel = button.querySelector(".button-label");
             if (buttonLabel && slot != null) {
-                ElementSetText(buttonLabel.querySelector(".wardrobe-slot-index"), WardrobeGetSlotIndexLabel(slot));
+                ElementSetText(buttonLabel.querySelector(".wardrobe-slot-index"), AltWardrobeGetSlotIndexLabel(slot));
                 ElementSetText(buttonLabel.querySelector(".wardrobe-slot-name"), WardrobeGetOutfitName(slot));
             }
             button.classList.toggle("reorder-select", WardrobeReorderMode === "Select" && slot != null && WardrobeReorderList.includes(slot));
