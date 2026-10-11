@@ -2443,7 +2443,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     } else {
                         Wardrobe.labelColumns = 2;
                         Wardrobe.labelRows = 6;
-                     }
+                    }
                 }
                 TintsEffect();
                 UBCPreferenceSubscreen = "";
