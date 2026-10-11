@@ -10497,7 +10497,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 image: "Icons/Exit.png",
                 tooltip: TextGet("Return")
             }),
-            ElementButton.Create(WardrobeID.showPreviews, WardrobeToggleCharacterPreviews, {
+            ElementButton.Create(WardrobeID.showPreviews, AltWardrobeToggleCharacterPreviews, {
                 image: WardrobeShowsCharacters() ? "Icons/Character.png" : "Icons/CharacterOff.png",
                 tooltip: TextGet("ShowCharacterPreviews"),
             }),
@@ -10571,6 +10571,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    function AltWardrobeGetSlotIndexLabel(slot) {
+	    return `${(slot + 1).toString().padStart(String(WardrobeSize).length, "\u2007")}: `;
+    }  
+
     function AltWardrobeGetSlotsPerPage() {
         Wardrobe.labelColumns = 2;
         Wardrobe.labelRows = 6;
@@ -10594,12 +10598,56 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     async function AltWardrobeLoad() {
-        Wardrobe.labelColumns = 2;
-        Wardrobe.labelRows = 6;
-        Wardrobe.grid.x = 500;
-        Wardrobe.grid.y = 100;
-        Wardrobe.grid.width = 1500;
-        Wardrobe.grid.height = 667;
+        var Wardrobe = {
+	    previewColumns: 6,
+	    previewRows: 2,
+	    previewPerPage: () => Wardrobe.previewColumns * Wardrobe.previewRows,
+	    labelColumns: 2,
+	    labelRows: 6,
+	    labelPerPage: () => Wardrobe.labelColumns * Wardrobe.labelRows,
+	    search: "",
+	    /** @type {Character} */
+	    selectedCharacter: /** @type {never} */ (null),
+	    excludeBodyparts: false,
+	    /** @type {ScreenSpecifier | null} */
+	    returnScreen: null,
+	    /** @type {string | null} */
+	    appearanceBackup: null,
+	    /** Cached result of {@link WardrobeGetFilteredSlots}. */
+	    filteredSlotsCache: /** @type {number[] | null} */ (null),
+	    /** Search query used to build {@link Wardrobe.filteredSlotsCache}. */
+	    filteredSlotsQuery: /** @type {string | null} */ (null),
+	    /** {@link WardrobeSize} used to build {@link Wardrobe.filteredSlotsCache}. */
+	    filteredSlotsSize: -1,
+	    canvasCache: new Map(),
+	    drawGeneration: 0,
+	    emptySlotImage: "Icons/NoWardrobe.png",
+	    filledSlotImage: "Icons/Wardrobe.png",
+	    /** @type {null | WardrobeActionPreview} */
+	    previewAction: null,
+	    previewSlot: -1,
+	    previewLocked: false,
+	    previewLoadCharacter: /** @type {Character | null} */ (null),
+	    previewSaveCharacter: /** @type {Character | null} */ (null),
+	    characterPreview: {
+		width: 500,
+		height: 1000,
+		mainX: 0,
+		sideX: 500,
+	    },
+	    inspectorRect: {
+		x: 1100,
+		y: 150,
+		width: 850,
+		height: 700,
+	    },
+	    grid: {
+		x: 500,
+		y: 100,
+		width: 1500,
+		height: 667,
+	    },
+    };
         let AltWardrobeID = Object.freeze({
             previous: "wardrobe-previous",
             next: "wardrobe-next",
@@ -10659,6 +10707,56 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function AltWardrobeResize() {
+        var Wardrobe = {
+	    previewColumns: 6,
+	    previewRows: 2,
+	    previewPerPage: () => Wardrobe.previewColumns * Wardrobe.previewRows,
+	    labelColumns: 2,
+	    labelRows: 6,
+	    labelPerPage: () => Wardrobe.labelColumns * Wardrobe.labelRows,
+	    search: "",
+	    /** @type {Character} */
+	    selectedCharacter: /** @type {never} */ (null),
+	    excludeBodyparts: false,
+	    /** @type {ScreenSpecifier | null} */
+	    returnScreen: null,
+	    /** @type {string | null} */
+	    appearanceBackup: null,
+	    /** Cached result of {@link WardrobeGetFilteredSlots}. */
+	    filteredSlotsCache: /** @type {number[] | null} */ (null),
+	    /** Search query used to build {@link Wardrobe.filteredSlotsCache}. */
+	    filteredSlotsQuery: /** @type {string | null} */ (null),
+	    /** {@link WardrobeSize} used to build {@link Wardrobe.filteredSlotsCache}. */
+	    filteredSlotsSize: -1,
+	    canvasCache: new Map(),
+	    drawGeneration: 0,
+	    emptySlotImage: "Icons/NoWardrobe.png",
+	    filledSlotImage: "Icons/Wardrobe.png",
+	    /** @type {null | WardrobeActionPreview} */
+	    previewAction: null,
+	    previewSlot: -1,
+	    previewLocked: false,
+	    previewLoadCharacter: /** @type {Character | null} */ (null),
+	    previewSaveCharacter: /** @type {Character | null} */ (null),
+	    characterPreview: {
+		width: 500,
+		height: 1000,
+		mainX: 0,
+		sideX: 500,
+	    },
+	    inspectorRect: {
+		x: 1100,
+		y: 150,
+		width: 850,
+		height: 700,
+	    },
+	    grid: {
+		x: 500,
+		y: 100,
+		width: 1500,
+		height: 667,
+	    },
+    };
         const {
             width,
             height,
@@ -10737,6 +10835,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    function AltWardrobeToggleCharacterPreviews() {
+	    Player.VisualSettings.ShowCharactersInWardrobe = !Player.VisualSettings.ShowCharactersInWardrobe;
+	    ServerAccountUpdate.QueueData({ VisualSettings: Player.VisualSettings });
+	    AltWardrobeLoadCharacters();
+	    AltWardrobe();
+	    AltWardrobeUpdateElements();
+	    AltWardrobeResize(false);
+    }
+
     function AltWardrobeUnload() {
         ElementRemove(WardrobeID.screen);
         WardrobeReorderModeSet("None");
@@ -10798,7 +10905,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             button.toggleAttribute("hidden", slot == null);
             const buttonLabel = button.querySelector(".button-label");
             if (buttonLabel && slot != null) {
-                ElementSetText(buttonLabel.querySelector(".wardrobe-slot-index"), WardrobeGetSlotIndexLabel(slot));
+                ElementSetText(buttonLabel.querySelector(".wardrobe-slot-index"), AltWardrobeGetSlotIndexLabel(slot));
                 ElementSetText(buttonLabel.querySelector(".wardrobe-slot-name"), WardrobeGetOutfitName(slot));
             }
             button.classList.toggle("reorder-select", WardrobeReorderMode === "Select" && slot != null && WardrobeReorderList.includes(slot));
