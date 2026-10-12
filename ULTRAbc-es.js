@@ -5119,7 +5119,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     modApi.patchFunction(
         "PreferenceSubscreenExtensionsLoad", {
-            'label: item.Button,': 'label: (typeof item.Button === "string" ? item.Button.replace(/Settings/gi, "").trim() : item.Button),'
+            'label: item.Button,': 'label: (typeof item.Button === "string" ? item.Button.replace(/Settings?/gi, "").trim() : item.Button),'
         }
     );
 
