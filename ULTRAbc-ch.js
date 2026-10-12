@@ -10224,7 +10224,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 () => {
                     const slot = AltWardrobeGetVisibleSlot(C);
                     if (slot == null) return;
-                    WardrobeHandleSlotActivate(slot);
+                    AltWardrobeHandleSlotActivate(slot);
                 }, {
                     label: [{
                             tag: "span",
@@ -10267,7 +10267,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     label: TextGet("Load"),
                     icon: "Icons/Dress.png",
                     classeCss: "wardrobe-slot-load",
-                    callback: (slot) => WardrobeLoadOutfit(slot)
+                    callback: (slot) => AltWardrobeLoadOutfit(slot)
                 },
                 {
                     id: `wardrobe-slot-import-${C}`,
@@ -10388,7 +10388,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             page: "wardrobe-page",
         });
         return [
-            ElementButton.Create(WardrobeID.exit, WardrobeExit, {
+            ElementButton.Create(WardrobeID.exit, AltWardrobeExit, {
                 image: "Icons/Exit.png",
                 tooltip: TextGet("Return")
             }),
@@ -10406,7 +10406,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 image: "Icons/Search.png",
                 tooltip: TextGet("Search")
             }),
-            ElementButton.Create(WardrobeID.reorder, () => WardrobeReorderModeSet(), {
+            ElementButton.Create(WardrobeID.reorder, () => AltWardrobeReorderModeSet(), {
                 image: "Icons/Swap.png",
                 tooltip: TextGet("ReorderSlots")
             }),
@@ -10419,6 +10419,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 tooltip: (Array.isArray(window.TextData) && window.TextData.some(i => i.Tag === "Previous page")) ? TextGet("Previous page") : "Previous page"
             }),
         ];
+    }
+
+    function AltWardrobeDeleteSelectedOutfit() {
+	if (!Wardrobe.selectedCharacter || WardrobeSelection < 0 || WardrobeIsSlotEmpty(WardrobeSelection)) return;
+	if (!confirm(TextGet("DeleteOutfitConfirm"))) {
+		return;
+	}
+	const slot = WardrobeSelection;
+	Player.Wardrobe[slot] = null;
+	Player.WardrobeCharacterNames[slot] = "";
+	if (WardrobeCharacter[slot]) {
+		CharacterDelete(WardrobeCharacter[slot]);
+		WardrobeCharacter[slot] = null;
+	}
+	WardrobeFixLength();
+	WardrobeInvalidateFilteredSlots();
+	WardrobeInvalidateCanvasCache();
+	WardrobePushAll();
+	ToastManager.success(TextGet("OutfitDeleted"));
+	AltWardrobeTogglePreviewOverlay(-1);
+	AltWardrobeUpdateElements();
     }
 
     function AltWardrobeEnsureVisibleCharacters(filteredSlots = WardrobeGetFilteredSlots()) {
@@ -10438,6 +10459,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             released = true;
         }
         if (released) WardrobeInvalidateCanvasCache();
+    }
+
+    function AltWardrobeExit() {
+	if (WardrobeSelection !== -1) {
+		AltWardrobeTogglePreviewOverlay(-1);
+		return;
+	}
+	CommonSetScreen(...Wardrobe.returnScreen ?? ["Room", "MainHall"]);
+	Wardrobe.returnScreen = null;
     }
 
     function AltWardrobeFitSlotLabels() {
@@ -10479,6 +10509,35 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function AltWardrobeGetVisibleSlot(cellIndex) {
         const slot = WardrobeGetFilteredSlots()[cellIndex + WardrobeOffset];
         return slot == null ? null : slot;
+    }
+
+    function AltWardrobeHandleSlotActivate(slot) {
+	switch (WardrobeReorderMode) {
+		case "None":
+			AltWardrobeTogglePreviewOverlay(slot);
+			break;
+		case "Select": {
+			const idx = WardrobeReorderList.indexOf(slot);
+			if (idx >= 0) {
+				WardrobeReorderList.splice(idx, 1);
+			} else {
+				WardrobeReorderList.push(slot);
+			}
+			AltWardrobeUpdateElements();
+			break;
+		}
+		case "Place": {
+			const sourceSlot = WardrobeReorderList.shift();
+			if (sourceSlot === undefined) return;
+			WardrobeSwapSlots(sourceSlot, slot);
+			if (WardrobeReorderList.length <= 0) {
+				AltWardrobeReorderModeSet("None");
+			} else {
+				AltWardrobeUpdateElements();
+			}
+			break;
+		}
+	}
     }
 
     function AltWardrobeKeyDown(event) {
@@ -10555,7 +10614,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         search.setAttribute("aria-label", TextGet("OutfitSearch"));
         search.setAttribute("autocomplete", "off");
         search.setAttribute("hidden", true);
-        search.addEventListener("input", WardrobeSearchInput);
+        search.addEventListener("input", AltWardrobeSearchInput);
         search.addEventListener("blur", () => AltWardrobeUpdateElements());
         const status = ElementCreate({
             tag: "span",
@@ -10600,6 +10659,42 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         WardrobeClearCharacters();
         WardrobeCharacter = new Array(WardrobeSize).fill(null);
         AltWardrobeEnsureVisibleCharacters();
+    }
+
+    function AltWardrobeLoadOutfit(slot) {
+	if (!Wardrobe.selectedCharacter || slot < 0 || WardrobeIsSlotEmpty(slot)) return;
+	WardrobeFastLoad(Wardrobe.selectedCharacter, slot, false, { ExcludeBodyparts: true });
+	if (WardrobeSelection !== -1) {
+		AltWardrobeTogglePreviewOverlay(-1);
+	}
+	AltWardrobeUpdateElements();
+    }
+
+    function AltWardrobeReorderModeSet(newMode = null) {
+	let push = true;
+	/** @type {Record<WardrobeReorderType, WardrobeReorderType>} */
+	const cycle = {
+		"None": "Select",
+		"Select": "Place",
+		"Place": "None",
+	};
+	newMode ??= cycle[WardrobeReorderMode];
+	if (newMode === "Place" && WardrobeReorderList.length <= 0) {
+		push = false;
+		newMode = "None";
+	}
+	if (newMode == "None" && WardrobeReorderMode != "None") {
+		if (push) {
+			WardrobePushAll();
+		}
+		WardrobeReorderList = [];
+	}
+	if (newMode !== "None") {
+		AltWardrobeSetSearch("");
+		AltWardrobeTogglePreviewOverlay(-1);
+	}
+	WardrobeReorderMode = newMode;
+	AltWardrobeUpdateElements();
     }
 
     function AltWardrobeResize() {
@@ -10722,12 +10817,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    function AltWardrobeSaveSelectedOutfit() {
+	if (!Wardrobe.selectedCharacter || WardrobeSelection < 0) return;
+	WardrobeSetActionPreview("Save", true);
+	Wardrobe.previewLocked = true;
+	let confirmed = false;
+	try {
+		const sideCharacter = WardrobeGetSidePreviewCharacter();
+		if (sideCharacter) WardrobeDrawToCanvas(WardrobeID.sideCanvas, sideCharacter, 1);
+		confirmed = confirm(TextGet("SaveOutfitConfirm"));
+	} finally {
+		Wardrobe.previewLocked = false;
+		WardrobeSetActionPreview(null, true);
+	}
+	if (!confirmed) return;
+	WardrobeFastSave(Wardrobe.selectedCharacter, WardrobeSelection);
+	if (AltWardrobeRenameSelectedOutfit()) {
+		WardrobePushAll();
+	} else {
+		ServerAccountUpdate.QueueData({ Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
+	}
+	AltWardrobeUpdateElements();
+    }
+
+    function AltWardrobeSearchInput() {
+	AltWardrobeSetSearch(this.value);
+	AltWardrobeUpdateElements();
+    }
+
     function AltWardrobeSetSearch(search, resetOffset = true) {
         Wardrobe.search = search;
         if (resetOffset) WardrobeOffset = 0;
         const filteredSlots = WardrobeGetFilteredSlots();
         if (WardrobeSelection !== -1 && !filteredSlots.includes(WardrobeSelection)) {
-            WardrobeTogglePreviewOverlay(-1);
+            AltWardrobeTogglePreviewOverlay(-1);
         }
     }
 
@@ -10740,12 +10863,83 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    AltWardrobeResize(false);
     }
 
+    function AltWardrobeTogglePreviewOverlay(slot) {
+	if (slot !== WardrobeSelection) {
+		WardrobeSelection = slot;
+	} else {
+		WardrobeSelection = -1;
+	}
+	WardrobeSetActionPreview(null, true);
+	const elm = ElementWrap(WardrobeID.previewOverlay);
+	if (elm) elm.remove();
+	if (WardrobeSelection === -1) {
+		const main = ElementWrap(WardrobeID.screen)?.querySelector(".screen-main");
+		if (!main) return;
+		AltWardrobeResize(false);
+		AltWardrobeUpdateElements();
+		return;
+	};
+	WardrobeEnsureSlotCharacter(slot);
+	const name = ElementCreateInput(WardrobeID.name, "text", "", 20);
+	name.placeholder = TextGet("OutfitName");
+	name.setAttribute("aria-label", TextGet("OutfitName"));
+	ElementSetValue(name, WardrobeGetOutfitName(slot));
+	name.addEventListener("keydown", WardrobeNameKeyDown);
+	ElementCreate({
+		tag: "div",
+		attributes: { id: WardrobeID.previewOverlay },
+		classList: ["HideOnPopup", "no-select"],
+		children: [
+			ElementButton.Create(WardrobeID.previewOverlayClose, () => AltWardrobeTogglePreviewOverlay(-1), {
+				image: "Icons/cross.svg",
+				tooltip: TextGet("Close"),
+			}),
+			{
+				tag: "div",
+				classList: ["wardrobe-preview-overlay-content"],
+				children: [
+					{
+						tag: "div",
+						classList: ["outfit-naming"],
+						children: [
+							name,
+							ElementButton.Create(WardrobeID.rename, () => AltWardrobeRenameSelectedOutfit(true), { label: TextGet("Rename") }),
+						],
+					},
+					{
+						tag: "div",
+						classList: ["outfit-controls"],
+						children: [
+							ElementButton.Create(
+								WardrobeID.load,
+								() => AltWardrobeLoadOutfit(WardrobeSelection),
+								{ label: TextGet("Load") },
+								WardrobeActionPreviewButtonOptions("Load"),
+							),
+							ElementButton.Create(
+								WardrobeID.save,
+								AltWardrobeSaveSelectedOutfit,
+								{ label: TextGet("Save") },
+								WardrobeActionPreviewButtonOptions("Save"),
+							),
+							ElementButton.Create(WardrobeID.delete, AltWardrobeDeleteSelectedOutfit, { label: TextGet("Delete") }),
+						],
+					},
+				],
+			},
+		],
+		parent: ElementWrap(WardrobeID.screen)?.querySelector(".screen-main"),
+	});
+	AltWardrobeResize(false);
+	AltWardrobeUpdateElements();
+    }
+
     function AltWardrobeUnload() {
         ElementRemove(WardrobeID.screen);
-        WardrobeReorderModeSet("None");
+        AltWardrobeReorderModeSet("None");
         WardrobeClearCharacters();
         Wardrobe.selectedCharacter = /** @type {never} */ (null);
-        WardrobeTogglePreviewOverlay(-1);
+        AltWardrobeTogglePreviewOverlay(-1);
         WardrobeSetActionPreview(null, true);
         WardrobeOffset = 0;
         Wardrobe.search = "";
@@ -10832,7 +11026,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function WardrobeExportOutfit(slot) {
-        WardrobeLoadOutfit(slot);
+        AltWardrobeLoadOutfit(slot);
         let App = [];
         for (let A of Player.Appearance)
             if ((A.Asset != null) && (A.Asset.Group != null) && (A.Asset.Group.Category == "Appearance") && A.Asset.Group.AllowCustomize) {
@@ -10889,7 +11083,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         AltWardrobeUpdateElements();
     }
-  
+
     //Wheel of Fortune
     async function WheelGame(option) {
         await CommonSetScreen("MiniGame", "WheelFortune");
