@@ -5666,6 +5666,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
+	modApi.patchFunction(
+        "WardrobeLoad", {
+            'screen.querySelector(".screen-hgroup")?.appendChild(search);':
+            'const screenHeader = screen.querySelector(".screen-header"); if (Player.UBC.ubcSettings.nograywr == true) screenHeader.style.backgroundColor = "rgba(0, 0, 0, 0)";screen.querySelector(".screen-hgroup")?.appendChild(search);', 
+        }
+    );
+
     modApi.hookFunction('WardrobeResize', 4, async (args, next) => {    
         if (altwrobe == true) {
             AltWardrobeResize();
@@ -10570,6 +10577,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             parent: document.body,
         });
         const screenHeader = screen.querySelector(".screen-header");
+		screenHeader.style.setProperty('grid-template-columns', 'min-content min-content auto');
         if (nograywr == true) screenHeader.style.backgroundColor = "rgba(0, 0, 0, 0)";
         const headerHGroup = screenHeader?.querySelector(".screen-hgroup");
         if (screenHeader && headerHGroup) {
