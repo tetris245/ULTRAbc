@@ -16252,7 +16252,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "champion（冠军）、clubslave（俱乐部奴隶）、\n" +
                     "coldbloodhorse（冷血马）、collegestudent（大学生）、\n" +
                     "concubus（梦魔）、demon（恶魔）、\n" +
-                    "diaperlover（尿布爱好者）、doctor（医生）、\n" +
+                    "diaperlover（尿布爱好者）、diaperprince、\n" +
+                    "diaperprincess、doctor（医生）、\n" +
                     "doll（人偶）、dragon（龙）、drone（无人机）、\n" +
                     "drow（黑暗精灵）、duchess（女公爵）、duke（公爵)。";
                 infomsg(msg);
@@ -16346,6 +16347,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("DL");
+                }
+				if (title == "diaperprince") {
+                    if (ReputationGet(Player, "ABDL") < 1) {
+                        DialogSetReputation("ABDL", 1);
+                    }
+                    TitleSet("DiaperPrince");
+                }
+                if (title == "diaperprincess") {
+                    if (ReputationGet(Player, "ABDL") < 1) {
+                        DialogSetReputation("ABDL", 1);
+                    }
+                    TitleSet("DiaperPrincess");
                 }
                 if (title == "doctor") {
                     if (ReputationGet(Player, "Asylum") < 100) {
@@ -16567,8 +16580,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "oracle（先知）、patient（病人）、patriarch（族长）、\n" +
                     "patron（赞助人）、permanentpatient（永久病人）、\n" +
                     "pet（宠物）、pixie（小精灵）、primaris（首席）、\n" +
-                    "prince（王子）、princess（公主）、puppy（小狗）、\n" +
-                    "queen（女王)。";
+                    "prince（王子）、princess（公主）、puddlemaker、\n" +
+                    "puppy（小狗）、queen（女王)。";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -16713,6 +16726,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (title == "prince") TitleSet("Prince");
                 if (title == "princess") TitleSet("Princess");
+				if (title == "puddlemaker") {
+                    if (ReputationGet(Player, "ABDL") < 1) {
+                        DialogSetReputation("ABDL", 1);
+                    }
+                    TitleSet("PuddleMaker");
+                }
                 if (title == "puppy") TitleSet("Puppy");
                 if (title == "queen") {
                     if (ReputationGet(Player, "Dominant") < 75) {
