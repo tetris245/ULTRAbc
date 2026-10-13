@@ -97,6 +97,7 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Updated the UBC Alternative Wardrobe for compatibility with BC R133
+* Updated the title1 and title3 commands
 
 
