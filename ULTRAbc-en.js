@@ -16235,7 +16235,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "baby, bishop, bondagebaby, bondagemaid, brat, bunny,\n" +
                     "captain, champion, clubslave, coldbloodhorse,\n" +
                     "collegestudent, concubus, demon, diaperlover,\n" +
-                    "doctor, doll, dragon, drone, drow, duchess, duke.";
+                    "diaperprince, diaperprincess, doctor, doll, dragon,\n" +
+                    "drone, drow, duchess, duke.";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -16327,6 +16328,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         DialogSetReputation("ABDL", 1);
                     }
                     TitleSet("DL");
+                }
+				if (title == "diaperprince") {
+                    if (ReputationGet(Player, "ABDL") < 1) {
+                        DialogSetReputation("ABDL", 1);
+                    }
+                    TitleSet("DiaperPrince");
+                }
+                if (title == "diaperprincess") {
+                    if (ReputationGet(Player, "ABDL") < 1) {
+                        DialogSetReputation("ABDL", 1);
+                    }
+                    TitleSet("DiaperPrincess");
                 }
                 if (title == "doctor") {
                     if (ReputationGet(Player, "Asylum") < 100) {
@@ -16536,7 +16549,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "matron, missy, mistree, mistress, mole, monster, nawashi,\n" +
                     "nurse, operative, oracle, patient, patriarch, patron,\n" +
                     "permanentpatient, pet, pixie, primaris, prince, princess,\n" +
-                    "puppy, queen.";
+                    "puddlemaker, puppy, queen.";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -16681,6 +16694,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (title == "prince") TitleSet("Prince");
                 if (title == "princess") TitleSet("Princess");
+				if (title == "puddlemaker") {
+                    if (ReputationGet(Player, "ABDL") < 1) {
+                        DialogSetReputation("ABDL", 1);
+                    }
+                    TitleSet("PuddleMaker");
+                }
                 if (title == "puppy") TitleSet("Puppy");
                 if (title == "queen") {
                     if (ReputationGet(Player, "Dominant") < 75) {
