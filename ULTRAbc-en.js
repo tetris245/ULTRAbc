@@ -10744,7 +10744,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		WardrobeReorderList = [];
 	}
 	if (newMode !== "None") {
-		AltWardrobeSetSearch("");
+		AltWardrobeSetSearch("", false);
 		AltWardrobeTogglePreviewOverlay(-1);
 	}
 	WardrobeReorderMode = newMode;
@@ -10887,7 +10887,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function AltWardrobeSetSearch(search, resetOffset = true) {
         Wardrobe.search = search;
-        //if (resetOffset) WardrobeOffset = 0;
+        if (resetOffset) WardrobeOffset = 0;
         const filteredSlots = WardrobeGetFilteredSlots();
         if (WardrobeSelection !== -1 && !filteredSlots.includes(WardrobeSelection)) {
             AltWardrobeTogglePreviewOverlay(-1);
