@@ -181,6 +181,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let ifext = false;
     let ifshare = false;
     let ifname = "Sheet";
+	let ifyes = true;
     let layerall = false;
     let maptrap1 = 0;
     let mgl = 0;
@@ -628,6 +629,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         hotkeys = false;
         ifext = false;
         ifshare = false;
+		ifyes = true;
         layerall = false;
         magiccheat = false;
         magictoys = false;
@@ -759,6 +761,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         hotkeys = data.hotkeys;
         ifext = data.ifext;
         ifshare = data.ifshare;
+		ifyes = data.ifyes;
         layerall = data.layerall;
         magiccheat = data.magiccheat;
         magictoys = data.magictoys;
@@ -939,6 +942,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "ifext": ifext,
             "ifname": ifname,
             "ifshare": ifshare,
+            "ifyes": ifyes,
             "layerall": layerall,
             "maptrap1": maptrap1,
             "minigame": minigame,
@@ -1120,6 +1124,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (ifext == null || ifext == undefined) ifext = false;
                 if (ifname == null || ifname == undefined) ifname = "Sheet";
                 if (ifshare == null || ifshare == undefined) ifshare = false;
+				if (ifyes == null || ifyes == undefined) ifyes = true;
                 if (layerall == null || layerall == undefined) layerall = false;
                 if (magiccheat == null || magiccheat == undefined) magiccheat = false;
                 if (magictoys == null || magictoys == undefined) magictoys = false;
@@ -4633,23 +4638,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Information Sheet
     modApi.hookFunction('InformationSheetClick', 4, (args, next) => {
-        if (noifbuttons == false) {
-            if ((MouseX >= 1575) && (MouseX < 1665) && (MouseY >= 910) && (MouseY < 1000)) {
-                ifname = "Sheet";
-                M_MOANER_saveControls();
-                Player.OnlineSharedSettings.UBCShared.ifname = ifname;
-                ServerAccountUpdate.QueueData({
-                    OnlineSharedSettings: Player.OnlineSharedSettings
-                });
-                CommonSetScreen("Character", "InformationSheet");
-            }
-            if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
-                if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    ifname = name;
+        const C = InformationSheetSelection;
+        if (C.IsPlayer()) {
+            if (noifbuttons == false) {
+                if ((MouseX >= 1575) && (MouseX < 1665) && (MouseY >= 910) && (MouseY < 1000)) {
+                    ifname = "Sheet";
                     M_MOANER_saveControls();
                     Player.OnlineSharedSettings.UBCShared.ifname = ifname;
                     ServerAccountUpdate.QueueData({
@@ -4657,21 +4650,54 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     });
                     CommonSetScreen("Character", "InformationSheet");
                 }
-            }
-            if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 910) && (MouseY < 1000)) {
-                let backgrounds = BackgroundsTagList;
-                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
-                    if (setBackground) {
-                        ifname = Name;
+                if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
+                    if (BackgroundsList != undefined) {
+                        let listbg = BackgroundsList.length;
+                        let Roll = Math.floor(Math.random() * listbg);
+                        if (Roll == 0) Roll = 1;
+                        let name = BackgroundsList[Roll - 1].Name;
+                        ifname = name;
                         M_MOANER_saveControls();
                         Player.OnlineSharedSettings.UBCShared.ifname = ifname;
                         ServerAccountUpdate.QueueData({
                             OnlineSharedSettings: Player.OnlineSharedSettings
                         });
+                        CommonSetScreen("Character", "InformationSheet");
                     }
-                    CommonSetScreen("Character", "InformationSheet");
-                });
+                }
+                if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 910) && (MouseY < 1000)) {
+                    let backgrounds = BackgroundsTagList;
+                    BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                            if (setBackground) {
+                            ifname = Name;
+                            M_MOANER_saveControls();
+                            Player.OnlineSharedSettings.UBCShared.ifname = ifname;
+                            ServerAccountUpdate.QueueData({
+                                OnlineSharedSettings: Player.OnlineSharedSettings
+                            });
+                        }
+                        CommonSetScreen("Character", "InformationSheet");
+                    });
+                }
             }
+        } else if (C.IsOnline()) {
+             if (C.OnlineSharedSettings != undefined) {
+                if (C.OnlineSharedSettings.UBCShared != undefined) {
+                   if (C.OnlineSharedSettings.UBCShared.ifshare == true) { 
+                       if (C.OnlineSharedSettings.UBCShared.ifname != undefined) {
+                           if (MouseIn(150, 905, 60, 60)) {
+                              if (ifyes == true) {
+                                  ifyes = false;
+                                  M_MOANER_saveControls();
+                              } else {  
+                                  ifyes = true;
+                                  M_MOANER_saveControls();
+                               }
+                           } 
+                       } 
+                    } 
+                } 
+            } 
         }
         if ((onlydays == true) && (window.BCX_Loaded)) {
             DaysClick();
@@ -7852,7 +7878,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (C.OnlineSharedSettings.UBCShared != undefined) {
                     if (C.OnlineSharedSettings.UBCShared.ifshare == true) {
                         if (C.OnlineSharedSettings.UBCShared.ifname != undefined) {
-                            InformationSheetBackground = C.OnlineSharedSettings.UBCShared.ifname;
+                            if (ifyes == true) InformationSheetBackground = C.OnlineSharedSettings.UBCShared.ifname;
                         }
                     }
                 }
@@ -8066,7 +8092,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return currentY;
     }
 
-    function InformationSheetDrawButtons(C) {
+	function InformationSheetDrawButtons(C) {
         MainCanvas.textAlign = "center";
         DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
         if (C.IsPlayer()) {
@@ -8078,14 +8104,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (C.HasOwnerNotes())
                 DrawButton(1715, 535, 90, 90, "", "White", "Icons/Management.png");
             if (noifbuttons == false) {
-                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Fondo predeterminado");
+                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Fondo aleatorio");
+                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Seleccionar fondo");
             }
         } else if (C.IsOnline()) {
             DrawButton(1815, 190, 90, 90, "", "White", "Icons/Introduction.png");
             if (C.HasOwnerNotes() || C.IsFullyOwnedByPlayer())
                 DrawButton(1715, 190, 90, 90, "", "White", "Icons/Management.png");
+            if (C.OnlineSharedSettings != undefined) {
+                if (C.OnlineSharedSettings.UBCShared != undefined) {
+                   if (C.OnlineSharedSettings.UBCShared.ifshare == true) { 
+                       if (C.OnlineSharedSettings.UBCShared.ifname != undefined) {
+                           if (ifyes == true) {
+                               DrawButton(150, 905, 60, 60, "", "White", "", "Desactivar fondo compartido");
+                               DrawImageResize("Icons/Rectangle/CustomizationOff.png", 152, 907, 55, 55);
+                           } else {  
+                               DrawButton(150, 905, 60, 60, "", "White", "", "Habilitar fondo compartido");
+                               DrawImageResize("Icons/Rectangle/CustomizationOn.png", 152, 907, 55, 55);
+                           } 
+                       } 
+                   } 
+               } 
+           } 
         }
         if (C.IsNpc()) return;
         if (!window.BCX_Loaded) {
