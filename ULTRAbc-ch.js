@@ -10711,6 +10711,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	AltWardrobeUpdateElements();
     }
 
+	function AltWardrobeRenameSelectedOutfit(push = false) {
+        if (WardrobeSelection === -1) return false;
+        const name = ElementValue(WardrobeID.name);
+        const validName = /^[a-zA-Z0-9 ]+$/.test(name) || name.length === 0;
+        if (!validName) {
+            ToastManager.error(TextGet("OutfitNameError"));
+            return false;
+        }
+        WardrobeSetCharacterName(WardrobeSelection, name, push);
+        ToastManager.success(TextGet("OutfitRenamed"));
+        AltWardrobeSetSearch(Wardrobe.search, false);
+        return true;
+    }
+
     function AltWardrobeReorderModeSet(newMode = null) {
 	let push = true;
 	/** @type {Record<WardrobeReorderType, WardrobeReorderType>} */
@@ -10820,20 +10834,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         AltWardrobeFitSlotLabels();
     }
 
-    function AltWardrobeRenameSelectedOutfit(push = false) {
-        if (WardrobeSelection === -1) return false;
-        const name = ElementValue(WardrobeID.name);
-        const validName = /^[a-zA-Z0-9 ]+$/.test(name) || name.length === 0;
-        if (!validName) {
-            ToastManager.error(TextGet("OutfitNameError"));
-            return false;
-        }
-        WardrobeSetCharacterName(WardrobeSelection, name, push);
-        ToastManager.success(TextGet("OutfitRenamed"));
-        AltWardrobeSetSearch(Wardrobe.search, false);
-        return true;
-    }
-
     function AltWardrobeRun() {
         const mainCharacter = WardrobeGetMainPreviewCharacter();
         if (mainCharacter) {
@@ -10888,7 +10888,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function AltWardrobeSetSearch(search, resetOffset = true) {
         Wardrobe.search = search;
-        if (resetOffset) WardrobeOffset = 0;
+        //if (resetOffset) WardrobeOffset = 0;
         const filteredSlots = WardrobeGetFilteredSlots();
         if (WardrobeSelection !== -1 && !filteredSlots.includes(WardrobeSelection)) {
             AltWardrobeTogglePreviewOverlay(-1);
