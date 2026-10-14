@@ -99,6 +99,7 @@ Changes for future version
 
 * Added button to enable/disable shared background when you look at the Character info screen of another player who has decided to share a specific standard BC background
 * Updated the UBC Alternative Wardrobe for compatibility with BC R133
+  - Note: Access to BCX Wardrobe features is not possible when UBC Alternative Wardrobe is enabled
 * Updated the title1 and title3 commands
 
 
