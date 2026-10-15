@@ -17159,7 +17159,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bgshow1</b> (número) = muestra un enlace local y la imagen de un fondo estándar.\n" +
                     "<b>/bgshow2</b> (número) = envía al chat el enlace de un fondo estándar. (Clicable con WCE).\n" +
                     "<b>/killpar</b> = elimina los parámetros de UBC/Moaner guardados localmente.\n" +
-                    "<b>/message</b> (opción) (mensaje) = crea mensajes personalizados para comandos específicos. *";
+                    "<b>/message</b> (opción) (mensaje) = crea mensajes personalizados para comandos específicos. *\n" +
+					"<b>/wtoggle</b> = alterna entre el vestuario UBC y el vestuario BC/BCX.";
                 infomsg(msg);
             }
             if (args === "talking") {
@@ -17975,6 +17976,27 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
+	CommandCombine([{
+        Tag: 'wtoggle',
+        Description: ": alterna entre el vestuario UBC y el vestuario BC/BCX.",
+        Action: (args) => {
+            if (altwrobe == true)  {
+                altwrobe = false;
+                Player.UBC.ubcSettings.altwrobe = false;
+                Wardrobe.labelColumns = 1;
+                Wardrobe.labelRows = 8;
+                M_MOANER_saveControls(); 
+                infomsg("El vestuario BC/BCX ya está habilitado.");
+            } else {
+                altwrobe = true;
+                Player.UBC.ubcSettings.altwrobe = true;
+                Wardrobe.labelColumns = 2;
+                Wardrobe.labelRows = 6;
+                M_MOANER_saveControls(); 
+                infomsg("El vestuario UBC ya está habilitado.");
+            }
+        }
+    }])
 
     CommandCombine([{
         Tag: 'xmenu',
