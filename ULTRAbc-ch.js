@@ -17204,7 +17204,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bgshow1</b> （背景编号）= 在本地显示特定标准背景的可点击链接和嵌入图片。\n" +
                     "<b>/bgshow2</b> （背景编号）= 在聊天中发送特定标准背景的链接。如果使用 WCE 功能，可点击链接和嵌入。\n" +
                     "<b>/killpar</b> = 删除本地保存的 UBC/Moaner 参数。\n" +
-                    "<b>/message</b> （选项）（消息）= 为特定命令创建自定义消息。*";
+                    "<b>/message</b> （选项）（消息）= 为特定命令创建自定义消息。*\n" +
+					"<b>/wtoggle</b> = toggles between UBC wardrobe and BC/BCX wardrobe.";
                 infomsg(msg);
             }
             if (args === "talking") {
@@ -18016,6 +18017,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 ChatRoomSetTarget(-1);
+            }
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'wtoggle',
+        Description: ": toggles between UBC wardrobe and BC/BCX wardrobe.",
+        Action: (args) => {
+            if (altwrobe == true)  {
+                altwrobe = false;
+                Player.UBC.ubcSettings.altwrobe = false;
+                Wardrobe.labelColumns = 1;
+                Wardrobe.labelRows = 8;
+                M_MOANER_saveControls(); 
+                infomsg("The BC/BCX wardrobe is now enabled.");
+            } else {
+                altwrobe = true;
+                Player.UBC.ubcSettings.altwrobe = true;
+                Wardrobe.labelColumns = 2;
+                Wardrobe.labelRows = 6;
+                M_MOANER_saveControls(); 
+                infomsg("The UBC wardrobe is now enabled.");
             }
         }
     }])
