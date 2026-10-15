@@ -17986,7 +17986,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	CommandCombine([{
         Tag: 'wtoggle',
-        Description: ": toggles between UBC wardrobe and BC/BCX wardrobe",
+        Description: ": toggles between UBC wardrobe and BC/BCX wardrobe.",
         Action: (args) => {
             if (altwrobe == true)  {
                 altwrobe = false;
