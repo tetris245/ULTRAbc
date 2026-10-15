@@ -17167,7 +17167,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background and embedded picture.\n" +
                     "<b>/bgshow2</b> (bgnumber) = sends in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n" +
                     "<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n" +
-                    "<b>/message</b> (option) (message) = creates custom messages for specific command. *";
+                    "<b>/message</b> (option) (message) = creates custom messages for specific command. *\n" +
+                    "<b>/wtoggle</b> = toggles between UBC wardrobe and BC/BCX wardrobe.";
                 infomsg(msg);
             }
             if (args === "talking") {
@@ -17979,6 +17980,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
                 ChatRoomSetTarget(-1);
+            }
+        }
+    }])
+
+	CommandCombine([{
+        Tag: 'wtoggle',
+        Description: ": toggles between UBC wardrobe and BC/BCX wardrobe",
+        Action: (args) => {
+            if (altwrobe == true)  {
+                altwrobe = false;
+                Player.UBC.ubcSettings.altwrobe = false;
+                Wardrobe.labelColumns = 1;
+                Wardrobe.labelRows = 8;
+                M_MOANER_saveControls(); 
+                infomsg("The BC/BCX wardrobe is now enabled.");
+            } else {
+                altwrobe = true;
+                Player.UBC.ubcSettings.altwrobe = true;
+                Wardrobe.labelColumns = 2;
+                Wardrobe.labelRows = 6;
+                M_MOANER_saveControls(); 
+                infomsg("The UBC wardrobe is now enabled.");
             }
         }
     }])
