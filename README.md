@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.3.1
+Most recent version: 6.3.2
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -52,11 +52,11 @@ Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-e
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
 1. Download one of these files:
 
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.1/ULTRAbc-en-v6.3.1.zip
+   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.2/ULTRAbc-en-v6.3.2.zip
 
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.1/ULTRAbc-ch-v6.3.1.zip
+   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.2/ULTRAbc-ch-v6.3.2.zip
 
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.1/ULTRAbc-es-v6.3.1.zip
+   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.2/ULTRAbc-es-v6.3.2.zip
    
 3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 4. Go to browser extensions. Enable developer mode.
@@ -97,10 +97,6 @@ All else I might not have included.
 
 Changes for future version
 
-* Added button to enable/disable shared background when you look at the Character info screen of another player who has decided to share a specific standard BC background
-* New command: wtoggle to toggle between UBC Wardrobe and BC/BCX Wardrobe
-* Updated the UBC Alternative Wardrobe for compatibility with BC R133
-  - Note: Access to BCX Wardrobe features is not possible when UBC Alternative Wardrobe is enabled
-* Updated the title1 and title3 commands
+(...)
 
 
