@@ -97,6 +97,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* New setting in GUI - Visual Effects to enable/disable transparent effect on beep screen of the friend list
 
 
