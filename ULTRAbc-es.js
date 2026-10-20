@@ -233,6 +233,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mapfull;
     let mapfull2;
     let mapfull3;
+	let noefbeep;
     let noescape;
     let nogarble;
     let nograywr;
@@ -637,6 +638,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         maptrap1 = 0;
         minigame = "";
         mission = "";
+		noefbeep = false;
         noescape = false;
         nogarble = false;
         nograywr = false;
@@ -769,6 +771,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         maptrap1 = data.maptrap1 * 1;
         minigame = data.minigame;
         mission = data.mission;
+		noefbeep = data.noefbeep;
         noescape = data.noescape;
         nogarble = data.nogarble;
         nograywr = data.nograywr;
@@ -993,6 +996,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "mapfull": mapfull,
             "mapfull2": mapfull2,
             "mapfull3": mapfull3,
+			"noefbeep": noefbeep, 
             "noescape": noescape,
             "nogarble": nogarble,
             "nograywr": nograywr,
@@ -1143,6 +1147,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
+				if (noefbeep == null || noefbeep == undefined) noefbeep = false;
                 if (noescape == null || noescape == undefined) noescape = false;
                 if (nogarble == null || nogarble == undefined) nogarble = false;
                 if (nograywr == null || nograywr == undefined) nograywr = false;
@@ -1299,6 +1304,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 mapfull2: false,
                 mapfull3: false,
                 maptrap1: 0,
+				noefbeep: false,
                 noescape: false,
                 nogarble: false,
                 nograywr: false,
@@ -3071,6 +3077,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Controlar la animación del objeto (0-2):", "animstate", "InputAnimControl",
                     "Introduce un número entre 0 y 2 para controlar la animación integrada en algunos objetos, como la caja futurista: 0 Sin control - 1 Control parcial (2 actualizaciones por segundo) - 2 Control total (sin animación). Nota importante: modificar la animación del objeto puede provocar, en algunos casos, efectos inesperados, como problemas gráficos, errores o inconsistencias. Úsela solo si experimenta problemas de lentitud.", 104
                 );
+				addMenuCheckbox(64, 64, Desactivar efecto en la pantalla de pitidos: ", "noefbeep",
+                    "Por defecto, BC aplica un efecto de transparencia a la pantalla de pitidos de la lista de amigos. Si no te gusta, ¡simplemente selecciona esta opción!", false, 240
+                );
                 addMenuCheckbox(64, 64, "Desactivar efecto gris en el guardarropa: ", "nograywr",
                     "Por defecto, BC aplica un efecto gris a la barra superior del guardarropa. Si no te gusta, ¡simplemente selecciona esta opción!", false, 240
                 );
@@ -4535,6 +4544,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Friendlist 
+    modApi.patchFunction(
+        "FriendListBeep", {
+            'dialog.showModal();':
+            'dialog.showModal(); if (Player.UBC.ubcSettings.noefbeep == true) dialog.style.backgroundColor = "#ffffffff";',
+         }
+    );
+	
     modApi.hookFunction('FriendListDraw', 4, (args, next) => {
         FriendListBackground = frname;
         TintsEffect();
