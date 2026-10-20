@@ -7389,7 +7389,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
                         ElementCreateSettingsLabel("Juego", "chat-search-search-menu-room-game-dropdown"),
-                        ElementCreateDropdown(
+                        ElementDropdown.Create(
                             "chat-search-search-menu-room-game-dropdown",
                             [
                                 ...[...ChatAdminGameList, "Prison"].map(game => ({
@@ -7423,7 +7423,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     classList: ["chat-search-search-menu-grid-item"],
                     children: [
                         ElementCreateSettingsLabel("Idioma", "chat-search-search-menu-room-language-dropdown"),
-                        ElementCreateDropdown(
+                        ElementDropdown.Create(
                             "chat-search-search-menu-room-language-dropdown",
                             [
                                 ... /** @type {ServerChatRoomLanguage[]} */ ([...ChatAdminLanguageList, ""]).map(lang => ({
