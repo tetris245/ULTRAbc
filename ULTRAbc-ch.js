@@ -233,6 +233,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let mapfull;
     let mapfull2;
     let mapfull3;
+	let noefbeep;
     let noescape;
     let nogarble;
     let nograywr;
@@ -637,6 +638,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         maptrap1 = 0;
         minigame = "";
         mission = "";
+		noefbeep = false;
         noescape = false;
         nogarble = false;
         nograywr = false;
@@ -769,6 +771,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         maptrap1 = data.maptrap1 * 1;
         minigame = data.minigame;
         mission = data.mission;
+		noefbeep = data.noefbeep;
         noescape = data.noescape;
         nogarble = data.nogarble;
         nograywr = data.nograywr;
@@ -993,6 +996,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "mapfull": mapfull,
             "mapfull2": mapfull2,
             "mapfull3": mapfull3,
+			"noefbeep": noefbeep, 
             "noescape": noescape,
             "nogarble": nogarble,
             "nograywr": nograywr,
@@ -1143,6 +1147,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (M_MOANER_xvibratorActive == null || M_MOANER_xvibratorActive == undefined) M_MOANER_xvibratorActive = false;
                 if (M_MOANER_talkActive == false) M_MOANER_whisperActive = false;
                 if (M_MOANER_vibratorActive == false) M_MOANER_xvibratorActive = false;
+				if (noefbeep == null || noefbeep == undefined) noefbeep = false;
                 if (noescape == null || noescape == undefined) noescape = false;
                 if (nogarble == null || nogarble == undefined) nogarble = false;
                 if (nograywr == null || nograywr == undefined) nograywr = false;
@@ -1299,6 +1304,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 mapfull2: false,
                 mapfull3: false,
                 maptrap1: 0,
+				noefbeep: false,
                 noescape: false,
                 nogarble: false,
                 nograywr: false,
@@ -3071,6 +3077,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Control item animation (0-2):", "animstate", "InputAnimControl",
                     "Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation). Important note: alteration of the item animation can lead in some cases to unexpected effects, such as graphical issues, bugs or discrepancies. Use it only if you're experiencing lagging problems.", 65
                 );
+				addMenuCheckbox(64, 64, "Disable effect on beep screen: ", "noefbeep",
+                    "By default, BC applies a transparent effect on the beep screen of the friend list. If you don't like that, just select this setting!", false, 200
+                );
                 addMenuCheckbox(64, 64, "Disable gray effect in wardrobe: ", "nograywr",
                     "By default, BC applies a gray effect on the top bar of the wardrobe. If you don't like that, just select this setting!", false, 200
                 );
@@ -4535,6 +4544,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Friendlist 
+    modApi.patchFunction(
+        "FriendListBeep", {
+            'dialog.showModal();':
+            'dialog.showModal(); if (Player.UBC.ubcSettings.noefbeep == true) dialog.style.backgroundColor = "#ffffffff";',
+         }
+    );
+	
     modApi.hookFunction('FriendListDraw', 4, (args, next) => {
         FriendListBackground = frname;
         TintsEffect();
