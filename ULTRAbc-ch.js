@@ -8873,7 +8873,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 for (let A = 0; A < Player.Appearance.length; A++)
                     if ((Player.Appearance[A].Property != null) &&
                         (Player.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
-                        (Player.Appearance[A].Property.Name == "DeviousPadlock")) {
+                        (Player.Appearance[A].Property.IsDeviousLock == true)) {
                         let groupName = Player.Appearance[A].Asset.Group.Name;
                         let hasGroup = !!DOGSdata?.deviousPadlock?.itemGroups?.[groupName];
                         if (hasGroup == true) {
@@ -13799,7 +13799,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         if (lk == 18) target.Appearance[A].Property.LockedBy = "\u{6DEB}\u{7EB9}\u{9501}LuziPadlock";
                                         if (lk == 19) {
                                             target.Appearance[A].Property.LockedBy = "ExclusivePadlock";
-                                            target.Appearance[A].Property.Name = "DeviousPadlock";
+                                            target.Appearance[A].Property.IsDeviousLock = true;
                                         }
                                         if (lk == 20) {
                                             target.Appearance[A].Property.LockedBy = "HighSecurityPadlock";
@@ -15746,7 +15746,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             for (let A = 0; A < Player.Appearance.length; A++)
                                 if ((Player.Appearance[A].Property != null) &&
                                     (Player.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
-                                    (Player.Appearance[A].Property.Name == "DeviousPadlock")) {
+                                    (Player.Appearance[A].Property.IsDeviousLock == true)) {
                                     devious = devious + 1;
                                     let p = DOGSdata.deviousPadlock.itemGroups;
                                     let Group = Player.Appearance[A].Asset.Group.Name;
@@ -17459,7 +17459,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 for (let A = 0; A < target.Appearance.length; A++)
                                     if ((target.Appearance[A].Property != null) &&
                                         (target.Appearance[A].Property.LockedBy == "ExclusivePadlock") &&
-                                        (target.Appearance[A].Property.Name == "DeviousPadlock"))
+                                        (target.Appearance[A].Property.IsDeviousLock == true))
                                         InventoryUnlock(target, target.Appearance[A]);
                             }
                             if (lk == 20) {
