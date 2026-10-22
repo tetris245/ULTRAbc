@@ -15531,11 +15531,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             } else {
                 let role = args;
+                if (role == "clubmistress") LogAdd("ClubMistress", "Management");
+                if (role == "clubslave") LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
                 if (role == "doctor") {
                     LogAdd("Committed", "Asylum", CurrentTime);
                     ReputationChange('Asylum', 200);
                 }
+                if (role == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 if (role == "headmaid") LogAdd("LeadSorority", "Maid");
+                if (role == "kidnapper") DialogSetReputation("Kidnap", 50);
                 if (role == "magician") {
                     ResetHousesReputation();
                     DialogSetReputation("HouseVincula", 50);
@@ -15547,6 +15551,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (role == "maid") {
                     LogDelete("LeadSorority", "Maid");
                     LogAdd("JoinedSorority", "Management");
+                }
+                if (role == "masterkidnapper") ReputationChange("Kidnap", 100);
+                if (role == "mistress") {
+                    LogAdd("ClubMistress", "Management");
+                    ReputationChange("Dominant", 200);
                 }
                 if (role == "nurse") {
                     LogAdd("Committed", "Asylum", CurrentTime);
