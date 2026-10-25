@@ -2176,7 +2176,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 //if (MouseIn(1500, 860, 300, 90)) resetSettings();
                 // Open the selected subscreen
                 for (let A = 0; A < ubcSettingsCategories.length; A++) {
-                    if (MouseIn(500 + 500 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
+                    if (MouseIn(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
                         if (typeof window["PreferenceSubscreen" + ubcSettingsCategories[A] + "Load"] === "function")
                             CommonDynamicFunction("PreferenceSubscreen" + ubcSettingsCategories[A] + "Load()");
                         PreferenceExtensionsCurrent = {
