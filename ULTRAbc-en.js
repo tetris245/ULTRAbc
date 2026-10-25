@@ -104,7 +104,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     const UBCver = "6.3.2";
-    const UBCver0 = "6.3.1";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -116,6 +115,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     window.UBCver = UBCver;
     let ini = 0;
     let kp = 0;
+    //False until M_MOANER_initControls has read the saved settings: nothing may be saved before that
+    let ubcSettingsLoaded = false;
     let altinfo = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
     let lastAfkMessageTime = 0;
@@ -731,14 +732,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         alfrpsk = data.alfrpsk;
         altchsh = data.altchsh;
         altwrobe = data.altwrobe;
-        animal = data.animal * 1;
-        animstate = data.animstate * 1;
+        animal = (data.animal ?? 0) * 1;
+        animstate = (data.animstate ?? 0) * 1;
         asylumlimit = data.asylumlimit;
         autojoin = data.autojoin;
         bgall = data.bgall;
         bl = data.bl;
-        ccards = data.ccards * 1;
-        cdeck = data.cdeck * 1;
+        ccards = (data.ccards ?? 30) * 1;
+        cdeck = (data.cdeck ?? 0) * 1;
         cextra = data.cextra;
         cfame = data.cfame;
         cname = data.cname;
@@ -755,7 +756,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         fixperm = data.fixperm;
         fullseed = data.fullseed;
         frkeys = data.frkeys;
-        gl = data.gaglevel * 1;
+        gl = (data.gaglevel ?? 0) * 1;
         highfame = data.highfame;
         hotkeys = data.hotkeys;
         ifext = data.ifext;
@@ -768,7 +769,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mapfull = data.mapfull;
         mapfull2 = data.mapfull2;
         mapfull3 = data.mapfull3;
-        maptrap1 = data.maptrap1 * 1;
+        maptrap1 = (data.maptrap1 ?? 0) * 1;
         minigame = data.minigame;
         mission = data.mission;
 		noefbeep = data.noefbeep;
@@ -787,23 +788,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
         //nowrbuttons = data.nowrbuttons;
-        npcdeck = data.npcdeck * 1;
+        npcdeck = (data.npcdeck ?? -1) * 1;
         npcpunish = data.npcpunish;
         onlydays = data.onlydays;
         outbuttons = data.outbuttons;
-        pmax = data.pmax * 1;
+        pmax = (data.pmax ?? 20) * 1;
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
-        rpabdl = data.rpabdl * 1;
-        rpasyl = data.rpasyl * 1;
-        rpgamb = data.rpgamb * 1;
-        rpgame = data.rpgame * 1;
-        rpkidn = data.rpkidn * 1;
-        rplarp = data.rplarp * 1;
-        rpmagh = data.rpmagh * 1;
-        rpmagp = data.rpmagp * 1;
-        rpmaid = data.rpmaid * 1;
-        rpmain = data.rpmain * 1;
+        rpabdl = (data.rpabdl ?? 0) * 1;
+        rpasyl = (data.rpasyl ?? 0) * 1;
+        rpgamb = (data.rpgamb ?? 0) * 1;
+        rpgame = (data.rpgame ?? 0) * 1;
+        rpkidn = (data.rpkidn ?? 0) * 1;
+        rplarp = (data.rplarp ?? 0) * 1;
+        rpmagh = (data.rpmagh ?? 0) * 1;
+        rpmagp = (data.rpmagp ?? 0) * 1;
+        rpmaid = (data.rpmaid ?? 0) * 1;
+        rpmain = (data.rpmain ?? 0) * 1;
         silent = data.silent;
         silsafe = data.silsafe;
         skbondage = data.skbondage;
@@ -815,7 +816,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         skwillpower = data.skwillpower;
         slowleave = data.slowleave;
         sosbuttons = data.sosbuttons;
-        st = data.stutterlevel * 1;
+        st = (data.stutterlevel ?? 0) * 1;
         tintcolor = data.tintcolor;
         tintlevel = data.tintlevel;
         tintmbs = data.tintmbs;
@@ -826,6 +827,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_initControls() {
         let data = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
+        ubcSettingsLoaded = true;
         if (data == null || data == undefined) {
             UBCdefault();
             M_MOANER_orgasmActive = true;
@@ -897,6 +899,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_saveControls() {
+        if ((!ubcSettingsLoaded) || (kp == 1)) return;
         let controls = {
             "orgasmMoan": M_MOANER_orgasmActive,
             "script": M_MOANER_scriptOn,
@@ -1053,9 +1056,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_deleteControls() {
         kp = 1;
-        for (var i = 0; i < localStorage.length; i++) {
-            let key = localStorage.key(i);
-            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
+        //Collect the keys first: removing keys while iterating localStorage by index skips entries.
+        //Match "_" + member number, so that member 1234 does not also delete member 51234's parameters.
+        let keys = [];
+        for (let i = 0; i < localStorage.length; i++) keys.push(localStorage.key(i));
+        for (const key of keys) {
+            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith("_" + Player.MemberNumber)) {
                 localStorage.removeItem(key);
             }
         }
@@ -1216,9 +1222,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (utotal == null || utotal == undefined) utotal = false;
                 if (wrname == null || wrname == undefined) wrname = "Dressing";
                 M_MOANER_saveControls();
-                let BabyTalkOn = false;
-                let GagTalkOn = false;
-                let StutterOn = false;
+                BabyTalkOn = false;
+                GagTalkOn = false;
+                StutterOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
                 if (st > 0) StutterOn = true;
@@ -1386,165 +1392,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             Player.UBC.ubcSettings = settings;
         }
 
-        let ListAlpha = [{
-                name: "Main",
-                hidden: true,
-                load: () => PreferenceSubscreenMainLoad(),
-                run: () => PreferenceSubscreenMainRun(),
-                click: () => PreferenceSubscreenMainClick(),
-                resize: (onLoad) => PreferenceSubscreenMainResize(onLoad),
-                unload: () => PreferenceSubscreenMainUnload(),
-                exit: () => PreferenceSubscreenMainExit(),
-            },
-            {
-                name: "General",
-                load: () => PreferenceSubscreenGeneralLoad(),
-                run: () => PreferenceSubscreenGeneralRun(),
-                click: () => PreferenceSubscreenGeneralClick(),
-                exit: () => PreferenceSubscreenGeneralExit(),
-                unload: () => PreferenceSubscreenGeneralUnload(),
-                resize: (onLoad) => PreferenceSubscreenGeneralResize(onLoad),
-            },
-            {
-                name: "Arousal",
-                load: () => PreferenceSubscreenArousalLoad(),
-                run: () => PreferenceSubscreenArousalRun(),
-                click: () => PreferenceSubscreenArousalClick(),
-                exit: () => PreferenceSubscreenArousalExit(),
-                unload: () => PreferenceSubscreenArousalUnload(),
-            },
-            {
-                name: "Audio",
-                load: () => PreferenceSubscreenAudioLoad(),
-                run: () => PreferenceSubscreenAudioRun(),
-                click: () => PreferenceSubscreenAudioClick(),
-                exit: () => PreferenceSubscreenAudioExit(),
-                unload: () => PreferenceSubscreenAudioUnload(),
-                resize: (onLoad) => PreferenceSubscreenAudioResize(onLoad),
-            },
-            {
-                name: "CensoredWords",
-                load: () => PreferenceSubscreenCensoredWordsLoad(),
-                run: () => PreferenceSubscreenCensoredWordsRun(),
-                click: () => PreferenceSubscreenCensoredWordsClick(),
-                exit: () => PreferenceSubscreenCensoredWordsExit(),
-                unload: () => PreferenceSubscreenCensoredWordsUnload(),
-                resize: (onLoad) => PreferenceSubscreenCensoredWordsResize(onLoad),
-            },
-            {
-                name: "Chat",
-                load: () => PreferenceSubscreenChatLoad(),
-                run: () => PreferenceSubscreenChatRun(),
-                click: () => PreferenceSubscreenChatClick(),
-                exit: () => PreferenceSubscreenChatExit(),
-                resize: (onLoad) => PreferenceSubscreenChatResize(onLoad),
-            },
-            {
-                name: "Controller",
-                load: () => PreferenceSubscreenControllerLoad(),
-                run: () => PreferenceSubscreenControllerRun(),
-                click: () => PreferenceSubscreenControllerClick(),
-                exit: () => PreferenceSubscreenControllerExit(),
-                unload: () => PreferenceSubscreenControllerUnload(),
-            },
-            {
-                name: "Difficulty",
-                load: () => PreferenceSubscreenDifficultyLoad(),
-                run: () => PreferenceSubscreenDifficultyRun(),
-                click: () => PreferenceSubscreenDifficultyClick(),
-                exit: () => PreferenceSubscreenDifficultyExit(),
-                resize: (onLoad) => PreferenceSubscreenDifficultyResize(onLoad),
-            },
-            {
-                name: "Extensions",
-                load: () => PreferenceSubscreenExtensionsLoad(),
-                run: () => PreferenceSubscreenExtensionsRun(),
-                click: () => PreferenceSubscreenExtensionsClick(),
-                exit: () => PreferenceSubscreenExtensionsExit(),
-                unload: () => PreferenceSubscreenExtensionsUnload(),
-                resize: (onLoad) => PreferenceSubscreenExtensionsResize(onLoad),
-            },
-            {
-                name: "Gender",
-                load: () => PreferenceSubscreenGenderLoad(),
-                run: () => PreferenceSubscreenGenderRun(),
-                click: () => PreferenceSubscreenGenderClick(),
-                resize: (onLoad) => PreferenceSubscreenGenderResize(onLoad),
-            },
-            {
-                name: "Graphics",
-                load: () => PreferenceSubscreenGraphicsLoad(),
-                run: () => PreferenceSubscreenGraphicsRun(),
-                click: () => PreferenceSubscreenGraphicsClick(),
-                exit: () => PreferenceSubscreenGraphicsExit(),
-                unload: () => PreferenceSubscreenGraphicsUnload(),
-                resize: (onLoad) => PreferenceSubscreenGraphicsResize(onLoad),
-            },
-            {
-                name: "Immersion",
-                load: () => PreferenceSubscreenImmersionLoad(),
-                run: () => PreferenceSubscreenImmersionRun(),
-                click: () => PreferenceSubscreenImmersionClick(),
-                resize: (onLoad) => PreferenceSubscreenImmersionResize(onLoad),
-            },
-            {
-                name: "Visibility",
-                load: () => PreferenceSubscreenVisibilityLoad(),
-                run: () => PreferenceSubscreenVisibilityRun(),
-                click: () => PreferenceSubscreenVisibilityClick(),
-                exit: () => PreferenceSubscreenVisibilityExit(),
-                unload: () => PreferenceSubscreenVisibilityUnload(),
-            },
-            {
-                name: "Keybindings",
-                icon: "Icons/Keyboard.png",
-                load: () => PreferenceSubscreenKeybindingsLoad(),
-                run: () => PreferenceSubscreenKeybindingsRun(),
-                click: () => PreferenceSubscreenKeybindingsClick(),
-                exit: () => PreferenceSubscreenKeybindingsExit(),
-                resize: (onLoad) => PreferenceSubscreenKeybindingsResize(onLoad),
-            },
-            {
-                name: "Notifications",
-                load: () => PreferenceSubscreenNotificationsLoad(),
-                run: () => PreferenceSubscreenNotificationsRun(),
-                click: () => PreferenceSubscreenNotificationsClick(),
-                exit: () => PreferenceSubscreenNotificationsExit(),
-                unload: () => PreferenceSubscreenNotificationsUnload(),
-            },
-            {
-                name: "Online",
-                load: () => PreferenceSubscreenOnlineLoad(),
-                run: () => PreferenceSubscreenOnlineRun(),
-                click: () => PreferenceSubscreenOnlineClick(),
-                resize: (onLoad) => PreferenceSubscreenOnlineResize(onLoad),
-            },
-            {
-                name: "Restriction",
-                load: () => PreferenceSubscreenRestrictionLoad(),
-                run: () => PreferenceSubscreenRestrictionRun(),
-                click: () => PreferenceSubscreenRestrictionClick(),
-                resize: (onLoad) => PreferenceSubscreenRestrictionResize(onLoad),
-            },
-            {
-                name: "Scripts",
-                load: () => PreferenceSubscreenScriptsLoad(),
-                run: () => PreferenceSubscreenScriptsRun(),
-                click: () => PreferenceSubscreenScriptsClick(),
-                exit: () => PreferenceSubscreenScriptsExit(),
-                unload: () => PreferenceSubscreenScriptsUnload(),
-                resize: (onLoad) => PreferenceSubscreenScriptsResize(onLoad),
-            },
-            {
-                name: "Security",
-                load: () => PreferenceSubscreenSecurityLoad(),
-                run: () => PreferenceSubscreenSecurityRun(),
-                click: () => PreferenceSubscreenSecurityClick(),
-                exit: () => PreferenceSubscreenSecurityExit(),
-                unload: () => PreferenceSubscreenSecurityUnload(),
-                resize: (onLoad) => PreferenceSubscreenSecurityResize(onLoad),
-            },
-        ];
+        //Alphabetical order of the Preferences main menu (alfmenu). Only the order is kept here: the entries are BC's own
+        //subscreen objects, so their handlers always match the running BC version, and new BC subscreens are appended.
+        const ALPHA_ORDER = ["Main", "General", "Arousal", "Audio", "CensoredWords", "Chat", "Controller", "Difficulty", "Extensions", "Gender", "Graphics", "Immersion", "Visibility", "Keybindings", "Notifications", "Online", "Restriction", "Scripts", "Security"];
+        let ListAlpha = ALPHA_ORDER.map(name => PreferenceSubscreens.find(s => s.name === name)).filter(Boolean)
+            .concat(PreferenceSubscreens.filter(s => !ALPHA_ORDER.includes(s.name)));
         Player.UBC.ubcSettings.ListAlpha = ListAlpha;
 
         let ListChat1 = [{
@@ -1876,6 +1728,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
 
+        function controllerAddArea(X, Y) {
+            if (typeof ControllerAddActiveArea === "function") { // R133
+                ControllerAddActiveArea(X, Y);
+            } else if (typeof setButton === "function") { // older versions
+                setButton(X, Y);
+            }
+        }
+
         async function layermenu() {
             await waitFor(() => !!Player?.AppearanceLayers);
             modApi.hookFunction('Layering.Load', 4, (args, next) => {
@@ -1944,7 +1804,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             function DrawTextWrapGood(Text, X, Y, Width, Height, ForeColor = "Black", BackColor = null, BorderColor = "Black", MaxLine = null) {
                 if (controllerIsActive()) {
-                    setButton(X, Y);
+                    controllerAddArea(X, Y);
                 }
                 // Draw the rectangle if we need too
                 if (BackColor != null) {
@@ -2223,6 +2083,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     load: PreferenceSubscreenUBCSettingsLoad,
                 }
                 PreferenceSubscreenUBCSettingsLoad();
+                return false; //tells BC to keep the extension open: UBC's main settings page is now showing
             }
 
             PreferenceSubscreenUBCSettingsLoad = function() {
@@ -2264,7 +2125,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ControllerIgnoreButton = false;
                     DrawTextFit(ubcSettingCategoryLabels[ubcSettingsCategories[A]], 700 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
                     if (controllerIsActive()) {
-                        setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
+                        controllerAddArea(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
                     }
                 }
             }
@@ -2314,7 +2175,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 //if (MouseIn(1500, 860, 300, 90)) resetSettings();
                 // Open the selected subscreen
                 for (let A = 0; A < ubcSettingsCategories.length; A++) {
-                    if (MouseIn(500 + 500 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
+                    if (MouseIn(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
                         if (typeof window["PreferenceSubscreen" + ubcSettingsCategories[A] + "Load"] === "function")
                             CommonDynamicFunction("PreferenceSubscreen" + ubcSettingsCategories[A] + "Load()");
                         PreferenceExtensionsCurrent = {
@@ -2358,24 +2219,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile = data.profile;
                 reaction = data.reaction;
                 BabyTalkOn = false;
-                if ((blindness > 0) && (blindness < 5)) {
-                    let fn1 = blindLevels[blindness - 1];
-                    fn1();
-                    Player.GetBlindLevel = fn1;
-                }
-                if ((blurmode > 0) && (blurmode < 6)) {
-                    let fn2 = blurLevels[blurmode - 1];
-                    fn2();
-                    Player.GetBlurLevel = fn2;
-                }
+                installPlayerHooks(); //forced blindness, blurry vision and hearing apply through these hooks
                 GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
-                if ((hearing > 0) && (hearing < 7)) {
-                    let fn3 = deafLevels[hearing - 1];
-                    fn3();
-                    Player.GetDeafLevel = fn3;
-                }
                 if (profile == 0) profileName = "default";
                 if (profile == 1) profileName = "bunny";
                 if (profile == 2) profileName = "cow";
@@ -2434,13 +2281,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((noescape == true) && (unrestrict == 2)) {
                     Player.UBC.ubcSettings.utotal = false;
-                    Player.CanInteract = function() {
-                        return !this.HasEffect("Block");
-                    };
-                    Player.CanTalk = function() {
-                        const GagEffect = SpeechTransformGagGarbleIntensity(this);
-                        return (GagEffect <= 0);
-                    };
                     unrestrict = 0;
                     M_MOANER_saveControls();
                 }
@@ -2493,7 +2333,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCBackgroundsExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCButtonsLoad = function() {
@@ -2532,7 +2372,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCButtonsExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCCheatsLoad = function() {
@@ -2603,7 +2443,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCCheatsExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCHotkeysLoad = function() {
@@ -2628,7 +2468,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCHotkeysExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCMapsLoad = function() {
@@ -2672,8 +2512,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((CommonIsNumeric(device)) && (profile > -1) && (device < 10)) {
                     Player.UBC.ubcSettings.maptrap1 = device;
                     ElementRemove("InputDeviceTrap");
-                    defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = "Put a valid number";
+                    return false;
+                }
             }
 
             PreferenceSubscreenUBCMiscLoad = function() {
@@ -2713,7 +2556,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCMiscExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCMoanerLoad = function() {
@@ -2770,8 +2613,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((CommonIsNumeric(profile)) && (profile > -1) && (profile < 11)) {
                     Player.UBC.ubcSettings.profile = profile;
                     ElementRemove("InputMoanProfile");
-                    defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = "Put a valid number";
+                    return false;
+                }
             }
 
             PreferenceSubscreenUBCReputationLoad = function() {
@@ -2872,8 +2718,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputRpMagp");
                     ElementRemove("InputRpMaid");
                     ElementRemove("InputRpMain");
-                    defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = "Put a valid number";
+                    return false;
+                }
             }
 
             PreferenceSubscreenUBCSkillsLoad = function() {
@@ -2945,8 +2794,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputSkillLockpicking");
                     ElementRemove("InputSkillSelfbondage");
                     ElementRemove("InputSkillWillpower");
-                    defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = "Put a valid number";
+                    return false;
+                }
             }
 
             PreferenceSubscreenUBCSpecialModesLoad = function() {
@@ -2984,7 +2836,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCSpecialModesExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCTalkingLoad = function() {
@@ -3068,8 +2920,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputGagLevel");
                     ElementRemove("InputHearingMode");
                     ElementRemove("InputStutterLevel");
-                    defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = "Put a valid number";
+                    return false;
+                }
             }
 
             PreferenceSubscreenUBCVisualEffectsLoad = function() {
@@ -3154,8 +3009,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputBlurMode");
                     ElementRemove("InputTintColor");
                     ElementRemove("InputTintLevel");
-                    defaultExit();
-                } else PreferenceMessage = "Put a valid number";
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = "Put a valid number";
+                    return false;
+                }
             }
 
             PreferenceSubscreenUBCVisualPreferencesLoad = function() {
@@ -3180,7 +3038,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCVisualPreferencesExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             function keyHandler(e) {
@@ -3321,7 +3179,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSettings: Player.OnlineSettings
                 });
-                AfkTimerIsEnabled = Enabled;
+                AfkTimerIsEnabled = true;
                 AfkTimerStart();
             }
         }
@@ -3370,17 +3228,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(1230, 450, 60, 60)) {
                 if ((asylumlimit == true) && (ChatSearchSpace == "Asylum")) {
                     let AsylumList = BackgroundsGenerateList([BackgroundsTagAsylum]);
-                    let listbg = AsylumList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = AsylumList[Roll - 1].Name;
-                    ChatAdminData.Background = ChatAdminBackgroundList[Roll];
+                    if (AsylumList.length > 0) ChatAdminData.Background = randomFrom(AsylumList);
                 } else {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    ChatAdminData.Background = ChatAdminBackgroundList[Roll];
+                    if (ChatAdminBackgroundList?.length > 0) ChatAdminData.Background = randomFrom(ChatAdminBackgroundList);
                 }
                 return;
             }
@@ -4016,10 +3866,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
         if ((cskeys == true) && (event.code === "ArrowUp")) {
             if (BackgroundsList != undefined) {
-                let listbg = BackgroundsList.length;
-                let Roll = Math.floor(Math.random() * listbg);
-                if (Roll == 0) Roll = 1;
-                let name = BackgroundsList[Roll - 1].Name;
+                let name = randomBackgroundName();
                 csname = name;
                 M_MOANER_saveControls();
                 CommonSetScreen("Online", "ChatSearch");
@@ -4120,10 +3967,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (MouseIn(1540, 25, 90, 90)) {
                 if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
+                    let name = randomBackgroundName();
                     Player.Game.ClubCard.Background = name;
                     ServerAccountUpdate.QueueData({
                         Game: Player.Game
@@ -4611,10 +4455,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (event.code === "KeyR") {
                     if (BackgroundsList != undefined) {
-                        let listbg = BackgroundsList.length;
-                        let Roll = Math.floor(Math.random() * listbg);
-                        if (Roll == 0) Roll = 1;
-                        let name = BackgroundsList[Roll - 1].Name;
+                        let name = randomBackgroundName();
                         frname = name;
                         M_MOANER_saveControls();
                         CommonSetScreen("Character", "FriendList");
@@ -4665,10 +4506,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
                     if (BackgroundsList != undefined) {
-                        let listbg = BackgroundsList.length;
-                        let Roll = Math.floor(Math.random() * listbg);
-                        if (Roll == 0) Roll = 1;
-                        let name = BackgroundsList[Roll - 1].Name;
+                        let name = randomBackgroundName();
                         ifname = name;
                         M_MOANER_saveControls();
                         Player.OnlineSharedSettings.UBCShared.ifname = ifname;
@@ -4905,10 +4743,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) {
             if (BackgroundsList != undefined) {
-                let listbg = BackgroundsList.length;
-                let Roll = Math.floor(Math.random() * listbg);
-                if (Roll == 0) Roll = 1;
-                let name = BackgroundsList[Roll - 1].Name;
+                let name = randomBackgroundName();
                 Player.VisualSettings.MainHallBackground = name;
                 ServerAccountUpdate.QueueData({
                     VisualSettings: Player.VisualSettings
@@ -5048,7 +4883,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     modApi.patchFunction(
         "PandoraPrisonRun", {
-            "if (Player.Infiltration.Punishment.Timer > CurrentTime + 3600000) Player.Infiltration.Punishment.Timer = CurrentTime + 3600000;": "",
+            "if (Player.Infiltration.Punishment.Timer > CurrentTime + MS_PER_HOUR) Player.Infiltration.Punishment.Timer = CurrentTime + MS_PER_HOUR;": "",
         }
     );
 
@@ -5151,6 +4986,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.UBC.ubcSettings.sklockpicking = sklockpicking;
                 Player.UBC.ubcSettings.skselfbondage = skselfbondage;
                 Player.UBC.ubcSettings.skwillpower = skwillpower;
+                //Also changed by commands (/cname, /ctitle, /cowner, minigames and missions), not only by this GUI
+                Player.UBC.ubcSettings.cname = cname;
+                Player.UBC.ubcSettings.ctitle = ctitle;
+                Player.UBC.ubcSettings.cowner1 = cowner1;
+                Player.UBC.ubcSettings.cowner2 = cowner2;
+                Player.UBC.ubcSettings.cowner3 = cowner3;
+                Player.UBC.ubcSettings.minigame = minigame;
+                Player.UBC.ubcSettings.mission = mission;
             }
         }
         return next(args);
@@ -5240,11 +5083,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 PreferenceOpenSubscreen("Online", 2);
             }
             if ((MouseIn(1260, 330, 60, 60))) {
-                let listbg = PreferenceOnlineDefaultBackgroundList.length;
-                if (bgall) listbg = BackgroundsList.length;
-                let Roll = Math.floor(Math.random() * listbg);
-                if (Roll == 0) Roll = 1;
-                let name = BackgroundsList[Roll - 1].Name;
+                let name = bgall ? randomBackgroundName() : randomFrom(PreferenceOnlineDefaultBackgroundList);
                 PreferenceOnlineDefaultBackground = name;
                 Player.OnlineSettings.DefaultChatRoomBackground = name;
                 PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
@@ -5291,10 +5130,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     modApi.hookFunction('PrivateClick', 4, (args, next) => {
         if (MouseIn(0, 900, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
             if (BackgroundsList != undefined) {
-                let listbg = BackgroundsList.length;
-                let Roll = Math.floor(Math.random() * listbg);
-                if (Roll == 0) Roll = 1;
-                let name = BackgroundsList[Roll - 1].Name;
+                let name = randomBackgroundName();
                 Player.VisualSettings.PrivateRoomBackground = name;
                 ServerAccountUpdate.QueueData({
                     VisualSettings: Player.VisualSettings
@@ -5369,6 +5205,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
+    //Struggle
+    //Total unrestrict: removing, struggling out of, swapping and lockpicking an item succeed at once.
+    //Every minigame starts here and is ended by its own draw handler, which hands a successful result to
+    //DialogStruggleStop once the progress reaches 100 (or the lockpick success timer has passed).
+    //Marking the minigame as already won keeps BC's own handling of the result: the item change,
+    //the chat message and the return to the item menu. Applying an item to an empty slot is unchanged.
+    //No skill experience is given for these instant wins.
+    modApi.hookFunction('StruggleMinigameStart', 4, (args, next) => {
+        const ret = next(args);
+        const [, MiniGame, PrevItem] = args;
+        if ((unrestrict == 2) && (PrevItem != null) && StruggleMinigameIsRunning()) {
+            if (MiniGame === "LockPick") {
+                StruggleLockPickSet = StruggleLockPickSet.map(() => true);
+                StruggleLockPickProgressSkill = 0;
+                StruggleLockPickSuccessTime = CurrentTime;
+            } else {
+                StruggleProgressSkill = 0;
+                StruggleProgress = 100;
+            }
+        }
+        return ret;
+    });
+
     //Timer Cell
     modApi.hookFunction('CellClick', 4, (args, next) => {
         if (CellOpenTimer < CurrentTime) {
@@ -5388,10 +5247,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835)) {
                 if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
+                    let name = randomBackgroundName();
                     tcname = name;
                     M_MOANER_saveControls();
                     CommonSetScreen("Room", "Cell");
@@ -5729,6 +5585,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Other functions
     //Background
+    function randomFrom(list) {
+        return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function randomBackgroundName() {
+        return randomFrom(BackgroundsList).Name;
+    }
+
     function morebg() {
         let alwaysBackgrounds = [{
                 Name: "AmandaCollarIntro",
@@ -8655,7 +8519,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tunderwear = data.tunderwear;
         Tunlock = data.tunlock;
         Tuntie = data.tuntie;
-        Tvisible = data.visible;
+        Tvisible = data.tvisible;
         Underwear = data.underwear;
         Unlock = data.unlock;
         Untie = data.untie;
@@ -8887,13 +8751,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (unrestrict == 2) {
                                 Player.UBC.ubcSettings.utotal = false;
                                 unrestrict = 0;
-                                Player.CanInteract = function() {
-                                    return !this.HasEffect("Block");
-                                };
-                                Player.CanTalk = function() {
-                                    const GagEffect = SpeechTransformGagGarbleIntensity(this);
-                                    return (GagEffect <= 0);
-                                };
                             }
                         } else {
                             Player.UBC.ubcSettings.noescape = false;
@@ -9088,7 +8945,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let ubc2 = "Does not use Uwall.";
         const shared = character.OnlineSharedSettings || {};
         const shared2 = character.OnlineSharedSettings.UBCShared || {};
-        if (shared.UBC === UBCver || shared.UBC === UBCver0) {
+        //Any UBC version counts: users of an older or newer release are UBC users too
+        if ((typeof shared.UBC === "string") && (shared.UBC != "")) {
             ubc1 = "Is an ULTRAbc user.";
             if (shared2.Unoescape === true) {
                 ubc1 = "UBC in no-escape mode";
@@ -9507,6 +9365,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } else {
             return false;
         }
+    }
+
+    //BC R133 only fills in AllowItem for another player when you click on her (ChatRoomFocusCharacter); until then it is
+    //false, so a command typed without clicking the target first did nothing. Ask BC's own permission check instead.
+    function targetAllowsItems(target) {
+        if (target == null) return false;
+        if (target == Player) return true;
+        if (typeof ServerChatRoomGetAllowItem == "function") target.AllowItem = ServerChatRoomGetAllowItem(Player, target);
+        return target.AllowItem == true;
     }
 
     function TargetSearch(value) {
@@ -9976,12 +9843,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (CellOpenTimer == null) CellOpenTimer = 0;
     }
 
-    //Unrestrict
+    //Unrestrict and forced effects: ModSDK hooks that read the current mode (unrestrict, blindness, blurmode, hearing).
+    //Replacing these functions by assignment made BCX report "Unknown mod not using ModSDK" and dropped other mods' hooks.
+    let playerHooksInstalled = false;
+
+    function installPlayerHooks() {
+        if (playerHooksInstalled) return;
+        playerHooksInstalled = true;
+        const total = (name, value) => modApi.hookFunction(name, 10, (args, next) => (unrestrict == 2) ? value : next(args));
+        total("Player.CanInteract", true);
+        total("Player.CanTalk", true);
+        total("Player.CanChangeOwnClothes", true); //was Player.CanChange, which BC has since renamed
+        total("Player.IsPlugged", false);
+        total("Player.IsVulvaChaste", false);
+        modApi.hookFunction("DialogHasKey", 10, (args, next) => {
+            if (unrestrict != 2) return next(args);
+            const [C] = args;
+            if (C.IsPlayer()) return true;
+            if (C.OnlineSharedSettings.UBC == undefined) return false;
+            if (!C.OnlineSharedSettings.Uwall) return true;
+            return (C.OnlineSharedSettings.Ulist != undefined) && C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber);
+        });
+        modApi.hookFunction("InventoryGroupIsBlocked", 10, (args, next) => (unrestrict >= 1) ? false : next(args));
+        modApi.hookFunction("Player.GetBlindLevel", 10, (args, next) => ((blindness > 0) && (blindness < 5)) ? blindLevels[blindness - 1]() : next(args));
+        modApi.hookFunction("Player.GetBlurLevel", 10, (args, next) => ((blurmode > 0) && (blurmode < 6)) ? blurLevels[blurmode - 1]() : next(args));
+        modApi.hookFunction("Player.GetDeafLevel", 10, (args, next) => ((hearing > 0) && (hearing < 7)) ? deafLevels[hearing - 1]() : next(args));
+    }
+
     function softUnrestrict() {
+        installPlayerHooks();
         unrestrict = 1;
-        InventoryGroupIsBlocked = function(C, GroupName) {
-            return false;
-        }
         Player.GameplaySettings.BlindDisableExamine = false;
         Asset.forEach(e => {
             if (e.Value < 0) e.Value = 1;
@@ -10002,64 +9893,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function totalUnrestrict() {
         softUnrestrict();
         unrestrict = 2;
-        Player.CanInteract = function() {
-            return true;
-        }
-        Player.CanTalk = function() {
-            return true;
-        }
-        Player.IsPlugged = function() {
-            return false;
-        }
-        Player.IsVulvaChaste = function() {
-            return false;
-        }
-        Player.CanChange = function() {
-            return true;
-        }
-        InventoryGroupIsBlocked = function(C, GroupName) {
-            return false;
-        }
-        DialogHasKey = function(C, Item) {
-            if (C.IsPlayer()) {
-                return true;
-            } else {
-                if (C.OnlineSharedSettings.UBC == undefined) {
-                    return false;
-                } else {
-                    if (C.OnlineSharedSettings.Uwall) {
-                        if (C.OnlineSharedSettings.Ulist == undefined) {
-                            return false;
-                        } else {
-                            if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        }
-                    } else {
-                        return true;
-                    }
-                }
-            }
-        }
-        StruggleLockPickProgressStart = function(C, Item) {
-            InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-            ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-            DialogLeave();
-        }
-        StruggleProgressStart = function(C, PrevItem, NextItem) {
-            if (InventoryGet(CurrentCharacter, CurrentCharacter.FocusGroup.Name) == null) {
-                if (C != Player || PrevItem == null || ((PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && ((Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Mounted", true)) || StruggleStrengthGetDifficulty(C, PrevItem, NextItem).auto >= 0))) {
-                    StruggleProgressCurrentMinigame = "Strength";
-                    StruggleStrengthStart(C, PrevItem, NextItem);
-                }
-            } else {
-                InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                InventoryRemove(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-            }
-        }
+        //Player.CanInteract, CanTalk, CanChangeOwnClothes, IsPlugged, IsVulvaChaste and DialogHasKey: see installPlayerHooks
+        //Instant struggling and lockpicking: see the StruggleMinigameStart hook
     }
 
     //Vision
@@ -11284,9 +11119,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function stopDebug() {
-        M_MOANER_logDebug = (msg) => {
-            console.log("DEBUG: " + msg);
-        };
+        M_MOANER_logDebug = (msg) => {};
     }
 
     function M_MOANER_getKeys(obj) {
@@ -11984,7 +11817,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSetTarget(-1);
                 return;
             }
-            if (!target.AllowItem || target.OnlineSharedSettings.UBC === undefined) {
+            if (!targetAllowsItems(target) || target.OnlineSharedSettings.UBC === undefined) {
                 ChatRoomSetTarget(-1);
                 return;
             }
@@ -12628,7 +12461,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterAppearanceFullRandom(Player, true);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -13232,7 +13065,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let [, , ...message] = command.split(" ");
                 let hint = message?.join(" ");
                 let target = TargetSearch(targetname);
-                if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((target != null) && ((target == Player) || (targetAllowsItems(target))) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -13361,7 +13194,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         ChatRoomSendLocal("Locked with " + Lock);
                                         ChatRoomSendLocal("" + asset + " = " + left + "");
                                     }
-                                    if (Inventory.Property.Name == "DeviousPadlock") {
+                                    if (Inventory.Property.IsDeviousLock == true) {
                                         let DOGS = Player.ExtensionSettings.DOGS;
                                         let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
                                         if (DOGSdata.deviousPadlock.itemGroups[Target].unlockTime != undefined) {
@@ -13408,7 +13241,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomCharacterUpdate(Player) :
                     CharacterRefresh(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
                         let msg = "To use the invisible command on other players, they need first to allow Scripts in BC settings.";
@@ -13754,7 +13587,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
-                if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((target != null) && ((target == Player) || (targetAllowsItems(target))) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (dogs == 0) {
                         if (tmpname == tgpname) {
@@ -14493,7 +14326,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterNaked(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -14698,7 +14531,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -15146,7 +14979,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else {
                     let target = TargetSearch(targetname);
-                    if ((target != null) && (target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    if ((target != null) && (targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                         tgpname = getNickname(target);
                         tgpr1 = getPronoun1(target);
                         tgpr2 = getPronoun2(target);
@@ -15386,7 +15219,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -15496,7 +15329,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -15967,7 +15800,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (target) {
                 if (target === Player) {
                     applySleepEffect(Player, tmpname, pronoun1);
-                } else if (target.AllowItem === true && target.OnlineSharedSettings.UBC !== undefined) {
+                } else if (targetAllowsItems(target) && target.OnlineSharedSettings.UBC !== undefined) {
                     const tgpname = getNickname(target);
                     const tgpr2 = getPronoun2(target);
                     if (IsTargetProtected(target)) {
@@ -16051,7 +15884,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     } else {
                         let target = TargetSearch(targetname);
-                        if ((target != null) && (target.AllowItem == true) && (solidity > 0) && (solidity < 100) && (target.OnlineSharedSettings.UBC != undefined)) {
+                        if ((target != null) && (targetAllowsItems(target)) && (solidity > 0) && (solidity < 100) && (target.OnlineSharedSettings.UBC != undefined)) {
                             tgpname = getNickname(target);
                             if (IsTargetProtected(target)) {
                                 let msg = umsg1 + tgpname + umsg2;
@@ -16891,7 +16724,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     SosClick();
                 }
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -17320,7 +17153,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterRandomUnderwear(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -17365,7 +17198,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let lk = stringUnlock2[1];
                 let targetname = stringUnlock2[0];
                 let target = TargetSearch(targetname);
-                if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((target != null) && ((target == Player) || (targetAllowsItems(target))) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (tmpname == tgpname) {
                         if (noescape) {
@@ -17474,7 +17307,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     RealGarblingLevel();
                 }
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -17738,7 +17571,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomCharacterUpdate(Player) :
                     CharacterRefresh(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
                         let msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
@@ -17829,7 +17662,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target != Player) {
-                if (target.AllowItem == false) return;
+                if (!targetAllowsItems(target)) return;
                 if (target.OnlineSharedSettings.UBC == undefined) return;
                 tgpname = getNickname(target);
                 if (IsTargetProtected(target)) {
@@ -17865,7 +17698,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target != Player) {
-                if (target.AllowItem == false) return;
+                if (!targetAllowsItems(target)) return;
                 if (target.OnlineSharedSettings.UBC == undefined) return;
                 tgpname = getNickname(target);
                 if (IsTargetProtected(target)) {
@@ -17908,7 +17741,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target != Player) {
-                if (target.AllowItem == false) return;
+                if (!targetAllowsItems(target)) return;
                 if (target.OnlineSharedSettings.UBC == undefined) return;
                 tgpname = getNickname(target);
                 if (IsTargetProtected(target)) {
@@ -17946,7 +17779,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target != Player) {
-                if (target.AllowItem == false) return;
+                if (!targetAllowsItems(target)) return;
                 if (target.OnlineSharedSettings.UBC == undefined) return;
                 tgpname = getNickname(target);
                 if (IsTargetProtected(target)) {
