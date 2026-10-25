@@ -116,6 +116,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     window.UBCver = UBCver;
     let ini = 0;
     let kp = 0;
+    //False until M_MOANER_initControls has read the saved settings: nothing may be saved before that
+    let ubcSettingsLoaded = false;
     let altinfo = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
     let lastAfkMessageTime = 0;
@@ -826,6 +828,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_initControls() {
         let data = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
+        ubcSettingsLoaded = true;
         if (data == null || data == undefined) {
             UBCdefault();
             M_MOANER_orgasmActive = true;
@@ -897,6 +900,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_saveControls() {
+        if (!ubcSettingsLoaded) return;
         let controls = {
             "orgasmMoan": M_MOANER_orgasmActive,
             "script": M_MOANER_scriptOn,
