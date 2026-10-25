@@ -9543,6 +9543,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    //BC R133 only fills in AllowItem for another player when you click on her (ChatRoomFocusCharacter); until then it is
+    //false, so a command typed without clicking the target first did nothing. Ask BC's own permission check instead.
+    function targetAllowsItems(target) {
+        if (target == null) return false;
+        if (target == Player) return true;
+        if (typeof ServerChatRoomGetAllowItem == "function") target.AllowItem = ServerChatRoomGetAllowItem(Player, target);
+        return target.AllowItem == true;
+    }
+
     function TargetSearch(value) {
         if (!value) return;
         return ChatRoomCharacter.find((Character) => {
@@ -12018,7 +12027,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomSetTarget(-1);
                 return;
             }
-            if (!target.AllowItem || target.OnlineSharedSettings.UBC === undefined) {
+            if (!targetAllowsItems(target) || target.OnlineSharedSettings.UBC === undefined) {
                 ChatRoomSetTarget(-1);
                 return;
             }
@@ -12662,7 +12671,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterAppearanceFullRandom(Player, true);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -13266,7 +13275,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let [, , ...message] = command.split(" ");
                 let hint = message?.join(" ");
                 let target = TargetSearch(targetname);
-                if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((target != null) && ((target == Player) || (targetAllowsItems(target))) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -13442,7 +13451,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomCharacterUpdate(Player) :
                     CharacterRefresh(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
                         let msg = "To use the invisible command on other players, they need first to allow Scripts in BC settings.";
@@ -13788,7 +13797,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                 }
-                if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((target != null) && ((target == Player) || (targetAllowsItems(target))) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (dogs == 0) {
                         if (tmpname == tgpname) {
@@ -14527,7 +14536,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterNaked(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -14732,7 +14741,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -15180,7 +15189,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 } else {
                     let target = TargetSearch(targetname);
-                    if ((target != null) && (target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                    if ((target != null) && (targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                         tgpname = getNickname(target);
                         tgpr1 = getPronoun1(target);
                         tgpr2 = getPronoun2(target);
@@ -15420,7 +15429,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -15530,7 +15539,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterFullRandomRestrain(Player, "ALL");
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -16001,7 +16010,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (target) {
                 if (target === Player) {
                     applySleepEffect(Player, tmpname, pronoun1);
-                } else if (target.AllowItem === true && target.OnlineSharedSettings.UBC !== undefined) {
+                } else if (targetAllowsItems(target) && target.OnlineSharedSettings.UBC !== undefined) {
                     const tgpname = getNickname(target);
                     const tgpr2 = getPronoun2(target);
                     if (IsTargetProtected(target)) {
@@ -16085,7 +16094,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     } else {
                         let target = TargetSearch(targetname);
-                        if ((target != null) && (target.AllowItem == true) && (solidity > 0) && (solidity < 100) && (target.OnlineSharedSettings.UBC != undefined)) {
+                        if ((target != null) && (targetAllowsItems(target)) && (solidity > 0) && (solidity < 100) && (target.OnlineSharedSettings.UBC != undefined)) {
                             tgpname = getNickname(target);
                             if (IsTargetProtected(target)) {
                                 let msg = umsg1 + tgpname + umsg2;
@@ -16925,7 +16934,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     SosClick();
                 }
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -17354,7 +17363,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 CharacterRandomUnderwear(Player);
                 ChatRoomCharacterUpdate(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -17399,7 +17408,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let lk = stringUnlock2[1];
                 let targetname = stringUnlock2[0];
                 let target = TargetSearch(targetname);
-                if ((target != null) && ((target == Player) || (target.AllowItem == true)) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((target != null) && ((target == Player) || (targetAllowsItems(target))) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (tmpname == tgpname) {
                         if (noescape) {
@@ -17508,7 +17517,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     RealGarblingLevel();
                 }
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (IsTargetProtected(target)) {
                         let msg = umsg1 + tgpname + umsg2;
@@ -17772,7 +17781,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomCharacterUpdate(Player) :
                     CharacterRefresh(Player);
             } else {
-                if ((target.AllowItem == true) && (target.OnlineSharedSettings.UBC != undefined)) {
+                if ((targetAllowsItems(target)) && (target.OnlineSharedSettings.UBC != undefined)) {
                     tgpname = getNickname(target);
                     if (target.OnlineSharedSettings.ScriptPermissions.Hide.permission == 0) {
                         let msg = "To use the visible command on other players, they need first to allow Scripts in BC settings.";
@@ -17863,7 +17872,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target != Player) {
-                if (target.AllowItem == false) return;
+                if (!targetAllowsItems(target)) return;
                 if (target.OnlineSharedSettings.UBC == undefined) return;
                 tgpname = getNickname(target);
                 if (IsTargetProtected(target)) {
@@ -17899,7 +17908,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target != Player) {
-                if (target.AllowItem == false) return;
+                if (!targetAllowsItems(target)) return;
                 if (target.OnlineSharedSettings.UBC == undefined) return;
                 tgpname = getNickname(target);
                 if (IsTargetProtected(target)) {
@@ -17942,7 +17951,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target != Player) {
-                if (target.AllowItem == false) return;
+                if (!targetAllowsItems(target)) return;
                 if (target.OnlineSharedSettings.UBC == undefined) return;
                 tgpname = getNickname(target);
                 if (IsTargetProtected(target)) {
@@ -17980,7 +17989,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (args != "") target = TargetSearch(args);
             if (!target) return;
             if (target != Player) {
-                if (target.AllowItem == false) return;
+                if (!targetAllowsItems(target)) return;
                 if (target.OnlineSharedSettings.UBC == undefined) return;
                 tgpname = getNickname(target);
                 if (IsTargetProtected(target)) {
