@@ -3229,17 +3229,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (MouseIn(1230, 450, 60, 60)) {
                 if ((asylumlimit == true) && (ChatSearchSpace == "Asylum")) {
                     let AsylumList = BackgroundsGenerateList([BackgroundsTagAsylum]);
-                    let listbg = AsylumList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = AsylumList[Roll - 1].Name;
-                    ChatAdminData.Background = ChatAdminBackgroundList[Roll];
+                    if (AsylumList.length > 0) ChatAdminData.Background = randomFrom(AsylumList);
                 } else {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    ChatAdminData.Background = ChatAdminBackgroundList[Roll];
+                    if (ChatAdminBackgroundList?.length > 0) ChatAdminData.Background = randomFrom(ChatAdminBackgroundList);
                 }
                 return;
             }
@@ -3875,10 +3867,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if ((cskeys == true) && (event.code === "ArrowRight")) ExtClick();
         if ((cskeys == true) && (event.code === "ArrowUp")) {
             if (BackgroundsList != undefined) {
-                let listbg = BackgroundsList.length;
-                let Roll = Math.floor(Math.random() * listbg);
-                if (Roll == 0) Roll = 1;
-                let name = BackgroundsList[Roll - 1].Name;
+                let name = randomBackgroundName();
                 csname = name;
                 M_MOANER_saveControls();
                 CommonSetScreen("Online", "ChatSearch");
@@ -3979,10 +3968,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if (MouseIn(1540, 25, 90, 90)) {
                 if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
+                    let name = randomBackgroundName();
                     Player.Game.ClubCard.Background = name;
                     ServerAccountUpdate.QueueData({
                         Game: Player.Game
@@ -4470,10 +4456,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if (event.code === "KeyR") {
                     if (BackgroundsList != undefined) {
-                        let listbg = BackgroundsList.length;
-                        let Roll = Math.floor(Math.random() * listbg);
-                        if (Roll == 0) Roll = 1;
-                        let name = BackgroundsList[Roll - 1].Name;
+                        let name = randomBackgroundName();
                         frname = name;
                         M_MOANER_saveControls();
                         CommonSetScreen("Character", "FriendList");
@@ -4524,10 +4507,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((MouseX >= 1695) && (MouseX < 1785) && (MouseY >= 910) && (MouseY < 1000)) {
                     if (BackgroundsList != undefined) {
-                        let listbg = BackgroundsList.length;
-                        let Roll = Math.floor(Math.random() * listbg);
-                        if (Roll == 0) Roll = 1;
-                        let name = BackgroundsList[Roll - 1].Name;
+                        let name = randomBackgroundName();
                         ifname = name;
                         M_MOANER_saveControls();
                         Player.OnlineSharedSettings.UBCShared.ifname = ifname;
@@ -4764,10 +4744,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) {
             if (BackgroundsList != undefined) {
-                let listbg = BackgroundsList.length;
-                let Roll = Math.floor(Math.random() * listbg);
-                if (Roll == 0) Roll = 1;
-                let name = BackgroundsList[Roll - 1].Name;
+                let name = randomBackgroundName();
                 Player.VisualSettings.MainHallBackground = name;
                 ServerAccountUpdate.QueueData({
                     VisualSettings: Player.VisualSettings
@@ -5107,11 +5084,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 PreferenceOpenSubscreen("Online", 2);
             }
             if ((MouseIn(1260, 330, 60, 60))) {
-                let listbg = PreferenceOnlineDefaultBackgroundList.length;
-                if (bgall) listbg = BackgroundsList.length;
-                let Roll = Math.floor(Math.random() * listbg);
-                if (Roll == 0) Roll = 1;
-                let name = BackgroundsList[Roll - 1].Name;
+                let name = bgall ? randomBackgroundName() : randomFrom(PreferenceOnlineDefaultBackgroundList);
                 PreferenceOnlineDefaultBackground = name;
                 Player.OnlineSettings.DefaultChatRoomBackground = name;
                 PreferenceOnlineDefaultBackgroundIndex = PreferenceOnlineDefaultBackgroundList.indexOf(PreferenceOnlineDefaultBackground);
@@ -5158,10 +5131,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     modApi.hookFunction('PrivateClick', 4, (args, next) => {
         if (MouseIn(0, 900, 49, 49) && LogQuery("RentRoom", "PrivateRoom")) {
             if (BackgroundsList != undefined) {
-                let listbg = BackgroundsList.length;
-                let Roll = Math.floor(Math.random() * listbg);
-                if (Roll == 0) Roll = 1;
-                let name = BackgroundsList[Roll - 1].Name;
+                let name = randomBackgroundName();
                 Player.VisualSettings.PrivateRoomBackground = name;
                 ServerAccountUpdate.QueueData({
                     VisualSettings: Player.VisualSettings
@@ -5278,10 +5248,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835)) {
                 if (BackgroundsList != undefined) {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
+                    let name = randomBackgroundName();
                     tcname = name;
                     M_MOANER_saveControls();
                     CommonSetScreen("Room", "Cell");
@@ -5619,6 +5586,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Other functions
     //Background
+    function randomFrom(list) {
+        return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function randomBackgroundName() {
+        return randomFrom(BackgroundsList).Name;
+    }
+
     function morebg() {
         let alwaysBackgrounds = [{
                 Name: "AmandaCollarIntro",
