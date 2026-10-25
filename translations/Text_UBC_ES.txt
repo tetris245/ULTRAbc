@@ -1450,3 +1450,7 @@ None
 Ninguna
 UBC follows BC
 UBC sigue a BC
+When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself.
+Si está marcada, UBC usa el idioma de BC. Desmárcala para elegir tú el idioma de UBC.
+UBC has no {language} translation yet, so it uses English or 中文: choose one in the UBC list.
+UBC aún no tiene traducción al idioma «{language}», así que usa English o 中文: elige uno en la lista de UBC.

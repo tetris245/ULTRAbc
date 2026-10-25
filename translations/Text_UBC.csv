@@ -735,3 +735,5 @@ CommandUlang,(language): changes the UBC language. auto = same language as BC.
 UlangUsage,Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
 UlangChanged,UBC language: {language}
 UbcLanguageSync,UBC follows BC
+UbcLanguageSyncHint,"When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself."
+UbcLanguageMissing,"UBC has no {language} translation yet, so it uses English or 中文: choose one in the UBC list."

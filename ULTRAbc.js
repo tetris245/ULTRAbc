@@ -213,9 +213,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function UBCT(key, values) {
         const wanted = ubcWantedLanguage();
         if (wanted !== ubcTextLanguage) ubcTextSwitch(wanted);
+        return ubcTextGet(ubcTextLanguage, key, values);
+    }
+
+    //Like UBCT, but in a given BC language. The BC languages that UBC does not have yet only have a few
+    //login-screen texts (Text_UBC_DE.txt, ...); everything else falls back to English.
+    function UBCTIn(lang, key, values) {
+        if (lang !== "EN" && !ubcTextTranslations.has(lang)) ubcTextLoadLanguage(lang);
+        return ubcTextGet(lang, key, values);
+    }
+
+    function ubcTextGet(lang, key, values) {
         let text = ubcTextEnglish.get(key);
         if (text === undefined) return "MISSING UBC TEXT: " + key;
-        const dict = ubcTextTranslations.get(ubcTextLanguage);
+        const dict = ubcTextTranslations.get(lang);
         if (dict instanceof Map) {
             // BC trims the lines of translation files, so the spaces around the English text are kept as they are
             const core = text.trim();
@@ -350,8 +361,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const label = ubcLoginLanguageLabel("AUTO");
             if (auto.textContent !== label) auto.textContent = label;
         }
-        const syncText = UBCT("UbcLanguageSync");
+        //The checkbox speaks the BC language (all BC languages have these texts), or Spanish when UBC is in Spanish.
+        //Its tooltip explains it, and says why UBC cannot follow a BC language it does not have yet (marked with "ⓘ").
+        const missing = !UBC_LANGUAGES_FROM_BC[TranslationLanguage];
+        const syncLanguage = ubcTextLanguage === "ES" ? "ES" : TranslationLanguage;
+        const syncText = UBCTIn(syncLanguage, "UbcLanguageSync") + (missing ? " ⓘ" : "");
+        const syncHint = missing
+            ? UBCTIn(syncLanguage, "UbcLanguageMissing", { language: TranslationGetLanguageName(TranslationLanguage) })
+            : UBCTIn(syncLanguage, "UbcLanguageSyncHint");
         if (sync.lastChild.textContent !== syncText) sync.lastChild.textContent = syncText;
+        if (sync.title !== syncHint) sync.title = syncHint;
         const bcStyle = getComputedStyle(bcPicker);
         picker.style.width = "auto";
         picker.style.minWidth = bcStyle.width;
