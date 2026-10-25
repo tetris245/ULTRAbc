@@ -1883,6 +1883,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
 
+        function controllerAddArea(X, Y) {
+            if (typeof ControllerAddActiveArea === "function") { // R133
+                ControllerAddActiveArea(X, Y);
+            } else if (typeof setButton === "function") { // older versions
+                setButton(X, Y);
+            }
+        }
+
         async function layermenu() {
             await waitFor(() => !!Player?.AppearanceLayers);
             modApi.hookFunction('Layering.Load', 4, (args, next) => {
@@ -1951,7 +1959,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             function DrawTextWrapGood(Text, X, Y, Width, Height, ForeColor = "Black", BackColor = null, BorderColor = "Black", MaxLine = null) {
                 if (controllerIsActive()) {
-                    setButton(X, Y);
+                    controllerAddArea(X, Y);
                 }
                 // Draw the rectangle if we need too
                 if (BackColor != null) {
@@ -2272,7 +2280,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ControllerIgnoreButton = false;
                     DrawTextFit(ubcSettingCategoryLabels[ubcSettingsCategories[A]], 700 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
                     if (controllerIsActive()) {
-                        setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
+                        controllerAddArea(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
                     }
                 }
             }
