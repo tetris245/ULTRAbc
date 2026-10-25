@@ -104,6 +104,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     const UBCver = "6.3.2";
+    const UBCver0 = "6.3.1";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
@@ -8945,8 +8946,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let ubc2 = "Does not use Uwall.";
         const shared = character.OnlineSharedSettings || {};
         const shared2 = character.OnlineSharedSettings.UBCShared || {};
-        //Any UBC version counts: users of an older or newer release are UBC users too
-        if ((typeof shared.UBC === "string") && (shared.UBC != "")) {
+        if (shared.UBC === UBCver || shared.UBC === UBCver0) {
             ubc1 = "Is an ULTRAbc user.";
             if (shared2.Unoescape === true) {
                 ubc1 = "UBC in no-escape mode";
