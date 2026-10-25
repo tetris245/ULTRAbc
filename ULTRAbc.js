@@ -117,7 +117,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Languages, handled like BC does it: an English CSV file (key,text) and, for each other language,
     //a TXT file with pairs of lines (English text, then its translation). The language follows the BC
-    //language unless the player chose another one with /ulang, and can be changed while playing.
+    //language unless the player chose another one, and can be changed while playing:
+    // - the UBC language picker on the login screen saves the choice on this device
+    // - /ulang saves it on the account, which wins after login (also when UBC is loaded at account level)
     const UBC_SCRIPT_URL = document.currentScript?.src?.includes("ULTRAbc") ? document.currentScript.src : "https://tetris245.github.io/ultrabc.github.io/ULTRAbc.js";
     const UBC_TEXT_URL = UBC_SCRIPT_URL.replace(/[^/]*$/, "") + "translations/";
     const UBC_LANGUAGES = ["EN", "CN", "ES"];
@@ -125,14 +127,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const ubcTextEnglish = new Map();
     const ubcTextTranslations = new Map(); // language -> Map(English text -> translation), or a Promise while loading
     const ubcTextRebuildListeners = [];
-    let ubcLanguageSetting = "AUTO";
+    const UBC_LANGUAGE_ACCOUNT_KEY = "ULTRAbcLanguage";
+    let ubcLanguageSetting = "AUTO"; // this device
     try {
         ubcLanguageSetting = localStorage.getItem("UBCLanguage") ?? "AUTO";
     } catch {}
+    let ubcAccountLanguageSetting = null; // the account, once logged in and if it has one
     let ubcTextLanguage = "EN";
 
+    function ubcCurrentLanguageSetting() {
+        return ubcAccountLanguageSetting ?? ubcLanguageSetting;
+    }
+
     function ubcWantedLanguage() {
-        if (UBC_LANGUAGES.includes(ubcLanguageSetting)) return ubcLanguageSetting;
+        const setting = ubcCurrentLanguageSetting();
+        if (UBC_LANGUAGES.includes(setting)) return setting;
         return UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? "EN";
     }
 
@@ -207,18 +216,78 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return text.replace(/\{\{|\}\}|\{([\w$]+)\}/g, (m, name) => name === undefined ? m[0] : (values && name in values ? values[name] : m));
     }
 
-    function UBCSetLanguage(setting) {
+    //setting is AUTO (same as BC) or one of UBC_LANGUAGES. It is always saved on this device,
+    //and also on the account when saveOnAccount is true and a player is logged in.
+    function UBCSetLanguage(setting, saveOnAccount = false) {
         ubcLanguageSetting = setting;
         try {
             if (setting === "AUTO") localStorage.removeItem("UBCLanguage");
             else localStorage.setItem("UBCLanguage", setting);
         } catch {}
+        if (saveOnAccount && Player?.ExtensionSettings) {
+            ubcAccountLanguageSetting = setting;
+            Player.ExtensionSettings[UBC_LANGUAGE_ACCOUNT_KEY] = setting;
+            ServerPlayerExtensionSettingsSync(UBC_LANGUAGE_ACCOUNT_KEY);
+        }
         const wanted = ubcWantedLanguage();
         if (wanted !== ubcTextLanguage) return ubcTextSwitch(wanted);
         return Promise.resolve();
     }
 
+    //After login, the language saved on the account (if any) replaces the one of this device
+    async function ubcLoadAccountLanguage() {
+        while (!Player?.AccountName || !Player.ExtensionSettings) await new Promise(resolve => setTimeout(resolve, 500));
+        const setting = Player.ExtensionSettings[UBC_LANGUAGE_ACCOUNT_KEY];
+        if ((setting === "AUTO") || UBC_LANGUAGES.includes(setting)) {
+            ubcAccountLanguageSetting = setting;
+            const wanted = ubcWantedLanguage();
+            if (wanted !== ubcTextLanguage) ubcTextSwitch(wanted);
+        }
+    }
+
+    //UBC language picker under the BC one on the login screen. It offers "same as BC" and Spanish, the language
+    //BC does not have; English or Chinese chosen with /ulang is listed too, so the picker shows the real choice.
+    const UBC_LOGIN_LANGUAGE_ID = "ubc-login-language";
+    const UBC_LANGUAGE_NAMES = { EN: "English", CN: "中文", ES: "Español" };
+    const UBC_LANGUAGE_FLAGS = { AUTO: "\u{1F310}", EN: "\u{1F1EC}\u{1F1E7}", CN: "\u{1F1E8}\u{1F1F3}", ES: "\u{1F1EA}\u{1F1F8}" };
+
+    function ubcLoginLanguageLabel(value) {
+        if (value !== "AUTO") return `${UBC_LANGUAGE_FLAGS[value]} UBC: ${UBC_LANGUAGE_NAMES[value]}`;
+        const sameAsBC = UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? "EN";
+        return UBC_LANGUAGE_FLAGS.AUTO + " " + UBCT("UbcLanguageAuto", { language: UBC_LANGUAGE_NAMES[sameAsBC] });
+    }
+
+    //Called on each LoginRun: creates the picker once, then keeps its labels (BC language), size and font (flags) up to date
+    function ubcLoginLanguagePicker() {
+        const footer = document.getElementById(LoginIDs.footer);
+        const bcPicker = document.getElementById(LoginIDs.language);
+        if (!footer || !bcPicker) return;
+        let picker = document.getElementById(UBC_LOGIN_LANGUAGE_ID);
+        if (!picker) {
+            const current = ubcCurrentLanguageSetting();
+            const values = ["AUTO", "ES"];
+            if (UBC_LANGUAGES.includes(current) && !values.includes(current)) values.push(current);
+            const options = values.map(value => ({
+                children: [ubcLoginLanguageLabel(value)],
+                attributes: { value, selected: value === current },
+            }));
+            picker = ElementCreateDropdown(UBC_LOGIN_LANGUAGE_ID, options, function() {
+                UBCSetLanguage(this.value);
+            });
+            footer.appendChild(picker);
+        }
+        for (const option of picker.options) {
+            const label = ubcLoginLanguageLabel(option.value);
+            if (option.textContent !== label) option.textContent = label;
+        }
+        const bcStyle = getComputedStyle(bcPicker);
+        picker.style.width = "auto";
+        picker.style.minWidth = bcStyle.width;
+        picker.style.fontFamily = bcStyle.fontFamily;
+    }
+
     await ubcTextLoad();
+    ubcLoadAccountLanguage();
 
     let ini = 0;
     let kp = 0;
@@ -1354,11 +1423,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
         await waitFor(() => ServerSocket && ServerIsConnected);
 
-        const UBC_TIPS = [
+        const UBC_TIPS = [];
+        UBCTOnRebuild(() => UBC_TIPS.splice(0, UBC_TIPS.length,
             UBCT("SeeMoreStarsWithTheUbcOptions"),
             UBCT("TipUseTheUhelpCommandInChatOr"),
             UBCT("EnjoyAllTheUbcOptionsAndCommands")
-        ]
+        ));
 
         const ubcSettingsKey = () => "bc_moaner_" + Player.MemberNumber;
 
@@ -2012,19 +2082,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCVisualPreferences"
             ];
             const ubcSettingCategoryLabels = {
-                UBCBackgrounds: UBCT("Backgrounds"),
-                UBCButtons: UBCT("Buttons"),
-                UBCCheats: UBCT("Cheats"),
-                UBCHotkeys: UBCT("Hotkeys"),
-                UBCMaps: UBCT("Maps"),
-                UBCMisc: UBCT("Misc"),
-                UBCMoaner: UBCT("Moaner"),
-                UBCReputation: UBCT("Reputation"),
-                UBCSkills: UBCT("Skills"),
-                UBCSpecialModes: UBCT("SpecialModes"),
-                UBCTalking: UBCT("Talking"),
-                UBCVisualEffects: UBCT("VisualEffects"),
-                UBCVisualPreferences: UBCT("VisualPreferences")
+                get UBCBackgrounds() { return UBCT("Backgrounds"); },
+                get UBCButtons() { return UBCT("Buttons"); },
+                get UBCCheats() { return UBCT("Cheats"); },
+                get UBCHotkeys() { return UBCT("Hotkeys"); },
+                get UBCMaps() { return UBCT("Maps"); },
+                get UBCMisc() { return UBCT("Misc"); },
+                get UBCMoaner() { return UBCT("Moaner"); },
+                get UBCReputation() { return UBCT("Reputation"); },
+                get UBCSkills() { return UBCT("Skills"); },
+                get UBCSpecialModes() { return UBCT("SpecialModes"); },
+                get UBCTalking() { return UBCT("Talking"); },
+                get UBCVisualEffects() { return UBCT("VisualEffects"); },
+                get UBCVisualPreferences() { return UBCT("VisualPreferences"); }
             };
             const MENU_ELEMENT_X_OFFSET = 1050;
 
@@ -4938,6 +5008,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Login
     modApi.hookFunction('LoginRun', 4, (args, next) => {
+        ubcLoginLanguagePicker();
         DrawButton(750, 145, 500, 60, UBCT("UltrabcReady", { UBCver }), "Pink", "", "");
         return next(args);
     });
@@ -16853,7 +16924,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(UBCT("UlangUsage", { language: ubcTextLanguage }));
                 return;
             }
-            UBCSetLanguage(setting).then(() => infomsg(UBCT("UlangChanged", { language: ubcTextLanguage })));
+            UBCSetLanguage(setting, true).then(() => infomsg(UBCT("UlangChanged", { language: ubcTextLanguage })));
         }
     }])
 

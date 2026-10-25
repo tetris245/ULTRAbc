@@ -1262,3 +1262,5 @@ Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language a
 使用 <b>/ulang</b> （语言）更改 UBC 的语言：\nauto = 与 BC 相同的语言（如果 UBC 没有 BC 使用的语言，则为英语）\nen = 英语 - cn = 中文 - es = 西班牙语\n当前 UBC 语言：{language}
 UBC language: {language}
 UBC 语言：{language}
+UBC: {language} (= BC)
+UBC：{language}（= BC）
