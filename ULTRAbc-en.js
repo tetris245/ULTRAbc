@@ -5177,6 +5177,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.UBC.ubcSettings.sklockpicking = sklockpicking;
                 Player.UBC.ubcSettings.skselfbondage = skselfbondage;
                 Player.UBC.ubcSettings.skwillpower = skwillpower;
+                //Also changed by commands (/cname, /ctitle, /cowner, minigames and missions), not only by this GUI
+                Player.UBC.ubcSettings.cname = cname;
+                Player.UBC.ubcSettings.ctitle = ctitle;
+                Player.UBC.ubcSettings.cowner1 = cowner1;
+                Player.UBC.ubcSettings.cowner2 = cowner2;
+                Player.UBC.ubcSettings.cowner3 = cowner3;
+                Player.UBC.ubcSettings.minigame = minigame;
+                Player.UBC.ubcSettings.mission = mission;
             }
         }
         return next(args);
