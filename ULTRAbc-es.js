@@ -3077,7 +3077,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuInput(200, "Controlar la animación del objeto (0-2):", "animstate", "InputAnimControl",
                     "Introduce un número entre 0 y 2 para controlar la animación integrada en algunos objetos, como la caja futurista: 0 Sin control - 1 Control parcial (2 actualizaciones por segundo) - 2 Control total (sin animación). Nota importante: modificar la animación del objeto puede provocar, en algunos casos, efectos inesperados, como problemas gráficos, errores o inconsistencias. Úsela solo si experimenta problemas de lentitud.", 104
                 );
-				addMenuCheckbox(64, 64, Desactivar efecto en la pantalla de pitidos: ", "noefbeep",
+				addMenuCheckbox(64, 64, "Desactivar efecto en la pantalla de pitidos: ", "noefbeep",
                     "Por defecto, BC aplica un efecto de transparencia a la pantalla de pitidos de la lista de amigos. Si no te gusta, ¡simplemente selecciona esta opción!", false, 240
                 );
                 addMenuCheckbox(64, 64, "Desactivar efecto gris en el guardarropa: ", "nograywr",
