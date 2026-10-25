@@ -13361,7 +13361,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                         ChatRoomSendLocal("Locked with " + Lock);
                                         ChatRoomSendLocal("" + asset + " = " + left + "");
                                     }
-                                    if (Inventory.Property.Name == "DeviousPadlock") {
+                                }
+                                if (Inventory.Property.IsDeviousLock != null) {
+                                    if (Inventory.Property.IsDeviousLock == true) {
                                         let DOGS = Player.ExtensionSettings.DOGS;
                                         let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
                                         if (DOGSdata.deviousPadlock.itemGroups[Target].unlockTime != undefined) {
