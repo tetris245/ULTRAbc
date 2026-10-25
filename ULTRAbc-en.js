@@ -2366,24 +2366,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 profile = data.profile;
                 reaction = data.reaction;
                 BabyTalkOn = false;
-                if ((blindness > 0) && (blindness < 5)) {
-                    let fn1 = blindLevels[blindness - 1];
-                    fn1();
-                    Player.GetBlindLevel = fn1;
-                }
-                if ((blurmode > 0) && (blurmode < 6)) {
-                    let fn2 = blurLevels[blurmode - 1];
-                    fn2();
-                    Player.GetBlurLevel = fn2;
-                }
+                installPlayerHooks(); //forced blindness, blurry vision and hearing apply through these hooks
                 GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
-                if ((hearing > 0) && (hearing < 7)) {
-                    let fn3 = deafLevels[hearing - 1];
-                    fn3();
-                    Player.GetDeafLevel = fn3;
-                }
                 if (profile == 0) profileName = "default";
                 if (profile == 1) profileName = "bunny";
                 if (profile == 2) profileName = "cow";
@@ -2442,13 +2428,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
                 if ((noescape == true) && (unrestrict == 2)) {
                     Player.UBC.ubcSettings.utotal = false;
-                    Player.CanInteract = function() {
-                        return !this.HasEffect("Block");
-                    };
-                    Player.CanTalk = function() {
-                        const GagEffect = SpeechTransformGagGarbleIntensity(this);
-                        return (GagEffect <= 0);
-                    };
                     unrestrict = 0;
                     M_MOANER_saveControls();
                 }
@@ -8944,13 +8923,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (unrestrict == 2) {
                                 Player.UBC.ubcSettings.utotal = false;
                                 unrestrict = 0;
-                                Player.CanInteract = function() {
-                                    return !this.HasEffect("Block");
-                                };
-                                Player.CanTalk = function() {
-                                    const GagEffect = SpeechTransformGagGarbleIntensity(this);
-                                    return (GagEffect <= 0);
-                                };
                             }
                         } else {
                             Player.UBC.ubcSettings.noescape = false;
@@ -10042,12 +10014,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (CellOpenTimer == null) CellOpenTimer = 0;
     }
 
-    //Unrestrict
+    //Unrestrict and forced effects: ModSDK hooks that read the current mode (unrestrict, blindness, blurmode, hearing).
+    //Replacing these functions by assignment made BCX report "Unknown mod not using ModSDK" and dropped other mods' hooks.
+    let playerHooksInstalled = false;
+
+    function installPlayerHooks() {
+        if (playerHooksInstalled) return;
+        playerHooksInstalled = true;
+        const total = (name, value) => modApi.hookFunction(name, 10, (args, next) => (unrestrict == 2) ? value : next(args));
+        total("Player.CanInteract", true);
+        total("Player.CanTalk", true);
+        total("Player.CanChangeOwnClothes", true); //was Player.CanChange, which BC has since renamed
+        total("Player.IsPlugged", false);
+        total("Player.IsVulvaChaste", false);
+        modApi.hookFunction("DialogHasKey", 10, (args, next) => {
+            if (unrestrict != 2) return next(args);
+            const [C] = args;
+            if (C.IsPlayer()) return true;
+            if (C.OnlineSharedSettings.UBC == undefined) return false;
+            if (!C.OnlineSharedSettings.Uwall) return true;
+            return (C.OnlineSharedSettings.Ulist != undefined) && C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber);
+        });
+        modApi.hookFunction("InventoryGroupIsBlocked", 10, (args, next) => (unrestrict >= 1) ? false : next(args));
+        modApi.hookFunction("Player.GetBlindLevel", 10, (args, next) => ((blindness > 0) && (blindness < 5)) ? blindLevels[blindness - 1]() : next(args));
+        modApi.hookFunction("Player.GetBlurLevel", 10, (args, next) => ((blurmode > 0) && (blurmode < 6)) ? blurLevels[blurmode - 1]() : next(args));
+        modApi.hookFunction("Player.GetDeafLevel", 10, (args, next) => ((hearing > 0) && (hearing < 7)) ? deafLevels[hearing - 1]() : next(args));
+    }
+
     function softUnrestrict() {
+        installPlayerHooks();
         unrestrict = 1;
-        InventoryGroupIsBlocked = function(C, GroupName) {
-            return false;
-        }
         Player.GameplaySettings.BlindDisableExamine = false;
         Asset.forEach(e => {
             if (e.Value < 0) e.Value = 1;
@@ -10068,47 +10064,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function totalUnrestrict() {
         softUnrestrict();
         unrestrict = 2;
-        Player.CanInteract = function() {
-            return true;
-        }
-        Player.CanTalk = function() {
-            return true;
-        }
-        Player.IsPlugged = function() {
-            return false;
-        }
-        Player.IsVulvaChaste = function() {
-            return false;
-        }
-        Player.CanChange = function() {
-            return true;
-        }
-        InventoryGroupIsBlocked = function(C, GroupName) {
-            return false;
-        }
-        DialogHasKey = function(C, Item) {
-            if (C.IsPlayer()) {
-                return true;
-            } else {
-                if (C.OnlineSharedSettings.UBC == undefined) {
-                    return false;
-                } else {
-                    if (C.OnlineSharedSettings.Uwall) {
-                        if (C.OnlineSharedSettings.Ulist == undefined) {
-                            return false;
-                        } else {
-                            if (C.OnlineSharedSettings.Ulist.includes(Player.MemberNumber)) {
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        }
-                    } else {
-                        return true;
-                    }
-                }
-            }
-        }
+        //Player.CanInteract, CanTalk, CanChangeOwnClothes, IsPlugged, IsVulvaChaste and DialogHasKey: see installPlayerHooks
         //Instant struggling and lockpicking: see the StruggleMinigameStart hook
     }
 
