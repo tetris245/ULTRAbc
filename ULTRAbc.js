@@ -223,6 +223,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         try {
             if (setting === "AUTO") localStorage.removeItem("UBCLanguage");
             else localStorage.setItem("UBCLanguage", setting);
+            if (setting === "AUTO") localStorage.setItem("UBCLanguageSync", "1");
+            if ((setting === "EN") || (setting === "CN")) localStorage.setItem("UBCLanguageSync", "0");
         } catch {}
         if (saveOnAccount && Player?.ExtensionSettings) {
             ubcAccountLanguageSetting = setting;
@@ -245,47 +247,87 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-    //UBC language picker under the BC one on the login screen. It offers "same as BC" and Spanish, the language
-    //BC does not have; English or Chinese chosen with /ulang is listed too, so the picker shows the real choice.
+    //UBC language picker under the BC one on the login screen, with a "sync with BC" checkbox (ticked by default):
+    // - ticked: the globe choice follows BC (English or Chinese, whichever is closest), or Spanish
+    // - unticked: English, Chinese or Spanish, whatever the BC language is
     const UBC_LOGIN_LANGUAGE_ID = "ubc-login-language";
+    const UBC_LOGIN_LANGUAGE_SYNC_ID = "ubc-login-language-sync";
     const UBC_LANGUAGE_NAMES = { EN: "English", CN: "中文", ES: "Español" };
     const UBC_LANGUAGE_FLAGS = { AUTO: "\u{1F310}", EN: "\u{1F1EC}\u{1F1E7}", CN: "\u{1F1E8}\u{1F1F3}", ES: "\u{1F1EA}\u{1F1F8}" };
 
-    //The "same as BC" choice shows "(= BC)" only when UBC has the BC language; otherwise it is plain English
-    function ubcLoginLanguageLabel(value) {
-        if (value !== "AUTO") return `${UBC_LANGUAGE_FLAGS[value]} UBC: ${UBC_LANGUAGE_NAMES[value]}`;
-        const sameAsBC = UBC_LANGUAGES_FROM_BC[TranslationLanguage];
-        if (!sameAsBC && TranslationLanguage !== "EN") return `${UBC_LANGUAGE_FLAGS.AUTO} UBC: ${UBC_LANGUAGE_NAMES.EN}`;
-        return UBC_LANGUAGE_FLAGS.AUTO + " " + UBCT("UbcLanguageAuto", { language: UBC_LANGUAGE_NAMES[sameAsBC ?? "EN"] });
+    //Spanish can be chosen with or without sync, so the checkbox is remembered on its own (UBCLanguageSync = "0" when unticked)
+    function ubcLanguageSynced() {
+        const setting = ubcCurrentLanguageSetting();
+        if (setting === "AUTO") return true;
+        if (setting !== "ES") return false;
+        try {
+            return localStorage.getItem("UBCLanguageSync") !== "0";
+        } catch {
+            return true;
+        }
     }
 
-    //Called on each LoginRun: creates the picker once, then keeps its labels (BC language), size and font (flags) up to date
+    function ubcLoginLanguageLabel(value) {
+        const language = value === "AUTO" ? (UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? "EN") : value;
+        return `${UBC_LANGUAGE_FLAGS[value]} UBC: ${UBC_LANGUAGE_NAMES[language]}`;
+    }
+
+    function ubcLoginLanguageOptions(picker) {
+        const values = ubcLanguageSynced() ? ["AUTO", "ES"] : UBC_LANGUAGES;
+        const current = ubcCurrentLanguageSetting();
+        picker.replaceChildren(...values.map(value => {
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = ubcLoginLanguageLabel(value);
+            option.selected = value === current;
+            return option;
+        }));
+    }
+
+    function ubcLoginLanguageSyncChange(synced) {
+        try {
+            localStorage.setItem("UBCLanguageSync", synced ? "1" : "0");
+        } catch {}
+        const current = ubcCurrentLanguageSetting();
+        if (synced && current !== "ES") UBCSetLanguage("AUTO");
+        if (!synced && current === "AUTO") UBCSetLanguage(UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? "EN");
+        ubcLoginLanguageOptions(document.getElementById(UBC_LOGIN_LANGUAGE_ID));
+    }
+
+    //Called on each LoginRun: creates the picker once, then keeps the globe label (BC language), size and font (flags) up to date
     function ubcLoginLanguagePicker() {
         const footer = document.getElementById(LoginIDs.footer);
         const bcPicker = document.getElementById(LoginIDs.language);
         if (!footer || !bcPicker) return;
         let picker = document.getElementById(UBC_LOGIN_LANGUAGE_ID);
+        let sync = document.getElementById(UBC_LOGIN_LANGUAGE_SYNC_ID);
         if (!picker) {
-            const current = ubcCurrentLanguageSetting();
-            const values = ["AUTO", "ES"];
-            if (UBC_LANGUAGES.includes(current) && !values.includes(current)) values.push(current);
-            const options = values.map(value => ({
-                children: [ubcLoginLanguageLabel(value)],
-                attributes: { value, selected: value === current },
-            }));
-            picker = ElementCreateDropdown(UBC_LOGIN_LANGUAGE_ID, options, function() {
+            picker = ElementCreateDropdown(UBC_LOGIN_LANGUAGE_ID, [], function() {
                 UBCSetLanguage(this.value);
             });
-            footer.appendChild(picker);
+            ubcLoginLanguageOptions(picker);
+            sync = document.createElement("label");
+            sync.id = UBC_LOGIN_LANGUAGE_SYNC_ID;
+            sync.style.cssText = "display: flex; align-items: center; gap: 0.4em; color: white; cursor: pointer; user-select: none;";
+            const box = document.createElement("input");
+            box.type = "checkbox";
+            box.checked = ubcLanguageSynced();
+            box.addEventListener("change", () => ubcLoginLanguageSyncChange(box.checked));
+            sync.append(box, document.createElement("span"));
+            footer.append(picker, sync);
         }
-        for (const option of picker.options) {
-            const label = ubcLoginLanguageLabel(option.value);
-            if (option.textContent !== label) option.textContent = label;
+        const auto = picker.querySelector('option[value="AUTO"]');
+        if (auto) {
+            const label = ubcLoginLanguageLabel("AUTO");
+            if (auto.textContent !== label) auto.textContent = label;
         }
+        const syncText = UBCT("UbcLanguageSync");
+        if (sync.lastChild.textContent !== syncText) sync.lastChild.textContent = syncText;
         const bcStyle = getComputedStyle(bcPicker);
         picker.style.width = "auto";
         picker.style.minWidth = bcStyle.width;
         picker.style.fontFamily = bcStyle.fontFamily;
+        sync.style.fontSize = bcStyle.fontSize;
     }
 
     await ubcTextLoad();

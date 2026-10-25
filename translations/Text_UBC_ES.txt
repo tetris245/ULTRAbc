@@ -1448,3 +1448,5 @@ UBC language: {language}
 Idioma de UBC: {language}
 None
 Ninguna
+Sync with BC language
+Sincronizar con el idioma de BC
