@@ -900,7 +900,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_saveControls() {
-        if (!ubcSettingsLoaded) return;
+        if ((!ubcSettingsLoaded) || (kp == 1)) return;
         let controls = {
             "orgasmMoan": M_MOANER_orgasmActive,
             "script": M_MOANER_scriptOn,
@@ -1057,9 +1057,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_deleteControls() {
         kp = 1;
-        for (var i = 0; i < localStorage.length; i++) {
-            let key = localStorage.key(i);
-            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
+        //Collect the keys first: removing keys while iterating localStorage by index skips entries.
+        //Match "_" + member number, so that member 1234 does not also delete member 51234's parameters.
+        let keys = [];
+        for (let i = 0; i < localStorage.length; i++) keys.push(localStorage.key(i));
+        for (const key of keys) {
+            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith("_" + Player.MemberNumber)) {
                 localStorage.removeItem(key);
             }
         }
