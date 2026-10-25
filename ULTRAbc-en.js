@@ -5403,6 +5403,29 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
+    //Struggle
+    //Total unrestrict: removing, struggling out of, swapping and lockpicking an item succeed at once.
+    //Every minigame starts here and is ended by its own draw handler, which hands a successful result to
+    //DialogStruggleStop once the progress reaches 100 (or the lockpick success timer has passed).
+    //Marking the minigame as already won keeps BC's own handling of the result: the item change,
+    //the chat message and the return to the item menu. Applying an item to an empty slot is unchanged.
+    //No skill experience is given for these instant wins.
+    modApi.hookFunction('StruggleMinigameStart', 4, (args, next) => {
+        const ret = next(args);
+        const [, MiniGame, PrevItem] = args;
+        if ((unrestrict == 2) && (PrevItem != null) && StruggleMinigameIsRunning()) {
+            if (MiniGame === "LockPick") {
+                StruggleLockPickSet = StruggleLockPickSet.map(() => true);
+                StruggleLockPickProgressSkill = 0;
+                StruggleLockPickSuccessTime = CurrentTime;
+            } else {
+                StruggleProgressSkill = 0;
+                StruggleProgress = 100;
+            }
+        }
+        return ret;
+    });
+
     //Timer Cell
     modApi.hookFunction('CellClick', 4, (args, next) => {
         if (CellOpenTimer < CurrentTime) {
@@ -10086,23 +10109,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
         }
-        StruggleLockPickProgressStart = function(C, Item) {
-            InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-            ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-            DialogLeave();
-        }
-        StruggleProgressStart = function(C, PrevItem, NextItem) {
-            if (InventoryGet(CurrentCharacter, CurrentCharacter.FocusGroup.Name) == null) {
-                if (C != Player || PrevItem == null || ((PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && ((Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Mounted", true)) || StruggleStrengthGetDifficulty(C, PrevItem, NextItem).auto >= 0))) {
-                    StruggleProgressCurrentMinigame = "Strength";
-                    StruggleStrengthStart(C, PrevItem, NextItem);
-                }
-            } else {
-                InventoryUnlock(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                InventoryRemove(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-                ChatRoomCharacterItemUpdate(CurrentCharacter, CurrentCharacter.FocusGroup.Name);
-            }
-        }
+        //Instant struggling and lockpicking: see the StruggleMinigameStart hook
     }
 
     //Vision
