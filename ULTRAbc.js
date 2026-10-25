@@ -251,10 +251,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const UBC_LANGUAGE_NAMES = { EN: "English", CN: "中文", ES: "Español" };
     const UBC_LANGUAGE_FLAGS = { AUTO: "\u{1F310}", EN: "\u{1F1EC}\u{1F1E7}", CN: "\u{1F1E8}\u{1F1F3}", ES: "\u{1F1EA}\u{1F1F8}" };
 
+    //The "same as BC" choice shows "(= BC)" only when UBC has the BC language; otherwise it is plain English
     function ubcLoginLanguageLabel(value) {
         if (value !== "AUTO") return `${UBC_LANGUAGE_FLAGS[value]} UBC: ${UBC_LANGUAGE_NAMES[value]}`;
-        const sameAsBC = UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? "EN";
-        return UBC_LANGUAGE_FLAGS.AUTO + " " + UBCT("UbcLanguageAuto", { language: UBC_LANGUAGE_NAMES[sameAsBC] });
+        const sameAsBC = UBC_LANGUAGES_FROM_BC[TranslationLanguage];
+        if (!sameAsBC && TranslationLanguage !== "EN") return `${UBC_LANGUAGE_FLAGS.AUTO} UBC: ${UBC_LANGUAGE_NAMES.EN}`;
+        return UBC_LANGUAGE_FLAGS.AUTO + " " + UBCT("UbcLanguageAuto", { language: UBC_LANGUAGE_NAMES[sameAsBC ?? "EN"] });
     }
 
     //Called on each LoginRun: creates the picker once, then keeps its labels (BC language), size and font (flags) up to date
