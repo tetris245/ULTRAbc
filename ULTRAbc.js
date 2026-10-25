@@ -123,7 +123,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     const UBC_SCRIPT_URL = document.currentScript?.src?.includes("ULTRAbc") ? document.currentScript.src : "https://tetris245.github.io/ultrabc.github.io/ULTRAbc.js";
     const UBC_TEXT_URL = UBC_SCRIPT_URL.replace(/[^/]*$/, "") + "translations/";
     const UBC_LANGUAGES = ["EN", "CN", "ES"];
-    const UBC_LANGUAGES_FROM_BC = { CN: "CN", TW: "CN" };
+    const UBC_LANGUAGES_FROM_BC = { EN: "EN", CN: "CN", TW: "CN" };
     const ubcTextEnglish = new Map();
     const ubcTextTranslations = new Map(); // language -> Map(English text -> translation), or a Promise while loading
     const ubcTextRebuildListeners = [];
@@ -139,10 +139,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return ubcAccountLanguageSetting ?? ubcLanguageSetting;
     }
 
+    //With AUTO, the UBC language used for a BC language that UBC does not have (English unless Chinese was chosen)
+    function ubcLanguageFallback() {
+        try {
+            return localStorage.getItem("UBCLanguageFallback") === "CN" ? "CN" : "EN";
+        } catch {
+            return "EN";
+        }
+    }
+
     function ubcWantedLanguage() {
         const setting = ubcCurrentLanguageSetting();
         if (UBC_LANGUAGES.includes(setting)) return setting;
-        return UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? "EN";
+        return UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? ubcLanguageFallback();
     }
 
     function ubcTextUnescape(text) {
@@ -248,7 +257,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //UBC language picker under the BC one on the login screen, with a "sync with BC" checkbox (ticked by default):
-    // - ticked: the globe choice follows BC (English or Chinese, whichever is closest), or Spanish
+    // - ticked: the globe choice follows BC, or Spanish. When UBC does not have the BC language, the globe
+    //   choice can be English or Chinese, and that choice is kept for those BC languages while staying synced.
     // - unticked: English, Chinese or Spanish, whatever the BC language is
     const UBC_LOGIN_LANGUAGE_ID = "ubc-login-language";
     const UBC_LOGIN_LANGUAGE_SYNC_ID = "ubc-login-language-sync";
@@ -267,21 +277,38 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
+    //Picker values: EN, CN, ES, AUTO (synced, BC language that UBC has) or AUTO-EN / AUTO-CN (synced, BC language that UBC lacks)
+    function ubcLoginLanguageValues() {
+        if (!ubcLanguageSynced()) return UBC_LANGUAGES;
+        return UBC_LANGUAGES_FROM_BC[TranslationLanguage] ? ["AUTO", "ES"] : ["AUTO-EN", "AUTO-CN", "ES"];
+    }
+
     function ubcLoginLanguageLabel(value) {
-        const language = value === "AUTO" ? (UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? "EN") : value;
-        return `${UBC_LANGUAGE_FLAGS[value]} UBC: ${UBC_LANGUAGE_NAMES[language]}`;
+        if (value === "AUTO") value = "AUTO-" + (UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? ubcLanguageFallback());
+        const [flag, language] = value.startsWith("AUTO-") ? [UBC_LANGUAGE_FLAGS.AUTO, value.slice(5)] : [UBC_LANGUAGE_FLAGS[value], value];
+        return `${flag} UBC: ${UBC_LANGUAGE_NAMES[language]}`;
     }
 
     function ubcLoginLanguageOptions(picker) {
-        const values = ubcLanguageSynced() ? ["AUTO", "ES"] : UBC_LANGUAGES;
         const current = ubcCurrentLanguageSetting();
-        picker.replaceChildren(...values.map(value => {
+        const selected = current === "AUTO" && !UBC_LANGUAGES_FROM_BC[TranslationLanguage] ? "AUTO-" + ubcLanguageFallback() : current;
+        picker.replaceChildren(...ubcLoginLanguageValues().map(value => {
             const option = document.createElement("option");
             option.value = value;
             option.textContent = ubcLoginLanguageLabel(value);
-            option.selected = value === current;
+            option.selected = value === selected;
             return option;
         }));
+    }
+
+    function ubcLoginLanguageChange(value) {
+        if (value.startsWith("AUTO-")) {
+            try {
+                localStorage.setItem("UBCLanguageFallback", value.slice(5));
+            } catch {}
+            value = "AUTO";
+        }
+        UBCSetLanguage(value);
     }
 
     function ubcLoginLanguageSyncChange(synced) {
@@ -290,7 +317,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         } catch {}
         const current = ubcCurrentLanguageSetting();
         if (synced && current !== "ES") UBCSetLanguage("AUTO");
-        if (!synced && current === "AUTO") UBCSetLanguage(UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? "EN");
+        if (!synced && current === "AUTO") UBCSetLanguage(ubcWantedLanguage());
         ubcLoginLanguageOptions(document.getElementById(UBC_LOGIN_LANGUAGE_ID));
     }
 
@@ -303,7 +330,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let sync = document.getElementById(UBC_LOGIN_LANGUAGE_SYNC_ID);
         if (!picker) {
             picker = ElementCreateDropdown(UBC_LOGIN_LANGUAGE_ID, [], function() {
-                UBCSetLanguage(this.value);
+                ubcLoginLanguageChange(this.value);
             });
             ubcLoginLanguageOptions(picker);
             sync = document.createElement("label");
@@ -316,6 +343,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             sync.append(box, document.createElement("span"));
             footer.append(picker, sync);
         }
+        //The BC language may have changed: other choices, or another language for the globe one
+        if ([...picker.options].map(option => option.value).join() !== ubcLoginLanguageValues().join()) ubcLoginLanguageOptions(picker);
         const auto = picker.querySelector('option[value="AUTO"]');
         if (auto) {
             const label = ubcLoginLanguageLabel("AUTO");
