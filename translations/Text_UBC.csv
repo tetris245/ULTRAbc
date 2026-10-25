@@ -1,0 +1,736 @@
+YourCommandCantBeExecutedBecause,Your command can't be executed because 
+HasEnabledTheUwallProtection, has enabled the Uwall protection.
+YouAreInNoEscapeMode,you are in no-escape mode.
+YourMessageCantBeSentBecause,Your message can't be sent because it does not respect the rules of doll talk.
+ThisRoomDoesNotUseTheMapFeature,This room does not use the map feature.
+BetterUseTheUroomCommand, Better use the <b>/uroom</b> command.
+YouAreInSilentMode,you are in silent mode.
+YourVeryTightCollarOrALscgSpell,Your very tight collar or a LSCG spell prevents you to talk.
+SeeMoreStarsWithTheUbcOptions,See more stars with the UBC options and commands!
+TipUseTheUhelpCommandInChatOr,Tip: Use the /uhelp command in chat or explore the wiki to better know all the UBC commands.
+EnjoyAllTheUbcOptionsAndCommands,Enjoy all the UBC options and commands!
+Backgrounds,Backgrounds
+Buttons,Buttons
+Cheats,Cheats
+Hotkeys,Hotkeys
+Maps,Maps
+Misc,Misc
+Moaner,Moaner
+Reputation,Reputation
+Skills,Skills
+SpecialModes,Special Modes
+Talking,Talking
+VisualEffects,Visual Effects
+VisualPreferences,Visual Preferences
+ClickOnASettingToGetMoreInfo, - Click on a setting to get more info
+UltraBondageClubSettings,- ULTRA Bondage Club Settings -
+LinkToIcons8,Link to Icons8
+IconByIcons8,Icon by Icons8
+OpenUbcChangelogOnGithub,Open UBC Changelog on GitHub
+UbcChanges,UBC Changes
+OpenUbcWikiOnGithub,Open UBC Wiki on GitHub
+UbcWiki,UBC Wiki
+UhelpInChat,/uhelp in chat
+AccessAllStandardBackgrounds,Access all standard backgrounds: 
+WithThisOptionYouWillNotBeLimited,"With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!"
+DisableBackgroundColorForUbc,Disable background color for UBC messages: 
+IfYouCheckThisSettingUbcWill,"If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms."
+ExtendedUsingOfCharacterInfo,Extended using of Character Info background: 
+OnTheCharacterInfoScreenYouHave,"On the Character Info screen, you have buttons to randomly or manually select a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immediate (you need to go back to the Extensions menu!)"
+RemoveBackgroundButtonsInCharacter,Remove background buttons in Character Info: 
+IfYouCheckThisSettingUbcWill2,"If you check this setting, UBC will not display background buttons in Character Info screen. However, your current settings will remain active."
+RemoveBackgroundButtonsInTimer,Remove background buttons in Timer Cell: 
+IfYouCheckThisSettingUbcWill3,"If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active."
+ShareCharacterInfoBackground,Share Character Info background: 
+WhenEnabledOtherUbcUsersWill,"When enabled, other UBC users will see the standard BC background that you use for your Character Info screen."
+EnablePreferencesButtonInChat,Enable Preferences button in chat rooms: 
+WhenCheckedAnExtensionsButton,"When checked, an Extensions button will be added in the chat rooms."
+EnableFreeButtons,Enable FREE buttons: 
+TheFreeButtonIsAddedInTheChat,"The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command. This option is not available in no-escape mode."
+EnableOutButtons,Enable OUT buttons: 
+TheOutButtonIsAddedInTheChat,"The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text. This option is not available in no-escape mode."
+ByDefaultYouLeaveAChatRoomOr,"By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players! This option is not available in no-escape mode. "
+SlowExitWithOutButton,Slow exit with OUT button: 
+EnableRglButtonInChat,Enable RGL button in chat: 
+TheRglButtonGivesInfoAboutYour,"The RGL button gives info about your current Real Garbling Level at any moment, by checking worn gags and other items restraining talking (also LSCG collar and spells). When using the buttons, hotkeys or commands to release yourself, this info is automatically given and synchronized with your forced gagtalk/whisper level as the result is 0. The RGL button can therefore be used as emergency when you can't talk while not being gagged, for example."
+ExtendedSynchronizationWithRgl,Extended synchronization with RGL button:
+ByDefaultTheSynchronizationOf,"By default, the synchronization of RGL button with forced level of gagtalk/whisper is automatic when using the emergency buttons, hotkeys or commands to release yourself. This setting allows to extend it to all other situations. The detected level will be limited to 10 for gagtalk (11 is used for baby talk). When enabled, manual changes in your worn gags and other items restraining talking (including LSCG collar and spells) require to click the RGL button again."
+AddRemoveExtraCardsForCardGame,Add/Remove Extra Cards for Card Game:
+Toggle,Toggle
+AllExtraCardsAdded,All extra cards added
+AllExtraCardsRemoved,All extra cards removed
+ThisSettingIsAToggleYouCanAdd,This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action.
+AlwaysAccessToLayeringMenus,Always access to layering menus: 
+WithThisOptionYouWillAlwaysHave,"With this option, you will always have access to layering menus, even if bindings and locks restrain your moves! Note: If you don't want that other players make layering based changes to your character, you can enable a specific option in the WCE mod."
+EnableBondageBrawlMagicSchool,Enable Bondage Brawl/Magic School cheat: 
+WithThisOptionYouWillAlwaysBe,"With this option, you will always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!"
+EnableExtraInfoForSomeLocks,Enable extra info for some locks: 
+ThisSettingAllowsToUseTheInfolock,"This setting allows to use the /infolock command and get this way extra info (code, password, time left) about some locks on worn item in a slot selected by clicking on yourself or another player."
+EnableFullHelpForIntricateAnd,Enable full help for intricate and hs locks: 
+YouWillBecomeALockpickingExpert,You will become a lockpicking expert with this option! The full solution with the correct order to lockpick intricate and high security locks is displayed on screen.
+ThisSettingAllowsToUngarbleYour,"This setting allows to ungarble your non-forced gagtalk, no matter your game difficulty. However, it is not available when you have enabled the corresponding WCE feature, which has more options."
+ThisSettingAllowsAutomaticStruggle,"This setting allows automatic struggle in mini-games, no matter your game difficulty. If the autostruggle fails, you need to change solidity of current worn items with the /solidity command and/or enhance your skills with the /boost command. Note that this setting is not available when you have enabled the corresponding WCE feature, which works slightly differently."
+EnableUngarblingOfYourGagtalk,Enable ungarbling of your gagtalk: 
+EnableAutomaticStruggleInMini,Enable automatic struggle in mini-games: 
+EnableHotkeysInChatRooms,Enable hotkeys in chat rooms: 
+TheseHotkeysAreEquivalentToThe,"These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself.                         Hotkeys on numeric pad:         Divide = fast leave               Multiply = total release                    If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode."
+EnableHotkeysInChatSearch,Enable hotkeys in chat search: 
+WhenThisOptionIsEnabledYouWill,"When this option is enabled, you will have direct access to some useful screens and can change the Chat Search background       Left Alt = Preferences                  Left Arrow = Wardrobe                 Right Arrow = Extensions             Up Arrow = Random background Down Arrow = Select background Tab = Default background"
+EnableHotkeysInFriendList,Enable hotkeys in friend list: 
+TheseHotkeysAllowToGetClickable,These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. Background can be changed too. List of available hotkeys:                D = Default background                  F = Female club    G = Mixed club  H = Male club        J = Asylum       R = Random background              S = Select background
+AddToysUnderLockedChastityIn,Add toys under locked chastity in traps: 
+EnableThisOptionIfYouAcceptThat,"Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!"
+SelectedDeviceTrap09,Selected device trap (0-9):
+InputANumberBetween0And9ToSelect,"Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!"
+EnableFullHearingInMaps,Enable full hearing in maps: 
+WhenEnabledTheresNoAnyLimitation,"When enabled, there's no any limitation to your hearing in the map rooms"
+EnableFullLocationInMaps,Enable full location in maps: 
+WhenEnabledTheMaproomAndMapz,"When enabled, the /maproom and /mapz commands will always give the coordinates of other players in the map rooms, even if the Location Sharing is blocked. Note that the administrators will be informed that you use this cheat, if they have blocked Location Sharing and use one of these commands. So using this cheat in such rooms can lead to bad consequences. Be careful!"
+EnableFullVisionInMaps,Enable full vision in maps: 
+WhenEnabledYouCanSeeTheEntire,"When enabled, you can see the entire map rooms without fog. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it."
+EnableFullWhisperingInMaps,Enable full whispering in maps: 
+WhenEnabledYouCanWhisperToAny,"When enabled, you can whisper to any player in the map, no matter the distance that is between you and this player. It will work with the standard BC command /whisper and the UBC command /murmur, between all players who have enabled this option."
+EnableMagicWalkInMaps,Enable magic walk in maps: 
+WhenEnabledYouCanGoEverywhere,"When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!"
+NoForcedTeleportationInMaps,No forced teleportation in maps: 
+WhenCheckedTheBcCommandsRelated,"When checked, the BC commands related to forced teleportation in the maps will not work on you, except if at least one admin of the chat room is in your Tplist (see the commands /tplistadd, /tplistremove and /tplistshow)."
+PutAValidNumber,Put a valid number
+AlphabeticOrderForPreferences,Alphabetic order for  Preferences menu: 
+WhenEnabledAllTheOptionsOfThe,"When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences."
+AlphabeticOrderForPreferences2,Alphabetic order for Preferences screens: 
+WithThisOptionMostSettingsIn,"With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: General, Audio, Chat, Graphics, Immersion and Online."
+AlphabeticOrderForReputation,Alphabetic order for  Reputation and Skills: 
+WhenEnabledMostInfoAboutReputation,"When enabled, most info about reputation and skills in the Character Info screen will be ordered in alphabetic order. Note that the reputation as dominant or submissive will remain displayed in first position."
+EnableAsylumLimitations,Enable Asylum limitations: 
+ByDefaultUbcDisablesTheAsylum,"By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option."
+EnablePunishmentsByNpc,Enable punishments by NPC: 
+ByDefaultUbcDisablesTheAutomatic,"By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option."
+NoPendingFriendsInFriendList,No pending friends in Friend List: 
+WhenCheckedTheAllFriendsScreen,"When checked, the All Friends screen in Friend List will not display the pending (unconfirmed) friends."
+NoPermissionChangeAfterSafeword,No permission change after safeword: 
+BcAutomaticallyChangesYourGeneral,"BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified."
+UseOnlyDaysInCharacterInfoScreens,Use only days in Character Info screens: 
+BcAutomaticallyConvertsDaysTo,"BC automatically converts days to years, months and days. If you don't like that, use this option to get these data exprimed only in days in the Character Info screens."
+ActivateTheMoaner,Activate the Moaner: 
+AddMoreFunToBondageClubWithThe,Add more fun to Bondage Club with the moans automatically generated by the Moaner!
+MoaningProfile010,Moaning profile (0-10):
+InputANumberBetween0And10ToSelect,Input a number between 0 and 10 to select one of these moaning profiles: 0 Default - 1 Bunny - 2 Cow - 3 Dog - 4 Fox - 5 Mouse - 6 Neko - 7 Pig - 8 Pony - 9 Wildfox - 10 Wolf.
+WhenEnabledYouWillMoanWhileCumming,"When enabled, you will moan while cumming. It is not possible to enable it when the LSCG Splatter feature is detected as enabled."
+EnableTheOrgasmMoan,Enable the orgasm moan: 
+EnableTheSpankMoan,Enable the spank moan: 
+WhenEnabledYouWillMoanWhileBeing,"When enabled, you will moan while being spanked. Also when bitten, kicked, pinched, shocked, slapped. In case of actions triggering a shock, it concerns only actions to punish orgasm, stand up or struggle. According your fetishes and your horny state, it can be pain or pleasure."
+EnableTheTalkMoan,Enable the talk moan: 
+WhenEnabledYouWillMoanWhileSpeaking,"When enabled, you will moan while speaking if you're vibed. The moans can interrupt your talking. Note that when you disable this setting, it automatically disables the whisper moan too."
+ExtendTalkMoanToWhispers,Extend talk moan to whispers: 
+WhenEnabledYouWillMoanWhileWhispering,"When enabled, you will moan while whispering if you're vibed. The moans can interrupt your whispers. Note that this setting can't be enabled when the talk moan is disabled."
+EnableTheTickleMoan,Enable the tickle moan: 
+WhenEnabledYouWillMoanWhileBeing2,"When enabled, you will moan while being tickled. According your fetishes and your horny state, it can be pain or pleasure."
+EnableTheVibesMoan,Enable the vibes moan: 
+WhenEnabledYouWillMoanIfYour,"When enabled, you will moan if your vibrator's settings change and your arousal level is higher or equal to 10. Also when fingered, fisted, masturbated, or when your ears are caressed, kissed, licked, nibbled, or when using LSCG aphrodisiac injector, drink, respirator. Note that when you disable this setting, it automatically disables the xvibes moan too."
+ExtendVibesMoanXvibesMoan,Extend vibes moan (xvibes moan): 
+WhenEnabledYouWillMoanWhenVibe,"When enabled, you will moan when vibe settings of other players in the chat room change, even if you are not yourself vibed (the only condition is an arousal level higher or equal to 10). Note that this setting can't be enabled when the vibes moan is disabled."
+MainReputation100To100,Main reputation (-100 to 100):
+InputANumberBetween100And100,"Input a number between -100 and 100 to set your main reputation level! A negative number means that you are a Submissive, a positive number means that you are a Dominant."
+Abdl0100,ABDL (0-100):
+InputANumberBetween0And100To,Input a number between 0 and 100 to set your ABDL reputation level!
+Asylum100To100,Asylum (-100 to 100):
+InputANumberBetween100And1002,"Input a number between -100 and 100 to set your Asylum reputation level! A negative number means that you are a Patient, a positive number means that you are a Nurse."
+Gambling0100,Gambling (0-100):
+InputANumberBetween0And100To2,Input a number between 0 and 100 to set your Gambling reputation level!
+Gaming0100,Gaming (0-100):
+InputANumberBetween0And100To3,Input a number between 0 and 100 to set your Gaming reputation level!
+Kidnap0100,Kidnap (0-100):
+InputANumberBetween0And100To4,Input a number between 0 and 100 to set your Kidnap reputation level!
+Larp0100,LARP (0-100):
+InputANumberBetween0And100To5,Input a number between 0 and 100 to set your LARP reputation level!
+MagicHouse04,Magic House (0-4):
+InputANumberBetween0And4ToSelect,"Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Note: when you change this parameter, UBC will also automatically reset the Magic Power reputation to 0 for all non-selected Magic Houses."
+MagicPower0100,Magic Power (0-100):
+InputANumberBetween0And100To6,Input a number between 0 and 100 to set your Magic Power reputation level in the currently selected Magic House!
+Maid0100,Maid (0-100):
+InputANumberBetween0And100To7,Input a number between 0 and 100 to set your Maid reputation level!
+Bondage010,Bondage (0-10):
+InputANumberBetween0And10ToSet,Input a number between 0 and 10 to set your Bondage skill level!
+Dressage010,Dressage (0-10):
+InputANumberBetween0And10ToSet2,Input a number between 0 and 10 to set your Dressage skill level!
+Evasion010,Evasion (0-10):
+InputANumberBetween0And10ToSet3,Input a number between 0 and 10 to set your Evasion skill level!
+Infiltration010,Infiltration (0-10):
+InputANumberBetween0And10ToSet4,Input a number between 0 and 10 to set your Infiltration skill level!
+Lockpicking010,Lockpicking (0-10):
+InputANumberBetween0And10ToSet5,Input a number between 0 and 10 to set your Lockpicking skill level!
+SelfBondage010,Self-Bondage (0-10):
+InputANumberBetween0And10ToSet6,Input a number between 0 and 10 to set your Self-Bondage skill level!
+Willpower010,Willpower (0-10):
+InputANumberBetween0And10ToSet7,Input a number between 0 and 10 to set your Willpower skill level!
+ThisModeDisablesFreeOutButtons,"This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, the special goddess mode will be automatically disabled."
+EnableNoEscapeMode,Enable no-escape mode: 
+ForceNoEscapeModeWithDevious,Force no-escape mode with devious locks: 
+WhenNoEscapeModeIsDisabledYou,"When no-escape mode is disabled, you can decide to force this mode when you have devious locks on you! Of course these locks need to be enabled in the DOGS mod. Note that this mode will remain enabled when devious locks have been removed: you need to disable it manually."
+EnableSilentMode,Enable silent mode: 
+ThisModePreventsToUseTheMessage,"This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode."
+ExtendSilentModeToSafeword,Extend silent mode to safeword: 
+WhenSilentModeIsEnabledYouCan,"When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course useful only if the safeword is enabled!"
+EnableUnrestrictSoftMode,Enable unrestrict soft mode: 
+EffectsOfThisModeAlsoAvailable,"Effects of this mode (also available in unrestrict total mode) : hidden items added to your inventory, access to items covered by other items, use of items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and examine feature preserved when you are blind, but not in Total sensory deprivation. It does not remove the conditions to use assets. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect)."
+EnableUnrestrictTotalMode,Enable unrestrict total mode: 
+BesidesAllUnrestrictSoftEffects,"Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect)."
+AfkTimeBeforeMessage160,AFK time before message (1-60):
+InputANumberBetween1And60ToSet,"Input a number between 1 and 60 to set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status. By default, it is 10 minutes."
+EnableAutomaticAfkMessage,Enable automatic AFK message: 
+WhenEnabledAnAutomaticMessage,"When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have set for this feature. It will also activate the AFK icon, and will be repeated every 30 minutes after the first message. Note: When you are no longer AFK, the 'forced' setting with the AFK icon will not be modified, you need to change it manually if this is what you want."
+AnimalTalkWhisperMode09,Animal talk/whisper mode (0-9):
+InputANumberBetween0And9ToSelect2,"Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk)."
+EnableHybridTalkWhisperMode,Enable hybrid talk/whisper mode: 
+WhenEnabledAndAssociatedWith,"When enabled and associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!"
+EnableDollTalkAndWhisperMode,Enable doll talk (and whisper) mode: 
+WhenEnabledMaximum5WordsByMessage,"When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk."
+ForcedGagtalkWhisper011,Forced gagtalk/whisper (0-11):
+InputANumberBetween0And11ToSelect,"Input a number between 0 and 11 to select a 'permanent' forced level: 0 Disabled feature - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Better heavy gag - 9 Very heavy gag - 10 Total gag - 11 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once gagtalk, use the /gtalk command. To talk only once like a baby, use /btalk. See also the RGL button."
+ForcedHearingMode16,Forced hearing mode (1-6):
+InputANumberBetween1And6ToSelect,"Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!"
+ForcedStutteringLevel04,Forced stuttering level (0-4):
+InputANumberBetween0And4ToSelect2,"Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering)."
+WhenEnabledYouCantUseNormalWhispers,"When enabled, you can't use normal whispers. Only OOC and emote whispers are possible. This option is not available when a similar BCX rule is detected as active. In this case, UBC will apply the BCX whisper restrictions, but will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed."
+EnableNoWhisperMode,Enable no-whisper mode: 
+ControlItemAnimation02,Control item animation (0-2):
+InputANumberBetween0And2ToControl,"Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation). Important note: alteration of the item animation can lead in some cases to unexpected effects, such as graphical issues, bugs or discrepancies. Use it only if you're experiencing lagging problems."
+DisableEffectOnBeepScreen,Disable effect on beep screen: 
+ByDefaultBcAppliesATransparent,"By default, BC applies a transparent effect on the beep screen of the friend list. If you don't like that, just select this setting!"
+DisableGrayEffectInWardrobe,Disable gray effect in wardrobe: 
+ByDefaultBcAppliesAGrayEffect,"By default, BC applies a gray effect on the top bar of the wardrobe. If you don't like that, just select this setting!"
+ByDefaultBcAddsMessagesAndPink,"By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled."
+DisableBcPinkyArousalOverlay,Disable BC pinky arousal overlay: 
+ForcedBlindnessMode14,Forced blindness mode (1-4):
+InputANumberBetween1And4ToSelect,"Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!"
+ForcedBlurryVision15,Forced blurry vision (1-5):
+InputANumberBetween1And5ToSelect,"Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!"
+FullyDisableAllUbcTintSettings,Fully disable all UBC tint settings: 
+IfYouCheckThisSettingAllUbcTint,"If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens."
+TintEffectLevel03,Tint effect level (0-3):
+InputANumberBetween0And3ToSelect,Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.
+TintEffectColorFormat000000,Tint effect color (format #000000):
+InputAColorCodeInTheHexadecimal,Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.
+WhenEnabledAlwaysVisitTheExtensions,"When enabled, ALWAYS visit the Extensions screen to activate it after login. The tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is without any effect when the tint level is 0. It is not available when MBS is not used or when all UBC tint settings are fully disabled."
+EnableTintEffectOnMbsScreens,Enable tint effect on MBS screens: 
+EnableAllUbcChangesInChatSearch,Enable all UBC changes in Chat Search: 
+IfYouUncheckThisSettingUbcWill,"If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search. However, the location for this bar will remain empty."
+RemoveUbcBottomBarInChatSearch,Remove UBC bottom bar in Chat Search: 
+IfYouCheckThisSettingUbcWill4,"If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu. This parameter is not available if you have disabled all UBC changes in Chat Search."
+EnableAllUbcChangesInTheWardrobe,Enable all UBC changes in the Wardrobe: 
+IfYouUncheckThisSettingUbcWill2,"If you uncheck this setting, UBC will use the standard BC Wardrobe."
+ChatRooms,Chat Rooms
+OnlyFemale,Only Female
+OnlyMale,Only Male
+Mixed,Mixed
+Asylum,Asylum
+ImCurrentlyAfkPleaseBePatient,I'm currently AFK. Please be patient or come back later!
+RandomBackground,Random background
+MagicalLasersMakeDisappearAll,Magical lasers make disappear all bindings and toys on {tmpname}'s body.
+SlowlyHeadsForTheDoor,{tmpname} slowly heads for the door.
+IsSuddenlyTrappedOnABondageBench,{tmpname} is suddenly trapped on a Bondage Bench.
+IsSuddenlyTrappedInACoffin,{tmpname} is suddenly trapped in a Coffin
+IsSuddenlyTrappedInADisplayFrame,{tmpname} is suddenly trapped in a Display Frame.
+IsSuddenlyTrappedInAKennel,{tmpname} is suddenly trapped in a Kennel.
+IsSuddenlyTrappedInALocker,{tmpname} is suddenly trapped in a Locker.
+IsSuddenlyTrappedOnATrolley,{tmpname} is suddenly trapped on a Trolley.
+IsSuddenlyTrappedInAWoodenBox,{tmpname} is suddenly trapped in a Wooden Box.
+IsSuddenlyTrappedOnAnXCross,{tmpname} is suddenly trapped on an X-Cross.
+ATeleportationAttemptHasBeen,A teleportation attempt has been cancelled because not allowed.
+YourMessageOrWhisperCantBeSent,Your message or whisper can't be sent because it does not respect the rules of doll talk.
+YourWhisperCantBeSentBecause,Your whisper can't be sent because you are in no-whisper mode.
+YourWhisperCantBeSentBecause2,Your whisper can't be sent because a BCX rule prevents you to whisper to this player.
+DefaultBackground,Default background
+CurrentMode,Current Mode
+SwitchToNormalMode,Switch to Normal mode
+SwitchToHighFameMode,Switch to High Fame mode
+Actualisation,Actualisation
+AvailableOptionsForDefaultAnd,Available options for Default and NPC card decks:
+T0Original1Abdl2Asylum3College,0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant
+T5Liability6Maid7Pet8Porn9Shibari,5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra
+OnlyForNpc1DeckDefinedByOriginal,Only for NPC: -1 = Deck defined by original BC code
+IfYouChangeOtherParametersThan,"If you change other parameters than the mode,"
+ClickTheExitButtonThenComeBack,"click the Exit button, then come back to play"
+HighFameLevel,High Fame level
+CardsInDeck,Cards in deck
+DefaultCardDeck,Default card deck
+NpcCardDeck,NPC card deck
+UltrabcReady,ULTRAbc {UBCver} Ready!
+Changes,Changes
+Preferences,Preferences
+Extensions,Extensions
+SelectBackground,Select background
+Uhelp,/uhelp
+InChat,in chat
+CosyChalet,Cosy Chalet
+RandomBackgound,Random backgound
+Out,OUT
+SlowExit,Slow Exit
+FastExit,Fast Exit
+Free,FREE
+TotalRelease,Total Release
+Filtermode,FilterMode
+Normalmode,NormalMode
+ClubCard,Club Card
+Larp,LARP
+MagicBattle,Magic Battle
+PandoraPrison,Pandora	 Prison
+Wardrobe,Wardrobe
+FirstRoomsWithFriends,First rooms with friends
+AutojoinFeature,AutoJoin feature:
+Language,Language
+RoomSize,Room Size
+MaximumPlayersInRoom,Maximum Players in Room
+SwallowsASleepingPillAndDrinks,{tmpname} swallows a sleeping pill and drinks a glass of water. {pronoun1} falls asleep very quickly.
+FeedsASleepingPillAndGivesAGlass,{tmpname} feeds {name} a sleeping pill and gives {pronoun2} a glass of water. {name} falls asleep very quickly.
+DisableSharedBackground,Disable shared background
+EnableSharedBackground,Enable shared background
+Gold,Gold
+Silver,Silver
+Bronze,Bronze
+KeysFound,Keys found: {keys}.
+DoesNotUseUltrabc,Does not use ULTRAbc.
+DoesNotUseUwall,Does not use Uwall.
+IsAnUltrabcUser,Is an ULTRAbc user.
+UbcInNoEscapeMode,UBC in no-escape mode
+HasEnabledUwall,Has enabled Uwall.
+HasDisabledUwall,Has disabled Uwall.
+YouAreNowInRealBabyTalkMode,You are now in real baby talk mode.
+YouAreNowInNormalTalkMode,You are now in normal talk mode.
+YouAreNowInRealGagTalkModeYour,You are now in real gag talk mode. Your current garbling level is {ngl}.
+They,They
+He,He
+She,She
+It,It
+Them,them
+Him,him
+Her,her
+It2,it
+Their,their
+His,his
+Its,its
+They2,they
+He2,he
+She2,she
+TheOptionsOnThisWheelGoFrom0,The options on this wheel go from 0 to {maxwh}.
+RandomlyForcesAnOptionOfSWheel,{tmpname} randomly forces an option of {tgpname}'s wheel.
+NoResultTryAgain,No result! Try again!
+TheMoanerIsNotActive,The moaner is not active.
+TheMoanerIsActive,The moaner is active.
+CurrentMoansProfile,Current moans profile: {profileName}
+NoCustomProfileLoaded,No custom profile loaded.
+TheOrgasmMoanIsNotActiveYouWill,The orgasm moan is not active. You will not moan while cumming.
+TheOrgasmMoanIsActiveYouWill,The orgasm moan is active. You will moan while cumming.
+TheSpankMoanIsNotActiveYouWill,The spank moan is not active. You will not moan while being spanked.
+TheSpankMoanIsActiveYouWillMoan,The spank moan is active. You will moan while being spanked.
+TheTalkMoanIsNotActiveIfYoure,"The talk moan is not active. If you're vibed, you will not moan while speaking."
+TheTalkMoanIsActiveIfYoureVibed,"The talk moan is active. If you're vibed, you will moan while speaking."
+TheWhisperMoanIsNotActiveIfYoure,"The whisper moan is not active. If you're vibed, you will not moan while whispering."
+TheWhisperMoanIsActiveIfYoure,"The whisper moan is active. If you're vibed, you will whisper while speaking."
+TheTickleMoanIsNotActiveYouWill,The tickle moan is not active. You will not moan while being tickled.
+TheTickleMoanIsActiveYouWill,The tickle moan is active. You will moan while being tickled.
+TheVibesMoanIsNotActiveIfYour,"The vibes moan is not active. If your vibrator's settings change, you will not moan."
+TheVibesMoanIsActiveIfYourVibrators,"The vibes moan is active. If your vibrator's settings change, you will moan."
+TheXvibesMoanIsNotActiveIfVibrators,"The xvibes moan is not active. If vibrator's settings of other players change, you will not moan."
+TheXvibesMoanIsActiveIfVibrators,"The xvibes moan is active. If vibrator's settings of other players change, you will moan."
+MoanerOrgasm,Moaner Orgasm
+MoanerTarget,Moaner Target
+CommandAllcolor,(colorcode) (category) (target): changes color on current elements in specified category.
+TheAllcolorCommandMustBeFollowed,"The allcolor command must be followed by a color code, a number corresponding to a category and optionally a target.\n \nThe color code must be in hex format: #RRGGBB or #RGB.\n \nThe numbers for the categories are: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories."
+InvalidColorUseHexFormatLike,Invalid color. Use hex format like #RRGGBB or #RGB.
+InvalidCategoryUseANumberBetween,"Invalid category. Use a number between 1 and 5, for the category you want to color: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories."
+Items,items.
+Clothes,clothes.
+Body,body.
+ItemsClothesCosplayAndBody,"items, clothes, cosplay and body."
+NewColorsAreUsedOnS,New colors are used on {tmpname}'s {catname}
+NewColorsAreUsedOnS2,New colors are used on {tgpname}'s {catname}
+CommandAsylum,"(minutes): enters asylum, bypasses requirements."
+YouMustSpecifyMinutesIfYouAre,You must specify minutes if you are a patient.
+CommandAtalk,(animal) (words): speaks once as a specified animal.
+TheAtalkCommandMustBeFollowed,The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\nNote that it can't be used when you are in a 'permanent' animal talk mode.\nAvailable animals:\n1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n6 pig - 7 pony - 8 puppy - 9 wolfy
+PleaseIncludeWordsToSayAfter,Please include words to say after the animal number.
+CommandAutoheart,(vibe level) (orgasm mode) (lock time): puts heart locks on yourself and configures them.
+TheAutoheartCommandMustBeFollowed,"The autoheart command must be followed by 3 numbers for vibe level, orgasm mode and lock time.\nNote that the heart lock requires a specific mod.\n \nAvailable vibe levels:\n0 = Off - 1 = Low - 2 = Medium - 3 = High \nAvailable orgasm modes:\n0 = Normal - 1 = Edge - 2 = Deny\nThe time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\nUse ? if you want a time randomly choosen by the game (between 1 and 720 hours)."
+HeartLocksAppliedAndConfigured,Heart locks applied and configured.
+CommandAutokick,: toggles on auto kick for 0 day old accounts.
+AutokickReady,AutoKick Ready.
+AutokickAccountWas0DaysOld,AutoKick: Account was 0 days old.
+AutokickDisabled,AutoKick Disabled.
+CommandBg1,(number): uses a Bondage College or Bondage Teacher background as custom background.
+TheBg1CommandMustBeFollowedBy,"The bg1 command must be followed by a number. List of available backgrounds:\nBONDAGE COLLEGE\n1 Art Class - 2, 3 Class - 4 Club - 5 College\n6 Dorm - 7 Dressing Room - 8 Gym Class\n9 to 12 Isolation Room - 13 to 16 Kinbaku Club\n17 to 26 Library - 27, 28 Lockers\n29 Running Track - 30, 31 Showers - 32 Theater\nBONDAGE TEACHER\n33, 34 Beach - 35, 36 Briefcase - 37 Bullseye\n38, 39 Class - 40 College - 41 Office"
+CommandBg2,(number): uses a Bondage Brawl background as standard background.
+TheBg2CommandMustBeFollowedBy,"The bg2 command must be followed by a number. List of Bondage Brawl backgrounds:\n1, 2 Balcony - 3 Ballroom - 4 to 12 Bandit Camp\n13 to 15 Barn - 16 to 18 Bathroom Olivia\n19 Bedroom Dungeon - 20 Bedroom Edward\n21, 22 Bedroom Isabella - 23 Bedroom Melody\n24 to 26 Bedroom Olivia - 27 to 32 Birch\n33 Black - 34 to 36 Camp Ground\n37 to 39 Castle - 40, 41 Clearing\n42 to 44 College - 45 to 47 Countess Hall\n48 Desert - 49, 50 Dungeon - 51, 52 Dungeon Cell\n53 to 55 Dungeon Storage - 56 Forest\n57 to 60 Forest Cabin - 61 Gas - 62 Green Plain\n63 to 73 Hall (1 to 4) - 74 to 79 Lake - 80 Maid Bed\n81 Mountain Path - 82, 83 Oak\n84 to 88 Plain - 89 Pond - 90, 91 Savannah\n92 to 94 Tent - 95, 96 Terrace\n97 Vulture Plain - 98, 99 Wine Cell"
+CommandBglist,: displays list of all available standard backgrounds
+CommandBgshow1,(bgnumber): displays locally clickable link to a specific standard background and embedded picture.
+TheBgshow1CommandMustBeFollowed,The bgshow1 command must be followed by a number (use /bglist to get available numbers).
+HttpsWwwBondageEuropeComBondageclub,https://www.bondage-europe.com/{BCver}/BondageClub/Backgrounds/{name}.jpg
+CommandBgshow2,"(bgnumber): sends in chat link to a specific standard background. When used with WCE feature, the link is clickable and the picture can be embedded in the chat."
+TheBgshow2CommandMustBeFollowed,The bgshow2 command must be followed by a number (use /bglist to get available numbers).
+CommandBio,(target): gives direct access to the profile description of any player in the chat room.
+CommandBoost,: boosts all your skills for one hour.
+YouFeelAllYourSkillsBoostedChanges,You feel all your skills boosted. Changes can be seen in information panel.
+CommandBtalk,(words): speaks once as a baby.
+TheBtalkCommandMustBeFollowed,The btalk command must be followed by the words you want to say.
+YourMessageCantBeSentBecause2,Your message can't be sent because it does not respect the rules of doll talk
+CommandCallubc,: installation of UBC GUI (to be used if it has failed during the initialisation).
+CheckNowTheExtensionsPage,Check now the Extensions page!
+CommandCgame,(zone): launches a Club Card Game against a specific NPC.
+TheCgameCommandMustIncludeAZone,"The cgame command must include a zone.\nAvailable zones:\nasylum, cafe, infiltration, introduction, kidnap, larp,\nlounge, magic, movie, shibari, stable.\nYou need to click on the concerned NPC, then on the appropriate option.\nFor magic, the card option will appear after long dialog, exit and come back if you have started the quest requested by the kitsune, but didn't yet finished it."
+CommandChess,(difficulty): starts chess.
+TheChessCommandMustBeFollowed,The chess command must be followed by a number between 1 and 3.\n \nAvailable difficulty modes:\n1 easy\n2 normal\n3 hard\nNote that a full relog is required at the end of a chess game.
+CommandClothes,(target): changes clothes.
+MagicalLasersPutRandomClothes,Magical lasers put random clothes on {tmpname}'s body.
+MagicalLasersPutRandomClothes2,Magical lasers put random clothes on {tgpname}'s body.
+CommandCname,"(custom name): creates a custom name, that does not require to satisfy some conditions."
+TheCnameCommandMustBeFollowed,"The cname command must be followed by the custom name you want to display in your profile.\nMore letters are accepted than for the official name, it can also include spaces and numbers.\nMaximum 20 characters (spaces included)!\nIt will work only between UBC users and replace the official name in the profile.\nUse None as name to go back to a profile without custom name."
+None,None
+CustomNameDeleted,Custom name deleted
+CustomNameCreatedOrModified,Custom name created or modified
+Maximum20CharactersSpacesIncluded,Maximum 20 characters (spaces included)!
+CommandCollege,"enters college, bypasses requirements."
+CommandColorchanger,(anim): gets an animation with color change.
+TheColorchangerCommandToPreselect,"The colorchanger command:\nTo preselect, two choices exist, type: <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\nTo manually select area, type: <b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\nManual selection can only target 10 areas at a time,\nthen requires to be reset to reuse, type: <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\nOnly 1 target can be active at a time"
+YouHave5SecondsToClickOnTarget,"You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry"
+CommandCowner,"(member number) (owning days) (owner name): sets a custom owner, that will be displayed in your profile."
+TheCownerCommandMustBeFollowed,"The cowner command must be followed by the member number of the wished owner, the number of days corresponding to this owning, and the name of the custom owner.\nThis custom owner can be any player of the game, even yourself or a sub that you own.\nThe number of owning days can't exceed the number of days you are in the game.\nMaximum 20 characters for the name (spaces included)!\nIt will work only between UBC users and replace the official info in the profile.\nUse None as name to go back to a profile without custom owner."
+UsageCownerNameCanContainSpaces,Usage: cowner <memberNumber> <days> <name> (name can contain spaces). Use 'None' as name to delete custom owner.
+InvalidMemberNumberItMustBeA,Invalid member number. It must be a positive integer.
+InvalidDaysItMustBeAPositive,Invalid days. It must be a positive integer.
+TheNumberOfOwningDaysCantExceed,The number of owning days can't exceed the number of days you are in the game ({gameDaysNumber}).
+NameCannotBeEmptyUseNoneToRemove,Name cannot be empty. Use 'None' to remove the custom owner.
+Maximum20CharactersForTheName,Maximum 20 characters for the name (spaces included)!
+None2,none
+NameContainsInvalidCharacters,"Name contains invalid characters. Allowed: letters, numbers, spaces, apostrophe (') and hyphen (-)."
+CustomOwnerDeleted,Custom owner deleted
+CustomOwnerCreatedOrModified,Custom owner created or modified
+CommandCtitle,"(custom title): creates a custom title, that does not require to satisfy some conditions."
+TheCtitleCommandMustBeFollowed,"The ctitle command must be followed by the custom title you want to display in your profile.\nIt can be an original title or an existing official title, for which you don't satisfy some conditions.\nMaximum 25 characters (spaces included)!\nIt will work only between UBC users.\nThis title will not be displayed on the Titles screen.\nUse None as title to go back to a profile without custom title."
+CustomTitleDeleted,Custom title deleted
+CustomTitleCreatedOrModified,Custom title created or modified
+Maximum25CharactersSpacesIncluded,Maximum 25 characters (spaces included)!
+CommandCum,: causes an orgasm.
+CommandDifficulty,(number): changes game difficulty.
+TheDifficultyCommandMustBeFollowed,The difficulty command must be followed by a number between 0 and 3.\n \nAvailable difficulty modes:\n0 roleplay\n1 regular\n2 hardcore\n3 extreme
+CommandFont,(font) (size): changes font in BC. 
+TheFontCommandMustBeFollowed,The font command must be followed by a font number and optionally a size number.\nSupported fonts: 0 Arial - 1 Times New Roman\n2 Papyrus - 3 Comic Sans - 4 Impact\n5 Helvetica Neue - 6 Verdana - 7 Century Gothic\n8 Georgia - 9 Courrier New - 10 Copperplate\nSizes: 0 Small - 1 Medium - 2 Large
+CommandFrlist,(lobby): gives access to friendlist in current lobby.
+CommandGame,(minigame): launches a minigame.
+TheGameCommandMustIncludeAMinigame,"The game command must include a minigame.\nAvailable minigames:\ncarrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\nmovie2, puppy, rhythm, tennis1, tennis2, tennis3,\ntraining, whippony.\nTennis1 = easy, tennis2 = normal, tennis3 = hard\nTraining is the trainer version of the hurdle game.\nYou need generally to click on the NPC and select the appropriate options in the dialogs."
+CommandGgts,(minutes) (level):  enters ggts training in asylum for the specified time and level.
+TheGgtsCommandMustBeFollowed,The ggts command must be followed by two numbers to  specify minutes and level (1-6).
+GetsGrabbedByTwoMaidsAndLocked,{tmpname} gets grabbed by two maids and locked in the asylum for {minutes} minutes of training with the Good Girl Training System Level {level}.
+CommandGtalk,(talkmode) (words): speaks once in specified gag talk.
+TheGtalkCommandMustBeFollowed,"The gtalk command must be followed by a number between 0 and 10, then the words you want to say.\n \nAvailable talk modes:\n0 real gag talk (based on currently worn gags and other items restraining talking)\n1 almost no gag talk\n2 very light gag talk\n3 light gag talk\n4 easy gag talk\n5 normal gag talk\n6 medium gag talk\n7 heavy gag talk\n8 better heavy gag talk\n9 very heavy gag talk\n10 total gag talk"
+PleaseIncludeWordsToSayAfter2,Please include words to say after the gagtalk level.
+CommandHint,(target) (hint): adds or changes a hint for current locks with passwords.
+TheHintCommandMustBeFollowed,The hint command must be followed by a target and the hint you want to add to locks with password.
+AHintHasBeenAddedToSLocksWith,A hint has been added to {tgpname}'s locks with password.
+CommandHorny,(level): sets your arousal level (in all cases).
+TheHornyCommandMustBeFollowed,The horny command must be followed by a number between 0 and 100.
+YourArousalLevelHasBeenModified,Your arousal level has been modified.
+CommandInfolock,": gives info (code, password, time left) for lock used on worn item in selected slot."
+YouCantUseThisCommandAccording,You can't use this command according your settings.
+YouHave5SecondsToClickOnYourself,"You have 5 seconds to click on yourself or another player. If successful, you will get infos about the lock for the selected slot."
+CombinationPadlock,Combination Padlock
+Assetgroup,AssetGroup = {Target}
+LockedWith,Locked with {Lock}
+PortalLinkPadlock,Portal Link Padlock
+SafewordPadlock,Safeword Padlock
+PasswordPadlock,Password Padlock
+TimerPasswordPadlock,Timer Password Padlock
+TimerPadlock,Timer Padlock
+MistressTimerPadlock,Mistress Timer Padlock
+LoversTimerPadlock,Lovers Timer Padlock
+OwnerTimerPadlock,Owner Timer Padlock
+BestFriendTimerPadlock,Best Friend Timer Padlock
+HeartPadlock,Heart Padlock
+DeviousPadlock,Devious Padlock
+CommandInvisible,(target): goes or sends to invisible mode (scripts need to be allowed in BC settings).
+ToUseTheInvisibleCommandOnYourself,"To use the invisible command on yourself, you need first to allow Scripts in BC settings."
+MagicalLasersMakeCompletelyInvisible,Magical lasers make {tmpname} completely invisible.
+ToUseTheInvisibleCommandOnOther,"To use the invisible command on other players, they need first to allow Scripts in BC settings."
+MagicalLasersMakeCompletelyInvisible2,Magical lasers make {tgpname} completely invisible.
+CommandItemcolor,(colorcode): changes color of worn item in selected slot.
+TheItemcolorCommandNeedsToBe,The itemcolor command needs to be followed by a color code in the format #000000 to change the color of a worn item in a slot selected by mouse click.
+YouHave5SecondsToClickOnYourself2,"You have 5 seconds to click on yourself. If successful, the color of the worn item in selected slot will be changed. If not, retry."
+ItemColorChanged,Item color changed.
+CommandKeydeposit,(hours): keeps your keys safe in the vault.
+TheKeydepositCommandMustBeFollowed,The keydeposit command must be followed by a number higher than 0.
+SKeysAreNowSafeInTheVaultFor,{tmpname}'s keys are now safe in the vault for {hours} hours.
+CommandKillpar,: kills UBC/Moaner parameters saved locally.
+WarningThisCommandWillKillAll,<b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b>
+AllUbcMoanerParametersHaveBeen,All UBC/Moaner parameters have been deleted. Make a full logout/login then use the appropriate commands to set the parameters that you like.
+CommandLayerset,(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot
+FirstUseTheLayershowCommandTo,"First use the <b>/layershow</b> command to click on worn item, get useful info about layer colors and save Item Slot.\nThe layerset command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.\nIf you enter a non-numeric layer, it will be interpreted as 0 (zero). If the entered color does not exist, you will go back to the default color."
+WarningFirstUseTheLayershowCommand,<b>Warning</b>: First use the <b>/layershow</b> command to get useful info and save Item Slot.
+LayerColorChangedForLayer,Layer color changed for layer {layer}.
+LayerColorChangedForAllLayers,Layer color changed for all layers.
+CommandLayershow,gives info about layer colors of a specific worn item + saves Item Slot
+YouHave5SecondsToClickOnYourself3,"You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry."
+NoWayToChangeColor,No way to change color
+Layer,Layer {ly} = {Name} - {Color2}
+Layer2,Layer {ly} = {Name1} - {Name2} - {Color2}
+ItemSlotSaved,Item Slot saved.
+CommandLock,(target) (locktype) (other parameters): adds locks to all lockable items on specified target.
+TheLockCommandHasSeveralSyntaxes,"The lock command has several syntaxes:\n/lock (target) (locktype) for locks 1 to 8, 17 to 20\n/lock (target) (locktype) (r) for lock 9\n/lock (target) (locktype) (code) for lock 10\n/lock (target) (locktype) (password) (r) for locks 11 and 12\n/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15\n/lock (target) (locktype) (password) (minutes) (h) (i) (r) - lock 16\nALWAYS SPECIFY THE TARGET. Lock types:\n1 Metal (default when not specified) - 2 Exclusive\n3 Intricate - 4 High Security - 5 Pandora\n6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n10 Combination - 11 Safeword - 12 Password\n13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n16 Timer Password - 17 Family - 18 Lewd Crest\n19 Devious (if enabled) - 20 Heart (if enabled)\nLocks 18, 19 and 20 require a specific mod\nUse <b>/lock par</b> for info about other parameters"
+SpecialParametersOfLockCommand,"Special parameters of lock command:\ncode must be between 0 and 9999.\npassword is limited to 8 characters.\nmaximum time = 240 minutes for locks 13 and 16,\n10080 minutes for lock 14,\n50400 minutes for lock 15\nUse ? if you want a time randomly choosen by the game\n \nOptional parameters:\nh to hide the timer,\ni to enable time input from other players,\nr for item removal when correct password entered\nor lock timer runs out.\n \nTip: replace h and/or i by another character when you need to skip them."
+MagicalLasersMakeAppearLocks,Magical lasers make appear locks on {tgpname}'s body.
+CommandLogin,(accountname) (password): logs in a new account.
+TheLoginCommandMustBeFollowed,The login command must be followed by an account name and a password
+CommandMapfog,: toggles fog in current mapped room.
+Disabled,disabled
+Enabled,enabled
+FogInCurrentMappedRoomIsNoVisible,Fog in current mapped room is {status}. No visible effect if you have enabled full vision in mapped rooms.
+CommandMapforce,: forces map access in current normal room (only for yourself).
+CommandMapkeys,(keynumber) (action): finds or loses all keys or a specific key for current mapped chat room.
+TheMapkeysCommandMustBeFollowed,The mapkeys command must be followed by two numbers.\n1st number: 1 = Gold key - 2 = Silver key - 3 = Bronze key - 4 = All keys.\n2nd number: 1 = Find - 2 = Lose.
+YouHaventEnteredTheMap,You haven't entered the map.
+CommandMaproom,: gives infos about location of players in current mapped chat room.
+RealPresenceInMapYes,Real presence in map: YES
+RealPresenceInMap,Real presence in map: {presence}
+RealPresenceInMap2,Real presence in map: ?
+ThisPlayerHasEnabledTheUbcCheat,This player has enabled the UBC cheat to get coordinates of other players in the map.
+LocationSharingBlocked,Location Sharing blocked - {exinfo}
+DoesNotHaveEnteredMap,Does not have entered map
+CommandMapx,(x-position): changes your X coordinate in the map.
+TheMapxCommandMustBeFollowed,The mapx command must be followed by a number between 0 and 39.
+YouDontHaveEnteredMap,You don't have entered map!
+West,West
+East,East
+CommandMapy,(y-position): changes your Y coordinate in the map.
+TheMapyCommandMustBeFollowed,The mapy command must be followed by a number between 0 and 39.
+North,North
+South,South
+CommandMapz,(target): gives coordinates in the map.
+RealPresenceInMap3,Real presence in map: 
+Yes,YES
+No,NO
+CommandMapzoom,(value): changes zoom level in the map rooms.
+TheMapzoomCommandMustBeFollowed,The mapzoom command must be followed by a number between 7 and 50.
+ZoomLevelModifiedEnjoy,Zoom level modified! Enjoy!
+CommandMaxstatistics,: gives max statistics.
+ChangesMadeAFewOtherThingsHave,Changes made! A few other things have to be set with the /roleplay and /rolequit commands.
+CommandMbsroom,: gives infos about MBS wheels of fortune in current chat room.
+DoesNotHaveAWheelOfFortune,Does not have a wheel of fortune.
+DoesNotHaveAMbsWheelOfFortune,Does not have a MBS wheel of fortune.
+HasAMbsWheelOfFortune,Has a MBS wheel of fortune.
+DoesNotHaveCustomOptionsOnThis,Does not have custom options on this wheel.
+ErrorReadingCustomOptions,Error reading custom options.
+CommandMessage,(option) (message): creates custom message for a specific command.
+TheMessageCommandMustBeFollowed,"The message command must be followed by an option and the message you want instead of the default message.\nEach option corresponds to a command, a 't' prefix being added for using on other players.\nOptions on yourself: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\nOptions on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n \nWhen writing your message, don't forget that your name or nickname will be added before it\nWhen acting on another player, the target name or nickname will be added after the message\nUse ? as message to go back to default message\nUse ! as message to select silent mode (no message)"
+UltrabcSilentModeSavedForCommand,<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for {option} command on yourself.</p>
+UltrabcBackToDefaultMessageFor,<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for {option} command on yourself.</p>
+UltrabcNewMessageSavedForCommand,<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for {option} command on yourself.</p>
+UltrabcSilentModeSavedForCommand2,<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for {option2} command on other players.</p>
+UltrabcBackToDefaultMessageFor2,<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for {option2} command on other players.</p>
+UltrabcNewMessageSavedForCommand2,<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for {option2} command on other players.</p>
+CommandMission,(mission): goes to infiltration room and forces a specific mission.
+TheMissionCommandMustInclude,"The mission command must include a mission.\nAvailable missions:\nburglar, kidnap, rescue, retrieve, sabotage.\nFull random mission with random."
+CommandMstatus,: displays current status of the moaner.
+CommandMurmur,(MemberNumber|Name|Nickname)(Message): sends a whisper to a player.
+CommandNaked,(target): removes clothes.
+MagicalLasersMakeDisappearThe,Magical lasers make disappear the clothes on {tmpname}'s body.
+MagicalLasersMakeDisappearThe2,Magical lasers make disappear the clothes on {tgpname}'s body.
+CommandNpcprison,(minutes): stays in NPC Pandora prison.
+TheNpcprisonCommandMustBeFollowed,The npcprison command must be followed by a number higher than 0
+GetsGrabbedByTwoMaidsAndSent,{tmpname} gets grabbed by two maids and sent to NPC Pandora prison for {minutes} minutes.
+CommandOutfit,(parameter): restores/saves/loads outfit (including restraints).
+OptionsForOutfitCommandAllThese,"Options for outfit command:\n<b>All these options include the restraints</b>, so it's also a good bondage tool.\nTo restore your outfit to what it was before entering room, type: <b>/outfit reset</b> or <b>/outfit restore</b> or <b>/outfit revert</b>\nThree outfits can be saved by using <b>/outfit save1</b> or <b>/outfit save2</b> or <b>/outfit save3</b>\nTo load saved outfits, type: <b>/outfit load1</b> or <b>/outfit load2</b> or <b>/outfit load3</b>\nYou will have 5 seconds to click on target. Retry if the saving/loading was unsuccessful\nThese saves last only 1 login session.\nTo save outfits between sessions, use the <b>Export button</b> in wardrobe\nYou will have the outfit saved as a code. You can copy and paste it elsewhere.\nThen you can use the <b>Import buttons</b> to load it later."
+YouHave5SecondsToClickOnTarget2,"You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry."
+OutfitCommandNotExecutedAsNo,Outfit {args} command not executed as no any saved outfit has been found.
+OutfitCommandExecuted,Outfit {args} command executed.
+OutfitResetRestoreRevertCommand,Outfit reset-restore-revert command executed.
+YouHave5SecondsToClickOnTarget3,"You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry."
+CommandPermission,(number): changes your item permission.
+ThePermissionCommandMustBeFollowed,"The permission command must be followed by a number.\nThe effect will be visible in your profile.\n0 Everyone, no exceptions\n1 Everyone, except blacklist\n2 Owner, Lover, whitelist & Dominants\n3 Owner, Lover and whitelist only\n4 Owner and Lover only\n5 Owner only"
+CommandPet,(target): becomes a fully restrained pet.
+BecomesACutePet,{tmpname} becomes a cute pet.
+BecomesACutePet2,{tgpname} becomes a cute pet.
+CommandPing,(MemberNumber)(Message): sends a beep to a player.
+CommandPmenu,: direct access to Preferences menu.
+CommandPoof,(action): leaves the club very fast.
+PoofsAway, poofs away.
+CommandPose2,(pose) (target): changes the pose of any player.
+ThePose2CommandMustBeFollowed,"The pose2 command must be followed by a pose and optionally a target.\n \nAvailable poses:\narmsfree, belly, boxtied, cuffed, elbowtied,\nkneel1, kneel2, legsclosed, legsopen, pet,\nspreadarms1, spreadarms2, spreadeagle1\nspreadeagle2, spreadlegs, stand, suspension,\ntapedhands. Only on yourself: exercise, jump.\nUse <b>/pose2 reset</b> (target) to back to neutral pose.\nIf WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails."
+RelaxesArms,{tmpname} relaxes {pronoun3} arms.
+RelaxesOnBelly,{tmpname} relaxes on {pronoun3} belly.
+PutsArmsBehindBack,{tmpname} puts {pronoun3} arms behind {pronoun3} back.
+PutsArmsOutLikeIsHandcuffed,{tmpname} puts {pronoun3} arms out like {pronoun4} is handcuffed.
+PutsArmsBehindBackElbowsAlmost,"{tmpname} puts {pronoun3} arms behind {pronoun3} back, elbows almost touching."
+KneelsDown,{tmpname} kneels down.
+KneelsDownAndOpensLegs,{tmpname} kneels down and opens {pronoun3} legs.
+StandsUpAndClosesLegs,{tmpname} stands up and closes {pronoun3} legs.
+StandsUpNormallyOnFeet,{tmpname} stands up normally on {pronoun3} feet.
+RelaxesOnAllFours,{tmpname} relaxes on all fours.
+RaisesHands,{tmpname} raises {pronoun3} hands.
+RaisesTheHandsAboveHead,{tmpname} raises the hands above {pronoun3} head.
+RaisesHandsAndSpreadsLegs,{tmpname} raises {pronoun3} hands and spreads {pronoun3} legs.
+RaisesTheHandsAboveHeadAndSpreads,{tmpname} raises the hands above {pronoun3} head and spreads {pronoun3} legs.
+SpreadsLegs,{tmpname} spreads {pronoun3} legs.
+StandsUp,{tmpname} stands up.
+IsNowInAnAcrobaticPoseInSuspension,{tmpname} is now in an acrobatic pose in suspension.
+PutsArmsOutLikeHandsAreTaped,{tmpname} puts {pronoun3} arms out like {pronoun3} hands are taped.
+JumpsWithJoy,{tmpname} jumps with joy.
+YoureTooHeavilyTiedToExercise,You're too heavily tied to exercise.
+MakesWorkout,{tmpname} makes {pronoun3} workout.
+LetsRelaxArms,{tmpname} lets {tgpname} relax {tgpr3} arms.
+ForcesToStayOnBelly,{tmpname} forces {tgpname} to stay on {tgpr3} belly.
+ForcesToPutTheArmsBehindBack,{tmpname} forces {tgpname} to put the arms behind {tgpr3} back.
+ForcesToPutTheArmsOutLikeHandcuffed,{tmpname} forces {tgpname} to put the arms out like {tgpr4} handcuffed.
+ForcesToPutTheArmsBehindHerBack,"{tmpname} forces {tgpname} to put the arms behind her back, elbows almost touching."
+HelpsToKneelDown,{tmpname} helps {tgpname} to kneel down.
+HelpsToKneelDownForcingLegsOpen,"{tmpname} helps {tgpname} to kneel down, forcing {tgpr3} legs open."
+HelpsToStandUpWithLegsClosed,{tmpname} helps {tgpname} to stand up with {tgpr3} legs closed.
+HelpsToStandUpNormallyOnFeet,{tmpname} helps {tgpname} to stand up normally on {tgpr3} feet.
+ForcesOnAllFours,{tmpname} forces {tgpname} on all fours.
+HelpsToRaiseHands,{tmpname} helps {tgpname} to raise {tgpr3} hands.
+ForcesToRaiseTheHandsAboveHead,{tmpname} forces {tgpname} to raise the hands above {tgpr3} head.
+ForcesToRaiseTheHandsAndSpread,{tmpname} forces {tgpname} to raise the hands and spread the legs.
+ForcesToRaiseTheHandsAboveThe,{tmpname} forces {tgpname} to raise the hands above the head and spread the legs.
+ForcesToSpreadLegs,{tmpname} forces {tgpname} to spread {tgpr3} legs.
+HelpsToStandUp,{tmpname} helps {tgpname} to stand up.
+ForcesInAnAcrobaticPoseInSuspension,{tmpname} forces {tgpname} in an acrobatic pose in suspension.
+ForcesToPutTheArmsOutLikeHands,{tmpname} forces {tgpname} to put the arms out like {tgpr3} hands are taped.
+CommandPrison,(minutes): stays in online Pandora prison.
+ThePrisonCommandMustBeFollowed,"The prison command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\nIf you use it when you are alone in a room, it will be a new room automatically created.\nIt is recommended to use it in an existing Pandora room that you have first entered as normal player.\nIf you use it in an existing non-Pandora room, there will be no any timer, but the Pandora guards will be active though during the requested time.\nFor a correct working in all cases, be sure to have enabled the appropriate Immersion settings to auto-remake rooms."
+CommandQuit,(action): leaves room.
+CommandRandomize,(target): naked + underwear + clothes + restrain commands.
+MagicalLasersApplyRandomClothes,Magical lasers apply random clothes and bindings on {tmpname}'s body.
+MagicalLasersApplyRandomClothes2,Magical lasers apply random clothes and bindings on {tgpname}'s body.
+CommandRelog,: relogs.
+CommandRemovecollar,: temporarily removes slave/owner collar.
+CommandResetdifficulty,": resets difficulty, thereby quitting it."
+WarningResettingDifficultyWill,<b>Warning</b>: Resetting difficulty will incur a 7-day waiting period to rechange. Confirm by typing: <b>/resetdifficulty yes</b>
+DifficultyResetSelectANewOne,"Difficulty reset, select a new one in settings."
+CommandResetinventory,: erases your inventory.
+WarningYouWillLoseManyClothes,"<b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b>"
+AccomplishedVisitStoreToBuyNew,Accomplished. Visit store to buy new clothes and items.
+CommandResetnickname,: erases your nickname.
+WarningYouWillLoseYourNickname,<b>Warning</b>: You will lose your nickname. Confirm by typing: <b>/resetnickname yes</b>
+AccomplishedYouNoLongerHaveA,Accomplished. You no longer have a nickname.
+CommandRestrain,(target): adds random restraints.
+MagicalLasersApplyRandomRestraints,Magical lasers apply random restraints on {tmpname}'s body.
+MagicalLasersApplyRandomRestraints2,Magical lasers apply random restraints on {tgpname}'s body.
+CommandRoleplay,(role): starts to play a role
+TheRoleplayCommandMustInclude,"The roleplay command must include a role.\nYou will be able to check the changes in your profile.\n \nAvailable roles:\nclubmistress, clubslave, doctor, escapedpatient,\nheadmaid, kidnapper, maid, magician, magus,\nmasterkidnapper, mistress, nurse, oracle, patient,\npermanentpatient, sage, sorcerer, warlock, witch, wizard.\nBe careful with clubslave, you will be forced to complete contract. Similar warning for escapedpatient."
+CommandRolequit,(role or club area): ceases to play a role
+TheRolequitCommandMustInclude,"The rolequit command must include a role or clubarea.\nYou will be able to check the changes in your profile.\n \nAvailable roles or areas:\nasylum to cease being doctor, nurse, patient or permanent patient.\nclubslave to break the club slave contract.\nggts to leave ggts training (back to level 0).\nkidnapper to cease being kidnapper or master kidnapper.\nmagician to cease one of the 8 magic roles.\nmanagement or mistress to cease being mistress or club mistress.\nsorority or maid to cease being maid or headmaid."
+CommandSafeworditem,: removes specific item.
+YouHave5SecondsToClickOnTarget4,"You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry."
+CommandSearch,: opens chat search in current lobby.
+CommandSetdevious,(lock time) (anticheat): sets the time and the anticheat for all current devious locks on yourself.
+TheSetdeviousCommandMustBeFollowed,"The setdevious command must be followed by two numbers for lock time and anticheat option.\nThe time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\nUse ? if you want a time randomly choosen by the game (between 1 and 720 hours).\nFor the anticheat option, use 0 ( = disabled) or 1 ( = enabled).\nNote: the settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog.\nIt is recommended to make this full relog immediately after correct execution of this command to preserve the updated data."
+SettingsForYourDeviousLocksHave,Settings for your devious locks have been updated. Please make now a full relog to preserve the updated data!
+CommandSfchaste,(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.
+TheSfchasteCommandMustBeFollowed,"The sfchaste command must be followed by 5 numbers for model, front shield, back shield, tamper protection and orgasm mode.\n \nAvailable models: \n0 Prototype - 1 High-Security\n2 Training - 3 Neo\n \nAvailable front shields:\n0 Open - 1 Locked\n \nAvailable back shields:\n0 Open - 1 Locked\n \nAvailable tamper protections:\n0 Disabled - 1 Belt - 2 All items\n \nAvailable orgasm modes:\n0 Allow - 1 Punish"
+TheSettingsOfYourFuturisticChastity,The settings of your Futuristic Chastity Belt have been modified.
+CommandShock,: (slot) (sensibility) (intensity): changes mode of worn device shock in a specific slot.
+TheShockCommandMustBeFollowed,"The shock command must be followed by two (or three) numbers:\n- a number for the concerned slot:\n0 = Arms - 1 = Breast - 2 = Butt - 3 = Devices - 4 = Neck - 5 = Neck Accessories - 6 = Nipples - 7 = Pelvis - 8 = Vulva\n \n- a number for the sensibility of the shock device in this slot:\n0 = Off - 1 = Low - 2 = Medium - 3 = High \n- a number for the intensity of the shocks:\n1 = Low - 2 = Medium - 3 = High \nNote that most devices don't need the last parameter as they refer to a level combining sensibility and intensity!\nSeveral devices can't be disabled. For the Obedience Belt, use 0 (disabled) or 1 (enabled).\nThis command does not support the Futuristic Chastity Belt and the Futuristic Training Belt."
+SettingsChangedForOneOfYourShock,Settings changed for one of your shock devices!
+CommandSleep,(target): uses the sleeping pill on yourself or another player.
+CommandSlowleave,(action): slowly leaves the room.
+SlowlyHeadsForTheDoor2, slowly heads for the door.
+CommandSolidity,(value) (target): changes the solidity of most current bindings.
+TheSolidityCommandMustBeFollowed,"The solidity command must be followed by a number between 1 and 99, and optionally a target.\nTo escape special restraints (Futuristic Crate, Wooden Rack, Armbinder Suit), use the value 1."
+TheSolidityValueMustBeBetween,The solidity value must be between 1 and 99.
+MagicalLasersMakeDisappearThe3,Magical lasers make disappear the special restraints that kept {tmpname} prisoner.
+TheSolidityOfMostCurrentBindings,The solidity of most current bindings has been changed.
+MagicalLasersMakeDisappearThe4,Magical lasers make disappear the special restraints that kept {tgpname} prisoner.
+TheSolidityOfMostCurrentSBindings,The solidity of most current {tgpname}'s bindings has been changed by {tmpname}.
+CommandSpin,"(target) (option): allows access to target's wheel of fortune, even when not displayed."
+TheSpinCommandMustBeFollowed,"The spin command must be followed by the target whose wheel of fortune interests you, and optionally a mode.\nAvailable modes:\na = automatic real spinning (only the options selected by the wheel creator)\ni = info about the maximum of options on the wheel\nr = full random spinning (includes also the options not selected by the wheel creator)\nTip: use the i mode before the r mode, it will correctly initialise the messages.\nNote that roleplay is disabled by a and r modes!"
+BadLuckThisPlayerDoesNotHave,Bad luck! This player does not have a wheel of fortune.
+CommandStalk,(stuttermode) (words): speaks once in a specified stuttering mode.
+TheStalkCommandMustBeFollowed,The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\nNote that it can't be used when you are in a 'permanent' stuttering mode.\n \nAvailable stuttering modes:\n1 light stuttering\n2 normal stuttering\n3 heavy stuttering\n4 total stuttering
+YouCantUseThisCommandBecause,You can't use this command because you are in a 'permanent' stuttering mode
+PleaseIncludeWordsToSayAfter3,Please include words to say after the stuttering mode.
+CommandStore,": leaves chatroom, goes to store, shows hidden items."
+CommandSuperdice,(sides): rolls a superdice. 
+TheSuperdiceCommandMustBeFollowed,The superdice command must be followed by a number between 2 and 999999999.
+RollsASuperdiceOfSidesTheResult,{tmpname} rolls a superdice of {sides} sides. The result is {Result}.
+CommandTheme,(number): changes chat color theme.
+TheThemeCommandMustBeFollowed,The theme command must be followed by a number between 0 and 3.
+CommandThmlogin,"(options) shows/hides Credits and/or NPCs on login screen, when Themed mod used"
+TheThmloginCommandCanBeUsedOnly,The thmlogin command can be used only if Themed mod is enabled.\nIt must be followed by a number between 1 and 3.\n1 = Credits - 2 = NPCs - 3 = 1 + 2.\n
+CurrentStatus,{msg}Current status:
+SettingsForLoginScreenModified,Settings for login screen modified!
+CommandTimercell,(minutes): stays in the isolation cell.
+TheTimercellCommandMustBeFollowed,The timercell command must be followed by a number higher than 0.
+GetsGrabbedByTwoMaidsAndLocked2,{tmpname} gets grabbed by two maids and locked in a timer cell for {minutes} minutes.
+CommandTitle1,(title): chooses a new title (from A to K).
+TheTitle1CommandMustBeFollowed,"The title1 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nadmiral, agent, alien, angel, archbishop, archjudge,\nbaby, bishop, bondagebaby, bondagemaid, brat, bunny,\ncaptain, champion, clubslave, coldbloodhorse,\ncollegestudent, concubus, demon, diaperlover,\ndiaperprince, diaperprincess, doctor, doll, dragon,\ndrone, drow, duchess, duke."
+CommandTitle2,(title): chooses a new title (from E to K).
+TheTitle2CommandMustBeFollowed,"The title2 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nelf, escapedpatient, farmhorse, femboy, flyingpegasus,\nfoal, foxy, freeuse, god, goddess, goodboy, goodgirl,\ngoodone, goodslave, goodslaveboy, goodslavegirl\nheadmaid, hotbloodhorse, houdini, incubus, \ninfiltrator, judge, kidnapper, king, kitten."
+CommandTitle3,(title): chooses a new title (from L to Q).
+TheTitle3CommandMustBeFollowed,"The title3 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nladyluck, liege, littleone, lordfortune, magician, magus,\nmaid, majesticalicorn, majesty, master, masterkidnapper,\nmatron, missy, mistree, mistress, mole, monster, nawashi,\nnurse, operative, oracle, patient, patriarch, patron,\npermanentpatient, pet, pixie, primaris, prince, princess,\npuddlemaker, puppy, queen."
+CommandTitle4,(title): chooses a new title (from R to Z).
+TheTitle4CommandMustBeFollowed,"The title4 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nsage, shapeshifter, shiningunicorn, sissy, sorcerer,\nsuccubus, superhero, superheroine, superspy, switch,\nthing, tomboy, turtle, vampire, warlock,\nwarmbloodhorse, wildmustang, witch, wizard, wolf."
+CommandTotalrelease,"(target): removes all bindings, collar, harness, chastity, toys."
+MagicalLasersMakeDisappearAll2,Magical lasers make disappear all bindings and toys on {tgpname}'s body.
+CommandTplistadd,(membernumber): adds a player to the list allowing to teleport you.
+TheTplistaddCommandMustBeFollowed,The tplistadd command must be followed by the member number of the player that you allow to teleport you.
+CommandTplistremove,(membernumber): removes a player from the list allowing to teleport you.
+TheTplistremoveCommandMustBe,The tplistremove command must be followed by the member number of the player who is no more allowed to teleport you.
+CommandTplistshow,displays the list of players allowed to teleport you.
+Tplist,Tplist: 
+CommandTrsee,(visor) (deafening module) (chin strap): changes the settings of a worn Techno Helmet
+TheTrseeCommandMustBeFollowed,"The trsee command must be followed by 3 numbers for visor, deafening module and chin strap.\n \nAvailable visors:\n0 No visor - 1 transparent\n2 light tinted - 3 heavy tinted\n4 opaque - 5 hypnotic\n \nAvailable deafening modules:\n0 no module\n1 light\n2 heavy\n3 noise-cancelling\n \nAvailable options for chin strap:\n0 No chin strap\n1 chin strap"
+TheSettingsOfYourTechnoHelmet,The settings of your Techno Helmet have been modified.
+CommandUhelp,(category): displays the ULTRAbc commands.
+TheUhelpIsOrganizedIntoCategories,"The uhelp is organized into categories. Use <b>/uhelp</b> (category). List of categories:\n<b>admin</b> = commands only for chat room admins.\n<b>bondage</b> = commands related to bondage.\n<b>character</b> = commands related to your character.\n<b>chat</b> = commands with extra features in chat room.\n<b>clothing</b> = commands related to the clothes.\n<b>escape</b> = commands related to escape.\n<b>fun</b> = commands related to fun, pain and pleasure.\n<b>info</b> = commands that give infos.\n<b>maps</b> = commands related to hybrid and map rooms.\n<b>misc</b> = help, info, login and Ulist commands.\n<b>settings</b> = commands to customize ULTRAbc.\n<b>talking</b> = commands related to talking.\n<b>visual</b> = commands related to animations and background.\n<b>zones</b> = commands related to game zones.\nSeveral commands require or allow to specify a target. It can be a real name, a nickname or a member number.\nVisit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> and join our <a href='https://steamcommunity.com/groups/ULTRAbc' target='_blank'>Steam community</a>"
+AdminCommandsAutokickToggles,Admin commands\n<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n<b>/bg1</b> (number) = uses a Bondage College/Teacher background as custom background. /bg1 to get the list.\n<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.
+BondageCommandsMoreInfoWhenUsing,Bondage commands - * = more info when using\n<b>/autoheart</b> = puts/configures heart locks on yourself. *\n<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n<b>/lock</b> = adds locks on all lockable items. *\n<b>/outfit</b> = restores/saves/loads outfit (including restraints). *\n<b>/pet</b> (target) = becomes a fully restrained pet.\n<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n<b>/restrain</b> (target) = adds random restraints.\n<b>/setdevious</b> = configures all your current devious locks. *\n<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Value must be between 1 and 99.\n<b>/spin</b> (target) (option) = access to any (hidden) wheel. *\n<b>/weaken</b> = weakens all your skills for one hour.
+CharacterCommandsMoreInfoWhen,Character commands - * = more info when using\n<b>/cname</b> (custom name) = creates a custom name. *\n<b>/cowner</b> (member number) (owning days) (owner name) = sets a custom owner. *\n<b>/ctitle</b> (custom title) = creates a custom title. *\n<b>/difficulty</b> (number) = changes game difficulty. *\n<b>/maxstatistics</b> = gives max statistics.\n<b>/permission</b> (number) = changes your item permission *\n<b>/resetinventory</b> = erases your inventory.\n<b>/resetnickname</b> = erases your nickname.\n<b>/roleplay</b> (rolehere) = starts a role. *\n<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n<b>/title1</b> (newtitlehere) = chooses a new title (from A to D). *\n<b>/title2</b> (newtitlehere) = chooses a new title (from E to K). *\n<b>/title3</b> (newtitlehere) = chooses a new title (from L to Q). *\n<b>/title4</b> (newtitlehere) = chooses a new title (from R to Z). *
+ChatCommandsMoreInfoWhenUsing,Chat commands - * = more info when using\n<b>/bio</b> (target) = sees profile of any player in chat room.\n<b>/font</b> (newfont) (size) = changes font in BC. *\n<b>/frlist</b> = gives access to friendlist in current lobby.\n<b>/search</b> = opens chat search in current lobby.\n<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.
+ClothingCommandsMoreInfoWhen,Clothing commands - * = more info when using\n<b>/clothes</b> (target) = changes clothes.\n<b>/naked</b> (target) = removes clothes.\n<b>/outfit</b> (options) = restores/saves/loads outfit (including restraints). *\n<b>/underwear</b> (target) = changes underwear.\n<b>/wexport</b> (target) = fully exports outfit in UBC/BCG format.\n<b>/wimport1</b> (target) = imports clothing + restraints in UBC/BCG format.\n<b>/wimport2</b> (target) = imports clothing + restraints + cosplay in UBC/BCG format.\n<b>/wimport3</b> (target) = fully imports outfit in UBC/BCG format.\n<b>/wrobe</b> (target) = fully opens target wardrobe.
+EscapeCommandsMoreInfoWhenUsing,"Escape commands - * = more info when using\n<b>/boost</b> = boosts all your skills for one hour.\n<b>/infolock</b> = gives extra info (code, password, time left) for lock used on worn item in selected slot.\n<b>/quit</b> (action) = leaves room.\n<b>/removecollar</b> = temporarily removes slave/owner collar.\n<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n<b>/safeworditem</b> = removes specific item. *\n<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Use low values to escape! Value 1 to escape special restraints.\n<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. *\n<b>/untie</b> (target) = removes all bindings."
+FunCommandsMoreInfoWhenUsing,Fun commands - * = more info when using\n** = scripts must be allowed in BC settings\n<b>/cum</b> = causes an orgasm (in all cases).\n<b>/horny</b> = sets your arousal level (in all cases). *\n<b>/invisible</b> (target) = goes or sends to invisible mode. **\n<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n<b>/shock</b> (slot) (sensibility) (intensity) = changes mode of worn device shock in a specific slot. *\n<b>/sleep</b> (target) = uses the sleeping pill.\n<b>/slowleave</b> (action) = slowly leaves the room.\n<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n<b>/vibe</b> (slot) (mode) = changes mode of worn vibe in a specific slot. *\n<b>/visible</b> (target) = goes or sends back to visible mode. **
+InfoCommandsMoreInfoWhenUsing,Info commands - * = more info when using\n<b>/maproom</b> = gives infos about players in current map.\n<b>/mbsroom</b> = infos about MBS wheels in current room.\n<b>/mstatus</b> = displays current status of the moaner.\n<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.\n<b>/uroom</b> = infos about UBC/Uwall users in current room.
+MapsCommandsMoreInfoWhenUsing,Maps commands - * = more info when using\n<b>/mapfog</b> = toggles fog in current map room.\n<b>/mapforce</b> = forces map access in current normal room (only for yourself).\n<b>/mapkeys</b> (keynumber) (action) = finds or loses all keys or a specific key for current map room. *\n<b>/maproom</b> = infos about players in current map.\n<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n<b>/mapz</b> (target) = gives coordinates in the map.\n<b>/mapzoom</b> (value) = changes zoom level in map rooms.\n<b>/tplistadd</b> (membernumber) = adds a player to the list allowing to teleport you.\n<b>/tplistremove</b> (membernumber) = removes a player from the list allowing to teleport you.\n<b>/tplistshow</b> = displays the list of players allowed to teleport you.
+MiscCommandsMoreInfoWhenUsing,"Misc commands - * = more info when using\n<b>/callubc</b> = installs UBC GUI (to be used if it has failed during initialisation).\n<b>/login</b> (accountname) (password) = logs in a new account.\n<b>/pmenu</b> = direct access to Preferences screen.\n<b>/relog</b> = relogs.\n<b>/thmlogin</b> (options) shows/hides Credits and/or NPCs on login screen, when Themed mod used. *\n<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n<b>/ulistshow</b> = displays list of players in your Ulist.\n<b>/xmenu</b> = direct access to Extensions screen."
+SettingsCommandsBglistDisplays,"Settings commands\n<b>/bglist</b> displays the list of all available standard backgrounds.\n<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background and embedded picture.\n<b>/bgshow2</b> (bgnumber) = sends in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n<b>/message</b> (option) (message) = creates custom messages for specific command. *\n<b>/ulang</b> (language) = changes the UBC language (auto, en, cn, es).\n<b>/wtoggle</b> = toggles between UBC wardrobe and BC/BCX wardrobe."
+TalkingCommandsMoreInfoWhenUsing,Talking commands - * = more info when using\n<b>/atalk</b> (stuffhere) = speaks once as an animal. *\n<b>/btalk</b> (stuffhere) = speaks once as a baby.\n<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n<b>/murmur</b> (MemberNumber|Name|Nickname) (Message) = sends a whisper to a player. Error messages will not disappear.\n<b>/ping</b> (MemberNumber) (Message) = sends a beep to a player. Beep errors will not disappear.\n<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *
+VisualCommandsMoreInfoWhenUsing,Visual commands - * = more info when using\n<b>/allcolor</b> (colorcode) (category) (target) = changes color on current elements in specified category. *\n<b>/colorchanger</b> (anim) =  animation with color change. *\n<b>/itemcolor</b> (colorcode) = changes item color in selected slot. *\n<b>/layerset</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n<b>/layershow</b> = color info and saving of Item Slot.\n<b>/pose2</b> (pose) (target) = changes pose of any player. *\n<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n<b>/vrsee</b> (background) (mode) (game) = changes the settings of a worn VR Headset. *
+ZonesCommandsMoreInfoWhenUsing,"Zones commands - * = more info when using\n<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n<b>/chess</b> (difficulty) = starts chess game. *\n<b>/college</b> = enters college, bypasses requirements.\n<b>/game</b> (minigame) = launches a minigame. *\n<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n<b>/mission</b> (missiontype) = forces an infiltration mission. *\n<b>/npcprison</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n<b>/store</b> = Goes to store. Shows hidden items.\n<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible."
+CommandUlistadd,(membernumber): adds a player to the list allowing to bypass Uwall.
+TheUlistaddCommandMustBeFollowed,The ulistadd command must be followed by the member number of the player that you allow to bypass Uwall.
+CommandUlistremove,(membernumber): removes a player from the list allowing to bypass Uwall.
+TheUlistremoveCommandMustBeFollowed,The ulistremove command must be followed by the member number of the player who is no more allowed to bypass Uwall.
+CommandUlistshow,displays the list of players allowed to bypass Uwall.
+Ulist,Ulist: 
+CommandUnderwear,(target): changes underwear.
+MagicalLasersPutInRandomUnderwear,Magical lasers put {tmpname} in random underwear.
+MagicalLasersPutInRandomUnderwear2,Magical lasers put {tgpname} in random underwear.
+CommandUnlock,(target) (locktype): removes all locks or only a specified type of lock on specified target.
+TheUnlockCommandUnlockTarget,The unlock command:\n<b>/unlock</b> (target) (locktype).\nThe target always needs to be specified.\nAll locks of any type will be removed if you don't specify the lock type.\n \nThe lock types:\n1 Metal (default if wrong value entered) - 2 Exclusive\n3 Intricate - 4 High Security - 5 Pandora\n6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n10 Combination - 11 Safeword - 12 Password\n13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n16 Timer Password - 17 Family - 18 Lewd Crest\n19 Devious - 20 Heart \n21 Best Friend - 22 BF Timer\nLocks 19 and 20 can be removed by everybody only if players use a modified version of the DOGS or AFC mod.
+MagicalLasersMakeDisappearLocks,Magical lasers make disappear locks on {tgpname}'s body.
+CommandUntie,(target): removes all bindings.
+MagicalLasersMakeDisappearThe5,Magical lasers make disappear the bindings on {tmpname}'s body.
+MagicalLasersMakeDisappearThe6,Magical lasers make disappear the bindings on {tgpname}'s body.
+CommandUroom,: gives infos about UBC users and Uwall protection in current chat room.
+CommandVibe,: (slot) (mode): changes mode of worn vibe in a specific slot.
+TheVibeCommandMustBeFollowed,"The vibe command must be followed by two numbers:\n- a number for the concerned slot:\n0 = Boots - 1 = Breast - 2 = Butt - 3 = Clitoris/Gland\n4 = Devices - 5 = Feet - 6 = Nipples\n7 = Nipples Piercings - 8 = Pelvis - 9 = Vulva/Penis\n \n- a number for the mode of the vibe in this slot:\n0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n5 = Random - 6 = Escalate - 7 = Tease - 8 = Deny - 9 = Edge\nNote that modes 5 to 9 are not available on some vibes!\nFor Heavy Duty Belt, Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm\nThis command does not support the Futuristic Training Belt and the Lewd Crest."
+ModeChangedForOneOfYourVibes,Mode changed for one of your vibes!
+CommandVisible,: (target): goes back or sends back to visible mode.
+SuddenlyIsVisibleForEverybody,{tmpname} suddenly is visible for everybody.
+ToUseTheVisibleCommandOnOther,"To use the visible command on other players, they need first to allow Scripts in BC settings."
+SuddenlyIsVisibleForEverybody2,{tgpname} suddenly is visible for everybody.
+CommandVrsee,(background) (mode) (game): changes the settings of a worn VR Headset.
+TheVrseeCommandMustBeFollowed,"The vrsee command must be followed by 3 numbers for background, mode and game.\n \nAvailable backgrounds:\n0 No background - 1 Virtual World\n2 Dungeon - 3 High-Tech\n4 Ancient Ruins - 5 Trance\n \nAvailable modes:\n0 Passthrough\n1 VR off\n2 VR on\n3 VR on + Hide restraints\n \nAvailable games:\n0 No game\n1 Kinky Dungeon"
+TheSettingsOfYourVrHeadsetHave,The settings of your VR Headset have been modified.
+CommandWeaken,: weakens all your skills for one hour.
+YouFeelAllYourSkillsWeakened,You feel all your skills weakened. Changes can be seen in information panel.
+CommandWexport,(target): fully exports outfit in UBC/BCG format.
+CommandWimport1,(target): imports clothing + restraints in UBC/BCG format.
+PleaseInputTheAwcodeCompatible,Please input the awcode (Compatible with BCG).
+CommandWimport2,(target): imports clothing + restraints + cosplay in UBC/BCG format.
+CommandWimport3,(target): fully imports outfit in UBC/BCG format.
+CommandWrobe,(target): fully opens target wardrobe.
+CommandWtoggle,: toggles between UBC wardrobe and BC/BCX wardrobe.
+TheBcBcxWardrobeIsNowEnabled,The BC/BCX wardrobe is now enabled.
+TheUbcWardrobeIsNowEnabled,The UBC wardrobe is now enabled.
+CommandXmenu,: direct access to Extensions menu.
+CommandUlang,(language): changes the UBC language. auto = same language as BC.
+UlangUsage,Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
+UlangChanged,UBC language: {language}

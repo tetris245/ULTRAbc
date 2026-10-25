@@ -10,6 +10,19 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 <br>
 
+## Languages
+
+UBC is one script for all languages. Its texts are in the `translations` folder, in the same format as BC's own texts:
+
+ - `Text_UBC.csv`: every text in English, as `key,text`
+ - `Text_UBC_CN.txt`, `Text_UBC_ES.txt`: pairs of lines, the English text and then its translation (a missing line falls back to English)
+
+UBC uses the language of BC (Chinese for 中文 and 繁體中文, English for languages UBC does not have) and follows it when you change it in game. Use `/ulang es`, `/ulang cn` or `/ulang en` to pick a UBC language yourself, and `/ulang auto` to follow BC again. `\n` in a text is a line break and `{name}` parts are filled in by UBC.
+
+To add a language, copy `Text_UBC_ES.txt`, translate the second line of each pair and add the language code to `UBC_LANGUAGES` in `ULTRAbc.js`.
+
+<br>
+
 ## Not recommended installation (FUSAM)
 
 Although UBC is available in the multi-mod manager FUSAM (only at browser-level), it is not recommended to use this way to load UBC, for these reasons:

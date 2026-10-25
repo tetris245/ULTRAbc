@@ -53,7 +53,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["ULTRAbc.js"],
+      "resources": ["ULTRAbc.js", "translations/*"],
       "matches": [
         "https://bondageeurope.com/*",
         "https://www.bondageeurope.com/*",

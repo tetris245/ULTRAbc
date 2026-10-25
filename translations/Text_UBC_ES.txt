@@ -1,0 +1,1450 @@
+Your command can't be executed because
+Tu comando no puede ser ejecutado porque
+has enabled the Uwall protection.
+has activado la protección Uwall.
+you are in no-escape mode.
+estás en modo sin escape (no-escape).
+Your message can't be sent because it does not respect the rules of doll talk.
+Tu mensaje no puede enviarse porque no respeta las reglas de 'doll talk'.
+This room does not use the map feature.
+Esta sala no utiliza la función de mapa.
+Better use the <b>/uroom</b> command.
+Es mejor usar el comando <b>/uroom</b>.
+you are in silent mode.
+estás en modo silencio.
+Your very tight collar or a LSCG spell prevents you to talk.
+Tu collar está muy apretado o un hechizo LSCG te impide hablar.
+See more stars with the UBC options and commands!
+¡Mira más estrellas con las opciones y comandos de UBC!
+Tip: Use the /uhelp command in chat or explore the wiki to better know all the UBC commands.
+Consejo: Usa el comando /uhelp en el chat o explora la wiki para conocer mejor todos los comandos de UBC.
+Enjoy all the UBC options and commands!
+¡Disfruta de todas las opciones y comandos de UBC!
+Backgrounds
+Fondos
+Buttons
+Botones
+Cheats
+Trucos
+Hotkeys
+Atajos de teclado
+Maps
+Mapas
+Misc
+Varios
+Moaner
+Gemidos (Moaner)
+Reputation
+Reputación
+Skills
+Habilidades
+Special Modes
+Modos especiales
+Talking
+Hablar
+Visual Effects
+Efectos visuales
+Visual Preferences
+Preferencias visuales
+- Click on a setting to get more info
+- Haz clic en una opción para obtener más información
+- ULTRA Bondage Club Settings -
+- Configuración de ULTRAbc -
+Link to Icons8
+Enlace a Icons8
+Icon by Icons8
+Icono de Icons8
+Open UBC Changelog on GitHub
+Abrir el Changelog de UBC en GitHub
+UBC Changes
+Cambios
+Open UBC Wiki on GitHub
+Abrir la Wiki de UBC en GitHub
+UBC Wiki
+Wiki de UBC
+/uhelp in chat
+/uhelp en el chat
+Access all standard backgrounds:
+Acceder a todos los fondos estándar:
+With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!
+Con esta opción, no estarás limitada a 42 fondos en la Celda Privada o 187 en las preferencias Online y el editor de Club Card Game al cambiar varios fondos. Tendrás acceso a todos los fondos estándar (¡más de 250!). Nota: si usas BCX y quieres acceso directo a los fondos añadidos por BCX, ¡muéstralos con el comando /bg1!
+Disable background color for UBC messages:
+Desactivar color de fondo para mensajes UBC:
+If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.
+Si marcas esta casilla, UBC no usará un color específico predefinido como fondo para sus mensajes locales en las salas de chat.
+Extended using of Character Info background:
+Uso extendido del fondo de Información:
+On the Character Info screen, you have buttons to randomly or manually select a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immediate (you need to go back to the Extensions menu!)
+En la pantalla de Información de Personaje, tienes botones para seleccionar manual o aleatoriamente un fondo que reemplaza al predeterminado. El fondo seleccionado también se aplica automáticamente a las pantallas de BCX. Si activas este ajuste, UBC extiende este fondo a las siguientes pantallas: Título, Perfil y Preferencias (también de la mayoría de complementos), pero el efecto no es inmediato (¡debes volver al menú de Extensiones!)
+Remove background buttons in Character Info:
+Quitar botones de fondo en Información:
+If you check this setting, UBC will not display background buttons in Character Info screen. However, your current settings will remain active.
+Si marcas esta casilla, UBC no mostrará los botones de fondo en la pantalla de Información de Personaje. Sin embargo, tus ajustes actuales seguirán activos.
+Remove background buttons in Timer Cell:
+Quitar botones de fondo en Celda de Tiempo:
+If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active.
+Si marcas esta casilla, UBC no mostrará los botones de fondo en la Celda de Tiempo. Sin embargo, tus ajustes actuales seguirán activos.
+Share Character Info background:
+Compartir el fondo de Información:
+When enabled, other UBC users will see the standard BC background that you use for your Character Info screen.
+Cuando esta opción esté activada, otros usuarios de UBC verán el fondo estándar de BC que utilizas para la pantalla de información de tu personaje.
+Enable Preferences button in chat rooms:
+Activar botón de Preferencias en salas de chat:
+When checked, an Extensions button will be added in the chat rooms.
+Cuando está marcado, se añadirá un botón de Extensiones en las salas de chat.
+Enable FREE buttons:
+Activar botones de LIBERAR (FREE):
+The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command. This option is not available in no-escape mode.
+El botón FREE se añade en la sala de chat, la prisión de Pandora, la sala fotográfica y la celda de tiempo. Corresponde al comando /totalrelease, pero solo para ti. El mensaje por defecto en las salas de chat para este botón puede ser reemplazado por un mensaje personalizado o por la ausencia de mensaje (ver el comando /message). Esta opción no está disponible en modo sin escape (no-escape).
+Enable OUT buttons:
+Activar botones de SALIR (OUT):
+The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text. This option is not available in no-escape mode.
+El botón OUT se añade en la sala de chat, la prisión de Pandora, la sala fotográfica y la celda de tiempo. Corresponde al comando /quit, pero sin un texto opcional específico. Esta opción no está disponible en modo sin escape (no-escape).
+By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players! This option is not available in no-escape mode.
+Por defecto, sales de una sala de chat u otra ubicación con el botón OUT en modo rápido, incluso si estás atada. Al activar esta opción, saldrás en modo lento sin un icono especial bajo tu personaje, ¡lo que sorprenderá a los demás jugadores! Esta opción no está disponible en modo sin escape (no-escape).
+Slow exit with OUT button:
+Salida lenta con botón OUT:
+Enable RGL button in chat:
+Activar botón RGL en el chat:
+The RGL button gives info about your current Real Garbling Level at any moment, by checking worn gags and other items restraining talking (also LSCG collar and spells). When using the buttons, hotkeys or commands to release yourself, this info is automatically given and synchronized with your forced gagtalk/whisper level as the result is 0. The RGL button can therefore be used as emergency when you can't talk while not being gagged, for example.
+El botón RGL da información sobre tu Nivel Real de Balbuceo (Real Garbling Level) en cualquier momento, comprobando las mordazas puestas y otros objetos que restringen el habla (también collares LSCG y hechizos). Al usar los botones, atajos o comandos para liberarte, esta información se da automáticamente y se sincroniza con tu nivel forzado de gagtalk/susurro cuando el resultado es 0. Por lo tanto, el botón RGL puede usarse como emergencia.
+Extended synchronization with RGL button:
+Sincronización extendida con botón RGL:
+By default, the synchronization of RGL button with forced level of gagtalk/whisper is automatic when using the emergency buttons, hotkeys or commands to release yourself. This setting allows to extend it to all other situations. The detected level will be limited to 10 for gagtalk (11 is used for baby talk). When enabled, manual changes in your worn gags and other items restraining talking (including LSCG collar and spells) require to click the RGL button again.
+Por defecto, la sincronización del botón RGL con el nivel forzado de gagtalk/susurro es automática al usar los botones de emergencia, atajos o comandos para liberarte. Este ajuste permite extenderlo a todas las demás situaciones. El nivel detectado se limitará a 10 para gagtalk (el 11 se usa para baby talk). Cuando está activado, los cambios manuales en tus mordazas y otros objetos que restringen el habla (incluyendo collares LSCG y hechizos) requieren hacer clic de nuevo en el botón RGL.
+Add/Remove Extra Cards for Card Game:
+Añadir/Quitar cartas extra del juego:
+Toggle
+Alternar
+All extra cards added
+Todas las cartas extra añadidas
+All extra cards removed
+Todas las cartas extra eliminadas
+This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action.
+Este ajuste es un interruptor. Puedes añadir o quitar todas las cartas extra de recompensa. Ten en cuenta que las cartas extra que hayas conseguido de forma normal también se eliminarán cuando esta opción cambie a la acción de quitar.
+Always access to layering menus:
+Acceso total a menús de capas (layering):
+With this option, you will always have access to layering menus, even if bindings and locks restrain your moves! Note: If you don't want that other players make layering based changes to your character, you can enable a specific option in the WCE mod.
+Con esta opción, siempre tendrás acceso a los menús de capas, ¡incluso si las ataduras y candados restringen tus movimientos! Nota: Si no quieres que otros jugadores cambien las capas de tu personaje, puedes activar una opción específica en el mod WCE.
+Enable Bondage Brawl/Magic School cheat:
+Truco para Bondage Brawl/Escuela de Magia:
+With this option, you will always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!
+¡Con esta opción, siempre serás la ganadora en Bondage Brawl y en la Escuela de Magia (solo en la parte de un solo jugador)!
+Enable extra info for some locks:
+Información extra para algunos candados:
+This setting allows to use the /infolock command and get this way extra info (code, password, time left) about some locks on worn item in a slot selected by clicking on yourself or another player.
+Este ajuste permite usar el comando /infolock para obtener información extra (código, contraseña, tiempo restante) sobre algunos candados en objetos equipados en una ranura seleccionada al hacer clic en ti misma o en otro jugador.
+Enable full help for intricate and hs locks:
+Ayuda total para candados intrincados y HS:
+You will become a lockpicking expert with this option! The full solution with the correct order to lockpick intricate and high security locks is displayed on screen.
+¡Te convertirás en una experta en ganzúas con esta opción! Se mostrará en pantalla la solución completa con el orden correcto para forzar candados intrincados y de alta seguridad (HS).
+This setting allows to ungarble your non-forced gagtalk, no matter your game difficulty. However, it is not available when you have enabled the corresponding WCE feature, which has more options.
+Este ajuste permite que tu habla (gagtalk) no forzada sea legible, sin importar la dificultad del juego. Sin embargo, no está disponible si has activado la función correspondiente de WCE, que tiene más opciones.
+This setting allows automatic struggle in mini-games, no matter your game difficulty. If the autostruggle fails, you need to change solidity of current worn items with the /solidity command and/or enhance your skills with the /boost command. Note that this setting is not available when you have enabled the corresponding WCE feature, which works slightly differently.
+Este ajuste permite el forcejeo (struggle) automático en minijuegos, sin importar la dificultad del juego. Si el forcejeo automático falla, necesitarás cambiar la solidez de los objetos equipados con el comando /solidity y/o mejorar tus habilidades con el comando /boost. Ten en cuenta que este ajuste no está disponible si has activado la función correspondiente de WCE, que funciona de forma algo distinta.
+Enable ungarbling of your gagtalk:
+Desactivar balbuceo (ungarbling) en tu gagtalk:
+Enable automatic struggle in mini-games:
+Activar forcejeo automático en minijuegos:
+Enable hotkeys in chat rooms:
+Activar atajos en salas de chat:
+These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself.                         Hotkeys on numeric pad:         Divide = fast leave               Multiply = total release                    If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode.
+Estos atajos equivalen al comando /quit (sin texto opcional) y al comando /totalrelease (solo para ti).                                        Atajos en el teclado numérico: Dividir (/) = salida rápida                 Multiplicar (*) = liberación total      Si no tienes teclado numérico, usa el comando similar o un botón de UBC. Esta opción no está disponible en modo sin escape (no-escape).
+Enable hotkeys in chat search:
+Activar atajos en búsqueda de chat:
+When this option is enabled, you will have direct access to some useful screens and can change the Chat Search background       Left Alt = Preferences                  Left Arrow = Wardrobe                 Right Arrow = Extensions             Up Arrow = Random background Down Arrow = Select background Tab = Default background
+Cuando esta opción está activa, tendrás acceso directo a varias pantallas y podrás cambiar el fondo de la Búsqueda de Chat.      Alt Izquierdo = Preferencias        Flecha Izquierda = Vestuario  Flecha Derecha = Extensiones  Flecha Arriba = Fondo aleatorio  Flecha Abajo = Seleccionar fondo  Tab = Fondo predeterminado
+Enable hotkeys in friend list:
+Activar atajos en lista de amigos:
+These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. Background can be changed too. List of available hotkeys:                D = Default background                  F = Female club    G = Mixed club  H = Male club        J = Asylum       R = Random background              S = Select background
+Estos atajos permiten obtener enlaces clicables a otros lobbies a los que tengas acceso si estás en un lobby (no en una sala). Solo puedes usarlos en la lista de amigos conectados Y si no estás en el cuadro de búsqueda o zona de pitidos. También permite cambiar el fondo. Atajos:              D = Fondo predeterminado             F = Club femenino                        G = Club mixto                             H = Club masculino                       J = Manicomio (Asylum)                 R = Fondo aleatorio                      S = Seleccionar fondo
+Add toys under locked chastity in traps:
+Añadir juguetes bajo castidad bloqueada:
+Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!
+Activa esta opción si aceptas que las trampas en salas con mapa puedan añadir juguetes bajo castidad bloqueada, ¡con todas las consecuencias que eso pueda tener después con tu dueño/a o amantes, por ejemplo!
+Selected device trap (0-9):
+Trampa de dispositivo seleccionada(0-9)
+Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!
+Introduce un número entre 0 y 9 para seleccionar una trampa de dispositivo: 0 Ninguna - 1 Banco de bondage - 2 Ataúd - 3 Marco de exhibición - 4 Perrera (Kennel) - 5 Casillero - 6 Carretilla - 7 Caja de madera - 8 Cruz en X - 9 TODAS LAS TRAMPAS. ¡Cuando una trampa está activa, serás atada automáticamente si caminas sobre el dispositivo!
+Enable full hearing in maps:
+Activar audición completa en mapas:
+When enabled, there's no any limitation to your hearing in the map rooms
+Cuando está activado, no habrá ninguna limitación a tu audición en las salas con mapa.
+Enable full location in maps:
+Activar ubicación completa en mapas:
+When enabled, the /maproom and /mapz commands will always give the coordinates of other players in the map rooms, even if the Location Sharing is blocked. Note that the administrators will be informed that you use this cheat, if they have blocked Location Sharing and use one of these commands. So using this cheat in such rooms can lead to bad consequences. Be careful!
+Cuando está activado, los comandos /maproom y /mapz siempre mostrarán las coordenadas de otros jugadores en las salas con mapa, incluso si la función de compartir ubicación está bloqueada. Ten en cuenta que los administradores serán informados de que utilizas este truco si han bloqueado esta función y utilizas alguno de estos comandos. Por lo tanto, usar este truco en dichas salas puede acarrear consecuencias negativas. ¡Ten cuidado!
+Enable full vision in maps:
+Activar visión completa en mapas:
+When enabled, you can see the entire map rooms without fog. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.
+Cuando está activado, puedes ver las salas del mapa completas sin niebla. Notas: el comando /mapfog, que activa/desactiva la niebla solo en la sala actual, no tendrá efecto si este ajuste está activo. Si no usaste /mapfog para quitar la niebla antes de activar esto, la niebla volverá al desactivarlo.
+Enable full whispering in maps:
+Activar susurros completos en mapas:
+When enabled, you can whisper to any player in the map, no matter the distance that is between you and this player. It will work with the standard BC command /whisper and the UBC command /murmur, between all players who have enabled this option.
+Cuando está activado, puedes susurrar a cualquier jugador en el mapa, sin importar la distancia. Funcionará con el comando estándar /whisper y el comando de UBC /murmur, entre todos los jugadores que tengan esta opción activa.
+Enable magic walk in maps:
+Activar caminata mágica en mapas:
+When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!
+¡Cuando está activado, puedes ir a cualquier parte de los mapas e incluso atravesar paredes, incluso sin ser administradora!
+No forced teleportation in maps:
+Sin teletransporte forzado en mapas:
+When checked, the BC commands related to forced teleportation in the maps will not work on you, except if at least one admin of the chat room is in your Tplist (see the commands /tplistadd, /tplistremove and /tplistshow).
+Cuando está marcado, los comandos de BC relacionados con el teletransporte forzado en los mapas no funcionarán contigo, excepto si al menos un administrador de la sala está en tu Tplist (ver comandos /tplistadd, /tplistremove y /tplistshow).
+Put a valid number
+Introduce un número válido
+Alphabetic order for  Preferences menu:
+Orden alfabético para el menú de Preferencias:
+When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.
+Cuando está activado, todas las opciones del menú principal de Preferencias se ordenarán alfabéticamente, a excepción de las Preferencias Generales.
+Alphabetic order for Preferences screens:
+Orden alfabético en pantallas de Preferencias:
+With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: General, Audio, Chat, Graphics, Immersion and Online.
+Con esta opción, la mayoría de los ajustes en algunas pantallas de Preferencias estarán en orden alfabético (según el texto en inglés) por tipo de ajuste (desplegables, casillas). Las pantallas afectadas son: General, Audio, Chat, Gráficos, Inmersión y Online.
+Alphabetic order for  Reputation and Skills:
+Orden alfabético para Reputación y Habilidades:
+When enabled, most info about reputation and skills in the Character Info screen will be ordered in alphabetic order. Note that the reputation as dominant or submissive will remain displayed in first position.
+Cuando está activado, la mayoría de la información sobre reputación y habilidades en la pantalla de Información de Personaje se ordenará alfabéticamente. Ten en cuenta que la reputación como dominante o sumisa seguirá apareciendo en primera posición.
+Enable Asylum limitations:
+Activar limitaciones del Manicomio (Asylum):
+By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.
+Por defecto, UBC desactiva las limitaciones del Manicomio (acceso y salida). Si te gustan estas limitaciones, puedes activarlas de nuevo con esta opción.
+Enable punishments by NPC:
+Activar castigos por NPC:
+By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.
+Por defecto, UBC desactiva los castigos automáticos de los NPC (especialmente cuando estás atada en una sala y pides ayuda a una sirvienta). Si te gustan estos castigos, puedes activarlos de nuevo con esta opción.
+No pending friends in Friend List:
+Ocultar amigos pendientes en la Lista de Amigos:
+When checked, the All Friends screen in Friend List will not display the pending (unconfirmed) friends.
+Cuando está marcado, la pantalla 'Todos los amigos' en la Lista de Amigos no mostrará los amigos pendientes (no confirmados).
+No permission change after safeword:
+Sin cambios de permisos tras usar la Safeword:
+BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.
+BC cambia automáticamente tus permisos generales de objetos cuando usas el comando de safeword o la opción de revertir en el menú de safeword. Si no te gusta esto, usa esta opción y tus permisos generales no serán modificados.
+Use only days in Character Info screens:
+Usar solo días en pantallas de Información:
+BC automatically converts days to years, months and days. If you don't like that, use this option to get these data exprimed only in days in the Character Info screens.
+BC convierte automáticamente los días en años, meses y días. Si no te gusta esto, usa esta opción para que estos datos se expresen únicamente en días en las pantallas de Información de Personaje.
+Activate the Moaner:
+Activar el Moaner:
+Add more fun to Bondage Club with the moans automatically generated by the Moaner!
+¡Añade más diversión al Bondage Club con los gemidos generados automáticamente por el Moaner!
+Moaning profile (0-10):
+Perfil de gemidos (0-10):
+Input a number between 0 and 10 to select one of these moaning profiles: 0 Default - 1 Bunny - 2 Cow - 3 Dog - 4 Fox - 5 Mouse - 6 Neko - 7 Pig - 8 Pony - 9 Wildfox - 10 Wolf.
+Introduce un número entre 0 y 10 para seleccionar un perfil de gemidos: 0 Por defecto - 1 Conejo - 2 Vaca - 3 Cachorro - 4 Zorro - 5 Ratón - 6 Gatito (Neko) - 7 Cerdo - 8 Poni - 9 Zorro Salvaje - 10 Lobito
+When enabled, you will moan while cumming. It is not possible to enable it when the LSCG Splatter feature is detected as enabled.
+Cuando está activado, gemirás al llegar al orgasmo. No es posible activarlo si se detecta que la función LSCG Splatter está activa.
+Enable the orgasm moan:
+Activar gemido de orgasmo:
+Enable the spank moan:
+Activar gemido por azote (spank):
+When enabled, you will moan while being spanked. Also when bitten, kicked, pinched, shocked, slapped. In case of actions triggering a shock, it concerns only actions to punish orgasm, stand up or struggle. According your fetishes and your horny state, it can be pain or pleasure.
+Cuando está activado, gemirás al recibir azotes. También al ser mordida, pateada, pellizcada, electrocutada o abofeteada. En caso de acciones que activen descargas, solo afecta a las acciones para castigar orgasmos, levantarse o forcejear. Según tus fetiches y nivel de excitación, puede ser de dolor o placer.
+Enable the talk moan:
+Activar gemido al hablar:
+When enabled, you will moan while speaking if you're vibed. The moans can interrupt your talking. Note that when you disable this setting, it automatically disables the whisper moan too.
+Cuando está activado, gemirás al hablar si tienes un vibrador activo. Los gemidos pueden interrumpir tu habla. Ten en cuenta que al desactivar este ajuste, también se desactivará automáticamente el gemido al susurrar.
+Extend talk moan to whispers:
+Extender gemido al hablar a los susurros:
+When enabled, you will moan while whispering if you're vibed. The moans can interrupt your whispers. Note that this setting can't be enabled when the talk moan is disabled.
+Cuando está activado, gemirás al susurrar si tienes un vibrador activo. Los gemidos pueden interrumpir tus susurros. Este ajuste no puede activarse si el gemido al hablar está desactivado.
+Enable the tickle moan:
+Activar gemido por cosquillas:
+When enabled, you will moan while being tickled. According your fetishes and your horny state, it can be pain or pleasure.
+Cuando está activado, gemirás al recibir cosquillas. Según tus fetiches y nivel de excitación, puede ser de dolor o placer.
+Enable the vibes moan:
+Activar gemido por vibradores:
+When enabled, you will moan if your vibrator's settings change and your arousal level is higher or equal to 10. Also when fingered, fisted, masturbated, or when your ears are caressed, kissed, licked, nibbled, or when using LSCG aphrodisiac injector, drink, respirator. Note that when you disable this setting, it automatically disables the xvibes moan too.
+Cuando está activado, gemirás si cambian los ajustes de tu vibrador y tu nivel de excitación es igual o superior a 10. También al ser penetrada con dedos o puño, masturbada, o cuando tus orejas son acariciadas, besadas, lamidas o mordisqueadas, o al usar el inyector afrodisíaco, bebida o respirador de LSCG. Al desactivar esto, también se desactiva el gemido por vibradores ajenos (xvibes).
+Extend vibes moan (xvibes moan):
+Extender gemidos por vibradores (xvibes):
+When enabled, you will moan when vibe settings of other players in the chat room change, even if you are not yourself vibed (the only condition is an arousal level higher or equal to 10). Note that this setting can't be enabled when the vibes moan is disabled.
+Cuando está activado, gemirás cuando cambien los ajustes de vibración de otros jugadores en la sala, incluso si tú no tienes un vibrador activo (la única condición es tener un nivel de excitación igual o superior a 10). Este ajuste requiere que el gemido por vibradores propio esté activado.
+Main reputation (-100 to 100):
+Reputación principal (-100 a 100):
+Input a number between -100 and 100 to set your main reputation level! A negative number means that you are a Submissive, a positive number means that you are a Dominant.
+Introduce un número entre -100 y 100 para establecer tu nivel de reputación principal. Un número negativo significa que eres Sumisa, un número positivo significa que eres Dominante.
+Input a number between 0 and 100 to set your ABDL reputation level!
+Introduce un número entre 0 y 100 para establecer tu nivel de reputación ABDL.
+Asylum (-100 to 100):
+Manicomio (-100 a 100):
+Input a number between -100 and 100 to set your Asylum reputation level! A negative number means that you are a Patient, a positive number means that you are a Nurse.
+Introduce un número entre -100 y 100 para establecer tu nivel de reputación en el Manicomio. Un número negativo significa que eres Paciente, un número positivo significa que eres Enfermera.
+Gambling (0-100):
+Apuestas (0-100):
+Input a number between 0 and 100 to set your Gambling reputation level!
+Introduce un número entre 0 y 100 para establecer tu nivel de reputación en Apuestas.
+Gaming (0-100):
+Videojuegos (0-100):
+Input a number between 0 and 100 to set your Gaming reputation level!
+Introduce un número entre 0 y 100 para establecer tu nivel de reputación en Videojuegos.
+Kidnap (0-100):
+Secuestro (0-100):
+Input a number between 0 and 100 to set your Kidnap reputation level!
+Introduce un número entre 0 y 100 para establecer tu nivel de reputación en Secuestro.
+Input a number between 0 and 100 to set your LARP reputation level!
+Introduce un número entre 0 y 100 para establecer tu nivel de reputación LARP.
+Magic House (0-4):
+Casa Mágica (0-4):
+Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Note: when you change this parameter, UBC will also automatically reset the Magic Power reputation to 0 for all non-selected Magic Houses.
+Introduce un número entre 0 y 4 para seleccionar una Casa Mágica: 0 = Ninguna - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Nota: al cambiar este parámetro, UBC reseteará automáticamente a 0 la reputación de Poder Mágico en todas las casas no seleccionadas.
+Magic Power (0-100):
+Poder Mágico (0-100):
+Input a number between 0 and 100 to set your Magic Power reputation level in the currently selected Magic House!
+Introduce un número entre 0 y 100 para establecer tu nivel de reputación de Poder Mágico en la Casa Mágica seleccionada.
+Maid (0-100):
+Sirvienta (0-100):
+Input a number between 0 and 100 to set your Maid reputation level!
+Introduce un número entre 0 y 100 para establecer tu nivel de reputación de Sirvienta.
+Input a number between 0 and 10 to set your Bondage skill level!
+¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Bondage!
+Dressage (0-10):
+Doma (0-10):
+Input a number between 0 and 10 to set your Dressage skill level!
+¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Doma (Dressage)!
+Evasion (0-10):
+Evasión (0-10):
+Input a number between 0 and 10 to set your Evasion skill level!
+¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Evasión!
+Infiltration (0-10):
+Infiltración (0-10):
+Input a number between 0 and 10 to set your Infiltration skill level!
+¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Infiltración!
+Lockpicking (0-10):
+Ganzúa (0-10):
+Input a number between 0 and 10 to set your Lockpicking skill level!
+¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Ganzúa (Lockpicking)!
+Self-Bondage (0-10):
+Autobondage (0-10):
+Input a number between 0 and 10 to set your Self-Bondage skill level!
+¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Autobondage!
+Willpower (0-10):
+Fuerza de voluntad (0-10):
+Input a number between 0 and 10 to set your Willpower skill level!
+¡Introduce un número entre 0 y 10 para establecer tu nivel de habilidad en Fuerza de voluntad!
+This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, the special goddess mode will be automatically disabled.
+Este modo desactiva los botones y atajos de LIBERAR/SALIR, y prohíbe muchos comandos sobre ti misma: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (si el valor < 20), totalrelease, unlock, untie. Si este modo está activo, no puede desactivarse mientras se está en restricción. Si se está en modo 'unrestrict total' al activar esta opción, el modo especial se desactivará automáticamente.
+Enable no-escape mode:
+Activar modo sin escape (no-escape):
+Force no-escape mode with devious locks:
+Forzar modo no-escape con candados devious:
+When no-escape mode is disabled, you can decide to force this mode when you have devious locks on you! Of course these locks need to be enabled in the DOGS mod. Note that this mode will remain enabled when devious locks have been removed: you need to disable it manually.
+Cuando el modo no-escape está desactivado, se puede decidir forzar este modo cuando se tienen candados devious. Estos candados deben estar activados en el mod DOGS. Este modo seguirá activo tras quitar los candados y debe desactivarse manualmente.
+Enable silent mode:
+Activar modo silencio:
+This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.
+Este modo impide usar el comando de mensaje y hace que ciertos comandos no muestren avisos en el chat: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. Para volver a los mensajes por defecto, se debe desactivar este modo.
+Extend silent mode to safeword:
+Extender modo silencio a la Safeword:
+When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course useful only if the safeword is enabled!
+Cuando el modo silencio está activo, se puede usar la safeword sin que aparezca ningún mensaje en el chat. Útil solo si la safeword está habilitada.
+Enable unrestrict soft mode:
+Activar modo 'unrestrict soft':
+Effects of this mode (also available in unrestrict total mode) : hidden items added to your inventory, access to items covered by other items, use of items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and examine feature preserved when you are blind, but not in Total sensory deprivation. It does not remove the conditions to use assets. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).
+Efectos de este modo: objetos ocultos añadidos al inventario, acceso a objetos cubiertos por otros, uso de objetos como maletas, bandejas de sirvienta de madera o paletas sobre ti mismo u otros jugadores en este modo, y función de examen preservada bajo ceguera (excepto en privación sensorial total). No elimina las condiciones para usar assets. Requiere reiniciar sesión para salir del modo.
+Enable unrestrict total mode:
+Activar modo 'unrestrict total':
+Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).
+Además de los efectos 'soft', este modo permite ciertas interacciones incluso bajo restricción. Uno de sus efectos (simulación de que tienes las llaves adecuadas) puede ser bloqueado por Uwall y permitido por Ulist. Este modo no está disponible en no-escape. Puede activar una alerta de BCX que debe ignorarse. Requiere reiniciar sesión para salir de este modo.
+AFK time before message (1-60):
+Inactividad antes mensaje (1-60):
+Input a number between 1 and 60 to set the number of minutes being AFK before an automatic message will be displayed in the chat to inform other players about your AFK status. By default, it is 10 minutes.
+Introduce un número entre 1 y 60 para determinar la cantidad de minutos que debes permanecer inactivo antes de que se muestre un mensaje automático en el chat para informar a los demás jugadores sobre tu estado de inactividad. Por defecto, son 10 minutos.
+Enable automatic AFK message:
+Activar mensaje automático de AFK:
+When enabled, an automatic message will be displayed in the chat to inform other players about your AFK status when you are in this status since the time you have set for this feature. It will also activate the AFK icon, and will be repeated every 30 minutes after the first message. Note: When you are no longer AFK, the 'forced' setting with the AFK icon will not be modified, you need to change it manually if this is what you want.
+Cuando esté activada, se mostrará un mensaje automático en el chat para informar a los demás jugadores sobre tu estado AFK cuando te encuentres en dicho estado desde el tiempo que hayas configurado para esta función. También activará el icono AFK y se repetirá cada 30 minutos después del primer mensaje. Nota: Cuando ya no estés AFK, la configuración 'forzada' con el icono AFK no se modificará; deberás cambiarla manualmente si deseas que se muestre.
+Animal talk/whisper mode (0-9):
+Modo habla/susurro animal (0-9):
+Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).
+Introduce un número del 0 al 9 para seleccionar un modo de habla o susurro animal 'permanente' forzado: 0 Humano - 1 Conejo - 2 Vaca - 3 Zorro - 4 Gatito - 5 Ratón - 6 Cerdo - 7 Poni - 8 Cachorro - 9 Lobito. Si solo quieres hablar así una vez, usa el comando /atalk tras seleccionar 0 (habla humana) aquí.
+Enable hybrid talk/whisper mode:
+Activar modo de habla/susurro híbrido:
+When enabled and associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!
+Cuando está activado y se asocia con un modo de habla animal, ¡todos tus mensajes y susurros combinarán palabras animales y humanas!
+Enable doll talk (and whisper) mode:
+Activar modo de habla (y susurro) de muñeca:
+When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.
+Cuando está activado, máximo 5 palabras por mensaje o susurro, y no puedes usar palabras de más de 6 caracteres. El cumplimiento de estas reglas se verifica en la versión original de tu mensaje antes de ser alterado por tartamudeo, el Moaner, babytalk, gagtalk o habla animal.
+Forced gagtalk/whisper (0-11):
+Mordaza/susurro forzado (0-11):
+Input a number between 0 and 11 to select a 'permanent' forced level: 0 Disabled feature - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Better heavy gag - 9 Very heavy gag - 10 Total gag - 11 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once gagtalk, use the /gtalk command. To talk only once like a baby, use /btalk. See also the RGL button.
+Introduce un número del 0 al 11 para seleccionar un nivel 'permanente' forzado: 0 Función desactivada - 1 Casi sin mordaza - 2 Muy ligera - 3 Ligera - 4 Fácil - 5 Normal - 6 Media - 7 Pesada - 8 Pesada superior - 9 Muy pesada - 10 Total - 11 Habla de bebé (Baby talk). Si ya estás amordazada, tu elección solo puede aumentar el efecto, no disminuirlo. Para usar gagtalk una sola vez, usa el comando /gtalk. Para hablar como un bebé una sola vez, usa /btalk. Mira también el botón RGL.
+Forced hearing mode (1-6):
+Modo de audición forzada (1-6):
+Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!
+Introduce un número del 1 al 6 para seleccionar un modo de audición 'permanente' forzado, ignorando tu estado real: 1 Sin sordera - 2 Sordera ligera - 3 Normal - 4 Pesada - 5 Muy pesada - 6 Total. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo (cierra el mensaje de error)!
+Forced stuttering level (0-4):
+Nivel de tartamudeo forzado (0-4):
+Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).
+Introduce un número del 0 al 4 para seleccionar un nivel de tartamudeo 'permanente' forzado: 0 Sin tartamudeo - 1 Ligero - 2 Normal - 3 Pesado - 4 Total. Ten en cuenta que si tienes vibradores activos, tu elección solo puede aumentar el efecto, no disminuirlo. Si solo quieres hablar con un nivel de tartamudeo específico una vez, usa el comando /stalk tras seleccionar 0 aquí.
+When enabled, you can't use normal whispers. Only OOC and emote whispers are possible. This option is not available when a similar BCX rule is detected as active. In this case, UBC will apply the BCX whisper restrictions, but will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed.
+Cuando está activado, no puedes usar susurros normales. Solo son posibles los susurros OOC y de gestos (emote). Esta opción no está disponible cuando se detecta una regla de BCX similar activa. En ese caso, UBC aplicará las restricciones de susurro de BCX, pero no enviará mensajes públicos ni añadirá entradas al registro de comportamiento si intentas susurrar cuando no está permitido.
+Enable no-whisper mode:
+Activar modo sin susurros:
+Control item animation (0-2):
+Controlar la animación del objeto (0-2):
+Input a number between 0 and 2 to control animation integrated in some items such as the futuristic crate: 0 No control - 1 Partial control (2 updates per second) - 2 Full control (no animation). Important note: alteration of the item animation can lead in some cases to unexpected effects, such as graphical issues, bugs or discrepancies. Use it only if you're experiencing lagging problems.
+Introduce un número entre 0 y 2 para controlar la animación integrada en algunos objetos, como la caja futurista: 0 Sin control - 1 Control parcial (2 actualizaciones por segundo) - 2 Control total (sin animación). Nota importante: modificar la animación del objeto puede provocar, en algunos casos, efectos inesperados, como problemas gráficos, errores o inconsistencias. Úsela solo si experimenta problemas de lentitud.
+Disable effect on beep screen:
+Desactivar efecto en la pantalla de pitidos:
+By default, BC applies a transparent effect on the beep screen of the friend list. If you don't like that, just select this setting!
+Por defecto, BC aplica un efecto de transparencia a la pantalla de pitidos de la lista de amigos. Si no te gusta, ¡simplemente selecciona esta opción!
+Disable gray effect in wardrobe:
+Desactivar efecto gris en el guardarropa:
+By default, BC applies a gray effect on the top bar of the wardrobe. If you don't like that, just select this setting!
+Por defecto, BC aplica un efecto gris a la barra superior del guardarropa. Si no te gusta, ¡simplemente selecciona esta opción!
+By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled.
+Por defecto, BC añade mensajes y un efecto rosa cuando estás muy excitada y probablemente vayas a tener un orgasmo. ¡Si no te gusta eso, este ajuste de UBC te hará feliz! Nota: No está disponible cuando la función LSCG Splatter está detectada como activada.
+Disable BC pinky arousal overlay:
+Desactivar capa rosa de excitación de BC:
+Forced blindness mode (1-4):
+Modo de ceguera forzada (1-4):
+Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!
+Introduce un número entre 1 y 4 para seleccionar uno de estos modos de ceguera 'permanentes' forzados, ignorando tu estado real: 1 Sin ceguera - 2 Ceguera ligera - 3 Ceguera normal - 4 Ceguera pesada. Nota: necesitarás reiniciar sesión (relog) completamente para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!
+Forced blurry vision (1-5):
+Visión borrosa forzada (1-5):
+Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!
+Introduce un número entre 1 y 5 para seleccionar uno de estos modos de visión borrosa 'permanentes' forzados, ignorando tu estado real: 1 Sin visión borrosa - 2 Visión borrosa ligera - 3 Visión borrosa normal - 4 Versión borrosa pesada - 5 Visión borrosa total. Nota: necesitarás reiniciar sesión (relog) para salir de este modo especial (si introduces 0, no tendrá efecto). ¡Este modo puede activar un aviso de BCX, simplemente ignóralo!
+Fully disable all UBC tint settings:
+Desactivar totalmente los ajustes de tinte:
+If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.
+Si marcas este ajuste, todos los ajustes de tinte de UBC (nivel, color, MBS) se desactivarán por completo. Sin embargo, se requiere reiniciar sesión para restaurar los colores originales o del tema en las pantallas de MBS.
+Tint effect level (0-3):
+Nivel de efecto de tinte (0-3):
+Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.
+Introduce un número entre 0 y 3 para seleccionar uno de estos niveles de efecto de tinte forzados: 0 Sin efecto - 1 Efecto ligero - 2 Efecto medio - 3 Efecto pesado.
+Tint effect color (format #000000):
+Color del tinte (formato #000000):
+Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.
+Introduce un código de color en formato hexadecimal #000000 para aplicar un efecto de tinte en casi todo el Bondage Club. ¡No olvides seleccionar también un nivel de efecto de tinte! El tinte también se aplicará en las páginas creadas por la mayoría de complementos. Excepciones conocidas son BCX y el mod de Echo. El caso de MBS es especial (ver ajuste específico). El color final puede variar al mezclarse con un color de Tema.
+When enabled, ALWAYS visit the Extensions screen to activate it after login. The tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is without any effect when the tint level is 0. It is not available when MBS is not used or when all UBC tint settings are fully disabled.
+Cuando esté activado, visita SIEMPRE la pantalla de Extensiones para activarlo tras iniciar sesión. El color del tinte se usará como color de fondo para la parte central de las pantallas de MBS. Si lo desactivas más tarde, el color restaurado corresponderá al color por defecto de MBS o al color principal del Tema. Este ajuste no tiene efecto si el nivel de tinte es 0. No está disponible si no se usa MBS o si los ajustes de tinte de UBC están totalmente desactivados.
+Enable tint effect on MBS screens:
+Activar efecto de tinte en pantallas MBS:
+Enable all UBC changes in Chat Search:
+Habilitar cambios de UBC en Búsqueda de Chat:
+If you uncheck this setting, UBC will use the standard BC Chat Search top bar and menu, and will not display the UBC bottom bar in Chat Search. However, the location for this bar will remain empty.
+Si desactiva esta opción, UBC utilizará la barra superior y el menú estándar para la Búsqueda de Chat, y no mostrará la barra inferior de UBC en la Búsqueda de Chat. Sin embargo, la ubicación de esta barra permanecerá vacía.
+Remove UBC bottom bar in Chat Search:
+Quitar barra inferior en Búsqueda de Chat:
+If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu. This parameter is not available if you have disabled all UBC changes in Chat Search.
+Si marcas este ajuste, UBC no mostrará la barra inferior en la Búsqueda de Chat. Las opciones faltantes estarán disponibles en el menú de Búsqueda de Chat. Este parámetro no está disponible si ha desactivado todos los cambios de UBC en la Búsqueda de Chat.
+Enable all UBC changes in the Wardrobe:
+Habilitar el UBC guardarropa:
+If you uncheck this setting, UBC will use the standard BC Wardrobe.
+Si desactiva esta opción, UBC utilizará el guardarropa estándar de BC.
+Chat Rooms
+Salas de Chat
+Only Female
+Solo Mujeres
+Only Male
+Solo Hombres
+Mixed
+Mixto
+Asylum
+Manicomio (Asylum)
+I'm currently AFK. Please be patient or come back later!
+Actualmente estoy inactivo (AFK) ¡Por favor, ten paciencia o vuelve más tarde!
+Random background
+Fondo aleatorio
+Magical lasers make disappear all bindings and toys on {tmpname}'s body.
+Láseres mágicos hacen desaparecer todas las ataduras y juguetes del cuerpo de {tmpname}.
+{tmpname} slowly heads for the door.
+{tmpname} se dirige lentamente hacia la puerta.
+{tmpname} is suddenly trapped on a Bondage Bench.
+{tmpname} ha caído de repente en un Banco de Bondage.
+{tmpname} is suddenly trapped in a Coffin
+{tmpname} ha caído de repente en un Ataúd.
+{tmpname} is suddenly trapped in a Display Frame.
+{tmpname} ha caído de repente en un Marco de Exhibición.
+{tmpname} is suddenly trapped in a Kennel.
+{tmpname} ha caído de repente en una Perrera.
+{tmpname} is suddenly trapped in a Locker.
+{tmpname} ha caído de repente en un Casillero.
+{tmpname} is suddenly trapped on a Trolley.
+{tmpname} ha caído de repente en una Carretilla.
+{tmpname} is suddenly trapped in a Wooden Box.
+{tmpname} ha caído de repente en una Caja de Madera.
+{tmpname} is suddenly trapped on an X-Cross.
+{tmpname} ha caído de repente en una Cruz en X.
+A teleportation attempt has been cancelled because not allowed.
+Un intento de teletransporte ha sido cancelado porque no está permitido.
+Your message or whisper can't be sent because it does not respect the rules of doll talk.
+Tu mensaje o susurro no puede enviarse porque no respeta las reglas de habla de muñeca (doll talk).
+Your whisper can't be sent because you are in no-whisper mode.
+Tu susurro no puede enviarse porque estás en modo sin susurros.
+Your whisper can't be sent because a BCX rule prevents you to whisper to this player.
+Tu susurro no puede enviarse porque una regla de BCX te impide susurrar a este jugador.
+Default background
+Fondo predeterminado
+Current Mode
+Modo Actual
+Switch to Normal mode
+Cambiar a modo Normal
+Switch to High Fame mode
+Cambiar a modo Fama Alta (High Fame)
+Actualisation
+Actualización
+Available options for Default and NPC card decks:
+Opciones de mazos para Predeterminado y NPCs:
+0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant
+0 Original - 1 ABDL - 2 Manicomio - 3 Universidad - 4 Dominante
+5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra
+5 Responsabilidad - 6 Sirvienta - 7 Mascota - 8 Porno - 9 Shibari - 10 Extra
+Only for NPC: -1 = Deck defined by original BC code
+Solo para NPC: -1 = Mazo definido por código BC original
+If you change other parameters than the mode,
+Si cambias otros parámetros distintos al modo,
+click the Exit button, then come back to play
+haz clic en el botón Salir y vuelve para jugar
+High Fame level
+Nivel de Fama Alta
+Cards in deck
+Cartas en mazo
+Default card deck
+Mazo predeterminado
+NPC card deck
+Mazo de cartas NPC
+ULTRAbc {UBCver} Ready!
+ULTRAbc {UBCver} ¡Listo!
+Changes
+Cambios
+Preferences
+Preferencias
+Extensions
+Extensiones
+Select background
+Seleccionar fondo
+in chat
+en chat
+Cosy Chalet
+Chalet Acogedor
+Random backgound
+Fondo aleatorio
+OUT
+SALIR
+Slow Exit
+Salida lenta
+Fast Exit
+Salida rápida
+FREE
+LIBRE
+Total Release
+Liberación Total
+FilterMode
+Eliminar salas no deseadas
+NormalMode
+Volver a la vista de salas
+Club Card
+Juego de cartas del club
+Magic Battle
+Batalla mágica
+Pandora	 Prison
+Prisión Pandora
+Wardrobe
+Vestuario
+First rooms with friends
+Primero salas con amigos:
+AutoJoin feature:
+Función de unión automática:
+Language
+Idioma
+Room Size
+Tamaño de la sala
+Maximum Players in Room
+Máx. de jugadores en la sala
+{tmpname} swallows a sleeping pill and drinks a glass of water. {pronoun1} falls asleep very quickly.
+{tmpname} toma una pastilla para dormir y bebe un vaso de agua. Se duerme muy rápido.
+{tmpname} feeds {name} a sleeping pill and gives {pronoun2} a glass of water. {name} falls asleep very quickly.
+{tmpname} le da a {name} una pastilla para dormir y un vaso de agua. {name} se duerme muy rápido.
+Disable shared background
+Desactivar fondo compartido
+Enable shared background
+Habilitar fondo compartido
+Gold
+Oro
+Silver
+Plata
+Bronze
+Bronce
+Keys found: {keys}.
+Llaves encontradas: {keys}.
+Does not use ULTRAbc.
+No utiliza ULTRAbc.
+Does not use Uwall.
+No utiliza Uwall.
+Is an ULTRAbc user.
+Es usuario de ULTRAbc.
+UBC in no-escape mode
+UBC en modo sin escape (no-escape)
+Has enabled Uwall.
+Ha activado Uwall.
+Has disabled Uwall.
+Ha desactivado Uwall.
+You are now in real baby talk mode.
+Ahora estás en modo babytalk real.
+You are now in normal talk mode.
+Ahora estás en modo de habla normal.
+You are now in real gag talk mode. Your current garbling level is {ngl}.
+Ahora estás en modo gagtalk real. Tu nivel actual de balbuceo es {ngl}.
+They
+Elle
+He
+Él
+She
+Ella
+It
+Eso
+them
+le
+him
+lo
+her
+la
+it
+lo
+their
+su
+his
+su
+its
+su
+they
+elle
+he
+él
+she
+ella
+The options on this wheel go from 0 to {maxwh}.
+Las opciones en esta rueda van de 0 a {maxwh}.
+{tmpname} randomly forces an option of {tgpname}'s wheel.
+{tmpname} fuerza aleatoriamente una opción de la rueda de {tgpname}.
+No result! Try again!
+¡Sin resultado! ¡Inténtalo de nuevo!
+The moaner is not active.
+El moaner no está activo.
+The moaner is active.
+El moaner está activo.
+Current moans profile: {profileName}
+Perfil de gemidos actual: {profileName}
+No custom profile loaded.
+No hay ningún perfil personalizado cargado.
+The orgasm moan is not active. You will not moan while cumming.
+El gemido de orgasmo no está activo. No gemirás al correrte.
+The orgasm moan is active. You will moan while cumming.
+El gemido de orgasmo está activo. Gemirás al correrte.
+The spank moan is not active. You will not moan while being spanked.
+El gemido por azote no está activo. No gemirás mientras recibes azotes.
+The spank moan is active. You will moan while being spanked.
+El gemido por azote está activo. Gemirás mientras recibes azotes.
+The talk moan is not active. If you're vibed, you will not moan while speaking.
+El gemido al hablar no está activo. Si tienes vibradores, no gemirás mientras hablas.
+The talk moan is active. If you're vibed, you will moan while speaking.
+El gemido al hablar está activo. Si tienes vibradores, gemirás mientras hablas.
+The whisper moan is not active. If you're vibed, you will not moan while whispering.
+El gemido al susurrar no está activo. Si tienes vibradores, no gemirás mientras susurras.
+The whisper moan is active. If you're vibed, you will whisper while speaking.
+El gemido al susurrar está activo. Si tienes vibradores, gemirás al susurrar.
+The tickle moan is not active. You will not moan while being tickled.
+El gemido por cosquillas no está activo. No gemirás mientras recibes cosquillas.
+The tickle moan is active. You will moan while being tickled.
+El gemido por cosquillas está activo. Gemirás mientras recibes cosquillas.
+The vibes moan is not active. If your vibrator's settings change, you will not moan.
+El gemido por vibración no está activo. Si cambian los ajustes de tu vibrador, no gemirás.
+The vibes moan is active. If your vibrator's settings change, you will moan.
+El gemido por vibración está activo. Si cambian los ajustes de tu vibrador, gemirás.
+The xvibes moan is not active. If vibrator's settings of other players change, you will not moan.
+El gemido por vibración ajena (xvibes) no está activo. Si cambian los ajustes de vibradores de otros jugadores, no gemirás.
+The xvibes moan is active. If vibrator's settings of other players change, you will moan.
+El gemido por vibración ajena (xvibes) está activo. Si cambian los ajustes de vibradores de otros jugadores, gemirás.
+(colorcode) (category) (target): changes color on current elements in specified category.
+(código-color) (categoría) (objetivo): cambia el color de los elementos actuales en la categoría especificada.
+The allcolor command must be followed by a color code, a number corresponding to a category and optionally a target.\n \nThe color code must be in hex format: #RRGGBB or #RGB.\n \nThe numbers for the categories are: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories.
+El comando allcolor debe ir seguido de un código de color, un número correspondiente a una categoría y opcionalmente un objetivo.\n \nEl código de color debe estar en formato hexadecimal: #RRGGBB o #RGB.\n \nLos números para las categorías son: 1 = Objetos - 2 = Ropa (excluyendo cosplay) - 3 = Cosplay - 4 = Cuerpo - 5 = Todas las categorías.
+Invalid color. Use hex format like #RRGGBB or #RGB.
+Color inválido. Usa el formato hexadecimal como #RRGGBB o #RGB.
+Invalid category. Use a number between 1 and 5, for the category you want to color: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories.
+Categoría inválida. Usa un número entre 1 y 5 para la categoría que quieras colorear: 1 = Objetos - 2 = Ropa (excluyendo cosplay) - 3 = Cosplay - 4 = Cuerpo - 5 = Todas las categorías.
+items.
+objetos.
+clothes.
+ropa.
+body.
+cuerpo.
+items, clothes, cosplay and body.
+objetos, ropa, cosplay y cuerpo.
+New colors are used on {tmpname}'s {catname}
+Se están usando nuevos colores en los {catname} de {tmpname}
+New colors are used on {tgpname}'s {catname}
+Se están usando nuevos colores en los {catname} de {tgpname}
+(minutes): enters asylum, bypasses requirements.
+(minutos): entra al manicomio, omitiendo los requisitos.
+You must specify minutes if you are a patient.
+Debes especificar los minutos si eres un paciente.
+(animal) (words): speaks once as a specified animal.
+(animal) (palabras): habla una vez como el animal especificado.
+The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\nNote that it can't be used when you are in a 'permanent' animal talk mode.\nAvailable animals:\n1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n6 pig - 7 pony - 8 puppy - 9 wolfy
+El comando atalk debe ir seguido de un número entre 1 y 9 para el animal y las palabras que quieras decir.\nTen en cuenta que no puede usarse cuando ya estás en un modo de habla animal 'permanente'.\nAnimales disponibles:\n1 conejo - 2 vaca - 3 zorro - 4 gatito - 5 ratón\n6 cerdo - 7 poni - 8 cachorro - 9 lobito
+Please include words to say after the animal number.
+Por favor, incluye las palabras que quieras decir después del número de animal.
+(vibe level) (orgasm mode) (lock time): puts heart locks on yourself and configures them.
+(nivel de vibración) (modo orgasmo) (tiempo de candado): te pone candados de corazón y los configura.
+The autoheart command must be followed by 3 numbers for vibe level, orgasm mode and lock time.\nNote that the heart lock requires a specific mod.\n \nAvailable vibe levels:\n0 = Off - 1 = Low - 2 = Medium - 3 = High \nAvailable orgasm modes:\n0 = Normal - 1 = Edge - 2 = Deny\nThe time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\nUse ? if you want a time randomly choosen by the game (between 1 and 720 hours).
+El comando autoheart debe ir seguido de 3 números para el nivel de vibración, el modo orgasmo y el tiempo de candado.\nTenga en cuenta que el candado del corazón requiere un mod específico.\n \nNiveles de vibración disponibles:\n0 = Apagado - 1 = Bajo - 2 = Medio - 3 = Alto \nModos de orgasmo disponibles:\n0 = Normal - 1 = Al Límite (Edge) - 2 = Denegar\nEl tiempo se expresa en horas. El mínimo es 1 hora. Use 0 para tiempo ilimitado.\nUsa ? si quieres un tiempo elegido al azar por el juego (entre 1 y 720 horas).
+Heart locks applied and configured.
+Candados de corazón aplicados y configurados.
+: toggles on auto kick for 0 day old accounts.
+: alterna la expulsión automática (auto kick) para cuentas de 0 días de antigüedad.
+AutoKick Ready.
+AutoKick Preparado.
+AutoKick: Account was 0 days old.
+AutoKick: La cuenta tenía 0 días de antigüedad.
+AutoKick Disabled.
+AutoKick Desactivado.
+(number): uses a Bondage College or Bondage Teacher background as custom background.
+(número): utiliza un fondo de Bondage College o Bondage Teacher como fondo personalizado.
+The bg1 command must be followed by a number. List of available backgrounds:\nBONDAGE COLLEGE\n1 Art Class - 2, 3 Class - 4 Club - 5 College\n6 Dorm - 7 Dressing Room - 8 Gym Class\n9 to 12 Isolation Room - 13 to 16 Kinbaku Club\n17 to 26 Library - 27, 28 Lockers\n29 Running Track - 30, 31 Showers - 32 Theater\nBONDAGE TEACHER\n33, 34 Beach - 35, 36 Briefcase - 37 Bullseye\n38, 39 Class - 40 College - 41 Office
+El comando bg1 debe ir seguido de un número. Lista de fondos disponibles:\nBONDAGE COLLEGE\n1 Clase de Arte - 2, 3 Clase - 4 Club - 5 Universidad\n6 Dormitorio - 7 Vestidor - 8 Clase de Gimnasia\n9 al 12 Sala de Aislamiento - 13 al 16 Club Kinbaku\n17 al 26 Biblioteca - 27, 28 Casilleros\n29 Pista de Atletismo - 30, 31 Duchas - 32 Teatro\nBONDAGE TEACHER\n33, 34 Playa - 35, 36 Maletín - 37 Diana\n38, 39 Clase - 40 Universidad - 41 Oficina
+(number): uses a Bondage Brawl background as standard background.
+(número): usa un fondo de Bondage Brawl como fondo estándar.
+The bg2 command must be followed by a number. List of Bondage Brawl backgrounds:\n1, 2 Balcony - 3 Ballroom - 4 to 12 Bandit Camp\n13 to 15 Barn - 16 to 18 Bathroom Olivia\n19 Bedroom Dungeon - 20 Bedroom Edward\n21, 22 Bedroom Isabella - 23 Bedroom Melody\n24 to 26 Bedroom Olivia - 27 to 32 Birch\n33 Black - 34 to 36 Camp Ground\n37 to 39 Castle - 40, 41 Clearing\n42 to 44 College - 45 to 47 Countess Hall\n48 Desert - 49, 50 Dungeon - 51, 52 Dungeon Cell\n53 to 55 Dungeon Storage - 56 Forest\n57 to 60 Forest Cabin - 61 Gas - 62 Green Plain\n63 to 73 Hall (1 to 4) - 74 to 79 Lake - 80 Maid Bed\n81 Mountain Path - 82, 83 Oak\n84 to 88 Plain - 89 Pond - 90, 91 Savannah\n92 to 94 Tent - 95, 96 Terrace\n97 Vulture Plain - 98, 99 Wine Cell
+El comando bg2 debe ir seguido de un número. Lista de fondos de Bondage Brawl:\n1, 2 Balcón - 3 Salón de baile - 4 al 12 Campamento bandido\n13 al 15 Granero - 16 al 18 Baño de Olivia\n19 Dormitorio Mazmorra - 20 Dormitorio de Edward\n21, 22 Dormitorio de Isabella - 23 Dormitorio de Melody\n24 al 26 Dormitorio de Olivia - 27 al 32 Abedul (Birch)\n33 Negro - 34 al 36 Terreno de campamento\n37 al 39 Castillo - 40, 41 Claro del bosque\n42 al 44 Universidad - 45 al 47 Salón de la Condesa\n48 Desierto - 49, 50 Mazmorra - 51, 52 Celda de mazmorra\n53 al 55 Almacén de mazmorra - 56 Bosque\n57 al 60 Cabaña del bosque - 61 Gas - 62 Llanura verde\n63 al 73 Pasillo (1 al 4) - 74 al 79 Lago - 80 Cama de sirvienta\n81 Camino de montaña - 82, 83 Roble (Oak)\n84 al 88 Llanura - 89 Estanque - 90, 91 Sabana\n92 al 94 Tienda - 95, 96 Terraza\n97 Llanura del buitre - 98, 99 Bodega de vino
+: displays list of all available standard backgrounds
+: muestra la lista de todos los fondos estándar disponibles
+(bgnumber): displays locally clickable link to a specific standard background and embedded picture.
+(numero): muestra un enlace local con clic y la imagen incrustada de un fondo estándar específico.
+The bgshow1 command must be followed by a number (use /bglist to get available numbers).
+El comando bgshow1 debe ir seguido de un número (usa /bglist para ver los números disponibles).
+https://www.bondage-europe.com/{BCver}/BondageClub/Backgrounds/{name}.jpg
+https://www.bondage-europe.com{BCver}/BondageClub/Backgrounds/{name}.jpg
+(bgnumber): sends in chat link to a specific standard background. When used with WCE feature, the link is clickable and the picture can be embedded in the chat.
+(numero): envía al chat un enlace a un fondo estándar específico. Al usar con WCE, el enlace es clicable y la imagen se puede incrustar.
+The bgshow2 command must be followed by a number (use /bglist to get available numbers).
+El comando bgshow2 debe ir seguido de un número (usa /bglist para ver los disponibles).
+(target): gives direct access to the profile description of any player in the chat room.
+(objetivo): da acceso directo a la descripción del perfil de cualquier jugador en la sala.
+: boosts all your skills for one hour.
+: potencia todas tus habilidades durante una hora.
+You feel all your skills boosted. Changes can be seen in information panel.
+Sientes todas tus habilidades potenciadas. Los cambios se ven en el panel de información.
+(words): speaks once as a baby.
+(palabras): habla una vez como un bebé.
+The btalk command must be followed by the words you want to say.
+El comando btalk debe ir seguido de las palabras que quieras decir.
+Your message can't be sent because it does not respect the rules of doll talk
+Tu mensaje no se pudo enviar porque no respeta las reglas dolltalk.
+: installation of UBC GUI (to be used if it has failed during the initialisation).
+: instalación de la interfaz UBC (usar si falló durante la inicialización).
+Check now the Extensions page!
+¡Revisa ahora la página de Extensiones!
+(zone): launches a Club Card Game against a specific NPC.
+(zona): inicia un Juego de Cartas del Club contra un NPC específico.
+The cgame command must include a zone.\nAvailable zones:\nasylum, cafe, infiltration, introduction, kidnap, larp,\nlounge, magic, movie, shibari, stable.\nYou need to click on the concerned NPC, then on the appropriate option.\nFor magic, the card option will appear after long dialog, exit and come back if you have started the quest requested by the kitsune, but didn't yet finished it.
+El comando cgame debe incluir una zona.\nZonas disponibles:\nasylum, cafe, infiltration, introduction, kidnap, larp,\nlounge, magic, movie, shibari, stable.\nDebes hacer clic en el NPC correspondiente y luego en la opción apropiada.\nEn cuanto a la magia, la opción de la carta aparecerá después de un largo diálogo, sal y vuelve a entrar si has comenzado la misión solicitada por el kitsune, pero aún no la has terminado.
+(difficulty): starts chess.
+(dificultad): inicia el ajedrez.
+The chess command must be followed by a number between 1 and 3.\n \nAvailable difficulty modes:\n1 easy\n2 normal\n3 hard\nNote that a full relog is required at the end of a chess game.
+El comando chess debe ir seguido de un número entre 1 y 3.\n \nModos de dificultad disponibles:\n1 fácil\n2 normal\n3 difícil\nTen en cuenta que se requiere un relog completo al finalizar una partida de ajedrez.
+(target): changes clothes.
+(objetivo): cambia la ropa.
+Magical lasers put random clothes on {tmpname}'s body.
+Láseres mágicos ponen ropa aleatoria en el cuerpo de {tmpname}.
+Magical lasers put random clothes on {tgpname}'s body.
+Láseres mágicos ponen ropa aleatoria en el cuerpo de {tgpname}.
+(custom name): creates a custom name, that does not require to satisfy some conditions.
+(nombre personalizado): crea un nombre personalizado que no requiere cumplir condiciones. .
+The cname command must be followed by the custom name you want to display in your profile.\nMore letters are accepted than for the official name, it can also include spaces and numbers.\nMaximum 20 characters (spaces included)!\nIt will work only between UBC users and replace the official name in the profile.\nUse None as name to go back to a profile without custom name.
+El comando cname debe ir seguido del nombre personalizado que quieras mostrar en tu perfil.\nSe aceptan más letras que para el nombre oficial; también puede incluir espacios y números.\n¡Máximo 20 caracteres (espacios incluidos)!\nSolo funcionará entre usuarios de UBC y reemplazará el nombre oficial en el perfil.\nUsa 'None' como nombre para volver a un perfil sin nombre personalizado.
+Custom name deleted
+Nombre personalizado eliminado
+Custom name created or modified
+Nombre personalizado creado o modificado
+Maximum 20 characters (spaces included)!
+¡Máximo 20 caracteres (espacios incluidos)!
+enters college, bypasses requirements.
+entra a la universidad, omitiendo los requisitos.
+(anim): gets an animation with color change.
+(anim): activa una animación con cambio de color.
+The colorchanger command:\nTo preselect, two choices exist, type: <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\nTo manually select area, type: <b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\nManual selection can only target 10 areas at a time,\nthen requires to be reset to reuse, type: <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\nOnly 1 target can be active at a time
+El comando colorchanger:\nPara preseleccionar, existen dos opciones, escribe: <b>/colorchanger hair</b> o <b>/colorchanger eyes</b>\nPara seleccionar un área manualmente, escribe: <b>/colorchanger set</b> o <b>/colorchanger select</b> o <b>/colorchanger custom</b>\nLa selección manual solo puede afectar a 10 áreas a la vez,\nluego requiere ser reiniciada para volver a usarla, escribe: <b>/colorchanger stop</b> o <b>/colorchanger reset</b>\nSolo puede haber 1 objetivo activo a la vez
+You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry
+Tienes 5 segundos para hacer clic en el objetivo y seleccionar el área. Si tiene éxito, se confirmará. Si no, reintenta.
+(member number) (owning days) (owner name): sets a custom owner, that will be displayed in your profile.
+(número de miembro) (días de propiedad) (nombre del propietario): establece un propietario personalizado que se mostrará en tu perfil.
+The cowner command must be followed by the member number of the wished owner, the number of days corresponding to this owning, and the name of the custom owner.\nThis custom owner can be any player of the game, even yourself or a sub that you own.\nThe number of owning days can't exceed the number of days you are in the game.\nMaximum 20 characters for the name (spaces included)!\nIt will work only between UBC users and replace the official info in the profile.\nUse None as name to go back to a profile without custom owner.
+El comando cowner debe ir seguido del número de miembro del propietario deseado, el número de días correspondientes a esta propiedad y el nombre del propietario personalizado.\nEste propietario personalizado puede ser cualquier jugador del juego, incluso tú mismo o un sub que poseas.\nEl número de días de propiedad no puede exceder el número de días que llevas jugando.\n¡Máximo 20 caracteres para el nombre (espacios incluidos)!\nSolo funcionará entre usuarios de UBC y reemplazará la información oficial del perfil.\nUsa 'None' como nombre para volver a un perfil sin propietario personalizado.
+Usage: cowner <memberNumber> <days> <name> (name can contain spaces). Use 'None' as name to delete custom owner.
+Usar: cowner <número de miembro> <días> <nombre> (el nombre puede contener espacios). Usa 'None' como nombre para eliminar el propietario personalizado.
+Invalid member number. It must be a positive integer.
+Número de miembro no válido. Debe ser un número entero positivo.
+Invalid days. It must be a positive integer.
+Días no válidos. Debe ser un número entero positivo.
+The number of owning days can't exceed the number of days you are in the game ({gameDaysNumber}).
+El número de días de propiedad no puede exceder el número de días que llevas jugando ({gameDaysNumber}).
+Name cannot be empty. Use 'None' to remove the custom owner.
+El nombre no puede estar vacío. Use 'None' para eliminar el propietario personalizado.
+Maximum 20 characters for the name (spaces included)!
+¡Máximo 20 caracteres para el nombre (espacios incluidos)!
+Name contains invalid characters. Allowed: letters, numbers, spaces, apostrophe (') and hyphen (-).
+El nombre contiene caracteres no válidos. Se permiten: letras, números, espacios, apóstrofe (') y guion (-).
+Custom owner deleted
+Propietario personalizado eliminado
+Custom owner created or modified
+Propietario personalizado eliminado creado o modificado
+(custom title): creates a custom title, that does not require to satisfy some conditions.
+(titulo personalizado): crea un título personalizado que no requiere cumplir condiciones.
+The ctitle command must be followed by the custom title you want to display in your profile.\nIt can be an original title or an existing official title, for which you don't satisfy some conditions.\nMaximum 25 characters (spaces included)!\nIt will work only between UBC users.\nThis title will not be displayed on the Titles screen.\nUse None as title to go back to a profile without custom title.
+El comando ctitle debe ir seguido del título personalizado que quieras mostrar en tu perfil.\nPuede ser un título original o uno oficial existente para el cual no cumplas los requisitos.\n¡Máximo 25 caracteres (espacios incluidos)!\nSolo funcionará entre usuarios de UBC.\nEste título no se mostrará en la pantalla de Títulos.\nUsa 'None' como título para volver a un perfil sin título personalizado.
+Custom title deleted
+Título personalizado eliminado
+Custom title created or modified
+Título personalizado creado o modificado
+Maximum 25 characters (spaces included)!
+¡Máximo 25 caracteres (espacios incluidos)!
+: causes an orgasm.
+: provoca un orgasmo.
+(number): changes game difficulty.
+(numero): cambia la dificultad del juego.
+The difficulty command must be followed by a number between 0 and 3.\n \nAvailable difficulty modes:\n0 roleplay\n1 regular\n2 hardcore\n3 extreme
+El comando difficulty debe ir seguido de un número entre 0 y 3.\n \nModos de dificultad disponibles:\n0 roleplay\n1 regular\n2 hardcore\n3 extreme
+(font) (size): changes font in BC.
+(fuente) (tamaño): cambia la fuente en BC.
+The font command must be followed by a font number and optionally a size number.\nSupported fonts: 0 Arial - 1 Times New Roman\n2 Papyrus - 3 Comic Sans - 4 Impact\n5 Helvetica Neue - 6 Verdana - 7 Century Gothic\n8 Georgia - 9 Courrier New - 10 Copperplate\nSizes: 0 Small - 1 Medium - 2 Large
+El comando font debe ir seguido de un número de fuente y opcionalmente un número de tamaño.\nFuentes soportadas: 0 Arial - 1 Times New Roman\n2 Papyrus - 3 Comic Sans - 4 Impact\n5 Helvetica Neue - 6 Verdana - 7 Century Gothic\n8 Georgia - 9 Courrier New - 10 Copperplate\nTamaños: 0 Pequeño - 1 Mediano - 2 Grande
+(lobby): gives access to friendlist in current lobby.
+(lobby): da acceso a la lista de amigos en el lobby actual.
+(minigame): launches a minigame.
+(minijuego): lanza un minijuego.
+The game command must include a minigame.\nAvailable minigames:\ncarrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\nmovie2, puppy, rhythm, tennis1, tennis2, tennis3,\ntraining, whippony.\nTennis1 = easy, tennis2 = normal, tennis3 = hard\nTraining is the trainer version of the hurdle game.\nYou need generally to click on the NPC and select the appropriate options in the dialogs.
+El comando game debe incluir un minijuego.\nMinijuegos disponibles:\ncarrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\nmovie2, puppy, rhythm, tennis1, tennis2, tennis3,\ntraining, whippony.\nTennis1 = fácil, tennis2 = normal, tennis3 = difícil\nTraining es la versión de entrenamiento del juego hurdle.\nGeneralmente necesitas hacer clic en el NPC y seleccionar las opciones apropiadas en los diálogos.
+(minutes) (level):  enters ggts training in asylum for the specified time and level.
+(minutos) (nivel): entra al entrenamiento ggts en el asilo por el tiempo y nivel especificados.
+The ggts command must be followed by two numbers to  specify minutes and level (1-6).
+El comando ggts debe ir seguido de dos números para especificar minutos y nivel (1-6).
+{tmpname} gets grabbed by two maids and locked in the asylum for {minutes} minutes of training with the Good Girl Training System Level {level}.
+{tmpname} es agarrada por dos sirvientas y encerrada en el asilo para {minutes} minutos de entrenamiento con el Good Girl Training System Nivel {level}.
+(talkmode) (words): speaks once in specified gag talk.
+(modo_habla) (palabras): habla una vez con el habla de mordaza especificada.
+The gtalk command must be followed by a number between 0 and 10, then the words you want to say.\n \nAvailable talk modes:\n0 real gag talk (based on currently worn gags and other items restraining talking)\n1 almost no gag talk\n2 very light gag talk\n3 light gag talk\n4 easy gag talk\n5 normal gag talk\n6 medium gag talk\n7 heavy gag talk\n8 better heavy gag talk\n9 very heavy gag talk\n10 total gag talk
+El comando gtalk debe ir seguido de un número entre 0 y 10, y luego las palabras que quieras decir.\n \nModos de habla disponibles:\n0 habla de mordaza real (basada en mordazas actuales y otros objetos que restrinjan el habla)\n1 casi sin habla de mordaza\n2 habla de mordaza muy ligera\n3 habla de mordaza ligera\n4 habla de mordaza fácil\n5 habla de mordaza normal\n6 habla de mordaza media\n7 habla de mordaza pesada\n8 mejor habla de mordaza pesada\n9 habla de mordaza muy pesada\n10 habla de mordaza total
+Please include words to say after the gagtalk level.
+Por favor, incluye las palabras a decir después del nivel de gtalk.
+(target) (hint): adds or changes a hint for current locks with passwords.
+(objetivo) (pista): añade o cambia una pista para los candados con contraseña actuales.
+The hint command must be followed by a target and the hint you want to add to locks with password.
+El comando hint debe ir seguido de un objetivo y la pista que quieras añadir a los candados con contraseña.
+A hint has been added to {tgpname}'s locks with password.
+Se ha añadido una pista a los candados con contraseña de {tgpname}.
+(level): sets your arousal level (in all cases).
+(nivel): establece tu nivel de excitación (en todos los casos).
+The horny command must be followed by a number between 0 and 100.
+El comando horny debe ir seguido de un número entre 0 y 100.
+Your arousal level has been modified.
+Tu nivel de excitación ha sido modificado.
+: gives info (code, password, time left) for lock used on worn item in selected slot.
+: da información (código, contraseña, tiempo restante) del candado usado en el objeto del espacio seleccionado.
+You can't use this command according your settings.
+No puedes usar este comando según tus ajustes.
+You have 5 seconds to click on yourself or another player. If successful, you will get infos about the lock for the selected slot.
+Tienes 5 segundos para hacer clic en ti mismo o en otro jugador. Si tiene éxito, obtendrás información sobre el candado del espacio seleccionado.
+Combination Padlock
+Candado de Combinación
+AssetGroup = {Target}
+Grupo de Objeto = {Target}
+Locked with {Lock}
+Bloqueado con {Lock}
+Portal Link Padlock
+Candado de Enlace de Portal
+Safeword Padlock
+Candado de Palabra de Seguridad
+Password Padlock
+Candado de Contraseña
+Timer Password Padlock
+Candado de Contraseña con Temporizador
+Timer Padlock
+Candado con Temporizador
+Mistress Timer Padlock
+Candado con Temporizador de Ama
+Lovers Timer Padlock
+Candado con Temporizador de Amante
+Owner Timer Padlock
+Candado con Temporizador de Dueño
+Best Friend Timer Padlock
+Candado con Temporizador de Mejor Amigo
+Heart Padlock
+Candado de Corazón
+Devious Padlock
+Candado Devious
+(target): goes or sends to invisible mode (scripts need to be allowed in BC settings).
+(objetivo): activa o envía al modo invisible (los scripts deben estar permitidos en los ajustes de BC).
+To use the invisible command on yourself, you need first to allow Scripts in BC settings.
+Para usar el comando invisible en ti mismo, primero debes permitir Scripts en los ajustes de BC.
+Magical lasers make {tmpname} completely invisible.
+Láseres mágicos hacen a {tmpname} completamente invisible.
+To use the invisible command on other players, they need first to allow Scripts in BC settings.
+Para usar el comando invisible en otros jugadores, ellos deben primero permitir Scripts en los ajustes de BC.
+Magical lasers make {tgpname} completely invisible.
+Láseres mágicos hacen a {tgpname} completamente invisible.
+(colorcode): changes color of worn item in selected slot.
+(codigocolor): cambia el color del objeto usado en el espacio seleccionado.
+The itemcolor command needs to be followed by a color code in the format #000000 to change the color of a worn item in a slot selected by mouse click.
+El comando itemcolor debe ir seguido de un código de color en formato #000000 para cambiar el color del objeto en el espacio seleccionado con un clic.
+You have 5 seconds to click on yourself. If successful, the color of the worn item in selected slot will be changed. If not, retry.
+Tienes 5 segundos para hacer clic en ti mismo. Si tiene éxito, el color del objeto en el espacio seleccionado cambiará. Si no, reintenta.
+Item color changed.
+Color del objeto cambiado.
+(hours): keeps your keys safe in the vault.
+(horas): guarda tus llaves a salvo en la bóveda.
+The keydeposit command must be followed by a number higher than 0.
+El comando keydeposit debe ir seguido de un número mayor a 0.
+{tmpname}'s keys are now safe in the vault for {hours} hours.
+Las llaves de {tmpname} están ahora a salvo en la bóveda por {hours} horas.
+: kills UBC/Moaner parameters saved locally.
+: elimina los parámetros de UBC/Moaner guardados localmente.
+<b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b>
+<b>Advertencia</b>: Este comando eliminará todos los parámetros de UBC/Moaner guardados localmente. Úsalo solo si algunos parámetros parecen no funcionar. Confirma escribiendo: <b>/killpar yes</b>
+All UBC/Moaner parameters have been deleted. Make a full logout/login then use the appropriate commands to set the parameters that you like.
+Todos los parámetros de UBC/Moaner han sido eliminados. Haz un logout/login completo y luego usa los comandos apropiados para configurar los parámetros que gustes.
+(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot
+(numero_capa) (codigocolor): cambia el color de una capa del objeto en el espacio guardado.
+First use the <b>/layershow</b> command to click on worn item, get useful info about layer colors and save Item Slot.\nThe layerset command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.\nIf you enter a non-numeric layer, it will be interpreted as 0 (zero). If the entered color does not exist, you will go back to the default color.
+Primero usa el comando <b>/layershow</b> para hacer clic en un objeto, obtener info de sus capas y guardar el espacio.\nEl comando layerset debe ir seguido de un número de capa (-1 para todas) y un código de color #000000 para el objeto en el espacio guardado previamente.\nSi ingresas una capa no numérica, se interpretará como 0. Si el color no existe, volverá al color por defecto.
+<b>Warning</b>: First use the <b>/layershow</b> command to get useful info and save Item Slot.
+<b>Advertencia</b>: Primero usa el comando <b>/layershow</b> para obtener información y guardar el espacio del objeto.
+Layer color changed for layer {layer}.
+Color cambiado para la capa {layer}.
+Layer color changed for all layers.
+Color cambiado para todas las capas.
+gives info about layer colors of a specific worn item + saves Item Slot
+da info sobre los colores de capa de un objeto específico + guarda el espacio del objeto.
+You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.
+Tienes 5 segundos para hacer clic en ti misma. Si tiene éxito, obtendrás la info y el espacio del objeto se guardará. Si no, reintenta.
+No way to change color
+No es posible cambiar el color
+Layer {ly} = {Name} - {Color2}
+Capa {ly} = {Name} - {Color2}
+Layer {ly} = {Name1} - {Name2} - {Color2}
+Capa {ly} = {Name1} - {Name2} - {Color2}
+Item Slot saved.
+Espacio del objeto guardado.
+(target) (locktype) (other parameters): adds locks to all lockable items on specified target.
+(objetivo) (tipo_candado) (otros parámetros): añade candados a todos los objetos bloqueables del objetivo especificado.
+The lock command has several syntaxes:\n/lock (target) (locktype) for locks 1 to 8, 17 to 20\n/lock (target) (locktype) (r) for lock 9\n/lock (target) (locktype) (code) for lock 10\n/lock (target) (locktype) (password) (r) for locks 11 and 12\n/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15\n/lock (target) (locktype) (password) (minutes) (h) (i) (r) - lock 16\nALWAYS SPECIFY THE TARGET. Lock types:\n1 Metal (default when not specified) - 2 Exclusive\n3 Intricate - 4 High Security - 5 Pandora\n6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n10 Combination - 11 Safeword - 12 Password\n13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n16 Timer Password - 17 Family - 18 Lewd Crest\n19 Devious (if enabled) - 20 Heart (if enabled)\nLocks 18, 19 and 20 require a specific mod\nUse <b>/lock par</b> for info about other parameters
+El comando lock tiene varias sintaxis:\no = objetivo - tc = tipo candado\n/lock (o) (tc) para candados 1 al 8, 17 al 20\n/lock (o) (tc) (r) para candado 9\n/lock (o) (tc) (codigo) para candado 10\n/lock (o) (tc) (contraseña) (r) para candados 11 y 12\n/lock (o) (tc) (minutos) (h) (i) (r) - candados 13 al 15\n/lock (o) (tc) (contraseña) (minutos) (h) (i) (r) - candado 16\nSIEMPRE ESPECIFICA EL OBJETIVO. Tipos de candado:\n1 Metal (por defecto) - 2 Exclusivo - 3 Intrincado\n4 Alta Seguridad - 5 Pandora - 6 Ama - 7 Amante\n8 Dueño - 9 Cinco Minutos - 10 Combinación\n11 Palabra de Seguridad - 12 Contraseña\n13 Temp. Ama - 14 Temp. Amante - 15 Temp. Dueño\n16 Contraseña con Tiempo - 17 Familiar - 28 Escudo Lúbrico\n19 Devious (si está activo) - 20 Corazón (si está activo)\nLos candados 18, 19 y 20 requieren un mod específico\nUsa <b>/lock par</b> para info sobre otros parámetros
+Special parameters of lock command:\ncode must be between 0 and 9999.\npassword is limited to 8 characters.\nmaximum time = 240 minutes for locks 13 and 16,\n10080 minutes for lock 14,\n50400 minutes for lock 15\nUse ? if you want a time randomly choosen by the game\n \nOptional parameters:\nh to hide the timer,\ni to enable time input from other players,\nr for item removal when correct password entered\nor lock timer runs out.\n \nTip: replace h and/or i by another character when you need to skip them.
+Parámetros especiales del comando lock:\nEl código debe estar entre 0 y 9999.\nLa contraseña está limitada a 8 caracteres.\nTiempo máximo = 240 minutos para candados 13 y 16,\n10080 minutos para candados 14,\n50400 minutos para candado 15\nUsa ? si quieres un tiempo elegido al azar por el juego\n \nParámetros opcionales:\nh para ocultar el temporizador,\ni para permitir la entrada de tiempo de otros jugadores,\nr para la eliminación del objeto cuando se meta la contraseña correcta\no cuando el tiempo del candado se agote.\n \nConsejo: reemplaza h y/o i por otro carácter cuando necesites omitirlos.
+Magical lasers make appear locks on {tgpname}'s body.
+Láseres mágicos hacen aparecer candados en el cuerpo de {tgpname}.
+(accountname) (password): logs in a new account.
+(nombre_cuenta) (contraseña): inicia sesión en una cuenta nueva.
+The login command must be followed by an account name and a password
+El comando login debe ir seguido de un nombre de cuenta y una contraseña
+: toggles fog in current mapped room.
+: activa/desactiva la niebla en la sala con mapa actual.
+disabled
+desactivada
+enabled
+activada
+Fog in current mapped room is {status}. No visible effect if you have enabled full vision in mapped rooms.
+La niebla en la sala con mapa actual está {status}. No habrá efecto visible si tienes activada la visión completa en salas con mapa.
+: forces map access in current normal room (only for yourself).
+: fuerza el acceso al mapa en la sala normal actual (solo para ti).
+(keynumber) (action): finds or loses all keys or a specific key for current mapped chat room.
+(numero_llave) (accion): encuentra o pierde todas las llaves o una específica para la sala con mapa actual.
+The mapkeys command must be followed by two numbers.\n1st number: 1 = Gold key - 2 = Silver key - 3 = Bronze key - 4 = All keys.\n2nd number: 1 = Find - 2 = Lose.
+El comando mapkeys debe ir seguido de dos números.\n1er número: 1 = Llave de Oro - 2 = Llave de Plata - 3 = Llave de Bronce - 4 = Todas las llaves.\n2do número: 1 = Encontrar - 2 = Perder.
+You haven't entered the map.
+No has entrado al mapa.
+: gives infos about location of players in current mapped chat room.
+: da información sobre la ubicación de los jugadores en la sala con mapa actual.
+Real presence in map: YES
+Presencia real en el mapa: SÍ
+Real presence in map: {presence}
+Presencia real en el mapa: {presence}
+Real presence in map: ?
+Presencia real en el mapa: ?
+This player has enabled the UBC cheat to get coordinates of other players in the map.
+Este jugador ha activado el truco UBC para obtener las coordenadas de otros jugadores en el mapa.
+Location Sharing blocked - {exinfo}
+Compartir ubicación bloqueado - {exinfo}
+Does not have entered map
+No ha entrado al mapa
+(x-position): changes your X coordinate in the map.
+(posicion-x): cambia tu coordenada X en el mapa.
+The mapx command must be followed by a number between 0 and 39.
+El comando mapx debe ir seguido de un número entre 0 y 39.
+You don't have entered map!
+¡No has entrado al mapa!
+West
+Oeste
+East
+Este
+(y-position): changes your Y coordinate in the map.
+(posicion-y): cambia tu coordenada Y en el mapa.
+The mapy command must be followed by a number between 0 and 39.
+El comando mapy debe ir seguido de un número entre 0 y 39.
+North
+Norte
+South
+Sur
+(target): gives coordinates in the map.
+(objetivo): da las coordenadas en el mapa.
+Real presence in map:
+Presencia real en el mapa:
+YES
+SÍ
+(value): changes zoom level in the map rooms.
+(valor): cambia el nivel de zoom en las salas con mapa.
+The mapzoom command must be followed by a number between 7 and 50.
+El comando mapzoom debe ir seguido de un número entre 7 y 50.
+Zoom level modified! Enjoy!
+¡Nivel de zoom modificado! ¡Disfruta!
+: gives max statistics.
+: otorga estadísticas máximas.
+Changes made! A few other things have to be set with the /roleplay and /rolequit commands.
+¡Cambios realizados! Algunas otras cosas deben configurarse con los comandos /roleplay y /rolequit.
+: gives infos about MBS wheels of fortune in current chat room.
+: da información sobre las ruedas de la fortuna MBS en la sala de chat actual.
+Does not have a wheel of fortune.
+No tiene una rueda de la fortuna.
+Does not have a MBS wheel of fortune.
+No tiene una rueda de la fortuna MBS.
+Has a MBS wheel of fortune.
+Tiene una rueda de la fortuna MBS.
+Does not have custom options on this wheel.
+No tiene opciones personalizadas en esta rueda.
+Error reading custom options.
+Error al leer las opciones personalizadas.
+(option) (message): creates custom message for a specific command.
+(opción) (mensaje): crea un mensaje personalizado para un comando específico.
+The message command must be followed by an option and the message you want instead of the default message.\nEach option corresponds to a command, a 't' prefix being added for using on other players.\nOptions on yourself: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\nOptions on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n \nWhen writing your message, don't forget that your name or nickname will be added before it\nWhen acting on another player, the target name or nickname will be added after the message\nUse ? as message to go back to default message\nUse ! as message to select silent mode (no message)
+El comando message debe ir seguido de una opción y el mensaje que desees en lugar del predeterminado.\nCada opción corresponde a un comando, añadiendo un prefijo 't' para su uso en otros jugadores.\nOpciones sobre uno mismo: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\nOpciones sobre otros jugadores: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n \nAl escribir el mensaje, el nombre o apodo se añadirá antes de este.\nAl actuar sobre otro jugador, el nombre o apodo del objetivo se añadirá después del mensaje.\nUsa ? para volver al mensaje predeterminado.\nUsa ! para seleccionar el modo silencioso (sin mensaje).
+<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for {option} command on yourself.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Modo silencioso guardado para el comando {option} sobre uno mismo.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for {option} command on yourself.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Regreso al mensaje predeterminado para el comando {option} sobre uno mismo.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for {option} command on yourself.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Nuevo mensaje guardado para el comando {option} sobre uno mismo.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for {option2} command on other players.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Modo silencioso guardado para el comando {option2} sobre otros jugadores.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for {option2} command on other players.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Regreso al mensaje predeterminado para el comando {option2} sobre otros jugadores.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for {option2} command on other players.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Nuevo mensaje guardado para el comando {option2} sobre otros jugadores.</p>
+(mission): goes to infiltration room and forces a specific mission.
+(mision): va a la sala de infiltración y fuerza una misión específica.
+The mission command must include a mission.\nAvailable missions:\nburglar, kidnap, rescue, retrieve, sabotage.\nFull random mission with random.
+El comando mission debe incluir una misión.\nMisiones disponibles:\nburglar, kidnap, rescue, retrieve, sabotage.\nMisión aleatoria con 'random'.
+: displays current status of the moaner.
+: muestra el estado actual del moaner.
+(MemberNumber|Name|Nickname)(Message): sends a whisper to a player.
+(NumeroMiembro|Nombre|Apodo)(Mensaje): envía un susurro a un jugador.
+(target): removes clothes.
+(objetivo): quita la ropa.
+Magical lasers make disappear the clothes on {tmpname}'s body.
+Láseres mágicos hacen desaparecer la ropa del cuerpo de {tmpname}.
+Magical lasers make disappear the clothes on {tgpname}'s body.
+Láseres mágicos hacen desaparecer la ropa del cuerpo de {tgpname}.
+(minutes): stays in NPC Pandora prison.
+(minutos): permanece en la prisión NPC de Pandora.
+The npcprison command must be followed by a number higher than 0
+El comando npcprison debe ir seguido de un número mayor a 0
+{tmpname} gets grabbed by two maids and sent to NPC Pandora prison for {minutes} minutes.
+{tmpname} es agarrada por dos sirvientas y enviada a la prisión NPC de Pandora por {minutes} minutos.
+(parameter): restores/saves/loads outfit (including restraints).
+(parámetro): restaura/guarda/carga vestimentas (incluyendo accesorios).
+Options for outfit command:\n<b>All these options include the restraints</b>, so it's also a good bondage tool.\nTo restore your outfit to what it was before entering room, type: <b>/outfit reset</b> or <b>/outfit restore</b> or <b>/outfit revert</b>\nThree outfits can be saved by using <b>/outfit save1</b> or <b>/outfit save2</b> or <b>/outfit save3</b>\nTo load saved outfits, type: <b>/outfit load1</b> or <b>/outfit load2</b> or <b>/outfit load3</b>\nYou will have 5 seconds to click on target. Retry if the saving/loading was unsuccessful\nThese saves last only 1 login session.\nTo save outfits between sessions, use the <b>Export button</b> in wardrobe\nYou will have the outfit saved as a code. You can copy and paste it elsewhere.\nThen you can use the <b>Import buttons</b> to load it later.
+Opciones para el comando outfit:\n<b>Todas estas opciones incluyen los accesorios</b>, por lo que es una herramienta integral de vestuario.\nPara restaurar la vestimenta a como estaba antes de entrar a la sala, escribir: <b>/outfit reset</b> o <b>/outfit restore</b> o <b>/outfit revert</b>\nSe pueden guardar tres configuraciones usando <b>/outfit save1</b> o <b>/outfit save2</b> o <b>/outfit save3</b>\nPara cargar configuraciones guardadas, escribir: <b>/outfit load1</b> o <b>/outfit load2</b> o <b>/outfit load3</b>\nHabrá un margen de 5 segundos para hacer clic en el objetivo. Reintentar si el guardado o la carga no tienen éxito.\nEstos guardados duran solo una sesión de inicio de sesión.\nPara mantener las vestimentas entre sesiones, utilizar el <b>botón Exportar</b> en el guardarropa.\nLa vestimenta se guardará como un código que se puede copiar y pegar en otro lugar.\nLuego se pueden usar los <b>botones de Importar</b> para cargarla más tarde.
+You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.
+Hay 5 segundos para hacer clic en el objetivo. Si tiene éxito, la vestimenta será cargada. De lo contrario, reintentar.
+Outfit {args} command not executed as no any saved outfit has been found.
+El comando outfit {args} no se ha ejecutado porque no se ha encontrado ninguna vestimenta guardada.
+Outfit {args} command executed.
+Comando outfit {args} ejecutado.
+Outfit reset-restore-revert command executed.
+Comando outfit reset-restore-revert ejecutado.
+You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.
+Tienes 5 segundos para hacer clic en el objetivo. Si tiene éxito, la vestimenta se guardará. Si no, reintenta.
+(number): changes your item permission.
+(numero): cambia tus permisos de objetos.
+The permission command must be followed by a number.\nThe effect will be visible in your profile.\n0 Everyone, no exceptions\n1 Everyone, except blacklist\n2 Owner, Lover, whitelist & Dominants\n3 Owner, Lover and whitelist only\n4 Owner and Lover only\n5 Owner only
+El comando permission debe ir seguido de un número.\nEl efecto será visible en tu perfil.\n0 Todos, sin excepciones\n1 Todos, excepto lista negra\n2 Dueño, Amante, lista blanca y Dominantes\n3 Dueño, Amante y lista blanca solamente\n4 Dueño y Amante solamente\n5 Solo el Dueño
+(target): becomes a fully restrained pet.
+(objetivo): se convierte en una mascota totalmente restringida.
+{tmpname} becomes a cute pet.
+{tmpname} se convierte en una linda mascota.
+{tgpname} becomes a cute pet.
+{tgpname} se convierte en una linda mascota.
+(MemberNumber)(Message): sends a beep to a player.
+(NumeroMiembro)(Mensaje): envía un pitido (beep) a un jugador.
+: direct access to Preferences menu.
+: acceso directo al menú de Preferencias.
+(action): leaves the club very fast.
+(accion): abandona el club muy rápido.
+poofs away.
+desaparece de repente (poof).
+(pose) (target): changes the pose of any player.
+(pose) (objetivo): cambia la pose de cualquier jugador.
+The pose2 command must be followed by a pose and optionally a target.\n \nAvailable poses:\narmsfree, belly, boxtied, cuffed, elbowtied,\nkneel1, kneel2, legsclosed, legsopen, pet,\nspreadarms1, spreadarms2, spreadeagle1\nspreadeagle2, spreadlegs, stand, suspension,\ntapedhands. Only on yourself: exercise, jump.\nUse <b>/pose2 reset</b> (target) to back to neutral pose.\nIf WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.
+El comando pose2 debe ir seguido de una pose y, opcionalmente, un objetivo.\n \nPoses disponibles:\narmsfree, belly, boxtied, cuffed, elbowtied,\nkneel1, kneel2, legsclosed, legsopen, pet,\nspreadarms1, spreadarms2, spreadeagle1\nspreadeagle2, spreadlegs, stand, suspension,\ntapedhands. Solo en ti mismo: exercise, jump.\nUsa <b>/pose2 reset</b> (objetivo) para volver a la pose neutral.\nSi WCE está activo, usa <b>/pose baseupper</b> solo en ti mismo cuando /pose2 reset falle.
+{tmpname} relaxes {pronoun3} arms.
+{tmpname} relaja sus brazos.
+{tmpname} relaxes on {pronoun3} belly.
+{tmpname} se relaja sobre su vientre.
+{tmpname} puts {pronoun3} arms behind {pronoun3} back.
+{tmpname} pone sus brazos detrás de la espalda.
+{tmpname} puts {pronoun3} arms out like {pronoun4} is handcuffed.
+{tmpname} pone sus brazos como si estuviera esposada.
+{tmpname} puts {pronoun3} arms behind {pronoun3} back, elbows almost touching.
+{tmpname} pone sus brazos tras la espalda, con los codos casi tocándose.
+{tmpname} kneels down.
+{tmpname} se arrodilla.
+{tmpname} kneels down and opens {pronoun3} legs.
+{tmpname} se arrodilla y abre sus piernas.
+{tmpname} stands up and closes {pronoun3} legs.
+{tmpname} se pone de pie y cierra sus piernas.
+{tmpname} stands up normally on {pronoun3} feet.
+{tmpname} se pone de pie normalmente.
+{tmpname} relaxes on all fours.
+{tmpname} se relaja a cuatro patas.
+{tmpname} raises {pronoun3} hands.
+{tmpname} levanta sus manos.
+{tmpname} raises the hands above {pronoun3} head.
+{tmpname} levanta las manos por encima de su cabeza.
+{tmpname} raises {pronoun3} hands and spreads {pronoun3} legs.
+{tmpname} levanta sus manos y abre sus piernas.
+{tmpname} raises the hands above {pronoun3} head and spreads {pronoun3} legs.
+{tmpname} levanta las manos sobre su cabeza y abre sus piernas.
+{tmpname} spreads {pronoun3} legs.
+{tmpname} abre sus piernas.
+{tmpname} stands up.
+{tmpname} se pone de pie.
+{tmpname} is now in an acrobatic pose in suspension.
+{tmpname} está ahora en una pose acrobática en suspensión.
+{tmpname} puts {pronoun3} arms out like {pronoun3} hands are taped.
+{tmpname} estira los brazos como si tuviera las manos encintadas.
+{tmpname} jumps with joy.
+{tmpname} salta de alegría.
+You're too heavily tied to exercise.
+Estás demasiado atada para hacer ejercicio.
+{tmpname} makes {pronoun3} workout.
+{tmpname} hace su entrenamiento.
+{tmpname} lets {tgpname} relax {tgpr3} arms.
+{tmpname} deja que {tgpname} relaje sus brazos.
+{tmpname} forces {tgpname} to stay on {tgpr3} belly.
+{tmpname} obliga a {tgpname} a quedarse sobre su vientre.
+{tmpname} forces {tgpname} to put the arms behind {tgpr3} back.
+{tmpname} obliga a {tgpname} a poner los brazos tras su espalda.
+{tmpname} forces {tgpname} to put the arms out like {tgpr4} handcuffed.
+{tmpname} obliga a {tgpname} a estirar los brazos como si estuviera esposada.
+{tmpname} forces {tgpname} to put the arms behind her back, elbows almost touching.
+{tmpname} obliga a {tgpname} a poner los brazos tras su espalda, con los codos casi tocándose.
+{tmpname} helps {tgpname} to kneel down.
+{tmpname} ayuda a {tgpname} a arrodillarse.
+{tmpname} helps {tgpname} to kneel down, forcing {tgpr3} legs open.
+{tmpname} ayuda a {tgpname} a arrodillarse, forzando sus piernas a abrirse.
+{tmpname} helps {tgpname} to stand up with {tgpr3} legs closed.
+{tmpname} ayuda a {tgpname} a ponerse de pie con sus piernas cerradas.
+{tmpname} helps {tgpname} to stand up normally on {tgpr3} feet.
+{tmpname} ayuda a {tgpname} a ponerse de pie normalmente sobre sus pies.
+{tmpname} forces {tgpname} on all fours.
+{tmpname} obliga a {tgpname} a ponerse a cuatro patas.
+{tmpname} helps {tgpname} to raise {tgpr3} hands.
+{tmpname} ayuda a {tgpname} a levantar sus manos.
+{tmpname} forces {tgpname} to raise the hands above {tgpr3} head.
+{tmpname} obliga a {tgpname} a levantar las manos por encima de su cabeza.
+{tmpname} forces {tgpname} to raise the hands and spread the legs.
+{tmpname} obliga a {tgpname} a levantar las manos y abrir las piernas.
+{tmpname} forces {tgpname} to raise the hands above the head and spread the legs.
+{tmpname} obliga a {tgpname} a levantar las manos sobre la cabeza y abrir las piernas.
+{tmpname} forces {tgpname} to spread {tgpr3} legs.
+{tmpname} obliga a {tgpname} a abrir sus piernas.
+{tmpname} helps {tgpname} to stand up.
+{tmpname} ayuda a {tgpname} a ponerse de pie.
+{tmpname} forces {tgpname} in an acrobatic pose in suspension.
+{tmpname} obliga a {tgpname} a ponerse en una pose acrobática en suspensión.
+{tmpname} forces {tgpname} to put the arms out like {tgpr3} hands are taped.
+{tmpname} obliga a {tgpname} a estirar los brazos como si tuviera las manos encintadas.
+(minutes): stays in online Pandora prison.
+(minutos): permanece en la prisión online de Pandora.
+The prison command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\nIf you use it when you are alone in a room, it will be a new room automatically created.\nIt is recommended to use it in an existing Pandora room that you have first entered as normal player.\nIf you use it in an existing non-Pandora room, there will be no any timer, but the Pandora guards will be active though during the requested time.\nFor a correct working in all cases, be sure to have enabled the appropriate Immersion settings to auto-remake rooms.
+El comando prison debe ir seguido de un número mayor a 0. Provocará un relog automático antes de enviarte a prisión.\nSi lo usas estando sola en una sala, se creará una nueva sala automáticamente.\nSe recomienda usarlo en una sala de Pandora existente en la que hayas entrado primero como jugador normal.\nSi lo usas en una sala que no sea de Pandora, no habrá temporizador, pero los guardias de Pandora estarán activos durante el tiempo solicitado.\nPara un funcionamiento correcto en todos los casos, asegúrate de tener activados los ajustes de Inmersión apropiados para la auto-recreación de salas.
+(action): leaves room.
+(accion): abandona la sala.
+(target): naked + underwear + clothes + restrain commands.
+(objetivo): comandos naked + underwear + clothes + restrain combinados.
+Magical lasers apply random clothes and bindings on {tmpname}'s body.
+Láseres mágicos aplican ropa y ataduras aleatorias en el cuerpo de {tmpname}.
+Magical lasers apply random clothes and bindings on {tgpname}'s body.
+Láseres mágicos aplican ropa y ataduras aleatorias en el cuerpo de {tgpname}.
+: relogs.
+: reconecta (relog).
+: temporarily removes slave/owner collar.
+: quita temporalmente el collar de esclava/dueño.
+: resets difficulty, thereby quitting it.
+: restablece la dificultad, abandonándola.
+<b>Warning</b>: Resetting difficulty will incur a 7-day waiting period to rechange. Confirm by typing: <b>/resetdifficulty yes</b>
+<b>Advertencia</b>: Restablecer la dificultad implicará un periodo de espera de 7 días para volver a cambiarla. Confirma escribiendo: <b>/resetdifficulty yes</b>
+Difficulty reset, select a new one in settings.
+Dificultad restablecida, selecciona una nueva en los ajustes.
+: erases your inventory.
+: borra tu inventario.
+<b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b>
+<b>Advertencia</b>: Perderás mucha ropa y objetos, tendrás que comprarlos de nuevo. Confirma escribiendo: <b>/resetinventory yes</b>
+Accomplished. Visit store to buy new clothes and items.
+Logrado. Visita la tienda para comprar nueva ropa y objetos.
+: erases your nickname.
+: borra tu apodo.
+<b>Warning</b>: You will lose your nickname. Confirm by typing: <b>/resetnickname yes</b>
+<b>Advertencia</b>: Perderás tu apodo. Confirma escribiendo: <b>/resetnickname yes</b>
+Accomplished. You no longer have a nickname.
+Logrado. Ya no tienes apodo.
+(target): adds random restraints.
+(objetivo): añade ataduras aleatorias.
+Magical lasers apply random restraints on {tmpname}'s body.
+Láseres mágicos aplican ataduras aleatorias en el cuerpo de {tmpname}.
+Magical lasers apply random restraints on {tgpname}'s body.
+Láseres mágicos aplican ataduras aleatorias en el cuerpo de {tgpname}.
+(role): starts to play a role
+(rol): comienza a jugar un rol específico.
+The roleplay command must include a role.\nYou will be able to check the changes in your profile.\n \nAvailable roles:\nclubmistress, clubslave, doctor, escapedpatient,\nheadmaid, kidnapper, maid, magician, magus,\nmasterkidnapper, mistress, nurse, oracle, patient,\npermanentpatient, sage, sorcerer, warlock, witch, wizard.\nBe careful with clubslave, you will be forced to complete contract. Similar warning for escapedpatient.
+El comando roleplay debe incluir un rol.\nPodrás verificar los cambios en tu perfil.\n \nRoles disponibles:\nclubmistress, clubslave, doctor, escapedpatient,\nheadmaid, kidnapper, maid, magician, magus,\nmasterkidnapper, mistress, nurse, oracle, patient,\npermanentpatient, sage, sorcerer, warlock, witch, wizard.\nTen cuidado con clubslave; te verás obligado a cumplir el contrato. Una advertencia similar aplica para escapedpatient.
+(role or club area): ceases to play a role
+(rol o área del club): deja de jugar un rol específico.
+The rolequit command must include a role or clubarea.\nYou will be able to check the changes in your profile.\n \nAvailable roles or areas:\nasylum to cease being doctor, nurse, patient or permanent patient.\nclubslave to break the club slave contract.\nggts to leave ggts training (back to level 0).\nkidnapper to cease being kidnapper or master kidnapper.\nmagician to cease one of the 8 magic roles.\nmanagement or mistress to cease being mistress or club mistress.\nsorority or maid to cease being maid or headmaid.
+El comando rolequit debe incluir un rol o área del club.\nPodrás verificar los cambios en tu perfil.\n \nRoles o áreas disponibles:\nasylum para dejar de ser doctor, enfermera, paciente o paciente permanente.\nclubslave para romper el contrato de esclava del club.\nggts para abandonar el entrenamiento ggts (volver al nivel 0).\nkidnapper para dejar de ser secuestradora o maestra secuestradora.\nmagician para dejar uno de los 8 roles mágicos.\nmanagement o mistress para dejar de ser mistress o mistress del club.\nsorority o maid para dejar de ser sirvienta o jefa de sirvientas.
+: removes specific item.
+: elimina un objeto específico.
+You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.
+Tienes 5 segundos para hacer clic en el objetivo y seleccionar el área. Si tiene éxito, el objeto será retirado. Si no, reintenta.
+: opens chat search in current lobby.
+: abre la búsqueda de chat en el lobby actual.
+(lock time) (anticheat): sets the time and the anticheat for all current devious locks on yourself.
+(tiempo de candado) (antitrampas): establece el tiempo y el sistema antitrampas para todos los candados devious actuales que tengas instalados.
+The setdevious command must be followed by two numbers for lock time and anticheat option.\nThe time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\nUse ? if you want a time randomly choosen by the game (between 1 and 720 hours).\nFor the anticheat option, use 0 ( = disabled) or 1 ( = enabled).\nNote: the settings will not automatically be reflected in the DOGS interface, you will see them only after a full relog.\nIt is recommended to make this full relog immediately after correct execution of this command to preserve the updated data.
+El comando setdevious debe ir seguido de dos números para el tiempo de candado y la opción antitrampas.\nEl tiempo se expresa en horas. El mínimo es 1 hora. Use 0 para tiempo ilimitado.\nUsa ? si quieres un tiempo elegido al azar por el juego (entre 1 y 720 horas).\nPara la opción antitrampas, use 0 (= desactivado) o 1 (= activado).\nNota: la configuración no se reflejará automáticamente en la interfaz de DOGS; solo la verá después de reiniciar sesión por completo.\nSe recomienda reiniciar la sesión por completo inmediatamente después de ejecutar correctamente este comando para conservar los datos actualizados.
+Settings for your devious locks have been updated. Please make now a full relog to preserve the updated data!
+Se han actualizado los ajustes de tus devious candados. ¡Por favor, reinicie la sesión por completo para conservar los datos actualizados!
+(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.
+(modelo) (escudo frontal) (escudo trasero) (protección de manipulación) (modo orgasmo): cambia los ajustes del Cinturón de Castidad Futurista equipado.
+The sfchaste command must be followed by 5 numbers for model, front shield, back shield, tamper protection and orgasm mode.\n \nAvailable models: \n0 Prototype - 1 High-Security\n2 Training - 3 Neo\n \nAvailable front shields:\n0 Open - 1 Locked\n \nAvailable back shields:\n0 Open - 1 Locked\n \nAvailable tamper protections:\n0 Disabled - 1 Belt - 2 All items\n \nAvailable orgasm modes:\n0 Allow - 1 Punish
+El comando sfchaste debe ir seguido de 5 números para el modelo, escudo frontal, escudo trasero, protección de manipulación y modo de orgasmo.\n \nModelos disponibles: \n0 Prototipo - 1 Alta Seguridad\n2 Entrenamiento - 3 Neo\n \nEscudos frontales:\n0 Abierto - 1 Bloqueado\n \nEscudos traseros:\n0 Abierto - 1 Bloqueado\n \nProtecciones de manipulación:\n0 Desactivado - 1 Cinturón - 2 Todos los objetos\n \nModos de orgasmo:\n0 Permitir - 1 Castigar
+The settings of your Futuristic Chastity Belt have been modified.
+Los ajustes de tu Cinturón de Castidad Futurista han sido modificados.
+: (slot) (sensibility) (intensity): changes mode of worn device shock in a specific slot.
+: (espacio) (sensibilidad) (intensidad): cambia el modo de descarga del dispositivo equipado en un espacio específico.
+The shock command must be followed by two (or three) numbers:\n- a number for the concerned slot:\n0 = Arms - 1 = Breast - 2 = Butt - 3 = Devices - 4 = Neck - 5 = Neck Accessories - 6 = Nipples - 7 = Pelvis - 8 = Vulva\n \n- a number for the sensibility of the shock device in this slot:\n0 = Off - 1 = Low - 2 = Medium - 3 = High \n- a number for the intensity of the shocks:\n1 = Low - 2 = Medium - 3 = High \nNote that most devices don't need the last parameter as they refer to a level combining sensibility and intensity!\nSeveral devices can't be disabled. For the Obedience Belt, use 0 (disabled) or 1 (enabled).\nThis command does not support the Futuristic Chastity Belt and the Futuristic Training Belt.
+El comando shock debe ir seguido de dos (o tres) números:\n- un número para el espacio afectado:\n0 = Brazos - 1 = Pecho - 2 = Trasero - 3 = Dispositivos - 4 = Cuello - 5 = Accesorios de Cuello - 6 = Pezones - 7 = Pelvis - 8 = Vulva\n \n- un número para la sensibilidad del dispositivo de descarga en este espacio:\n0 = Apagado - 1 = Baja - 2 = Media - 3 = Alta \n- un número para la intensidad de las descargas:\n1 = Baja - 2 = Media - 3 = Alta \n¡Ten en cuenta que la mayoría de los dispositivos no necesitan el último parámetro, ya que se refieren a un nivel que combina sensibilidad e intensidad!\nVarios dispositivos no pueden desactivarse. Para el Cinturón de Obediencia, usa 0 (desactivado) o 1 (activado).\nEste comando no es compatible con el Cinturón de Castidad Futurista ni con el Cinturón de Entrenamiento Futurista.
+Settings changed for one of your shock devices!
+¡Ajustes cambiados para uno de tus dispositivos de descarga!
+(target): uses the sleeping pill on yourself or another player.
+(objetivo): usa la pastilla para dormir en ti mismo o en otro jugador.
+(action): slowly leaves the room.
+(accion): abandona la sala lentamente.
+slowly heads for the door.
+se dirige lentamente hacia la puerta.
+(value) (target): changes the solidity of most current bindings.
+(valor) (objetivo): cambia la solidez de la mayoría de las ataduras actuales.
+The solidity command must be followed by a number between 1 and 99, and optionally a target.\nTo escape special restraints (Futuristic Crate, Wooden Rack, Armbinder Suit), use the value 1.
+El comando solidity debe ir seguido de un número entre 1 y 99, y opcionalmente un objetivo.\nPara escapar de restricciones especiales (Futuristic Crate, Wooden Rack, Armbinder Suit), usa el valor 1.
+The solidity value must be between 1 and 99.
+El valor de solidez debe estar entre 1 y 99.
+Magical lasers make disappear the special restraints that kept {tmpname} prisoner.
+Láseres mágicos hacen desaparecer las restricciones especiales que mantenían prisionera a {tmpname}.
+The solidity of most current bindings has been changed.
+La solidez de la mayoría de las ataduras actuales ha sido cambiada.
+Magical lasers make disappear the special restraints that kept {tgpname} prisoner.
+Láseres mágicos hacen desaparecer las restricciones especiales que mantenían prisionera a {tgpname}.
+The solidity of most current {tgpname}'s bindings has been changed by {tmpname}.
+La solidez de la mayoría de las ataduras actuales de {tgpname} ha sido cambiada por {tmpname}.
+(target) (option): allows access to target's wheel of fortune, even when not displayed.
+(objetivo) (opcion): permite acceder a la rueda de la fortuna del objetivo, incluso si no se muestra.
+The spin command must be followed by the target whose wheel of fortune interests you, and optionally a mode.\nAvailable modes:\na = automatic real spinning (only the options selected by the wheel creator)\ni = info about the maximum of options on the wheel\nr = full random spinning (includes also the options not selected by the wheel creator)\nTip: use the i mode before the r mode, it will correctly initialise the messages.\nNote that roleplay is disabled by a and r modes!
+El comando spin debe ir seguido del objetivo cuya rueda de la fortuna te interesa, y opcionalmente un modo.\nModos disponibles:\na = giro real automático (solo las opciones seleccionadas por el creador de la rueda)\ni = información sobre el máximo de opciones en la rueda\nr = giro aleatorio completo (incluye también las opciones no seleccionadas por el creador)\nConsejo: usa el modo i antes que el modo r, inicializará correctamente los mensajes.\n¡Ten en cuenta que el roleplay se desactiva con los modos a y r!
+Bad luck! This player does not have a wheel of fortune.
+¡Mala suerte! Este jugador no tiene una rueda de la fortuna.
+(stuttermode) (words): speaks once in a specified stuttering mode.
+(modo_tartamudeo) (palabras): habla una vez en un modo de tartamudeo especificado.
+The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\nNote that it can't be used when you are in a 'permanent' stuttering mode.\n \nAvailable stuttering modes:\n1 light stuttering\n2 normal stuttering\n3 heavy stuttering\n4 total stuttering
+El comando stalk debe ir seguido de un número entre 1 y 4 para el modo de tartamudeo y las palabras que quieras decir.\nTen en cuenta que no se puede usar cuando estás en un modo de tartamudeo 'permanente'.\n \nModos de tartamudeo disponibles:\n1 tartamudeo ligero\n2 tartamudeo normal\n3 tartamudeo pesado\n4 tartamudeo total
+You can't use this command because you are in a 'permanent' stuttering mode
+No puedes usar este comando porque estás en un modo de tartamudeo 'permanente'
+Please include words to say after the stuttering mode.
+Por favor, incluye las palabras a decir después del modo de tartamudeo.
+: leaves chatroom, goes to store, shows hidden items.
+: abandona la sala, va a la tienda y muestra objetos ocultos.
+(sides): rolls a superdice.
+(caras): lanza un superdado.
+The superdice command must be followed by a number between 2 and 999999999.
+El comando superdice debe ir seguido de un número entre 2 y 999999999.
+{tmpname} rolls a superdice of {sides} sides. The result is {Result}.
+{tmpname} lanza un superdado de {sides} caras. El resultado es {Result}.
+(number): changes chat color theme.
+(numero): cambia el tema de color del chat.
+The theme command must be followed by a number between 0 and 3.
+El comando theme debe ir seguido de un número entre 0 y 3.
+(options) shows/hides Credits and/or NPCs on login screen, when Themed mod used
+(opciones) muestra/oculta Créditos y/o NPCs en la pantalla de inicio, cuando se usa el mod Themed
+The thmlogin command can be used only if Themed mod is enabled.\nIt must be followed by a number between 1 and 3.\n1 = Credits - 2 = NPCs - 3 = 1 + 2.
+El comando thmlogin solo puede usarse si el mod Themed está activado.\nDebe ir seguido de un número entre 1 y 3.\n1 = Créditos - 2 = NPCs - 3 = 1 + 2.
+{msg}Current status:
+{msg}Estado actual:
+Settings for login screen modified!
+¡Ajustes de la pantalla de inicio modificados!
+(minutes): stays in the isolation cell.
+(minutos): permanece en la celda de aislamiento.
+The timercell command must be followed by a number higher than 0.
+El comando timercell debe ir seguido de un número mayor a 0.
+{tmpname} gets grabbed by two maids and locked in a timer cell for {minutes} minutes.
+{tmpname} es agarrada por dos sirvientas y encerrada en una celda con temporizador por {minutes} minutos.
+(title): chooses a new title (from A to K).
+(titulo): elige un nuevo título (de la A a la K).
+The title1 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nadmiral, agent, alien, angel, archbishop, archjudge,\nbaby, bishop, bondagebaby, bondagemaid, brat, bunny,\ncaptain, champion, clubslave, coldbloodhorse,\ncollegestudent, concubus, demon, diaperlover,\ndiaperprince, diaperprincess, doctor, doll, dragon,\ndrone, drow, duchess, duke.
+El comando title1 debe ir seguido de un título.\nTambién cambiará los parámetros necesarios para obtener el título.\nPodrás verificar los cambios en tu perfil.\n \nTítulos disponibles:\nadmiral, agent, alien, angel, archbishop, archjudge,\nbaby, bishop, bondagebaby, bondagemaid, brat, bunny,\ncaptain, champion, clubslave, coldbloodhorse,\ncollegestudent, concubus, demon, diaperlover,\ndiaperprince, diaperprincess, doctor, doll, dragon,\ndrone, drow, duchess, duke.
+(title): chooses a new title (from E to K).
+(titulo): elige un nuevo título (de la E a la K).
+The title2 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nelf, escapedpatient, farmhorse, femboy, flyingpegasus,\nfoal, foxy, freeuse, god, goddess, goodboy, goodgirl,\ngoodone, goodslave, goodslaveboy, goodslavegirl\nheadmaid, hotbloodhorse, houdini, incubus, \ninfiltrator, judge, kidnapper, king, kitten.
+El comando title2 debe ir seguido de un título.\nTambién cambiará los parámetros necesarios para obtener el título.\nPodrás verificar los cambios en tu perfil.\n \nTítulos disponibles:\nelf, escapedpatient, farmhorse, femboy, flyingpegasus,\nfoal, foxy, freeuse, god, goddess, goodboy, goodgirl,\ngoodone, goodslave, goodslaveboy, goodslavegirl\nheadmaid, hotbloodhorse, houdini, incubus, \ninfiltrator, judge, kidnapper, king, kitten.
+(title): chooses a new title (from L to Q).
+(titulo): elige un nuevo título (de la L a la Q).
+The title3 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nladyluck, liege, littleone, lordfortune, magician, magus,\nmaid, majesticalicorn, majesty, master, masterkidnapper,\nmatron, missy, mistree, mistress, mole, monster, nawashi,\nnurse, operative, oracle, patient, patriarch, patron,\npermanentpatient, pet, pixie, primaris, prince, princess,\npuddlemaker, puppy, queen.
+El comando title3 debe ir seguido de un título.\nTambién cambiará los parámetros necesarios para obtener el título.\nPodrás verificar los cambios en tu perfil.\n \nTítulos disponibles:\nladyluck, liege, littleone, lordfortune, magician, magus,\nmaid, majesticalicorn, majesty, master, masterkidnapper,\nmatron, missy, mistree, mistress, mole, monster, nawashi,\nnurse, operative, oracle, patient, patriarch, patron,\npermanentpatient, pet, pixie, primaris, prince, princess,\npuddlemaker, puppy, queen.
+(title): chooses a new title (from R to Z).
+(titulo): elige un nuevo título (de la R a la Z).
+The title4 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nsage, shapeshifter, shiningunicorn, sissy, sorcerer,\nsuccubus, superhero, superheroine, superspy, switch,\nthing, tomboy, turtle, vampire, warlock,\nwarmbloodhorse, wildmustang, witch, wizard, wolf.
+El comando title4 debe ir seguido de un título.\nTambién cambiará los parámetros necesarios para obtener el título.\nPodrás verificar los cambios en tu perfil.\n \nTítulos disponibles:\nsage, shapeshifter, shiningunicorn, sissy, sorcerer,\nsuccubus, superhero, superheroine, superspy, switch,\nthing, tomboy, turtle, vampire, warlock,\nwarmbloodhorse, wildmustang, witch, wizard, wolf.
+(target): removes all bindings, collar, harness, chastity, toys.
+(objetivo): retira todas las fijaciones, collar, arnés, castidad y accesorios.
+Magical lasers make disappear all bindings and toys on {tgpname}'s body.
+Láseres mágicos hacen desaparecer todas las fijaciones y accesorios del cuerpo de {tgpname}.
+(membernumber): adds a player to the list allowing to teleport you.
+(número_miembro): añade a un jugador a la lista autorizada para teletransportarte.
+The tplistadd command must be followed by the member number of the player that you allow to teleport you.
+El comando tplistadd debe ser seguido por el número de miembro del jugador al que se permite teletransportarte.
+(membernumber): removes a player from the list allowing to teleport you.
+(número_miembro): elimina a un jugador de la lista autorizada para teletransportarte.
+The tplistremove command must be followed by the member number of the player who is no more allowed to teleport you.
+El comando tplistremove debe ser seguido por el número de miembro del jugador que ya no tiene permiso para teletransportarte.
+displays the list of players allowed to teleport you.
+muestra la lista de jugadores autorizados para teletransportarte.
+(visor) (deafening module) (chin strap): changes the settings of a worn Techno Helmet
+(visor) (módulo de sordera) (barboquejo): cambia los ajustes de un Casco Tecno equipado.
+The trsee command must be followed by 3 numbers for visor, deafening module and chin strap.\n \nAvailable visors:\n0 No visor - 1 transparent\n2 light tinted - 3 heavy tinted\n4 opaque - 5 hypnotic\n \nAvailable deafening modules:\n0 no module\n1 light\n2 heavy\n3 noise-cancelling\n \nAvailable options for chin strap:\n0 No chin strap\n1 chin strap
+El comando trsee debe ir seguido de 3 números para el visor, el módulo de sordera y el barboquejo.\n \nVisores disponibles:\n0 Sin visor - 1 transparente\n2 tinte ligero - 3 tinte fuerte\n4 opaco - 5 hipnótico\n \nMódulos de sordera disponibles:\n0 sin módulo\n1 ligero\n2 pesado\n3 cancelación de ruido\n \nOpciones disponibles para el barboquejo:\n0 Sin barboquejo\n1 con barboquejo
+The settings of your Techno Helmet have been modified.
+Los ajustes de tu Casco Tecno han sido modificados.
+(category): displays the ULTRAbc commands.
+(categoría): muestra los comandos de ULTRAbc.
+The uhelp is organized into categories. Use <b>/uhelp</b> (category). List of categories:\n<b>admin</b> = commands only for chat room admins.\n<b>bondage</b> = commands related to bondage.\n<b>character</b> = commands related to your character.\n<b>chat</b> = commands with extra features in chat room.\n<b>clothing</b> = commands related to the clothes.\n<b>escape</b> = commands related to escape.\n<b>fun</b> = commands related to fun, pain and pleasure.\n<b>info</b> = commands that give infos.\n<b>maps</b> = commands related to hybrid and map rooms.\n<b>misc</b> = help, info, login and Ulist commands.\n<b>settings</b> = commands to customize ULTRAbc.\n<b>talking</b> = commands related to talking.\n<b>visual</b> = commands related to animations and background.\n<b>zones</b> = commands related to game zones.\nSeveral commands require or allow to specify a target. It can be a real name, a nickname or a member number.\nVisit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> and join our <a href='https://steamcommunity.com/groups/ULTRAbc' target='_blank'>Steam community</a>
+El uhelp está organizado en categorías. Usa <b>/uhelp</b> (categoría). Lista de categorías:\n<b>admin</b> = comandos solo para administradores de la sala.\n<b>bondage</b> = comandos relacionados con restricciones.\n<b>character</b> = comandos relacionados con tu personaje.\n<b>chat</b> = comandos con funciones extra en la sala de chat.\n<b>clothing</b> = comandos relacionados con la ropa.\n<b>escape</b> = comandos relacionados con escapar.\n<b>fun</b> = comandos relacionados con diversión y efectos.\n<b>info</b> = comandos que proporcionan info.\n<b>maps</b> = comandos relacionados con salas híbridas y de mapa.\n<b>misc</b> = comandos de ayuda, info, login y Ulist.\n<b>settings</b> = comandos para personalizar ULTRAbc.\n<b>talking</b> = comandos relacionados con hablar.\n<b>visual</b> = comandos relacionados con animaciones y fondos.\n<b>zones</b> = comandos relacionados con zonas de juego.\nVarios comandos requieren o permiten especificar un objetivo. Puede ser un nombre real, un apodo o un número de miembro.\nVisita también nuestra <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> y únete a nuestra <a href='https://steamcommunity.com/groups/ULTRAbc' target='_blank'>comunidad de Steam</a>
+Admin commands\n<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n<b>/bg1</b> (number) = uses a Bondage College/Teacher background as custom background. /bg1 to get the list.\n<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.
+Comandos de Admin\\n<b>/autokick</b> = activa/desactiva la expulsión automática para cuentas de 0 días.\n<b>/bg1</b> (número) = utiliza un fondo personalizado. /bg1 para ver la lista.\n<b>/bg2</b> (número) = cambia el fondo de la sala. /bg2 para ver la lista.
+Bondage commands - * = more info when using\n<b>/autoheart</b> = puts/configures heart locks on yourself. *\n<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n<b>/lock</b> = adds locks on all lockable items. *\n<b>/outfit</b> = restores/saves/loads outfit (including restraints). *\n<b>/pet</b> (target) = becomes a fully restrained pet.\n<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n<b>/restrain</b> (target) = adds random restraints.\n<b>/setdevious</b> = configures all your current devious locks. *\n<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Value must be between 1 and 99.\n<b>/spin</b> (target) (option) = access to any (hidden) wheel. *\n<b>/weaken</b> = weakens all your skills for one hour.
+Comandos de Restricción - * = más info al usar\n<b>/autoheart</b> = te pone candados de corazón y los configura. *\n<b>/hint</b> (objetivo) (pista) = añade o cambia una pista para los candados con contraseña.\n<b>/lock</b> = añade candados a todos los objetos bloqueables. *\n<b>/outfit</b> = restaura/guarda/carga vestimenta (incluyendo accesorios). *\n<b>/pet</b> (objetivo) = aplica restricciones totales de estado 'mascota'.\n<b>/randomize</b> (objetivo) = aplica una combinación aleatoria de ropa y restricciones.\n<b>/restrain</b> (objetivo) = añade restricciones aleatorias.\n<b>/setdevious</b> = configura todos tus candados devious actuales. *\n<b>/solidity</b> (valor) (objetivo) = cambia la resistencia de las ataduras actuales (1-99).\n<b>/spin</b> (objetivo) (opción) = acceso a ruedas de la fortuna. *\n<b>/weaken</b> = debilita las habilidades por una hora.
+Character commands - * = more info when using\n<b>/cname</b> (custom name) = creates a custom name. *\n<b>/cowner</b> (member number) (owning days) (owner name) = sets a custom owner. *\n<b>/ctitle</b> (custom title) = creates a custom title. *\n<b>/difficulty</b> (number) = changes game difficulty. *\n<b>/maxstatistics</b> = gives max statistics.\n<b>/permission</b> (number) = changes your item permission *\n<b>/resetinventory</b> = erases your inventory.\n<b>/resetnickname</b> = erases your nickname.\n<b>/roleplay</b> (rolehere) = starts a role. *\n<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n<b>/title1</b> (newtitlehere) = chooses a new title (from A to D). *\n<b>/title2</b> (newtitlehere) = chooses a new title (from E to K). *\n<b>/title3</b> (newtitlehere) = chooses a new title (from L to Q). *\n<b>/title4</b> (newtitlehere) = chooses a new title (from R to Z). *
+Comandos de Personaje - * = más info al usar\n<b>/cname</b> (nombre) = crea un nombre personalizado. *\n<b>/cowner</b> (número de miembro) (días de propiedad) (nombre del propietario) = establece un propietario personalizado. *\n<b>/ctitle</b> (título) = crea un título personalizado. *\n<b>/difficulty</b> (número) = cambia la dificultad del juego. *\n<b>/maxstatistics</b> = maximiza las estadísticas.\n<b>/permission</b> (número) = cambia los permisos de objetos. *\n<b>/resetinventory</b> = borra el inventario.\n<b>/resetnickname</b> = borra tu apodo.\n<b>/roleplay</b> (rol) = inicia un modo de rol. *\n<b>/rolequit</b> (rol) = finaliza un modo de rol. *\n<b>/title1</b> (nuevo título) = elige un nuevo título (A-D). *\n<b>/title2</b> (nuevo título) = elige un nuevo título (E-K). *\n<b>/title3</b> (nuevo título) = elige un nuevo título (L-Q). *\n<b>/title4</b> (nuevo título) = elige un nuevo título (R-Z). *
+Chat commands - * = more info when using\n<b>/bio</b> (target) = sees profile of any player in chat room.\n<b>/font</b> (newfont) (size) = changes font in BC. *\n<b>/frlist</b> = gives access to friendlist in current lobby.\n<b>/search</b> = opens chat search in current lobby.\n<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.
+Comandos de chat - * = más información al usar\n<b>/bio</b> (objetivo) = ve el perfil de cualquier jugador en la sala de chat.\n<b>/font</b> (nueva_fuente) (tamaño) = cambia la fuente en BC. *\n<b>/frlist</b> = da acceso a la lista de amigos en el lobby actual.\n<b>/search</b> = abre la búsqueda de chat en el lobby actual.\n<b>/theme</b> (número) = cambia el tema de color del chat. Número entre 0 y 3.
+Clothing commands - * = more info when using\n<b>/clothes</b> (target) = changes clothes.\n<b>/naked</b> (target) = removes clothes.\n<b>/outfit</b> (options) = restores/saves/loads outfit (including restraints). *\n<b>/underwear</b> (target) = changes underwear.\n<b>/wexport</b> (target) = fully exports outfit in UBC/BCG format.\n<b>/wimport1</b> (target) = imports clothing + restraints in UBC/BCG format.\n<b>/wimport2</b> (target) = imports clothing + restraints + cosplay in UBC/BCG format.\n<b>/wimport3</b> (target) = fully imports outfit in UBC/BCG format.\n<b>/wrobe</b> (target) = fully opens target wardrobe.
+Comandos de ropa - * = más información al usar\n<b>/clothes</b> (objetivo) = cambia la ropa.\n<b>/naked</b> (objetivo) = quita la ropa.\n<b>/outfit</b> (opciones) = restaura/guarda/carga atuendos (incluyendo accesorios). *\n<b>/underwear</b> (objetivo) = cambia la ropa interior.\n<b>/wexport</b> (objetivo) = exporta completamente vestimenta en formato UBC/BCG.\n<b>/wimport1</b> (objetivo) = importa ropa + ataduras en formato UBC/BCG.\n<b>/wimport2</b> (objetivo) = importa ropa + ataduras + cosplay en formato UBC/BCG.\n<b>/wimport3</b> (objetivo) = importa completamente vestimenta en formato UBC/BCG.\n<b>/wrobe</b> (objetivo) = abre completamente el guardarropa del objetivo.
+Escape commands - * = more info when using\n<b>/boost</b> = boosts all your skills for one hour.\n<b>/infolock</b> = gives extra info (code, password, time left) for lock used on worn item in selected slot.\n<b>/quit</b> (action) = leaves room.\n<b>/removecollar</b> = temporarily removes slave/owner collar.\n<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n<b>/safeworditem</b> = removes specific item. *\n<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Use low values to escape! Value 1 to escape special restraints.\n<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. *\n<b>/untie</b> (target) = removes all bindings.
+Comandos de escape - * = más información al usar\n<b>/boost</b> = potencia todas tus habilidades durante una hora.\n<b>/infolock</b> = da información extra (código, contraseña, tiempo restante) para el candado usado en el objeto equipado.\n<b>/quit</b> (acción) = abandona la sala.\n<b>/removecollar</b> = quita temporalmente el collar.\n<b>/resetdifficulty</b> = restablece la dificultad, saliendo de ella.\n<b>/safeworditem</b> = elimina un objeto específico. *\n<b>/solidity</b> (valor) (objetivo) = cambia la solidez de las ataduras actuales. ¡Usa valores bajos para escapar! Valor 1 para escapar de restricciones especiales.\n<b>/totalrelease</b> (objetivo) = elimina todas las ataduras y accesorios.\n<b>/unlock</b> (objetivo) (tipo_de_candado) = elimina todos los candados o solo un tipo específico. *\n<b>/untie</b> (objetivo) = elimina todas las ataduras.
+Fun commands - * = more info when using\n** = scripts must be allowed in BC settings\n<b>/cum</b> = causes an orgasm (in all cases).\n<b>/horny</b> = sets your arousal level (in all cases). *\n<b>/invisible</b> (target) = goes or sends to invisible mode. **\n<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n<b>/shock</b> (slot) (sensibility) (intensity) = changes mode of worn device shock in a specific slot. *\n<b>/sleep</b> (target) = uses the sleeping pill.\n<b>/slowleave</b> (action) = slowly leaves the room.\n<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n<b>/vibe</b> (slot) (mode) = changes mode of worn vibe in a specific slot. *\n<b>/visible</b> (target) = goes or sends back to visible mode. **
+Comandos de diversión - * = más información al usar\n** = los scripts deben estar permitidos en la configuración de BC\n<b>/cum</b> = provoca un orgasmo.\n<b>/horny</b> = establece tu nivel de excitación. *\n<b>/invisible</b> (objetivo) = entra o envía al modo invisible. **\n<b>/poof</b> (acción) = abandona el club rápidamente. La acción es opcional.\n<b>/sfchaste</b> (opciones) = cambia la configuración del cinturón de castidad futurista. *\n<b>/shock</b> (ranura) (sensibilidad) (intensidad) = cambia el modo de descarga del dispositivo en una ranura específica. *\n<b>/sleep</b> (objetivo) = utiliza el efecto de sueño.\n<b>/slowleave</b> (acción) = abandona la sala lentamente.\n<b>/superdice</b> (lados) = lanza un super-dado. Los lados pueden estar entre 2 y 999999999.\n<b>/vibe</b> (ranura) (modo) = cambia el modo de vibración en una ranura específica. *\n<b>/visible</b> (objetivo) = vuelve al modo visible. **
+Info commands - * = more info when using\n<b>/maproom</b> = gives infos about players in current map.\n<b>/mbsroom</b> = infos about MBS wheels in current room.\n<b>/mstatus</b> = displays current status of the moaner.\n<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.\n<b>/uroom</b> = infos about UBC/Uwall users in current room.
+Info commands - * = más información al usar\n<b>/maproom</b> = da información sobre los jugadores en el mapa actual.\n<b>/mbsroom</b> = info sobre ruedas MBS en la sala actual.\n<b>/mstatus</b> = muestra el estado actual del moaner.\n<b>/uhelp</b> (categoría) = muestra los comandos de ULTRAbc. *\n<b>/umods</b> (target) = info sobre los mods utilizados por todos los jugadores o por un jugador específico en la sala actual.\n<b>/uroom</b> = info sobre usuarios de UBC/Uwall en la sala actual.
+Maps commands - * = more info when using\n<b>/mapfog</b> = toggles fog in current map room.\n<b>/mapforce</b> = forces map access in current normal room (only for yourself).\n<b>/mapkeys</b> (keynumber) (action) = finds or loses all keys or a specific key for current map room. *\n<b>/maproom</b> = infos about players in current map.\n<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n<b>/mapz</b> (target) = gives coordinates in the map.\n<b>/mapzoom</b> (value) = changes zoom level in map rooms.\n<b>/tplistadd</b> (membernumber) = adds a player to the list allowing to teleport you.\n<b>/tplistremove</b> (membernumber) = removes a player from the list allowing to teleport you.\n<b>/tplistshow</b> = displays the list of players allowed to teleport you.
+Comandos de mapas - * = más información al usar\n<b>/mapfog</b> = alterna la niebla en la sala de mapa actual.\n<b>/mapforce</b> = fuerza el acceso al mapa en la sala normal actual (solo para ti).\n<b>/mapkeys</b> (número_de_llave) (acción) = encuentra o pierde todas las llaves o una llave específica. *\n<b>/maproom</b> = da información sobre los jugadores en el mapa actual.\n<b>/mapx</b> (posición-x) = cambia tu coordenada X en el mapa.\n<b>/mapy</b> (posición-y) = cambia tu coordenada Y en el mapa.\n<b>/mapz</b> (objetivo) = da las coordenadas en el mapa.\n<b>/mapzoom</b> (valor) = cambia el nivel de zoom en las salas de mapa.\n<b>/tplistadd</b> (número_miembro) = añade a un jugador a la lista permitiendo que te teletransporte.\n<b>/tplistremove</b> (número_miembro) = elimina a un jugador de la lista.\n<b>/tplistshow</b> = muestra la lista de jugadores autorizados para teletransportarte.
+Misc commands - * = more info when using\n<b>/callubc</b> = installs UBC GUI (to be used if it has failed during initialisation).\n<b>/login</b> (accountname) (password) = logs in a new account.\n<b>/pmenu</b> = direct access to Preferences screen.\n<b>/relog</b> = relogs.\n<b>/thmlogin</b> (options) shows/hides Credits and/or NPCs on login screen, when Themed mod used. *\n<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n<b>/ulistshow</b> = displays list of players in your Ulist.\n<b>/xmenu</b> = direct access to Extensions screen.
+Comandos Varios - * = más info al usar\n<b>/callubc</b> = instala la interfaz UBC (usar si falló la inicialización).\n<b>/login</b> (cuenta) (contraseña) = inicia sesión en una cuenta nueva.\n<b>/pmenu</b> = acceso directo a la pantalla de Preferencias.\n<b>/relog</b> = reconecta el servidor.\n<b>/thmlogin</b> (opciones) muestra/oculta Créditos o NPCs en el login (con mod Themed). *\n<b>/ulistadd</b> (número) = añade un jugador a la lista para ignorar el Uwall.\n<b>/ulistremove</b> (número) = elimina un jugador de la lista del Uwall.\n<b>/ulistshow</b> = muestra tu lista de jugadores en Ulist.\n<b>/xmenu</b> = acceso directo a la pantalla de Extensiones.
+Settings commands\n<b>/bglist</b> displays the list of all available standard backgrounds.\n<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background and embedded picture.\n<b>/bgshow2</b> (bgnumber) = sends in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n<b>/message</b> (option) (message) = creates custom messages for specific command. *\n<b>/ulang</b> (language) = changes the UBC language (auto, en, cn, es).\n<b>/wtoggle</b> = toggles between UBC wardrobe and BC/BCX wardrobe.
+Comandos de Configuración\n<b>/bglist</b> muestra la lista de todos los fondos estándar disponibles.\n<b>/bgshow1</b> (número) = muestra un enlace local y la imagen de un fondo estándar.\n<b>/bgshow2</b> (número) = envía al chat el enlace de un fondo estándar. (Clicable con WCE).\n<b>/killpar</b> = elimina los parámetros de UBC/Moaner guardados localmente.\n<b>/message</b> (opción) (mensaje) = crea mensajes personalizados para comandos específicos. *\n<b>/ulang</b> (idioma) = cambia el idioma de UBC (auto, en, cn, es).\n<b>/wtoggle</b> = alterna entre el vestuario UBC y el vestuario BC/BCX.
+Talking commands - * = more info when using\n<b>/atalk</b> (stuffhere) = speaks once as an animal. *\n<b>/btalk</b> (stuffhere) = speaks once as a baby.\n<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n<b>/murmur</b> (MemberNumber|Name|Nickname) (Message) = sends a whisper to a player. Error messages will not disappear.\n<b>/ping</b> (MemberNumber) (Message) = sends a beep to a player. Beep errors will not disappear.\n<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *
+Comandos de Habla - * = más info al usar\n<b>/atalk</b> (texto) = habla una vez como un animal. *\n<b>/btalk</b> (texto) = habla una vez como un bebé.\n<b>/gtalk</b> (modo) (texto) = habla una vez con un nivel de mordaza específico. *\n<b>/murmur</b> (Número|Nombre|Apodo) (Mensaje) = envía un susurro persistente.\n<b>/ping</b> (Número) (Mensaje) = envía un pitido (beep) a un jugador.\n<b>/stalk</b> (modo) (texto) = habla una vez con un modo de tartamudeo específico. *
+Visual commands - * = more info when using\n<b>/allcolor</b> (colorcode) (category) (target) = changes color on current elements in specified category. *\n<b>/colorchanger</b> (anim) =  animation with color change. *\n<b>/itemcolor</b> (colorcode) = changes item color in selected slot. *\n<b>/layerset</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n<b>/layershow</b> = color info and saving of Item Slot.\n<b>/pose2</b> (pose) (target) = changes pose of any player. *\n<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n<b>/vrsee</b> (background) (mode) (game) = changes the settings of a worn VR Headset. *
+Comandos Visuales - * = más info al usar\n<b>/allcolor</b> (color) (categoría) (objetivo) = cambia el color de elementos por categoría. *\n<b>/colorchanger</b> (anim) = animación con cambio de color constante. *\n<b>/itemcolor</b> (color) = cambia el color del objeto en el espacio seleccionado. *\n<b>/layerset</b> (capa) (color) = cambia el color de una capa en el espacio guardado. *\n<b>/layershow</b> = info de colores y guardado de espacio de objeto (Item Slot).\n<b>/pose2</b> (pose) (objetivo) = cambia la pose de cualquier jugador. *\n<b>/trsee</b> (opciones) = cambia los ajustes del Casco Tecno equipado. * \n<b>/vrsee</b> (fondo) (modo) (juego) = cambia los ajustes de las Gafas VR equipadas. *
+Zones commands - * = more info when using\n<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n<b>/chess</b> (difficulty) = starts chess game. *\n<b>/college</b> = enters college, bypasses requirements.\n<b>/game</b> (minigame) = launches a minigame. *\n<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n<b>/mission</b> (missiontype) = forces an infiltration mission. *\n<b>/npcprison</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n<b>/store</b> = Goes to store. Shows hidden items.\n<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.
+Comandos de Zonas - * = más info al usar\n<b>/asylum</b> (minutos) = entra al asilo omitiendo requisitos. Indica minutos si eres paciente.\n<b>/cgame</b> (zona) = inicia un juego de cartas con un NPC. *\n<b>/chess</b> (dificultad) = inicia una partida de ajedrez. *\n<b>/college</b> = entra a la universidad omitiendo requisitos.\n<b>/game</b> (minijuego) = lanza un minijuego específico. *\n<b>/ggts</b> (minutos) (nivel) = inicia entrenamiento GGTS en el asilo (Nivel 1-6).\n<b>/keydeposit</b> (horas) = guarda tus llaves en la bóveda (acepta más de 7 días).\n<b>/mission</b> (tipo) = fuerza una misión de infiltración específica. *\n<b>/npcprison</b> (minutos) = te envía a la prisión NPC de Pandora.\n<b>/prison</b> (minutos) = te envía a la prisión online de Pandora. *\n<b>/store</b> = va a la tienda y muestra objetos ocultos.\n<b>/timercell</b> (minutos) = te encierra en la celda de aislamiento.
+(membernumber): adds a player to the list allowing to bypass Uwall.
+(número_de_miembro): añade un jugador a la lista permitiéndole ignorar el Uwall.
+The ulistadd command must be followed by the member number of the player that you allow to bypass Uwall.
+El comando ulistadd debe ir seguido del número de miembro del jugador al que permite ignorar el Uwall.
+(membernumber): removes a player from the list allowing to bypass Uwall.
+(número_de_miembro): elimina a un jugador de la lista que permite ignorar el Uwall.
+The ulistremove command must be followed by the member number of the player who is no more allowed to bypass Uwall.
+El comando ulistremove debe ir seguido del número de miembro del jugador que ya no tiene permitido ignorar el Uwall.
+displays the list of players allowed to bypass Uwall.
+muestra la lista de jugadores permitidos para ignorar el Uwall.
+(target): changes underwear.
+(objetivo): cambia la ropa interior.
+Magical lasers put {tmpname} in random underwear.
+Láseres mágicos ponen a {tmpname} ropa interior al azar.
+Magical lasers put {tgpname} in random underwear.
+Láseres mágicos ponen a {tgpname} ropa interior al azar.
+(target) (locktype): removes all locks or only a specified type of lock on specified target.
+(objetivo) (tipo_candado): elimina todos los candados o solo un tipo específico en el objetivo indicado.
+The unlock command:\n<b>/unlock</b> (target) (locktype).\nThe target always needs to be specified.\nAll locks of any type will be removed if you don't specify the lock type.\n \nThe lock types:\n1 Metal (default if wrong value entered) - 2 Exclusive\n3 Intricate - 4 High Security - 5 Pandora\n6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n10 Combination - 11 Safeword - 12 Password\n13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n16 Timer Password - 17 Family - 18 Lewd Crest\n19 Devious - 20 Heart \n21 Best Friend - 22 BF Timer\nLocks 19 and 20 can be removed by everybody only if players use a modified version of the DOGS or AFC mod.
+El comando unlock:\n<b>/unlock</b> (objetivo) (tipo_candado).\nSiempre se debe especificar el objetivo.\nSe eliminarán todos los candados si no especificas el tipo.\n \nTipos de candado:\n1 Metal (por defecto) - 2 Exclusivo - 3 Intrincado\n4 Alta Seguridad - 5 Pandora - 6 Ama - 7 Amante\n8 Dueño - 9 Cinco Minutos - 10 Combinación\n11 Palabra de Seguridad - 12 Contraseña\n13 Temp. Ama - 14 Temp. Amante - 15 Temp. Dueño\n16 Contraseña con Tiempo - 17 Familiar - 28 Escudo Lúbrico\n19 Devious - 20 Corazón\n21 Mejor Amigo - 22 Temp. Mejor Amigo \nLos candados 19 y 20 solo pueden retirarse si se usa una versión modificada del mod DOGS o AFC.
+Magical lasers make disappear locks on {tgpname}'s body.
+Láseres mágicos hacen desaparecer los candados del cuerpo de {tgpname}.
+(target): removes all bindings.
+(objetivo): elimina todas las ataduras.
+Magical lasers make disappear the bindings on {tmpname}'s body.
+Láseres mágicos hacen desaparecer las ataduras del cuerpo de {tmpname}.
+Magical lasers make disappear the bindings on {tgpname}'s body.
+Láseres mágicos hacen desaparecer las ataduras del cuerpo de {tgpname}.
+: gives infos about UBC users and Uwall protection in current chat room.
+: da información sobre usuarios de UBC y protección Uwall en la sala de chat actual.
+: (slot) (mode): changes mode of worn vibe in a specific slot.
+: (espacio) (modo): cambia el modo de vibración en un espacio específico.
+The vibe command must be followed by two numbers:\n- a number for the concerned slot:\n0 = Boots - 1 = Breast - 2 = Butt - 3 = Clitoris/Gland\n4 = Devices - 5 = Feet - 6 = Nipples\n7 = Nipples Piercings - 8 = Pelvis - 9 = Vulva/Penis\n \n- a number for the mode of the vibe in this slot:\n0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n5 = Random - 6 = Escalate - 7 = Tease - 8 = Deny - 9 = Edge\nNote that modes 5 to 9 are not available on some vibes!\nFor Heavy Duty Belt, Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm\nThis command does not support the Futuristic Training Belt and the Lewd Crest.
+El comando vibe debe ir seguido de dos números:\n- un número para el espacio afectado:\n0 = Botas - 1 = Pecho - 2 = Trasero - 3 = Clítoris/Glande\n4 = Dispositivos - 5 = Pies - 6 = Pezones\n7 = Piercings de Pezones - 8 = Pelvis - 9 = Vulva/Pene\n \n- un número para el modo de vibración en este espacio:\n0 = Apagado - 1 = Bajo - 2 = Medio - 3 = Alto - 4 = Máximo\n5 = Aleatorio - 6 = Escalar - 7 = Provocar - 8 = Denegar - 9 = Al Límite (Edge)\n¡Ten en cuenta que los modos 5 al 9 no están disponibles en algunos vibradores!\nPara el Cinturón de Alta Resistencia, Bragas de Placer Sci-Fi y el Frasco de Vidrio: 5, 6 o 7 = Permitir orgasmo\nEste comando no es compatible con el Cinturón de Entrenamiento Futurista ni el Escudo Lúbrico.
+Mode changed for one of your vibes!
+¡Modo cambiado para uno de tus vibradores!
+: (target): goes back or sends back to visible mode.
+: (objetivo): vuelve o envía de vuelta al modo visible.
+{tmpname} suddenly is visible for everybody.
+{tmpname} de repente es visible para todos.
+To use the visible command on other players, they need first to allow Scripts in BC settings.
+Para usar el comando visible en otros jugadores, ellos deben primero permitir Scripts en los ajustes de BC.
+{tgpname} suddenly is visible for everybody.
+{tgpname} de repente es visible para todos.
+(background) (mode) (game): changes the settings of a worn VR Headset.
+(fondo) (modo) (juego): cambia los ajustes de unas Gafas VR equipadas.
+The vrsee command must be followed by 3 numbers for background, mode and game.\n \nAvailable backgrounds:\n0 No background - 1 Virtual World\n2 Dungeon - 3 High-Tech\n4 Ancient Ruins - 5 Trance\n \nAvailable modes:\n0 Passthrough\n1 VR off\n2 VR on\n3 VR on + Hide restraints\n \nAvailable games:\n0 No game\n1 Kinky Dungeon
+El comando vrsee debe ir seguido de 3 números para el fondo, el modo y el juego.\n \nFondos disponibles:\n0 Sin fondo - 1 Mundo Virtual\n2 Mazmorra - 3 Alta Tecnología\n4 Ruinas Antiguas - 5 Trance\n \nModos disponibles:\n0 Passthrough (Transparente)\n1 VR apagado\n2 VR encendido\n3 VR encendido + Ocultar ataduras\n \nJuegos disponibles:\n0 Sin juego\n1 Kinky Dungeon
+The settings of your VR Headset have been modified.
+Los ajustes de tus Gafas VR han sido modificados.
+: weakens all your skills for one hour.
+: debilita todas tus habilidades durante una hora.
+You feel all your skills weakened. Changes can be seen in information panel.
+Sientes todas tus habilidades debilitadas. Los cambios se pueden ver en el panel de información.
+(target): fully exports outfit in UBC/BCG format.
+(objetivo): exporta completamente vestimenta en formato UBC/BCG.
+(target): imports clothing + restraints in UBC/BCG format.
+(objetivo): importa ropa + ataduras en formato UBC/BCG..
+Please input the awcode (Compatible with BCG).
+Por favor, introduce el awcode (Compatible con BCG).
+(target): imports clothing + restraints + cosplay in UBC/BCG format.
+(objetivo): importa ropa + ataduras + cosplay en formato UBC/BCG. .
+(target): fully imports outfit in UBC/BCG format.
+(objetivo): importa completamente vestimenta en formato UBC/BCG.
+(target): fully opens target wardrobe.
+(objetivo): abre completamente el guardarropa del objetivo.
+: toggles between UBC wardrobe and BC/BCX wardrobe.
+: alterna entre el vestuario UBC y el vestuario BC/BCX.
+The BC/BCX wardrobe is now enabled.
+El vestuario BC/BCX ya está habilitado.
+The UBC wardrobe is now enabled.
+El vestuario UBC ya está habilitado.
+: direct access to Extensions menu.
+: acceso directo al menú de Extensiones.
+(language): changes the UBC language. auto = same language as BC.
+(idioma): cambia el idioma de UBC. auto = el mismo idioma que BC.
+Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
+Usa <b>/ulang</b> (idioma) para cambiar el idioma de UBC:\nauto = el mismo idioma que BC (inglés si UBC no tiene el idioma que usa BC)\nen = inglés - cn = chino - es = español\nIdioma actual de UBC: {language}
+UBC language: {language}
+Idioma de UBC: {language}
+None
+Ninguna

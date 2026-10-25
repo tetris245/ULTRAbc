@@ -1,0 +1,1264 @@
+Your command can't be executed because
+您的命令无法执行，因为
+has enabled the Uwall protection.
+已启用 Uwall 保护。
+you are in no-escape mode.
+您处于非逃离模式。
+Your message can't be sent because it does not respect the rules of doll talk.
+您的消息无法发送，因为它不遵守娃娃交谈规则。
+This room does not use the map feature.
+此房间未使用地图功能。
+Better use the <b>/uroom</b> command.
+最好使用 <b>/uroom</b> 命令。
+you are in silent mode.
+您处于静默模式。
+Your very tight collar or a LSCG spell prevents you to talk.
+您的超紧项圈或 LSCG 法术阻止您说话。
+Backgrounds
+背景
+Buttons
+按钮
+Cheats
+作弊
+Hotkeys
+快捷键
+Maps
+地图
+Misc
+杂项
+Moaner
+呻吟
+Reputation
+声誉
+Skills
+技能
+Special Modes
+特殊模式
+Talking
+说话
+Visual Effects
+视觉效果
+Visual Preferences
+视觉偏好
+- Click on a setting to get more info
+- 点击设置以获取更多信息
+- ULTRA Bondage Club Settings -
+- ULTRA Bondage Club 设置 -
+Icon by Icons8
+Icons8 图标
+Open UBC Changelog on GitHub
+在 GitHub 上打开 UBC 更新日志
+UBC Changes
+UBC 更新日志
+Open UBC Wiki on GitHub
+在 GitHub 上打开 UBC Wiki
+/uhelp in chat
+在聊天中输入 /uhelp
+Access all standard backgrounds:
+访问所有标准背景：
+With this option, you will not be limited to 42 backgrounds in Private Cell or 187 backgrounds in Online preferences and the Club Card Game editor to change several backgrounds. You will have access to all standard backgrounds (more than 250!). Note: if you use BCX and want direct access to the backgrounds added by BCX, unhide them with the /bg1 command!
+启用此选项后，您在私人储物室或在线偏好设置以及俱乐部卡片游戏编辑器中更改多个背景时，将不会局限于 42 个背景或 187 个背景。您将可以访问所有标准背景（超过 250 个！）。注意：如果您使用 BCX 并希望直接访问 BCX 添加的背景，请使用 /bg1 命令取消隐藏它们！
+Disable background color for UBC messages:
+禁用 UBC 消息的背景颜色：
+If you check this setting, UBC will not use a specific hard-coded color as background for its local messages in the chat rooms.
+如果您检查此设置，UBC 将不会在聊天室中使用特定的硬编码颜色作为其本地消息的背景。
+Extended using of Character Info background:
+扩展使用角色信息背景：
+On the Character Info screen, you have buttons to randomly or manually select a background that replaces the default background. The selected background is also automatically applied to the BCX screens. If you check this setting, UBC extends this background to the following screens: Title, Profile and Preferences screens (also from most add-ons), but the effect is not immediate (you need to go back to the Extensions menu!)
+在角色信息屏幕上，您有按钮可以随机或手动选择背景来替换默认背景。选定的背景也会自动应用于 BCX 屏幕。如果您检查此设置，UBC 会将此背景扩展到以下屏幕：标题、个人资料和偏好设置屏幕（也包括大多数插件的屏幕），但效果不是立即可见的（您需要返回到扩展菜单！）
+Remove background buttons in Character Info:
+移除角色信息中的背景按钮：
+If you check this setting, UBC will not display background buttons in Character Info screen. However, your current settings will remain active.
+如果您检查此设置，UBC 将不会在角色信息屏幕中显示背景按钮。但是，您当前的设置将保持活动状态。
+Remove background buttons in Timer Cell:
+移除计时器储物室中的背景按钮：
+If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active.
+如果您检查此设置，UBC 将不会在计时器储物室中显示背景按钮。但是，您当前的设置将保持活动状态。
+Enable Preferences button in chat rooms:
+在聊天室中启用偏好设置按钮：
+When checked, an Extensions button will be added in the chat rooms.
+选中后，将在聊天室中添加一个扩展按钮。
+Enable FREE buttons:
+启用 FREE 按钮：
+The FREE button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /totalrelease command, but only for yourself. The default message in chat rooms for this button can be replaced by a custom message or an absence of message - see the /message command. This option is not available in no-escape mode.
+FREE 按钮被添加到聊天室、潘多拉监狱、摄影室和计时器储物室中。它对应于 /totalrelease 命令，但仅适用于您自己。聊天室中此按钮的默认消息可以被自定义消息或无消息替换 - 参见 /message 命令。此选项在非逃离模式下不可用。
+Enable OUT buttons:
+启用 OUT 按钮：
+The OUT button is added in the chat room, Pandora prison, photographic room and timer cell. It corresponds to the /quit command, but without a specific optional text. This option is not available in no-escape mode.
+OUT 按钮被添加到聊天室、潘多拉监狱、摄影室和计时器储物室中。它对应于 /quit 命令，但没有特定的可选文本。此选项在非逃离模式下不可用。
+By default, you leave a chat room or another location with the OUT button in fast mode, even if you are bound. When you enable this option, you will exit in slow mode without a special icon under your character, what will surprise the other players! This option is not available in no-escape mode.
+默认情况下，即使您被束缚，您也可以使用 OUT 按钮以快速模式离开聊天室或其他位置。当您启用此选项时，您将以慢速模式退出，您的角色下方不会有特殊图标，这会让其他玩家感到惊讶！此选项在非逃离模式下不可用。
+Slow exit with OUT button:
+使用 OUT 按钮缓慢退出：
+Enable RGL button in chat:
+在聊天中启用 RGL 按钮：
+The RGL button gives info about your current Real Garbling Level at any moment, by checking worn gags and other items restraining talking (also LSCG collar and spells). When using the buttons, hotkeys or commands to release yourself, this info is automatically given and synchronized with your forced gagtalk/whisper level as the result is 0. The RGL button can therefore be used as emergency when you can't talk while not being gagged, for example.
+RGL 按钮随时为您提供有关当前真实口塞等级的信息，通过检查佩戴的口塞和其他限制说话的物品（还包括 LSCG 项圈和法术）。当使用按钮、热键或命令释放自己时，此信息会自动提供并与您强制的口塞交谈/耳语级别同步，因为结果为 0。因此，RGL 按钮可以在紧急情况下使用，例如当您没有被口塞却无法说话时。
+Extended synchronization with RGL button:
+与 RGL 按钮的扩展同步：
+By default, the synchronization of RGL button with forced level of gagtalk/whisper is automatic when using the emergency buttons, hotkeys or commands to release yourself. This setting allows to extend it to all other situations. The detected level will be limited to 10 for gagtalk (11 is used for baby talk). When enabled, manual changes in your worn gags and other items restraining talking (including LSCG collar and spells) require to click the RGL button again.
+默认情况下，当您使用紧急按钮、热键或命令释放自己时，RGL 按钮与强制口塞交谈/耳语级别的同步是自动的。此设置允许将其扩展到所有其他情况。检测到的级别将限制为口塞交谈的 10（婴儿交谈使用 11）。启用后，手动更改佩戴的口塞和其他限制说话的物品（包括 LSCG 项圈和法术）需要再次点击 RGL 按钮。
+Add/Remove Extra Cards for Card Game:
+添加/移除卡牌游戏的额外卡牌：
+All extra cards added
+已添加所有额外卡牌
+All extra cards removed
+已移除所有额外卡牌
+This setting is a toggle. You can add or remove all the reward extra cards. Note that also the extra cards you acquired by the normal way will be removed when this setting switches to the remove action.
+此设置为切换开关。您可以添加或移除所有奖励额外卡牌。请注意，通过正常方式获得的额外卡牌也会在此设置切换到移除操作时被移除。
+Always access to layering menus:
+始终访问分层菜单：
+With this option, you will always have access to layering menus, even if bindings and locks restrain your moves! Note: If you don't want that other players make layering based changes to your character, you can enable a specific option in the WCE mod.
+启用此选项后，即使有束缚和锁限制您的行动，您也始终可以访问分层菜单！注意：如果您不希望其他玩家对您的角色进行基于分层的更改，可以在 WCE 模组中启用特定选项。
+Enable Bondage Brawl/Magic School cheat:
+启用束缚乱斗/魔法学校作弊：
+With this option, you will always be the winner in Bondage Brawl and the Magic School (only the Single Player part)!
+启用此选项后，您在束缚乱斗和魔法学校（仅限单人模式）中将始终是赢家！
+Enable extra info for some locks:
+为某些锁启用额外信息：
+This setting allows to use the /infolock command and get this way extra info (code, password, time left) about some locks on worn item in a slot selected by clicking on yourself or another player.
+此设置允许使用 /infolock 命令，并通过点击自己或其他玩家来选中某个槽位中的佩戴物品，获取有关某些锁的额外信息（密码、口令、剩余时间）。
+Enable full help for intricate and hs locks:
+为复杂和高安全锁启用完整帮助：
+You will become a lockpicking expert with this option! The full solution with the correct order to lockpick intricate and high security locks is displayed on screen.
+启用此选项后，您将成为开锁专家！屏幕上会显示复杂和高安全锁的完整解决方案，包括正确的开锁顺序。
+This setting allows to ungarble your non-forced gagtalk, no matter your game difficulty. However, it is not available when you have enabled the corresponding WCE feature, which has more options.
+此设置允许您解读非强制的口塞交谈，无论您的游戏难度如何。但是，当您启用了相应的 WCE 功能时不可用，该功能有更多选项。
+This setting allows automatic struggle in mini-games, no matter your game difficulty. If the autostruggle fails, you need to change solidity of current worn items with the /solidity command and/or enhance your skills with the /boost command. Note that this setting is not available when you have enabled the corresponding WCE feature, which works slightly differently.
+此设置允许在小游戏中自动挣扎，无论您的游戏难度如何。如果自动挣扎失败，您需要使用 /solidity 命令更改当前佩戴物品的坚固度，和/或使用 /boost 命令增强您的技能。请注意，当您启用了相应的 WCE 功能时不可用，该功能的工作方式略有不同。
+Enable ungarbling of your gagtalk:
+启用解读您的口塞交谈：
+Enable automatic struggle in mini-games:
+启用小游戏中的自动挣扎：
+Enable hotkeys in chat rooms:
+在聊天室中启用热键：
+These hotkeys are equivalent to the /quit command, but without a specific optional text, and the /totalrelease command, but only for yourself.                         Hotkeys on numeric pad:         Divide = fast leave               Multiply = total release                    If you don't have a numeric pad, use instead the similar command or an UBC button. This option is not available in no-escape mode.
+这些热键与 /quit 命令等效，但没有特定的可选文本；以及 /totalrelease 命令，但仅适用于您自己。          数字键盘上的热键：                    除号 = 快速离开                        乘号 = 完全释放。                    如果您没有数字键盘，请使用类似的命令或 UBC 按钮。                   此选项在非逃离模式下不可用。
+Enable hotkeys in chat search:
+在聊天搜索中启用热键：
+When this option is enabled, you will have direct access to some useful screens and can change the Chat Search background       Left Alt = Preferences                  Left Arrow = Wardrobe                 Right Arrow = Extensions             Up Arrow = Random background Down Arrow = Select background Tab = Default background
+启用此选项后，您可以直接访问一些有用的屏幕，并可以更改聊天搜索背景                                           Left Alt = 偏好设置                   左箭头 = 衣柜                           右箭头 = 扩展                       上箭头 = 随机背景                下箭头 = 选择背景                           Tab = 默认背景
+Enable hotkeys in friend list:
+在好友列表中启用热键：
+These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. Background can be changed too. List of available hotkeys:                D = Default background                  F = Female club    G = Mixed club  H = Male club        J = Asylum       R = Random background              S = Select background
+这些热键允许在您位于大厅（不在房间）时，在您可访问的另一个大厅中获取可点击链接。您只能在线好友列表上使用它们，并且如果您不在搜索输入框或发送提示音区域。背景也可以更改。热键列表：        D = 默认背景        F = 女性俱乐部  G = 混合俱乐部    H = 男性俱乐部 J = 精神病院         R = 随机背景    S = 选择背景
+Add toys under locked chastity in traps:
+在陷阱中为锁定贞操添加玩具：
+Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!
+如果您接受地图房间中的陷阱可以在锁定贞操下添加玩具，请启用此选项，这可能会给您与主人或爱人等带来后续后果！
+Selected device trap (0-9):
+选定的装置陷阱 (0-9)：
+Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!
+输入 0 到 9 之间的数字来选择装置陷阱：0 无装置陷阱 - 1 束缚台 - 2 棺材 - 3 展示框 - 4 狗笼 - 5 储物柜 - 6 手推车 - 7 木箱 - 8 X 型十字架 - 9 所有装置陷阱。启用陷阱后，如果您走到装置上会被自动束缚！
+Enable full hearing in maps:
+在地图中启用完全听觉：
+When enabled, there's no any limitation to your hearing in the map rooms
+启用后，您在地图房间中的听力没有任何限制
+Enable full vision in maps:
+在地图中启用完全视野：
+When enabled, you can see the entire map rooms without fog. Notes: the /mapfog command, that enables/disables the fog only in the current map room, is without any effect if this setting is active. If you don't have used /mapfog to remove the fog before enabling this setting, the fog will come back when disabling it.
+启用后，您可以看到整个地图房间而没有迷雾。注意：/mapfog 命令（仅在当前位置图房间中启用/禁用迷雾）如果此设置激活将无效。如果您在启用此设置之前没有使用 /mapfog 移除迷雾，迷雾会在禁用时恢复。
+Enable full whispering in maps:
+在地图中启用完全耳语：
+When enabled, you can whisper to any player in the map, no matter the distance that is between you and this player. It will work with the standard BC command /whisper and the UBC command /murmur, between all players who have enabled this option.
+启用后，您可以向地图中的任何玩家耳语，无论您与该玩家之间的距离如何。这将适用于标准 BC 命令 /whisper 和 UBC 命令 /murmur，在所有启用了此选项的玩家之间。
+Enable magic walk in maps:
+在地图中启用魔法行走：
+When enabled, you can go everywhere in the maps, also pass through walls, even while not being an administrator!
+启用后，您可以在地图中去任何地方，还可以穿墙而过，即使您不是管理员！
+No forced teleportation in maps:
+地图中禁止强制传送：
+When checked, the BC commands related to forced teleportation in the maps will not work on you, except if at least one admin of the chat room is in your Tplist (see the commands /tplistadd, /tplistremove and /tplistshow).
+选中后，与地图中强制传送相关的 BC 命令将对您无效，除非聊天室中至少有一位管理员在您的 Tplist 中（参见命令 /tplistadd、/tplistremove 和 /tplistshow）。
+Put a valid number
+请输入有效的数字
+Alphabetic order for  Preferences menu:
+偏好设置菜单的字母顺序：
+When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences.
+启用后，偏好设置主菜单的所有选项将按字母顺序排列，通用偏好设置除外。
+Alphabetic order for Preferences screens:
+偏好设置屏幕的字母顺序：
+With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: General, Audio, Chat, Graphics, Immersion and Online.
+启用此选项后，某些偏好设置屏幕中的大部分设置将按设置类型（下拉框、复选框）按字母顺序排列（根据英文文本）。这些屏幕将按以下顺序排列：通用、音频、聊天、 显示、沉浸和在线。
+Alphabetic order for  Reputation and Skills:
+声望和技能的字母顺序：
+When enabled, most info about reputation and skills in the Character Info screen will be ordered in alphabetic order. Note that the reputation as dominant or submissive will remain displayed in first position.
+启用后，角色信息屏幕中关于声望和技能的大部分信息将按字母顺序排列。请注意，作为支配者或服从者的声望仍将首先显示。
+Enable Asylum limitations:
+启用精神病院限制：
+By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.
+默认情况下，UBC 禁用精神病院限制（访问、退出）。如果您喜欢这些限制，可以使用此选项再次启用它们。
+Enable punishments by NPC:
+启用 NPC 惩罚：
+By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.
+默认情况下，UBC 禁用 NPC 的自动惩罚（特别是当您被束缚在房间中并呼叫女仆帮助时）。如果您喜欢这些惩罚，可以使用此选项再次启用它们。
+No permission change after safeword:
+安全词后不更改权限：
+BC automatically changes your general item permission when you use the BC safeword command or the revert option in the safeword menu. If you don't like that, use this option and your general item permission will not be modified.
+当您使用 BC 安全词命令或安全词菜单中的撤销选项时，BC 会自动更改您的通用物品权限。如果您不喜欢这样，请使用此选项，您的通用物品权限将不会被修改。
+Use only days in Character Info screens:
+在角色信息屏幕中仅使用天数：
+BC automatically converts days to years, months and days. If you don't like that, use this option to get these data exprimed only in days in the Character Info screens.
+BC 会自动将天数转换为年、月和日。如果您不喜欢这样，请使用此选项在角色信息屏幕中仅以天数表示这些数据。
+Activate the Moaner:
+激活呻吟者：
+Add more fun to Bondage Club with the moans automatically generated by the Moaner!
+使用呻吟者自动生成的呻吟声为 Bondage Club 增添更多乐趣！
+Moaning profile (0-10):
+呻吟配置文件 (0-10)：
+Input a number between 0 and 10 to select one of these moaning profiles: 0 Default - 1 Bunny - 2 Cow - 3 Dog - 4 Fox - 5 Mouse - 6 Neko - 7 Pig - 8 Pony - 9 Wildfox - 10 Wolf.
+输入 0 到 10 之间的数字来选择以下呻吟配置文件之一：0 默认 - 1 兔子 - 2 奶牛 - 3 狗 - 4 狐狸 - 5 老鼠 - 6 猫娘 - 7 猪 - 8 小马 - 9 野狐 - 10 狼。
+When enabled, you will moan while cumming. It is not possible to enable it when the LSCG Splatter feature is detected as enabled.
+启用后，您会在高潮时呻吟。当检测到 LSCG Splatter 功能已启用时无法启用它。
+Enable the orgasm moan:
+启用高潮呻吟：
+Enable the spank moan:
+启用打屁股呻吟：
+When enabled, you will moan while being spanked. Also when bitten, kicked, pinched, shocked, slapped. In case of actions triggering a shock, it concerns only actions to punish orgasm, stand up or struggle. According your fetishes and your horny state, it can be pain or pleasure.
+启用后，您会在被打屁股时呻吟。也会在咬、踢、捏、电击、扇耳光时呻吟。在触发休克的情况下，仅涉及惩罚高潮、站立或挣扎的动作。根据您的癖好和兴奋状态，这可能是痛苦或快乐。
+Enable the talk moan:
+启用说话呻吟：
+When enabled, you will moan while speaking if you're vibed. The moans can interrupt your talking. Note that when you disable this setting, it automatically disables the whisper moan too.
+启用后，如果您被振动，您会在说话时呻吟。呻吟可能会打断您的说话。请注意，当您禁用此设置时，它也会自动禁用耳语呻吟。
+Extend talk moan to whispers:
+将说话呻吟扩展到耳语：
+When enabled, you will moan while whispering if you're vibed. The moans can interrupt your whispers. Note that this setting can't be enabled when the talk moan is disabled.
+启用后，如果您被振动，您会在耳语时呻吟。呻吟可能会打断您的耳语。请注意，当禁用说话呻吟时无法启用此设置。
+Enable the tickle moan:
+启用挠痒呻吟：
+When enabled, you will moan while being tickled. According your fetishes and your horny state, it can be pain or pleasure.
+启用后，您会在被挠痒时呻吟。根据您的癖好和兴奋状态，这可能是痛苦或快乐。
+Enable the vibes moan:
+启用振动呻吟：
+When enabled, you will moan if your vibrator's settings change and your arousal level is higher or equal to 10. Also when fingered, fisted, masturbated, or when your ears are caressed, kissed, licked, nibbled, or when using LSCG aphrodisiac injector, drink, respirator. Note that when you disable this setting, it automatically disables the xvibes moan too.
+启用后，当您的振动器设置更改且您的兴奋度大于或等于 10 时，您会呻吟。当被指交、拳交、自慰时，或者当您的耳朵被爱抚、亲吻、舔舐、轻咬时，或者使用 LSCG 春药注射器、饮料、呼吸器时也会呻吟。请注意，当您禁用此设置时，它也会自动禁用扩展振动呻吟。
+Extend vibes moan (xvibes moan):
+扩展振动呻吟（扩展振动呻吟）：
+When enabled, you will moan when vibe settings of other players in the chat room change, even if you are not yourself vibed (the only condition is an arousal level higher or equal to 10). Note that this setting can't be enabled when the vibes moan is disabled.
+启用后，当聊天室中其他玩家的振动设置更改时，即使您自己没有被振动，您也会呻吟（唯一条件是兴奋度大于或等于 10）。请注意，当禁用振动呻吟时无法启用此设置。
+Main reputation (-100 to 100):
+主要声望（-100 到 100）:
+Input a number between -100 and 100 to set your main reputation level! A negative number means that you are a Submissive, a positive number means that you are a Dominant.
+输入 -100 到 100 之间的数字来设置你的主要声望等级！负数表示你是服从者，正数表示你是支配者。
+ABDL (0-100):
+ABDL（0-100）:
+Input a number between 0 and 100 to set your ABDL reputation level!
+输入 0 到 100 之间的数字来设置你的 ABDL 声望等级！
+Asylum (-100 to 100):
+精神病院（-100 到 100）:
+Input a number between -100 and 100 to set your Asylum reputation level! A negative number means that you are a Patient, a positive number means that you are a Nurse.
+输入 -100 到 100 之间的数字来设置你的精神病院声望等级！负数表示你是病人，正数表示你是护士。
+Gambling (0-100):
+赌博（0-100）:
+Input a number between 0 and 100 to set your Gambling reputation level!
+输入 0 到 100 之间的数字来设置你的赌博声望等级！
+Gaming (0-100):
+游戏（0-100）:
+Input a number between 0 and 100 to set your Gaming reputation level!
+输入 0 到 100 之间的数字来设置你的游戏声望等级！
+Kidnap (0-100):
+绑架（0-100）:
+Input a number between 0 and 100 to set your Kidnap reputation level!
+输入 0 到 100 之间的数字来设置你的绑架声望等级！
+LARP (0-100):
+LARP 角色扮演（0-100）:
+Input a number between 0 and 100 to set your LARP reputation level!
+输入 0 到 100 之间的数字来设置你的 LARP 角色扮演声望等级！
+Magic House (0-4):
+魔法家族（0-4）:
+Input a number between 0 and 4 to select a Magic House: 0 = No Magic House selected - 1 = House Amplector - 2 = House Corporis - 3 = House Maiestas - 4 = House Vincula. Note: when you change this parameter, UBC will also automatically reset the Magic Power reputation to 0 for all non-selected Magic Houses.
+输入 0 到 4 之间的数字来选择魔法家族：0 = 未选择魔法家族 - 1 = Amplector 家族 - 2 = Corporis 家族 - 3 = Maiestas 家族 - 4 = Vincula 家族。注意：当你更改此参数时，UBC 还会自动将所有未选中的魔法家族的魔法力量声望重置为 0。
+Magic Power (0-100):
+魔法力量（0-100）:
+Input a number between 0 and 100 to set your Magic Power reputation level in the currently selected Magic House!
+输入 0 到 100 之间的数字来设置你在当前选中魔法家族中的魔法力量声望等级！
+Maid (0-100):
+女仆（0-100）:
+Input a number between 0 and 100 to set your Maid reputation level!
+输入 0 到 100 之间的数字来设置你的女仆声望等级！
+Bondage (0-10):
+捆绑（0-10）:
+Input a number between 0 and 10 to set your Bondage skill level!
+输入 0 到 10 之间的数字来设置你的捆绑技能等级！
+Dressage (0-10):
+马术（0-10）:
+Input a number between 0 and 10 to set your Dressage skill level!
+输入 0 到 10 之间的数字来设置你的马术技能等级！
+Evasion (0-10):
+逃脱（0-10）:
+Input a number between 0 and 10 to set your Evasion skill level!
+输入 0 到 10 之间的数字来设置你的逃脱技能等级！
+Infiltration (0-10):
+潜入（0-10）:
+Input a number between 0 and 10 to set your Infiltration skill level!
+输入 0 到 10 之间的数字来设置你的潜入技能等级！
+Lockpicking (0-10):
+开锁（0-10）:
+Input a number between 0 and 10 to set your Lockpicking skill level!
+输入 0 到 10 之间的数字来设置你的开锁技能等级！
+Self-Bondage (0-10):
+自缚（0-10）:
+Input a number between 0 and 10 to set your Self-Bondage skill level!
+输入 0 到 10 之间的数字来设置你的自缚技能等级！
+Willpower (0-10):
+意志（0-10）:
+Input a number between 0 and 10 to set your Willpower skill level!
+输入 0 到 10 之间的数字来设置你的意志技能等级！
+This mode disables FREE/OUT buttons and hotkeys, and prevents many commands on yourself: boost, leave (BCAR), quit, safeworditem, safewordspecific (BCAR), slowleave, solidity (if value < 20), totalrelease, unlock, untie. If this mode is enabled, it can't be disabled when you are bound. If you are in unrestrict total mode when enabling this option, the special goddess mode will be automatically disabled.
+此模式会禁用 FREE/OUT 按钮和快捷键，并阻止许多对自己使用的命令：boost、leave (BCAR)、quit、safeworditem、safewordspecific (BCAR)、slowleave、solidity（如果值 < 20）、totalrelease、unlock、untie。如果启用了此模式，当你被束缚时无法禁用它。如果你在启用此选项时处于完全解除限制模式，特殊女神模式将自动禁用。
+Enable no-escape mode:
+启用禁止逃脱模式：
+Force no-escape mode with devious locks:
+使用邪恶锁具时强制禁止逃脱模式：
+When no-escape mode is disabled, you can decide to force this mode when you have devious locks on you! Of course these locks need to be enabled in the DOGS mod. Note that this mode will remain enabled when devious locks have been removed: you need to disable it manually.
+当禁止逃脱模式被禁用时，如果你身上有邪恶锁具，可以决定强制启用此模式！当然这些锁具需要在 DOGS 模组中启用。注意当移除恶魔锁具时此模式仍将保持启用状态：你需要手动禁用它。
+Enable silent mode:
+启用静默模式：
+This mode prevents to use the message command and has as main effect that these commands will not display a message in chat rooms: allcolor, clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible. To go back to default messages and have access again to the message command, you will need to disable this mode.
+此模式阻止使用消息命令，主要效果是这些命令不会在聊天室中显示消息：allcolor、clothes、invisible、lock、naked、pet、randomize、restrain、solidity、totalrelease、underwear、unlock、untie、visible。要恢复默认消息并重新获得消息命令的访问权限，你需要禁用此模式。
+Extend silent mode to safeword:
+将静默模式扩展到安全词：
+When silent mode is enabled, you can decide to also use the BC safeword without any message in the chat! Of course useful only if the safeword is enabled!
+当静默模式启用时，你可以决定在聊天中也不显示 BC 安全词的消息！当然只有在启用安全词时才有用！
+Enable unrestrict soft mode:
+启用软性解除限制模式：
+Effects of this mode (also available in unrestrict total mode) : hidden items added to your inventory, access to items covered by other items, use of items such as suitcase, wooden maid tray or paddle on yourself or other players in this mode, and examine feature preserved when you are blind, but not in Total sensory deprivation. It does not remove the conditions to use assets. You will need to make a full relog to leave this mode (if you uncheck the box, it will have no any effect).
+此模式的效果（在完全解除限制模式中也可用）：隐藏物品添加到你的库存中，访问被其他物品覆盖的物品，对自己或其他处于此模式的玩家使用手提箱、木制女仆托盘或桨等物品，以及当你失明但非完全感觉剥夺时保留检查功能。它不会移除使用资产的条件。你需要完全重新登录才能离开此模式（如果你取消勾选框，将不会产生任何效果）。
+Enable unrestrict total mode:
+启用完全解除限制模式：
+Besides all unrestrict soft effects, this goddess mode allows to be domme and submissive at the same time, even if you are bound.  One of its effects (simulation that you have the appropriate keys) can be blocked by Uwall and allowed by Ulist. This mode is not available if you are in no-escape mode. It can trigger a BCX warning. Just ignore it (close the breaking message)! You will need to make a full relog to leave this special mode (if you uncheck the box, it will have no any effect).
+除了所有软性解除限制效果外，此女神模式允许同时成为支配者和服从者，即使你被束缚。其中一个效果（模拟你有适当的钥匙）可能被 Uwall 阻止并被 Ulist 允许。如果你处于禁止逃脱模式，则此模式不可用。它可能触发 BCX 警告。忽略它即可（关闭突破消息）！你需要完全重新登录才能离开此特殊模式（如果你取消勾选框，将不会产生任何效果）。
+Animal talk/whisper mode (0-9):
+动物说话/耳语模式（0-9）:
+Input a number between 0 and 9 to select one of these forced 'permanent' animal talk or whisper modes: 0 Human - 1 Bunny - 2 Cow - 3 Fox  - 4 Kitty - 5 Mouse - 6 Pig - 7 Pony - 8 Puppy - 9 Wolfy. If you want to only once talk in a specific talk mode, use the /atalk command after having selected here 0 (human talk).
+输入 0 到 9 之间的数字来选择以下强制的'永久'动物说话或耳语模式之一：0 人类 - 1 兔子 - 2 奶牛 - 3 狐狸 - 4 猫咪 - 5 老鼠 - 6 猪 - 7 小马 - 8 小狗 - 9 小狼。如果你只想暂时使用特定说话模式，请在这里选择 0（人类说话），然后使用 /atalk 命令。
+Enable hybrid talk/whisper mode:
+启用混合说话/耳语模式：
+When enabled and associated with an animal talk mode, all your chat messages and whispers will combine animal words and human words!
+启用后并与动物说话模式关联时，你所有的聊天消息和耳语将结合动物词汇和人类词汇！
+Enable doll talk (and whisper) mode:
+启用人偶说话（和耳语）模式：
+When enabled, maximum 5 words by message or whisper, and you can't use words with more than 6 characters. The respect of these rules is checked in the original version of your message or whisper, before its altering by stuttering, the Moaner, babytalk, gagtalk, animal talk.
+启用后，每条消息或耳语最多 5 个单词，并且你不能使用超过 6 个字符的单词。这些规则的遵守情况会在你的原始消息或耳语中检查，在结巴、Moaner、婴儿语、口塞语、动物语修改之前。
+Forced gagtalk/whisper (0-11):
+强制口塞说话/耳语（0-11）:
+Input a number between 0 and 11 to select a 'permanent' forced level: 0 Disabled feature - 1 Almost no gag - 2 Very light gag - 3 Light gag - 4 Easy gag - 5 Normal gag - 6 Medium gag - 7 Heavy gag - 8 Better heavy gag - 9 Very heavy gag - 10 Total gag - 11 Baby talk. If you are really gagged, your choice can only increase the effect, not decrease it. To only once gagtalk, use the /gtalk command. To talk only once like a baby, use /btalk. See also the RGL button.
+输入 0 到 11 之间的数字来选择一个'永久'强制等级：0 禁用功能 - 1 几乎无口塞 - 2 非常轻度口塞 - 3 轻度口塞 - 4 简单口塞 - 5 普通口塞 - 6 中等口塞 - 7 重度口塞 - 8 更重口塞 - 9 非常重度口塞 - 10 完全口塞 - 11 婴儿语。如果你真的被口塞住，你的选择只能增加效果，不能减少它。要暂时使用口塞说话，使用 /gtalk 命令。要暂时像婴儿一样说话，使用 /btalk。另见 RGL 按钮。
+Forced hearing mode (1-6):
+强制听觉模式（1-6）:
+Input a number between 1 and 6 to select one of these forced 'permanent' hearing modes, ignoring your real state: 1 No deafness - 2 Light deafness -  3 Normal deafness - 4 Heavy deafness  - 5 Very heavy deafness - 6 Total deafness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!
+输入 1 到 6 之间的数字来选择以下强制的'永久'听觉模式之一，忽略你的实际状态：1 无耳聋 - 2 轻度耳聋 - 3 普通耳聋 - 4 重度耳聋 - 5 非常重度耳聋 - 6 完全耳聋。注意你需要完全重新登录才能离开此特殊模式（如果输入 0，将不会产生任何效果）。此模式可能触发 BCX 警告。忽略它即可（关闭突破消息）！
+Forced stuttering level (0-4):
+强制结巴等级（0-4）:
+Input a number between 0 and 4 to select one of these forced 'permanent' stuttering levels to talk or whisper: 0 No stuttering - 1 Light stuttering - 2 Normal stuttering - 3 Heavy stuttering  - 4 Total stuttering. Note that if you are vibed, your choice can only increase the effect, not decrease it. If you want to only once talk with a specific stuttering level, use the /stalk command after having selected here 0 (no stuttering).
+输入 0 到 4 之间的数字来选择以下强制的'永久'说话或耳语结巴等级之一：0 无结巴 - 1 轻度结巴 - 2 普通结巴 - 3 重度结巴 - 4 完全结巴。注意如果你被振动器影响，你的选择只能增加效果，不能减少它。如果你只想暂时使用特定结巴等级说话，请在这里选择 0（无结巴），然后使用 /stalk 命令。
+When enabled, you can't use normal whispers. Only OOC and emote whispers are possible. This option is not available when a similar BCX rule is detected as active. In this case, UBC will apply the BCX whisper restrictions, but will not send public messages or add entries to the behaviour log if you try to whisper when it is not allowed.
+启用后，你无法使用普通耳语。只能使用 OOC 和表情耳语。当检测到类似的 BCX 规则处于活动状态时，此选项不可用。在这种情况下，UBC 将应用 BCX 耳语限制，但如果你在不允许时尝试耳语，不会发送公共消息或向行为日志添加条目。
+Enable no-whisper mode:
+启用禁止耳语模式：
+By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled.
+默认情况下，当你非常兴奋并可能达到高潮时，BC 会添加消息和粉色效果。如果你不喜欢这样，这个 UBC 设置会让你满意！注意：当检测到 LSCG Splatter 功能启用时不可用。
+Disable BC pinky arousal overlay:
+禁用 BC 粉色兴奋覆盖层：
+Forced blindness mode (1-4):
+强制失明模式（1-4）:
+Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!
+输入 1 到 4 之间的数字来选择以下强制的'永久'失明模式之一，忽略你的实际状态：1 无失明 - 2 轻度失明 - 3 普通失明 - 4 重度失明。注意你需要完全重新登录才能离开此特殊模式（如果输入 0，将不会产生任何效果）。此模式可能触发 BCX 警告。忽略它即可（关闭突破消息）！
+Forced blurry vision (1-5):
+强制模糊视觉（1-5）:
+Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!
+输入 1 到 5 之间的数字来选择以下强制的'永久'模糊视觉模式之一，忽略你的实际状态：1 无模糊视觉 - 2 轻度模糊视觉 - 3 普通模糊视觉 - 4 重度模糊视觉 - 5 完全模糊视觉。注意你需要完全重新登录才能离开此特殊模式（如果输入 0，将不会产生任何效果）。此模式可能触发 BCX 警告。忽略它即可（关闭突破消息）！
+Fully disable all UBC tint settings:
+完全禁用所有 UBC 色调设置：
+If you check this setting, all UBC tint settings (level, color, MBS) will be fully disabled. However, a full relog is required to restore the original or themed colors on the MBS screens.
+如果你勾选此设置，所有 UBC 色调设置（等级、颜色、MBS）将被完全禁用。但是需要完全重新登录才能在 MBS 屏幕上恢复原始或主题颜色。
+Tint effect level (0-3):
+色调效果等级（0-3）:
+Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.
+输入 0 到 3 之间的数字来选择以下强制的'永久'色调效果等级之一：0 无色调效果 - 1 浅色调效果 - 2 中等色调效果 - 3 重色调效果。
+Tint effect color (format #000000):
+色调效果颜色（格式 #000000）:
+Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX and Echo's mod. MBS case is special (see specific setting). The final color can be different when mixed with a Themed color.
+输入十六进制格式 #000000 的颜色代码，在 Bondage Club 中几乎 everywhere 应用色调效果。别忘了也选择色调效果等级！色调效果也将应用于大多数插件创建的页面。已知的例外是 BCX 和 Echo 的模组。MBS 的情况特殊（见特定设置）。与主题颜色混合时最终颜色可能不同。
+When enabled, ALWAYS visit the Extensions screen to activate it after login. The tint color will be used as background color for the central part of MBS screens. If you disable it later, the restored color will correspond to the default MBS color or the main Themed color. This setting is without any effect when the tint level is 0. It is not available when MBS is not used or when all UBC tint settings are fully disabled.
+启用后，登录后务必访问扩展屏幕以激活它。色调颜色将用作 MBS 屏幕中央部分的背景颜色。如果你稍后禁用它，恢复的颜色将对应于默认 MBS 颜色或主主题颜色。当色调等级为 0 时此设置无效。当未使用 MBS 或所有 UBC 色调设置被完全禁用时不可用。
+Enable tint effect on MBS screens:
+在 MBS 屏幕上启用色调效果：
+If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu. This parameter is not available if you have disabled all UBC changes in Chat Search.
+如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。This parameter is not available if you have disabled all UBC changes in Chat Search.
+Chat Rooms
+聊天室
+Only Female
+仅限女性
+Only Male
+仅限男性
+Mixed
+混合
+Asylum
+精神病院
+Random background
+随机背景
+Magical lasers make disappear all bindings and toys on {tmpname}'s body.
+魔法激光让{tmpname}身上的所有束缚和玩具消失。
+{tmpname} slowly heads for the door.
+{tmpname} 慢慢走向门口。
+{tmpname} is suddenly trapped on a Bondage Bench.
+{tmpname} 突然被困在束缚长椅上。
+{tmpname} is suddenly trapped in a Coffin
+{tmpname} 突然被困在棺材中
+{tmpname} is suddenly trapped in a Display Frame.
+{tmpname} 突然被困在展示框中。
+{tmpname} is suddenly trapped in a Kennel.
+{tmpname} 突然被困在狗笼中。
+{tmpname} is suddenly trapped in a Locker.
+{tmpname} 突然被困在储物柜中。
+{tmpname} is suddenly trapped on a Trolley.
+{tmpname} 突然被困在手推车上。
+{tmpname} is suddenly trapped in a Wooden Box.
+{tmpname} 突然被困在木箱中。
+{tmpname} is suddenly trapped on an X-Cross.
+{tmpname} 突然被困在 X 型十字架上。
+A teleportation attempt has been cancelled because not allowed.
+传送尝试已被取消，因为不被允许。
+Your message or whisper can't be sent because it does not respect the rules of doll talk.
+你的消息或耳语无法发送，因为它不符合人偶说话的规则。
+Your whisper can't be sent because you are in no-whisper mode.
+你的耳语无法发送，因为你处于禁止耳语模式。
+Your whisper can't be sent because a BCX rule prevents you to whisper to this player.
+你的耳语无法发送，因为 BCX 规则阻止你向此玩家耳语。
+Default background
+默认背景
+Current Mode
+当前模式
+Switch to Normal mode
+切换到普通模式
+Switch to High Fame mode
+切换到高知名度模式
+Actualisation
+更新
+Available options for Default and NPC card decks:
+默认和 NPC 牌组的可用选项：
+0 Original - 1 ABDL - 2 Asylum - 3 College - 4 Dominant
+0 原始 - 1 ABDL - 2 精神病院 - 3 学院 - 4 支配
+5 Liability - 6 Maid - 7 Pet - 8 Porn - 9 Shibari - 10 Extra
+5 责任 - 6 女仆 - 7 宠物 - 8 色情 - 9 束缚 - 10 额外
+Only for NPC: -1 = Deck defined by original BC code
+仅限 NPC: -1 = 由原始 BC 代码定义的牌组
+If you change other parameters than the mode,
+如果您更改了模式以外的其他参数，
+click the Exit button, then come back to play
+请点击退出按钮，然后返回游戏
+High Fame level
+高知名度等级
+Cards in deck
+牌组中的卡牌数量
+Default card deck
+默认牌组
+NPC card deck
+NPC 牌组
+Changes
+更新日志
+Preferences
+偏好设置
+Extensions
+扩展
+Select background
+选择背景
+/uhelp
+在聊天中输入
+in chat
+/uhelp
+Cosy Chalet
+舒适的小屋
+Random backgound
+随机背景
+Club Card
+俱乐部卡牌
+LARP
+体感对战
+Magic Battle
+魔法对战
+Pandora	 Prison
+潘多拉
+Wardrobe
+衣柜
+You are now in real baby talk mode.
+你现在处于真正的婴儿语模式。
+You are now in normal talk mode.
+你现在处于普通说话模式。
+You are now in real gag talk mode. Your current garbling level is {ngl}.
+你现在处于真正的口塞说话模式。你当前的含糊等级是{ngl}。
+They
+X也
+He
+他
+She
+她
+It
+它
+them
+X也
+him
+他
+her
+她
+it
+它
+their
+X也的
+his
+他的
+its
+它的
+they
+X也
+he
+他
+she
+她
+The options on this wheel go from 0 to {maxwh}.
+此轮盘上的选项范围从 0 到{maxwh}。
+{tmpname} randomly forces an option of {tgpname}'s wheel.
+{tmpname}随机强制选择{tgpname}的轮盘选项。
+No result! Try again!
+没有结果！再试一次！
+The moaner is not active.
+呻吟器未激活。
+The moaner is active.
+呻吟器已激活。
+Current moans profile: {profileName}
+当前呻吟配置文件：{profileName}
+No custom profile loaded.
+未加载自定义配置文件。
+The orgasm moan is not active. You will not moan while cumming.
+高潮呻吟未激活。你在高潮时不会呻吟。
+The orgasm moan is active. You will moan while cumming.
+高潮呻吟已激活。你在高潮时会呻吟。
+The spank moan is not active. You will not moan while being spanked.
+拍打呻吟未激活。你被拍打时不会呻吟。
+The spank moan is active. You will moan while being spanked.
+拍打呻吟已激活。你被拍打时会呻吟。
+The talk moan is not active. If you're vibed, you will not moan while speaking.
+说话呻吟未激活。如果你被振动器影响，说话时不会呻吟。
+The talk moan is active. If you're vibed, you will moan while speaking.
+说话呻吟已激活。如果你被振动器影响，说话时会呻吟。
+The whisper moan is not active. If you're vibed, you will not moan while whispering.
+耳语呻吟未激活。如果你被振动器影响，耳语时不会呻吟。
+The whisper moan is active. If you're vibed, you will whisper while speaking.
+耳语呻吟已激活。如果你被振动器影响，耳语时会呻吟。
+The tickle moan is not active. You will not moan while being tickled.
+挠痒呻吟未激活。你被挠痒时不会呻吟。
+The tickle moan is active. You will moan while being tickled.
+挠痒呻吟已激活。你被挠痒时会呻吟。
+The vibes moan is not active. If your vibrator's settings change, you will not moan.
+振动器呻吟未激活。如果你的振动器设置改变，你不会呻吟。
+The vibes moan is active. If your vibrator's settings change, you will moan.
+振动器呻吟已激活。如果你的振动器设置改变，你会呻吟。
+The xvibes moan is not active. If vibrator's settings of other players change, you will not moan.
+外部振动器呻吟未激活。如果其他玩家的振动器设置改变，你不会呻吟。
+The xvibes moan is active. If vibrator's settings of other players change, you will moan.
+外部振动器呻吟已激活。如果其他玩家的振动器设置改变，你会呻吟。
+Moaner Orgasm
+Moaner 高潮
+Moaner Target
+Moaner 目标
+(colorcode) (category) (target): changes color on current elements in specified category.
+（颜色代码）（类别）（目标）：更改指定类别中当前元素的颜色。
+The allcolor command must be followed by a color code, a number corresponding to a category and optionally a target.\n \nThe color code must be in hex format: #RRGGBB or #RGB.\n \nThe numbers for the categories are: 1 = Items - 2 = Clothes (excluding cosplay) - 3 = Cosplay - 4 = Body - 5 = All categories.
+allcolor 命令后必须跟颜色代码（十六进制格式）、类别编号以及可选的目标。\n \n颜色代码必须为十六进制格式：#RRGGBB 或 #RGB。\n \n类别编号：1 = 物品 - 2 = 服装（不包括 cosplay）- 3 = Cosplay - 4 = 身体 - 5 = 所有类别。
+New colors are used on {tmpname}'s {catname}
+新颜色已应用于 {tmpname} 的 {catname}
+New colors are used on {tgpname}'s {catname}
+新颜色已应用于 {tgpname} 的 {catname}
+(minutes): enters asylum, bypasses requirements.
+（分钟）：进入精神病院，绕过要求。
+You must specify minutes if you are a patient.
+如果你是病人，你必须指定分钟数。
+(animal) (words): speaks once as a specified animal.
+（动物）（话语）：以指定的动物身份说话。
+The atalk command must be followed by a number between 1 and 9 for the animal and the words you want to say.\nNote that it can't be used when you are in a 'permanent' animal talk mode.\nAvailable animals:\n1 bunny - 2 cow - 3 fox - 4 kitty - 5 mouse\n6 pig - 7 pony - 8 puppy - 9 wolfy
+atalk 命令后必须跟一个 1 到 9 之间的数字来表示动物，以及你想说的话。\n注意：当你处于'永久'动物说话模式时无法使用此命令。\n可用动物：\n1 兔子 - 2 奶牛 - 3 狐狸 - 4 小猫 - 5 老鼠\n6 猪 - 7 小马 - 8 小狗 - 9 小狼
+The autoheart command must be followed by 3 numbers for vibe level, orgasm mode and lock time.\nNote that the heart lock requires a specific mod.\n \nAvailable vibe levels:\n0 = Off - 1 = Low - 2 = Medium - 3 = High \nAvailable orgasm modes:\n0 = Normal - 1 = Edge - 2 = Deny\nThe time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\nUse ? if you want a time randomly choosen by the game (between 1 and 720 hours).
+The autoheart command must be followed by 3 numbers for vibe level, orgasm mode and lock time.\nNote that the heart lock requires a specific mod.\n \nAvailable vibe levels:\n0 關閉 - 1 低 - 2 中 - 3 中 \nAvailable orgasm modes:\n0 正常 - 1 邊緣 - 2 拒絕 \nThe time is expressed in hours. The minimum is 1 hour. Use 0 for unlimited time.\nUse ? if you want a time randomly choosen by the game (between 1 and 720 hours).
+: toggles on auto kick for 0 day old accounts.
+：切换自动踢出 0 天账户。
+AutoKick Ready.
+自动踢人准备就绪。
+AutoKick: Account was 0 days old.
+自动踢人：账号年龄为 0 天。
+AutoKick Disabled.
+自动踢人已禁用。
+(number): uses a Bondage College or Bondage Teacher background as custom background.
+（编号）：使用 Bondage College 或 Bondage Teacher 背景作为自定义背景。
+The bg1 command must be followed by a number. List of available backgrounds:\nBONDAGE COLLEGE\n1 Art Class - 2, 3 Class - 4 Club - 5 College\n6 Dorm - 7 Dressing Room - 8 Gym Class\n9 to 12 Isolation Room - 13 to 16 Kinbaku Club\n17 to 26 Library - 27, 28 Lockers\n29 Running Track - 30, 31 Showers - 32 Theater\nBONDAGE TEACHER\n33, 34 Beach - 35, 36 Briefcase - 37 Bullseye\n38, 39 Class - 40 College - 41 Office
+bg1 命令后必须跟一个数字。背景列表：\nBONDAGE COLLEGE（束缚学院）\n1 艺术课 - 2, 3 教室 - 4 俱乐部 - 5 学院\n6 宿舍 - 7 更衣室 - 8 体育课\n9 至 12 隔离室 - 13 至 16 绳艺俱乐部\n17 至 26 图书馆 - 27, 28 储物柜\n29 跑道 - 30, 31 淋浴间 - 32 剧院\nBONDAGE TEACHER（束缚教师）\n33, 34 海滩 - 35, 36 公文包 - 37 靶心\n38, 39 教室 - 40 学院 - 41 办公室
+(number): uses a Bondage Brawl background as standard background.
+（数字）：使用 Bondage Brawl 背景作为标准背景。
+The bg2 command must be followed by a number. List of Bondage Brawl backgrounds:\n1, 2 Balcony - 3 Ballroom - 4 to 12 Bandit Camp\n13 to 15 Barn - 16 to 18 Bathroom Olivia\n19 Bedroom Dungeon - 20 Bedroom Edward\n21, 22 Bedroom Isabella - 23 Bedroom Melody\n24 to 26 Bedroom Olivia - 27 to 32 Birch\n33 Black - 34 to 36 Camp Ground\n37 to 39 Castle - 40, 41 Clearing\n42 to 44 College - 45 to 47 Countess Hall\n48 Desert - 49, 50 Dungeon - 51, 52 Dungeon Cell\n53 to 55 Dungeon Storage - 56 Forest\n57 to 60 Forest Cabin - 61 Gas - 62 Green Plain\n63 to 73 Hall (1 to 4) - 74 to 79 Lake - 80 Maid Bed\n81 Mountain Path - 82, 83 Oak\n84 to 88 Plain - 89 Pond - 90, 91 Savannah\n92 to 94 Tent - 95, 96 Terrace\n97 Vulture Plain - 98, 99 Wine Cell
+bg2 命令后必须跟一个数字。Bondage Brawl 背景列表：\n1, 2 阳台 - 3 舞厅 - 4 至 12 强盗营地\n13 至 15 谷仓 - 16 至 18 Olivia 浴室\n19 地牢卧室 - 20 Edward 卧室\n21, 22 Isabella 卧室 - 23 Melody 卧室\n24 至 26 Olivia 卧室 - 27 至 32 Birch\n33 黑色 - 34 至 36 营地\n37 至 39 城堡 - 40, 41 空地\n42 至 44 学院 - 45 至 47 女伯爵大厅\n48 沙漠 - 49, 50 地牢 - 51, 52 地牢牢房\n53 至 55 地牢储藏室 - 56 森林\n57 至 60 森林小屋 - 61 气体 - 62 绿色平原\n63 至 73 大厅（1 至 4）- 74 至 79 湖泊 - 80 女仆床\n81 山路 - 82, 83 橡树\n84 至 88 平原 - 89 池塘 - 90, 91 热带草原\n92 至 94 帐篷 - 95, 96 露台\n97 秃鹫平原 - 98, 99 酒窖
+: displays list of all available standard backgrounds
+：显示所有可用标准背景的列表
+(bgnumber): displays locally clickable link to a specific standard background and embedded picture.
+（背景编号）：在本地显示特定标准背景的可点击链接和嵌入图片。
+The bgshow1 command must be followed by a number (use /bglist to get available numbers).
+bgshow1 命令后必须跟一个数字（使用 /bglist 获取可用数字）。
+(bgnumber): sends in chat link to a specific standard background. When used with WCE feature, the link is clickable and the picture can be embedded in the chat.
+（背景编号）：发送特定标准背景的链接到聊天中。与 WCE 功能一起使用时，链接可点击且图片可嵌入聊天中。
+The bgshow2 command must be followed by a number (use /bglist to get available numbers).
+bgshow2 命令后必须跟一个数字（使用 /bglist 获取可用数字）。
+(target): gives direct access to the profile description of any player in the chat room.
+（目标）：直接访问聊天室中任何玩家的个人资料描述。
+: boosts all your skills for one hour.
+：增强你所有的技能一小时。
+You feel all your skills boosted. Changes can be seen in information panel.
+你感觉所有的技能都得到了增强。变化可以在信息面板中看到。
+(words): speaks once as a baby.
+（话语）：以婴儿的身份说一次话。
+The btalk command must be followed by the words you want to say.
+btalk 命令后必须跟你想说的话。
+Your message can't be sent because it does not respect the rules of doll talk
+你的消息无法发送，因为它不符合玩偶说话的规则
+: installation of UBC GUI (to be used if it has failed during the initialisation).
+：安装 UBC GUI（如果在初始化期间失败则使用）。
+Check now the Extensions page!
+现在检查扩展页面！
+(zone): launches a Club Card Game against a specific NPC.
+（区域）：与特定的 NPC 进行俱乐部纸牌游戏。
+The cgame command must include a zone.\nAvailable zones:\nasylum, cafe, infiltration, introduction, kidnap, larp,\nlounge, magic, movie, shibari, stable.\nYou need to click on the concerned NPC, then on the appropriate option.\nFor magic, the card option will appear after long dialog, exit and come back if you have started the quest requested by the kitsune, but didn't yet finished it.
+cgame 命令必须包含一个区域。\n可用区域：\nasylum（精神病院）、cafe（咖啡馆）、infiltration（潜入）、\nintroduction（介绍）、kidnap（绑架）、\nlarp（真人角色扮演）、lounge（休息室）、magic（魔法）、\nmovie（电影）、shibari（绳艺）、stable（马厩）。\n你需要点击相关的 NPC，然后点击适当的选项。\nFor magic, the card option will appear after long dialog, exit and come back if you have started the quest requested by the kitsune, but didn't yet finished it.
+(difficulty): starts chess.
+（难度）：开始国际象棋游戏。
+The chess command must be followed by a number between 1 and 3.\n \nAvailable difficulty modes:\n1 easy\n2 normal\n3 hard\nNote that a full relog is required at the end of a chess game.
+chess 命令后必须跟一个 1 到 3 之间的数字。\n \n可用难度模式：\n1 简单\n2 普通\n3 困难\n注意：国际象棋游戏结束后需要完全重新登录。
+(target): changes clothes.
+（目标）：更改服装。
+Magical lasers put random clothes on {tmpname}'s body.
+魔法激光在 {tmpname} 的身上随机穿上了衣服。
+Magical lasers put random clothes on {tgpname}'s body.
+魔法激光在 {tgpname} 的身上随机穿上了衣服。
+The cname command must be followed by the custom name you want to display in your profile.\nMore letters are accepted than for the official name, it can also include spaces and numbers.\nMaximum 20 characters (spaces included)!\nIt will work only between UBC users and replace the official name in the profile.\nUse None as name to go back to a profile without custom name.
+The cname command must be followed by the custom name you want to display in your profile.\nMore letters are accepted than for the official name, it can also include spaces and numbers.\nMaximum 20 characters (spaces included)!\nIt will work only between UBC users and replace the official name in the profile.\nUse 无 as name to go back to a profile without custom name.
+None
+无
+enters college, bypasses requirements.
+进入学院，绕过要求。
+(anim): gets an animation with color change.
+（动画）：获取带有颜色变化的动画。
+The colorchanger command:\nTo preselect, two choices exist, type: <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\nTo manually select area, type: <b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\nManual selection can only target 10 areas at a time,\nthen requires to be reset to reuse, type: <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\nOnly 1 target can be active at a time
+colorchanger 命令：\n预设选择，有两种选择，输入：<b>/colorchanger hair</b> 或 <b>/colorchanger eyes</b>\n手动选择区域，输入：<b>/colorchanger set</b> 或 <b>/colorchanger select</b> 或 <b>/colorchanger custom</b>\n手动选择一次只能针对 10 个区域，\n然后需要重置才能重新使用，输入：<b>/colorchanger stop</b> 或 <b>/colorchanger reset</b>\n一次只能激活 1 个目标
+You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry
+你有 5 秒钟时间点击目标，选择区域。如果成功，将会返回。如果没有，请重试
+The cowner command must be followed by the member number of the wished owner, the number of days corresponding to this owning, and the name of the custom owner.\nThis custom owner can be any player of the game, even yourself or a sub that you own.\nThe number of owning days can't exceed the number of days you are in the game.\nMaximum 20 characters for the name (spaces included)!\nIt will work only between UBC users and replace the official info in the profile.\nUse None as name to go back to a profile without custom owner.
+The cowner command must be followed by the member number of the wished owner, the number of days corresponding to this owning, and the name of the custom owner.\nThis custom owner can be any player of the game, even yourself or a sub that you own.\nThe number of owning days can't exceed the number of days you are in the game.\nMaximum 20 characters for the name (spaces included)!\nIt will work only between UBC users and replace the official info in the profile.\nUse 无 as name to go back to a profile without custom owner.
+Usage: cowner <memberNumber> <days> <name> (name can contain spaces). Use 'None' as name to delete custom owner.
+Usage: cowner <memberNumber> <days> <name> (name can contain spaces). Use '无' as name to delete custom owner.
+Name cannot be empty. Use 'None' to remove the custom owner.
+Name cannot be empty. Use '无' to remove the custom owner.
+none
+无
+The ctitle command must be followed by the custom title you want to display in your profile.\nIt can be an original title or an existing official title, for which you don't satisfy some conditions.\nMaximum 25 characters (spaces included)!\nIt will work only between UBC users.\nThis title will not be displayed on the Titles screen.\nUse None as title to go back to a profile without custom title.
+The ctitle command must be followed by the custom title you want to display in your profile.\nIt can be an original title or an existing official title, for which you don't satisfy some conditions.\nMaximum 25 characters (spaces included)!\nIt will work only between UBC users.\nThis title will not be displayed on the Titles screen.\nUse 无 as title to go back to a profile without custom title.
+: causes an orgasm.
+：引起高潮。
+(number): changes game difficulty.
+（数字）：更改游戏难度。
+The difficulty command must be followed by a number between 0 and 3.\n \nAvailable difficulty modes:\n0 roleplay\n1 regular\n2 hardcore\n3 extreme
+difficulty 命令后必须跟一个 0 到 3 之间的数字。\n \n可用难度模式：\n0 角色扮演\n1 普通\n2 硬核\n3 极限
+(font) (size): changes font in BC.
+（字体）（大小）：更改 BC 中的字体。
+The font command must be followed by a font number and optionally a size number.\nSupported fonts: 0 Arial - 1 Times New Roman\n2 Papyrus - 3 Comic Sans - 4 Impact\n5 Helvetica Neue - 6 Verdana - 7 Century Gothic\n8 Georgia - 9 Courrier New - 10 Copperplate\nSizes: 0 Small - 1 Medium - 2 Large
+font 命令后必须跟一个字体编号，以及可选的大小编号。\n支持的字体：\n0 Arial（宋体）- 1 Times New Roman（时报体）\n2 Papyrus（草纸体）- 3 Comic Sans（漫画体）\n4 Impact（冲击体）- 5 Helvetica Neue（黑体）\n6 Verdana（Verdana 体）- 7 Century Gothic（哥特体）\n8 Georgia（佐治亚体）- 9 Courrier New（新 Courier 体）\n10 Copperplate（铜板体）\n大小：0 小 - 1 中 - 2 大
+(lobby): gives access to friendlist in current lobby.
+（大厅）：在当前大厅中访问好友列表。
+(minigame): launches a minigame.
+（小游戏）：启动一个小游戏。
+The game command must include a minigame.\nAvailable minigames:\ncarrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\nmovie2, puppy, rhythm, tennis1, tennis2, tennis3,\ntraining, whippony.\nTennis1 = easy, tennis2 = normal, tennis3 = hard\nTraining is the trainer version of the hurdle game.\nYou need generally to click on the NPC and select the appropriate options in the dialogs.
+game 命令必须包含一个小游戏。\n可用小游戏：\ncarrot（胡萝卜）、cleaning（清洁）、dojo（道场）、\ndrinks（饮料）、hurdle（跨栏）、kidnap（绑架）、\nmovie1（电影 1）、movie2（电影 2）、puppy（小狗）、\nrhythm（节奏）、tennis1（网球 1）、tennis2（网球 2）、\ntennis3（网球 3）、training（训练）、\nwhippony（鞭打小马）。\nTennis1 = 简单，tennis2 = 普通，tennis3 = 困难\nTraining 是跨栏游戏的训练师版本。\n你通常需要点击 NPC 并在对话框中选择合适的选项。
+(minutes) (level):  enters ggts training in asylum for the specified time and level.
+（分钟）（等级）：在精神病院进行指定时间和等级的 ggts 训练。
+The ggts command must be followed by two numbers to  specify minutes and level (1-6).
+ggts 命令后必须跟两个数字，分别指定分钟数和等级（1-6）。
+{tmpname} gets grabbed by two maids and locked in the asylum for {minutes} minutes of training with the Good Girl Training System Level {level}.
+{tmpname} 被两个女仆抓住并锁在精神病院，进行 {minutes} 分钟的 Good Girl Training System Level {level} 训练。
+(talkmode) (words): speaks once in specified gag talk.
+（说话模式）（话语）：以指定的口塞说话模式说一次话。
+The gtalk command must be followed by a number between 0 and 10, then the words you want to say.\n \nAvailable talk modes:\n0 real gag talk (based on currently worn gags and other items restraining talking)\n1 almost no gag talk\n2 very light gag talk\n3 light gag talk\n4 easy gag talk\n5 normal gag talk\n6 medium gag talk\n7 heavy gag talk\n8 better heavy gag talk\n9 very heavy gag talk\n10 total gag talk
+gtalk 命令后必须跟一个 0 到 10 之间的数字，然后是你想说的话。\n \n可用说话模式：\n0 真实口塞说话（基于当前佩戴的口塞和其他限制说话的物品）\n1 几乎无口塞说话\n2 很轻口塞说话\n3 轻度口塞说话\n4 简单口塞说话\n5 普通口塞说话\n6 中等口塞说话\n7 重度口塞说话\n8 更好重度口塞说话\n9 非常重度口塞说话\n10 完全口塞说话
+(target) (hint): adds or changes a hint for current locks with passwords.
+（目标）（提示）：为当前带密码的锁添加或修改提示。
+The hint command must be followed by a target and the hint you want to add to locks with password.
+hint 命令后必须跟一个目标和你想添加到密码锁的提示。
+A hint has been added to {tgpname}'s locks with password.
+已为 {tgpname} 的密码锁添加了提示。
+(level): sets your arousal level (in all cases).
+（等级）：设置你的兴奋等级（在所有情况下）。
+The horny command must be followed by a number between 0 and 100.
+horny 命令后必须跟一个 0 到 100 之间的数字。
+Your arousal level has been modified.
+你的兴奋等级已被修改。
+: gives info (code, password, time left) for lock used on worn item in selected slot.
+：获取所选槽位上穿戴物品的锁的信息（密码、口令、剩余时间）。
+You can't use this command according your settings.
+根据你的设置，你无法使用此命令。
+You have 5 seconds to click on yourself or another player. If successful, you will get infos about the lock for the selected slot.
+你有 5 秒钟时间点击自己或其他玩家。如果成功，你将获得所选槽位的锁的相关信息。
+Combination Padlock
+组合密码锁
+Portal Link Padlock
+传送门连接锁
+Safeword Padlock
+安全词锁
+Password Padlock
+密码锁
+Timer Password Padlock
+计时密码锁
+Timer Padlock
+五分钟计时锁
+Mistress Timer Padlock
+女王计时锁
+Lovers Timer Padlock
+爱人计时锁
+Owner Timer Padlock
+主人计时锁
+Best Friend Timer Padlock
+好友计时器锁
+Heart Padlock
+心锁
+Devious Padlock
+邪恶锁
+(target): goes or sends to invisible mode (scripts need to be allowed in BC settings).
+（目标）：进入或发送到隐身模式（需要在 BC 设置中允许脚本）。
+To use the invisible command on yourself, you need first to allow Scripts in BC settings.
+要对自身使用 invisible 命令，你需要先在 BC 设置中允许脚本。
+Magical lasers make {tmpname} completely invisible.
+魔法激光使 {tmpname} 完全隐形。
+To use the invisible command on other players, they need first to allow Scripts in BC settings.
+要对其他玩家使用 invisible 命令，他们需要先在 BC 设置中允许脚本。
+Magical lasers make {tgpname} completely invisible.
+魔法激光使 {tgpname} 完全隐形。
+(colorcode): changes color of worn item in selected slot.
+（颜色代码）：更改所选槽位中穿戴物品的颜色。
+The itemcolor command needs to be followed by a color code in the format #000000 to change the color of a worn item in a slot selected by mouse click.
+itemcolor 命令后必须跟一个颜色代码，格式为 #000000，以通过鼠标点击更改所选槽位中穿戴物品的颜色。
+You have 5 seconds to click on yourself. If successful, the color of the worn item in selected slot will be changed. If not, retry.
+你有 5 秒钟时间点击自己。如果成功，所选槽位中穿戴物品的颜色将被更改。如果没有，请重试。
+Item color changed.
+物品颜色已更改。
+(hours): keeps your keys safe in the vault.
+（小时）：将你的钥匙安全存放在金库中。
+The keydeposit command must be followed by a number higher than 0.
+keydeposit 命令后必须跟一个大于 0 的数字。
+{tmpname}'s keys are now safe in the vault for {hours} hours.
+{tmpname} 的钥匙现在安全地存放在金库中，时长为 {hours} 小时。
+: kills UBC/Moaner parameters saved locally.
+：删除本地保存的 UBC/Moaner 参数。
+<b>Warning</b>: This command will kill all UBC/Moaner parameters saved locally. Use it only if some parameters don't seem to work. Confirm by typing: <b>/killpar yes</b>
+<b>警告</b>：此命令将删除所有本地保存的 UBC/Moaner 参数。仅在似乎有参数无法工作时使用。输入 <b>/killpar yes</b> 确认
+All UBC/Moaner parameters have been deleted. Make a full logout/login then use the appropriate commands to set the parameters that you like.
+所有 UBC/Moaner 参数已被删除。请完全注销/登录，然后使用适当的命令设置你喜欢的参数。
+(layernumber) (colorcode) changes a layer color for worn item in saved Item Slot
+（层编号）（颜色代码）更改已保存物品槽中穿戴物品的图层颜色
+First use the <b>/layershow</b> command to click on worn item, get useful info about layer colors and save Item Slot.\nThe layerset command must be followed by an layer number (-1 for all layers) and a color code in the format #000000 for the worn item in the previously saved Item Slot.\nIf you enter a non-numeric layer, it will be interpreted as 0 (zero). If the entered color does not exist, you will go back to the default color.
+首先使用 <b>/layershow</b> 命令点击穿戴物品，获取有关图层颜色的有用信息并保存物品槽。\nlayerset 命令后必须跟一个图层编号（-1 表示所有图层）和一个颜色代码（格式为 #000000），用于之前保存的物品槽中的穿戴物品。\n如果输入非数字图层，将被解释为 0（零）。如果输入的颜色不存在，将返回默认颜色。
+<b>Warning</b>: First use the <b>/layershow</b> command to get useful info and save Item Slot.
+<b>警告</b>：首先使用 <b>/layershow</b> 命令获取有用信息并保存物品槽。
+Layer color changed for layer {layer}.
+图层颜色已更改，图层编号：{layer}。
+Layer color changed for all layers.
+所有图层的颜色已更改。
+gives info about layer colors of a specific worn item + saves Item Slot
+获取特定穿戴物品的图层颜色信息 + 保存物品槽
+You have 5 seconds to click on yourself. If successful, you will get infos and the Item Slot will be saved. If not, retry.
+你有 5 秒钟时间点击自己。如果成功，你将获得信息并保存物品槽。如果没有，请重试。
+No way to change color
+无法更改颜色
+Item Slot saved.
+物品槽已保存。
+(target) (locktype) (other parameters): adds locks to all lockable items on specified target.
+（目标）（锁类型）（其他参数）：为指定目标的所有可锁定物品添加锁。
+The lock command has several syntaxes:\n/lock (target) (locktype) for locks 1 to 8, 17 to 20\n/lock (target) (locktype) (r) for lock 9\n/lock (target) (locktype) (code) for lock 10\n/lock (target) (locktype) (password) (r) for locks 11 and 12\n/lock (target) (locktype) (minutes) (h) (i) (r) - locks 13 to 15\n/lock (target) (locktype) (password) (minutes) (h) (i) (r) - lock 16\nALWAYS SPECIFY THE TARGET. Lock types:\n1 Metal (default when not specified) - 2 Exclusive\n3 Intricate - 4 High Security - 5 Pandora\n6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n10 Combination - 11 Safeword - 12 Password\n13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n16 Timer Password - 17 Family - 18 Lewd Crest\n19 Devious (if enabled) - 20 Heart (if enabled)\nLocks 18, 19 and 20 require a specific mod\nUse <b>/lock par</b> for info about other parameters
+lock 命令有多种语法：\n/lock (目标) (锁类型) 用于锁 1 到 8、17 到 20\n/lock (目标) (锁类型) (r) 用于锁 9\n/lock (目标) (锁类型) (代码) 用于锁 10\n/lock (目标) (锁类型) (口令) (r) 用于锁 11 和 12\n/lock (目标) (锁类型) (分钟数) (h) (i) (r) - 锁 13 到 15\n/lock (目标) (锁类型) (口令) (分钟数) (h) (i) (r) - 锁 16\n必须指定目标。锁类型：\n1 金属（默认，未指定时）- 2 专属\n3 复杂 - 4 高级安全 - 5 潘多拉\n6 女主人 - 7 爱人 - 8 主人 - 9 五分钟\n10 组合 - 11 安全词 - 12 密码\n13 女主人计时器 - 14 爱人计时器 - 15 主人计时器\n16 计时器密码 - 17 家族 - 18 色欲纹章\n19 邪恶（如果启用）- 20 心 (如果启用)\n锁 18, 19 和 20 需要特定的模组\n使用 <b>/lock par</b> 获取有关其他参数的信息
+Special parameters of lock command:\ncode must be between 0 and 9999.\npassword is limited to 8 characters.\nmaximum time = 240 minutes for locks 13 and 16,\n10080 minutes for lock 14,\n50400 minutes for lock 15\nUse ? if you want a time randomly choosen by the game\n \nOptional parameters:\nh to hide the timer,\ni to enable time input from other players,\nr for item removal when correct password entered\nor lock timer runs out.\n \nTip: replace h and/or i by another character when you need to skip them.
+lock 命令的特殊参数：\n代码必须在 0 到 9999 之间。\n口令限制为 8 个字符。\n最长时间 = 锁 13 和 16 为 240 分钟，\n锁 14 10080 分钟， \n锁 15 50400 分钟 \n如果你想让游戏随机选择时间，使用 ?\n \n可选参数：\nh 隐藏计时器，\ni 启用其他玩家的时间输入，\nr 输入正确密码后移除物品\n或锁计时器结束时。\n \n提示：当你需要跳过它们时，用其他字符替换 h 和/或 i。
+Magical lasers make appear locks on {tgpname}'s body.
+魔法激光使锁出现在 {tgpname} 的身上。
+(accountname) (password): logs in a new account.
+（账户名）（密码）：登录新账户。
+The login command must be followed by an account name and a password
+login 命令后必须跟一个账户名和密码
+: toggles fog in current mapped room.
+：切换当前地图房间的雾气。
+Fog in current mapped room is {status}. No visible effect if you have enabled full vision in mapped rooms.
+当前地图房间的雾气已{status}。如果你在地图房间中启用了全视，则没有明显效果。
+: forces map access in current normal room (only for yourself).
+：强制在当前普通房间中访问地图（仅对自己有效）。
+(keynumber) (action): finds or loses all keys or a specific key for current mapped chat room.
+（钥匙编号）（操作）：查找或丢失当前地图聊天室的所有钥匙或特定钥匙。
+The mapkeys command must be followed by two numbers.\n1st number: 1 = Gold key - 2 = Silver key - 3 = Bronze key - 4 = All keys.\n2nd number: 1 = Find - 2 = Lose.
+mapkeys 命令后必须跟两个数字。\n第 1 个数字：1 = 黄金钥匙 - 2 = 白银钥匙 - 3 = 青铜钥匙 - 4 = 所有钥匙。\n第 2 个数字：1 = 查找 - 2 = 丢失。
+You haven't entered the map.
+你还没有进入地图。
+: gives infos about location of players in current mapped chat room.
+：获取当前地图聊天室中玩家位置的信息。
+Real presence in map: YES
+在地图中的真实存在：是
+Real presence in map: {presence}
+在地图中的真实存在：{presence}
+Real presence in map: ?
+在地图中的真实存在：？
+Does not have entered map
+还没有进入地图
+(x-position): changes your X coordinate in the map.
+（x-坐标）：更改你在地图中的 x 坐标。
+The mapx command must be followed by a number between 0 and 39.
+mapx 命令后必须跟一个 0 到 39 之间的数字。
+You don't have entered map!
+你还没有进入地图！
+(y-position): changes your Y coordinate in the map.
+（y-坐标）：更改你在地图中的 y 坐标。
+The mapy command must be followed by a number between 0 and 39.
+mapy 命令后必须跟一个 0 到 39 之间的数字。
+(target): gives coordinates in the map.
+（目标）：获取地图中的坐标。
+Real presence in map:
+在地图中的真实存在：
+YES
+是
+NO
+否
+(value): changes zoom level in the map rooms.
+（数值）：更改地图房间的缩放级别。
+The mapzoom command must be followed by a number between 7 and 50.
+mapzoom 命令后必须跟一个 7 到 50 之间的数字。
+Zoom level modified! Enjoy!
+缩放级别已修改！尽情享受吧！
+: gives max statistics.
+：显示最大统计信息。
+Changes made! A few other things have to be set with the /roleplay and /rolequit commands.
+更改已完成！还需要使用 /roleplay 和 /rolequit 命令设置一些其他内容。
+: gives infos about MBS wheels of fortune in current chat room.
+：获取当前聊天室中 MBS 命运之轮的信息。
+Does not have a wheel of fortune.
+没有命运之轮。
+Does not have a MBS wheel of fortune.
+没有 MBS 命运之轮。
+Has a MBS wheel of fortune.
+有 MBS 命运之轮。
+Does not have custom options on this wheel.
+这个轮子上没有自定义选项。
+Error reading custom options.
+读取自定义选项时出错。
+(option) (message): creates custom message for a specific command.
+（选项）（消息）：为特定命令创建自定义消息。
+The message command must be followed by an option and the message you want instead of the default message.\nEach option corresponds to a command, a 't' prefix being added for using on other players.\nOptions on yourself: clothes, invisible, lock, naked, pet, randomize, restrain, solidity, totalrelease, underwear, unlock, untie, visible\nOptions on other players: tclothes, tinvisible, tlock, tnaked, tpet, trandomize, trestrain, tsolidity, ttotalrelease, tunderwear, tunlock, tuntie, tvisible\n \nWhen writing your message, don't forget that your name or nickname will be added before it\nWhen acting on another player, the target name or nickname will be added after the message\nUse ? as message to go back to default message\nUse ! as message to select silent mode (no message)
+message 命令后必须跟一个选项和你想要替代默认消息的消息。\n每个选项对应一个命令，添加 't' 前缀可用于其他玩家。\n自身选项：clothes（服装）、invisible（隐身）、lock（上锁）、naked（裸体）、pet（宠物）、randomize（随机）、restrain（束缚）、solidity（坚固）、totalrelease（完全释放）、underwear（内衣）、unlock（解锁）、untie（解开）、visible（可见）\n他人选项：tclothes、tinvisible、tlock、tnaked、tpet、trandomize、trestrain、tsolidity、ttotalrelease、tunderwear、tunlock、tuntie、tvisible\n \n编写消息时，请记住你的名字或昵称将添加在消息之前\n对其他玩家操作时，目标名字或昵称将添加在消息之后\n使用 ? 作为消息可返回默认消息\n使用 ! 作为消息可选择静默模式（无消息）
+<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for {option} command on yourself.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc：已为你自身的 {option} 命令保存静默模式。</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for {option} command on yourself.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc：已为你自身的 {option} 命令恢复默认消息。</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for {option} command on yourself.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc：已为你自身的 {option} 命令保存新消息。</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Silent mode saved for {option2} command on other players.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc：已为对其他玩家使用的 {option2} 命令保存静默模式。</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: Back to default message for {option2} command on other players.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc：已为对其他玩家使用的 {option2} 命令恢复默认消息。</p>
+<p style='background-color:#5fbd7a'>ULTRAbc: New message saved for {option2} command on other players.</p>
+<p style='background-color:#5fbd7a'>ULTRAbc：已为对其他玩家使用的 {option2} 命令保存新消息。</p>
+(mission): goes to infiltration room and forces a specific mission.
+（任务）：进入潜入房间并强制指定特定任务。
+The mission command must include a mission.\nAvailable missions:\nburglar, kidnap, rescue, retrieve, sabotage.\nFull random mission with random.
+mission 命令必须包含一个任务。\n可用任务：\nburglar（盗窃）、kidnap（绑架）、rescue（救援）、retrieve（寻回）、sabotage（破坏）。\n使用 random 可完全随机任务。
+: displays current status of the moaner.
+：显示 moaner 的当前状态。
+(MemberNumber|Name|Nickname)(Message): sends a whisper to a player.
+（成员编号 | 名字 | 昵称）（消息）：向玩家发送耳语。
+(target): removes clothes.
+（目标）：移除衣服。
+Magical lasers make disappear the clothes on {tmpname}'s body.
+魔法激光使 {tmpname} 身上的衣服消失。
+Magical lasers make disappear the clothes on {tgpname}'s body.
+魔法激光使 {tgpname} 身上的衣服消失。
+(minutes): stays in NPC Pandora prison.
+（分钟）：停留在 NPC 潘多拉监狱。
+The npcprison command must be followed by a number higher than 0
+npcprison 命令后必须跟一个大于 0 的数字
+{tmpname} gets grabbed by two maids and sent to NPC Pandora prison for {minutes} minutes.
+{tmpname} 被两个女仆抓住并送往 NPC 潘多拉监狱，时长为 {minutes} 分钟。
+(parameter): restores/saves/loads outfit (including restraints).
+（参数）：恢复/保存/加载服装（包括束缚）。
+Options for outfit command:\n<b>All these options include the restraints</b>, so it's also a good bondage tool.\nTo restore your outfit to what it was before entering room, type: <b>/outfit reset</b> or <b>/outfit restore</b> or <b>/outfit revert</b>\nThree outfits can be saved by using <b>/outfit save1</b> or <b>/outfit save2</b> or <b>/outfit save3</b>\nTo load saved outfits, type: <b>/outfit load1</b> or <b>/outfit load2</b> or <b>/outfit load3</b>\nYou will have 5 seconds to click on target. Retry if the saving/loading was unsuccessful\nThese saves last only 1 login session.\nTo save outfits between sessions, use the <b>Export button</b> in wardrobe\nYou will have the outfit saved as a code. You can copy and paste it elsewhere.\nThen you can use the <b>Import buttons</b> to load it later.
+outfit 命令的选项：\n<b>所有这些选项都包括束缚</b>，所以它也是一个很好的束缚工具。\n要将你的服装恢复到进入房间之前的状态，输入：<b>/outfit reset</b> 或 <b>/outfit restore</b> 或 <b>/outfit revert</b>\n可以保存三套服装，使用 <b>/outfit save1</b> 或 <b>/outfit save2</b> 或 <b>/outfit save3</b>\n要加载已保存的服装，输入：<b>/outfit load1</b> 或 <b>/outfit load2</b> 或 <b>/outfit load3</b>\n你将有 5 秒钟时间点击目标。如果保存/加载不成功，请重试\n这些保存仅持续 1 次登录会话。\n要在会话之间保存服装，使用衣橱中的 <b>导出按钮</b>\n你将获得保存为代码的服装。你可以复制并粘贴到其他地方。\n然后你可以使用 <b>导入按钮</b> 稍后加载它。
+You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.
+你有 5 秒钟时间点击目标。如果成功，服装将被加载。如果没有，请重试。
+Outfit {args} command not executed as no any saved outfit has been found.
+未找到已保存的服装，{args} 命令未执行。
+Outfit {args} command executed.
+{args} 命令已执行。
+Outfit reset-restore-revert command executed.
+服装恢复命令已执行。
+You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.
+你有 5 秒钟时间点击目标。如果成功，服装将被保存。如果没有，请重试。
+(number): changes your item permission.
+（数字）：更改你的物品权限。
+The permission command must be followed by a number.\nThe effect will be visible in your profile.\n0 Everyone, no exceptions\n1 Everyone, except blacklist\n2 Owner, Lover, whitelist & Dominants\n3 Owner, Lover and whitelist only\n4 Owner and Lover only\n5 Owner only
+permission 命令后必须跟一个数字。\n效果将在你的个人资料中显示。\n0 所有人，无例外\n1 所有人，黑名单除外\n2 主人、爱人、白名单和支配者\n3 仅限主人、爱人和白名单\n4 仅限主人和爱人\n5 仅限主人
+(target): becomes a fully restrained pet.
+（目标）：变成完全束缚的宠物。
+{tmpname} becomes a cute pet.
+{tmpname} 变成了一只可爱的宠物。
+{tgpname} becomes a cute pet.
+{tgpname} 变成了一只可爱的宠物。
+(MemberNumber)(Message): sends a beep to a player.
+（成员编号）（消息）：向玩家发送提示音。
+: direct access to Preferences menu.
+：直接进入偏好设置菜单。
+(action): leaves the club very fast.
+（动作）：非常快速地离开俱乐部。
+poofs away.
+噗的一声消失了。
+(pose) (target): changes the pose of any player.
+（姿势）（目标）：更改任何玩家的姿势。
+The pose2 command must be followed by a pose and optionally a target.\n \nAvailable poses:\narmsfree, belly, boxtied, cuffed, elbowtied,\nkneel1, kneel2, legsclosed, legsopen, pet,\nspreadarms1, spreadarms2, spreadeagle1\nspreadeagle2, spreadlegs, stand, suspension,\ntapedhands. Only on yourself: exercise, jump.\nUse <b>/pose2 reset</b> (target) to back to neutral pose.\nIf WCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails.
+roleplay 命令必须包含一个角色。\n你将能够在你的个人资料中查看变化。\n \n可用角色：\nclubmistress（俱乐部女主人）、clubslave（俱乐部奴隶）、\ndoctor（医生）、escapedpatient（逃跑病人）、\nheadmaid（女仆长）、kidnapper（绑架者）、maid（女仆）、\nmagician（魔术师）、magus（法师）、\nmasterkidnapper（绑架头目）、mistress（女主人）、\nnurse（护士）、oracle（先知）、patient（病人）、\npermanentpatient（永久病人）、sage（圣人）、\nsorcerer（术士）、warlock（男巫）、witch（女巫）、\nwizard（巫师）。\n小心 clubslave，你将被迫完成契约。escapedpatient 也有类似的警告。
+{tmpname} relaxes {pronoun3} arms.
+{tmpname} 放松了{pronoun3}手臂。
+{tmpname} relaxes on {pronoun3} belly.
+{tmpname} 趴在{pronoun3}肚子上。
+{tmpname} puts {pronoun3} arms behind {pronoun3} back.
+{tmpname} 把{pronoun3}手臂放在背后。
+{tmpname} puts {pronoun3} arms out like {pronoun4} is handcuffed.
+{tmpname} 伸出{pronoun3}手臂，像是被手铐铐住。
+{tmpname} puts {pronoun3} arms behind {pronoun3} back, elbows almost touching.
+{tmpname} 把{pronoun3}手臂放在背后，手肘几乎接触。
+{tmpname} kneels down.
+{tmpname} 跪下。
+{tmpname} kneels down and opens {pronoun3} legs.
+{tmpname} 跪下并张开{pronoun3}双腿。
+{tmpname} stands up and closes {pronoun3} legs.
+{tmpname} 站起来并闭上{pronoun3}双腿。
+{tmpname} stands up normally on {pronoun3} feet.
+{tmpname} 正常站立在{pronoun3}脚上。
+{tmpname} relaxes on all fours.
+{tmpname} 四肢着地放松。
+{tmpname} raises {pronoun3} hands.
+{tmpname} 举起{pronoun3}手。
+{tmpname} raises the hands above {pronoun3} head.
+{tmpname} 把手举过{pronoun3}头顶。
+{tmpname} raises {pronoun3} hands and spreads {pronoun3} legs.
+{tmpname} 举起{pronoun3}手并张开{pronoun3}双腿。
+{tmpname} raises the hands above {pronoun3} head and spreads {pronoun3} legs.
+{tmpname} 把手举过{pronoun3}头顶并张开{pronoun3}双腿。
+{tmpname} spreads {pronoun3} legs.
+{tmpname} 张开{pronoun3}双腿。
+{tmpname} stands up.
+{tmpname} 站起来。
+{tmpname} is now in an acrobatic pose in suspension.
+{tmpname} 现在摆出悬吊的杂技姿势。
+{tmpname} puts {pronoun3} arms out like {pronoun3} hands are taped.
+{tmpname} 伸出{pronoun3}手臂，像是手被胶带缠住。
+{tmpname} jumps with joy.
+{tmpname} 高兴地跳了起来。
+{tmpname} makes {pronoun3} workout.
+{tmpname} 进行{pronoun3}锻炼。
+{tmpname} lets {tgpname} relax {tgpr3} arms.
+{tmpname} 让 {tgpname} 放松{tgpr3}手臂。
+{tmpname} forces {tgpname} to stay on {tgpr3} belly.
+{tmpname} 强迫 {tgpname} 趴在{tgpr3}肚子上。
+{tmpname} forces {tgpname} to put the arms behind {tgpr3} back.
+{tmpname} 强迫 {tgpname} 把手臂放在背后。
+{tmpname} forces {tgpname} to put the arms out like {tgpr4} handcuffed.
+{tmpname} 强迫 {tgpname} 伸出手臂，像是{tgpr4}被手铐铐住。
+{tmpname} forces {tgpname} to put the arms behind her back, elbows almost touching.
+{tmpname} 强迫 {tgpname} 把手臂放在背后，手肘几乎接触。
+{tmpname} helps {tgpname} to kneel down.
+{tmpname} 帮助 {tgpname} 跪下。
+{tmpname} helps {tgpname} to kneel down, forcing {tgpr3} legs open.
+{tmpname} 帮助 {tgpname} 跪下，强迫{tgpr3}双腿张开。
+{tmpname} helps {tgpname} to stand up with {tgpr3} legs closed.
+{tmpname} 帮助 {tgpname} 站起来并闭上{tgpr3}双腿。
+{tmpname} helps {tgpname} to stand up normally on {tgpr3} feet.
+{tmpname} 帮助 {tgpname} 正常站立在{tgpr3}脚上。
+{tmpname} forces {tgpname} on all fours.
+{tmpname} 强迫 {tgpname} 四肢着地。
+{tmpname} helps {tgpname} to raise {tgpr3} hands.
+{tmpname} 帮助 {tgpname} 举起{tgpr3}手。
+{tmpname} forces {tgpname} to raise the hands above {tgpr3} head.
+{tmpname} 强迫 {tgpname} 把手举过{tgpr3}头顶。
+{tmpname} forces {tgpname} to raise the hands and spread the legs.
+{tmpname} 强迫 {tgpname} 举手并张开双腿。
+{tmpname} forces {tgpname} to raise the hands above the head and spread the legs.
+{tmpname} 强迫 {tgpname} 把手举过头顶并张开双腿。
+{tmpname} forces {tgpname} to spread {tgpr3} legs.
+{tmpname} 强迫 {tgpname} 张开{tgpr3}双腿。
+{tmpname} helps {tgpname} to stand up.
+{tmpname} 帮助 {tgpname} 站起来。
+{tmpname} forces {tgpname} in an acrobatic pose in suspension.
+{tmpname} 强迫 {tgpname} 摆出悬吊的杂技姿势。
+{tmpname} forces {tgpname} to put the arms out like {tgpr3} hands are taped.
+{tmpname} 强迫 {tgpname} 伸出手臂，像是手被胶带缠住。
+(minutes): stays in online Pandora prison.
+（分钟）：停留在在线潘多拉监狱。
+The prison command must be followed by a number higher than 0. It will provoke an automatic relog before sending you to prison.\nIf you use it when you are alone in a room, it will be a new room automatically created.\nIt is recommended to use it in an existing Pandora room that you have first entered as normal player.\nIf you use it in an existing non-Pandora room, there will be no any timer, but the Pandora guards will be active though during the requested time.\nFor a correct working in all cases, be sure to have enabled the appropriate Immersion settings to auto-remake rooms.
+prison 命令后必须跟一个大于 0 的数字。它将在你被送入监狱之前自动重新登录。\n如果你独自在房间中使用，它将自动创建一个新房间。\n建议你在现有的潘多拉房间中使用，首先作为普通玩家进入。\n如果你在现有的非潘多拉房间中使用，将没有任何计时器，但潘多拉守卫将在请求的时间内激活。\n为了在所有情况下正常工作，请确保已启用适当的沉浸设置以自动重建房间。
+(action): leaves room.
+（动作）：离开房间。
+(target): naked + underwear + clothes + restrain commands.
+（目标）：裸体 + 内衣 + 服装 + 束缚命令。
+Magical lasers apply random clothes and bindings on {tmpname}'s body.
+魔法激光在 {tmpname} 的身上应用随机的服装和束缚。
+Magical lasers apply random clothes and bindings on {tgpname}'s body.
+魔法激光在 {tgpname} 的身上应用随机的服装和束缚。
+: temporarily removes slave/owner collar.
+：暂时移除奴隶/主人项圈。
+: resets difficulty, thereby quitting it.
+：重置难度，从而退出。
+<b>Warning</b>: Resetting difficulty will incur a 7-day waiting period to rechange. Confirm by typing: <b>/resetdifficulty yes</b>
+<b>警告</b>：重置难度将导致 7 天的等待期才能再次更改。输入 <b>/resetdifficulty yes</b> 确认
+Difficulty reset, select a new one in settings.
+难度已重置，请在设置中选择新的难度。
+: erases your inventory.
+：清空你的物品栏。
+<b>Warning</b>: You will lose many clothes and items, you will need to buy them again. Confirm by typing: <b>/resetinventory yes</b>
+<b>警告</b>：你将失去许多服装和物品，需要重新购买。输入 <b>/resetinventory yes</b> 确认
+Accomplished. Visit store to buy new clothes and items.
+已完成。访问商店购买新服装和物品。
+: erases your nickname.
+：删除你的昵称。
+<b>Warning</b>: You will lose your nickname. Confirm by typing: <b>/resetnickname yes</b>
+<b>警告</b>：你将失去你的昵称。输入 <b>/resetnickname yes</b> 确认
+Accomplished. You no longer have a nickname.
+已完成。你不再有昵称了。
+(target): adds random restraints.
+（目标）：添加随机束缚。
+Magical lasers apply random restraints on {tmpname}'s body.
+魔法激光在 {tmpname} 的身上应用随机的束缚。
+Magical lasers apply random restraints on {tgpname}'s body.
+魔法激光在 {tgpname} 的身上应用随机的束缚。
+(role): starts to play a role
+（角色）：开始扮演一个角色
+The roleplay command must include a role.\nYou will be able to check the changes in your profile.\n \nAvailable roles:\nclubmistress, clubslave, doctor, escapedpatient,\nheadmaid, kidnapper, maid, magician, magus,\nmasterkidnapper, mistress, nurse, oracle, patient,\npermanentpatient, sage, sorcerer, warlock, witch, wizard.\nBe careful with clubslave, you will be forced to complete contract. Similar warning for escapedpatient.
+roleplay 命令必须包含一个角色。\n你将能够在你的个人资料中查看变化。\n \n可用角色：\nclubmistress（俱乐部女主人）、clubslave（俱乐部奴隶）、doctor（医生）、escapedpatient（逃跑病人）、\nheadmaid（女仆长）、kidnapper（绑架者）、maid（女仆）、magician（魔术师）、magus（法师）、\nmasterkidnapper（绑架头目）、mistress（女主人）、nurse（护士）、oracle（先知）、patient（病人）、\npermanentpatient（永久病人）、sage（圣人）、sorcerer（术士）、warlock（男巫）、witch（女巫）、wizard（巫师）。\n小心 clubslave，你将被迫完成契约。escapedpatient 也有类似的警告。
+(role or club area): ceases to play a role
+（角色或俱乐部区域）：停止扮演角色
+The rolequit command must include a role or clubarea.\nYou will be able to check the changes in your profile.\n \nAvailable roles or areas:\nasylum to cease being doctor, nurse, patient or permanent patient.\nclubslave to break the club slave contract.\nggts to leave ggts training (back to level 0).\nkidnapper to cease being kidnapper or master kidnapper.\nmagician to cease one of the 8 magic roles.\nmanagement or mistress to cease being mistress or club mistress.\nsorority or maid to cease being maid or headmaid.
+rolequit 命令必须包含一个角色或俱乐部区域。\n你将能够在你的个人资料中查看变化。\n \n可用的角色或区域：\nasylum（精神病院）停止扮演医生、护士、病人或永久病人。\nclubslave（俱乐部奴隶）解除俱乐部奴隶契约。\nggts 离开 ggts 训练（回到等级 0）。\nkidnapper（绑架者）停止扮演绑架者或绑架头目。\nmagician（魔术师）停止扮演 8 个魔法角色之一。\nmanagement（管理层）或 mistress（女主人）停止扮演女主人或俱乐部女主人。\nsorority（姐妹会）或 maid（女仆）停止扮演女仆或女仆长。
+: removes specific item.
+：移除特定物品。
+You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.
+你有 5 秒钟时间点击目标，选择区域。如果成功，将会返回。如果没有，请重试。
+: opens chat search in current lobby.
+：在当前大厅中打开聊天搜索。
+(model) (front shield) (back shield) (tamper protection) (orgasm mode): changes the settings of worn Futuristic Chastity Belt.
+（型号）（前护罩）（后护罩）（防篡改）（高潮模式）：更改穿戴的未来贞操带的设置。
+The sfchaste command must be followed by 5 numbers for model, front shield, back shield, tamper protection and orgasm mode.\n \nAvailable models: \n0 Prototype - 1 High-Security\n2 Training - 3 Neo\n \nAvailable front shields:\n0 Open - 1 Locked\n \nAvailable back shields:\n0 Open - 1 Locked\n \nAvailable tamper protections:\n0 Disabled - 1 Belt - 2 All items\n \nAvailable orgasm modes:\n0 Allow - 1 Punish
+sfchaste 命令后必须跟 5 个数字，分别表示型号、前护罩、后护罩、防篡改和高潮模式。\n \n可用型号：\n0 原型机 - 1 高安全性\n2 训练型 - 3 新型\n \n可用前护罩：\n0 开放 - 1 锁定\n \n可用后护罩：\n0 开放 - 1 锁定\n \n可用防篡改选项：\n0 禁用 - 1 腰带 - 2 所有物品\n \n可用高潮模式：\n0 允许 - 1 惩罚
+The settings of your Futuristic Chastity Belt have been modified.
+你的未来贞操带设置已修改。
+: (slot) (sensibility) (intensity): changes mode of worn device shock in a specific slot.
+：（槽位）（灵敏度）（强度）：更改特定槽位中穿戴的电击装置的模式的。
+The shock command must be followed by two (or three) numbers:\n- a number for the concerned slot:\n0 = Arms - 1 = Breast - 2 = Butt - 3 = Devices - 4 = Neck - 5 = Neck Accessories - 6 = Nipples - 7 = Pelvis - 8 = Vulva\n \n- a number for the sensibility of the shock device in this slot:\n0 = Off - 1 = Low - 2 = Medium - 3 = High \n- a number for the intensity of the shocks:\n1 = Low - 2 = Medium - 3 = High \nNote that most devices don't need the last parameter as they refer to a level combining sensibility and intensity!\nSeveral devices can't be disabled. For the Obedience Belt, use 0 (disabled) or 1 (enabled).\nThis command does not support the Futuristic Chastity Belt and the Futuristic Training Belt.
+shock 命令后必须跟两个（或三个）数字：\n- 第一个数字表示相关槽位：\n0 = 手臂 - 1 = 胸部 - 2 = 臀部 - 3 = 装置 - 4 = 颈部 - 5 = 颈部配饰 - 6 = 乳头 - 7 = 骨盆 - 8 = 阴部\n \n- 第二个数字表示该槽位中电击装置的灵敏度：\n0 = 关闭 - 1 = 低 - 2 = 中 - 3 = 高\n- 第三个数字表示电击的强度：\n1 = 低 - 2 = 中 - 3 = 高\n注意：大多数装置不需要最后一个参数，因为它们引用的是结合灵敏度和强度的级别！\n某些装置无法禁用。对于服从腰带，使用 0（禁用）或 1（启用）。\n此命令不支持未来贞操带和未来训练腰带。
+Settings changed for one of your shock devices!
+你的一个电击装置的设置已更改！
+(target): uses the sleeping pill on yourself or another player.
+（目标）：对自己或其他玩家使用安眠药。
+(action): slowly leaves the room.
+（动作）：缓慢离开房间。
+slowly heads for the door.
+慢慢走向门口。
+(value) (target): changes the solidity of most current bindings.
+（数值）（目标）：更改当前大多数束缚的坚固度。
+The solidity command must be followed by a number between 1 and 99, and optionally a target.\nTo escape special restraints (Futuristic Crate, Wooden Rack, Armbinder Suit), use the value 1.
+solidity 命令后必须跟一个 1 到 99 之间的数字，以及可选的目标。\n要逃脱特殊束缚（未来箱子、木制刑架、手臂束缚服），使用数值 1。
+The solidity value must be between 1 and 99.
+solidity 值必须在 1 到 99 之间。
+Magical lasers make disappear the special restraints that kept {tmpname} prisoner.
+魔法激光使困住 {tmpname} 的特殊束缚消失。
+The solidity of most current bindings has been changed.
+当前大多数束缚的坚固度已更改。
+Magical lasers make disappear the special restraints that kept {tgpname} prisoner.
+魔法激光使困住 {tgpname} 的特殊束缚消失。
+The solidity of most current {tgpname}'s bindings has been changed by {tmpname}.
+{tmpname} 已更改 {tgpname} 当前大多数束缚的坚固度。
+(target) (option): allows access to target's wheel of fortune, even when not displayed.
+（目标）（选项）：允许访问目标的命运之轮，即使未显示。
+The spin command must be followed by the target whose wheel of fortune interests you, and optionally a mode.\nAvailable modes:\na = automatic real spinning (only the options selected by the wheel creator)\ni = info about the maximum of options on the wheel\nr = full random spinning (includes also the options not selected by the wheel creator)\nTip: use the i mode before the r mode, it will correctly initialise the messages.\nNote that roleplay is disabled by a and r modes!
+spin 命令后必须跟你想使用的命运之轮的目标，以及可选的模式。\n可用模式：\na = 自动真实旋转（仅限轮子创建者选择的选项）\ni = 获取轮子上最多选项的信息\nr = 完全随机旋转（包括轮子创建者未选择的选项）\n提示：在使用 r 模式之前先使用 i 模式，它将正确初始化消息。\n注意：i 和 r 模式会禁用角色扮演！
+Bad luck! This player does not have a wheel of fortune.
+运气不好！该玩家没有命运之轮。
+(stuttermode) (words): speaks once in a specified stuttering mode.
+（结巴模式）（话语）：以指定的结巴模式说一次话。
+The stalk command must be followed by a number between 1 and 4 for the stuttering mode and the words you want to say.\nNote that it can't be used when you are in a 'permanent' stuttering mode.\n \nAvailable stuttering modes:\n1 light stuttering\n2 normal stuttering\n3 heavy stuttering\n4 total stuttering
+stalk 命令后必须跟一个 1 到 4 之间的数字表示结巴模式，以及你想说的话。\n注意：当你处于'永久'结巴模式时无法使用此命令。\n \n可用结巴模式：\n1 轻度结巴\n2 普通结巴\n3 重度结巴\n4 完全结巴
+You can't use this command because you are in a 'permanent' stuttering mode
+你无法使用此命令，因为你正处于'永久'结巴模式
+Please include words to say after the stuttering mode.
+请在结巴模式后添加要说的话。
+: leaves chatroom, goes to store, shows hidden items.
+：离开聊天室，前往商店，显示隐藏物品。
+(sides): rolls a superdice.
+（面数）：掷一个超级骰子。
+The superdice command must be followed by a number between 2 and 999999999.
+superdice 命令后必须跟一个 2 到 999999999 之间的数字。
+{tmpname} rolls a superdice of {sides} sides. The result is {Result}.
+{tmpname} 掷了一个{sides}面的超级骰子。结果是 {Result}。
+(number): changes chat color theme.
+（编号）：更改聊天颜色主题。
+The theme command must be followed by a number between 0 and 3.
+theme 命令后必须跟一个 0 到 3 之间的数字。
+(options) shows/hides Credits and/or NPCs on login screen, when Themed mod used
+（选项）：在使用 Themed 模组时，在登录屏幕上显示/隐藏制作人员名单和/或 NPC
+The thmlogin command can be used only if Themed mod is enabled.\nIt must be followed by a number between 1 and 3.\n1 = Credits - 2 = NPCs - 3 = 1 + 2.
+thmlogin 命令仅在启用 Themed 模组时才可使用。\n它后必须跟一个 1 到 3 之间的数字。\n1 = 制作人员名单 - 2 = NPC - 3 = 1 + 2。
+{msg}Current status:
+{msg}当前状态：
+Settings for login screen modified!
+登录屏幕的设置已修改！
+(minutes): stays in the isolation cell.
+（分钟）：停留在隔离牢房中。
+The timercell command must be followed by a number higher than 0.
+timercell 命令后必须跟一个大于 0 的数字。
+{tmpname} gets grabbed by two maids and locked in a timer cell for {minutes} minutes.
+{tmpname} 被两个女仆抓住并锁进计时牢房{minutes}分钟。
+(title): chooses a new title (from A to K).
+（称号）：选择一个新的称号（从 A 到 D）。
+The title1 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nadmiral, agent, alien, angel, archbishop, archjudge,\nbaby, bishop, bondagebaby, bondagemaid, brat, bunny,\ncaptain, champion, clubslave, coldbloodhorse,\ncollegestudent, concubus, demon, diaperlover,\ndiaperprince, diaperprincess, doctor, doll, dragon,\ndrone, drow, duchess, duke.
+title1 命令后必须跟一个称号。\n它还将更改获得该称号所需的参数。\n你将能够在你的个人资料中查看变化。\n \n可用称号：\nadmiral（上将）、agent（特工）、alien（外星人）、\nangel（天使）、archbishop（大主教）、\narchjudge（审判长）、baby（宝贝）、bishop（主教）、\nbondagebaby（束缚宝贝）、bondagemaid（束缚女仆）、\nbrat（顽童）、bunny（兔子）、captain（队长）、\nchampion（冠军）、clubslave（俱乐部奴隶）、\ncoldbloodhorse（冷血马）、collegestudent（大学生）、\nconcubus（梦魔）、demon（恶魔）、\ndiaperlover（尿布爱好者）、diaperprince、\ndiaperprincess、doctor（医生）、\ndoll（人偶）、dragon（龙）、drone（无人机）、\ndrow（黑暗精灵）、duchess（女公爵）、duke（公爵)。
+(title): chooses a new title (from E to K).
+（称号）：选择一个新的称号（从 E 到 K）。
+The title2 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nelf, escapedpatient, farmhorse, femboy, flyingpegasus,\nfoal, foxy, freeuse, god, goddess, goodboy, goodgirl,\ngoodone, goodslave, goodslaveboy, goodslavegirl\nheadmaid, hotbloodhorse, houdini, incubus, \ninfiltrator, judge, kidnapper, king, kitten.
+title2 命令后必须跟一个称号。\n它还将更改获得该称号所需的参数。\n你将能够在你的个人资料中查看变化。\n \n可用称号：\nelf（精灵）、escapedpatient（逃跑病人）、\nfarmhorse（农场马）、femboy（伪娘）、\nflyingpegasus（飞马）、foal（小马驹）、foxy（狐狸）、\nfreeuse（公用）、god（神）、goddess（女神）、\ngoodboy（好男孩）、goodgirl（好女孩）、\ngoodone（好人）、goodslave（好奴隶）、\ngoodslaveboy（好男奴）、goodslavegirl（好女奴）、\nheadmaid（女仆长）、hotbloodhorse（热血马）、\nhoudini（胡迪尼）、incubus（梦魔）、\ninfiltrator（渗透者）、judge（法官）、\nkidnapper（绑架者）、king（国王）、kitten（小猫）。
+(title): chooses a new title (from L to Q).
+（称号）：选择一个新的称号（从 L 到 Q）。
+The title3 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nladyluck, liege, littleone, lordfortune, magician, magus,\nmaid, majesticalicorn, majesty, master, masterkidnapper,\nmatron, missy, mistree, mistress, mole, monster, nawashi,\nnurse, operative, oracle, patient, patriarch, patron,\npermanentpatient, pet, pixie, primaris, prince, princess,\npuddlemaker, puppy, queen.
+title3 命令后必须跟一个称号。\n它还将更改获得该称号所需的参数。\n你将能够在你的个人资料中查看变化。\n \n可用称号：\nladyluck（幸运女士）、liege（君主）、littleone（小可爱）、\nlordfortune（财富领主）、magician（魔术师）、\nmagus（法师）、maid（女仆）、\nmajesticalicorn（庄严独角兽）、majesty（陛下）、\nmaster（主人）、masterkidnapper（绑架头目）、\nmatron（女舍监）、missy（小姐）、mistree（树先生）、\nmistress（女主人）、mole（鼹鼠）、 monster、\nnawashi（绳师）、nurse（护士）、operative（特工）、\noracle（先知）、patient（病人）、patriarch（族长）、\npatron（赞助人）、permanentpatient（永久病人）、\npet（宠物）、pixie（小精灵）、primaris（首席）、\nprince（王子）、princess（公主）、puddlemaker、\npuppy（小狗）、queen（女王)。
+(title): chooses a new title (from R to Z).
+（称号）：选择一个新的称号（从 R 到 Z）。
+The title4 command must be followed by a title.\nIt will also change required parameters to get the title.\nYou will be able to check the changes in your profile.\n \nAvailable titles:\nsage, shapeshifter, shiningunicorn, sissy, sorcerer,\nsuccubus, superhero, superheroine, superspy, switch,\nthing, tomboy, turtle, vampire, warlock,\nwarmbloodhorse, wildmustang, witch, wizard, wolf.
+title4 命令后必须跟一个称号。\n它还将更改获得该称号所需的参数。\n你将能够在你的个人资料中查看变化。\n \n可用称号：\nsage（圣人）、shapeshifter、\nshiningunicorn（闪耀独角兽）、sissy（娘娘腔）、\nsorcerer（术士）、succubus（魅魔）、\nsuperhero（超级英雄）、superheroine（超级女英雄）、\nsuperspy（超级间谍）、switch（双向）、thing（东西）、\ntomboy（假小子）、turtle（海龟）、vampire（吸血鬼）、\nwarlock（男巫）、warmbloodhorse（温血马）、\nwildmustang（野马）、witch（女巫）、\nwizard（巫师）、 wolf。
+(target): removes all bindings, collar, harness, chastity, toys.
+（目标）：移除所有束缚、项圈、胸带、贞操带、玩具。
+Magical lasers make disappear all bindings and toys on {tgpname}'s body.
+魔法激光使{tgpname}身上的所有束缚和玩具消失。
+(membernumber): adds a player to the list allowing to teleport you.
+（成员编号）：将一个玩家添加到允许传送你的列表中。
+The tplistadd command must be followed by the member number of the player that you allow to teleport you.
+tplistadd 命令后必须跟一个玩家的成员编号，允许其传送你。
+(membernumber): removes a player from the list allowing to teleport you.
+（成员编号）：从允许传送你的列表中移除一个玩家。
+The tplistremove command must be followed by the member number of the player who is no more allowed to teleport you.
+tplistremove 命令后必须跟一个玩家的成员编号，该玩家将不再被允许传送你。
+displays the list of players allowed to teleport you.
+显示允许传送你的玩家列表。
+Tplist:
+传送列表：
+(visor) (deafening module) (chin strap): changes the settings of a worn Techno Helmet
+（面罩）（隔音模块）（下巴带）：更改穿戴的科技头盔的设置
+The trsee command must be followed by 3 numbers for visor, deafening module and chin strap.\n \nAvailable visors:\n0 No visor - 1 transparent\n2 light tinted - 3 heavy tinted\n4 opaque - 5 hypnotic\n \nAvailable deafening modules:\n0 no module\n1 light\n2 heavy\n3 noise-cancelling\n \nAvailable options for chin strap:\n0 No chin strap\n1 chin strap
+trsee 命令后必须跟 3 个数字，分别表示面罩、隔音模块和下巴带。\n \n可用面罩：\n0 无面罩 - 1 透明\n2 浅色染色 - 3 深色染色\n4 不透明 - 5 催眠\n \n可用隔音模块：\n0 无模块\n1 轻度\n2 重度\n3 降噪\n \n可用下巴带选项：\n0 无下巴带\n1 下巴带
+The settings of your Techno Helmet have been modified.
+你的科技头盔设置已修改。
+(category): displays the ULTRAbc commands.
+（类别）：显示 ULTRAbc 命令。
+The uhelp is organized into categories. Use <b>/uhelp</b> (category). List of categories:\n<b>admin</b> = commands only for chat room admins.\n<b>bondage</b> = commands related to bondage.\n<b>character</b> = commands related to your character.\n<b>chat</b> = commands with extra features in chat room.\n<b>clothing</b> = commands related to the clothes.\n<b>escape</b> = commands related to escape.\n<b>fun</b> = commands related to fun, pain and pleasure.\n<b>info</b> = commands that give infos.\n<b>maps</b> = commands related to hybrid and map rooms.\n<b>misc</b> = help, info, login and Ulist commands.\n<b>settings</b> = commands to customize ULTRAbc.\n<b>talking</b> = commands related to talking.\n<b>visual</b> = commands related to animations and background.\n<b>zones</b> = commands related to game zones.\nSeveral commands require or allow to specify a target. It can be a real name, a nickname or a member number.\nVisit also our <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> and join our <a href='https://steamcommunity.com/groups/ULTRAbc' target='_blank'>Steam community</a>
+uhelp 按类别组织。使用 <b>/uhelp</b> （类别）。类别列表：\n<b>admin</b> = 仅限聊天室管理员的命令。\n<b>bondage</b> = 与束缚相关的命令。\n<b>character</b> = 与你的角色相关的命令。\n<b>chat</b> = 在聊天室中具有额外功能的命令。\n<b>clothing</b> = 与服装相关的命令。\n<b>escape</b> = 与逃脱相关的命令。\n<b>fun</b> = 与乐趣、痛苦和愉悦相关的命令。\n<b>info</b> = commands that give infos.\n<b>maps</b> = 与混合房间和地图房间相关的命令。\n<b>misc</b> = 帮助、信息、登录和 Ulist 命令。\n<b>settings</b> = 自定义 ULTRAbc 的命令。\n<b>talking</b> = 与说话相关的命令。\n<b>visual</b> = 与动画和背景相关的命令。\n<b>zones</b> = 与游戏区域相关的命令。\n某些命令需要或允许指定目标。它可以是真名、昵称或成员编号。\n也请访问我们的 <a href='https://github.com/tetris245/ULTRAbc/wiki' target='_blank'>Wiki</a> 并加入我们的 <a href='https://steamcommunity.com/groups/ULTRAbc' target='_blank'>Steam 社区</a>
+Admin commands\n<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n<b>/bg1</b> (number) = uses a Bondage College/Teacher background as custom background. /bg1 to get the list.\n<b>/bg2</b> (number) = uses a Bondage Brawl background as standard background. /bg2 to get the list.
+管理员命令\n<b>/autokick</b> = 切换自动踢出 0 天账户。\n<b>/bg1</b> = 在选择屏幕中添加隐藏背景。\n<b>/bg1</b> （数字）= 使用 Bondage College/Teacher 背景作为自定义背景。使用 /bg1 获取列表。\n<b>/bg2</b> （数字）= 使用 Bondage Brawl 背景作为标准背景。使用 /bg2 获取列表。
+Bondage commands - * = more info when using\n<b>/autoheart</b> = puts/configures heart locks on yourself. *\n<b>/hint</b> (target) (hint) = adds or changes a hint for all current locks with password.\n<b>/lock</b> = adds locks on all lockable items. *\n<b>/outfit</b> = restores/saves/loads outfit (including restraints). *\n<b>/pet</b> (target) = becomes a fully restrained pet.\n<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n<b>/restrain</b> (target) = adds random restraints.\n<b>/setdevious</b> = configures all your current devious locks. *\n<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Value must be between 1 and 99.\n<b>/spin</b> (target) (option) = access to any (hidden) wheel. *\n<b>/weaken</b> = weakens all your skills for one hour.
+束缚命令 - * = 使用时获取更多信息\n<b>/autoheart</b> = puts/configures heart locks on yourself. *\n<b>/hint</b> （目标）（提示）= 为所有带密码的锁添加或更改提示。\n<b>/lock</b> = 为所有可锁定物品添加锁。*\n<b>/outfit</b> = 恢复/保存/加载服装（包括束缚）。*\n<b>/pet</b> （目标）= 成为完全受束缚的宠物。\n<b>/randomize</b> （目标）= 裸体 + 内衣 + 服装 + 束缚命令。\n<b>/restrain</b> （目标）= 添加随机束缚。\n<b>/setdevious</b> = configures all your current devious locks. *\n<b>/solidity</b> （数值）（目标）= 更改当前大多数束缚的坚固度。数值必须在 1 到 99 之间。\n<b>/spin</b> （目标）（选项）= 访问任何命运之轮，即使隐藏的。*\n<b>/weaken</b> = 削弱你所有的技能一小时。
+Character commands - * = more info when using\n<b>/cname</b> (custom name) = creates a custom name. *\n<b>/cowner</b> (member number) (owning days) (owner name) = sets a custom owner. *\n<b>/ctitle</b> (custom title) = creates a custom title. *\n<b>/difficulty</b> (number) = changes game difficulty. *\n<b>/maxstatistics</b> = gives max statistics.\n<b>/permission</b> (number) = changes your item permission *\n<b>/resetinventory</b> = erases your inventory.\n<b>/resetnickname</b> = erases your nickname.\n<b>/roleplay</b> (rolehere) = starts a role. *\n<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n<b>/title1</b> (newtitlehere) = chooses a new title (from A to D). *\n<b>/title2</b> (newtitlehere) = chooses a new title (from E to K). *\n<b>/title3</b> (newtitlehere) = chooses a new title (from L to Q). *\n<b>/title4</b> (newtitlehere) = chooses a new title (from R to Z). *
+角色命令 - * = 使用时获取更多信息\n<b>/cname</b> (custom name) = creates a custom name. *\n<b>/cowner</b> (member number) (owning days) (owner name) = sets a custom owner. *\n<b>/ctitle</b> (custom title) = creates a custom title. *\n<b>/difficulty</b> （数字）= 更改游戏难度。*\n<b>/maxstatistics</b> = 给予最大统计值。\n<b>/permission</b> （数字）= 更改你的物品权限 *\n<b>/resetinventory</b> = 清空你的物品栏。\n<b>/resetnickname</b> = 删除你的昵称。\n<b>/roleplay</b> （角色）= 开始扮演角色。*\n<b>/rolequit</b> （角色或俱乐部区域）= 停止扮演角色。*\n<b>/title1</b> （新称号）= 选择一个新的称号（从 A 到 D）。*\n<b>/title2</b> （新称号）= 选择一个新的称号（从 E 到 K）。*\n<b>/title3</b> （新称号）= 选择一个新的称号（从 L 到 Q）。*\n<b>/title4</b> （新称号）= 选择一个新的称号（从 R 到 Z）。*
+Chat commands - * = more info when using\n<b>/bio</b> (target) = sees profile of any player in chat room.\n<b>/font</b> (newfont) (size) = changes font in BC. *\n<b>/frlist</b> = gives access to friendlist in current lobby.\n<b>/search</b> = opens chat search in current lobby.\n<b>/theme</b> (number) = changes chat color theme. Number between 0 and 3.
+聊天命令 - * = 使用时获取更多信息\n<b>/bio</b> （目标）= 查看聊天室中任何玩家的资料。\n<b>/font</b> （新字体）（大小）= 更改 BC 中的字体。*\n<b>/frlist</b> = 在当前大厅中访问好友列表。\n<b>/search</b> = 在当前大厅中打开聊天搜索。\n<b>/theme</b> （数字）= 更改聊天颜色主题。数字在 0 到 3 之间。
+Clothing commands - * = more info when using\n<b>/clothes</b> (target) = changes clothes.\n<b>/naked</b> (target) = removes clothes.\n<b>/outfit</b> (options) = restores/saves/loads outfit (including restraints). *\n<b>/underwear</b> (target) = changes underwear.\n<b>/wexport</b> (target) = fully exports outfit in UBC/BCG format.\n<b>/wimport1</b> (target) = imports clothing + restraints in UBC/BCG format.\n<b>/wimport2</b> (target) = imports clothing + restraints + cosplay in UBC/BCG format.\n<b>/wimport3</b> (target) = fully imports outfit in UBC/BCG format.\n<b>/wrobe</b> (target) = fully opens target wardrobe.
+服装命令 - * = 使用时获取更多信息\n<b>/clothes</b> （目标）= 更改服装。\n<b>/naked</b> （目标）= 移除服装。\n<b>/outfit</b> （选项）= 恢复/保存/加载服装（包括束缚）。*\n<b>/underwear</b> （目标）= 更改内衣。\n<b>/wexport</b> (目标) = fully exports outfit in UBC/BCG format.\n<b>/wimport1</b> (目标) = imports clothing + restraints in UBC/BCG format.\n<b>/wimport2</b> (目标) = imports clothing + restraints + cosplay in UBC/BCG format.\n<b>/wimport3</b> (目标) = fully imports outfit in UBC/BCG format.\n<b>/wrobe</b> （目标）= 完全打开目标的衣柜。
+Escape commands - * = more info when using\n<b>/boost</b> = boosts all your skills for one hour.\n<b>/infolock</b> = gives extra info (code, password, time left) for lock used on worn item in selected slot.\n<b>/quit</b> (action) = leaves room.\n<b>/removecollar</b> = temporarily removes slave/owner collar.\n<b>/resetdifficulty</b> = resets difficulty, thereby quitting it.\n<b>/safeworditem</b> = removes specific item. *\n<b>/solidity</b> (value) (target) = changes the solidity of most current bindings. Use low values to escape! Value 1 to escape special restraints.\n<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. *\n<b>/untie</b> (target) = removes all bindings.
+逃脱命令 - * = 使用时获取更多信息\n<b>/boost</b> = 增强你所有的技能一小时。\n<b>/infolock</b> = 为选中槽位中穿戴物品的锁提供额外信息（密码、时间剩余）。\n<b>/quit</b> （动作）= 离开房间。\n<b>/removecollar</b> = 暂时移除奴隶/主人项圈。\n<b>/resetdifficulty</b> = 重置难度，从而退出。\n<b>/safeworditem</b> = 移除特定物品。*\n<b>/solidity</b> （数值）（目标）= 更改当前大多数束缚的坚固度。使用低值逃脱！使用数值 1 逃脱特殊束缚。\n<b>/totalrelease</b> （目标）= 移除所有束缚、项圈、胸带、贞操带、玩具。\n<b>/unlock</b> （目标）（锁类型）= 移除所有锁或仅移除指定类型的锁。*\n<b>/untie</b> （目标）= 移除所有束缚。
+Fun commands - * = more info when using\n** = scripts must be allowed in BC settings\n<b>/cum</b> = causes an orgasm (in all cases).\n<b>/horny</b> = sets your arousal level (in all cases). *\n<b>/invisible</b> (target) = goes or sends to invisible mode. **\n<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n<b>/sfchaste</b> (options) = changes settings of worn Futuristic Chastity Belt. *\n<b>/shock</b> (slot) (sensibility) (intensity) = changes mode of worn device shock in a specific slot. *\n<b>/sleep</b> (target) = uses the sleeping pill.\n<b>/slowleave</b> (action) = slowly leaves the room.\n<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n<b>/vibe</b> (slot) (mode) = changes mode of worn vibe in a specific slot. *\n<b>/visible</b> (target) = goes or sends back to visible mode. **
+乐趣命令 - * = 使用时获取更多信息\n** = 必须在 BC 设置中允许脚本\n<b>/cum</b> = 引起高潮（在所有情况下）。\n<b>/horny</b> = 设置你的兴奋度（在所有情况下）。*\n<b>/invisible</b> （目标）= 进入或发送到隐身模式。**\n<b>/poof</b> （动作）= 非常快速地离开俱乐部。动作可选（默认 = 噗的一声消失）。\n<b>/sfchaste</b> （选项）= 更改穿戴的未来贞操带设置。*\n<b>/shock</b> （槽位）（灵敏度）（强度）= 更改特定槽位中电击装置的模式。*\n<b>/sleep</b> （目标）= 使用安眠药。\n<b>/slowleave</b> （动作）= 缓慢离开房间。\n<b>/superdice</b> （面数）= 掷一个超级骰子。面数可以在 2 到 999999999 之间。\n<b>/vibe</b> （槽位）（模式）= 更改特定槽位中振动器的模式。*\n<b>/visible</b> （目标）= 返回或发送回可见模式。**
+Info commands - * = more info when using\n<b>/maproom</b> = gives infos about players in current map.\n<b>/mbsroom</b> = infos about MBS wheels in current room.\n<b>/mstatus</b> = displays current status of the moaner.\n<b>/uhelp</b> (category) = displays the ULTRAbc commands. *\n<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.\n<b>/uroom</b> = infos about UBC/Uwall users in current room.
+Info commands - * = more info when using\n<b>/maproom</b> = 提供当前地图中玩家的信息。\n<b>/mbsroom</b> = 当前房间中 MBS 轮子的信息。\n<b>/mstatus</b> = 显示 moaner 的当前状态。\n<b>/uhelp</b> （类别）= 显示 ULTRAbc 命令。*\n<b>/umods</b> (target) = infos about mods used by all players or a specific player in the current chat room.\n<b>/uroom</b> = 当前房间中 UBC/Uwall 用户的信息。
+Maps commands - * = more info when using\n<b>/mapfog</b> = toggles fog in current map room.\n<b>/mapforce</b> = forces map access in current normal room (only for yourself).\n<b>/mapkeys</b> (keynumber) (action) = finds or loses all keys or a specific key for current map room. *\n<b>/maproom</b> = infos about players in current map.\n<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n<b>/mapz</b> (target) = gives coordinates in the map.\n<b>/mapzoom</b> (value) = changes zoom level in map rooms.\n<b>/tplistadd</b> (membernumber) = adds a player to the list allowing to teleport you.\n<b>/tplistremove</b> (membernumber) = removes a player from the list allowing to teleport you.\n<b>/tplistshow</b> = displays the list of players allowed to teleport you.
+地图命令 - * = 使用时获取更多信息\n<b>/mapfog</b> = 切换当前地图房间的战争迷雾。\n<b>/mapforce</b> = 在当前普通房间中强制访问地图（仅对你自己）。\n<b>/mapkeys</b> （钥匙编号）（动作）= 为当前地图房间找到或失去所有钥匙或特定钥匙。*\n<b>/maproom</b> = 提供当前地图中玩家的信息。\n<b>/mapx</b> （X 坐标）= 更改你在地图中的 X 坐标。\n<b>/mapy</b> （Y 坐标）= 更改你在地图中的 Y 坐标。\n<b>/mapz</b> （目标）= 提供地图中的坐标。\n<b>/mapzoom</b> （数值）= 更改地图房间中的缩放级别。\n<b>/tplistadd</b> （成员编号）= 将一个玩家添加到允许传送你的列表中。\n<b>/tplistremove</b> （成员编号）= 从允许传送你的列表中移除一个玩家。\n<b>/tplistshow</b> = 显示允许传送你的玩家列表。
+Misc commands - * = more info when using\n<b>/callubc</b> = installs UBC GUI (to be used if it has failed during initialisation).\n<b>/login</b> (accountname) (password) = logs in a new account.\n<b>/pmenu</b> = direct access to Preferences screen.\n<b>/relog</b> = relogs.\n<b>/thmlogin</b> (options) shows/hides Credits and/or NPCs on login screen, when Themed mod used. *\n<b>/ulistadd</b> (membernumber) = adds a player to the list allowing to bypass Uwall.\n<b>/ulistremove</b> (membernumber) = removes a player from the list allowing to bypass Uwall.\n<b>/ulistshow</b> = displays list of players in your Ulist.\n<b>/xmenu</b> = direct access to Extensions screen.
+杂项命令 - * = 使用时获取更多信息\n<b>/callubc</b> = 安装 UBC GUI（如果初始化失败时使用）。\n<b>/login</b> （账户名）（密码）= 登录新账户。\n<b>/pmenu</b> = 直接进入偏好设置屏幕。\n<b>/relog</b> = 重新登录。\n<b>/thmlogin</b> （选项）在使用 Themed 模组时显示/隐藏登录屏幕上的制作人员名单和/或 NPC。*\n<b>/ulistadd</b> （成员编号）= 将一个玩家添加到允许绕过 Uwall 的列表中。\n<b>/ulistremove</b> （成员编号）= 从允许绕过 Uwall 的列表中移除一个玩家。\n<b>/ulistshow</b> = 显示你的 Ulist 中的玩家列表。\n<b>/xmenu</b> = 直接进入扩展屏幕。
+Settings commands\n<b>/bglist</b> displays the list of all available standard backgrounds.\n<b>/bgshow1</b> (bgnumber) = displays locally clickable link to a specific standard background and embedded picture.\n<b>/bgshow2</b> (bgnumber) = sends in chat link to a specific standard background. Clickable link and embedding possible if used with WCE feature.\n<b>/killpar</b> = kills UBC/Moaner parameters saved locally.\n<b>/message</b> (option) (message) = creates custom messages for specific command. *\n<b>/ulang</b> (language) = changes the UBC language (auto, en, cn, es).\n<b>/wtoggle</b> = toggles between UBC wardrobe and BC/BCX wardrobe.
+设置命令\n<b>/bglist</b> 显示所有可用标准背景的列表。\n<b>/bgshow1</b> （背景编号）= 在本地显示特定标准背景的可点击链接和嵌入图片。\n<b>/bgshow2</b> （背景编号）= 在聊天中发送特定标准背景的链接。如果使用 WCE 功能，可点击链接和嵌入。\n<b>/killpar</b> = 删除本地保存的 UBC/Moaner 参数。\n<b>/message</b> （选项）（消息）= 为特定命令创建自定义消息。*\n<b>/ulang</b> （语言）= 更改 UBC 的语言（auto、en、cn、es）。\n<b>/wtoggle</b> = toggles between UBC wardrobe and BC/BCX wardrobe.
+Talking commands - * = more info when using\n<b>/atalk</b> (stuffhere) = speaks once as an animal. *\n<b>/btalk</b> (stuffhere) = speaks once as a baby.\n<b>/gtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n<b>/murmur</b> (MemberNumber|Name|Nickname) (Message) = sends a whisper to a player. Error messages will not disappear.\n<b>/ping</b> (MemberNumber) (Message) = sends a beep to a player. Beep errors will not disappear.\n<b>/stalk</b> (stuttermode) (stuffhere) = speaks once in specified stuttering mode. *
+说话命令 - * = 使用时获取更多信息\n<b>/atalk</b> （话语）= 以动物身份说一次话。*\n<b>/btalk</b> （话语）= 以婴儿身份说一次话。\n<b>/gtalk</b> （说话模式）（话语）= 以指定的口塞说话模式说一次话。*\n<b>/murmur</b> （成员编号 | 姓名 | 昵称）（消息）= 向玩家发送耳语。错误消息不会消失。\n<b>/ping</b> （成员编号）（消息）= 向玩家发送提示音。提示音错误不会消失。\n<b>/stalk</b> （结巴模式）（话语）= 以指定的结巴模式说一次话。*
+Visual commands - * = more info when using\n<b>/allcolor</b> (colorcode) (category) (target) = changes color on current elements in specified category. *\n<b>/colorchanger</b> (anim) =  animation with color change. *\n<b>/itemcolor</b> (colorcode) = changes item color in selected slot. *\n<b>/layerset</b> (layernumber) (colorcode) = changes layer color of item in saved Item Slot. *\n<b>/layershow</b> = color info and saving of Item Slot.\n<b>/pose2</b> (pose) (target) = changes pose of any player. *\n<b>/trsee</b> (visor) (deafening module) (chin strap) = changes the settings of a worn Techno Helmet. * \n<b>/vrsee</b> (background) (mode) (game) = changes the settings of a worn VR Headset. *
+视觉命令 - * = 使用时获取更多信息\n<b>/allcolor</b> （颜色代码）（类别）（目标）= 更改指定类别中当前元素的颜色。*\n<b>/colorchanger</b> （动画）= 带有颜色变化的动画。*\n<b>/itemcolor</b> （颜色代码）= 更改选中槽位中物品的颜色。*\n<b>/layerset</b> （图层编号）（颜色代码）= 更改保存的物品槽位中物品的图层颜色。*\n<b>/layershow</b> = 物品槽位的颜色信息和保存。\n<b>/pose2</b> （姿势）（目标）= 更改任何玩家的姿势。*\n<b>/trsee</b> （面罩）（隔音模块）（下巴带）= 更改穿戴的科技头盔设置。*\n<b>/vrsee</b> （背景）（模式）（游戏）= 更改穿戴的 VR 头显设置。*
+Zones commands - * = more info when using\n<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n<b>/cgame</b> (zone) = launches a NPC Club Card Game. *\n<b>/chess</b> (difficulty) = starts chess game. *\n<b>/college</b> = enters college, bypasses requirements.\n<b>/game</b> (minigame) = launches a minigame. *\n<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n<b>/keydeposit</b> (hours) = keeps your keys safe in the vault. More than 7 days (168 hours) is possible. \n<b>/mission</b> (missiontype) = forces an infiltration mission. *\n<b>/npcprison</b> (minutes) = stays in NPC Pandora prison. More than 60 minutes is possible.\n<b>/prison</b> (minutes) = stays in online Pandora prison. More than 1 day (1440 minutes) is possible. *\n<b>/store</b> = Goes to store. Shows hidden items.\n<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.
+区域命令 - * = 使用时获取更多信息\n<b>/asylum</b> （分钟）= 进入精神病院，绕过要求。如果你是病人请指定分钟数。\n<b>/cgame</b> （区域）= 启动 NPC 俱乐部卡牌游戏。*\n<b>/chess</b> （难度）= 开始国际象棋游戏。*\n<b>/college</b> = 进入学院，绕过要求。\n<b>/game</b> （小游戏）= 启动一个小游戏。*\n<b>/ggts</b> （分钟）（等级）= 在精神病院进行 ggts 训练指定时间。等级必须在 1 到 6 之间。\n<b>/keydeposit</b> （小时）= 将你的钥匙安全存放在金库中。可以超过 7 天（168 小时）。\n<b>/mission</b> （任务类型）= 强制进行渗透任务。*\n<b>/npcprison</b> （分钟）= 停留在 NPC 潘多拉监狱。可以超过 60 分钟。\n<b>/prison</b> （分钟）= 停留在在线潘多拉监狱。可以超过 1 天（1440 分钟）。*\n<b>/store</b> = 前往商店。显示隐藏物品。\n<b>/timercell</b> （分钟）= 停留在隔离牢房。可以超过 60 分钟。
+(membernumber): adds a player to the list allowing to bypass Uwall.
+（成员编号）：将一个玩家添加到允许绕过 Uwall 的列表中。
+The ulistadd command must be followed by the member number of the player that you allow to bypass Uwall.
+ulistadd 命令后必须跟一个玩家的成员编号，允许其绕过 Uwall。
+(membernumber): removes a player from the list allowing to bypass Uwall.
+（成员编号）：从允许绕过 Uwall 的列表中移除一个玩家。
+The ulistremove command must be followed by the member number of the player who is no more allowed to bypass Uwall.
+ulistremove 命令后必须跟一个玩家的成员编号，该玩家将不再被允许绕过 Uwall。
+displays the list of players allowed to bypass Uwall.
+显示允许绕过 Uwall 的玩家列表。
+Ulist:
+Uwall 列表：
+(target): changes underwear.
+（目标）：更改内衣。
+Magical lasers put {tmpname} in random underwear.
+魔法激光让 {tmpname} 穿上随机的内衣。
+Magical lasers put {tgpname} in random underwear.
+魔法激光让 {tgpname} 穿上随机的内衣。
+(target) (locktype): removes all locks or only a specified type of lock on specified target.
+（目标）（锁类型）：移除指定目标上的所有锁或仅移除指定类型的锁。
+The unlock command:\n<b>/unlock</b> (target) (locktype).\nThe target always needs to be specified.\nAll locks of any type will be removed if you don't specify the lock type.\n \nThe lock types:\n1 Metal (default if wrong value entered) - 2 Exclusive\n3 Intricate - 4 High Security - 5 Pandora\n6 Mistress - 7 Lover - 8 Owner - 9 Five Minutes\n10 Combination - 11 Safeword - 12 Password\n13 Mistress Timer - 14 Lover Timer - 15 Owner Timer\n16 Timer Password - 17 Family - 18 Lewd Crest\n19 Devious - 20 Heart \n21 Best Friend - 22 BF Timer\nLocks 19 and 20 can be removed by everybody only if players use a modified version of the DOGS or AFC mod.
+unlock 命令：\n<b>/unlock</b> （目标）（锁类型）。\n必须始终指定目标。\n如果不指定锁类型，将移除所有类型的锁。\n \n锁类型：\n1 金属（默认，如果输入错误值）- 2 专属\n3 复杂 - 4 高安全性 - 5 潘多拉\n6 女主人 - 7 爱人 - 8 主人 - 9 五分钟\n10 组合 - 11 安全词 - 12 密码\n13 女主人计时器 - 14 爱人计时器 - 15 主人计时器\n16 计时器密码 - 17 家族 - 18 淫纹\n19 邪恶 - 20 心\n21 好友 - 22 好友计时器\n锁 19 和 20 仅在使用修改版本的 DOGS 或 AFC 模组时才能移除。
+Magical lasers make disappear locks on {tgpname}'s body.
+魔法激光使{tgpname}身上的锁消失。
+(target): removes all bindings.
+（目标）：移除所有束缚。
+Magical lasers make disappear the bindings on {tmpname}'s body.
+魔法激光使{tmpname}身上的束缚消失。
+Magical lasers make disappear the bindings on {tgpname}'s body.
+魔法激光使{tgpname}身上的束缚消失。
+: gives infos about UBC users and Uwall protection in current chat room.
+：提供当前聊天室中 UBC 用户和 Uwall 保护的信息。
+: (slot) (mode): changes mode of worn vibe in a specific slot.
+：（槽位）（模式）：更改特定槽位中穿戴的振动器的模式。
+The vibe command must be followed by two numbers:\n- a number for the concerned slot:\n0 = Boots - 1 = Breast - 2 = Butt - 3 = Clitoris/Gland\n4 = Devices - 5 = Feet - 6 = Nipples\n7 = Nipples Piercings - 8 = Pelvis - 9 = Vulva/Penis\n \n- a number for the mode of the vibe in this slot:\n0 = Off - 1 = Low - 2 = Medium - 3 = High - 4 = Maximum\n5 = Random - 6 = Escalate - 7 = Tease - 8 = Deny - 9 = Edge\nNote that modes 5 to 9 are not available on some vibes!\nFor Heavy Duty Belt, Sci-Fi Pleasure Panties and the Glass Jar: 5, 6 or 7 = Allow orgasm\nThis command does not support the Futuristic Training Belt and the Lewd Crest.
+vibe 命令后必须跟两个数字：\n- 第一个数字表示相关槽位：\n0 = 靴子 - 1 = 胸部 - 2 = 臀部 - 3 = 阴蒂/腺体\n4 = 装置 - 5 = 脚 - 6 = 乳头\n7 = 乳头穿孔 - 8 = 骨盆 - 9 = 阴部/阴茎\n \n- 第二个数字表示该槽位中振动器的模式：\n0 = 关闭 - 1 = 低 - 2 = 中 - 3 = 高 - 4 = 最大\n5 = 随机 - 6 = 升级 - 7 = 挑逗 - 8 = 拒绝 - 9 = 边缘\n注意：某些振动器不支持模式 5 到 9！\n对于重型腰带、科幻乐趣内裤和玻璃罐：5、6 或 7 = 允许高潮\n此命令不支持未来训练腰带和淫纹。
+: (target): goes back or sends back to visible mode.
+：（目标）：返回或发送回可见模式。
+{tmpname} suddenly is visible for everybody.
+{tmpname} 突然对所有人可见了。
+To use the visible command on other players, they need first to allow Scripts in BC settings.
+要对其他玩家使用 visible 命令，他们首先需要在 BC 设置中允许脚本。
+{tgpname} suddenly is visible for everybody.
+{tgpname} 突然对所有人可见了。
+(background) (mode) (game): changes the settings of a worn VR Headset.
+（背景）（模式）（游戏）：更改穿戴的 VR 头显的设置。
+The vrsee command must be followed by 3 numbers for background, mode and game.\n \nAvailable backgrounds:\n0 No background - 1 Virtual World\n2 Dungeon - 3 High-Tech\n4 Ancient Ruins - 5 Trance\n \nAvailable modes:\n0 Passthrough\n1 VR off\n2 VR on\n3 VR on + Hide restraints\n \nAvailable games:\n0 No game\n1 Kinky Dungeon
+vrsee 命令后必须跟 3 个数字，分别表示背景、模式和游戏。\n \n可用背景：\n0 无背景 - 1 虚拟世界\n2 地牢 - 3 高科技\n4 古代遗迹 - 5 催眠\n \n可用模式：\n0 透视\n1 VR 关闭\n2 VR 开启\n3 VR 开启 + 隐藏束缚\n \n可用游戏：\n0 无游戏\n1 淫性地牢
+The settings of your VR Headset have been modified.
+你的 VR 头显设置已修改。
+: weakens all your skills for one hour.
+：削弱你所有的技能一小时。
+You feel all your skills weakened. Changes can be seen in information panel.
+你感到所有的技能都被削弱了。变化可以在信息面板中看到。
+(target): fully exports outfit in UBC/BCG format.
+(目标): fully exports outfit in UBC/BCG format.
+(target): imports clothing + restraints in UBC/BCG format.
+(目标): imports clothing + restraints in UBC/BCG format.
+(target): imports clothing + restraints + cosplay in UBC/BCG format.
+(目标): imports clothing + restraints + cosplay in UBC/BCG format.
+(target): fully imports outfit in UBC/BCG format.
+(目标): fully imports outfit in UBC/BCG format.
+(target): fully opens target wardrobe.
+（目标）：完全打开目标的衣柜。
+: direct access to Extensions menu.
+：直接进入扩展菜单。
+(language): changes the UBC language. auto = same language as BC.
+（语言）：更改 UBC 的语言。auto = 与 BC 相同的语言。
+Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
+使用 <b>/ulang</b> （语言）更改 UBC 的语言：\nauto = 与 BC 相同的语言（如果 UBC 没有 BC 使用的语言，则为英语）\nen = 英语 - cn = 中文 - es = 西班牙语\n当前 UBC 语言：{language}
+UBC language: {language}
+UBC 语言：{language}
