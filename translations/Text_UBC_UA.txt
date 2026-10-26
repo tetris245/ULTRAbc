@@ -3,5 +3,7 @@ UBC follows BC
 UBC слідує за BC
 When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself.
 Якщо позначено, UBC використовує мову BC. Зніми позначку, щоб самостійно вибрати мову UBC.
-UBC has no {language} translation yet, so it uses English or 中文: choose one in the UBC list.
-UBC ще не має перекладу мовою «{language}», тому використовує English або 中文: вибери одну у списку UBC.
+UBC has no {language} translation yet, so it uses English or 中文: choose one on the left.
+UBC ще не має перекладу мовою «{language}», тому використовує English або 中文: вибери одну ліворуч.
+UBC language
+Мова UBC

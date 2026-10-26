@@ -267,14 +267,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-    //UBC language picker under the BC one on the login screen, with a "sync with BC" checkbox (ticked by default):
+    //UBC language screen, opened with the UBC button on the login screen (made like the BC cheats screen).
+    //It has a "UBC follows BC" checkbox (ticked by default):
     // - ticked: the globe choice follows BC, or Spanish. When UBC does not have the BC language, the globe
     //   choice can be English or Chinese, and that choice is kept for those BC languages while staying synced.
     // - unticked: English, Chinese or Spanish, whatever the BC language is
-    const UBC_LOGIN_LANGUAGE_ID = "ubc-login-language";
-    const UBC_LOGIN_LANGUAGE_SYNC_ID = "ubc-login-language-sync";
+    //The screen speaks the BC language (all BC languages have its texts), or Spanish when UBC is in Spanish.
     const UBC_LANGUAGE_NAMES = { EN: "English", CN: "中文", ES: "Español" };
-    const UBC_LANGUAGE_FLAGS = { AUTO: "\u{1F310}", EN: "\u{1F1EC}\u{1F1E7}", CN: "\u{1F1E8}\u{1F1F3}", ES: "\u{1F1EA}\u{1F1F8}" };
+    const UBC_LOGIN_BUTTON = { X: 1910, Y: 810, W: 90, H: 90 };
+    window.UBCLanguageBackground = "Sheet";
 
     //Spanish can be chosen with or without sync, so the checkbox is remembered on its own (UBCLanguageSync = "0" when unticked)
     function ubcLanguageSynced() {
@@ -288,31 +289,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-    //Picker values: EN, CN, ES, AUTO (synced, BC language that UBC has) or AUTO-EN / AUTO-CN (synced, BC language that UBC lacks)
-    function ubcLoginLanguageValues() {
+    //Choices: EN, CN, ES, AUTO (synced, BC language that UBC has) or AUTO-EN / AUTO-CN (synced, BC language that UBC lacks)
+    function ubcLanguageChoices() {
         if (!ubcLanguageSynced()) return UBC_LANGUAGES;
         return UBC_LANGUAGES_FROM_BC[TranslationLanguage] ? ["AUTO", "ES"] : ["AUTO-EN", "AUTO-CN", "ES"];
     }
 
-    function ubcLoginLanguageLabel(value) {
-        if (value === "AUTO") value = "AUTO-" + (UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? ubcLanguageFallback());
-        const [flag, language] = value.startsWith("AUTO-") ? [UBC_LANGUAGE_FLAGS.AUTO, value.slice(5)] : [UBC_LANGUAGE_FLAGS[value], value];
-        return `${flag} UBC: ${UBC_LANGUAGE_NAMES[language]}`;
+    function ubcLanguageChoiceLanguage(value) {
+        if (value === "AUTO") return UBC_LANGUAGES_FROM_BC[TranslationLanguage] ?? ubcLanguageFallback();
+        return value.startsWith("AUTO-") ? value.slice(5) : value;
     }
 
-    function ubcLoginLanguageOptions(picker) {
+    function ubcLanguageSelectedChoice() {
         const current = ubcCurrentLanguageSetting();
-        const selected = current === "AUTO" && !UBC_LANGUAGES_FROM_BC[TranslationLanguage] ? "AUTO-" + ubcLanguageFallback() : current;
-        picker.replaceChildren(...ubcLoginLanguageValues().map(value => {
-            const option = document.createElement("option");
-            option.value = value;
-            option.textContent = ubcLoginLanguageLabel(value);
-            option.selected = value === selected;
-            return option;
-        }));
+        return current === "AUTO" && !UBC_LANGUAGES_FROM_BC[TranslationLanguage] ? "AUTO-" + ubcLanguageFallback() : current;
     }
 
-    function ubcLoginLanguageChange(value) {
+    function ubcLanguageChange(value) {
         if (value.startsWith("AUTO-")) {
             try {
                 localStorage.setItem("UBCLanguageFallback", value.slice(5));
@@ -322,61 +315,138 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         UBCSetLanguage(value);
     }
 
-    function ubcLoginLanguageSyncChange(synced) {
+    function ubcLanguageSyncChange(synced) {
         try {
             localStorage.setItem("UBCLanguageSync", synced ? "1" : "0");
         } catch {}
         const current = ubcCurrentLanguageSetting();
         if (synced && current !== "ES") UBCSetLanguage("AUTO");
         if (!synced && current === "AUTO") UBCSetLanguage(ubcWantedLanguage());
-        ubcLoginLanguageOptions(document.getElementById(UBC_LOGIN_LANGUAGE_ID));
     }
 
-    //Called on each LoginRun: creates the picker once, then keeps the globe label (BC language), size and font (flags) up to date
-    function ubcLoginLanguagePicker() {
-        const footer = document.getElementById(LoginIDs.footer);
-        const bcPicker = document.getElementById(LoginIDs.language);
-        if (!footer || !bcPicker) return;
-        let picker = document.getElementById(UBC_LOGIN_LANGUAGE_ID);
-        let sync = document.getElementById(UBC_LOGIN_LANGUAGE_SYNC_ID);
-        if (!picker) {
-            picker = ElementCreateDropdown(UBC_LOGIN_LANGUAGE_ID, [], function() {
-                ubcLoginLanguageChange(this.value);
-            });
-            ubcLoginLanguageOptions(picker);
-            sync = document.createElement("label");
-            sync.id = UBC_LOGIN_LANGUAGE_SYNC_ID;
-            sync.style.cssText = "display: flex; align-items: center; gap: 0.4em; color: white; cursor: pointer; user-select: none;";
-            const box = document.createElement("input");
-            box.type = "checkbox";
-            box.checked = ubcLanguageSynced();
-            box.addEventListener("change", () => ubcLoginLanguageSyncChange(box.checked));
-            sync.append(box, document.createElement("span"));
-            footer.append(picker, sync);
-        }
-        //The BC language may have changed: other choices, or another language for the globe one
-        if ([...picker.options].map(option => option.value).join() !== ubcLoginLanguageValues().join()) ubcLoginLanguageOptions(picker);
-        const auto = picker.querySelector('option[value="AUTO"]');
-        if (auto) {
-            const label = ubcLoginLanguageLabel("AUTO");
-            if (auto.textContent !== label) auto.textContent = label;
-        }
-        //The checkbox speaks the BC language (all BC languages have these texts), or Spanish when UBC is in Spanish.
-        //Its tooltip explains it, and says why UBC cannot follow a BC language it does not have yet (marked with "ⓘ").
-        const missing = !UBC_LANGUAGES_FROM_BC[TranslationLanguage];
-        const syncLanguage = ubcTextLanguage === "ES" ? "ES" : TranslationLanguage;
-        const syncText = UBCTIn(syncLanguage, "UbcLanguageSync") + (missing ? " ⓘ" : "");
-        const syncHint = missing
-            ? UBCTIn(syncLanguage, "UbcLanguageMissing", { language: TranslationGetLanguageName(TranslationLanguage) })
-            : UBCTIn(syncLanguage, "UbcLanguageSyncHint");
-        if (sync.lastChild.textContent !== syncText) sync.lastChild.textContent = syncText;
-        if (sync.title !== syncHint) sync.title = syncHint;
-        const bcStyle = getComputedStyle(bcPicker);
-        picker.style.width = "auto";
-        picker.style.minWidth = bcStyle.width;
-        picker.style.fontFamily = bcStyle.fontFamily;
-        sync.style.fontSize = bcStyle.fontSize;
+    function ubcLanguageScreenLanguage() {
+        return ubcTextLanguage === "ES" ? "ES" : TranslationLanguage;
     }
+
+    //BC has flags for its own languages; the Spanish one is drawn (red, yellow, red)
+    function ubcDrawLanguageFlag(language, x, y, w, h) {
+        if (language === "ES") {
+            MainCanvas.fillStyle = "#AA151B";
+            MainCanvas.fillRect(x, y, w, h);
+            MainCanvas.fillStyle = "#F1BF00";
+            MainCanvas.fillRect(x, y + h / 4, w, h / 2);
+        } else DrawImageResize(`Icons/Languages/${language}.png`, x, y, w, h);
+    }
+
+    //Keep the right-hand column above Themed, and move up if another addon uses that space.
+    function ubcLoginLanguageButtonBounds() {
+        const rect = MainCanvas.canvas.getBoundingClientRect();
+        const bounds = { ...UBC_LOGIN_BUTTON };
+        if (!rect.width || !rect.height) return bounds;
+        const obstacles = [...document.querySelectorAll('button, [role="button"], #ebc-tab')]
+            .filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== "hidden")
+            .map(element => element.getBoundingClientRect());
+        while (bounds.Y >= 110) {
+            const left = rect.left + bounds.X * rect.width / 2000;
+            const top = rect.top + bounds.Y * rect.height / 1000;
+            const right = left + bounds.W * rect.width / 2000;
+            const bottom = top + bounds.H * rect.height / 1000;
+            if (!obstacles.some(r => left < r.right && right > r.left && top < r.bottom && bottom > r.top)) break;
+            bounds.Y -= 100;
+        }
+        return bounds;
+    }
+
+    //UBC button on the login screen, above the Themed one: the flag of the current UBC language
+    function ubcDrawLoginLanguageButton() {
+        const { X, Y, W, H } = ubcLoginLanguageButtonBounds();
+        DrawButton(X, Y, W, H, "", "White", "", UBCTIn(ubcLanguageScreenLanguage(), "UbcLanguageTitle"));
+        ubcDrawLanguageFlag(ubcTextLanguage, X + 15, Y + 12, 60, 40);
+        MainCanvas.textAlign = "center";
+        DrawText("UBC", X + W / 2, Y + 72, "Black", "Gray");
+    }
+
+    function ubcOpenLanguageScreen() {
+        //The screen has no CSV of its own: give BC an empty text cache instead of a failing download
+        const textFile = "Screens/Character/UBCLanguage/Text_UBCLanguage.csv";
+        if (!TextAllScreenCache.has(textFile)) TextAllScreenCache.set(textFile, {
+            loadedPromise: Promise.resolve(), get: () => "", getOptional: () => undefined, fileName: () => "Text_UBCLanguage.csv", onRebuild: () => {},
+        });
+        return CommonSetScreen("Character", "UBCLanguage");
+    }
+
+    const UBC_BC_LANGUAGES = ["EN", "CN", "TW", "DE", "FR", "RU", "UA"];
+
+    window.UBCLanguageRun = function() {
+        const lang = ubcLanguageScreenLanguage();
+        const synced = ubcLanguageSynced();
+        const selected = ubcLanguageSelectedChoice();
+        MainCanvas.fillStyle = "#EEF2F8";
+        MainCanvas.fillRect(60, 115, 1810, 790);
+        MainCanvas.fillStyle = "#FFFFFF";
+        MainCanvas.fillRect(90, 145, 825, 730);
+        MainCanvas.fillRect(945, 145, 895, 730);
+        MainCanvas.fillStyle = "#B54476";
+        MainCanvas.fillRect(90, 145, 825, 8);
+        MainCanvas.fillStyle = "#4469A1";
+        MainCanvas.fillRect(945, 145, 895, 8);
+        MainCanvas.textAlign = "center";
+        DrawText(UBCTIn(lang, "UbcLanguageTitle"), 960, 65, "#24334B", "Gray");
+        DrawText("ULTRAbc (UBC)", 500, 205, "#93345F", "Gray");
+        DrawText("Bondage Club (BC)", 1390, 205, "#345888", "Gray");
+        DrawButton(130, 265, 64, 64, "", synced ? "#E8F5ED" : "White", synced ? "Icons/Checked.png" : "");
+        MainCanvas.textAlign = "left";
+        DrawTextFit(UBCTIn(lang, "UbcLanguageSync"), 225, 297, 640, "#24334B", "Gray");
+        ubcLanguageChoices().forEach((value, i) => {
+            const y = 535 + i * 100;
+            const language = ubcLanguageChoiceLanguage(value);
+            DrawButton(130, y, 745, 80, "", value === selected ? "#DDEFE6" : "#F3F5F9");
+            ubcDrawLanguageFlag(language, 155, y + 20, 72, 48);
+            MainCanvas.textAlign = "left";
+            DrawText((value.startsWith("AUTO") ? "🌐 " : "") + UBC_LANGUAGE_NAMES[language], 255, y + 45, "#24334B", "Gray");
+            if (value === selected) DrawImageResize("Icons/Checked.png", 805, y + 25, 40, 40);
+        });
+        const hint = synced && !UBC_LANGUAGES_FROM_BC[TranslationLanguage]
+            ? UBCTIn(lang, "UbcLanguageMissing", { language: TranslationGetLanguageName(TranslationLanguage) })
+            : UBCTIn(lang, "UbcLanguageSyncHint");
+        MainCanvas.textAlign = "center";
+        DrawTextWrap(hint, 130, 345, 745, 160, "#34445E", null, 4, 20);
+        UBC_BC_LANGUAGES.forEach((language, i) => {
+            const x = 985 + (i % 3) * 275;
+            const y = 315 + Math.floor(i / 3) * 130;
+            DrawButton(x, y, 255, 85, "", language === TranslationLanguage ? "#DCE8FA" : "#F3F5F9");
+            ubcDrawLanguageFlag(language, x + 12, y + 23, 54, 36);
+            DrawTextFit(TranslationGetLanguageName(language), x + 158, y + 43, 170, "#24334B", "Gray");
+        });
+        MainCanvas.textAlign = "center";
+        DrawButton(1815, 15, 90, 90, "", "White", "Icons/Exit.png");
+    };
+
+    window.UBCLanguageClick = function() {
+        if (MouseIn(1815, 15, 90, 90)) return UBCLanguageExit();
+        if (MouseIn(130, 265, 745, 64)) return ubcLanguageSyncChange(!ubcLanguageSynced());
+        ubcLanguageChoices().forEach((value, i) => {
+            if (MouseIn(130, 535 + i * 100, 745, 80)) ubcLanguageChange(value);
+        });
+        UBC_BC_LANGUAGES.forEach((language, i) => {
+            if (!MouseIn(985 + (i % 3) * 275, 315 + Math.floor(i / 3) * 130, 255, 85)) return;
+            TranslationSwitchLanguage(language);
+            ubcTextSwitch(ubcWantedLanguage());
+            TextLoad();
+            ActivityDictionaryLoad();
+            CommonPromiseCatch(AssetLoadDescription("Female3DCG"));
+        });
+    };
+
+    window.UBCLanguageKeyDown = function(event) {
+        if (!CommonKey.IsPressed(event, "Escape")) return false;
+        UBCLanguageExit();
+        return true;
+    };
+
+    window.UBCLanguageExit = function() {
+        return CommonSetScreen("Character", "Login");
+    };
 
     await ubcTextLoad();
     ubcLoadAccountLanguage();
@@ -5099,9 +5169,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Login
+    //A delayed BC text rebuild must not recreate login labels on the language screen.
+    modApi.hookFunction('LoginReloadLanguageText', 4, (args, next) => {
+        if (CurrentScreen === "UBCLanguage") return;
+        return next(args);
+    });
     modApi.hookFunction('LoginRun', 4, (args, next) => {
-        ubcLoginLanguagePicker();
         DrawButton(750, 145, 500, 60, UBCT("UltrabcReady", { UBCver }), "Pink", "", "");
+        const ret = next(args);
+        ubcDrawLoginLanguageButton();
+        return ret;
+    });
+
+    modApi.hookFunction('LoginClick', 4, (args, next) => {
+        const { X, Y, W, H } = ubcLoginLanguageButtonBounds();
+        if (MouseIn(X, Y, W, H)) return ubcOpenLanguageScreen();
         return next(args);
     });
 

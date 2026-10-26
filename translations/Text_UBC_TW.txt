@@ -3,5 +3,7 @@ UBC follows BC
 UBC 跟隨 BC
 When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself.
 勾選後，UBC 使用 BC 的語言（UBC 目前只有簡體中文翻譯）。取消勾選可自行選擇 UBC 的語言。
-UBC has no {language} translation yet, so it uses English or 中文: choose one in the UBC list.
-UBC 還沒有{language}翻譯，因此使用 English 或中文：請在 UBC 清單中選擇一個。
+UBC has no {language} translation yet, so it uses English or 中文: choose one on the left.
+UBC 還沒有{language}翻譯，因此使用 English 或中文：請在左邊選擇一個。
+UBC language
+UBC 語言

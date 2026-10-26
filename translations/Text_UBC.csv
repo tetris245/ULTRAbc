@@ -736,4 +736,5 @@ UlangUsage,Use <b>/ulang</b> (language) to change the UBC language:\nauto = same
 UlangChanged,UBC language: {language}
 UbcLanguageSync,UBC follows BC
 UbcLanguageSyncHint,"When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself."
-UbcLanguageMissing,"UBC has no {language} translation yet, so it uses English or 中文: choose one in the UBC list."
+UbcLanguageMissing,"UBC has no {language} translation yet, so it uses English or 中文: choose one on the left."
+UbcLanguageTitle,UBC language

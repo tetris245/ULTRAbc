@@ -17,7 +17,7 @@ UBC is one script for all languages. Its texts are in the `translations` folder,
  - `Text_UBC.csv`: every text in English, as `key,text`
  - `Text_UBC_CN.txt`, `Text_UBC_ES.txt`: pairs of lines, the English text and then its translation (a missing line falls back to English)
 
-UBC uses the language of BC (Chinese for 中文 and 繁體中文, English for languages UBC does not have) and follows it when you change it in game. On the login screen, UBC has its own picker under the BC one, with a "UBC follows BC" checkbox. In game, use `/ulang es`, `/ulang cn` or `/ulang en` to pick a UBC language for your account, and `/ulang auto` to follow BC again. `\n` in a text is a line break and `{name}` parts are filled in by UBC.
+UBC uses the language of BC (Chinese for 中文 and 繁體中文, English for languages UBC does not have) and follows it when you change it in game. On the login screen, click the UBC flag button at the right edge to open language settings. The UBC card has a "UBC follows BC" checkbox, manual English/Chinese/Spanish choices, and an English/Chinese fallback for BC languages UBC does not have. The BC card changes the main game language directly. Exit or Escape returns to Login. In game, use `/ulang es`, `/ulang cn` or `/ulang en` to pick a UBC language for your account, and `/ulang auto` to follow BC again. `\n` in a text is a line break and `{name}` parts are filled in by UBC.
 
 `Text_UBC_DE.txt`, `Text_UBC_FR.txt`, `Text_UBC_RU.txt`, `Text_UBC_UA.txt` and `Text_UBC_TW.txt` only hold the few login-screen texts for now, so every BC language can show them. To add a full language, fill its file (or copy `Text_UBC_ES.txt`), translate the second line of each pair and add the language code to `UBC_LANGUAGES` in `ULTRAbc.js`.
 
