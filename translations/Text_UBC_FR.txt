@@ -1,0 +1,9 @@
+### UBC in Français: only the login-screen texts so far. Translate the rest and add "FR" to UBC_LANGUAGES in ULTRAbc.js to make it a full UBC language.
+UBC follows BC
+UBC suit BC
+When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself.
+Coché, UBC utilise la langue de BC. Décoche pour choisir toi-même la langue de UBC.
+UBC has no {language} translation yet, so it uses English or 中文: choose one on the left.
+UBC n'a pas encore de traduction dans la langue « {language} », il utilise donc English ou 中文 : choisis-en une à gauche.
+UBC language
+Langue de UBC
