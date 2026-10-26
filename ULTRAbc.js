@@ -2478,10 +2478,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ElementCreateInput(identifier, "text", Player.UBC.ubcSettings[setting], "100");
             }
 
-            //Moves the element to the right when its label is longer than the space it was given (translated labels)
+            //Keep every checkbox on this page in one column, beyond its longest translated label.
+            //Drawing and hit testing share this calculation, including disabled checkboxes.
             function menuElementXModifier(element) {
-                const labelEnd = 500 + MainCanvas.measureText(element.text).width + 20;
-                return Math.max(element.xModifier, labelEnd - MENU_ELEMENT_X_OFFSET);
+                const labelModifier = item => Math.max(item.xModifier,
+                    500 + MainCanvas.measureText(item.text).width + 20 - MENU_ELEMENT_X_OFFSET);
+                if (element.type !== "Checkbox") return labelModifier(element);
+                return menuElements[UBCPreferenceSubscreen]
+                    .filter(item => item.type === "Checkbox")
+                    .reduce((modifier, item) => Math.max(modifier, labelModifier(item)), labelModifier(element));
             }
 
             /*function backNextWithBF(setting, backNextOptions) {
