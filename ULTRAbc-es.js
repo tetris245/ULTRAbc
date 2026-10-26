@@ -8656,7 +8656,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tunderwear = data.tunderwear;
         Tunlock = data.tunlock;
         Tuntie = data.tuntie;
-        Tvisible = data.visible;
+        Tvisible = data.tvisible;
         Underwear = data.underwear;
         Unlock = data.unlock;
         Untie = data.untie;
