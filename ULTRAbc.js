@@ -369,9 +369,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function ubcOpenLanguageScreen() {
         //The screen has no CSV of its own: give BC an empty text cache instead of a failing download
         const textFile = "Screens/Character/UBCLanguage/Text_UBCLanguage.csv";
-        if (!TextAllScreenCache.has(textFile)) TextAllScreenCache.set(textFile, {
-            loadedPromise: Promise.resolve(), get: () => "", getOptional: () => undefined, fileName: () => "Text_UBCLanguage.csv", onRebuild: () => {},
-        });
+        if (!TextAllScreenCache.has(textFile)) {
+            class LanguageTextCache extends TextCache {
+                fetchCsv() { return Promise.resolve([]); }
+            }
+            TextAllScreenCache.set(textFile, new LanguageTextCache(textFile));
+        }
         return CommonSetScreen("Character", "UBCLanguage");
     }
 
@@ -448,7 +451,83 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return CommonSetScreen("Character", "Login");
     };
 
+    //Older BC builds can finish a translation after a newer language was selected.
+    //Probe a disposable cache first; fixed or unfamiliar BC implementations are left alone.
+    async function ubcProtectBCTextCache() {
+        if (typeof TextCache !== "function") return false;
+        const nativeBuild = TextCache.prototype.buildCache;
+        if (typeof nativeBuild !== "function") return false;
+        const source = Function.prototype.toString.call(nativeBuild);
+        if (!source.includes("this.translate(lines)") || !source.includes("this.cacheLines(lines)")
+            || !source.includes("this.rebuildListeners.forEach")) return false;
+
+        try {
+            const releases = [];
+            class Probe extends TextCache {
+                fetchCsv() {
+                    if (releases.length >= 2) return Promise.resolve([["UBCProbe", "new"]]);
+                    return new Promise(resolve => releases.push(resolve));
+                }
+                async translate(lines) { return lines; }
+            }
+            const probe = new Probe("UBC-language-probe");
+            const first = probe.loadedPromise;
+            const second = probe.buildCache();
+            if (releases.length !== 2) return false;
+            releases[1]([["UBCProbe", "new"]]);
+            await second;
+            releases[0]([["UBCProbe", "old"]]);
+            await first;
+            if (probe.cache.UBCProbe !== "old" || TextCache.prototype.buildCache !== nativeBuild) return false;
+        } catch (error) {
+            console.warn("ULTRAbc: skipped the BC text-cache compatibility guard", error);
+            return false;
+        }
+
+        const generations = new WeakMap();
+        TextCache.prototype.buildCache = async function() {
+            if (!this.path) return this;
+            const generation = (generations.get(this) ?? 0) + 1;
+            generations.set(this, generation);
+            const language = TranslationLanguage;
+            this.language = language;
+            try {
+                const lines = await this.fetchCsv();
+                if (generation !== generations.get(this)) return this;
+                if (language !== TranslationLanguage) {
+                    this.loadedPromise = this.buildCache();
+                    return this.loadedPromise;
+                }
+                const translated = await this.translate(lines, language);
+                if (generation !== generations.get(this)) return this;
+                if (language !== TranslationLanguage || this.language !== language) {
+                    this.loadedPromise = this.buildCache();
+                    return this.loadedPromise;
+                }
+                this.cacheLines(translated);
+                this.rebuildListeners.forEach(listener => listener(this));
+            } catch (error) {
+                console.error(error);
+            }
+            return this;
+        };
+        return true;
+    }
+
+    //Refresh before callers await loadedPromise, rather than waiting for the next TextGet/frame.
+    //A fixed BC already starts this build, so the hook returns its cache without doing extra work.
+    function ubcRefreshBCTextCache(args, next) {
+        const cache = next(args);
+        if (cache && cache.language !== TranslationLanguage && typeof cache.buildCache === "function") {
+            cache.loadedPromise = cache.buildCache();
+        }
+        return cache;
+    }
+
+    await ubcProtectBCTextCache();
+
     await ubcTextLoad();
+    modApi.hookFunction("TextPrefetchFile", 4, ubcRefreshBCTextCache);
     ubcLoadAccountLanguage();
 
     let ini = 0;
@@ -2661,7 +2740,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 //if (MouseIn(1500, 860, 300, 90)) resetSettings();
                 // Open the selected subscreen
                 for (let A = 0; A < ubcSettingsCategories.length; A++) {
-                    if (MouseIn(500 + 500 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
+                    if (MouseIn(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
                         if (typeof window["PreferenceSubscreen" + ubcSettingsCategories[A] + "Load"] === "function")
                             CommonDynamicFunction("PreferenceSubscreen" + ubcSettingsCategories[A] + "Load()");
                         PreferenceExtensionsCurrent = {
@@ -3668,7 +3747,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSettings: Player.OnlineSettings
                 });
-                AfkTimerIsEnabled = Enabled;
+                AfkTimerIsEnabled = true;
                 AfkTimerStart();
             }
         }
@@ -5408,7 +5487,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     modApi.patchFunction(
         "PandoraPrisonRun", {
-            "if (Player.Infiltration.Punishment.Timer > CurrentTime + 3600000) Player.Infiltration.Punishment.Timer = CurrentTime + 3600000;": "",
+            "if (Player.Infiltration.Punishment.Timer > CurrentTime + MS_PER_HOUR) Player.Infiltration.Punishment.Timer = CurrentTime + MS_PER_HOUR;": "",
         }
     );
 
@@ -5511,6 +5590,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.UBC.ubcSettings.sklockpicking = sklockpicking;
                 Player.UBC.ubcSettings.skselfbondage = skselfbondage;
                 Player.UBC.ubcSettings.skwillpower = skwillpower;
+                //Also changed by commands, minigames and missions, not only by this GUI.
+                Player.UBC.ubcSettings.cname = cname;
+                Player.UBC.ubcSettings.cowner1 = cowner1;
+                Player.UBC.ubcSettings.cowner2 = cowner2;
+                Player.UBC.ubcSettings.cowner3 = cowner3;
+                Player.UBC.ubcSettings.ctitle = ctitle;
+                Player.UBC.ubcSettings.minigame = minigame;
+                Player.UBC.ubcSettings.mission = mission;
             }
         }
         return next(args);
@@ -9015,7 +9102,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Tunderwear = data.tunderwear;
         Tunlock = data.tunlock;
         Tuntie = data.tuntie;
-        Tvisible = data.visible;
+        Tvisible = data.tvisible;
         Underwear = data.underwear;
         Unlock = data.unlock;
         Untie = data.untie;

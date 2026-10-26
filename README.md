@@ -23,6 +23,12 @@ UBC uses the language of BC (Chinese for 中文 and 繁體中文, English for la
 
 <br>
 
+### BC language-switch compatibility
+
+Older BC builds can leave text in a previous language when translation requests finish out of order, or refresh login labels before the selected language starts loading. UBC tests a disposable text cache and guards the recognized vulnerable build implementation. It also starts an outdated prefetched cache before callers await its loading promise. Native-fixed BC keeps its build method unchanged, and the prefetch hook does no extra rebuild when BC already refreshes the cache. Unfamiliar build implementations are left alone.
+
+Regression tests use an actual BC checkout: set `BC_TEXT_SOURCE` to its `BondageClub/Scripts/Text.js`, then run `node --test tests/bc-text-cache.test.cjs`. Set `BC_EXPECT_NATIVE_FIX=1` when testing a BC checkout containing the native fix.
+
 ## Not recommended installation (FUSAM)
 
 Although UBC is available in the multi-mod manager FUSAM (only at browser-level), it is not recommended to use this way to load UBC, for these reasons:
