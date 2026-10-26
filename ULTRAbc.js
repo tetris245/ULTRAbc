@@ -423,6 +423,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
         MainCanvas.textAlign = "center";
         DrawButton(1815, 15, 90, 90, "", "White", "Icons/Exit.png");
+		DrawTextFit(UBCTIn(lang, "UbcLanguageTip"), 900, 120, 1550, "", "Black");
     };
 
     window.UBCLanguageClick = function() {
