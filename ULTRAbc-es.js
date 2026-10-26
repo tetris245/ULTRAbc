@@ -3321,7 +3321,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSettings: Player.OnlineSettings
                 });
-                AfkTimerIsEnabled = Enabled;
+                AfkTimerIsEnabled = true;
                 AfkTimerStart();
             }
         }
