@@ -7449,14 +7449,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementDropdown.Create(
                             "chat-search-search-menu-room-language-dropdown",
                             [
-                                ... /** @type {ServerChatRoomLanguage[]} */ ([...ChatAdminLanguageList, ""]).map(lang => ({
-                                    children: [ChatSearchGetLanguageName(lang)],
-                                    attributes: {
-                                        value: lang,
-                                        selected: Player.ChatSearchSettings.Language == lang
-                                    }
-                                })),
-                            ],
+								.../** @type {ServerChatRoomLanguage[]} */([...ServerChatRoomSupportedLanguages, ""]).map(lang => (
+									{ children: [ChatSearchGetLanguageName(lang)], attributes: { value: lang, selected: Player.ChatSearchSettings.Language == lang } }
+								)),
+							],
                             function(ev) {
                                 Player.ChatSearchSettings.Language = ChatSearchLanguage = /** @type {ServerChatRoomLanguage} */ (this.value);
                                 ChatSearchUpdateSearchSettings();
