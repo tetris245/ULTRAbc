@@ -1317,6 +1317,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_saveControls() {
+		//Hooks can run before the settings of the player are loaded (e.g. rejoining a chat room right after login):
+        //saving then would replace the saved settings with the defaults
+        if (!MoanerIsLoaded || Player?.MemberNumber == null) return;
         let controls = {
             "orgasmMoan": M_MOANER_orgasmActive,
             "script": M_MOANER_scriptOn,
@@ -1488,7 +1491,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function MoanerLoginListener() {
         while (!MoanerIsLoaded) {
             try {
-                while ((!window.CurrentScreen || window.CurrentScreen == "Login") && !MoanerIsLoaded) {
+                //Login is not the only screen before login (UBC language, Cheat, PasswordReset, Creation), so also wait for the member number
+                while ((!window.CurrentScreen || window.CurrentScreen == "Login" || window.Player?.MemberNumber == null) && !MoanerIsLoaded) {
                     //console.log("search for isLoaded");
                     //console.log("window.CurrentScreen="+window.CurrentScreen);
                     await new Promise(r => setTimeout(r, 2000));
@@ -7894,14 +7898,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         ElementDropdown.Create(
                             "chat-search-search-menu-room-language-dropdown",
                             [
-                                ... /** @type {ServerChatRoomLanguage[]} */ ([...ChatAdminLanguageList, ""]).map(lang => ({
-                                    children: [ChatSearchGetLanguageName(lang)],
-                                    attributes: {
-                                        value: lang,
-                                        selected: Player.ChatSearchSettings.Language == lang
-                                    }
-                                })),
-                            ],
+								.../** @type {ServerChatRoomLanguage[]} */([...ServerChatRoomSupportedLanguages, ""]).map(lang => (
+									{ children: [ChatSearchGetLanguageName(lang)], attributes: { value: lang, selected: Player.ChatSearchSettings.Language == lang } }
+								)),
+							],
                             function(ev) {
                                 Player.ChatSearchSettings.Language = ChatSearchLanguage = /** @type {ServerChatRoomLanguage} */ (this.value);
                                 ChatSearchUpdateSearchSettings();
