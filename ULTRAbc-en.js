@@ -1876,7 +1876,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
 
-		 function controllerAddArea(X, Y) {
+		function controllerAddArea(X, Y) {
             if (typeof ControllerAddActiveArea === "function") { // R133
                 ControllerAddActiveArea(X, Y);
             } else if (typeof setButton === "function") { // older versions
