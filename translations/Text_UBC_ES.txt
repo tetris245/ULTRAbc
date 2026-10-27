@@ -1456,5 +1456,3 @@ UBC has no {language} translation yet, so it uses English or 中文: choose one 
 UBC aún no tiene traducción al idioma «{language}», así que usa English o 中文: elige uno a la izquierda.
 UBC language
 Idioma de UBC
-After exiting from this screen, refresh the BC tab to get a correct application of all UBC parameters.
-Tras salir de esta pantalla, actualiza la pestaña BC para que todos los parámetros UBC se apliquen correctamente.

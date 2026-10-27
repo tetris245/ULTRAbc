@@ -738,4 +738,3 @@ UbcLanguageSync,UBC follows BC
 UbcLanguageSyncHint,"When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself."
 UbcLanguageMissing,"UBC has no {language} translation yet, so it uses English or 中文: choose one on the left."
 UbcLanguageTitle,UBC language
-UbcLanguageTip,"After exiting from this screen, refresh the BC tab to get a correct application of all UBC parameters."
