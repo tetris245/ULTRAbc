@@ -1216,9 +1216,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (utotal == null || utotal == undefined) utotal = false;
                 if (wrname == null || wrname == undefined) wrname = "Dressing";
                 M_MOANER_saveControls();
-                let BabyTalkOn = false;
-                let GagTalkOn = false;
-                let StutterOn = false;
+                BabyTalkOn = false;
+                GagTalkOn = false;
+                StutterOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
                 if (st > 0) StutterOn = true;
