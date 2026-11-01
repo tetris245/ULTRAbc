@@ -116,6 +116,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     window.UBCver = UBCver;
     let ini = 0;
     let kp = 0;
+	//False until M_MOANER_initControls has read the saved settings: nothing may be saved before that
+    let ubcSettingsLoaded = false;
     let altinfo = true;
     let ChatSearchRoomBottom = "chat-search-room-bottom";
     let lastAfkMessageTime = 0;
@@ -826,6 +828,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_initControls() {
         let data = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
+		ubcSettingsLoaded = true;
         if (data == null || data == undefined) {
             UBCdefault();
             M_MOANER_orgasmActive = true;
@@ -897,6 +900,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function M_MOANER_saveControls() {
+		if ((!ubcSettingsLoaded) || (kp == 1)) return;
         let controls = {
             "orgasmMoan": M_MOANER_orgasmActive,
             "script": M_MOANER_scriptOn,
@@ -1053,9 +1057,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     function M_MOANER_deleteControls() {
         kp = 1;
-        for (var i = 0; i < localStorage.length; i++) {
-            let key = localStorage.key(i);
-            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
+        //Collect the keys first: removing keys while iterating localStorage by index skips entries.
+        //Match "_" + member number, so that member 1234 does not also delete member 51234's parameters.
+        let keys = [];
+        for (let i = 0; i < localStorage.length; i++) keys.push(localStorage.key(i));
+        for (const key of keys) {
+            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith("_" + Player.MemberNumber)) {
                 localStorage.removeItem(key);
             }
         }
