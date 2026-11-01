@@ -1063,9 +1063,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         for (let i = 0; i < localStorage.length; i++) keys.push(localStorage.key(i));
         for (const key of keys) {
             if (key.startsWith(M_MOANER_moanerKey) && key.endsWith("_" + Player.MemberNumber)) {
-        for (var i = 0; i < localStorage.length; i++) {
-            let key = localStorage.key(i);
-            if (key.startsWith(M_MOANER_moanerKey) && key.endsWith(Player.MemberNumber)) {
                 localStorage.removeItem(key);
             }
         }
