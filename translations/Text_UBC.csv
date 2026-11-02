@@ -731,8 +731,8 @@ CommandWtoggle,: toggles between UBC wardrobe and BC/BCX wardrobe.
 TheBcBcxWardrobeIsNowEnabled,The BC/BCX wardrobe is now enabled.
 TheUbcWardrobeIsNowEnabled,The UBC wardrobe is now enabled.
 CommandXmenu,: direct access to Extensions menu.
-CommandUlang,(language): changes the UBC language. auto = same language as BC.
-UlangUsage,Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
+CommandUlang,(language): changes the UBC language and saves your choice on your BC account. auto = same language as BC.
+UlangUsage,Use <b>/ulang</b> (language) to change the UBC language and save your choice on your BC account:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
 UlangChanged,UBC language: {language}
 UbcLanguageSync,UBC follows BC
 UbcLanguageSyncHint,"When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself."
