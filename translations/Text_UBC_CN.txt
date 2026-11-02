@@ -385,7 +385,7 @@ When enabled, ALWAYS visit the Extensions screen to activate it after login. The
 Enable tint effect on MBS screens:
 在 MBS 屏幕上启用色调效果：
 If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu. This parameter is not available if you have disabled all UBC changes in Chat Search.
-如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。This parameter is not available if you have disabled all UBC changes in Chat Search.
+如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。                        This parameter is not available if you have disabled all UBC changes in Chat Search.
 Chat Rooms
 聊天室
 Only Female
