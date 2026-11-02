@@ -29,7 +29,13 @@ Older BC builds can leave text in a previous language when translation requests 
 
 Regression tests use an actual BC checkout: set `BC_TEXT_SOURCE` to its `BondageClub/Scripts/Text.js`, then run `node --test tests/bc-text-cache.test.cjs`. Set `BC_EXPECT_NATIVE_FIX=1` when testing a BC checkout containing the native fix.
 
-## Not recommended installation (FUSAM)
+<br) 
+
+
+
+## Installation for version 6.3.2  - (To be changed for version 6.4)
+
+### Not recommended installation (FUSAM) 
 
 Although UBC is available in the multi-mod manager FUSAM (only at browser-level), it is not recommended to use this way to load UBC, for these reasons:
 
@@ -39,8 +45,7 @@ Although UBC is available in the multi-mod manager FUSAM (only at browser-level)
 
 <br>
 
-
-## Recommended installation procedures
+### Recommended installation procedures
 
 To use UBC in English or Chinese, I recommend the PCM mod created by Likolisu, a Chinese friend: https://github.com/awdrrawd/liko-Plugin-Repository
 
@@ -99,6 +104,10 @@ Special thanks to Eddii for giving permission to use a feature of his ELA mod (h
 
 Thanks to lillyBC for providing ideas and inspiration with her bcTampermonkeys scripts.
 
+Thanks to Feldob66 for providing the powerful Language support.
+
+Thanks to THeSecretCoder for all his help to fix, optimise and improve many features.
+
 Thanks to wwwruomeng for the Chinese translation.
 
 Thanks to ciber for the Spanish translation.
@@ -116,6 +125,9 @@ All else I might not have included.
 
 Changes for future version
 
+* Merged the three language versions into an unique version including a language button on the Login screen (thanks to great work of Feldob66!)
+  - This button gives access to a Language screen where you can choose the UBC language (with option to follow or not the BC language)
 * New setting in GUI - Visual Effects to enable/disable transparent effect on beep screen of the friend list
+* New command: ulang (language) to change the UBC language (current options are auto - en - cn - es)
 
 
