@@ -83,7 +83,7 @@ EnableThisOptionIfYouAcceptThat,"Enable this option if you accept that the traps
 SelectedDeviceTrap09,Selected device trap (0-9):
 InputANumberBetween0And9ToSelect,"Input a number between 0 and 9 to select a device trap: 0 No device trap - 1 Bondage Bench - 2 Coffin - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!"
 EnableFullHearingInMaps,Enable full hearing in maps: 
-WhenEnabledTheresNoAnyLimitation,"When enabled, there's no any limitation to your hearing in the map rooms"
+WhenEnabledTheresNoAnyLimitation,"When enabled, there's no any limitation to your hearing in the map rooms."
 EnableFullLocationInMaps,Enable full location in maps: 
 WhenEnabledTheMaproomAndMapz,"When enabled, the /maproom and /mapz commands will always give the coordinates of other players in the map rooms, even if the Location Sharing is blocked. Note that the administrators will be informed that you use this cheat, if they have blocked Location Sharing and use one of these commands. So using this cheat in such rooms can lead to bad consequences. Be careful!"
 EnableFullVisionInMaps,Enable full vision in maps: 
