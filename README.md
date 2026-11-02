@@ -129,5 +129,6 @@ Changes for future version
   - This button gives access to a Language screen where you can choose the UBC language (with option to follow or not the BC language)
 * New setting in GUI - Visual Effects to enable/disable transparent effect on beep screen of the friend list
 * New command: ulang (language) to change the UBC language (current options are auto - en - cn - es)
+  - This command is mentioned when you use /uhelp settings
 
 
