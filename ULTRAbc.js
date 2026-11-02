@@ -2455,7 +2455,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (PreferenceMessage != "") DrawText(PreferenceMessage, 1200, 85, "Red", "Black");
                 DrawText("UBC " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + UBCT("ClickOnASettingToGetMoreInfo"), 500, 125, "Black", "Gray");
                 if (settingsHint != "") {
-                    DrawTextWrapGood(settingsHint, 1350, 200, 555, 725, ForeColor = UBC_API.HintForeColor, BackColor = UBC_API.HintBackColor, BorderColor = UBC_API.HintBorderColor);
+                    DrawTextWrapGood(settingsHint, 1400, 200, 555, 725, ForeColor = UBC_API.HintForeColor, BackColor = UBC_API.HintBackColor, BorderColor = UBC_API.HintBorderColor);
                 }
 
                 let currentElement;
