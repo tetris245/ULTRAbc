@@ -2594,7 +2594,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawText(UBCT("UltraBondageClubSettings"), 500, 125, "Black", "Gray");
                 MainCanvas.textAlign = "center";
                 //Show tips every 10 secs
-                DrawTextWrapGood(UBC_TIPS[Math.floor(((TimerGetTime() % 100000) / 100000) * (UBC_TIPS.length))], 1650, 260, 400, 100, ForeColor = UBC_API.HintForeColor);
+                DrawTextWrapGood(UBC_TIPS[Math.floor(((TimerGetTime() % 100000) / 100000) * (UBC_TIPS.length))], 1650, 230, 400, 100, ForeColor = UBC_API.HintForeColor);
 
                 DrawText("ULTRAbc " + UBCver, 1665, 525, "Black", "Gray");
                 DrawButton(1500, 550, 315, 90, "", "White", "", UBCT("LinkToIcons8"));
