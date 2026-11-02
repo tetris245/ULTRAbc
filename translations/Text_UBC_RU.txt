@@ -1,0 +1,9 @@
+### UBC in Русский: only the login-screen texts so far. Translate the rest and add "RU" to UBC_LANGUAGES in ULTRAbc.js to make it a full UBC language.
+UBC follows BC
+UBC следует за BC
+When ticked, UBC uses the BC language. Untick it to choose the UBC language yourself.
+Если отмечено, UBC использует язык BC. Сними отметку, чтобы выбрать язык UBC самостоятельно.
+UBC has no {language} translation yet, so it uses English or 中文: choose one on the left.
+У UBC пока нет перевода на язык «{language}», поэтому используется English или 中文: выбери один слева.
+UBC language
+Язык UBC
