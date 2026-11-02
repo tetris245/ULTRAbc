@@ -2452,7 +2452,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
                 MainCanvas.textAlign = "left";
-                if (PreferenceMessage != "") DrawText(PreferenceMessage, 1400, 125, "Red", "Black");
+                if (PreferenceMessage != "") DrawText(PreferenceMessage, 1200, 85, "Red", "Black");
                 DrawText("UBC " + ubcSettingCategoryLabels[UBCPreferenceSubscreen] + UBCT("ClickOnASettingToGetMoreInfo"), 500, 125, "Black", "Gray");
                 if (settingsHint != "") {
                     DrawTextWrapGood(settingsHint, 1350, 200, 555, 725, ForeColor = UBC_API.HintForeColor, BackColor = UBC_API.HintBackColor, BorderColor = UBC_API.HintBorderColor);
