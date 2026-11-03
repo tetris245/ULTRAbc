@@ -131,12 +131,13 @@ All else I might not have included.
 
 Changes for future version
 
-* Merged the three language versions into an unique version including a language button on the Login screen (thanks to great work of Feldob66!)
+* Merged the three language versions into an unique version including a language button on the Login screen (Thanks to great work of Feldob66!)
   - This button gives access after a short delay (2 seconds) to a Language screen where you can choose the UBC language (with option to follow or not the BC language)
   - The choice made in this screen is saved on LocalStorage
 * New setting in GUI - Visual Effects to enable/disable transparent effect on beep screen of the friend list
 * New command: ulang (language) to change the UBC language (current options are auto - en - cn - es)
   - In this case, your choice is saved on Player.ExtensionSettings and overrides the settings saved on LocalStorage
   - This command is mentioned when you use /uhelp settings
+ * Improved the saving of UBC settings, especially on some edge cases (Thanks to TheSecretCoder!)
 
 
