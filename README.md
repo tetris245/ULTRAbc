@@ -132,7 +132,7 @@ All else I might not have included.
 Changes for future version
 
 * Merged the three language versions into an unique version including a language button on the Login screen (thanks to great work of Feldob66!)
-  - This button gives access to a Language screen where you can choose the UBC language (with option to follow or not the BC language)
+  - This button gives access after a short delay (2 seconds) to a Language screen where you can choose the UBC language (with option to follow or not the BC language)
   - The choice made in this screen is saved on LocalStorage
 * New setting in GUI - Visual Effects to enable/disable transparent effect on beep screen of the friend list
 * New command: ulang (language) to change the UBC language (current options are auto - en - cn - es)
