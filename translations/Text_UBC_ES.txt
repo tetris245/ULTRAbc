@@ -1442,8 +1442,8 @@ El vestuario UBC ya está habilitado.
 : acceso directo al menú de Extensiones.
 (language): changes the UBC language. auto = same language as BC.
 (idioma): cambia el idioma de UBC. auto = el mismo idioma que BC.
-Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
-Usa <b>/ulang</b> (idioma) para cambiar el idioma de UBC:\nauto = el mismo idioma que BC (inglés si UBC no tiene el idioma que usa BC)\nen = inglés - cn = chino - es = español\nIdioma actual de UBC: {language}
+Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}\nThis command saves your choice to your BC account. Don't use it if you prefer to choose UBC language before login as it will override the language settings stored in LocalStorage.
+Usa <b>/ulang</b> (idioma) para cambiar el idioma de UBC:\nauto = el mismo idioma que BC (inglés si UBC no tiene el idioma que usa BC)\nen = inglés - cn = chino - es = español\nIdioma actual de UBC: {language}\n Este comando guarda tu elección en tu cuenta de BC. No lo utilices si prefieres seleccionar el idioma de UBC antes de iniciar sesión, ya que sobrescribirá la configuración almacenada en LocalStorage.
 UBC language: {language}
 Idioma de UBC: {language}
 None

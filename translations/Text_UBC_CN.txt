@@ -1258,8 +1258,8 @@ You feel all your skills weakened. Changes can be seen in information panel.
 ：直接进入扩展菜单。
 (language): changes the UBC language. auto = same language as BC.
 （语言）：更改 UBC 的语言。auto = 与 BC 相同的语言。
-Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
-使用 <b>/ulang</b> （语言）更改 UBC 的语言：\nauto = 与 BC 相同的语言（如果 UBC 没有 BC 使用的语言，则为英语）\nen = 英语 - cn = 中文 - es = 西班牙语\n当前 UBC 语言：{language}
+Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}\nThis command saves your choice to your BC account. Don't use it if you prefer to choose UBC language before login as it will override the language settings stored in LocalStorage.
+使用 <b>/ulang</b> （语言）更改 UBC 的语言：\nauto = 与 BC 相同的语言（如果 UBC 没有 BC 使用的语言，则为英语）\nen = 英语 - cn = 中文 - es = 西班牙语\n当前 UBC 语言：{language}\n此命令会将您的选择保存至您的 BC 账户。如果您希望在登录前选择 UBC 语言，请勿使用此命令，因为它会覆盖存储在 LocalStorage（本地存储）中的设置。
 UBC language: {language}
 UBC 语言：{language}
 UBC follows BC
