@@ -2338,7 +2338,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 // Resets the font text size
                 if ((MaxLine != null) && (TextSize != null))
                     MainCanvas.font = TextSize;
-
             }
 
             function UBCPreferenceDrawBackNextButton(Left, Top, Width, Height, List, Index) {
@@ -2579,6 +2578,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     load: PreferenceSubscreenUBCSettingsLoad,
                 }
                 PreferenceSubscreenUBCSettingsLoad();
+				return false; //tells BC to keep the extension open: UBC's main settings page is now showing
             }
 
             PreferenceSubscreenUBCSettingsLoad = function() {
@@ -2849,7 +2849,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCBackgroundsExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCButtonsLoad = function() {
@@ -2888,7 +2888,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCButtonsExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCCheatsLoad = function() {
@@ -2959,7 +2959,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCCheatsExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCHotkeysLoad = function() {
@@ -2984,7 +2984,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCHotkeysExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCMapsLoad = function() {
@@ -3028,8 +3028,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((CommonIsNumeric(device)) && (profile > -1) && (device < 10)) {
                     Player.UBC.ubcSettings.maptrap1 = device;
                     ElementRemove("InputDeviceTrap");
-                    defaultExit();
-                } else PreferenceMessage = UBCT("PutAValidNumber");
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = UBCT("PutAValidNumber");
+                    return false;
+                }  
             }
 
             PreferenceSubscreenUBCMiscLoad = function() {
@@ -3069,7 +3072,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCMiscExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCMoanerLoad = function() {
@@ -3126,8 +3129,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if ((CommonIsNumeric(profile)) && (profile > -1) && (profile < 11)) {
                     Player.UBC.ubcSettings.profile = profile;
                     ElementRemove("InputMoanProfile");
-                    defaultExit();
-                } else PreferenceMessage = UBCT("PutAValidNumber");
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = UBCT("PutAValidNumber");
+                    return false;
+                }  
             }
 
             PreferenceSubscreenUBCReputationLoad = function() {
@@ -3228,8 +3234,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputRpMagp");
                     ElementRemove("InputRpMaid");
                     ElementRemove("InputRpMain");
-                    defaultExit();
-                } else PreferenceMessage = UBCT("PutAValidNumber");
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = UBCT("PutAValidNumber");
+                    return false;
+                }  
             }
 
             PreferenceSubscreenUBCSkillsLoad = function() {
@@ -3301,8 +3310,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputSkillLockpicking");
                     ElementRemove("InputSkillSelfbondage");
                     ElementRemove("InputSkillWillpower");
-                    defaultExit();
-                } else PreferenceMessage = UBCT("PutAValidNumber");
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = UBCT("PutAValidNumber");
+                    return false;
+                }  
             }
 
             PreferenceSubscreenUBCSpecialModesLoad = function() {
@@ -3340,7 +3352,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCSpecialModesExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             PreferenceSubscreenUBCTalkingLoad = function() {
@@ -3424,8 +3436,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputGagLevel");
                     ElementRemove("InputHearingMode");
                     ElementRemove("InputStutterLevel");
-                    defaultExit();
-                } else PreferenceMessage = UBCT("PutAValidNumber");
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = UBCT("PutAValidNumber");
+                    return false;
+                }  
             }
 
             PreferenceSubscreenUBCVisualEffectsLoad = function() {
@@ -3510,8 +3525,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ElementRemove("InputBlurMode");
                     ElementRemove("InputTintColor");
                     ElementRemove("InputTintLevel");
-                    defaultExit();
-                } else PreferenceMessage = UBCT("PutAValidNumber");
+                    return defaultExit();
+                } else {
+                    PreferenceMessage = UBCT("PutAValidNumber");
+                    return false;
+                }  
             }
 
             PreferenceSubscreenUBCVisualPreferencesLoad = function() {
@@ -3536,7 +3554,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
 
             PreferenceSubscreenUBCVisualPreferencesExit = function() {
-                defaultExit();
+                return defaultExit();
             }
 
             function keyHandler(e) {
