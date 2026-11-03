@@ -19,7 +19,7 @@ UBC is one script for all languages. Its texts are in the `translations` folder,
 
 UBC uses the language of BC (Chinese for 中文 and 繁體中文, English for languages UBC does not have) and follows it when you change it in game. 
 
-On the login screen, click the UBC flag button at the right edge to open language settings. The UBC card has a "UBC follows BC" checkbox, manual English/Chinese/Spanish choices, and an English/Chinese fallback for BC languages UBC does not have. The BC card changes the main game language directly. Exit or Escape returns to Login. 
+On the login screen, click the UBC flag button at the right edge to open language settings afer a short delay (2 seconds). The UBC card has a "UBC follows BC" checkbox, manual English/Chinese/Spanish choices, and an English/Chinese fallback for BC languages UBC does not have. The BC card changes the main game language directly. Exit or Escape returns to Login. 
 
 In game, use `/ulang es`, `/ulang cn` or `/ulang en` to pick a UBC language for your account, and `/ulang auto` to follow BC again. `\n` in a text is a line break and `{name}` parts are filled in by UBC. 
 
