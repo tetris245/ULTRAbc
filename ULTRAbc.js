@@ -5197,11 +5197,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     //Login
+     modApi.hookFunction('LoginClick', 4, (args, next) => {
+        setTimeout(function() {
+            const {
+                X,
+                Y,
+                W,
+                H
+            } = ubcLoginLanguageButtonBounds();
+            if (MouseIn(X, Y, W, H)) return ubcOpenLanguageScreen();
+        }, 2000);
+        return next(args);
+    });
+
     //A delayed BC text rebuild must not recreate login labels on the language screen.
     modApi.hookFunction('LoginReloadLanguageText', 4, (args, next) => {
         if (CurrentScreen === "UBCLanguage") return;
         return next(args);
     });
+
     modApi.hookFunction('LoginRun', 4, (args, next) => {
         DrawButton(750, 145, 500, 60, UBCT("UltrabcReady", {
             UBCver
@@ -5209,17 +5223,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         const ret = next(args);
         ubcDrawLoginLanguageButton();
         return ret;
-    });
-
-    modApi.hookFunction('LoginClick', 4, (args, next) => {
-        const {
-            X,
-            Y,
-            W,
-            H
-        } = ubcLoginLanguageButtonBounds();
-        if (MouseIn(X, Y, W, H)) return ubcOpenLanguageScreen();
-        return next(args);
     });
 
     //Magic School
