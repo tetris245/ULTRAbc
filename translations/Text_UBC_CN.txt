@@ -385,7 +385,7 @@ When enabled, ALWAYS visit the Extensions screen to activate it after login. The
 Enable tint effect on MBS screens:
 在 MBS 屏幕上启用色调效果：
 If you check this setting, UBC will not display a bottom bar in Chat Search. The missing options are available in the Chat Search menu. This parameter is not available if you have disabled all UBC changes in Chat Search.
-如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。                        This parameter is not available if you have disabled all UBC changes in Chat Search.
+如果你勾选此设置，UBC 将不会在聊天搜索中显示底部栏。缺失的选项可在聊天搜索菜单中找到。如果您已在“聊天搜索”中禁用了所有 UBC 更改，则此参数不可用。
 Chat Rooms
 聊天室
 Only Female
@@ -1256,10 +1256,10 @@ You feel all your skills weakened. Changes can be seen in information panel.
 （目标）：完全打开目标的衣柜。
 : direct access to Extensions menu.
 ：直接进入扩展菜单。
-(language): changes the UBC language and saves your choice on your BC account. auto = same language as BC.
-（语言）：更改 UBC 的语言，并将您的选择保存在您的 BC 账户中。auto = 与 BC 相同的语言。
-Use <b>/ulang</b> (language) to change the UBC language and save your choice on your BC account :\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
-使用 <b>/ulang</b> （语言）更改 UBC 的语言，并将您的选择保存在您的 BC 账户中：\nauto = 与 BC 相同的语言（如果 UBC 没有 BC 使用的语言，则为英语）\nen = 英语 - cn = 中文 - es = 西班牙语\n当前 UBC 语言：{language}
+(language): changes the UBC language. auto = same language as BC.
+（语言）：更改 UBC 的语言。auto = 与 BC 相同的语言。
+Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
+使用 <b>/ulang</b> （语言）更改 UBC 的语言：\nauto = 与 BC 相同的语言（如果 UBC 没有 BC 使用的语言，则为英语）\nen = 英语 - cn = 中文 - es = 西班牙语\n当前 UBC 语言：{language}
 UBC language: {language}
 UBC 语言：{language}
 UBC follows BC

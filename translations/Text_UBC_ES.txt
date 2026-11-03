@@ -1440,10 +1440,10 @@ The UBC wardrobe is now enabled.
 El vestuario UBC ya está habilitado.
 : direct access to Extensions menu.
 : acceso directo al menú de Extensiones.
-(language): changes the UBC language and saves your choice on your BC account. auto = same language as BC.
-(idioma): cambia el idioma de UBC y guarda tu elección en tu cuenta de BC. auto = el mismo idioma que BC.
-Use <b>/ulang</b> (language) to change the UBC language and save your choice on your BC account:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
-Usa <b>/ulang</b> (idioma) para cambiar el idioma de UBC y guardar tu elección en tu cuenta de BC:\nauto = el mismo idioma que BC (inglés si UBC no tiene el idioma que usa BC)\nen = inglés - cn = chino - es = español\nIdioma actual de UBC: {language}
+(language): changes the UBC language. auto = same language as BC.
+(idioma): cambia el idioma de UBC. auto = el mismo idioma que BC.
+Use <b>/ulang</b> (language) to change the UBC language:\nauto = same language as BC (English when BC uses a language that UBC does not have)\nen = English - cn = Chinese - es = Spanish\nCurrent UBC language: {language}
+Usa <b>/ulang</b> (idioma) para cambiar el idioma de UBC:\nauto = el mismo idioma que BC (inglés si UBC no tiene el idioma que usa BC)\nen = inglés - cn = chino - es = español\nIdioma actual de UBC: {language}
 UBC language: {language}
 Idioma de UBC: {language}
 None
@@ -1456,3 +1456,4 @@ UBC has no {language} translation yet, so it uses English or 中文: choose one 
 UBC aún no tiene traducción al idioma «{language}», así que usa English o 中文: elige uno a la izquierda.
 UBC language
 Idioma de UBC
+
