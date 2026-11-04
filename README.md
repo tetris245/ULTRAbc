@@ -14,6 +14,8 @@ Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 Important: After installation, refresh your BC page and relog.
 
+<br>
+
 ### Via mod managers 
 
 If you use many add-ons for BC, you can use one of these mod managers and enable ULTRAbc inside their interface:
