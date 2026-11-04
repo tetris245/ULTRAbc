@@ -92,6 +92,8 @@ Older BC builds can leave text in a previous language when translation requests 
 
 Regression tests use an actual BC checkout: set `BC_TEXT_SOURCE` to its `BondageClub/Scripts/Text.js`, then run `node --test tests/bc-text-cache.test.cjs`. Set `BC_EXPECT_NATIVE_FIX=1` when testing a BC checkout containing the native fix.
 
+This feature will be removed in next UBC version, as it will be integrated in BC R134.
+
 <br>
 
 ## Credits
