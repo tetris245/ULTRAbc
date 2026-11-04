@@ -4,66 +4,46 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.3.2
+Most recent version: 6.4
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
 <br>
 
-## Installation for version 6.3.2  - (To be changed for version 6.4)
+## Installation 
 
-### Not recommended installation (FUSAM) 
+Important: After installation, refresh your BC page and relog.
 
-Although UBC is available in the multi-mod manager FUSAM (only at browser-level), it is not recommended to use this way to load UBC, for these reasons:
+### Via mod managers 
 
- - FUSAM maintainer has refused to insert the language versions of UBC
- - In reaction to this decision, UBC loading via FUSAM adds 3 buttons on the Login screen, so you can click on the appropriate button to login with the English, Chinese or Spanish version of UBC (the standard Login button and the WCE buttons will not load one language version of UBC)
- - If you want to avoid this step, use one of the below recommended procedures
+If you use many add-ons for BC, you can use one of these mod managers and enable ULTRAbc inside their interface:
 
-<br>
+* FUSAM: https://sidiousious.gitlab.io/bc-addon-loader/
+* PCM: https://github.com/awdrrawd/liko-Plugin-Repository/
 
-### Recommended installation procedures
-
-To use UBC in English or Chinese, I recommend the PCM mod created by Likolisu, a Chinese friend: https://github.com/awdrrawd/liko-Plugin-Repository
-
-To use UBC in English, Chinese or Spanish, the below methodes are also available, the TM/VM way is the easiest one.
+You need Tampermonkey or Violentmonkey to install these mod managers.
 
 <br>
 
-**Methode with Tampermonkey or ViolentMonkey** - links to the ULTRAbc loader: 
+### Standalone
 
-English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
+**Methode with Tampermonkey or ViolentMonkey** - link to the ULTRAbc loader: 
 
-Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.user.js
-
-Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-es.user.js
+https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
 
 <br>
 
-**Bookmark methode** - links to the ULTRAbc bookmark: 
+**Bookmark methode** - link to the ULTRAbc bookmark: 
 
-English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
-
-Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-ch.js
-
-Spanish version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-es.js
+https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 
 <br>
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download one of these files:
-
-   English version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.2/ULTRAbc-en-v6.3.2.zip
-
-   Chinese version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.2/ULTRAbc-ch-v6.3.2.zip
-
-   Spanish version: https://github.com/tetris245/ULTRAbc/releases/download/v6.3.2/ULTRAbc-es-v6.3.2.zip
-   
-3. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
-4. Go to browser extensions. Enable developer mode.
-5. Load as Unpacked. Done. If the file can't be seen, see step 2.
-
-After installation, refresh your BC page and relog.
+1. Download the ULTRAbc-version6.4.zip file on the Releases page   
+2. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
+3. Go to browser extensions. Enable developer mode.
+4. Load as Unpacked. Done. If the file can't be seen, see step 2.
 
 <br>
 
