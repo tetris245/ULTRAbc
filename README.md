@@ -86,7 +86,7 @@ In game, use `/ulang es`, `/ulang cn` or `/ulang en` to pick a UBC language for 
 
 <br>
 
-### BC language-switch compatibility (only in version 6.4)
+## BC language-switch compatibility (only in version 6.4)
 
 Older BC builds can leave text in a previous language when translation requests finish out of order, or refresh login labels before the selected language starts loading. UBC tests a disposable text cache and guards the recognized vulnerable build implementation. It also starts an outdated prefetched cache before callers await its loading promise. Native-fixed BC keeps its build method unchanged, and the prefetch hook does no extra rebuild when BC already refreshes the cache. Unfamiliar build implementations are left alone.
 
