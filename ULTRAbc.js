@@ -18477,7 +18477,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             CharacterNaked(C);
             CharacterReleaseNoLock(C);
-            let appobj = JSON.parse(decodeURI(atob(appinp)));
+            appobj = JSON.parse(decodeURI(atob(appinp)));
             appobj.forEach(itemstr => {
                 const [assetName, groupName, color, difficulty, craft] = itemstr;
                 if (groupName === "BodyStyle") {
@@ -18544,7 +18544,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
             CharacterNaked(C);
             CharacterReleaseNoLock(C);
-            let appobj = JSON.parse(decodeURI(atob(appinp)));
+            appobj = JSON.parse(decodeURI(atob(appinp)));
             appobj.forEach(itemstr => {
                 const [assetName, groupName, color, difficulty, craft] = itemstr;
                 if (groupName === "BodyStyle") {
