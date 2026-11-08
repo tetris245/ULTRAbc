@@ -18320,7 +18320,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'wexport',
         get Description() {
             return UBCT("CommandWexport");
@@ -18347,14 +18347,26 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 app.push(item.Color);
                 app.push(item.Difficulty);
                 app.push(item.Craft);
+                //app.push(item.Propert);
                 app.push(false);
                 //Do not remove this line. It is for the compatibility with bcg.
                 appall.push(app);
             });
-            ChatRoomSendLocal(
+            const exportCode = btoa(encodeURI(JSON.stringify(appall)));
+            if (!navigator.clipboard?.writeText) {
+                infomsg("ULTRAbc: clipboard access is not available in this browser.");
+                return;
+            }
+            navigator.clipboard.writeText(exportCode)
+                .then(() => infomsg("ULTRAbc: export code copied to clipboard."))
+                .catch(error => {
+                    console.error("ULTRAbc: could not copy export code", error);
+                    infomsg("ULTRAbc: could not copy export code; check browser permissions.");
+            });
+            /*ChatRoomSendLocal(
                 "<p style='background-color:#5fbd7a'>ULTRAbc: awcode:</p>\n" +
                 btoa(encodeURI(JSON.stringify(appall)))
-            );
+            );*/
         }
     }])
 
@@ -18378,24 +18390,46 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             let appinp = prompt(UBCT("PleaseInputTheAwcodeCompatible"), '');
+            if (typeof appinp !== "string" || !appinp.startsWith("JTVC")) {
+                infomsg("Invalid awcode: unexpected format.");
+                return;
+            }
+            let appobj;
+            try {
+                appobj = JSON.parse(decodeURI(atob(appinp)));
+                if (!Array.isArray(appobj)) throw new Error("Awcode must contain an array.");
+            } catch (error) {
+                infomsg("Invalid awcode: it could not be decoded.");
+                console.error("ULTRAbc: invalid awcode", error);
+                return;
+            }
             C = target;
-            for (let A = C.Appearance.length - 1; A >= 0; A--)
-                if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
-                    if (!(echolevel2.includes(C.Appearance[A].Asset.Group.Name))) {
-                        InventoryRemove(C, C.Appearance[A].Asset.Group.Name);
-                    }
+            for (let A = C.Appearance.length - 1; A >= 0; A--) {
+                const item = C.Appearance[A];
+                const groupName = item?.Asset?.Group?.Name;
+                if (!groupName || groupName === "BodyStyle") continue;
+                if (item.Asset.Group.Category === "Appearance" && item.Asset.Group.AllowNone &&
+        !echolevel2.includes(groupName)) {
+                    InventoryRemove(C, groupName);
                 }
+            }
             CharacterReleaseNoLock(C);
-            let appobj = JSON.parse(decodeURI(atob(appinp)));
+            appobj = JSON.parse(decodeURI(atob(appinp)));
             appobj.forEach(itemstr => {
-                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
-                        InventoryRemove(C, itemstr[1]);
-                        InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                const [assetName, groupName, color, difficulty, craft] = itemstr;
+                if (groupName === "BodyStyle") {
+                    InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
+                    return;
+                }
+                if ((InventoryGet(C, groupName) != null) && (InventoryGet(C, groupName).Asset.AllowLock == true)) {
+                    const current = InventoryGet(C, groupName);
+                    if (current.Property == null || current.Property.LockedBy == null) {
+                        InventoryRemove(C, groupName);
+                        InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
                     }
-                } else if (!(echolevel2.includes(itemstr[1]))) {
-                    InventoryRemove(C, itemstr[1]);
-                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                } else if (!echolevel2.includes(groupName)) {
+                    InventoryRemove(C, groupName);
+                    InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
                 }
             });
             ChatRoomCharacterUpdate(C);
@@ -18423,19 +18457,46 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             let appinp = prompt(UBCT("PleaseInputTheAwcodeCompatible"), '');
+            if (typeof appinp !== "string" || !appinp.startsWith("JTVC")) {
+                infomsg("Invalid awcode: unexpected format.");
+                return;
+            }
+            let appobj;
+            try {
+                appobj = JSON.parse(decodeURI(atob(appinp)));
+                if (!Array.isArray(appobj)) throw new Error("Awcode must contain an array.");
+            } catch (error) {
+                infomsg("Invalid awcode: it could not be decoded.");
+                console.error("ULTRAbc: invalid awcode", error);
+                return;
+            }
             C = target;
+            for (let A = C.Appearance.length - 1; A >= 0; A--) {
+                const item = C.Appearance[A];
+                const groupName = item?.Asset?.Group?.Name;
+                if (!groupName || groupName === "BodyStyle") continue;
+                if (item.Asset.Group.Category === "Appearance" && item.Asset.Group.AllowNone) {
+                    InventoryRemove(C, groupName);
+                }
+            }
             CharacterNaked(C);
             CharacterReleaseNoLock(C);
             let appobj = JSON.parse(decodeURI(atob(appinp)));
             appobj.forEach(itemstr => {
-                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
-                        InventoryRemove(C, itemstr[1]);
-                        InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                const [assetName, groupName, color, difficulty, craft] = itemstr;
+                if (groupName === "BodyStyle") {
+                    InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
+                    return;
+                }
+                if ((InventoryGet(C, groupName) != null) && (InventoryGet(C, groupName).Asset.AllowLock == true)) {
+                    const current = InventoryGet(C, groupName);
+                    if (current.Property == null || current.Property.LockedBy == null) {
+                        InventoryRemove(C, groupName);
+                        InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
                     }
-                } else if (!(echolevel1.includes(itemstr[1]))) {
-                    InventoryRemove(C, itemstr[1]);
-                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                } else if (!echolevel1.includes(groupName)) {
+                    InventoryRemove(C, groupName);
+                    InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
                 }
             });
             ChatRoomCharacterUpdate(C);
@@ -18463,19 +18524,46 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
             let appinp = prompt(UBCT("PleaseInputTheAwcodeCompatible"), '');
+            if (typeof appinp !== "string" || !appinp.startsWith("JTVC")) {
+                infomsg("Invalid awcode: unexpected format.");
+                return;
+            }
+            let appobj;
+            try {
+                appobj = JSON.parse(decodeURI(atob(appinp)));
+                if (!Array.isArray(appobj)) throw new Error("Awcode must contain an array.");
+            } catch (error) {
+                infomsg("Invalid awcode: it could not be decoded.");
+                console.error("ULTRAbc: invalid awcode", error);
+                return;
+            }
             C = target;
+            for (let A = C.Appearance.length - 1; A >= 0; A--) {
+                const item = C.Appearance[A];
+                const groupName = item?.Asset?.Group?.Name;
+                if (!groupName || groupName === "BodyStyle") continue;
+                if (item.Asset.Group.Category === "Appearance" && item.Asset.Group.AllowNone) {
+                    InventoryRemove(C, groupName);
+                }
+            }
             CharacterNaked(C);
             CharacterReleaseNoLock(C);
             let appobj = JSON.parse(decodeURI(atob(appinp)));
             appobj.forEach(itemstr => {
-                if ((InventoryGet(C, itemstr[1]) != null) && (InventoryGet(C, itemstr[1]).Asset.AllowLock == true)) {
-                    if (((InventoryGet(C, itemstr[1]).Property != null) && (InventoryGet(C, itemstr[1]).Property.LockedBy == null)) || (InventoryGet(C, itemstr[1]).Property == null)) {
-                        InventoryRemove(C, itemstr[1]);
-                        InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                const [assetName, groupName, color, difficulty, craft] = itemstr;
+                if (groupName === "BodyStyle") {
+                    InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
+                    return;
+                }
+                if ((InventoryGet(C, groupName) != null) && (InventoryGet(C, groupName).Asset.AllowLock == true)) {
+                    const current = InventoryGet(C, groupName);
+                    if (current.Property == null || current.Property.LockedBy == null) {
+                        InventoryRemove(C, groupName);
+                        InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
                     }
                 } else {
-                    InventoryRemove(C, itemstr[1]);
-                    InventoryWear(C, itemstr[0], itemstr[1], itemstr[2], itemstr[3], -1, itemstr[4]);
+                    InventoryRemove(C, groupName);
+                    InventoryWear(C, assetName, groupName, color, difficulty, -1, craft);
                 }
             });
             ChatRoomCharacterUpdate(C);
