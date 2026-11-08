@@ -95,7 +95,7 @@ Thanks to lillyBC for providing ideas and inspiration with her bcTampermonkeys s
 
 Thanks to Feldob66 for providing the powerful Language support.
 
-Thanks to THeSecretCoder for all his help to fix, optimise and improve many features.
+Thanks to TheSecretCoder for all his help to fix, optimise and improve many features.
 
 Thanks to wwwruomeng for the Chinese translation.
 
