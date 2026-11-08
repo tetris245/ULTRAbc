@@ -21,7 +21,8 @@ Important: After installation, refresh your BC page and relog.
 If you use many add-ons for BC, you can use one of these mod managers and enable ULTRAbc inside their interface:
 
 * FUSAM: https://sidiousious.gitlab.io/bc-addon-loader/
-* PCM: https://github.com/awdrrawd/liko-Plugin-Repository/
+  
+* PCM: https://awdrrawd.github.io/liko-Plugin-Repository/
 
 You need Tampermonkey or Violentmonkey to install these mod managers.
 
