@@ -114,7 +114,9 @@ All else I might not have included.
 
 Changes for future version
 * Improved the wexport command: The outfit code in BCG/UBC format is directly saved to the clipboard instead of being displayed in the chat
-* Improved the wimport1, wimport2 and wimport3 commands: Several controls check now if the introduced code is in the appropriate BCG/UBC format
+* Improved the wimport1, wimport2 and wimport3 commands: 
+  - Several controls check now if the introduced code is in the appropriate BCG/UBC format
+  - The handling of the data is fixed (it was broken by an adjustment parameter related to the body style)
 * Updated the alphabetic order for the screen with the Immersion settings
 
 
