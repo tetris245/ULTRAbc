@@ -113,6 +113,6 @@ All else I might not have included.
 
 Changes for future version
 
-(...)
+* Updated the alphabetic order for the screen with the Immersion settings
 
 
