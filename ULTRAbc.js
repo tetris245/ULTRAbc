@@ -5634,7 +5634,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     modApi.hookFunction('PreferenceSubscreenImmersionLoad', 4, async (args, next) => {
         PreferenceBackground = "Sheet";
         if (ifext == true) PreferenceBackground = ifname;
-        return next(args);
+        const result = next(args);
+        if (alfaprf == true) {
+            const grid = document.getElementById(PreferenceSubscreenImmersionIDs.grid);
+            const [sensDepDropdown, lockTimerLimitDropdown] =
+                grid?.querySelectorAll(":scope > .preference-settings-dropdown") ?? [];
+            if (sensDepDropdown && lockTimerLimitDropdown) {
+                grid.insertBefore(lockTimerLimitDropdown, sensDepDropdown);
+            }
+        }
+        return result;
     });
 
     modApi.patchFunction(
