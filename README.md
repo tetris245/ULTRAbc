@@ -117,7 +117,7 @@ Changes for future version
 * New setting in GUI - Visual Effects to enable/disable zebra effect on several BC screens (Chat, Gender, Graphics, Immersion, Online)
 * Improved the wexport command: The outfit code in BCG/UBC format is directly saved to the clipboard instead of being displayed in the chat
 * Improved the wimport1, wimport2 and wimport3 commands: 
-  - Several controls check now if the introduced code is in the appropriate BCG/UBC format
+  - Several controls check now if the entered code is in the appropriate BCG/UBC format
   - The handling of the data is fixed (it was broken by an adjustment parameter related to the body style)
 * Updated the alphabetic order for the screen with the Immersion settings
 
