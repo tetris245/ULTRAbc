@@ -701,6 +701,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let nowhisper = false;
     let nowhrange;
     //let nowrbuttons;
+    let nozebra;
     let npcpunish = false;
     let outbuttons;
     let rglbuttons;
@@ -1109,6 +1110,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nowhisper = false;
         nowhrange = false;
         //nowrbuttons = false;
+        nozebra = false;
         npcdeck = -1;
         npcpunish = false;
         onlydays = false;
@@ -1242,6 +1244,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
         //nowrbuttons = data.nowrbuttons;
+        nozebra = data.nozebra;
         npcdeck = (data.npcdeck ?? -1) * 1;
         npcpunish = data.npcpunish;
         onlydays = data.onlydays;
@@ -1470,6 +1473,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "nowhisper": nowhisper,
             "nowhrange": nowhrange,
             //"nowrbuttons": nowrbuttons,
+            "nozebra": nozebra,
             "npcpunish": npcpunish,
             "outbuttons": outbuttons,
             "rglbuttons": rglbuttons,
@@ -1627,6 +1631,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (nowhisper == null || nowhisper == undefined) nowhisper = false;
                 if (nowhrange == null || nowhrange == undefined) nowhrange = false;
                 //if (nowrbuttons == null || nowrbuttons == undefined) nowrbuttons = false;
+                if (nozebra == null || nozebra == undefined) nozebra = false;
                 if (npcdeck == null || npcdeck == undefined) npcdeck = -1;
                 if (npcpunish == null || npcpunish == undefined) npcpunish = false;
                 if (onlydays == null || onlydays == undefined) onlydays = false;
@@ -1785,6 +1790,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 nowhisper: false,
                 nowhrange: false,
                 //nowrbuttons: false,
+                nozebra: false,
                 npcdeck: -1,
                 npcpunish: false,
                 onlydays: false,
@@ -3467,6 +3473,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     addMenuCheckbox(64, 64, UBCT("DisableBcPinkyArousalOverlay"), "nopinkscr", pmsg, true, 200);
                 }
+                addMenuCheckbox(64, 64, UBCT("DisableZebraEffect"), "nozebra",
+                    UBCT("ByDefaultBcAppliesAZebraEffect"), false, 200
+                );
                 addMenuInput(200, UBCT("ForcedBlindnessMode14"), "blindness", "InputBlindnessMode",
                     UBCT("InputANumberBetween1And4ToSelect"), 65
                 );
@@ -5535,7 +5544,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     modApi.hookFunction('PreferenceSubscreenChatLoad', 4, async (args, next) => {
         PreferenceBackground = "Sheet";
         if (ifext == true) PreferenceBackground = ifname;
-        return next(args);
+        const result = next(args);
+        const grid = document.getElementById(PreferenceSubscreenChatIDs.grid);
+        if (nozebra == true) {
+            if (grid) {
+	        for (const child of grid.children) {
+                    child.style.backgroundColor = "transparent";
+	        }
+            }
+        }
+        return result;
     });
 
     modApi.patchFunction(
@@ -5586,6 +5604,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     );
 
+    modApi.hookFunction('PreferenceSubscreenGenderLoad', 5, async (args, next) => {
+        PreferenceBackground = "Sheet";
+        if (ifext == true) PreferenceBackground = ifname;
+        const result = next(args);
+        const grid = document.getElementById(PreferenceSubscreenGenderIDs.grid);
+        if (nozebra == true) {
+            if (grid) {
+	        for (const child of grid.children) {
+                    child.style.backgroundColor = "transparent";
+	        }
+            }
+        }
+        return result;
+    });
+
+
     modApi.hookFunction('PreferenceSubscreenGeneralLoad', 4, async (args, next) => {
         PreferenceBackground = "Sheet";
         if (ifext == true) PreferenceBackground = ifname;
@@ -5597,6 +5631,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "const checkboxes = PreferenceSubscreenGeneralCheckboxes.map((checkbox) => {": "let List = PreferenceSubscreenGeneralCheckboxes; if (Player.UBC.ubcSettings.alfaprf == true) List = Player.UBC.ubcSettings.ListGeneral; const checkboxes = List.map((checkbox) => {",
         }
     );
+
+   modApi.hookFunction('PreferenceSubscreenGraphicsLoad', 5, async (args, next) => {
+        PreferenceBackground = "Sheet";
+        if (ifext == true) PreferenceBackground = ifname;
+        const result = next(args);
+        const grid = document.getElementById(PreferenceSubscreenGraphicsIDs.grid);
+        if (nozebra == true) {
+            if (grid) {
+	        for (const child of grid.children) {
+                    child.style.backgroundColor = "transparent";
+	        }
+            }
+        }
+        return result;
+    });
 
     modApi.hookFunction('PreferenceSubscreenGraphicsLoad', 4, async (args, next) => {
         const originalElementCreate = window.ElementCreate;
@@ -5635,8 +5684,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         PreferenceBackground = "Sheet";
         if (ifext == true) PreferenceBackground = ifname;
         const result = next(args);
+        const grid = document.getElementById(PreferenceSubscreenImmersionIDs.grid);
+        if (nozebra == true) {
+            if (grid) {
+	        for (const child of grid.children) {
+                    child.style.backgroundColor = "transparent";
+	        }
+            }
+        }
         if (alfaprf == true) {
-            const grid = document.getElementById(PreferenceSubscreenImmersionIDs.grid);
             const [sensDepDropdown, lockTimerLimitDropdown] =
                 grid?.querySelectorAll(":scope > .preference-settings-dropdown") ?? [];
             if (sensDepDropdown && lockTimerLimitDropdown) {
@@ -5690,8 +5746,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     modApi.hookFunction("PreferenceSubscreenOnlineLoad", 4, async (args, next) => {
         PreferenceBackground = "Sheet";
         if (ifext == true) PreferenceBackground = ifname;
+        const result = next(args);
+        const grid = document.getElementById(PreferenceSubscreenOnlineIDs.grid);
+        if (nozebra == true) {
+            if (grid) {
+	        for (const child of grid.children) {
+                    child.style.backgroundColor = "transparent";
+	        }
+            }
+        }
         setTimeout(() => {
-            const grid = document.getElementById(PreferenceSubscreenOnlineIDs.grid);
             if (grid && Player.UBC?.ubcSettings?.alfaprf === true) {
                 const lastChild = grid.lastElementChild;
                 if (lastChild) {
@@ -5699,7 +5763,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 }
             }
         }, 0);
-        return next(args);
+        return result;
     });
 
     modApi.patchFunction(
@@ -18320,7 +18384,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-	CommandCombine([{
+    CommandCombine([{
         Tag: 'wexport',
         get Description() {
             return UBCT("CommandWexport");
@@ -18363,6 +18427,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     console.error("ULTRAbc: could not copy export code", error);
                     infomsg("ULTRAbc: could not copy export code; check browser permissions.");
             });
+            /*ChatRoomSendLocal(
+                "<p style='background-color:#5fbd7a'>ULTRAbc: awcode:</p>\n" +
+                btoa(encodeURI(JSON.stringify(appall)))
+            );*/
         }
     }])
 
