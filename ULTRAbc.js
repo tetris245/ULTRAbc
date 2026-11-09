@@ -5550,7 +5550,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (grid) {
 	        for (const child of grid.children) {
                     child.style.backgroundColor = "transparent";
-	        }
+	            }
             }
         }
         return result;
@@ -5604,7 +5604,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     );
 
-    modApi.hookFunction('PreferenceSubscreenGenderLoad', 5, async (args, next) => {
+    modApi.hookFunction('PreferenceSubscreenGenderLoad', 4, async (args, next) => {
         PreferenceBackground = "Sheet";
         if (ifext == true) PreferenceBackground = ifname;
         const result = next(args);
@@ -5613,12 +5613,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (grid) {
 	        for (const child of grid.children) {
                     child.style.backgroundColor = "transparent";
-	        }
-            }
+	            }  
+			}
         }
         return result;
     });
-
 
     modApi.hookFunction('PreferenceSubscreenGeneralLoad', 4, async (args, next) => {
         PreferenceBackground = "Sheet";
@@ -5641,7 +5640,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (grid) {
 	        for (const child of grid.children) {
                     child.style.backgroundColor = "transparent";
-	        }
+	            }
             }
         }
         return result;
@@ -5689,7 +5688,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (grid) {
 	        for (const child of grid.children) {
                     child.style.backgroundColor = "transparent";
-	        }
+	            }
             }
         }
         if (alfaprf == true) {
@@ -5752,7 +5751,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (grid) {
 	        for (const child of grid.children) {
                     child.style.backgroundColor = "transparent";
-	        }
+	            }
             }
         }
         setTimeout(() => {
@@ -18427,10 +18426,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     console.error("ULTRAbc: could not copy export code", error);
                     infomsg("ULTRAbc: could not copy export code; check browser permissions.");
             });
-            /*ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>ULTRAbc: awcode:</p>\n" +
-                btoa(encodeURI(JSON.stringify(appall)))
-            );*/
         }
     }])
 
