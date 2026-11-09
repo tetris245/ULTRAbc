@@ -199,8 +199,10 @@ DisableEffectOnBeepScreen,Disable effect on beep screen:
 ByDefaultBcAppliesATransparent,"By default, BC applies a transparent effect on the beep screen of the friend list. If you don't like that, just select this setting!"
 DisableGrayEffectInWardrobe,Disable gray effect in wardrobe: 
 ByDefaultBcAppliesAGrayEffect,"By default, BC applies a gray effect on the top bar of the wardrobe. If you don't like that, just select this setting!"
+DisableBcPinkyArousalOverlay,Disable BC pinky arousal overlay:
 ByDefaultBcAddsMessagesAndPink,"By default, BC adds messages and pink effect when you are very aroused and will probably have an orgasm. If you don't like that, this UBC setting will make you happy! Note: It is not available when the LSCG Splatter feature is detected as enabled."
-DisableBcPinkyArousalOverlay,Disable BC pinky arousal overlay: 
+DisableZebraEffect,Disable zebra effect on BC screens: 
+ByDefaultBcAppliesAZebraEffect,"By default, BC applies a zebra effect on several screens (Chat, Gender, Graphics, Immersion, Online). If you don't like that, just select this setting!"
 ForcedBlindnessMode14,Forced blindness mode (1-4):
 InputANumberBetween1And4ToSelect,"Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!"
 ForcedBlurryVision15,Forced blurry vision (1-5):
