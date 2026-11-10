@@ -119,7 +119,9 @@ Changes for future version
 * Improved the wimport1, wimport2 and wimport3 commands: 
   - Several controls check now if the entered code is in the appropriate BCG/UBC format
   - The handling of the data is fixed (it was broken by an adjustment parameter related to the body style)
+* Updated the alphabetic order for the screen with the Blocked activities when creating a room
 * Updated the alphabetic order for the screen with the Immersion settings
+* Removed the button for random background in the Chat Admin screen
 * Removed the mapforce command (is broken since BC changes for map rooms)
 
 
