@@ -3748,41 +3748,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-    modApi.hookFunction('ChatAdminClick', 4, (args, next) => {
-        if (ChatAdminCanEdit()) {
-            if (MouseIn(1230, 450, 60, 60)) {
-                if ((asylumlimit == true) && (ChatSearchSpace == "Asylum")) {
-                    let AsylumList = BackgroundsGenerateList([BackgroundsTagAsylum]);
-                    let listbg = AsylumList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = AsylumList[Roll - 1].Name;
-                    ChatAdminData.Background = ChatAdminBackgroundList[Roll];
-                } else {
-                    let listbg = BackgroundsList.length;
-                    let Roll = Math.floor(Math.random() * listbg);
-                    if (Roll == 0) Roll = 1;
-                    let name = BackgroundsList[Roll - 1].Name;
-                    ChatAdminData.Background = ChatAdminBackgroundList[Roll];
-                }
-                return;
-            }
-        }
-        return next(args);
-    });
-
-    modApi.hookFunction('ChatAdminRun', 4, async (args, next) => {
+	modApi.hookFunction('ChatAdminRun', 4, async (args, next) => {
         TintsEffect();
         ChatAdminGameList = ["", "ClubCard", "LARP", "MagicBattle", "GGTS", "Prison"];
-        if (ChatAdminCanEdit()) {
-            DrawButton(1230, 450, 60, 60, "", "White", "", UBCT("RandomBackground"));
-            DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
-        }
+        ChatBlockItemList = ["ABDL", "Location", "Arousal", "Photos", "Fantasy", "Leashing", "SciFi", "Smoking"];
         return next(args);
     });
 
     modApi.hookFunction('ChatBlockItemRun', 4, async (args, next) => {
-        ChatBlockItemList = ["ABDL", "Arousal", "Fantasy", "SciFi", "Location", "Photos", "Leashing", "Smoking"];
+        TintsEffect();
         return next(args);
     });
 
