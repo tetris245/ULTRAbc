@@ -120,5 +120,6 @@ Changes for future version
   - Several controls check now if the entered code is in the appropriate BCG/UBC format
   - The handling of the data is fixed (it was broken by an adjustment parameter related to the body style)
 * Updated the alphabetic order for the screen with the Immersion settings
+* Removed the mapforce command (is broken since BC changes for map rooms)
 
 
