@@ -14385,16 +14385,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'mapforce',
-        get Description() {
-            return UBCT("CommandMapforce");
-        },
-        Action: () => {
-            if (ChatRoomData.MapData.Type == "Never") ChatRoomData.MapData.Type = "Hybrid";
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'mapkeys',
         get Description() {
             return UBCT("CommandMapkeys");
