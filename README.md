@@ -114,6 +114,10 @@ All else I might not have included.
 
 Changes for future version
 
+* New setting in GUI - Backgrounds to enable/disable display of shared background when you are on the Character Info screen of other players
+* New setting in GUI - Hotkeys to enable/disable hotkeys when you are on your own Character Info screen:
+  - B = Toggle to see or not shared background by other players on their Character Info screen 
+  - D = Default background - R = Random background - S = Select background
 * New setting in GUI - Visual Effects to enable/disable zebra effect on several BC screens (Chat, Gender, Graphics, Immersion, Online)
 * Improved the wexport command: The outfit code in BCG/UBC format is directly saved to the clipboard instead of being displayed in the chat
 * Improved the wimport1, wimport2 and wimport3 commands: 
