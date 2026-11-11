@@ -43,6 +43,8 @@ RemoveBackgroundButtonsInTimer,Remove background buttons in Timer Cell:
 IfYouCheckThisSettingUbcWill3,"If you check this setting, UBC will not display background buttons in Timer Cell. However, your current settings will remain active."
 ShareCharacterInfoBackground,Share Character Info background: 
 WhenEnabledOtherUbcUsersWill,"When enabled, other UBC users will see the standard BC background that you use for your Character Info screen."
+WantSeeSharedBackground,Want to see shared Info background:
+WhenEnabledYouAccept, "When enabled, you will be able to see the standard BC background shared by other players on their Character Info screen."
 EnablePreferencesButtonInChat,Enable Preferences button in chat rooms: 
 WhenCheckedAnExtensionsButton,"When checked, an Extensions button will be added in the chat rooms."
 EnableFreeButtons,Enable FREE buttons: 
@@ -78,6 +80,8 @@ EnableHotkeysInChatSearch,Enable hotkeys in chat search:
 WhenThisOptionIsEnabledYouWill,"When this option is enabled, you will have direct access to some useful screens and can change the Chat Search background       Left Alt = Preferences                  Left Arrow = Wardrobe                 Right Arrow = Extensions             Up Arrow = Random background Down Arrow = Select background Tab = Default background"
 EnableHotkeysInFriendList,Enable hotkeys in friend list: 
 TheseHotkeysAllowToGetClickable,These hotkeys allow to get clickable links in another lobby you have access if you are in a lobby (not in a room). You can use them only on the list of current online friends AND if you are not in the search input or send beep zone. Background can be changed too. List of available hotkeys:                D = Default background                  F = Female club    G = Mixed club  H = Male club        J = Asylum       R = Random background              S = Select background
+EnableHotkeysInInformationSheet,Enable hotkeys in info sheet:
+TheseHotkeysAreRelatedTo,These hotkeys are related to the background you use for your Character Info screen:                    D = Default background                 R = Random background              S = Select background. You can also use the B hotkey on your Character Info screen to toggle your wish to see or not the shared background used by other players on their Character Info screen.
 AddToysUnderLockedChastityIn,Add toys under locked chastity in traps: 
 EnableThisOptionIfYouAcceptThat,"Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!"
 SelectedDeviceTrap09,Selected device trap (0-9):
@@ -99,7 +103,7 @@ AlphabeticOrderForPreferences,Alphabetic order for  Preferences menu:
 WhenEnabledAllTheOptionsOfThe,"When enabled, all the options of the Preferences main menu will be ordered in alphabetic order, with exception for the General Preferences."
 AlphabeticOrderForPreferences2,Alphabetic order for Preferences screens: 
 WithThisOptionMostSettingsIn,"With this option, most settings in some Preferences screens will be in alphabetic order (according the English text) per setting type (dropdowns, checkboxes). These screens will be ordered: General, Audio, Chat, Graphics, Immersion and Online."
-AlphabeticOrderForReputation,Alphabetic order for  Reputation and Skills: 
+AlphabeticOrderForReputation,Alphabetic order for Reputation and Skills: 
 WhenEnabledMostInfoAboutReputation,"When enabled, most info about reputation and skills in the Character Info screen will be ordered in alphabetic order. Note that the reputation as dominant or submissive will remain displayed in first position."
 EnableAsylumLimitations,Enable Asylum limitations: 
 ByDefaultUbcDisablesTheAsylum,"By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option."
