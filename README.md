@@ -120,10 +120,8 @@ Changes for future version
   - Several controls check now if the entered code is in the appropriate BCG/UBC format
   - The handling of the data is fixed (it was broken by an adjustment parameter related to the body style)
 * Updated and optimised the custom UBC data (including display of only days) in the Character Info screen
-* Updated the alphabetic order for the screen with the Blocked activities when creating a room
-* Updated the alphabetic order for the screen with the Immersion settings
-* Removed the three background buttons in the Character Info screen
-* Removed the button for random background in the Chat Admin screen
+* Updated the alphabetic order for the screens with the Blocked activities and the Immersion settings
+* Removed the UBC background buttons in the Character Info and Chat Admin screens
 * Removed the mapforce command (is broken since BC changes for map rooms)
 
 
