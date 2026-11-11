@@ -1866,7 +1866,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
         //Alphabetical order of the Preferences main menu (alfmenu). Only the order is kept here: the entries are BC's own
         //subscreen objects, so their handlers always match the running BC version, and new BC subscreens are appended.
-        const ALPHA_ORDER = ["Main", "General", "Arousal", "Audio", "CensoredWords", "Chat", "Controller", "Difficulty", "Extensions", "Gender", "Graphics", "Immersion", "Visibility", "Keybindings", "Notifications", "Online", "Restriction", "Scripts", "Security"];
+        const ALPHA_ORDER = ["Main", "General", "Arousal", "Audio", "CensoredWords", "Chat", "Difficulty", "Extensions", "Gender", "Graphics", "Immersion", "Visibility", "Keybindings", "Notifications", "Online", "Restriction", "Scripts", "Security"];
         let ListAlpha = ALPHA_ORDER.map(name => PreferenceSubscreens.find(s => s.name === name)).filter(Boolean)
             .concat(PreferenceSubscreens.filter(s => !ALPHA_ORDER.includes(s.name)));
         Player.UBC.ubcSettings.ListAlpha = ListAlpha;
@@ -2200,13 +2200,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
 
-        function controllerAddArea(X, Y) {
+        /*function controllerAddArea(X, Y) {
             if (typeof ControllerAddActiveArea === "function") { // R133
                 ControllerAddActiveArea(X, Y);
             } else if (typeof setButton === "function") { // older versions
                 setButton(X, Y);
             }
-        }
+        }*/
 
         async function layermenu() {
             await waitFor(() => !!Player?.AppearanceLayers);
@@ -2301,9 +2301,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
              */
 
             function DrawTextWrapGood(Text, X, Y, Width, Height, ForeColor = "Black", BackColor = null, BorderColor = "Black", MaxLine = null) {
-                if (controllerIsActive()) {
+                /*if (controllerIsActive()) {
                     controllerAddArea(X, Y);
-                }
+                }*/
                 // Draw the rectangle if we need too
                 if (BackColor != null) {
                     MainCanvas.beginPath();
@@ -2632,9 +2632,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "");
                     ControllerIgnoreButton = false;
                     DrawTextFit(ubcSettingCategoryLabels[ubcSettingsCategories[A]], 700 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
-                    if (controllerIsActive()) {
+                    /*if (controllerIsActive()) {
                         controllerAddArea(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
-                    }
+                    }*/
                 }
             }
 
