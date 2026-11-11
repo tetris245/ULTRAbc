@@ -7522,7 +7522,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 value: ChatSearchQueryString,
                 placeholder: TextGet("SearchRoom"),
                 onInput: function(ev) {
-                    clearButton.hidden = this.value.length === 0;
                     ChatSearchQueryString = this.value;
                 },
                 onKeydown: ChatSearchKeyDownListener,
@@ -7537,7 +7536,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         filterInput.toggleAttribute("hidden", true);
         filterInput.classList.add("chat-search-input-filter-box");
         filterInput.addEventListener("input", function() {
-            clearButton.hidden = this.value.length === 0;
             Player.ChatSearchSettings.FilterTerms = this.value;
         });
         filterInput.addEventListener("keydown", (event) => {
@@ -7560,9 +7558,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }, {
             button: {
                 classList: ["chat-search-room-button"],
-                attributes: {
-                    hidden: !ChatSearchQueryString.length
-                },
             },
         });
         ChatSearchSearchMenuButton = ElementButton.Create(
