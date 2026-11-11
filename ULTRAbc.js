@@ -681,6 +681,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let fullseed;
     let highfame;
     let hotkeys;
+	let ifkeys;
     let magiccheat;
     let magictoys;
     let mapcheat;
@@ -1081,6 +1082,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         highfame = false;
         hotkeys = false;
         ifext = false;
+		ifkeys = false;
         ifname = "Sheet";
         ifshare = false;
         ifyes = true;
@@ -1216,6 +1218,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         highfame = data.highfame;
         hotkeys = data.hotkeys;
         ifext = data.ifext;
+		ifkeys = data.ifkeys;
         ifshare = data.ifshare;
         ifyes = data.ifyes;
         layerall = data.layerall;
@@ -1453,6 +1456,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "fullseed": fullseed,
             "highfame": highfame,
             "hotkeys": hotkeys,
+            "ifkeys" : ifkeys,
             "magiccheat": magiccheat,
             "magictoys": magictoys,
             "mapcheat": mapcheat,
@@ -1591,6 +1595,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (highfame == null || highfame == undefined) highfame = false;
                 if (hotkeys == null || hotkeys == undefined) hotkeys = false;
                 if (ifext == null || ifext == undefined) ifext = false;
+				if (ifkeys == null || ifkeys == undefined) ifkeys = false;
                 if (ifname == null || ifname == undefined) ifname = "Sheet";
                 if (ifshare == null || ifshare == undefined) ifshare = false;
                 if (ifyes == null || ifyes == undefined) ifyes = true;
@@ -1765,7 +1770,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 highfame: false,
                 hotkeys: false,
                 ifext: false,
+                ifkeys: false,
                 ifshare: false,
+                ifyes: true,
                 layerall: false,
                 magiccheat: false,
                 magictoys: false,
@@ -2832,9 +2839,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, UBCT("ExtendedUsingOfCharacterInfo"), "ifext",
                     UBCT("OnTheCharacterInfoScreenYouHave"), false, 200
                 );
-                /*addMenuCheckbox(64, 64, UBCT("RemoveBackgroundButtonsInCharacter"), "noifbuttons",
-                    UBCT("IfYouCheckThisSettingUbcWill2"), false, 200
-                );*/
                 addMenuCheckbox(64, 64, UBCT("RemoveBackgroundButtonsInTimer"), "notcbuttons",
                     UBCT("IfYouCheckThisSettingUbcWill3"), false, 200
                 );
@@ -2844,6 +2848,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 addMenuCheckbox(64, 64, UBCT("ShareCharacterInfoBackground"), "ifshare",
                     UBCT("WhenEnabledOtherUbcUsersWill"), false, 200
                 );
+				addMenuCheckbox(64, 64, UBCT("WantSeeSharedBackground"), "ifyes",
+                    UBCT("WhenEnabledYouAccept"), false, 200
+                )
             }
 
             PreferenceSubscreenUBCBackgroundsRun = function() {
@@ -2978,6 +2985,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuCheckbox(64, 64, UBCT("EnableHotkeysInFriendList"), "frkeys",
                     UBCT("TheseHotkeysAllowToGetClickable")
+                );
+				addMenuCheckbox(64, 64, UBCT("EnableHotkeysInInformationSheet"), "ifkeys",
+                    UBCT("TheseHotkeysAreRelatedTo")
                 );
             }
 
@@ -8346,7 +8356,60 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let deafLevel = 5;
         return deafLevel;
     }
-	
+
+	//Information Sheet
+    window.InformationSheetKeyDown = function(event) {
+        if (ifkeys == true) {
+            if (event.code === "KeyB") {
+                if (ifyes == true) {
+                    ifyes = false;
+                    Player.UBC.ubcSettings.ifyes = false;
+                    M_MOANER_saveControls();
+                } else {
+                    ifyes = true;
+                    Player.UBC.ubcSettings.ifyes = true;
+                    M_MOANER_saveControls();
+                }
+            }
+            if (event.code === "KeyD") {
+                ifname = "Sheet";
+                M_MOANER_saveControls();
+                ServerAccountUpdate.QueueData({
+                    OnlineSharedSettings: Player.OnlineSharedSettings
+                });
+                CommonSetScreen("Character", "InformationSheet");
+            }
+            if (event.code === "KeyR") {
+                if (BackgroundsList != undefined) {
+                    let listbg = BackgroundsList.length;
+                    let Roll = Math.floor(Math.random() * listbg);
+                    if (Roll == 0) Roll = 1;
+                    let name = BackgroundsList[Roll - 1].Name;
+                    ifname = name;
+                    M_MOANER_saveControls();
+                    ServerAccountUpdate.QueueData({
+                        OnlineSharedSettings: Player.OnlineSharedSettings
+                    });
+                    CommonSetScreen("Character", "InformationSheet");
+                }
+            }
+            if (event.code === "KeyS") {
+                let backgrounds = BackgroundsTagList;
+                BackgroundSelectionMake(backgrounds, "", (Name, setBackground) => {
+                    if (setBackground) {
+                        ifname = Name;
+                        M_MOANER_saveControls();
+                        ServerAccountUpdate.QueueData({
+                            OnlineSharedSettings: Player.OnlineSharedSettings
+                        });
+                    }
+                    CommonSetScreen("Character", "InformationSheet");
+                });
+            }        
+            return false;
+        }
+    }
+
     //Locks
     function ExclusivePadlock() {
         setTimeout(function() {
