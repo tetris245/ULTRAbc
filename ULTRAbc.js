@@ -4910,7 +4910,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (event.code === "KeyR") {
                     if (BackgroundsList != undefined) {
                         let name = randomBackgroundName();
-                        let name = BackgroundsList[Roll - 1].Name;
                         frname = name;
                         M_MOANER_saveControls();
                         CommonSetScreen("Character", "FriendList");
@@ -5217,7 +5216,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 585) && (MouseY < 675)) {
             if (BackgroundsList != undefined) {
                 let name = randomBackgroundName();
-                let name = BackgroundsList[Roll - 1].Name;
                 Player.VisualSettings.MainHallBackground = name;
                 ServerAccountUpdate.QueueData({
                     VisualSettings: Player.VisualSettings
