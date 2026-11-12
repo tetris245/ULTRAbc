@@ -10495,7 +10495,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         AltWardrobeUpdateElements();
     }
 
-    function AltWardrobeRenameSelectedOutfit(push = false) {
+    function AltWardrobeRenameSelectedOutfit(push = false, showToast = true) {
         if (WardrobeSelection === -1) return false;
         const name = ElementValue(WardrobeID.name);
         const validName = /^[a-zA-Z0-9 ]+$/.test(name) || name.length === 0;
@@ -10503,8 +10503,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ToastManager.error(TextGet("OutfitNameError"));
             return false;
         }
-        WardrobeSetCharacterName(WardrobeSelection, name, push);
-        ToastManager.success(TextGet("OutfitRenamed"));
+        if (!WardrobeSetCharacterName(WardrobeSelection, name, push) && showToast)
+            ToastManager.success(TextGet("OutfitRenamed"));
         AltWardrobeSetSearch(Wardrobe.search, false);
         return true;
     }
@@ -10642,7 +10642,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }
 
-    function AltWardrobeSaveSelectedOutfit() {
+	function AltWardrobeSaveSelectedOutfit() {
         if (!Wardrobe.selectedCharacter || WardrobeSelection < 0) return;
         WardrobeSetActionPreview("Save", true);
         Wardrobe.previewLocked = true;
@@ -10657,7 +10657,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         if (!confirmed) return;
         WardrobeFastSave(Wardrobe.selectedCharacter, WardrobeSelection);
-        if (AltWardrobeRenameSelectedOutfit()) {
+        if (AltWardrobeRenameSelectedOutfit(false, false)) {
             WardrobePushAll();
         } else {
             ServerAccountUpdate.QueueData({
@@ -10910,7 +10910,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         if (!confirmed) return;
         WardrobeFastSave(Wardrobe.selectedCharacter, slot);
-        if (AltWardrobeRenameSelectedOutfit()) {
+        if (AltWardrobeRenameSelectedOutfit(false, false)) {
             WardrobePushAll();
         } else {
             ServerAccountUpdate.QueueData({
