@@ -126,6 +126,7 @@ Changes for future version
 * Updated and optimised the custom UBC data (including display of only days) in the Character Info screen
 * Updated the UBC buttons in map rooms to make them move when the chat is resized 
 * Updated the alphabetic order for the screens with the Blocked activities and the Immersion settings
+* Updated the AltPrepareMission function
 * Removed the BC language-switch compatibility feature (as it is now integrated in BC)
 * Removed the UBC background buttons in the Character Info and Chat Admin screens
 * Removed the mapforce command (is broken since BC changes for map rooms)
