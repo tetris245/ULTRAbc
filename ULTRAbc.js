@@ -3687,14 +3687,15 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     modApi.hookFunction('ChatRoomClick', 4, (args, next) => {
+        let drawpos = ChatRoomMapViewSplitPosition;
         if (extbuttons == true) {
-            if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 270) && (MouseY < 315)) {
+            if ((MouseX >= drawpos - 45) && (MouseX < drawpos) && (MouseY >= 270) && (MouseY < 315)) {
                 ExtClick();
                 return;
             }
         }
         if ((sosbuttons == true) && (noescape == false)) {
-            if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 315) && (MouseY < 360)) {
+            if ((MouseX >= drawpos - 45) && (MouseX < drawpos) && (MouseY >= 315) && (MouseY < 360)) {
                 let msg = UBCT("MagicalLasersMakeDisappearAll", {
                     tmpname
                 });
@@ -3713,7 +3714,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         if ((outbuttons == true) && (noescape == false)) {
-            if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 360) && (MouseY < 405)) {
+            if ((MouseX >= drawpos - 45) && (MouseX < drawpos) && (MouseY >= 360) && (MouseY < 405)) {
                 if (slowleave == true) {
                     let msg = UBCT("SlowlyHeadsForTheDoor", {
                         tmpname
@@ -3729,7 +3730,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         }
         if (rglbuttons == true) {
-            if ((MouseX >= 955) && (MouseX < 1000) && (MouseY >= 405) && (MouseY < 450)) {
+            if ((MouseX >= drawpos - 45) && (MouseX < drawpos) && (MouseY >= 405) && (MouseY < 450)) {
                 RealGarblingLevel();
                 return;
             }
@@ -4205,13 +4206,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
             }
+            let drawpos = ChatRoomMapViewSplitPosition;
             if (extbuttons == true) {
-                DrawButton(955, 270, 45, 45, "", "White", "", "");
-                DrawImageResize("Icons/Extensions.png", 960, 272, 40, 40);
+                DrawButton(drawpos - 45, 270, 45, 45, "", "White", "", "");
+                DrawImageResize("Icons/Extensions.png", drawpos - 40, 272, 40, 40);
             }
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
-            if (rglbuttons == true) DrawButton(955, 405, 45, 45, "RGL", "White", "", "");
+            if (rglbuttons == true) DrawButton(drawpos - 45, 405, 45, 45, "RGL", "White", "", "");
             let chmap = ChatRoomCharacterViewIsActive();
             if ((chmap == false) && (Player.OnlineSharedSettings.UBCShared.Inmap == false)) {
                 Player.OnlineSharedSettings.UBCShared.Inmap = true;
@@ -6503,7 +6505,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DOGSsettings();
         if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
-                DrawButton(955, 360, 45, 45, UBCT("Out"), "White", "", "");
+                let drawpos = ChatRoomMapViewSplitPosition;
+                DrawButton(drawpos - 45, 360, 45, 45, UBCT("Out"), "White", "", "");
             } else {
                 if (slowleave == true) {
                     DrawButton(0, 90, 45, 45, UBCT("Out"), "White", "", UBCT("SlowExit"));
@@ -6565,7 +6568,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         DOGSsettings();
         if (noescape == false) {
             if (window.CurrentScreen == "ChatRoom") {
-                DrawButton(955, 315, 45, 45, UBCT("Free"), "White", "", "");
+                let drawpos = ChatRoomMapViewSplitPosition;
+                DrawButton(drawpos - 45, 315, 45, 45, UBCT("Free"), "White", "", "");
             } else {
                 DrawButton(0, 45, 45, 45, UBCT("Free"), "White", "", UBCT("TotalRelease"));
             }
