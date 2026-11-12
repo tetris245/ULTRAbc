@@ -124,6 +124,7 @@ Changes for future version
   - Several controls check now if the entered code is in the appropriate BCG/UBC format
   - The handling of the data is fixed (it was broken by an adjustment parameter related to the body style)
 * Updated and optimised the custom UBC data (including display of only days) in the Character Info screen
+* Updated the UBC buttons in map rooms to make them move when the chat is resized 
 * Updated the alphabetic order for the screens with the Blocked activities and the Immersion settings
 * Removed the BC language-switch compatibility feature (as it is now integrated in BC)
 * Removed the UBC background buttons in the Character Info and Chat Admin screens
