@@ -119,6 +119,7 @@ Changes for future version
   - B = Toggle to see or not shared background by other players on their Character Info screen 
   - D = Default background - R = Random background - S = Select background
 * New setting in GUI - Visual Effects to enable/disable zebra effect on several BC screens (Chat, Gender, Graphics, Immersion, Online)
+* Optimised and fixed the random background feature (Thanks to TheSecretCoder!)
 * Improved the wexport command: The outfit code in BCG/UBC format is directly saved to the clipboard instead of being displayed in the chat
 * Improved the wimport1, wimport2 and wimport3 commands: 
   - Several controls check now if the entered code is in the appropriate BCG/UBC format
