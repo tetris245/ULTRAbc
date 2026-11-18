@@ -4,7 +4,7 @@ ULTRA Bondage Club by Nemesea - Add-on for Ben987's BondageClub game
 
 ULTRAbc is a modSDK version of QAM, providing better compatibility with other add-ons, especially BCX and WCE.
 
-Most recent version: 6.4
+Most recent version: 6.5
 
 Check the Wiki for more info: https://github.com/tetris245/ULTRAbc/wiki
 
@@ -43,7 +43,7 @@ https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
 <br>
 
 **Alternative methode for Google Chrome, Microsoft Edge, similar browsers** (Will not work with Asian server)
-1. Download the ULTRAbc-version6.4.zip file on the Releases page   
+1. Download the ULTRAbc-version6.5.zip file on the Releases page   
 2. Depending on browser, the .zip might have to be extracted. Some browsers accept a .zip, most browsers require a folder.
 3. Go to browser extensions. Enable developer mode.
 4. Load as Unpacked. Done. If the file can't be seen, see step 2.
@@ -66,16 +66,6 @@ In game, use `/ulang es`, `/ulang cn` or `/ulang en` to pick a UBC language for 
 <b>If you prefer to choose language before login, never use the /ulang command, as the data saved to your account will override your choices in the language screen.</b>
 
 `Text_UBC_DE.txt`, `Text_UBC_FR.txt`, `Text_UBC_RU.txt`, `Text_UBC_UA.txt` and `Text_UBC_TW.txt` only hold the few login-screen texts for now, so every BC language can show them. To add a full language, fill its file (or copy `Text_UBC_ES.txt`), translate the second line of each pair and add the language code to `UBC_LANGUAGES` in `ULTRAbc.js`.
-
-<br>
-
-## BC language-switch compatibility (only in version 6.4)
-
-Older BC builds can leave text in a previous language when translation requests finish out of order, or refresh login labels before the selected language starts loading. UBC tests a disposable text cache and guards the recognized vulnerable build implementation. It also starts an outdated prefetched cache before callers await its loading promise. Native-fixed BC keeps its build method unchanged, and the prefetch hook does no extra rebuild when BC already refreshes the cache. Unfamiliar build implementations are left alone.
-
-Regression tests use an actual BC checkout: set `BC_TEXT_SOURCE` to its `BondageClub/Scripts/Text.js`, then run `node --test tests/bc-text-cache.test.cjs`. Set `BC_EXPECT_NATIVE_FIX=1` when testing a BC checkout containing the native fix.
-
-This feature will be removed in next UBC version, as it will be integrated in BC R134.
 
 <br>
 
@@ -114,23 +104,7 @@ All else I might not have included.
 
 Changes for future version
 
-* New setting in GUI - Backgrounds to enable/disable display of shared background when you are on the Character Info screen of other players
-* New setting in GUI - Hotkeys to enable/disable hotkeys when you are on your own Character Info screen:
-  - B = Toggle to see or not shared background by other players on their Character Info screen 
-  - D = Default background - R = Random background - S = Select background
-* New setting in GUI - Visual Effects to enable/disable zebra effect on several BC screens (Chat, Gender, Graphics, Immersion, Online)
-* Optimised and fixed the random background feature (Thanks to TheSecretCoder!)
-* Improved the wexport command: The outfit code in BCG/UBC format is directly saved to the clipboard instead of being displayed in the chat
-* Improved the wimport1, wimport2 and wimport3 commands: 
-  - Several controls check now if the entered code is in the appropriate BCG/UBC format
-  - The handling of the data is fixed (it was broken by an adjustment parameter related to the body style)
-* Updated and optimised the custom UBC data (including display of only days) in the Character Info screen
-* Updated the UBC buttons in map rooms to make them move when the chat is resized 
-* Updated the alphabetic order for the screens with the Blocked activities and the Immersion settings
-* Updated the AltPrepareMission function and three wardrobe functions
-* Removed the BC language-switch compatibility feature (as it is now integrated in BC)
-* Removed the UBC background buttons in the Character Info and Chat Admin screens
-* Removed the mapforce command (is broken since BC changes for map rooms)
+(...)
 
 
 
