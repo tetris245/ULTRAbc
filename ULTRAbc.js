@@ -4951,8 +4951,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     });
 
     modApi.patchFunction("InformationSheetIdentitySection", {
-        'InformationSheetFact("Name", C.Name, null, true)':
-        'InformationSheetFact("Name", C.OnlineSharedSettings?.UBCShared?.cname || C.Name, null, true)',
+        'InformationSheetCopy(C.Name)':
+        'InformationSheetCopy(C.OnlineSharedSettings?.UBCShared?.cname || C.Name, null, true)',
         'if (title !== "None") {':
         'if (title !== "None" || C.OnlineSharedSettings?.UBCShared?.ctitle) {',
         'InformationSheetFact("Title", TitleGetName(title), titleClass, true)':
